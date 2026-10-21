@@ -1,0 +1,1831 @@
+{
+  "schema_version": 1,
+  "reviewed_source_commit": "4355869e2e198b5616419291cba225b018444fab",
+  "reviewed_source_tree": "b9b148d5d8ef7c7b088500a9c177f9f59304b800",
+  "later_source_note": "Later ef46e8aa/c96f9708 changed Fit/status code, not resources; this is not a new full-current-consumer review. Rebind exact values and affected consumers before implementation.",
+  "integrated": false,
+  "current_production_credit_added": 0,
+  "hash_contract": "SHA-256 compact JSON uses ensure_ascii=False, sort_keys=True, separators=(comma,colon). Raw UTF-8 value hashes exclude JSON quotes and trailing newline.",
+  "purpose": "Additional exact accepted but unapplied candidates; earlier 59-entry and 20-entry manifests remain unchanged.",
+  "typed_edits": 69,
+  "priority_edits": 68,
+  "P2_edits": 1,
+  "counts_by_locale": {
+    "sw": 14,
+    "ceb": 10,
+    "zh-CN": 45
+  },
+  "classification_guardrails": [
+    "Chinese: only the completeness/translation-note mismatch and Bottom edge-vs-layer label are clear complete-content errors among the 44 priority proposals. Separate P2 Top has the same edge-vs-layer issue. Meaningful regional terminology is not intrinsically wrong.",
+    "Cebuano: preserve medium AI confidence; gi- is not inherently completed-only. The saving edits provide explicit ongoing-state clarity. The ten accepted values are not ten severe bugs.",
+    "Swahili: fourteen core edits include twelve consumer-bound and two wording-only values. Five optional improvements are separate. Four current holds remain."
+  ],
+  "unchanged_companion_constraints": [
+    {
+      "locale": "zh-CN",
+      "candidate": "string/save20_gif_description",
+      "companion": "string/save20_dither",
+      "expected_unchanged_companion_value": "抖色",
+      "companion_is_not_an_additional_edit": true
+    }
+  ],
+  "rows": [
+    {
+      "locale": "sw",
+      "identity": "string/formats22_derived_exported",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_derived_exported"
+      },
+      "reviewed_source_value": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "expected_unmodified_current_value": "%1$s imehamishwa. Mchoro wako kamili bado una mabadiliko ambayo hayajahifadhiwa; hifadhi nakala ya picha kamili kabla ya kuibadilisha.",
+      "accepted_candidate_value": "%1$s imehamishwa. Mchoro wako kamili bado una mabadiliko ambayo hayajahifadhiwa; hifadhi nakala ya picha kamili kabla ya kubadilisha mchoro huo.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "wording_only",
+      "source_value_sha256_json": "c6f1b979cbb5e7c86ce685904260e4e2cb41b9bd477cb90e4791b4c859e8b198",
+      "current_value_sha256_json": "eab8606c4f11ff5d16054dfa8fd81548e14ded39c892dfcee089b3876e484a1c",
+      "candidate_value_sha256_json": "a1e2163a36283440d16bd1c8ff7da4f5849029c82a98d49fb1f80e0b474369dd",
+      "accepted_value_utf8_sha256": "c18cb04ca1ecb9ece97c3ade5a4475204b221978ee5a6ac2a90df0d8c522af2f",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": true
+    },
+    {
+      "locale": "sw",
+      "identity": "string/save20_destination_error",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "save20_destination_error"
+      },
+      "reviewed_source_value": "The completed image could not replace its destination.",
+      "expected_unmodified_current_value": "Picha iliyokamilika haikuweza kubadilisha mahali pake pa kuhifadhi.",
+      "accepted_candidate_value": "Picha iliyokamilika haikuweza kuchukua nafasi ya faili lengwa.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "c7240f62fbf5ea4430b6b9ee00e435d5061b11de80295390d534109bee4830e5",
+      "current_value_sha256_json": "96604e126fdaf88a4057d3f726caaa214b2fc35b7bd516962acb4a17fc590437",
+      "candidate_value_sha256_json": "2d455a37f4523df93f40a19122ea6ce7e7b9453fc7ed1d52133849f7ea5a1eae",
+      "accepted_value_utf8_sha256": "9d24aa6af1941446083b077debe0a910f381ef5884321f4e5199a7ade9b00f20",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/save20_gif_description",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "save20_gif_description"
+      },
+      "reviewed_source_value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "expected_unmodified_current_value": "Picha tuli, hadi rangi 256. Dithering hulainisha mipito ya rangi. GIF zilizohuishwa hufunguliwa kwa fremu yake ya kwanza.",
+      "accepted_candidate_value": "Picha tuli, hadi rangi 256. Dithering hulainisha mipito ya rangi. Kila GIF iliyohuishwa hufunguliwa kama fremu yake ya kwanza.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "d6f9eeb45c2999a514f5a93a045dd5277ed1e68f3f0157885de46cc8a5e281c2",
+      "current_value_sha256_json": "57b703fb03c181687380e687367d8a16f9c35d73e5986fe53ce2201f728745be",
+      "candidate_value_sha256_json": "0b015f57f3fc5eb06af73fc6a9c03daf3cd7c8df74a6526dcf65d1d03e0e0244",
+      "accepted_value_utf8_sha256": "99aa8796e97d2910ae7d293a062ac162081cda6ea3bef6df7ee545209b109dbb",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "reviewed_source_value": "Cannot create the undo cache. Free some device storage and try again.",
+      "expected_unmodified_current_value": "Haiwezi kuunda akiba ya kutengua. Futa nafasi fulani ya hifadhi kwenye kifaa na ujaribu tena.",
+      "accepted_candidate_value": "Imeshindikana kuunda akiba ya kutengua. Tengeneza nafasi kwenye hifadhi ya kifaa, kisha ujaribu tena.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "0732eb85069e094749b2b698f09b4885839542b6e646a89482b33bd133bbadfc",
+      "current_value_sha256_json": "62343afe7e2007f3471af900c56ce0b196f63284d6632f7094b85405001562c9",
+      "candidate_value_sha256_json": "95fe395792e15621f5c5df44889f4870cbe86fe43caac7933806f4999a567763",
+      "accepted_value_utf8_sha256": "75fe8ad2a124ab125674ade47317730ca53c31c7ca92c549aedd8b8bd245baec",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "reviewed_source_value": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "expected_unmodified_current_value": "Huhifadhi pikseli za juu kushoto. Turubai ndogo hutupa pikseli zilizo nje ya ukingo wa kulia/chini; Tengua huzirejesha.",
+      "accepted_candidate_value": "Huweka picha kwenye kona ya juu kushoto. Kupunguza vipimo vya turubai huondoa pikseli zilizo nje ya ukingo wa kulia au wa chini; Tengua huzirejesha.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "ab6330149ebce5ddf92a1bfbea49563912ced2e9bdcff8f0c18f8a992483cff2",
+      "current_value_sha256_json": "3b381ab2edf9997ff0207c359ec01a66381d0062ad139047071d8de58ce805d1",
+      "candidate_value_sha256_json": "74f4c2842db8a804492d5a968fd573cb3d0d46b497373b6bac04d2fd4c5bf9ba",
+      "accepted_value_utf8_sha256": "40b3ed1a01b05f2dc5c6aafcf49bba3de71da642b245691b6b93fc3bca322570",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/colour_invalid_metadata",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "colour_invalid_metadata"
+      },
+      "reviewed_source_value": "The image has invalid or unsupported colour metadata.",
+      "expected_unmodified_current_value": "Picha ina metadata ya rangi isiyo halali au isiyotumika.",
+      "accepted_candidate_value": "Picha ina metadata ya rangi isiyo halali au isiyoauniwa.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "69d8cda8a0b73371c328c52d11055a2d0569cab0e12639ae45f6c27df024eeea",
+      "current_value_sha256_json": "73a789a07aa6b8a15dea6e0e7b8cf194d164d27f52f1062f3b829895085424e8",
+      "candidate_value_sha256_json": "50d4abc75b304060e48117ea9dcf51bb49365126ac80617ce3c91764c8b83335",
+      "accepted_value_utf8_sha256": "efd99003ed4918c9467bebd1d9b77c8c4cabac0b6de4d6e0af617803a6b3d94e",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/colour_truncated_metadata",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "colour_truncated_metadata"
+      },
+      "reviewed_source_value": "The image ends inside its colour metadata.",
+      "expected_unmodified_current_value": "Picha inaishia katikati ya metadata yake ya rangi.",
+      "accepted_candidate_value": "Faili ya picha imekatika katikati ya metadata yake ya rangi.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "30fd77b477ef89ea49ade6db5c757d3643b8e6aa5f53caf4bf01f22ea4838b83",
+      "current_value_sha256_json": "1e75f253b04bfe4fcdddabf904a9132ad1e1305b82e081279f58806f63d0a271",
+      "candidate_value_sha256_json": "e296b00624fc0a11048a939efbebdc8306485b2c33565b32ec98d97d82a36975",
+      "accepted_value_utf8_sha256": "31512ae4d4979bbd9ae2438eb077afbdb97594d31e020946daddc10074992d16",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/language20_translation_note",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "language20_translation_note"
+      },
+      "reviewed_source_value": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+      "expected_unmodified_current_value": "Toleo hili la lugha lina maandishi yote ya kiolesura cha AN Paint yanayoweza kutafsiriwa.",
+      "accepted_candidate_value": "Lugha ya programu\\n\\nTafsiri hutunzwa katika rasilimali za lugha za AN Paint. Maandishi mapya au ambayo hayajatafsiriwa huonekana kwa Kiingereza.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+      "current_value_sha256_json": "3760d6e3cdb49f539c5eec4e794425f644d85d1a46ea671ad51a5592a4e8e166",
+      "candidate_value_sha256_json": "c9c8a5b9840fc59c3159b34b182e6436f64e5da29887e3f45dac74e4fbcbdfe9",
+      "accepted_value_utf8_sha256": "f6aa9728cb9e42994d299229063d82464e3c755002722bab227fa8e75914c3e9",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/ui_collapse_tool_category",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "ui_collapse_tool_category"
+      },
+      "reviewed_source_value": "%1$s: %2$s selected. Collapse tools and options",
+      "expected_unmodified_current_value": "%1$s: %2$s imechaguliwa. Kunja zana na chaguo",
+      "accepted_candidate_value": "%1$s: zana iliyochaguliwa ni %2$s. Kunja zana na chaguo",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_composed_consumer",
+      "source_value_sha256_json": "02972d9a3aa1c99efff16d8be8bd4cb3ade3def6bc3815d49e4dfb49327d278d",
+      "current_value_sha256_json": "a3eb6112fbc4e7e4030c4fe9c630d261fab8a701ff281552df42a1ab58edc9ec",
+      "candidate_value_sha256_json": "2b2eb91d292cd4c787516f7218842327073297f34e8d06b4606b3a613f32e505",
+      "accepted_value_utf8_sha256": "f0632a8afd1650c4ee7b70902fde4c3e06b34a38e644adee9058171062dc98e7",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/ui_expand_tool_category",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "ui_expand_tool_category"
+      },
+      "reviewed_source_value": "%1$s: %2$s selected. Expand tools and options",
+      "expected_unmodified_current_value": "%1$s: %2$s imechaguliwa. Panua zana na chaguo",
+      "accepted_candidate_value": "%1$s: zana iliyochaguliwa ni %2$s. Panua zana na chaguo",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_composed_consumer",
+      "source_value_sha256_json": "470b94f0c967323c0812325a265e64e84e6fa0b702a5468f54d727de2463c272",
+      "current_value_sha256_json": "df2f0d818eea1cafd2451fd4ee3e04cf9094b6fa7460274d832620ca1809c811",
+      "candidate_value_sha256_json": "6f0c6c2c20e79fe4f86b46cda13bd7d4fc689dbe6537469699e0128be6e7973d",
+      "accepted_value_utf8_sha256": "4ec3eb7df1cc1cd6ddfb02716bc93c7e86ae66f15d6e289ed96712bccfb12bb7",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/ui_swap23",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "ui_swap23"
+      },
+      "reviewed_source_value": "Swap colors",
+      "expected_unmodified_current_value": "Badilisha rangi",
+      "accepted_candidate_value": "Badilisha nafasi za rangi",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "e0b81c8bdaa2a9412104810d6001239c1d48dc0ecf795c4183cc5d0b56a2d901",
+      "current_value_sha256_json": "98372c68c5303a8eb4b4425ff3de3d19bc79869ed99123b365fa8a1b8b535d59",
+      "candidate_value_sha256_json": "bc760a0374b67386779bdab109bb5aa1439d89c29ed691335bb18db0e06bfe7c",
+      "accepted_value_utf8_sha256": "1e8896ad269609b640bbb346181b5dfb6b566692609ff231ea6c4e8f7f99e31c",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/ui_swap_foreground_background",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "ui_swap_foreground_background"
+      },
+      "reviewed_source_value": "Swap foreground / background",
+      "expected_unmodified_current_value": "Badilisha mbele / mandharinyuma",
+      "accepted_candidate_value": "Badilisha nafasi za rangi ya mbele na ya mandharinyuma",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "wording_only",
+      "source_value_sha256_json": "c2c3f286e4111f2684189cdf952a45969719b93d2e7e0ea2159f1781e4ffdb78",
+      "current_value_sha256_json": "4de8771ccb5013412164f5b7e9671f3dea6d28ae6331cca6e884541df16e673d",
+      "candidate_value_sha256_json": "81d5805e7a5c264e17db36dd647e2c658f7a83adb66a680d6dd79e025aec428d",
+      "accepted_value_utf8_sha256": "93206164fb35200f3fadbbef5f3e2208468b4f446e71e4e2c6dfd6d74941c057",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": true
+    },
+    {
+      "locale": "sw",
+      "identity": "string/ui_this_file_is_not_a_supported_image_use",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "ui_this_file_is_not_a_supported_image_use"
+      },
+      "reviewed_source_value": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
+      "expected_unmodified_current_value": "Faili hii si picha inayotumika. Tumia PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF au maandishi ya picha ya Base64.",
+      "accepted_candidate_value": "Faili hii si picha inayoauniwa. Tumia PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF au maandishi ya picha ya Base64.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_consumer",
+      "source_value_sha256_json": "ac596d293fb148e9d457c1baa565e8d257ca1072468870bc1662a6af853fda4a",
+      "current_value_sha256_json": "66b244a2e214f0907f3eeff12d06bbf44d1097951c22cdb11785d68fb1573547",
+      "candidate_value_sha256_json": "3622e35a028e7da2126d1ef5ee90343bb46decbdc65721aea80a7c9b3d5cb7f0",
+      "accepted_value_utf8_sha256": "e8cac53f1635e229db2931654f962d50d1b6c6f38b2689c0ef09f4ad543e9348",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "sw",
+      "identity": "string/ui_too_large_for_the_current_budget_reduce_the",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-sw/strings.xml",
+      "resource_attributes": {
+        "name": "ui_too_large_for_the_current_budget_reduce_the"
+      },
+      "reviewed_source_value": "Too large for the current budget. Reduce the dimensions or cancel and free memory.",
+      "expected_unmodified_current_value": "Kubwa mno kwa kikomo cha sasa. Punguza vipimo au ghairi na ufungue kumbukumbu.",
+      "accepted_candidate_value": "Kubwa mno kwa kikomo cha sasa. Punguza vipimo au ghairi na utengeneze nafasi kwenye kumbukumbu.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "core",
+      "review_scope": "static_composed_consumer",
+      "source_value_sha256_json": "009c4bc4018cc2b392a35424a220de5b716528ce16dc3bb82a68bba4ccb7d3e6",
+      "current_value_sha256_json": "d11870cea09c93137eb505f41d845085c29280d8cff65fb78eacc17942117da9",
+      "candidate_value_sha256_json": "d8254b66792778d0fd2ef0149a59b4a8063d30968ed98797c20b537d9ed503b3",
+      "accepted_value_utf8_sha256": "37b8c59bf77344f614118861bf04ce4fc6df57480de20c767617d8e12c4eed66",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "sw/review.json"
+      ],
+      "source_only_limit": false
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/save20_destination_error",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "save20_destination_error"
+      },
+      "reviewed_source_value": "The completed image could not replace its destination.",
+      "expected_unmodified_current_value": "Dili mapulihan sa nahuman nga hulagway ang destinasyon niini.",
+      "accepted_candidate_value": "Dili mapulihan sa nahuman nga hulagway ang file sa destinasyon niini.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "c7240f62fbf5ea4430b6b9ee00e435d5061b11de80295390d534109bee4830e5",
+      "current_value_sha256_json": "2e5814049e0c9ca0148de93366c084faf7b32bca417f60fbd8028d1040b235c1",
+      "candidate_value_sha256_json": "8125739f7485406166de464fbcadb2feadb2cc472120d8144138c168fbca6d14",
+      "accepted_value_utf8_sha256": "482e7f7591e9516e55bf294473a2c56255f3f2d4afce1c79f30894ad6eda47f9",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "reviewed_source_value": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "expected_unmodified_current_value": "Gipabilin ang mga pixel sa wala nga ibabaw. Ang mas gamay nga canvas motangtang sa mga pixel lapas sa tuo/ubos nga kilid; ang I-undo mobalik niini.",
+      "accepted_candidate_value": "Gipabilin ang mga pixel sa wala nga ibabaw. Ang mas gamay nga canvas motangtang sa mga pixel lapas sa tuo/ubos nga kilid; maibalik kini pinaagi sa I-undo.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "ab6330149ebce5ddf92a1bfbea49563912ced2e9bdcff8f0c18f8a992483cff2",
+      "current_value_sha256_json": "bff93dbfac3be16a3d559979e68e0f52527b8555971eaa9f9a12a7cf3d0e3891",
+      "candidate_value_sha256_json": "64030d7a3517a3d1fa1f9f89c4b2507ad4c365d54ec80ff19e139d4d1a81b096",
+      "accepted_value_utf8_sha256": "7a471655625c72d594c0031add074f269ae9442b46ee340fcd41b8720425277a",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "reviewed_source_value": "The draft is saving. Try again shortly.",
+      "expected_unmodified_current_value": "Gitipigan ang draft. Sulayi pag-usab sa makadiyot.",
+      "accepted_candidate_value": "Nagpadayon pa ang pagtipig sa draft. Sulayi pag-usab sa makadiyot.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "61e2efe783a5c0958d756a47edd7ca6fba6808596108a8af71e6890bbd4b1d20",
+      "current_value_sha256_json": "96adac457bb90ed11177379a94632f54aa96512743536e18c3d103fb1ea199e7",
+      "candidate_value_sha256_json": "079765c1df3eb3749e77ccc56740f27fd486560e243efb1e75d7a5289d3dd9cd",
+      "accepted_value_utf8_sha256": "a6e81a2ac088a0490e1c01f6319abae6580c8a04aafc848575d5ebea64b5a40b",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_autosaving_draft",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_autosaving_draft"
+      },
+      "reviewed_source_value": "Autosaving draft…",
+      "expected_unmodified_current_value": "Gi-autosave ang draft…",
+      "accepted_candidate_value": "Gi-autosave pa ang draft…",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "abcec7ac8a4212cdc54ed62c2e3e6813f2a87a267ae81f6d36c2ca280e48b92b",
+      "current_value_sha256_json": "3420014c343a35c25578eb70947f88b9dae5cf9db6ee71ba813d11b2944c2395",
+      "candidate_value_sha256_json": "30512236f2bed80f3798e8a7a7980509a0af8e9e91b4e250bd9f1a4e371b40c6",
+      "accepted_value_utf8_sha256": "ac0c4409d4824934e81e3c5ac08f9c6508da5bed00ffec68c89a4d4364d4e3d9",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_colour_palette_tap_for_foreground_hold_for_background",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_colour_palette_tap_for_foreground_hold_for_background"
+      },
+      "reviewed_source_value": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+      "expected_unmodified_current_value": "Paleta sa kolor. I-tap para sa atubangan; pislita ug dugay para sa likod. I-scroll para sa dugang nga mga kolor.",
+      "accepted_candidate_value": "Paleta sa kolor. I-tap para sa atubangan; pislita ug kupti para sa likod. I-scroll para sa dugang nga mga kolor.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "9c6046b7bc4a0c270d067b8713fc7c1e8df7b9139ef208d65e3d6f96a1edef26",
+      "current_value_sha256_json": "a403b9b0077f3c8cee8815fb2552bb08ba2d435476ca9269b5460c95b483453c",
+      "candidate_value_sha256_json": "5b0c612afcaea008726786f6829175728cc7b491ddd7d3c27437db467ee04801",
+      "accepted_value_utf8_sha256": "ea6a18cceef0567004bbddad808995d24be3125417e25bb0e1c0801da0838bc7",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_colour_tap_foreground_hold_background",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_colour_tap_foreground_hold_background"
+      },
+      "reviewed_source_value": "Colour #%1$s. Tap foreground, hold background.",
+      "expected_unmodified_current_value": "Kolor #%1$s. I-tap para sa atubangan, pislita ug dugay para sa likod.",
+      "accepted_candidate_value": "Kolor #%1$s. I-tap para sa atubangan, pislita ug kupti para sa likod.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "582553229c04d10622bbd4aaf4e1ed5c5196a8026feb245029c2fc0d53227f16",
+      "current_value_sha256_json": "0bd9c394673916de34176e4f04bc5fd3686351ca386b5a801c698adf1b378368",
+      "candidate_value_sha256_json": "c996e0db6e412c68e00c649e52ad3689d9d57255ee068e6474fd1baa05f42b73",
+      "accepted_value_utf8_sha256": "ab9323f4a6edd5326e55a9bc103c18acf07e8fa06bb94f2172cba5390f557279",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_crop_preview_drag_an_edge_or_corner_drag",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_crop_preview_drag_an_edge_or_corner_drag"
+      },
+      "reviewed_source_value": "Crop preview. Drag an edge or corner; drag inside to move the crop.",
+      "expected_unmodified_current_value": "Pasiunang tan-aw sa pag-crop. I-drag ang kilid o kanto; i-drag ang sulod aron ibalhin ang bahin nga putlon.",
+      "accepted_candidate_value": "Pasiunang tan-aw sa pag-crop. I-drag ang kilid o kanto; i-drag sulod sa crop aron ibalhin kini.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "10875f51dff9071f46c148119c1168d162841fba1c3b8cf44c1cda10c177e9a3",
+      "current_value_sha256_json": "e30ca849f23c2331760bab63c50aaac9ef9f4c4c848146f9c1d86e2a03f2973a",
+      "candidate_value_sha256_json": "4d4b479fba427c5bbe2dad2f6833d7bafcc71f2d5cbc3c3cc8bc74d4f4c8bb54",
+      "accepted_value_utf8_sha256": "60f0c1ec9f775cab98ae39d9bac5211f27cf8811989e378a3210bb42ba1b968f",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_d_d_px_d_pixels_2f_mp",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_d_d_px_d_pixels_2f_mp"
+      },
+      "reviewed_source_value": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+      "expected_unmodified_current_value": "%1$d × %2$d px · %3$,d pixels (%4$.2f MP)",
+      "accepted_candidate_value": "%1$d × %2$d px · Gidaghanon sa mga pixel: %3$,d (%4$.2f MP)",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "7b6571544285703a115c298c491dde5fdbfbb34a0eec388e5906e1d1fd26171c",
+      "current_value_sha256_json": "5a3205904665caeae43dff65e2ac604b8fce69f365b3fb4af9fc301816638c6a",
+      "candidate_value_sha256_json": "c465c30054639f2f43f2c2fb1a06c8b5bbbfa683df47d7a73b64a98f6556f379",
+      "accepted_value_utf8_sha256": "0a0ca715f1c1102c3a4d7416017ee07a5ad4ece9176f57fb6ba72dc2004bd460",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_left_arrow_collapse",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_left_arrow_collapse"
+      },
+      "reviewed_source_value": "Left arrow: collapse",
+      "expected_unmodified_current_value": "Wala nga pana: i-collapse",
+      "accepted_candidate_value": "Pana paingon sa wala: i-collapse",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "wording_only_no_direct_consumer",
+      "source_value_sha256_json": "3f273d023a6734afc095b62bbd104ed19ec87dc6a6beb272be0f2b691c301aa9",
+      "current_value_sha256_json": "1828ba3f816f404fa4ef288df2268502a6c200d09e10de7e38c0390f2a8aa950",
+      "candidate_value_sha256_json": "f9c2d7e79b2640793601ffee696a0f54b818376eb4797a020999c019ff0e52a9",
+      "accepted_value_utf8_sha256": "fb077fc7a0eeeb47f0e891225dac06f4bdd56581da690e56d271a03f8b0a5945",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "ceb",
+      "identity": "string/ui_scales_the_image_unlock_the_ratio_to_stretch",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "resource_attributes": {
+        "name": "ui_scales_the_image_unlock_the_ratio_to_stretch"
+      },
+      "reviewed_source_value": "Scales the image. Unlock the ratio to stretch width and height independently.",
+      "expected_unmodified_current_value": "Usbon ang gidak-on sa hulagway. Ablihi ang pagkandado sa katimbangan aron bulag nga mabitad ang gilapdon ug gitas-on.",
+      "accepted_candidate_value": "Usbon ang gidak-on sa hulagway. I-unlock ang aspect ratio aron bulag nga mausab ang gilapdon ug gitas-on.",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "bounded_wording_improvement_not_ten_severe_bugs",
+      "review_scope": "direct_static_source",
+      "source_value_sha256_json": "a7125bc301aaf18f52858aad930bb679cb2cbd2b8e566ae6d4b7c566bdd27d38",
+      "current_value_sha256_json": "cb2766a483b1487bb153e6079fcf555f358ae76d3054129c60c23b75bccccddb",
+      "candidate_value_sha256_json": "73970b01c4684776b6d2a437942253a23666000dbc4eda21b994a43dd66521c3",
+      "accepted_value_utf8_sha256": "6178eeb86e8bfd4ce9cc9b0f438dc7f22cb350445fd13919388b1e6769ab2e6b",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "ceb/receipt.json"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/formats22_animation_message",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_animation_message"
+      },
+      "reviewed_source_value": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "expected_unmodified_current_value": "此 %1$s 包含 %2$s 个画格。AN Paint 编辑静态图片，不会保留动画。",
+      "accepted_candidate_value": "此 %1$s 包含 %2$s 帧。AN Paint 编辑静态图片，不会保留动画。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "d05c3b67f3ecd22cbc14239a55efd069bbf44faf7d3d25efca67a5d5a13019a7",
+      "current_value_sha256_json": "f8e09eb043700c9a5f0170a9f4f14cef97311604be526981e053ccc1a4b565a5",
+      "candidate_value_sha256_json": "f00745e90fddbc2822ca8700b6e07132761aa56ecfd42bafad6985cfbe11fbc1",
+      "accepted_value_utf8_sha256": "4b76d8b0c8b9e0ec99ef3090d6d610ecb0de9b7278a02cefc301c50000463bd4",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/formats22_animation_poster",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "reviewed_source_value": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "expected_unmodified_current_value": "此 PNG 另有预设图片。系统会汇入该图片，而不是动画画格。保存后会成为静态图片。",
+      "accepted_candidate_value": "此 PNG 有一张独立的默认图片。系统会导入该图片，而不是动画帧。保存后会生成静态图片。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "828d8402e14078a97240dc7616188caff5037bc3c19d4d560b1cfd79a2222631",
+      "current_value_sha256_json": "8447660181c20f1f9c0ae0409dbb288f43f2a0764b28ed5aeb6236880a61b73d",
+      "candidate_value_sha256_json": "1e3cb4c6d67b5433d9cb7dbff68151eecae9407e65503d02109eb96682ef2fa0",
+      "accepted_value_utf8_sha256": "ab5549d37e9b619d97eb8b4956c002db406e4fd6f178fac590f7c6b7ea86db99",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/formats22_animation_still",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_animation_still"
+      },
+      "reviewed_source_value": "Only the first frame will be imported. Saving creates a still image.",
+      "expected_unmodified_current_value": "只会汇入第一个画格。保存后会成为静态图片。",
+      "accepted_candidate_value": "只会导入第一帧。保存后会生成静态图片。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "99e8b6db5e17715fc727c15526939c73d9e9be549b8b986d6a6c3a0e7ddcebef",
+      "current_value_sha256_json": "04b1f98efc7f40f03a29582fd7d3a0cca8adf968f6b78a32829891f8775a2758",
+      "candidate_value_sha256_json": "1f44b3ebbaad788fe86e18982eb1ac3a4f77e8fd00cfac78a541e7aa066382f7",
+      "accepted_value_utf8_sha256": "dfbd5372c24029f3617ff5922d68fa5b828ee060a2ff67d2b054d5a37f11efe7",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/formats22_animation_unknown",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "reviewed_source_value": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "expected_unmodified_current_value": "此 %1$s 结构过于复杂，无法确认是否包含多个画格。AN Paint 只会开启静态图片，不会保留动画。",
+      "accepted_candidate_value": "此 %1$s 结构过于复杂，无法确认是否包含多帧。AN Paint 只会打开静态图片，不会保留动画。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "d62d8bb89b2973349ae0413509eb4edbe4528a4969149829c823cdc188b0159b",
+      "current_value_sha256_json": "c59783bb0a59fbca40e39e8b454955036574fca8de040847a46058f7169d8ce1",
+      "candidate_value_sha256_json": "316c7748f18ae962a0eaa5ba4c5b88f240cd4531c4c46ead9af6a3ced2cc24ce",
+      "accepted_value_utf8_sha256": "938e241830355697a58314c921066371b9a7bf85aa53f0bd3a0ef4622ce25996",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/formats22_ascii_description",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "reviewed_source_value": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "expected_unmodified_current_value": "使用明暗不同的字符写成纯文字。请以等阔字体检视。这只是视觉呈现，不能重新打开为原始图片。",
+      "accepted_candidate_value": "使用明暗不同的字符生成纯文本。请使用等宽字体查看。这只是视觉呈现，不能作为原始图片重新打开。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "2b546794da7bacff022177fe1e35f184ea1427570d797423ac52abb3d0fe5e8c",
+      "current_value_sha256_json": "dede21b1f21349c0bb0e17e24d24c3ffa606c2e14b253e5cbc1ff00eac13da6b",
+      "candidate_value_sha256_json": "f1b3f84601c0a868ac5746aad007e481cd9bab186e6792d0ff8d7b7f0eaa35a7",
+      "accepted_value_utf8_sha256": "3eab4b5295ce5874bbd5d062c74236a1fbfe20132828fbb1c030dbc9adf9ed10",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/formats22_pdf_raster_hint",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "reviewed_source_value": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "expected_unmodified_current_value": "PDF 页面会以 144 dpi 绘制。文字及向量物件会转为像素。",
+      "accepted_candidate_value": "PDF 页面会以 144 dpi 渲染。文字和矢量对象会转换为像素。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "52cd0ff20c6b88afebceab2e522f1ffdc67f4a2ef6d758e4f770110781318b98",
+      "current_value_sha256_json": "b87f2a56d5250e865471d856100a3f6b83950d2d6a688d74e9750dba6d057cc5",
+      "candidate_value_sha256_json": "0c5b63694da9c0f0b84730b09791461f783c6f5d2a390674b09c8c1b18df8413",
+      "accepted_value_utf8_sha256": "e24408e0f1ac07008b20b2a3448ef3021ec23323686035fc753ed8501f6b83ba",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/save20_destination_error",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "save20_destination_error"
+      },
+      "reviewed_source_value": "The completed image could not replace its destination.",
+      "expected_unmodified_current_value": "完成的图片无法取代目的地文件。",
+      "accepted_candidate_value": "无法用已生成的图片替换目标文件。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "c7240f62fbf5ea4430b6b9ee00e435d5061b11de80295390d534109bee4830e5",
+      "current_value_sha256_json": "2173ee0809ab3c403ec37a2b90dd43e4e287a3035114bfd34a4b55cfe5c9fc57",
+      "candidate_value_sha256_json": "f501c43eaa7d70843f1eecd2b233df98ed6d22bb73554be4df91dac00aff555c",
+      "accepted_value_utf8_sha256": "d179fc2ab25d96b870b52a37de30f0a62d9345bf972b02e00d337735444df56e",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/save20_gif_description",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "save20_gif_description"
+      },
+      "reviewed_source_value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "expected_unmodified_current_value": "静态图片，最多 256 色。抖色可令颜色渐变看起来更平滑。动画 GIF 会开启第一个画格。",
+      "accepted_candidate_value": "静态图片，最多 256 色。抖色可使颜色渐变看起来更平滑。动画 GIF 只会打开第一帧。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "d6f9eeb45c2999a514f5a93a045dd5277ed1e68f3f0157885de46cc8a5e281c2",
+      "current_value_sha256_json": "27a4c0edb697a8119c57acfa737e35794c0401564a09ca600c03ce45828bb8df",
+      "candidate_value_sha256_json": "4d1999eb3e01af1b254cd5a2d5776ef953dab40652bdbf0750d805cdff47964d",
+      "accepted_value_utf8_sha256": "25e45ebc84fb9c2ec5c964ebccbccdf12afc2dd42c875aaf2f2a9c1a7b25b32f",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json",
+        "zh-CN/second-check/gif-substitute-second-check.json"
+      ],
+      "current_is_genuine_content_error": false,
+      "superseded_author_candidate_value": "静态图片，最多 256 色。抖动处理可使颜色渐变更平滑。动画 GIF 只会打开第一帧。",
+      "supersession_note": "Only the independently revised full GIF substitute, separately accepted by the original author, is current candidate acceptance. The original packet remains unchanged."
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/save20_lossy_quality_description",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "reviewed_source_value": "Higher quality preserves more detail and usually makes a larger file.",
+      "expected_unmodified_current_value": "较高品质可保留更多细节，通常也会产生较大的文件。",
+      "accepted_candidate_value": "较高质量可保留更多细节，通常也会产生较大的文件。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "ece710face63dce8215fb4b4b3e5bcb1d3867dcdbc7fe28ae2f8bc96a17f32d5",
+      "current_value_sha256_json": "caf51651fb03907e97c8c98ca54a3e1f6c20f52a50d4bfabaab86d7cc1469c91",
+      "candidate_value_sha256_json": "5adc1dac7829e3d89d6892c79d0aeca0a4e1e8949e33ec1b7cfbe626f6c7d739",
+      "accepted_value_utf8_sha256": "14c123c354372a6e5dc82cc713446994c2d2ff6c4ff989ccd7cefc6847b98e04",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/save20_unsupported_image_colour",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "reviewed_source_value": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "expected_unmodified_current_value": "此图片使用 AN Paint 尚未能转换的色彩描述档。请先在支持色彩管理的编辑器中转换为 sRGB PNG，再导入。",
+      "accepted_candidate_value": "此图片使用 AN Paint 尚无法转换的颜色配置文件。请先在支持色彩管理的编辑器中将其转换为 sRGB PNG，再导入。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "1ec014d887dfeea5c2422d3af4c6588c48364d5cb4614904b37b0a8ce424d2a2",
+      "current_value_sha256_json": "f56021c63a30273a5a704377a4fc8b43cfb516ab65c848f964bce069c91fc8b7",
+      "candidate_value_sha256_json": "c59abae99f261fcc5599122b74db3d816b895f6a2b9d6c468484cdbf1d50934d",
+      "accepted_value_utf8_sha256": "6b978a36fd78a449cf1d2d04dcdc05733ee35b3368f65dc3d1b34a2398a1bdb8",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "reviewed_source_value": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "expected_unmodified_current_value": "%1$s 已保留另一份恢复副本。请使用「文件」>「导出恢复副本」将其保存为 ZIP。如有需要使用一般尺寸调整功能，请从 ZIP 解压 canvas.png，再以图片方式加载。",
+      "accepted_candidate_value": "%1$s 已保留另一份恢复副本。请使用「文件」>「导出恢复副本」将其保存为 ZIP。如需使用常规的大小调整功能，请从 ZIP 中解压 canvas.png，再打开该图片。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "7d9a95b82373037c521c494e13f4ab2e8db9463c242e01a705e8c36d6069aae5",
+      "current_value_sha256_json": "ea855a9a881a47a59e2998a1cdbf5d8a0d7e1b40550997975752ff7a013d80ac",
+      "candidate_value_sha256_json": "210b5bb37363d287abfd27d2ff8d765c800aef6531395cb5ac92e5ddce6ca526",
+      "accepted_value_utf8_sha256": "c5efd709f5ef1967482cf52e906872dd5f519cfecb832041285986fee365a094",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "reviewed_source_value": "An assembly source image is missing.",
+      "expected_unmodified_current_value": "图片拼接的来源图片遗失。",
+      "accepted_candidate_value": "图片拼接缺少一张源图片。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "semantic_precision",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "948cd73f5fd9834294b93ac4c747d2b1a6364e8e8a59c237e07cbad2b8f894eb",
+      "current_value_sha256_json": "6e87006a395d05e896d9e9b51a6ccee6e01f5a88090ddad83a6b303e3a07b702",
+      "candidate_value_sha256_json": "5bdecb34440a3669dc3c0cd0fab019ae978773e4edfa4783ebe624b208cfc1e9",
+      "accepted_value_utf8_sha256": "d456839f4b0e3a44a38d763c1d8fb0d5a93f2bedb0f1c1acd451e9a2c7cce988",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_assembly_source_memory_floor",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "reviewed_source_value": "A source image needs more decoding memory than is currently available, even for a tiny output. Reducing the assembly dimensions cannot solve this. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "expected_unmodified_current_value": "来源图片即使输出极小，解码仍需要超过目前可用量的内存。缩小拼合尺寸无法解决。请关闭其他文件，或先准备较小的来源图片再试。目前拼合内容没有改变。",
+      "accepted_candidate_value": "即使输出尺寸很小，解码一张源图片所需的内存仍超过当前可用内存。缩小拼接尺寸无法解决此问题。请关闭其他文档，或先准备较小的源图片再试。拼接内容未改变。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "ef314f31c8744f9fbf8a18f5d3e974dd78ffee1db6cb9f9bdf0ce78b4d320deb",
+      "current_value_sha256_json": "7aa54bfef3a8dfe4617fcf9d931862735e4a0d357417ad9585cc1b11e9a45924",
+      "candidate_value_sha256_json": "52eeec5a2a0a26f04af4947869b2f8b1378cba5d947b243706e3759f3bb308c8",
+      "accepted_value_utf8_sha256": "7b5143f3d3f0b5ce5c480ce83785a7349aa76066217706f23e60205d90e731ea",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "reviewed_source_value": "Autosave selection encoding failed.",
+      "expected_unmodified_current_value": "自动保存的选择范围编码失败。",
+      "accepted_candidate_value": "自动保存的选区编码失败。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "99d7c5c0bb2324fb12b0249bd8157f4f8ea48de31b95d84ac47e51dda0fa317f",
+      "current_value_sha256_json": "f88b32f9e33098e8c528d5163eabe0f3ea46c249ffc5b3be67eef6087329dc01",
+      "candidate_value_sha256_json": "9ee75f2e8d3c2073efe0bf6c8b343cc5b156d3973b362a83aa65ba8a5768ccc9",
+      "accepted_value_utf8_sha256": "c3b9d3092d7145b8d1fbbf93b2093b757610dd9be8390a252f76b0244b5bc859",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "reviewed_source_value": "Cannot create the undo cache. Free some device storage and try again.",
+      "expected_unmodified_current_value": "无法建立撤销缓存。请腾出一些设备保存空间，然后再试。",
+      "accepted_candidate_value": "无法创建撤销缓存。请腾出一些设备存储空间，然后再试。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "0732eb85069e094749b2b698f09b4885839542b6e646a89482b33bd133bbadfc",
+      "current_value_sha256_json": "81ead834c4e08e96cc3cdebbe8e92c9313a0c3749708da07f0eee21427879346",
+      "candidate_value_sha256_json": "0f1aa447e4ec44fcb834eaaa59b0c82275ec24ab581945f67e8996a4da8d4aaf",
+      "accepted_value_utf8_sha256": "39bd3745918f260ecbc21fe2dae4b91d909f1f0b15f132fd9f13a7a093b57bc5",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "reviewed_source_value": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "expected_unmodified_current_value": "%1$d × %2$d 像素（%3$.2f MP）超出目前 %4$.2f MP 的安全编辑上限。AN Paint 会将完整图片保留在内存，并预留空间作变形及选择范围处理。此上限由可用内存决定。系统已在配置过大的点阵图前停止操作，并未自动调整大小。",
+      "accepted_candidate_value": "%1$d × %2$d 像素（%3$.2f MP）超出当前 %4$.2f MP 的安全编辑上限。AN Paint 会将完整图片保留在内存中，并为变换和选区操作预留空间。此上限由可用内存决定。系统已在为过大的位图分配内存前停止操作，并未自动调整大小。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "technical_precision",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "196496f3e9e88fb116faf6990a40136d33e990575a10d6ebe9a3ce10dd4659f7",
+      "current_value_sha256_json": "ad9bb5653d74a35d75c741b6597cee3c6277248473948517fa0c4934ff82b66c",
+      "candidate_value_sha256_json": "d9965388c3a0b2617495d96dd6d111cddeeb595183e4f070ede79a353ebaaf2c",
+      "accepted_value_utf8_sha256": "b0058c8eaf3998d598a7736d892436b0a3f25aff7ea32fee503161e9c2893717",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_export_explanation23",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "reviewed_source_value": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "expected_unmodified_current_value": "导出图标、Base64 文字或 ASCII 艺术。导出不会改变目前图片及其「保存」目的地。",
+      "accepted_candidate_value": "导出图标、Base64 文本或 ASCII 艺术。导出不会改变当前图片及其保存位置。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "644547326316cec702f38e8fdc09f73099d5fbc902515ab4f093f39a522e3eae",
+      "current_value_sha256_json": "f63e7d5434ab0c3e0ca7a145aed4ca7d22c463061e4d88bb600951f639d4b369",
+      "candidate_value_sha256_json": "14986be97f50941970fe22eac943900e940b29517929c3311c1ee4c9d0a529fa",
+      "accepted_value_utf8_sha256": "62925d3005cd564ef137681db29637ff131320c6ba14abe87dc5a738b42c1f4c",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "reviewed_source_value": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "expected_unmodified_current_value": "较高品质通常会产生较大的文件。无损会保留每个颜色数值。",
+      "accepted_candidate_value": "较高质量通常会产生较大的文件。无损压缩会保留每个颜色值。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "32ca8ab0fb36c89dffb83ee9656de83a958ac0acb975a3b5373bd26e1d41701a",
+      "current_value_sha256_json": "00569368a25aba4012f6039c6a4852708aa1301e5daa6a738855abd3eefe6765",
+      "candidate_value_sha256_json": "9bc2e4e57ea490f7ec5dc17b6b7aba8f0cf7a0140a5ab8605d08da541c23c8de",
+      "accepted_value_utf8_sha256": "3d4a67251de29c40f83ca0ce8a7d0efbd9f1c05c5af03257afdea7e54c5bc343",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "reviewed_source_value": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "expected_unmodified_current_value": "已导出恢复副本。请从 ZIP 解压 canvas.png，并使用「文件」>「打开图片」开启。ZIP 也包含草稿设置及任何浮动选择范围。",
+      "accepted_candidate_value": "已导出恢复副本。请从 ZIP 中解压 canvas.png，并使用「文件」>「打开图片」打开它。ZIP 也包含草稿设置及任何浮动选区。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "db7b76f4532f4c744a8f635bf4433b0e7b8b408a3dc7e36eb17e42336f0ad97c",
+      "current_value_sha256_json": "dfbd15f7dc60d0f27a74eb1d8963807bdf2b8216344cd8270c235403b928adea",
+      "candidate_value_sha256_json": "40b8da060469ca1003319a93ba37bf8a247891d58bd94284e63b31bca151affe",
+      "accepted_value_utf8_sha256": "b365f450bc53e7b9b916ca3ba41e8bb98723ccbe86303127d2361af43aeaf858",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "reviewed_source_value": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "expected_unmodified_current_value": "估算包括目前画布及剪贴簿、取样解码及编辑缓冲区。实际内存用量会有所不同。较小的副本会损失细节。原始文件不会改变。",
+      "accepted_candidate_value": "估算包括当前画布和剪贴板、采样解码及编辑缓冲区。实际内存用量会有所不同。较小的副本会损失细节。原始文件不会改变。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
+      "current_value_sha256_json": "d4fb0d56358b5d48f06e1eed7d0cc2243badf2746157b81fbc430253e856093c",
+      "candidate_value_sha256_json": "5a8f6567691ff67c4c07fe8bf94ec2118fc5c99c02a250c97f51c2dffdbb9952",
+      "accepted_value_utf8_sha256": "30a3e8512e13f7be9b068453e6ec7bca016701baf04e8dc260d373f991ea8d52",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "tier": "P0",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "reviewed_source_value": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "expected_unmodified_current_value": "内存不足，无法以原始解析度完成此操作。系统并未自动调整大小。",
+      "accepted_candidate_value": "内存不足，无法以原始分辨率完成此操作。系统并未自动调整大小。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "15fb2b264d3f13ddc05c8f94b05d64174e4e1797b303496e51ab938b13755cf2",
+      "current_value_sha256_json": "bc0d613197874e06ea770a40ef5a0d91d794a69855937739949ed7fd1e98d5ef",
+      "candidate_value_sha256_json": "6bce5c44c2eebc3ae40329725140b941f04f877b83f8959dc874cca261efd38d",
+      "accepted_value_utf8_sha256": "0cabc3c8bcdcdcf68395423a1c54bb0bd64087b06af8d0b63d6fec11644d8b30",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/colour_converter_unavailable",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "colour_converter_unavailable"
+      },
+      "reviewed_source_value": "The image colour converter could not start. The image was not imported.",
+      "expected_unmodified_current_value": "无法启动图片色彩转换器。图片并未汇入。",
+      "accepted_candidate_value": "无法启动图片色彩转换器。图片并未导入。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "40791e7ede1d2e41ded3e773ee8a72cf4d401474a84e2c67207627c7f8cd6669",
+      "current_value_sha256_json": "484a1f41e446972db6d6db631df9b3bbe6b42cc2bccd500ab6425675ba34fcdc",
+      "candidate_value_sha256_json": "f99c4a0cd97c7290de242afa10cdebdde798d80fdeaaef5793924592f3b76bb7",
+      "accepted_value_utf8_sha256": "77e8de9bc81222038881808e9fd31f26e2f4660187ca671ccbda66534ee67442",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/commons_svg_original_size_too_large",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "commons_svg_original_size_too_large"
+      },
+      "reviewed_source_value": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",
+      "expected_unmodified_current_value": "SVG 的原始大小超出 Android 点阵图的尺寸上限。并未调整大小。",
+      "accepted_candidate_value": "SVG 的原始大小超出 Android 位图的尺寸上限。并未调整大小。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "3c559fbe7c5671ddef7b258eedb36ba3575ff26cea3b8870a2324353d9b53a51",
+      "current_value_sha256_json": "0bad1d1fbfd18acb5e108dfbecd0d6eb663e304cc24aa0560e40329a567fda5e",
+      "candidate_value_sha256_json": "ca95fdc69b053f7b64907515d8900337a27d762d3dfda97838d546d1dce20325",
+      "accepted_value_utf8_sha256": "e25dc09aa6daacb7e1e549ff8dae49ec0528b25f5b87e9156feea4223ae1a601",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/formats22_import_limit",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "formats22_import_limit"
+      },
+      "reviewed_source_value": "This file exceeds the 512 MiB import limit. Choose a smaller file.",
+      "expected_unmodified_current_value": "此文件超出 512 MiB 汇入上限。请选择较小的文件。",
+      "accepted_candidate_value": "此文件超出 512 MiB 导入上限。请选择较小的文件。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "8a607977fa6f099d22aec0950a116a7a8509788990909e72a175ba96f0cdc164",
+      "current_value_sha256_json": "16ed290ee0281c5677ecaf4abe1e8f9c596d50ba11ef08da6cf2979c319ff991",
+      "candidate_value_sha256_json": "f4cd1e2a41faa505613dd4f79d3287e6335b2b25136a9111d031abd80b20cd04",
+      "accepted_value_utf8_sha256": "cc928185e8529ebec3ad019b0af0366bdfc3abcc25f2cbd3e960f3625f5c5185",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/language20_translation_note",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "language20_translation_note"
+      },
+      "reviewed_source_value": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+      "expected_unmodified_current_value": "此语言版本已包含 AN Paint 所有可翻译的界面文字。",
+      "accepted_candidate_value": "应用语言\\n\\n翻译内容在 AN Paint 的语言资源中维护。新增或尚未翻译的文字会以英语显示。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "genuine_content_error",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+      "current_value_sha256_json": "25c06d1ed2d71b59d6daeba5343c63f44c93ed17c21c8ae4f0e4134f9d0eb948",
+      "candidate_value_sha256_json": "ad6aa7d19234be69eb4f0fee1dd3bb63145460bec931084ac242cec98a4fa10d",
+      "accepted_value_utf8_sha256": "3db266156b99340553417ab8d2df8305b642c02fa8e1c457223ad24a8e2a235c",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": true
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_android_blocked_the_file_picker",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_android_blocked_the_file_picker"
+      },
+      "reviewed_source_value": "Android blocked the file picker: %1$s",
+      "expected_unmodified_current_value": "Android 已封锁文件选择器：%1$s",
+      "accepted_candidate_value": "Android 阻止打开文件选择器：%1$s",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "semantic_precision",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "ab6b2269441ea9aca480d7a0741cd592162742097ffd08804ea83818c428a159",
+      "current_value_sha256_json": "decef006b49c7a33ec39dfe2880eca0a5c58ebceda7a0b84d0f5c25fa567ed34",
+      "candidate_value_sha256_json": "e50c243f136baa8c137d277f30629c857c50e06b878cb6c5a7524065b73b7dba",
+      "accepted_value_utf8_sha256": "88bf8cccfac9c763ba5afb7ed893f051ff3e49be8f1f6ab80543631b46fd997e",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_android_could_not_find_a_file_picker_enable",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_android_could_not_find_a_file_picker_enable"
+      },
+      "reviewed_source_value": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
+      "expected_unmodified_current_value": "Android 找不到文件选择器。请在 Android 设置启用「Files」或「文件」应用，然后再试。",
+      "accepted_candidate_value": "Android 找不到文件选择器。请在 Android 设置中启用「文件」（Files）或「文档」（Documents）应用，然后再试。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "remedy_clarity",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "6b435991628c4a42a1b090ecb0b54dac1953b1c4a100b14aa06bea83896c776d",
+      "current_value_sha256_json": "8e985d72ef386d766ecc34f457599469ae9688556c624c257ebf3b889ff4b3b9",
+      "candidate_value_sha256_json": "32b4ca6108e73cf23376a1675208a87a38881c09d3d06ae7ce480b7768a4124d",
+      "accepted_value_utf8_sha256": "fc507c7e73d37129fbfff3757fe4c04a99f4b5094df99c6926938238aeed0a53",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_background_edit_colour",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_background_edit_colour"
+      },
+      "reviewed_source_value": "Background %1$s. Edit colour.",
+      "expected_unmodified_current_value": "背景 %1$s。编辑颜色。",
+      "accepted_candidate_value": "背景色 %1$s。编辑颜色。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "20812fbe4372b95f24422f5cff807fb29cb997182e39ab0fa276712e04f66c02",
+      "current_value_sha256_json": "dd6111807ecc4a72bbe0b07babb75beec58e3b6f6ae905b8e491653a8639f64a",
+      "candidate_value_sha256_json": "fd7650c9a7b4143fb6a3a125a3266d06b18afff046d4640afcc91c4737aa7b5c",
+      "accepted_value_utf8_sha256": "b95d882bcaeef0643a754246d2eeaea44c26034c016b5d01d6f4833dfcd7f8b3",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_bottom",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_bottom"
+      },
+      "reviewed_source_value": "Bottom",
+      "expected_unmodified_current_value": "底层",
+      "accepted_candidate_value": "下",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "genuine_content_error",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "b3a163b453896bef078b87ab855ba28d52076b0852e09af29f48b23dadb97dc9",
+      "current_value_sha256_json": "d414ca58a2cb6dcc8d2ad8c930cf6c9f74ed83a5f202fd31dba14bd1e7fd6332",
+      "candidate_value_sha256_json": "1bb6e066ef2b6ee177759547ee2ca00e71918f2938caf1d925e6d63f1baf7142",
+      "accepted_value_utf8_sha256": "13c12b064b635e069c22d29d1decf8e952332e9492e17515705d7904c003a147",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": true
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_choose_a_smaller_output_copy_the_source_images",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_choose_a_smaller_output_copy_the_source_images"
+      },
+      "reviewed_source_value": "Choose a smaller output copy. The source images and crop settings stay at their original resolution.",
+      "expected_unmodified_current_value": "请选择较小的输出副本。来源图片及裁剪设置会保持原有解析度。",
+      "accepted_candidate_value": "请选择较小的输出副本。源图片及裁剪设置会保持原有分辨率。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "97c5e93c6cae4000480dfb082c51293c1ce8694b8f4cdda5ea418a3170f5b74d",
+      "current_value_sha256_json": "8bf83d804daf693ced77125e5490cc034b6eb1b086ee98c8140b16fd77deda55",
+      "candidate_value_sha256_json": "d5020dc56240def878b9c6d48a37da547312f2796cdd80a7a1d5d590425da568",
+      "accepted_value_utf8_sha256": "a74b7ae0ab9e678f82620b9de31dd46573baa73dfe864fb66639490056d6c52e",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_choose_a_smaller_size",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_choose_a_smaller_size"
+      },
+      "reviewed_source_value": "Choose a smaller size.",
+      "expected_unmodified_current_value": "请选择较小的大小。",
+      "accepted_candidate_value": "请选择较小的尺寸。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "2d3c557426244d7b80f234d5839dd13013d15d577163ecc4c1a3ebd537a00f76",
+      "current_value_sha256_json": "6f6cf59af13225826133a7cf1423ff0e8697d77255a6cf23652b89dc8fcd44c5",
+      "candidate_value_sha256_json": "cbd9a3e2997637c531cb40202edfc8b73572d40c21fb852a84316dadc52a0fd2",
+      "accepted_value_utf8_sha256": "3204c27a18f3c5f1149ba83807db94b44655e457d00fa61680ce491f962b2ec2",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_colour_palette_tap_for_foreground_hold_for_background",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_colour_palette_tap_for_foreground_hold_for_background"
+      },
+      "reviewed_source_value": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+      "expected_unmodified_current_value": "调色板。点按设为前景色；长按设为背景色。卷动可查看更多颜色。",
+      "accepted_candidate_value": "调色板。点按设为前景色；长按设为背景色。滚动可查看更多颜色。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "9c6046b7bc4a0c270d067b8713fc7c1e8df7b9139ef208d65e3d6f96a1edef26",
+      "current_value_sha256_json": "96eebf0b7c456ed96ce0150ebd3079e1de1e829d8fc3067d7ea64855f8b057c0",
+      "candidate_value_sha256_json": "7b5614f19910ab82e757755db457d269ea4260bd2608625ead1ce6b578b626df",
+      "accepted_value_utf8_sha256": "a1f0e0dc05d6822e1c85d70083f9ef74f50bdb05dc1ec070abad21b04082d5a5",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_commit_selection",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_commit_selection"
+      },
+      "reviewed_source_value": "Commit selection",
+      "expected_unmodified_current_value": "确定选择范围",
+      "accepted_candidate_value": "确认选区",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "2d4b32d0c440696ea06184721159433763501f725c6ad65cae0c08f82f9c943c",
+      "current_value_sha256_json": "80d6e42ef2a1836326af143c002d8f3e9eec42cc1b14cdd40095138b1d6f4502",
+      "candidate_value_sha256_json": "90a5baa34d6be12d3e40790f203b9e066fd1f330360e21aa6b779487313213ae",
+      "accepted_value_utf8_sha256": "77cdac274eababeefa124a9e000c2c8368a0e899bf730a58add408c87762a3f9",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_crop_preview_drag_an_edge_or_corner_drag",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_crop_preview_drag_an_edge_or_corner_drag"
+      },
+      "reviewed_source_value": "Crop preview. Drag an edge or corner; drag inside to move the crop.",
+      "expected_unmodified_current_value": "裁剪预览。拖动边缘或角位调整大小；拖动内部以移动裁剪范围。",
+      "accepted_candidate_value": "裁剪预览。拖动边缘或角点调整大小；拖动内部以移动裁剪范围。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "10875f51dff9071f46c148119c1168d162841fba1c3b8cf44c1cda10c177e9a3",
+      "current_value_sha256_json": "ddf6b763958ca945a46f7244bae46e36505ecb060b3f3d9dbf5c6acf40de5570",
+      "candidate_value_sha256_json": "8f4500e4f805fc63886094e836ad9d1b2732c839a45ffcb190c4d7338a251026",
+      "accepted_value_utf8_sha256": "faa677d71ce73f93682c4d5b42dc600933441dd889590e4af79dc58c6e12e1b6",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+      },
+      "reviewed_source_value": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+      "expected_unmodified_current_value": "绘图画布。用两只手指缩放及移动以缩放和平移。「移动与缩放」模式也可用一只手指平移。",
+      "accepted_candidate_value": "绘图画布。用双指捏合或张开可缩放，双指拖动可平移。「移动与缩放」模式也可用单指平移。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "instruction_clarity",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "f451000054228c871e570131e979845d148beb513e3254216840f762bc19e186",
+      "current_value_sha256_json": "573d3f39e2857469ee026991712cbfa86bf8ae431b9874bf136ee27a0074c27b",
+      "candidate_value_sha256_json": "36f9f10a2587bfd9d96e961786077ca9bd63478597066a45b1c05b8942eafbd0",
+      "accepted_value_utf8_sha256": "015efa5dd574540634bafa9dd313c64911ae422041541069675877fc4f6a664f",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_enter_positive_canvas_dimensions_within_android_s_coordinate",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_enter_positive_canvas_dimensions_within_android_s_coordinate"
+      },
+      "reviewed_source_value": "Enter positive canvas dimensions within Android\\'s coordinate range.",
+      "expected_unmodified_current_value": "请输入 Android 座标范围内且大于 0 的画布尺寸。",
+      "accepted_candidate_value": "请输入 Android 坐标范围内且大于 0 的画布尺寸。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "ee84f12c18bc6baeb00e6a50383bd63ee393acf2a7984820e3a1b672532c077b",
+      "current_value_sha256_json": "ed3a3b6178733add8ee769d122712403f9cf6998ddd4b291065acf016a9b063d",
+      "candidate_value_sha256_json": "31200a48f723ffa22145e32f94c068cca066b42a993d88dbe8b374d414f17250",
+      "accepted_value_utf8_sha256": "1e46a9f346d35e170c26f741d7274caabce62a4eede794f7242be56916cac019",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_foreground_edit_colour",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_foreground_edit_colour"
+      },
+      "reviewed_source_value": "Foreground %1$s. Edit colour.",
+      "expected_unmodified_current_value": "前景 %1$s。编辑颜色。",
+      "accepted_candidate_value": "前景色 %1$s。编辑颜色。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "694562c603a021a8f16f330271c31177646cfa3447dcaa90df05f9ad313c27ca",
+      "current_value_sha256_json": "15c45d0c6246c38061f75f81f8b11c8e5c593a06a1e7a947d42ee0b459e549e3",
+      "candidate_value_sha256_json": "30e71484683f7cbd5b3f854e4d633f15e76dacfd76a87a77538840f5848532ac",
+      "accepted_value_utf8_sha256": "459fb678cd1368c424234bbc5960a07cf4f26e84648f9a0652ffded881ce6db2",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_invalid_selection_outline",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_invalid_selection_outline"
+      },
+      "reviewed_source_value": "Invalid selection outline.",
+      "expected_unmodified_current_value": "选择范围轮廓无效。",
+      "accepted_candidate_value": "选区轮廓无效。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "8b7dca5bfbd85960d20323abab383ec2d96493672fe4f7a3768ab57eded6e2c3",
+      "current_value_sha256_json": "4cadd39f96bed3c25c4e70e84f21523f221fc6e51462d63cb535eb09a977b12b",
+      "candidate_value_sha256_json": "c1186c8dcfc5f3aaa517f14d1600cd8c0690b21be98a9666299ad5e7f6fd7e6d",
+      "accepted_value_utf8_sha256": "dd7349453096543c721e39284fb43fe384ceeef60119ce3067a4b8739c628790",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_no_resize_fits_decoder_memory",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_no_resize_fits_decoder_memory"
+      },
+      "reviewed_source_value": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+      "expected_unmodified_current_value": "即使使用最小输出，此图片的解码器工作缓冲区仍无法放入目前内存上限。请取消并使用较小的来源图片。",
+      "accepted_candidate_value": "即使输出尺寸最小，此图片的解码器工作缓冲区所需内存仍超过当前上限。请取消并使用较小的源图片。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "9ded382824a31f6bbd8b400e75cca69d2dea63f0c78e74aa85906ba5c79b7b9e",
+      "current_value_sha256_json": "f862200594c5ece97e7cea5f30111e19729aefaed0b39d2793b5e5a7990807f1",
+      "candidate_value_sha256_json": "794e52c43bb1a04c521b475f698498d4111542855dbf94abfeb08946f951c8d8",
+      "accepted_value_utf8_sha256": "bd81d83cce46720c953fac4b71ba5a1cf443a3e28fce78b48b2b6e129d05e844",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_not_enough_memory_to_finish_opening_this_image",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_not_enough_memory_to_finish_opening_this_image"
+      },
+      "reviewed_source_value": "Not enough memory to finish opening this image",
+      "expected_unmodified_current_value": "内存不足，无法完成开启此图片",
+      "accepted_candidate_value": "内存不足，无法完成此图片的加载",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "4b98944a2e2e55b07204483bb14ba383d3337e389c12416754a704ddfa8a4a64",
+      "current_value_sha256_json": "ec7367b7f3b74aaad3ca8a45f0fffaf7a6477a4a8d3fcb79b861fb5a3538cc4d",
+      "candidate_value_sha256_json": "13181cfd0d136d67df55a4becde0b3c1dc15917c0a9a0c02c7a4b13934e4e04d",
+      "accepted_value_utf8_sha256": "ab2a6662f84b88d30fb5e582d72433cf825d0adb985847db179bb1313bc0ea7f",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_selection_dimensions_are_too_large",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_selection_dimensions_are_too_large"
+      },
+      "reviewed_source_value": "Selection dimensions are too large.",
+      "expected_unmodified_current_value": "选择范围尺寸过大。",
+      "accepted_candidate_value": "选区尺寸过大。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "terminology_consistency",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "84564859aa4b9923641a70ffd9574c7900e5d7f8a4e3b8c0ffe2d6486a571e60",
+      "current_value_sha256_json": "c8448bfbfb4c302ea0b343694ee8f7d5a3542984981d0f9c5175bab7a3e4dfc3",
+      "candidate_value_sha256_json": "dc237f0b9c61f85388fbf76332bb4aa2f5f55db13fa4fa235b0d4b7907db5539",
+      "accepted_value_utf8_sha256": "d7544deece1d172a9d238eb46c5010c1d0bd976a549bae6804e35f27e0c3135a",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_the_full_image_and_working_buffers_exceed_the",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_the_full_image_and_working_buffers_exceed_the"
+      },
+      "reviewed_source_value": "The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.",
+      "expected_unmodified_current_value": "完整图片及工作缓冲区超出目前安全上限，或 Android 无法配置所需内存。请调整一份副本的大小后再编辑。原始文件不会改变。",
+      "accepted_candidate_value": "完整图片及工作缓冲区超出当前安全上限，或 Android 无法分配所需内存。请调整一份副本的大小后再编辑。原始文件不会改变。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "technical_precision",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "0fe88e7ac19261d4697f3b3d91ae98b1de757c47f7aede2e9551be6af0914312",
+      "current_value_sha256_json": "362fba0ed936b204c2e74a5b5ad843af3e16b7501e10285e380365cc9ed69985",
+      "candidate_value_sha256_json": "a9c6da1e62a889ebca77d7c3f4a1685e4e3091baa55e4b72ccaa0385acb36c02",
+      "accepted_value_utf8_sha256": "17833dcc9e52f02433eda1b1000aa939687ca596b74a54d41b0b23e0dc032969",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_this_file_is_not_a_supported_image_use",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_this_file_is_not_a_supported_image_use"
+      },
+      "reviewed_source_value": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
+      "expected_unmodified_current_value": "此文件不是支持的图片。请使用 PNG、JPEG、JPEG XL、WebP、HEIC、AVIF、BMP、GIF、DIB、TIFF、ICO、PDF 或 Base64 图片文字。",
+      "accepted_candidate_value": "此文件不是支持的图片。请使用 PNG、JPEG、JPEG XL、WebP、HEIC、AVIF、BMP、GIF、DIB、TIFF、ICO、PDF 或 Base64 编码的图片文本。",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "clarity_or_grammar",
+      "review_scope": "complete_value_and_static_consumer_context",
+      "source_value_sha256_json": "ac596d293fb148e9d457c1baa565e8d257ca1072468870bc1662a6af853fda4a",
+      "current_value_sha256_json": "26b8e55a574fb6602804251e7d51919cec45faf3ba4340e735c0c523ec08c059",
+      "candidate_value_sha256_json": "f59588df2dc14d2a112614957943c475d432d092e1d42b29803bec92e4e6cfb4",
+      "accepted_value_utf8_sha256": "7e0fb0e5d76c0ed2f1594beef1739ba8c902622c877c109fe30fcda704ca7d36",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_tool_categories",
+      "tier": "P1",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_tool_categories"
+      },
+      "reviewed_source_value": "Tool categories. Scroll to see more tools",
+      "expected_unmodified_current_value": "工具分类。卷动查看更多工具",
+      "accepted_candidate_value": "工具分类。滚动查看更多工具",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "regional_terminology",
+      "review_scope": "complete_value_wording_only_no_literal_production_consumer",
+      "source_value_sha256_json": "3a14a03087a11648eed8236885c34a64f46238a8e67bbbb42912468ff7765db5",
+      "current_value_sha256_json": "7157c13aaff701e0e2e68b171ef2880987b65cadd35cdc2d8109b1aefdf036c1",
+      "candidate_value_sha256_json": "32f6d702c31b256acb1709377687bdc3304ffcdf1e5d1d065dc42c986e883b5a",
+      "accepted_value_utf8_sha256": "ec154ae3cdab19535efe8c5228590107c9f56af27d567d2cb542ad105b0154b5",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": false
+    },
+    {
+      "locale": "zh-CN",
+      "identity": "string/ui_top",
+      "tier": "P2",
+      "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+      "resource_attributes": {
+        "name": "ui_top"
+      },
+      "reviewed_source_value": "Top",
+      "expected_unmodified_current_value": "顶层",
+      "accepted_candidate_value": "上",
+      "candidate_status": "accepted_unapplied_replacement",
+      "classification": "genuine_content_error",
+      "review_scope": "static_crop_edge_consumer",
+      "source_value_sha256_json": "27644f0497fd98494a71558c88dec6c3a7fcaaa8e023f7e35e2f4c60bf924d2c",
+      "current_value_sha256_json": "a6ef3824aae3fa83df45aedee92258f9877c443d3b7c556c08f7fa19fc725dbd",
+      "candidate_value_sha256_json": "92980bc7dcf582c31be9e30ae3d5d73b9e30c46fcfd131058a3573e8538b7e28",
+      "accepted_value_utf8_sha256": "db5ba671d244ee8284613c31e1b8438429651df48ea566ff5158f1e58fb20114",
+      "integrated": false,
+      "current_production_credit_added": 0,
+      "evidence_archive": "sw-ceb-zh-independent-reviews.zip",
+      "evidence_members": [
+        "zh-CN/independent-receipt.json"
+      ],
+      "current_is_genuine_content_error": true
+    }
+  ]
+}

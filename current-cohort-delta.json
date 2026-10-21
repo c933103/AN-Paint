@@ -485,6 +485,120 @@
         }
       ],
       "optional_save_ellipsis_note": "Source punctuation alignment only; requestSave(false) sometimes writes directly, so no guaranteed dialog is inferred."
+    },
+    "sw": {
+      "scope": "Swahili full source-bound author batch, independent check only of fourteen core, five optional and four held values",
+      "denominator": 341,
+      "P0": 92,
+      "P1": 249,
+      "current_bounded": 323,
+      "priority_core_proposals": 14,
+      "retained_holds": 4,
+      "attribution_terminology_holds": 3,
+      "unknown_palette_composition_hold": 1,
+      "no_direct_consumer_entries": 30,
+      "retained_wording_only": 27,
+      "wording_only_core_candidates": 2,
+      "prior_complete_pairs": 21,
+      "prior_complete_priority_overlap": 1,
+      "prior_complete_outside_priority": 20,
+      "separate_prior_PR86_delta_only": 1,
+      "entirely_new_341_claim": false,
+      "current_locale_only_partition": {
+        "bounded": 343,
+        "proposed_or_held": 18,
+        "unknown": 356,
+        "missing": 0,
+        "denominator": 717
+      },
+      "independent_core_accept": 14,
+      "independent_core_revise": 0,
+      "independent_core_static": 12,
+      "independent_core_wording_only": 2,
+      "independent_optional_accept_as_optional_only": 5,
+      "independent_holds_retained": 4,
+      "production_changes": 0,
+      "evidence": "sw-review-packet.zip",
+      "independent_evidence": "sw-ceb-zh-independent-reviews.zip/sw/review.json",
+      "artifact_rationale_corrections": [
+        "colour_truncated_metadata: the EOF emitter is a source-copy helper, not a dedicated proof of an EOF inside metadata parsing. Accept the clarified wording as source-faithful, not stronger runtime diagnosis.",
+        "The too-large-memory example in the author package is illustrative and omits pixel count/MP from the nested ImageDimensions.describe() value. This receipt includes the full symbolic composition."
+      ]
+    },
+    "ceb": {
+      "scope": "Cebuano full author priority review; independent scope is ten proposals and two holds only, not the other 329 decisions",
+      "denominator": 341,
+      "P0": 92,
+      "P1": 249,
+      "current_bounded": 329,
+      "priority_core_proposals": 10,
+      "retained_holds": 2,
+      "hold_keys": [
+        "string/ui_foreground_background_colour_palette",
+        "string/ui_pinch_and_pan_mode"
+      ],
+      "no_direct_consumer_entries": 30,
+      "retained_wording_only": 27,
+      "wording_only_core_candidates": 1,
+      "prior_complete_pairs": 22,
+      "prior_complete_priority_overlap": 1,
+      "prior_complete_outside_priority": 21,
+      "separate_prior_PR86_delta_only": 1,
+      "entirely_new_341_claim": false,
+      "independent_candidate_accept": 10,
+      "independent_candidate_revise": 0,
+      "independent_holds_retained": 2,
+      "confidence": "medium AI-assisted; no native-human or regional-user certification",
+      "rationale_qualification": "Do not call gi- inherently completed-only; the two saving changes are explicit ongoing-state clarity. Optional gesture, destination, arrow, count and aspect-ratio choices are not ten severe bugs.",
+      "artifact_only_checks_not_application_tests": 118,
+      "production_changes": 0,
+      "evidence": "ceb-review-packet.zip",
+      "independent_evidence": "sw-ceb-zh-independent-reviews.zip/ceb/receipt.json"
+    },
+    "zh-CN": {
+      "scope": "Mainland Simplified Chinese full author batch; independent review covers forty-four proposals and one separate P2 Top finding, not all 341",
+      "denominator": 341,
+      "P0": 92,
+      "P1": 249,
+      "current_bounded": 297,
+      "priority_core_proposals": 44,
+      "proposal_P0": 21,
+      "proposal_P1": 23,
+      "separate_P2_top_proposal": 1,
+      "no_direct_consumer_entries": 30,
+      "prior_complete_pairs": 22,
+      "prior_complete_priority_overlap": 1,
+      "prior_complete_outside_priority": 21,
+      "separate_prior_PR86_delta_only": 1,
+      "entirely_new_341_claim": false,
+      "prior_P2_crop_preview_plural_has_no_new_priority_credit": true,
+      "independent_original_priority_accept": 43,
+      "independent_original_priority_revise": 1,
+      "final_priority_candidates_accepted": 44,
+      "separate_P2_candidate_accepted": 1,
+      "independent_unresolved_candidate_holds": 0,
+      "final_GIF_substitute": "静态图片，最多 256 色。抖色可使颜色渐变看起来更平滑。动画 GIF 只会打开第一帧。",
+      "final_GIF_utf8_sha256": "25e45ebc84fb9c2ec5c964ebccbccdf12afc2dd42c875aaf2f2a9c1a7b25b32f",
+      "final_GIF_second_check": "sw-ceb-zh-independent-reviews.zip/zh-CN/second-check/gif-substitute-second-check.json",
+      "independent_assessment_counts": {
+        "regional_terminology": 17,
+        "clarity_or_grammar": 9,
+        "terminology_consistency": 10,
+        "semantic_precision": 2,
+        "technical_precision": 2,
+        "genuine_content_error": 2,
+        "remedy_clarity": 1,
+        "instruction_clarity": 1
+      },
+      "only_clear_priority_content_errors": [
+        "string/language20_translation_note",
+        "string/ui_bottom"
+      ],
+      "separate_clear_P2_content_error": "string/ui_top",
+      "regional_wording_not_intrinsically_wrong": true,
+      "production_changes": 0,
+      "evidence": "zh-CN-review-packet.zip",
+      "independent_evidence": "sw-ceb-zh-independent-reviews.zip/zh-CN/independent-receipt.json"
     }
   },
   "validation": {
@@ -495,7 +609,10 @@
     "czech_english_and_target_files_match_prior_review_sha256": true,
     "curve_current_pair_matches_separate_independent_acceptance": true,
     "latest_three_author_ledgers_have_exact_341_unique_identities_and_92_249_tiers": true,
-    "all_26_new_core_optional_proposal_English_and_current_values_match_reviewed_source_XML": true
+    "all_26_new_core_optional_proposal_English_and_current_values_match_reviewed_source_XML": true,
+    "sw_ceb_zh_author_ledgers_have_341_unique_identities_and_92_249_tiers": true,
+    "all_74_new_primary_optional_exact_English_and_current_values_match_reviewed_XML": true,
+    "three_original_PR86_rows_refetched_and_current_targets_exact_but_no_whole_value_prior_credit": true
   },
   "limits": [
     "No app build, Gradle, CI dispatch, emulator, version or release action.",
@@ -606,5 +723,26 @@
     "all_candidates_unapplied": true,
     "global_totals_recomputed": false,
     "candidate_scope_caveat": "The prior 59 and new 20 already include optional cosmetic values where explicitly classified; the five Filipino optional suggestions stay separately enumerated."
+  },
+  "sw_ceb_zh_supplement": {
+    "new_primary_edits": 69,
+    "new_primary_priority": 68,
+    "new_primary_P2": 1,
+    "new_primary_manifest": "sw-ceb-zh-candidate-delta.json",
+    "separate_Swahili_optional_edits": 5,
+    "optional_manifest": "sw-ceb-zh-optional-delta.json",
+    "prior_manifests_preserved": [
+      "accepted-candidate-manifest.json",
+      "latest-candidate-delta.json",
+      "optional-candidate-delta.json"
+    ],
+    "combined_primary_handoff_edits": 148,
+    "combined_primary_priority": 139,
+    "combined_primary_P2": 9,
+    "combined_separately_accepted_optional_edits": 10,
+    "primary_count_not_confirmed_error_count": true,
+    "all_candidates_unapplied": true,
+    "global_totals_recomputed": false,
+    "prior_PR86_scope": "pr86-scoped-reconciliation.json"
   }
 }
