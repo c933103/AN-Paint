@@ -104,11 +104,15 @@ internal object AppLanguage {
     fun applicationResources(base: Context): Resources {
         val chosen = locale(base)
         val resources = base.resources
-        val config = Configuration(resources.configuration).apply {
+        val current = resources.configuration
+        val config = Configuration(current).apply {
             if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
             setLayoutDirection(chosen)
         }
-        if (config != resources.configuration)
+        // API21 Configuration.compareTo/equals compares language/country/variant,
+        // omitting script. Ainu Kana -> Latin must still update the shared owner.
+        val currentLocale = if (Build.VERSION.SDK_INT >= 24) current.locales[0] else current.locale
+        if (currentLocale != chosen || config != current)
             resources.updateConfiguration(config, resources.displayMetrics)
         return resources
     }

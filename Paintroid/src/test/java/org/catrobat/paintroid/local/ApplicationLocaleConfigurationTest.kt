@@ -1,7 +1,6 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
-import android.app.Activity
 import android.app.LocaleManager
 import android.content.Context
 import android.content.res.Configuration
@@ -28,11 +27,6 @@ import java.util.Locale
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[30], qualifiers="en-rUS-w412dp-h900dp-port-xhdpi")
 class ApplicationLocaleConfigurationTest {
-    class LocalizedActivity: Activity() {
-        override fun attachBaseContext(base: Context) {
-            super.attachBaseContext(AppLanguage.wrap(base))
-        }
-    }
     private val application get()=RuntimeEnvironment.getApplication() as PaintApplication
     private val originalDefault=Locale.getDefault()
     private val originalSystem=Configuration(Resources.getSystem().configuration)
@@ -57,7 +51,7 @@ class ApplicationLocaleConfigurationTest {
         // Give the Activity its own locale override, as the real editor has. A bare Activity
         // can share the Application's Resources in Robolectric and conceal the stale context.
         AppLanguage.select(application,"mnc-Mong")
-        val controller=Robolectric.buildActivity(LocalizedActivity::class.java).setup()
+        val controller=Robolectric.buildActivity(LocalizedTestActivity::class.java).setup()
         val activity=controller.get()
         val systemBefore=Configuration(Resources.getSystem().configuration)
         try {
@@ -132,6 +126,21 @@ class ApplicationLocaleConfigurationTest {
             assertEquals(Locale.ITALY,Locale.getDefault())
             assertEquals(tag,AppLanguage.selectedTag(application))
             assertEquals(systemBefore,Resources.getSystem().configuration)
+        }
+    }
+
+    @Test @Config(sdk=[21]) fun scriptOnlySwitchIsNotHiddenByLegacyConfigurationEquality() {
+        val kana=Configuration().apply {setLocale(Locale.forLanguageTag("ain-Kana"))}
+        val latin=Configuration().apply {setLocale(Locale.forLanguageTag("ain-Latn"))}
+        assertEquals("API21 comparison omits script",kana,latin)
+        assertNotEquals(firstTag(kana),firstTag(latin))
+        val resources=application.baseContext.resources
+        for(tag in listOf("ain-Kana","ain-Latn","ain-Kana","ain-Latn")) {
+            AppLanguage.select(application,tag)
+            Locale.setDefault(Locale.ITALY)
+            assertSame(resources,application.resources)
+            assertEquals(tag,firstTag(resources.configuration))
+            assertEquals(Locale.ITALY,Locale.getDefault())
         }
     }
 
