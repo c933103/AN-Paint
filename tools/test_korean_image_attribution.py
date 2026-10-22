@@ -72,6 +72,20 @@ def require_value(xml, entry):
     return value
 
 
+
+def require_assembly_paragraphs(english, value, directory):
+    """Preserve separate locale review boundaries, including under python -O."""
+    counts = {KP: 7, 'values-b+ko+KR': 7, 'values-b+ko+Kore+KR': 8}
+    if directory not in counts:
+        raise ValueError('Unexpected Korean assembly locale')
+    for label, text, count in (('English', english, 8), (directory, value, counts[directory])):
+        paragraphs = text.split(r'\n\n')
+        if (len(paragraphs) != count or not all(paragraphs)
+                or text.count(r'\n') != 2 * (count - 1)
+                or '\n' in text or '\r' in text):
+            raise ValueError('Assembly paragraph structure differs: ' + label)
+
+
 def xml_with_value(entry, value):
     root = ET.Element('resources')
     node = ET.SubElement(root, 'plurals' if entry['quantity'] else 'string', entry['attributes'])
@@ -114,14 +128,64 @@ class KoreanImageAttributionTests(unittest.TestCase):
             with self.subTest(directory=entry['directory'], key=entry['key']):
                 self.assertEqual(catalogues.placeholders(english), catalogues.placeholders(value))
                 if entry['key'] == ASSEMBLY:
-                    # English now has an Exact position paragraph. Keep the
-                    # Korean seven-paragraph regression input, but explicitly
-                    # do not carry full-Help/source-binding acceptance forward.
-                    # Separate re-review receipt: PR75's English mode correction.
-                    self.assertEqual(14, english.count(r'\n'))
-                    self.assertEqual(12, value.count(r'\n'))
+                    # Only mixed-script Help has completed this eight-paragraph
+                    # re-review. Ordinary ko-KR and ko-KP keep their held seven-
+                    # paragraph expectations; acceptance does not transfer.
+                    require_assembly_paragraphs(english, value, entry['directory'])
                 else:
                     self.assertEqual(english.count(r'\n'), value.count(r'\n'))
+
+
+    def test_assembly_paragraph_contract_rejects_cross_locale_count_drift(self):
+        english = ET.parse(RES / 'values/strings.xml').find(f"./string[@name='{ASSEMBLY}']").text
+        for entry in self.entries:
+            if entry['key'] != ASSEMBLY:
+                continue
+            value, directory = entry['value'], entry['directory']
+            require_assembly_paragraphs(english, value, directory)
+            paragraphs = value.split(r'\n\n')
+            mutations = (
+                r'\n\n'.join(paragraphs[:-1]),
+                value + r'\n\n' + paragraphs[-1],
+                value.replace(r'\n\n', r'\n', 1),
+                value.replace(r'\n\n', r'\n\n\n', 1),
+                value.replace(r'\n', '\n', 1),
+                value + '\r',
+                r'\n\n' + r'\n\n'.join(paragraphs[1:]),
+            )
+            for mutated in mutations:
+                with self.subTest(directory=directory, mutation=mutated), self.assertRaises(ValueError):
+                    require_assembly_paragraphs(english, mutated, directory)
+            with self.subTest(directory=directory, mutation='stale-English'), self.assertRaises(ValueError):
+                require_assembly_paragraphs(r'\n\n'.join(english.split(r'\n\n')[:-1]), value, directory)
+        with self.assertRaises(ValueError):
+            require_assembly_paragraphs(english, english, 'values-ko')
+
+    def test_mixed_script_complete_help_rejects_sentence_and_paragraph_loss(self):
+        entry = next(e for e in self.entries if e['directory'] == 'values-b+ko+Kore+KR'
+                     and e['key'] == ASSEMBLY)
+        value = require_value(self.xml[entry['directory']], entry)
+        paragraphs = value.split(r'\n\n')
+        self.assertEqual(8, len(paragraphs))
+        sentences = [s + '.' for p in paragraphs for s in p[:-1].split('. ')]
+        self.assertEqual(34, len(sentences))
+        for sentence in sentences:
+            self.assertEqual(1, value.count(sentence))
+            for replacement in ('', sentence + ' ' + sentence):
+                with self.subTest(sentence=sentence, replacement=replacement), self.assertRaises(ValueError):
+                    require_value(xml_with_value(entry, value.replace(sentence, replacement, 1)), entry)
+        for index in range(8):
+            for kind in ('omit', 'duplicate'):
+                changed = list(paragraphs)
+                if kind == 'omit': del changed[index]
+                else: changed.insert(index, changed[index])
+                with self.subTest(paragraph=index, mutation=kind), self.assertRaises(ValueError):
+                    require_value(xml_with_value(entry, r'\n\n'.join(changed)), entry)
+        for index in range(7):
+            changed = list(paragraphs)
+            changed[index], changed[index + 1] = changed[index + 1], changed[index]
+            with self.subTest(paragraph=index, mutation='reorder'), self.assertRaises(ValueError):
+                require_value(xml_with_value(entry, r'\n\n'.join(changed)), entry)
 
     def test_broad_acknowledgements_and_active_main_help_stay_unchanged(self):
         for key, expected in self.fixture['unchanged_acknowledgements'].items():
