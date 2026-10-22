@@ -1,7 +1,6 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
-import android.app.Activity
 import android.app.LocaleManager
 import android.content.Context
 import android.content.res.Configuration
@@ -122,7 +121,7 @@ class AppLanguageResourceRoutingTest {
 
     @Test @Config(sdk=[21,24,30,35])
     fun emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches() {
-        val controller=Robolectric.buildActivity(Activity::class.java).setup()
+        val controller=Robolectric.buildActivity(LocalizedTestActivity::class.java).setup()
         try {
             val activity=controller.get()
             // Repeated switches also guard against the private English mirror
@@ -144,6 +143,12 @@ class AppLanguageResourceRoutingTest {
                 assertEquals(tag,Locale.getDefault().toLanguageTag())
                 if(Build.VERSION.SDK_INT>=33) assertEquals(tag,
                     context.getSystemService(LocaleManager::class.java)!!.applicationLocales.toLanguageTags())
+                assertNotSame(context.resources,activity.resources)
+                assertSame(activity.resources,PaintApplication.currentResources)
+                @Suppress("DEPRECATION")
+                val publicLocale=if(Build.VERSION.SDK_INT>=24) context.resources.configuration.locales[0]
+                    else context.resources.configuration.locale
+                assertEquals(tag,publicLocale.toLanguageTag())
                 for(localized in listOf(wrapped,activity)) {
                     val resources=localized.resources
                     @Suppress("DEPRECATION")
@@ -209,7 +214,7 @@ class AppLanguageResourceRoutingTest {
     }
 
     @Test fun refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches() {
-        val controller=Robolectric.buildActivity(Activity::class.java).setup()
+        val controller=Robolectric.buildActivity(LocalizedTestActivity::class.java).setup()
         try {
             val activity=controller.get()
             for((tag,save) in listOf("ko-Kore-KR" to "貯藏","ko-KR" to "저장",
@@ -220,6 +225,7 @@ class AppLanguageResourceRoutingTest {
                     orientation=Configuration.ORIENTATION_LANDSCAPE
                 }
                 AppLanguage.refresh(activity,changed)
+                assertNotSame(context.resources,activity.resources)
                 assertEquals(tag,AppLanguage.selectedTag(activity))
                 assertEquals(tag,Locale.getDefault().toLanguageTag())
                 assertEquals(save,activity.getString(R.string.ui_save))

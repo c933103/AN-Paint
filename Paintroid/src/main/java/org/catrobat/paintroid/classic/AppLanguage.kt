@@ -91,6 +91,32 @@ internal object AppLanguage {
         return context.createConfigurationContext(config)
     }
 
+    /** Android restores the process default from Application resources, sometimes without
+     * dispatching another configuration callback. Read the current choice from the unwrapped
+     * base, not a startup-locale override. Framework-facing resources need the public locale;
+     * UI contexts still use resourceLocale's private exact-catalogue variants above.
+     * Keep the base Resources/AssetManager: WebView injects its provider assets through
+     * Application.getAssets(), then looks them up through Application.getResources().
+     * A separate configuration context would split those two resource owners.
+     * This read must not mutate the default or the device's configuration.
+     */
+    @Suppress("DEPRECATION")
+    fun applicationResources(base: Context): Resources {
+        val chosen = locale(base)
+        val resources = base.resources
+        val current = resources.configuration
+        val config = Configuration(current).apply {
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            setLayoutDirection(chosen)
+        }
+        // API21 Configuration.compareTo/equals compares language/country/variant,
+        // omitting script. Ainu Kana -> Latin must still update the shared owner.
+        val currentLocale = if (Build.VERSION.SDK_INT >= 24) current.locales[0] else current.locale
+        if (currentLocale != chosen || config != current)
+            resources.updateConfiguration(config, resources.displayMetrics)
+        return resources
+    }
+
     /** Updating the current Activity avoids throwing away undo or an unfinished selection. */
     @Suppress("DEPRECATION")
     fun refresh(activity: Activity, configuration: Configuration = activity.resources.configuration) {

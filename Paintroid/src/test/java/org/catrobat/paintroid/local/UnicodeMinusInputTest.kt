@@ -3,7 +3,6 @@ package org.catrobat.paintroid.local
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Looper
 import android.text.InputType
@@ -40,27 +39,29 @@ class UnicodeMinusInputTest {
     private fun withActivity(tag: String, check: (Activity, DecimalFormatSymbols) -> Unit) {
         val oldLocale = Locale.getDefault()
         val oldResources = PaintApplication.currentResources
-        val controller = Robolectric.buildActivity(Activity::class.java)
+        val application = org.robolectric.RuntimeEnvironment.getApplication()
+        val oldTag = AppLanguage.selectedTag(application)
+        // The public picker offers regional English, rather than the generic test label.
+        val publicTag = if (tag == "en") "en-US" else tag
+        AppLanguage.select(application, publicTag)
+        val controller = Robolectric.buildActivity(LocalizedTestActivity::class.java)
         val activity = controller.get()
         activity.setTheme(R.style.ClassicPaintTheme)
         controller.setup()
-        val oldConfig = Configuration(activity.resources.configuration)
         try {
-            val locale = Locale.forLanguageTag(tag)
-            activity.resources.updateConfiguration(Configuration(oldConfig).apply {
-                setLocale(locale)
-                setLayoutDirection(locale)
-            }, activity.resources.displayMetrics)
-            PaintApplication.currentResources = activity.resources
-            Locale.setDefault(locale)
+            val locale = Locale.forLanguageTag(publicTag)
+            AppLanguage.refresh(activity)
             assertEquals(locale, activity.resources.configuration.locale)
             assertEquals(locale, Locale.getDefault())
+            assertNotSame(application.resources, activity.resources)
+            assertEquals(publicTag, application.resources.configuration.locale.toLanguageTag())
+            assertEquals(locale, activity.resources.configuration.locale)
             check(activity, DecimalFormatSymbols(locale))
         } finally {
             ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
             idle()
             controller.pause().stop().destroy()
-            activity.resources.updateConfiguration(oldConfig, activity.resources.displayMetrics)
+            AppLanguage.select(application, oldTag)
             PaintApplication.currentResources = oldResources
             Locale.setDefault(oldLocale)
         }

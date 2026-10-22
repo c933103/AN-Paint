@@ -11,12 +11,14 @@ import java.text.NumberFormat
 import java.text.ParsePosition
 import java.util.Locale
 
-/** Application resources follow the selected app language; labels are never used as IDs. */
+/** Framework locale identity and exact-catalogue UI resources follow the live app choice. */
 class PaintApplication : Application() {
-    override fun attachBaseContext(base: Context) { super.attachBaseContext(AppLanguage.wrap(base)) }
+    // Do not pin the Application to the language that happened to be selected at startup.
+    override fun attachBaseContext(base: Context) { super.attachBaseContext(base) }
+    override fun getResources(): Resources = AppLanguage.applicationResources(baseContext)
     override fun onCreate() {
         super.onCreate()
-        currentResources = resources
+        currentResources = AppLanguage.wrap(baseContext).resources
         sourceResources = createConfigurationContext(Configuration().apply {
             fontScale = 0f
             setLocale(Locale.ENGLISH)
@@ -24,7 +26,7 @@ class PaintApplication : Application() {
     }
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        currentResources = AppLanguage.wrap(this).resources
+        currentResources = AppLanguage.wrap(baseContext).resources
     }
     companion object {
         internal lateinit var currentResources: Resources
