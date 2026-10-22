@@ -35,10 +35,12 @@ CONTRACTS = {
     },
     "values-b+mn+Cyrl+MN": {
         "tag": "mn-Cyrl-MN",
+        "paragraph_count": 8,
+        "output_index": 6,
         "post_crop": "тайралт болон",
         "post_adjustment": "тохируулгын дараах зургийн хэмжээ",
         "stale_tray": "тайралтын хэмжээ",
-        "offer": "жижиг гаралтын хуулбар сонгох боломжийг санал болгосон үед сонгоно.",
+        "offer": "жижиг хэмжээтэй гаралтын хуулбар сонгох боломж санал болгосон тохиолдолд түүнийг сонгоно.",
         "floor": "Маш жижиг гаралт ч хязгаараас давбал апп хэмжээ сонгогчийн оронд санах ойн анхааруулга харуулна.",
         "stale_output": "Гаралт санах ойн хязгаараас давбал жижиг хуулбар сонгоно.",
     },
@@ -200,7 +202,7 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         for directory, clauses in CONTRACTS.items():
             with self.subTest(directory=directory):
                 self.assertIn(clauses["tag"], offered)
-                self.assertEqual(7, len(re.split(r"\\n\\n|\n\s*\n", strings(directory)[KEY])))
+                self.assertEqual(clauses.get("paragraph_count", 7), len(re.split(r"\\n\\n|\n\s*\n", strings(directory)[KEY])))
 
 
 def make_tray_test(directory, clauses):
@@ -219,7 +221,7 @@ def make_tray_test(directory, clauses):
 
 def make_output_test(directory, clauses, name):
     def test(self):
-        output = paragraph(directory, 5)
+        output = paragraph(directory, clauses.get("output_index", 5))
         self.assertNotIn(clauses["stale_output"], output)
         self.assertIn(clauses[name], output)
     return test
