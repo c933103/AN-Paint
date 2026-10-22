@@ -72,6 +72,19 @@ def require_value(xml, entry):
     return value
 
 
+def require_assembly_paragraphs(english, value, directory):
+    """Preserve separate locale review boundaries, including under python -O."""
+    counts = {KP: 8, 'values-b+ko+KR': 7, 'values-b+ko+Kore+KR': 7}
+    if directory not in counts:
+        raise ValueError('Unexpected Korean assembly locale')
+    for label, text, count in (('English', english, 8), (directory, value, counts[directory])):
+        paragraphs = text.split(r'\n\n')
+        if (len(paragraphs) != count or not all(paragraphs)
+                or text.count(r'\n') != 2 * (count - 1)
+                or '\n' in text or '\r' in text):
+            raise ValueError('Assembly paragraph structure differs: ' + label)
+
+
 def xml_with_value(entry, value):
     root = ET.Element('resources')
     node = ET.SubElement(root, 'plurals' if entry['quantity'] else 'string', entry['attributes'])
@@ -114,14 +127,63 @@ class KoreanImageAttributionTests(unittest.TestCase):
             with self.subTest(directory=entry['directory'], key=entry['key']):
                 self.assertEqual(catalogues.placeholders(english), catalogues.placeholders(value))
                 if entry['key'] == ASSEMBLY:
-                    # English now has an Exact position paragraph. Keep the
-                    # Korean seven-paragraph regression input, but explicitly
-                    # do not carry full-Help/source-binding acceptance forward.
-                    # Separate re-review receipt: PR75's English mode correction.
-                    self.assertEqual(14, english.count(r'\n'))
-                    self.assertEqual(12, value.count(r'\n'))
+                    # Only ko-KP Help is aligned in this isolated proposal.
+                    # Ordinary ko-KR and mixed-script ko-Kore-KR retain this
+                    # base's seven paragraphs; sibling branches stay separate.
+                    require_assembly_paragraphs(english, value, entry['directory'])
                 else:
                     self.assertEqual(english.count(r'\n'), value.count(r'\n'))
+
+    def test_assembly_paragraph_contract_rejects_cross_locale_count_drift(self):
+        english = ET.parse(RES / 'values/strings.xml').find(f"./string[@name='{ASSEMBLY}']").text
+        for entry in self.entries:
+            if entry['key'] != ASSEMBLY:
+                continue
+            value, directory = entry['value'], entry['directory']
+            require_assembly_paragraphs(english, value, directory)
+            paragraphs = value.split(r'\n\n')
+            mutations = (
+                r'\n\n'.join(paragraphs[:-1]),
+                value + r'\n\n' + paragraphs[-1],
+                value.replace(r'\n\n', r'\n', 1),
+                value.replace(r'\n\n', r'\n\n\n', 1),
+                value.replace(r'\n', '\n', 1),
+                value + '\r',
+                r'\n\n' + r'\n\n'.join(paragraphs[1:]),
+            )
+            for mutated in mutations:
+                with self.subTest(directory=directory, mutation=mutated), self.assertRaises(ValueError):
+                    require_assembly_paragraphs(english, mutated, directory)
+            with self.subTest(directory=directory, mutation='stale-English'), self.assertRaises(ValueError):
+                require_assembly_paragraphs(r'\n\n'.join(english.split(r'\n\n')[:-1]), value, directory)
+        with self.assertRaises(ValueError):
+            require_assembly_paragraphs(english, english, 'values-ko')
+
+    def test_north_korean_complete_help_rejects_sentence_and_paragraph_loss(self):
+        entry = next(e for e in self.entries if e['directory'] == KP
+                     and e['key'] == ASSEMBLY)
+        value = require_value(self.xml[entry['directory']], entry)
+        paragraphs = value.split(r'\n\n')
+        self.assertEqual(8, len(paragraphs))
+        sentences = [s + '.' for p in paragraphs for s in p[:-1].split('. ')]
+        self.assertEqual(34, len(sentences))
+        for sentence in sentences:
+            self.assertEqual(1, value.count(sentence))
+            for replacement in ('', sentence + ' ' + sentence):
+                with self.subTest(sentence=sentence, replacement=replacement), self.assertRaises(ValueError):
+                    require_value(xml_with_value(entry, value.replace(sentence, replacement, 1)), entry)
+        for index in range(8):
+            for kind in ('omit', 'duplicate'):
+                changed = list(paragraphs)
+                if kind == 'omit': del changed[index]
+                else: changed.insert(index, changed[index])
+                with self.subTest(paragraph=index, mutation=kind), self.assertRaises(ValueError):
+                    require_value(xml_with_value(entry, r'\n\n'.join(changed)), entry)
+        for index in range(7):
+            changed = list(paragraphs)
+            changed[index], changed[index + 1] = changed[index + 1], changed[index]
+            with self.subTest(paragraph=index, mutation='reorder'), self.assertRaises(ValueError):
+                require_value(xml_with_value(entry, r'\n\n'.join(changed)), entry)
 
     def test_broad_acknowledgements_and_active_main_help_stay_unchanged(self):
         for key, expected in self.fixture['unchanged_acknowledgements'].items():
@@ -156,7 +218,12 @@ class KoreanImageAttributionTests(unittest.TestCase):
             if key == PARTICLE:
                 stale = value.replace('MP)는', 'MP)은', 1)
             elif key == ASSEMBLY:
-                stale = value.replace('이동할 수 있습니다.', '이동합니다.', 1)
+                if entry['directory'] == KP:
+                    conditional = '기준이 되는 화상을 자르면 거기에 련결된 화상이 이동할수 있습니다.'
+                    self.assertEqual(1, value.count(conditional))
+                    stale = value.replace(conditional, conditional.replace('이동할수 있습니다.', '이동합니다.'), 1)
+                else:
+                    stale = value.replace('이동할 수 있습니다.', '이동합니다.', 1)
             elif key == CROP:
                 stale = value.replace('조정될 수 있습니다.', '조정됩니다.', 1)
             else:
@@ -179,7 +246,11 @@ class KoreanImageAttributionTests(unittest.TestCase):
                 continue
             paragraphs = entry['value'].split(r'\n\n')
             sentences = paragraphs[2].split('. ')
-            conditional = next(s for s in sentences if '이동할 수 있습니다' in s)
+            if entry['directory'] == KP:
+                conditional = '기준이 되는 화상을 자르면 거기에 련결된 화상이 이동할수 있습니다'
+                self.assertEqual(1, sentences.count(conditional))
+            else:
+                conditional = next(s for s in sentences if '이동할 수 있습니다' in s)
             paragraphs[2] = paragraphs[2].replace(conditional + '. ', '', 1)
             paragraphs[0] += ' ' + conditional + '.'
             with self.subTest(directory=entry['directory']):
