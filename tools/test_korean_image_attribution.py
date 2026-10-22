@@ -114,12 +114,17 @@ class KoreanImageAttributionTests(unittest.TestCase):
             with self.subTest(directory=entry['directory'], key=entry['key']):
                 self.assertEqual(catalogues.placeholders(english), catalogues.placeholders(value))
                 if entry['key'] == ASSEMBLY:
-                    # English now has an Exact position paragraph. Keep the
-                    # Korean seven-paragraph regression input, but explicitly
-                    # do not carry full-Help/source-binding acceptance forward.
+                    # English and re-reviewed ko-KR have eight paragraphs,
+                    # including Exact position. ko-KP and ko-Kore-KR retain
+                    # seven-paragraph regression inputs, not renewed full-Help
+                    # or source-binding acceptance after the English correction.
                     # Separate re-review receipt: PR75's English mode correction.
                     self.assertEqual(14, english.count(r'\n'))
-                    self.assertEqual(12, value.count(r'\n'))
+                    if entry['directory'] == 'values-b+ko+KR':
+                        self.assertEqual(8, len(value.split(r'\n\n')))
+                        self.assertEqual(14, value.count(r'\n'))
+                    else:
+                        self.assertEqual(12, value.count(r'\n'))
                 else:
                     self.assertEqual(english.count(r'\n'), value.count(r'\n'))
 
