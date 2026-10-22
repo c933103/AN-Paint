@@ -12,7 +12,9 @@ This directory preserves final receipts for AN Paint PR 158 candidate
 `artifact-digests.txt` records the immutable IDs, names, sizes and GitHub
 SHA-256 digests for the complete composed API30/API35 union artifacts. They were
 downloaded through the GitHub API and their ZIP bytes matched those digests.
-The run retains the raw ZIPs until 2026-11-05.
+The run retains the raw ZIPs until 2026-11-05. `raw/` durably preserves every
+reviewed capture from those archives: 96 API30 vertical-locale PNGs, 96 API35
+vertical-locale PNGs and 39 API35 installed-dialog PNGs.
 
 ## Source
 
