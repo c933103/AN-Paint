@@ -40,7 +40,7 @@ DIMENSION_HELP = {
     ),
     "values-b+et": (
         "kärpemõõtmeid",
-        "piltide mõõtmeid pärast kärpimist ja võimalikke kohandusi valikutega „{width}” või „{height}”",
+        "kärpimise ja võimaliku „{width}“ või „{height}“ kohanduse järgseid pildimõõtmeid",
     ),
     "values-b+lv": (
         "apgriešanas izmērus",
