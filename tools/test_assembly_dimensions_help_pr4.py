@@ -36,7 +36,7 @@ DIMENSION_HELP = {
     ),
     "values-nl": (
         "uitsnijafmetingen",
-        "afbeeldingsafmetingen na het uitsnijden en eventuele aanpassingen met ‘{width}’ of ‘{height}’",
+        "afbeeldingsafmetingen na het bijsnijden en eventuele aanpassingen met ‘{width}’ of ‘{height}’",
     ),
     "values-b+et": (
         "kärpemõõtmeid",
