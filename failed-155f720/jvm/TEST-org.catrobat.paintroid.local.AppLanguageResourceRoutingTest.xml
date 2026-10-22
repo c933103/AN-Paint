@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" tests="18" skipped="0" failures="4" errors="0" timestamp="2026-10-21T05:46:57.109Z" hostname="runnervm958j6" time="10.479">
+  <properties/>
+  <testcase name="deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection[30]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.891"/>
+  <testcase name="deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="2.647"/>
+  <testcase name="russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove[30]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.115"/>
+  <testcase name="russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.097"/>
+  <testcase name="systemEmojiSelectionAndDeviceLabelKeepThePublicTag" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.033"/>
+  <testcase name="systemAppLanguageKeepsThePublicMixedScriptTag" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.035"/>
+  <testcase name="onlyTheTwoSpecialCataloguesUseInternalResourceVariants[30]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.1"/>
+  <testcase name="onlyTheTwoSpecialCataloguesUseInternalResourceVariants" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.031"/>
+  <testcase name="mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments[30]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.027"/>
+  <testcase name="mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.075"/>
+  <testcase name="everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue[30]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.354"/>
+  <testcase name="everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.219"/>
+  <testcase name="refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches[30]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="1.184"/>
+  <testcase name="refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.819"/>
+  <testcase name="emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[21]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="1.775">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;[en-Zsye-XV-anpaint]&gt; but was:&lt;[qaa-Zsye-XV]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[en-Zsye-XV-anpaint]&gt; but was:&lt;[qaa-Zsye-XV]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at org.catrobat.paintroid.local.AppLanguageResourceRoutingTest.emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches(AppLanguageResourceRoutingTest.kt:152)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[24]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="1.84">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;[en-Zsye-XV-anpaint]&gt; but was:&lt;[qaa-Zsye-XV]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[en-Zsye-XV-anpaint]&gt; but was:&lt;[qaa-Zsye-XV]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at org.catrobat.paintroid.local.AppLanguageResourceRoutingTest.emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches(AppLanguageResourceRoutingTest.kt:152)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[30]" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.105">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;[en-Zsye-XV-anpaint]&gt; but was:&lt;[qaa-Zsye-XV]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[en-Zsye-XV-anpaint]&gt; but was:&lt;[qaa-Zsye-XV]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at org.catrobat.paintroid.local.AppLanguageResourceRoutingTest.emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches(AppLanguageResourceRoutingTest.kt:152)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+</failure>
+  </testcase>
+  <testcase name="emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches" classname="org.catrobat.paintroid.local.AppLanguageResourceRoutingTest" time="0.131">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;[en-Zsye-XV-anpaint]&gt; but was:&lt;[qaa-Zsye-XV]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[en-Zsye-XV-anpaint]&gt; but was:&lt;[qaa-Zsye-XV]&gt;
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at org.catrobat.paintroid.local.AppLanguageResourceRoutingTest.emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches(AppLanguageResourceRoutingTest.kt:152)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: org.robolectric.android.internal.AndroidTestEnvironment$UnExecutedRunnablesException: Main looper has queued unexecuted runnables. This might be the cause of the test failure. You might need a shadowOf(Looper.getMainLooper()).idle() call.
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

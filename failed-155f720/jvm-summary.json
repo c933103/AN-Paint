@@ -1,0 +1,95 @@
+{
+  "totals": {
+    "tests": 1325,
+    "failures": 17,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failures": [
+    {
+      "classname": "org.catrobat.paintroid.local.UnicodeMinusInputTest",
+      "name": "unicodeMinusReachesTheParserUnchangedInBothKeyboardModes",
+      "message": "org.junit.ComparisonFailure: ar must retain the pasted minus expected:<\u2212[\u0661\u0662]> but was:<\u2212[]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.UnicodeMinusInputTest",
+      "name": "unicodeMinusCannotCommitAsAPositiveCoordinate",
+      "message": "org.junit.ComparisonFailure: expected:<\u2212[\u0661]> but was:<\u2212[]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.UnicodeMinusInputTest",
+      "name": "nativeSignsStrictValidationCancelAndValidCoordinatesRemainUnchanged",
+      "message": "org.junit.ComparisonFailure: expected:<1[,]5> but was:<1[]5>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "cropRetainsDecimalCommaAndRejectsFractionalPixelsOrNegativeMargins",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<12[,]5> but was:<12[]5>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "colourRefactorKeepsCommaEntryAndNegativeRangeRejection",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<120[,]5> but was:<120[]5>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "dimensionsAcceptArabicAndPersianDigitsAndRetainRangeValidation",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<[\u0661\u0662\u0665]> but was:<[]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "focusedUnitSwitchRestartsInputWithTheFinalNumericMode",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<12[,]5> but was:<12[]5>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "dimensionsKeepFractionalPercentAndRejectFractionalPixelsAfterRepeatedUnitChanges",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<12[,]5> but was:<12[]5>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "textSizeAndSpacingRetainDecimalsAndTheExistingRanges",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<12[,]5> but was:<12[]5>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "pageFieldRetainsPersianDigitsAndDisablesFractionalNegativeAndOutOfRangeEntries",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<[\u06f1\u06f2\u066b\u06f5]> but was:<[]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "normalizationRetainsCommaAcrossModeChangesAndCancelDoesNotCommit",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<12[,]5> but was:<12[]5>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+      "name": "sliderRetainsArabicDigitsAndRejectsPastedFractionsAndNegativeNumbers",
+      "message": "org.junit.ComparisonFailure: Numeric syntax must reach validation unchanged expected:<[\u0661\u0662\u066b\u0665]> but was:<[]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.ApplicationLocaleConfigurationTest",
+      "name": "everyPickerChoiceRemainsPublicWithoutMutatingTheDefaultOnRead[21]",
+      "message": "org.junit.ComparisonFailure: expected:<ain-[Latn]> but was:<ain-[Kana]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.AppLanguageResourceRoutingTest",
+      "name": "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[21]",
+      "message": "org.junit.ComparisonFailure: expected:<[en-Zsye-XV-anpaint]> but was:<[qaa-Zsye-XV]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.AppLanguageResourceRoutingTest",
+      "name": "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[24]",
+      "message": "org.junit.ComparisonFailure: expected:<[en-Zsye-XV-anpaint]> but was:<[qaa-Zsye-XV]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.AppLanguageResourceRoutingTest",
+      "name": "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[30]",
+      "message": "org.junit.ComparisonFailure: expected:<[en-Zsye-XV-anpaint]> but was:<[qaa-Zsye-XV]>"
+    },
+    {
+      "classname": "org.catrobat.paintroid.local.AppLanguageResourceRoutingTest",
+      "name": "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches",
+      "message": "org.junit.ComparisonFailure: expected:<[en-Zsye-XV-anpaint]> but was:<[qaa-Zsye-XV]>"
+    }
+  ]
+}
