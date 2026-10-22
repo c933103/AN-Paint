@@ -48,16 +48,14 @@ CASES = {'lzh-Hant': {'folder': 'values-b+lzh+Hant',
                  'choice': '輸出若超過記憶體上限，程式若有提供尺寸選取畫面，請揀較細的輸出副本。',
                  'warning': '輸出就算縮甲真細猶是超過上限的時陣，程式會顯示記憶體警告，袂顯示尺寸選取畫面。'},
  'nan-Latn-TW': {'folder': 'values-b+nan+Latn+TW',
+                 'paragraph_count': 8,
+                 'memory_paragraph': 6,
                  'old_dimensions': 'chhâi-chhiat chhioh-chhùn',
-                 'dimensions': 'chhâi-chhiat kah ēng “Sio-tâng khoah-tō͘” ia̍h-sī “Sio-tâng ko-tō͘” '
-                               'tiâu-chéng liáu-āu ê tô͘-phìⁿ chhioh-chhùn',
+                 'dimensions': 'chhâi-chhiat kah ēng “Sio-tâng khoah-tō͘” ia̍h-sī “Sio-tâng ko-tō͘” tiâu-chéng liáu-āu ê tô͘-phìⁿ chhùn-chhioh',
                  'old_memory': 'Su-chhut nā chhiau-kòe kì-ek-thé siōng-hān, chhiáⁿ kéng khah sè ê su-chhut '
                                'hù-pún.',
-                 'choice': 'Su-chhut nā chhiau-kòe kì-ek-thé siōng-hān, thêng-sek nā ū thê-kiong '
-                           'chhioh-chhùn soán-chhú ōe-bīn, chhiáⁿ kéng khah sè ê su-chhut hù-pún.',
-                 'warning': 'Su-chhut chiū-sǹg siok kah chin sè iáu sī chhiau-kòe siōng-hān ê sî-chūn, '
-                            'thêng-sek ē hián-sī kì-ek-thé kéng-kò, bē hián-sī chhioh-chhùn soán-chhú '
-                            'ōe-bīn.'},
+                 'choice': 'Su-chhut nā chhiau-kòe kì-ek-thé siōng-hān, têng-sek nā ū thê-kiong khah sè ê su-chhut hù-pún hō͘ lí kéng, chhiáⁿ kéng khah sè ê hù-pún.',
+                 'warning': 'Tō-sǹg su-chhut í-keng chin sè, nā iáu-sī chhiau-kòe kì-ek-thé siōng-hān, têng-sek ē hián-sī kì-ek-thé kéng-kò, bē hián-sī chhùn-chhioh soán-chhú ōe-bīn.'},
  'wuu-Hans': {'folder': 'values-b+wuu+Hans',
               'old_dimensions': '裁剪尺寸',
               'dimensions': '裁剪搭用「相同宽度」或「相同高度」调整后个图片尺寸',
@@ -74,7 +72,7 @@ def catalogue(tag):
         raise AssertionError(f'{tag}: expected exactly one {KEY}')
     values = {node.get('name'): ''.join(node.itertext()) for node in nodes}
     paragraphs = values[KEY].split(r'\n\n')
-    if len(paragraphs) != 7:
+    if len(paragraphs) != CASES[tag].get('paragraph_count', 7):
         raise AssertionError(f'{tag}: assembly help paragraph structure changed')
     return values, paragraphs
 
@@ -108,15 +106,15 @@ def choice_test(tag):
     def test(self):
         _, paragraphs = catalogue(tag)
         case = CASES[tag]
-        self.assertIn(case['choice'], paragraphs[5], tag + ': smaller-copy choice must be conditional on being offered')
-        self.assertNotIn(case['old_memory'], paragraphs[5], tag + ': unconditional choice instruction returned')
+        self.assertIn(case['choice'], paragraphs[case.get('memory_paragraph', 5)], tag + ': smaller-copy choice must be conditional on being offered')
+        self.assertNotIn(case['old_memory'], paragraphs[case.get('memory_paragraph', 5)], tag + ': unconditional choice instruction returned')
     return test
 
 
 def warning_test(tag):
     def test(self):
         _, paragraphs = catalogue(tag)
-        self.assertIn(CASES[tag]['warning'], paragraphs[5], tag + ': tiny output may yield a memory warning instead of a chooser')
+        self.assertIn(CASES[tag]['warning'], paragraphs[CASES[tag].get('memory_paragraph', 5)], tag + ': tiny output may yield a memory warning instead of a chooser')
     return test
 
 
