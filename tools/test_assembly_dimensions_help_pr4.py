@@ -36,11 +36,11 @@ DIMENSION_HELP = {
     ),
     "values-nl": (
         "uitsnijafmetingen",
-        "afbeeldingsafmetingen na het uitsnijden en eventuele aanpassingen met ‘{width}’ of ‘{height}’",
+        "afbeeldingsafmetingen na het bijsnijden en eventuele aanpassingen met ‘{width}’ of ‘{height}’",
     ),
     "values-b+et": (
         "kärpemõõtmeid",
-        "piltide mõõtmeid pärast kärpimist ja võimalikke kohandusi valikutega „{width}” või „{height}”",
+        "kärpimise ja võimaliku „{width}“ või „{height}“ kohanduse järgseid pildimõõtmeid",
     ),
     "values-b+lv": (
         "apgriešanas izmērus",
