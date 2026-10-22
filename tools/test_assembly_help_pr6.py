@@ -42,11 +42,13 @@ CASES = {'lzh-Hant': {'folder': 'values-b+lzh+Hant',
                             'chhàng-sṳt voi hién-sṳ ki-yit-thí kín-ko, m̀-voi hién-sṳ chhak-chhun kién-chhí '
                             'fa-mien.'},
  'nan-Hant-TW': {'folder': 'values-b+nan+Hant+TW',
+                 'paragraph_count': 8,
+                 'memory_paragraph': 6,
                  'old_dimensions': '裁切尺寸',
-                 'dimensions': '裁切佮用「相同闊度」抑是「相同高度」調整了後的圖片尺寸',
+                 'dimensions': '裁切佮用「相同闊度」抑是「相同高度」調整了後的圖片寸尺',
                  'old_memory': '輸出若超過記憶體上限，請揀較細的輸出副本。',
-                 'choice': '輸出若超過記憶體上限，程式若有提供尺寸選取畫面，請揀較細的輸出副本。',
-                 'warning': '輸出就算縮甲真細猶是超過上限的時陣，程式會顯示記憶體警告，袂顯示尺寸選取畫面。'},
+                 'choice': '輸出若超過記憶體上限，程式若有提供揀大細的畫面，請揀較細的輸出副本。',
+                 'warning': '輸出就算縮甲真細猶是超過上限的時陣，程式會顯示記憶體警告，袂顯示揀大細的畫面。'},
  'nan-Latn-TW': {'folder': 'values-b+nan+Latn+TW',
                  'old_dimensions': 'chhâi-chhiat chhioh-chhùn',
                  'dimensions': 'chhâi-chhiat kah ēng “Sio-tâng khoah-tō͘” ia̍h-sī “Sio-tâng ko-tō͘” '
@@ -74,7 +76,7 @@ def catalogue(tag):
         raise AssertionError(f'{tag}: expected exactly one {KEY}')
     values = {node.get('name'): ''.join(node.itertext()) for node in nodes}
     paragraphs = values[KEY].split(r'\n\n')
-    if len(paragraphs) != 7:
+    if len(paragraphs) != CASES[tag].get('paragraph_count', 7):
         raise AssertionError(f'{tag}: assembly help paragraph structure changed')
     return values, paragraphs
 
@@ -108,15 +110,15 @@ def choice_test(tag):
     def test(self):
         _, paragraphs = catalogue(tag)
         case = CASES[tag]
-        self.assertIn(case['choice'], paragraphs[5], tag + ': smaller-copy choice must be conditional on being offered')
-        self.assertNotIn(case['old_memory'], paragraphs[5], tag + ': unconditional choice instruction returned')
+        self.assertIn(case['choice'], paragraphs[case.get('memory_paragraph', 5)], tag + ': smaller-copy choice must be conditional on being offered')
+        self.assertNotIn(case['old_memory'], paragraphs[case.get('memory_paragraph', 5)], tag + ': unconditional choice instruction returned')
     return test
 
 
 def warning_test(tag):
     def test(self):
         _, paragraphs = catalogue(tag)
-        self.assertIn(CASES[tag]['warning'], paragraphs[5], tag + ': tiny output may yield a memory warning instead of a chooser')
+        self.assertIn(CASES[tag]['warning'], paragraphs[CASES[tag].get('memory_paragraph', 5)], tag + ': tiny output may yield a memory warning instead of a chooser')
     return test
 
 
