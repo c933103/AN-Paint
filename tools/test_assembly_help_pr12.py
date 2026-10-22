@@ -50,7 +50,7 @@ def catalogue(folder):
         raise AssertionError(f'{folder}: expected one canonical assembly-help key')
     values = {node.get('name'): ''.join(node.itertext()) for node in nodes if node.tag == 'string'}
     paragraphs = values[KEY].split(r'\n\n')
-    expected_count = 8 if folder == 'values' else 7
+    expected_count = 8 if folder in ('values', 'values-vi') else 7
     if len(paragraphs) != expected_count:
         raise AssertionError(f'{folder}: expected {expected_count} assembly-help paragraphs')
     return values, paragraphs
@@ -133,8 +133,9 @@ def output_test(tag, obligation):
     def test(self):
         case = CASES[tag]
         _, paragraphs = catalogue(case['folder'])
-        self.assertIn(case[obligation], paragraphs[5], tag + ': missing ' + obligation)
-        self.assertNotIn(case['stale_choice'], paragraphs[5])
+        output_index = 6 if tag == 'vi' else 5
+        self.assertIn(case[obligation], paragraphs[output_index], tag + ': missing ' + obligation)
+        self.assertNotIn(case['stale_choice'], paragraphs[output_index])
     return test
 
 
