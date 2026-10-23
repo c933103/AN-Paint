@@ -1,0 +1,7 @@
+# PR166: common15-entry integration-status successor
+
+Verified production49bb797f104849e77948ab6bf029c9e8ba16c07f, treed975efe6bf3243b65b222c37014fa121beb5041a. All13 Swahili and2 Vietnamese accepted targets exactly match the original qualified candidate hashes; canonical source pairs match and all bound consumer blobs are unchanged. This changes candidate-to-integrated status only, with no new linguistic or runtime credit. Original wording-only/no-direct-consumer qualifications remain, including the two Swahili wording-only entries. Vietnamese historical public receipt locator gaps remain explicit.
+
+Fresh174-catalogue binding confirms only the two expected locale blobs changed. All171 picker options retain exact presence/absence and English-identity counts. Canonical717 containers/718 leaves unchanged. Picker totals: {"exact_container_keys_present": 49618, "exact_container_keys_missing": 72989, "exact_leaf_units_present": 49652, "exact_leaf_units_missing": 73126, "English_identical_leaf_units": 7039}. English-identical does not mean untranslated. The three translatable=false filename units remain excluded; picker configuration arrays are not translations.
+
+Old snapshots remain unchanged. Optional/held/withdrawn entries were not integrated through this batch. CN2+Cantonese12 belong to the separate next batch/PR167, not PR166. No global accepted-key total is calculated from overlapping scopes. This is source-only status evidence, not a postmerge CI result or native/layout/runtime certification. No app edits, builds or tests were run for this rebind.
