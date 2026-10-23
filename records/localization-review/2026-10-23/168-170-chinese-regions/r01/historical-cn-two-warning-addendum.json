@@ -1,0 +1,237 @@
+{
+  "scope_and_counts": {
+    "reopened_keys": [
+      "string/ui_no_resize_fits_decoder_memory",
+      "string/ui_assembly_source_memory_floor"
+    ],
+    "reopened_count": 2,
+    "original_priority_proposal_count": 44,
+    "original_retained_count_not_rereviewed": 297,
+    "effective_overlay_against_original_44_author_proposals": {
+      "accept_unchanged": 41,
+      "revise": 3,
+      "hold": 0
+    },
+    "why_overlay_differs": "Two formerly accepted original author proposals now require revised operation-level wording; the pre-existing GIF revision remains unchanged. The original 43/1 snapshot is historical, not silently edited.",
+    "unaffected_priority_proposals": 42,
+    "separate_P2_top": "Accepted 上 unchanged.",
+    "unaffected_values_including_P2_top": 43,
+    "whole_batch_rereview": false,
+    "new_reviewed_identity_credit": 0,
+    "aggregate_language_completion_totals_changed": false,
+    "newly_proposed_replacement_count": 2,
+    "replacement_application_status": "unapplied"
+  },
+  "rows": [
+    {
+      "key": "string/ui_no_resize_fits_decoder_memory",
+      "tier": "P1",
+      "historical_verdict": "accept",
+      "historical_receipt_id": "ZH-CN-PRIORITY-44-INDEPENDENT-20261021",
+      "historical_receipt_sha256": "051daced8252515133bd1940f27c75fc69e49b3f76bacd7a11a52e89e07bc2a2",
+      "historical_exact_english_value": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+      "historical_exact_current_chinese_value": "即使使用最小输出，此图片的解码器工作缓冲区仍无法放入目前内存上限。请取消并使用较小的来源图片。",
+      "historical_exact_author_proposal": "即使输出尺寸最小，此图片的解码器工作缓冲区所需内存仍超过当前上限。请取消并使用较小的源图片。",
+      "historical_exact_accepted_candidate": "即使输出尺寸最小，此图片的解码器工作缓冲区所需内存仍超过当前上限。请取消并使用较小的源图片。",
+      "historical_candidate_utf8_sha256": "bd81d83cce46720c953fac4b71ba5a1cf443a3e28fce78b48b2b6e129d05e844",
+      "additive_verdict_on_historical_candidate": "revise",
+      "current_consumer_acceptance": "superseded_for_this_key_only_due_shared_source_contract_defect",
+      "historical_linguistic_fidelity": "The old Chinese candidate faithfully repeated the old English diagnosis. That does not validate the diagnosis against the full consumer predicate.",
+      "corrected_english_reference_value": "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+      "corrected_english_status": "Proposed shared-source correction from cited tracker, not asserted to be applied to the frozen catalogue.",
+      "exact_new_recommended_chinese_value": "即使采用最小输出尺寸，在当前内存限制下也无法加载此图片进行编辑。请取消并使用较小的源图片。",
+      "new_recommended_utf8_sha256": "da3ac91c0f5822a14e0be9a9547d9146a84d7647adacabd92c575f4259d9d5e4",
+      "new_recommendation_scope": "Linguistically supported replacement bound to the corrected operation-level meaning and statically inspected predicate; unapplied, no runtime/production acceptance.",
+      "format_arguments": [],
+      "newlines": 0,
+      "predicate": "With valid entered dimensions and a current plan that does not fit, ImageResizeDialog selects the warning when hasNativeWork && !ImportMemoryRequirements.accepts(current, ImportPlan.create(source, ImageDimensions(1,1)), residentPixels).",
+      "source_ranges": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "lines": "40–50"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+          "lines": "27–44, 63–84, 102–108"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+          "lines": "38–40"
+        }
+      ],
+      "why_old_acceptance_is_qualified": "The admission predicate combines the ordinary target/decoded/editing/resident estimate, native-or-decoded-plus-metadata work, additional target-sized buffers and resident pixels, alongside allocation/bitmap bounds. Failure does not prove decoder working buffers alone exceed the displayed whole-operation budget. My previous complete_value_and_static_consumer_context label and claim that the proposed narrow diagnosis was accurate were too broad for this exact key.",
+      "new_wording_rationale": "Names inability to load this image for editing under current memory limits even at minimum output size. It does not attribute rejection to one component or promise an allocation outcome. Retains cancel and smaller-source remedies.",
+      "reachability_limit": "General allocation guards occur in accepts, but this receipt does not establish allocation-only rejection at the 1×1 plan as a reachable additional failure route.",
+      "adjacent_composition": {
+        "kind": "Static string template, not formatting/execution/rendering test",
+        "prefix_key": "ui_copy_decoded_image_at_this_size_estimated_loading",
+        "exact_prefix_value": "副本：%1$s\\n此大小解码后的图片：%2$s\\n估算加载／编辑内存：%3$s\\n",
+        "consumer_inserted_separator": "\n",
+        "composed_template": "副本：%1$s\n此大小解码后的图片：%2$s\n估算加载／编辑内存：%3$s\n\n即使采用最小输出尺寸，在当前内存限制下也无法加载此图片进行编辑。请取消并使用较小的源图片。",
+        "retained_adjacent_key": "ui_codec_resize_memory_floor",
+        "exact_retained_adjacent_value": "此格式必须先解码来源图片或来源图块，之后才能调整大小。即使输出较小，仍可能超出可用内存。",
+        "dependency_decision": "No adjacent replacement required: the source/tile explanation states a general may-exceed warning, not that decoder buffers alone caused this admission rejection."
+      }
+    },
+    {
+      "key": "string/ui_assembly_source_memory_floor",
+      "tier": "P0",
+      "historical_verdict": "accept",
+      "historical_receipt_id": "ZH-CN-PRIORITY-44-INDEPENDENT-20261021",
+      "historical_receipt_sha256": "051daced8252515133bd1940f27c75fc69e49b3f76bacd7a11a52e89e07bc2a2",
+      "historical_exact_english_value": "A source image needs more decoding memory than is currently available, even for a tiny output. Reducing the assembly dimensions cannot solve this. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "historical_exact_current_chinese_value": "来源图片即使输出极小，解码仍需要超过目前可用量的内存。缩小拼合尺寸无法解决。请关闭其他文件，或先准备较小的来源图片再试。目前拼合内容没有改变。",
+      "historical_exact_author_proposal": "即使输出尺寸很小，解码一张源图片所需的内存仍超过当前可用内存。缩小拼接尺寸无法解决此问题。请关闭其他文档，或先准备较小的源图片再试。拼接内容未改变。",
+      "historical_exact_accepted_candidate": "即使输出尺寸很小，解码一张源图片所需的内存仍超过当前可用内存。缩小拼接尺寸无法解决此问题。请关闭其他文档，或先准备较小的源图片再试。拼接内容未改变。",
+      "historical_candidate_utf8_sha256": "7b5143f3d3f0b5ce5c480ce83785a7349aa76066217706f23e60205d90e731ea",
+      "additive_verdict_on_historical_candidate": "revise",
+      "current_consumer_acceptance": "superseded_for_this_key_only_due_shared_source_contract_defect",
+      "historical_linguistic_fidelity": "The old Chinese candidate faithfully repeated the old English diagnosis. That does not validate the diagnosis against the full consumer predicate.",
+      "corrected_english_reference_value": "This assembly cannot fit within the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "corrected_english_status": "Proposed shared-source correction from cited tracker, not asserted to be applied to the frozen catalogue.",
+      "exact_new_recommended_chinese_value": "即使采用最小输出尺寸，此拼接操作的估算内存用量仍超出当前工作内存上限。仅缩小拼接尺寸不足以满足当前限制。请关闭其他文档，或先准备较小的源图片再试。拼接内容未改变。",
+      "new_recommended_utf8_sha256": "8403b99f0df019e48f9bb1ac3d6d0929cb3baa67c372aa4e448b7538b5024740",
+      "new_recommendation_scope": "Linguistically supported replacement bound to the corrected operation-level meaning and statically inspected predicate; unapplied, no runtime/production acceptance.",
+      "format_arguments": [],
+      "newlines": 0,
+      "predicate": "AssemblyActivity emits the warning when renderer.suggested(previous) returns null. AssemblyRenderer.suggested returns null on !fits(ImageDimensions(1,1)); fits checks output pixel bound and combined estimated peak <= current workingBytes.",
+      "source_ranges": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "lines": "297–301"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt",
+          "lines": "23–48"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+          "lines": "27–44, 63–84, 143–144"
+        }
+      ],
+      "why_old_acceptance_is_qualified": "This is not the import-dialog accepts predicate and does not require hasNativeWork. The peak starts at 28 × output pixels + 4 × resident pixels, then takes the maximum with each placed source combined import estimate using residentPixels + output pixels. At 1×1 the output pixel bound passes. The budget rejection does not prove one source decoding requirement alone exceeds available memory. My previous full-consumer acceptance and statement of a source-decoding floor were too broad for this exact key.",
+      "new_wording_rationale": "Names the whole assembly operation and explicitly identifies an estimated combined memory excess. Minimum output size and the current-limit qualification replace an unconditional source-only diagnosis. Preserves the insufficiency of reducing dimensions alone, closing other documents, preparing a smaller source image, retrying and unchanged assembly.",
+      "distinction_from_import_dialog": "Uses a peak, not a sum of all source decoders. It does not call the complete ImportMemoryRequirements.accepts predicate and does not impose its hasNativeWork branch condition.",
+      "adjacent_composition": {
+        "kind": "Standalone message in null-suggestion branch; static inspection only",
+        "exact_complete_message": "即使采用最小输出尺寸，此拼接操作的估算内存用量仍超出当前工作内存上限。仅缩小拼接尺寸不足以满足当前限制。请关闭其他文档，或先准备较小的源图片再试。拼接内容未改变。",
+        "control_flow": "AssemblyActivity displays this message then returns before showing output controls or creating output.",
+        "dependency_decision": "No other translation values must change to state this branch at combined-operation scope."
+      }
+    }
+  ],
+  "second_check": {
+    "receipt_id": "ZH-CN-MEMORY-TWO-SUBSTITUTES-AUTHOR-SECOND-CHECK-20261021",
+    "review_scope": "Exactly two revised memory values; bounded linguistic and read-only static-predicate check.",
+    "input_additive_receipt_sha256": "7abf2af90917bfd7af6e05741e8fa1de88ace77bed160b9f1912139e29d56d1c",
+    "verdict_counts": {
+      "accept": 2,
+      "revise": 0
+    },
+    "rows": [
+      {
+        "key": "string/ui_no_resize_fits_decoder_memory",
+        "tier": "P1",
+        "verdict": "accept",
+        "exact_accepted_value": "即使采用最小输出尺寸，在当前内存限制下也无法加载此图片进行编辑。请取消并使用较小的源图片。",
+        "accepted_value_utf8_sha256": "da3ac91c0f5822a14e0be9a9547d9146a84d7647adacabd92c575f4259d9d5e4",
+        "corrected_english_reference": "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+        "reference_status": "Proposed corrected operation-level source meaning; not asserted to be applied to frozen English resources.",
+        "rationale": [
+          "Natural Chinese: the concessive 即使…也 construction clearly preserves the minimum-output condition and current-memory-limits qualification.",
+          "Faithful to the corrected operation-level import meaning: failure of the combined admission check prevents loading for editing, without claiming decoder buffers alone caused the refusal.",
+          "Preserves cancel and smaller-source remedies without promising that they will succeed."
+        ],
+        "consumer_predicate_scope": "With valid entered dimensions and a current plan that does not fit, ImageResizeDialog selects the warning when hasNativeWork && !ImportMemoryRequirements.accepts(current, ImportPlan.create(source, ImageDimensions(1,1)), residentPixels).",
+        "static_source_ranges": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+            "lines": "40–50"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "lines": "27–44, 63–84, 102–108"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+            "lines": "38–40"
+          }
+        ],
+        "remaining_linguistic_issue": null,
+        "format_arguments": []
+      },
+      {
+        "key": "string/ui_assembly_source_memory_floor",
+        "tier": "P0",
+        "verdict": "accept",
+        "exact_accepted_value": "即使采用最小输出尺寸，此拼接操作的估算内存用量仍超出当前工作内存上限。仅缩小拼接尺寸不足以满足当前限制。请关闭其他文档，或先准备较小的源图片再试。拼接内容未改变。",
+        "accepted_value_utf8_sha256": "8403b99f0df019e48f9bb1ac3d6d0929cb3baa67c372aa4e448b7538b5024740",
+        "corrected_english_reference": "This assembly cannot fit within the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+        "reference_status": "Proposed corrected operation-level source meaning; not asserted to be applied to frozen English resources.",
+        "rationale": [
+          "Natural Chinese: 估算内存用量 and 当前工作内存上限 clearly distinguish an estimate from actual measured use.",
+          "Faithful to the distinct assembly predicate: at 1×1, the output pixel bound passes and the combined estimated peak exceeds workingBytes; this is not the import accepts/hasNativeWork branch and not a sum of every source decoder.",
+          "Preserves minimum output, reducing dimensions alone being insufficient under current limits, both remedies, retrying and unchanged assembly."
+        ],
+        "consumer_predicate_scope": "AssemblyActivity emits the warning when renderer.suggested(previous) returns null. AssemblyRenderer.suggested returns null on !fits(ImageDimensions(1,1)); fits checks output pixel bound and combined estimated peak <= current workingBytes.",
+        "static_source_ranges": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "lines": "297–301"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt",
+            "lines": "23–48"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "lines": "27–44, 63–84, 143–144"
+          }
+        ],
+        "remaining_linguistic_issue": null,
+        "format_arguments": []
+      }
+    ],
+    "source_tree": "b9b148d5d8ef7c7b088500a9c177f9f59304b800",
+    "source_file_binding": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+        "sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+        "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+        "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+        "sha256": "72b511c8142b256a7d2806badc0c88608b966dcedf79252f8ffa682cc559aa10",
+        "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8",
+        "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt",
+        "sha256": "05486ace79d99162c6f5da50707009d9ef692598441cf14b89c5d57b975f28a3",
+        "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt"
+      }
+    ],
+    "historical_record_preservation": "All prior receipts, patches, candidates and archives remain unchanged. This additive overlay qualifies the two original full-consumer acceptance claims and accepts only these exact replacements against the corrected operation-level meaning.",
+    "correction_to_prior_reasoning": "The earlier source-decoder-only diagnoses repeated defective English and were not supported by the full predicates. Do not use the original two acceptance statements as current consumer-semantic acceptance. This is a shared-source issue, not merely regional Chinese terminology.",
+    "reviewer_distinction": "Other regional terminology proposals remain locale-fit, clarity or consistency improvements, not proof that the original terms are intrinsically wrong. No other values are rereviewed or reclassified here.",
+    "new_reviewed_identity_credit": 0,
+    "whole_batch_rereview": false,
+    "candidate_applied": false,
+    "limits": [
+      "No production source edits, builds, Gradle, APK, CI, application tests, runtime/device checks or publication.",
+      "Not native-speaker, rendered-layout, TalkBack, Android routing or functional certification.",
+      "Acceptance follows the corrected combined-operation meanings, not the defective literal frozen English. Reconcile the shared English correction before claiming source parity.",
+      "Only the two specified values are accepted here; no new acceptance of the other 42 proposals, 297 retained values, P2 Top or GIF substitute."
+    ]
+  },
+  "current_status": "Both current warnings instead inherit their own PR165 independently accepted successors. No old substitute is pending production solely because this historical addendum exists."
+}

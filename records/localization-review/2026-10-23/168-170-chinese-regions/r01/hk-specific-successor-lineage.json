@@ -1,0 +1,573 @@
+[
+  {
+    "key": "string/ui_the_draft_is_saving_try_again_shortly",
+    "historical_public_scope": "OPEN",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+    "priority_followup_state": "historical_hold",
+    "original_followup_class": "A_complete_source_linguistic_rebinding_report_not_separately_independent_receipt",
+    "followup": {
+      "source_revision": "0134e79c588a027bbd239f7685fff52b0771819f",
+      "english": "The draft is saving. Try again shortly.",
+      "current": "正在儲存草稿。請稍後再試。",
+      "proposed": "正在儲存草稿。請稍後再試。",
+      "disposition": "retain_context_hold",
+      "rationale": "Hong Kong Chinese complete text correctly says saving draft and retry later. The natural 儲存/草稿 terminology is appropriate. Generic busy alone remains insufficient source context; change that caller to the neutral operation-wait message, keeping this value for the actual autosaving guard.",
+      "review_scope": "complete_message_linguistic_and_static_source_context",
+      "confidence": "high_semantic_bounded",
+      "context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "lines": [
+            915,
+            917
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L915-L917",
+          "observed": "The edit guard specifically tests autosaving, so the draft-saving message is accurate here."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "lines": [
+            1432,
+            1435
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1432-L1435",
+          "observed": "The legacy-credit guard tests generic busy, so this message can misstate the reason if a non-autosave busy overlap reaches it."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "lines": [
+            1411,
+            1412
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1411-L1412",
+          "observed": "beginIo is generic; endIo also delivers pending inputs."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "lines": [
+            1161,
+            1179
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1161-L1179",
+          "observed": "Startup deferral queues some activity results, but the direct ready-state route does not gate all results on busy; real non-autosave UI overlap is not demonstrated by this static review."
+        }
+      ]
+    },
+    "separate_independent_receipt_present_in_successor_map": false,
+    "later_caller_rebind": {
+      "key": "string/ui_the_draft_is_saving_try_again_shortly",
+      "decision": "bounded_current_caller_hold_resolved",
+      "prior_full_linguistic_review": {
+        "id": 30,
+        "tag": "zh-HK",
+        "key": "string/ui_the_draft_is_saving_try_again_shortly",
+        "source_revision": "0134e79c588a027bbd239f7685fff52b0771819f",
+        "english": "The draft is saving. Try again shortly.",
+        "current": "正在儲存草稿。請稍後再試。",
+        "proposed": "正在儲存草稿。請稍後再試。",
+        "changes_localized_text": false,
+        "disposition": "retain_context_hold",
+        "rationale": "Hong Kong Chinese complete text correctly says saving draft and retry later. The natural 儲存/草稿 terminology is appropriate. Generic busy alone remains insufficient source context; change that caller to the neutral operation-wait message, keeping this value for the actual autosaving guard.",
+        "complete_message_read": true,
+        "review_scope": "complete_message_linguistic_and_static_source_context",
+        "confidence": "high_semantic_bounded",
+        "context": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "lines": [
+              915,
+              917
+            ],
+            "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L915-L917",
+            "observed": "The edit guard specifically tests autosaving, so the draft-saving message is accurate here."
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "lines": [
+              1432,
+              1435
+            ],
+            "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1432-L1435",
+            "observed": "The legacy-credit guard tests generic busy, so this message can misstate the reason if a non-autosave busy overlap reaches it."
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "lines": [
+              1411,
+              1412
+            ],
+            "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1411-L1412",
+            "observed": "beginIo is generic; endIo also delivers pending inputs."
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "lines": [
+              1161,
+              1179
+            ],
+            "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1161-L1179",
+            "observed": "Startup deferral queues some activity results, but the direct ready-state route does not gate all results on busy; real non-autosave UI overlap is not demonstrated by this static review."
+          }
+        ],
+        "english_binding": {
+          "path": "Paintroid/src/main/res/values/strings.xml",
+          "line": 414,
+          "git_blob_sha1": "d83af28cb7ef540711f0a9247ff6706b4750e5c4",
+          "file_sha256": "5c69905eb4dd9bc9e16ac7cd106842dc2dca218cb991341c54b617cdd7534311",
+          "value_sha256": "61e2efe783a5c0958d756a47edd7ca6fba6808596108a8af71e6890bbd4b1d20",
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/res/values/strings.xml#L414"
+        },
+        "localized_binding": {
+          "path": "Paintroid/src/main/res/values-zh-rHK/strings.xml",
+          "line": 492,
+          "git_blob_sha1": "d919d7a3b5c4af52cf4e122ba2d8782c36431ed5",
+          "file_sha256": "1c8cf56a0d0cc912eed40c17026b53b11db2526dda51671224399e218035e87f",
+          "value_sha256": "168d313fc42be7ed3b228f9f407cbd03c654f864bb81757142c798782506c364",
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/res/values-zh-rHK/strings.xml#L492"
+        },
+        "proposed_value_sha256": "168d313fc42be7ed3b228f9f407cbd03c654f864bb81757142c798782506c364",
+        "historical_receipt": {
+          "tag": "zh-HK",
+          "key": "string/ui_the_draft_is_saving_try_again_shortly",
+          "cohort": "HK-BOUNDED-01-20261015",
+          "state": "needs_rereview",
+          "reviewed_source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+          "reviewed_english_sha256": "61e2efe783a5c0958d756a47edd7ca6fba6808596108a8af71e6890bbd4b1d20",
+          "current_english_sha256": "61e2efe783a5c0958d756a47edd7ca6fba6808596108a8af71e6890bbd4b1d20",
+          "reviewed_localized_sha256": "168d313fc42be7ed3b228f9f407cbd03c654f864bb81757142c798782506c364",
+          "current_localized_sha256": "168d313fc42be7ed3b228f9f407cbd03c654f864bb81757142c798782506c364",
+          "disposition": "context_hold",
+          "review_scope": "complete_linguistic_source_context_open",
+          "confidence": "high_bounded",
+          "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+          "finding_kind": "shared_source_reachability",
+          "finding_status": "open",
+          "finding_source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+          "tracker_sources": [
+            "https://github.com/c933103/AN-Paint/pull/72"
+          ],
+          "context_limit": "Generic-busy callsite is present; non-autosave visible overlap remains unproven. No confirmed visible defect claimed.",
+          "correction_applied": false,
+          "audit_current_english_sha256": "61e2efe783a5c0958d756a47edd7ca6fba6808596108a8af71e6890bbd4b1d20",
+          "audit_current_localized_sha256": "168d313fc42be7ed3b228f9f407cbd03c654f864bb81757142c798782506c364",
+          "english_changed_since_review": false,
+          "localized_changed_since_review": false,
+          "audit_source_revision": "0134e79c588a027bbd239f7685fff52b0771819f",
+          "audit_state": "needs_rereview",
+          "cohort_metadata": {
+            "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+            "source_revision": "b243e5b671a9b7608ca4689e7dbe0a54610428fe",
+            "primary_source_revision": "647a4b5647cabf3e51cb6dcf20d41ae08143ccdb",
+            "scope": "Complete entries independently read against English and current save/recovery/destructive static paths. AI-assisted linguistic and static-source review; no runtime or whole-language certification.",
+            "counts": {
+              "active_accepted": 47,
+              "linguistic_only_accepted": 2,
+              "open_source_context": 1
+            },
+            "context_files": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+                "git_blob_sha": "b8a97637df61f8e50694e4a9d65b924b3e0af4f5"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+                "git_blob_sha": "3fdd7aff659a3a2cdf2b78ed16472b5850225567"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+                "git_blob_sha": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+                "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+                "git_blob_sha": "7391229f13d4bc53702c0be60da57c6dbe344d99"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+                "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+                "git_blob_sha": "7c01b3fe57630349e954aee8449342f88033bb96"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+                "git_blob_sha": "72c1778b0ed3de3291582372113af7fe4463ead7"
+              }
+            ],
+            "complete_entry_findings": [
+              "All50 English and HK values exactly match the primary reviewed values; all100 scalar hashes recomputed.",
+              "Save/export destination and dirty-state distinction matched Classic1095–1112/1345–1380; replacement confirmation matched1065–1070.",
+              "Recovery ZIP includes draft.json,canvas.png and optional floating.png; preservation precedes success notice, and failure pauses autosave. AutosaveStore100–164; EditorDraftRecovery36–84.",
+              "ui_save_a5d0d9 resolves to ui_save; shared Save consumers cover image destination,palette editing and credit persistence. No extra alias-target credit.",
+              "ui_history_unavailable34 uses 復原記錄 consistently with actual ui_undo=復原. Load-image menu pointer matches 開啟圖片….",
+              "ui_the_draft_is_saving_try_again_shortly remains context-held: correct autosaving branch916; genericbusy branch1434 exists, but non-autosave user-visible reachability remains unproven, not a confirmed visible bug.",
+              "ui_discard and formats22_derived_exported accepted only linguistically. No active-context claim and no independently renewed exhaustive repository-wide dormancy claim."
+            ]
+          }
+        },
+        "native_speaker_certification": false,
+        "runtime_or_layout_certification": false,
+        "applied": false,
+        "proposed_caller_change": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1434,
+          "from": "if(busy) {message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return}",
+          "to": "if(busy) {message(ui(R.string.ui_please_wait_for_the_current_operation));return}",
+          "localized_neutral_message": "請等待目前操作完成。",
+          "do_not_change_autosaving_guard": 916,
+          "requires_behavior_verification": true
+        }
+      },
+      "prior_independent_caller_review": {
+        "schema": "an-paint-independent-caller-review-v1",
+        "source_revision": "0134e79c588a027bbd239f7685fff52b0771819f",
+        "decision": "accept_static_semantic_fix_pending_behavior_verification",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "line": 1434,
+        "current": "if(busy) {message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return}",
+        "proposed": "if(busy) {message(ui(R.string.ui_please_wait_for_the_current_operation));return}",
+        "sha256_current_file": "8f2ddd3632bf58afca9dbd86d2fd4bd1d98ba5b37c4116c2f9948ed79c187c50",
+        "sha256_current_snippet": "7bb3043670c1c77f57d520a2528ddf76b44e857217d8989fd355654c32fad7da",
+        "sha256_proposed_snippet": "c10796fda25741fb551e45a5cd379d746a3febf983b4dad40511320e79ac3ade",
+        "sha256_proposal_file": "bafdbc0cc00082b45a9141834b9fe8ab31f219f2afe0b3c7cd57b30aad67a941",
+        "rationale": "The generic busy condition is set by beginIo for operations beyond autosave. The existing neutral wait-for-current-operation message does not assert an unsupported draft-save cause. French, Japanese and Hong Kong Chinese neutral messages are natural and retain a request to wait. The true autosaving guard at line 916 must keep the draft-specific message. This is one shared caller correction, not three per-locale edits. Static source supports the diagnostic change but does not demonstrate the non-autosave UI overlap; behavior verification remains required before closing the associated holds.",
+        "verified_localized_values": {
+          "fr": {
+            "ui_the_draft_is_saving_try_again_shortly": "Le brouillon est en cours d’enregistrement. Réessayez dans un instant.",
+            "ui_please_wait_for_the_current_operation": "Veuillez attendre la fin de l’opération en cours."
+          },
+          "ja": {
+            "ui_the_draft_is_saving_try_again_shortly": "下書きを保存中です。少し待ってからもう一度お試しください。",
+            "ui_please_wait_for_the_current_operation": "現在の処理が終わるまでお待ちください。"
+          },
+          "zh-HK": {
+            "ui_the_draft_is_saving_try_again_shortly": "正在儲存草稿。請稍後再試。",
+            "ui_please_wait_for_the_current_operation": "請等待目前操作完成。"
+          }
+        },
+        "retained_holds": [
+          "Non-autosave reachability and user-visible overlap not runtime-demonstrated.",
+          "No source changed or tests run by this reviewer."
+        ]
+      },
+      "current_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 916,
+          "excerpt": "if (autosaving) { message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return false }",
+          "snippet": "913:     }\n914: \n915:     private fun editAction(action: () -> Unit): Boolean {\n916:         if (autosaving) { message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return false }\n917:         try { action();return true }\n918:         catch (error: OutOfMemoryError) { editFailed(error) }\n919:         catch (error: IOException) { editFailed(error) }"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1434,
+          "excerpt": "if(busy) {message(ui(if(autosaving) R.string.ui_the_draft_is_saving_try_again_shortly",
+          "snippet": "1431: \n1432:     private fun attachLegacyImageCredit(token: String?) {\n1433:         val credit=ImageCreditArchive.find(this,token) ?: return\n1434:         if(busy) {message(ui(if(autosaving) R.string.ui_the_draft_is_saving_try_again_shortly\n1435:             else R.string.ui_please_wait_for_the_current_operation));return}\n1436:         if(credit.source.isBlank()) {message(ui(R.string.ui_could_not_complete_the_operation));return}\n1437:         editAction {"
+        }
+      ],
+      "current_neutral_wait_value": "請等待目前操作完成。",
+      "current_neutral_wait_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 170,
+          "excerpt": "text=startupFailure ?: ui(R.string.ui_please_wait_for_the_current_operation);contentDescription=text;setTextColor(ink)",
+          "snippet": "167:             if(startupFailure==null) addView(ProgressBar(this@ClassicPaintActivity).apply {tag=\"editor_startup_progress\"})\n168:             addView(FlowTextView(this@ClassicPaintActivity).apply {\n169:                 tag=\"editor_startup_label\";columnHeightDp=(resources.configuration.screenHeightDp-160).coerceIn(96,240)\n170:                 text=startupFailure ?: ui(R.string.ui_please_wait_for_the_current_operation);contentDescription=text;setTextColor(ink)\n171:                 gravity=Gravity.CENTER;setPadding(dp(24),dp(24),dp(24),dp(24))\n172:             })\n173:         }"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 549,
+          "excerpt": "setOnClickListener { if (!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation)) }",
+          "snippet": "546:         text = value; tag = tagName; contentDescription = value\n547:         isAllCaps = false; textSize = 13f; minWidth = 0; minimumWidth = 0; minHeight = 0; minimumHeight = 0\n548:         setPadding(dp(8), dp(6), dp(8), dp(6))\n549:         setOnClickListener { if (!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation)) }\n550:     }\n551: \n552:     private fun panelButton(value: String,tagName: String,icon: Int,action: () -> Unit)=PanelToolButton(this).apply {"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 555,
+          "excerpt": "setOnClickListener {if(!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation))}",
+          "snippet": "552:     private fun panelButton(value: String,tagName: String,icon: Int,action: () -> Unit)=PanelToolButton(this).apply {\n553:         text=value;contentDescription=value;tag=tagName;labelledIcon(icon)\n554:         LocaleTooltip.set(this,value)\n555:         setOnClickListener {if(!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation))}\n556:     }\n557: \n558:     private fun actionIcon(icon: EditIcon, tagName: String, action: () -> Unit) = ActionButton(this, icon).apply {"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1435,
+          "excerpt": "else R.string.ui_please_wait_for_the_current_operation));return}",
+          "snippet": "1432:     private fun attachLegacyImageCredit(token: String?) {\n1433:         val credit=ImageCreditArchive.find(this,token) ?: return\n1434:         if(busy) {message(ui(if(autosaving) R.string.ui_the_draft_is_saving_try_again_shortly\n1435:             else R.string.ui_please_wait_for_the_current_operation));return}\n1436:         if(credit.source.isBlank()) {message(ui(R.string.ui_could_not_complete_the_operation));return}\n1437:         editAction {\n1438:             val added=try {"
+        }
+      ],
+      "localized_text_changed": false,
+      "new_translation_credit": false,
+      "runtime_overlap_tested": false
+    },
+    "current_context_limit": "ClassicPaintActivity changed since this rebind; no new runtime reachability assertion. Inspect exact guards before extending scope."
+  },
+  {
+    "key": "string/ui_the_online_gallery_could_not_be_loaded_check",
+    "historical_public_scope": "OPEN",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+    "priority_followup_state": "accepted",
+    "original_followup_class": "A_complete_source_linguistic_rebinding_report_not_separately_independent_receipt",
+    "followup": {
+      "source_revision": "0134e79c588a027bbd239f7685fff52b0771819f",
+      "english": "The online gallery could not be loaded. Check your connection and try again.",
+      "current": "無法載入網上圖庫。請檢查連線後再試。",
+      "proposed": "無法載入網上圖庫。請檢查連線後再試。",
+      "disposition": "accept_unchanged",
+      "rationale": "Hong Kong Chinese 無法載入網上圖庫 and 請檢查連線後再試 are complete, natural and preserve failed-load/retry meaning. External ACTION_VIEW handler absence is no longer mislabeled as gallery load failure.",
+      "review_scope": "complete_message_linguistic_and_static_source_context",
+      "confidence": "high_semantic_bounded",
+      "context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "lines": [
+            203,
+            205
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L203-L205",
+          "observed": "Online-gallery error now appears for main-frame WebView load failure."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "lines": [
+            310,
+            313
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L310-L313",
+          "observed": "Missing external app now has the dedicated gallery_external_link_no_handler key, so the former misclassification is removed."
+        }
+      ]
+    },
+    "separate_independent_receipt_present_in_successor_map": false
+  },
+  {
+    "key": "string/colour_converter_unavailable",
+    "historical_public_scope": "OPEN",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+    "priority_followup_state": "accepted",
+    "original_followup_class": "A_complete_source_linguistic_rebinding_report_not_separately_independent_receipt",
+    "followup": {
+      "source_revision": "0134e79c588a027bbd239f7685fff52b0771819f",
+      "english": "The image colour converter could not start. The image was not imported.",
+      "current": "無法啟動圖片色彩轉換器。圖片並未匯入。",
+      "proposed": "無法啟動圖片色彩轉換器。圖片並未匯入。",
+      "disposition": "accept_unchanged",
+      "rationale": "Hong Kong Chinese 圖片色彩轉換器 and 並未匯入 retain converter-start failure and non-import outcome in natural regional wording. Current colour conversion caller justifies the diagnosis; broad native gallery failures now use a generic component key.",
+      "review_scope": "complete_message_linguistic_and_static_source_context",
+      "confidence": "high_semantic_bounded",
+      "context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+          "lines": [
+            45,
+            59
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt#L45-L59",
+          "observed": "The colour-converter message is thrown only around actual CICP/ICC/PNG native colour conversion calls."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "lines": [
+            388,
+            399
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L388-L399",
+          "observed": "Broad gallery LinkageError reports gallery_image_component_unavailable instead; no claim that every native error is colour conversion."
+        }
+      ]
+    },
+    "separate_independent_receipt_present_in_successor_map": false
+  },
+  {
+    "key": "string/ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+    "historical_public_scope": "OPEN",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+    "priority_followup_state": "historical_hold",
+    "original_followup_class": "A_complete_source_linguistic_rebinding_report_not_separately_independent_receipt",
+    "followup": {
+      "source_revision": "0134e79c588a027bbd239f7685fff52b0771819f",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. Imports use the selected opaque background; the original file stays unchanged.",
+      "current": "估算包括目前畫布及剪貼簿、取樣解碼及編輯緩衝區。實際記憶體用量會有所不同。較小的副本會損失細節。匯入時會使用所選不透明背景；原始檔案不會改變。",
+      "proposed": "估算包括目前畫布及剪貼簿、取樣解碼及編輯緩衝區。實際記憶體用量會有所不同。較小的副本會損失細節。原始檔案不會改變。",
+      "disposition": "coordinated_source_correction_proposed_dormant",
+      "rationale": "Hong Kong Chinese full text accurately translates memory estimates/buffers/variability/detail loss and preserved original file, but selected opaque background is a shared source overgeneralization. Proposed complete neutral value removes that clause without inventing a new background promise. Requires coordinated English legacy cleanup; no current live caller is claimed.",
+      "review_scope": "complete_message_linguistic_and_static_source_context",
+      "confidence": "high_semantic_bounded",
+      "context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "lines": [
+            31,
+            35
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L31-L35",
+          "observed": "Current resize explanation chooses ui_codec_resize_memory_floor or ui_sampled_resize_memory_explanation; legacy key has no production caller."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "lines": [
+            1300,
+            1309
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1300-L1309",
+          "observed": "whiteBacking can force transparent pixels to white independently of current selected BG."
+        }
+      ]
+    },
+    "separate_independent_receipt_present_in_successor_map": true,
+    "current_boundary": "Dormant conditional-English cleanup hold remains, not live defect."
+  },
+  {
+    "key": "string/ui_add_up_to_20_images_with_android_s",
+    "historical_public_scope": "OPEN",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+    "priority_followup_state": "historical_hold",
+    "original_followup_class": "A_complete_source_linguistic_rebinding_report_not_separately_independent_receipt",
+    "followup": {
+      "source_revision": "0134e79c588a027bbd239f7685fff52b0771819f",
+      "english": "Add up to 20 images with Android\\'s file picker. The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\\n\\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\\n\\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected.\\n\\nSame width and Same height give every input a common dimension while preserving each image\\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\\n\\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\\n\\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy if offered. If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\\n\\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\\'s «File > About, licences & credits» panel.",
+      "current": "可使用 Android 的檔案選擇器加入最多 20 張圖片。下方托盤會顯示縮圖、檔案名稱，以及裁剪及「相同闊度」或「相同高度」調整後的圖片尺寸。如檔案提供者有提供修改時間，亦會顯示該時間。你可按檔案名稱或修改時間排序；排序不會重新排列已放置的圖片。\\n\\n點按縮圖以選取圖片。「裁剪圖片」會裁剪該圖片；「批次裁剪」會以像素或百分比邊距套用至所選圖片。拖動裁剪控制點或輸入數值。「重設裁剪」會還原原來邊緣。裁剪屬非破壞性操作，可復原。\\n\\n按住縮圖，或拖動工作區內已放置的圖片，再放到反白顯示的邊緣。半透明預覽會顯示準確的貼齊結果。接到右方時會對齊頂端；接到下方時會對齊左邊。你亦可先點按縮圖，再點按「+」目標。貼齊時，第一張圖片由原點開始。裁剪母圖片時，連接到它的圖片可能會移動。貼齊時不允許圖片互相重疊。\\n\\n選取圖片後，使用「精確位置」設定這張圖片左上角的 X 和 Y 座標。座標以整數像素為單位，由零開始。其他圖片保持目前的位置；此處允許重疊。\\n\\n「相同闊度」和「相同高度」會在保留各圖片本身長寬比例的情況下，為所有輸入圖片設定共同尺寸。可選像素、百分比、最小或最大。「還原原本大小」會取消尺寸統一，但保留裁剪。\\n\\n「取消放置」只會將所選圖片放回托盤。其他圖片仍維持已放置狀態；相連的圖片可能會移動以填補空位。「移除」只會刪除該輸入圖片。「復原／重做」可還原這些變更。拖動已放置圖片可重新排列；拖動空白位置可平移視圖。以雙指縮放。「顯示全部」只會縮放視圖以顯示整個拼合結果，不會改變輸出尺寸。\\n\\n「儲存 PNG」會直接儲存拼合後的圖片。「在 Paint 編輯」會將圖片傳送到主編輯器，作為可復原的圖片取代操作。如果輸出超出記憶體上限，而應用程式提供了尺寸選擇畫面，請選擇較小的輸出副本。如果連極小的輸出也超出記憶體上限，應用程式會顯示記憶體警告，而不會顯示尺寸選擇畫面。原始圖片檔案不會被修改。目前的拼合狀態會儲存在裝置內，返回此功能時會重新開啟。\\n\\n此模式使用主編輯器「檔案」>「關於、授權及鳴謝」選單內相同的 Catrobat/AGPL 及素材鳴謝資料。",
+      "proposed": "可使用 Android 的檔案選擇器加入最多 20 張圖片。下方托盤會顯示縮圖、檔案名稱，以及裁剪及「相同闊度」或「相同高度」調整後的圖片尺寸。如檔案提供者有提供修改時間，亦會顯示該時間。你可按檔案名稱或修改時間排序；排序不會重新排列已放置的圖片。\\n\\n點按縮圖以選取圖片。「裁剪圖片」會裁剪該圖片；「批次裁剪」會以像素或百分比邊距套用至所選圖片。拖動裁剪控制點或輸入數值。「重設裁剪」會還原原來邊緣。裁剪屬非破壞性操作，可復原。\\n\\n按住縮圖，或拖動工作區內已放置的圖片，再放到反白顯示的邊緣。半透明預覽會顯示準確的貼齊結果。接到右方時會對齊頂端；接到下方時會對齊左邊。你亦可先點按縮圖，再點按「+」目標。貼齊時，第一張圖片由原點開始。裁剪母圖片時，連接到它的圖片可能會移動。貼齊時不允許圖片互相重疊。\\n\\n選取圖片後，使用「精確位置」設定這張圖片左上角的 X 和 Y 座標。座標以整數像素為單位，由零開始。其他圖片保持目前的位置；此處允許重疊。\\n\\n「相同闊度」和「相同高度」會在保留各圖片本身長寬比例的情況下，為所有輸入圖片設定共同尺寸。可選像素、百分比、最小或最大。「還原原本大小」會取消尺寸統一，但保留裁剪。\\n\\n「取消放置」只會將所選圖片放回托盤。其他圖片仍維持已放置狀態；相連的圖片可能會移動以填補空位。「移除」只會刪除該輸入圖片。「復原／重做」可還原這些變更。拖動已放置圖片可重新排列；拖動空白位置可平移視圖。以雙指縮放。「顯示全部」只會縮放視圖以顯示整個拼合結果，不會改變輸出尺寸。\\n\\n「儲存 PNG」會直接儲存拼合後的圖片。「在 Paint 編輯」會將圖片傳送到主編輯器，作為可復原的圖片取代操作。如果輸出超出記憶體上限，而應用程式提供了尺寸選擇畫面，請選擇較小的輸出副本。如果連極小的輸出也超出記憶體上限，應用程式會顯示記憶體警告，而不會顯示尺寸選擇畫面。原始圖片檔案不會被修改。目前的拼合狀態會儲存在裝置內，返回此功能時會重新開啟。\\n\\n此模式使用主編輯器「檔案」>「關於、授權及鳴謝」選單內相同的 Catrobat/AGPL 及素材鳴謝資料。",
+      "disposition": "target_accepted_current_english_source_hold",
+      "rationale": "Read all eight Hong Kong Chinese paragraphs. The text consistently uses 圖片/檔案/闊度/儲存, preserves optional provider time, crop controls, exact right/top and bottom/left snap alignment, conditional connected-image movement, explicit nonnegative exact X/Y positioning and overlap, individual aspect ratio/crop preservation, unplace/remove differences, navigation/output/memory/local persistence/credits. Current targets correctly qualify snap/unplace behavior absent from develop English. Retain current wording and the English source-pair hold; do not reopen repaired target clauses.",
+      "review_scope": "complete_message_linguistic_and_static_source_context",
+      "confidence": "high_semantic_bounded",
+      "context": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "lines": [
+            87,
+            104
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L87-L104",
+          "observed": "Toolbar contains actual Exact position, crop/normalize/unplace/output controls."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "lines": [
+            137,
+            158
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L137-L158",
+          "observed": "Tray shows placedSize (crop plus normalization), optional metadata time and selected state."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "lines": [
+            279,
+            290
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L279-L290",
+          "observed": "Exact position applies to selected input; batch crop opens all candidates for selection."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "lines": [
+            88,
+            125
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L88-L125",
+          "observed": "Unplace detaches one input; explicit-position children keep coordinates, while attached-tree descendants can move to fill the gap."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "lines": [
+            154,
+            190
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L154-L190",
+          "observed": "Crop and snap placement are separate from absolute position; absolute positions are nonnegative and preserve other positions."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "lines": [
+            197,
+            232
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L197-L232",
+          "observed": "Right snap aligns top; bottom snap aligns left; snap placement rejects overlaps, while absolute positions deliberately permit them."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "lines": [
+            295,
+            348
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L295-L348",
+          "observed": "Output uses original size when it fits, otherwise optional smaller-size chooser or memory-floor warning; actual Help renders this resource."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+          "lines": [
+            18,
+            81
+          ],
+          "url": "https://github.com/c933103/AN-Paint/blob/0134e79c588a027bbd239f7685fff52b0771819f/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L18-L81",
+          "observed": "Normalization changes one chosen dimension across all inputs, uses current-largest axis for percentage, and resetting sizes keeps crops."
+        }
+      ]
+    },
+    "separate_independent_receipt_present_in_successor_map": false,
+    "current_boundary": "Later PR134 own full-entry adoption report binds current corrected-English reference; old seven-paragraph receipt is superseded, not transplanted."
+  },
+  {
+    "key": "plurals/ui_crop_preview_images",
+    "historical_public_scope": "OPEN",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6184969042",
+    "priority_followup_state": "accepted",
+    "original_followup_class": "Original successor scope retained",
+    "followup": {},
+    "separate_independent_receipt_present_in_successor_map": false,
+    "current_boundary": "Later own raw complete plural acceptance HK-ASSEMBLY-CURRENT-20261015-E53B2E6 matches current whole maps; no new review identity."
+  },
+  {
+    "key": "string/formats22_page_description",
+    "class": "P_original_public_complete_pair_successor",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6188271171",
+    "original_complete_pair": {
+      "tag": "zh-HK",
+      "key": "string/formats22_page_description",
+      "old_english": "%1$s · %2$s\\n%3$d pages. Choose one page to edit as an image.",
+      "english": "%1$s · %2$s\\nNumber of pages: %3$d. Choose one page to edit as an image.",
+      "localized": "%1$s · %2$s\\n共 %3$d 頁。請選擇一頁作為圖片編輯。",
+      "prior_state": "reviewed_current",
+      "english_sha256": "e18292653b9f7eab67c06c9fe7dd42c97bf69963d924fec39af4a3dd46eb2871",
+      "localized_sha256": "a26854fb206f6fa09499c8e108f180a07633492aaf3a6bd1d2fc2f894554d593",
+      "decision": "accepted_static"
+    },
+    "limits": "Complete existing20 EN/localized pairs reviewed after PR83:5 merged French corrections,11 unchanged non-French accepts,4 explicit processing-label corrections still open. No new identity or whole-language/device certification."
+  },
+  {
+    "key": "string/ui_rendering_images",
+    "class": "P_original_public_complete_pair_successor",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6188271171",
+    "original_complete_pair": {
+      "tag": "zh-HK",
+      "key": "string/ui_rendering_images",
+      "old_english": "Rendering %1$s / %2$s images…",
+      "english": "Images processed: %1$s / %2$s…",
+      "localized": "正在繪製 %1$s / %2$s 張圖片…",
+      "prior_state": "reviewed_current",
+      "english_sha256": "79299a97150f6eccdc05c6d2d5c32f3e9579d36d7d4cac12cfd2ff53bb4e7305",
+      "localized_sha256": "770bd0d19b7e5f53e1c71e025b05ef79992c75806d87a17b78cb40a58ca3073c",
+      "decision": "correction_needed"
+    },
+    "limits": "Complete existing20 EN/localized pairs reviewed after PR83:5 merged French corrections,11 unchanged non-French accepts,4 explicit processing-label corrections still open. No new identity or whole-language/device certification."
+  },
+  {
+    "key": "string/ui_you_can_add_more_images_select_fewer_files",
+    "class": "P_original_public_complete_pair_successor",
+    "source": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6188271171",
+    "original_complete_pair": {
+      "tag": "zh-HK",
+      "key": "string/ui_you_can_add_more_images_select_fewer_files",
+      "old_english": "You can add %1$s more images. Select fewer files.",
+      "english": "Number of images you can still add: %1$s. Select fewer files.",
+      "localized": "你還可加入 %1$s 張圖片。請減少所選檔案數目。",
+      "prior_state": "reviewed_current",
+      "english_sha256": "c77257986bd516c987496521adf8d3849c06a668618cf40618cafdc75d206592",
+      "localized_sha256": "b9d3e7b846976a247ad5d86952db8429437fbb79748d5e6f04a1be2d4a157369",
+      "decision": "accepted_static"
+    },
+    "limits": "Complete existing20 EN/localized pairs reviewed after PR83:5 merged French corrections,11 unchanged non-French accepts,4 explicit processing-label corrections still open. No new identity or whole-language/device certification."
+  }
+]
