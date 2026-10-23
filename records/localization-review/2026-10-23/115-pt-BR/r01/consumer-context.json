@@ -1,0 +1,824 @@
+{
+  "bounded-complete-caller-comparisons.json": [
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "source_file_git_blob": "71eec7816d29f35b9b921042edc32fb3e1384036",
+        "first_line": 1,
+        "last_line_exclusive": 185,
+        "scope_sha256": "b96a42d8d1324ec835d7ad512888e6f9a25c1aaeca97218655a3cfd9c736884a",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "source_file_git_blob": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+        "first_line": 1,
+        "last_line_exclusive": 184,
+        "scope_sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "dimensions-and-memory-selected-locale",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "import java.util.Locale\n",
+          ""
+        ],
+        [
+          "String.format(Locale.ROOT, ui(R.string.ui_d_d_px_d_pixels_2f_mp),",
+          "ui(R.string.ui_d_d_px_d_pixels_2f_mp,"
+        ],
+        [
+          "String.format(Locale.ROOT, ui(R.string.ui_1f_s),",
+          "ui(R.string.ui_1f_s,"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Complete file differs only by locale import removal and two display expressions changing from Locale.ROOT to ui(resource-locale). Width, height, Long pixel count, megapixel calculation, positive-dimension validation, memory clamp and unit iteration remain identical. The original ROOT formatting expectation is superseded, not current numeric acceptance."
+    },
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "source_file_git_blob": "c7ee442c2ae9741500b401b0a22c2994b90d8134",
+        "first_line": 1,
+        "last_line_exclusive": 153,
+        "scope_sha256": "9d5eda1cebdc88e515089fbbb908c89625a82db98052f67528062dd4dcf156a0",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "source_file_git_blob": "a21c5d9a32794df26907f6765d52f0d409e2953a",
+        "first_line": 1,
+        "last_line_exclusive": 153,
+        "scope_sha256": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "crop-quantity-resolution",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,",
+          "uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Complete crop dialog differs only in plural resolution API. None still clears the selected image IDs, All restores them, refresh recalculates preview, and Apply refuses empty selection. This does not establish current plural resolution or rendered text."
+    },
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+        "source_file_git_blob": "c8e2bddfcd888faf391d4ef9a1a4be7c082cf17c",
+        "first_line": 1,
+        "last_line_exclusive": 53,
+        "scope_sha256": "faf0e3182716c08ba67a7a5f2ff2188a7d1c9d14b1662a4205795a2af0296f54",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+        "source_file_git_blob": "b77fec3a44bbb5703e2b5c446b937f12ddef26f7",
+        "first_line": 1,
+        "last_line_exclusive": 51,
+        "scope_sha256": "72b511c8142b256a7d2806badc0c88608b966dcedf79252f8ffa682cc559aa10",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "memory-admission-formatting",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "import java.util.Locale\n",
+          ""
+        ],
+        [
+          "String.format(Locale.ROOT,\n            ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current),",
+          "ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Complete file changes only display formatter policy. Positive dimensions, Long multiplication, permitted threshold, resident-pixel deduction, exception branch and four arguments remain exact. The separately changed English warning makes its original pair stale."
+    },
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+        "source_file_git_blob": "e32559bdb5aed67939bc517c7cda992ae1c2c346",
+        "first_line": 1,
+        "last_line_exclusive": 65,
+        "scope_sha256": "d17d71727cfa1238748c1139beb5aa41af56386f551a24c358187a6c73940bb0",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+        "source_file_git_blob": "15723c1171cac09c7bd67881175827b5f3f330dd",
+        "first_line": 1,
+        "last_line_exclusive": 64,
+        "scope_sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "resize-budget-formatting",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "import java.util.Locale\n",
+          ""
+        ],
+        [
+          "String.format(Locale.ROOT, ui(R.string.ui_current_safe_editing_budget_s_up_to_2f),",
+          "ui(R.string.ui_current_safe_editing_budget_s_up_to_2f,"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Complete dialog changes only outer budget formatter; nested memoryLabel is separately changed. Admission/resize/cancel logic and two arguments remain exact; no new runtime certification."
+    },
+    {
+      "scope_start": "    internal fun deviceDefaultLabel(",
+      "scope_end": "    fun showSettings(",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+        "source_file_git_blob": "5f62edb7622f66ebb4ce17af4a03d713a9dda962",
+        "first_line": 126,
+        "last_line_exclusive": 136,
+        "scope_sha256": "2c6bf64e62273b69dd8c8c29ee601f67e36934055264767a23595617a263d2dc",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+        "source_file_git_blob": "c307c0dc650dd3bb86c27d05679525d4e104bfb1",
+        "first_line": 152,
+        "last_line_exclusive": 162,
+        "scope_sha256": "0f6d902cf5ddfa8fe25098fe68ad331321abbba255d71cba81229220d12fab57",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "device-default-resolution",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "return context.createConfigurationContext(config).getString(R.string.language20_device_default)",
+          "return uiText(context.createConfigurationContext(config).resources,R.string.language20_device_default)"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Complete function changes only resource resolver; locale config logic remains exact."
+    },
+    {
+      "scope_start": "    private fun attachLegacyImageCredit(",
+      "scope_end": "    private fun creditEditContext(",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "source_file_git_blob": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f",
+        "first_line": 1432,
+        "last_line_exclusive": 1450,
+        "scope_sha256": "789099cdf7fd9d1cd21b66e4cb92a398f695eb3aa4b161c238d2578477efa049",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "source_file_git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+        "first_line": 1441,
+        "last_line_exclusive": 1460,
+        "scope_sha256": "0c9a84daea45b499e3c268bd63e9492fd655568aeb91dfdf41fa71f49976b3c6",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "legacy-credit-busy-message-selection",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "if(busy) {message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return}",
+          "if(busy) {message(ui(if(autosaving) R.string.ui_the_draft_is_saving_try_again_shortly\n            else R.string.ui_please_wait_for_the_current_operation));return}"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Actual selection contract change: saving-specific text only when autosaving, general waiting text for other busy work. Early return and subsequent logic exact. Original pair judgments do not independently assess this new branch."
+    },
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "source_file_git_blob": "0f96d156ae743b46d36c593512edd82f3ace4841",
+        "first_line": 1,
+        "last_line_exclusive": 500,
+        "scope_sha256": "9bbe549f3dc0ac15ab5b22ca090a5c0deab1e59726838f6494bcb3dc9e56b89e",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "source_file_git_blob": "3cc9b6af28dbf897d85d91d6e3f1b2a40c12cf4e",
+        "first_line": 1,
+        "last_line_exclusive": 500,
+        "scope_sha256": "8df17566502bcee5868bf9fa260857e59b2670e1c4037cef561cec4eab29a49b",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "gallery-user-agent-derivation",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "current.setRequestProperty(\"User-Agent\",\"AN-Paint/0.0.38 (https://github.com/c933103/AN-Paint) Android\")",
+          "current.setRequestProperty(\"User-Agent\",CommonsAttribution.userAgent(this@MediaGalleryActivity))"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Entire file differs only by Commons user-agent derivation; original gallery message selection and redirect checks are exact. This is not the older Polish cohort typed-failure change and does not transfer its findings."
+    },
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+        "source_file_git_blob": "3dd10ca32a4dc90835fa8f7928def31315fad65e",
+        "first_line": 1,
+        "last_line_exclusive": 87,
+        "scope_sha256": "9ca6d847c47fd65e5373786cd97e98fe8d13e053e91b494f54b2aa7793160a74",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+        "source_file_git_blob": "0710ac70ecb0f1e3b794b2e843e9533210f57a5d",
+        "first_line": 1,
+        "last_line_exclusive": 87,
+        "scope_sha256": "52b989adc54c58a005ae120f8015a698f2ba58bfe16bdd48d6efa16252d720f7",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "normalize-preset-tags",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "listOf(ui(R.string.ui_smallest) to smallest,ui(R.string.ui_largest) to largest).forEach { (label,pixels) ->",
+          "listOf(Triple(\"smallest\",R.string.ui_smallest,smallest),Triple(\"largest\",R.string.ui_largest,largest)).forEach { (key,label,pixels) ->"
+        ],
+        [
+          "text=label; isAllCaps=false; tag=\"normalize_${label.lowercase(Locale.ROOT)}\"",
+          "text=ui(label); isAllCaps=false; tag=\"normalize_$key\""
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Entire file switches preset tags from translated label-derived values to stable keys. Same two resources, numeric values and display/refresh callbacks remain; not a new linguistic judgment."
+    },
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "source_file_git_blob": "0c2d0665d4b8523f696f6cf9e03a51c5c7ef821e",
+        "first_line": 1,
+        "last_line_exclusive": 849,
+        "scope_sha256": "cae84fc3bd8b7ee2b0cbdc8224b98ef49658f8fdd965cb3c3627a6718e6d5b11",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "source_file_git_blob": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+        "first_line": 1,
+        "last_line_exclusive": 850,
+        "scope_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "canvas-zoom-label-formatting",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "fun zoomLabel(): String = if (zoom >= .1f) \"${(zoom * 100).roundToInt()}%\" else String.format(java.util.Locale.ROOT, \"%.2f%%\", zoom * 100)",
+          "fun zoomLabel(): String = if (zoom >= .1f) ui(R.string.ui_zoom_percent_integer, (zoom * 100).roundToInt())\n        else ui(R.string.ui_zoom_percent_fractional, zoom * 100)"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Entire PaintCanvas differs only by zoom percentage display resource calls. Gesture span/focus ratios, panning, Navigate-mode handling and accessibility description initialization are unchanged. Same zoom threshold and rounding remain; composed status arguments have changed formatting."
+    },
+    {
+      "scope_start": "    private fun buildWorkspace(",
+      "scope_end": "    private fun selectTab(",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "source_file_git_blob": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f",
+        "first_line": 269,
+        "last_line_exclusive": 461,
+        "scope_sha256": "203d4d36bfb81d9f3b962a61c3c0deb90a79886cf76be0cdd97947759c24c05b",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "source_file_git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+        "first_line": 269,
+        "last_line_exclusive": 461,
+        "scope_sha256": "ffd37f8088c3e943e3dae0ce6e2cfacc457a94356698bfc989f2933520a7bf50",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "canvas-description-workspace",
+      "classification": "exact_complete_scope_transformation",
+      "all_differences_explained_by": [
+        [
+          "setOnLongClickListener {message(ui(R.string.ui_pixel_grid_help33));true}",
+          "LocaleTooltip.setHelpAction(this) {message(ui(R.string.ui_pixel_grid_help33));true}"
+        ],
+        [
+          "setOnLongClickListener {showCursorHelp();true}",
+          "LocaleTooltip.setHelpAction(this) {showCursorHelp();true}"
+        ]
+      ],
+      "no_other_scope_change": true,
+      "interpretation": "Complete workspace differs only by two existing help-action registrations. Canvas instruction binding unchanged; Tooltip dependency changes are separate."
+    },
+    {
+      "scope_start": "    private fun handleTouch(",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "source_file_git_blob": "0c2d0665d4b8523f696f6cf9e03a51c5c7ef821e",
+        "first_line": 644,
+        "last_line_exclusive": 849,
+        "scope_sha256": "f022fc54f2b091b5781650347ff590fba88e2d9beaea29283eeca7f7ac6a0701",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "source_file_git_blob": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+        "first_line": 645,
+        "last_line_exclusive": 850,
+        "scope_sha256": "f022fc54f2b091b5781650347ff590fba88e2d9beaea29283eeca7f7ac6a0701",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt"
+      },
+      "complete_scope_exact": true,
+      "id": "complete-canvas-gesture-handler",
+      "interpretation": "Complete handleTouch body, including span ratio zoom, focus displacement pan and one-finger PaintTool.ZOOM path, is byte-exact."
+    },
+    {
+      "scope_start": "    private fun makeStatus()",
+      "scope_end": "    private fun updateColours(",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "source_file_git_blob": "b9606432e1a5f35b20a9775bbcd02e66a19dce1f",
+        "first_line": 644,
+        "last_line_exclusive": 718,
+        "scope_sha256": "3cdfd89661376b3565890c1195abed2aa36b395462e3c111336b4a4b9f0da962",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "source_file_git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+        "first_line": 644,
+        "last_line_exclusive": 727,
+        "scope_sha256": "bc84e5c59ecdb16c54cf9b2e59863b3bbcf237d1dc1864ca1025385d0656b5a2",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "ClassicPaintActivity:    private fun makeStatus()",
+      "interpretation": "Full diff changes Tooltip help registrations, Fit/status layout, dimensions/budget/recent-colour formatting and saving-vs-other-busy message selection. Complete scoped comparisons distinguish exact candidate consumers from real dependency/branch changes."
+    },
+    {
+      "scope_start": "    fun encode(",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "source_file_git_blob": "9fdb9fafa2b0214cc84118bd60940fe070eef6c0",
+        "first_line": 73,
+        "last_line_exclusive": 104,
+        "scope_sha256": "080c0b6eb6c3dd9df4d98302f1d8100bd9a8fb9d26e0d9450df5e7dff6d36e70",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "source_file_git_blob": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+        "first_line": 76,
+        "last_line_exclusive": 107,
+        "scope_sha256": "080c0b6eb6c3dd9df4d98302f1d8100bd9a8fb9d26e0d9450df5e7dff6d36e70",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt"
+      },
+      "complete_scope_exact": true,
+      "id": "IcoCodec:    fun encode(",
+      "interpretation": "New typed-parser wrapper covers format probe, entry selection, PNG extraction and DIB decoding. Entire encode method remains exact. ui_no_readable_image_data gains a new direct route; no new review credit."
+    },
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+        "source_file_git_blob": "e5aa97dc4576ab76d0ccc4afe4871151bcadb27a",
+        "first_line": 1,
+        "last_line_exclusive": 41,
+        "scope_sha256": "0ad4be111ed62ff396fc3dcf9354dd6fd745f70deefb6e3532b2c069bc2baa62",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+        "source_file_git_blob": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+        "first_line": 1,
+        "last_line_exclusive": 47,
+        "scope_sha256": "e9f2870a1f1f70783df7004b32a1d57325dc9ef90491273ce3f8a11c57323250",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "DibCodec:complete-file",
+      "interpretation": "New typed-parser readImage wrapper maps only PackedDib.InvalidImage and UnsupportedColour to messages. Provider/storage exceptions and consumer callbacks remain outside relabeling. ui_no_readable_image_data gains a new direct route."
+    },
+    {
+      "scope_start": "complete file",
+      "scope_end": "end of file",
+      "original": {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "source_file_git_blob": "9fdb9fafa2b0214cc84118bd60940fe070eef6c0",
+        "first_line": 1,
+        "last_line_exclusive": 104,
+        "scope_sha256": "8cb4b309cbb47ffdc8a34396cf865ef46358ca4dc9f06be1561ce22a1b1c474d",
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt"
+      },
+      "current": {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "source_file_git_blob": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+        "first_line": 1,
+        "last_line_exclusive": 107,
+        "scope_sha256": "a1ad195fd2e76115181e56d2b541ebde58de1a07687319ec65bd1994c63e74a3",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt"
+      },
+      "complete_scope_exact": false,
+      "id": "IcoCodec:complete-file",
+      "interpretation": "New typed-parser wrapper covers format probe, entry selection, PNG extraction and DIB decoding. Entire encode method remains exact. ui_no_readable_image_data gains a new direct route; no new review credit."
+    }
+  ],
+  "shared-text-resolution-context.json": {
+    "scope_start": "complete file",
+    "scope_end": "end of file",
+    "original": {
+      "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt",
+      "source_file_git_blob": "f05c8c34912d385deeee519efa6a5a40a327ae06",
+      "first_line": 1,
+      "last_line_exclusive": 37,
+      "scope_sha256": "15957b1db36c168dfee8dae236ac74eeca3ef36f49d382906a1b32b91f93b0e4",
+      "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt"
+    },
+    "current": {
+      "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt",
+      "source_file_git_blob": "c6005810e1885d01a3dde088b40822e2cc64578e",
+      "first_line": 1,
+      "last_line_exclusive": 78,
+      "scope_sha256": "3976dfe5147077465fecc7117fde830d5773656efb7bd07ed4f4e64247e802e4",
+      "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt"
+    },
+    "complete_scope_exact": false,
+    "classification": "shared_resolution_contract_changed",
+    "interpretation": "ui now routes through source/contracts and LocaleText.resolve; uiQuantity/uiRoot are added. Exact original pair/caller bindings cannot recertify current fallback, numeric formatting, rendering or speech.",
+    "current_dependency_locators": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleText.kt",
+        "git_blob": "39410202af5d30db46320c41433bf586dc83b472",
+        "sha256": "1f70b6536b3339b7ad3548b44012d76248757d45fe356da65f459256841b5381",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleText.kt"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt",
+        "git_blob": "a01d0ffd129e7f792dd35901f830dd01ca42c7f8",
+        "sha256": "c40df41b904ecf29d237dc7e9d1e1c0e383d1c20ec7a5a99d57d5327ce3cde70",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ZoomStatusLayout.kt",
+        "git_blob": "35b9ddb980dd45eb94f6d2c0f8b8babd93e31a99",
+        "sha256": "4b298961b868647744079e9aaba47645a8bb309e951237dd8ca27a97223ce679",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ZoomStatusLayout.kt"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTooltip.kt",
+        "git_blob": "b6d151a451fca66242b08d37f930e1274ae133f4",
+        "sha256": "e272db652078583acb3d8352e04477aedd4a7aaad122949371223979ddbe25cc",
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTooltip.kt"
+      }
+    ]
+  },
+  "direct-reference-text-deltas.json": {
+    "count": 11,
+    "rows": [
+      {
+        "key": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+        "removed_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+            "text": "ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current),"
+          }
+        ],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+            "text": "if (pixels > permitted) throw ImageSizeException(ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_the_draft_is_saving_try_again_shortly",
+        "removed_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "if(busy) {message(ui(R.string.ui_the_draft_is_saving_try_again_shortly));return}"
+          }
+        ],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "if(busy) {message(ui(if(autosaving) R.string.ui_the_draft_is_saving_try_again_shortly"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/language20_device_default",
+        "removed_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+            "text": "return context.createConfigurationContext(config).getString(R.string.language20_device_default)"
+          }
+        ],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+            "text": "return uiText(context.createConfigurationContext(config).resources,R.string.language20_device_default)"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_0f_0f_px_1f",
+        "removed_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "String.format(java.util.Locale.ROOT,ui(R.string.ui_0f_0f_px_1f),it.rect.width(),it.rect.height(),it.rotation)"
+          }
+        ],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "ui(R.string.ui_0f_0f_px_1f,it.rect.width(),it.rect.height(),it.rotation)"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_1f_s",
+        "removed_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "text": "return String.format(Locale.ROOT, ui(R.string.ui_1f_s), amount, units[unit])"
+          }
+        ],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "text": "return ui(R.string.ui_1f_s, amount, units[unit])"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_d_d_px_d_pixels_2f_mp",
+        "removed_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "text": "fun describe() = String.format(Locale.ROOT, ui(R.string.ui_d_d_px_d_pixels_2f_mp), width, height, pixels, pixels / 1_000_000.0)"
+          }
+        ],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "text": "fun describe() = ui(R.string.ui_d_d_px_d_pixels_2f_mp, width, height, pixels, pixels / 1_000_000.0)"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_done",
+        "removed_reference_text": [],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt",
+            "text": "this.text=context.getString(org.catrobat.paintroid.R.string.ui_done)"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_fit",
+        "removed_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "zoomRow.addView((if(VerticalText.uiVertical(this@ClassicPaintActivity)) actionIcon(EditIcon.FIT,\"zoom_fit_view\") {paintCanvas.fit()} else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}).apply {"
+          }
+        ],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}.apply {"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_fit_entire_canvas_in_view",
+        "removed_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)"
+          }
+        ],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_no_readable_image_data",
+        "removed_reference_text": [],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+            "text": "throw IOException(ui(R.string.ui_no_readable_image_data), error)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+            "text": "throw IOException(ui(R.string.ui_no_readable_image_data), error)"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      },
+      {
+        "key": "string/ui_please_wait_for_the_current_operation",
+        "removed_reference_text": [],
+        "added_reference_text": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "text": "else R.string.ui_please_wait_for_the_current_operation));return}"
+          }
+        ],
+        "boundary": "Text delta excluding relocations. Interpret using entire file diff and complete scope records, never as stand-alone semantic acceptance."
+      }
+    ]
+  },
+  "authority-and-hold-boundaries.json": {
+    "original_source": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+    "production": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+    "author_ledger_authority": "All341 complete per-key author/model judgments recovered. Independence is not established for the broad ledger. Its300 static and29 catalogue-meaning judgments are not independent acceptance counts.",
+    "eight_successor_authority": "Separate published eight-value candidate-adoption receipt lists complete English/before/after values and hashes. PR117 publicly attests independent parent full-pair/context review. No separate raw individual independent output recovered; public attestation and adoption data remain separately labeled.",
+    "code_review_not_linguistic": "independent-test-review.json is explicitly source/API/test review, not independent all341 linguistic assessment or execution.",
+    "search_boundary": [
+      "Verified published priority archive and all122 manifest-listed members (archive manifest itself is the123rd member).",
+      "Original PR117 public discussion and linked original immutable receipt.",
+      "Available cohort/evidence indexes and historical union used only as locators."
+    ],
+    "absence_boundary": "Not recovered within inspected published project records is not proof that an original independent receipt never existed. No denied session access was used.",
+    "original_three_holds": [
+      {
+        "key": "string/ui_bg",
+        "reason": "BG remains an English-derived visible abbreviation. The full Portuguese accessibility label is present, but no established localized short label or fit evidence was found; keep this terminology/layout question open."
+      },
+      {
+        "key": "string/ui_fg",
+        "reason": "FG is an English-derived visible abbreviation despite a full Portuguese foreground accessibility label. Keep the localized-short-label and width question open rather than inventing an untested abbreviation."
+      },
+      {
+        "key": "string/ui_foreground_background_colour_palette",
+        "reason": "Foreground/background values are intelligible, but the third palette-state argument has no current consumer or established value set. Its agreement and final composition cannot be accepted without inventing context."
+      }
+    ],
+    "wording_only_count": 29,
+    "no_direct_reference_count": 30,
+    "prior_exact_sample_receipt": "Preserved separately as a locator, not freshly minted broad authority; parent common/narrow recovery owns current original-receipt proof.",
+    "withdrawn_broad_claims": "Earlier PR7 broad conclusions remain withdrawn, per original ledger policy. No European-Portuguese/Dutch/Polish acceptance transfers.",
+    "remaining_gaps": [
+      "Independent per-key broad linguistic evidence not recovered.",
+      "Current changed consumers/shared resolution not newly independently reviewed.",
+      "Three explicit terminology/composition holds remain.",
+      "Two English safety-warning sources changed; parent handles separately accepted but unintegrated exact replacements.",
+      "Installed native layout, TalkBack and actual interaction are not established."
+    ],
+    "new_linguistic_acceptances": 0,
+    "new_runtime_acceptances": 0,
+    "current_independent_accepted_total": null
+  },
+  "original-pr117-attestations.json": {
+    "scope": "Selected original project evidence excerpts only. Public attestation is not raw independent per-key linguistic output. No review-trigger instructions, account metadata or unrelated discussion copied. Historical numeric repair is not new runtime evidence.",
+    "selected": [
+      {
+        "url": "https://github.com/c933103/AN-Paint/pull/117#issuecomment-6235787069",
+        "id": 6235787069,
+        "body_utf8_sha256": "76696faa32a8fb51175cf1c227505e840ea6ba0eb50e9ca7f64523dce1516f71",
+        "project_evidence_excerpt_verbatim": "Eight complete pt-BR wording pairs were independently reviewed by parent; three explicitly unresolved entries are unchanged."
+      },
+      {
+        "url": "https://github.com/c933103/AN-Paint/pull/117#issuecomment-6235817233",
+        "id": 6235817233,
+        "body_utf8_sha256": "6e90b2830ddfa3bcce1c00301b6d650c62d2a0aa1e3bbda0aa61402e55bb90f6",
+        "project_evidence_excerpt_verbatim": "Archive blob cc171e08fb9dff3cbd25db74ab1ad82a433d89b8, 1,301,666 bytes, SHA-256 aa1db2367b0a75f14971076b0e10a847ddf0509f8ca00dd1cdc2fd619130475f."
+      },
+      {
+        "url": "https://github.com/c933103/AN-Paint/pull/117#discussion_r4303256624",
+        "id": 4303256624,
+        "body_utf8_sha256": "6ed637bfc0a1efd7dea9c7db9adabc3c55614f5e619e1b430bc63d2bf9845129",
+        "project_evidence_excerpt_verbatim": "Because `ImageDimensions.describe()` currently hardcodes `Locale.ROOT`, the new actual-consumer test passes while approving the locale-formatting defect and will resist correcting it; format with the selected resource locale and assert the pt-BR separators here."
+      },
+      {
+        "url": "https://github.com/c933103/AN-Paint/pull/117#issuecomment-6236142214",
+        "id": 6236142214,
+        "body_utf8_sha256": "f2d40fdf7d9277acffdbe0297fd02eb7d95e16eb53e53b207b7294e9ce8ff3f0",
+        "project_evidence_excerpt_verbatim": "`ImageDimensions.describe()` and `memoryLabel()` now delegate typed formatting to `ui(id, args)`, so wording and numbers use the same resource configuration even when process defaults differ or wording falls back to English."
+      },
+      {
+        "url": "https://github.com/c933103/AN-Paint/pull/117#issuecomment-6237602675",
+        "id": 6237602675,
+        "body_utf8_sha256": "8c371cf04037fbf0daa9483be7ee282649345e3674b07772455740af833f3585",
+        "project_evidence_excerpt_verbatim": "This includes eight pt-BR wording corrections, selected-resource-locale display fixes, and bounded test-readiness repairs, preserving both histories."
+      }
+    ]
+  },
+  "numeric-formatter-history-and-current-binding.json": {
+    "key": "string/ui_d_d_px_d_pixels_2f_mp",
+    "complete_file_bindings": [
+      {
+        "revision": "75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "git_blob": "71eec7816d29f35b9b921042edc32fb3e1384036",
+        "sha256": "b96a42d8d1324ec835d7ad512888e6f9a25c1aaeca97218655a3cfd9c736884a",
+        "bytes": 12162,
+        "url": "https://github.com/c933103/AN-Paint/blob/75d56c8c9597f135799d2a3aac84c1e8aa3ee2a4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt"
+      },
+      {
+        "revision": "30413454eaa1c1599c15a0a42a4110d8d1976514",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "git_blob": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+        "sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+        "bytes": 12082,
+        "url": "https://github.com/c933103/AN-Paint/blob/30413454eaa1c1599c15a0a42a4110d8d1976514/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt"
+      },
+      {
+        "revision": "f988a94d8e4fa300bfe181ba67bba7b546651ca1",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "git_blob": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+        "sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+        "bytes": 12082,
+        "url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt"
+      },
+      {
+        "revision": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "git_blob": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+        "sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+        "bytes": 12082,
+        "url": "https://github.com/c933103/AN-Paint/blob/23f2ed7eb974ea040ac42f824e5f62d754e1e702/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt"
+      }
+    ],
+    "repair_304_and_merged_f988_and_current_complete_file_exact": true,
+    "original_finding_url": "https://github.com/c933103/AN-Paint/pull/117#discussion_r4303256624",
+    "repair_attestation_url": "https://github.com/c933103/AN-Paint/pull/117#issuecomment-6236142214",
+    "merge_attestation_url": "https://github.com/c933103/AN-Paint/pull/117#issuecomment-6237602675",
+    "scope": "Complete original ImageImport file differs only by two selected-resource formatter expressions and unused Locale import removal; exact transformation is recorded separately. Original ROOT numeric expectations must not be reused as current expectations. The repair commit, merge and current full file are identical. This is source identity, not a fresh linguistic or runtime test.",
+    "new_linguistic_acceptance": false,
+    "new_runtime_acceptance": false
+  }
+}
