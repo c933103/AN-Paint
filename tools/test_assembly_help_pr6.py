@@ -19,20 +19,26 @@ RES = Path(__file__).resolve().parents[1] / 'Paintroid/src/main/res'
 KEY = 'ui_add_up_to_20_images_with_android_s'
 
 CASES = {'lzh-Hant': {'folder': 'values-b+lzh+Hant',
+              'paragraph_count': 8,
+              'memory_paragraph': 6,
               'old_dimensions': '裁切之寸',
-              'dimensions': '裁切及「同寬」或「同高」調整後之圖寸',
+              'dimensions': '裁切後之圖寸；若施「同寬」或「同高」，則示調整後之寸',
               'old_memory': '若輸出逾記憶體限，宜擇較小副本。',
-              'choice': '若輸出逾記憶體限，且程式示尺寸選單，宜擇較小副本。',
-              'warning': '若輸出雖極小仍逾限，程式但示記憶體警告，不示尺寸選單。'},
+              'choice': '若輸出所需記憶體逾所定之限，且有較小輸出副本可選，則擇之。',
+              'warning': '若輸出雖極小，其所需記憶體猶逾所定之限，程式則示記憶體警告，而不示尺寸選單。'},
  'hak-Hant-TW': {'folder': 'values-b+hak+Hant+TW',
+                 'paragraph_count': 8,
+                 'memory_paragraph': 6,
                  'old_dimensions': '裁切尺寸',
                  'dimensions': '裁切摎用「相同闊度」抑係「相同高度」後个圖像尺寸',
                  'old_memory': '輸出若係超過記憶體上限，請揀較細个輸出副本。',
                  'choice': '輸出若係超過記憶體上限，程式若係有提供尺寸揀取畫面，請揀較細个輸出副本。',
                  'warning': '輸出就算縮到當細還係超過上限个時節，程式會顯示記憶體警告，毋會顯示尺寸揀取畫面。'},
  'hak-Latn-TW': {'folder': 'values-b+hak+Latn+TW',
+                 'paragraph_count': 8,
+                 'memory_paragraph': 6,
                  'old_dimensions': 'chhài-chhiet chhak-chhun',
-                 'dimensions': 'chhài-chhiet lâu yung “Siông-thùng fat thu” ia-he “Siông-thùng kô-thu” heu '
+                 'dimensions': 'chhài-chhiet lâu yung “Siông-thùng fat thu” ya-he “Siông-thùng kô-thu” heu '
                                'ke thù-siong chhak-chhun',
                  'old_memory': 'Sû-chhut na-he chhêu-ko ki-yit-thí sông-han, chhiáng kién kha-se ke sû-chhut '
                                'fu-pún.',
@@ -42,22 +48,22 @@ CASES = {'lzh-Hant': {'folder': 'values-b+lzh+Hant',
                             'chhàng-sṳt voi hién-sṳ ki-yit-thí kín-ko, m̀-voi hién-sṳ chhak-chhun kién-chhí '
                             'fa-mien.'},
  'nan-Hant-TW': {'folder': 'values-b+nan+Hant+TW',
+                 'paragraph_count': 8,
+                 'memory_paragraph': 6,
                  'old_dimensions': '裁切尺寸',
-                 'dimensions': '裁切佮用「相同闊度」抑是「相同高度」調整了後的圖片尺寸',
+                 'dimensions': '裁切佮用「相同闊度」抑是「相同高度」調整了後的圖片寸尺',
                  'old_memory': '輸出若超過記憶體上限，請揀較細的輸出副本。',
-                 'choice': '輸出若超過記憶體上限，程式若有提供尺寸選取畫面，請揀較細的輸出副本。',
-                 'warning': '輸出就算縮甲真細猶是超過上限的時陣，程式會顯示記憶體警告，袂顯示尺寸選取畫面。'},
+                 'choice': '輸出若超過記憶體上限，程式若有提供揀大細的畫面，請揀較細的輸出副本。',
+                 'warning': '輸出就算縮甲真細猶是超過上限的時陣，程式會顯示記憶體警告，袂顯示揀大細的畫面。'},
  'nan-Latn-TW': {'folder': 'values-b+nan+Latn+TW',
+                 'paragraph_count': 8,
+                 'memory_paragraph': 6,
                  'old_dimensions': 'chhâi-chhiat chhioh-chhùn',
-                 'dimensions': 'chhâi-chhiat kah ēng “Sio-tâng khoah-tō͘” ia̍h-sī “Sio-tâng ko-tō͘” '
-                               'tiâu-chéng liáu-āu ê tô͘-phìⁿ chhioh-chhùn',
+                 'dimensions': 'chhâi-chhiat kah ēng “Sio-tâng khoah-tō͘” ia̍h-sī “Sio-tâng ko-tō͘” tiâu-chéng liáu-āu ê tô͘-phìⁿ chhùn-chhioh',
                  'old_memory': 'Su-chhut nā chhiau-kòe kì-ek-thé siōng-hān, chhiáⁿ kéng khah sè ê su-chhut '
                                'hù-pún.',
-                 'choice': 'Su-chhut nā chhiau-kòe kì-ek-thé siōng-hān, thêng-sek nā ū thê-kiong '
-                           'chhioh-chhùn soán-chhú ōe-bīn, chhiáⁿ kéng khah sè ê su-chhut hù-pún.',
-                 'warning': 'Su-chhut chiū-sǹg siok kah chin sè iáu sī chhiau-kòe siōng-hān ê sî-chūn, '
-                            'thêng-sek ē hián-sī kì-ek-thé kéng-kò, bē hián-sī chhioh-chhùn soán-chhú '
-                            'ōe-bīn.'},
+                 'choice': 'Su-chhut nā chhiau-kòe kì-ek-thé siōng-hān, têng-sek nā ū thê-kiong khah sè ê su-chhut hù-pún hō͘ lí kéng, chhiáⁿ kéng khah sè ê hù-pún.',
+                 'warning': 'Tō-sǹg su-chhut í-keng chin sè, nā iáu-sī chhiau-kòe kì-ek-thé siōng-hān, têng-sek ē hián-sī kì-ek-thé kéng-kò, bē hián-sī chhùn-chhioh soán-chhú ōe-bīn.'},
  'wuu-Hans': {'folder': 'values-b+wuu+Hans',
               'old_dimensions': '裁剪尺寸',
               'dimensions': '裁剪搭用「相同宽度」或「相同高度」调整后个图片尺寸',
@@ -74,7 +80,9 @@ def catalogue(tag):
         raise AssertionError(f'{tag}: expected exactly one {KEY}')
     values = {node.get('name'): ''.join(node.itertext()) for node in nodes}
     paragraphs = values[KEY].split(r'\n\n')
-    if len(paragraphs) != 7:
+    # Five independently accepted Help values have eight paragraphs; Wu stays at seven.
+    expected_count = CASES[tag].get('paragraph_count', 7)
+    if len(paragraphs) != expected_count:
         raise AssertionError(f'{tag}: assembly help paragraph structure changed')
     return values, paragraphs
 
@@ -108,15 +116,15 @@ def choice_test(tag):
     def test(self):
         _, paragraphs = catalogue(tag)
         case = CASES[tag]
-        self.assertIn(case['choice'], paragraphs[5], tag + ': smaller-copy choice must be conditional on being offered')
-        self.assertNotIn(case['old_memory'], paragraphs[5], tag + ': unconditional choice instruction returned')
+        self.assertIn(case['choice'], paragraphs[case.get('memory_paragraph', 5)], tag + ': smaller-copy choice must be conditional on being offered')
+        self.assertNotIn(case['old_memory'], paragraphs[case.get('memory_paragraph', 5)], tag + ': unconditional choice instruction returned')
     return test
 
 
 def warning_test(tag):
     def test(self):
         _, paragraphs = catalogue(tag)
-        self.assertIn(CASES[tag]['warning'], paragraphs[5], tag + ': tiny output may yield a memory warning instead of a chooser')
+        self.assertIn(CASES[tag]['warning'], paragraphs[CASES[tag].get('memory_paragraph', 5)], tag + ': tiny output may yield a memory warning instead of a chooser')
     return test
 
 

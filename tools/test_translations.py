@@ -199,6 +199,23 @@ class TranslationCatalogueTests(unittest.TestCase):
         self.assertEqual("左右反転", ja["ui_flip_horizontal"])
         self.assertEqual("上下反転", ja["ui_flip_vertical"])
 
+    def test_eight_arabic_corrections_remain_exact(self):
+        # Text regression only: not native-speaker, layout, bidi or accessibility acceptance.
+        ar = translations.read_strings(translations.catalogue_paths()["ar"])
+        expected = {
+            'ui_bg': 'خلفية',
+            'ui_d_d_px_d_pixels_2f_mp': '%1$d × %2$d px · عدد البكسلات: %3$,d (%4$.2f ميغابكسل)',
+            'ui_fg': 'مقدمة',
+            'ui_hex_rrggbb': 'سداسي عشري #RRGGBB',
+            'ui_invalid_selection_outline': 'محيط التحديد غير صالح.',
+            'ui_trim_amounts_must_fit_inside_each_image_use': 'يجب ألا تتجاوز مقادير القص أبعاد كل صورة؛ استخدم أعدادًا صحيحة من البكسلات أو نسبًا مئوية.',
+            'formats22_animation_message': 'عدد الإطارات في ملف %1$s هذا: %2$s. يحرر AN Paint الصور الثابتة ولا يحتفظ بالحركة.',
+            'save20_gif_description': 'صورة ثابتة، حتى 256 لونًا. ينعّم تمويه الألوان بالنقط تدرجات الألوان. تفتح صور GIF المتحركة بإطارها الأول.',
+        }
+        for key, value in expected.items():
+            with self.subTest(key=key):
+                self.assertEqual(value, ar[key])
+
     def test_unsaved_prompt_actions_are_distinct(self):
         def normalized(value):
             return value.strip().strip('"').casefold()
