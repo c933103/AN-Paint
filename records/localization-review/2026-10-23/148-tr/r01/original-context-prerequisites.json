@@ -1,0 +1,205 @@
+{
+  "scope": "Original review prerequisites retained. Current source/target equality alone does not renew current consumer/source semantics. No source code was executed or semantically rereviewed.",
+  "priority": "priority-consumer-file-drift.json: 26 historical consumer files unchanged, 11 changed. Per-entry original consumer source hashes remain in immutable raw ledger.",
+  "PR67": {
+    "reviewed_source_commit": "5d145e17b52200a6c132d847d0e12e892fa1c657",
+    "receipt": "https://github.com/c933103/AN-Paint/blob/fc5d684289c08acd8ea1bc1947f70dad39e8a907/verification/assembly-position-review-20261015/group-c-independent-review.json",
+    "runtime_layout_status": "not accepted; moderate idiom only"
+  },
+  "Commons_nine": {
+    "receipt": "cohorts/commons-import-failures-20261017/verification/commons-import-failure-review-2026-10-17/review-packets/remaining-review.json",
+    "requirements_base": "c86ecfd707cd88e6656010a800cb6048ed867d4e",
+    "integration_base": "2da486c6a1969e14d73a64666921d6a1c35e2e99",
+    "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+    "draft_sha256": "f017c3a80c3479b4c877e19b65d783c93bfd558ffd4b0d295fb26090f8b743ec",
+    "code_and_resource_inputs": [
+      {
+        "path": "source/Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+        "sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008"
+      },
+      {
+        "path": "source/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "sha256": "9bbe549f3dc0ac15ab5b22ca090a5c0deab1e59726838f6494bcb3dc9e56b89e"
+      },
+      {
+        "path": "source/Paintroid/src/main/java/org/catrobat/paintroid/classic/BlankMapSvg.kt",
+        "sha256": "30e527d7447a54cc8f6d23a85fb0af0cce9f8ff13a9e72d58eb708b07bca0c9e"
+      }
+    ],
+    "per_key_snippet_hashes": [
+      {
+        "key": "commons_metadata_not_file_page",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+          "start_line": 53,
+          "end_line": 53
+        },
+        "implementation_snippet_sha256": "a0603bb42e3d728703595be3a8f88848205f5c8591a84b79568b423c58558aa8"
+      },
+      {
+        "key": "commons_metadata_ambiguous_file",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+          "start_line": 98,
+          "end_line": 99
+        },
+        "implementation_snippet_sha256": "dd6181bae6941e46ef0847239125886e9d22c637236423c3773c3df0e261a575"
+      },
+      {
+        "key": "commons_metadata_unavailable",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+          "start_line": 100,
+          "end_line": 101
+        },
+        "implementation_snippet_sha256": "1a3ef4f2588ae627dfdd55811fb1fc17ecaaf6666c536ff2312712aa5332185d"
+      },
+      {
+        "key": "commons_metadata_original_mismatch",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+          "start_line": 102,
+          "end_line": 104
+        },
+        "implementation_snippet_sha256": "c7125724b81e3e1375100f640e86d998c60c6e13206e69c61d59735d5e1d5a63"
+      },
+      {
+        "key": "commons_metadata_invalid_page",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+          "start_line": 105,
+          "end_line": 106
+        },
+        "implementation_snippet_sha256": "f1d805ac02ac148def66b95ac64d564416abf8b4d8a8723659f265098e77f38e"
+      },
+      {
+        "key": "commons_metadata_field_too_large",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+          "start_line": 124,
+          "end_line": 126
+        },
+        "implementation_snippet_sha256": "c47c0119689160a1704efc8ab7c17fe97ddbd34dffa171a626358dd77bbd167e"
+      },
+      {
+        "key": "commons_metadata_cache_failed",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+          "start_line": 141,
+          "end_line": 146
+        },
+        "implementation_snippet_sha256": "10dc40342667b33c90340a6d2cb59953218bf5b22de2b6b74b30d7c39936dd5b"
+      },
+      {
+        "key": "commons_download_original_mismatch",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "start_line": 347,
+          "end_line": 349
+        },
+        "implementation_snippet_sha256": "6ab1556ec7c3e2ef87ef15267946e116b41321eee0a4c89e578b58f68ba3e980"
+      },
+      {
+        "key": "commons_svg_png_encode_failed",
+        "implementation_context": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BlankMapSvg.kt",
+          "start_line": 45,
+          "end_line": 47
+        },
+        "implementation_snippet_sha256": "404357ff6a0cef8b7d72d237dcf6977c7dafe2d9e37e0ea0998b7c044b7a56e2"
+      }
+    ]
+  },
+  "PR85": {
+    "receipt": "latvian-current-review-reconciliation-20261023-receipt-analysis/originals/gallery.json",
+    "source_evidence": [
+      {
+        "url": "https://hakka.ncu.edu.tw/Hakka_ePaper/paper/paper304/304(1).html",
+        "status": "retrieved",
+        "supports": "Primary Sixian discussion distinguishes result-complement 著 doˋ from other readings; supports required PFS correction."
+      },
+      {
+        "url": "https://hakkadict.moe.edu.tw/search_result/?accent=2&id=2847",
+        "status": "retrieved as primary search result",
+        "supports": "MOE dictionary examples use 尋毋著 for inability to find; not the entire app sentence."
+      },
+      {
+        "url": "https://cloud.hakka.gov.tw/File/ExtAttach/906892729/File_14.pdf",
+        "status": "primary search-result excerpt",
+        "supports": "Sixian source aligns the short result-complement phrase with doˋ. No full lyric is reproduced."
+      },
+      {
+        "url": "https://cloud.hakka.gov.tw/Attachment/1/912151425871.pdf",
+        "status": "primary search-result excerpt; direct fetch failed with 502",
+        "supports": "Research excerpt identifies result/phase complement do2; retrieval failure is not additional evidence."
+      },
+      {
+        "url": "https://sutian.moe.edu.tw/zh-hant/su/7905/",
+        "status": "retrieved as primary search result",
+        "supports": "MOE dictionary gives literary liân for 連; not the entire new compound or sentence."
+      },
+      {
+        "url": "https://ainugo.nam.go.jp/dic?word=maka",
+        "status": "unavailable through web tool",
+        "supports": "No newly verified lexical evidence."
+      },
+      {
+        "url": "https://ainugo.nam.go.jp/dic?word=hunara",
+        "status": "unavailable through web tool",
+        "supports": "No newly verified lexical evidence."
+      },
+      {
+        "url": "https://mongoltoli.mn/dictionary/detail/109587",
+        "status": "successfully retrieved",
+        "supports": "Traditional-script noun ᠬᠣᠯᠪᠤᠭᠠᠰᠤ, qolbuγasu; validates the spelling correction, not the whole UI sentence."
+      },
+      {
+        "url": "https://mongoltoli.mn/dictionary/detail/109591",
+        "status": "successfully retrieved",
+        "supports": "Same traditional spelling; this homonym entry does not itself establish the software link sense."
+      },
+      {
+        "url": "https://itak.aynu.org/",
+        "status": "successfully retrieved",
+        "supports": "First-party introduction identifies its own web application as aeywankep; supports contemporary app usage, not every newly composed Ainu clause."
+      },
+      {
+        "url": "https://www.jw.org/ceb/giya-online/jw-library/ios/search/",
+        "supports": "First-party Cebuano app help uses app and makakita in computer-search context; it does not attest our whole sentence."
+      },
+      {
+        "url": "https://www.jw.org/ceb/polisa-sa-pribasiya/tibuok-kalibotang-polisa-paggamit-ug-cookies/cookies-stream/",
+        "supports": "First-party software documentation uses makaabli for the user’s ability to open online channels; lexical/capability evidence, not proof of entire error sentence."
+      },
+      {
+        "url": "https://www.familysearch.org/ceb/legal/terms",
+        "supports": "First-party software site uses kini nga link, supporting link as a technical borrowing; no legal content is used as translation authority."
+      }
+    ],
+    "limits": [
+      "Independent review identified and resolved one concrete reading defect; it is not universal fluency certification.",
+      "Five low-idiom-confidence tags remain limited as listed; other per-entry medium-confidence linguistic/script limits are preserved.",
+      "Device/runtime resource resolution, no-handler behavior, accessibility and rendering must be established by their own tests.",
+      "Cebuano and other per-entry medium-confidence limits remain as stated in the complete individual reviews. No pre-existing catalogue entry gains acceptance credit."
+    ]
+  },
+  "M04": {
+    "source_decisions": "https://github.com/c933103/AN-Paint/blob/dc46abc2add7984358565a88fe65c5278212dcf6/verification/commons-metadata-m04-2026-10-12/linguistic-review/successor-recovered/decisions-v4.json",
+    "source_default_base": "4231edaac45d89c52f51e2b77d0f94a1176ad88c",
+    "limits": "Independent model/source-assisted proposal; no native certification; rendering and runtime not tested. Original tr decision declares no code hash prerequisites."
+  },
+  "PR80": {
+    "evidence_class": "public reported independent change-level attestation",
+    "raw_full_artifact_sha256_reported_not_recovered": "ef44b7edc471d2f1069766e6893a612cc4479b9a1dc3d465a6711f7acfa6ec9a",
+    "reviewed_source_commit": "779d675256b07b9ae244b8d114344bbcc5da234e",
+    "old_Turkish_catalogue_blob": "4e8a3c896fddf1e8f6c5f13bbb59bf82fd922719",
+    "confidence": "H target claims and local grammatical boundary in one-key change only"
+  },
+  "PR104": {
+    "original_final_review": "https://github.com/c933103/AN-Paint/blob/3581d6a070875e95838a3c7c502006c4888d4253/evidence/gallery-native-component-20261015/final-language-coverage.json",
+    "selector": "/Paintroid~1src~1main~1res~1values-tr~1strings.xml/correction_cross_review",
+    "judgment": "accept_recommended_revision",
+    "limit": "Raw original model cross-review covers both complete sentences against English, not native-speaker, code safety or runtime certification."
+  },
+  "common": "Reuse existing PR163/PR165 source binding prerequisites and qualifications unchanged; no independent recertification."
+}

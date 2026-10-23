@@ -1,0 +1,13 @@
+# Turkish: bounded original-review/current-source reconciliation
+
+Picker 148, tr, production 5bfed632e485766d0c841fa79d7f56a1c49be5d5. **I20 / A298 / W27 / Q9 / P1 / D2 / N3 / H4 / U353 = 717 containers.** I retains exact direct independent wording scopes: seventeen narrow complete values plus common integrated Help/two warnings, with no new credit. A/W are author-only (W catalogue semantics); Q9 is the original PR115 adoption report of independent acceptance; P1 is the consolidated native-component successor report; D2 change-only; N3 proposal/author-only; H4 held; U unreconciled. Whole-language and current-consumer totals remain null.
+
+The original priority ledger has 341 author judgments, not 341 independent acceptances. Of its original pairs, 331 remain exact: 300 static-author judgments, 27 catalogue-only and four holds. Eight original corrections and two warnings changed through their separately bound successors. Current disjoint A/W totals account for overlapping narrow evidence and are not the historical author totals.
+
+All nine PR115 adopted candidates are exact and integrated (eight priority plus one P3 Navigate). The adoption record reports independent complete-pair review; no separate reviewer-authored per-pair rationale was recovered. One Swap caption remains lexical-only with no direct live consumer established. No accepted-but-unintegrated correction was found in the recovered scope.
+
+M04 remains an acceptable bounded model proposal, not automatically an accepted complete-value review. M03 is explicitly self-reviewed and the redirect receipt explicitly says no independent Turkish review. Native-component's exact later recommended-revision acceptance supersedes its old REVISE in the public consolidated report, without pretending the original raw cross-review was recovered. PR80 is an exact public-reported change-level attestation; PR86 colour wording is also change-only. A provider segment inside separate Help has only partial review, not complete-value credit.
+
+Four original abbreviation/composition holds remain. Twenty-six historical consumer files are unchanged, eleven changed; source/hash prerequisites and current drift are explicit, not silently recertified from matching resource values. Native, runtime, layout and full consumer acceptance remain unclaimed. Toki Pona146 and Tok Pisin147 remain unknown, not completed by fallback. Original historical broad withdrawals stay intact.
+
+No source edits, builds, tests or new linguistic review. Append-only non-production evidence, never merge this branch into an app branch. Next steps are recovery of missing raw reviewer provenance and exact current-context reconciliation, without retranslating accepted values.
