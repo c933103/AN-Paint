@@ -1,0 +1,17 @@
+# European Portuguese reconciliation methodology
+
+Production snapshot: 23f2ed7eb974ea040ac42f824e5f62d754e1e702, freshly verified 2026-10-23. No app source changed and no build, test, CI or generator executed.
+
+Use current canonical XML units, not historical global review counts. A string container is one decoded full itertext UTF-8 value, retaining literal Android escapes and whitespace. A plural container is keyed by exact quantity; each canonical quantity is a separate leaf. Container map hashes use compact sorted-key UTF-8 JSON. Canonical scope is the complete current translatable strings.xml set: 716 strings and one two-leaf plural, 717 containers and 718 leaves. Other unqualified resource XML/picker arrays were already inventoried as configuration rather than omitted translation units. Three filename constants marked translatable=false are excluded: ui_an_paint_assembly_png, ui_an_paint_recovery_zip, ui_an_paint_source_zip.
+
+Original source/context comparison is not automatically independent linguistic acceptance. Original review judgments remain bounded by authorship, scope, exact source/target pair, and consumer context. Shifted coordinates alone are not semantic changes. Historical withdrawn claims remain withdrawn; new exact one-key successors do not revive them. Overlapping evidence is retained but resource units are counted once in the disjoint ledger. Current presence, English identity/difference, fixtures, merges and candidate availability give no new linguistic review credit.
+
+Reuse the common integrated Help evidence only where the current source, target and catalogue blob match. Warning replacements use their own exact independent final receipt and remain candidates while production retains the old value. The public upload-status clarification at PR56 comment6362847362 is not an owner-approval gate. No historical uncertain upload is retried.
+
+There is no skipped picker between Brazilian Portuguese115 and European Portuguese116. No script/region review transfer is allowed. Original full-Help and correction successors must bind this exact locale and canonical source; no common PR163 Help receipt exists for pt-PT.
+
+Whole-language acceptance remains null. Unknown means evidence is unreconciled, not proof that historical work never existed. Use immutable original archive/source locators and one shared caller binding, not repeated per-key caller blocks. Retain only necessary changed-context comparisons and project-review judgments. No private instructions, chat/account metadata or unrelated data are published. Sealed snapshots append to records/localization-review and must never be merged into app branches.
+
+Disjoint status legend: I raw original independent acceptance for the exact complete current pair; R independently reviewed complete-value recommendation, not relabeled an unconditional accept; P explicitly public-attested independent review with raw output unrecovered; Q publicly reported review with independence unestablished; N proposal/non-established or change-only scope; C accepted but unintegrated replacement; U unreconciled. These are container counts, not review-event sums. The one plural R container has two individually reviewed canonical quantity leaves. All historical qualifiers remain.
+
+Publication minimizes repeated material: per-key original judgments are stored once with shared context IDs, full source/caller identity is stored once, and immutable original locators supply the complete originals. No giant caller aggregate or duplicated per-key caller bodies is published.

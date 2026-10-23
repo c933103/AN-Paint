@@ -1,0 +1,1538 @@
+[
+  {
+    "tag": "pt-PT",
+    "key": "plurals/ui_crop_preview_images",
+    "source_value": {
+      "one": "Preview: %1$d × %2$d px\\nApply to %3$d image. Cropping placed images may move their attached images.",
+      "other": "Preview: %1$d × %2$d px\\nApply to %3$d images. Cropping placed images may move their attached images."
+    },
+    "target_value": {
+      "one": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagem. Recortar imagens colocadas pode deslocar as imagens que lhes estão ligadas.",
+      "other": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagens. Recortar imagens colocadas pode deslocar as imagens que lhes estão ligadas."
+    },
+    "source_canonical_json_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+    "target_canonical_json_sha256": "125b2b94eca80f29aded3bda3908c149b959f90469a0d5e84a24fc7e13de0399",
+    "classification": "R_original_independent_complete_value_recommendation",
+    "original_judgment": {
+      "one": {
+        "acceptance": "Recommended as a complete-value counterpart for this quantity; runtime resource selection and rendered UI remain to be verified.",
+        "reasoning": [
+          "pode deslocar replaces a guaranteed repositioning statement with possible movement.",
+          "as imagens que lhes estão ligadas explicitly identifies the images attached to the cropped placed images, rather than connection objects or unrelated images.",
+          "The generic plural cropping statement matches the complete English warning and is valid for both the single-image and batch consumers. The count-specific imagem/imagens sentence remains unchanged.",
+          "The preview label, width, height, px unit, newline, count and all three indexed integer placeholders are unchanged."
+        ]
+      },
+      "other": {
+        "acceptance": "Recommended as a complete-value counterpart for this quantity; runtime resource selection and rendered UI remain to be verified.",
+        "reasoning": [
+          "pode deslocar replaces a guaranteed repositioning statement with possible movement.",
+          "as imagens que lhes estão ligadas explicitly identifies the images attached to the cropped placed images, rather than connection objects or unrelated images.",
+          "The generic plural cropping statement matches the complete English warning and is valid for both the single-image and batch consumers. The count-specific imagem/imagens sentence remains unchanged.",
+          "The preview label, width, height, px unit, newline, count and all three indexed integer placeholders are unchanged."
+        ]
+      }
+    },
+    "original_receipt": {
+      "source_id": "pr120-portuguese-review.json",
+      "pointer_or_section": "/entries/1 and /entries/2"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "52b4464dab2a848c80e88fd47e2b7fddc54f2a3410550ed49a39a82253dd33bc",
+    "current_target_canonical_json_sha256": "125b2b94eca80f29aded3bda3908c149b959f90469a0d5e84a24fc7e13de0399",
+    "context_id": "crop-preview",
+    "prior_target_value": {
+      "one": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagem. Recortar uma imagem colocada também reposiciona as imagens ligadas.",
+      "other": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagens. Recortar uma imagem colocada também reposiciona as imagens ligadas."
+    },
+    "quantity_utf8_sha256": {
+      "one": {
+        "source": "3e9fd86edbfcca0e5f4fe0cb6944802757801f38cff1ed6ace046adf3f89adf6",
+        "target": "1ae517091387ac5651b4167aefbbf8dd2db21aece0525aee7d9a61882c005d69"
+      },
+      "other": {
+        "source": "33f17dc5c5ce488714f7ba9c911d5cb9e47a837a0987fb08108c6b1f997ab31a",
+        "target": "24b84f74fe34b2ec303a0015b24661f640ea3fea29e3cb28b5614946e901d4b1"
+      }
+    },
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "lines": [
+          93
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_download_original_mismatch",
+    "source_value": "The Commons download redirected to a different original file.",
+    "target_value": "A transferência do Commons foi redirecionada para um ficheiro original diferente.",
+    "source_canonical_json_sha256": "5f9eaa47b282fcc7fab85d821a7b9cf9b7baeec284b0deaf4996976f586a6885",
+    "target_canonical_json_sha256": "78778567e7a1cecf4730eb8f7b9c0bd5713b3faac2de50b2f2936e4b69e30492",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Transferência do Commons … redirecionada para um ficheiro original diferente denotes the download from Commons and different-original redirect.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/169"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "5f9eaa47b282fcc7fab85d821a7b9cf9b7baeec284b0deaf4996976f586a6885",
+    "current_target_canonical_json_sha256": "78778567e7a1cecf4730eb8f7b9c0bd5713b3faac2de50b2f2936e4b69e30492",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+      "complete_file_sha256": "9bbe549f3dc0ac15ab5b22ca090a5c0deab1e59726838f6494bcb3dc9e56b89e",
+      "excerpt_sha256": "6ab1556ec7c3e2ef87ef15267946e116b41321eee0a4c89e578b58f68ba3e980"
+    },
+    "source_utf8_sha256": "5a3054adf3158b408bbdb497ad37c4c8c6f5796a835df8037ea3f00da046e077",
+    "target_utf8_sha256": "8526cfde6be23fa957b3cb3f94a6d675582f897f180fcb6cc5ca011bf917454b",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          296
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_ambiguous_file",
+    "source_value": "Commons metadata returned an ambiguous file",
+    "target_value": "Os metadados do Commons não identificam um ficheiro de forma inequívoca",
+    "source_canonical_json_sha256": "91f1a14f1fd6a81e2418d01488c67c7224e4d1382352703a5d382e7060e86f12",
+    "target_canonical_json_sha256": "5644ad7456127379a2ae0b4de96e00f1dd37a3a3e979d56f234c1fc81d8e8b36",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Não identificam um ficheiro de forma inequívoca remains true for both zero and multiple returned pages.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/163"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "91f1a14f1fd6a81e2418d01488c67c7224e4d1382352703a5d382e7060e86f12",
+    "current_target_canonical_json_sha256": "5644ad7456127379a2ae0b4de96e00f1dd37a3a3e979d56f234c1fc81d8e8b36",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "complete_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+      "excerpt_sha256": "dd6181bae6941e46ef0847239125886e9d22c637236423c3773c3df0e261a575"
+    },
+    "source_utf8_sha256": "d6316f2fde72602419aa119c65880732595e807e8c2fcee2293ac49d7c66efb9",
+    "target_utf8_sha256": "53cbaa83c17547ab747b0b05b5626d75446f95e55776cb41fcb6a95c616dbf40",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          290
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_cache_failed",
+    "source_value": "Could not retain Commons attribution",
+    "target_value": "Não foi possível conservar a atribuição do Commons",
+    "source_canonical_json_sha256": "8e0022020a7cead240a1bbfe1d876f3f25a8376f81b624a02d8011e67c99c56d",
+    "target_canonical_json_sha256": "8ce1e9d514f84568bf3fa4f5e8e57aeeae3420933ccadf66050083cccd07b101",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Conservar a atribuição states failed metadata retention; it does not claim a drawing or clipboard-save failure.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/168"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "8e0022020a7cead240a1bbfe1d876f3f25a8376f81b624a02d8011e67c99c56d",
+    "current_target_canonical_json_sha256": "8ce1e9d514f84568bf3fa4f5e8e57aeeae3420933ccadf66050083cccd07b101",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "complete_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+      "excerpt_sha256": "10dc40342667b33c90340a6d2cb59953218bf5b22de2b6b74b30d7c39936dd5b"
+    },
+    "source_utf8_sha256": "ad21f99f7bdb6d68188101a9c58d969e97652aecf1e9d76364e25f8577bf4d77",
+    "target_utf8_sha256": "c5eb5159c7b3d6ec3b1a1c8d9cce5bc92efbca7bea0bc67d9f52649ea1f6d2c2",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          295
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_field_too_large",
+    "source_value": "Commons attribution field exceeds the text limit",
+    "target_value": "Um campo de atribuição do Commons excede o limite de comprimento do texto",
+    "source_canonical_json_sha256": "355a286e6ea842c00d67ec8aa83fbfda2613b1867ab5d26273bf0c3634440446",
+    "target_canonical_json_sha256": "d12fec1e7dbb9c70b080cfc3da1644f77af89958949d65e55f4f534c7cc442f4",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Campo de atribuição … limite de comprimento do texto keeps a field text-length bound.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/167"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "355a286e6ea842c00d67ec8aa83fbfda2613b1867ab5d26273bf0c3634440446",
+    "current_target_canonical_json_sha256": "d12fec1e7dbb9c70b080cfc3da1644f77af89958949d65e55f4f534c7cc442f4",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "complete_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+      "excerpt_sha256": "c47c0119689160a1704efc8ab7c17fe97ddbd34dffa171a626358dd77bbd167e"
+    },
+    "source_utf8_sha256": "8776f3250bb396b1fdfde789c65565ed28a3e5c758a1eceb75398f232ddacdc0",
+    "target_utf8_sha256": "fdad5df00e38f8d81e4d7a8051b5a2789146f97c6ecad38a38766208acafb010",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          294
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_invalid_page",
+    "source_value": "Invalid Commons attribution page",
+    "target_value": "Página de atribuição do Commons inválida",
+    "source_canonical_json_sha256": "1c51719759be6cdc8c0a589cea80716fff74797c821a2438a06d5c80c25fbde9",
+    "target_canonical_json_sha256": "fb187339b2de3fd746794d6614e7aea1a6d9b2d9232efa9c6961beaeeadf0133",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Página de atribuição … inválida identifies the invalid provider page without claiming invalid copyright permission.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/166"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "1c51719759be6cdc8c0a589cea80716fff74797c821a2438a06d5c80c25fbde9",
+    "current_target_canonical_json_sha256": "fb187339b2de3fd746794d6614e7aea1a6d9b2d9232efa9c6961beaeeadf0133",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "complete_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+      "excerpt_sha256": "f1d805ac02ac148def66b95ac64d564416abf8b4d8a8723659f265098e77f38e"
+    },
+    "source_utf8_sha256": "8ff205f32109a8b0f0c571d7e6be9b4b30b6cc1f7af1d03de9c71a6d83bdf1af",
+    "target_utf8_sha256": "692a0e924d4ffed5bdf363a602b393edb31b74f61681502ccac2b52bef0dd382",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          293
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_not_file_page",
+    "source_value": "Not a Commons file page",
+    "target_value": "Não é uma página de ficheiro do Commons",
+    "source_canonical_json_sha256": "dd7c7e4ab48e27cee4f918f217ebc3f7cd0c85a6f12f41137eb0605e102e69ad",
+    "target_canonical_json_sha256": "b9d6e450db9088c7d2d8d15ca73a55ec124198a1670c1a95e555f2c620725a53",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Não é uma página de ficheiro do Commons correctly identifies the page type and preserves European Portuguese ficheiro.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/162"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "dd7c7e4ab48e27cee4f918f217ebc3f7cd0c85a6f12f41137eb0605e102e69ad",
+    "current_target_canonical_json_sha256": "b9d6e450db9088c7d2d8d15ca73a55ec124198a1670c1a95e555f2c620725a53",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "complete_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+      "excerpt_sha256": "a0603bb42e3d728703595be3a8f88848205f5c8591a84b79568b423c58558aa8"
+    },
+    "source_utf8_sha256": "f0db7e41e81fb1c483a90b06b8937b82231cde9c9d5805968a5d7af2af9d94d8",
+    "target_utf8_sha256": "956fc754c9ddcbea9ef041bd88c037f03659c31f8ded6e6adb3726be1f809eb9",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          289
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_original_mismatch",
+    "source_value": "Commons attribution does not match the selected original file",
+    "target_value": "A atribuição do Commons não corresponde ao ficheiro original selecionado",
+    "source_canonical_json_sha256": "074ea87e8a051a9864a385c94927929f7684dc40c813d0bbdefc17ba982fc56d",
+    "target_canonical_json_sha256": "f4f8ab9cefdd7ab947cae5e8dbe654791c14ff14684da61645e059493def327f",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Atribuição … ficheiro original selecionado preserves the attribution and selected original comparison.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/165"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "074ea87e8a051a9864a385c94927929f7684dc40c813d0bbdefc17ba982fc56d",
+    "current_target_canonical_json_sha256": "f4f8ab9cefdd7ab947cae5e8dbe654791c14ff14684da61645e059493def327f",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "complete_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+      "excerpt_sha256": "c7125724b81e3e1375100f640e86d998c60c6e13206e69c61d59735d5e1d5a63"
+    },
+    "source_utf8_sha256": "461549a19971a8a0203aec47ff6fc4916ac2d026a2e49d3312a9c942730b7b94",
+    "target_utf8_sha256": "692be3101fbfee4b2adfb56b96412bdd0bc480f7d282f0533ed9a72b4791676f",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          292
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_query_failed",
+    "source_value": "Commons metadata query failed",
+    "target_value": "A consulta aos metadados do Commons falhou",
+    "source_canonical_json_sha256": "a33e79ebcc67672f7bdb0e0e7be659805d57ed13df1bb452a72d6c862385015a",
+    "target_canonical_json_sha256": "f63f3284cbfea32471320bc5b00243302623a84be6343c1ab132ffede0401359",
+    "classification": "N_independent_bounded_proposal_not_established",
+    "original_judgment": {
+      "decision": "acceptable bounded model proposal",
+      "backtranslation": "The query for Commons metadata failed.",
+      "confidence": "high",
+      "rationale": "A consulta aos metadados ... falhou clearly identifies a failed metadata query.",
+      "source_ids": [],
+      "script_convention": "Exact tag preserved; intended script used, with the allowed proper name Commons.",
+      "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+      "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review."
+    },
+    "original_receipt": {
+      "source_id": "m04.json",
+      "pointer_or_section": "/pt-PT"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "a33e79ebcc67672f7bdb0e0e7be659805d57ed13df1bb452a72d6c862385015a",
+    "current_target_canonical_json_sha256": "f63f3284cbfea32471320bc5b00243302623a84be6343c1ab132ffede0401359",
+    "context_id": "m04-query",
+    "original_disposition": {
+      "tag": "pt-PT",
+      "path": "Paintroid/src/main/res/values-b+pt+PT/strings.xml",
+      "value": "A consulta aos metadados do Commons falhou",
+      "disposition": "model-reviewed-proposal-native-acceptance-open",
+      "backtranslation": "The query for Commons metadata failed.",
+      "rationale": "A consulta aos metadados ... falhou clearly identifies a failed metadata query.",
+      "confidence": "high",
+      "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review.",
+      "linguistic_acceptance": "not-established",
+      "review_decision": "acceptable bounded model proposal"
+    },
+    "source_utf8_sha256": "4f11a87c97023d94c9bc2c5056241c056a28ac946bd2a5f46bd62f1c66c5a3ae",
+    "target_utf8_sha256": "165a8ed0805dd975e655952cc45154b4d99746d004af409b19c5ea5d5ef9067c",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          287
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_response_too_large",
+    "source_value": "Commons metadata exceeds the response limit",
+    "target_value": "Os metadados do Commons excedem o limite de tamanho da resposta",
+    "source_canonical_json_sha256": "47ccefa257618c254fa5bcd620f5ca19988bfa128ef41e141c323b5d2c04c97e",
+    "target_canonical_json_sha256": "9784ab8d4358cf1c295faab9fc6ca1f2fa3b4a580a0951e3f29b9a1cdf8e6368",
+    "classification": "N_author_proposal_independent_language_review_open",
+    "original_judgment": {
+      "linguistic_acceptance": "not-established",
+      "rationale": "Compared Paintroid/src/main/res/values-b+pt+PT/strings.xml: commons_check_file_licence, ui_invalid_autosave_metadata, and formats22_dib_size_limit/formats22_import_limit. Reused or inflected catalogue vocabulary: metadados; excede; limite de tamanho. Da resposta identifies the response-size restriction. No ficheiro/arquivo regional noun distinction is needed here. No existing key containing response supplies established response terminology. Self-review: this describes the downloaded response byte-size ceiling, not a metadata field or character/text-length limit; no 2 MiB threshold is added to the source sentence and Commons is retained literally.",
+      "review_limit": "Model linguistic proposal only, not competent-native acceptance. European Portuguese naturalness has not been independently confirmed; regional equivalence is a model judgment, not native acceptance. No Android layout, bidirectional-display, or assistive-technology verification was performed.",
+      "confidence": "high",
+      "disposition": "model-proposal-awaiting-independent-language-review"
+    },
+    "original_receipt": {
+      "source_id": "m03-all-language-dispositions.json",
+      "pointer_or_section": "/dispositions/98"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "47ccefa257618c254fa5bcd620f5ca19988bfa128ef41e141c323b5d2c04c97e",
+    "current_target_canonical_json_sha256": "9784ab8d4358cf1c295faab9fc6ca1f2fa3b4a580a0951e3f29b9a1cdf8e6368",
+    "context_id": "m03-response-limit",
+    "source_utf8_sha256": "9722f649fcd763e2cb4fa2ebdb98107d32c8ada91ca29be0ba76ac3cd3f3dfa3",
+    "target_utf8_sha256": "d7963413e43d8cf229e84179f5282906aab83cd89a6720380b4088c232b454e4",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          286
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_metadata_unavailable",
+    "source_value": "Commons file metadata is unavailable",
+    "target_value": "Os metadados do ficheiro do Commons não estão disponíveis",
+    "source_canonical_json_sha256": "69b0a166d80f9da5f58b4fd93df10bc7f89b1e5b0af5a774e7ecf45454282b4f",
+    "target_canonical_json_sha256": "e67880eeabe6e709bf9c070b1bed2a4fcea44c274443e560f268d06af8503b1a",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Metadados do ficheiro … não estão disponíveis is metadata unavailability, not an image-download-specific claim.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/164"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "69b0a166d80f9da5f58b4fd93df10bc7f89b1e5b0af5a774e7ecf45454282b4f",
+    "current_target_canonical_json_sha256": "e67880eeabe6e709bf9c070b1bed2a4fcea44c274443e560f268d06af8503b1a",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+      "complete_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+      "excerpt_sha256": "1a3ef4f2588ae627dfdd55811fb1fc17ecaaf6666c536ff2312712aa5332185d"
+    },
+    "source_utf8_sha256": "b5d25e6a19f9b99d61e4a15c24cb413169f770adec8d75bab45aab81f65259c6",
+    "target_utf8_sha256": "45f8a64d2560b4cfa832f606989da20f55848e3b0266a55daa9772518ce7ede7",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          291
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/commons_svg_png_encode_failed",
+    "source_value": "Could not encode blank map as PNG",
+    "target_value": "Não foi possível codificar o mapa mudo no formato PNG",
+    "source_canonical_json_sha256": "463839561c258b48ac1a5e5dbaed0af068eb6af6fa6b3804ab7d6f9d7ab1b0a5",
+    "target_canonical_json_sha256": "3902157ee055eabffe8429b1b170de1bdbdb77a9b662eec4ef6398dd7ff242d0",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accept",
+      "independent_assessment": "Codificar o mapa mudo no formato PNG correctly expresses PNG encoding of the blank map.",
+      "reviewer_confidence": "high",
+      "remaining_uncertainty": []
+    },
+    "original_receipt": {
+      "source_id": "commons-latin-review.json",
+      "pointer_or_section": "/entries/170"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "463839561c258b48ac1a5e5dbaed0af068eb6af6fa6b3804ab7d6f9d7ab1b0a5",
+    "current_target_canonical_json_sha256": "3902157ee055eabffe8429b1b170de1bdbdb77a9b662eec4ef6398dd7ff242d0",
+    "context_id": "commons-failures",
+    "reviewed_consumer": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BlankMapSvg.kt",
+      "complete_file_sha256": "30e527d7447a54cc8f6d23a85fb0af0cce9f8ff13a9e72d58eb708b07bca0c9e",
+      "excerpt_sha256": "404357ff6a0cef8b7d72d237dcf6977c7dafe2d9e37e0ea0998b7c044b7a56e2"
+    },
+    "source_utf8_sha256": "66b7aa0c2bca26903ca2055034f651abb3ef6204b6ff073adaabc33d0576cd64",
+    "target_utf8_sha256": "78978557101bf7cb8e19c6b82c8d88192739256ba40772f506f998d11b64aa69",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          297
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/gallery_external_link_no_handler",
+    "source_value": "Android could not find an app to open this link.",
+    "target_value": "O Android não conseguiu encontrar uma aplicação para abrir esta ligação.",
+    "source_canonical_json_sha256": "6745491f458001000785e94735392381558088a1eb51fcb4c0f146f0f612266a",
+    "target_canonical_json_sha256": "6cc57c0c1d209a92d0637800ce4205c645b589be2e490f88f640aee01f70a2d5",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "review_group": "mainstream-32",
+      "full_statement_review": "Não conseguiu encontrar is unsuccessful finding; aplicação and ligação preserve European Portuguese technical vocabulary. Para abrir esta ligação correctly states the app purpose.",
+      "disposition": "accept-for-bounded-error-message",
+      "reviewer_confidence": "high for semantic correspondence of this bounded sentence; not native-speaker certification",
+      "native_speaker_certification": false,
+      "runtime_ui_verification": false
+    },
+    "original_receipt": {
+      "source_id": "gallery.json",
+      "pointer_or_section": "/entries/45"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "6745491f458001000785e94735392381558088a1eb51fcb4c0f146f0f612266a",
+    "current_target_canonical_json_sha256": "6cc57c0c1d209a92d0637800ce4205c645b589be2e490f88f640aee01f70a2d5",
+    "context_id": "gallery-no-handler",
+    "source_utf8_sha256": "cf50557fdcfaf7e469ff22765f423747ac4c9c83dfeb3b47887c982540e57d7e",
+    "target_utf8_sha256": "4288a2cfa51368e7fb84089cd99959a730ad61b8c9f887f966f2c161a94d54d4",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          312
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/gallery_image_component_unavailable",
+    "source_value": "A required image component is unavailable. The image was not imported.",
+    "target_value": "Um componente necessário para processar imagens não está disponível. A imagem não foi importada.",
+    "source_canonical_json_sha256": "de95933e8b4b0b73288e4cf035cebf53902e13f6552d60883f6128d02ab78793",
+    "target_canonical_json_sha256": "1ca555aecf45a35dee55d7995dd466c97e2c082d92fe249725030cdee30878ad",
+    "classification": "P_public_reported_independent_complete_value_review",
+    "original_judgment": {
+      "verdict": "accept",
+      "confidence": "high",
+      "notes": "The first clause describes an unnamed component required for processing images. Não está disponível is appropriately generic. A imagem não foi importada states the completed non-import result and is natural European Portuguese. Both clauses were reviewed. The recommendation names no specific converter, service provider, outage, or recovery action. Independent model-based assessment, not native-speaker certification. Existing colour_converter_unavailable values are outside the edit scope and must remain unchanged."
+    },
+    "original_receipt": {
+      "source_id": "gallery-native-final-coverage.json",
+      "pointer_or_section": "/Paintroid~1src~1main~1res~1values-b+pt+PT~1strings.xml"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "de95933e8b4b0b73288e4cf035cebf53902e13f6552d60883f6128d02ab78793",
+    "current_target_canonical_json_sha256": "1ca555aecf45a35dee55d7995dd466c97e2c082d92fe249725030cdee30878ad",
+    "context_id": "gallery-native",
+    "source_utf8_sha256": "6a0d58b179946f4b4ef3f89c8d5143bf6b0a9ef91f46b69293a96d0c3dd05c81",
+    "target_utf8_sha256": "8eae90f8c82b1fdf0fc7732518a556047a0a284cc0c7d8251548f7ee2951f4de",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          392
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/language20_translation_note",
+    "source_value": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+    "target_value": "Idioma da aplicação\\n\\nAs traduções são mantidas nos recursos de idioma do AN Paint. O texto novo ou não traduzido aparece em inglês.",
+    "source_canonical_json_sha256": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+    "target_canonical_json_sha256": "1ed1a5b32e551ec6415ec7eec4f5acd6fa9c6670a1f2f0eaf173fc0fc5efa8ed",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "6666c53ad60f394959a2acc78b2edff99d7e8f3f9fc3ba6c3f82f4ee692fe929",
+    "current_target_canonical_json_sha256": "1ed1a5b32e551ec6415ec7eec4f5acd6fa9c6670a1f2f0eaf173fc0fc5efa8ed",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/language20_translation_note"
+    },
+    "prior_target_value": "Idioma da aplicação\\n\\nAs traduções são mantidas diretamente nos recursos de idioma do AN Paint. Texto adicionado depois da última atualização deste catálogo pode, temporariamente, aparecer no inglês base da aplicação.",
+    "prior_target_utf8_sha256": "60ea8108ac80434b0ea6641a5e66c5c9e7d28b24f0f362f17bd99ed8c4b1777d",
+    "source_utf8_sha256": "dbe577c3e0215663252f4ec7eef1808f0bf5930d74b8fdd116d44b2d010a70e6",
+    "target_utf8_sha256": "a82d7c001c05b88adcf4a5700471915cd84ef4f48873cd45364f861a4e0a15a1",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+        "lines": [
+          175
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/save20_unsupported_image_colour",
+    "source_value": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+    "target_value": "Esta imagem usa um perfil de cor que o AN Paint ainda não consegue converter. Converta-a para PNG sRGB num editor com gestão de cor antes de importar.",
+    "source_canonical_json_sha256": "1ec014d887dfeea5c2422d3af4c6588c48364d5cb4614904b37b0a8ce424d2a2",
+    "target_canonical_json_sha256": "57fb7cad82b1aedd90eb7ed08bb490c226db18fbc1934430d0dc255f3d82af3d",
+    "classification": "D_independent_subject_agreement_delta_with_complete_value_binding",
+    "original_judgment": {
+      "confidence": "high",
+      "review": "Feminine imagem requires Esta and Converta-a; Portuguese gestão de cor/num remain.",
+      "scope": "Independent source-backed review supports the exact narrow delta, not inherited technical idiom or whole locale."
+    },
+    "original_receipt": {
+      "source_id": "colour-delta-pr86-comment.md",
+      "pointer_or_section": "Exact candidates JSON /35"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "1ec014d887dfeea5c2422d3af4c6588c48364d5cb4614904b37b0a8ce424d2a2",
+    "current_target_canonical_json_sha256": "57fb7cad82b1aedd90eb7ed08bb490c226db18fbc1934430d0dc255f3d82af3d",
+    "context_id": "colour-profile",
+    "prior_target_value": "Este BMP ou GIF usa um perfil de cor que o AN Paint ainda não consegue converter. Converta-o para PNG sRGB num editor com gestão de cor antes de importar.",
+    "prior_target_utf8_sha256": "c517f22ac7e4d66080c4fd24571b48835aa5c7cbeae3a6e7541d26c09ec0076f",
+    "prior_target_locator": {
+      "source_id": "pr86-before-pt.xml",
+      "key": "string/save20_unsupported_tagged_colour"
+    },
+    "exact_delta": {
+      "subject": [
+        "Este BMP ou GIF",
+        "Esta imagem"
+      ],
+      "agreement": [
+        "Converta-o",
+        "Converta-a"
+      ],
+      "other_characters_preserved": true
+    },
+    "source_utf8_sha256": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+    "target_utf8_sha256": "19533d55b7c0c66d45495b8cbc5c64c9b44233e856a4afa7a77e8607e63275bc",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+        "lines": [
+          16
+        ]
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "lines": [
+          23
+        ]
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+        "lines": [
+          115
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_add_up_to_20_images_with_android_s",
+    "source_value": "Add up to 20 images with Android\\'s file picker. The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\\n\\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\\n\\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. When snapping, the first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected when snapping.\\n\\nSelect an image and use Exact position to set its top-left X/Y coordinates in whole pixels, starting at zero. Other images keep their positions, and overlaps are allowed.\\n\\nSame width and Same height give every input a common dimension while preserving each image\\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\\n\\nUnplace returns only the selected image to the tray. Other images stay placed; attached images may move to fill the gap. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\\n\\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy if offered. If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\\n\\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\\'s «File > About, licences & credits» panel.",
+    "target_value": "Adicione até 20 imagens com o seletor de ficheiros do Android. O tabuleiro inferior mostra miniaturas, nomes de ficheiro, dimensões das imagens resultantes do recorte e de eventuais ajustes de «Mesma largura» ou «Mesma altura» e datas de modificação quando fornecidas pelo serviço. Ordene por nome de ficheiro ou data de modificação; ordenar não reorganiza as imagens já colocadas.\\n\\nToque numa miniatura para a selecionar. «Recortar imagem» recorta essa imagem; «Recorte em lote» aplica margens em píxeis ou percentagem às imagens selecionadas. Arraste as alças de recorte ou introduza valores. «Repor recorte» restaura as margens originais. O recorte não é destrutivo e pode ser anulado.\\n\\nMantenha uma miniatura premida, ou arraste uma imagem já colocada na área de trabalho, e largue-a numa margem realçada. A pré-visualização translúcida mostra o resultado exato do encaixe. Uma ligação à direita alinha os topos; uma ligação em baixo alinha as margens esquerdas. Também pode tocar numa miniatura e depois num alvo «+». Ao encaixar, a primeira imagem começa na origem. As imagens ligadas podem deslocar-se quando a imagem a que estão ligadas é recortada. As sobreposições são rejeitadas ao encaixar.\\n\\nSelecione uma imagem e use «Posição exata» para definir as coordenadas X/Y do seu canto superior esquerdo em números inteiros de píxeis, a partir de zero. As outras imagens mantêm as suas posições e são permitidas sobreposições.\\n\\n«Mesma largura» e «Mesma altura» atribuem a todas as imagens uma dimensão comum, preservando a proporção de cada uma. Escolha píxeis, percentagem, «Menor» ou «Maior». «Restaurar tamanhos originais» remove a normalização e mantém os recortes.\\n\\n«Retirar» devolve apenas a imagem selecionada ao tabuleiro. As outras imagens continuam colocadas; as imagens ligadas podem deslocar-se para preencher o espaço. «Remover» elimina apenas essa imagem. «Desfazer/Refazer» restaura estas alterações. Arraste uma imagem colocada para a reorganizar; arrastar uma zona vazia desloca a vista. Faça um gesto de pinça para ampliar ou reduzir. «Mostrar tudo» ajusta a ampliação para mostrar toda a montagem; nunca altera as dimensões de saída.\\n\\n«Guardar PNG» guarda diretamente a imagem montada. «Editar no Paint» transfere-a para o editor principal como uma substituição anulável. Se a saída exceder o limite de memória, escolha uma cópia de saída mais pequena, se essa opção estiver disponível. Se até uma saída mínima exceder o limite, a aplicação mostra um aviso de falta de memória em vez de um seletor de tamanho. Os ficheiros de origem permanecem inalterados. A montagem atual é guardada localmente e volta a abrir quando regressar.\\n\\nEste modo usa os mesmos créditos Catrobat/AGPL e de recursos apresentados no painel «Ficheiro > Sobre, licenças e créditos» do editor principal.",
+    "source_canonical_json_sha256": "aeb01fb385e311ce46a755081fe04b97e9aedfa803403a8f8d41cd1096284b2c",
+    "target_canonical_json_sha256": "46ccedfefbee7e31c1f77dc243d4616f7736fa7188bc6e59221ee40213044435",
+    "classification": "I_original_independent_complete_entry_linguistic_source_review",
+    "original_judgment": {
+      "verdict": "Accept the proposed value without required replacements.",
+      "scope": "All eight paragraphs were reviewed for meaning, European Portuguese wording, terminology, current resource labels, and source consumers.",
+      "limits": "Independent model linguistic review with source inspection; not native-speaker, installed-app, rendering/accessibility or whole-catalogue approval.",
+      "required_additional_replacements": "none"
+    },
+    "original_receipt": {
+      "source_id": "pr132-linguistic-review.md",
+      "pointer_or_section": "Verdict and all eight paragraph assessments"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "aeb01fb385e311ce46a755081fe04b97e9aedfa803403a8f8d41cd1096284b2c",
+    "current_target_canonical_json_sha256": "46ccedfefbee7e31c1f77dc243d4616f7736fa7188bc6e59221ee40213044435",
+    "context_id": "assembly-help",
+    "reviewed_reference_commit": "0d56dd970c22398f7fa032d1baee4a1b74c83f2b",
+    "reviewed_application_commit": "cadee014aacdc2d3422d533f76e626f3d4433dd9",
+    "exact_target_original_file_sha256": "11d124d27cec513f2796b9f27004884fd28ad1c945495c57a7863cc37742a1cf",
+    "values_recovered": {
+      "source_id": "pr132-reference.xml",
+      "target_id": "pr132-target.xml",
+      "reviewed_text_source_id": "pr132-source-help-en.txt",
+      "reviewed_text_target_id": "pr132-new-help.txt",
+      "representation": "Resource XML entity-decoded text retains Android escapes; exact reviewed display text matches after only decoding literal backslash-n and removing original text-file final newline."
+    },
+    "source_utf8_sha256": "6ae12f86846110a7573a5c608b8561b0c03b037454f1905d3b5bf8342fb26aac",
+    "target_utf8_sha256": "2619e8d300fb9e67ee99eb08d3ce330ea586e48ba9bc00a788ffa3b2c55707c4",
+    "historical_chain": [
+      {
+        "receipt_id": "pr120-portuguese-review.json",
+        "pointer": "/entries/0",
+        "classification": "H_original_independent_full_value_recommendation_with_explicit_shared_scope_hold",
+        "source_value": "Add up to 20 images with Android\\'s file picker. The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\\n\\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\\n\\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected.\\n\\nSame width and Same height give every input a common dimension while preserving each image\\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\\n\\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\\n\\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy if offered. If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\\n\\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\\'s «File > About, licences & credits» panel.",
+        "target_value": "Adicione até 20 imagens com o seletor de ficheiros do Android. O tabuleiro inferior mostra miniaturas, nomes de ficheiro, dimensões das imagens resultantes do recorte e de eventuais ajustes de «Mesma largura» ou «Mesma altura» e datas de modificação quando fornecidas pelo serviço. Ordene por nome de ficheiro ou data de modificação; ordenar não reorganiza as imagens já colocadas.\\n\\nToque numa miniatura para a selecionar. «Recortar imagem» recorta essa imagem; «Recorte em lote» aplica margens em píxeis ou percentagem às imagens selecionadas. Arraste as alças de recorte ou introduza valores. «Repor recorte» restaura as margens originais. O recorte não é destrutivo e pode ser anulado.\\n\\nMantenha uma miniatura premida, ou arraste uma imagem já colocada na área de trabalho, e largue-a numa margem realçada. A pré-visualização translúcida mostra o resultado exato do encaixe. Uma ligação à direita alinha os topos; uma ligação em baixo alinha as margens esquerdas. Também pode tocar numa miniatura e depois num alvo «+». A primeira imagem começa na origem. As imagens ligadas podem deslocar-se quando a imagem a que estão ligadas é recortada. As sobreposições são rejeitadas.\\n\\n«Mesma largura» e «Mesma altura» atribuem a todas as imagens uma dimensão comum, preservando a proporção de cada uma. Escolha píxeis, percentagem, «Menor» ou «Maior». «Restaurar tamanhos originais» remove a normalização e mantém os recortes.\\n\\n«Retirar» devolve apenas a imagem selecionada ao tabuleiro. As imagens seguintes preenchem o espaço e continuam colocadas. «Remover» elimina apenas essa imagem. «Desfazer/Refazer» restaura estas alterações. Arraste uma imagem colocada para a reorganizar; arrastar uma zona vazia desloca a vista. Faça um gesto de pinça para ampliar ou reduzir. «Mostrar tudo» ajusta a ampliação para mostrar toda a montagem; nunca altera as dimensões de saída.\\n\\n«Guardar PNG» guarda diretamente a imagem montada. «Editar no Paint» transfere-a para o editor principal como uma substituição anulável. Se a saída exceder o limite de memória, escolha uma cópia de saída mais pequena, se essa opção estiver disponível. Se até uma saída mínima exceder o limite, a aplicação mostra um aviso de falta de memória em vez de um seletor de tamanho. Os ficheiros de origem permanecem inalterados. A montagem atual é guardada localmente e volta a abrir quando regressar.\\n\\nEste modo usa os mesmos créditos Catrobat/AGPL e de recursos apresentados no painel «Ficheiro > Sobre, licenças e créditos» do editor principal.",
+        "source_canonical_json_sha256": "d4acaf9fdc7f14d2b8989aa152123739aaad3a990e508495b9a2e81e689a5220",
+        "target_canonical_json_sha256": "960e092a2d99acfe9a414abb0304da50b5905818c82535bfd8c2a71a3569e54d",
+        "original_judgment": "Recommended complete Help value for the bounded P3 counterpart repair, including clear dimension, memory-branch, UI-label and bidirectional zoom corrections. This is not whole-language approval; runtime checks remain pending and shared-source scope uncertainty remains explicitly held.",
+        "current_source_exact": false,
+        "current_target_exact": false,
+        "original_holds": [
+          {
+            "id": "SHARED-HELP-SNAP-VERSUS-ABSOLUTE-POSITION-SCOPE",
+            "status": "hold_shared_source_scope_review",
+            "resource_key": "ui_add_up_to_20_images_with_android_s",
+            "paragraphs": [
+              3,
+              5
+            ],
+            "english_excerpts": [
+              "The first image starts at the origin.",
+              "Overlaps are rejected.",
+              "Following images fill its gap; they stay placed."
+            ],
+            "portuguese_excerpts": [
+              "A primeira imagem começa na origem.",
+              "As sobreposições são rejeitadas.",
+              "As imagens seguintes preenchem o espaço e continuam colocadas."
+            ],
+            "issue": "These Portuguese statements preserve the current English. They describe snapping/attachment behavior, but the same AssemblyActivity now also exposes exact absolute placement. It is not settled here whether the surrounding Help sufficiently limits these statements to the snapping mode. Do not silently broaden this localization repair into an independent behavioral Help rewrite.",
+            "evidence": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+                "lines": "87, 272–275",
+                "finding": "The assembly_position action opens exactPosition/AssemblyPositionDialog in the same interface."
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+                "lines": "88–103, 164–178, 220–231",
+                "finding": "For an absolutely positioned image, unplace preserves the coordinates of attached branches. Absolute placement intentionally allows overlap; snap placement performs a separate overlap check. This differs from applying the Help statements unconditionally to every placement mode."
+              }
+            ],
+            "disposition": "Keep current English-equivalent text unchanged in this bounded P3 counterpart fix. Request a separate shared-source applicability review before claiming universal behavioral Help accuracy."
+          }
+        ],
+        "successor": "PR132 separately scopes origin/overlap to snapping, adds Exact position and makes gap filling conditional. This specific held finding is addressed by the raw successor; no general hold waiver."
+      }
+    ],
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "lines": [
+          347
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_assembly_exact_position",
+    "source_value": "Exact position",
+    "target_value": "Posição exata",
+    "source_canonical_json_sha256": "8019380470847ca1acf052a850b6f729d1af3ab9441e1f7e451ac3533cd0fc09",
+    "target_canonical_json_sha256": "dbd2a2d958cae83e86afbe61e6d8d2d636479cb2f1a12087e2a6ade1212f0f5d",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accepted_source_semantics",
+      "correction": null
+    },
+    "original_receipt": {
+      "source_id": "position-review.json",
+      "pointer_or_section": "/entries/18"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "8019380470847ca1acf052a850b6f729d1af3ab9441e1f7e451ac3533cd0fc09",
+    "current_target_canonical_json_sha256": "dbd2a2d958cae83e86afbe61e6d8d2d636479cb2f1a12087e2a6ade1212f0f5d",
+    "context_id": "position-controls",
+    "value_recovery": {
+      "source_id": "position-en.xml",
+      "target_id": "position-pt.xml",
+      "target_original_hash_verified": true
+    },
+    "source_utf8_sha256": "c317af77c261ceac139cabdac370c025429fdc0945a3856523557549c6578794",
+    "target_utf8_sha256": "036b7f9637a5dfb1eb62fad41db06c2937d1e3dafcf201a510e4adc31e1b156a",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+        "lines": [
+          87
+        ]
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "lines": [
+          29
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": true
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_assembly_position_help",
+    "source_value": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+    "target_value": "Defina a posição do canto superior esquerdo desta imagem na tela de saída. X e Y são expressos em números inteiros de píxeis, a partir de zero. As outras imagens mantêm as posições atuais. Aqui são permitidas sobreposições; as imagens importadas mais tarde são desenhadas por cima. A tela expande-se para incluir todas as imagens colocadas. Os recortes e os tamanhos permanecem inalterados.",
+    "source_canonical_json_sha256": "9bc4d71541a561bb37f2a5ff396289a2ca5de474f2e3af510eb757c47b873256",
+    "target_canonical_json_sha256": "16021bd2ebd201b4d4c48e05befc886753cc0ce1155c9f8749fafd28ce2307e4",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accepted_source_semantics",
+      "correction": null
+    },
+    "original_receipt": {
+      "source_id": "position-review.json",
+      "pointer_or_section": "/entries/21"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "9bc4d71541a561bb37f2a5ff396289a2ca5de474f2e3af510eb757c47b873256",
+    "current_target_canonical_json_sha256": "16021bd2ebd201b4d4c48e05befc886753cc0ce1155c9f8749fafd28ce2307e4",
+    "context_id": "position-controls",
+    "value_recovery": {
+      "source_id": "position-en.xml",
+      "target_id": "position-pt.xml",
+      "target_original_hash_verified": true
+    },
+    "source_utf8_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+    "target_utf8_sha256": "59246433020bce88e51fc84f8d2502195e9adf8cffc814d225afb45d4c106415",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "lines": [
+          20
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": true
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_assembly_position_nonnegative",
+    "source_value": "X and Y must be whole numbers from zero to 2147483647.",
+    "target_value": "X e Y têm de ser números inteiros entre 0 e 2147483647.",
+    "source_canonical_json_sha256": "1d344ddc580a695b404be0c63f7c4140a18cde846d0a9a31dcebf3e14df45c13",
+    "target_canonical_json_sha256": "f6c05253af29bf5c1ce4dfa4bed44c7c54fc917b0d2284fbd79319fc419d1ca2",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accepted_source_semantics",
+      "correction": null
+    },
+    "original_receipt": {
+      "source_id": "position-review.json",
+      "pointer_or_section": "/entries/22"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "1d344ddc580a695b404be0c63f7c4140a18cde846d0a9a31dcebf3e14df45c13",
+    "current_target_canonical_json_sha256": "f6c05253af29bf5c1ce4dfa4bed44c7c54fc917b0d2284fbd79319fc419d1ca2",
+    "context_id": "position-controls",
+    "value_recovery": {
+      "source_id": "position-en.xml",
+      "target_id": "position-pt.xml",
+      "target_original_hash_verified": true
+    },
+    "source_utf8_sha256": "bfb8419f905181bfb3b3ab290b5f022c0a52e65a2a050f44fb9f99047cba43b4",
+    "target_utf8_sha256": "539e68aeacbbfd1046e4796c918726985cf95046a8a9464cf5a18b57ca811c28",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "lines": [
+          33,
+          34
+        ]
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "lines": [
+          167,
+          205
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": true
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_assembly_target_x",
+    "source_value": "Target X (pixels from left)",
+    "target_value": "Posição X (píxeis a partir da margem esquerda)",
+    "source_canonical_json_sha256": "e13e7ea9fe454fede9ddbf12c391d49edc13cbfae54bdfca4376864136a38651",
+    "target_canonical_json_sha256": "63c13a8f85cf452d133684963163c7bf018d25a5260f3eafbbff6b2fe052431c",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accepted_source_semantics",
+      "correction": null
+    },
+    "original_receipt": {
+      "source_id": "position-review.json",
+      "pointer_or_section": "/entries/19"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "e13e7ea9fe454fede9ddbf12c391d49edc13cbfae54bdfca4376864136a38651",
+    "current_target_canonical_json_sha256": "63c13a8f85cf452d133684963163c7bf018d25a5260f3eafbbff6b2fe052431c",
+    "context_id": "position-controls",
+    "value_recovery": {
+      "source_id": "position-en.xml",
+      "target_id": "position-pt.xml",
+      "target_original_hash_verified": true
+    },
+    "source_utf8_sha256": "26abbfed96cb5286301f195cb849d1c3128c9491f46a7caf06697bc3550fa36c",
+    "target_utf8_sha256": "8e9f0927b3291858942a442b67acdaa8f6269ad8ca2e5dbfdbfd687717bc34b7",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "lines": [
+          21,
+          23
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": true
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_assembly_target_y",
+    "source_value": "Target Y (pixels from top)",
+    "target_value": "Posição Y (píxeis a partir da margem superior)",
+    "source_canonical_json_sha256": "d56087652a000a44685a71b7d7a5c4656e1e9ee1349d95f054329738fd0a4136",
+    "target_canonical_json_sha256": "4ff37a2c4249454eca7ab01b13d914ab18cf54899e76d934154d73a19be56ba4",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accepted_source_semantics",
+      "correction": null
+    },
+    "original_receipt": {
+      "source_id": "position-review.json",
+      "pointer_or_section": "/entries/20"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "d56087652a000a44685a71b7d7a5c4656e1e9ee1349d95f054329738fd0a4136",
+    "current_target_canonical_json_sha256": "4ff37a2c4249454eca7ab01b13d914ab18cf54899e76d934154d73a19be56ba4",
+    "context_id": "position-controls",
+    "value_recovery": {
+      "source_id": "position-en.xml",
+      "target_id": "position-pt.xml",
+      "target_original_hash_verified": true
+    },
+    "source_utf8_sha256": "20618eee1acca33b0b24079d3cdead000445b2f457ef7570c835ca857affc25b",
+    "target_utf8_sha256": "6b24af619bfe911e284f469b04cc6efb4e16231a20366713ec60ac528e56d747",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+        "lines": [
+          22,
+          25
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": true
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_assembly_unknown_image",
+    "source_value": "The selected image is no longer in this assembly.",
+    "target_value": "A imagem selecionada já não faz parte desta montagem.",
+    "source_canonical_json_sha256": "0544e0f1052b5a92c08f3ac1b0834038b5fd93fbe138e198a24cfd3d1c4dd4e2",
+    "target_canonical_json_sha256": "518802eff2f0f99c198db5ee7328ce1ace7c86e467291f1f52ebaa8e98db9ac1",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "verdict": "accepted_source_semantics",
+      "correction": null
+    },
+    "original_receipt": {
+      "source_id": "position-review.json",
+      "pointer_or_section": "/entries/23"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "0544e0f1052b5a92c08f3ac1b0834038b5fd93fbe138e198a24cfd3d1c4dd4e2",
+    "current_target_canonical_json_sha256": "518802eff2f0f99c198db5ee7328ce1ace7c86e467291f1f52ebaa8e98db9ac1",
+    "context_id": "position-controls",
+    "value_recovery": {
+      "source_id": "position-en.xml",
+      "target_id": "position-pt.xml",
+      "target_original_hash_verified": true
+    },
+    "source_utf8_sha256": "2968b796028cf8b2c286e87fc73165eba1d734e7c1dd67840923a027025ac07f",
+    "target_utf8_sha256": "bc6b05d010cf4dabd6a0f3088421b949310f0f6ec01d10d1f9dd9e36d5465aea",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "lines": [
+          166
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": true
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_collapse_tool_category",
+    "source_value": "%1$s: %2$s selected. Collapse tools and options",
+    "target_value": "%1$s. Ferramenta selecionada: %2$s. Recolher ferramentas e opções",
+    "source_canonical_json_sha256": "02972d9a3aa1c99efff16d8be8bd4cb3ade3def6bc3815d49e4dfb49327d278d",
+    "target_canonical_json_sha256": "86f57264076bd9c79d7252acd5f48f62b1eec5fd09b411e33b5fa73578746336",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "02972d9a3aa1c99efff16d8be8bd4cb3ade3def6bc3815d49e4dfb49327d278d",
+    "current_target_canonical_json_sha256": "86f57264076bd9c79d7252acd5f48f62b1eec5fd09b411e33b5fa73578746336",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_collapse_tool_category"
+    },
+    "prior_target_value": "%1$s: %2$s selecionado. Recolher ferramentas e opções",
+    "prior_target_utf8_sha256": "668a62417cc3e70bd76c591e628a91633f73b7c9c7855529d5667e5649178522",
+    "source_utf8_sha256": "781f89c116c5929bcbb7b33317bc1296170b6c19e8695e9547cf7fc810ee907e",
+    "target_utf8_sha256": "81e2700ae8f1ee793815ab9e80c51e9ec740d6b53be01e1608fd14e4d4a583de",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt",
+        "lines": [
+          27
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+    "source_value": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+    "target_value": "Tela de desenho. Afaste ou junte dois dedos para ampliar ou reduzir e mova-os para deslocar. O modo Navegar também permite deslocar com um dedo.",
+    "source_canonical_json_sha256": "f451000054228c871e570131e979845d148beb513e3254216840f762bc19e186",
+    "target_canonical_json_sha256": "8a9dbd36e42f948d9d10fb45c6dcfdd7bcb1d81f62bb4cf2e8a82ddbc297bb4e",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "f451000054228c871e570131e979845d148beb513e3254216840f762bc19e186",
+    "current_target_canonical_json_sha256": "8a9dbd36e42f948d9d10fb45c6dcfdd7bcb1d81f62bb4cf2e8a82ddbc297bb4e",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_drawing_canvas_pinch_and_move_two_fingers_to"
+    },
+    "prior_target_value": "Tela de desenho. Faça pinça e mova dois dedos para ampliar e deslocar. O modo Navegar também permite deslocar com um dedo.",
+    "prior_target_utf8_sha256": "1e8121527d89536ec57123d21e301c19dad60e2fb747e5b843df753d2b550e89",
+    "source_utf8_sha256": "3ecc75f24a1a7fe88133c1b151a1d5da0f92c9dcb6b26748d0e24fa1ed1fb7ab",
+    "target_utf8_sha256": "361d98fb9ff61a3f02821d3ede4b5efeeec36694fd8a18ec44f4eccdb0212a9a",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "lines": [
+          271
+        ]
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "lines": [
+          148
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_expand_tool_category",
+    "source_value": "%1$s: %2$s selected. Expand tools and options",
+    "target_value": "%1$s. Ferramenta selecionada: %2$s. Expandir ferramentas e opções",
+    "source_canonical_json_sha256": "470b94f0c967323c0812325a265e64e84e6fa0b702a5468f54d727de2463c272",
+    "target_canonical_json_sha256": "2ee8801a13f01d4639587cd8398c402b35ddeff0ca7b52eece78454a1494bf27",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "470b94f0c967323c0812325a265e64e84e6fa0b702a5468f54d727de2463c272",
+    "current_target_canonical_json_sha256": "2ee8801a13f01d4639587cd8398c402b35ddeff0ca7b52eece78454a1494bf27",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_expand_tool_category"
+    },
+    "prior_target_value": "%1$s: %2$s selecionado. Expandir ferramentas e opções",
+    "prior_target_utf8_sha256": "fa29980b19b7a315113fcc76e68824e9cfe9ab23bf9cab79b57bb19661a2e908",
+    "source_utf8_sha256": "6c92ada41f2c3b10d08ca1aad7592927df115668146582a7ec6e94e248a2a18a",
+    "target_utf8_sha256": "b0540d4e42299008e1858afb0a979bb3d81eae0b9cf2c6eae8d4d4b730780847",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt",
+        "lines": [
+          27
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_free_form_select",
+    "source_value": "Free-form select",
+    "target_value": "Seleção livre",
+    "source_canonical_json_sha256": "23e16e51da12cd5bebe59d022cb6ede76147b3cb428fdfec64db02c38b901a93",
+    "target_canonical_json_sha256": "469491d1fa11259a4bb7987e3709d8320ea0fc908503e303a6f4a8e3373166be",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "23e16e51da12cd5bebe59d022cb6ede76147b3cb428fdfec64db02c38b901a93",
+    "current_target_canonical_json_sha256": "469491d1fa11259a4bb7987e3709d8320ea0fc908503e303a6f4a8e3373166be",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_free_form_select"
+    },
+    "prior_target_value": "Selecionar livre",
+    "prior_target_utf8_sha256": "df431c473c0a1962c314f4bf48a3013ad485304ec2435dee23a21a05c669cca0",
+    "source_utf8_sha256": "fd9f9421566176b63ae7b0a91189060dc706ef9595255b0361f4fc6292df03e6",
+    "target_utf8_sha256": "5296d58f697346831ff51f52c90f0bf12b840b66907dec815cc92e36eb62179a",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+        "lines": [
+          15
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+    "source_value": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+    "target_value": "Mantém os píxeis no canto superior esquerdo. Dimensões menores da tela eliminam os píxeis além da margem direita/inferior; «Desfazer» restaura-os.",
+    "source_canonical_json_sha256": "ab6330149ebce5ddf92a1bfbea49563912ced2e9bdcff8f0c18f8a992483cff2",
+    "target_canonical_json_sha256": "0eea0291d031cab9480f10e069d13ded8a5a04f0e0202d3b71d497791f5ef0e2",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "ab6330149ebce5ddf92a1bfbea49563912ced2e9bdcff8f0c18f8a992483cff2",
+    "current_target_canonical_json_sha256": "0eea0291d031cab9480f10e069d13ded8a5a04f0e0202d3b71d497791f5ef0e2",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas"
+    },
+    "prior_target_value": "Mantém os píxeis no canto superior esquerdo. Dimensões menores da tela eliminam os píxeis além da margem direita/inferior; «Anular» restaura-os.",
+    "prior_target_utf8_sha256": "13f37f1bc1c57c5827d34da1daa0ada5db6eab0584a119b3565a5a54b3d26cb6",
+    "source_utf8_sha256": "4d6da1792a4751708d0bb36eda8365c72b66b1a2b2db70c77cdc4c48486634dc",
+    "target_utf8_sha256": "9c670ec215b944c1effe22722b0bde9d816772f26571cdb099a6f8f291f45f8c",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "lines": [
+          1016
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_no_gallery_images_have_been_inserted",
+    "source_value": "No image credit text is available.",
+    "target_value": "Não há texto disponível para os créditos das imagens.",
+    "source_canonical_json_sha256": "5fda985bdc99dad4262255829b7a432ea17dcb0a0dc0edde1439e53fff313e1c",
+    "target_canonical_json_sha256": "7b0fb29dde49a2f345173366076e3a434a62157d02e6eb7ee385d1278f82ff7a",
+    "classification": "I_bounded_complete_value_source_semantic",
+    "original_judgment": {
+      "decision": "accept_scoped",
+      "rationale": "Não há texto disponível correctly states absence of available text. Créditos das imagens has the media-credit meaning and is grammatical for European Portuguese.",
+      "confidence": "high",
+      "unknowns": [
+        "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+      ],
+      "supporting_sources": [],
+      "candidate_corrected": false,
+      "applied_source_matches": true
+    },
+    "original_receipt": {
+      "source_id": "empty-credit-independent-review.json",
+      "pointer_or_section": "/28"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "5fda985bdc99dad4262255829b7a432ea17dcb0a0dc0edde1439e53fff313e1c",
+    "current_target_canonical_json_sha256": "7b0fb29dde49a2f345173366076e3a434a62157d02e6eb7ee385d1278f82ff7a",
+    "context_id": "empty-credit",
+    "source_utf8_sha256": "a9f4b6fe0b0110153c2284f4933dbd086918f8fcd9d2a564d0daacd42090b89a",
+    "target_utf8_sha256": "bfead6ba9729565c108e9639063efaaca07fdfec1d65b8108674fe1d50257a8d",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+        "lines": [
+          87
+        ]
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          109
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_none",
+    "source_value": "None",
+    "target_value": "Nenhuma",
+    "source_canonical_json_sha256": "f2953d2931e36d0c55640f51865f8394ebe52194765d04e521017232558f871c",
+    "target_canonical_json_sha256": "f7fabf187c7ba8d14ad03605ea90ffaf2994f84b61fdbee91ea20410482facb2",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "f2953d2931e36d0c55640f51865f8394ebe52194765d04e521017232558f871c",
+    "current_target_canonical_json_sha256": "f7fabf187c7ba8d14ad03605ea90ffaf2994f84b61fdbee91ea20410482facb2",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_none"
+    },
+    "prior_target_value": "Nenhum",
+    "prior_target_utf8_sha256": "496a53a0f11e2a18d6c45add3b20e9dde6ce74131ba4f998ceb3420b5de9ac91",
+    "source_utf8_sha256": "dc937b59892604f5a86ac96936cd7ff09e25f18ae6b758e8014a24c7fa039e91",
+    "target_utf8_sha256": "e368a5cc450f3e976de00f6855f0c16014b0f47a36f5b39bea1350dd618c8fd0",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "lines": [
+          135
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_pixels",
+    "source_value": "Pixels",
+    "target_value": "Píxeis",
+    "source_canonical_json_sha256": "dc89882fbb2cf5d1da56778dab689266b68dda67b2463c79d84726f2519545ce",
+    "target_canonical_json_sha256": "b0b80e056cf446f55dae754e24997b8033ccb61c6a26d7809b54968e5d497b40",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "dc89882fbb2cf5d1da56778dab689266b68dda67b2463c79d84726f2519545ce",
+    "current_target_canonical_json_sha256": "b0b80e056cf446f55dae754e24997b8033ccb61c6a26d7809b54968e5d497b40",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_pixels"
+    },
+    "prior_target_value": "Pixéis",
+    "prior_target_utf8_sha256": "91ed5c6b4f66f7c5263e98ab855fe6efa2556a12f62d66e8f65f1020670c2528",
+    "source_utf8_sha256": "48b027ebcdab5067b2f39188207faa13921c025d8fd8282f5976ceb94149d642",
+    "target_utf8_sha256": "27c261399e788943b07f7905cb9430ba3ab84d13f9cb2ad7d8b49f913259a317",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "lines": [
+          31
+        ]
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "lines": [
+          96
+        ]
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+        "lines": [
+          50
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_pixels_6ec9c2",
+    "source_value": "pixels",
+    "target_value": "píxeis",
+    "source_canonical_json_sha256": "3e3846ae39fe594776df92cbd4eaba67fb59b3ab39d485b4554e1bae64a58a00",
+    "target_canonical_json_sha256": "0d34040f397200f4e5a6bbbf2df4506d52c7453635174191ae2e536a74710875",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "3e3846ae39fe594776df92cbd4eaba67fb59b3ab39d485b4554e1bae64a58a00",
+    "current_target_canonical_json_sha256": "0d34040f397200f4e5a6bbbf2df4506d52c7453635174191ae2e536a74710875",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_pixels_6ec9c2"
+    },
+    "prior_target_value": "Pixéis",
+    "prior_target_utf8_sha256": "91ed5c6b4f66f7c5263e98ab855fe6efa2556a12f62d66e8f65f1020670c2528",
+    "source_utf8_sha256": "6ec9c2b0eb14010746c8bce8939303b382344b296206612eb8a907a37b2b2f37",
+    "target_utf8_sha256": "964dc9783e46ad4b9fa0391bf19f992c2fef5552ea3b3f5d13e484a02b999dc2",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+        "lines": [
+          81,
+          82
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_rectangle_select",
+    "source_value": "Rectangle select",
+    "target_value": "Seleção retangular",
+    "source_canonical_json_sha256": "cdfac6ada09b8e70434dc00eb0e2f2356ee5769b5307946c31d8cb43e18f9d99",
+    "target_canonical_json_sha256": "89763c5e1d87430d3f2d3625732ada19bb85bfe4d9271b2de07a4fa476b3f9ca",
+    "classification": "Q_public_review_report_independence_unestablished",
+    "original_judgment": {
+      "statement_id": "priority-wording.exact_public_review_statement",
+      "independent_pt_PT_review_established": false
+    },
+    "original_receipt": {
+      "source_id": "pr110-public-body.md",
+      "pointer_or_section": "Scope / European Portuguese"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "cdfac6ada09b8e70434dc00eb0e2f2356ee5769b5307946c31d8cb43e18f9d99",
+    "current_target_canonical_json_sha256": "89763c5e1d87430d3f2d3625732ada19bb85bfe4d9271b2de07a4fa476b3f9ca",
+    "context_id": "priority-wording",
+    "value_recovery": {
+      "source_id": "pr110-en.xml",
+      "target_id": "pr110-pt.xml",
+      "fixture_id": "pr110-fixture.json",
+      "immutable_key": "string/ui_rectangle_select"
+    },
+    "prior_target_value": "Selecionar retangular",
+    "prior_target_utf8_sha256": "f5119071f13a18a89511e620ee6266b325c1865af9211e9c8f65ed95456b1018",
+    "source_utf8_sha256": "5f336169b06c34837d9fe4f4b2e358eaa5f8d3f44ebf6db0d24266511f91af60",
+    "target_utf8_sha256": "13528f670064965a45e68b005f5ab39a42e341fb10fb32d281e22f4b97e620d0",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+        "lines": [
+          16
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_sampled_resize_memory_explanation",
+    "source_value": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+    "target_value": "As estimativas incluem a tela e a área de transferência atuais, a descodificação por amostragem e os buffers de edição. A utilização real de memória varia. Uma cópia mais pequena perde detalhe. O ficheiro original permanece inalterado.",
+    "source_canonical_json_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
+    "target_canonical_json_sha256": "8bdc44a39179b4996f9281f7bcbd9d01976ed10a5ecb942414e30b4adeba5595",
+    "classification": "D_independent_change_level_with_complete_value_binding",
+    "original_judgment": {
+      "confidence": "H",
+      "scope": "Independent change-level review against complete old entries; H applies to target claims and local grammatical boundary only. No fresh inherited idiom/technical-terminology certification."
+    },
+    "original_receipt": {
+      "source_id": "sampled-memory-pr80-comment.md",
+      "pointer_or_section": "Exact candidate values JSON /43"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
+    "current_target_canonical_json_sha256": "8bdc44a39179b4996f9281f7bcbd9d01976ed10a5ecb942414e30b4adeba5595",
+    "context_id": "sampled-memory",
+    "prior_target_value": "As estimativas incluem a tela e a área de transferência atuais, a descodificação por amostragem e os buffers de edição. A utilização real de memória varia. Uma cópia mais pequena perde detalhe. As importações usam o fundo opaco selecionado; o ficheiro original permanece inalterado.",
+    "prior_target_utf8_sha256": "8ec3dfadb0d5c41e5fd8b4f9c883790a4d9db62720c267dae0f3056e874af1e8",
+    "prior_target_locator": {
+      "source_id": "pr80-old-pt.xml",
+      "key": "string/ui_estimates_include_the_current_canvas_and_clipboard_sampled"
+    },
+    "source_utf8_sha256": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+    "target_utf8_sha256": "041eb1ef4307dd00400c2061754ba6a450568cd7d3a37e491920f2e2ce4d9f7d",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+        "lines": [
+          34
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  },
+  {
+    "tag": "pt-PT",
+    "key": "string/ui_the_gallery_redirected_outside_its_supported_hosts",
+    "source_value": "The gallery redirected to an unsupported image URL.",
+    "target_value": "A galeria redirecionou para um URL de imagem não suportado.",
+    "source_canonical_json_sha256": "7c43c60e9b0297c38e676ae0bbe0765ddf4fb9f2fe63845bb4972955f07c107a",
+    "target_canonical_json_sha256": "8e8f2480a9ebfb9ec88da746b09af05cccd96741cfd6ae5e1f8332069a2f3c86",
+    "classification": "N_candidate_without_independent_european_portuguese_review",
+    "original_judgment": {
+      "status": "reviewed candidate",
+      "independent_review": "The complete proposed value identifies an unsupported image URL as the redirect destination and no longer claims the host changed. The original source context, unsupported scope, language/script identity and no-value interpolation were checked.",
+      "confidence": "high",
+      "specific_notes": "No independent European-Portuguese reviewer; URL grammatical gender differs from the Brazilian candidate."
+    },
+    "original_receipt": {
+      "source_id": "gallery-redirect-final-coverage.json",
+      "pointer_or_section": "/records/11"
+    },
+    "current_source_exact": true,
+    "current_target_exact": true,
+    "current_source_canonical_json_sha256": "7c43c60e9b0297c38e676ae0bbe0765ddf4fb9f2fe63845bb4972955f07c107a",
+    "current_target_canonical_json_sha256": "8e8f2480a9ebfb9ec88da746b09af05cccd96741cfd6ae5e1f8332069a2f3c86",
+    "context_id": "gallery-redirect",
+    "source_utf8_sha256": "148e9ab31d2fbe8a113eaa9fbe0bf1bb4c20f9320e6d3d85c291e70dfbc8de9c",
+    "target_utf8_sha256": "5574fdc5821d998552353e2ca687355523a975c0bb331ab039a15a4ea1e78cf7",
+    "current_references": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+        "lines": [
+          336
+        ]
+      }
+    ],
+    "current_context_complete_files_unchanged": false
+  }
+]
