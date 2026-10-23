@@ -1,0 +1,30 @@
+# All-language programme reconciliation, 23 October 2026
+
+## Current source coverage, not translation completion
+
+Production is verified 49bb797f104849e77948ab6bf029c9e8ba16c07f. The [fresh 174-catalogue inventory](https://github.com/c933103/AN-Paint/blob/65c3007f74f9beba636c87d5a218489d3d8af32d/records/localization-review/2026-10-23/pr166-integration/r01/current-174-source-inventory.json) preserves all 171 picker options in exact order/tag/path, with canonical English and non-picker es/ko separate. Canonical denominator remains 717 containers / 718 leaves, not an inherited assumption. Picker coverage remains 49,618 containers present / 72,989 missing and 49,652 leaves present / 73,126 missing. 7,039 English-identical leaves are not automatically untranslated. Presence is not reviewed quality.
+
+## What was actually recovered
+
+The companion 171-option scope map links each bounded reconciliation or classification to existing durable records. It distinguishes own-language independent wording receipts, author-only ledgers, public/consolidated attestations, narrow source/context findings, held scopes and synthetic-English classification. Czech/Swedish and French original broad receipts remain bounded by their exact successor/context records;341-row author ledgers elsewhere were not converted into 341 independent acceptances. Related English/Korean/Cantonese/Chinese/Serbian groups retain per-option rows and original explicit scope. Emoji is not independent natural-language coverage. Thai/Serbian source-context findings are not language acceptance. Ainu entries retain Help holds only.
+
+65 options have some bounded evidence/classification locator in this pass; 106 remain without a recovered own-option scope here. These are navigation counts, not reviewed-language or completion totals. All options, including those with evidence, retain unreconciled units. Whole-language accepted totals remain null.
+
+Unknown/unreconciled option scopes: 5 am, 6 ang, 8 ary, 9 as, 10 ast, 11 az, 12 be, 13 bg, 14 bn, 16 br, 17 bs, 18 ca, 19 ca-ES-valencia, 21 ch, 22 chr, 23 ckb, 25 csb, 26 cy, 27 da, 42 eu-ES, 43 fa, 44 fa-IR, 48 fy, 49 ga, 50 gd, 51 gl, 52 gu, 53 ha, 56 he, 57 hi, 58 hne, 59 hr, 60 ht, 62 hy, 63 ia, 65 ig, 66 is, 70 jv, 71 ka, 72 kab, 73 kk, 74 km, 75 kn, 79 ku, 80 ky, 81 la, 82 ln, 83 lo, 87 mai, 88 mi, 89 mk, 90 ml-IN, 94 mr, 96 mww, 97 my, 100 nch, 101 nds, 102 ne, 103 nhe, 104 nhw, 106 nn, 107 no, 108 non, 109 nv, 110 oc, 111 pa-IN, 112 pcm, 114 ps, 118 qug, 119 quh, 120 quy, 121 quz, 122 ro, 124 rw, 126 sa, 127 sd, 128 se, 129 shn, 130 si, 131 sk, 132 sl, 133 sm, 134 so, 135 sq, 138 su, 141 ta, 142 tdd, 143 te, 144 tg, 146 tok, 147 tpi, 149 tt-Cyrl, 150 tt-Latn, 151 ug, 152 uk, 153 ur, 154 uz-Latn, 157 wa, 158 wo, 160 xh, 161 yi, 162 yo, 163 yua, 166 za, 167 zgh, 171 zu. Their exact empty/partial/full presence classification is in the scope map. Empty or fallback-only is not completion.
+
+## Integrated versus pending
+
+- PR163: 59 exact accepted keys:35 Help,13 follow-ons,3 notes,8 Arabic corrections. [Common status record](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6360556179).
+- PR164: 29 edits:10 Cebuano,7 Filipino,12 es-419; unchanged Filipino label prerequisites separately recorded, not extra edits. [Common status record](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6361659274).
+- PR165: 134 containers/135 leaves:114 warnings plus19 Hungarian containers and1 Cebuano entry. [Common status record](https://github.com/c933103/AN-Paint/blob/0b22fd551d8c214d2f085c1551f4a8c2df638c66/records/localization-review/2026-10-23/pr165-integration/r01/SUMMARY.md).
+- PR166: 15 edits:13 Swahili plus2 Vietnamese, original wording/static limits unchanged. [Common status record](https://github.com/c933103/AN-Paint/blob/65c3007f74f9beba636c87d5a218489d3d8af32d/records/localization-review/2026-10-23/pr166-integration/r01/SUMMARY.md).
+
+These batch counts describe distinct edits within each batch, not a summed global review total. Repeated Help/warning/priority scopes can overlap; merge creates no new linguistic credit. Historical candidate labels are superseded only for the exact keys in common integration records, never by rewriting old snapshots.
+
+PR167 is open/unmerged at verified head d95dc79be43b78699196e90cd6098bcdc1f07b28: 2 Simplified Chinese plus 12 Cantonese Han ready core corrections. They are not production. The [qualified candidate record](https://github.com/c933103/AN-Paint/tree/b0ee36455443c4a7fd762c93a803beeb51ca7ea1/records/localization-review/2026-10-23/next-core-cn-yue/r01) preserves exact original qualifications and complete consumer bindings. Fit keeps its no-rendering limitation. 40 CN optional refinements, 29 Cantonese optional refinements and one Cantonese wording-only/no-consumer proposal remain excluded. Other held/optional/conditional items are not automatically ready for a batch.
+
+## Remaining limits and next work
+
+Seven full Help holds remain: ain-Kana, ain-Latn, mn-Mong, mnc-Mong, ryu, vi-Hani and wuu-Hans. Eight warning holds remain unchanged. en-001 canonical-only warning binding, Korean PR107 provenance, Vietnamese/Cantonese historical publication gaps, HK cached canvas receipt gap, palette/dormant/changed-consumer prerequisites and PR/archive-specific holds remain explicit in their records. HK’s new note-only acceptance does not fix unrelated provenance. Native-human, rendering, layout, runtime and accessibility-output quality are not inferred from source checks.
+
+Next steps are exact-head PR167 integration verification when actually merged; focused recovery or review of genuinely unresolved receipts/context; and translation/review work for explicitly unknown or missing units under the programme’s priorities. This reconciliation does not close the separate across-language non-translation applicability and new-UI-string discovery tasks. Existing dated records and user constraints remain unchanged. No global accepted-key total is fabricated; this is not full translation completion.
