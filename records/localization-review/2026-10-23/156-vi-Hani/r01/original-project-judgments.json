@@ -1,0 +1,1393 @@
+[
+  {
+    "receipt": "position-independent",
+    "selector": "entries + orthographic_notes + sources + integration_rule",
+    "evidence_kind": "raw independent decision",
+    "scope": null,
+    "original_selected_record": {
+      "scope": "Only six new PR67 exact-position controls. Compare full candidate values to exact English, check contextual choices against retrieved reference evidence, and keep language acceptance separate from rendering. No repository or source-file edits.",
+      "reviewed_at_utc": "2026-10-15T13:05:00Z",
+      "entries": [
+        {
+          "language": "vi-Hani",
+          "key": "ui_assembly_exact_position",
+          "source": "Exact position",
+          "source_sha256": "c317af77c261ceac139cabdac370c025429fdc0945a3856523557549c6578794",
+          "target": "位置 正確",
+          "target_sha256": "d2100dc217b55d49240fd3833956201df0c96d997a37413d73f6823c48944873",
+          "decision": "accept",
+          "verdict": "accepted_whole_value_language_semantics_and_contextual_orthography",
+          "whole_value_reviewed": true,
+          "approved_for_integration": true,
+          "language_accepted": true,
+          "publication_ready": false,
+          "semantic_confidence": "high",
+          "idiom_confidence": "moderate",
+          "orthography_confidence": "moderate, source-assisted",
+          "note": "The complete Vietnamese noun phrase places the position noun before its precision modifier. Both compounds have the intended contextual readings; the label does not reverse to Chinese adjective-first syntax.",
+          "source_ids": [
+            "N1"
+          ],
+          "full_replacement_candidate": "位置 正確",
+          "rendering_gate": "runtime_layout_not_verified"
+        },
+        {
+          "language": "vi-Hani",
+          "key": "ui_assembly_target_x",
+          "source": "Target X (pixels from left)",
+          "source_sha256": "26abbfed96cb5286301f195cb849d1c3128c9491f46a7caf06697bc3550fa36c",
+          "target": "X 懃 撻 (點影 併 自 𠵐 債)",
+          "target_sha256": "dabaa45a38529ee0710208d2715da7f6b8fc65105ac8e78688099549e1f83a42",
+          "decision": "accept",
+          "verdict": "accepted_whole_value_language_semantics_and_contextual_orthography",
+          "whole_value_reviewed": true,
+          "approved_for_integration": true,
+          "language_accepted": true,
+          "publication_ready": false,
+          "semantic_confidence": "high",
+          "idiom_confidence": "moderate",
+          "orthography_confidence": "moderate, source-assisted",
+          "note": "The X label is the value to set; its parenthesis is an elliptical measurement phrase with pixels counted from the physical left edge. The calculation verb governs the from-edge phrase. The directional character is the left-side reading, not the fruit homophone.",
+          "source_ids": [
+            "N1"
+          ],
+          "full_replacement_candidate": "X 懃 撻 (點影 併 自 𠵐 債)",
+          "rendering_gate": "runtime_layout_not_verified"
+        },
+        {
+          "language": "vi-Hani",
+          "key": "ui_assembly_target_y",
+          "source": "Target Y (pixels from top)",
+          "source_sha256": "20618eee1acca33b0b24079d3cdead000445b2f457ef7570c835ca857affc25b",
+          "target": "Y 懃 撻 (點影 併 自 𠵐 𨑗)",
+          "target_sha256": "7a9d45f2ab4817531974fa00e661ce346ec1fc6139fccb13b9bbbc71ec652139",
+          "decision": "accept",
+          "verdict": "accepted_whole_value_language_semantics_and_contextual_orthography",
+          "whole_value_reviewed": true,
+          "approved_for_integration": true,
+          "language_accepted": true,
+          "publication_ready": false,
+          "semantic_confidence": "high",
+          "idiom_confidence": "moderate",
+          "orthography_confidence": "moderate, source-assisted",
+          "note": "The same complete label structure targets Y. Its from-edge phrase names the physical upper edge; it does not name draw order or a logical start direction. The edge word is an ordinary spatial extension within this coordinate context.",
+          "source_ids": [
+            "N1"
+          ],
+          "full_replacement_candidate": "Y 懃 撻 (點影 併 自 𠵐 𨑗)",
+          "rendering_gate": "runtime_layout_not_verified"
+        },
+        {
+          "language": "vi-Hani",
+          "key": "ui_assembly_position_help",
+          "source": "Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.",
+          "source_sha256": "79666c1b31adf3637f539c2183f86f4f3ab2c93489b33ff1ff5b5ebb91a8d30f",
+          "target": "撻 𧣳 𨑗 邊 債 𧵑 影 尼 𨑗 椌 𡳒 頭 𠚢. X 吧 Y 𪜀 數 元 併 蹺 單位 點影, 扒 頭 自 0. 各 影 恪 𡨺 原 位置 現在. 於 低 朱 法 各 影 重 𬨠 僥; 影 得 入 𡢐 仕 得 𡳒 碮 𬨠 𨑗. 椌 𡳒 仕 𢲫 𢌌 抵 貯 悉 𪥘 各 影 㐌 撻. 份 割 吧 戟 𡱩 𡨺 原.",
+          "target_sha256": "a02f720a52672d3df17f31d683c2411c9dc7d10a4ae87e0df3d83aae4dfebaed",
+          "decision": "accept",
+          "verdict": "accepted_whole_value_language_semantics_and_contextual_orthography",
+          "whole_value_reviewed": true,
+          "approved_for_integration": true,
+          "language_accepted": true,
+          "publication_ready": false,
+          "semantic_confidence": "high",
+          "idiom_confidence": "moderate",
+          "orthography_confidence": "moderate, source-assisted",
+          "note": "Read as a connected Vietnamese instruction, all source clauses remain present and correctly scoped. The imperative targets this image’s upper-left corner on the output canvas. The next sentence predicates integer values of both X and Y and measures them in pixel units beginning at 0. Other images retain present positions. Permission applies to overlap; the later modifier attaches to import, and the following passive drawing clause puts those later imports above. Canvas growth has the purpose of containing every already placed image. The final coordinated subjects are crop regions and dimensions, both unchanged. Technical canvas/pixel compounds are understandable authored UI vocabulary. This acceptance is not based only on the supplied romanization or isolated character substitution.",
+          "source_ids": [
+            "N1",
+            "N2",
+            "N3"
+          ],
+          "full_replacement_candidate": "撻 𧣳 𨑗 邊 債 𧵑 影 尼 𨑗 椌 𡳒 頭 𠚢. X 吧 Y 𪜀 數 元 併 蹺 單位 點影, 扒 頭 自 0. 各 影 恪 𡨺 原 位置 現在. 於 低 朱 法 各 影 重 𬨠 僥; 影 得 入 𡢐 仕 得 𡳒 碮 𬨠 𨑗. 椌 𡳒 仕 𢲫 𢌌 抵 貯 悉 𪥘 各 影 㐌 撻. 份 割 吧 戟 𡱩 𡨺 原.",
+          "rendering_gate": "missing_bundled_glyphs"
+        },
+        {
+          "language": "vi-Hani",
+          "key": "ui_assembly_position_nonnegative",
+          "source": "X and Y must be whole numbers from zero to 2147483647.",
+          "source_sha256": "bfb8419f905181bfb3b3ab290b5f022c0a52e65a2a050f44fb9f99047cba43b4",
+          "target": "X 吧 Y 沛 𪜀 數 元 自 0 𦤾 2147483647.",
+          "target_sha256": "457e19774d95a7f4d27e5257b1061c77a683f6b39074b4bf76c4ad421536d599",
+          "decision": "accept",
+          "verdict": "accepted_whole_value_language_semantics_and_contextual_orthography",
+          "whole_value_reviewed": true,
+          "approved_for_integration": true,
+          "language_accepted": true,
+          "publication_ready": false,
+          "semantic_confidence": "high",
+          "idiom_confidence": "moderate",
+          "orthography_confidence": "moderate, source-assisted",
+          "note": "The coordinated subject X and Y shares the mandatory integer predicate. The from-to complement restricts each coordinate to the exact inclusive endpoints 0 and 2147483647. The integer compound uses the mathematical character choice, while unchanged in the help uses a different contextual character. There is no positive-only restriction or permission for fractions.",
+          "source_ids": [
+            "N1",
+            "N2",
+            "N3"
+          ],
+          "full_replacement_candidate": "X 吧 Y 沛 𪜀 數 元 自 0 𦤾 2147483647.",
+          "rendering_gate": "missing_bundled_glyphs"
+        },
+        {
+          "language": "vi-Hani",
+          "key": "ui_assembly_unknown_image",
+          "source": "The selected image is no longer in this assembly.",
+          "source_sha256": "2968b796028cf8b2c286e87fc73165eba1d734e7c1dd67840923a027025ac07f",
+          "target": "影 㐌 譔 空 𡀳 𥪝 版 𢯖 尼.",
+          "target_sha256": "9db57bbb96afb9d8bf5d6308f5585cfa846bd3f0356bebb4593944e72899be5a",
+          "decision": "accept",
+          "verdict": "accepted_whole_value_language_semantics_and_contextual_orthography",
+          "whole_value_reviewed": true,
+          "approved_for_integration": true,
+          "language_accepted": true,
+          "publication_ready": false,
+          "semantic_confidence": "high",
+          "idiom_confidence": "moderate",
+          "orthography_confidence": "moderate, source-assisted",
+          "note": "The full noun phrase identifies the previously selected image. Negation combines with the still-present element to express no longer; the following locative limits absence to this assembled composition. The postnominal demonstrative identifies this assembly. It does not claim deletion of the source file.",
+          "source_ids": [
+            "N1"
+          ],
+          "full_replacement_candidate": "影 㐌 譔 空 𡀳 𥪝 版 𢯖 尼.",
+          "rendering_gate": "runtime_layout_not_verified"
+        }
+      ],
+      "summary": {
+        "reviewed_values": 6,
+        "accepted_values": 6,
+        "held_values": 0,
+        "language_accepted_values": 6,
+        "known_font_gap_values": 2,
+        "native_speaker_certification": false,
+        "runtime_or_layout_certification": false
+      },
+      "sources": [
+        {
+          "id": "N1",
+          "title": "RCV, Công Cụ Tra Cứu Chữ Hán Nôm Chuẩn",
+          "url": "https://www.hannom-rcv.org/standard-nom/Lookup-CHNC.html?uiLang=vi",
+          "type": "Primary editorial spelling reference, publisher-indexed text; proposal rather than a universal official standard",
+          "access": "Publisher-indexed search results independently checked. Direct open returned HTTP 403. The accessible reproduction at https://html.cafe/xdca90f3a was checked for detailed entries. No full publisher retrieval is claimed.",
+          "checked_entries": [
+            "vị trí",
+            "chính xác",
+            "đặt",
+            "tính",
+            "mép",
+            "trái",
+            "trên",
+            "ảnh",
+            "khung",
+            "vẽ",
+            "nguyên",
+            "là",
+            "chồng",
+            "lên",
+            "đè",
+            "sau",
+            "mở",
+            "rộng",
+            "tất",
+            "cả",
+            "phần",
+            "cắt",
+            "kích thước",
+            "chọn",
+            "ghép",
+            "còn",
+            "này"
+          ],
+          "scope": "Supports contextual character selection and attested variants, not the newly authored complete UI sentences."
+        },
+        {
+          "id": "N2",
+          "title": "RCV, Bảng chữ Hán Nôm chuẩn thường dùng (publisher PDF)",
+          "url": "https://www.hannom-rcv.org/NS/bchnctd%20300623.pdf",
+          "type": "Primary publisher source, indexed excerpts",
+          "locators": [
+            "p.152/601, copula entry with alternative U+2A700",
+            "p.39/601, universal cả with U+2A958 U+E0101"
+          ],
+          "scope": "Confirms copula distinction and the publisher’s selected glyph variant; does not make its IVS a mandatory Unicode character distinction."
+        },
+        {
+          "id": "N3",
+          "title": "Vietnamese Ministry of Education and Training technical data specification",
+          "url": "https://moet.gov.vn/content/vanban/Lists/VBDH/Attachments/2643/Quychuan_kt-last.pdf",
+          "type": "Primary terminology evidence",
+          "scope": "Indexed bilingual type labels identify số nguyên with Integer. Used only for modern technical language, not legal interpretation or Nôm spelling."
+        },
+        {
+          "id": "N4",
+          "title": "Unicode Ideographic Variation Database, 2025-07-14 sequences",
+          "url": "https://www.unicode.org/ivd/data/2025-07-14/IVD_Sequences.txt",
+          "type": "Primary character-encoding registry",
+          "scope": "No U+2A958 sequence found in this registry version. The publisher-specific E0101 notation was not silently inserted or treated as a verified registered IVS. Glyph-form QA remains separate."
+        }
+      ],
+      "orthographic_notes": [
+        "Contextual review distinguishes mathematical nguyên from unchanged nguyên; copular là from unrelated homophones; stacking chồng from husband; movement lên from spatial trên; and phần cắt from unrelated homophonic entries.",
+        "The chosen forms for drawing, later and wider are attested alternatives; their simplified appearance is not by itself a language defect.",
+        "The base U+2A958 in the universal phrase is linguistically retained. The publisher displays it with E0101; exact preferred glyph shape remains a rendering/orthographic presentation check. The bundle has no format-14 UVS table. Do not blindly insert an unverified selector or replace the word for font convenience.",
+        "The sentences are modern Vietnamese composition in Han/Nom orthography. No source is claimed to contain these full UI strings, and no native-reader certification is claimed."
+      ]
+    }
+  },
+  {
+    "receipt": "commons-successor",
+    "selector": "entries[tag=vi-Hani]",
+    "evidence_kind": "raw independent successor decision",
+    "scope": null,
+    "original_selected_record": {
+      "scope": "Nine vi-Hani Commons diagnostic entries only",
+      "reviewed_at_utc": "2026-10-17T06:15:24.408707+00:00",
+      "revision": 2,
+      "supersedes": {
+        "path": "specialist-reviewed.json",
+        "sha256": "87f5e73e84d612bd53d9ff2441c69f8bc1e451e4393c906db18e171ac8a54d4c"
+      },
+      "revision_reason": "Blank-map full-pair follow-up preserves bản đồ trống using the sense-specific 𥧪. The earlier white/trắng substitute 𤽸 is superseded; the other approved values and two holds are unchanged.",
+      "primary_references": {
+        "VI-TECH-FILE": {
+          "title": "Ủy Ban Phục Sinh Hán Nôm Việt Nam: original converter interface",
+          "url": "https://hannom-rcv.org/converter/",
+          "supports": "Parallel Vietnamese/Hán-Nôm interface uses 𣜿 for computer tệp, with download/conversion predicates. Indexed primary text retrieved; direct page retrieval failed."
+        },
+        "VI-TECH-METADATA": {
+          "title": "Hán-Nôm Wikimedia-style file description interface",
+          "url": "https://www.hannom-rcv.org/wi/index.php?title=%E9%9B%86%E4%BF%A1%3ATamamo-no-mae-woodblock.jpg",
+          "supports": "Original site interface labels metadata 超與料 and supplemental information 通信補充. Evidence for modern technical usage, not full submitted sentences."
+        },
+        "VI-STANDARD": {
+          "title": "Bảng Chữ Hán Nôm Chuẩn Thường Dùng, Ủy Ban Phục Sinh Hán Nôm Việt Nam",
+          "url": "https://www.hannom-rcv.org/NS/bchnctd%20300623.pdf",
+          "supports": "Entries supply 𥱬 ghi, 㭲 gốc, 碼化 mã hóa. Retrieved indexed extracts; direct download returned HTTP 403. Contemporary orthographic source, not universal standardization."
+        },
+        "VI-GIU": {
+          "title": "Nguyễn Quang Hồng, Tự Điển Chữ Nôm Dẫn Giải, 𡨺",
+          "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%F0%A1%A8%BA&radicalNum=40&strokeCt=8&uiLang=vn",
+          "supports": "The exact codepoint U+21A3A supports giữ (keep/retain), distinct from adjacent variants."
+        },
+        "VI-CHOICE": {
+          "title": "Ủy Ban Phục Sinh Hán Nôm Việt Nam IME instructions",
+          "url": "https://hannom-rcv.org/wi/index.php/%E6%BA%96%E5%8C%96%3AIME",
+          "supports": "Parallel original technical instructions use 譔 for chọn (choose/select)."
+        },
+        "VI-WHITE": {
+          "title": "Lee Collins and Ngô Thanh Nhàn, Proposal to Encode Two Vietnamese Alternate Reading Marks (2017), p.2",
+          "url": "https://www.unicode.org/L2/L2017/17373r-viet-alt-reading-marks.pdf",
+          "supports": "Explicitly identifies U+24F78 𤽸 as trắng. This is the white/blank adjective; the held U+24FF0 𤿰 does not establish that reading."
+        },
+        "VI-LUU-GIU": {
+          "title": "Hán-Nôm standard lookup, entry giữ",
+          "url": "https://hannom-rcv.org/Lookup-CHNC.html",
+          "supports": "Exact modern lexical compound 留𡨺, lưu giữ. Indexed primary lexical table."
+        },
+        "VI-EMPTY-PRIMARY": {
+          "title": "Ủy Ban Phục Sinh Hán Nôm Việt Nam, original Qif template documentation",
+          "url": "https://hannom-rcv.org/wi/%E6%9D%BF%E3%91%84%3AQif",
+          "supports": "Original technical conditions distinguish an empty value (𥧪) from a nonempty value (空𥧪). This is direct usage of the needed empty/blank sense, not merely homophonic character lookup. Search-indexed full text read; direct retrieval gave a cache miss."
+        },
+        "VI-DRUM": {
+          "title": "Nguyễn Quang Hồng, Tự Điển Chữ Nôm Dẫn Giải, 𤿰",
+          "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%F0%A4%BF%B0&radicalNum=107&strokeCt=7&uiLang=vn",
+          "supports": "The original character’s entry supports the trống drum sense and examples. It does not establish white/trắng or the empty-space sense. Phonetic reuse is historically possible, so the correction selects the explicitly supported sense rather than claiming impossible pronunciation."
+        },
+        "VI-EMPTY-LEXICON": {
+          "title": "Ủy Ban Phục Sinh Hán Nôm Việt Nam, Bảng Chữ Hán Nôm Chuẩn Thường Dùng / lookup",
+          "url": "https://hannom-rcv.org/Lookup-CHNC.html",
+          "supports": "Contemporary orthographic convention distinguishes the drum character from the empty-space trống character. Read alongside the independently retrieved Qif technical use. The linked lookup text was partially available through search; the complete table was not downloaded."
+        }
+      },
+      "entries": [
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_metadata_not_file_page",
+          "type": "NotFilePage",
+          "english": "Not a Commons file page",
+          "source_context": "Commons metadata precondition; may be wrapped by an image-import failure. Commons is the service name.",
+          "exception_category": "IllegalArgumentException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 731,
+            "exact_xml": "<string name=\"commons_metadata_not_file_page\">Not a Commons file page</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+            "start_line": 53,
+            "end_line": 53,
+            "exact_source": "        if (!IllustrationSource.COMMONS.isArtworkPage(uri)) throw CommonsImportFailure.NotFilePage()",
+            "exact_source_sha256": "a0603bb42e3d728703595be3a8f88848205f5c8591a84b79568b423c58558aa8"
+          },
+          "draft_localized": "空 沛 張 𣜿 Commons.",
+          "localized": "空 沛 張 𣜿 Commons.",
+          "verdict": "accept",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "空 沛 張 𣜿 Commons.",
+          "escaped_final_value": "空 沛 張 𣜿 Commons.",
+          "final_xml_element": "<string name=\"commons_metadata_not_file_page\">空 沛 張 𣜿 Commons.</string>",
+          "review_reason": "The negative copular clause denies the page type. 𣜿 is independently used for a computer file, not an inferred Chinese sense.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-TECH-FILE",
+            "VI-TECH-METADATA",
+            "VI-STANDARD"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "the primary Nôm dictionary supports 沛 as phải. The complete không phải trang tệp Commons sentence still requires script-aware validation of 張/𣜿 as modern page/file terms and Vietnamese noun ordering, not readings inferred from Chinese.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "8b39dee646beb03c7a7899847193d89bc8323454afaae8790917b7d9128f8d8e",
+          "quoc_ngu_reading": "Không phải trang tệp Commons.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed."
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_metadata_ambiguous_file",
+          "type": "AmbiguousFile",
+          "english": "Commons metadata returned an ambiguous file",
+          "source_context": "Metadata response matched zero OR multiple files; do not narrow this to multiple matches.",
+          "exception_category": "IOException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 733,
+            "exact_xml": "<string name=\"commons_metadata_ambiguous_file\">Commons metadata returned an ambiguous file</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+            "start_line": 98,
+            "end_line": 99,
+            "exact_source": "        val pages = root.getJSONObject(\"query\").getJSONArray(\"pages\")\n        if (pages.length() != 1) throw CommonsImportFailure.AmbiguousFile()",
+            "exact_source_sha256": "dd6181bae6941e46ef0847239125886e9d22c637236423c3773c3df0e261a575"
+          },
+          "draft_localized": "空 体 確定 𠬠 𣜿 唯一 自 超 與 料 Commons.",
+          "localized": "空 体 確定 𠬠 𣜿 唯一 自 超 與 料 Commons.",
+          "verdict": "accept",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "空 体 確定 𠬠 𣜿 唯一 自 超 與 料 Commons.",
+          "escaped_final_value": "空 体 確定 𠬠 𣜿 唯一 自 超 與 料 Commons.",
+          "final_xml_element": "<string name=\"commons_metadata_ambiguous_file\">空 体 確定 𠬠 𣜿 唯一 自 超 與 料 Commons.</string>",
+          "review_reason": "The inability-to-identify-one-unique-file wording covers both zero and multiple results. It does not claim that multiple files necessarily exist. Vietnamese word order and modal negation are preserved.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-TECH-FILE",
+            "VI-TECH-METADATA",
+            "VI-STANDARD"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "intended Vietnamese is Không thể xác định một tệp duy nhất từ siêu dữ liệu Commons. Validate the modern metadata compound 超與料 and the full relation from metadata, while retaining the zero-or-multiple interpretation of inability to identify one file.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "90480b4e64379f1e473580e79f1ea0a663747eb09106ac819f677d1c92c762a3",
+          "quoc_ngu_reading": "Không thể xác định một tệp duy nhất từ siêu dữ liệu Commons.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed."
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_metadata_unavailable",
+          "type": "MetadataUnavailable",
+          "english": "Commons file metadata is unavailable",
+          "source_context": "File missing, namespace absent, or response is not a file. Metadata-only credit and image insertion share this reason.",
+          "exception_category": "IOException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 735,
+            "exact_xml": "<string name=\"commons_metadata_unavailable\">Commons file metadata is unavailable</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+            "start_line": 100,
+            "end_line": 101,
+            "exact_source": "        val page = pages.getJSONObject(0)\n        if (page.optBoolean(\"missing\") || page.optInt(\"ns\", -1) != 6) throw CommonsImportFailure.MetadataUnavailable()",
+            "exact_source_sha256": "1a3ef4f2588ae627dfdd55811fb1fc17ecaaf6666c536ff2312712aa5332185d"
+          },
+          "draft_localized": "超 與 料 𧵑 𣜿 Commons 空 可用.",
+          "localized": "超 與 料 𧵑 𣜿 Commons 空 可用.",
+          "verdict": "accept",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "超 與 料 𧵑 𣜿 Commons 空 可用.",
+          "escaped_final_value": "超 與 料 𧵑 𣜿 Commons 空 可用.",
+          "final_xml_element": "<string name=\"commons_metadata_unavailable\">超 與 料 𧵑 𣜿 Commons 空 可用.</string>",
+          "review_reason": "Metadata is the subject of unavailability, with file attached through của; this is a status report, not a command or prohibition. 超與料 has independent metadata-interface use.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-TECH-FILE",
+            "VI-TECH-METADATA",
+            "VI-STANDARD"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "intended metadata-unavailable statement is recoverable, but 超與料 and 空可用 need contextual Nôm/Vietnamese review; Chinese character meanings do not certify the Vietnamese technical phrase.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "6e7a1f4b315e5ba018ec7416bda956c1ea73904b8832659db5d89b61464d397d",
+          "quoc_ngu_reading": "Siêu dữ liệu của tệp Commons không khả dụng.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed."
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_metadata_original_mismatch",
+          "type": "MetadataOriginalMismatch",
+          "english": "Commons attribution does not match the selected original file",
+          "source_context": "The attribution metadata identifies a different original image. Keep attribution distinct from the edited drawing.",
+          "exception_category": "IOException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 737,
+            "exact_xml": "<string name=\"commons_metadata_original_mismatch\">Commons attribution does not match the selected original file</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+            "start_line": 102,
+            "end_line": 104,
+            "exact_source": "        val image = page.getJSONArray(\"imageinfo\").getJSONObject(0)\n        val source = image.getString(\"url\")\n        if (!sameOriginal(expectedSource, source)) throw CommonsImportFailure.MetadataOriginalMismatch()",
+            "exact_source_sha256": "c7125724b81e3e1375100f640e86d998c60c6e13206e69c61d59735d5e1d5a63"
+          },
+          "draft_localized": "通信 𥱬 功 Commons 空 符合 貝 𣜿 㭲 㐌 譔.",
+          "localized": "通信 𥱬 功 Commons 空 符合 貝 𣜿 㭲 㐌 譔.",
+          "verdict": "accept",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "通信 𥱬 功 Commons 空 符合 貝 𣜿 㭲 㐌 譔.",
+          "escaped_final_value": "通信 𥱬 功 Commons 空 符合 貝 𣜿 㭲 㐌 譔.",
+          "final_xml_element": "<string name=\"commons_metadata_original_mismatch\">通信 𥱬 功 Commons 空 符合 貝 𣜿 㭲 㐌 譔.</string>",
+          "review_reason": "Credit information is distinguished from the selected original file. Phù hợp với expresses the failed match; đã chọn modifies tệp gốc. 𥱬, 㭲 and 譔 are supported readings, not substituted Chinese grammar.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-TECH-FILE",
+            "VI-TECH-METADATA",
+            "VI-STANDARD",
+            "VI-CHOICE"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "validate 通信𥱬功 as attribution information, 貝 as với, and 㐌譔 as đã chọn in the complete comparison with 𣜿㭲. Do not judge those forms solely by Chinese meanings or convert to Latin Vietnamese.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "6ca44eeda018fed2f94b1c02e3f2f5bb8e87f8239e6a44c7228ee57d6b21cebe",
+          "quoc_ngu_reading": "Thông tin ghi công Commons không phù hợp với tệp gốc đã chọn.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed."
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_metadata_invalid_page",
+          "type": "InvalidAttributionPage",
+          "english": "Invalid Commons attribution page",
+          "source_context": "The provider supplied an invalid Commons file-description page URL.",
+          "exception_category": "IOException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 739,
+            "exact_xml": "<string name=\"commons_metadata_invalid_page\">Invalid Commons attribution page</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+            "start_line": 105,
+            "end_line": 106,
+            "exact_source": "        val pageUrl = image.getString(\"descriptionurl\")\n        if (!IllustrationSource.COMMONS.isArtworkPage(Uri.parse(pageUrl))) throw CommonsImportFailure.InvalidAttributionPage()",
+            "exact_source_sha256": "f1d805ac02ac148def66b95ac64d564416abf8b4d8a8723659f265098e77f38e"
+          },
+          "draft_localized": "張 𥱬 功 Commons 空 合例.",
+          "localized": "張 𥱬 功 Commons 空 合例.",
+          "verdict": "accept",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "張 𥱬 功 Commons 空 合例.",
+          "escaped_final_value": "張 𥱬 功 Commons 空 合例.",
+          "final_xml_element": "<string name=\"commons_metadata_invalid_page\">張 𥱬 功 Commons 空 合例.</string>",
+          "review_reason": "A complete Vietnamese negative-validity clause. The page is the credit/attribution page; invalidity is not confused with absence of attribution.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-TECH-FILE",
+            "VI-TECH-METADATA",
+            "VI-STANDARD"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "validate 張𥱬功 and 合例 as the intended Vietnamese attribution page and hợp lệ. Existing catalogue occurrence is terminology context, not independent attestation of the complete invalid-page statement.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "6bbb20f1024716b477de24d3eb3569be7bb69181b5da0551317221e32d546516",
+          "quoc_ngu_reading": "Trang ghi công Commons không hợp lệ.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed."
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_metadata_field_too_large",
+          "type": "FieldTooLarge",
+          "english": "Commons attribution field exceeds the text limit",
+          "source_context": "Raw attribution field exceeds the text-length limit before HTML is decoded; not a response-byte or rendered-text limit.",
+          "exception_category": "IOException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 741,
+            "exact_xml": "<string name=\"commons_metadata_field_too_large\">Commons attribution field exceeds the text limit</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+            "start_line": 124,
+            "end_line": 126,
+            "exact_source": "    internal fun plain(html: String): String {\n        if (html.length > MAX_FIELD) throw CommonsImportFailure.FieldTooLarge()\n        val spanned = if (Build.VERSION.SDK_INT >= 24) Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) else Html.fromHtml(html)",
+            "exact_source_sha256": "c47c0119689160a1704efc8ab7c17fe97ddbd34dffa171a626358dd77bbd167e"
+          },
+          "draft_localized": "場 通信 𥱬 功 𧵑 Commons 越 過 界限 度 𨱽 文本.",
+          "localized": "場 通信 𥱬 功 𧵑 Commons 越 過 界限 度 𨱽 文本.",
+          "verdict": "accept",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "場 通信 𥱬 功 𧵑 Commons 越 過 界限 度 𨱽 文本.",
+          "escaped_final_value": "場 通信 𥱬 功 𧵑 Commons 越 過 界限 度 𨱽 文本.",
+          "final_xml_element": "<string name=\"commons_metadata_field_too_large\">場 通信 𥱬 功 𧵑 Commons 越 過 界限 度 𨱽 文本.</string>",
+          "review_reason": "The subject is an attribution-information field and the exceeded bound is text length. It says neither response bytes nor displayed/rendered text; the raw-field condition remains compatible with the implementation.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-TECH-FILE",
+            "VI-TECH-METADATA",
+            "VI-STANDARD"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "𨱽 is lexically attested as dài, but 場 as a metadata field and 界限度𨱽文本 as the raw text-length limit require a modern technical Nôm reader. No byte or rendered-text narrowing is intended.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "add592ca3f1637f5650956fa4db3edc1e493d567f41d02dced37969d9e06784e",
+          "quoc_ngu_reading": "Trường thông tin ghi công của Commons vượt quá giới hạn độ dài văn bản.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed."
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_metadata_cache_failed",
+          "type": "CacheFailed",
+          "english": "Could not retain Commons attribution",
+          "source_context": "Could not retain the provider metadata snapshot. This is not a drawing, edited-credit, or clipboard save failure.",
+          "exception_category": "IOException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 743,
+            "exact_xml": "<string name=\"commons_metadata_cache_failed\">Could not retain Commons attribution</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CommonsAttribution.kt",
+            "start_line": 141,
+            "end_line": 146,
+            "exact_source": "    /** Cache a metadata snapshot without claiming an image was inserted. The editor records use later. */\n    fun cache(context: Context, record: Record) {\n        val value = JSONObject().put(\"source\", record.source).put(\"page\", record.page).put(\"title\", record.title)\n            .put(\"metadata\", JSONObject(record.metadata))\n        if (!context.getSharedPreferences(\"commons-attribution-v1\", Context.MODE_PRIVATE).edit()\n                .putString(record.source, value.toString()).commit()) throw CommonsImportFailure.CacheFailed()",
+            "exact_source_sha256": "10dc40342667b33c90340a6d2cb59953218bf5b22de2b6b74b30d7c39936dd5b"
+          },
+          "draft_localized": "空 体 留 𡨺 通信 𥱬 功 Commons.",
+          "localized": "空 体 留 𡨺 通信 𥱬 功 Commons.",
+          "verdict": "accept",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "空 体 留 𡨺 通信 𥱬 功 Commons.",
+          "escaped_final_value": "空 体 留 𡨺 通信 𥱬 功 Commons.",
+          "final_xml_element": "<string name=\"commons_metadata_cache_failed\">空 体 留 𡨺 通信 𥱬 功 Commons.</string>",
+          "review_reason": "Lưu giữ is retention. Exact 𡨺 giữ is verified; the object is Commons attribution information rather than drawing save or clipboard copy. Failure is expressed without inventing loss of existing data.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-TECH-FILE",
+            "VI-TECH-METADATA",
+            "VI-STANDARD",
+            "VI-GIU",
+            "VI-LUU-GIU"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "𡨺 is explicitly attested as giữ by Nguyễn Quang Hồng; do not replace it merely because 𡨹 also occurs. The remaining hold concerns the full lưu giữ thông tin ghi công composition and technical retention sense, not that resolved variant.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "7808707778a4393d49d399fa03fe214b3db5c77018e9b27902edefe3a6e5f008",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "615bc632ec3411ced35f066454077e40a76a7e559d2764ffbb91b8a9a01aad2a",
+          "quoc_ngu_reading": "Không thể lưu giữ thông tin ghi công Commons.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed."
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_download_original_mismatch",
+          "type": "DownloadOriginalMismatch",
+          "english": "The Commons download redirected to a different original file.",
+          "source_context": "Image insertion only: an allowed download redirect identifies a different Commons original.",
+          "exception_category": "IllegalArgumentException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 745,
+            "exact_xml": "<string name=\"commons_download_original_mismatch\">The Commons download redirected to a different original file.</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+            "start_line": 347,
+            "end_line": 349,
+            "exact_source": "                check(source.responseCode in 200..299) {ui(R.string.ui_the_image_could_not_be_downloaded)}\n                if(provider==IllustrationSource.COMMONS && !CommonsAttribution.sameOriginal(uri.toString(),url.toString()))\n                    throw CommonsImportFailure.DownloadOriginalMismatch()",
+            "exact_source_sha256": "6ab1556ec7c3e2ef87ef15267946e116b41321eee0a4c89e578b58f68ba3e980"
+          },
+          "draft_localized": "役 載 自 Commons 㐌 得 轉 向 𦤾 𠬠 𣜿 㭲 恪.",
+          "localized": "役 載 自 Commons 㐌 得 轉 向 𦤾 𠬠 𣜿 㭲 恪.",
+          "verdict": "accept",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "役 載 自 Commons 㐌 得 轉 向 𦤾 𠬠 𣜿 㭲 恪.",
+          "escaped_final_value": "役 載 自 Commons 㐌 得 轉 向 𦤾 𠬠 𣜿 㭲 恪.",
+          "final_xml_element": "<string name=\"commons_download_original_mismatch\">役 載 自 Commons 㐌 得 轉 向 𦤾 𠬠 𣜿 㭲 恪.</string>",
+          "review_reason": "The nominalized Commons download is redirected to a different original. Source từ and destination đến preserve direction; đã được marks the occurred redirection, without alleging an unsafe host.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-TECH-FILE",
+            "VI-TECH-METADATA",
+            "VI-STANDARD"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "恪 as khác and 得 as được have lexical support, but the complete việc tải ... được chuyển hướng đến ... tệp gốc khác needs script-aware review, including whether the download noun 役載 is sufficiently precise. Keep the different original explicit.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "9bbe549f3dc0ac15ab5b22ca090a5c0deab1e59726838f6494bcb3dc9e56b89e",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "f64af039b5beeee4fabecd04902c640ca7f247bad8e3b1da5301194ab26cdce3",
+          "quoc_ngu_reading": "Việc tải từ Commons đã được chuyển hướng đến một tệp gốc khác.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed."
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_svg_png_encode_failed",
+          "type": "PngEncodeFailed",
+          "english": "Could not encode blank map as PNG",
+          "source_context": "Commons SVG image insertion only: PNG compression returned failure. PNG is a format identifier.",
+          "exception_category": "IOException",
+          "source_resource": {
+            "path": "Paintroid/src/main/res/values/strings.xml",
+            "line": 747,
+            "exact_xml": "<string name=\"commons_svg_png_encode_failed\">Could not encode blank map as PNG</string>"
+          },
+          "implementation_context": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BlankMapSvg.kt",
+            "start_line": 45,
+            "end_line": 47,
+            "exact_source": "            destination.outputStream().use {out ->\n                if(!bitmap.compress(Bitmap.CompressFormat.PNG,100,out)) throw CommonsImportFailure.PngEncodeFailed()\n            }",
+            "exact_source_sha256": "404357ff6a0cef8b7d72d237dcf6977c7dafe2d9e37e0ea0998b7c044b7a56e2"
+          },
+          "draft_localized": "空 体 碼 化 版圖 𤿰 成 PNG.",
+          "localized": "空 体 碼 化 版圖 𥧪 成 PNG.",
+          "verdict": "correct",
+          "review_status": "independent_complete_value_review_passed",
+          "integration_approved": true,
+          "accepted_translation_credit": true,
+          "final_localized": "空 体 碼 化 版圖 𥧪 成 PNG.",
+          "escaped_final_value": "空 体 碼 化 版圖 𥧪 成 PNG.",
+          "final_xml_element": "<string name=\"commons_svg_png_encode_failed\">空 体 碼 化 版圖 𥧪 成 PNG.</string>",
+          "review_reason": "Correct the drum-sense 𤿰 to empty/blank-sense 𥧪, retaining the intended Vietnamese word trống and the existing catalogue term bản đồ trống. This supersedes the earlier trắng/𤽸 substitution: a white character is valid as a reading but is not the narrowest supported correction for an unfilled map. PNG remains the encoding format; the failure modal and encoding predicate are unchanged.",
+          "hold_type": null,
+          "source_reference_ids": [
+            "VI-STANDARD",
+            "VI-EMPTY-PRIMARY",
+            "VI-DRUM"
+          ],
+          "input_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "prior_hold_reason": "validate 碼化 and 成 as Vietnamese mã hóa ... thành in this format-conversion context and 版圖𤿰 as bản đồ trắng. Primary constituent readings do not establish the whole encode-as-PNG failure clause.",
+          "reviewed_catalogue_sha256": "24d158dce1f1e6b19338d1544bd211bf81297d38e43f6a7dd0f8a1192e4958bb",
+          "reviewed_english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "reviewed_implementation_file_sha256": "30e527d7447a54cc8f6d23a85fb0af0cce9f8ff13a9e72d58eb708b07bca0c9e",
+          "source_contract_sha256": "b7fc35cc601e7795d86174ec9c8124ed703bdd9072cfa52063d45b92d7aedbb0",
+          "input_holds_sha256": "02b7722411d27178900595eefe249008bacbb007c026511bc63b2e00c8b6eeaa",
+          "final_utf8_sha256": "9636eaa5ef093f3412de82449f7f083212ca1585761dc0c58553ae9ddafd06ff",
+          "quoc_ngu_reading": "Không thể mã hóa bản đồ trống thành PNG.",
+          "validation_basis": "Independent semantic and linguistic review using productive grammar and lexical evidence. No native certification or exact full-sentence attestation is claimed.",
+          "superseded_final_localized": "空 体 碼 化 版圖 𤽸 成 PNG.",
+          "superseded_final_utf8_sha256": "0e84831b2b71bbf92aa885c8a99541e6f0f9af2e2344eb7dd65a8f551acae6b1",
+          "reviewed_catalogue_sha256_at_revision": "f9c79c6c9c70f653a89938c1947d6a8dc5e63b8c39db9a0c5bacabecd7f07edd"
+        }
+      ]
+    }
+  },
+  {
+    "receipt": "gallery-external",
+    "selector": "/entries[tag=vi-Hani]",
+    "evidence_kind": "raw independent complete-statement decision",
+    "scope": null,
+    "original_selected_record": {
+      "tag": "vi-Hani",
+      "catalogue": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "text": "Android 空 尋 𧡊 應用 抵 𢲫 連結 尼.",
+      "text_sha256": "8c1dc32e10bf8ddac88386e5eaf8ada701d1feef5e2bf5e747a0f9432179c265",
+      "review_group": "script-regional-synthetic-27",
+      "full_statement_review": "The entire Nôm statement follows the Vietnamese sentence order and the stated readings không / tìm / thấy / ứng dụng / để / mở / liên kết / này. The app and this-link objects are not swapped, and syntax is Vietnamese rather than Chinese. Exact historic spelling and modern technical orthographic acceptance remain separate from this bounded reading check.",
+      "disposition": "bounded_semantic_review_with_idiom_limit",
+      "native_speaker_certification": false,
+      "runtime_ui_verification": false
+    }
+  },
+  {
+    "receipt": "empty-credit",
+    "selector": "/31",
+    "evidence_kind": "raw independent decision",
+    "scope": null,
+    "original_selected_record": {
+      "locale": "values-b+vi+Hani",
+      "decision": "accept_with_caveats",
+      "reviewed_replacement": "空𣎏 文本 𥱬 功 形 影.",
+      "rationale": "The full character sequence reads Không có văn bản ghi công hình ảnh, which states absence of image-credit text in Vietnamese word order. It agrees in meaning with the Quốc-ngữ value, although có sẵn is represented simply as absence. No Latin fallback or insertion verb remains.",
+      "confidence": "moderate",
+      "unknowns": [
+        "Modern Hán-Nôm technical spelling is not uniquely standardized; inherited character assignments and rendered font coverage remain unverified by a native Hán-Nôm reader.",
+        "This independent review covers this complete value and its immediate credit context only; it is not native-speaker, whole-catalogue, or installed-device certification."
+      ],
+      "supporting_sources": [],
+      "candidate_corrected": false,
+      "applied_source_matches": true
+    }
+  },
+  {
+    "receipt": "redirect",
+    "selector": "/records/56",
+    "evidence_kind": "public project compilation containing independent decision",
+    "scope": null,
+    "original_selected_record": {
+      "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "old_value": "書院 㐌 轉 向 𠚢 外 各 𢵯 主 得 互助.",
+      "final_value": "書院 㐌 轉 向 𦤾 URL 影 空 得 互助.",
+      "final_backtranslation": "Thư viện đã chuyển hướng tới URL ảnh không được hỗ trợ. / The gallery redirected to an unsupported image URL.",
+      "independent_confidence": "medium",
+      "translation_rationale": "Preserves Vietnamese word order in Chữ Nôm, uses the catalogue’s tới character from range/destination text, and retains ảnh, không được and hỗ trợ spellings. URL remains a literal technical acronym.",
+      "independent_review": {
+        "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+        "candidate": "書院 㐌 轉 向 𦤾 URL 影 空 得 互助.",
+        "recommended_final_value": "書院 㐌 轉 向 𦤾 URL 影 空 得 互助.",
+        "value": "書院 㐌 轉 向 𦤾 URL 影 空 得 互助.",
+        "acceptance": "accepted_in_bounded_review_with_limits",
+        "confidence": "medium",
+        "whole_sentence_review": "Read as Vietnamese: Thư viện đã chuyển hướng tới URL ảnh không được hỗ trợ. Subject, past marker, redirect verb, destination, image URL and passive unsupported phrase are present. Nôm is evaluated using Vietnamese word order, not as a Chinese clause. The destination graph 𦤾 also occurs in local from/to and page-range strings.",
+        "concrete_limits": "The contextual Vietnamese reading is clear, but graph choice and Nôm spelling conventions have not had independent specialist confirmation. The phrase URL ảnh is treated as the technical noun compound; no host change or specific component is named.",
+        "policy_neutrality": "No provider hostname, host-change claim, path, scheme, user-info, port or extension is singled out. The technical literal URL is retained.",
+        "method": "Read the complete candidate and local source context. Historical audit acceptance is withdrawn and was not reused. No network, fluent-speaker certification, application edits or runtime rendering occurred in this review.",
+        "recommended_final": "書院 㐌 轉 向 𦤾 URL 影 空 得 互助."
+      },
+      "cross_reviewed_correction": null,
+      "limits": [
+        "The Vietnamese semantic sentence is clear; selection of Nôm graphs and spacing follows this catalogue and is not a universal Nôm orthographic claim.",
+        "No independent Nôm-reader review or glyph-coverage/rendering test was performed."
+      ]
+    }
+  },
+  {
+    "receipt": "native-component",
+    "selector": "/Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+    "evidence_kind": "independent review and correction cross-review retaining specialist hold",
+    "scope": null,
+    "original_selected_record": {
+      "candidate": {
+        "value": "𠬠 成 分 懃 抵 處 理 影 空 可 用. 影 𣗓 得 入.",
+        "confidence": "low",
+        "notes": "Candidate Chữ Nôm reading: “Một thành phần cần để xử lý ảnh không khả dụng. Ảnh chưa được nhập.” Intended meaning is an unavailable component needed for image processing and no image import. All characters occur in the existing catalogue; no new font code points are needed. Uses a cần để paraphrase instead of introducing 切 for cần thiết. Nôm character choices and UI register need specialist review; no native-speaker certification."
+      },
+      "review": {
+        "verdict": "revise_needs_specialist_review",
+        "recommended_value": "𠬠 成 分 懃 抵 處 理 影 空 可 用. 影 空 得 入.",
+        "confidence": "low",
+        "notes": "Both clauses were reviewed via the reading Một thành phần cần để xử lý ảnh không khả dụng. Ảnh không được nhập. Change inherited 𣗓/chưa (not yet) to 空/không so the outcome does not imply an import still pending. Nguyễn Quang Hồng’s dictionary explicitly identifies 𣗓 as chưa (https://www.nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai/Tu-Dien-Chu-Nom-Dan_Giai?nom=%F0%A3%97%93&radicalNum=75&strokeCt=10&uiLang=en). Modern Hán-Nôm usage of 懃 for cần is attested by the Hán-Nôm Research and Application Society (https://www.hannom-rcv.org/); the paraphrase cần để is semantically adequate without adding 切. Every character in the complete recommendation already occurs in this catalogue, and every non-whitespace codepoint is present in anpaintnomui.ttf cmap. No new font codepoints are necessary. Character-choice and UI idiom still need specialist review; no native-speaker certification."
+      },
+      "final": "𠬠 成 分 懃 抵 處 理 影 空 可 用. 影 空 得 入.",
+      "correction_cross_review": {
+        "verdict": "accept_revision_needs_specialist_review",
+        "recommended_value": "𠬠 成 分 懃 抵 處 理 影 空 可 用. 影 空 得 入.",
+        "confidence": "low",
+        "notes": "Cross-reviewed the complete candidate reading: Một thành phần cần để xử lý ảnh không khả dụng. Ảnh không được nhập. The first sentence explicitly identifies a component needed for image processing and denies its availability; it does not identify a converter or claim a network/provider outage. Replacing 𣗓/chưa with 空/không removes the not-yet implication. In this failure-result context, the second sentence is a descriptive negative passive (“the image was not imported”); Vietnamese need not mark past time overtly here. Không được can have a permission reading in other contexts, so this is contextual acceptance, not proof of an unambiguous standalone formula. All candidate characters occur in the existing catalogue, and every non-whitespace character is present in the bundled anpaintnomui.ttf cmap. No additional font codepoints are needed. Nôm character choices and UI idiom remain unverified by a specialist; no native-speaker certification or production edits."
+      }
+    }
+  },
+  {
+    "receipt": "sampled-detail",
+    "selector": "whole one-key record",
+    "evidence_kind": "source-assisted original complete-value analysis",
+    "scope": null,
+    "original_selected_record": {
+      "schema": "anpaint-neutral-memory-linguistic-review-v1",
+      "reviewed_at_utc": "2026-10-17",
+      "key": "ui_sampled_resize_memory_explanation",
+      "scope": "Complete current value only, linguistic/static context review; no routing changes, source edits, PR56 edits, or external publication.",
+      "source_commit": "f988a94d8e4fa300bfe181ba67bba7b546651ca1",
+      "source": {
+        "qualifier": "b+vi+Hani",
+        "blob": "e5fcf78b97ba994af39416811d8fa93758547fcf",
+        "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+        "source_url": "https://github.com/c933103/AN-Paint/blob/f988a94d8e4fa300bfe181ba67bba7b546651ca1/Paintroid/src/main/res/values-b%2Bvi%2BHani/strings.xml",
+        "value": "約 併 包 𠁟 椌 𡳒 現在, 榜 暫, 部 墊 解 碼 𥙩 㑄 吧 部 墊 整 𢯢. 𣞪 用 部𢖵 實際 𣎏 体 𠊝 𢷮. 版 抄 𡮈 欣 仕 𠅒 枝節. 𣜿 㭲 空 𠊝 𢷮.",
+        "matches_historical_handoff": true,
+        "value_sha256": "c440148385de677afbe0d08d981c57a64267f53d1224c5effd502af513c1a270"
+      },
+      "historical_receipt": {
+        "url": "https://github.com/c933103/AN-Paint/pull/80#issuecomment-6182923640",
+        "confidence": "L",
+        "scope": "Clause removal and retained-source inheritance; no fresh specialist-language certification. Preserved as historical evidence, not overwritten."
+      },
+      "decision": "accept",
+      "confidence": "M",
+      "decision_scope": "Bounded full-value semantic acceptance of this exact one-key value. Not native-speaker, specialist, catalogue-wide, universal Nôm orthography, layout, runtime, or release certification.",
+      "candidate_value": null,
+      "transcription": "Ước tính bao gồm khung vẽ hiện tại, bảng tạm, bộ đệm giải mã lấy mẫu và bộ đệm chỉnh sửa. Mức dùng bộ nhớ thực tế có thể thay đổi. Bản sao nhỏ hơn sẽ mất chi tiết. Tệp gốc không thay đổi.",
+      "clauses": [
+        {
+          "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers.",
+          "target": "約 併 包 𠁟 椌 𡳒 現在, 榜 暫, 部 墊 解 碼 𥙩 㑄 吧 部 墊 整 𢯢.",
+          "assessment": "The estimate remains approximate through ước tính; the list retains the current drawing canvas, clipboard, sampled-decoding buffer and editing buffer. 解碼 = giải mã, 𥙩㑄 = lấy mẫu; this is sampling-based decoding, not a test/example decode. 'Bộ đệm' makes the memory allocations explicit, consistent with the surrounding decoded-image and buffer estimate."
+        },
+        {
+          "source": "Actual memory use varies.",
+          "target": "𣞪 用 部𢖵 實際 𣎏 体 𠊝 𢷮.",
+          "assessment": "Reads mức dùng bộ nhớ thực tế có thể thay đổi: actual memory usage can vary. The qualification does not promise a precise guaranteed allocation."
+        },
+        {
+          "source": "A smaller copy loses detail.",
+          "target": "版 抄 𡮈 欣 仕 𠅒 枝節.",
+          "assessment": "Reads bản sao nhỏ hơn sẽ mất chi tiết: explicitly a smaller copy, with definite future detail loss, not possible-only loss. All three safety-critical elements are retained."
+        },
+        {
+          "source": "The original file stays unchanged.",
+          "target": "𣜿 㭲 空 𠊝 𢷮.",
+          "assessment": "Reads tệp gốc không thay đổi: original file does not change. Negation and original-file referent are present; there is no selected-background or white-backing promise."
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E4%BD%B5&radicalNum=9&strokeCt=6&uiLang=en",
+          "kind": "Primary dictionary, Nguyễn Quang Hồng",
+          "supports": "併 = tính; direct entry opened and read."
+        },
+        {
+          "url": "https://www.nomfoundation.org/nom-project/tale-of-kieu/Glossary-of-characters-in-all-versions-of-Kieu?uiLang=vn",
+          "kind": "Primary corpus character glossary",
+          "supports": "𠁟 = gồm. Read in search-indexed primary-source text."
+        },
+        {
+          "url": "https://www.hannom-rcv.org/NS/bchnctd%20300623.pdf",
+          "kind": "Primary Hán-Nôm association character-list proposal, 2023 edition",
+          "supports": "Indexed entries explicitly support 椌 khung (printed p.151), 𠅒 mất (p.181), 㑄 mẫu (p.182), 𣞪 mức with mức độ/mức sống (p.189), and 𢷮 đổi with 𠊝𢷮 thay đổi. Full PDF open returned HTTP403; claims here are limited to the actual indexed entries, not a claimed full-document inspection."
+        },
+        {
+          "url": "https://www.hannom-rcv.org/standard-nom/Lookup-CHNC.html?uiLang=vi",
+          "kind": "Primary association lookup",
+          "supports": "Indexed entry explicitly reads 墊 = đệm."
+        },
+        {
+          "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E5%8F%A4&radicalNum=30&strokeCt=2&uiLang=en",
+          "kind": "Primary annotated historical corpus",
+          "supports": "Examples pair 𡳒 with vẽ and 欣 with hơn."
+        },
+        {
+          "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%F0%AB%A2%A9&radicalNum=9&strokeCt=7&uiLang=vn",
+          "kind": "Primary annotated historical corpus",
+          "supports": "Example pairs 𢯢 with sửa."
+        },
+        {
+          "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E4%BB%95&radicalNum=9&strokeCt=3&uiLang=en",
+          "kind": "Primary dictionary, Nguyễn Quang Hồng",
+          "supports": "Direct entry 仕 sẽ includes future-tense examples, not merely the unrelated sĩ reading."
+        },
+        {
+          "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E5%87%8C&radicalNum=15&strokeCt=8&uiLang=vn",
+          "kind": "Primary annotated historical corpus",
+          "supports": "𣜿 is paired with tệp. The computer-file sense comes from contemporary Vietnamese context, not the historical food example."
+        },
+        {
+          "url": "https://chunom.org/shelf/corpus/16/",
+          "kind": "Primary corpus transcription",
+          "supports": "㭲 paired with gốc in several lines; 吧 with và."
+        },
+        {
+          "url": "https://new.chunom.org/pages/%F0%A2%96%B5/",
+          "kind": "Primary educational dictionary",
+          "supports": "𢖵 = nhớ."
+        },
+        {
+          "url": "https://chunom.org/pages/2338F/",
+          "kind": "Primary educational dictionary",
+          "supports": "𣎏 = có."
+        },
+        {
+          "url": "https://www.hannom-rcv.org/BCHNCTD.html",
+          "kind": "Character-list publisher's statement",
+          "supports": "Names the 2023 revised proposal and demonstrates 版 as bản. It is a publisher's standardization proposal; no claim of universal or government-mandated orthography."
+        },
+        {
+          "url": "https://learn.microsoft.com/vi-vn/power-automate/desktop-flows/actions-reference/clipboard",
+          "kind": "Primary software documentation",
+          "supports": "Modern Vietnamese bảng tạm refers to the clipboard."
+        },
+        {
+          "url": "https://developer.android.com/topic/performance/graphics/load-bitmap?hl=vi",
+          "kind": "Primary Android documentation",
+          "supports": "Technical context ties giải mã and lấy mẫu con to smaller decoded bitmap allocation and bộ nhớ; supports decoding/sampling interpretation, without being a quotation of this exact UI sentence."
+        }
+      ],
+      "limits": [
+        "No native speaker or specialist was consulted, and this is not certification.",
+        "Nôm allows orthographic variants; the review checks the actual glyph readings and complete meaning, not a claim that these are the only accepted spellings.",
+        "Primary-source lexical/corpus evidence supports the reading; contemporary technical-compound interpretation is reviewer synthesis, not a directly attested full Nôm computing sentence.",
+        "Full primary association PDF could not be opened (HTTP403); only its search-indexed entries were used. Other primary dictionary pages were opened directly.",
+        "No Android/UI rendering or runtime testing was performed in this review."
+      ]
+    }
+  },
+  {
+    "receipt": "sampled-independent",
+    "selector": "whole one-key record",
+    "evidence_kind": "coordinator-recorded verbatim independent decision, not a separately recovered original reviewer receipt",
+    "scope": null,
+    "original_selected_record": {
+      "schema_version": 1,
+      "recorded_by_coordinator": true,
+      "source_commit": "f988a94d8e4fa300bfe181ba67bba7b546651ca1",
+      "locale": "vi-Hani",
+      "key": "ui_sampled_resize_memory_explanation",
+      "value_sha256": "c440148385de677afbe0d08d981c57a64267f53d1224c5effd502af513c1a270",
+      "disposition": "accept",
+      "confidence": "M, bounded full-value semantic acceptance",
+      "reviewer_report_verbatim": "vi-Hani challenge check found no exact glyph or meaning that forces HOLD. Bounded semantic ACCEPT/M is defensible for the unchanged exact value, retaining all stated limits. I verified its SHA-256 and independently opened the cited entries for 併 (tính), 仕 (sẽ, including future examples), and the corpus example pairing 𣜿 with tệp. The last verifies the reading, not a historical computer-file sense, which the report already distinguishes. The transcription preserves all four memory-list components, variable usage, definite detail loss in a smaller copy, and unchanged original file. Indexed-only PDF evidence and modern technical-compound synthesis must stay explicit; this is not orthographic/native/runtime certification.",
+      "checked_links": [
+        "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E4%BD%B5&radicalNum=9&strokeCt=6&uiLang=en",
+        "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E4%BB%95&radicalNum=9&strokeCt=3&uiLang=en",
+        "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%E5%87%8C&radicalNum=15&strokeCt=8&uiLang=vn"
+      ],
+      "limitations": "No project source edit, no external communication, no full-catalogue, specialist, native-speaker, universal-orthography, runtime or device certification."
+    }
+  },
+  {
+    "receipt": "m04",
+    "selector": "/vi-Hani",
+    "evidence_kind": "reconstructed independent model/source-assisted decision",
+    "scope": null,
+    "original_selected_record": {
+      "decision": "acceptable bounded model proposal",
+      "original_value": "追問超與料𧵑 Commons 失敗。",
+      "value": "追問超與料𧵑 Commons 失敗。",
+      "backtranslation": "Truy vấn siêu dữ liệu của Commons thất bại. / The query for Commons metadata failed.",
+      "confidence": "medium",
+      "rationale": "The character sequence reads the same Vietnamese sentence as vi, including native possessive 𧵑 của; it is not Chinese word order. 追問 maps truy vấn and 與料 maps dữ liệu. Retain all three missing glyphs, including the appropriate sentence-final 。.",
+      "source_ids": [
+        "vi_nom_reference",
+        "vi_query",
+        "vi_of"
+      ],
+      "script_convention": "Vietnamese Hán/Nôm, including supplementary-plane 𧵑; English occurs only as the brand Commons.",
+      "scope_check": "No variables. Query/request failure only; no network, HTTP, missing-data, size-limit or image-download cause added.",
+      "review_limit": "Independent model/source-assisted linguistic review only; no native-speaker certification. Rendering and runtime behavior were not tested by this review. This is a modern constructed Hán/Nôm sentence, not a claimed historic orthographic standard. 。 is not the only imaginable punctuation choice, but is appropriate and retained for linguistic consistency, not removed to evade glyph work.",
+      "glyph_requirements": [
+        {
+          "character": "追",
+          "codepoint": "U+8FFD",
+          "required_for_retained_value": true
+        },
+        {
+          "character": "問",
+          "codepoint": "U+554F",
+          "required_for_retained_value": true
+        },
+        {
+          "character": "。",
+          "codepoint": "U+3002",
+          "required_for_retained_value": true
+        }
+      ]
+    }
+  },
+  {
+    "receipt": "copy-credit-author",
+    "selector": "/translations/vi-Hani/commons_credit_copy_failed",
+    "evidence_kind": "author proposal with independent assistant no-required-correction attestation, not competent-language acceptance",
+    "scope": null,
+    "original_selected_record": {
+      "source": "Could not copy image credit.",
+      "target": "空 体 抄 劄 𥱬 功 形 影.",
+      "original_status": {
+        "level": "Assistant-authored complete error sentences with established catalogue terminology; structural and route checks are separate.",
+        "competent_language_review": "Independent competent-language acceptance is not available and is not claimed, including minority/script variants.",
+        "terminology_sources": [
+          "gallery_copy_credit",
+          "gallery_credit_could_not_save",
+          "ui_not_enough_memory_to_inspect_the_gallery_image"
+        ],
+        "provider_and_framework_reasons": "Unchanged. Application-authored metadata reasons remain English pending their own translation slice.",
+        "pseudo_locales": [
+          "en-XV",
+          "qaa-Zsye-XV"
+        ],
+        "independent_assistant_review": "A separate assistant review found no required correction in the three new strings. This is not competent-language/native acceptance. It separately identified inherited Hungarian gallery_copy_credit financial-credit terminology for AN-W05-C05."
+      }
+    }
+  },
+  {
+    "receipt": "copy-credit-author",
+    "selector": "/translations/vi-Hani/commons_credit_copy_failed_reason",
+    "evidence_kind": "author proposal with independent assistant no-required-correction attestation, not competent-language acceptance",
+    "scope": null,
+    "original_selected_record": {
+      "source": "Could not copy image credit: %1$s",
+      "target": "空 体 抄 劄 𥱬 功 形 影: %1$s",
+      "original_status": {
+        "level": "Assistant-authored complete error sentences with established catalogue terminology; structural and route checks are separate.",
+        "competent_language_review": "Independent competent-language acceptance is not available and is not claimed, including minority/script variants.",
+        "terminology_sources": [
+          "gallery_copy_credit",
+          "gallery_credit_could_not_save",
+          "ui_not_enough_memory_to_inspect_the_gallery_image"
+        ],
+        "provider_and_framework_reasons": "Unchanged. Application-authored metadata reasons remain English pending their own translation slice.",
+        "pseudo_locales": [
+          "en-XV",
+          "qaa-Zsye-XV"
+        ],
+        "independent_assistant_review": "A separate assistant review found no required correction in the three new strings. This is not competent-language/native acceptance. It separately identified inherited Hungarian gallery_copy_credit financial-credit terminology for AN-W05-C05."
+      }
+    }
+  },
+  {
+    "receipt": "copy-credit-author",
+    "selector": "/translations/vi-Hani/commons_credit_copy_out_of_memory",
+    "evidence_kind": "author proposal with independent assistant no-required-correction attestation, not competent-language acceptance",
+    "scope": null,
+    "original_selected_record": {
+      "source": "Not enough memory to copy image credit.",
+      "target": "空 𨁥 部𢖵 抵 抄 劄 𥱬 功 形 影.",
+      "original_status": {
+        "level": "Assistant-authored complete error sentences with established catalogue terminology; structural and route checks are separate.",
+        "competent_language_review": "Independent competent-language acceptance is not available and is not claimed, including minority/script variants.",
+        "terminology_sources": [
+          "gallery_copy_credit",
+          "gallery_credit_could_not_save",
+          "ui_not_enough_memory_to_inspect_the_gallery_image"
+        ],
+        "provider_and_framework_reasons": "Unchanged. Application-authored metadata reasons remain English pending their own translation slice.",
+        "pseudo_locales": [
+          "en-XV",
+          "qaa-Zsye-XV"
+        ],
+        "independent_assistant_review": "A separate assistant review found no required correction in the three new strings. This is not competent-language/native acceptance. It separately identified inherited Hungarian gallery_copy_credit financial-credit terminology for AN-W05-C05."
+      }
+    }
+  },
+  {
+    "receipt": "m02-author",
+    "selector": "/dispositions[tag=vi-Hani]",
+    "evidence_kind": "original author/source-assisted proposal",
+    "scope": null,
+    "original_selected_record": {
+      "tag": "vi-Hani",
+      "canonical_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "value": "超 與 料 Commons: HTTP %1$s",
+      "disposition": "unreviewed-model-proposal",
+      "linguistic_acceptance": "not-established",
+      "competent_review_priority": "high-uncertainty",
+      "provenance": "New model proposal using existing catalogue metadata terminology; historical catalogue acceptance is not inherited."
+    }
+  },
+  {
+    "receipt": "m03-author",
+    "selector": "/dispositions[tag=vi-Hani]",
+    "evidence_kind": "original author/source-assisted proposal",
+    "scope": null,
+    "original_selected_record": {
+      "tag": "vi-Hani",
+      "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+      "linguistic_acceptance": "not-established",
+      "value": "戟 𡱩 返回 超 與 料 𧵑 Commons 越 過 界限.",
+      "rationale": "Low-confidence Hán/Nôm proposal, with explicit intended Quốc ngữ reading: Kích thước phản hồi siêu dữ liệu của Commons vượt quá giới hạn. Back-translation: the size of the Commons metadata response exceeds the limit. The source dictionary directly lists the written compounds for response/return, size, data and limit, and the component readings for the remaining words. Modern Vietnamese API documentation independently uses phản hồi for a JSON/HTTP response; a Vietnamese ministry article uses siêu dữ liệu for metadata. The bounded subject is response size, never a metadata field or text length. Existing catalogue spacing and Commons are retained. The technical sense is a proposed modern usage in Hán/Nôm, not claimed historical attestation.",
+      "review_limit": "Not competent Hán/Nôm acceptance. A competent reviewer must read and back-translate the complete sentence, assess whether 返回 is understood as the intended technical response rather than merely returning, and validate the modern metadata compound, spacing and byte-size interpretation. The Hán/Nôm source is a revival group’s own orthographic reference, not proof of a universally accepted historical or modern standard. Character readings plus modern Quốc ngữ terminology do not independently certify the composed Hán/Nôm sentence. No visual rendering or native review has been done.",
+      "confidence": "low-source-assisted-draft",
+      "sources": [
+        {
+          "url": "https://www.hannom-rcv.org/standard-nom/Lookup-CHNC.html",
+          "publisher": "Uỷ Ban Phục Sinh Hán Nôm Việt Nam, own orthographic lookup",
+          "retrieval": "Full page opened and entries inspected",
+          "supports": "Direct entries cover the proposed response, size, data, limit, exceed, genitive and metadata-prefix readings. In particular, the response compound is listed with 返, not guessed as 反. This source gives spellings and readings, not HTTP semantic or sentence acceptance."
+        },
+        {
+          "url": "https://learn.microsoft.com/vi-vn/training/support/catalog-api-developer-reference",
+          "publisher": "Microsoft Learn API documentation",
+          "retrieval": "Indexed technical documentation excerpt",
+          "supports": "Modern Quốc ngữ uses phản hồi for JSON-encoded API response. Not Hán/Nôm evidence and not assumed native-reviewed localization."
+        },
+        {
+          "url": "https://bvhttdl.gov.vn/Pages/chi-tiet.aspx?url=%2Fnguyen-tac-tuan-thu-khi-trien-khai-so-hoa-tai-lieu-xay-dung-cac-bo-suu-tap-so-tai-bo-van-hoa-the-thao-va-du-lich-20241215160524978.htm",
+          "publisher": "Vietnam Ministry of Culture, Sports and Tourism",
+          "retrieval": "Indexed article excerpt",
+          "supports": "Uses siêu dữ liệu (metadata) in digital-collection context. Confirms the modern Vietnamese term only."
+        },
+        {
+          "path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "supports": "Existing candidate spacing and vocabulary in metadata and size-limit strings, not acceptance evidence."
+        }
+      ],
+      "disposition": "model-proposal-awaiting-independent-language-review"
+    }
+  },
+  {
+    "receipt": "svg-composition",
+    "selector": "/locales/vi-Hani",
+    "evidence_kind": "independent composition check retaining script/register limits",
+    "scope": null,
+    "original_selected_record": {
+      "disposition": "include_as_source_assisted_draft",
+      "native_language_acceptance": false,
+      "exact_values": {
+        "commons_svg_original_size_unavailable": "SVG 空 朱 別 戟 𡱩 㭲 𣎏 体 用. 空 用 戟 𡱩 豫 𨕭 椌 𡳒 抵 𠊝 替.",
+        "commons_svg_original_size_too_large": "戟 𡱩 㭲 𧵑 SVG 越 過 界限 戟 𡱩 bitmap 𧵑 Android. 空 𢷮 戟 𡱩."
+      },
+      "required_corrections": [],
+      "clause_review": [
+        "SVG không cho biết kích thước gốc có thể dùng retains the file-states-information meaning and the usable-original-size restriction. Cho biết is a coherent paraphrase; it does not assert specific XML syntax.",
+        "Không dùng kích thước dựa trên khung vẽ để thay thế explicitly negates use of a canvas-based size as the replacement. Dựa trên attaches to kích thước and để thay thế gives the substitution role; no inability or canvas resizing is claimed.",
+        "Kích thước gốc của SVG vượt quá giới hạn kích thước bitmap của Android preserves original size, exceed, the bitmap dimension limit and Android.",
+        "Không đổi kích thước is the unqualified no-size-change statement in this error-result context. It neither restricts the claim to automatic shrinking nor promises future behavior."
+      ],
+      "additional_evidence": "The current ui_add_up_to_20_images_with_android_s already contains the complete 朱 別 compound in its preview-result sentence, not just 別 in isolation. Keep this catalogue choice rather than replacing it with 别 solely because another dictionary page uses that variant.",
+      "remaining_uncertainty": [
+        "The supplied Quốc-ngữ reading is coherent; final Nôm orthographic/typographic acceptance remains separate.",
+        "Existing mixed word/syllable spacing and the technical Latin token bitmap are preserved. A Nôm reader should still review readability and app font rendering. No font or runtime check was performed."
+      ],
+      "source_ids": [
+        "BASE-VI-HANI",
+        "NOM-KNOW",
+        "NOM-BASED-ON"
+      ]
+    }
+  },
+  {
+    "receipt": "import-composition",
+    "selector": "/locales/vi-Hani",
+    "evidence_kind": "independent composition check retaining script/register limits",
+    "scope": null,
+    "original_selected_record": {
+      "decision": "retain_source_assisted_no_concrete_defect_found",
+      "required_corrections": [],
+      "messages": {
+        "commons_import_svg_changes": "AN Paint: SVG → PNG; 戟 𡱩 㭲; antiAlias=false; strokeDashArray=none; background=#FFFFFF.",
+        "commons_import_raster_changes": "AN Paint: background=#FFFFFF (結 合 影 吧 𡋂 豫 𨕭 alpha)."
+      },
+      "whole_message_parse": "Vietnamese verb + image/background objects + alpha-basis adjunct; original size is kich thuoc goc.",
+      "alpha_semantics": "Combines the two stated inputs using/based on alpha; no removal, opacity-setting, or equal-weight assertion.",
+      "paired_locale": null,
+      "uncertainty": "Inherited character readings and conventionality of the modern Nôm technical register are not independently accepted.",
+      "native_speaker_accepted": false
+    }
+  },
+  {
+    "receipt": "colour-pr86",
+    "selector": "JSON row qualifier=b+vi+Hani",
+    "evidence_kind": "public change-only attestation",
+    "scope": null,
+    "original_selected_record": {
+      "qualifier": "b+vi+Hani",
+      "source_blob": "dd17612015d4185d9320bed711363af271129dfe",
+      "old_value": "BMP 惑 GIF 尼 用 糊 疏 𦭷 𣻕 AN Paint 𣗓 体 轉 𢷮. 唉 轉 𨖅 PNG sRGB 𥪝 呈 編輯 𣎏 管理 𦭷 𠓀 欺 入.",
+      "new_value": "影 尼 用 糊 疏 𦭷 𣻕 AN Paint 𣗓 体 轉 𢷮. 唉 轉 𨖅 PNG sRGB 𥪝 呈 編輯 𣎏 管理 𦭷 𠓀 欺 入.",
+      "old_utf8_sha256": "201db013656b580340079dcbe9c9f3576e294cb712debd9d6895c675778e6de3",
+      "new_utf8_sha256": "6cbdc31b88504d509170d32274ce259c69d7a6155b6dff13b869abcf7c026279",
+      "confidence": "limited",
+      "review": "影 尼 copies the existing Hani ICC-message image phrase and corresponds to Ảnh này. Inherited Chữ Nôm character choices and technical idiom are not independently certified."
+    }
+  },
+  {
+    "receipt": "sampled-pr80",
+    "selector": "JSON row qualifier=b+vi+Hani",
+    "evidence_kind": "historical public change-only attestation, superseded only by exact one-key complete successor",
+    "scope": null,
+    "original_selected_record": {
+      "qualifier": "b+vi+Hani",
+      "source_old_blob": "dd17612015d4185d9320bed711363af271129dfe",
+      "confidence": "L",
+      "new_value": "約 併 包 𠁟 椌 𡳒 現在, 榜 暫, 部 墊 解 碼 𥙩 㑄 吧 部 墊 整 𢯢. 𣞪 用 部𢖵 實際 𣎏 体 𠊝 𢷮. 版 抄 𡮈 欣 仕 𠅒 枝節. 𣜿 㭲 空 𠊝 𢷮."
+    }
+  },
+  {
+    "receipt": "label-pair-successor",
+    "selector": "/entries",
+    "evidence_kind": "raw independent narrow candidate correction; full exact pairs in exact-own-script-pairs.json",
+    "scope": null,
+    "original_selected_record": {
+      "status": "independent_label_pair_review_passed",
+      "scope": "Two vi-Hani existing Commons map-label occurrences only",
+      "primary_references": {
+        "VI-EMPTY-PRIMARY": {
+          "title": "Ủy Ban Phục Sinh Hán Nôm Việt Nam, original Qif template documentation",
+          "url": "https://hannom-rcv.org/wi/%E6%9D%BF%E3%91%84%3AQif",
+          "supports": "Original technical conditions distinguish an empty value (𥧪) from a nonempty value (空𥧪). This is direct usage of the needed empty/blank sense, not merely homophonic character lookup. Search-indexed full text read; direct retrieval gave a cache miss."
+        },
+        "VI-DRUM": {
+          "title": "Nguyễn Quang Hồng, Tự Điển Chữ Nôm Dẫn Giải, 𤿰",
+          "url": "https://nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%F0%A4%BF%B0&radicalNum=107&strokeCt=7&uiLang=vn",
+          "supports": "The original character’s entry supports the trống drum sense and examples. It does not establish white/trắng or the empty-space sense. Phonetic reuse is historically possible, so the correction selects the explicitly supported sense rather than claiming impossible pronunciation."
+        },
+        "VI-EMPTY-LEXICON": {
+          "title": "Ủy Ban Phục Sinh Hán Nôm Việt Nam, Bảng Chữ Hán Nôm Chuẩn Thường Dùng / lookup",
+          "url": "https://hannom-rcv.org/Lookup-CHNC.html",
+          "supports": "Contemporary orthographic convention distinguishes the drum character from the empty-space trống character. Read alongside the independently retrieved Qif technical use. The linked lookup text was partially available through search; the complete table was not downloaded."
+        }
+      },
+      "entries": [
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "commons_blank_maps",
+          "quoc_ngu_context": "Wikimedia Commons · Bản đồ trống…",
+          "verdict": "correct",
+          "integration_approved": true,
+          "review_scope": "Only the quoted or standalone Commons blank-map label. Full surrounding value inspected to bind and preserve the rest; this is not a new comprehensive re-approval of unrelated help clauses.",
+          "review_reason": "The standalone label and its exact quoted help occurrence identify the same Commons blank-map destination. Preserve bản đồ trống and use sense-specific 𥧪 (empty/blank), rather than 𤿰 (documented drum sense) or substitute trắng (white). Both occurrences must remain identical.",
+          "source_reference_ids": [
+            "VI-EMPTY-PRIMARY",
+            "VI-DRUM",
+            "VI-EMPTY-LEXICON"
+          ],
+          "before_utf8_sha256": "f7190c949dc7fd8bd2373c4ff54f205d1cdcd962b62fee6dea40b3bab6f35298",
+          "final_utf8_sha256": "c69519526e14354cb4603ed9343cd1e4a94ff7381d92f6388e2b3903d5e848cd",
+          "catalogue_sha256": "f9c79c6c9c70f653a89938c1947d6a8dc5e63b8c39db9a0c5bacabecd7f07edd",
+          "english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "vietnamese_catalogue_sha256": "cc517959dac984222d1b32532cdffad22552558ef9f2003c6c34db02d2a09f97",
+          "character_deltas": [
+            {
+              "index_codepoints": 23,
+              "before": "𤿰",
+              "after": "𥧪"
+            }
+          ]
+        },
+        {
+          "tag": "vi-Hani",
+          "resource_path": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "ui_help23",
+          "quoc_ngu_context": "Chọn một thẻ để hiện các điều khiển của thẻ đó. Xem bắt đầu với 「Di chuyển và thu phóng」; Vẽ gồm Vẽ, Vùng chọn và Chèn. 「Di chuyển và thu phóng」 cho phép di chuyển mà không vẽ; chụm hai ngón để thu phóng. Mũi tên cạnh các thẻ dùng để thu gọn bảng. Mọi công cụ đều có nhãn. Chỉnh sửa thay đổi vùng chọn, giới hạn khung vẽ, kích thước hoặc ảnh. 「Màu sắc」 chọn màu tiền cảnh và nền; 「Hoán đổi màu」 đổi chỗ hai màu, còn Đen / trắng đặt lại chúng. Trình chọn màu xem trước lựa chọn ngay lập tức. Dùng màu xác nhận; Hủy khôi phục màu trước. Thêm màu hoặc chạm ô đã lưu còn trống để chọn và lưu màu. Nhấn giữ một màu đã lưu để sửa hoặc xóa. Nâng cao mở trình chỉnh sửa chi tiết cạnh Đen / trắng. Lưới điểm ảnh cũng hiện thước theo điểm ảnh; vẽ bằng con trỏ hiện trực tiếp x/y cạnh mức thu phóng. Lưu thành chọn định dạng ảnh, thiết lập nén và vị trí; Lưu sẽ ghi lại vào đó với cùng thiết lập. Xuất thành tạo ICO, ảnh ASCII hoặc văn bản Base64 mà không đánh dấu bản vẽ là đã lưu. Lưu và chia sẻ lưu một bản sao rồi mở chia sẻ Android, đồng thời giữ nguyên đích Lưu hiện tại. Vẽ > Chèn > Ảnh khác gồm tệp trên thiết bị, Catrobat, Irasutoya, Openclipart và “Wikimedia Commons · Bản đồ trống…”. Ảnh đã chèn vẫn được chọn; khung nhìn hiển thị tay nắm của chúng ngay cả khi nằm ngoài khung vẽ. 「Vừa ảnh với khung vẽ」 thay đổi kích thước đặt; Kích thước gốc khôi phục kích thước nguồn. Tự động lưu khôi phục bản nháp và cả hai ngăn xếp hoàn tác/làm lại khi mở lại ứng dụng. Tệp cũng có Ghép ảnh, Hướng dẫn sử dụng và 「Giới thiệu, giấy phép và ghi công」. Chèn văn bản hỗ trợ viết ngang và viết dọc.",
+          "verdict": "correct",
+          "integration_approved": true,
+          "review_scope": "Only the quoted or standalone Commons blank-map label. Full surrounding value inspected to bind and preserve the rest; this is not a new comprehensive re-approval of unrelated help clauses.",
+          "review_reason": "The standalone label and its exact quoted help occurrence identify the same Commons blank-map destination. Preserve bản đồ trống and use sense-specific 𥧪 (empty/blank), rather than 𤿰 (documented drum sense) or substitute trắng (white). Both occurrences must remain identical.",
+          "source_reference_ids": [
+            "VI-EMPTY-PRIMARY",
+            "VI-DRUM",
+            "VI-EMPTY-LEXICON"
+          ],
+          "before_utf8_sha256": "839f8d0cef05b38783ded9d1190957de0f1efc1aa3d77f73cf82e9cfcc8d8b43",
+          "final_utf8_sha256": "64fdc001afd3a8362d4e1fda8b0dadb275afe39d40ce934d26293e47ebe5a57a",
+          "catalogue_sha256": "f9c79c6c9c70f653a89938c1947d6a8dc5e63b8c39db9a0c5bacabecd7f07edd",
+          "english_catalogue_sha256": "1ea2ed56e699bb1c3fb79e206d6f2e8f23c7b65b00989dca3adb468335c6b082",
+          "vietnamese_catalogue_sha256": "cc517959dac984222d1b32532cdffad22552558ef9f2003c6c34db02d2a09f97",
+          "character_deltas": [
+            {
+              "index_codepoints": 585,
+              "before": "𤿰",
+              "after": "𥧪"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "receipt": "warning-original",
+    "selector": "/rows",
+    "evidence_kind": "raw independent HOLD decisions",
+    "scope": null,
+    "original_selected_record": {
+      "scope": "Only these two exact terms in this picker option; no whole-language, build or runtime acceptance. No historical acceptance imported.",
+      "reviewed_at": "2026-10-21T12:58:02.085915+00:00",
+      "rows": [
+        {
+          "sequence": 311,
+          "option_order": 156,
+          "tag": "vi-Hani",
+          "kind": "non-english",
+          "catalogue": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "ui_no_resize_fits_decoder_memory",
+          "source": "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+          "source_sha256": "caa761bc1acb7c813fc2f9cfbebabaa42cbb8763b1c23b2240ed51c6d22f4316",
+          "old_value": "𣦍 𪥘 頭 𠚢 𡮈 壹 拱 空 体 貯 各 部 墊 爫 役 𧵑 部 解 碼 影 尼 𥪝 界限 部𢖵 現在. 唉 毀 吧 用 影 源 𡮈 欣.",
+          "new_value": "𣦍 𪥘 頭 𠚢 𡮈 壹 拱 空 体 貯 各 部 墊 爫 役 𧵑 部 解 碼 影 尼 𥪝 界限 部𢖵 現在. 唉 毀 吧 用 影 源 𡮈 欣.",
+          "old_sha256": "e67f28483c5ebdf122b2c6e4596bff80ebc8719e2ea6b4d727b81c992ff1301a",
+          "new_sha256": "e67f28483c5ebdf122b2c6e4596bff80ebc8719e2ea6b4d727b81c992ff1301a",
+          "changed": false,
+          "status": "held-existing-nom-restriction",
+          "confidence": "not-claimed",
+          "rationale": "Nôm hold explicitly remains in force. Exact import value is recorded against corrected source, but no character replacement, transliteration or renewed linguistic acceptance is attempted. Requires authorized competent Nôm review before editing.",
+          "fallback": null,
+          "linguistically_accepted": false,
+          "independent_review": "not-claimed",
+          "at": "2026-10-21T12:56:35.776132+00:00",
+          "independent_decision": "hold",
+          "independent_rationale": "The author records a pre-existing Nôm restriction; retain that restriction, with no character replacement or transliteration. Independently verified the exact target is retained byte-for-text and source hashes match the corrected English. I lack sufficient linguistic confidence to accept or rewrite the full vi-Hani wording. Retain the author hold; no renewed-source acceptance and no missing-key or English-fallback credit.",
+          "independently_linguistically_accepted": false,
+          "independent_replacement": null
+        },
+        {
+          "sequence": 312,
+          "option_order": 156,
+          "tag": "vi-Hani",
+          "kind": "non-english",
+          "catalogue": "Paintroid/src/main/res/values-b+vi+Hani/strings.xml",
+          "key": "ui_assembly_source_memory_floor",
+          "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+          "source_sha256": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+          "old_value": "𠬠 影 源 懃 𡗉 部𢖵 解 碼 欣 𣞪 現 𣎏, 𣦍 𪥘 貝 頭 𠚢 窒 𡮈. 減 戟 𡱩 版 𢯖 空 解決 得. 唉 關 材料 恪 惑 准備 影 源 𡮈 欣 耒 㧗 來. 版 𢯖 現在 空 𠊝 𢷮.",
+          "new_value": "𠬠 影 源 懃 𡗉 部𢖵 解 碼 欣 𣞪 現 𣎏, 𣦍 𪥘 貝 頭 𠚢 窒 𡮈. 減 戟 𡱩 版 𢯖 空 解決 得. 唉 關 材料 恪 惑 准備 影 源 𡮈 欣 耒 㧗 來. 版 𢯖 現在 空 𠊝 𢷮.",
+          "old_sha256": "c578f15a519df3b111e94c06601dde524f660edfd23aaea8583020f5356aa057",
+          "new_sha256": "c578f15a519df3b111e94c06601dde524f660edfd23aaea8583020f5356aa057",
+          "changed": false,
+          "status": "held-existing-nom-restriction",
+          "confidence": "not-claimed",
+          "rationale": "Nôm hold explicitly remains in force. Preserve exact assembly term and previous evidence; do not mechanically map the Vietnamese candidate. Estimate/current-limit qualifications and full remedies remain pending authorized competent Nôm review.",
+          "fallback": null,
+          "linguistically_accepted": false,
+          "independent_review": "not-claimed",
+          "at": "2026-10-21T12:56:35.776167+00:00",
+          "independent_decision": "hold",
+          "independent_rationale": "The author records a pre-existing Nôm restriction; retain that restriction, with no character replacement or transliteration. Independently verified the exact target is retained byte-for-text and source hashes match the corrected English. I lack sufficient linguistic confidence to accept or rewrite the full vi-Hani wording. Retain the author hold; no renewed-source acceptance and no missing-key or English-fallback credit.",
+          "independently_linguistically_accepted": false,
+          "independent_replacement": null
+        }
+      ]
+    }
+  },
+  {
+    "receipt": "help-provider",
+    "selector": "/finding",
+    "evidence_kind": "independent one-space typography correction, not full Help acceptance",
+    "scope": null,
+    "original_selected_record": {
+      "tag": "vi-Hani",
+      "before": "Irasutoya, Openclipart 吧「Wikimedia Commons · 版圖 𤿰…」",
+      "after": "Irasutoya, Openclipart 吧 「Wikimedia Commons · 版圖 𤿰…」",
+      "reason": "Space before quoted label matches same-catalogue ui_autosave_is_paused_to_protect_that_draft_use and historical Help typography.",
+      "disposition": "Applied; exact expected passage in host and JVM tests.",
+      "resource_delta": "Exactly one U+0020 added between 吧 and 「; Commons caption unchanged."
+    }
+  }
+]

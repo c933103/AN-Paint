@@ -1,0 +1,5 @@
+# Method and limits
+
+Current source/target full values and Git catalogue blobs are bound to5bfed632. Canonical schema717containers/718leaves, with716strings and one complete plural. Shared immutable source hashes avoid repetition; exact current target hashes are included. Raw XML-decoded UTF-8 and sorted compact Unicode-preserving plural JSON retain Android escapes/whitespace. Missing quantity one gets no localized value/hash. Three translatable=false filename constants (ui_an_paint_assembly_png, ui_an_paint_recovery_zip, ui_an_paint_source_zip) are excluded; configuration arrays are not translation text.
+
+Every own-script receipt retains its original semantic, idiom, orthographic and context limits. Public consolidated/recorded decisions are not silently promoted to recovered raw independent artifacts. Partial label/typography review remains partial; neither source presence nor absence of a concrete defect certifies Nôm naturalness. No current runtime/font/layout/whole-language claim follows. Original historical holds and candidate status are append-only; no authorization or integration is inferred from this report.

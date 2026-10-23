@@ -1,0 +1,384 @@
+{
+  "full_help": {
+    "decision": "HOLD full vi-Hani assembly Help; no candidate",
+    "complete_help_sha256": "0d484b8aa045765fabcc22898d7f85a321a07dbf183cb4d32b18c621f5a93f85",
+    "source_sha256": "6ae12f86846110a7573a5c608b8561b0c03b037454f1905d3b5bf8342fb26aac",
+    "competence": "Sufficient for static/source gap identification, not sufficient to accept or author complete idiomatic Nôm text. No native-speaker confidence claimed.",
+    "no_credit": [
+      "No full Help acceptance",
+      "No missing-key/fallback credit",
+      "No new translation credit",
+      "No runtime/font/layout certification"
+    ]
+  },
+  "full_help_unit_findings": [
+    {
+      "unit": 1,
+      "english_paragraph": 1,
+      "english": "Add up to 20 images with Android\\'s file picker.",
+      "current_nom_span": "添 最多 20 影 憑 呈 譔 𣜿 𧵑 Android.",
+      "source_binding": "AssemblyActivity.kt: launchAdd; ImageAssembly.kt: MAX_IMAGES/add",
+      "finding": "20 and Android are explicit; maximum and picker attribution have plausible corresponding wording. No full linguistic acceptance.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 2,
+      "english_paragraph": 1,
+      "english": "The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider.",
+      "current_nom_span": "𥳐 𪰂 𠁑 顯示 形 收 𡮈, 𠸜 𣜿, 戟 𡱩 影 𡢐 欺 割 釧 吧 調整 憑 「共 朝 𢌌」 惑 「共 朝 高」 吧 時間 𢯢 𢷮 𣜿 欺 茹 供給 𣎏 供給.",
+      "source_binding": "AssemblyActivity.kt: metadata/renderTray; ImageAssembly.kt: croppedSize/placedSize",
+      "finding": "Exact PR12 tray repair retained, including actual Same width/height captions; provider-supplied timestamp conditional is visibly represented. Historical clause evidence only.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 3,
+      "english_paragraph": 1,
+      "english": "Sort by filename or modification time; sorting does not rearrange placed images.",
+      "current_nom_span": "𣎏 体 𢯛 揷 蹺 𠸜 𣜿 惑 時間 𢯢 𢷮; 役 𢯛 揷 空 𢷮 位置 各 影 㐌 撻.",
+      "source_binding": "ImageAssembly.kt: sorted; AssemblyActivity.kt: sort listener/renderTray",
+      "finding": "Sorting alternatives and unchanged placed-image positions have corresponding clauses; lexical/syntactic review remains required.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 4,
+      "english_paragraph": 2,
+      "english": "Tap a thumbnail to select it.",
+      "current_nom_span": "𪮻 𠓨 形 收 𡮈 抵 譔.",
+      "source_binding": "AssemblyActivity.kt: renderTray setOnClickListener",
+      "finding": "Thumbnail selection has a corresponding short sentence; naturalness and character readings remain unaccepted.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 5,
+      "english_paragraph": 2,
+      "english": "Crop image trims that image; Batch crop applies pixel or percentage margins to selected images.",
+      "current_nom_span": "割 影 仕 割 影 妬; 割 航 唰 壓 用 𦃾 蹺 點影 惑 分 𤾓 朱 各 影 㐌 譔.",
+      "source_binding": "AssemblyActivity.kt: crop; ImageCropDialog.kt; ImageAssembly.kt: CropMargins/crop",
+      "finding": "Both actual Crop image and Batch crop captions match; selected-image subset and pixel/percentage margins appear represented, not fully certified.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 6,
+      "english_paragraph": 2,
+      "english": "Drag crop handles or type amounts.",
+      "current_nom_span": "捁 𢬣 捻 割 惑 入 價値.",
+      "source_binding": "ImageCropDialog.kt",
+      "finding": "Drag/type alternatives are structurally represented; crop-handle terminology needs competent contextual review.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 7,
+      "english_paragraph": 2,
+      "english": "Reset crop restores the original edges.",
+      "current_nom_span": "撻 來 割 釧 仕 恢復 各 𧣲 班 頭.",
+      "source_binding": "ImageCropDialog.kt",
+      "finding": "Actual Reset crop caption matches; original-edge restoration appears represented.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 8,
+      "english_paragraph": 2,
+      "english": "Cropping is non-destructive and can be undone.",
+      "current_nom_span": "役 割 釧 空 破毁 影 㭲 吧 𣎏 体 還 作.",
+      "source_binding": "ImageAssembly.kt: crop/change/undo",
+      "finding": "Non-destructive original-image and undo clauses appear represented; no novel acceptance.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 9,
+      "english_paragraph": 3,
+      "english": "Hold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge.",
+      "current_nom_span": "扨 𡨺 形 收 𡮈, 惑 捁 𠬠 影 㐌 𣎏 𥪝 漨 爫 役, 耒 抯 𨕭 𧣲 得 𥗹 𤏬.",
+      "source_binding": "AssemblyActivity.kt: renderTray setOnLongClickListener; AssemblyCanvas.kt: onTouchEvent/dropImage",
+      "finding": "Hold/drag alternatives and highlighted-edge destination appear represented; gesture wording needs competent review.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 10,
+      "english_paragraph": 3,
+      "english": "The translucent preview shows the exact snapped result.",
+      "current_nom_span": "版 䄡 𠓀 半 沖 𠁸 朱 別 正確 結果 𡢐 欺 𢯖.",
+      "source_binding": "AssemblyCanvas.kt: ghost/onDraw/dropImage",
+      "finding": "Translucent-preview and exact-result wording appears present, but edge-snapping relation and lexical adequacy need review.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 11,
+      "english_paragraph": 3,
+      "english": "A right attachment aligns the tops; a bottom attachment aligns the left edges.",
+      "current_nom_span": "𢯖 邊 沛 仕 根 𠵐 𨑗; 𢯖 𪰂 𠁑 仕 根 𠵐 債.",
+      "source_binding": "ImageAssembly.kt: layout resolve",
+      "finding": "Right/top and bottom/left clauses correspond structurally; no centering claim identified.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 12,
+      "english_paragraph": 3,
+      "english": "You can also tap a thumbnail and then a + target.",
+      "current_nom_span": "伴 拱 𣎏 体 𪮻 形 收 𡮈 耒 𪮻 目標 +.",
+      "source_binding": "AssemblyCanvas.kt: targets/onTouchEvent",
+      "finding": "Thumbnail then + target sequence is explicit.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 13,
+      "english_paragraph": 3,
+      "english": "When snapping, the first image starts at the origin.",
+      "current_nom_span": "影 頭先 扒 頭 在 㭲 座 度.",
+      "source_binding": "ImageAssembly.kt: targets/layout",
+      "finding": "Confirmed source-update gap: existing sentence asserts first-image origin without a visible snapping condition; new source scopes this to snapping. Read together with absent Exact position paragraph, it cannot establish current source equivalence.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 14,
+      "english_paragraph": 3,
+      "english": "Attached images may move when their parent is cropped.",
+      "current_nom_span": "各 影 㐌 𮇜 仕 移轉 欺 影 媄 𣖾 割.",
+      "source_binding": "ImageAssembly.kt: crop/layout",
+      "finding": "Probable modal gap: existing 仕 clause appears future/assertive rather than the new source may; attached/parent referents require competent Nôm review before any repair.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 15,
+      "english_paragraph": 3,
+      "english": "Overlaps are rejected when snapping.",
+      "current_nom_span": "空 朱 法 𫯳 𢭹.",
+      "source_binding": "ImageAssembly.kt: validateSnapPlacement",
+      "finding": "Confirmed source-update gap: short overlap-prohibition sentence has no visible snapping qualifier; current source permits overlap for Exact position.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 16,
+      "english_paragraph": 4,
+      "english": "Select an image and use Exact position to set its top-left X/Y coordinates in whole pixels, starting at zero.",
+      "current_nom_span": null,
+      "source_binding": "AssemblyPlacementDialog.kt: show/placementPixels; ImageAssembly.kt: position",
+      "finding": "Absent: no Exact position paragraph, actual 位置 正確 caption, X/Y coordinates, whole-pixel/zero-based instruction in full Help. Separate PR67 strings are not present here and cannot cure omission.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 17,
+      "english_paragraph": 4,
+      "english": "Other images keep their positions, and overlaps are allowed.",
+      "current_nom_span": null,
+      "source_binding": "ImageAssembly.kt: position/validate",
+      "finding": "Absent: no Exact position context asserting other images keep positions and overlaps are allowed. Separate control Help cannot substitute for assembly Help.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 18,
+      "english_paragraph": 5,
+      "english": "Same width and Same height give every input a common dimension while preserving each image\\'s own aspect ratio.",
+      "current_nom_span": "共 𣊿 𢌌 吧 共 𣊿 高 撻 共 𠬠 戟 𡱩 朱 𤗆 影 頭 𠓨 扔 吻 𡨺 比例 𥢆 𧵑 曾 影.",
+      "source_binding": "NormalizeImagesDialog.kt; ImageAssembly.kt: placedSize/normalize",
+      "finding": "Caption mismatch confirmed: this paragraph uses 共 𣊿 𢌌 / 共 𣊿 高 rather than actual 共 朝 𢌌 / 共 朝 高. Aspect-ratio wording appears represented but common-dimension interpretation needs competent review; do not mechanically replace the character.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 19,
+      "english_paragraph": 5,
+      "english": "Choose pixels, percent, Smallest or Largest.",
+      "current_nom_span": "譔 點影, 分 𤾓, 𡮈 壹 惑 𡘯 壹.",
+      "source_binding": "NormalizeImagesDialog.kt: units/presets",
+      "finding": "All four alternatives appear; actual Smallest/Largest captions match.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 20,
+      "english_paragraph": 5,
+      "english": "Restore original sizes removes normalization and keeps crops.",
+      "current_nom_span": "恢復 戟 𡱩 㭲 仕 𠬃 準 化 戟 𡱩 扔 𡨺 分 割.",
+      "source_binding": "ImageAssembly.kt: resetSizes",
+      "finding": "Actual Restore original sizes caption matches; normalization removal and retained crop clauses appear represented.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 21,
+      "english_paragraph": 6,
+      "english": "Unplace returns only the selected image to the tray.",
+      "current_nom_span": "𠬃 撻 址 迻 影 㐌 譔 𧗱 𥳐.",
+      "source_binding": "ImageAssembly.kt: unplace/detached",
+      "finding": "Actual Unplace caption matches and only-selected/tray relation appears represented.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 22,
+      "english_paragraph": 6,
+      "english": "Other images stay placed; attached images may move to fill the gap.",
+      "current_nom_span": "各 影 𡢐 仕 垃 曠 𤿰 扔 吻 得 撻.",
+      "source_binding": "ImageAssembly.kt: detached/reflow",
+      "finding": "Probable source-update gap: existing 各 影 𡢐 仕 ... describes following images filling gap, not clearly other images remain placed with attached images only possibly moving. Scope and modality must be competently reviewed.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 23,
+      "english_paragraph": 6,
+      "english": "Remove deletes only that input.",
+      "current_nom_span": "攑 𠬃 址 扠 頭 𠓨 妬.",
+      "source_binding": "AssemblyActivity.kt: ui_remove; ImageAssembly.kt: remove",
+      "finding": "Caption mismatch confirmed: Help action starts 攑 𠬃 whereas actual Remove is 扠. 扠 occurs as verb later; that does not make the leading action caption identical. Only-that-input meaning appears represented.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 24,
+      "english_paragraph": 6,
+      "english": "Undo/Redo restore these changes.",
+      "current_nom_span": "還 作/爫 來 𣎏 体 復 回 各 𠊝 𢷮 尼.",
+      "source_binding": "ImageAssembly.kt: undo/redo/change",
+      "finding": "Undo/Redo phrase is present and restoration clause appears represented; no persistent-history claim accepted.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 25,
+      "english_paragraph": 6,
+      "english": "Drag a placed image to rearrange it; empty-space dragging pans.",
+      "current_nom_span": "捁 影 㐌 撻 抵 𢯛 揷 來; 捁 漨 𤿰 抵 移轉 椌 𥆾.",
+      "source_binding": "AssemblyCanvas.kt: onTouchEvent",
+      "finding": "Rearrangement versus empty-space viewport movement appear contrasted.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 26,
+      "english_paragraph": 6,
+      "english": "Pinch to zoom.",
+      "current_nom_span": "𥱱 抵 收 放.",
+      "source_binding": "AssemblyCanvas.kt: detector onScale",
+      "finding": "Pinch/zoom short instruction appears present; gesture terminology remains unaccepted.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 27,
+      "english_paragraph": 6,
+      "english": "«Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.",
+      "current_nom_span": "「現 必 𪥘」 址 調整 𣞪 收 放 抵 𧡊 全部 版 𢯖, 空 𢷮 戟 𡱩 頭 𠚢.",
+      "source_binding": "AssemblyActivity.kt: ui_show_all; AssemblyCanvas.kt: fit",
+      "finding": "Actual Show all caption is exact; zoom versus output-dimension distinction appears present.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 28,
+      "english_paragraph": 7,
+      "english": "Save PNG saves the assembled image directly.",
+      "current_nom_span": "留 PNG 仕 留 直接 影 㐌 𢯖.",
+      "source_binding": "AssemblyActivity.kt: requestOutput/makeOutput/saveOutput",
+      "finding": "Actual Save PNG caption exact, with direct assembled-image save wording.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 29,
+      "english_paragraph": 7,
+      "english": "Edit in Paint transfers it into the main editor as an undoable replacement.",
+      "current_nom_span": "整 𢯢 𥪝 Paint 仕 轉 影 𨖅 呈 編輯 正 𠁑 樣 𠊝 替 𣎏 体 還 作.",
+      "source_binding": "AssemblyActivity.kt: makeOutput; ClassicPaintActivity.kt: assembly_output; PaintDocument.kt: replace",
+      "finding": "Actual Edit in Paint caption exact; main-editor replacement and undoability appear represented.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 30,
+      "english_paragraph": 7,
+      "english": "If the output exceeds the memory budget, choose a smaller output copy if offered.",
+      "current_nom_span": "裊 頭 𠚢 越 過 界限 部𢖵 吧 應用 顯示 呈 譔 戟 𡱩, 唉 譔 𠬠 版 抄 頭 𠚢 𡮈 欣.",
+      "source_binding": "AssemblyActivity.kt: outputSizeDialog; AssemblyRenderer.kt: suggested",
+      "finding": "Exact historical PR12 conditional chooser span retained. This is bounded existing evidence, not new full-text acceptance.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 31,
+      "english_paragraph": 7,
+      "english": "If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.",
+      "current_nom_span": "裊 𣦍 𪥘 頭 𠚢 窒 𡮈 吻 越 過 界限, 應用 仕 通 報 空 𨁥 部𢖵 吧 空 顯示 呈 譔 戟 𡱩.",
+      "source_binding": "AssemblyActivity.kt: outputSizeDialog; AssemblyRenderer.kt: suggested/fits",
+      "finding": "Exact historical PR12 warning-without-chooser span retained. Do not import held assembly-warning explanation or unsupported single-source-decoder cause.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 32,
+      "english_paragraph": 7,
+      "english": "Original source files stay unchanged.",
+      "current_nom_span": "𣜿 源 班 頭 空 𠊝 𢷮.",
+      "source_binding": "AssemblyActivity.kt: importImages; ImageAssembly.kt: crop/write",
+      "finding": "Original-source unchanged clause appears present.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 33,
+      "english_paragraph": 7,
+      "english": "The current assembly is stored locally and reopens when you return.",
+      "current_nom_span": "狀態 𢯖 現在 得 留 局部 吧 仕 𢲫 來 欺 伴 𢮿 來.",
+      "source_binding": "ImageAssembly.kt: init/write/read; AssemblyActivity.kt: assembly initialization",
+      "finding": "Local persistence and reopen-on-return clause appears present; no cloud or persisted undo claim accepted.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    },
+    {
+      "unit": 34,
+      "english_paragraph": 8,
+      "english": "This mode uses the same Catrobat/AGPL and asset credits shown in the main editor\\'s «File > About, licences & credits» panel.",
+      "current_nom_span": "制度 尼 用 共 通信 𥱬 功 Catrobat/AGPL 吧 財源 𥪝 「𣜿 > 介紹, 紙 法 吧 𥱬 功」 𧵑 呈 編輯 正.",
+      "source_binding": "ClassicPaintActivity.kt: menuActions/showAboutOptions; LegalInfo.kt; vi-credit-route-binding.json",
+      "finding": "Actual File/About labels match literal route; Catrobat/AGPL present. Full asset-credit/grammar adequacy remains for competent review. No Commons/UI help23 import.",
+      "decision": "HOLD - no linguistic acceptance",
+      "basis": "Exact omission/caption or historical-span comparison where stated; otherwise tentative bounded reading, not certified Nôm competence"
+    }
+  ],
+  "warnings_PR165_common": [
+    {
+      "tag": "vi-Hani",
+      "key": "ui_no_resize_fits_decoder_memory",
+      "decision": "hold",
+      "target_sha256": "e67f28483c5ebdf122b2c6e4596bff80ebc8719e2ea6b4d727b81c992ff1301a",
+      "receipt": {
+        "path": "independent-review/receipts/156-vi-Hani.json",
+        "sha256": "b2a34d858ee550a6e07e33e8b8ca12a52f39d33b12d4e45a75ca4bd7f9385026",
+        "selector": "rows/key=ui_no_resize_fits_decoder_memory"
+      }
+    },
+    {
+      "tag": "vi-Hani",
+      "key": "ui_assembly_source_memory_floor",
+      "decision": "hold",
+      "target_sha256": "c578f15a519df3b111e94c06601dde524f660edfd23aaea8583020f5356aa057",
+      "receipt": {
+        "path": "independent-review/receipts/156-vi-Hani.json",
+        "sha256": "b2a34d858ee550a6e07e33e8b8ca12a52f39d33b12d4e45a75ca4bd7f9385026",
+        "selector": "rows/key=ui_assembly_source_memory_floor"
+      }
+    }
+  ],
+  "PR113": "Existing verified packet says OPEN/unmerged at 4d7621235bd599c3f6fc170ebae2c364d9cb3d67, base fix/commons-typed-import-failures-20261017; retarget-specific hold remains. This is not a new remote-state observation.",
+  "PR12_clause_only": "Only historical tray/crop/normalization and output-chooser corrections; full-current-value equality does not extend clause-only linguistic scope.",
+  "no_transfer": "No Latin vi, Chinese, Korean Han, or other-script acceptance is transferred.",
+  "font_scope": "Original position review carried font/rendering limitations. This source-only reconciliation does not establish current font/runtime quality or impose a new linguistic approval requirement."
+}
