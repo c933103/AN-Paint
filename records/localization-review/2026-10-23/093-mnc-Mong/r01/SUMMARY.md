@@ -1,0 +1,29 @@
+# Manchu: bounded current-source reconciliation
+
+2026-10-23. Picker 93, `mnc-Mong`; production `23f2ed7eb974ea040ac42f824e5f62d754e1e702`.
+
+Disjoint canonical-container counts: {"U": 691, "H": 5, "I": 17, "C": 2, "N": 2}. Whole-language accepted total remains null. No new translation, native-speaker certification, linguistic review or runtime acceptance.
+
+I = exact independently supported current complete-value scope with original limits. N = narrower or unestablished complete linguistic acceptance. H = preserved explicit full-value/linguistic review gap. C = current old production wording with an independently accepted but unintegrated candidate, never production acceptance. U = review status unreconciled. Any other category is defined in the original scope excerpt, not silently treated as acceptance.
+
+All 717 canonical containers and all 718 canonical leaves are present; no missing or extra units. Denominator: 716 strings and one plural map, not a flat inherited count. Excluded non-translatable filename strings: ui_an_paint_assembly_png, ui_an_paint_recovery_zip, ui_an_paint_source_zip. Picker arrays are configuration, not translation units. All 718 canonical leaf hashes are present: 21 English-identical and 697 different. English identity is not automatically untranslated and neither presence nor difference establishes review quality. String-row hashes are leaf hashes; the plural row additionally records each quantity leaf hash.
+
+## Original scopes and limits
+
+The 17 I scopes are six position strings, nine Commons reasons, response-limit wording and empty-credit text. The two N scopes are M04 query-failure proposal and the colour-format subject delta. Five H scopes retain gallery no-handler idiom, native-component specialist review, sampled-memory whole-value review, redirect full-phrase limits and full assembly Help. The historical 18-current figure is a locator only. Every credited row requires Manchu-specific original exact wording and source binding; no Mongolian acceptance is transferred. Position review has separate original X/Y decisions and an explicit later four-value successor. The Commons chain is not blanket nine-value acceptance from one packet: its initial holds, eight corrected decisions and separate remaining-key successor must remain distinguishable. Detailed per-key excerpts preserve those original decisions and limitations. All three complete original position callers, the resize dialog and GalleryCredits match current bytes; all nine Commons snippets match current source. A changed containing file or shifted line alone is not treated as a semantic change.
+
+Gallery no-handler, native-component, sampled-memory and redirect whole-value limits remain preserved unless an exact original successor explicitly resolves the same scope. Original M04 proposal status is not promoted because its spelling changed or source is present. Technical/modern-register, orthographic, idiomatic and script distinctions are retained rather than converted to native or full-catalogue certification. PR86 colour evidence covers only the format-neutral image-subject substitution; its exact complete current value does not expand that delta into full technical-idiom acceptance.
+
+Full assembly Help remains HOLD with no complete candidate. Both the original 34-sentence review and its later composition-research successor bind the same current source/target. Later grammar and lexical evidence improves specific construction options but does not accept a complete eight-paragraph revision. Remaining work includes normalization/snapping versus absolute placement, conditional image movement, memory allocation and warning/chooser conditions, and exact labels/crop-state phrasing. Withdrawn historical completion claims and the older PR12 narrative provenance gap remain unchanged. This is not a permission denial, a claim Manchu cannot express the requirements, or a demand for verbatim historical software sentences.
+
+The two exact warning v2 values have their own independent full-message acceptance, still unintegrated. Import wording was accepted in v1 and retained in v2. Assembly v1 required revision; v2 explicitly repairs the attempt construction while retaining the estimate, current allocation, alternatives and unchanged-state assurance. Full ancestry hashes match the sealed final packet. The one-page primary-citation correction is retained separately and changes no candidate or decision. These two candidate acceptances do not close full Help or other language holds.
+
+The [current public status clarification](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6362847362) distinguishes the old unknown upload from a genuinely fresh source-bound batch. No owner-refusal or blanket approval gate is inferred. No old-operation retry, source integration, HK ZIP stop change or release is performed here.
+
+## Reproducibility and remaining work
+
+`ledger.json` enumerates all 717 typed keys with source/target hashes. String values hash decoded XML full itertext as UTF-8 without normalizing whitespace or literal Android escapes. Plural containers hash compact sorted-key UTF-8 JSON of their complete quantity map. Immutable catalogue links recover every value. `receipt-excerpts.json` includes only relevant project judgments, values, source/context and scope. `bindings.json` identifies original and current sources.
+
+The manifest hashes each payload; SEAL.sha256 hashes exact manifest bytes. Existing snapshots and PR56 comments are unchanged. Unknown keys require original per-key evidence before review credit; held scopes need their own explicit successors. Source presence and fixtures are not linguistic receipts. No absence of historical work is inferred from an unrecovered receipt.
+
+Source inspection only: no application source changes, tests, builds, CI, merge, release or retranslation. This records-only branch must never be merged into application branches.
