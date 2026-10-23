@@ -1,0 +1,11 @@
+# PR167: fourteen exact core candidates are now integrated
+
+Fresh develop and commit/tree readbacks verify production 66be61df27c5359bffc32d56db21f3949899f873, tree 870c5a584120d92710be516af0dc3b3847b183d9. Complete GitHub catalogue blobs match the exact prepared bytes. All two Simplified Chinese and twelve Cantonese Han source/current-target pairs match their original qualified accepted values. All listed consumer blobs remain unchanged.
+
+This is a common integration-status successor only. The fourteen entries move from pending to integrated; no new linguistic credit, whole-language acceptance or runtime/native/rendering claim is added. Fit retains its original medium-high confidence and no-rendering limitation. The Cantonese note retains its separate replacement acceptance. CN Top remains a separate P2 scope, not extra credit within the original44/341. Historical Cantonese publication-locator gaps remain explicit.
+
+Only these fourteen values changed in the two catalogues. Every other value and quantity set in those files, and all other172 catalogue blobs, are unchanged. Forty CN optional refinements,29 Cantonese optional suggestions, the one wording-only/no-consumer entry, all seven full Help holds and eight warning holds remain outside this integration. No related-region/script transfer.
+
+Programme status: the pending14 statement in the [dated summary](https://github.com/c933103/AN-Paint/blob/9c2779585089875e82fb9e5fff756a650dee122d/records/localization-review/2026-10-23/programme-reconciliation/r01/SUMMARY.md) is superseded only for these exact keys. Its65 bounded-locator/106 unknown-option navigation counts remain unchanged, not completion counts. All171 picker ordering, source presence/missing and English-identity counts remain unchanged against the linked fresh inventory:717 canonical containers/718 leaves;49,618 containers present/72,989 missing;49,652 leaves present/73,126 missing;7,039 English-identical leaves, not an untranslated count. Whole-language accepted totals remain null.
+
+Historical snapshots remain untouched. Postmerge CI was pending at notification; this record verifies source integration and makes no postmerge CI claim. No app source edits, builds, tests, broad re-review or native review were performed for this successor. The records-only branch must never be merged into app branches.
