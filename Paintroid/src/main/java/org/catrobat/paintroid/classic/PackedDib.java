@@ -13,6 +13,10 @@ import java.io.RandomAccessFile;
  */
 public final class PackedDib {
     private PackedDib() { }
+    /** App-owned format rejection; diagnostic text is not a user-facing message. */
+    public static final class InvalidImage extends IOException {
+        private InvalidImage(String message) { super(message); }
+    }
     private static boolean headerSize(long n) {
         return n == 12 || n == 40 || n == 52 || n == 56 || n == 108 || n == 124;
     }
@@ -20,7 +24,7 @@ public final class PackedDib {
         long n = 0;
         for (int i = 0; i < count; i++) {
             int b = in.read();
-            if (b < 0) throw new IOException("Truncated DIB header or pixel data.");
+            if (b < 0) throw new InvalidImage("Truncated DIB header or pixel data.");
             n |= (long) b << (8 * i);
         }
         return n;
@@ -40,7 +44,7 @@ public final class PackedDib {
             return in.length() >= 4 && headerSize(little(in, 4));
         }
     }
-    private static IOException invalid(String detail) { return new IOException("Invalid DIB: " + detail + "."); }
+    private static InvalidImage invalid(String detail) { return new InvalidImage("Invalid DIB: " + detail + "."); }
     private static void mask(long mask, long allowed, boolean required) throws IOException {
         if (mask == 0) { if (required) throw invalid("missing colour mask"); return; }
         long shifted = mask >>> Long.numberOfTrailingZeros(mask);
@@ -99,7 +103,7 @@ public final class PackedDib {
     public static void toBmp(File file, OutputStream out) throws IOException {
         try (RandomAccessFile in = new RandomAccessFile(file, "r")) {
             long length = in.length(), header = little(in, 4);
-            if (!headerSize(header)) throw new IOException("Unsupported DIB header version.");
+            if (!headerSize(header)) throw new InvalidImage("Unsupported DIB header version.");
             if (length < header) throw invalid("truncated header");
             int width, signedHeight, bits, planes;
             long compression = 0, imageSize = 0, colours = 0;
@@ -114,14 +118,14 @@ public final class PackedDib {
             if (width <= 0 || signedHeight == 0 || signedHeight == Integer.MIN_VALUE || planes != 1)
                 throw invalid("dimensions or plane count");
             if (bits != 1 && bits != 4 && bits != 8 && bits != 16 && bits != 24 && bits != 32)
-                throw new IOException("Unsupported DIB pixel depth (expected 1, 4, 8, 16, 24 or 32 bits).");
+                throw new InvalidImage("Unsupported DIB pixel depth (expected 1, 4, 8, 16, 24 or 32 bits).");
             if (header == 12 && bits != 1 && bits != 4 && bits != 8 && bits != 24)
-                throw new IOException("Unsupported OS/2 DIB pixel depth.");
+                throw new InvalidImage("Unsupported OS/2 DIB pixel depth.");
             int height = Math.abs(signedHeight);
             boolean bitfields = compression == 3 || compression == 6;
             boolean compressed = compression == 1 || compression == 2;
             if (compression != 0 && !bitfields && !compressed)
-                throw new IOException("Unsupported DIB compression (RGB, bitfields and RLE4/RLE8 are supported).");
+                throw new InvalidImage("Unsupported DIB compression (RGB, bitfields and RLE4/RLE8 are supported).");
             if ((bitfields && bits != 16 && bits != 32) || (compression == 1 && bits != 8) ||
                     (compression == 2 && bits != 4) || (compressed && signedHeight < 0))
                 throw invalid("compression does not match pixel depth or orientation");
@@ -161,7 +165,7 @@ public final class PackedDib {
             // Normalize extended mask headers and Windows CE alpha-bitfields to V4 for Skia.
             boolean normalize = header == 52 || header == 56 || compression == 6;
             long extra = normalize ? 108 - header - externalMasks : 0;
-            if (length + extra > 0xffffffffL - 14) throw new IOException("DIB exceeds the 4 GiB BMP decoder container limit.");
+            if (length + extra > 0xffffffffL - 14) throw new InvalidImage("DIB exceeds the 4 GiB BMP decoder container limit.");
             out.write('B'); out.write('M'); put(out, length + extra + 14, 4);
             put(out, 0, 4); put(out, offset + extra + 14, 4);
             if (normalize) {

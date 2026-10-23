@@ -26,7 +26,11 @@ public final class IcoContainer {
             this.width=width;this.height=height;this.bits=bits;this.png=png;this.offset=offset;this.length=length;
         }
     }
-    private static IOException invalid(String detail) {return new IOException("Invalid or unsupported ICO: "+detail+".");}
+    /** App-owned format rejection; diagnostic text is not a user-facing message. */
+    public static final class InvalidImage extends IOException {
+        private InvalidImage(String message) { super(message); }
+    }
+    private static InvalidImage invalid(String detail) {return new InvalidImage("Invalid or unsupported ICO: "+detail+".");}
     private static long little(RandomAccessFile in,int bytes) throws IOException {
         long n=0;for(int i=0;i<bytes;i++) {int b=in.read();if(b<0)throw invalid("truncated data");n|=(long)b<<(8*i);}return n;
     }
