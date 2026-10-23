@@ -1,0 +1,13 @@
+# Russian: bounded original-review/current-source reconciliation
+
+Picker 123, ru, at production `5bfed632e485766d0c841fa79d7f56a1c49be5d5`. All 717 containers / 718 canonical leaves are present; 20 leaves are English-identical. Russian plural few/many are additional quantities, not extra canonical units. Presence is not reviewed quality.
+
+**I20 / P2 / Q4 / N3 / D2 / U686 = 717 containers.** The 28 recovered original pairs are all exact: 17 raw independent bounded acceptances, two public-attested scopes, four public review claims with independence unestablished, three proposals, and two change-only reviews. Separately, the already accepted/integrated full Help and two warnings contribute three non-overlapping I resources through existing common evidence. No review is newly performed or credited from merge.
+
+I17 comprises six position controls, nine Commons failures, gallery no-handler and empty-credit wording. Native-component remains P: its compiled public independent-review claim is not a separately recovered reviewer receipt. Crop P retains the exact original hold→PR62→PR99 chain; PR99 reviews all four full forms and corrects modality to “may move”. This does not clear unrelated holds or certify native/device presentation. PR110 four public claims remain Q. M03 author-only, M04 bounded proposal and redirect without established independent Russian review remain N. PR80/PR86 remain change-only D rather than full-value acceptance.
+
+The six position complete input files are unchanged. The complete gallery external-handler method is unchanged despite shifted lines. Russian Commons own input hashes match the compared files; their only complete-file changes are user-agent helper extraction/construction, not typed error/message semantics. Own PR99 crop caller differs only by the exact quantity-resolver substitution, with identical count/width/height arguments and crop logic. The new resolver and broader runtime dependencies are not original linguistic certification. Other code deltas and four PR110 caller gaps remain explicit.
+
+All integrated scopes are production, not pending candidates. Earlier historical candidate/hold snapshots remain untouched. The accepted eight-paragraph Help is not retroactive acceptance of the old seven-paragraph value. The warning scope does not lift separate full-Help holds in other options. Whole-language and current-context review totals remain null/unreconciled.
+
+Earlier skipped pickers 118–122 remain unknown as recorded with Emoji117; no fallback-only scope is declared complete. Next step: recover own evidence for U686 and public/proposal/change-only scopes, and resolve remaining original consumer prerequisites without retranslating accepted wording. No builds or app changes.
