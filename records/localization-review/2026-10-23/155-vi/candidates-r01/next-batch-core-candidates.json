@@ -1,0 +1,265 @@
+{
+  "scope": "Two exact original independently accepted Vietnamese core candidates, still unapplied at production5bfed632. Candidate-only record, not complete language reconciliation or new review.",
+  "production": "5bfed632e485766d0c841fa79d7f56a1c49be5d5",
+  "entries": [
+    {
+      "key": "string/ui_the_encoder_did_not_finish",
+      "source_original": "The encoder did not finish.",
+      "source_current": "The encoder did not finish.",
+      "target_current": "Bộ mã hóa không hoàn tất.",
+      "author_proposed": "Quá trình mã hóa không hoàn tất.",
+      "independent_recommended": "Quá trình mã hóa không hoàn tất.",
+      "decision": "accept",
+      "confidence": "high",
+      "rationale": "“Quá trình mã hóa” is a complete, idiomatic process subject for “không hoàn tất”. It reports noncompletion without adding a cause, data-loss claim, or retry promise. All three current consumers throw this IOException when Bitmap.compress returns false, so the process-result wording preserves the full English meaning and is clearer than the elliptical current encoder-as-subject wording.",
+      "receipt": "four-proposal-independent-review",
+      "selector": "/entries/0",
+      "source_original_raw_sha256": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "source_current_raw_sha256": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "target_current_raw_sha256": "217e5caea6bce8a1967cea125693eeb96c87434635ef6f43ffb2b831a782ac7e",
+      "recommended_raw_sha256": "fcdb9470542bf30e0bd1704b442eeb7bddef2a7bea1ecdedb84adb449e2e419c",
+      "source_exact_current": true,
+      "current_equals_reviewed_old": true,
+      "current_equals_recommended": false,
+      "consumer_prerequisites": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "original_lines": [
+            26,
+            36
+          ],
+          "original_excerpt_sha256": "bbeaa89947055d2d81913ad4168a232e300e58efc67b07f9fbb315a86b903cbe",
+          "original_file_sha256": "c9091570ccf406dd20e44bef486cfa8e8e6b4db6685aa818d3df8c5b34797b31",
+          "current_file_sha256": "c9091570ccf406dd20e44bef486cfa8e8e6b4db6685aa818d3df8c5b34797b31",
+          "complete_file_unchanged": true,
+          "exact_original_excerpt_present_current": true
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "original_lines": [
+            95,
+            101
+          ],
+          "original_excerpt_sha256": "1a901581ad78ae0dc7daf02873023127c916f195c9cde0097e8c8684576a8f0b",
+          "original_file_sha256": "8cb4b309cbb47ffdc8a34396cf865ef46358ca4dc9f06be1561ce22a1b1c474d",
+          "current_file_sha256": "a1ad195fd2e76115181e56d2b541ebde58de1a07687319ec65bd1994c63e74a3",
+          "complete_file_unchanged": false,
+          "exact_original_excerpt_present_current": true,
+          "complete_containing_method": {
+            "method": "encode",
+            "original_source_commit_as_recorded": "4355869e2e198b5616419291cba225b018444fab",
+            "original_file_git_blob": "9fdb9fafa2b0214cc84118bd60940fe070eef6c0",
+            "original_file_sha256": "8cb4b309cbb47ffdc8a34396cf865ef46358ca4dc9f06be1561ce22a1b1c474d",
+            "original_lines": [
+              73,
+              102
+            ],
+            "current_file_git_blob": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+            "current_lines": [
+              76,
+              105
+            ],
+            "complete_original_method_sha256": "82b024dd99a9175a015fe453b5ef5640125a5d6f05ccf23071eb9a57b4efc5c6",
+            "complete_current_method_sha256": "82b024dd99a9175a015fe453b5ef5640125a5d6f05ccf23071eb9a57b4efc5c6",
+            "complete_method_exact_current": true,
+            "method_boundary": "From exact four-space member fun declaration through its four-space closing brace; includes all nested blocks. No method execution or semantic rewrite."
+          }
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+          "original_lines": [
+            23,
+            26
+          ],
+          "original_excerpt_sha256": "60633c3488522af0b1e2ac503de5970a835794684ac72766f01dcfbfe11196d1",
+          "original_file_sha256": "b246e44e8aaf1e2d10455c737dfc9afc129ed9ae71b23a1468e17c7d98d19ee3",
+          "current_file_sha256": "b246e44e8aaf1e2d10455c737dfc9afc129ed9ae71b23a1468e17c7d98d19ee3",
+          "complete_file_unchanged": true,
+          "exact_original_excerpt_present_current": true
+        }
+      ],
+      "qualifications": [
+        "Linguistic model review, not native-human or native-speaker certification.",
+        "Static consumer interpretation only; no runtime execution or UI-fit/layout assessment.",
+        "No live TalkBack or other accessibility testing.",
+        "No shared-source edit, PR, build, Gradle, APK, CI, emulator, version, deployment, or release operation.",
+        "Nôm vi-Hani and the remainder of Vietnamese coverage are outside this receipt.",
+        "The original proposed magnifier value is not accepted by this receipt; use the explicitly recorded substitute only with its stated review status.",
+        "The referenced upstream tree provides source identity, not a runtime-verification claim."
+      ],
+      "prerequisite_interpretation": "Exact reviewed excerpts are compared separately from whole-file identity. Changed whole files do not by themselves imply changed consumers; no new behavioral acceptance is claimed.",
+      "status": "accepted_core_correction_pending_integration",
+      "qualified_for_future_batch": true,
+      "current_consumer_binding_status": "closed_at_bounded_original_scope",
+      "current_consumer_qualifications": [
+        "Changed whole files are covered only by exact complete containing-method equality, not an assertion that all future callers are reviewed.",
+        "All other original code consumer files are byte-identical. Catalogues are reconciled by exact named resource values and quoted caption.",
+        "Original independent acceptance is preserved separately from this identity-only rebind."
+      ]
+    },
+    {
+      "key": "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "source_original": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+      "source_current": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+      "target_current": "Khung vẽ. Chụm và di chuyển hai ngón tay để thu phóng và di chuyển. Chế độ Điều hướng cũng cho phép di chuyển bằng một ngón.",
+      "author_proposed": "Khung vẽ. Chụm và di chuyển hai ngón tay để thu phóng và di chuyển khung vẽ. Chế độ “Di chuyển và thu phóng” cũng cho phép di chuyển khung vẽ bằng một ngón tay.",
+      "independent_recommended": "Khung vẽ. Chụm và di chuyển hai ngón tay để thu phóng và di chuyển khung vẽ. Chế độ “Di chuyển và thu phóng” cũng cho phép di chuyển khung vẽ bằng một ngón tay.",
+      "decision": "accept",
+      "confidence": "high",
+      "rationale": "The complete instruction remains grammatical and maps zoom to “thu phóng” and pan to “di chuyển khung vẽ”. The latter identifies the viewport/canvas movement rather than moving painted content. The quoted “Di chuyển và thu phóng” exactly matches current vi ui_navigate, which is the label for PaintTool.ZOOM. The final clause retains the additional one-finger navigation operation and does not claim one-finger zoom.",
+      "receipt": "four-proposal-independent-review",
+      "selector": "/entries/1",
+      "source_original_raw_sha256": "3ecc75f24a1a7fe88133c1b151a1d5da0f92c9dcb6b26748d0e24fa1ed1fb7ab",
+      "source_current_raw_sha256": "3ecc75f24a1a7fe88133c1b151a1d5da0f92c9dcb6b26748d0e24fa1ed1fb7ab",
+      "target_current_raw_sha256": "41b1ee9571ae5e98f2033c41d4f59a3ca43907a2167876899693ea1277c0720c",
+      "recommended_raw_sha256": "685298e1b20f9e8a3ef010518ae180e0d6a8b80c2d8717d0516c25dcec1c5fda",
+      "source_exact_current": true,
+      "current_equals_reviewed_old": true,
+      "current_equals_recommended": false,
+      "consumer_prerequisites": [
+        {
+          "path": "Paintroid/src/main/res/values/strings.xml",
+          "original_lines": [
+            271,
+            271
+          ],
+          "original_excerpt_sha256": "991f50f50f9d836276f794283255769cf482674dd629fc79354157c1276bfbab",
+          "original_file_sha256": "04bf03c83788efb65f6b0f07c94ccf2da741115715678662c8f2cd359fc95e7d",
+          "current_file_sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+          "complete_file_unchanged": false,
+          "exact_original_excerpt_present_current": true,
+          "resource_scope_only": true
+        },
+        {
+          "path": "Paintroid/src/main/res/values-vi/strings.xml",
+          "original_lines": [
+            134,
+            134
+          ],
+          "original_excerpt_sha256": "1141eac7092d2e6d036e4bdb500efc3682cfbbee945913ffd265a0e8ed39ce67",
+          "original_file_sha256": "ca55e444516904d2cecc8621624b30edbb500c90eda39e22e5a9004ed836d2d6",
+          "current_file_sha256": "4413868507947ee7c8a1a738b7a44bdaefe03314eef59855d587f4125bed5425",
+          "complete_file_unchanged": false,
+          "exact_original_excerpt_present_current": true,
+          "resource_scope_only": true
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "original_lines": [
+            14,
+            20
+          ],
+          "original_excerpt_sha256": "4c8886467f8d0e088d11b74dafce1f7a7f6baa320da02ba47ed59fdd91e6738c",
+          "original_file_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "current_file_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "complete_file_unchanged": true,
+          "exact_original_excerpt_present_current": true
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "original_lines": [
+            35,
+            36
+          ],
+          "original_excerpt_sha256": "2ad095bdf48352706951410a1689d1f6f144df3dd77d5bbcad4a92a43da77988",
+          "original_file_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "current_file_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "complete_file_unchanged": true,
+          "exact_original_excerpt_present_current": true
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "original_lines": [
+            269,
+            272
+          ],
+          "original_excerpt_sha256": "6a4e07d06d550d33837b4922ed80272fa8d3b096e0f6fd977ebe8a0067029668",
+          "original_file_sha256": "1b6a4e586d95902d03dcb4a918000ec72f7d1f3fe05623d0dd7cb1e52ad9e1d8",
+          "current_file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "complete_file_unchanged": false,
+          "exact_original_excerpt_present_current": true,
+          "complete_containing_method": {
+            "method": "buildWorkspace",
+            "original_source_commit_as_recorded": "4355869e2e198b5616419291cba225b018444fab",
+            "original_file_git_blob": "a5360fa01f094153e7bc2a8e0c06987237de395b",
+            "original_file_sha256": "1b6a4e586d95902d03dcb4a918000ec72f7d1f3fe05623d0dd7cb1e52ad9e1d8",
+            "original_lines": [
+              269,
+              459
+            ],
+            "current_file_git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+            "current_lines": [
+              269,
+              459
+            ],
+            "complete_original_method_sha256": "42df9b789777ccdc7d5426f342828d9c41c420cfed291153e69cb8f7f5d2fedc",
+            "complete_current_method_sha256": "42df9b789777ccdc7d5426f342828d9c41c420cfed291153e69cb8f7f5d2fedc",
+            "complete_method_exact_current": true,
+            "method_boundary": "From exact four-space member fun declaration through its four-space closing brace; includes all nested blocks. No method execution or semantic rewrite."
+          }
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "original_lines": [
+            147,
+            150
+          ],
+          "original_excerpt_sha256": "d03cdde5ddcab1fa5dec14a69a4891ed51fc8f7249b8119343ff37ba6960ea83",
+          "original_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "current_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "complete_file_unchanged": true,
+          "exact_original_excerpt_present_current": true
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "original_lines": [
+            737,
+            744
+          ],
+          "original_excerpt_sha256": "0c1933b409f44a08d438335d16a8d42ba2a733c331e08c54fb977eeabbea3660",
+          "original_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "current_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "complete_file_unchanged": true,
+          "exact_original_excerpt_present_current": true
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "original_lines": [
+            769,
+            776
+          ],
+          "original_excerpt_sha256": "264fa9ca910764dcbb97797e0d454d499b5965fb6c12dbb10eee8e048eff39aa",
+          "original_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "current_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "complete_file_unchanged": true,
+          "exact_original_excerpt_present_current": true
+        }
+      ],
+      "qualifications": [
+        "Linguistic model review, not native-human or native-speaker certification.",
+        "Static consumer interpretation only; no runtime execution or UI-fit/layout assessment.",
+        "No live TalkBack or other accessibility testing.",
+        "No shared-source edit, PR, build, Gradle, APK, CI, emulator, version, deployment, or release operation.",
+        "Nôm vi-Hani and the remainder of Vietnamese coverage are outside this receipt.",
+        "The original proposed magnifier value is not accepted by this receipt; use the explicitly recorded substitute only with its stated review status.",
+        "The referenced upstream tree provides source identity, not a runtime-verification claim."
+      ],
+      "prerequisite_interpretation": "Exact reviewed excerpts are compared separately from whole-file identity. Changed whole files do not by themselves imply changed consumers; no new behavioral acceptance is claimed.",
+      "status": "accepted_core_correction_pending_integration",
+      "qualified_for_future_batch": true,
+      "quoted_caption_dependency": {
+        "key": "string/ui_navigate",
+        "historical": "Di chuyển và thu phóng",
+        "current": "Di chuyển và thu phóng",
+        "exact": true,
+        "caption_in_accepted_value": true
+      },
+      "current_consumer_binding_status": "closed_at_bounded_original_scope",
+      "current_consumer_qualifications": [
+        "Changed whole files are covered only by exact complete containing-method equality, not an assertion that all future callers are reviewed.",
+        "All other original code consumer files are byte-identical. Catalogues are reconciled by exact named resource values and quoted caption.",
+        "Original independent acceptance is preserved separately from this identity-only rebind."
+      ]
+    }
+  ]
+}
