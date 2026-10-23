@@ -1,0 +1,11 @@
+# Method and limitations
+
+Current develop was freshly read as 5bfed632e485766d0c841fa79d7f56a1c49be5d5. Complete current English/Okinawan bytes are Git-blob bound. Canonical schema: 716 string containers plus one plural container, 717 containers / 718 leaves. Strings are complete XML-decoded itertext UTF-8 with Android escapes and whitespace preserved. Plural container hashes use sorted-key compact Unicode-preserving JSON; quantities are independent UTF-8 leaves. The Okinawan plural has other only: canonical one remains missing, with no localized hash assigned. All 717 container keys exist but only 717 of 718 canonical leaves.
+
+Three translatable=false filename constants ui_an_paint_assembly_png, ui_an_paint_recovery_zip and ui_an_paint_source_zip are excluded. Configuration arrays are not omitted translation units. Presence/difference from English is not review credit.
+
+Disjoint labels: I recovered original independent exact full-pair acceptance, retaining bounded semantic/idiom/register limits; H unresolved original hold; N proposal or independent review not established; D independently assessed change-only scope, not full-value acceptance; U unreconciled. I does not mean native-speaker, current runtime, whole-language or full consumer acceptance. One row per canonical container; do not sum overlapping review events.
+
+Original own Okinawan receipts select the historical source files. Code-only comparison may be reused only for identical complete historical/current hashes, never to transfer another language judgment. Six position source files remain exact; Commons changes are the recorded user-agent construction only. The external-handler method is exact, but its separate Okinawan idiom hold remains. Other typed-error/parser/resolver/presentation dependencies are not recertified from wording.
+
+The distinct position Help replacement receipt supersedes its exact prior revise decision only. Full assembly Help is a different resource and remains HOLD with focused construction progress. The warning successors are integrated through the common PR165 record, not new review and not clearance of other holds. Historical records are unchanged. No source edits, builds, tests, CI, generators or linguistic retranslation were performed. Non-production records-only branch, never merge into application branches.
