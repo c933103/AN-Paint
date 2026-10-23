@@ -112,7 +112,7 @@
     <string name="ui_foreground_colour" formatted="false">Kulay sa harap</string>
     <string name="ui_background_colour" formatted="false">Kulay sa likod</string>
     <string name="ui_edit_canvas33" formatted="false">Lona</string>
-    <string name="ui_edit_transform33" formatted="false">Baligtarin / Ikutin</string>
+    <string name="ui_edit_transform33" formatted="false">Baligtarin / Paikutin</string>
     <string name="ui_pixel_grid33" formatted="false">Grid ng pixel</string>
     <string name="ui_magnifier33" formatted="false">Lente</string>
     <string name="ui_fullscreen33" formatted="false">Buong screen</string>
@@ -225,7 +225,7 @@
     <string name="ui_crop">I-crop ang %1$s</string>
     <string name="ui_crop_image">I-crop ang larawan</string>
     <string name="ui_crop_must_stay_inside_the_canvas">Dapat manatili sa loob ng canvas ang crop.</string>
-    <string name="ui_crop_preview_drag_an_edge_or_corner_drag">Preview ng crop. I-drag ang gilid o sulok; i-drag ang loob para ilipat ang crop.</string>
+    <string name="ui_crop_preview_drag_an_edge_or_corner_drag">Preview ng crop. I-drag ang gilid o sulok; i-drag sa loob nito para ilipat ang crop.</string>
     <string name="ui_cropped_thumbnail">Na-crop na thumbnail: %1$s</string>
     <string name="ui_current_safe_budget_2f_mp">Kasalukuyang ligtas na limitasyon: %1$.2f MP.</string>
     <string name="ui_current_safe_editing_budget_s_up_to_2f">Kasalukuyang ligtas na limitasyon sa pag-edit: %1$s · hanggang %2$.2f MP bago ang dagdag na gamit ng decoder</string>
@@ -334,7 +334,7 @@
     <string name="ui_invalid_image_attachments">Hindi wasto ang pagkakabit ng larawan.</string>
     <string name="ui_invalid_selection_outline">Hindi wasto ang outline ng selection.</string>
     <string name="ui_italic">Italic</string>
-    <string name="ui_keeps_pixels_at_the_top_left_smaller_canvas">Pinananatili ang pixels sa kaliwang itaas. Itinatapon ng mas maliit na canvas ang pixels sa labas ng kanan/ibaba; ibinabalik sila ng Ibalik.</string>
+    <string name="ui_keeps_pixels_at_the_top_left_smaller_canvas">Pinananatili ang mga pixel sa kaliwang itaas. Kapag pinaliit ang mga sukat ng canvas, inaalis ang mga pixel na lampas sa kanan o ibabang gilid; maibabalik ang mga ito gamit ang Ibalik.</string>
     <string name="ui_largest">Pinakamalaki</string>
     <string name="ui_left">Kaliwa</string>
     <string name="ui_left_aligned">Naka-align sa kaliwa</string>
@@ -502,7 +502,7 @@
     <string name="ui_trim_amounts_must_fit_inside_each_image_use">Dapat kasya ang halaga ng bawas sa loob ng bawat larawan; gumamit ng buong pixels o porsiyento.</string>
     <string name="ui_trim_expand_canvas_by_touch">Bawasan / palawakin ang canvas sa pamamagitan ng touch…</string>
     <string name="ui_trim_from_the_original_edges_drag_the_handles">Bawasan mula sa orihinal na mga gilid. I-drag ang mga handle o ilagay ang halaga sa ibaba. Hindi nagbabago ang source file.</string>
-    <string name="ui_trim_in_pixels">%1$s na bawas sa pixels</string>
+    <string name="ui_trim_in_pixels">Bawas sa %1$s (pixels)</string>
     <string name="ui_type_text">Mag-type ng teksto</string>
     <string name="ui_unexpected_data_in_the_undo_cache">May hindi inaasahang data sa undo cache.</string>
     <string name="ui_unplace">Alisin sa puwesto</string>
@@ -527,7 +527,7 @@
     <string name="ui_try_a_different_file_or_location">Subukan ang ibang file o lokasyon.</string>
     <string name="ui_preview_memory_error">%1$s: kulang ang memory para sa preview nito.</string>
     <string name="ui_png_encoding_failed">Nabigo ang pag-encode ng PNG.</string>
-    <string name="ui_trim_in_percent">%1$s na bawas sa porsiyento</string>
+    <string name="ui_trim_in_percent">Bawas sa %1$s (porsiyento)</string>
     <string name="ui_colour_component_range">0–%1$d</string>
     <string name="ui_colour_red_range">R · 0–255</string>
     <string name="ui_colour_green_range">G · 0–255</string>
@@ -576,7 +576,7 @@
     <string name="colour20_replace_slot">Palitan ang slot %1$d</string>
     <string name="colour20_saved_slot">Na-save ang kulay sa slot %1$d</string>
     <string name="colour_invalid_metadata">May hindi wasto o hindi sinusuportahang color metadata ang larawan.</string>
-    <string name="colour_truncated_metadata">Nagtatapos ang larawan sa loob ng color metadata nito.</string>
+    <string name="colour_truncated_metadata">Naputol ang file ng larawan sa loob ng color metadata nito.</string>
     <string name="colour_unsupported_icc_model">Gumagamit ang larawang ito ng ICC color model na hindi ma-convert ng image decoder. Mag-export muna ng RGB copy sa color-managed na application.</string>
     <string name="colour_converter_unavailable">Hindi masimulan ang color converter ng larawan. Hindi na-import ang larawan.</string>
     <string name="gallery_image_component_unavailable">Hindi magagamit ang isang kinakailangang bahagi para sa pagproseso ng larawan. Hindi na-import ang larawan.</string>
@@ -692,7 +692,7 @@
     <string name="legacy_credits_existing">May credit na ang larawang ito para sa source na iyon. Pinanatili ang teksto nito.</string>
     <string name="legacy_credits_added">Naidagdag ang credit sa larawang ito.</string>
     <string name="legacy_credits_unreadable">Hindi mabasa ang ilang na-save na credit. Pinanatili ang mga naka-save na kopya ng mga ito.</string>
-    <string name="gallery_credit_too_large">Gagawing masyadong malaki ng mga credit na ito ang guhit upang maibalik ito. Pinanatili ang dati mong guhit at mga credit.</string>
+    <string name="gallery_credit_too_large">Magiging masyadong malaki ang guhit para maibalik kung idaragdag ang mga credit na ito. Pinanatili ang dati mong guhit at mga credit.</string>
     <string name="gallery_credit_could_not_save">Hindi ma-save o maibalik ang mga credit ng larawan. Pinanatili ang mga dati nang na-save na credit. Subukan muli.</string>
     <string name="commons_svg_original_size_unavailable">Walang nakasaad na magagamit na orihinal na laki sa SVG. Walang ipinalit na laki na batay sa lona.</string>
     <string name="commons_svg_original_size_too_large">Lampas sa limitasyon ng mga sukat ng bitmap sa Android ang orihinal na laki ng SVG. Hindi binago ang laki.</string>
