@@ -1,0 +1,184 @@
+{
+  "scope": "NEXT-BATCH-ONLY: exactly two independently accepted zh-CN crop-edge corrections. Excludes all 40 optional refinements and all HK candidates. Do not amend PR166, whose reviewed exact head has CI running. Add only to the NEXT candidate inventory; parent decides later accumulation timing.",
+  "production": "5bfed632e485766d0c841fa79d7f56a1c49be5d5",
+  "source_edit_performed": false,
+  "original_receipt": {
+    "url": "https://github.com/c933103/AN-Paint/blob/510b33c6e09b5cb76c46f757254d99b88d3600ab/sw-ceb-zh-independent-reviews.zip",
+    "archive_git_blob": "823060cfcc33a59af04f9a471583e58a6019463c",
+    "archive_sha256": "ce7460c22735adfd88c9741964863507546cd77879b1bc42c4a502557c82d758",
+    "member": "zh-CN/independent-receipt.json",
+    "member_sha256": "051daced8252515133bd1940f27c75fc69e49b3f76bacd7a11a52e89e07bc2a2",
+    "matches_original_local_bytes": true
+  },
+  "catalogue_path": "Paintroid/src/main/res/values-zh-rCN/strings.xml",
+  "current_catalogue_git_blob": "a5629a878b2d151ca7faf4066b2474e622dbfba9",
+  "candidates": [
+    {
+      "tag": "zh-CN",
+      "key": "string/ui_bottom",
+      "source_value": "Bottom",
+      "reviewed_old_value": "底层",
+      "accepted_value": "下",
+      "current_source_value": "Bottom",
+      "current_value": "底层",
+      "source_raw_sha256": "479ad21ac9096236e921c228a511f12cc84758e21d9edda03ae82c501d367c93",
+      "reviewed_old_raw_sha256": "bb939f5565afce3c56b14357361bc458de1c13b0023d5749adc74cb59cb50f13",
+      "accepted_raw_sha256": "13c12b064b635e069c22d29d1decf8e952332e9492e17515705d7904c003a147",
+      "current_source_raw_sha256": "479ad21ac9096236e921c228a511f12cc84758e21d9edda03ae82c501d367c93",
+      "current_raw_sha256": "bb939f5565afce3c56b14357361bc458de1c13b0023d5749adc74cb59cb50f13",
+      "source_matches": true,
+      "current_matches_old": true,
+      "current_matches_accepted": false,
+      "assessment": "genuine_content_error",
+      "original_verdict": "accept",
+      "origin": "https://github.com/c933103/AN-Paint/blob/510b33c6e09b5cb76c46f757254d99b88d3600ab/sw-ceb-zh-independent-reviews.zip",
+      "selector": "zh-CN/independent-receipt.json#/rows/28",
+      "original_consumer_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+          "line": 72,
+          "excerpt": "val edges = linkedMapOf(\"left\" to R.string.ui_left,\"top\" to R.string.ui_top,\"right\" to R.string.ui_right,\"bottom\" to R.string.ui_bottom)",
+          "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72"
+        }
+      ],
+      "acceptance_scope": "complete_value_and_static_consumer_context",
+      "new_acceptance": false,
+      "rationale": "ImageCropDialog maps this resource only to the bottom crop margin, computes it as image height minus bottom coordinate, and inserts it into trim-unit descriptions. 底层 means bottom layer, which is the wrong concept. 下 matches existing 左/右 and composes as 下裁减量（像素/百分比）. Paired Top must be tracked separately as P2.",
+      "batch_bucket": "pending_core_correction",
+      "original_independent_judgment": {
+        "key": "string/ui_bottom",
+        "tier": "P1",
+        "verdict": "accept",
+        "assessment": "genuine_content_error",
+        "current_is_genuine_content_error": true,
+        "exact_english_value": "Bottom",
+        "exact_current_value": "底层",
+        "exact_author_proposed_value": "下",
+        "exact_recommended_value": "下",
+        "independent_rationale": "ImageCropDialog maps this resource only to the bottom crop margin, computes it as image height minus bottom coordinate, and inserts it into trim-unit descriptions. 底层 means bottom layer, which is the wrong concept. 下 matches existing 左/右 and composes as 下裁减量（像素/百分比）. Paired Top must be tracked separately as P2.",
+        "consumer_references": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+            "line": 72,
+            "excerpt": "val edges = linkedMapOf(\"left\" to R.string.ui_left,\"top\" to R.string.ui_top,\"right\" to R.string.ui_right,\"bottom\" to R.string.ui_bottom)",
+            "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72"
+          }
+        ],
+        "consumer_scope": "complete_value_and_static_consumer_context",
+        "english_utf8_sha256": "479ad21ac9096236e921c228a511f12cc84758e21d9edda03ae82c501d367c93",
+        "current_utf8_sha256": "bb939f5565afce3c56b14357361bc458de1c13b0023d5749adc74cb59cb50f13",
+        "author_proposed_utf8_sha256": "13c12b064b635e069c22d29d1decf8e952332e9492e17515705d7904c003a147",
+        "recommended_utf8_sha256": "13c12b064b635e069c22d29d1decf8e952332e9492e17515705d7904c003a147",
+        "complete_pair_canonical_json_sha256": "70347435f15d9d6318416f54b1c1119a767141d5915c2081a00e3ce2541ee133",
+        "format_arguments": [],
+        "format_arguments_match": true,
+        "recommended_literal_newline_escapes": 0
+      },
+      "current_consumer_rebind": {
+        "complete_file_unchanged": true,
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "old_and_current_sha256": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193",
+        "current_git_blob": "a21c5d9a32794df26907f6765d52f0d409e2953a",
+        "current_url": "https://github.com/c933103/AN-Paint/blob/5bfed632e485766d0c841fa79d7f56a1c49be5d5/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72-L115",
+        "current_static_facts": [
+          "Line 72 maps top/bottom to ui_top/ui_bottom as crop edges, not stacking layers.",
+          "Lines 79–82 derive top and bottom crop margins from rectangle coordinates.",
+          "Lines 104 and 111–115 compose edge labels with trim-in-percent/pixels content descriptions and render the same labels."
+        ],
+        "runtime_not_executed": true
+      }
+    },
+    {
+      "tag": "zh-CN",
+      "key": "string/ui_top",
+      "source_value": "Top",
+      "reviewed_old_value": "顶层",
+      "accepted_value": "上",
+      "current_source_value": "Top",
+      "current_value": "顶层",
+      "source_raw_sha256": "d5cdfcf7ff75338fa974145a13378ee35f7ea04cfabd74b8f5fb6df350cfbcca",
+      "reviewed_old_raw_sha256": "4522f8325fde58fecccdeba3cfb98d7e01d4b701bbb8d5bb41bdb9678f6fc5da",
+      "accepted_raw_sha256": "db5ba671d244ee8284613c31e1b8438429651df48ea566ff5158f1e58fb20114",
+      "current_source_raw_sha256": "d5cdfcf7ff75338fa974145a13378ee35f7ea04cfabd74b8f5fb6df350cfbcca",
+      "current_raw_sha256": "4522f8325fde58fecccdeba3cfb98d7e01d4b701bbb8d5bb41bdb9678f6fc5da",
+      "source_matches": true,
+      "current_matches_old": true,
+      "current_matches_accepted": false,
+      "assessment": "genuine_content_error",
+      "original_verdict": "accept",
+      "origin": "https://github.com/c933103/AN-Paint/blob/510b33c6e09b5cb76c46f757254d99b88d3600ab/sw-ceb-zh-independent-reviews.zip",
+      "selector": "zh-CN/independent-receipt.json#/separate_P2_top",
+      "original_consumer_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+          "lines": [
+            72,
+            79,
+            104,
+            111,
+            115
+          ],
+          "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72-L115"
+        }
+      ],
+      "acceptance_scope": "separate_P2_no_priority_credit",
+      "new_acceptance": false,
+      "batch_bucket": "pending_core_correction",
+      "rationale": "Same ImageCropDialog edge map and top-coordinate trim calculation as Bottom. 顶层 denotes stacking order, not top margin. 上 matches 左/右 and recommended 下 and composes as 上裁减量（像素/百分比）. This separate P2 finding does not increase P0/P1 review credit.",
+      "original_independent_judgment": {
+        "key": "string/ui_top",
+        "tier": "P2",
+        "included_in_44": false,
+        "included_in_341": false,
+        "verdict": "accept",
+        "assessment": "genuine_content_error",
+        "exact_english_value": "Top",
+        "exact_current_value": "顶层",
+        "exact_author_proposed_value": "上",
+        "exact_recommended_value": "上",
+        "independent_rationale": "Same ImageCropDialog edge map and top-coordinate trim calculation as Bottom. 顶层 denotes stacking order, not top margin. 上 matches 左/右 and recommended 下 and composes as 上裁减量（像素/百分比）. This separate P2 finding does not increase P0/P1 review credit.",
+        "consumer_references": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+            "lines": [
+              72,
+              79,
+              104,
+              111,
+              115
+            ],
+            "source_url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72-L115"
+          }
+        ],
+        "complete_pair_canonical_json_sha256": "f3e905d67d20181f87e78017680efa6ad3d7b2c8ca024b1591358b081c6af6fe"
+      },
+      "current_consumer_rebind": {
+        "complete_file_unchanged": true,
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "old_and_current_sha256": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193",
+        "current_git_blob": "a21c5d9a32794df26907f6765d52f0d409e2953a",
+        "current_url": "https://github.com/c933103/AN-Paint/blob/5bfed632e485766d0c841fa79d7f56a1c49be5d5/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72-L115",
+        "current_static_facts": [
+          "Line 72 maps top/bottom to ui_top/ui_bottom as crop edges, not stacking layers.",
+          "Lines 79–82 derive top and bottom crop margins from rectangle coordinates.",
+          "Lines 104 and 111–115 compose edge labels with trim-in-percent/pixels content descriptions and render the same labels."
+        ],
+        "runtime_not_executed": true
+      }
+    }
+  ],
+  "limitations": [
+    "No production source changes, builds, Gradle, APK, CI, runtime, application tests, device checks, publication or release actions.",
+    "Only temporary review receipts were written; source tree remains clean.",
+    "No native-speaker certification, rendered layout, TalkBack pronunciation, Android resource routing or functional execution certification.",
+    "Later ef46e8aa code is not reviewed by this receipt. Consumer binding is to b9b148d5.",
+    "Source-only ui_tool_categories has no literal production consumer found; this does not prove unreachability."
+  ],
+  "counting": "Bottom is one old P1 review identity. Top is the separately accepted P2 finding and does not increase P0/P1 counts. Source-only binding grants no new linguistic/native/layout/runtime acceptance.",
+  "remaining_preparation_prerequisites": [
+    "Check exact source/current/accepted value hashes and baseline again before applying.",
+    "Inspect any existing exact-value fixtures and dependencies before preparing source patch. No fixture rewrite or tests were performed here.",
+    "Preserve all unrelated values, visibility, holds and release restrictions."
+  ],
+  "do_not_amend_pr": 166
+}
