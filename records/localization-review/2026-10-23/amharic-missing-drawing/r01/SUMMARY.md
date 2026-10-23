@@ -1,0 +1,9 @@
+# Seven missing Amharic drawing labels: reviewed candidates, not implemented
+
+The complete original draft and independent review support retaining seven exact candidates: Brush, Line, Curve, Rectangle, Heart, Star and Arrow. UI confidence remains medium for Curve/Rectangle and medium-high for the other five; semantic confidence high. These are bounded independent AI judgments, not native-speaker certification.
+
+The independent reviewer verified all ten source-file hashes and Git blob IDs, but explicitly left commit-to-tree provenance inherited. A subsequent fresh GitHub read closes that exact gap: commit `66be61df27c5359bffc32d56db21f3949899f873` points to tree `870c5a584120d92710be516af0dc3b3847b183d9`; its non-truncated recursive tree contains each of the ten paths at the checked blob IDs. See fresh-production-provenance.json. This adds provenance, not linguistic credit, and the original reviewer qualification is preserved unchanged.
+
+All seven keys remain absent from production. Amharic remains12 present/705 missing of717 translatable canonical containers. reviewed-candidates.json accumulates the exact seven values for a later source batch; this records-only snapshot does not implement them or authorize extrapolated coverage. The full original judgments, lexical sources, source hashes, consumer bindings and qualifications are preserved.
+
+Surrounding English hints and mixed-language help/status/accessibility compositions are not accepted by this bounded review. Polygon is excluded because it supports an open-polyline option; no canonical English defect is asserted. Previous Palette uncertainty and optional Horizontal punctuation remain separate, and all full Help/warning/other substantive holds remain unchanged. No application edits, builds, CI, release or runtime/rendering validation. Historical records remain unchanged; this non-production evidence branch must never be merged into application branches.

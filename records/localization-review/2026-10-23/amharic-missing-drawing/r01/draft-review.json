@@ -1,0 +1,290 @@
+{
+  "schema": "missing-live-label-author-draft-v1",
+  "date": "2026-10-23",
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "fresh_develop_ref_verified_UTC": "2026-10-23T18:08:59Z",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "picker": {
+    "order": 5,
+    "tag": "am"
+  },
+  "source_snapshot_local": "accumulated-warnings-hu-ceb-20261023/checkout",
+  "rows": [
+    {
+      "key": "string/ui_brush",
+      "English": "Brush",
+      "source_sha256": "8624ca0fcb3cd60db66cadac14c3f88e0dc422d1061843d35d39845b60616015",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key; no accepted translated coverage",
+      "proposed_XML_text": "\"ብሩሽ\"",
+      "proposed_XML_element": "<string name=\"ui_brush\">\"ብሩሽ\"</string>",
+      "proposed_XML_text_sha256": "b9343eb5190bb222903c9784c8cc1f6c706ae7acdb1ffb100eec1c44624f6ff3",
+      "literal_body": "ብሩሽ",
+      "rationale": "Brush noun, not a command to clean. The drawing-tool context supplies the painting sense.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium-high",
+        "type": "author AI judgment, not native certification"
+      },
+      "source_correction_needed": false,
+      "English_hint_context_only": {
+        "key": "ui_draw_with_the_selected_brush_tip_and_size",
+        "value": "Draw with the selected brush tip and size.",
+        "sha256": "087a150600d68be88cfbfd21b61bbe1bfc38f23eb7f4377d1c6ec79f913c059f"
+      },
+      "consumer_context": "PaintCanvas.stroke applies foreground paint with selected tip/width; brushTip2 draws diagonal marks, other tips draw/smooth strokes. PaintDocument.paint controls cap and antialiasing.",
+      "enum_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L22",
+      "implementation_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L507-L524",
+      "lexical_reference_ids": [
+        "brush"
+      ],
+      "independent_check_question": "Confirm familiar painting-tool rather than cleaning-brush idiom.",
+      "status": "draft_for_independent_checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_line",
+      "English": "Line",
+      "source_sha256": "d7852cd0d2453e8c9b71b61cad6423697997b1e518b5de2493111524e294fa6c",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key; no accepted translated coverage",
+      "proposed_XML_text": "\"መስመር\"",
+      "proposed_XML_element": "<string name=\"ui_line\">\"መስመር\"</string>",
+      "proposed_XML_text_sha256": "6f60c8796c01df8db750d2db993a9bc432d1746a09cf7bd003efb5621182b1aa",
+      "literal_body": "መስመር",
+      "rationale": "The attested drawn-line noun fits the two-endpoint straight-line tool; it does not mean a line of verse.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium-high",
+        "type": "author AI judgment, not native certification"
+      },
+      "source_correction_needed": false,
+      "English_hint_context_only": {
+        "key": "ui_drag_from_the_start_to_the_end_of",
+        "value": "Drag from the start to the end of the line.",
+        "sha256": "b5da7926e62f65c1d5224fb910c55631798deffdab6598a06b5aa3dc25a9a53d"
+      },
+      "consumer_context": "shapePath falls through to moveTo/start and lineTo/end; pointer-up commits that path. drawShape always strokes LINE, regardless of fill-only setting.",
+      "enum_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L26",
+      "implementation_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L407-L418",
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Confirm the short noun without needing an adjective for straight.",
+      "status": "draft_for_independent_checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_curve",
+      "English": "Curve",
+      "source_sha256": "2a45c07314b2cd56907c7df9dfabdadd2ed17521161b53292cf146ea6c45dc85",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key; no accepted translated coverage",
+      "proposed_XML_text": "\"ጥምዝ\"",
+      "proposed_XML_element": "<string name=\"ui_curve\">\"ጥምዝ\"</string>",
+      "proposed_XML_text_sha256": "0f7554cf84bb3268de3d0e4e1b14fe8ff07c163ba11dfecf77fd58ff55c9d2c6",
+      "literal_body": "ጥምዝ",
+      "rationale": "Use the glossary’s attested curve noun, avoiding an unsupported expanded phrase. Distinguishes the bendable path tool from the straight line.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium",
+        "type": "author AI judgment, not native certification"
+      },
+      "source_correction_needed": false,
+      "English_hint_context_only": {
+        "key": "ui_drag_a_line_then_drag_twice_to_set",
+        "value": "Drag a line, then drag twice to set its two bends. Finish curve commits it early.",
+        "sha256": "4b55a4e7bd81aa9b32c8639026a36758fc8895f8922766e7e67eb41ae6b3a8c9"
+      },
+      "consumer_context": "curvePath initially previews a straight segment, then cubicTo uses two control points. Pointer-up advances three stages; applyPending commits early when requested. The label names the completed tool capability, not a promise every intermediate preview is curved.",
+      "enum_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L27",
+      "implementation_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L423-L427",
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Check whether the noun alone sounds natural as a tool label or requires a conventional fuller form.",
+      "status": "draft_for_independent_checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_rectangle",
+      "English": "Rectangle",
+      "source_sha256": "0306996228eb0b748da44b48ce0d392b557fea59fc6eca397caef02aabdbc6ed",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key; no accepted translated coverage",
+      "proposed_XML_text": "\"ቀጤ ጎነ አራት\"",
+      "proposed_XML_element": "<string name=\"ui_rectangle\">\"ቀጤ ጎነ አራት\"</string>",
+      "proposed_XML_text_sha256": "9f61b98d2e26b3f219977fde890a5cbdb0b8efa6d9cac4621bd120dfae63a198",
+      "literal_body": "ቀጤ ጎነ አራት",
+      "rationale": "The glossary specifically defines a right-angled quadrilateral. Prefer this precise term over generic four-sided-shape wording; do not imply arbitrary quadrilaterals.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium",
+        "type": "author AI judgment, not native certification"
+      },
+      "source_correction_needed": false,
+      "English_hint_context_only": {
+        "key": "ui_drag_between_opposite_corners_choose_outline_or_fill",
+        "value": "Drag between opposite corners. Choose outline or fill below.",
+        "sha256": "f513b22634d13c0c01166a934c9e5154acd3f8de6b287e5b90aed4c8ce5b0d4c"
+      },
+      "consumer_context": "shapePath adds an axis-aligned RectF between opposite dragged corners; drawShape supports outline/fill. A square remains a valid special case.",
+      "enum_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L28",
+      "implementation_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L406-L418",
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Check contemporary UI familiarity and spacing of this attested mathematical term; loanword alternatives are not automatically preferable.",
+      "status": "draft_for_independent_checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_heart",
+      "English": "Heart",
+      "source_sha256": "770af9d180375fa9c3d29a50c124a04f538b277e1ed94ec20be8e244820d6534",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key; no accepted translated coverage",
+      "proposed_XML_text": "\"ልብ\"",
+      "proposed_XML_element": "<string name=\"ui_heart\">\"ልብ\"</string>",
+      "proposed_XML_text_sha256": "3cb522f21aca667a3a15105a2855c1a6d8c2886fd3cd7a8bb62eaafe70f69cd7",
+      "literal_body": "ልብ",
+      "rationale": "The ordinary heart noun also has primary symbol-annotation precedent. Here it names a heart silhouette, not an anatomical diagram or emotional command.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium-high",
+        "type": "author AI judgment, not native certification"
+      },
+      "source_correction_needed": false,
+      "English_hint_context_only": {
+        "key": "ui_drag_between_opposite_corners_to_draw_a_heart",
+        "value": "Drag between opposite corners to draw a heart. Choose an outline or fill.",
+        "sha256": "49c148fac8a7559340caaff70742b629ecd57cbb6b5cc74c425cf01046c06747"
+      },
+      "consumer_context": "ShapePaths.heart builds a closed symmetric heart silhouette using cubic segments within the drag bounds, then shared outline/fill rendering applies.",
+      "enum_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L32",
+      "implementation_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ShapePaths.kt#L10-L18",
+      "lexical_reference_ids": [
+        "heart",
+        "cldr36"
+      ],
+      "independent_check_question": "Confirm noun as a shape-tool label; no medical meaning intended.",
+      "status": "draft_for_independent_checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_star",
+      "English": "Star",
+      "source_sha256": "e357d396871d10121ee7921467cae8c0671d97275f7bb97e7ecfcf00970b5d27",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key; no accepted translated coverage",
+      "proposed_XML_text": "\"ኮከብ\"",
+      "proposed_XML_element": "<string name=\"ui_star\">\"ኮከብ\"</string>",
+      "proposed_XML_text_sha256": "758b7182643e1516ffcbc8948f1271310c8e9a5e2738a07a18ce1ffbf92fbcfd",
+      "literal_body": "ኮከብ",
+      "rationale": "The star-symbol noun fits a five-pointed geometric star. Do not use the dictionary’s unrelated verb sense of marking an item with a star.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium-high",
+        "type": "author AI judgment, not native certification"
+      },
+      "source_correction_needed": false,
+      "English_hint_context_only": {
+        "key": "ui_drag_between_opposite_corners_to_draw_a_five",
+        "value": "Drag between opposite corners to draw a five-pointed star. Choose an outline or fill.",
+        "sha256": "0cbde4e0c30d6c55c0e88f50bad687d25e1c887bac8ef6d223da5804a1c9ba84"
+      },
+      "consumer_context": "ShapePaths.star alternates ten outer/inner vertices, yielding five points; bounds may stretch the shape. This is not a favourite/rating action.",
+      "enum_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L33",
+      "implementation_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ShapePaths.kt#L19-L27",
+      "lexical_reference_ids": [
+        "cldr36"
+      ],
+      "independent_check_question": "Check short shape label; five-point detail is already in the separate English hint, not added here.",
+      "status": "draft_for_independent_checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_arrow",
+      "English": "Arrow",
+      "source_sha256": "05800e70aa10c86f5ab898d18ad6884245a149f3b945bb0bd8cd05a8e469cd27",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key; no accepted translated coverage",
+      "proposed_XML_text": "\"ቀስት\"",
+      "proposed_XML_element": "<string name=\"ui_arrow\">\"ቀስት\"</string>",
+      "proposed_XML_text_sha256": "c1ba08426bfa8f107e7fee8b9aa505c4f7ff371a46261eec647bfbd2deee115b",
+      "literal_body": "ቀስት",
+      "rationale": "The ICT glossary explicitly supports the directional-symbol sense despite other bow/arch meanings. The drawing context distinguishes the shape from a bow or a keyboard key.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium-high",
+        "type": "author AI judgment, not native certification"
+      },
+      "source_correction_needed": false,
+      "English_hint_context_only": {
+        "key": "ui_drag_from_the_tail_towards_the_arrowhead_choose",
+        "value": "Drag from the tail towards the arrowhead. Choose an outline or fill.",
+        "sha256": "a6cac0bffb3ea19bf878e68d2fa4f848b7b07c3a11b728b79a236cd64f6e710d"
+      },
+      "consumer_context": "ShapePaths.arrow creates a closed seven-vertex shaft/head polygon oriented from start/tail to end/head, with head and shaft scaled by length/width. Very short zero-length gesture returns an empty path.",
+      "enum_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L34",
+      "implementation_reference": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ShapePaths.kt#L28-L40",
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Check directional arrow-shape idiom, not only dictionary equivalence.",
+      "status": "draft_for_independent_checking",
+      "independent_acceptance": null
+    }
+  ],
+  "shared_consumers": {
+    "ToolButton.kt": "line11 sets visible label/contentDescription/tooltip from tool.label.",
+    "ClassicPaintActivity.kt": "makeToolButton lines493–498 selects tool and help label+hint; line689 embeds tool.label in status; line750 options heading.",
+    "ToolCategoryButton.kt": "Brush group includes BRUSH; Insert group includes other six. Category composed accessibility text is not accepted by this draft.",
+    "UiText.kt": "ui resolves canonical/current resources via LocaleText; no compiled/runtime fallback assertion is substituted for source absence."
+  },
+  "lexical_references": {
+    "brush": {
+      "url": "https://dictionary.abyssinica.com/brush",
+      "source": "Abyssinica publisher dictionary",
+      "supports": "ብሩሽ, noun brush; not paint-app-specific acceptance"
+    },
+    "heart": {
+      "url": "https://dictionary.abyssinica.com/%E1%88%8D%E1%89%A5",
+      "source": "Abyssinica publisher dictionary",
+      "supports": "ልብ, heart among other senses"
+    },
+    "cldr36": {
+      "url": "https://www.unicode.org/cldr/cldr-aux/charts/36/annotations/afro_asiatic.html",
+      "source": "Unicode CLDR36 primary annotation chart",
+      "supports": "Amharic heart-symbol keyword ልብ (U+2764), star-symbol keyword ኮከብ (U+2B50). Versioned symbol vocabulary only, not app review."
+    },
+    "ict": {
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf",
+      "source": "ICT Development Office / Ethiopian Languages Research Center, Translation of ICT Terms into three major Ethiopian Languages; primary-authored glossary on third-party mirror",
+      "supports": "1634/p139 Line: መስመር; 759/p65 Curve: ጥምዝ; 2174/p188 Rectangle: ቀጤ ጎነ አራት; 169/p14 Arrow: ቀስት. Printed page numbers. Textually inspected lexical precedent, not native UI certification."
+    }
+  },
+  "excluded": {
+    "ui_polygon": "Deferred: selectable closePolygon=false creates open polyline, so first simple group excludes its semantic breadth. This is not a finding that canonical English is defective.",
+    "previous_nine_labels": "Not re-reviewed here. Palette remains unresolved and current preserved; optional Horizontal punctuation remains separate.",
+    "other": "Full Help holds, format strings, plurals, ambiguous behavior and other missing strings are outside this batch."
+  },
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_containers": 717,
+    "draft_keys": 7,
+    "accepted_new_keys": 0,
+    "implemented_new_keys": 0,
+    "production_coverage_unchanged": true
+  },
+  "limits": [
+    "Original draft translations only; independent checking required for every row.",
+    "Lexical attestation is not contextual acceptance or native-speaker review.",
+    "No production edits, builds, tests, CI, rendering, publication or accessibility execution.",
+    "No English correction prerequisite established for the selected seven complete labels; hints are context only and remain untranslated/outside scope.",
+    "No approval of mixed-language composed status/help/accessibility strings.",
+    "All prior full Help/warning/optional holds preserved."
+  ]
+}
