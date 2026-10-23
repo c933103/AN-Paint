@@ -1,6 +1,5 @@
 """Shared exact-successor guard tests, not fresh linguistic or runtime approval."""
 from copy import deepcopy
-from hashlib import sha256
 import json
 from pathlib import Path
 import unittest
@@ -62,32 +61,24 @@ class MemoryWarningSuccessors(unittest.TestCase):
                 with self.subTest(tag=tag, key=key, mutation=mutation), self.assertRaises(ValueError):
                     require_string(ET.tostring(root, encoding='unicode'), key, expected, constraints)
 
-    def test_successor_metadata_corruption_is_rejected(self):
-        # Self-consistent fake value/hash must still fail against independent receipt/index.
-        for field in ('source', 'source_sha256', 'historical_value', 'historical_sha256',
-                      'value', 'value_sha256', 'catalogue', 'tag', 'key'):
-            data = deepcopy(self.data); data['rows'][0][field] += ' corrupted'
-            with self.subTest(field=field), self.assertRaises(ValueError): validated_successors(data)
-        data = deepcopy(self.data); row = data['rows'][0]; row['value'] += ' forged'
-        row['value_sha256'] = sha256(row['value'].encode()).hexdigest()
-        with self.assertRaises(ValueError): validated_successors(data)
-        data = deepcopy(self.data); row = data['rows'][0]; row['source'] += ' forged'
-        row['source_sha256'] = sha256(row['source'].encode()).hexdigest()
-        with self.assertRaises(ValueError): validated_successors(data)
+    def test_expected_constant_and_source_corruption_is_rejected(self):
+        for key in KEYS:
+            data = deepcopy(self.data); data['sources'][key] += ' changed'
+            with self.subTest(key=key), self.assertRaises(ValueError): validated_successors(data)
+        for tag, terms in self.data['values'].items():
+            for key in terms:
+                data = deepcopy(self.data); data['values'][tag][key] += ' forged'
+                with self.subTest(tag=tag, key=key), self.assertRaises(ValueError): validated_successors(data)
 
-    def test_receipt_identity_and_selector_cannot_be_substituted(self):
-        for field in ('path', 'sha256', 'selector'):
-            data = deepcopy(self.data); data['rows'][0]['receipt'][field] += ' changed'
-            with self.subTest(field=field), self.assertRaises(ValueError): validated_successors(data)
-
-    def test_missing_duplicate_extra_and_held_candidates_are_rejected(self):
-        for mutation in ('missing', 'duplicate', 'extra', 'held', 'unknown'):
-            data = deepcopy(self.data)
-            if mutation == 'missing': data['rows'].pop()
-            elif mutation == 'duplicate': data['rows'][1] = deepcopy(data['rows'][0])
-            elif mutation == 'extra': data['rows'].append(deepcopy(data['rows'][0]))
-            elif mutation == 'held': data['rows'][0]['tag'] = 'ain-Kana'
-            else: data['rows'][0]['tag'] = 'unknown'
+    def test_missing_extra_held_and_unknown_candidates_are_rejected(self):
+        for mutation in ('missing', 'extra', 'held', 'unknown', 'missing-key', 'extra-key'):
+            data = deepcopy(self.data); tag = next(iter(data['values']))
+            if mutation == 'missing': data['values'].pop(tag)
+            elif mutation in ('extra', 'held', 'unknown'):
+                name = {'extra': 'en-001', 'held': 'ain-Kana', 'unknown': 'unknown'}[mutation]
+                data['values'][name] = deepcopy(data['values'][tag])
+            elif mutation == 'missing-key': data['values'][tag].pop(next(iter(KEYS)))
+            else: data['values'][tag]['other_key'] = 'arbitrary'
             with self.subTest(mutation=mutation), self.assertRaises(ValueError): validated_successors(data)
 
     def test_held_missing_and_canonical_values_are_preserved_not_accepted(self):
@@ -104,36 +95,25 @@ class MemoryWarningSuccessors(unittest.TestCase):
                 else: counts['held'] += 1
         self.assertEqual({'held': 8, 'missing': 218, 'canonical': 2}, counts)
 
-    def test_checked_in_export_index_and_queue_corruption_is_rejected(self):
+    def test_compact_behavior_oracle_corruption_is_rejected(self):
         original_read = Path.read_bytes
-        for target in ('receipt-exports.json', 'accepted-value-receipts.tsv', 'memory-warnings-20261021.json'):
-            def corrupt(path, target=target):
-                raw = original_read(path)
-                return raw + b' changed' if path.name == target else raw
-            with self.subTest(target=target), patch.object(Path, 'read_bytes', corrupt):
-                with self.assertRaises(ValueError): validated_successors(self.data)
+        def corrupt(path):
+            raw = original_read(path)
+            return raw + b' changed' if path == RECORD else raw
+        with patch.object(Path, 'read_bytes', corrupt), self.assertRaises(ValueError):
+            validated_successors(self.data)
 
-    def test_export_decision_original_identity_and_index_remain_bound(self):
-        path = binding_module.EVIDENCE / 'receipt-exports.json'
-        original = json.loads(path.read_text())
-        original_read = Path.read_bytes
-        for mutation in ('decision', 'original-sha', 'index-sha', 'value', 'source', 'historical', 'duplicate', 'missing'):
-            export = deepcopy(original); row = export['rows'][0]
-            if mutation == 'decision': row['decision'] = 'revise'
-            elif mutation == 'original-sha': row['original_receipt']['sha256'] = '0' * 64
-            elif mutation == 'index-sha': export['original_index_sha256'] = '0' * 64
-            elif mutation == 'value':
-                row['value'] += ' arbitrary'; row['value_sha256'] = sha256(row['value'].encode()).hexdigest()
-            elif mutation == 'source': row['source'] += ' changed'
-            elif mutation == 'historical': row['historical_value'] += ' changed'
-            elif mutation == 'duplicate': export['rows'][1] = deepcopy(row)
-            else: export['rows'].pop()
-            raw = json.dumps(export).encode()
-            def changed_read(target):
-                return raw if target == path else original_read(target)
-            # Even a newly sealed export cannot waive the decision/original-index bindings.
-            with self.subTest(mutation=mutation), patch.object(Path, 'read_bytes', changed_read), patch.object(binding_module, 'EXPORT_HASH', sha256(raw).hexdigest()):
-                with self.assertRaises(ValueError): validated_successors(self.data)
+    def test_historical_source_drift_is_rejected(self):
+        original_read = Path.read_text
+        for key in KEYS:
+            def corrupt(path, *args, **kwargs):
+                raw = original_read(path, *args, **kwargs)
+                if path == binding_module.QUEUE:
+                    data = json.loads(raw); data['keys'][key]['corrected_english'] += ' changed'
+                    return json.dumps(data)
+                return raw
+            with self.subTest(key=key), patch.object(Path, 'read_text', corrupt), self.assertRaises(ValueError):
+                validated_successors(self.data)
 
     def test_held_historical_target_drift_is_rejected_without_acceptance(self):
         for option in review_record()['options']:

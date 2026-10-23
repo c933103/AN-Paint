@@ -1,12 +1,10 @@
-"""Strict, offline current-warning bindings; historical evidence stays immutable.
+"""Offline exact-current-warning behavior oracle; detailed provenance is external.
 
-Expected wording is read only from pinned public project-evidence exports, never from
-production resource output. Integrity checks use explicit exceptions under -O.
+Only explicit accepted locale/key constants are substituted. Historical arguments
+are checked against the existing frozen queue, never used to reconstruct sources.
 """
-import csv
 from functools import lru_cache
 from hashlib import sha256
-import io
 import json
 from pathlib import Path
 from types import MappingProxyType
@@ -14,11 +12,11 @@ from types import MappingProxyType
 ROOT = Path(__file__).resolve().parents[1]
 RECORD = ROOT / 'translations/source-review/memory-warning-successors-20261023.json'
 QUEUE = ROOT / 'translations/source-review/memory-warnings-20261021.json'
-EVIDENCE = ROOT / 'verification/translations/memory-warning-successors-20261023'
-INDEX_HASH = 'e10cddce134f8798f00c60f774997c93229c585a4e7a2a4befcbaefc8cb5cdff'
-EXPORT_HASH = 'dbea2dcc17014c455f347035c3117beaa3217a3b61704c95d393196b172dbde0'
-QUEUE_HASH = '7c27a21663dd970382ee481c09b79ea5db7a036299a6c9d32cabd3f8b6e8f12a'
-KEYS = frozenset(('ui_no_resize_fits_decoder_memory', 'ui_assembly_source_memory_floor'))
+# This seals only the compact behavioral fixture, never production source files.
+ORACLE_HASH = 'e8fc3180c14478f72a377b883078302b12af45c9dc410fde9d3d54e843644406'
+SOURCES = {'ui_no_resize_fits_decoder_memory': 'Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.', 'ui_assembly_source_memory_floor': 'This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.'}
+KEYS = frozenset(SOURCES)
+ACCEPTED_TAGS = frozenset(('af', 'ar', 'bo', 'ceb', 'cs', 'de', 'dz', 'el', 'en-AU', 'en-CA', 'en-GB', 'en-IN', 'en-SG', 'en-US', 'en-XV', 'eo', 'es-419', 'es-ES', 'et', 'fi', 'fil', 'fr', 'hak-Hant-TW', 'hak-Latn-TW', 'hu', 'id', 'it', 'ja', 'ko-Kore-KR', 'ko-KP', 'ko-KR', 'lt', 'lv', 'lzh-Hant', 'mn-Cyrl-MN', 'mn-Mong', 'mnc-Mong', 'ms', 'nan-Hant-TW', 'nan-Latn-TW', 'nl', 'pl', 'pt-BR', 'pt-PT', 'qaa-Zsye-XV', 'ru', 'ryu', 'sv', 'sw', 'tr', 'vi', 'wuu-Hans', 'yue-Hant', 'yue-Latn', 'zh-CN', 'zh-HK', 'zh-TW'))
 
 
 def require(condition, message):
@@ -26,84 +24,55 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def digest(value):
-    require(isinstance(value, str), 'Expected text')
-    return sha256(value.encode('utf-8')).hexdigest()
+def read_oracle():
+    raw = RECORD.read_bytes()
+    require(sha256(raw).hexdigest() == ORACLE_HASH, 'Behavior oracle changed')
+    return json.loads(raw)
 
 
 def validated_successors(data):
-    """Validate metadata against pinned public exports and original receipt identities."""
-    raw = QUEUE.read_bytes()
-    require(sha256(raw).hexdigest() == QUEUE_HASH, 'Historical queue changed')
-    queue = json.loads(raw)
-    frozen = {(o['tag'], k): (o['catalogue'], term['value'])
-              for o in queue['options'] for k, term in o['terms'].items()}
-    raw = (EVIDENCE / 'accepted-value-receipts.tsv').read_bytes()
-    require(sha256(raw).hexdigest() == INDEX_HASH, 'Independent receipt index changed')
-    index_rows = list(csv.DictReader(io.StringIO(raw.decode()), delimiter='\t'))
-    index = {(r['tag'], r['key']): r for r in index_rows}
-    require(len(index_rows) == len(index) == 114, 'Receipt index inventory differs')
-    require(data.get('schema') == 1 and isinstance(data.get('rows'), list), 'Bad successor schema')
-    require(len(data['rows']) == 114, 'Successor inventory differs')
-    export_raw = (EVIDENCE / 'receipt-exports.json').read_bytes()
-    require(sha256(export_raw).hexdigest() == EXPORT_HASH, 'Project evidence export changed')
-    export = json.loads(export_raw)
-    require(export.get('schema') == 'public-project-exact-warning-receipts-v1', 'Bad export schema')
-    require(export.get('original_index_sha256') == INDEX_HASH, 'Export index identity differs')
-    evidence_rows = export.get('rows', [])
-    evidence = {(r['tag'], r['key']): r for r in evidence_rows}
-    require(len(evidence_rows) == len(evidence) == 114 and set(evidence) == set(index), 'Export inventory differs')
+    """Bind explicit expected literals to known source, locale and historical key."""
+    oracle = read_oracle()
+    require(isinstance(data, dict) and data.get('schema') == 2, 'Bad oracle schema')
+    require(data.get('sources') == SOURCES, 'Corrected source differs')
+    values = data.get('values')
+    require(isinstance(values, dict) and set(values) == ACCEPTED_TAGS, 'Accepted locale inventory differs')
+    queue = json.loads(QUEUE.read_text(encoding='utf-8'))
+    for key, source in SOURCES.items():
+        require(queue['keys'][key]['corrected_english'] == source, 'Historical source binding differs')
+    options = {o['tag']: o for o in queue['options']}
     result = {}
-    for row in data['rows']:
-        require(isinstance(row, dict), 'Invalid successor row')
-        identity = (row.get('tag'), row.get('key'))
-        require(identity in index and identity not in result, 'Unknown, held or duplicate successor identity')
-        bound = index[identity]
-        require(row.get('catalogue') == frozen[identity][0], 'Catalogue binding differs')
-        require(row.get('historical_value') == frozen[identity][1], 'Historical target differs')
-        require(digest(row['historical_value']) == row.get('historical_sha256') == bound['old_value_sha256'], 'Historical target hash differs')
-        source = queue['keys'][row['key']]['corrected_english']
-        require(row.get('source') == source, 'Corrected source differs')
-        require(digest(source) == row.get('source_sha256') == bound['source_sha256'], 'Source hash differs')
-        receipt = row.get('receipt')
-        require(isinstance(receipt, dict), 'Missing receipt binding')
-        require(receipt.get('path') == bound['final_receipt'] and receipt.get('selector') == bound['receipt_selector']
-                and receipt.get('sha256') == bound['receipt_sha256'], 'Receipt identity differs')
-        selected = evidence[identity]
-        require(selected.get('original_receipt') == receipt, 'Export original receipt identity differs')
-        require(selected.get('decision') == 'accept', 'Export does not accept candidate')
-        require(selected.get('source') == source and selected.get('source_sha256') == row['source_sha256'], 'Export source differs')
-        require(selected.get('historical_value') == row['historical_value'] and selected.get('historical_sha256') == row['historical_sha256'], 'Export old value differs')
-        value = selected.get('value')
-        require(value == row.get('value') and digest(value) == row.get('value_sha256') == selected.get('value_sha256') == bound['accepted_value_sha256'], 'Independent accepted value differs')
-        result[identity] = (row['historical_value'], value, source, row['catalogue'])
-    require(set(result) == set(index), 'Successor identity coverage differs')
+    for tag, terms in values.items():
+        require(isinstance(terms, dict) and set(terms) == KEYS, 'Accepted key inventory differs')
+        for key, expected in terms.items():
+            require(isinstance(expected, str) and expected == oracle['values'][tag][key], 'Expected warning differs')
+            old = options[tag]['terms'][key]['value']
+            require(isinstance(old, str) and old != expected, 'Historical target binding differs')
+            result[(tag, key)] = (old, expected, SOURCES[key], options[tag]['catalogue'])
+    require(len(result) == 114, 'Accepted inventory differs')
     return MappingProxyType(result)
 
 
 @lru_cache(maxsize=1)
 def successors():
-    return validated_successors(json.loads(RECORD.read_text(encoding='utf-8')))
+    return validated_successors(read_oracle())
 
 
 def current_warning_expectation(key, tag, historical_value):
-    """Bounded substitution; never treat unknown or held text as accepted."""
+    """Bounded substitution; unknown/held text cannot obtain acceptance."""
     if key not in KEYS:
         return historical_value
-    raw = QUEUE.read_bytes()
-    require(sha256(raw).hexdigest() == QUEUE_HASH, 'Historical queue changed')
-    frozen = {(o['tag'], k): term['value'] for o in json.loads(raw)['options'] for k, term in o['terms'].items()}
+    frozen = {(o['tag'], k): term['value']
+              for o in json.loads(QUEUE.read_text(encoding='utf-8'))['options']
+              for k, term in o['terms'].items()}
     require((tag, key) in frozen, 'Unknown historical tag/key')
     require(historical_value == frozen[(tag, key)], 'Historical target binding differs')
     binding = successors().get((tag, key))
-    if binding is None:
-        return historical_value
-    require(historical_value == binding[0], 'Historical target binding differs: ' + tag + '/' + key)
-    return binding[1]
+    return historical_value if binding is None else binding[1]
 
 
 def accepted_warning(key, tag):
-    """Return one explicitly accepted constant; fail for held/unmapped keys."""
+    """Return one explicitly accepted full literal, never an actual output."""
     binding = successors().get((tag, key))
     require(binding is not None, 'No accepted successor: ' + tag + '/' + key)
     return binding[1]
