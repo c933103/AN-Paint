@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 
 import current_localization_contracts as contracts
 import translation_catalogues as catalogues
-# The two memory translations remain pending review against the corrected source.
+# Frozen pairs stay historical; exact current warning successors are separately receipt-bound.
 from memory_warning_source_review import current_source_expectation
 
 HELD = 'ui_foreground_background_colour_palette'
@@ -59,7 +59,8 @@ class SwedishRemainingP1WordingTests(unittest.TestCase):
     def test_every_message_rejects_missing_duplicate_fragment_or_markup(self):
         # Minimal resources keep these mutations independent of catalogue size.
         for key, values in self.data['values'].items():
-            for tag, expected in values.items():
+            for tag, historical in values.items():
+                expected = current_source_expectation(key, tag, historical)
                 node = ET.fromstring(self.xml[tag]).find(f"./string[@name='{key}']")
                 for mutation in ('missing', 'duplicate', 'fragment', 'markup', 'format-flag'):
                     root = ET.Element('resources'); changed = deepcopy(node)

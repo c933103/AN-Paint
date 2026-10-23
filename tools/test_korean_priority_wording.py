@@ -5,7 +5,7 @@ import unittest
 import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
-# The two memory translations remain pending review against the corrected source.
+# Frozen pairs stay historical; exact current warning successors are separately receipt-bound.
 from memory_warning_source_review import current_source_expectation
 
 KEYS = {
@@ -46,7 +46,7 @@ class KoreanPriorityWordingTests(unittest.TestCase):
                 elif mutation == 'placeholder': node.text += ' %1$s'
                 else: node.text += '\\n'
                 with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
-                    require_string(ET.tostring(root, encoding='unicode'), key, self.data['values'][key]['ko-KR'], self.data['constraints'][key]['ko-KR'])
+                    require_string(ET.tostring(root, encoding='unicode'), key, current_source_expectation(key, 'ko-KR', self.data['values'][key]['ko-KR']), self.data['constraints'][key]['ko-KR'])
 
     def test_missing_fixture_key_locale_or_constraint_fails(self):
         for key in KEYS:
@@ -82,7 +82,7 @@ class KoreanPriorityWordingTests(unittest.TestCase):
 
     def test_memory_recovery_and_unchanged_assembly_remain_explicit(self):
         s = self.strings
-        self.assertIn('이미지 조합의 크기를 줄여도 이 문제는 해결되지 않습니다.', s['ui_assembly_source_memory_floor'])
+        self.assertIn('현재 한도에서는 이미지 조합의 크기를 줄이는 것만으로는 충분하지 않습니다.', s['ui_assembly_source_memory_floor'])
         self.assertTrue(s['ui_assembly_source_memory_floor'].endswith('현재 이미지 조합은 변경되지 않았습니다.'))
         self.assertTrue(s['ui_no_resize_fits_decoder_memory'].endswith('취소하고 더 작은 원본 이미지를 사용하세요.'))
         self.assertIn('오른쪽이나 아래쪽 경계 밖의 픽셀은 삭제되며, 실행 취소로 복원할 수 있습니다.', s['ui_keeps_pixels_at_the_top_left_smaller_canvas'])

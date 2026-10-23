@@ -5,7 +5,7 @@ import unittest
 import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
-# The two memory translations remain pending review against the corrected source.
+# Frozen pairs stay historical; exact current warning successors are separately receipt-bound.
 from memory_warning_source_review import current_source_expectation
 
 KEYS = {
@@ -153,7 +153,7 @@ class SwedishPriorityWordingTests(unittest.TestCase):
                 elif mutation == 'markup': ET.SubElement(node, 'b').text, node.text = node.text, None
                 else: node.set('formatted', 'true' if node.get('formatted') == 'false' else 'false')
                 with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
-                    require_string(ET.tostring(root, encoding='unicode'), key, self.data['values'][key]['sv'], self.data['constraints'][key])
+                    require_string(ET.tostring(root, encoding='unicode'), key, current_source_expectation(key, 'sv', self.data['values'][key]['sv']), self.data['constraints'][key])
 
     def test_missing_fixture_locale_or_constraint_fails(self):
         for mutation in ('key', 'locale', 'constraint', 'empty'):

@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
-# The two memory translations remain pending review against the corrected source.
+# Frozen pairs stay historical; exact current warning successors are separately receipt-bound.
 from memory_warning_source_review import current_source_expectation
 from test_assembly_help_pr8 import code_locations, kotlin_block
 
@@ -78,7 +78,7 @@ class TaiwanPriorityWordingTests(unittest.TestCase):
                 else: node.tag = 'plurals'
                 with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
                     require_string(ET.tostring(root, encoding='unicode'), key,
-                                   self.data['values'][key]['zh-TW'], self.data['constraints'][key]['zh-TW'])
+                                   current_source_expectation(key, 'zh-TW', self.data['values'][key]['zh-TW']), self.data['constraints'][key]['zh-TW'])
 
     def test_unexpected_format_arguments_invalid_escapes_and_paragraph_loss_fail(self):
         for key in KEYS:
@@ -139,9 +139,9 @@ class TaiwanPriorityWordingTests(unittest.TestCase):
         canvas = (CLASSIC / 'PaintCanvas.kt').read_text()
         self.assertTrue(code_locations(canvas, 'contentDescription = ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)'))
 
-    def test_no_resize_warning_keeps_native_budget_failure_and_recovery_action(self):
+    def test_no_resize_warning_keeps_current_limit_and_recovery_action(self):
         warning = self.strings['ui_no_resize_fits_decoder_memory']
-        self.assertEqual('即使使用最小的輸出尺寸，此圖片的解碼器工作緩衝區仍會超出目前的記憶體上限。請取消並使用較小的來源圖片。', warning)
+        self.assertEqual('即使使用最小的輸出尺寸，也無法在目前的記憶體限制內載入此圖片進行編輯。請取消並使用較小的來源圖片。', warning)
         resize = (CLASSIC / 'ImageResizeDialog.kt').read_text()
         self.assertTrue(code_locations(resize, 'val cannotResize=memoryRequirements.hasNativeWork && !memoryRequirements.accepts(current,ImportPlan.create(source,ImageDimensions(1,1)),residentPixels)'))
         self.assertTrue(code_locations(resize, 'else if(cannotResize) "\\n"+ui(R.string.ui_no_resize_fits_decoder_memory)'))
