@@ -1,0 +1,232 @@
+[
+  {
+    "tag": "yue-Hant",
+    "typed_key": "string/ui_assembly_source_memory_floor",
+    "tier": "P0",
+    "original_source": "A source image needs more decoding memory than is currently available, even for a tiny output. Reducing the assembly dimensions cannot solve this. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+    "original_current": "來源圖片即使輸出極小，解碼仲需要超過而家可用量嘅記憶體。縮小拼合尺寸做唔到解決。請關閉其他文件，或者先準備較小嘅來源圖片再試。而家拼合內容冇改。",
+    "author_proposed": "就算將輸出尺寸縮到最細，而家嘅記憶體上限仍然唔容許完成呢個圖片拼合。再縮細拼合尺寸都解決唔到。請關閉其他文件，或者先準備細啲嘅來源圖片再試。你嘅拼合內容冇改。",
+    "current_source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+    "current_target": "呢個拼合估計會超出而家嘅工作記憶體預算，即使輸出尺寸最細都一樣。喺而家嘅限制下，單靠縮細拼合尺寸並唔足夠。請關閉其他文件，或者先準備較小嘅來源圖片再試。而家拼合內容冇改。",
+    "source_exact_current": false,
+    "old_target_exact_current": false,
+    "author_status": "source_context_hold_with_candidate",
+    "author_review_scope": "whole_value_linguistic_and_direct_static_context",
+    "author_rationale": "Current wording has awkward 做唔到解決 and omits possessive boundaries. More importantly, the English decoder-only attribution is not established by AssemblyRenderer: the null suggestion comes from a combined import/resident/output estimate at 1×1. This candidate names the entire assembly operation, retains the no-smaller-output remedy and unchanged state, and requires source-owner alignment rather than silently certifying the English cause.",
+    "author_confidence": "medium_high",
+    "author_limits": [
+      "Model-based linguistic and bounded source review, not native-human certification.",
+      "No runtime, rendering, device, accessibility-output or layout certification.",
+      "Proposed values are not integrated or independently second-reviewed."
+    ],
+    "author_receipt": {
+      "locator_id": "cantonese-han-priority-review-20261021/cantonese-han-p0-p1-review.json",
+      "pointer_or_section": "/records/24"
+    },
+    "current_source_sha256": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+    "current_target_sha256": "a3f83de307b0975a14f03484ff5e198e95bebd149c3705d6d085899d8dd1f9be",
+    "new_linguistic_acceptance": false,
+    "independent_original_judgment": {
+      "index": 6,
+      "locale": "yue-Hant",
+      "key": "string/ui_assembly_source_memory_floor",
+      "tier": "P0",
+      "decision": "hold_source_alignment",
+      "candidate_wording_decision": "accept",
+      "english": "A source image needs more decoding memory than is currently available, even for a tiny output. Reducing the assembly dimensions cannot solve this. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "current": "來源圖片即使輸出極小，解碼仲需要超過而家可用量嘅記憶體。縮小拼合尺寸做唔到解決。請關閉其他文件，或者先準備較小嘅來源圖片再試。而家拼合內容冇改。",
+      "original_proposed": "就算將輸出尺寸縮到最細，而家嘅記憶體上限仍然唔容許完成呢個圖片拼合。再縮細拼合尺寸都解決唔到。請關閉其他文件，或者先準備細啲嘅來源圖片再試。你嘅拼合內容冇改。",
+      "recommended": "就算將輸出尺寸縮到最細，而家嘅記憶體上限仍然唔容許完成呢個圖片拼合。再縮細拼合尺寸都解決唔到。請關閉其他文件，或者先準備細啲嘅來源圖片再試。你嘅拼合內容冇改。",
+      "rationale": "The wording is natural enough for a technical Cantonese warning and deliberately describes the complete assembly rather than blaming source decoding alone. At the inspected null-suggestion branch, AssemblyRenderer tests fits(1,1), whose memory side is a peak of output/resident baseline and per-source combined estimates, not summed decoder costs or the complete import admission predicate. Remedies and unchanged assembly survive. Accept candidate wording, but hold alignment/adoption until the shared English source contract is reconciled.",
+      "hashes": {
+        "english": {
+          "utf8_sha256": "6a2f6335bbd02bd3a82d611b829cd2eb7961f77802c4424b2bd71d7e72a9ce82",
+          "canonical_json_sha256": "ef314f31c8744f9fbf8a18f5d3e974dd78ffee1db6cb9f9bdf0ce78b4d320deb"
+        },
+        "current": {
+          "utf8_sha256": "b8c5585597b97f81d1deffa80995ea7eb57ac90c5f09ebf5bbfcfa2e682066ee",
+          "canonical_json_sha256": "d7c3acaf0c705026c6cc95abb45462e9823af1f28306623f8842f428257401d3"
+        },
+        "original_proposed": {
+          "utf8_sha256": "0498dc829eb28b2d0f0d7ecbf18d3ca2104ccb04bbc8ecccd61e44d56295d340",
+          "canonical_json_sha256": "7e66b9f35b41994c00bf1ee06c9750c461252760096aba6d3c0d24114ee7547a"
+        },
+        "recommended": {
+          "utf8_sha256": "0498dc829eb28b2d0f0d7ecbf18d3ca2104ccb04bbc8ecccd61e44d56295d340",
+          "canonical_json_sha256": "7e66b9f35b41994c00bf1ee06c9750c461252760096aba6d3c0d24114ee7547a"
+        }
+      },
+      "english_binding": {
+        "path": "Paintroid/src/main/res/values/strings.xml",
+        "line": 620,
+        "url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/res/values/strings.xml#L620"
+      },
+      "localized_binding": {
+        "path": "Paintroid/src/main/res/values-b+yue+Hant/strings.xml",
+        "line": 643,
+        "url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/res/values-b+yue+Hant/strings.xml#L643"
+      },
+      "production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 300,
+          "code": "message(ui(R.string.ui_assembly_source_memory_floor))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L300"
+        }
+      ],
+      "source_context_hold_remains": true,
+      "source_contract_record": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6314782623",
+      "review_scope": "complete_value_and_bounded_static_consumer_context",
+      "confidence": "medium_high",
+      "production_value_accepted": false,
+      "source_integrated": false,
+      "new_current_acceptance_credit": false,
+      "recommended_value_is_new_reviewer_authorship": false
+    },
+    "independent_receipt": {
+      "locator_id": "cantonese-han-priority-review-20261021/independent-candidate-review.json",
+      "pointer_or_section": "/records/5"
+    },
+    "accepted_recommendation": "就算將輸出尺寸縮到最細，而家嘅記憶體上限仍然唔容許完成呢個圖片拼合。再縮細拼合尺寸都解決唔到。請關閉其他文件，或者先準備細啲嘅來源圖片再試。你嘅拼合內容冇改。",
+    "accepted_recommendation_sha256": "0498dc829eb28b2d0f0d7ecbf18d3ca2104ccb04bbc8ecccd61e44d56295d340",
+    "accepted_recommendation_current": false,
+    "classification": "H_original_wording_only_source_hold_not_ready",
+    "current_disposition": "Original held wording is not integration-ready. Exact corrected-English, independently accepted successor is already current.",
+    "successor_reference": {
+      "file": "yue-Hant-original-pairs.json",
+      "typed_key": "string/ui_assembly_source_memory_floor",
+      "classification": "I_own_warning_successor_integrated_exact_value"
+    },
+    "original_author_finding_type": "shared_source_context_and_naturalness"
+  },
+  {
+    "tag": "yue-Hant",
+    "typed_key": "string/ui_discard",
+    "tier": "P0",
+    "original_source": "Discard",
+    "original_current": "捨棄改動",
+    "author_proposed": null,
+    "current_source": "Discard",
+    "current_target": "捨棄改動",
+    "source_exact_current": true,
+    "old_target_exact_current": true,
+    "author_status": "hold_missing_consumer_context",
+    "author_review_scope": "whole_value_wording_only_no_direct_production_reference",
+    "author_rationale": "HOLD: Adds 改動 to bare Discard, but no direct caller establishes that the discarded object is changes. Do not invent a replacement or certify contextual use.",
+    "author_confidence": "context_insufficient",
+    "author_limits": [
+      "Model-based linguistic and bounded source review, not native-human certification.",
+      "No runtime, rendering, device, accessibility-output or layout certification.",
+      "Proposed values are not integrated or independently second-reviewed.",
+      "No direct production R.string reference found; absence is not proof of no indirect use. Do not claim contextual UI acceptance."
+    ],
+    "author_receipt": {
+      "locator_id": "cantonese-han-priority-review-20261021/cantonese-han-p0-p1-review.json",
+      "pointer_or_section": "/records/42"
+    },
+    "current_source_sha256": "eb1a70e39274bb762b5d7c1adb5debeea2b05e12af28207f21a375b596853273",
+    "current_target_sha256": "1eda6b8131bf95d95e29b90fe2edc5c845da0600126b68678deb47a757b8e308",
+    "new_linguistic_acceptance": false,
+    "classification": "H_dormant_context_hold"
+  },
+  {
+    "tag": "yue-Hant",
+    "typed_key": "string/ui_no_resize_fits_decoder_memory",
+    "tier": "P1",
+    "original_source": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+    "original_current": "即使用最小輸出，呢張圖片嘅解碼器工作緩衝區仲做唔到放入而家記憶體上限。請取消並用較小嘅來源圖片。",
+    "author_proposed": "就算揀最細嘅輸出尺寸，而家嘅記憶體限制仍然唔容許載入呢張圖片嚟編輯。請取消，再用細啲嘅來源圖片。",
+    "current_source": "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+    "current_target": "即使輸出尺寸最細，都無法喺而家嘅記憶體限制內載入呢張圖片嚟編輯。請取消並用較小嘅來源圖片。",
+    "source_exact_current": false,
+    "old_target_exact_current": false,
+    "author_status": "source_context_hold_with_candidate",
+    "author_review_scope": "whole_value_linguistic_and_direct_static_context",
+    "author_rationale": "Avoids the incoherent 放入...上限 construction and does not blame decoder buffers alone. ImageResizeDialog tests the complete admission predicate at 1×1; adjacent prose supplies decoder context. Cancel and smaller-source remedy remain explicit. The English is narrower/awkward, so retain a source-context alignment hold.",
+    "author_confidence": "medium_high",
+    "author_limits": [
+      "Model-based linguistic and bounded source review, not native-human certification.",
+      "No runtime, rendering, device, accessibility-output or layout certification.",
+      "Proposed values are not integrated or independently second-reviewed."
+    ],
+    "author_receipt": {
+      "locator_id": "cantonese-han-priority-review-20261021/cantonese-han-p0-p1-review.json",
+      "pointer_or_section": "/records/248"
+    },
+    "current_source_sha256": "caa761bc1acb7c813fc2f9cfbebabaa42cbb8763b1c23b2240ed51c6d22f4316",
+    "current_target_sha256": "cc4d5b57f74c24829f72a9f5694c862e0fc9f236df4dd94fadf1f0bc9cdb8f7b",
+    "new_linguistic_acceptance": false,
+    "independent_original_judgment": {
+      "index": 38,
+      "locale": "yue-Hant",
+      "key": "string/ui_no_resize_fits_decoder_memory",
+      "tier": "P1",
+      "decision": "hold_source_alignment",
+      "candidate_wording_decision": "accept",
+      "english": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+      "current": "即使用最小輸出，呢張圖片嘅解碼器工作緩衝區仲做唔到放入而家記憶體上限。請取消並用較小嘅來源圖片。",
+      "original_proposed": "就算揀最細嘅輸出尺寸，而家嘅記憶體限制仍然唔容許載入呢張圖片嚟編輯。請取消，再用細啲嘅來源圖片。",
+      "recommended": "就算揀最細嘅輸出尺寸，而家嘅記憶體限制仍然唔容許載入呢張圖片嚟編輯。請取消，再用細啲嘅來源圖片。",
+      "rationale": "The wording naturally says the complete loading-for-editing operation cannot fit current limits even at the smallest output. The inspected condition is hasNativeWork plus failed complete import admission for 1×1, not decoder buffers alone. Cancel and smaller-source remedy remain, with the adjacent codec explanation preserved. Accept candidate wording while retaining the shared English/source-contract alignment hold; allocation-only reachability is not asserted.",
+      "hashes": {
+        "english": {
+          "utf8_sha256": "3efea315f6442fcb69c013f4cc3094d0c14d34290a9eace79bd5d88f6a051fd6",
+          "canonical_json_sha256": "9ded382824a31f6bbd8b400e75cca69d2dea63f0c78e74aa85906ba5c79b7b9e"
+        },
+        "current": {
+          "utf8_sha256": "65d2c02c02800222aa021a621ed1a60670378a7bb38ae8bf1556593965aa9564",
+          "canonical_json_sha256": "77bc77ec28a7c19376c108abe0b5cd937ade3668f45f1fa21dcdfcc04430be59"
+        },
+        "original_proposed": {
+          "utf8_sha256": "c634dfd32ae0bd24b6305e394883e871e69c6a1fc98a331d2fc6e5c5642e9162",
+          "canonical_json_sha256": "d2f36bfd3cb01897c8bd4956410c23aa227a58019fbef1f0c50a32bd1ba51209"
+        },
+        "recommended": {
+          "utf8_sha256": "c634dfd32ae0bd24b6305e394883e871e69c6a1fc98a331d2fc6e5c5642e9162",
+          "canonical_json_sha256": "d2f36bfd3cb01897c8bd4956410c23aa227a58019fbef1f0c50a32bd1ba51209"
+        }
+      },
+      "english_binding": {
+        "path": "Paintroid/src/main/res/values/strings.xml",
+        "line": 566,
+        "url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/res/values/strings.xml#L566"
+      },
+      "localized_binding": {
+        "path": "Paintroid/src/main/res/values-b+yue+Hant/strings.xml",
+        "line": 591,
+        "url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/res/values-b+yue+Hant/strings.xml#L591"
+      },
+      "production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 49,
+          "code": "if (fits) ui(R.string.ui_fits_the_current_budget) else if(cannotResize) \"\\n\"+ui(R.string.ui_no_resize_fits_decoder_memory) else ui(R.string.ui_too_large_for_the_current_budget_reduce_the)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4355869e2e198b5616419291cba225b018444fab/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L49"
+        }
+      ],
+      "source_context_hold_remains": true,
+      "source_contract_record": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6314782623",
+      "review_scope": "complete_value_and_bounded_static_consumer_context",
+      "confidence": "medium_high",
+      "production_value_accepted": false,
+      "source_integrated": false,
+      "new_current_acceptance_credit": false,
+      "recommended_value_is_new_reviewer_authorship": false
+    },
+    "independent_receipt": {
+      "locator_id": "cantonese-han-priority-review-20261021/independent-candidate-review.json",
+      "pointer_or_section": "/records/37"
+    },
+    "accepted_recommendation": "就算揀最細嘅輸出尺寸，而家嘅記憶體限制仍然唔容許載入呢張圖片嚟編輯。請取消，再用細啲嘅來源圖片。",
+    "accepted_recommendation_sha256": "c634dfd32ae0bd24b6305e394883e871e69c6a1fc98a331d2fc6e5c5642e9162",
+    "accepted_recommendation_current": false,
+    "classification": "H_original_wording_only_source_hold_not_ready",
+    "current_disposition": "Original held wording is not integration-ready. Exact corrected-English, independently accepted successor is already current.",
+    "successor_reference": {
+      "file": "yue-Hant-original-pairs.json",
+      "typed_key": "string/ui_no_resize_fits_decoder_memory",
+      "classification": "I_own_warning_successor_integrated_exact_value"
+    },
+    "original_author_finding_type": "shared_source_context_and_naturalness"
+  }
+]

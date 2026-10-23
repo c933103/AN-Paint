@@ -1,0 +1,11 @@
+# Cantonese scripts: own original scopes, not transferred acceptance
+
+Production49bb797f104849e77948ab6bf029c9e8ba16c07f is freshly tree-bound; every listed canonical/locale/consumer blob is unchanged from the dated5bfed632 analysis.
+
+Disjoint current inventory classifications: {"yue-Hant": {"U": 351, "A": 293, "O": 28, "I": 20, "C": 12, "H": 1, "P": 3, "D": 2, "W": 1, "N": 6}, "yue-Latn": {"U": 686, "I": 20, "P": 3, "D": 2, "N": 6}} . Each totals717 containers. I20 per script consists of17 original narrow judgments plus its own integrated Help and two warnings. P3 retains consolidated/native/redirect and public complete-plural attestations separately. Six N proposals and two dormant/change-only scopes are not upgraded.
+
+Han priority341 contains295 author-only current judgments plus one carried PR80 change-only scope,42 accepted recommendations and three historical holds. The original296 aggregate was not independently rereviewed. Forty-two recommendations partition into12 ready core,29 optional refinements and one wording-only/no-consumer entry. These are overlays, not independent acceptance of current production wording. Narrow current scopes take precedence in the disjoint ledger where overlapping. The exact12-core handoff is preserved in the immutable next-core-cn-yue record, including Fit’s no-rendering limitation and separate note replacement acceptance. No Latin transfer.
+
+Discard remains held because its object lacks a direct consumer. The two old memory proposals/holds are preserved historically and superseded only by their exact integrated PR165 warning receipts. Full Help is independently accepted for each script, not inferred from merge. Historical public locators for the Han priority/independent candidate receipts remain unrecovered; new publication does not repair that gap.
+
+Pickers160–163 remain unknown, not completed through fallback/presence. Whole-language/current-consumer accepted totals remain null. Original wording confidence, register/romanization limitations, author-only decisions and source prerequisites remain separate. No new linguistic/native/runtime/layout certification, application edits, builds, tests or CI. Records-only branch must never be merged into app branches.
