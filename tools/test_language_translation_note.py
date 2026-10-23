@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Narrow source regression guards for the two independently accepted notes.
+"""Narrow source regression guards for the independently accepted notes.
 Prepared only, NOT RUN. No generator, build, or Android runtime is invoked.
 Place under tools/ in the eventual reviewed source tree before running.
 """
@@ -12,10 +12,12 @@ RES = ROOT / 'Paintroid/src/main/res'
 KEY = 'language20_translation_note'
 SOURCE = 'App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.'
 ACCEPTED = {
+    'values-zh-rHK': '應用程式語言\\n\\nAN Paint 的翻譯內容在語言資源中維護。新增或尚未翻譯的文字會以英文顯示。',
     'values-sw': 'Lugha ya programu\\n\\nTafsiri hutunzwa katika rasilimali za lugha za AN Paint. Maandishi mapya au ambayo hayajatafsiriwa huonekana kwa Kiingereza.',
     'values-zh-rCN': '应用语言\\n\\n翻译内容在 AN Paint 的语言资源中维护。新增或尚未翻译的文字会以英语显示。',
 }
 OLD = {
+    'values-zh-rHK': '呢個語言版本已包含 AN Paint 所有可翻譯嘅介面文字。',
     'values-sw': 'Toleo hili la lugha lina maandishi yote ya kiolesura cha AN Paint yanayoweza kutafsiriwa.',
     'values-zh-rCN': '此语言版本已包含 AN Paint 所有可翻译的界面文字。',
 }
