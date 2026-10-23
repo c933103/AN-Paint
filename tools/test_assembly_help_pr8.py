@@ -10,6 +10,7 @@ from hashlib import sha256
 from pathlib import Path
 import re
 import unittest
+from memory_warning_successors import accepted_warning
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -192,7 +193,9 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         # Reuse an already present local term. This guards literal wording,
         # not native fluency or an independent execution of the memory policy.
         prefix = "གྲུབ་འབྲས་ཆུང་ཤོས་ཡང་"
-        self.assertTrue(strings("values-b+dz")["ui_no_resize_fits_decoder_memory"].startswith(prefix))
+        warning = strings("values-b+dz")["ui_no_resize_fits_decoder_memory"]
+        self.assertEqual(accepted_warning("ui_no_resize_fits_decoder_memory", "dz"), warning)
+        self.assertTrue(warning.startswith("གྲུབ་འབྲས་ཀྱི་ཚད་ཆུང་ཤོས་ཨིན་རུང་"))
         self.assertIn(prefix, paragraph("values-b+dz", CONTRACTS["values-b+dz"]["output_index"]))
         self.assertNotIn("གྲུབ་འབྲས་ཆུང་ཀུ་རང་ཨིན་རུང་", paragraph("values-b+dz", CONTRACTS["values-b+dz"]["output_index"]))
 

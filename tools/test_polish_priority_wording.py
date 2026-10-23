@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 
 from current_localization_contracts import fixture, require_string
 import translation_catalogues as catalogues
-# The two memory translations remain pending review against the corrected source.
+# Frozen pairs stay historical; exact current warning successors are separately receipt-bound.
 from memory_warning_source_review import current_source_expectation
 
 KEYS = set('''
@@ -366,7 +366,7 @@ class PolishPriorityWordingTests(unittest.TestCase):
                     node.set('translatable', 'false')
                 with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
                     require_string(ET.tostring(root, encoding='unicode'), key,
-                                   self.data['values'][key]['pl'], self.data['constraints'][key]['pl'])
+                                   current_source_expectation(key, 'pl', self.data['values'][key]['pl']), self.data['constraints'][key]['pl'])
 
     def test_independent_binding_and_complete_delta_inventory_cannot_be_dropped(self):
         self.assertEqual(231, len(KEYS))
@@ -384,8 +384,8 @@ class PolishPriorityWordingTests(unittest.TestCase):
     def test_assembly_memory_floor_preserves_every_complete_remedy_clause(self):
         key = 'ui_assembly_source_memory_floor'
         clauses = (
-            'Obraz źródłowy wymaga więcej pamięci do dekodowania, niż jest obecnie dostępne, nawet dla bardzo małego obrazu wynikowego.',
-            'Zmniejszenie wymiarów kompozycji nie rozwiąże tego problemu.',
+            'Szacuje się, że ta kompozycja przekracza obecny budżet pamięci roboczej, nawet przy najmniejszych wymiarach obrazu wynikowego.',
+            'Samo zmniejszenie wymiarów kompozycji nie wystarcza przy obecnych limitach.',
             'Zamknij inne dokumenty lub przygotuj mniejszy obraz źródłowy przed ponowną próbą.',
             'Kompozycja pozostaje bez zmian.',
         )
@@ -396,7 +396,7 @@ class PolishPriorityWordingTests(unittest.TestCase):
             root.find(f"./string[@name='{key}']").text = expected.replace(clause, '')
             with self.subTest(clause=clause), self.assertRaises(ValueError):
                 require_string(ET.tostring(root, encoding='unicode'), key,
-                               self.data['values'][key]['pl'], self.data['constraints'][key]['pl'])
+                               current_source_expectation(key, 'pl', self.data['values'][key]['pl']), self.data['constraints'][key]['pl'])
 
     def test_placeholder_type_precision_loss_and_unescaped_apostrophes_are_rejected(self):
         expected = self.strings['pl'][MEMORY]

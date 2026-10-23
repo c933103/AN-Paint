@@ -79,7 +79,7 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
             self.assertEqual(kind, row['kind'])
             for key, term in row['terms'].items():
                 with self.subTest(tag=tag, key=key):
-                    self.assertEqual(strings.get(key), term['value'])
+                    self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
                     present = key in strings
                     self.assertEqual('present' if present else 'missing', term['value_status'])
                     self.assertEqual(None if present else 'canonical-english', term['fallback'])
@@ -100,12 +100,13 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
                     self.assertIsNone(term['review_receipt'])
                     self.assertIn(term['edit_disposition'], dispositions)
 
-    def test_successor_only_changes_default_english_not_historical_pairs(self):
+    def test_default_source_binding_preserves_unknown_and_unrelated_pairs(self):
         for key in KEYS:
             old = self.data['keys'][key]['old_english']
             self.assertEqual(EXPECTED[key], current_source_expectation(key, 'default', old))
-            for tag in ('cs', 'hu', 'ko-KR', 'pl', 'sv', 'vi', 'zh-CN', 'zh-TW', 'en-GB'):
-                self.assertEqual(old, current_source_expectation(key, tag, old))
+            for tag in ('unknown-tag', 'ain-Kana', 'ain-Latn', 'jje', 'vi-Hani'):
+                with self.assertRaises(ValueError):
+                    current_source_expectation(key, tag, old)
             with self.assertRaises(ValueError):
                 current_source_expectation(key, 'default', old + ' corrupted')
         self.assertEqual('unrelated', current_source_expectation('another_key', 'default', 'unrelated'))

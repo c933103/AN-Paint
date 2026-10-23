@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
-# The two memory translations remain pending review against the corrected source.
+# Frozen pairs stay historical; exact current warning successors are separately receipt-bound.
 from memory_warning_source_review import current_source_expectation
 
 FIXTURE='czech_priority_draft_wording.json'
@@ -129,7 +129,7 @@ class CzechPriorityDraftWordingTests(unittest.TestCase):
                 else:
                     child=ET.SubElement(node,'b');child.text,node.text=node.text,None
                 with self.subTest(key=key,mutation=mutation),self.assertRaises(ValueError):
-                    require_string(ET.tostring(root,encoding='unicode'),key,self.data['values'][key]['cs'],self.data['constraints'][key])
+                    require_string(ET.tostring(root,encoding='unicode'),key,current_source_expectation(key, 'cs', self.data['values'][key]['cs']),self.data['constraints'][key])
 
     def test_independent_binding_preserves_complete_pairs_and_context_holds(self):
         require_review_binding(self.data)
@@ -145,7 +145,7 @@ class CzechPriorityDraftWordingTests(unittest.TestCase):
 
     def test_assembly_memory_floor_remedy_and_unchanged_guarantee_cannot_be_lost(self):
         key='ui_assembly_source_memory_floor'
-        value=self.data['values'][key]['cs']
+        value=current_source_expectation(key, 'cs', self.data['values'][key]['cs'])
         for clause in (
             'Zavřete jiné dokumenty nebo připravte menší zdrojový obrázek a zkuste to znovu.',
             'Sestava zůstala beze změny.',
@@ -206,7 +206,7 @@ class CzechPriorityDraftWordingTests(unittest.TestCase):
                 require_string(ET.tostring(root,encoding='unicode'),MEMORY,value,self.data['constraints'][MEMORY])
         for key,required in {
             'ui_sampled_resize_memory_explanation':['Skutečná spotřeba paměti se může lišit.','Menší kopie ztrácí detaily.','Původní soubor zůstane beze změny.'],
-            'ui_assembly_source_memory_floor':['i pro velmi malý výstup.','Zmenšení rozměrů sestavy tento problém nevyřeší.','Sestava zůstala beze změny.'],
+            'ui_assembly_source_memory_floor':['a to i při nejmenší velikosti výstupu.','Samotné zmenšení rozměrů sestavy při aktuálních limitech nestačí.','Sestava zůstala beze změny.'],
             'ui_the_full_image_and_working_buffers_exceed_the':['nebo jim Android nemohl vyhradit paměť.','změňte velikost kopie.','Původní soubor zůstane beze změny.'],
         }.items():
             for clause in required:self.assertIn(clause,self.strings['cs'][key])

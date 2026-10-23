@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
+from memory_warning_source_review import current_source_expectation
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,7 +54,7 @@ class GermanPriorityWording(unittest.TestCase):
         defaults, _, _, _ = catalogues.default_resources()
         for key, values in data['values'].items():
             with self.subTest(key=key):
-                actual = require_string(self.xml, key, values['de'], data['constraints'][key])
+                actual = require_string(self.xml, key, current_source_expectation(key, 'de', values['de']), data['constraints'][key])
                 self.assertEqual(catalogues.placeholders(defaults[key]),
                                  catalogues.placeholders(actual))
 
@@ -99,7 +100,7 @@ class GermanPriorityWording(unittest.TestCase):
             for mutation, broken in cases.items():
                 with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
                     require_string('<resources>' + broken + '</resources>',
-                                   key, values['de'], data['constraints'][key])
+                                   key, current_source_expectation(key, 'de', values['de']), data['constraints'][key])
 
     def test_german_catalogue_is_complete_and_has_unique_resource_names(self):
         root = ET.fromstring(self.xml)
@@ -167,7 +168,7 @@ class GermanPriorityWording(unittest.TestCase):
                     node.text = self.values[key].replace(clause, '', 1)
                     with self.assertRaises(ValueError):
                         require_string('<resources>' + ET.tostring(node, encoding='unicode') + '</resources>',
-                                       key, data['values'][key]['de'], data['constraints'][key])
+                                       key, current_source_expectation(key, 'de', data['values'][key]['de']), data['constraints'][key])
 
 
 if __name__ == '__main__':

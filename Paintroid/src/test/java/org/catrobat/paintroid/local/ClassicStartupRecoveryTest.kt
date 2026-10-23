@@ -95,6 +95,60 @@ class ClassicStartupRecoveryTest {
         assertEquals(colour,activity.document.bitmap.getPixel(2,3));assertEquals(listOf(value),activity.document.imageCredits)
     }
 
+    /** A stopped, idle editor can still owe a catch-up save. Drive real worker/main
+     * boundaries, rather than sleeping or mutating production generation counters. */
+    @Test fun stoppedIdleWindowWithCatchUpSaveIsNotAnAutosaveBaseline() {
+        PendingWrite().use {pending ->
+            val controller=pending.create();val activity=controller.get()
+            fun generation(name: String)=ReflectionHelpers.getField<Long>(activity,name)
+            fun flag(name: String)=ReflectionHelpers.getField<Boolean>(activity,name)
+            val handler=ReflectionHelpers.getField<Handler>(activity,"autosaveHandler")
+            val save=ReflectionHelpers.getField<Runnable>(activity,"saveDraft")
+            val store=ReflectionHelpers.getField<AutosaveStore>(activity,"autosave")
+            val state=ReflectionHelpers.getField<Any>(store,"state")
+            val lock=ReflectionHelpers.getField<java.util.concurrent.locks.ReentrantLock>(state,"ioLock")
+            val pendingLock=ReflectionHelpers.getField<Any>(state,"pendingLock")
+            fun quiescent(): Boolean {
+                val writes=synchronized(pendingLock) {ReflectionHelpers.getField<Int>(state,"pendingWrites")}
+                return flag("stopped") && !activity.busy && !flag("autosaving") &&
+                    flag("autosaveReady") && !flag("autosaveBlocked") &&
+                    generation("draftGeneration")==generation("savedDraftGeneration") &&
+                    generation("draftGeneration")!=generation("failedDraftGeneration") &&
+                    !handler.hasCallbacks(save) && writes==0 && !lock.isLocked && activity.lastAutosaveError==null
+            }
+            try {
+                pending.release();awaitEditorStartup(activity)
+                joinWorker(activity);shadowOf(Looper.getMainLooper()).idle()
+                assertFalse(activity.busy)
+                lock.lock()
+                try {
+                    controller.pause().stop()
+                    assertTrue("Real stop save is registered while the writer is blocked",activity.busy)
+                    val captured=generation("draftGeneration")
+                    activity.paintCanvas.fit()
+                    assertTrue("Real canvas status advances the generation during I/O",generation("draftGeneration")>captured)
+                } finally {lock.unlock()}
+                joinWorker(activity)
+                val deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(10)
+                while(activity.busy) {
+                    assertTrue("Main completion callback did not arrive",System.nanoTime()<deadline)
+                    shadowOf(Looper.getMainLooper()).runOneTask()
+                }
+                assertTrue("The former baseline predicate accepts this window",flag("stopped") && !activity.busy)
+                assertTrue(generation("savedDraftGeneration")<generation("draftGeneration"))
+                assertTrue("endIo queued the real catch-up save",handler.hasCallbacks(save))
+                assertFalse("The stronger baseline rejects the unsaved generation",quiescent())
+                while(!quiescent()) {
+                    assertTrue("Catch-up save did not settle",System.nanoTime()<deadline)
+                    shadowOf(Looper.getMainLooper()).idle()
+                    joinWorker(activity)
+                }
+                assertTrue(quiescent())
+                assertNull(activity.lastAutosaveError)
+            } finally {destroy(controller)}
+        }
+    }
+
     @Test fun blockedStartupAllowsMainSentinelConfigurationStopBackAndDestroyWithoutSavingBlank() {
         PendingWrite().use {pending ->
             val controller=pending.create();val activity=controller.get()

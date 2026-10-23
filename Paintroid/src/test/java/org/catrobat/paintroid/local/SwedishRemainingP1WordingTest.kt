@@ -47,6 +47,37 @@ class SwedishRemainingP1WordingTest {
         PaintApplication.currentResources = beforeResources
     }
 
+    private fun currentExpectedMessage(key: String, historical: String): String {
+        if (key != "ui_no_resize_fits_decoder_memory") return historical
+        require(historical == "Även med minsta möjliga utdatabild ryms inte bildavkodarens arbetsbuffertar inom den nuvarande minnesbudgeten. Avbryt och använd en mindre källbild.") {
+            "Unrecognized historical Swedish warning"
+        }
+        val oracle = JSONObject(File("../translations/source-review/memory-warning-successors-20261023.json").readText())
+        val accepted = oracle.getJSONObject("values").getJSONObject("sv").getString(key)
+        assertEquals("Independently accepted Swedish warning", "Även med minsta möjliga utdatastorlek kan den här bilden inte läsas in för redigering inom de nuvarande minnesgränserna. Avbryt och använd en mindre källbild.", accepted)
+        return accepted
+    }
+
+    @Test fun warningSuccessorOnlyReplacesTheReviewedHistoricalKey() {
+        val values = JSONObject(File("../tools/fixtures/current_localization/swedish_remaining_p1_wording.json").readText()).getJSONObject("values")
+        var successors = 0
+        for (key in values.keys()) {
+            val historical = values.getJSONObject(key).getString("sv")
+            val expected = currentExpectedMessage(key, historical)
+            if (key == "ui_no_resize_fits_decoder_memory") {
+                successors++
+                assertNotEquals(historical, expected)
+                assertThrows(IllegalArgumentException::class.java) {
+                    currentExpectedMessage(key, historical + " changed")
+                }
+            } else {
+                assertEquals("Unmapped fixture value $key", historical, expected)
+            }
+        }
+        assertEquals(1, successors)
+        assertEquals("unrelated", currentExpectedMessage("unknown_key", "unrelated"))
+    }
+
     @Test fun allAcceptedCompleteMessagesResolveFromCompiledSwedishResources() {
         val fixture = JSONObject(File("../tools/fixtures/current_localization/swedish_remaining_p1_wording.json").readText())
         val values = fixture.getJSONObject("values")
@@ -54,7 +85,7 @@ class SwedishRemainingP1WordingTest {
         for (key in values.keys()) {
             val id = swedish.resources.getIdentifier(key, "string", swedish.packageName)
             assertNotEquals("Missing compiled resource $key", 0, id)
-            val expected = values.getJSONObject(key).getString("sv").replace("\\n", "\n")
+            val expected = currentExpectedMessage(key, values.getJSONObject(key).getString("sv")).replace("\\n", "\n")
             assertEquals("Complete Swedish resource $key", expected, swedish.getString(id))
         }
         assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
