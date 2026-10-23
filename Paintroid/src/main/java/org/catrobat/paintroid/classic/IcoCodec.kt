@@ -14,12 +14,18 @@ object IcoCodec {
     private const val DECODE_SCRATCH = 24L * 1024 * 1024
     val exportEdges = listOf(16, 24, 32, 48, 64, 128, 256)
 
-    fun isIco(file: File): Boolean = IcoContainer.isIco(file)
-
-    private fun entry(file: File): IcoContainer.Entry = try { IcoContainer.best(file) }
-    catch (error: LegacyColourMetadata.UnsupportedColour) {
+    // Translate only our own parser failures, never provider/storage or programming errors.
+    // Both editor and assembly import use this boundary through ImportedImage.
+    private inline fun <T> readImage(block: () -> T): T = try { block() }
+    catch (error: IcoContainer.InvalidImage) {
+        throw IOException(ui(R.string.ui_no_readable_image_data), error)
+    } catch (error: LegacyColourMetadata.UnsupportedColour) {
         throw IOException(ui(R.string.save20_unsupported_image_colour), error)
     }
+
+    fun isIco(file: File): Boolean = readImage { IcoContainer.isIco(file) }
+
+    private fun entry(file: File): IcoContainer.Entry = readImage { IcoContainer.best(file) }
 
     fun dimensions(file: File): ImageDimensions = entry(file).let { ImageDimensions(it.width, it.height) }
 
@@ -39,16 +45,13 @@ object IcoCodec {
         if (selected.png) {
             val temporary = File.createTempFile("ico-input-", ".png", file.absoluteFile.parentFile)
             try {
-                temporary.outputStream().buffered().use { IcoContainer.extractPng(file, selected, it) }
+                readImage { temporary.outputStream().buffered().use { IcoContainer.extractPng(file, selected, it) } }
                 val imported = ImportedImage(temporary, "icon.png")
                 if (imported.dimensions != source) throw IOException(ui(R.string.formats22_ico_dimensions_error))
                 return imported.decode(ImportPlan.create(source, size), budget)
             } finally { temporary.delete() }
         }
-        val pixels = try { IcoContainer.decodeDib(file, selected) }
-        catch (error: LegacyColourMetadata.UnsupportedColour) {
-            throw IOException(ui(R.string.save20_unsupported_image_colour), error)
-        }
+        val pixels = readImage { IcoContainer.decodeDib(file, selected) }
         val decoded = Bitmap.createBitmap(source.width, source.height, Bitmap.Config.ARGB_8888)
         var output: Bitmap? = null
         try {
