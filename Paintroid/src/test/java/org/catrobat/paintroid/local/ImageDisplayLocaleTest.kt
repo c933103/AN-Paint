@@ -52,7 +52,7 @@ class ImageDisplayLocaleTest {
             Triple("pt-BR", "en-US", "1500 × 1500 px · Quantidade de pixels: 2.250.000 (2,25 MP)"),
             Triple("de", "en-US", "1500 × 1500 px · 2.250.000 Pixel (2,25 MP)"),
             Triple("en-US", "pt-BR", "1500 × 1500 px · Pixel count: 2,250,000 (2.25 MP)"),
-            Triple("ar-EG", "en-US", "١٥٠٠ × ١٥٠٠ px · ٢٬٢٥٠٬٠٠٠ بكسل (٢٫٢٥ ميغابكسل)")
+            Triple("ar-EG", "en-US", "١٥٠٠ × ١٥٠٠ px · عدد البكسلات: ٢٬٢٥٠٬٠٠٠ (٢٫٢٥ ميغابكسل)")
         )
         for ((tag, process, expected) in cases) {
             resources(tag, process)
