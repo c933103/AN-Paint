@@ -1,0 +1,387 @@
+{
+  "schema": "bounded-author-wording-review-v1",
+  "date_UTC": "2026-10-23",
+  "status": "AUTHOR REVIEW FOR INDEPENDENT CHECKING; NOT ACCEPTED OR IMPLEMENTED",
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "picker_order": 5,
+  "tag": "am",
+  "selection_manifest_sha256": "0af0c16579ed6263505c5fc20802c8da09a6fac1e35d3597b0254af4d05800fe",
+  "counts": {
+    "reviewed_existing_labels": 9,
+    "author_retain_recommendations": 7,
+    "substantive_unaccepted_proposals": 1,
+    "optional_unaccepted_refinements": 1,
+    "independently_accepted": 0,
+    "implemented": 0
+  },
+  "English_source_gate": "No English discrepancy established for these nine bounded labels. If review identifies a source defect, correct canonical English first, flag every affected locale, then review locales individually. No source correction or translation is implemented here.",
+  "rows": [
+    {
+      "key": "string/ui_eraser",
+      "canonical_English": "Eraser",
+      "current_XML_text": "\"ላጲስ\"",
+      "quoted_literal_body": "ላጲስ",
+      "source_sha256": "686eee3c6cd5045f3084d2e202cd3e86d7cbd7b5de60998106fefdfab37e0db6",
+      "current_XML_text_sha256": "2229f88c2f30b95be3ba643e2d76d8dbca29818f26b500386d42707516532187",
+      "consumer_context": "PaintTool.ERASER label, rendered by ToolButton and tool options/help. PaintDocument.paint selects background colour for erasing, not transparency.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "line": 17,
+          "code": "ERASER(R.string.ui_eraser, R.string.ui_drag_to_erase_with_the_background_colour),",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L17"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "retain-current",
+      "meaning_assessment": "Eraser / rubbing-out implement.",
+      "linguistic_rationale": "The teaching source explicitly identifies this exact word as eraser. In this app it names a background-colour painting tool, not a promise of transparent deletion. The short noun does not contradict that behaviour; the separate hint explains background colour. Do not replace it with pencil based on a cross-language false friend.",
+      "confidence": {
+        "semantic": "high",
+        "idiomatic_UI": "medium-high",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "eraser"
+      ],
+      "independent_check_question": "Check ordinary contemporary UI familiarity; no spelling replacement is justified by the recovered lexical evidence.",
+      "proposed_literal_body": null,
+      "proposed_XML_text": null,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_pencil",
+      "canonical_English": "Pencil",
+      "current_XML_text": "\"እርሳስ\"",
+      "quoted_literal_body": "እርሳስ",
+      "source_sha256": "be3435a5af5fdd501958eb3907df4aa280ef6b62ec1762810e5276d1fe5d45c8",
+      "current_XML_text_sha256": "d30ee16bac1a587ebe40d3ab9363c10f76ffa5a0be05b41a8ffe5e1b60d682f2",
+      "consumer_context": "PaintTool.PENCIL label. The drawing implementation uses adjustable document.pencilWidth (1–100), square cap and no antialiasing. Current hint already describes adjustable Width; resource identifier is historical, not the English sentence.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "line": 21,
+          "code": "PENCIL(R.string.ui_pencil, R.string.ui_draw_a_crisp_one_pixel_line),",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L21"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "retain-current",
+      "meaning_assessment": "Pencil (also a word associated with lead).",
+      "linguistic_rationale": "The drawing-tool noun is appropriate for the crisp, non-antialiased stroke. Adjustable width does not make the pencil metaphor false. Current English hint already states Width 1–100; its historical one-pixel identifier is not a source-text defect.",
+      "confidence": {
+        "semantic": "high",
+        "idiomatic_UI": "high",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "pencil"
+      ],
+      "independent_check_question": "Confirm normal software-tool register, without adding a one-pixel restriction.",
+      "proposed_literal_body": null,
+      "proposed_XML_text": null,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_text",
+      "canonical_English": "Text",
+      "current_XML_text": "\"ጽሑፍ\"",
+      "quoted_literal_body": "ጽሑፍ",
+      "source_sha256": "71988c4d8e0803ba4519f0b2864c1331c14a1890bf8694e251379177bfedb5c3",
+      "current_XML_text_sha256": "264013d2701b16ed24b4e7c0342dfe1cfa8d46064c14c2d9890b7b7a7a8132b9",
+      "consumer_context": "PaintTool.TEXT label, opens text placement/style flow. Distinguish the drawing text tool from generic prose/content.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "line": 25,
+          "code": "TEXT(R.string.ui_text, R.string.ui_tap_the_canvas_to_place_text_and_choose),",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L25"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "retain-current",
+      "meaning_assessment": "Text / writing.",
+      "linguistic_rationale": "A noun naming the tool that places and styles written text fits the current consumer. It is not a document-reading command or the name of a specific font.",
+      "confidence": {
+        "semantic": "high",
+        "idiomatic_UI": "high",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "text"
+      ],
+      "independent_check_question": "No correction proposed; verify short tool-label idiom.",
+      "proposed_literal_body": null,
+      "proposed_XML_text": null,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_palette",
+      "canonical_English": "Palette",
+      "current_XML_text": "\"መደርደሪያ\"",
+      "quoted_literal_body": "መደርደሪያ",
+      "source_sha256": "85794effd6e85e5612a80a6fcbf2e613e534500eb2ca2f312bd16c76f44082bf",
+      "current_XML_text_sha256": "e88e2f55d6ce8685b8351c2bdd17cf27619b490b4dec9aa2376814872fa3d4cb",
+      "consumer_context": "AdvancedColourDialog tab selects mode0, showing basic/saved colour swatches, not a general shelf or toolbar. Review existing wording in this exact colour-selection sense without presuming it is wrong.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "line": 113,
+          "code": "listOf(Triple(ui(R.string.ui_palette), \"colour_mode_0\", 0), Triple(ui(R.string.ui_honeycomb), \"colour_mode_3\", 3), Triple(ui(R.string.ui_advanced), \"colour_advanced_tab\", 1)).forEach { (name, tag, mode) ->",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L113"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "proposed-correction-needs-independent-check",
+      "meaning_assessment": "Shelf / storage surface; potentially an inherited software-palette metaphor.",
+      "linguistic_rationale": "The current mode contains basic and saved colour swatches. The existing noun does not identify colours and risks sounding like a general shelf. Propose a descriptive colour-collection label rather than asserting an unsupported standard palette equivalent. This is an author-composed contextual proposal, not an attested complete dictionary phrase. The possibility that the current shelf metaphor is established remains open.",
+      "confidence": {
+        "semantic": "medium-high",
+        "idiomatic_UI": "medium",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "shelf",
+        "collection",
+        "ict"
+      ],
+      "independent_check_question": "Assess whether the complete proposed phrase is idiomatic for selectable basic/saved colour swatches and better than established Amharic software terminology. Do not accept from component dictionary matches alone.",
+      "proposed_literal_body": "የቀለም ስብስብ",
+      "proposed_XML_text": "\"የቀለም ስብስብ\"",
+      "independent_acceptance": null,
+      "proposed_XML_text_sha256": "089d1aea5f9b1f9a3b23937723f82f92bc3da47d3da85d39fde695767b975ebd"
+    },
+    {
+      "key": "string/ui_preview",
+      "canonical_English": "Preview",
+      "current_XML_text": "\"ቅድመ ዕይታ\"",
+      "quoted_literal_body": "ቅድመ ዕይታ",
+      "source_sha256": "324b134f57c70c729ae3dc4d298bb451656717d70523e942c1ce667b8024ea07",
+      "current_XML_text_sha256": "db7003c90d6b0b07985aea1fe18c745c3014ea732f4c8b74b5f411d38104e9d1",
+      "consumer_context": "TextStyleDialog heading immediately before TextPreview; update() displays the edited sample with size/font/colour/direction. It is a text-style preview, not save/export preview.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 64,
+          "code": "body.addView(label(ui(R.string.ui_preview)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L64"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "retain-current",
+      "meaning_assessment": "Prior view / preview.",
+      "linguistic_rationale": "The heading introduces a live sample of text styling. It does not assert print fidelity, export output or saving. The glossary has a closely corresponding spelling with እ rather than current ዕ; this alone is insufficient reason for orthographic churn.",
+      "confidence": {
+        "semantic": "medium-high",
+        "idiomatic_UI": "medium-high",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Check contemporary spelling preference independently if desired; no semantic defect established.",
+      "proposed_literal_body": null,
+      "proposed_XML_text": null,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_zoom_in",
+      "canonical_English": "Zoom in",
+      "current_XML_text": "\"ከቅርበት ዕይታ\"",
+      "quoted_literal_body": "ከቅርበት ዕይታ",
+      "source_sha256": "0e47f09a748fa1321dbaee5c8983f8e8f2880b1212956fb4f21ae9d60b88a8b2",
+      "current_XML_text_sha256": "211c3ec3d5c9449c80db194f8272f380342f2f8ff76cd18390da059280b42d44",
+      "consumer_context": "EditIcon.PLUS label/content description; zoom_in action calls paintCanvas.zoomStep(1.5f). Changes viewport magnification, not image dimensions.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "code": "enum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt#L12"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "retain-current",
+      "meaning_assessment": "Close-up / near view.",
+      "linguistic_rationale": "This nominal label describes increasing apparent canvas magnification and is directionally correct for the plus action. It does not explicitly promise document resizing. A glossary imperative equivalent exists, but changing a clear paired noun label solely to match English imperative grammar is not necessary.",
+      "confidence": {
+        "semantic": "medium-high",
+        "idiomatic_UI": "medium",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Check the near/far pair together for clear action-label and accessibility idiom; lexical alternatives are not automatic corrections.",
+      "proposed_literal_body": null,
+      "proposed_XML_text": null,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_zoom_out",
+      "canonical_English": "Zoom out",
+      "current_XML_text": "\"ከርቀት ዕይታ\"",
+      "quoted_literal_body": "ከርቀት ዕይታ",
+      "source_sha256": "bc7b631a689b45ca5c51923515d31eb3597b2d9b129d88d0dbee066ee5c35453",
+      "current_XML_text_sha256": "3bfa7dfcfa532a4835e641d08c1279bd19d0855644addc738ce25880c4718dbb",
+      "consumer_context": "EditIcon.MINUS label/content description; zoom_out action calls paintCanvas.zoomStep(1/1.5f). Changes viewport magnification, not image dimensions.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "code": "enum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt#L12"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "retain-current",
+      "meaning_assessment": "Distant / far view.",
+      "linguistic_rationale": "This is the counterpart to near view and correctly describes reducing apparent magnification. The code changes the viewport, not image dimensions. Retain the coherent pair rather than silently substituting a generic shrink command.",
+      "confidence": {
+        "semantic": "medium-high",
+        "idiomatic_UI": "medium",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Check with Zoom in as one paired UI convention; no runtime or screen-reader execution was performed.",
+      "proposed_literal_body": null,
+      "proposed_XML_text": null,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_horizontal23",
+      "canonical_English": "Horizontal",
+      "current_XML_text": "\"አግድም፦\"",
+      "quoted_literal_body": "አግድም፦",
+      "source_sha256": "0abba441f16eff90782e7a820fd5abb05a1749cca37bff515e4cc968238a2d26",
+      "current_XML_text_sha256": "a203412d161ce71a2774db62525c09ad2ea2aa05cd11d31bf5f210b3bef0aaa3",
+      "consumer_context": "TextStyleDialog text_direction spinner first option maps to TextDirection.HORIZONTAL; not a horizontal flip or page-orientation command. Existing terminal punctuation needs linguistic review in an option list, not automatic deletion.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 57,
+          "code": "adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,arrayOf(ui(R.string.ui_horizontal23),ui(R.string.ui_vertical_rl23),ui(R.string.ui_vertical_lr23)));setSelection(initial.direction.ordinal)}",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L57"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "optional-punctuation-refinement",
+      "meaning_assessment": "Horizontal, followed by Ethiopic introductory punctuation (፦).",
+      "linguistic_rationale": "The directional word fits the horizontal text-flow option. The terminal punctuation is unnecessary for a standalone spinner option, which introduces no following value. Removing it is optional UI polish, not a meaning correction or evidence that the current word is wrong. A different glossary noun is not grounds to replace the current direction word.",
+      "confidence": {
+        "semantic": "medium-high",
+        "idiomatic_UI": "medium-high",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Decide whether punctuation omission is preferable in this option list; keep separate from the substantive Palette proposal.",
+      "proposed_literal_body": "አግድም",
+      "proposed_XML_text": "\"አግድም\"",
+      "independent_acceptance": null,
+      "proposed_XML_text_sha256": "f75aeaa57f17f1a887ca8b21f5774475b745f9542edb6269b882c556a340d58b"
+    },
+    {
+      "key": "string/ui_category_selection",
+      "canonical_English": "Selection",
+      "current_XML_text": "\"ምርጫ\"",
+      "quoted_literal_body": "ምርጫ",
+      "source_sha256": "ca4067071fcf618543805e3d94af63144b21f4fae9eade2408f1c24f7e5214e9",
+      "current_XML_text_sha256": "34b87bf60a57c9d6ccdbc981ed80d5a02f4572d000aef2c7827c0ba6620215fc",
+      "consumer_context": "ToolCategory.SELECTION groups rectangle/lasso selection; also EditGroup.SELECTION label. ToolCategoryButton composes category and selected-tool labels in accessibility text. This is image-area selection, not choosing a menu option.",
+      "exact_direct_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 75,
+          "code": "SELECTION(R.string.ui_category_selection,R.drawable.breeze_select,listOf(0,2,4)),",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L75"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt",
+          "line": 15,
+          "code": "SELECTION(R.string.ui_category_selection,listOf(PaintTool.SELECT,PaintTool.LASSO)),",
+          "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt#L15"
+        }
+      ],
+      "English_source_correction_needed_before_review": false,
+      "author_decision": "retain-current",
+      "meaning_assessment": "Selection / choice.",
+      "linguistic_rationale": "The category groups rectangular and lasso image-area tools; the broad selection noun is usable in that disambiguating context. Its other choice/election senses do not establish an error. This review covers the noun only, not the mixed-language expanded/collapsed accessibility templates or the untranslated tool names.",
+      "confidence": {
+        "semantic": "medium-high",
+        "idiomatic_UI": "medium",
+        "basis": "AI author assessment, not calibrated probability or native-speaker certification"
+      },
+      "lexical_reference_ids": [
+        "selection"
+      ],
+      "independent_check_question": "Check image-editing category idiom; do not treat this as acceptance of complete composed accessibility announcements.",
+      "proposed_literal_body": null,
+      "proposed_XML_text": null,
+      "independent_acceptance": null
+    }
+  ],
+  "lexical_references": {
+    "eraser": {
+      "url": "https://conference.usu.edu/SYSTEM/Uploads/Handouts/15233_1981miriamredleaf.pdf",
+      "title": "Thomas Shull, Introduction to Cued Amharic (2015), printed p.15",
+      "evidence": "ላጲስ /lAp’is/ eraser",
+      "limit": "Primary teaching vocabulary, not application review."
+    },
+    "pencil": {
+      "url": "https://dictionary.abyssinica.com/pencil",
+      "title": "Abyssinica publisher dictionary: pencil",
+      "evidence": "እርሳስ",
+      "limit": "Lexical equivalence only."
+    },
+    "text": {
+      "url": "https://dictionary.abyssinica.com/text",
+      "title": "Abyssinica publisher dictionary: text",
+      "evidence": "ጽሑፍ",
+      "limit": "One of several senses; consumer selects written/drawn text."
+    },
+    "shelf": {
+      "url": "https://dictionary.abyssinica.com/%E1%88%98%E1%8B%B0%E1%88%AD%E1%8B%B0%E1%88%AA%E1%8B%AB",
+      "title": "Abyssinica publisher dictionary: መደርደሪያ",
+      "evidence": "shelf, shelves",
+      "limit": "Does not rule out an established software metaphor."
+    },
+    "collection": {
+      "url": "https://dictionary.abyssinica.com/%E1%88%B5%E1%89%A5%E1%88%B5%E1%89%A5",
+      "title": "Abyssinica publisher dictionary: ስብስብ",
+      "evidence": "Collection",
+      "limit": "Supports component only, not the proposed complete phrase."
+    },
+    "selection": {
+      "url": "https://dictionary.abyssinica.com/selection",
+      "title": "Abyssinica publisher dictionary: selection",
+      "evidence": "ምርጫ",
+      "limit": "Broad noun; not evidence of a complete accessibility sentence."
+    },
+    "ict": {
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf",
+      "title": "ICT Development Office / Ethiopian Languages Research Center, Translation of ICT Terms into three major Ethiopian Languages (third-party mirror of authored glossary)",
+      "evidence": "Entry 2082 preview: ቅድመ እይታ; 2825 zoom in: አጉላ; 2827 zoom out: አሳንስ; 579 color: ቀለም; 1460 horizontal: አግድመት.",
+      "limit": "PDF text extraction only. Entries are lexical precedents, not current UI acceptance. Palette entry 1980 extracted as ቤተ ስእል while search snippet differed; do not use that entry to establish a preferred exact term."
+    }
+  },
+  "outside_scope": {
+    "ui_image": "Live image filename fallback; separate naming/fallback context, deferred from this terminology group.",
+    "ui_untitled": "Live document/export/draft filename fallback; separate naming context, deferred.",
+    "ui_edit_background": "No exact direct production R.string/XML reference found in inspected main source; dormant/indirect uncertainty, not accepted or deleted."
+  },
+  "limits": [
+    "No native-speaker or independent acceptance claimed. Lexical sources do not establish full contextual acceptance.",
+    "No app/resource changes, remote publication, builds, CI, runtime, rendering, layout or accessibility execution.",
+    "All original XML text and source hashes preserved; wrapping quotes are literal XML text, not a compiled-resource assertion.",
+    "12 present / 705 missing canonical containers remains source coverage, not quality; only these nine existing labels were assessed.",
+    "Full Help holds, all prior warning/optional holds and unrelated programme exclusions unchanged.",
+    "Palette exact preferred terminology remains unresolved; a search-snippet/PDF extraction conflict was not silently resolved.",
+    "Text-direction government textbook PDF could not be opened (response too large); its search snippet is not used as review evidence."
+  ]
+}
