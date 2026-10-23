@@ -1,0 +1,76 @@
+[
+  {
+    "key": "string/ui_no_resize_fits_decoder_memory",
+    "source_original": "Even the smallest output cannot fit this image’s decoder working buffers in the current memory budget. Cancel and use a smaller source image.",
+    "source_current": "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+    "target_current": "Ngay cả ở kích thước đầu ra nhỏ nhất, không thể tải ảnh này để chỉnh sửa trong giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.",
+    "author_proposed": "Ngay cả khi chọn kích thước đầu ra nhỏ nhất, các bộ đệm làm việc của bộ giải mã ảnh này vẫn vượt quá giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.",
+    "independent_recommended": "Ngay cả khi chọn kích thước đầu ra nhỏ nhất, các bộ đệm làm việc của bộ giải mã ảnh này vẫn vượt quá giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.",
+    "decision": "accept",
+    "confidence": "high",
+    "rationale": "The concessive “Ngay cả khi chọn kích thước đầu ra nhỏ nhất” correctly conditions the remaining decoder-memory requirement on minimum output dimensions. It removes the current implication that the output itself must contain the decoder buffers. The main clause places the limit on current memory, not storage space or file size, and retains the instruction to cancel and use a smaller source image. ImageResizeDialog constructs this message when native work is present and a 1×1 output is still inadmissible; ImageImport explains that source/tile decode work need not shrink with output.",
+    "receipt": "four-proposal-independent-review",
+    "selector": "/entries/2",
+    "source_original_raw_sha256": "3efea315f6442fcb69c013f4cc3094d0c14d34290a9eace79bd5d88f6a051fd6",
+    "source_current_raw_sha256": "caa761bc1acb7c813fc2f9cfbebabaa42cbb8763b1c23b2240ed51c6d22f4316",
+    "target_current_raw_sha256": "9b4e64051c8a8aeb9b5e013a67b74074484f5730e0e7f2dd96d31b6d79a40d25",
+    "recommended_raw_sha256": "7fcda13268c2cbefbddbe4e7019a73e53bf6510fee0e283221b58a44a7f38938",
+    "source_exact_current": false,
+    "current_equals_reviewed_old": false,
+    "current_equals_recommended": false,
+    "consumer_prerequisites": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+        "original_lines": [
+          26,
+          38
+        ],
+        "original_excerpt_sha256": "23a3de1a5399d5ee68ba4a8fdb5d5917f7b86b934a98fea1def71d4c44eb3858",
+        "original_file_sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+        "current_file_sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+        "complete_file_unchanged": true,
+        "exact_original_excerpt_present_current": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+        "original_lines": [
+          40,
+          50
+        ],
+        "original_excerpt_sha256": "ee54f616fc9eb48d1f8a563b9bf653e324f4cb62bb55d0f66fd1f227d7bd6a22",
+        "original_file_sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+        "current_file_sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+        "complete_file_unchanged": true,
+        "exact_original_excerpt_present_current": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+        "original_lines": [
+          63,
+          84
+        ],
+        "original_excerpt_sha256": "3ba6202c4af4c913b7d46cfca5fa30a7f4521d6b211be428027c258572c737a7",
+        "original_file_sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+        "current_file_sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+        "complete_file_unchanged": true,
+        "exact_original_excerpt_present_current": true
+      }
+    ],
+    "qualifications": [
+      "Linguistic model review, not native-human or native-speaker certification.",
+      "Static consumer interpretation only; no runtime execution or UI-fit/layout assessment.",
+      "No live TalkBack or other accessibility testing.",
+      "No shared-source edit, PR, build, Gradle, APK, CI, emulator, version, deployment, or release operation.",
+      "Nôm vi-Hani and the remainder of Vietnamese coverage are outside this receipt.",
+      "The original proposed magnifier value is not accepted by this receipt; use the explicitly recorded substitute only with its stated review status.",
+      "The referenced upstream tree provides source identity, not a runtime-verification claim."
+    ],
+    "prerequisite_interpretation": "Exact reviewed excerpts are compared separately from whole-file identity. Changed whole files do not by themselves imply changed consumers; no new behavioral acceptance is claimed.",
+    "effective_historical_decision": "REVISE, prior ACCEPT withdrawn",
+    "withdrawal_receipt": "decoder-withdrawal-addendum",
+    "withdrawn_proposal": "Ngay cả khi chọn kích thước đầu ra nhỏ nhất, các bộ đệm làm việc của bộ giải mã ảnh này vẫn vượt quá giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.",
+    "later_reviewer_authored_recommendation": "Ngay cả khi chọn kích thước đầu ra nhỏ nhất, vẫn không thể tải và chỉnh sửa ảnh này trong giới hạn bộ nhớ hiện tại. Hãy hủy và dùng ảnh nguồn nhỏ hơn.",
+    "later_recommendation_separately_cross_reviewed": false,
+    "current_status": "Superseded by separately accepted corrected-English PR165 exact warning; do not apply any historical proposal."
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "key": "string/ui_show_magnified_drawing_preview",
+    "source_original": "Show magnified drawing preview",
+    "source_current": "Show magnified drawing preview",
+    "target_current": "Hiện xem trước vẽ phóng đại",
+    "author_proposed": "Hiện bản xem trước phóng đại khi vẽ",
+    "independent_recommended": "Hiện bản xem trước phóng đại của bản vẽ",
+    "decision": "revise",
+    "confidence": "medium_high",
+    "rationale": "The proposed “bản xem trước phóng đại” repairs the current unnatural word stack, but “khi vẽ” introduces an avoidable temporal reading (“while drawing”) absent from the English. This same checkbox controls cursorMagnifier as well as activeMagnifier. In current static source, magnifierVisible accepts supportsCursor() without requiring down or cursorDrawing, so the lens can describe the cursor position before an active stroke. “Hiện bản xem trước phóng đại của bản vẽ” preserves the preview as the object and the drawing as its content, without suggesting a stroke-only visibility condition. This is a clarity precaution rather than a claim that every reader must misread the proposed wording.",
+    "receipt": "four-proposal-independent-review",
+    "selector": "/entries/3",
+    "source_original_raw_sha256": "a9321aee1145d96c2fb64f0092c144ae5086d6a0367581ea48374ea4599dab11",
+    "source_current_raw_sha256": "a9321aee1145d96c2fb64f0092c144ae5086d6a0367581ea48374ea4599dab11",
+    "target_current_raw_sha256": "d8c070c7ce5efcf7a3c7e812bc6c28afd2245f0c3470070d1d98f1195856eb08",
+    "recommended_raw_sha256": "df6cfddb6508a6fccd1a5430a5752e59e159b3d3b0506fde39ec3df96d61e775",
+    "source_exact_current": true,
+    "current_equals_reviewed_old": true,
+    "current_equals_recommended": false,
+    "consumer_prerequisites": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "original_lines": [
+          1531,
+          1536
+        ],
+        "original_excerpt_sha256": "8b5d5066f20a1dc96b7dc2d703e47a6590a0e90421accddde045a53187832ac0",
+        "original_file_sha256": "1b6a4e586d95902d03dcb4a918000ec72f7d1f3fe05623d0dd7cb1e52ad9e1d8",
+        "current_file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+        "complete_file_unchanged": false,
+        "exact_original_excerpt_present_current": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "original_lines": [
+          1544,
+          1556
+        ],
+        "original_excerpt_sha256": "f853650b15a64ce9201f00328312d720a00bc3c3d6f2b9c639f7e1ce31532c0e",
+        "original_file_sha256": "1b6a4e586d95902d03dcb4a918000ec72f7d1f3fe05623d0dd7cb1e52ad9e1d8",
+        "current_file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+        "complete_file_unchanged": false,
+        "exact_original_excerpt_present_current": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "original_lines": [
+          88,
+          108
+        ],
+        "original_excerpt_sha256": "d9693b0409f71f4996c8401224bb778c8d7ada6508fbed89c96ee4fdaeb3b867",
+        "original_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "current_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "complete_file_unchanged": true,
+        "exact_original_excerpt_present_current": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "original_lines": [
+          134,
+          134
+        ],
+        "original_excerpt_sha256": "e2d50d28f3d89c5094962d7e80ee745fe60067b52af1aa5dbc2b597200d711e7",
+        "original_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "current_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "complete_file_unchanged": true,
+        "exact_original_excerpt_present_current": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "original_lines": [
+          294,
+          297
+        ],
+        "original_excerpt_sha256": "b830293bbcd0b159d7c5f725be44940532f6124a89de1d74ce922e1c13307f34",
+        "original_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "current_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "complete_file_unchanged": true,
+        "exact_original_excerpt_present_current": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "original_lines": [
+          336,
+          337
+        ],
+        "original_excerpt_sha256": "3ec689338d1ee5f321cdc69b30e81c2aa076fc98524659aa7fa88df641054daa",
+        "original_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "current_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "complete_file_unchanged": true,
+        "exact_original_excerpt_present_current": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+        "original_lines": [
+          356,
+          372
+        ],
+        "original_excerpt_sha256": "45583cd8d79cfcf672eba10e5cc59b5e7188a8f80b2ad632663bd7cd95ab9d16",
+        "original_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "current_file_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+        "complete_file_unchanged": true,
+        "exact_original_excerpt_present_current": true
+      }
+    ],
+    "qualifications": [
+      "Linguistic model review, not native-human or native-speaker certification.",
+      "Static consumer interpretation only; no runtime execution or UI-fit/layout assessment.",
+      "No live TalkBack or other accessibility testing.",
+      "No shared-source edit, PR, build, Gradle, APK, CI, emulator, version, deployment, or release operation.",
+      "Nôm vi-Hani and the remainder of Vietnamese coverage are outside this receipt.",
+      "The original proposed magnifier value is not accepted by this receipt; use the explicitly recorded substitute only with its stated review status.",
+      "The referenced upstream tree provides source identity, not a runtime-verification claim."
+    ],
+    "prerequisite_interpretation": "Exact reviewed excerpts are compared separately from whole-file identity. Changed whole files do not by themselves imply changed consumers; no new behavioral acceptance is claimed.",
+    "status": "reviewer_authored_substitute_requires_separate_cross_review",
+    "do_not_mix_with_accepted_core_batch": true
+  }
+]

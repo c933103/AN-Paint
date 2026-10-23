@@ -1,0 +1,5 @@
+# Method
+
+Complete current catalogue bytes are Git-blob bound at5bfed632. Canonical denominator717 containers/718 leaves:716strings plus one plural. Current target hashes are exact decoded UTF-8 strings; complete plural maps use sorted compact Unicode-preserving JSON. Canonical source hashes use an unchanged immutable shared record. Android escapes and whitespace are preserved. Original quoted-string JSON hashes remain explicitly distinguished. Missing plural one is not a localized value.
+
+Excluded translatable=false constants: ui_an_paint_assembly_png, ui_an_paint_recovery_zip, ui_an_paint_source_zip. Configuration arrays are not translation units. Presence and English identity are not quality judgments. Original341 evidence is compactly mapped by entry pointer/exact-pair flags/scope, with the original whole-receipt digest and current complete-value hash set; retained author judgments are not independently accepted counts. Overlap is deduplicated by key. Current source-context applicability, original wording judgments and runtime/native limits are separate. No historical snapshots overwritten.

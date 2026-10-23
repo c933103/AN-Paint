@@ -1,0 +1,11 @@
+# Vietnamese: bounded original-review/current-source reconciliation
+
+Picker155 vi at production5bfed632. **I20 / A304 / W30 / C2 / H1 / P1 / D2 / N3 / U354 = 717 containers.** I20 comprises seventeen direct independent narrow wording scopes and three reused integrated Help/warning scopes, not new review. A/W remain author-only, P is the consolidated native-component acceptance successor, D change-only, N proposal/author-only, C accepted pending candidates, H unresolved revision, U unreconciled. Whole-language/current-consumer acceptance totals stay null.
+
+All717 container keys exist, but only717 of718 canonical leaves: crop-preview quantity one remains absent, with no localized hash or invented review credit assigned to fallback. Original341 author rows are not341 independent reviews. Their339 unchanged source/target pairs are rebound, with the two warning pairs superseded by commonPR165.
+
+The original four-proposal independent review and decoder withdrawal are recovered exactly. Two core corrections remain accepted and unapplied, preserved in the preceding immutable candidates-r01 snapshot. The magnifier reviewer substitute remains un-cross-reviewed, not an accepted correction. Original decoder ACCEPT was explicitly withdrawn, then its warning independently superseded by PR165; do not include the obsolete proposal in a new batch. Original remote receipt locators for priority/four-proposal/addendum remain unrecovered. This new report preserves exact hashes and project judgments without pretending to recover historical publication provenance.
+
+Current complete IcoCodec.encode and ClassicPaintActivity.buildWorkspace methods match the original reviewed versions for the two accepted candidates; other candidate consumer files and Navigate caption match. Broader author/narrow context gaps remain explicit. Native-component's public recommended-revision acceptance is retained separately from a recovered raw reviewer artifact; it does not remain an obsolete REVISE. M03/M04 remain proposals and redirect explicitly lacks independent Vietnamese review. PR80/86 remain change-only.
+
+Pickers149–154 remain unknown in this bounded search, not completed via fallback. No vi-Hani acceptance is transferred. No source edits, builds, tests or new linguistic review. Non-production append-only evidence branch, never merge into app branches.
