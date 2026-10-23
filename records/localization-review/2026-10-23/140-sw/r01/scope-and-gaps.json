@@ -1,0 +1,147 @@
+{
+  "schema": "swahili-priority-current-reconciliation-v1",
+  "repository": "c933103/AN-Paint",
+  "picker": 140,
+  "language": "sw",
+  "production_commit": "5bfed632e485766d0c841fa79d7f56a1c49be5d5",
+  "production_tree": "35a8636c4102c737ba64ee2adc102a5b834eb33f",
+  "reviewed_source_commit": "4355869e2e198b5616419291cba225b018444fab",
+  "reviewed_source_tree": "b9b148d5d8ef7c7b088500a9c177f9f59304b800",
+  "author341_current_pair_exact_count": 338,
+  "author341_changed_pairs": [
+    {
+      "key": "string/ui_assembly_source_memory_floor",
+      "source_matches_original": false,
+      "target_matches_original": false,
+      "current_source_raw_sha256": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+      "current_target_raw_sha256": "61ed40dc6e5ebde2e91b5ce540e039730460924800ec086aee7a26f922b55a93",
+      "successor": "common-PR165-warning"
+    },
+    {
+      "key": "string/language20_translation_note",
+      "source_matches_original": true,
+      "target_matches_original": false,
+      "current_source_raw_sha256": "dbe577c3e0215663252f4ec7eef1808f0bf5930d74b8fdd116d44b2d010a70e6",
+      "current_target_raw_sha256": "f6aa9728cb9e42994d299229063d82464e3c755002722bab227fa8e75914c3e9",
+      "successor": "common-PR163-note"
+    },
+    {
+      "key": "string/ui_no_resize_fits_decoder_memory",
+      "source_matches_original": false,
+      "target_matches_original": false,
+      "current_source_raw_sha256": "caa761bc1acb7c813fc2f9cfbebabaa42cbb8763b1c23b2240ed51c6d22f4316",
+      "current_target_raw_sha256": "640027d259d0ae7e70e3d9311d9ad2193ab10a04f673035f8262f7a926095131",
+      "successor": "common-PR165-warning"
+    }
+  ],
+  "independent23": {
+    "core_accept": 14,
+    "core_accept_static_consumer": 12,
+    "core_accept_wording_only": 2,
+    "core_revise": 0,
+    "optional_accept": 5,
+    "hold_attribution_terminology": 3,
+    "hold_unknown_composition": 1,
+    "entry_count": 23,
+    "new_confirmed_defect_count_claim": false
+  },
+  "current_candidate_status": {
+    "accepted_core_proposals": 14,
+    "core_accepted_value_integrated": 1,
+    "core_still_old_current_wording": 13,
+    "optional_still_old_current_wording": 5,
+    "holds_unchanged_and_unresolved": 4
+  },
+  "independent_limits": [
+    "This is an independent model-based review of the 14 core proposals, five optional refinements and four holds, not a new full review of the other 318 priority entries or the 717-entry catalogue.",
+    "The author package partition of 341 = 323 bounded retained + 14 proposals + four holds is reported as input, not independently awarded language completion. The five optional refinements are within the retained set.",
+    "Accept means acceptable exact wording under the stated source/static scope. It is not native-human, installed UI, layout, font, TalkBack, speech, behavioral or whole-language certification.",
+    "For the two source-only accepted proposals, absence of direct references does not prove unused status. Full dynamic composition remains unverified; the unknown palette third argument remains a separate hold.",
+    "Core status is not a count of 14 confirmed live defects. Several edits clarify potentially ambiguous but understandable wording, and two have only source-string context.",
+    "Primary terminology evidence is corroboration with explicit access/scope limits. No preferred attribution noun was invented from a weak source.",
+    "Exact original source/value identities bind the original review. Current complete-source comparisons and runtime gaps are recorded separately; later source stability does not silently renew consumer acceptance."
+  ],
+  "rationale_corrections": [
+    "colour_truncated_metadata: the EOF emitter is a source-copy helper, not a dedicated proof of an EOF inside metadata parsing. Accept the clarified wording as source-faithful, not stronger runtime diagnosis.",
+    "The too-large-memory example in the author package is illustrative and omits pixel count/MP from the nested ImageDimensions.describe() value. This receipt includes the full symbolic composition."
+  ],
+  "author_ledger_contract": "author341-current-bindings.tsv uses zero-based /entries index in immutable sw-review-packet.zip member swahili-p0-p1-review.json. For exact-match flags=1, the current raw source/target SHA-256 equals that entry's english_raw_utf8_sha256/swahili_raw_utf8_sha256. Current source/target hashes for the three exceptions appear in author341_changed_pairs. This provides an exact per-key current hash binding without copying 338 identical hash pairs. Original complete values, JSON hashes, review_note and confidence remain in that immutable member. These flags do not grant new independent review scope.",
+  "no_claims": [
+    "No native-human, runtime, layout, font, accessibility, speech or whole-language certification.",
+    "No revival of withdrawn PR4 broad acceptance; prior complete pairs, PR86 delta-only evidence and later whole-Help/warning successors keep distinct scopes."
+  ],
+  "author341_historical_original_summary": {
+    "priority_entries": 341,
+    "priority_tiers": {
+      "P0": 92,
+      "P1": 249
+    },
+    "direct_consumer_keys": 311,
+    "no_direct_consumer_keys": 30,
+    "current_dispositions": {
+      "reviewed_current_static": 294,
+      "proposed_wording_correction": 14,
+      "unresolved_credit_terminology_hold": 3,
+      "reviewed_current_static_with_prior_narrow_delta": 1,
+      "reviewed_current_wording_only": 27,
+      "carried_prior_exact_bounded": 1,
+      "unresolved_composed_context_hold": 1
+    },
+    "current_priority_bounded_retained": 323,
+    "priority_proposed_corrections": 14,
+    "priority_terminology_holds": 3,
+    "priority_unknown_composition_holds": 1,
+    "outside_priority_corrections": 0,
+    "core_candidate_xml_changes": 14,
+    "optional_refinements_not_counted_as_failures": 5,
+    "prior_bounded_complete_pairs": 21,
+    "prior_complete_pairs_overlapping_priority": 1,
+    "prior_complete_pairs_outside_priority": 20,
+    "additional_prior_narrow_delta_receipts": 1,
+    "unique_prior_evidence_identities": 22,
+    "current_full_batch_not_entirely_new": true,
+    "catalogue_current_partition": {
+      "bounded_current": 343,
+      "known_pending_or_context_hold": 18,
+      "present_review_unknown": 356,
+      "missing": 0,
+      "total": 717
+    },
+    "candidate_if_applied": {
+      "priority_model_reviewed_dispositions": 337,
+      "terminology_or_composition_holds": 4,
+      "not_independent_acceptance_native_or_runtime_certification": true
+    },
+    "priority_keys_without_disposition": 0
+  },
+  "disjoint_current_container_counts": {
+    "U": 354,
+    "A": 292,
+    "W": 27,
+    "I": 21,
+    "C": 13,
+    "H": 4,
+    "Q": 1,
+    "P": 1,
+    "D": 2,
+    "N": 2
+  },
+  "presence": {
+    "picker_order": 140,
+    "tag": "sw",
+    "picker_label": "Kiswahili",
+    "role": "picker",
+    "path": "Paintroid/src/main/res/values-sw/strings.xml",
+    "git_blob": "222723f5dcec26c5b676e481dc79ac951310c4e2",
+    "sha256": "e697dcb8651b03a5d980eccd6445121d85154ae1ec5bf3b0aeb4f4abc70cef65",
+    "exact_container_keys_present": 717,
+    "exact_container_keys_missing": 0,
+    "exact_leaf_units_present": 718,
+    "exact_leaf_units_missing": 0,
+    "English_identical_leaf_units": 24,
+    "English_different_leaf_units": 694,
+    "current_localized_hashes_present": 718
+  },
+  "whole_language_accepted_total": null,
+  "current_consumer_accepted_total": null
+}

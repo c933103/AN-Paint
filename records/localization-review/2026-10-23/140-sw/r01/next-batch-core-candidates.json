@@ -1,0 +1,372 @@
+{
+  "scope": "Previously independently accepted exact wording, still unapplied at production 5bfed632; no new linguistic judgments or source changes. Eleven static-consumer proposals and two wording-only proposals, not 13 proven live defects.",
+  "entries": [
+    {
+      "key": "string/formats22_derived_exported",
+      "tier": "P0",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "wording_only",
+      "rationale": "Antecedent clarification, not a proven live defect. Naming mchoro huo correctly identifies the full drawing rather than leaving an i-class object reference after picha. The unsaved-change warning and requirement for a full-image copy remain. No direct caller or actual %1$s argument domain was found, so this accepts the proposed clarification, not every possible formatted sentence.",
+      "source_only_limit": true,
+      "receipt_selector": "sw/review.json#/entries/0",
+      "author_confidence": "medium",
+      "source_value": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "current_value": "%1$s imehamishwa. Mchoro wako kamili bado una mabadiliko ambayo hayajahifadhiwa; hifadhi nakala ya picha kamili kabla ya kuibadilisha.",
+      "accepted_value": "%1$s imehamishwa. Mchoro wako kamili bado una mabadiliko ambayo hayajahifadhiwa; hifadhi nakala ya picha kamili kabla ya kubadilisha mchoro huo.",
+      "source_raw_sha256": "8a83c32f0f4c6562ce361517fc525e21740e15e7889d33427ad841c1994fadfb",
+      "current_raw_sha256": "102ec3c4794a6a8b5375b3731def651a0a3a5fce5a1150cb5d9a9bb68dd2ab69",
+      "reviewed_current_raw_sha256": "102ec3c4794a6a8b5375b3731def651a0a3a5fce5a1150cb5d9a9bb68dd2ab69",
+      "accepted_raw_sha256": "c18cb04ca1ecb9ece97c3ade5a4475204b221978ee5a6ac2a90df0d8c522af2f",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": []
+    },
+    {
+      "key": "string/save20_destination_error",
+      "tier": "P0",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_consumer",
+      "rationale": "Semantic correction. The current value describes changing the storage location. The four inspected emitters fail when renameTo cannot replace the target after encoding/writing. Kuchukua nafasi ya faili lengwa expresses that replacement and does not invent a cause or suggest moving storage locations.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/1",
+      "author_confidence": "medium",
+      "source_value": "The completed image could not replace its destination.",
+      "current_value": "Picha iliyokamilika haikuweza kubadilisha mahali pake pa kuhifadhi.",
+      "accepted_value": "Picha iliyokamilika haikuweza kuchukua nafasi ya faili lengwa.",
+      "source_raw_sha256": "de68e5576968021c8471674791a609c056d1049abe53f1c1e4dc77e00679e001",
+      "current_raw_sha256": "64aa1d17b86178a1b8f6fd16f29e75438595e870bb3fcf5b9ea9a396c3c3af4f",
+      "reviewed_current_raw_sha256": "64aa1d17b86178a1b8f6fd16f29e75438595e870bb3fcf5b9ea9a396c3c3af4f",
+      "accepted_raw_sha256": "9d24aa6af1941446083b077debe0a910f381ef5884321f4e5199a7ade9b00f20",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "BitmapFileCodec.kt",
+          "reviewed_line": 19
+        },
+        {
+          "file": "DibCodec.kt",
+          "reviewed_line": 34
+        },
+        {
+          "file": "IcoCodec.kt",
+          "reviewed_line": 100
+        },
+        {
+          "file": "TextImageCodec.kt",
+          "reviewed_line": 62
+        }
+      ]
+    },
+    {
+      "key": "string/save20_gif_description",
+      "tier": "P0",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_consumer",
+      "rationale": "Agreement correction. Current plural GIF zilizohuishwa and singular yake conflict. Kila GIF iliyohuishwa makes the subject singular and agrees with yake. The first-frame-only interpretation, still-image nature, 256-colour ceiling and dithering claim remain. Dithering stays as the existing technical borrowing; this is not native-human validation of that term.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/2",
+      "author_confidence": "medium",
+      "source_value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "current_value": "Picha tuli, hadi rangi 256. Dithering hulainisha mipito ya rangi. GIF zilizohuishwa hufunguliwa kwa fremu yake ya kwanza.",
+      "accepted_value": "Picha tuli, hadi rangi 256. Dithering hulainisha mipito ya rangi. Kila GIF iliyohuishwa hufunguliwa kama fremu yake ya kwanza.",
+      "source_raw_sha256": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "current_raw_sha256": "83322484ff606d9907150b969fc5ee7fbd859f2515ce82dcc49e9e18040ea19d",
+      "reviewed_current_raw_sha256": "83322484ff606d9907150b969fc5ee7fbd859f2515ce82dcc49e9e18040ea19d",
+      "accepted_raw_sha256": "99aa8796e97d2910ae7d293a062ac162081cda6ea3bef6df7ee545209b109dbb",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "SaveOptionsDialog.kt",
+          "reviewed_line": 95
+        }
+      ]
+    },
+    {
+      "key": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "tier": "P0",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_consumer",
+      "rationale": "Semantic correction. Futa nafasi asks to erase space, rather than free storage. Tengeneza nafasi kwenye hifadhi ya kifaa conveys making storage available without prescribing deletion of particular files. The emitter is disk-cache directory creation in RasterHistory, not RAM allocation. Imeshindikana also gives the failure a clear impersonal construction.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/3",
+      "author_confidence": "medium",
+      "source_value": "Cannot create the undo cache. Free some device storage and try again.",
+      "current_value": "Haiwezi kuunda akiba ya kutengua. Futa nafasi fulani ya hifadhi kwenye kifaa na ujaribu tena.",
+      "accepted_value": "Imeshindikana kuunda akiba ya kutengua. Tengeneza nafasi kwenye hifadhi ya kifaa, kisha ujaribu tena.",
+      "source_raw_sha256": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "current_raw_sha256": "4281449f01130f3499132e0c56a8370d17e39f431e0399133321539da251e8f0",
+      "reviewed_current_raw_sha256": "4281449f01130f3499132e0c56a8370d17e39f431e0399133321539da251e8f0",
+      "accepted_raw_sha256": "75fe8ad2a124ab125674ade47317730ca53c31c7ca92c549aedd8b8bd245baec",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "RasterHistory.kt",
+          "reviewed_line": 22
+        },
+        {
+          "file": "RasterHistory.kt",
+          "reviewed_line": 51
+        }
+      ]
+    },
+    {
+      "key": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "tier": "P0",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_consumer",
+      "rationale": "Clarity improvement, not evidence that the existing text reverses behavior. Explicit top-left placement better expresses anchoring than pikseli za juu kushoto. The adjacent canvas-size dialog is non-stretch, and PaintDocument.resize draws at 0,0 in that branch. Right/bottom pixel removal and undo restoration remain; no claim about native layout or actual Undo execution is made.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/4",
+      "author_confidence": "medium",
+      "source_value": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "current_value": "Huhifadhi pikseli za juu kushoto. Turubai ndogo hutupa pikseli zilizo nje ya ukingo wa kulia/chini; Tengua huzirejesha.",
+      "accepted_value": "Huweka picha kwenye kona ya juu kushoto. Kupunguza vipimo vya turubai huondoa pikseli zilizo nje ya ukingo wa kulia au wa chini; Tengua huzirejesha.",
+      "source_raw_sha256": "4d6da1792a4751708d0bb36eda8365c72b66b1a2b2db70c77cdc4c48486634dc",
+      "current_raw_sha256": "5e32ddb2bdae721e7af9611424c9674c344af5eb087244b525685e53c9df75ec",
+      "reviewed_current_raw_sha256": "5e32ddb2bdae721e7af9611424c9674c344af5eb087244b525685e53c9df75ec",
+      "accepted_raw_sha256": "40b3ed1a01b05f2dc5c6aafcf49bba3de71da642b245691b6b93fc3bca322570",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1007
+        }
+      ]
+    },
+    {
+      "key": "string/colour_invalid_metadata",
+      "tier": "P1",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_consumer",
+      "rationale": "Terminology clarification/correction. Isiyotumika can mean unused, while isiyoauniwa unambiguously carries the unsupported sense beside invalid. Official Epson Swahili material supplies narrow corroboration for this computing use of -auniwa. The change does not alter the English error scope or repair the parser.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/5",
+      "author_confidence": "medium",
+      "source_value": "The image has invalid or unsupported colour metadata.",
+      "current_value": "Picha ina metadata ya rangi isiyo halali au isiyotumika.",
+      "accepted_value": "Picha ina metadata ya rangi isiyo halali au isiyoauniwa.",
+      "source_raw_sha256": "6805bd168d369d656ea59cdf96416548715312f806539d1bbe5abee7aea90bb7",
+      "current_raw_sha256": "18befa52f0767884fb4b99b05c4b4b7b9431b1209b73df598ab35079ecf5a846",
+      "reviewed_current_raw_sha256": "18befa52f0767884fb4b99b05c4b4b7b9431b1209b73df598ab35079ecf5a846",
+      "accepted_raw_sha256": "efd99003ed4918c9467bebd1d9b77c8c4cabac0b6de4d6e0af617803a6b3d94e",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "PlatformImageColour.kt",
+          "reviewed_line": 98
+        },
+        {
+          "file": "PlatformImageColour.kt",
+          "reviewed_line": 117
+        }
+      ]
+    },
+    {
+      "key": "string/colour_truncated_metadata",
+      "tier": "P1",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_consumer",
+      "rationale": "Clarity improvement, not a demonstrated wrong diagnosis in the current translation. Faili ya picha makes explicit that the file, not the visible picture, is cut short. Keep the source English diagnosis, but correct the package rationale: the actual emitter is an unexpected EOF in withDecodeFile.copyUntil while copying source ranges around omitted metadata, not a dedicated assertion proving exactly which metadata bytes were truncated. No additional cause is claimed.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/6",
+      "author_confidence": "medium",
+      "source_value": "The image ends inside its colour metadata.",
+      "current_value": "Picha inaishia katikati ya metadata yake ya rangi.",
+      "accepted_value": "Faili ya picha imekatika katikati ya metadata yake ya rangi.",
+      "source_raw_sha256": "0be9516cf857147dd808d8b6f5e6dd6d2ab273e8c3e27579f3f6897a46719791",
+      "current_raw_sha256": "811fb9d74d5e2c1596b6c93beb64a94792076f36a672622ed1c8cfcbbe5eb40f",
+      "reviewed_current_raw_sha256": "811fb9d74d5e2c1596b6c93beb64a94792076f36a672622ed1c8cfcbbe5eb40f",
+      "accepted_raw_sha256": "31512ae4d4979bbd9ae2438eb077afbdb97594d31e020946daddc10074992d16",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "PlatformImageColour.kt",
+          "reviewed_line": 72
+        }
+      ]
+    },
+    {
+      "key": "string/ui_collapse_tool_category",
+      "tier": "P1",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_composed_consumer",
+      "rationale": "Agreement correction. ToolCategoryButton passes the translated category name and PaintTool.label, whose nouns span several classes. Actual Mstari, Mkunjo, Moyo and Mshale cannot uniformly take imechaguliwa; Maandishi is another counterexample. Zana iliyochaguliwa anchors agreement to the explicit singular tool noun while retaining both slots and the collapse action. All 16 declared category/tool combinations were expanded as text, without TalkBack or UI execution.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/8",
+      "author_confidence": "medium",
+      "source_value": "%1$s: %2$s selected. Collapse tools and options",
+      "current_value": "%1$s: %2$s imechaguliwa. Kunja zana na chaguo",
+      "accepted_value": "%1$s: zana iliyochaguliwa ni %2$s. Kunja zana na chaguo",
+      "source_raw_sha256": "781f89c116c5929bcbb7b33317bc1296170b6c19e8695e9547cf7fc810ee907e",
+      "current_raw_sha256": "cc95747d9a46a41e7582268786345c936821bce32f4dc2901abee7118ce14234",
+      "reviewed_current_raw_sha256": "cc95747d9a46a41e7582268786345c936821bce32f4dc2901abee7118ce14234",
+      "accepted_raw_sha256": "f0632a8afd1650c4ee7b70902fde4c3e06b34a38e644adee9058171062dc98e7",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ToolCategoryButton.kt",
+          "reviewed_line": 27
+        }
+      ]
+    },
+    {
+      "key": "string/ui_expand_tool_category",
+      "tier": "P1",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_composed_consumer",
+      "rationale": "Agreement correction. The same 16 category/tool combinations are used as the collapse template. Zana iliyochaguliwa ni %2$s avoids forcing arbitrary tool names to take i-class agreement. Panua remains distinct from Kunja and both placeholders retain their meanings. Static sentence composition is not speech or accessibility-runtime certification.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/9",
+      "author_confidence": "medium",
+      "source_value": "%1$s: %2$s selected. Expand tools and options",
+      "current_value": "%1$s: %2$s imechaguliwa. Panua zana na chaguo",
+      "accepted_value": "%1$s: zana iliyochaguliwa ni %2$s. Panua zana na chaguo",
+      "source_raw_sha256": "6c92ada41f2c3b10d08ca1aad7592927df115668146582a7ec6e94e248a2a18a",
+      "current_raw_sha256": "0ff8f3f46ed4e6bc71dec45ed6fd73a6834e6b1dd6cd9ba8e8b4c9640fb11f3e",
+      "reviewed_current_raw_sha256": "0ff8f3f46ed4e6bc71dec45ed6fd73a6834e6b1dd6cd9ba8e8b4c9640fb11f3e",
+      "accepted_raw_sha256": "4ec3eb7df1cc1cd6ddfb02716bc93c7e86ae66f15d6e289ed96712bccfb12bb7",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ToolCategoryButton.kt",
+          "reviewed_line": 27
+        }
+      ]
+    },
+    {
+      "key": "string/ui_swap23",
+      "tier": "P1",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_consumer",
+      "rationale": "Operation clarification. Badilisha rangi is a general change-colours instruction; the button actually exchanges the foreground/background values. Badilisha nafasi za rangi expresses an exchange. The longer label has not been measured in the running layout, so this is linguistic/static acceptance only.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/10",
+      "author_confidence": "medium",
+      "source_value": "Swap colors",
+      "current_value": "Badilisha rangi",
+      "accepted_value": "Badilisha nafasi za rangi",
+      "source_raw_sha256": "ed32fd14ff2f2e30ab73ecdc6c31c9341602f4009237e734c82065e55af492a6",
+      "current_raw_sha256": "ba1c381745b5c78ff11b1f41160a68523a2cae6eb506d9d07340e99c65d4cdc8",
+      "reviewed_current_raw_sha256": "ba1c381745b5c78ff11b1f41160a68523a2cae6eb506d9d07340e99c65d4cdc8",
+      "accepted_raw_sha256": "1e8896ad269609b640bbb346181b5dfb6b566692609ff231ea6c4e8f7f99e31c",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 422
+        }
+      ]
+    },
+    {
+      "key": "string/ui_swap_foreground_background",
+      "tier": "P1",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "wording_only",
+      "rationale": "Wording-only operation clarification. Badilisha nafasi za rangi ya mbele na ya mandharinyuma expresses exchanging the two colour roles, not changing one or the other. This is consistent with the source phrase and neighbouring colour UI, but this resource has no direct production caller in the assigned tree. Do not claim its actual layout, announcement, or consumer was verified.",
+      "source_only_limit": true,
+      "receipt_selector": "sw/review.json#/entries/11",
+      "author_confidence": "medium",
+      "source_value": "Swap foreground / background",
+      "current_value": "Badilisha mbele / mandharinyuma",
+      "accepted_value": "Badilisha nafasi za rangi ya mbele na ya mandharinyuma",
+      "source_raw_sha256": "8402b345da83f5ff5cb71e14d396a5b1cf3b42e668258e31cdc8b2a4385af5d2",
+      "current_raw_sha256": "344f1ccacfe40eaa394dcf44e4bed93dc7a489363899b36902f964dc537f1753",
+      "reviewed_current_raw_sha256": "344f1ccacfe40eaa394dcf44e4bed93dc7a489363899b36902f964dc537f1753",
+      "accepted_raw_sha256": "93206164fb35200f3fadbbef5f3e2208468b4f446e71e4e2c6dfd6d74941c057",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": []
+    },
+    {
+      "key": "string/ui_this_file_is_not_a_supported_image_use",
+      "tier": "P1",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_consumer",
+      "rationale": "Terminology clarification/correction. Inayotumika can describe an image being used, whereas inayoauniwa conveys compatibility. The ImageImport emitter rejects nonpositive decoded dimensions. PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF and Base64 image text remain in their original order; no format is dropped or newly promised.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/12",
+      "author_confidence": "medium",
+      "source_value": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
+      "current_value": "Faili hii si picha inayotumika. Tumia PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF au maandishi ya picha ya Base64.",
+      "accepted_value": "Faili hii si picha inayoauniwa. Tumia PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF au maandishi ya picha ya Base64.",
+      "source_raw_sha256": "14e4cc0b6f7ae8fe17e080b9dc79ef740f60d82092ad27e30761c9e11f8b1ce2",
+      "current_raw_sha256": "8c6d7608ffd20b2b3156571e1fffa7b74350d9735f26cbc9d809a240025874eb",
+      "reviewed_current_raw_sha256": "8c6d7608ffd20b2b3156571e1fffa7b74350d9735f26cbc9d809a240025874eb",
+      "accepted_raw_sha256": "e8cac53f1635e229db2931654f962d50d1b6c6f38b2689c0ef09f4ad543e9348",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ImageImport.kt",
+          "reviewed_line": 133
+        }
+      ]
+    },
+    {
+      "key": "string/ui_too_large_for_the_current_budget_reduce_the",
+      "tier": "P1",
+      "proposal_group": "core",
+      "decision": "accept",
+      "acceptance_scope": "static_composed_consumer",
+      "rationale": "Semantic correction. Ufungue kumbukumbu suggests opening memory; utengeneze nafasi kwenye kumbukumbu expresses freeing capacity. The reduce-dimensions versus cancel/free-memory alternatives remain. ImageResizeDialog appends this to the decoded-image/memory estimate only in the over-budget branch that is not the no-resize-fits branch. The full nested dimensions/pixel-count/MP composition is included separately.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/13",
+      "author_confidence": "medium",
+      "source_value": "Too large for the current budget. Reduce the dimensions or cancel and free memory.",
+      "current_value": "Kubwa mno kwa kikomo cha sasa. Punguza vipimo au ghairi na ufungue kumbukumbu.",
+      "accepted_value": "Kubwa mno kwa kikomo cha sasa. Punguza vipimo au ghairi na utengeneze nafasi kwenye kumbukumbu.",
+      "source_raw_sha256": "ab162c5d195622fec7eec82cf119d943e5acf6399e208cc948f1b3c72239ab91",
+      "current_raw_sha256": "7a513c6a541e27a712f9b4b1c09d31f4c8ceb5fadd5e8eae685588407a4dda99",
+      "reviewed_current_raw_sha256": "7a513c6a541e27a712f9b4b1c09d31f4c8ceb5fadd5e8eae685588407a4dda99",
+      "accepted_raw_sha256": "37b8c59bf77344f614118861bf04ce4fc6df57480de20c767617d8e12c4eed66",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ImageResizeDialog.kt",
+          "reviewed_line": 49
+        }
+      ]
+    }
+  ],
+  "common_qualifications": {
+    "native_human_reviewed": false,
+    "runtime_verified": false,
+    "consumer_binding_file": "consumer-bindings.json",
+    "consumer_prerequisite": "Static full-file or complete-method equality preserves only the original consumer scope. Shared UiText/AppLanguage lifecycle changes remain a runtime prerequisite. Wording-only rows still lack verified direct caller/argument domains."
+  }
+}

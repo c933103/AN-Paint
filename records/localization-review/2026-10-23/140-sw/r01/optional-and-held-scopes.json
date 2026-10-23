@@ -1,0 +1,320 @@
+{
+  "optional_boundary": "Five separately accepted optional refinements remain at old production wording; not confirmed defects or core edits.",
+  "optional": [
+    {
+      "key": "string/formats22_ascii_description",
+      "tier": "P0",
+      "proposal_group": "optional",
+      "decision": "accept",
+      "acceptance_scope": "optional_static_consumer",
+      "rationale": "Optional explanatory refinement, not an added confirmed defect. The new phrase explains that characters represent light/dark areas rather than suggesting a mixture of lightweight and black letters. TextImageData.ascii maps luminance to character density and supports inversion, so the description remains compatible with both modes. Herufi is retained from the existing translation; technical idiom remains medium confidence. The monospaced-font instruction and inability to recover the original image remain.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/14",
+      "author_confidence": "medium",
+      "source_value": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "current_value": "Huandika maandishi ya kawaida kwa herufi nyepesi na nyeusi. Yaangalie kwa fonti ya upana sawa. Huu ni uwakilishi wa kuona; hauwezi kufunguliwa tena kama picha asili.",
+      "accepted_value": "Huandika maandishi ya kawaida kwa herufi zinazowakilisha sehemu zenye mwanga na zenye giza. Yaangalie kwa fonti ya upana sawa. Huu ni uwakilishi wa kuona; hauwezi kufunguliwa tena kama picha asili.",
+      "source_raw_sha256": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+      "current_raw_sha256": "43bcdf4414da6b4dd9298cd7d68bd3710eb88755fac5b7ce0049ea9ac5eb32e2",
+      "reviewed_current_raw_sha256": "43bcdf4414da6b4dd9298cd7d68bd3710eb88755fac5b7ce0049ea9ac5eb32e2",
+      "accepted_raw_sha256": "687933190379099edff87d18e22bf5c258f909a73dc76922511d8aab469047ef",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "SaveOptionsDialog.kt",
+          "reviewed_line": 101
+        }
+      ]
+    },
+    {
+      "key": "string/ui_save_a5d0d9",
+      "tier": "P0",
+      "proposal_group": "optional",
+      "decision": "accept",
+      "acceptance_scope": "optional_static_consumer",
+      "rationale": "Optional punctuation/source-fidelity refinement, not an action-label mistranslation. The current alias resolves to Hifadhi and already says Save. Hifadhi… preserves the English ellipsis. confirmReplacement calls requestSave(false), which may save directly to an existing target or continue through a save flow; do not claim the ellipsis proves a dialog always follows.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/15",
+      "author_confidence": "medium-high",
+      "source_value": "Save…",
+      "current_value": "@string/ui_save",
+      "accepted_value": "Hifadhi…",
+      "source_raw_sha256": "a5d0d97e6a235f1306ff1efd84c15c0cc1fd1ba94832b55af8acb761d08c20d6",
+      "current_raw_sha256": "882aa02a39c1a29a5b9bd5ce20227f6277bceff115ce3e73fac153c468993f00",
+      "reviewed_current_raw_sha256": "882aa02a39c1a29a5b9bd5ce20227f6277bceff115ce3e73fac153c468993f00",
+      "accepted_raw_sha256": "410b1d36beae8681a065615eaaf9c5bd6102bad906871d978d1d755e32b630e2",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1069
+        }
+      ]
+    },
+    {
+      "key": "string/ui_d_d_px_d_pixels_2f_mp",
+      "tier": "P1",
+      "proposal_group": "optional",
+      "decision": "accept",
+      "acceptance_scope": "optional_static_composed_consumer",
+      "rationale": "Optional clarity refinement. Current text already includes the two dimensions, exact pixel count and MP. Idadi ya pikseli labels the count explicitly without changing any numeric fact or placeholder. ImageDimensions.describe() appears directly in DimensionControls and nested in ImageResizeDialog and AssemblyActivity estimates. No Android locale-formatting or layout measurement was run.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/16",
+      "author_confidence": "medium-high",
+      "source_value": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+      "current_value": "%1$d × %2$d px · %3$,d pikseli (%4$.2f MP)",
+      "accepted_value": "%1$d × %2$d px · Idadi ya pikseli: %3$,d (%4$.2f MP)",
+      "source_raw_sha256": "91b17a960cf29bcc0963f629b51cee2b1ff231f2a8a935c9d8e4c4e919864207",
+      "current_raw_sha256": "46e4f8fd7122705fd4a3c0f86a87b787aa004aec372ccc79ef2d62d99b097e91",
+      "reviewed_current_raw_sha256": "46e4f8fd7122705fd4a3c0f86a87b787aa004aec372ccc79ef2d62d99b097e91",
+      "accepted_raw_sha256": "f6b8bf0b3bd2dae7f28cfeb2ef4c3987ea0f6d1508de6ad5e3fdd78365c6829e",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ImageImport.kt",
+          "reviewed_line": 15
+        }
+      ]
+    },
+    {
+      "key": "string/ui_the_selected_location_is_not_writable",
+      "tier": "P0",
+      "proposal_group": "optional",
+      "decision": "accept",
+      "acceptance_scope": "optional_static_composed_consumer",
+      "rationale": "Optional idiomatic refinement. Current passive remains understandable in context. Kuandika kwenye explicitly says writing to the selected location. Both call sites test openOutputStream(uri, wt) returning null. It does not claim an underlying permissions cause. The error also remains grammatical after the image-save or assembly-save failure prefix.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/17",
+      "author_confidence": "medium-high",
+      "source_value": "The selected location is not writable.",
+      "current_value": "Eneo lililochaguliwa haliwezi kuandikwa.",
+      "accepted_value": "Haiwezekani kuandika kwenye eneo lililochaguliwa.",
+      "source_raw_sha256": "bd5906312d80fa9c5c6f855faf23030f089b50f54d0f82a39a8bcdb60328581d",
+      "current_raw_sha256": "cf6cc46d9fdc9af850b0fe7c19006ea54aebea94828c30c007928cf2173bd418",
+      "reviewed_current_raw_sha256": "cf6cc46d9fdc9af850b0fe7c19006ea54aebea94828c30c007928cf2173bd418",
+      "accepted_raw_sha256": "9d211f6cbfe976daf4cc93c80ccb19096875f003bfacfe119f3be09550c30e99",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "AssemblyActivity.kt",
+          "reviewed_line": 341
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1357
+        }
+      ]
+    },
+    {
+      "key": "string/ui_this_location_is_not_writable",
+      "tier": "P0",
+      "proposal_group": "optional",
+      "decision": "accept",
+      "acceptance_scope": "optional_static_composed_consumer",
+      "rationale": "Optional idiomatic refinement. Kuandika kwenye eneo hili says writing to this location. The two callers are source-code export and recovery export, both output-stream-null failures. It preserves the selected operation and avoids attributing the failure to one unverified cause; the existing value is not counted as a confirmed defect.",
+      "source_only_limit": false,
+      "receipt_selector": "sw/review.json#/entries/18",
+      "author_confidence": "medium-high",
+      "source_value": "This location is not writable.",
+      "current_value": "Eneo hili haliwezi kuandikwa.",
+      "accepted_value": "Haiwezekani kuandika kwenye eneo hili.",
+      "source_raw_sha256": "aeeaa3653ff0cebc035c0010f47d2e6fef2ba1abd8d6c77df663010f13a4a13e",
+      "current_raw_sha256": "10a03ac4cf4ae59bc86159ab21af0612342d0c113fa9333542caa6682d9ee29c",
+      "reviewed_current_raw_sha256": "10a03ac4cf4ae59bc86159ab21af0612342d0c113fa9333542caa6682d9ee29c",
+      "accepted_raw_sha256": "d4f72757a126e49b16283de98241df4731d2d40c455c60171da462656d902eb3",
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": false,
+      "original_direct_consumers": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1387
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1398
+        }
+      ]
+    }
+  ],
+  "holds_boundary": "Four original uncertainty holds remain unresolved and unchanged; no new replacement or terminology decision.",
+  "holds": [
+    {
+      "key": "string/gallery_credit_could_not_save",
+      "tier": "P0",
+      "proposal_group": "hold",
+      "decision": "hold",
+      "acceptance_scope": "static_direct_consumer",
+      "rationale": "Keep the terminology hold. The intended object is attribution/creator/source/licence text, confirmed in GalleryCredits.credit, rather than image properties. Failure to save/restore, preservation of prior records and retry are all present. Primary sources corroborate an image-properties sense for sifa but do not establish an approved replacement for this product. A systematic label-family decision is needed, not a blind substitution in this one warning.",
+      "source_only_limit": null,
+      "receipt_selector": "sw/review.json#/entries/19",
+      "author_confidence": "medium",
+      "source_value": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "current_value": "Sifa za picha hazikuweza kuhifadhiwa au kurejeshwa. Sifa zilizokuwa zimehifadhiwa zimehifadhiwa bila kubadilishwa. Jaribu tena.",
+      "accepted_value": null,
+      "source_raw_sha256": "d669638ab30435fe654a24b1c18e73208959c1cc873975ab190e629e7c2ed6af",
+      "current_raw_sha256": "51ba4c21321b7cfb153e379a9862684ed16711c2b56dbeba31b7e53921b2b697",
+      "reviewed_current_raw_sha256": "51ba4c21321b7cfb153e379a9862684ed16711c2b56dbeba31b7e53921b2b697",
+      "accepted_raw_sha256": null,
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": null,
+      "original_direct_consumers": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 238
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 899
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1185
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1188
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1194
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1198
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1469
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1479
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1486
+        },
+        {
+          "file": "GalleryCredits.kt",
+          "reviewed_line": 79
+        },
+        {
+          "file": "GalleryCredits.kt",
+          "reviewed_line": 113
+        },
+        {
+          "file": "MediaGalleryActivity.kt",
+          "reviewed_line": 62
+        },
+        {
+          "file": "MediaGalleryActivity.kt",
+          "reviewed_line": 243
+        },
+        {
+          "file": "MediaGalleryActivity.kt",
+          "reviewed_line": 415
+        }
+      ]
+    },
+    {
+      "key": "string/gallery_credit_too_large",
+      "tier": "P0",
+      "proposal_group": "hold",
+      "decision": "hold",
+      "acceptance_scope": "static_direct_consumer",
+      "rationale": "Keep the terminology hold for the same attribution family. The warning preserves too-large-to-restore and retention of the previous drawing/credits. Zitafanya is less explicitly hypothetical than would make, but in this pre-acceptance warning it is not enough on its own to manufacture a new confirmed defect. Resolve the terminology and consider conditional phrasing together, then recheck the full message.",
+      "source_only_limit": null,
+      "receipt_selector": "sw/review.json#/entries/20",
+      "author_confidence": "medium",
+      "source_value": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "current_value": "Sifa hizi za picha zitafanya mchoro uwe mkubwa mno kiasi cha kutoweza kurejeshwa. Mchoro na sifa zako za awali zimehifadhiwa bila kubadilishwa.",
+      "accepted_value": null,
+      "source_raw_sha256": "0cc17cfda89358526b83adbc36b90440ef773ed2f945768e3e9f32bb90b35dd5",
+      "current_raw_sha256": "4fc8a1d946ea00907d73fcefb28893abef2936d4b67901714846022fb185d918",
+      "reviewed_current_raw_sha256": "4fc8a1d946ea00907d73fcefb28893abef2936d4b67901714846022fb185d918",
+      "accepted_raw_sha256": null,
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": null,
+      "original_direct_consumers": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1209
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "reviewed_line": 1444
+        },
+        {
+          "file": "GalleryCredits.kt",
+          "reviewed_line": 111
+        }
+      ]
+    },
+    {
+      "key": "string/legacy_credits_unreadable",
+      "tier": "P0",
+      "proposal_group": "hold",
+      "decision": "hold",
+      "acceptance_scope": "static_direct_consumer",
+      "rationale": "Keep the terminology hold. Some unreadable records and preserved stored copies are accurately distinguished, and the consumer is a legacy-attribution status field. Do not equate sifa with image properties or approve a replacement solely from a generic dictionary sense. The current value remains unchanged pending a competent terminology choice.",
+      "source_only_limit": null,
+      "receipt_selector": "sw/review.json#/entries/21",
+      "author_confidence": "medium",
+      "source_value": "Some saved credits could not be read. Their stored copies have been kept.",
+      "current_value": "Baadhi ya sifa zilizohifadhiwa hazikuweza kusomwa. Nakala zake zilizohifadhiwa zimehifadhiwa bila kufutwa.",
+      "accepted_value": null,
+      "source_raw_sha256": "764c1dfa02ddd35964d108f4cc4ccc6dbcc59f5520513ac2528f32bacdb73f5b",
+      "current_raw_sha256": "4156d7787a7094a0856d217b697b26051c1bf14137bba1d72eb8d73d829fb21f",
+      "reviewed_current_raw_sha256": "4156d7787a7094a0856d217b697b26051c1bf14137bba1d72eb8d73d829fb21f",
+      "accepted_raw_sha256": null,
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": null,
+      "original_direct_consumers": [
+        {
+          "file": "LegacyImageCreditsActivity.kt",
+          "reviewed_line": 93
+        }
+      ]
+    },
+    {
+      "key": "string/ui_foreground_background_colour_palette",
+      "tier": "P1",
+      "proposal_group": "hold",
+      "decision": "hold",
+      "acceptance_scope": "wording_only_no_direct_consumer_found",
+      "rationale": "Keep the composition hold. All three placeholder slots are preserved, but no direct production caller or third-argument domain was found. The phrase after Paleti ya rangi could require different agreement/linkage depending on whether the third slot is a palette name or descriptive term. Do not invent that value or claim composed acceptance.",
+      "source_only_limit": null,
+      "receipt_selector": "sw/review.json#/entries/22",
+      "author_confidence": "medium",
+      "source_value": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "current_value": "Mbele %1$s, mandharinyuma %2$s. Paleti ya rangi %3$s.",
+      "accepted_value": null,
+      "source_raw_sha256": "67af5bc5800068853c10482361ea2d76758f4c8d2c189577b317e470a2c9ab51",
+      "current_raw_sha256": "30e363c243af57da5638f91c98f00aaf46eef1fd3352efcaab86ae79558b77e1",
+      "reviewed_current_raw_sha256": "30e363c243af57da5638f91c98f00aaf46eef1fd3352efcaab86ae79558b77e1",
+      "accepted_raw_sha256": null,
+      "source_matches_reviewed": true,
+      "current_matches_reviewed_old": true,
+      "current_matches_accepted": null,
+      "original_direct_consumers": []
+    }
+  ],
+  "common_qualifications": {
+    "native_human_reviewed": false,
+    "runtime_verified": false,
+    "consumer_binding_file": "consumer-bindings.json",
+    "consumer_prerequisite": "Static full-file or complete-method equality preserves only the original consumer scope. Shared UiText/AppLanguage lifecycle changes remain a runtime prerequisite. Wording-only rows still lack verified direct caller/argument domains."
+  }
+}
