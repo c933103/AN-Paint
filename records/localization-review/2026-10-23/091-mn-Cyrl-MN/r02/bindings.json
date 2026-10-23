@@ -1,0 +1,15 @@
+{
+  "kind": "status-only-successor",
+  "production_head": "23f2ed7eb974ea040ac42f824e5f62d754e1e702",
+  "prior_snapshot_commit": "0a5cdbf45e2d269c403f8fa132c5c89077068e48",
+  "prior_manifest_sha256": "8ed0669d3908f64c6cbc5fbe30b2b5228b197ef25aa4afc0660bc6cfe01763df",
+  "clarification_url": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6362847362",
+  "clarification_body_sha256": "423ce6b46903356e36f54be4621cdabdc6fdfddd6d17714575cedf2708c7010c",
+  "clarification_project_text": "2026-10-23 current-source reconciliation of the consolidated two-warning batch.\n\nThe historical 13:07 archive/blob operation remains of unknown outcome and is not being retried or declared resolved. Its unresolved record is not an owner refusal or a blanket prohibition on a fresh source-bound consolidation.\n\nAt develop 23f2ed7eb974ea040ac42f824e5f62d754e1e702, all 342 ledger rows were checked: 114 independently accepted replacements across 57 catalogues are still unapplied old values; 8 held values remain unchanged; 218 fallback keys remain absent; 2 canonical English values are unchanged. The sealed final 16-file packet, manifest 774e6def016dcd2e2bb0dc97a71c92515df7dabd0e16d21f442da200f554820d, consolidated patch ea5f91d0ea943bec8b884c82c7ef42c23d84f57287d080ac7618ba0398a81ae8 and all 114 selected receipt hashes were rechecked.\n\nCyrillic Mongolian 091 uses its exact accepted v2 receipt; Traditional Mongolian 092 has separate accepted v3 term receipts. The historical missing v2 import note concerns 092, not 091. Do not transfer acceptance between scripts or adopt the obsolete 94-value first pass.\n\nA genuinely fresh local batch is now being reconstructed against current develop, preserving all unrelated integrated changes and linguistic holds, for later accumulated review/CI. This does not change production, retry the unidentified old upload, lift the separate HK ZIP stop, or authorize a release. Original evidence remains at https://github.com/c933103/AN-Paint/pull/56#issuecomment-6322404402 .",
+  "accepted_candidate_hashes": {
+    "ui_no_resize_fits_decoder_memory": "3ee62c03d4be8666bfa9f1df658649832c03d724a7328598373e003c4f1ffdc8",
+    "ui_assembly_source_memory_floor": "8d8c1dd6111cf2700ba14669b161991dc6b5831ebb5add7d29b926d2617d869e"
+  },
+  "production_integrated": false,
+  "new_linguistic_review": false
+}
