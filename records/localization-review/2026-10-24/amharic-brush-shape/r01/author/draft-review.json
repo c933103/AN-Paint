@@ -1,0 +1,245 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": [
+    {
+      "key": "string/ui_round",
+      "English": "Round",
+      "source_sha256": "cd9558acfc386bd3e1fb14da5d4ed7e9338f80fa29fc2447c36c94667c406295",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index0 tip choice for Brush/Watercolor/Eraser/Line. PaintDocument uses ROUND stroke cap when brushTip!=1 except Pencil, which is square regardless. Also index0 cursor-shape spinner sets cursorShape and overlay uses circle rather than square. Geometric round shape, not numeric rounding or round-trip.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L292-L292",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ],
+      "proposed_XML_text": "\"ክብ\"",
+      "proposed_XML_element": "<string name=\"ui_round\">\"ክብ\"</string>",
+      "proposed_XML_text_sha256": "5f01dcc7c8e7542c2cd6e0f3028fbf16e45db6e279f5509ccc4613551f7029ec",
+      "author_status": "review",
+      "lexical_confidence": "high lexical / draft only",
+      "source_semantics_confidence": "high",
+      "rationale": "Exact nonfuzzy LibreOffice line cap Round, cui linetabpage|liststoreCAP_STYLE. Geometric round also fits cursor-marker choice. Not numeric rounding.",
+      "limitations": "Native/contextual UI acceptance and visual fit remain untested.",
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_square",
+      "English": "Square",
+      "source_sha256": "c11092bc0861591e9ce5d9a97e83d4fae3c6954a318977865fa85f5b3eeafda8",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index1 brush-tip choice uses SQUARE stroke cap; also index1 cursor-shape spinner selects square marker outline. Shape noun/adjective, not squared number or area unit. Stroke joins remain ROUND, so this is not a promise of square joins at every path corner.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ],
+      "proposed_XML_text": "\"ስኴር\"",
+      "proposed_XML_element": "<string name=\"ui_square\">\"ስኴር\"</string>",
+      "proposed_XML_text_sha256": "c5ade6fe6bc3fad5b4e3d5a839a50ecdbecd249b16c705665ab4f721d5b596ab",
+      "author_status": "review",
+      "lexical_confidence": "high lexical / draft only",
+      "source_semantics_confidence": "high",
+      "rationale": "Exact nonfuzzy LibreOffice line cap Square; svx STR_ObjNameSingulQUAD separately confirms square geometry. Not an area unit.",
+      "limitations": "Loanword spelling follows verified UI source. Native preference versus an indigenous geometry expression remains untested; do not substitute a rectangle word.",
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_calligraphy",
+      "English": "Calligraphy",
+      "source_sha256": "3cd2e6d3387b873d6f9c9d9bab675806f3af7ea686b2fcc462ddf603cbcdc778",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index2 appears for Brush only, not Watercolor/Eraser/Line. PaintCanvas.stroke creates repeated diagonal short segments with quarter-width strokes to form a slanted/chisel-like brush mark. Not a font picker, text entry or automatic handwriting conversion.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L507-L526"
+      ],
+      "proposed_XML_text": "\"ሰያፍ ጭረት\"",
+      "proposed_XML_element": "<string name=\"ui_calligraphy\">\"ሰያፍ ጭረት\"</string>",
+      "proposed_XML_text_sha256": "84b23a899310c0e32c6e3dc5e2c59152fb3bb50a2fa150d9b4a0e2a6cb2e2d10",
+      "author_status": "hold",
+      "lexical_confidence": "low-to-medium compositional / terminology HOLD",
+      "source_semantics_confidence": "high",
+      "rationale": "Original descriptive phrase: diagonal/slanted stroke. LibreOffice STR_ObjNameSingulLINE_Diag supports ሰያፍ; Android pointer_stroke_style supports ጭረት as graphical stroke. Targets Brush-only repeated short slanted chisel marks, not font choice. No exact primary Calligraphy brush translation established.",
+      "limitations": "Descriptive paraphrase, NOT an established translation for calligraphy. Native review must check whether singular stroke adequately names repeated short diagonal marks and whether calligraphic/chisel character is preserved. Do not treat this row as release-ready.",
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_outline",
+      "English": "Outline",
+      "source_sha256": "eabbf3abaf8d98abb9763d83f29b04716524a9d697dfdd06ae3ed77bdd12c929",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index0 shapeStyle; drawShape skips interior fill and draws foreground path border. Offered for Rectangle, Polygon, Ellipse, Rounded rectangle, Heart, Star and Arrow. Polygon open/closed path state remains separate. Not a document outline/sidebar or text outline hierarchy.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ],
+      "proposed_XML_text": "\"ድንበር ብቻ\"",
+      "proposed_XML_element": "<string name=\"ui_outline\">\"ድንበር ብቻ\"</string>",
+      "proposed_XML_text_sha256": "67dfcdc74108335acf8b0dda53dda14300872760cabc29da1a0a925543837262",
+      "author_status": "review",
+      "lexical_confidence": "medium compositional / draft only",
+      "source_semantics_confidence": "high",
+      "rationale": "Original border-only phrase. Primary LO Border → ድንበር; only → ብቻ is visible in LO page layout labels. Captures foreground border without fill. Avoids copying text-character Outline → ረቂቅ out of its context.",
+      "limitations": "Native review and three-style contrast required; no exact full-phrase primary attestation.",
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_solid_fill",
+      "English": "Solid fill",
+      "source_sha256": "0b099867389c4838fc7540af1a699d4f90dfdefb2ed1b43b866524fffd6b7640",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index1 shapeStyle fills path interior with foreground color and omits outline. Conventional uniform fill style, not separate flood-fill tool, pattern fill or an implementation guarantee about output alpha beyond inspected canvas behavior.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ],
+      "proposed_XML_text": "\"መሙያ ብቻ\"",
+      "proposed_XML_element": "<string name=\"ui_solid_fill\">\"መሙያ ብቻ\"</string>",
+      "proposed_XML_text_sha256": "ca48554c01258ff3e26e00b19f65f2a3d01600283016a6c4bfdc4dcc1dbc6224",
+      "author_status": "hold",
+      "lexical_confidence": "medium compositional / draft only",
+      "source_semantics_confidence": "high",
+      "rationale": "Original fill-only paraphrase emphasizes implemented absence of outline. LO graphics sidebar Fill → መሙያ; only → ብቻ. This does not claim Solid literally means only. Foreground fill is implicit in the control context.",
+      "limitations": "Confirm intentional behavior-based paraphrase and clarity of foreground-only fill; no exact full-phrase primary attestation.",
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented",
+      "unaccepted_alternative": "ሙሉ መሙያ",
+      "alternative_note": "Lexically nearer solid fill (LO Solid → ሙሉ) but does not explicitly distinguish no-outline behavior. Native reviewer should compare candidates.",
+      "author_precision_hold": "Author adds explicit HOLD beyond lexical suggestion: fill only substitutes an implemented behavior distinction for solid/uniform fill semantics. This must be independently adjudicated, not silently treated as equivalent English or a source correction. Alternative full-fill phrase is also unaccepted; lexical Solid in a transparency context does not establish exact shape-fill terminology."
+    },
+    {
+      "key": "string/ui_fill_line",
+      "English": "Fill + line",
+      "source_sha256": "3d0baad6203dcecf8d84204642b82c6ef04ad625f60316c8becfef5b1d9d77c0",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index2 shapeStyle fills interior with background color then draws foreground border. Plus sign joins two simultaneous style components; not a single line drawing tool, arithmetic or a request to fill a line. Preserve + separator.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ],
+      "proposed_XML_text": "\"መሙያ + መስመር\"",
+      "proposed_XML_element": "<string name=\"ui_fill_line\">\"መሙያ + መስመር\"</string>",
+      "proposed_XML_text_sha256": "25e20a9670eecd4892995ca1991b85da8f07ec229ff515af428109a1cd275c7a",
+      "author_status": "review",
+      "lexical_confidence": "medium-high lexical components / draft only",
+      "source_semantics_confidence": "high",
+      "rationale": "LO graphics Fill and Line supply both nouns. Literal ASCII + preserved with spaces. In application context this is background fill plus foreground border, NOT the same foreground-only fill as style1.",
+      "limitations": "Short phrase does not encode color roles, just as English does not; native reviewer must inspect swatches/preview and contrast all three styles.",
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_cursor_shape31",
+      "English": "Cursor shape",
+      "source_sha256": "8c3172c594e65504dad2497f27d483be36a566765d93efd336eb42177ae5d839",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Visible label and Spinner contentDescription for Round/Square cursor marker. Changing it updates cursorShape, invalidates view and schedules autosave; marker uses cap override to choose circular/square outline independently of brushTip. It does not itself change painted brush-tip shape or document geometry.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L292-L292",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L371-L371",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L35-L41",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ],
+      "proposed_XML_text": "\"የጠቋሚ ቅርጽ\"",
+      "proposed_XML_element": "<string name=\"ui_cursor_shape31\">\"የጠቋሚ ቅርጽ\"</string>",
+      "proposed_XML_text_sha256": "3c5546b5f76bad56b8335570705679331e035e38993ebf744dd7f7fbb7792cba",
+      "author_status": "review",
+      "lexical_confidence": "medium-high compositional / draft only",
+      "source_semantics_confidence": "high",
+      "rationale": "Android uses የጠቋሚ in Pointer speed/color/stroke labels and ጠቋሚ for hovering pointer. LO Shape → ቅርጽ. Original combination names pointer geometry rather than image/bitmap shape.",
+      "limitations": "Native review and consistency against existing cursor terminology required; no exact full-phrase primary attestation.",
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented",
+      "unaccepted_alternative": "የመጠቆሚያ ቅርጽ",
+      "alternative_note": "LO Cursor Control and mouse pointer passages attest መጠቆሚያ. Prefer Android-style primary draft for this Android app, subject to surrounding terminology consistency."
+    }
+  ],
+  "shared_source_chain": "Tool options build addChoice arrays, index selection changes brushTip/shapeStyle; addChoice opens a single-choice dialog, invokes action and updates button text. Cursor spinner is a separate consumer of Round/Square and uses cursorShape, not brushTip. Complete relevant classes are included.",
+  "source_gate": "No canonical English-source defect established. Shape nouns/adjectives refer to geometry; Fill + line is combined border/interior style. No numeric units or format strings in selected keys.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717,
+    "prior_ready": 42,
+    "prior_held": 2,
+    "new_original_drafts": 7,
+    "new_independent_acceptances": 0,
+    "implemented": 0,
+    "reviewable_original_drafts": 5,
+    "author_held_proposals_this_group": 2
+  },
+  "limits": [
+    "Eleven complete source files; exact fresh commit/tree/blob binding, not exhaustive repository consumer search.",
+    "No native-speaker, runtime, glyph/layout, screen-reader or lifecycle acceptance.",
+    "No source edits, Work task, app builds/tests, CI or release.",
+    "Prior42 ready and Crop/Fit-caption holds excluded; Palette uncertainty, optional Horizontal and held Help unchanged."
+  ],
+  "schema": "amharic-brush-shape-author-drafts-v1",
+  "date": "2026-10-24",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "lexical_sources": [
+    {
+      "file": "libreoffice-am-help02.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+      "sha256": "5eb91cd3041d5f579bf80dfcd0da76e9efa60942e44b15c9ef252baed7fe941a",
+      "fresh_pinned_bytes_match": true,
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-view-lexical-research-20261024/libreoffice-am-help02.po",
+      "sha256_verified_this_task": "5eb91cd3041d5f579bf80dfcd0da76e9efa60942e44b15c9ef252baed7fe941a"
+    },
+    {
+      "file": "android-settings-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+      "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6",
+      "fresh_pinned_bytes_match": true,
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-view-lexical-research-20261024/android-settings-am.xml",
+      "sha256_verified_this_task": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6"
+    },
+    {
+      "file": "android-settings-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT",
+      "sha256": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e",
+      "fresh_pinned_bytes_match": true,
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-view-lexical-research-20261024/android-settings-en.xml",
+      "sha256_verified_this_task": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e"
+    },
+    {
+      "file": "libreoffice-am-svx.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+      "sha256": "69d5adb5831b13831d8393b9c09ff0d5f2f9741a34a8d5ccb3a5ca5869bbbb37",
+      "fresh_pinned_bytes_match": true,
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-view-lexical-research-20261024/libreoffice-am-svx.po",
+      "sha256_verified_this_task": "69d5adb5831b13831d8393b9c09ff0d5f2f9741a34a8d5ccb3a5ca5869bbbb37"
+    },
+    {
+      "file": "libreoffice-am-cui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+      "retrieved": "2026-10-24",
+      "retrieval": "Direct HTTPS succeeded in this task",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-brush-shape-lexical-20261024/libreoffice-am-cui.po",
+      "sha256_verified_this_task": "a1d524a820c0c6de187d0625b9eced32733642ad196d79857500c91977a428b4"
+    }
+  ],
+  "lexical_limits": [
+    "Round/Square exact line-cap records are nonfuzzy; full cursor compound and three-style phrases are compositions.",
+    "Calligraphy descriptive slanted-stroke phrase does not establish calligraphy terminology and remains held.",
+    "Solid fill is separately author-held because fill-only behavior paraphrase does not directly preserve solid/uniform wording; no alternative accepted.",
+    "Four prior pinned lexical snapshots were reused after hash verification against recorded provenance; only additional cui PO was newly fetched in this lexical task. Inherited fresh_pinned_bytes_match flags refer to prior provenance, not a claim of fresh retrieval of all five here.",
+    "Native preference, naturalness, runtime rendering and accessibility remain untested."
+  ]
+}

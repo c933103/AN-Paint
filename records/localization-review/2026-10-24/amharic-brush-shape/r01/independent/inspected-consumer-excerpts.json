@@ -1,0 +1,90 @@
+[
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "source_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+    "line_start": 785,
+    "line_end": 800,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L800",
+    "text": "785:                 if (tool in listOf(PaintTool.BRUSH,PaintTool.WATERCOLOR,PaintTool.ERASER,PaintTool.LINE)) {\n786:                     val tips=if(tool==PaintTool.BRUSH) listOf(ui(R.string.ui_round),ui(R.string.ui_square),ui(R.string.ui_calligraphy)) else listOf(ui(R.string.ui_round),ui(R.string.ui_square))\n787:                     addChoice(tips,document.brushTip.coerceIn(tips.indices)) {document.brushTip=it}\n788:                 }\n789:                 if (tool in listOf(PaintTool.RECTANGLE, PaintTool.POLYGON, PaintTool.ELLIPSE, PaintTool.ROUND_RECT,PaintTool.HEART,PaintTool.STAR,PaintTool.ARROW))\n790:                     addChoice(listOf(ui(R.string.ui_outline), ui(R.string.ui_solid_fill), ui(R.string.ui_fill_line)), document.shapeStyle) { document.shapeStyle = it; paintCanvas.invalidate() }\n791:             }\n792:         }\n793:         if (tool in listOf(PaintTool.POLYGON, PaintTool.CURVE, PaintTool.SELECT, PaintTool.LASSO)) {\n794:             options.addView(button(when (tool) { PaintTool.POLYGON -> ui(R.string.ui_finish_polygon); PaintTool.CURVE -> ui(R.string.ui_finish_curve); else -> ui(R.string.ui_commit_selection) }, \"apply\") {\n795:                 paintCanvas.applyPending()\n796:             }, LinearLayout.LayoutParams(-1, dp(48)))\n797:         }\n798:         if(tool==PaintTool.POLYGON) options.addView(CheckBox(this).apply {\n799:             tag=\"polygon_close\";text=ui(R.string.ui_close_polygon);textSize=11f;isChecked=paintCanvas.closePolygon\n800:             setOnCheckedChangeListener {_,checked -> paintCanvas.closePolygon=checked;paintCanvas.invalidate();scheduleAutosave()}"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "source_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+    "line_start": 1526,
+    "line_end": 1538,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+    "text": "1526:         val shapeRow=LinearLayout(this).apply {gravity=Gravity.CENTER_VERTICAL;isBaselineAligned=false}\n1527:         shapeRow.addView(label(ui(R.string.ui_cursor_shape31)),LinearLayout.LayoutParams(0,-2,1f))\n1528:         shapeRow.addView(Spinner(this).apply {\n1529:             tag=\"cursor_shape\";contentDescription=ui(R.string.ui_cursor_shape31)\n1530:             adapter=ArrayAdapter(this@ClassicPaintActivity,android.R.layout.simple_spinner_dropdown_item,listOf(ui(R.string.ui_round),ui(R.string.ui_square)))\n1531:             setSelection(paintCanvas.cursorShape)\n1532:             onItemSelectedListener=object: AdapterView.OnItemSelectedListener {\n1533:                 override fun onNothingSelected(parent: AdapterView<*>?)=Unit\n1534:                 override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {\n1535:                     paintCanvas.cursorShape=position;paintCanvas.invalidate();scheduleAutosave()\n1536:                 }\n1537:             }\n1538:         },LinearLayout.LayoutParams(0,dp(48),1f))"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+    "source_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+    "line_start": 247,
+    "line_end": 258,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+    "text": "247:     fun paint(tool: PaintTool): Paint = Paint().apply {\n248:         color = if (tool == PaintTool.ERASER) background else foreground\n249:         strokeWidth = if (tool == PaintTool.PENCIL) pencilWidth else this@PaintDocument.strokeWidth\n250:         style = Paint.Style.STROKE\n251:         strokeJoin = Paint.Join.ROUND\n252:         strokeCap = if (brushTip == 1 || tool == PaintTool.PENCIL) Paint.Cap.SQUARE else Paint.Cap.ROUND\n253:         isAntiAlias = tool != PaintTool.PENCIL && antialiasing\n254:         if (tool == PaintTool.WATERCOLOR) {\n255:             alpha = (watercolorStrength.coerceIn(1,100) * 255 / 100)\n256:             maskFilter = BlurMaskFilter(maxOf(.5f,strokeWidth / 6), BlurMaskFilter.Blur.NORMAL)\n257:         }\n258:     }"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+    "source_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+    "line_start": 271,
+    "line_end": 282,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282",
+    "text": "271: \n272:     fun drawShape(canvas: Canvas, tool: PaintTool, path: Path) {\n273:         val p = paint(tool)\n274:         if (tool !in listOf(PaintTool.LINE, PaintTool.CURVE) && shapeStyle > 0) {\n275:             p.style = Paint.Style.FILL\n276:             p.color = if (shapeStyle == 2) background else foreground\n277:             canvas.drawPath(path, p)\n278:         }\n279:         if (shapeStyle != 1 || tool in listOf(PaintTool.LINE, PaintTool.CURVE)) {\n280:             p.style = Paint.Style.STROKE; p.color = foreground\n281:             canvas.drawPath(path, p)\n282:         }"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+    "source_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+    "line_start": 276,
+    "line_end": 276,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L276-L276",
+    "text": "276:         if (polygon.isNotEmpty()) document.drawShape(canvas, if(closePolygon) PaintTool.POLYGON else PaintTool.LINE, polygonPath(false))"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+    "source_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+    "line_start": 292,
+    "line_end": 292,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L292-L292",
+    "text": "292:             cursorOverlay.draw(canvas,cursor,document.paint(tool),zoom,resources.displayMetrics.density,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE)"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+    "source_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+    "line_start": 371,
+    "line_end": 371,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L371-L371",
+    "text": "371:         if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),zoom,d,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE)"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+    "source_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+    "line_start": 419,
+    "line_end": 448,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L419-L448",
+    "text": "419:     private fun polygonPath(close: Boolean) = Path().apply {\n420:         polygon.forEachIndexed { i, point -> if (i == 0) moveTo(point.x, point.y) else lineTo(point.x, point.y) }\n421:         if (close) close()\n422:     }\n423:     private fun curvePath() = Path().apply {\n424:         moveTo(start.x, start.y)\n425:         if (curveStage == 0) lineTo(end.x, end.y)\n426:         else cubicTo(control1.x, control1.y, control2.x, control2.y, end.x, end.y)\n427:     }\n428: \n429:     fun beginTrim() {\n430:         applyPending(); trim = CropOverlay(ImageDimensions(document.bitmap.width,document.bitmap.height),allowOutside = true); fit(); invalidate(); onStatus()\n431:     }\n432:     fun applyTrim() {\n433:         val crop = trim ?: return\n434:         document.changeCanvasBounds(crop.rect); trim = null; fit(); invalidate(); onStatus()\n435:     }\n436:     fun cancelTrim() { trim = null; fit(); invalidate(); onStatus() }\n437: \n438:     fun pauseGesture() {\n439:         document.finishGesture(); down=false;multiTouch=false;panning=false;movingSelection=false;selectionHandle=-1;removeCallbacks(sprayTick)\n440:         cursorTogglePending=false;cursorGestureStarted=false\n441:     }\n442: \n443:     fun applyPending() {\n444:         if (trim != null) applyTrim()\n445:         if (polygon.size >= 2) document.commitShape(if(closePolygon) PaintTool.POLYGON else PaintTool.LINE, polygonPath(closePolygon))\n446:         polygon.clear();resetPolygonTap()\n447:         if (curveStage > 0) document.commitShape(PaintTool.CURVE, curvePath())\n448:         curveStage = 0"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+    "source_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+    "line_start": 507,
+    "line_end": 526,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L507-L526",
+    "text": "507:     private fun stroke(from: PointF, to: PointF, finishing: Boolean = false) {\n508:         val canvas = Canvas(document.bitmap)\n509:         val paint = document.paint(tool)\n510:         if (document.brushTip == 2 && tool == PaintTool.BRUSH) {\n511:             val count = max(1, hypot(to.x - from.x, to.y - from.y).toInt())\n512:             paint.strokeWidth = max(1f, document.strokeWidth / 4)\n513:             for (i in 0..count) {\n514:                 val x = from.x + (to.x - from.x) * i / count\n515:                 val y = from.y + (to.y - from.y) * i / count\n516:                 canvas.drawLine(x - document.strokeWidth / 2, y + document.strokeWidth / 2, x + document.strokeWidth / 2, y - document.strokeWidth / 2, paint)\n517:             }\n518:         } else if (document.strokeSmoothing && tool != PaintTool.PENCIL && !finishing && from != to) {\n519:             val mid=PointF((from.x+to.x)/2,(from.y+to.y)/2)\n520:             canvas.drawPath(Path().apply { moveTo(smoothedPrevious.x,smoothedPrevious.y);quadTo(from.x,from.y,mid.x,mid.y) },paint)\n521:             smoothedPrevious=mid\n522:         } else if (from == to) canvas.drawPoint(to.x, to.y, paint)\n523:         else canvas.drawLine(from.x, from.y, to.x, to.y, paint)\n524:     }\n525: \n526:     private fun spray(point: PointF) {"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt",
+    "source_sha256": "04085a8c15861dca2bdc9aed608bbf71a6d93de3ccf5b3e52fbf652286aa7d9b",
+    "line_start": 35,
+    "line_end": 41,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L35-L41",
+    "text": "35:     private var cursorToolSecondaryShapeColor=Color.LTGRAY\n36:     fun draw(canvas: Canvas,position: PointF,paint: Paint,scale: Float,pixelDensity: Float,drawing: Boolean,visibilityScale: Float=1f,outlineCap: Cap=paint.strokeCap) {\n37:         toolPosition.set(position);toolPaint=Paint(paint).apply {strokeCap=outlineCap};zoom=scale;density=pixelDensity\n38:         markerScale=visibilityScale.coerceIn(1f,2f)\n39:         cursorToolSecondaryShapeColor=if(drawing) paint.color else Color.LTGRAY\n40:         drawShape(canvas)\n41:     }"
+  },
+  {
+    "source_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt",
+    "source_sha256": "04085a8c15861dca2bdc9aed608bbf71a6d93de3ccf5b3e52fbf652286aa7d9b",
+    "line_start": 95,
+    "line_end": 112,
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112",
+    "text": "95: \n96:     private fun drawShape(canvas: Canvas) {\n97:         val brushStrokeWidth = max(toolPaint.strokeWidth / 2f, 1f)\n98:         val strokeWidth = getStrokeWidthForZoom(DEFAULT_TOOL_STROKE_WIDTH)\n99:         val cursorPartLength = strokeWidth * 2\n100:         val innerCircleRadius = brushStrokeWidth + strokeWidth / 2f\n101:         val outerCircleRadius = innerCircleRadius + strokeWidth\n102:         linePaint.apply {\n103:             color = cursorToolPrimaryShapeColor\n104:             style = Paint.Style.STROKE\n105:             this.strokeWidth = strokeWidth\n106:         }\n107:         val strokeCap = toolPaint.strokeCap\n108:         if (strokeCap == Cap.ROUND) {\n109:             drawCircle(canvas, strokeWidth, outerCircleRadius, innerCircleRadius)\n110:         } else {\n111:             drawRect(canvas, strokeWidth, outerCircleRadius, innerCircleRadius)\n112:         }"
+  }
+]

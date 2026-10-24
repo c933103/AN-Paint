@@ -1,0 +1,233 @@
+{
+  "review_date_utc": "2026-10-24",
+  "review_type": "Independent source-constrained translation and lexical review; not a native-speaker or release acceptance",
+  "input_directory": "/workspace/scratch/bbca2890f602/amharic-brush-shape-draft-20261024",
+  "input_manifest_sha256": "3a6311a0e0131c7cf173fe27c755d8e465d26de9d3db3b6727609302697317e4",
+  "production_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "production_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "summary": {
+    "retain": 5,
+    "revise": 0,
+    "hold": 2,
+    "implemented": 0
+  },
+  "decision_semantics": {
+    "retain": "Keep this exact proposed wording after this independent static review. Does not certify runtime rendering, native preference, accessibility or release readiness.",
+    "hold": "Do not adopt this candidate. No replacement wording is accepted.",
+    "revise": "No row receives this outcome because no adequately supported replacement was established."
+  },
+  "rows": [
+    {
+      "key": "string/ui_round",
+      "english": "Round",
+      "source_sha256": "cd9558acfc386bd3e1fb14da5d4ed7e9338f80fa29fc2447c36c94667c406295",
+      "reviewed_xml_text": "\"ክብ\"",
+      "reviewed_xml_text_sha256": "5f01dcc7c8e7542c2cd6e0f3028fbf16e45db6e279f5509ccc4613551f7029ec",
+      "decision": "retain",
+      "accepted_value": "ክብ",
+      "gloss": "round / circular",
+      "fidelity": "The same geometric word fits a round brush/line cap and a circular cursor marker. It adds no stroke-join promise and carries no numeric-rounding meaning in either menu.",
+      "idiom": "A compact shape label, independently attested in the identical line-cap context. Retain the unmodified value rather than making it brush-specific, because the resource is shared with the cursor control.",
+      "evidence": [
+        "LO cui messages.po lines 13187–13191: nonfuzzy linetabpage|liststoreCAP_STYLE, Round → ክብ.",
+        "LibreOffice Insert Shape help lists ክብ among geometry labels; supplementary live corroboration only."
+      ],
+      "confidence": {
+        "source_fidelity": "high",
+        "lexical_match": "high",
+        "idiom": "medium-high; not native-validated"
+      },
+      "accepted_xml_element": "<string name=\"ui_round\">\"ክብ\"</string>",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L292-L292",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ]
+    },
+    {
+      "key": "string/ui_square",
+      "english": "Square",
+      "source_sha256": "c11092bc0861591e9ce5d9a97e83d4fae3c6954a318977865fa85f5b3eeafda8",
+      "reviewed_xml_text": "\"ስኴር\"",
+      "reviewed_xml_text_sha256": "c5ade6fe6bc3fad5b4e3d5a839a50ecdbecd249b16c705665ab4f721d5b596ab",
+      "decision": "retain",
+      "accepted_value": "ስኴር",
+      "gloss": "square (established source loanword)",
+      "fidelity": "Names the SQUARE line cap and a square cursor-marker outline. Both consumers require geometry, not a square unit or exponent. The code keeps ROUND joins; this label need not and must not be expanded into a guarantee of square corners throughout the ink path.",
+      "idiom": "The supplied spelling is attested as both the line-cap option and a square graphic object. This supports retaining it, not claiming it is the uniquely preferred everyday/native term. I found no evidence here that warrants replacing it with an unverified geometry alternative.",
+      "evidence": [
+        "LO cui messages.po lines 13193–13197: nonfuzzy linetabpage|liststoreCAP_STYLE, Square → ስኴር.",
+        "LO svx messages.po lines 103–107: nonfuzzy STR_ObjNameSingulQUAD, Square → ስኴር.",
+        "LibreOffice Insert Shape help lists ስኴር in the common-shape sentence."
+      ],
+      "confidence": {
+        "source_fidelity": "high",
+        "lexical_match": "high attestation, not independent native preference",
+        "idiom": "medium"
+      },
+      "accepted_xml_element": "<string name=\"ui_square\">\"ስኴር\"</string>",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ]
+    },
+    {
+      "key": "string/ui_calligraphy",
+      "english": "Calligraphy",
+      "source_sha256": "3cd2e6d3387b873d6f9c9d9bab675806f3af7ea686b2fcc462ddf603cbcdc778",
+      "reviewed_xml_text": "\"ሰያፍ ጭረት\"",
+      "reviewed_xml_text_sha256": "84b23a899310c0e32c6e3dc5e2c59152fb3bb50a2fa150d9b4a0e2a6cb2e2d10",
+      "decision": "hold",
+      "accepted_value": null,
+      "gloss": "Submitted phrase: diagonal/slanted stroke",
+      "fidelity": "ሰያፍ ጭረት describes orientation and a graphical mark, not the named calligraphic character/style. The Brush implementation stamps diagonal segments, but an implementation description cannot silently replace the English Calligraphy. Changing singular to plural would not restore the missing concept.",
+      "idiom": "Components are interpretable, but neither their compositional grammar nor their implementation fit establishes the Amharic term for a calligraphic brush. No exact replacement is accepted by this review.",
+      "evidence": [
+        "LO svx messages.po lines 79–83 supports Diagonal line; Android pointer_stroke_style supports graphical stroke vocabulary, not Calligraphy.",
+        "ClassicPaintActivity.kt lines 785–788 restricts this third choice to Brush; PaintCanvas.kt lines 507–526 implements repeated diagonal strokes."
+      ],
+      "confidence": {
+        "decision": "high",
+        "source_semantics": "high",
+        "submitted_value_as_translation": "low"
+      },
+      "next_step": "Find or independently validate an Amharic term conveying the calligraphic style in a brush context. Retain the English source unless a genuine source defect is separately established; then follow English-first, all-affected-locales review.",
+      "accepted_xml_element": null,
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L507-L526"
+      ]
+    },
+    {
+      "key": "string/ui_outline",
+      "english": "Outline",
+      "source_sha256": "eabbf3abaf8d98abb9763d83f29b04716524a9d697dfdd06ae3ed77bdd12c929",
+      "reviewed_xml_text": "\"ድንበር ብቻ\"",
+      "reviewed_xml_text_sha256": "67dfcdc74108335acf8b0dda53dda14300872760cabc29da1a0a925543837262",
+      "decision": "retain",
+      "accepted_value": "ድንበር ብቻ",
+      "gloss": "border only",
+      "fidelity": "In this three-choice shape-style control, Outline denotes the shape boundary without an interior fill. Border only is a faithful contextual rendering: only makes the exclusion already inherent in this Outline-versus-fill contrast explicit. Unlike fill only for Solid fill, it does not discard an independent modifier of the source.",
+      "idiom": "ድንበር is attested for a graphical control border rather than solely a national boundary, and ብቻ follows the noun naturally as a restrictive particle. The full phrase is an original composition, not an exact phrase certified by LibreOffice. Do not import ረቂቅ merely because another context has the English Outline.",
+      "evidence": [
+        "LO help02.po lines 4312–4319: Border → ድንበር; following record describes a visible control frame.",
+        "LO cui messages.po lines 18591–18601 attests ብቻ in Only right/Only left.",
+        "PaintDocument.kt lines 271–282: style 0 skips the fill pass and draws the foreground stroke."
+      ],
+      "confidence": {
+        "source_fidelity": "high in this consumer contrast",
+        "lexical_match": "medium-high component support",
+        "idiom": "medium"
+      },
+      "accepted_xml_element": "<string name=\"ui_outline\">\"ድንበር ብቻ\"</string>",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ]
+    },
+    {
+      "key": "string/ui_solid_fill",
+      "english": "Solid fill",
+      "source_sha256": "0b099867389c4838fc7540af1a699d4f90dfdefb2ed1b43b866524fffd6b7640",
+      "reviewed_xml_text": "\"መሙያ ብቻ\"",
+      "reviewed_xml_text_sha256": "ca48554c01258ff3e26e00b19f65f2a3d01600283016a6c4bfdc4dcc1dbc6224",
+      "decision": "hold",
+      "accepted_value": null,
+      "gloss": "Submitted phrase: fill only",
+      "fidelity": "መሙያ ብቻ replaces solid/uniform fill with absence of an outline. The implemented option indeed lacks an outline, but that fact does not translate the source adjective solid. The paraphrase could describe non-solid patterned fill just as well and therefore loses source meaning.",
+      "idiom": "The submitted words are intelligible, but intelligibility and behavior contrast do not repair this fidelity gap. ሙሉ መሙያ is also not accepted: full/complete is not automatically the appropriate graphics sense of solid, and the supplied Solid record belongs to transparency rather than this shape-fill option.",
+      "evidence": [
+        "LO svx messages.po lines 19823–19827 supports Fill → መሙያ.",
+        "LO svx messages.po lines 19955–20013 establishes that Solid → ሙሉ occurs inside a Transparency Type control.",
+        "PaintDocument.kt lines 271–282 fills style 1 with foreground and suppresses the outline; it does not make solid synonymous with only."
+      ],
+      "confidence": {
+        "decision": "high",
+        "source_semantics": "high",
+        "submitted_value_as_translation": "low"
+      },
+      "next_step": "Validate a wording that preserves solid/uniform fill as a graphics concept. Do not replace the English source with Fill only to rescue this translation. Any independently justified source change must precede an affected-languages review.",
+      "accepted_xml_element": null,
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ]
+    },
+    {
+      "key": "string/ui_fill_line",
+      "english": "Fill + line",
+      "source_sha256": "3d0baad6203dcecf8d84204642b82c6ef04ad625f60316c8becfef5b1d9d77c0",
+      "reviewed_xml_text": "\"መሙያ + መስመር\"",
+      "reviewed_xml_text_sha256": "25e20a9670eecd4892995ca1991b85da8f07ec229ff515af428109a1cd275c7a",
+      "decision": "retain",
+      "accepted_value": "መሙያ + መስመር",
+      "gloss": "fill + line",
+      "fidelity": "Both component nouns and the additive relationship are preserved. Here line is the shape border, not an instruction to fill a line. The English does not spell out foreground/background roles, so leaving those implicit is faithful rather than an omission introduced by translation.",
+      "idiom": "A concise noun-plus-noun UI label. The noun መሙያ matches a graphics-fill setting, and መስመር names a line; ASCII + and its surrounding spaces are preserved.",
+      "evidence": [
+        "LO svx messages.po lines 19823–19827 supports Fill → መሙያ.",
+        "LO svx messages.po lines 61–65 supports graphic-object Line → መስመር.",
+        "PaintDocument.kt lines 271–282: style 2 uses background interior plus foreground stroke."
+      ],
+      "confidence": {
+        "source_fidelity": "high",
+        "lexical_match": "high components, composed phrase",
+        "idiom": "medium-high"
+      },
+      "accepted_xml_element": "<string name=\"ui_fill_line\">\"መሙያ + መስመር\"</string>",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ]
+    },
+    {
+      "key": "string/ui_cursor_shape31",
+      "english": "Cursor shape",
+      "source_sha256": "8c3172c594e65504dad2497f27d483be36a566765d93efd336eb42177ae5d839",
+      "reviewed_xml_text": "\"የጠቋሚ ቅርጽ\"",
+      "reviewed_xml_text_sha256": "3c5546b5f76bad56b8335570705679331e035e38993ebf744dd7f7fbb7792cba",
+      "decision": "retain",
+      "accepted_value": "የጠቋሚ ቅርጽ",
+      "gloss": "pointer/cursor shape",
+      "fidelity": "Names the geometry of the drawing-position marker. The code changes cursorShape and overrides the overlay cap independently of brushTip; the label must not be rewritten as Brush shape or Image shape.",
+      "idiom": "The genitive compound follows the Android የጠቋሚ pattern and uses the attested shape noun ቅርጽ. A graphical pointer term is appropriate here, unlike a text-caret-only term. No competing Amharic cursor vocabulary appears among the 12 supplied production entries; wider pending proposals were outside this review.",
+      "evidence": [
+        "Android values-am/strings.xml lines 2020, 2077 and 5413 support pointer/stylus-pointer vocabulary paired with supplied English records.",
+        "LO svx messages.po lines 517–521 supports Shape → ቅርጽ.",
+        "ClassicPaintActivity.kt lines 1526–1538 uses this value as visible label and Spinner contentDescription. PaintCanvas.kt lines 292 and 371 passes independent cursorShape caps to the overlay."
+      ],
+      "confidence": {
+        "source_fidelity": "high",
+        "lexical_match": "medium-high components",
+        "idiom": "medium-high; composed phrase"
+      },
+      "accepted_xml_element": "<string name=\"ui_cursor_shape31\">\"የጠቋሚ ቅርጽ\"</string>",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L292-L292",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L371-L371",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L35-L41",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ]
+    }
+  ],
+  "consumer_qualification": "The shape-style contrast is conditional on a fill-capable shape. Open Polygon dispatches as PaintTool.LINE for preview (PaintCanvas.kt:276) and commit (445); PaintDocument.drawShape excludes LINE/CURVE from interior fill and always strokes them. Do not claim that choosing Solid fill fills an open polygon. This qualification is not an English-source defect finding.",
+  "source_gate": "No source change is proposed or silently incorporated. The two holds are translation-fidelity failures, not proof the English source is defective. If a source defect is later established, correct English, flag affected languages, then review them one by one.",
+  "evidence_quality": "Primary localization records demonstrate usage, not correctness or native acceptance. Nonfuzzy means the record is not marked fuzzy; it is not a quality certification. Round and Square have exact same-domain evidence; the other retained phrases are component-based compositions. Full source files were inspected at the pinned snapshot, not an exhaustive repository-wide consumer search.",
+  "scope_preserved": {
+    "prior_42_ready_and_prior_2_holds": "Not re-reviewed or changed. These seven decisions are a separate group.",
+    "production_presence": "All seven exact Amharic keys are missing in supplied production; no production changes.",
+    "author_holds": "Both remain held; neither submitted alternative is accepted.",
+    "excluded": "No Work task, builds, CI, release, external publication, or source-language edit."
+  },
+  "remaining_limits": [
+    "No native-speaker validation.",
+    "No runtime, glyph/layout, screen-reader or lifecycle acceptance.",
+    "No evidence of a project-wide approved cursor glossary beyond the supplied 12 current entries.",
+    "No unrelated Palette, Horizontal, Help, Crop or Fit-caption proposal was changed."
+  ]
+}

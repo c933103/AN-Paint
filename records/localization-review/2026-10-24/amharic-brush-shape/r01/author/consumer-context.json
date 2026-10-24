@@ -1,0 +1,116 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": [
+    {
+      "key": "string/ui_round",
+      "English": "Round",
+      "source_sha256": "cd9558acfc386bd3e1fb14da5d4ed7e9338f80fa29fc2447c36c94667c406295",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index0 tip choice for Brush/Watercolor/Eraser/Line. PaintDocument uses ROUND stroke cap when brushTip!=1 except Pencil, which is square regardless. Also index0 cursor-shape spinner sets cursorShape and overlay uses circle rather than square. Geometric round shape, not numeric rounding or round-trip.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L292-L292",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ]
+    },
+    {
+      "key": "string/ui_square",
+      "English": "Square",
+      "source_sha256": "c11092bc0861591e9ce5d9a97e83d4fae3c6954a318977865fa85f5b3eeafda8",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index1 brush-tip choice uses SQUARE stroke cap; also index1 cursor-shape spinner selects square marker outline. Shape noun/adjective, not squared number or area unit. Stroke joins remain ROUND, so this is not a promise of square joins at every path corner.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ]
+    },
+    {
+      "key": "string/ui_calligraphy",
+      "English": "Calligraphy",
+      "source_sha256": "3cd2e6d3387b873d6f9c9d9bab675806f3af7ea686b2fcc462ddf603cbcdc778",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index2 appears for Brush only, not Watercolor/Eraser/Line. PaintCanvas.stroke creates repeated diagonal short segments with quarter-width strokes to form a slanted/chisel-like brush mark. Not a font picker, text entry or automatic handwriting conversion.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L507-L526"
+      ]
+    },
+    {
+      "key": "string/ui_outline",
+      "English": "Outline",
+      "source_sha256": "eabbf3abaf8d98abb9763d83f29b04716524a9d697dfdd06ae3ed77bdd12c929",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index0 shapeStyle; drawShape skips interior fill and draws foreground path border. Offered for Rectangle, Polygon, Ellipse, Rounded rectangle, Heart, Star and Arrow. Polygon open/closed path state remains separate. Not a document outline/sidebar or text outline hierarchy.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ]
+    },
+    {
+      "key": "string/ui_solid_fill",
+      "English": "Solid fill",
+      "source_sha256": "0b099867389c4838fc7540af1a699d4f90dfdefb2ed1b43b866524fffd6b7640",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index1 shapeStyle fills path interior with foreground color and omits outline. Conventional uniform fill style, not separate flood-fill tool, pattern fill or an implementation guarantee about output alpha beyond inspected canvas behavior.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ]
+    },
+    {
+      "key": "string/ui_fill_line",
+      "English": "Fill + line",
+      "source_sha256": "3d0baad6203dcecf8d84204642b82c6ef04ad625f60316c8becfef5b1d9d77c0",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Index2 shapeStyle fills interior with background color then draws foreground border. Plus sign joins two simultaneous style components; not a single line drawing tool, arithmetic or a request to fill a line. Preserve + separator.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L789-L790",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L271-L282"
+      ]
+    },
+    {
+      "key": "string/ui_cursor_shape31",
+      "English": "Cursor shape",
+      "source_sha256": "8c3172c594e65504dad2497f27d483be36a566765d93efd336eb42177ae5d839",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Visible label and Spinner contentDescription for Round/Square cursor marker. Changing it updates cursorShape, invalidates view and schedules autosave; marker uses cap override to choose circular/square outline independently of brushTip. It does not itself change painted brush-tip shape or document geometry.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1526-L1538",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L292-L292",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L371-L371",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L35-L41",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintroidCursorOverlay.kt#L95-L112"
+      ]
+    }
+  ],
+  "shared_source_chain": "Tool options build addChoice arrays, index selection changes brushTip/shapeStyle; addChoice opens a single-choice dialog, invokes action and updates button text. Cursor spinner is a separate consumer of Round/Square and uses cursorShape, not brushTip. Complete relevant classes are included.",
+  "source_gate": "No canonical English-source defect established. Shape nouns/adjectives refer to geometry; Fill + line is combined border/interior style. No numeric units or format strings in selected keys.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717,
+    "prior_ready": 42,
+    "prior_held": 2,
+    "new_original_drafts": 7,
+    "new_independent_acceptances": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Eleven complete source files; exact fresh commit/tree/blob binding, not exhaustive repository consumer search.",
+    "No native-speaker, runtime, glyph/layout, screen-reader or lifecycle acceptance.",
+    "No source edits, Work task, app builds/tests, CI or release.",
+    "Prior42 ready and Crop/Fit-caption holds excluded; Palette uncertainty, optional Horizontal and held Help unchanged."
+  ]
+}

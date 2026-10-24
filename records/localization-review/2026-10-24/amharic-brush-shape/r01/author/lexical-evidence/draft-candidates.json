@@ -1,0 +1,55 @@
+[
+  {
+    "english": "Round",
+    "draft": "ክብ",
+    "confidence": "high lexical / draft only",
+    "rationale": "Exact nonfuzzy LibreOffice line cap Round, cui linetabpage|liststoreCAP_STYLE. Geometric round also fits cursor-marker choice. Not numeric rounding.",
+    "hold": "Native/contextual UI acceptance and visual fit remain untested."
+  },
+  {
+    "english": "Square",
+    "draft": "ስኴር",
+    "confidence": "high lexical / draft only",
+    "rationale": "Exact nonfuzzy LibreOffice line cap Square; svx STR_ObjNameSingulQUAD separately confirms square geometry. Not an area unit.",
+    "hold": "Loanword spelling follows verified UI source. Native preference versus an indigenous geometry expression remains untested; do not substitute a rectangle word."
+  },
+  {
+    "english": "Calligraphy",
+    "draft": "ሰያፍ ጭረት",
+    "confidence": "low-to-medium compositional / terminology HOLD",
+    "rationale": "Original descriptive phrase: diagonal/slanted stroke. LibreOffice STR_ObjNameSingulLINE_Diag supports ሰያፍ; Android pointer_stroke_style supports ጭረት as graphical stroke. Targets Brush-only repeated short slanted chisel marks, not font choice. No exact primary Calligraphy brush translation established.",
+    "hold": "Descriptive paraphrase, NOT an established translation for calligraphy. Native review must check whether singular stroke adequately names repeated short diagonal marks and whether calligraphic/chisel character is preserved. Do not treat this row as release-ready."
+  },
+  {
+    "english": "Outline",
+    "draft": "ድንበር ብቻ",
+    "confidence": "medium compositional / draft only",
+    "rationale": "Original border-only phrase. Primary LO Border → ድንበር; only → ብቻ is visible in LO page layout labels. Captures foreground border without fill. Avoids copying text-character Outline → ረቂቅ out of its context.",
+    "hold": "Native review and three-style contrast required; no exact full-phrase primary attestation."
+  },
+  {
+    "english": "Solid fill",
+    "draft": "መሙያ ብቻ",
+    "confidence": "medium compositional / draft only",
+    "rationale": "Original fill-only paraphrase emphasizes implemented absence of outline. LO graphics sidebar Fill → መሙያ; only → ብቻ. This does not claim Solid literally means only. Foreground fill is implicit in the control context.",
+    "alternative": "ሙሉ መሙያ",
+    "alternative_note": "Lexically nearer solid fill (LO Solid → ሙሉ) but does not explicitly distinguish no-outline behavior. Native reviewer should compare candidates.",
+    "hold": "Confirm intentional behavior-based paraphrase and clarity of foreground-only fill; no exact full-phrase primary attestation."
+  },
+  {
+    "english": "Fill + line",
+    "draft": "መሙያ + መስመር",
+    "confidence": "medium-high lexical components / draft only",
+    "rationale": "LO graphics Fill and Line supply both nouns. Literal ASCII + preserved with spaces. In application context this is background fill plus foreground border, NOT the same foreground-only fill as style1.",
+    "hold": "Short phrase does not encode color roles, just as English does not; native reviewer must inspect swatches/preview and contrast all three styles."
+  },
+  {
+    "english": "Cursor shape",
+    "draft": "የጠቋሚ ቅርጽ",
+    "confidence": "medium-high compositional / draft only",
+    "rationale": "Android uses የጠቋሚ in Pointer speed/color/stroke labels and ጠቋሚ for hovering pointer. LO Shape → ቅርጽ. Original combination names pointer geometry rather than image/bitmap shape.",
+    "alternative": "የመጠቆሚያ ቅርጽ",
+    "alternative_note": "LO Cursor Control and mouse pointer passages attest መጠቆሚያ. Prefer Android-style primary draft for this Android app, subject to surrounding terminology consistency.",
+    "hold": "Native review and consistency against existing cursor terminology required; no exact full-phrase primary attestation."
+  }
+]
