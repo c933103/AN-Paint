@@ -1,0 +1,233 @@
+{
+  "schema": "missing-text-style-label-author-draft-v1",
+  "date": "2026-10-24",
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "picker_order": 5,
+  "rows": [
+    {
+      "key": "string/ui_font",
+      "English": "Font",
+      "source_sha256": "64d0b3adcd2dbe33500fe9b96d2bc048601b19f4dc9db0d30f8648e156b583ad",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key",
+      "proposed_XML_text": "\"ቅርጸ ቁምፊ\"",
+      "proposed_XML_element": "<string name=\"ui_font\">\"ቅርጸ ቁምፊ\"</string>",
+      "proposed_XML_text_sha256": "923cc8af352ffacfa6084236ce1c0f136b154f690690229153b91b4cb414fea6",
+      "meaning": "Font/typeface",
+      "rationale": "Heading for the font selector, separate from Size(pixels). Use typography terminology rather than a word for text content or font size. The glossary Font core term uses ጸ, while its Font family entry uses ፀ. Preserve attested forms in this draft; ask independent review whether consistency normalization is warranted, not automatically impose one.",
+      "confidence": {
+        "semantic": "medium-high",
+        "UI_idiom": "medium",
+        "type": "AI author draft, not independent/native acceptance"
+      },
+      "direct_consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L37-L39",
+      "consumer_context": "FontCatalog builds system choices plus bundled non-ui-only faces; the label does not guarantee every selected font supports every glyph.",
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Check standard typography spelling and consistency with Font family; no size meaning should be introduced. Specifically adjudicate ጸ/ፀ spelling consistency with Font family.",
+      "English_source_correction_needed": false,
+      "status": "draft for independent checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_font_family",
+      "English": "Font family",
+      "source_sha256": "119ef3fa607e7c05ce8d693b7aeb64ce7ca4d18a655046c2d0f6a93d62c164f6",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key",
+      "proposed_XML_text": "\"የቅርፀ ቁምፊ ዝርያ\"",
+      "proposed_XML_element": "<string name=\"ui_font_family\">\"የቅርፀ ቁምፊ ዝርያ\"</string>",
+      "proposed_XML_text_sha256": "e0e05f548f05008ad8a9061789cc106422c6dedb1f550cc22ca16a17e7346d6b",
+      "meaning": "Font family",
+      "rationale": "Use the exact glossary family phrase; this is the accessibility name of the same selector, not a separate family-of-people concept or size field.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium",
+        "type": "AI author draft, not independent/native acceptance"
+      },
+      "direct_consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L38",
+      "consumer_context": "Spinner contentDescription identifies the selected typeface/family list. Explicit selection uses FontCatalog.face; default selection can choose a script fallback.",
+      "lexical_reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Confirm concise natural spoken control label and consistency with Font. This is wording review, not screen-reader validation.",
+      "English_source_correction_needed": false,
+      "status": "draft for independent checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_bold",
+      "English": "Bold",
+      "source_sha256": "94fee62e68e257c0313bd832f6fbf6079c9055865f2fd34ed1fef130eac595e9",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key",
+      "proposed_XML_text": "\"ማድመቂያ\"",
+      "proposed_XML_element": "<string name=\"ui_bold\">\"ማድመቂያ\"</string>",
+      "proposed_XML_text_sha256": "b466e4b29a889d9eafdd2dcf164e0289c141e54700c364a7a7be93c85fe3884f",
+      "meaning": "Bold formatting",
+      "rationale": "First-party software formatting noun/action-label suits a checkbox state. It refers to heavier typeface styling, not courage, brightness, selected-text highlighting or changing colour.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium",
+        "type": "AI author draft, not independent/native acceptance"
+      },
+      "direct_consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L49-L69",
+      "consumer_context": "Checkbox contributes Typeface.BOLD to style(); FontCatalog.faceForText returns the styled face used in preview and final document text.",
+      "lexical_reference_ids": [
+        "lo_bold",
+        "ict"
+      ],
+      "independent_check_question": "Check checkbox idiom and distinction from highlighting. Rendering may depend on selected typeface; no font-weight guarantee is added.",
+      "English_source_correction_needed": false,
+      "status": "draft for independent checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_italic",
+      "English": "Italic",
+      "source_sha256": "9bf37cb58a69445600badcc2eee6d537f07a8cd8cfba0d60ced0cac7302b2765",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key",
+      "proposed_XML_text": "\"ማዝመሚያ\"",
+      "proposed_XML_element": "<string name=\"ui_italic\">\"ማዝመሚያ\"</string>",
+      "proposed_XML_text_sha256": "b35b684f5511b04e8081ace55272f3a760f580a28b51887831ef6745a53459a6",
+      "meaning": "Italic formatting",
+      "rationale": "Use first-party formatting label for slanted/italic type, not an instruction to rotate the whole text block or use Italian language. Same function-label register as Bold.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium",
+        "type": "AI author draft, not independent/native acceptance"
+      },
+      "direct_consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L49-L69",
+      "consumer_context": "Checkbox contributes Typeface.ITALIC, combinable with BOLD; style is passed through faceForText to preview and final commit.",
+      "lexical_reference_ids": [
+        "lo_italic",
+        "ict"
+      ],
+      "independent_check_question": "Confirm italic-style idiom, distinct from independent text direction/glyph rotation. No guarantee of a genuine designed italic face versus synthesized style.",
+      "English_source_correction_needed": false,
+      "status": "draft for independent checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_underline",
+      "English": "Underline",
+      "source_sha256": "02f843261112c2d831b19d0410d4c154234c4d7124bc3861b6348ffc4b7f770e",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key",
+      "proposed_XML_text": "\"ከ ስሩ ማስመሪያ\"",
+      "proposed_XML_element": "<string name=\"ui_underline\">\"ከ ስሩ ማስመሪያ\"</string>",
+      "proposed_XML_text_sha256": "3161434075929833af23d2c53cb676a241eb6a57afda3bc20ea698ffedbc0093",
+      "meaning": "Underline formatting",
+      "rationale": "Attested first-party formatting label denotes a line under text, not a separate line-drawing tool. Retain the source-attested spacing rather than silently normalizing words.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium",
+        "type": "AI author draft, not independent/native acceptance"
+      },
+      "direct_consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L50-L75",
+      "consumer_context": "Checkbox sets TextSettings.underline and preview.underline. TextPreview and PaintDocument.text set Paint.isUnderlineText; VerticalText creates TextPaint from that Paint for layout/drawing.",
+      "lexical_reference_ids": [
+        "lo_effects",
+        "ict"
+      ],
+      "independent_check_question": "Check natural checkbox phrasing and spacing; underline follows shaped text, not an absolute bottom-of-screen annotation in all directions.",
+      "English_source_correction_needed": false,
+      "status": "draft for independent checking",
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_strikethrough",
+      "English": "Strikethrough",
+      "source_sha256": "9aabbcb2c18def7b323acbf89232f99a3ffbb63f03c9e2716bd629d4135756dd",
+      "current_Amharic_XML_text": null,
+      "current_status": "missing exact key",
+      "proposed_XML_text": "\"በላዩ ላይ መሰረዣ\"",
+      "proposed_XML_element": "<string name=\"ui_strikethrough\">\"በላዩ ላይ መሰረዣ\"</string>",
+      "proposed_XML_text_sha256": "aed63c6425019394711898376f424d0d5c9f0f30442143eef9e2af3d6ceedd6a",
+      "meaning": "Strikethrough formatting",
+      "rationale": "Use first-party text-decoration label rather than infer deletion from the everyday erasing sense. The checkbox marks text with a strike; it does not remove characters or erase canvas content.",
+      "confidence": {
+        "semantic": "medium-high",
+        "UI_idiom": "medium",
+        "type": "AI author draft, not independent/native acceptance"
+      },
+      "direct_consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L50-L75",
+      "consumer_context": "Checkbox sets TextSettings.strike and preview.strike. TextPreview/PaintDocument.text set Paint.isStrikeThruText; unchanged text goes through VerticalText layout.",
+      "lexical_reference_ids": [
+        "lo_effects",
+        "ict"
+      ],
+      "independent_check_question": "Explicitly check whether this attested term is clear as line-through rather than overline or deletion in AN Paint; do not accept by dictionary equivalence alone.",
+      "English_source_correction_needed": false,
+      "status": "draft for independent checking",
+      "independent_acceptance": null
+    }
+  ],
+  "lexical_references": {
+    "ict": {
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf",
+      "title": "ICT Development Office / Ethiopian Languages Research Center, Translation of ICT Terms into three major Ethiopian Languages",
+      "limits": "Primary-authored glossary on third-party mirror; text extraction, not visual PDF inspection; publication date not verified. Lexical definitions are not native or app acceptance.",
+      "exact_entries": {
+        "Font": "1283 printed p108: ቅርጸ ቁምፊ (core term, parenthetical explanation omitted)",
+        "Font family": "1287 printed p108: የቅርፀ ቁምፊ ዝርያ",
+        "alternatives": "Bold338 p27, Italic1563 p133, Strikethrough2494 p213, Underline2685–2686 p228; LibreOffice forms chosen for four style toggles."
+      }
+    },
+    "lo_bold": {
+      "url": "https://help.libreoffice.org/latest/am/text/shared/01/05110100.html",
+      "title": "LibreOffice Amharic Bold help",
+      "evidence": "Toolbar caption/title ማድመቂያ; surrounding prose describes toggled bold text.",
+      "limits": "First-party software terminology precedent, not AN Paint behavior or acceptance. Retrieved page has some English fallback and cached version25.2 header."
+    },
+    "lo_italic": {
+      "url": "https://help.libreoffice.org/latest/am/text/shared/01/05110200.html?DbPAR=WRITER&System=UNIX",
+      "title": "LibreOffice Amharic Italic help",
+      "evidence": "Title/toolbar caption ማዝመሚያ and formatting context.",
+      "limits": "First-party terminology precedent recovered in lexical research; separate repeat open cache-missed. No native/runtime acceptance."
+    },
+    "lo_effects": {
+      "url": "https://help.libreoffice.org/latest/am/text/shared/01/05020200.html",
+      "title": "LibreOffice Amharic Font Effects help",
+      "evidence": "Underline heading/caption ከ ስሩ ማስመሪያ; Strikethrough heading በላዩ ላይ መሰረዣ.",
+      "limits": "First-party formatting labels, partly English fallback page. Do not transfer Word export, word-only, extra line styles or other LibreOffice behavior to AN Paint."
+    },
+    "gtk_historical": {
+      "url": "https://raw.githubusercontent.com/GNOME/gtk/main/po/am.po",
+      "limits": "Header revision2003-01-14/template2010-10-01; all four stock style labels fuzzy. Not acceptance evidence or source of preferred draft."
+    }
+  },
+  "complete_consumer_chain": [
+    "TextStyleDialog.show constructs selector/checks; style/update supplies face and decoration to preview; commit supplies same settings and face.",
+    "ClassicPaintActivity.showTextDialog forwards face, underline and strike into PaintDocument.text.",
+    "PaintDocument.text preserves text content, creates styled Paint, checkpoints and invokes VerticalText.draw.",
+    "VerticalText.layout copies Paint to TextPaint; horizontal/vertical paths draw shaped layouts. Source-only path analysis, not proof of rendered appearance.",
+    "FontCatalog.faceForText retains explicit choices; default may choose script fallback. Font glyph coverage and synthetic style appearance not certified."
+  ],
+  "source_gate": "No English-source defect established for these six labels. If independent review establishes one, correct English in the proposed workflow and flag affected terms across all locales before translating; no silent code change.",
+  "exclusions": [
+    "12 existing Amharic resources and13 previously reviewed additions unchanged and nonoverlapping.",
+    "Palette uncertainty and optional Horizontal punctuation remain separate.",
+    "Font names, licences, hints, text direction/vertical orientation, size/spacing and complete composed accessibility excluded.",
+    "All held full Help, warnings and other optional/held scopes unchanged."
+  ],
+  "coverage": {
+    "current_present": 12,
+    "current_missing": 705,
+    "canonical_containers": 717,
+    "prior_reviewed_unimplemented_candidates": 13,
+    "new_drafts": 6,
+    "new_independent_acceptances": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "No production edits, app tests/builds, CI, release, remote publication or Work task.",
+    "Primary lexical/software terminology is evidence, not automatic contextual/native acceptance.",
+    "No rendering/layout/glyph-coverage/screen-reader certification.",
+    "Nine complete source files bind to fresh GitHub commit/tree paths; no reliance on stale local git metadata."
+  ]
+}

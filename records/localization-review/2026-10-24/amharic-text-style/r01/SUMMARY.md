@@ -1,0 +1,9 @@
+# Amharic text-style candidates: four retained, two revisions reconciled
+
+The author accepts both independent revisions explicitly: Font family becomes `"የቅርጸ ቁምፊ ዝርያ"` for local same-root consistency with Font; Underline becomes `"ከስሩ ማስመሪያ"` by joining the bound prefix. Four other values remain as drafted. Original draft and independent artifacts are preserved byte-exact in author/ and independent/; this is not six unchanged-draft approvals.
+
+The first change does not invalidate the attested alternative ፀ spelling, authorize catalogue-wide substitution, or constitute Unicode normalization. The second is an explicit orthographic recommendation grounded in the cited linguistic analysis, not a claim that the paper directly prescribes this UI label or that LibreOffice already uses the joined spelling. Confidence and contextual qualifications remain attached to every candidate. The independent review documents recovered visual glossary/style-guide inspection; the author's earlier screenshot limitation remains unchanged as historical evidence.
+
+Production binding is66be61df27c5359bffc32d56db21f3949899f873/tree870c5a584120d92710be516af0dc3b3847b183d9. All nine complete source files have independent exact-commit GitHub reads and byte/hash bindings. Immutable source URLs preserve access without duplicating large app files or redistributing external reference PDFs/images.
+
+Six reconciled text-style candidates join13 nonoverlapping drawing/editing candidates:19 accumulated, zero implemented. Production remains12 present/705 missing of717. The inherited nine-label review is separate. Palette unresolved, Horizontal punctuation optional, full Help and all other substantive holds remain unchanged. No source edits, Work task, app build/test, CI or release. No native-speaker, layout, glyph-coverage, runtime or full accessibility certification. This records-only branch must never be merged into application branches; all historical snapshots are preserved.

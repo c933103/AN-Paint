@@ -1,0 +1,164 @@
+{
+  "schema": "amharic-textstyle-independent-review-v1",
+  "date": "2026-10-24",
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "input_manifest_sha256": "ac4e39f97d763adf13f19623917b2125904fdd8f0e765d3aba22d7bc79b09d88",
+  "result": {
+    "retain": 4,
+    "revise": 2,
+    "hold": 0,
+    "implemented": 0,
+    "unchanged_original_drafts_retained": 4,
+    "revised_recommendations_to_reconcile": 2
+  },
+  "rows": [
+    {
+      "key": "string/ui_font",
+      "English": "Font",
+      "decision": "retain",
+      "original_XML_text": "\"ቅርጸ ቁምፊ\"",
+      "recommended_XML_text": "\"ቅርጸ ቁምፊ\"",
+      "recommended_XML_element": "<string name=\"ui_font\">\"ቅርጸ ቁምፊ\"</string>",
+      "recommended_XML_text_sha256": "923cc8af352ffacfa6084236ce1c0f136b154f690690229153b91b4cb414fea6",
+      "reason": "Direct glossary support for the typeface-selector heading; separate from size and text content.",
+      "confidence": {
+        "semantic": "high",
+        "UI_orthographic": "medium-high",
+        "type": "Independent evidence-based AI review, not native-speaker or implementation acceptance"
+      },
+      "consumer_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L37-L39",
+      "English_source_correction_needed": false,
+      "status": "original wording independently recommended to retain"
+    },
+    {
+      "key": "string/ui_font_family",
+      "English": "Font family",
+      "decision": "revise",
+      "original_XML_text": "\"የቅርፀ ቁምፊ ዝርያ\"",
+      "recommended_XML_text": "\"የቅርጸ ቁምፊ ዝርያ\"",
+      "recommended_XML_element": "<string name=\"ui_font_family\">\"የቅርጸ ቁምፊ ዝርያ\"</string>",
+      "recommended_XML_text_sha256": "b69156c228fcb9c16d1253635737f209d46a9c462d5cda03e11032de29ec5195",
+      "reason": "Explicit local consistency revision from U+1340 to U+1338 in the shared font root. The original form is attested; this is not a declaration that it is universally incorrect.",
+      "confidence": {
+        "semantic": "high",
+        "UI_orthographic": "medium",
+        "type": "Independent evidence-based AI review, not native-speaker or implementation acceptance"
+      },
+      "consumer_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L38",
+      "English_source_correction_needed": false,
+      "status": "review-recommended revision; author reconciliation pending"
+    },
+    {
+      "key": "string/ui_bold",
+      "English": "Bold",
+      "decision": "retain",
+      "original_XML_text": "\"ማድመቂያ\"",
+      "recommended_XML_text": "\"ማድመቂያ\"",
+      "recommended_XML_element": "<string name=\"ui_bold\">\"ማድመቂያ\"</string>",
+      "recommended_XML_text_sha256": "b466e4b29a889d9eafdd2dcf164e0289c141e54700c364a7a7be93c85fe3884f",
+      "reason": "Exact first-party formatting label and parallel function noun; source control contributes Typeface.BOLD rather than color or highlighting.",
+      "confidence": {
+        "semantic": "high",
+        "UI_orthographic": "medium-high",
+        "type": "Independent evidence-based AI review, not native-speaker or implementation acceptance"
+      },
+      "consumer_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L49-L69",
+      "English_source_correction_needed": false,
+      "status": "original wording independently recommended to retain"
+    },
+    {
+      "key": "string/ui_italic",
+      "English": "Italic",
+      "decision": "retain",
+      "original_XML_text": "\"ማዝመሚያ\"",
+      "recommended_XML_text": "\"ማዝመሚያ\"",
+      "recommended_XML_element": "<string name=\"ui_italic\">\"ማዝመሚያ\"</string>",
+      "recommended_XML_text_sha256": "b35b684f5511b04e8081ace55272f3a760f580a28b51887831ef6745a53459a6",
+      "reason": "Exact first-party formatting label and parallel function noun; source control contributes Typeface.ITALIC rather than object rotation or language selection.",
+      "confidence": {
+        "semantic": "high",
+        "UI_orthographic": "medium-high",
+        "type": "Independent evidence-based AI review, not native-speaker or implementation acceptance"
+      },
+      "consumer_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L49-L69",
+      "English_source_correction_needed": false,
+      "status": "original wording independently recommended to retain"
+    },
+    {
+      "key": "string/ui_underline",
+      "English": "Underline",
+      "decision": "revise",
+      "original_XML_text": "\"ከ ስሩ ማስመሪያ\"",
+      "recommended_XML_text": "\"ከስሩ ማስመሪያ\"",
+      "recommended_XML_element": "<string name=\"ui_underline\">\"ከስሩ ማስመሪያ\"</string>",
+      "recommended_XML_text_sha256": "41515b993a4c6040bf107b695dbc7cf21853b2fe705eb6352b024f75aef79b9d",
+      "reason": "Keep lexical phrase but join bound ከ- to its host. This is an orthographic recommendation informed by primary morphology research, not an exact-string prescription in that paper.",
+      "confidence": {
+        "semantic": "high",
+        "UI_orthographic": "medium",
+        "type": "Independent evidence-based AI review, not native-speaker or implementation acceptance"
+      },
+      "consumer_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L50-L75",
+      "English_source_correction_needed": false,
+      "status": "review-recommended revision; author reconciliation pending"
+    },
+    {
+      "key": "string/ui_strikethrough",
+      "English": "Strikethrough",
+      "decision": "retain",
+      "original_XML_text": "\"በላዩ ላይ መሰረዣ\"",
+      "recommended_XML_text": "\"በላዩ ላይ መሰረዣ\"",
+      "recommended_XML_element": "<string name=\"ui_strikethrough\">\"በላዩ ላይ መሰረዣ\"</string>",
+      "recommended_XML_text_sha256": "aed63c6425019394711898376f424d0d5c9f0f30442143eef9e2af3d6ceedd6a",
+      "reason": "First-party formatting page distinguishes this label from overline; source sets strike-through decoration without deleting text. Context-sensitive everyday erasing sense limits idiom confidence.",
+      "confidence": {
+        "semantic": "medium-high",
+        "UI_orthographic": "medium",
+        "type": "Independent evidence-based AI review, not native-speaker or implementation acceptance"
+      },
+      "consumer_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L50-L75",
+      "English_source_correction_needed": false,
+      "status": "original wording independently recommended to retain"
+    }
+  ],
+  "limitations": [
+    "No native-speaker certification.",
+    "No app build/test, rendering, layout, screen-reader or glyph-coverage certification.",
+    "No production edits, remote publication or Work-side task.",
+    "Two target-language editorial changes, no English-source defect.",
+    "Earlier thirteen additions and all held scopes remain separate."
+  ],
+  "full_review": "REVIEW.md",
+  "sources": [
+    {
+      "id": "ict",
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf",
+      "qualification": "Primary-authored glossary on third-party mirror. Page 108 visually verified. Publication date not established."
+    },
+    {
+      "id": "lo_bold",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/01/05110100.html",
+      "qualification": "Exact first-party formatting label independently reopened; some English fallback."
+    },
+    {
+      "id": "lo_italic",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/01/05110200.html?DbPAR=WRITER&System=UNIX",
+      "qualification": "Query-parameter URL independently reopened successfully after bare URL cache miss."
+    },
+    {
+      "id": "lo_effects",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/01/05020200.html",
+      "qualification": "Independent reopening confirms separate overline, strikethrough and underline sections; some English fallback."
+    },
+    {
+      "id": "ms_checkbox",
+      "url": "https://download.microsoft.com/download/6/2/a/62a993f1-d3b2-4f28-b3e7-22965eb91426/amh-eth-styleguide.pdf#page=42",
+      "qualification": "Historical 2011 Microsoft-specific guide. Page 42 downloaded/rendered and visually verified; English checkbox guideline supports noun or conjugated-verb register. Amharic text extraction unreliable."
+    },
+    {
+      "id": "baker_kramer_2014",
+      "url": "https://sites.rutgers.edu/mark-baker/wp-content/uploads/sites/199/2019/07/amharic-preps-as-case-offprint.pdf#page=6",
+      "qualification": "Primary linguistic paper, section 3 and example 13: bound prefix and under-expression evidence. Joined UI spelling is reviewer inference, not an exact phrase prescribed by the paper."
+    }
+  ]
+}
