@@ -1,0 +1,13 @@
+# Bucket fill: final held caption in this cohort released
+
+Author reconciliation accepts RELEASE_UNCHANGED for **ui_bucket_fill**, English **Bucket fill**, exact **ቀለም መሙያ**. The [original selection-tools hold](https://github.com/c933103/AN-Paint/tree/f3ce344991cbf95a1e629386c39723b9da537fec/records/localization-review/2026-10-24/amharic-selection-tools/r01) remains historical evidence, not overwritten.
+
+The new Tux Paint same-operation active historical instruction/source and current tool caption supply flood-fill vocabulary missing from the original property-only evidence. Instrumental grammar and the exact compact LibreOffice phrase support contextual colour-filling-tool interpretation. Current fuzzy/obsolete instructions are not current acceptance evidence; versions of one translation are not separate authorities.
+
+LibreOffice's exact Fillcolor property use remains genuine counterevidence: the phrase is not exclusively tool-specific, and residual ambiguity is not erased. The independent judgment accepts the whole caption in its verified primary-tool role at medium-high functional fidelity and medium contemporary/standalone-accessible idiom. No exact earlier bucket-caption match or native-reader certification is claimed. Alternatives remain unselected, not automatically wrong.
+
+Actual source fills the orthogonally seed-connected RGBA-matching region, not disconnected colour occurrences globally. Foreground is forced opaque, tolerance is not area percent, and choosing/reselecting any tool may commit pending floating work. This caption decision does not accept surrounding hints/status strings, runtime behavior, rendering or speech. No English defect is established.
+
+Source binding: 66be61df27c5359bffc32d56db21f3949899f873, tree 870c5a584120d92710be516af0dc3b3847b183d9, independently refreshed by the adjudicator. Apply this one decision once: **108 reviewed ready additions, zero held proposals, zero implemented IN THIS 108-KEY COHORT ONLY**. This is not completion or zero holds for the whole language or programme. Inherited-label uncertainties, other programme holds and unreviewed coverage remain separate. Pending original 90-value implementation batch stays exactly unchanged; this candidate is one of 18 additional cohort keys outside it. Production remains 12 present / 705 missing of 717 canonical containers.
+
+Only the two permitted independent artifacts, this reconciliation and public-only manifest/seal are published. Local-only material and metadata are intentionally omitted. Prior records/history/index entries preserved. No new translation groups, Work task, production edits, builds, tests, CI, release or application acceptance.
