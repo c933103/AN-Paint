@@ -1,0 +1,48 @@
+{
+  "source_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "source_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": {
+    "ui_search34": {
+      "meaning": "Shared gallery search action button and generic search-field hint/caption. The same noun-style label can name the field and action. Query is trimmed, limited to512characters and empty query does nothing. Provider-specific behavior: Catrobat finds text in current WebView page; Openclipart navigates to search URL; Commons searches within Blank maps; Irasutoya submits its search form or reloads home with pending query.",
+      "complete_context": [
+        "MediaGalleryActivity.kt: onCreate searchLabel, searchNow and onPageFinished pending search",
+        "GalleryControls.kt: galleryButton and gallerySearchField",
+        "IllustrationSource.kt: provider identities and home URLs",
+        "IllustrationPage.kt: searchIrasutoya"
+      ],
+      "qualification": "Not only remote internet search or only local search; no promise of results. Irasutoya field uses a separate Search in English or Japanese key, outside scope; common Search action is still this key. Vertical visible field caption branch is not proof Amharic takes that branch."
+    },
+    "ui_gallery_back34": {
+      "meaning": "Content description of arrow navigation button. Click goes back in WebView history when possible; otherwise loads selected provider home. Arrow orientation follows horizontal layout direction.",
+      "complete_context": [
+        "MediaGalleryActivity.kt: gallery_navigation backArrow and button callback",
+        "GalleryControls.kt: galleryButton"
+      ],
+      "qualification": "Not Undo, not close gallery or application, not always previous page because history-empty fallback loads home. Android system back handler is separate and may exit; do not transfer that meaning to this label. No spoken/accessibility acceptance is claimed."
+    },
+    "ui_copy_all": {
+      "meaning": "Generic full-text copy command across three consumers. Gallery copies all nonblank stored document-credit texts joined with blank lines, or shows no-credit notice when empty. Save-options credits panel copies its complete supplied credit text. Legal/notices dialog copies the entire displayed text parameter, not just selected/visible viewport text.",
+      "complete_context": [
+        "MediaGalleryActivity.kt: gallery_copy_credits callback",
+        "SaveOptionsDialog.kt: export_copy_credits callback",
+        "GalleryCredits.kt: copy/publishClipboard error handling",
+        "ImageCredit.kt: text aggregation",
+        "LegalInfo.kt: termsDialog terms_copy callback"
+      ],
+      "qualification": "Not Copy all images/files, not only image-credit text, not Select all, not transfer to remote recipient. Clipboard copy requests can fail; label is not completion guarantee. Does not itself save unsaved credit-editor drafts. Complete legal text is not being translated in this group."
+    },
+    "ui_choose_location": {
+      "meaning": "Positive action in shared save/export/share options dialog. Validates filename, constructs SaveRequest with format/settings/name, invokes caller, then dismisses options. Caller launches Android ACTION_CREATE_DOCUMENT with MIME and suggested filename so user chooses output destination. Invalid name leaves form open with field error.",
+      "complete_context": [
+        "SaveOptionsDialog.kt: show dialog positive callback, ExportNames.valid/withExtension",
+        "ClassicPaintActivity.kt: showSaveOptions confirm, chooseSaveLocation, launchPicker"
+      ],
+      "qualification": "Location means file storage destination, not geographic location/device location access. It is not Save now: destination picker selection and encoding/write still follow. Preserve U+2026. No guarantee of chooser availability or save success."
+    }
+  },
+  "no_source_defect_established": true,
+  "limits": [
+    "Static bounded source inspection only, no runtime/native-reader/rendering/accessibility certification.",
+    "Prior77ready/12held and implementation status unchanged."
+  ]
+}

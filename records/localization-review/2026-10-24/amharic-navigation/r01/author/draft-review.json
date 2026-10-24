@@ -1,0 +1,216 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_search34",
+      "English": "Search",
+      "source_attributes": {
+        "name": "ui_search34",
+        "formatted": "false"
+      },
+      "source_sha256": "49c266baaaa70981ea188fa714d5c40cf13830d786a861c9943ae0d26a7f3fe9",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "proposed_XML_text": "\"ፍለጋ\"",
+      "proposed_XML_text_sha256": "bc82edbe33d4cac27e48940e392a44a58b30aaf132b4551e3e26e2e303bceb46",
+      "proposed_XML_element": "<string name=\"ui_search34\">\"ፍለጋ\"</string>",
+      "rationale": {
+        "key": "ui_search34",
+        "english": "Search",
+        "proposed_value": "ፍለጋ",
+        "status": "draft_only",
+        "confidence": "moderate-high lexical; context review pending",
+        "evidence_ids": [
+          "android-gallery2:menu_search",
+          "android-settings:search_settings",
+          "android-settings:print_menu_item_search"
+        ],
+        "rationale": "Exact AOSP Search label. Noun-style form accommodates both field hint/caption and action button, including provider web search and Catrobat in-page find.",
+        "alternatives": [
+          {
+            "value": "ፈልግ",
+            "evidence_ids": [
+              "android-settings:locale_search_menu"
+            ],
+            "limit": "Imperative AOSP alternative; less neutral as a shared field hint."
+          }
+        ],
+        "limits": [
+          "No native-reader or screen-reader review. No claim that AOSP context exactly matches every AN-Paint consumer."
+        ],
+        "value": "ፍለጋ"
+      },
+      "consumer_context": {
+        "meaning": "Shared gallery search action button and generic search-field hint/caption. The same noun-style label can name the field and action. Query is trimmed, limited to512characters and empty query does nothing. Provider-specific behavior: Catrobat finds text in current WebView page; Openclipart navigates to search URL; Commons searches within Blank maps; Irasutoya submits its search form or reloads home with pending query.",
+        "complete_context": [
+          "MediaGalleryActivity.kt: onCreate searchLabel, searchNow and onPageFinished pending search",
+          "GalleryControls.kt: galleryButton and gallerySearchField",
+          "IllustrationSource.kt: provider identities and home URLs",
+          "IllustrationPage.kt: searchIrasutoya"
+        ],
+        "qualification": "Not only remote internet search or only local search; no promise of results. Irasutoya field uses a separate Search in English or Japanese key, outside scope; common Search action is still this key. Vertical visible field caption branch is not proof Amharic takes that branch."
+      },
+      "confidence": "moderate-high lexical; context review pending",
+      "author_status": "draft for independent review, not accepted"
+    },
+    {
+      "key": "string/ui_gallery_back34",
+      "English": "Back",
+      "source_attributes": {
+        "name": "ui_gallery_back34",
+        "formatted": "false"
+      },
+      "source_sha256": "76900f1bfd16c8d4dd3d25e6f46638d7165aee23883ccea6bfe071c514421769",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "proposed_XML_text": "\"ተመለስ\"",
+      "proposed_XML_text_sha256": "3a607f2fd1f1ec14cfb2c6061bbfb071bdfb27abc9325506af5024ab7e90872a",
+      "proposed_XML_element": "<string name=\"ui_gallery_back34\">\"ተመለስ\"</string>",
+      "rationale": {
+        "key": "ui_gallery_back34",
+        "english": "Back",
+        "proposed_value": "ተመለስ",
+        "status": "draft_only",
+        "confidence": "moderate-high lexical; context review pending",
+        "evidence_ids": [
+          "android-settings:wizard_back"
+        ],
+        "rationale": "Exact AOSP navigation command, interpreted as return/back. Suitable draft for arrow contentDescription that navigates web history or returns to provider home; not Undo or close application.",
+        "alternatives": [
+          {
+            "value": "ወደ ኋላ",
+            "evidence_ids": [
+              "libreoffice-am-ui:L37916"
+            ],
+            "limit": "Exact LibreOffice navigation label; alternative, not additional approval of chosen form."
+          }
+        ],
+        "limits": [
+          "Gallery2 rear-camera Back is explicitly excluded as positive navigation evidence.",
+          "Actual screen-reader announcement remains untested."
+        ],
+        "value": "ተመለስ"
+      },
+      "consumer_context": {
+        "meaning": "Content description of arrow navigation button. Click goes back in WebView history when possible; otherwise loads selected provider home. Arrow orientation follows horizontal layout direction.",
+        "complete_context": [
+          "MediaGalleryActivity.kt: gallery_navigation backArrow and button callback",
+          "GalleryControls.kt: galleryButton"
+        ],
+        "qualification": "Not Undo, not close gallery or application, not always previous page because history-empty fallback loads home. Android system back handler is separate and may exit; do not transfer that meaning to this label. No spoken/accessibility acceptance is claimed."
+      },
+      "confidence": "moderate-high lexical; context review pending",
+      "author_status": "draft for independent review, not accepted"
+    },
+    {
+      "key": "string/ui_copy_all",
+      "English": "Copy all",
+      "source_attributes": {
+        "name": "ui_copy_all"
+      },
+      "source_sha256": "96e3f09a5f1676285121e60625065bd7d9b3e021b8a9643fe1dcc6f653d10ebe",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "proposed_XML_text": "\"ሁሉንም ቅዳ\"",
+      "proposed_XML_text_sha256": "ea1241e2479ff9ce6fdd79047f8c9a171e02071c63b421f3f3ea9f083d2caae7",
+      "proposed_XML_element": "<string name=\"ui_copy_all\">\"ሁሉንም ቅዳ\"</string>",
+      "rationale": {
+        "key": "ui_copy_all",
+        "english": "Copy all",
+        "proposed_value": "ሁሉንም ቅዳ",
+        "status": "draft_only_unvalidated_composition",
+        "confidence": "medium component semantics; composed full command requires independent review",
+        "evidence_ids": [
+          "libreoffice-am-ui:L22435",
+          "libreoffice-am-ui:L23636",
+          "android-settings:select_all"
+        ],
+        "rationale": "Original composition of attested ሁሉንም (all) and LibreOffice ኮፒ ማድረጊያ (copy operation). Generic complete-content action, applicable to both image credits and displayed legal/notices text. Does not narrow the object to images, credits, or files.",
+        "limits": [
+          "No exact Copy all source phrase found. Full proposed phrase is not quoted from upstream.",
+          "Longer nominal command may be less idiomatic than an imperative; native-reader review must choose final register and brevity.",
+          "Does not mean select all, copy all files, or copy all images."
+        ],
+        "value": "ሁሉንም ቅዳ",
+        "author_addendum": "See author-copy-all-addendum.json. Helper nominal proposal retained unchanged in lexical-evidence, not selected by author."
+      },
+      "consumer_context": {
+        "meaning": "Generic full-text copy command across three consumers. Gallery copies all nonblank stored document-credit texts joined with blank lines, or shows no-credit notice when empty. Save-options credits panel copies its complete supplied credit text. Legal/notices dialog copies the entire displayed text parameter, not just selected/visible viewport text.",
+        "complete_context": [
+          "MediaGalleryActivity.kt: gallery_copy_credits callback",
+          "SaveOptionsDialog.kt: export_copy_credits callback",
+          "GalleryCredits.kt: copy/publishClipboard error handling",
+          "ImageCredit.kt: text aggregation",
+          "LegalInfo.kt: termsDialog terms_copy callback"
+        ],
+        "qualification": "Not Copy all images/files, not only image-credit text, not Select all, not transfer to remote recipient. Clipboard copy requests can fail; label is not completion guarantee. Does not itself save unsaved credit-editor drafts. Complete legal text is not being translated in this group."
+      },
+      "confidence": "medium component semantics; composed full command requires independent review",
+      "author_status": "draft for independent review, not accepted"
+    },
+    {
+      "key": "string/ui_choose_location",
+      "English": "Choose location…",
+      "source_attributes": {
+        "name": "ui_choose_location"
+      },
+      "source_sha256": "d28071c7d3275e14df0c481ed9827ee0c5add9c3b923a945afb723d0b1471ccd",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "proposed_XML_text": "\"የማስቀመጫ ቦታ ይምረጡ…\"",
+      "proposed_XML_text_sha256": "b490e9f8a97706a1df94b0b026b5b4b33d26fef1dd6734c6acdd395e149e3a02",
+      "proposed_XML_element": "<string name=\"ui_choose_location\">\"የማስቀመጫ ቦታ ይምረጡ…\"</string>",
+      "rationale": {
+        "key": "ui_choose_location",
+        "english": "Choose location…",
+        "proposed_value": "የማስቀመጫ ቦታ ይምረጡ…",
+        "status": "draft_only_unvalidated_composition",
+        "confidence": "low-moderate; context-explicit composition requires Amharic review",
+        "evidence_ids": [
+          "libreoffice-am-cui:L11921",
+          "libreoffice-am-cui:L10126"
+        ],
+        "rationale": "Original composition intended as choose a saving place/destination. Uses source-attested save-related ማስቀመጫ and selection imperative ይምረጡ; adding የ and ቦታ is author synthesis, not an exact upstream phrase. Explicit save qualifier avoids geographic-location meaning. Keeps single U+2026 ellipsis indicating the destination picker opens after name validation.",
+        "alternatives": [
+          {
+            "value": "መንገድ ይምረጡ…",
+            "evidence_ids": [
+              "libreoffice-am-cui:L11921"
+            ],
+            "limit": "Exact Select Path plus added ellipsis, but path may overemphasize technical filesystem paths and is not necessarily Android picker terminology."
+          }
+        ],
+        "limits": [
+          "No exact Choose location source phrase found.",
+          "Do not substitute geographic/GPS Location terminology based solely on English match.",
+          "No claim that የማስቀመጫ ቦታ is an attested complete phrase in the copied corpus.",
+          "Native-reader review should confirm grammar, register, destination meaning, and fit."
+        ],
+        "value": "የማስቀመጫ ቦታ ይምረጡ…"
+      },
+      "consumer_context": {
+        "meaning": "Positive action in shared save/export/share options dialog. Validates filename, constructs SaveRequest with format/settings/name, invokes caller, then dismisses options. Caller launches Android ACTION_CREATE_DOCUMENT with MIME and suggested filename so user chooses output destination. Invalid name leaves form open with field error.",
+        "complete_context": [
+          "SaveOptionsDialog.kt: show dialog positive callback, ExportNames.valid/withExtension",
+          "ClassicPaintActivity.kt: showSaveOptions confirm, chooseSaveLocation, launchPicker"
+        ],
+        "qualification": "Location means file storage destination, not geographic location/device location access. It is not Save now: destination picker selection and encoding/write still follow. Preserve U+2026. No guarantee of chooser availability or save success."
+      },
+      "confidence": "low-moderate; context-explicit composition requires Amharic review",
+      "author_status": "draft for independent review, not accepted"
+    }
+  ],
+  "prior_status": {
+    "ready": 77,
+    "held": 12,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "containers": 717
+  },
+  "no_source_defect_established": true
+}

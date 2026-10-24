@@ -1,0 +1,100 @@
+[
+  {
+    "key": "ui_search34",
+    "english": "Search",
+    "proposed_value": "ፍለጋ",
+    "status": "draft_only",
+    "confidence": "moderate-high lexical; context review pending",
+    "evidence_ids": [
+      "android-gallery2:menu_search",
+      "android-settings:search_settings",
+      "android-settings:print_menu_item_search"
+    ],
+    "rationale": "Exact AOSP Search label. Noun-style form accommodates both field hint/caption and action button, including provider web search and Catrobat in-page find.",
+    "alternatives": [
+      {
+        "value": "ፈልግ",
+        "evidence_ids": [
+          "android-settings:locale_search_menu"
+        ],
+        "limit": "Imperative AOSP alternative; less neutral as a shared field hint."
+      }
+    ],
+    "limits": [
+      "No native-reader or screen-reader review. No claim that AOSP context exactly matches every AN-Paint consumer."
+    ],
+    "value": "ፍለጋ"
+  },
+  {
+    "key": "ui_gallery_back34",
+    "english": "Back",
+    "proposed_value": "ተመለስ",
+    "status": "draft_only",
+    "confidence": "moderate-high lexical; context review pending",
+    "evidence_ids": [
+      "android-settings:wizard_back"
+    ],
+    "rationale": "Exact AOSP navigation command, interpreted as return/back. Suitable draft for arrow contentDescription that navigates web history or returns to provider home; not Undo or close application.",
+    "alternatives": [
+      {
+        "value": "ወደ ኋላ",
+        "evidence_ids": [
+          "libreoffice-am-ui:L37916"
+        ],
+        "limit": "Exact LibreOffice navigation label; alternative, not additional approval of chosen form."
+      }
+    ],
+    "limits": [
+      "Gallery2 rear-camera Back is explicitly excluded as positive navigation evidence.",
+      "Actual screen-reader announcement remains untested."
+    ],
+    "value": "ተመለስ"
+  },
+  {
+    "key": "ui_copy_all",
+    "english": "Copy all",
+    "proposed_value": "ሁሉንም ኮፒ ማድረጊያ",
+    "status": "draft_only_unvalidated_composition",
+    "confidence": "low-moderate; composed phrase requires Amharic review",
+    "evidence_ids": [
+      "libreoffice-am-ui:L22435",
+      "libreoffice-am-ui:L23636",
+      "android-settings:select_all"
+    ],
+    "rationale": "Original composition of attested ሁሉንም (all) and LibreOffice ኮፒ ማድረጊያ (copy operation). Generic complete-content action, applicable to both image credits and displayed legal/notices text. Does not narrow the object to images, credits, or files.",
+    "limits": [
+      "No exact Copy all source phrase found. Full proposed phrase is not quoted from upstream.",
+      "Longer nominal command may be less idiomatic than an imperative; native-reader review must choose final register and brevity.",
+      "Does not mean select all, copy all files, or copy all images."
+    ],
+    "value": "ሁሉንም ኮፒ ማድረጊያ"
+  },
+  {
+    "key": "ui_choose_location",
+    "english": "Choose location…",
+    "proposed_value": "የማስቀመጫ ቦታ ይምረጡ…",
+    "status": "draft_only_unvalidated_composition",
+    "confidence": "low-moderate; context-explicit composition requires Amharic review",
+    "evidence_ids": [
+      "libreoffice-am-cui:L11921",
+      "libreoffice-am-cui:L10126"
+    ],
+    "rationale": "Original composition intended as choose a saving place/destination. Uses source-attested save-related ማስቀመጫ and selection imperative ይምረጡ; adding የ and ቦታ is author synthesis, not an exact upstream phrase. Explicit save qualifier avoids geographic-location meaning. Keeps single U+2026 ellipsis indicating the destination picker opens after name validation.",
+    "alternatives": [
+      {
+        "value": "መንገድ ይምረጡ…",
+        "evidence_ids": [
+          "libreoffice-am-cui:L11921"
+        ],
+        "limit": "Exact Select Path plus added ellipsis, but path may overemphasize technical filesystem paths and is not necessarily Android picker terminology."
+      }
+    ],
+    "limits": [
+      "No exact Choose location source phrase found.",
+      "Do not substitute geographic/GPS Location terminology based solely on English match.",
+      "No claim that የማስቀመጫ ቦታ is an attested complete phrase in the copied corpus.",
+      "Native-reader review should confirm grammar, register, destination meaning, and fit."
+    ],
+    "value": "የማስቀመጫ ቦታ ይምረጡ…"
+  }
+]

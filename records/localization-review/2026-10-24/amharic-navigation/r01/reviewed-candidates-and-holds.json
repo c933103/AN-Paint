@@ -1,0 +1,158 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "author_reconciliation": "Accept all four exact author values unchanged. Choose location retains polite/plural selection imperative, unlike singular Back/Copy all; no uniform-register claim. Copy all is independently judged composition, not transferred acceptance.",
+  "ready_reviewed_candidates": [
+    {
+      "key": "string/ui_search34",
+      "english": "Search",
+      "value": "ፍለጋ",
+      "verdict": "retain",
+      "fidelity": "The noun search labels an operation or field without restricting it to online search, image search, or in-page text search. It therefore covers all inspected consumers.",
+      "register_and_idiom": "Established concise noun-style UI label. Prefer it to the otherwise valid imperative ፈልግ for this shared hint/caption/action resource. A noun label need not be converted to an imperative merely because some consumers are buttons.",
+      "evidence": [
+        "android-gallery2:menu_search",
+        "android-settings:search_settings",
+        "android-settings:print_menu_item_search"
+      ],
+      "context_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L129-L160",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryControls.kt#L94-L110"
+      ],
+      "rejected_inferences": [
+        "The label does not promise successful search results.",
+        "The separate Irasutoya English/Japanese hint is not translated by this resource.",
+        "A vertical caption branch does not establish that Amharic uses it."
+      ],
+      "confidence": "high for bounded text/context fit; no runtime or native-reader certification",
+      "source_sha256": "49c266baaaa70981ea188fa714d5c40cf13830d786a861c9943ae0d26a7f3fe9",
+      "candidate_XML_text": "\"ፍለጋ\"",
+      "candidate_XML_text_sha256": "bc82edbe33d4cac27e48940e392a44a58b30aaf132b4551e3e26e2e303bceb46",
+      "author_reconciliation": "Accept unchanged with all composition, evidence and register qualifications."
+    },
+    {
+      "key": "string/ui_gallery_back34",
+      "english": "Back",
+      "value": "ተመለስ",
+      "verdict": "retain",
+      "fidelity": "The return/back imperative describes backward history navigation and the provider-home fallback. It does not say Undo, close, or previous page only.",
+      "register_and_idiom": "Concise singular imperative attested for an actual AOSP wizard navigation button. Appropriate text for the arrow content description; spoken delivery remains untested.",
+      "evidence": [
+        "android-settings:wizard_back"
+      ],
+      "context_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L123-L128"
+      ],
+      "alternatives": [
+        {
+          "value": "ወደ ኋላ",
+          "status": "documented navigation alternative, not a required replacement",
+          "evidence": "libreoffice-am-ui:L37916"
+        }
+      ],
+      "rejected_inferences": [
+        "Gallery2 rear-facing-camera Back is not supporting navigation evidence.",
+        "The separate Android system-back behavior is not the labeled arrow callback."
+      ],
+      "confidence": "high for bounded text/context fit; no spoken-accessibility certification",
+      "source_sha256": "76900f1bfd16c8d4dd3d25e6f46638d7165aee23883ccea6bfe071c514421769",
+      "candidate_XML_text": "\"ተመለስ\"",
+      "candidate_XML_text_sha256": "3a607f2fd1f1ec14cfb2c6061bbfb071bdfb27abc9325506af5024ab7e90872a",
+      "author_reconciliation": "Accept unchanged with all composition, evidence and register qualifications."
+    },
+    {
+      "key": "string/ui_copy_all",
+      "english": "Copy all",
+      "value": "ሁሉንም ቅዳ",
+      "verdict": "retain",
+      "fidelity": "The all-object expression followed by the copy imperative preserves the complete-content scope without inventing an object such as images, files, or credits. Legal/notices and both credits consumers are covered.",
+      "register_and_idiom": "ሁሉንም functions as the all/everything object and ቅዳ as the copy command. This is an ordinary concise object-plus-imperative construction, matching the short-command register of Back. The fuller nominal helper candidate is unnecessary; it is not the selected draft.",
+      "evidence": [
+        "android-settings:select_all",
+        "author-copy-all-addendum:ICT glossary entry 702 contrasted with 703, visually rechecked at identical PDF hash"
+      ],
+      "context_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L107-L110",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L122-L140",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L82-L103",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L47-L59",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCredit.kt#L8-L22"
+      ],
+      "composition_status": "New full-phrase composition. No exact Copy all match and no prior Copy acceptance is transferred. The independent judgment is based on component roles, ordinary syntax, and all three complete-content consumers.",
+      "unselected_helper": "ሁሉንም ኮፒ ማድረጊያ",
+      "rejected_inferences": [
+        "All is not select all.",
+        "The operation does not copy images/files, save an open unsaved credit-editor draft, or transmit to a remote recipient.",
+        "An action label is not a success message."
+      ],
+      "confidence": "moderate-high for this bounded composition; no native-reader or runtime certification",
+      "source_sha256": "96e3f09a5f1676285121e60625065bd7d9b3e021b8a9643fe1dcc6f653d10ebe",
+      "candidate_XML_text": "\"ሁሉንም ቅዳ\"",
+      "candidate_XML_text_sha256": "ea1241e2479ff9ce6fdd79047f8c9a171e02071c63b421f3f3ea9f083d2caae7",
+      "author_reconciliation": "Accept unchanged with all composition, evidence and register qualifications."
+    },
+    {
+      "key": "string/ui_choose_location",
+      "english": "Choose location…",
+      "value": "የማስቀመጫ ቦታ ይምረጡ…",
+      "verdict": "retain",
+      "fidelity": "The phrase asks the user to choose a saving/storage place. The save qualifier disambiguates the source meaning established by the actual file-destination caller; it adds no new operation. It does not request GPS/location access and does not claim immediate save success.",
+      "register_and_idiom": "የማስቀመጫ ቦታ is a transparent saving/storage-place noun phrase and ይምረጡ is an attested polite/plural selection imperative. The genitive construction is not a demonstrated error or a reason to force a shorter technical path label. The result is somewhat fuller than English but faithful.",
+      "evidence": [
+        "libreoffice-am-cui:L10126",
+        "libreoffice-am-cui:L11921",
+        "supplemental:NEBE article 10, bounded noun-phrase corroboration only"
+      ],
+      "context_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L187-L201",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1110-L1128",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1092-L1101"
+      ],
+      "composition_status": "New full UI phrase; the source-product records attest components, not the full translation. Supplemental institutional prose corroborates the noun-phrase construction but is about physical storage, not software. Digital-destination fit is this review’s contextual linguistic inference.",
+      "register_advisory": "This is polite/plural ይምረጡ, unlike singular ተመለስ/ቅዳ. Do not describe the set as one uniform address register. Both are conventional UI styles in the primary corpus, and no supplied project-wide rule makes this difference a fidelity error. A future uniform-register decision must be applied deliberately across the relevant labels rather than silently changing this one.",
+      "ellipsis": "Retain exactly one U+2026. The subsequent picker follows filename validation; selection and writing still remain.",
+      "alternatives": [
+        {
+          "value": "መንገድ ይምረጡ…",
+          "status": "not preferred: more technical path terminology and not required by the Android create-document flow"
+        }
+      ],
+      "confidence": "moderate for full-phrase idiom and register, high for the established file-destination sense; native-reader and fit checks remain outside scope",
+      "source_sha256": "d28071c7d3275e14df0c481ed9827ee0c5add9c3b923a945afb723d0b1471ccd",
+      "candidate_XML_text": "\"የማስቀመጫ ቦታ ይምረጡ…\"",
+      "candidate_XML_text_sha256": "b490e9f8a97706a1df94b0b026b5b4b33d26fef1dd6734c6acdd395e149e3a02",
+      "author_reconciliation": "Accept unchanged with all composition, evidence and register qualifications."
+    }
+  ],
+  "held_proposals_this_group": [],
+  "counts": {
+    "this_group_ready": 4,
+    "unchanged_retained": 4,
+    "revisions_accepted": 0,
+    "prior_ready": 77,
+    "accumulated_ready_candidates": 81,
+    "total_held": 12,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "translatable_containers": 717
+  },
+  "prior_locator": "https://github.com/c933103/AN-Paint/blob/f9e075d33f417ae67a5810fadbb2995e2ccf2623/records/localization-review/2026-10-24/amharic-save-labels/r01/reviewed-candidates-and-holds.json",
+  "record_hygiene": "Selected Copy all is ሁሉንም ቅዳ. Preserved helper nominal alternative and helper rationale are historical evidence only, not the adjudicated candidate. This reconciliation and original author addendum explicitly supersede that selection ambiguity.",
+  "scope_limits": [
+    "Retain means keep the exact proposed text at this source-only review gate. It is not implementation, whole-language certification, a native-speaker sign-off, or runtime/accessibility acceptance.",
+    "Prior 77 ready proposals and 12 holds are not re-reviewed, merged into these verdicts, or changed by this report. No earlier acceptance supplies linguistic proof here.",
+    "The complete copies are bound to supplied source commit 66be61df27c5359bffc32d56db21f3949899f873 and tree 870c5a584120d92710be516af0dc3b3847b183d9. This reviewer recomputed their identities and checked supplied tree bindings, but did not freshly query GitHub HEAD.",
+    "The consumer rescan is bounded to the 15 supplied complete source files, not an exhaustive fresh repository-wide scan. Seven occurrences in three direct caller files were reproduced.",
+    "The ten supplied snapshots comprise nine external lexical files and one project English file. They were rehashed, not freshly downloaded. All 63 extracted records match their supplied raw source positions.",
+    "The ICT glossary is primary-authored material on a public mirror, not an authenticated institutional host. The matching local PDF was hashed and page 59 visually inspected; no complete PDF/page image is republished in this deliverable.",
+    "No exact upstream full-phrase match is claimed for Copy all or Choose location. Absence in this bounded corpus is not proof of absence everywhere and is not by itself a rejection criterion.",
+    "No human native-reader assessment, rendered-app fit check, spoken-screen-reader check, application build, CI, Work task, release, production change, or remote write was performed.",
+    "No English-source defect was established. The source-fix/all-languages workflow therefore was not triggered."
+  ],
+  "publication_exclusions": [
+    "No complete third-party PDF, page render or full extraction is published. Only bounded source excerpts, locators and qualifications."
+  ]
+}
