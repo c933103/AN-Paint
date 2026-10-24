@@ -1,0 +1,95 @@
+{
+  "review_date": "2026-10-24",
+  "hash_note": "The manifest hashes this observation record, not the original remote HTML/PDF bytes. Web extraction succeeded where marked; original binary/page hashes are unavailable.",
+  "observations": [
+    {
+      "id": "ict",
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf",
+      "status": "complete parsed PDF available through web tool; targeted entries independently checked; page screenshots returned Cache miss",
+      "authorship": "ICT Development Office and Ethiopian Languages Research Center (ELRC), primary-authored document on third-party mirror",
+      "entries": [
+        {
+          "number": 728,
+          "page": 62,
+          "English": "Create New",
+          "Amharic": "አዲስ ፍጠር"
+        },
+        {
+          "number": 1488,
+          "page": 126,
+          "English": "image",
+          "Amharic": "ምስል"
+        },
+        {
+          "number": 1928,
+          "page": 166,
+          "English": "Open",
+          "Amharic": "ክፈት"
+        },
+        {
+          "number": 944,
+          "page": 80,
+          "English": "discard",
+          "Amharic": "አስወግድ"
+        },
+        {
+          "number": 863,
+          "page": 73,
+          "English": "delete",
+          "Amharic": "ሰርዝ"
+        },
+        {
+          "number": 1657,
+          "page": 141,
+          "English": "load",
+          "Amharic": "አስገባ"
+        },
+        {
+          "number": 1522,
+          "page": 129,
+          "English": "Insert",
+          "Amharic": "አስገባ"
+        }
+      ],
+      "limits": "Component evidence only. Neither an entire phrase approval nor current official terminology mandate. Publication date and mirror fidelity not independently established."
+    },
+    {
+      "id": "lo_new",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/04/01010000.html",
+      "status": "full page extraction succeeded",
+      "excerpt": "አዲስ ሰነድ መፍጠሪያ",
+      "location": "Ctrl+N action, extracted lines 106-108",
+      "meaning": "Create new document",
+      "limits": "Supports adjective use with document noun, not exact AN Paint phrase."
+    },
+    {
+      "id": "google_open",
+      "url": "https://support.google.com/accessibility/answer/90559?hl=am",
+      "status": "full page extraction succeeded",
+      "excerpt": "ክፈት",
+      "location": "Attach files from your computer; extracted lines 428-431 identify both Open dialog and Open button.",
+      "limits": "Open-button terminology, not a load/open equivalence rule."
+    },
+    {
+      "id": "android_keep_original",
+      "url": "https://android.googlesource.com/platform/packages/apps/Contacts/+/refs/heads/nougat-mr2-pixel-release/res/values-am/strings.xml",
+      "status": "original direct web retrieval still Cache miss; exact phrase independently recovered as complete XML from official AOSP GitHub mirror and paired with English",
+      "replacement_source_ids": [
+        "contacts_am",
+        "contacts_en",
+        "androidx_am",
+        "androidx_en"
+      ],
+      "limits": "Historical original still not directly web-fetched. Use hash-pinned official mirror or AndroidX sources as primary evidence, not a claim that original URL retrieval succeeded."
+    },
+    {
+      "id": "google_discard",
+      "url": "https://support.google.com/googleplay/android-developer/answer/13849271?hl=am",
+      "status": "exact phrase independently reproduced in search-index excerpt; direct full Amharic page returned HTTP 429; variant URLs inaccessible",
+      "excerpt": "ለውጦችን አስወግድ",
+      "English_pair_url": "https://support.google.com/googleplay/android-developer/answer/13849271?hl=en",
+      "English_pair_status": "full English page extraction succeeded; step 5 explicitly says Discard changes",
+      "limits": "Supplemental exact-phrase attestation only. Do not promote this to full-page Amharic verification. Label retention rests independently on compositional linguistic analysis, parsed glossary and full AndroidX editor resources."
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "schema": "amharic-file-replacement-author-draft-v1",
+  "date": "2026-10-24",
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_new",
+      "English": "New…",
+      "source_sha256": "d16fba620e453bf4b2c54ade12c8a5acefd47f14c1489f6aaf1fe3e83d53976a",
+      "current_XML_text": null,
+      "current_status": "missing exact Amharic key",
+      "proposed_XML_text": "\"አዲስ…\"",
+      "proposed_XML_element": "<string name=\"ui_new\">\"አዲስ…\"</string>",
+      "proposed_XML_text_sha256": "c817e189d29f6633d56082977f189a2a220117fd11065013895c6c37399bb9bb",
+      "meaning": "New…",
+      "rationale": "Concise new-item menu label; preserve U+2026 because a dimensions dialog follows. The File menu and New image title supply the image noun.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium-high",
+        "status": "author AI draft; independent review pending"
+      },
+      "consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L839",
+      "consumer_context": "confirmReplacement first handles unsaved edits, then dimensionsDialog(false,true). No new image is created merely by opening the menu item.",
+      "reference_ids": [
+        "ict",
+        "lo_new"
+      ],
+      "independent_check_question": "Confirm short menu adjective and ellipsis; do not imply immediate replacement.",
+      "English_source_correction_needed": false,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_new_image",
+      "English": "New image",
+      "source_sha256": "1699c31990887ee5019c7909027b81c2b52bed425b6b93aa460688fb7332be8d",
+      "current_XML_text": null,
+      "current_status": "missing exact Amharic key",
+      "proposed_XML_text": "\"አዲስ ምስል\"",
+      "proposed_XML_element": "<string name=\"ui_new_image\">\"አዲስ ምስል\"</string>",
+      "proposed_XML_text_sha256": "219eda8bf4625d23b8693a706c2d4d8d7f9c0ba4e777801fc28216621d7673f4",
+      "meaning": "New image",
+      "rationale": "Original noun phrase from attested new/image components, not a command. Fits the dimensions-dialog title.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium-high",
+        "status": "author AI draft; independent review pending"
+      },
+      "consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1012-L1028",
+      "consumer_context": "Fresh dimensions dialog title; valid Apply checks image size then document.newImage with selected dimensions. PaintDocument.newImage creates a blank background-colour image, resets document history through replace and clears savedTarget in activity.",
+      "reference_ids": [
+        "ict"
+      ],
+      "independent_check_question": "Confirm compound title idiom; neither filename nor save action.",
+      "English_source_correction_needed": false,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_load_image",
+      "English": "Load image…",
+      "source_sha256": "ec0f9bd04b59831eb89e6515292ae696b23c16f3525e432227ec89817ed8a867",
+      "current_XML_text": null,
+      "current_status": "missing exact Amharic key",
+      "proposed_XML_text": "\"ምስል ክፈት…\"",
+      "proposed_XML_element": "<string name=\"ui_load_image\">\"ምስል ክፈት…\"</string>",
+      "proposed_XML_text_sha256": "650c355dc8541b3ce85f50a6d99ddee6c5f2d7ae5023e58a586aae1c51a03b85",
+      "meaning": "Open image… (contextual equivalent of Load image…)",
+      "rationale": "Use open rather than the glossary verb shared by load/insert. Actual action opens an image as the current document, not a pasted floating insertion. Preserve ellipsis. Full phrase is an original contextual draft.",
+      "confidence": {
+        "semantic": "medium-high",
+        "UI_idiom": "medium",
+        "status": "author AI draft; independent review pending"
+      },
+      "consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1082-L1102",
+      "consumer_context": "launchOpen(false) launches ACTION_OPEN_DOCUMENT, falling back to GET_CONTENT if unavailable. OPEN_IMAGE results call readImage(import=false), possibly select frame/page/size, then decodeImage replaces current bitmap only on success. IMPORT_IMAGE/paste is a different path.",
+      "reference_ids": [
+        "ict",
+        "google_open"
+      ],
+      "independent_check_question": "Review contextual open-for-load equivalence; this does not assert a canonical English defect or change the key.",
+      "English_source_correction_needed": false,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_keep_editing23",
+      "English": "Keep editing",
+      "source_sha256": "e76fd2add01005ae11754d75ec97923c1a20a5f42e37d469c80f06a14e433511",
+      "current_XML_text": null,
+      "current_status": "missing exact Amharic key",
+      "proposed_XML_text": "\"አርትዖቱን ቀጥል\"",
+      "proposed_XML_element": "<string name=\"ui_keep_editing23\">\"አርትዖቱን ቀጥል\"</string>",
+      "proposed_XML_text_sha256": "a3925a6ec843d152e9cfc13828a04d564825c0261d6ee51bb137fa327c112d59",
+      "meaning": "Continue editing",
+      "rationale": "Historical Android phrase supports continuing the editing activity rather than saving. Keep the prompt-dismissal meaning; no restoration or rollback promise.",
+      "confidence": {
+        "semantic": "medium-high",
+        "UI_idiom": "medium",
+        "status": "author AI draft; independent review pending"
+      },
+      "consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1080",
+      "consumer_context": "Negative button with null callback dismisses dirty-document confirmation; no replacement/save/finish action invoked. paintCanvas.applyPending ran before prompt, so pending geometry may already be committed. Shared prompt also guards external image open and Back/exit.",
+      "reference_ids": [
+        "ict",
+        "android_keep"
+      ],
+      "independent_check_question": "Independently recover/check the historical exact phrase and contemporary register; do not claim an untouched pre-prompt geometry state.",
+      "English_source_correction_needed": false,
+      "independent_acceptance": null
+    },
+    {
+      "key": "string/ui_discard_changes23",
+      "English": "Discard changes",
+      "source_sha256": "f9bfa3dc7c8fcdea10ec324b8f3a6876f76fc8f541aa41b2e1da20979064dc0b",
+      "current_XML_text": null,
+      "current_status": "missing exact Amharic key",
+      "proposed_XML_text": "\"ለውጦችን አስወግድ\"",
+      "proposed_XML_element": "<string name=\"ui_discard_changes23\">\"ለውጦችን አስወግድ\"</string>",
+      "proposed_XML_text_sha256": "ac248bc21dcd65e988a670b26f8c1ea04ceb6b80e72eb68591c8c41bee5a624c",
+      "meaning": "Discard changes",
+      "rationale": "Discard verb targets changes, not saved files. Indexed first-party phrase corroborates lexical components, but full-page verification remains missing. The UI choice proceeds without first saving.",
+      "confidence": {
+        "semantic": "high",
+        "UI_idiom": "medium",
+        "status": "author AI draft; independent review pending"
+      },
+      "consumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1080",
+      "consumer_context": "Neutral button directly invokes continuation: new dimensions, open picker, external-image decode, or finish on Back. It does not itself erase the bitmap or delete saved files. Later chooser/dialog cancellation can leave current document intact; no promise that recovery drafts are permanently destroyed.",
+      "reference_ids": [
+        "ict",
+        "google_discard"
+      ],
+      "independent_check_question": "Verify phrase/imperative idiom and explicit changes-versus-file distinction. No immediate or irreversible deletion claim.",
+      "English_source_correction_needed": false,
+      "independent_acceptance": null
+    }
+  ],
+  "references": {
+    "ict": {
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf",
+      "title": "ICT Development Office/ELRC glossary, primary-authored PDF on third-party mirror",
+      "evidence": "Create New728 p62; image1488 p126; open1928 p166; load1657 p141 and insert1522 p129 both use same ambiguous verb; continue677 p56; discard944 p80 distinguished from delete863 p73.",
+      "limit": "Component/command lexical evidence, not full contextual acceptance. Publication date not verified."
+    },
+    "lo_new": {
+      "url": "https://help.libreoffice.org/latest/am/text/shared/04/01010000.html",
+      "title": "LibreOffice Amharic shortcut help",
+      "evidence": "አዲስ for new-document action",
+      "limit": "Terminology precedent, not AN Paint acceptance."
+    },
+    "google_open": {
+      "url": "https://support.google.com/accessibility/answer/90559?hl=am",
+      "title": "Google accessibility/file-picker help",
+      "evidence": "ክፈት for opening a selected file",
+      "limit": "Supporting indexed first-party terminology; direct retrieval limited by fetch errors."
+    },
+    "android_keep": {
+      "url": "https://android.googlesource.com/platform/packages/apps/Contacts/+/refs/heads/nougat-mr2-pixel-release/res/values-am/strings.xml",
+      "title": "Android Contacts historical Nougat Amharic resources",
+      "evidence": "cancel_confirmation_dialog_keep_editing_button: አርትዖቱን ቀጥል",
+      "limit": "Exact phrase appeared in search-index excerpt; direct fetch cache-missed, including repeat open. Historical branch locator, not immutable commit or current-version acceptance. Independent retrieval/check requested."
+    },
+    "google_discard": {
+      "url": "https://support.google.com/googleplay/android-developer/answer/13849271?hl=am",
+      "title": "Google Play Console Amharic help",
+      "evidence": "ለውጦችን አስወግድ",
+      "limit": "Exact phrase appeared in first-party search-index excerpt; direct fetch429. Not full-page verification; independent retrieval/check requested."
+    }
+  },
+  "source_semantics": [
+    "menuActions File defines New and Load image; panel controls display supplied labels.",
+    "confirmReplacement applies pending geometry before checking dirty. Dirty state offers Save, Discard changes and Keep editing. Non-dirty state proceeds directly.",
+    "Shared confirmation callers: New, Load image, external image intent and Back/exit. The last two matter to Keep editing/Discard changes wording.",
+    "Successful new/load replacement resets saved target; saved input file is not deleted by these labels. ImportSelection and optional resize steps may cancel before replacement.",
+    "No source defect established. If subsequent evidence establishes one, proposed workflow is English correction, cross-language affected-term flagging, then individual review; no code changes here."
+  ],
+  "source_evidence": "11 complete source copies included under source/ at exact relative paths; hashes/immutable URLs in source-bindings.json and fresh GitHub commit/tree receipt.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717,
+    "previous_reviewed_candidates": 19,
+    "this_group_drafts": 5,
+    "new_independent_acceptances": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "No Work task, production edit, app build/test, CI, release or remote publication.",
+    "No native-speaker, rendering, accessibility, lifecycle/runtime acceptance.",
+    "19 prior reviewed additions, existing12 resources, previous9-label judgments, Palette uncertainty, optional Horizontal and all holds unchanged.",
+    "Save/Cancel generic labels and broad shared consumers excluded; source inspection of their behavior is context only, not translation acceptance.",
+    "Indexed external phrase evidence is explicitly weaker than successful full-page reads; independent reviewer should recover or adjudicate it.",
+    "No complete unsaved-changes prompt or surrounding hints accepted by these short-label drafts."
+  ]
+}

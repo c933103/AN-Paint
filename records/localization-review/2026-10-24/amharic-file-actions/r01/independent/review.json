@@ -1,0 +1,204 @@
+{
+  "schema": "amharic-fileactions-independent-review-v1",
+  "date": "2026-10-24",
+  "reviewer": "Independent AI translation/source reviewer; not a native-speaker panel",
+  "input_manifest_sha256": "c5f5fbc2177a40735a59ff8097869f77eb249ed33aec317f52bcc39f92fe7e79",
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "decision_summary": {
+    "retain": 5,
+    "revise": 0,
+    "hold": 0,
+    "implemented": 0
+  },
+  "acceptance_scope": "Retain five exact candidates after independent source and linguistic-evidence review. This is not native-speaker, rendering, accessibility, lifecycle/runtime, build, release or production acceptance.",
+  "rows": [
+    {
+      "key": "string/ui_new",
+      "decision": "retain",
+      "English": "New…",
+      "English_UTF8_sha256": "d16fba620e453bf4b2c54ade12c8a5acefd47f14c1489f6aaf1fe3e83d53976a",
+      "retained_XML_text": "\"አዲስ…\"",
+      "retained_XML_element": "<string name=\"ui_new\">\"አዲስ…\"</string>",
+      "retained_XML_text_UTF8_sha256": "c817e189d29f6633d56082977f189a2a220117fd11065013895c6c37399bb9bb",
+      "displayed_text": "አዲስ…",
+      "displayed_text_UTF8_sha256": "4fa4338b9047677db0f31d422b36a88afc176e17c2d16e997e545a29adf87c0b",
+      "back_translation": "New…",
+      "confidence": {
+        "source_semantics": "high",
+        "linguistic_UI_idiom": "medium-high"
+      },
+      "reason": "Retain the concise adjective used as a File-menu label. The image noun is supplied by the context and following New image title. Do not add an imperative merely to match the action buttons: the English is itself an elliptical menu label.",
+      "behavior": "The menu calls confirmReplacement, which first applies pending geometry; only its continuation opens the fresh dimensions dialog. Selecting the menu item does not yet create a new image. Canceling later is not a promise to restore pre-menu pending geometry.",
+      "punctuation": "Keep U+2026, because size input/dialog interaction follows. Do not substitute three ASCII periods.",
+      "evidence": [
+        "ict",
+        "lo_new"
+      ],
+      "source_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L846",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1080",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1012-L1028",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L443-L449"
+      ]
+    },
+    {
+      "key": "string/ui_new_image",
+      "decision": "retain",
+      "English": "New image",
+      "English_UTF8_sha256": "1699c31990887ee5019c7909027b81c2b52bed425b6b93aa460688fb7332be8d",
+      "retained_XML_text": "\"አዲስ ምስል\"",
+      "retained_XML_element": "<string name=\"ui_new_image\">\"አዲስ ምስል\"</string>",
+      "retained_XML_text_UTF8_sha256": "219eda8bf4625d23b8693a706c2d4d8d7f9c0ba4e777801fc28216621d7673f4",
+      "displayed_text": "አዲስ ምስል",
+      "displayed_text_UTF8_sha256": "653474e8e6e4593c6f824bbb1163fcd13fc2589ce886faa6b6a480e2e1fafa86",
+      "back_translation": "New image",
+      "confidence": {
+        "source_semantics": "high",
+        "linguistic_UI_idiom": "medium-high"
+      },
+      "reason": "Retain the adjective-plus-noun title. The adjective precedes the image noun; both components are directly attested. This is a dialog title, not an instruction to open, save, name or immediately replace a file.",
+      "behavior": "For fresh=true the dimensions dialog uses this title. A valid Apply checks dimensions and the memory budget, applies pending content, calls document.newImage, resets the name and saved target, and dismisses. newImage creates the blank background-colour bitmap through replace; normal replacement clears previous history.",
+      "punctuation": "No ellipsis, matching the source title.",
+      "evidence": [
+        "ict",
+        "lo_new"
+      ],
+      "source_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1012-L1028",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L197-L220"
+      ]
+    },
+    {
+      "key": "string/ui_load_image",
+      "decision": "retain",
+      "English": "Load image…",
+      "English_UTF8_sha256": "ec0f9bd04b59831eb89e6515292ae696b23c16f3525e432227ec89817ed8a867",
+      "retained_XML_text": "\"ምስል ክፈት…\"",
+      "retained_XML_element": "<string name=\"ui_load_image\">\"ምስል ክፈት…\"</string>",
+      "retained_XML_text_UTF8_sha256": "650c355dc8541b3ce85f50a6d99ddee6c5f2d7ae5023e58a586aae1c51a03b85",
+      "displayed_text": "ምስል ክፈት…",
+      "displayed_text_UTF8_sha256": "af41529ba5eb84f808f99c6a3b06a71eafc1398f1e562aeee2185979c6665e42",
+      "back_translation": "Open image… (contextual equivalent of Load image…)",
+      "confidence": {
+        "source_semantics": "high",
+        "linguistic_UI_idiom": "medium-high"
+      },
+      "reason": "Retain the contextual Open verb. It faithfully describes loading an existing image as the current document, not inserting/pasting it into the existing canvas. Open is directly attested as a file-dialog/button command. The glossary uses the same verb for generic Load and Insert, so a mechanical choice would obscure this distinction. This is contextual translation, not an unannounced correction to English.",
+      "behavior": "The File menu passes import=false into launchOpen after confirmation. ACTION_OPEN_DOCUMENT falls back to GET_CONTENT; replacement occurs only after a successful result, optional frame/page/size selection and decode. import=true follows the distinct paste path. Picker or intermediate dialog cancellation may leave the existing document in place. Temporary cache-file cleanup is not deletion of the selected saved original.",
+      "punctuation": "Keep U+2026: the picker and sometimes further choices intervene.",
+      "evidence": [
+        "ict",
+        "google_open",
+        "androidx_am",
+        "androidx_en"
+      ],
+      "source_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L846",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1082-L1102",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1177-L1185",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1250-L1253",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1266-L1342",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L50-L122"
+      ]
+    },
+    {
+      "key": "string/ui_keep_editing23",
+      "decision": "retain",
+      "English": "Keep editing",
+      "English_UTF8_sha256": "e76fd2add01005ae11754d75ec97923c1a20a5f42e37d469c80f06a14e433511",
+      "retained_XML_text": "\"አርትዖቱን ቀጥል\"",
+      "retained_XML_element": "<string name=\"ui_keep_editing23\">\"አርትዖቱን ቀጥል\"</string>",
+      "retained_XML_text_UTF8_sha256": "a3925a6ec843d152e9cfc13828a04d564825c0261d6ee51bb137fa327c112d59",
+      "displayed_text": "አርትዖቱን ቀጥል",
+      "displayed_text_UTF8_sha256": "890a00a48956a94a95080642ddc5e4f82774d1a004c14ab75f29ee16d4151bc4",
+      "back_translation": "Continue the editing / Keep editing",
+      "confidence": {
+        "source_semantics": "high",
+        "linguistic_UI_idiom": "medium-high"
+      },
+      "reason": "Retain exactly. The full phrase is independently recovered in paired AOSP Contacts source and in AndroidX PDF editor resources at a July 2026 commit. The short imperative is compatible with the other retained action commands and existing Amharic change-background command. It is not a noun meaning saved edit or a promise to roll changes back.",
+      "behavior": "The negative confirmation button has a null listener, with native AlertDialog behavior retained by the inspected builder. It dismisses the choice without invoking the replacement, Save or finish continuation. applyPending has already run before dirty checking and can commit trim/polygon/curve/selection content, so Keep editing does not restore an untouched pre-prompt state. The same prompt covers external-image handling and Back.",
+      "punctuation": "No added ellipsis.",
+      "evidence": [
+        "contacts_am",
+        "contacts_en",
+        "androidx_am",
+        "androidx_en"
+      ],
+      "source_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1080",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L443-L449",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt#L118-L152",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1136-L1144",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1639-L1647"
+      ]
+    },
+    {
+      "key": "string/ui_discard_changes23",
+      "decision": "retain",
+      "English": "Discard changes",
+      "English_UTF8_sha256": "f9bfa3dc7c8fcdea10ec324b8f3a6876f76fc8f541aa41b2e1da20979064dc0b",
+      "retained_XML_text": "\"ለውጦችን አስወግድ\"",
+      "retained_XML_element": "<string name=\"ui_discard_changes23\">\"ለውጦችን አስወግድ\"</string>",
+      "retained_XML_text_UTF8_sha256": "ac248bc21dcd65e988a670b26f8c1ea04ceb6b80e72eb68591c8c41bee5a624c",
+      "displayed_text": "ለውጦችን አስወግድ",
+      "displayed_text_UTF8_sha256": "807de496be3caed531ac3b7c78cbb3697c3a2ee76520f102ee40f8b59d47da9d",
+      "back_translation": "Discard/remove changes",
+      "confidence": {
+        "source_semantics": "high",
+        "linguistic_UI_idiom": "medium"
+      },
+      "reason": "Retain the plural changes object plus the short discard imperative. Full AndroidX resources independently pair the discard verb with English Discard and use the same changes noun in the unsaved-changes context; the glossary separately attests discard versus delete. The complete candidate phrase is compositionally sound. The Google exact-phrase search excerpt is supplemental only and is not promoted to a verified full-page source.",
+      "behavior": "The neutral button calls the requested continuation without first saving. In New/Load this can merely open another dialog or picker, which may later be canceled; successful replacement clears the current document/history. External open and Back have their own continuations. The button is not an immediate bitmap-erasure operation, a saved-file deletion command, an Undo/revert command, or a guarantee that recovery drafts are destroyed. Autosave is visible in onStop, so no data-destruction claim is accepted.",
+      "punctuation": "No added ellipsis: preserve the source label; it is a confirmation choice, not the File-menu initiation label.",
+      "evidence": [
+        "ict",
+        "androidx_am",
+        "androidx_en",
+        "google_discard"
+      ],
+      "source_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1080",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1012-L1028",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1177-L1185",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L197-L220",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1136-L1144",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1639-L1647"
+      ]
+    }
+  ],
+  "imperative_register": "The two New labels remain adjective/title noun phrases. The other three use conventional short command forms, consistently with verified Android buttons and the existing Amharic change-background label. Formal/polite instruction prose elsewhere is not a reason to mix registers within these controls.",
+  "evidence_adjudication": {
+    "android_keep": "Recovered and upgraded: complete English/Amharic official mirror resources at an immutable 2017 commit, corroborated at an immutable July 2026 AndroidX commit. Original googlesource web URL itself still failed.",
+    "google_open": "Upgraded: full first-party help extraction succeeded; also paired Open button from complete AndroidX source.",
+    "google_discard": "Qualified, not upgraded: exact phrase reproduced in indexed first-party excerpt; full Amharic page HTTP 429. English counterpart retrieved. Candidate accepted on independent compositional/primary component evidence, not solely the excerpt. Full-page Amharic attestation remains unverified.",
+    "ict": "Primary-authored terminology PDF on third-party mirror; parsed entries checked, screenshots unavailable. Not a modern exclusive style mandate or exact-phrase proof."
+  },
+  "English_source_policy": "No English-source correction is proposed by this translation review. Do not silently rewrite Discard changes as Do not save to compensate for possible lifecycle concerns. If a source contract defect is established later, correct English, flag every affected language, then review each language individually.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717,
+    "new_retained_candidates": 5,
+    "prior_19": "Separate and unchanged; not independently re-reviewed in this task."
+  },
+  "limits": [
+    "No Work task started or resumed; no delegation onward.",
+    "No product resource or code edits, app builds/tests, CI, release or remote publication. XML parsing and hash checks are review-integrity checks only.",
+    "No native-speaker consultation, rendered UI, glyph/line fit, screen-reader, or device/lifecycle verification.",
+    "Input source semantics checked at the stated production commit; no assertion that it remains branch HEAD after review.",
+    "No acceptance of the entire unsaved-changes prompt, Save/Cancel, surrounding hints, other locales or inherited external-resource strings.",
+    "Existing 12 resources, previous 19 reviewed candidates and all unrelated holds remain unchanged.",
+    "The Google Amharic exact-phrase citation remains excerpt-only; original glossary binary hash and visual page check are unavailable."
+  ],
+  "artifact_files": [
+    "REVIEW.md",
+    "review.json",
+    "validation.json",
+    "source-receipts.json",
+    "production-tree-verification.json",
+    "web-evidence-observations.json",
+    "evidence/ (four complete Apache-2.0 Android XML sources; original notices retained)"
+  ]
+}
