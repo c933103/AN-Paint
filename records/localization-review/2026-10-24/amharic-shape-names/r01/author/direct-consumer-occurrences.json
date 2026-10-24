@@ -1,0 +1,28 @@
+{
+  "limit": "Three direct enum-resource mappings; indirect label consumers separately bound below. Bounded historical discovery/current-tree rebind, not exhaustive fresh repository scan.",
+  "occurrences": [
+    {
+      "key": "ui_polygon",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "line": 29,
+      "source_line": "    POLYGON(R.string.ui_polygon, R.string.ui_tap_vertices_then_double_tap_the_last_vertex),"
+    },
+    {
+      "key": "ui_ellipse",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "line": 30,
+      "source_line": "    ELLIPSE(R.string.ui_ellipse, R.string.ui_drag_across_the_ellipse_s_bounding_box),"
+    },
+    {
+      "key": "ui_rounded_rectangle",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "line": 31,
+      "source_line": "    ROUND_RECT(R.string.ui_rounded_rectangle, R.string.ui_set_radius_px_then_drag_between_opposite_corners),"
+    }
+  ],
+  "indirect_label_consumers": [
+    "ToolButton.kt text/contentDescription/tooltip",
+    "ToolCategoryButton.kt selected-tool accessibility interpolation",
+    "ClassicPaintActivity.kt tool group, options heading, help label+hint and status interpolation"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "source_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "source_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": {
+    "ui_ellipse": {
+      "meaning": "Drawing tool caption selecting ELLIPSE. Opposite drag points define sorted RectF bounds; shapePath uses Path.addOval. Preview/commit draw that path using current outline/fill style.",
+      "complete_context": [
+        "PaintDocument.kt PaintTool enum label getter, drawShape, commitShape",
+        "ToolCategoryButton.kt INSERT tools membership and refresh",
+        "ToolButton.kt init",
+        "ClassicPaintActivity.kt makeToolButton, chooseTool, showToolOptions",
+        "PaintCanvas.kt shapePath, polygonPath, applyPending, onTouchEvent"
+      ],
+      "qualification": "Shape ellipse/oval, not punctuation ellipsis, elliptical selection or text effect. Circle is possible with equal bounds but source is not renamed Circle. Label selection alone does not draw; actual pointer gesture commits. No pixel/rendering certification."
+    },
+    "ui_polygon": {
+      "meaning": "Caption for multi-vertex POLYGON tool. Points build a line-connected path; closePolygon controls closure. Finish or qualified double-tap applies pending path. Closed mode dispatches POLYGON; open mode dispatches LINE and has no interior fill irrespective of shapeStyle.",
+      "complete_context": [
+        "PaintDocument.kt PaintTool enum label getter, drawShape, commitShape",
+        "ToolCategoryButton.kt INSERT tools membership and refresh",
+        "ToolButton.kt init",
+        "ClassicPaintActivity.kt makeToolButton, chooseTool, showToolOptions",
+        "PaintCanvas.kt shapePath, polygonPath, applyPending, onTouchEvent"
+      ],
+      "qualification": "Keep English tool name Polygon, not silently Polyline or always-closed promise. It is a tool supporting closed/open configuration, not a guarantee every intermediate gesture is a mathematical nondegenerate polygon. Existing Close/Finish polygon controls and hints excluded. No English defect established solely from optional open mode."
+    },
+    "ui_rounded_rectangle": {
+      "meaning": "Caption selecting ROUND_RECT. Drag bounds feed Path.addRoundRect with equal x/y radius clamped to0..half the shorter side. Radius option changes document.cornerRadius and invalidates preview; shape can approach ordinary rectangle at zero radius.",
+      "complete_context": [
+        "PaintDocument.kt PaintTool enum label getter, drawShape, commitShape",
+        "ToolCategoryButton.kt INSERT tools membership and refresh",
+        "ToolButton.kt init",
+        "ClassicPaintActivity.kt makeToolButton, chooseTool, showToolOptions",
+        "PaintCanvas.kt shapePath, polygonPath, applyPending, onTouchEvent"
+      ],
+      "qualification": "Rounded corners, not rotated rectangle, circle, enclosed/surrounded rectangle or arbitrary quadrilateral. Exact source-product translation presence alone cannot establish idiomatic reading; earlier Rectangle acceptance does not transfer to the full phrase. No new radius/units/hints acceptance."
+    }
+  },
+  "no_source_defect_established": true,
+  "limits": [
+    "Plain tool names only; no placeholders, units or ellipses.",
+    "Indirect concatenated help/status/accessibility templates and longer hints are not accepted by label review.",
+    "Prior88ready/13held remain separate; no production changes."
+  ]
+}

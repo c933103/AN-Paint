@@ -1,0 +1,108 @@
+{
+  "review_date": "2026-10-24",
+  "input_manifest_sha256": "65b99c6021205118c3bf54bdc0e6f5d7bbe3bd54581d3c78ca8742ab78949cc0",
+  "source_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "source_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "review_type": "Independent source-only terminology and consumer-context review",
+  "caption_decisions": [
+    {
+      "resource": "string/ui_ellipse",
+      "english": "Ellipse",
+      "proposed": "ኤሊፕስ",
+      "decision": "RETAIN",
+      "replacement": null,
+      "confidence": {
+        "source_fidelity": "high",
+        "consumer_fit": "high",
+        "idiomatic_accessibility": "medium"
+      },
+      "basis": [
+        "Exact non-fuzzy whole-word geometric object and drawing-command attestations.",
+        "Own addOval consumer inspected.",
+        "Additional official JGraph catalog repeats exact value."
+      ],
+      "limits": [
+        "Not native-reader or rendering certification."
+      ]
+    },
+    {
+      "resource": "string/ui_polygon",
+      "english": "Polygon",
+      "proposed": "ፖሊጎን",
+      "decision": "RETAIN",
+      "replacement": null,
+      "confidence": {
+        "source_fidelity": "high",
+        "consumer_fit": "high",
+        "idiomatic_accessibility": "medium"
+      },
+      "basis": [
+        "Exact non-fuzzy whole-word drawing-object, help and command attestations.",
+        "Own vertex path, closure toggle, LINE open-mode dispatch and no-interior-fill consumer inspected.",
+        "LibreOffice Polygon help also supports open and closed operation; original English preserved.",
+        "Additional official JGraph catalog repeats exact value."
+      ],
+      "limits": [
+        "Not proof of nondegenerate or closed output in every mode.",
+        "Does not approve separate Finish/Close/hint resources."
+      ]
+    },
+    {
+      "resource": "string/ui_rounded_rectangle",
+      "english": "Rounded rectangle",
+      "proposed": "የተከበበ አራት ማእዘን",
+      "decision": "HOLD",
+      "replacement": null,
+      "confidence": {
+        "exact_attestation": "high",
+        "consumer_fit_of_required_concept": "high",
+        "full_phrase_idiom_and_precision": "insufficient",
+        "need_for_hold": "high"
+      },
+      "basis": [
+        "Exact non-fuzzy full phrase exists, but corpus presence does not establish rounded-corner interpretation.",
+        "Own addRoundRect/clamped-radius consumers inspected.",
+        "Potential enclosed/surrounded reading of modifier remains unresolved.",
+        "Prior Rectangle review cannot transfer to this complete phrase."
+      ],
+      "release_condition": "Qualified native reviewer confirms the full phrase specifically denotes a rectangle with rounded corners, or a complete evidence-supported alternative is separately reviewed.",
+      "limits": [
+        "No exact replacement approved.",
+        "JGraph rounded=ክብ ጠርዝ is component research only."
+      ]
+    }
+  ],
+  "batch_counts": {
+    "retain": 2,
+    "revise_caption": 0,
+    "hold": 1
+  },
+  "prior_counts": {
+    "ready": 88,
+    "held": 13,
+    "status": "Separate and unchanged; no cumulative adjudication."
+  },
+  "documentation_corrections": [
+    {
+      "target": "Ellipse selection explanation",
+      "old": "Label selection alone does not draw",
+      "new": "Selecting Ellipse does not itself create a new ellipse, but changing tools may commit already-pending geometry.",
+      "evidence": "PaintCanvas.kt:153-157 invokes applyPending before assigning next tool."
+    },
+    {
+      "target": "lexical-evidence/exact-records.json Polyline record classification",
+      "record": "libreoffice-am-svx:277",
+      "old": "primary lexical evidence",
+      "new": "English-only contrast record; not evidence for an Amharic equivalent.",
+      "evidence": "msgid and msgstr are both Polyline."
+    }
+  ],
+  "english_source_change": null,
+  "production_changes": false,
+  "work_task_created_or_resumed": false,
+  "build_ci_release_actions": false,
+  "native_reader_certification": false,
+  "runtime_certification": false,
+  "blocking_tools": null,
+  "report": "REVIEW.md"
+}

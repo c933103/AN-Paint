@@ -1,0 +1,137 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "ready_reviewed_candidates": [
+    {
+      "resource": "string/ui_ellipse",
+      "english": "Ellipse",
+      "proposed": "ኤሊፕስ",
+      "decision": "RETAIN",
+      "replacement": null,
+      "confidence": {
+        "source_fidelity": "high",
+        "consumer_fit": "high",
+        "idiomatic_accessibility": "medium"
+      },
+      "basis": [
+        "Exact non-fuzzy whole-word geometric object and drawing-command attestations.",
+        "Own addOval consumer inspected.",
+        "Additional official JGraph catalog repeats exact value."
+      ],
+      "limits": [
+        "Not native-reader or rendering certification."
+      ],
+      "key": "string/ui_ellipse",
+      "source_sha256": "cb1ee8cb964f2362e193b9f24f6ee4f842acd1a9b8d6cd8b1b2087e94156a452",
+      "candidate_XML_text": "\"ኤሊፕስ\"",
+      "candidate_XML_text_sha256": "d57ced753cc156163cdc6dc0851521435492e66e1897c7ef1adfdd18537a1140",
+      "author_reconciliation": "Accept unchanged, retaining medium general-reader familiarity qualification."
+    },
+    {
+      "resource": "string/ui_polygon",
+      "english": "Polygon",
+      "proposed": "ፖሊጎን",
+      "decision": "RETAIN",
+      "replacement": null,
+      "confidence": {
+        "source_fidelity": "high",
+        "consumer_fit": "high",
+        "idiomatic_accessibility": "medium"
+      },
+      "basis": [
+        "Exact non-fuzzy whole-word drawing-object, help and command attestations.",
+        "Own vertex path, closure toggle, LINE open-mode dispatch and no-interior-fill consumer inspected.",
+        "LibreOffice Polygon help also supports open and closed operation; original English preserved.",
+        "Additional official JGraph catalog repeats exact value."
+      ],
+      "limits": [
+        "Not proof of nondegenerate or closed output in every mode.",
+        "Does not approve separate Finish/Close/hint resources."
+      ],
+      "key": "string/ui_polygon",
+      "source_sha256": "0ef705dd99da0ae4b601f7b43888afbc52525a48c867a9f352a28db4f6abd07d",
+      "candidate_XML_text": "\"ፖሊጎን\"",
+      "candidate_XML_text_sha256": "183aec810e090e085205fca37dab558e3accc4166145f7524bc7fd1f7d4106f8",
+      "author_reconciliation": "Accept unchanged, retaining medium general-reader familiarity qualification."
+    }
+  ],
+  "held_proposals_this_group": [
+    {
+      "resource": "string/ui_rounded_rectangle",
+      "english": "Rounded rectangle",
+      "proposed": "የተከበበ አራት ማእዘን",
+      "decision": "HOLD",
+      "replacement": null,
+      "confidence": {
+        "exact_attestation": "high",
+        "consumer_fit_of_required_concept": "high",
+        "full_phrase_idiom_and_precision": "insufficient",
+        "need_for_hold": "high"
+      },
+      "basis": [
+        "Exact non-fuzzy full phrase exists, but corpus presence does not establish rounded-corner interpretation.",
+        "Own addRoundRect/clamped-radius consumers inspected.",
+        "Potential enclosed/surrounded reading of modifier remains unresolved.",
+        "Prior Rectangle review cannot transfer to this complete phrase."
+      ],
+      "release_condition": "Qualified native reviewer confirms the full phrase specifically denotes a rectangle with rounded corners, or a complete evidence-supported alternative is separately reviewed.",
+      "limits": [
+        "No exact replacement approved.",
+        "JGraph rounded=ክብ ጠርዝ is component research only."
+      ],
+      "key": "string/ui_rounded_rectangle",
+      "source_sha256": "c93421a7b10bbe75496441b110249e5c5b280fa81f18b2ed43d42d0afa3ecfdb",
+      "candidate_XML_text": "\"የተከበበ አራት ማእዘን\"",
+      "candidate_XML_text_sha256": "a55512bba200375c2157a0dd667b2d868b91767760472912150bd6de924613ae",
+      "author_reconciliation": "Accept and preserve full-phrase terminology HOLD; no replacement approved."
+    }
+  ],
+  "author_accepts_documentation_corrections": [
+    {
+      "target": "Ellipse selection explanation",
+      "old": "Label selection alone does not draw",
+      "new": "Selecting Ellipse does not itself create a new ellipse, but changing tools may commit already-pending geometry.",
+      "evidence": "PaintCanvas.kt:153-157 invokes applyPending before assigning next tool."
+    },
+    {
+      "target": "lexical-evidence/exact-records.json Polyline record classification",
+      "record": "libreoffice-am-svx:277",
+      "old": "primary lexical evidence",
+      "new": "English-only contrast record; not evidence for an Amharic equivalent.",
+      "evidence": "msgid and msgstr are both Polyline."
+    }
+  ],
+  "lexical_count_correction": {
+    "Amharic_bearing": 42,
+    "empty": 9,
+    "English_identical_contrast_only": 1,
+    "total": 52
+  },
+  "authority_limits": [
+    "Four LibreOffice files represent one translation project, not four independent linguistic authorities.",
+    "JGraph observations are unpinned supplementary official archived-project page evidence, not a saved hashed snapshot; no translator independence established.",
+    "JGraph rounded component is not a full replacement and its consumer chain is unreviewed."
+  ],
+  "counts": {
+    "this_group_ready": 2,
+    "prior_ready": 88,
+    "accumulated_ready_candidates": 90,
+    "this_group_held": 1,
+    "prior_held": 13,
+    "total_held": 14,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "translatable_containers": 717
+  },
+  "prior_locator": "https://github.com/c933103/AN-Paint/blob/f31a22cdcae565d422f1c9f701c1dca4a3bfdfa7/records/localization-review/2026-10-24/amharic-colour-roles/r01/reviewed-candidates-and-holds.json",
+  "publication_scope": "Original judgments, complete bindings and immutable source locators preserved. Nested manifests describe complete original packets; root manifest seals this compact published package. Broad complete project/PO snapshots are not duplicated.",
+  "limits": [
+    "Source-only; no native-reader/runtime/rendering/accessibility/whole-language certification.",
+    "No English defect established, no production edits, builds, CI, release or Work task.",
+    "Longer hints, status/help/accessibility combinations and separate Finish/Close/radius controls excluded.",
+    "Prior holds and optional recommendations unchanged."
+  ]
+}

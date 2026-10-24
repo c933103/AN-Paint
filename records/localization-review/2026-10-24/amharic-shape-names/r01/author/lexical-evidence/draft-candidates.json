@@ -1,0 +1,73 @@
+[
+  {
+    "key": "ui_ellipse",
+    "english": "Ellipse",
+    "value": "ኤሊፕስ",
+    "confidence": "high exact-source lexical support; medium idiomatic accessibility; draft only",
+    "composition": "None. Exact whole-word non-fuzzy LibreOffice drawing-object and drawing-command translation.",
+    "source_contexts": [
+      "STR_ObjNameSingulCIRCE",
+      "GenericCommands.xcu / .uno:Ellipse / Label",
+      "GenericCommands.xcu / .uno:BasicShapes.ellipse / Label"
+    ],
+    "behavior_fit": "An ellipse drawn inside a dragged bounding box. The exact geometric term preserves Ellipse, not a generalized egg shape.",
+    "alternatives": [
+      {
+        "value": "ኦቫል",
+        "confidence": "source-attested for Oval, not an exact Ellipse translation",
+        "note": "LibreOffice Effects motionpath-oval. Broader shape term; not preferred over exact Ellipse support."
+      }
+    ],
+    "review_hold": "Native reviewer should judge familiarity and UI register. No native acceptance or visual fit test is claimed.",
+    "consumer_context_from_parent": "Source uses addOval within the drag bounds; original English Ellipse unchanged."
+  },
+  {
+    "key": "ui_polygon",
+    "english": "Polygon",
+    "value": "ፖሊጎን",
+    "confidence": "high exact-source lexical support; medium idiomatic accessibility; draft only",
+    "composition": "None. Exact non-fuzzy whole-word translation in svx drawing objects and help drawing tools.",
+    "source_contexts": [
+      "STR_ObjNameSingulPOLY",
+      "shared/02/01140000.xhp / hd_id3155308",
+      "GenericCommands.xcu / .uno:Polygon / Label (Polygon, Filled)"
+    ],
+    "behavior_fit": "Names the source Polygon tool. AN-Paint may leave the multi-vertex path open when Close polygon is off. Preserve the English label rather than renaming it Polyline; document that behavior separately.",
+    "alternatives": [
+      {
+        "value": "ጎነ ብዙ",
+        "confidence": "unverified native-form terminology possibility; no primary exact pair established in this task",
+        "note": "Not promoted to a supported candidate. Requires authoritative mathematics source and native review; do not substitute based on compositional intuition."
+      }
+    ],
+    "review_hold": "Native reviewer should check loanword familiarity; the open-path behavior is a contextual caveat, not permission to translate Polygon as Polyline.",
+    "consumer_context_from_parent": "Polygon can dispatch LINE for open mode, with no interior fill. Original English Polygon unchanged. Context supplied by parent, not independently inspected by lexical researcher."
+  },
+  {
+    "key": "ui_rounded_rectangle",
+    "english": "Rounded rectangle",
+    "value": "የተከበበ አራት ማእዘን",
+    "confidence": "high exact-source attestation; low-to-medium idiom/semantic confidence; terminology HOLD, draft only",
+    "composition": "Exact full phrase in LibreOffice STR_ObjNameSingulRECTRND, not newly composed. However exact-source status is not quality approval. The modifier may be read as encircled/surrounded, and the base phrase is broader than precise rectangle terminology.",
+    "source_contexts": [
+      "STR_ObjNameSingulRECTRND",
+      "GenericCommands.xcu / .uno:BasicShapes.round-rectangle / Label (Rectangle, Rounded)",
+      "GenericCommands.xcu / .uno:Rect_Rounded_Unfilled / Label"
+    ],
+    "behavior_fit": "Rectangle with rounded corners controlled by a radius setting, not a circled or rotated rectangle. This exact semantic distinction needs native review.",
+    "alternatives": [
+      {
+        "value": "አራት ማእዘን: የተከበበ",
+        "confidence": "exact non-fuzzy UI source, same semantic caveats",
+        "note": "Attested for Rectangle, Rounded in two LibreOffice commands; changes order, not the underlying wording concern."
+      },
+      {
+        "value": "የተከበበ ቀጤ ጎነ አራት",
+        "confidence": "low, unattested composed alternative; not recommended for acceptance",
+        "note": "Substitutes previously reviewed but unapplied Rectangle candidate. That earlier review does not approve this full phrase and does not resolve the rounded-modifier concern. A native reviewer may instead prefer an explicitly rounded-corners paraphrase; none is forced here."
+      }
+    ],
+    "review_hold": "Keep terminology HOLD until a native reviewer confirms rounded corners and the complete phrase. Do not inherit whole-phrase approval from the earlier Rectangle review.",
+    "consumer_context_from_parent": "Source uses addRoundRect with radius clamped to half the smaller side; zero radius allowed. Original English Rounded rectangle unchanged. Context supplied by parent, not independently inspected by lexical researcher."
+  }
+]
