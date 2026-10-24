@@ -1,0 +1,31 @@
+{
+  "key": "string/ui_restore_original_sizes",
+  "english": "Restore original sizes",
+  "amharic": "ዋናዎቹን መጠኖች መልስ",
+  "candidate_XML_text": "\"ዋናዎቹን መጠኖች መልስ\"",
+  "decision": "RELEASE_UNCHANGED",
+  "textual_status": "READY",
+  "confidence": "Medium overall",
+  "judgment": "New construction-level grammar and complete size-restoration contexts resolve the specific prior hold sufficiently. The whole command is accepted as restore the original sizes in the normalization dialog. Main/chief polysemy remains a caution, not an established error in this context.",
+  "operation": "Immediately removes normalization from every input, including tray inputs; keeps crops and native cropped dimensions; may reflow placements; dismisses on success. It is not file restoration, uncropping or Undo-all.",
+  "source_urls": [
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L68-L71",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L255",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L21"
+  ],
+  "limitations": [
+    "No exact full-string corpus match or native-reader certificate is claimed.",
+    "Caja uses different grammar and has a questionable singular counterpart; external projects are narrow corroboration, not blanket translation-quality approval.",
+    "The source-derived size example and consumer analysis are static, not runtime testing.",
+    "No implementation, build, CI, rendering, accessibility or release acceptance. English remains unchanged."
+  ],
+  "programme_effect": {
+    "ready_if_recorded": 97,
+    "held_if_recorded": 11,
+    "implemented": 0,
+    "pending_batch": 90,
+    "pending_batch_unchanged": true
+  }
+}
