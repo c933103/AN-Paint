@@ -1,0 +1,224 @@
+[
+  {
+    "key": "string/ui_size_pixels",
+    "english": "Size (pixels)",
+    "draft": "መጠን (ፒክሰሎች)",
+    "source_attributes": {
+      "name": "ui_size_pixels"
+    },
+    "rationale": "Original composition from exact LibreOffice Size → መጠን and the directly attested AOSP Gallery2 plural token ፒክሰሎች inside 13M pixels/4M pixels. Retains parentheses but translates the spelled-out English pixels; unlike Size (px), there is no literal px to preserve. The selected spelling family matches the prior Pixel grid candidate የፒክሰል ፍርግርግ. This is not an exact whole-label quotation.",
+    "confidence": "medium-high lexical components; medium contextual/orthographic choice; unaccepted",
+    "evidence_record_ids": [
+      "size_label",
+      "pixels_aosp_13mp",
+      "pixels_aosp_4mp",
+      "pixels_aosp_8mp",
+      "pixels_lo_plural",
+      "pixels_lo_ui_variant"
+    ],
+    "limitations": [
+      "Full Size (pixels) phrase was not established as an exact primary-source translation.",
+      "LibreOffice variants ፒክስሎች and ፒክስልስ are retained; reviewer must adjudicate spelling consistency rather than claim one attestation invalid.",
+      "Refers to Paint.textSize in image pixels (1..1024), not points, dp/sp, text length, preview scale, or a guaranteed visible glyph height.",
+      "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+      "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "መጠን (ፒክስሎች)",
+        "note": "Alternative composition with the exact standalone LibreOffice Pixels spelling, not consistent with prior Pixel grid draft family."
+      }
+    ]
+  },
+  {
+    "key": "string/ui_line_spacing",
+    "english": "Line spacing (%)",
+    "draft": "የ መስመር ክፍተት (%)",
+    "source_attributes": {
+      "name": "ui_line_spacing",
+      "formatted": "false"
+    },
+    "rationale": "Exact nonfuzzy LibreOffice paragraph/formatting Line Spacing → የ መስመር ክፍተት plus the source literal (%). Keep source-attested spacing in the author draft rather than silently normalize it. Proportional-spacing help corroborates the percentage concept, but AN-Paint consumer code alone defines its behavior.",
+    "confidence": "high lexical; medium-high semantic transfer; unaccepted",
+    "evidence_record_ids": [
+      "line_spacing_label",
+      "line_spacing_paragraph",
+      "line_spacing_factor",
+      "line_spacing_percent"
+    ],
+    "limitations": [
+      "Preserve literal (%) and formatted=\"false\".",
+      "This 50..300% value multiplies paint.fontSpacing for horizontal row steps and vertical column steps; not character spacing, paragraph margins, or an extra pixel gap.",
+      "The draft should remain axis-neutral. A reviewer may prefer normalized የመስመር spacing; that would be an editorial change, not exact source bytes.",
+      "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+      "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "የመስመር ክፍተት (%)",
+        "note": "Optional original spacing normalization; not the exact PO spacing."
+      }
+    ]
+  },
+  {
+    "key": "string/ui_text_alignment",
+    "english": "Text alignment",
+    "draft": "ጽሑፍ ማሰለፊያ",
+    "source_attributes": {
+      "name": "ui_text_alignment"
+    },
+    "rationale": "Adapt exact nonfuzzy LibreOffice Text Alignment → ጽሁፍ ማሰለፊያ, explicitly normalizing the text noun from ጽሁፍ to current project ui_text spelling ጽሑፍ. Alignment is ማሰለፊያ, distinct from the separately attested text-direction term አቅጣጫ. This normalized full phrase is an original editorial draft, not an exact quotation.",
+    "confidence": "high lexical alignment support; medium-high project-normalized composition; unaccepted",
+    "evidence_record_ids": [
+      "text_alignment_label",
+      "text_alignment_vertical",
+      "text_direction_distinction",
+      "current_project_text_spelling"
+    ],
+    "limitations": [
+      "Orthographic change ሁ→ሑ is disclosed and needs independent review; it does not invalidate the attested alternate or authorize changes to other labels.",
+      "Accessibility name of an alignment spinner; not a writing-direction control, canvas/image movement command, or assurance of screen-reader performance.",
+      "Alignment also determines text-block anchoring at the chosen canvas point, as well as shorter row/column placement within the block. Do not reduce it to only internal alignment.",
+      "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+      "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  },
+  {
+    "key": "string/ui_left_aligned",
+    "english": "Left aligned",
+    "draft": "በ ግራ ማሰለፊያ",
+    "source_attributes": {
+      "name": "ui_left_aligned"
+    },
+    "rationale": "Use the exact nonfuzzy LibreOffice paragraph left-alignment function label, also attested in Fontwork text alignment. Adapting Align Left to the AN-Paint option Left aligned is an original grammatical/function-label transfer, not an exact English-label match. Keep attested spacing for review.",
+    "confidence": "high text-alignment lexical support; medium option-state idiom; unaccepted",
+    "evidence_record_ids": [
+      "align_left_paragraph",
+      "align_left_fontwork",
+      "align_left_fontwork_context"
+    ],
+    "limitations": [
+      "Review function-label ማሰለፊያ versus a passive aligned-state construction in this spinner; neither is forced accepted.",
+      "Refers to the physical left edge for horizontal text alignment/anchoring, not writing start/end, reading order, or moving an existing image.",
+      "The app substitutes Top/Centred/Bottom options for vertical text, so do not make this label axis-neutral.",
+      "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+      "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  },
+  {
+    "key": "string/ui_centred",
+    "english": "Centred",
+    "draft": "መሀከል",
+    "source_attributes": {
+      "name": "ui_centred"
+    },
+    "rationale": "Reuse exact nonfuzzy Centered → መሀከል from paragraph last-line alignment; Center is also መሀከል in both horizontal and vertical text-adjustment values. British Centred and American Centered are the same English sense. Short neutral form serves both axes without adding a horizontal qualifier.",
+    "confidence": "high lexical and dual-axis evidence; medium option-group idiom; unaccepted",
+    "evidence_record_ids": [
+      "centred_paragraph",
+      "center_horizontal_text",
+      "center_vertical_text",
+      "align_center_paragraph"
+    ],
+    "limitations": [
+      "Must serve both horizontal rows and vertical columns and corresponding block anchoring; do not translate as horizontal center only.",
+      "Center of the text alignment block/anchor, not necessarily the whole canvas or screen.",
+      "Attested short noun is intentionally shorter than neighboring function-label forms; independent review should decide whether uniform ማሰለፊያ suffixes improve the group. Source spelling መሀከል is preserved without claiming native orthographic preference.",
+      "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+      "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "መሀከል ማሰለፊያ",
+        "note": "Exact Align Center function-label counterpart; usable review alternative for parallelism but not a direct Centered record."
+      }
+    ]
+  },
+  {
+    "key": "string/ui_right_aligned",
+    "english": "Right aligned",
+    "draft": "በ ቀኝ ማሰለፊያ",
+    "source_attributes": {
+      "name": "ui_right_aligned"
+    },
+    "rationale": "Use the exact nonfuzzy LibreOffice paragraph right-alignment function label, also attested in Fontwork text alignment. Adapting Align Right to the AN-Paint option Right aligned is an original grammatical/function-label transfer, not an exact English-label match. Keep attested spacing for review.",
+    "confidence": "high text-alignment lexical support; medium option-state idiom; unaccepted",
+    "evidence_record_ids": [
+      "align_right_paragraph",
+      "align_right_fontwork",
+      "align_right_fontwork_context"
+    ],
+    "limitations": [
+      "Review function-label ማሰለፊያ versus a passive aligned-state construction in this spinner; neither is forced accepted.",
+      "Refers to the physical right edge for horizontal text alignment/anchoring, not writing start/end, reading order, or moving an existing image.",
+      "The app substitutes Top/Centred/Bottom options for vertical text, so do not make this label axis-neutral.",
+      "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+      "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  },
+  {
+    "key": "string/ui_top23",
+    "english": "Top aligned",
+    "draft": "ከ ላይ ማሰለፊያ",
+    "source_attributes": {
+      "name": "ui_top23"
+    },
+    "rationale": "Use exact nonfuzzy LibreOffice cell-content Align Top → ከ ላይ ማሰለፊያ, corroborated by text vertical-adjustment Top value and content-edge help. The original transfer adapts a function label to the source Top aligned state option; it does not transplant a spreadsheet/cell concept.",
+    "confidence": "high lexical components and content-edge sense; medium vertical-text option transfer; unaccepted",
+    "evidence_record_ids": [
+      "align_top_cell",
+      "align_top_cell_context",
+      "align_top_text_value"
+    ],
+    "limitations": [
+      "Not an exact primary-source English Top aligned label match; independent review should assess state-versus-function idiom.",
+      "Controls top alignment/anchoring of vertical text columns, not moving the canvas/image, vertical writing direction, glyph rotation, or UI position.",
+      "Use physical top meaning even when vertical columns progress right-to-left or left-to-right. No separate direction word should be inserted.",
+      "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+      "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  },
+  {
+    "key": "string/ui_bottom23",
+    "english": "Bottom aligned",
+    "draft": "ከ ታች ማሰለፊያ",
+    "source_attributes": {
+      "name": "ui_bottom23"
+    },
+    "rationale": "Use exact nonfuzzy LibreOffice cell-content Align Bottom → ከ ታች ማሰለፊያ, corroborated by text vertical-adjustment Bottom value and content-edge help. The original transfer adapts a function label to the source Bottom aligned state option; it does not transplant a spreadsheet/cell concept.",
+    "confidence": "high lexical components and content-edge sense; medium vertical-text option transfer; unaccepted",
+    "evidence_record_ids": [
+      "align_bottom_cell",
+      "align_bottom_cell_context",
+      "align_bottom_text_value"
+    ],
+    "limitations": [
+      "Not an exact primary-source English Bottom aligned label match; independent review should assess state-versus-function idiom.",
+      "Controls bottom alignment/anchoring of vertical text columns, not moving the canvas/image, vertical writing direction, glyph rotation, or UI position.",
+      "Use physical bottom meaning even when vertical columns progress right-to-left or left-to-right. No separate direction word should be inserted.",
+      "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+      "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  }
+]

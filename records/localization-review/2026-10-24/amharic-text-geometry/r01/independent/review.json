@@ -1,0 +1,330 @@
+{
+  "schema": "amharic-text-geometry-independent-review-v1",
+  "date": "2026-10-24",
+  "input_manifest_sha256": "f3200cc397637aaad77ef060b251a13e6bbc673b8b6201c49b06f0935421fb31",
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "counts": {
+    "retain": 2,
+    "revise": 6,
+    "hold": 0,
+    "implemented": 0
+  },
+  "rows": [
+    {
+      "key": "string/ui_size_pixels",
+      "English": "Size (pixels)",
+      "source_attributes": {
+        "name": "ui_size_pixels"
+      },
+      "source_sha256": "80068cbe87dabd633d2567479102ae3b56b204701da61eac7b708610c51279b1",
+      "original_XML_text": "\"መጠን (ፒክሰሎች)\"",
+      "original_XML_text_sha256": "ac0258a5566273f7067738d5d1b3447afb56a0cff80ea7ac2fc871408169a85d",
+      "decision": "retain",
+      "recommended_display_text": "መጠን (ፒክሰሎች)",
+      "recommended_XML_text": "\"መጠን (ፒክሰሎች)\"",
+      "recommended_XML_element": "<string name=\"ui_size_pixels\">\"መጠን (ፒክሰሎች)\"</string>",
+      "recommended_XML_text_sha256": "ac0258a5566273f7067738d5d1b3447afb56a0cff80ea7ac2fc871408169a85d",
+      "rationale": "Retain the ordinary Size noun and the independently attested pixels plural. This original composition explicitly preserves the text-size unit without importing camera megapixel quantity, points, dp/sp, character count, or exact visible glyph height. The ፒክሰል stem is coherent with the separate Pixel grid spelling family, but that earlier item is not re-reviewed here.",
+      "consumer_check": "TextStyleDialog.kt:41-46,73,101-106 validates 1..1024 image-pixel textSize. PaintDocument.kt:486-487 consumes size directly as Paint.textSize. Preview fit scaling at TextStyleDialog.kt:121-127 is independent. No integer-only promise is made.",
+      "confidence": "High for size and unit sense; medium-high for the composed label and spelling choice.",
+      "evidence_record_ids": [
+        "size_label",
+        "pixels_aosp_13mp",
+        "pixels_aosp_4mp",
+        "pixels_aosp_8mp",
+        "pixels_lo_plural",
+        "pixels_lo_ui_variant"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L40-L46",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L73-L76",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L100-L107",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L482-L497"
+      ],
+      "limitations": [
+        "Independent AI wording/source recommendation, not native-reader certification.",
+        "No implementation, UI-fit, rendered glyph, screen-reader or runtime acceptance.",
+        "Original lexical snapshot spellings, spaces and variants remain unchanged in evidence."
+      ],
+      "status": "Retained original draft within this bounded review.",
+      "decision_sha256": "3e50228abc5fe4eb1abcf41606cccad9f13cd1e78a63106380febdaa7fae697e"
+    },
+    {
+      "key": "string/ui_line_spacing",
+      "English": "Line spacing (%)",
+      "source_attributes": {
+        "name": "ui_line_spacing",
+        "formatted": "false"
+      },
+      "source_sha256": "d3df358465d1f8c4e38036ab7060065d4769d139cb7b0b29bc78a87f0a6f4ed8",
+      "original_XML_text": "\"የ መስመር ክፍተት (%)\"",
+      "original_XML_text_sha256": "1dddc8e8bef5f8cb4aece0e15186eb18b43a9dc52a05aa99c21298f35442a643",
+      "decision": "revise",
+      "recommended_display_text": "የመስመር ክፍተት (%)",
+      "recommended_XML_text": "\"የመስመር ክፍተት (%)\"",
+      "recommended_XML_element": "<string name=\"ui_line_spacing\" formatted=\"false\">\"የመስመር ክፍተት (%)\"</string>",
+      "recommended_XML_text_sha256": "963c84a1e3ee18501b1efe650dc9043da5e64fc1590f39d2c23d3a4141843203",
+      "rationale": "Join the bound የ- prefix to መስመር. Retain the attested spacing noun, literal (%) and formatted=false. This is an explicitly editorial spacing change, not an exact quotation of the LibreOffice bytes. The axis-neutral line concept is appropriate for horizontal lines and vertical columns.",
+      "consumer_check": "TextStyleDialog.kt:42,78,101-106 divides the 50..300 percentage by 100. VerticalText.kt:100-124 uses paint.fontSpacing * spacing as the step between horizontal rows or vertical columns. It is not an extra pixel gap, character spacing or paragraph margin.",
+      "confidence": "High for semantic/unit fidelity; medium-high for the editorial spelling choice.",
+      "evidence_record_ids": [
+        "line_spacing_label",
+        "line_spacing_paragraph",
+        "line_spacing_factor",
+        "line_spacing_percent"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L41-L46",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L78-L79",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L100-L107",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L100-L130"
+      ],
+      "limitations": [
+        "Independent AI wording/source recommendation, not native-reader certification.",
+        "No implementation, UI-fit, rendered glyph, screen-reader or runtime acceptance.",
+        "Original lexical snapshot spellings, spaces and variants remain unchanged in evidence."
+      ],
+      "status": "Exact editorial recommendation; reconcile with the author before treating the original draft as accepted.",
+      "decision_sha256": "6304c368b59439f55b023212cc8f88d672d6430f727f77a19cd23037f8bdc11c"
+    },
+    {
+      "key": "string/ui_text_alignment",
+      "English": "Text alignment",
+      "source_attributes": {
+        "name": "ui_text_alignment"
+      },
+      "source_sha256": "9a5e5afef6f2cd472d13f3427cf4be4f77d1d84bcd1778db1f9204f3ee643aa7",
+      "original_XML_text": "\"ጽሑፍ ማሰለፊያ\"",
+      "original_XML_text_sha256": "a4e4e9f480cf8b7c488db33518199fa5074a0e6bfbf2fd219b5b0fa8f4bb45a2",
+      "decision": "retain",
+      "recommended_display_text": "ጽሑፍ ማሰለፊያ",
+      "recommended_XML_text": "\"ጽሑፍ ማሰለፊያ\"",
+      "recommended_XML_element": "<string name=\"ui_text_alignment\">\"ጽሑፍ ማሰለፊያ\"</string>",
+      "recommended_XML_text_sha256": "a4e4e9f480cf8b7c488db33518199fa5074a0e6bfbf2fd219b5b0fa8f4bb45a2",
+      "rationale": "Retain the disclosed project-consistent spelling ጽሑፍ and the attested alignment noun. This names the spinner function rather than writing direction. The ሁ to ሑ replacement is a local orthographic choice, not Unicode normalization, a correction of all source attestations, or permission to rewrite unrelated labels.",
+      "consumer_check": "TextStyleDialog.kt:54 is the spinner contentDescription; 79-84 selects LEFT/CENTER/RIGHT and switches the visible options by writing direction. VerticalText.kt:110-124 aligns shorter layout rows/columns inside the maximum-width/height block. PaintDocument.kt:489-496 also anchors the block to the chosen canvas coordinate.",
+      "confidence": "High for alignment sense; medium-high for locally consistent orthography and label idiom.",
+      "evidence_record_ids": [
+        "text_alignment_label",
+        "text_alignment_vertical",
+        "text_direction_distinction",
+        "current_project_text_spelling"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L54-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L79-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L106-L130",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "limitations": [
+        "Independent AI wording/source recommendation, not native-reader certification.",
+        "No implementation, UI-fit, rendered glyph, screen-reader or runtime acceptance.",
+        "Original lexical snapshot spellings, spaces and variants remain unchanged in evidence."
+      ],
+      "status": "Retained original draft within this bounded review.",
+      "decision_sha256": "15731bcbbc2f83183a436e0625147224152d7498cb3dc3525ea48ea81a603f8b"
+    },
+    {
+      "key": "string/ui_left_aligned",
+      "English": "Left aligned",
+      "source_attributes": {
+        "name": "ui_left_aligned"
+      },
+      "source_sha256": "5b6d8cb210b491106038a7a58f082430698b8cb2a6250ae65a50757d35de95ed",
+      "original_XML_text": "\"በ ግራ ማሰለፊያ\"",
+      "original_XML_text_sha256": "d811c5e6a8ac4e2dc2f83735495612cd5714907dc9ff6a61ff90961073873870",
+      "decision": "revise",
+      "recommended_display_text": "በግራ ማሰለፊያ",
+      "recommended_XML_text": "\"በግራ ማሰለፊያ\"",
+      "recommended_XML_element": "<string name=\"ui_left_aligned\">\"በግራ ማሰለፊያ\"</string>",
+      "recommended_XML_text_sha256": "4660992642cc65bcc26d426d00835f54185724175aa25220a6ee33caf5db5c07",
+      "rationale": "Join the bound በ- prefix to ግራ; retain the attested nominal alignment-mode wording. In this spinner an alignment-mode name conveys the selected setting without requiring a passive state sentence. Do not convert physical left to logical start or writing direction.",
+      "consumer_check": "Horizontal option index 0 maps to Paint.Align.LEFT. Internal row offset is 0; block left is canvas x. The claim concerns layout bounds, not a pixel-perfect glyph-ink edge. TextStyleDialog.kt:79-84; VerticalText.kt:110-113; PaintDocument.kt:489-496.",
+      "confidence": "High for physical-side and alignment sense; medium-high for nominal option idiom and joined spelling.",
+      "evidence_record_ids": [
+        "align_left_paragraph",
+        "align_left_fontwork",
+        "align_left_fontwork_context"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L54-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L110-L113",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "limitations": [
+        "Independent AI wording/source recommendation, not native-reader certification.",
+        "No implementation, UI-fit, rendered glyph, screen-reader or runtime acceptance.",
+        "Original lexical snapshot spellings, spaces and variants remain unchanged in evidence."
+      ],
+      "status": "Exact editorial recommendation; reconcile with the author before treating the original draft as accepted.",
+      "decision_sha256": "be8ce923f17db1947d36fb0bd97bee50ae0b96a5b6c7aeba0993c2c874622143"
+    },
+    {
+      "key": "string/ui_centred",
+      "English": "Centred",
+      "source_attributes": {
+        "name": "ui_centred"
+      },
+      "source_sha256": "4d244e6c144f641575b4118842f34a0a75e744894b2f18dcb3ae49e6ba7bab90",
+      "original_XML_text": "\"መሀከል\"",
+      "original_XML_text_sha256": "a4e79f32aaedd30af077f65e886c15c4cb4136e722c4c3c6213b37ad4d13c3bf",
+      "decision": "revise",
+      "recommended_display_text": "መሀከል ማሰለፊያ",
+      "recommended_XML_text": "\"መሀከል ማሰለፊያ\"",
+      "recommended_XML_element": "<string name=\"ui_centred\">\"መሀከል ማሰለፊያ\"</string>",
+      "recommended_XML_text_sha256": "d692a33941348eb4e33f2de7cf9c52518a107f24f1b8c95bc29331e485967d95",
+      "rationale": "Use the supplied exact Align Center counterpart for parallel nominal mode labels across both option sets. The shorter መሀከል is semantically supported and is not declared erroneous; the added alignment noun is a consistency recommendation. Preserve the attested መሀከል spelling rather than silently choosing a different native orthographic variant. Add no horizontal, screen or whole-canvas qualifier.",
+      "consumer_check": "Shared option index 1 maps to CENTER. Horizontal row offset is (block width - row width)/2, and the block shifts by half its width around canvas x. Vertical content offset is (block height - column length)/2, and the block shifts by half its height around canvas y. It does not place text at the centre of the canvas. Same three consumers as the other alignment modes.",
+      "confidence": "High for dual-axis centering sense; medium-high for option-group parallelism; no claim of native orthographic preference.",
+      "evidence_record_ids": [
+        "align_center_paragraph",
+        "centred_paragraph",
+        "center_horizontal_text",
+        "center_vertical_text"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L54-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L110-L121",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "limitations": [
+        "Independent AI wording/source recommendation, not native-reader certification.",
+        "No implementation, UI-fit, rendered glyph, screen-reader or runtime acceptance.",
+        "Original lexical snapshot spellings, spaces and variants remain unchanged in evidence."
+      ],
+      "status": "Exact editorial recommendation; reconcile with the author before treating the original draft as accepted.",
+      "decision_sha256": "a55aa6ffd3bbec4e742e7d914ec321b06ea75fb25b6d8db69f5a2f73c3019ea0"
+    },
+    {
+      "key": "string/ui_right_aligned",
+      "English": "Right aligned",
+      "source_attributes": {
+        "name": "ui_right_aligned"
+      },
+      "source_sha256": "dc54794218bdafe3f0be0d1052748ad41f4907af67fd06b05caef4f9f7d250d4",
+      "original_XML_text": "\"በ ቀኝ ማሰለፊያ\"",
+      "original_XML_text_sha256": "46a9221e80bff982b1df85115c37dfd3ed62d7a2cbf7b9700ebfa5f64f37ec06",
+      "decision": "revise",
+      "recommended_display_text": "በቀኝ ማሰለፊያ",
+      "recommended_XML_text": "\"በቀኝ ማሰለፊያ\"",
+      "recommended_XML_element": "<string name=\"ui_right_aligned\">\"በቀኝ ማሰለፊያ\"</string>",
+      "recommended_XML_text_sha256": "cb2af18bc6338647938698632ea9d93a503cb0c052c39b7b1dd75600cd095f30",
+      "rationale": "Join the bound በ- prefix to ቀኝ; retain the nominal alignment-mode wording. It is parallel to left and the revised centre option. Preserve physical right rather than logical end, right-to-left writing, or image motion.",
+      "consumer_check": "Horizontal option index 2 maps to Paint.Align.RIGHT. Internal row offset is block width minus row width; block left is canvas x minus block width. TextStyleDialog.kt:79-84; VerticalText.kt:110-113; PaintDocument.kt:489-496.",
+      "confidence": "High for physical-side and alignment sense; medium-high for nominal option idiom and joined spelling.",
+      "evidence_record_ids": [
+        "align_right_paragraph",
+        "align_right_fontwork",
+        "align_right_fontwork_context"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L54-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L110-L113",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "limitations": [
+        "Independent AI wording/source recommendation, not native-reader certification.",
+        "No implementation, UI-fit, rendered glyph, screen-reader or runtime acceptance.",
+        "Original lexical snapshot spellings, spaces and variants remain unchanged in evidence."
+      ],
+      "status": "Exact editorial recommendation; reconcile with the author before treating the original draft as accepted.",
+      "decision_sha256": "595dd661a650744e66bb279373474d010d0a4175721af7e1e553198bd03817c0"
+    },
+    {
+      "key": "string/ui_top23",
+      "English": "Top aligned",
+      "source_attributes": {
+        "name": "ui_top23"
+      },
+      "source_sha256": "b5bb4604b448c71305207affb6bb659c01581c454144706fb2878093dac5596e",
+      "original_XML_text": "\"ከ ላይ ማሰለፊያ\"",
+      "original_XML_text_sha256": "95fd55488103f97b08625a570a9be189fa9b9cd7ee282e4630e626ef77d2c58c",
+      "decision": "revise",
+      "recommended_display_text": "ከላይ ማሰለፊያ",
+      "recommended_XML_text": "\"ከላይ ማሰለፊያ\"",
+      "recommended_XML_element": "<string name=\"ui_top23\">\"ከላይ ማሰለፊያ\"</string>",
+      "recommended_XML_text_sha256": "ffff20f53c24619b06921f1faab7ad004184bfe0f6b73e83e8d68929958e8d04",
+      "rationale": "Join the bound ከ- prefix to ላይ; retain the nominal alignment-mode wording. The text-adjustment Top record and cell-content Align Top record establish the content-edge sense without importing a cell, page or whole-canvas destination.",
+      "consumer_check": "Vertical option index 0 still maps to LEFT internally, but y offset is 0 and block top is canvas y. Column progression left-to-right or right-to-left is a separate direction setting. The English key ui_top23 must not be replaced by another Top label. TextStyleDialog.kt:79-84; VerticalText.kt:116-124; PaintDocument.kt:489-496.",
+      "confidence": "High for top/content-edge meaning; medium-high for transfer to the vertical-text mode option and joined spelling.",
+      "evidence_record_ids": [
+        "align_top_cell",
+        "align_top_cell_context",
+        "align_top_text_value"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L116-L130",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "limitations": [
+        "Independent AI wording/source recommendation, not native-reader certification.",
+        "No implementation, UI-fit, rendered glyph, screen-reader or runtime acceptance.",
+        "Original lexical snapshot spellings, spaces and variants remain unchanged in evidence."
+      ],
+      "status": "Exact editorial recommendation; reconcile with the author before treating the original draft as accepted.",
+      "decision_sha256": "7520c66f3ab5cb7fc55a5bf9a3b2ad0fd9b54c1044f68afc99a250353a60629e"
+    },
+    {
+      "key": "string/ui_bottom23",
+      "English": "Bottom aligned",
+      "source_attributes": {
+        "name": "ui_bottom23"
+      },
+      "source_sha256": "a699723dde022955da9a241f30c4d55821da0254bb4d2cedefb3041692554ddf",
+      "original_XML_text": "\"ከ ታች ማሰለፊያ\"",
+      "original_XML_text_sha256": "d8e0122c605fa75cbc9dcd3eef70cb4b1ca9cc8ff62c12504aae410dc7cca62a",
+      "decision": "revise",
+      "recommended_display_text": "ከታች ማሰለፊያ",
+      "recommended_XML_text": "\"ከታች ማሰለፊያ\"",
+      "recommended_XML_element": "<string name=\"ui_bottom23\">\"ከታች ማሰለፊያ\"</string>",
+      "recommended_XML_text_sha256": "6aad5b7653ea0ad3e6b2a36074973cb7a4ffca727b00c2ee4ad3ee8fa2b8caed",
+      "rationale": "Join the bound ከ- prefix to ታች; retain the nominal alignment-mode wording. The text-adjustment Bottom record and cell-content Align Bottom record establish the content-edge sense. The excluded object-bottom help does not support this decision.",
+      "consumer_check": "Vertical option index 2 still maps to RIGHT internally, but y offset is block height minus column length and block top is canvas y minus block height. This is bottom content alignment/anchoring, not last-column order or canvas-bottom placement. Preserve ui_bottom23. TextStyleDialog.kt:79-84; VerticalText.kt:116-124; PaintDocument.kt:489-496.",
+      "confidence": "High for bottom/content-edge meaning; medium-high for transfer to the vertical-text mode option and joined spelling.",
+      "evidence_record_ids": [
+        "align_bottom_cell",
+        "align_bottom_cell_context",
+        "align_bottom_text_value"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L116-L130",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "limitations": [
+        "Independent AI wording/source recommendation, not native-reader certification.",
+        "No implementation, UI-fit, rendered glyph, screen-reader or runtime acceptance.",
+        "Original lexical snapshot spellings, spaces and variants remain unchanged in evidence."
+      ],
+      "status": "Exact editorial recommendation; reconcile with the author before treating the original draft as accepted.",
+      "decision_sha256": "d859b84d5c245ed09838cf9ed33613184a30a93da9f149210520e4cc71b00786"
+    }
+  ],
+  "independence": "Separate review of exact drafts, source consumers and source records. Prior reviewer reports inspected only for context, not used as substitute evidence or as binding decisions.",
+  "shared_adjudications": {
+    "state_label_idiom": "Keep nominal alignment-mode labels rather than inventing passive state sentences. In a spinner, choosing an alignment mode denotes the setting; it is not an instruction to move the image or a claim of a completed drawing action. This is grammatical adaptation of the source meaning, not source repair. Confidence is medium-high and native usability remains untested.",
+    "centred_parallelism": "Recommend መሀከል ማሰለፊያ, the exact supplied Align Center counterpart, to match the four neighboring nominal mode labels. The shorter መሀከል is supported and not semantically wrong. Both horizontal and vertical uses stay axis-neutral.",
+    "bound_prefixes": "Explicitly join የ + መስመር, በ + ግራ, በ + ቀኝ, ከ + ላይ and ከ + ታች. The linguistic reference supports host-dependent prefixes; joined target strings are editorial recommendations. Original spaced PO evidence stays intact.",
+    "text_spelling": "Retain the disclosed ጽሁፍ to ጽሑፍ change for current ui_text consistency. U+1201 ሁ becomes U+1211 ሑ. This is not Unicode normalization or a global character replacement; it neither invalidates the alternate attestation nor changes other labels.",
+    "center_spelling": "Preserve source-attested መሀከል in this bounded recommendation. No native-preferred spelling claim is made, and no unattested spelling repair is introduced.",
+    "units_and_attributes": "ui_line_spacing preserves literal (%) and formatted=\"false\". ui_size_pixels preserves a spelled-out pixel unit, not literal px. No printf arguments or plurals are present in these selected values.",
+    "source_gate": "No English defect established. Line spacing applies to line advances across either axis; physical alignment and writing direction are distinct. If a genuine source defect is later established, correct English first, flag affected terms across all languages, then review each language. No Amharic-only semantic compensation."
+  },
+  "scope_exclusions": [
+    "Prior 52 ready and six holds remain separate and unchanged.",
+    "No production/resource edit, Work task, app build, app test, CI, release or external publication.",
+    "No certification of shaping, font fallback, exact ink bounds, accessibility, lifecycle or broader numeric-parser behavior."
+  ],
+  "next_step": "Author reconciliation of the six exact revised values. The two retained original drafts have bounded independent wording recommendations; none of the eight has been implemented.",
+  "freshness": "Reviewer did not independently refetch production or the 11 lexical snapshot files. Supplied production-tree freshness is packet provenance; lexical snapshot reuse and no-fresh-HTTP qualification remain in force.",
+  "supplementary_reference_ids": [
+    "baker_kramer_2014",
+    "microsoft_amharic_style_2011"
+  ]
+}

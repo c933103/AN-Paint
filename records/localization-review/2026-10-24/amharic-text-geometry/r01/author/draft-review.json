@@ -1,0 +1,404 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_size_pixels",
+      "English": "Size (pixels)",
+      "source_attributes": {
+        "name": "ui_size_pixels"
+      },
+      "source_sha256": "80068cbe87dabd633d2567479102ae3b56b204701da61eac7b708610c51279b1",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Label for text size numeric field, Paint.textSize1..1024 image pixels. Not font point size, screen dp/sp or guaranteed glyph bounding-box height. Preview can scale whole block down to fit, independently of eventual canvas text size.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L40-L46",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L73-L76",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L100-L107",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L482-L497"
+      ],
+      "proposed_XML_text": "\"መጠን (ፒክሰሎች)\"",
+      "proposed_XML_element": "<string name=\"ui_size_pixels\">\"መጠን (ፒክሰሎች)\"</string>",
+      "proposed_XML_text_sha256": "ac0258a5566273f7067738d5d1b3447afb56a0cff80ea7ac2fc871408169a85d",
+      "author_status": "review",
+      "rationale": "Original composition from exact LibreOffice Size → መጠን and the directly attested AOSP Gallery2 plural token ፒክሰሎች inside 13M pixels/4M pixels. Retains parentheses but translates the spelled-out English pixels; unlike Size (px), there is no literal px to preserve. The selected spelling family matches the prior Pixel grid candidate የፒክሰል ፍርግርግ. This is not an exact whole-label quotation.",
+      "confidence": "medium-high lexical components; medium contextual/orthographic choice; unaccepted",
+      "limitations": [
+        "Full Size (pixels) phrase was not established as an exact primary-source translation.",
+        "LibreOffice variants ፒክስሎች and ፒክስልስ are retained; reviewer must adjudicate spelling consistency rather than claim one attestation invalid.",
+        "Refers to Paint.textSize in image pixels (1..1024), not points, dp/sp, text length, preview scale, or a guaranteed visible glyph height.",
+        "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+        "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_line_spacing",
+      "English": "Line spacing (%)",
+      "source_attributes": {
+        "name": "ui_line_spacing",
+        "formatted": "false"
+      },
+      "source_sha256": "d3df358465d1f8c4e38036ab7060065d4769d139cb7b0b29bc78a87f0a6f4ed8",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Label for numeric percentage field50..300. Value divided by100 multiplies paint.fontSpacing. Controls horizontal row steps or vertical column steps, not character spacing or extra pixel gap. Preserve literal(%) and formatted=false. Current source line concept spans both writing directions; no established source defect.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L41-L46",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L78-L79",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L100-L107",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L100-L130"
+      ],
+      "proposed_XML_text": "\"የ መስመር ክፍተት (%)\"",
+      "proposed_XML_element": "<string name=\"ui_line_spacing\" formatted=\"false\">\"የ መስመር ክፍተት (%)\"</string>",
+      "proposed_XML_text_sha256": "1dddc8e8bef5f8cb4aece0e15186eb18b43a9dc52a05aa99c21298f35442a643",
+      "author_status": "review",
+      "rationale": "Exact nonfuzzy LibreOffice paragraph/formatting Line Spacing → የ መስመር ክፍተት plus the source literal (%). Keep source-attested spacing in the author draft rather than silently normalize it. Proportional-spacing help corroborates the percentage concept, but AN-Paint consumer code alone defines its behavior.",
+      "confidence": "high lexical; medium-high semantic transfer; unaccepted",
+      "limitations": [
+        "Preserve literal (%) and formatted=\"false\".",
+        "This 50..300% value multiplies paint.fontSpacing for horizontal row steps and vertical column steps; not character spacing, paragraph margins, or an extra pixel gap.",
+        "The draft should remain axis-neutral. A reviewer may prefer normalized የመስመር spacing; that would be an editorial change, not exact source bytes.",
+        "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+        "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_text_alignment",
+      "English": "Text alignment",
+      "source_attributes": {
+        "name": "ui_text_alignment"
+      },
+      "source_sha256": "9a5e5afef6f2cd472d13f3427cf4be4f77d1d84bcd1778db1f9204f3ee643aa7",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Alignment Spinner contentDescription, identifies text alignment, not text direction or image placement. Options switch axis with writing direction. Accessibility label wording only, no screen-reader acceptance. Horizontal shorter lines are aligned within the maximum-width text block; vertical shorter columns are aligned within maximum-height block. When committing, block placement is also anchored at chosen canvas point using alignment. Neither translation nor source checks certify actual rendered glyphs.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L54-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L79-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L106-L130",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "proposed_XML_text": "\"ጽሑፍ ማሰለፊያ\"",
+      "proposed_XML_element": "<string name=\"ui_text_alignment\">\"ጽሑፍ ማሰለፊያ\"</string>",
+      "proposed_XML_text_sha256": "a4e4e9f480cf8b7c488db33518199fa5074a0e6bfbf2fd219b5b0fa8f4bb45a2",
+      "author_status": "review",
+      "rationale": "Adapt exact nonfuzzy LibreOffice Text Alignment → ጽሁፍ ማሰለፊያ, explicitly normalizing the text noun from ጽሁፍ to current project ui_text spelling ጽሑፍ. Alignment is ማሰለፊያ, distinct from the separately attested text-direction term አቅጣጫ. This normalized full phrase is an original editorial draft, not an exact quotation.",
+      "confidence": "high lexical alignment support; medium-high project-normalized composition; unaccepted",
+      "limitations": [
+        "Orthographic change ሁ→ሑ is disclosed and needs independent review; it does not invalidate the attested alternate or authorize changes to other labels.",
+        "Accessibility name of an alignment spinner; not a writing-direction control, canvas/image movement command, or assurance of screen-reader performance.",
+        "Alignment also determines text-block anchoring at the chosen canvas point, as well as shorter row/column placement within the block. Do not reduce it to only internal alignment.",
+        "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+        "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_left_aligned",
+      "English": "Left aligned",
+      "source_attributes": {
+        "name": "ui_left_aligned"
+      },
+      "source_sha256": "5b6d8cb210b491106038a7a58f082430698b8cb2a6250ae65a50757d35de95ed",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Horizontal-text option index0/LEFT; shorter lines flush left and block starts at canvas x coordinate. Not logical bidi-start or selecting left-to-right script direction. Horizontal shorter lines are aligned within the maximum-width text block; vertical shorter columns are aligned within maximum-height block. When committing, block placement is also anchored at chosen canvas point using alignment. Neither translation nor source checks certify actual rendered glyphs.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L54-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L110-L113",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "proposed_XML_text": "\"በ ግራ ማሰለፊያ\"",
+      "proposed_XML_element": "<string name=\"ui_left_aligned\">\"በ ግራ ማሰለፊያ\"</string>",
+      "proposed_XML_text_sha256": "d811c5e6a8ac4e2dc2f83735495612cd5714907dc9ff6a61ff90961073873870",
+      "author_status": "review",
+      "rationale": "Use the exact nonfuzzy LibreOffice paragraph left-alignment function label, also attested in Fontwork text alignment. Adapting Align Left to the AN-Paint option Left aligned is an original grammatical/function-label transfer, not an exact English-label match. Keep attested spacing for review.",
+      "confidence": "high text-alignment lexical support; medium option-state idiom; unaccepted",
+      "limitations": [
+        "Review function-label ማሰለፊያ versus a passive aligned-state construction in this spinner; neither is forced accepted.",
+        "Refers to the physical left edge for horizontal text alignment/anchoring, not writing start/end, reading order, or moving an existing image.",
+        "The app substitutes Top/Centred/Bottom options for vertical text, so do not make this label axis-neutral.",
+        "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+        "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_centred",
+      "English": "Centred",
+      "source_attributes": {
+        "name": "ui_centred"
+      },
+      "source_sha256": "4d244e6c144f641575b4118842f34a0a75e744894b2f18dcb3ae49e6ba7bab90",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Shared index1/CENTER option. Horizontal: line centering across width and block centered on x anchor. Vertical: column content centered along height and block centered on y anchor. Not canvas center or justified/distributed alignment. Horizontal shorter lines are aligned within the maximum-width text block; vertical shorter columns are aligned within maximum-height block. When committing, block placement is also anchored at chosen canvas point using alignment. Neither translation nor source checks certify actual rendered glyphs.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L54-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L110-L121",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "proposed_XML_text": "\"መሀከል\"",
+      "proposed_XML_element": "<string name=\"ui_centred\">\"መሀከል\"</string>",
+      "proposed_XML_text_sha256": "a4e79f32aaedd30af077f65e886c15c4cb4136e722c4c3c6213b37ad4d13c3bf",
+      "author_status": "review",
+      "rationale": "Reuse exact nonfuzzy Centered → መሀከል from paragraph last-line alignment; Center is also መሀከል in both horizontal and vertical text-adjustment values. British Centred and American Centered are the same English sense. Short neutral form serves both axes without adding a horizontal qualifier.",
+      "confidence": "high lexical and dual-axis evidence; medium option-group idiom; unaccepted",
+      "limitations": [
+        "Must serve both horizontal rows and vertical columns and corresponding block anchoring; do not translate as horizontal center only.",
+        "Center of the text alignment block/anchor, not necessarily the whole canvas or screen.",
+        "Attested short noun is intentionally shorter than neighboring function-label forms; independent review should decide whether uniform ማሰለፊያ suffixes improve the group. Source spelling መሀከል is preserved without claiming native orthographic preference.",
+        "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+        "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_right_aligned",
+      "English": "Right aligned",
+      "source_attributes": {
+        "name": "ui_right_aligned"
+      },
+      "source_sha256": "dc54794218bdafe3f0be0d1052748ad41f4907af67fd06b05caef4f9f7d250d4",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Horizontal-text option index2/RIGHT; shorter lines right-aligned in block and block ends at x anchor. Not choosing right-to-left writing direction or mirroring. Horizontal shorter lines are aligned within the maximum-width text block; vertical shorter columns are aligned within maximum-height block. When committing, block placement is also anchored at chosen canvas point using alignment. Neither translation nor source checks certify actual rendered glyphs.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L54-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L110-L113",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "proposed_XML_text": "\"በ ቀኝ ማሰለፊያ\"",
+      "proposed_XML_element": "<string name=\"ui_right_aligned\">\"በ ቀኝ ማሰለፊያ\"</string>",
+      "proposed_XML_text_sha256": "46a9221e80bff982b1df85115c37dfd3ed62d7a2cbf7b9700ebfa5f64f37ec06",
+      "author_status": "review",
+      "rationale": "Use the exact nonfuzzy LibreOffice paragraph right-alignment function label, also attested in Fontwork text alignment. Adapting Align Right to the AN-Paint option Right aligned is an original grammatical/function-label transfer, not an exact English-label match. Keep attested spacing for review.",
+      "confidence": "high text-alignment lexical support; medium option-state idiom; unaccepted",
+      "limitations": [
+        "Review function-label ማሰለፊያ versus a passive aligned-state construction in this spinner; neither is forced accepted.",
+        "Refers to the physical right edge for horizontal text alignment/anchoring, not writing start/end, reading order, or moving an existing image.",
+        "The app substitutes Top/Centred/Bottom options for vertical text, so do not make this label axis-neutral.",
+        "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+        "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_top23",
+      "English": "Top aligned",
+      "source_attributes": {
+        "name": "ui_top23"
+      },
+      "source_sha256": "b5bb4604b448c71305207affb6bb659c01581c454144706fb2878093dac5596e",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Vertical-text option index0/LEFT internally means top-aligned along column height; block starts at y anchor. Not start column on right or top of whole canvas. Horizontal shorter lines are aligned within the maximum-width text block; vertical shorter columns are aligned within maximum-height block. When committing, block placement is also anchored at chosen canvas point using alignment. Neither translation nor source checks certify actual rendered glyphs.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L116-L130",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "proposed_XML_text": "\"ከ ላይ ማሰለፊያ\"",
+      "proposed_XML_element": "<string name=\"ui_top23\">\"ከ ላይ ማሰለፊያ\"</string>",
+      "proposed_XML_text_sha256": "95fd55488103f97b08625a570a9be189fa9b9cd7ee282e4630e626ef77d2c58c",
+      "author_status": "review",
+      "rationale": "Use exact nonfuzzy LibreOffice cell-content Align Top → ከ ላይ ማሰለፊያ, corroborated by text vertical-adjustment Top value and content-edge help. The original transfer adapts a function label to the source Top aligned state option; it does not transplant a spreadsheet/cell concept.",
+      "confidence": "high lexical components and content-edge sense; medium vertical-text option transfer; unaccepted",
+      "limitations": [
+        "Not an exact primary-source English Top aligned label match; independent review should assess state-versus-function idiom.",
+        "Controls top alignment/anchoring of vertical text columns, not moving the canvas/image, vertical writing direction, glyph rotation, or UI position.",
+        "Use physical top meaning even when vertical columns progress right-to-left or left-to-right. No separate direction word should be inserted.",
+        "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+        "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_bottom23",
+      "English": "Bottom aligned",
+      "source_attributes": {
+        "name": "ui_bottom23"
+      },
+      "source_sha256": "a699723dde022955da9a241f30c4d55821da0254bb4d2cedefb3041692554ddf",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Vertical-text option index2/RIGHT internally means bottom-aligned along column height; block ends at y anchor. Not bottom of whole canvas or last column. Horizontal shorter lines are aligned within the maximum-width text block; vertical shorter columns are aligned within maximum-height block. When committing, block placement is also anchored at chosen canvas point using alignment. Neither translation nor source checks certify actual rendered glyphs.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L81-L86",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L116-L130",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L489-L496"
+      ],
+      "proposed_XML_text": "\"ከ ታች ማሰለፊያ\"",
+      "proposed_XML_element": "<string name=\"ui_bottom23\">\"ከ ታች ማሰለፊያ\"</string>",
+      "proposed_XML_text_sha256": "d8e0122c605fa75cbc9dcd3eef70cb4b1ca9cc8ff62c12504aae410dc7cca62a",
+      "author_status": "review",
+      "rationale": "Use exact nonfuzzy LibreOffice cell-content Align Bottom → ከ ታች ማሰለፊያ, corroborated by text vertical-adjustment Bottom value and content-edge help. The original transfer adapts a function label to the source Bottom aligned state option; it does not transplant a spreadsheet/cell concept.",
+      "confidence": "high lexical components and content-edge sense; medium vertical-text option transfer; unaccepted",
+      "limitations": [
+        "Not an exact primary-source English Bottom aligned label match; independent review should assess state-versus-function idiom.",
+        "Controls bottom alignment/anchoring of vertical text columns, not moving the canvas/image, vertical writing direction, glyph rotation, or UI position.",
+        "Use physical bottom meaning even when vertical columns progress right-to-left or left-to-right. No separate direction word should be inserted.",
+        "Original AI-authored review draft, not independently accepted or native-speaker validated.",
+        "No app implementation, build, rendering, UI-fit, accessibility or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    }
+  ],
+  "shared_source_chain": "TextStyleDialog fields and alignment choices update TextPreview; confirmation validates numeric ranges and passes TextSettings through ClassicPaintActivity.showTextDialog to PaintDocument.text, then VerticalText.bounds/draw. Preview has independent fit scale. All selected labels missing; prior52ready/sixholds excluded. Font fallback selection, shaping quality and general numeric-parser validation outside this bounded wording review.",
+  "source_gate": "No English defect established. Preserve physical alignment versus writing-direction distinctions and line-spacing row/column behavior. If real source defect established later, correct English first and flag all affected locales; no silent Amharic-only compensation.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_containers": 717,
+    "prior_ready": 52,
+    "prior_holds": 6,
+    "new_independent_acceptance": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Original drafts only; independent review required.",
+    "Source-only bounded consumer inspection, not native, rendered, accessibility or lifecycle acceptance.",
+    "Previous inherited-label uncertainties, optional suggestions, six held proposals and full Help holds unchanged."
+  ],
+  "lexical_sources": [
+    {
+      "file": "libreoffice-am-cui.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+      "sha256": "a1d524a820c0c6de187d0625b9eced32733642ad196d79857500c91977a428b4",
+      "bytes": 733737,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "libreoffice-am-svx.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-svx.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+      "sha256": "69d5adb5831b13831d8393b9c09ff0d5f2f9741a34a8d5ccb3a5ca5869bbbb37",
+      "bytes": 558173,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-svx.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "libreoffice-am-help01.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-help01.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+      "sha256": "a1d93dc2d370e83de23544557e9346d43d44d7e517e3f5e6e2d20ce7a8bf46b7",
+      "bytes": 1739104,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-help01.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "libreoffice-am-help02.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-help02.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+      "sha256": "5eb91cd3041d5f579bf80dfcd0da76e9efa60942e44b15c9ef252baed7fe941a",
+      "bytes": 693513,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-help02.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "libreoffice-am-ui.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-ui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+      "sha256": "58e8087d71f01c78f53b3440a60db40246e4795b5326dcb894afaaa57f32d110",
+      "bytes": 910384,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-ui.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "android-settings-am.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+      "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6",
+      "bytes": 890123,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3"
+    },
+    {
+      "file": "android-settings-en.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT",
+      "sha256": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e",
+      "bytes": 1135503,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3"
+    },
+    {
+      "file": "android-gallery2-am.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/android-gallery2-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+      "sha256": "248cc8e0fa60e39535054a90dbc3ee3852aafabe7f57e435cf4417975de77601",
+      "bytes": 44609,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-view-controls-draft-20261024/lexical-evidence/android-gallery2-am.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-view-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb"
+    },
+    {
+      "file": "android-gallery2-en.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/android-gallery2-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values/strings.xml?format=TEXT",
+      "sha256": "6dd4606186f7ae3b18de3f75af77caf3ad6ed058e28fa6d91ecb23b48876565a",
+      "bytes": 64038,
+      "retrieval": "Reused full commit-pinned local snapshot; source SHA-256 was recomputed and matches prior packet provenance. No successful fresh HTTP retrieval is claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-view-controls-draft-20261024/lexical-evidence/android-gallery2-en.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-view-controls-draft-20261024/lexical-evidence/sources.json",
+      "pin": "c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb"
+    },
+    {
+      "file": "project-en-strings.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/project-en-strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml",
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "bytes": 80549,
+      "retrieval": "Reused complete canonical project-source copy supplied in this packet; recomputed SHA-256 matches source-bindings.json.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/source/Paintroid/src/main/res/values/strings.xml",
+      "pin": "66be61df27c5359bffc32d56db21f3949899f873",
+      "role": "English-source identity and current Amharic spelling consistency, not external lexical authority."
+    },
+    {
+      "file": "project-am-strings.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/project-am-strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml",
+      "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+      "bytes": 871,
+      "retrieval": "Reused complete canonical project-source copy supplied in this packet; recomputed SHA-256 matches source-bindings.json.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/source/Paintroid/src/main/res/values-b+am/strings.xml",
+      "pin": "66be61df27c5359bffc32d56db21f3949899f873",
+      "role": "English-source identity and current Amharic spelling consistency, not external lexical authority."
+    }
+  ],
+  "date": "2026-10-24",
+  "schema": "amharic-text-geometry-draft-v1",
+  "unit_placeholder_check": "Literal (%) and formatted=false retained for Line spacing. The word pixels remains an explicit unit in Size. No printf arguments occur in selected values. Numeric validation and other dialog messages remain excluded."
+}
