@@ -1,0 +1,87 @@
+{
+  "review_date_utc": "2026-10-24",
+  "review_type": "Independent source-constrained translation adjudication",
+  "resource": "string/ui_calligraphy",
+  "locale": "am",
+  "english": "Calligraphy",
+  "previous_held_candidate": "ሰያፍ ጭረት",
+  "reviewed_candidate": "ቁም ጽሕፈት",
+  "decision": "release_with_revision",
+  "decision_scope": "Lift this translation hold and accept the revised wording as ready for integration; not an application release or production implementation.",
+  "accepted_value": "ቁም ጽሕፈት",
+  "accepted_xml_element": "<string name=\"ui_calligraphy\">ቁም ጽሕፈት</string>",
+  "fidelity": "The accepted lexical compound restores the source's calligraphic art/style concept, which the old diagonal-stroke phrase omitted. In the Brush control it labels the calligraphic tip style, not a particular script, font or text-input mode.",
+  "idiom": "The unprefixed noun is directly supported by Leslau's optional prefix notation and fits a compact option caption. Contemporary UI preference remains a medium-confidence judgment, not native validation or a uniqueness claim.",
+  "control_context": {
+    "tool": "Brush",
+    "option_index": 2,
+    "siblings": ["Round", "Square"],
+    "geometry": "Repeated elongated, fixed-diagonal, round-capped footprints along arbitrary drawn paths.",
+    "diagonal_only_path": false,
+    "literal_rectangular_nib": false,
+    "font_picker": false,
+    "automatic_lettering": false,
+    "cursor_marker_shape": false
+  },
+  "decisive_evidence": [
+    {
+      "source": "Wolf Leslau, Concise Amharic Dictionary",
+      "url": "https://lojs.org/wp-content/uploads/2019/11/Concise-Amharic-Dictionary-Amharic-to-English-English-to-Amharic.pdf#page=287",
+      "locator": "English–Amharic section, printed p. 288 / PDF p. 287, calligraphy entry",
+      "bounded_reading": "(የ)ቁም ጽሕፈት",
+      "verification": "Independently rendered and visually inspected; separators normalized to spaces.",
+      "limit": "Exact edition and modern UI preference are not established."
+    },
+    {
+      "source": "IRS, Amharic arts article on Shusha, issue 2, Summer 2020",
+      "url": "https://www.irs-az.com/sites/default/files/2021-01/10-20_0.pdf#page=5",
+      "locator": "Printed p. 14 / PDF p. 5, Navvab paragraph",
+      "verification": "Independently re-read publisher PDF text using the compound for an Azerbaijani artist's calligraphic art.",
+      "limit": "Visual page confirmation was unavailable. No unrelated historical claim or population-wide familiarity is inferred."
+    },
+    {
+      "source": "AN Paint Brush options",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L747-L827",
+      "verification": "Complete option-control context and callback inspected; source bodies checked against the supplied complete pinned tree.",
+      "limit": "Static inspection, not app execution."
+    },
+    {
+      "source": "AN Paint stroke renderer and paint construction",
+      "urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L507-L526",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258"
+      ],
+      "verification": "Geometry, touch/cursor callers and state persistence inspected.",
+      "limit": "No rendered geometry, interaction, lifecycle or accessibility acceptance."
+    }
+  ],
+  "alternative_assessment": [
+    {"candidate": "ሰያፍ ጭረት", "outcome": "reject", "reason": "Describes diagonal stroke geometry rather than calligraphic character."},
+    {"candidate": "የቁም ጽሕፈት", "outcome": "defensible_not_selected", "reason": "Attested prefixed form; bare noun preferred for this caption, without declaring the alternative wrong."},
+    {"candidate": "ካሊግራፊ", "outcome": "viable_not_selected", "reason": "Verified arts-practitioner use, but no established UI preference advantage. Unretrieved textbook evidence is excluded."}
+  ],
+  "confidence": {
+    "source_semantics": "high",
+    "lexical_concept_match": "high",
+    "contextual_fidelity": "medium-high",
+    "contemporary_idiom_ui_preference": "medium",
+    "decision": "medium-high"
+  },
+  "source_change": false,
+  "exact_amharic_key_present_in_inspected_catalogue": false,
+  "production_change": false,
+  "prior_hold_record_preserved": true,
+  "count_effect": {
+    "basis": "Parent-supplied baseline; not an independent inventory audit or a completed durable-register update.",
+    "before": {"ready": 101, "held": 7, "implemented": 0, "pending": 90},
+    "after": {"ready": 102, "held": 6, "implemented": 0, "pending": 90},
+    "only_changed_resource": "string/ui_calligraphy"
+  },
+  "limits": [
+    "No native-speaker certification or unique-preference claim.",
+    "No exact prior software-caption match required or claimed.",
+    "No runtime, rendering, accessibility, lifecycle or whole-language acceptance.",
+    "No other held or pending item reviewed.",
+    "No Work task, production edit, app execution, app build/test, CI, remote publication or release."
+  ]
+}

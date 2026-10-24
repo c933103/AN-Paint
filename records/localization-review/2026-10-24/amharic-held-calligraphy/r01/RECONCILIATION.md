@@ -1,0 +1,11 @@
+# Calligraphy: revised candidate adopted
+
+Author reconciliation accepts RELEASE_WITH_REVISION for **ui_calligraphy**, English **Calligraphy**, exact value **ቁም ጽሕፈት**. Previous **ሰያፍ ጭረት** remains historical rejected/held wording, not an accepted alternative. The [original brush/shape review](https://github.com/c933103/AN-Paint/tree/fe51d699eed5b068444c46168339b41b6cd1010a/records/localization-review/2026-10-24/amharic-brush-shape/r01) is unchanged.
+
+The revised lexical compound restores calligraphic style rather than merely diagonal geometry. Independently rendered dictionary evidence supports the noun; publisher arts usage corroborates the broader artistic sense, but that article's visual page confirmation was unavailable. Its readable PDF text is not represented as a screenshot check. The unretrieved textbook contributes no positive evidence. Exact dictionary edition and unique modern UI preference remain unestablished.
+
+The actual Brush third-tip routine repeats elongated fixed-diagonal round-capped footprints along arbitrary paths. It is not a diagonal-only stroke, exact rectangular nib, font picker, script-specific mode or automatic lettering. Contextual fidelity/decision confidence is medium-high; contemporary idiom/UI preference medium. Prefixed and borrowed alternatives remain defensible but unselected. No exact prior software caption or native-reader certification is claimed.
+
+Source binding: 66be61df27c5359bffc32d56db21f3949899f873, tree 870c5a584120d92710be516af0dc3b3847b183d9. Apply this decision once: **102 reviewed ready additions, 6 held proposals, zero implemented**. Pending 90-value implementation batch remains exactly unchanged; this revision is outside it. Production remains 12 present / 705 missing of 717 canonical containers. No whole-language acceptance total is inferred.
+
+Only the two permitted independent artifacts, this reconciliation and a public-only manifest/seal are published. Local-only material and metadata are intentionally omitted. Prior records/history/index entries are preserved. No Work task, production edits, builds, tests, CI, release or runtime/rendering/accessibility certification. No English-source defect is established.
