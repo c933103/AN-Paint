@@ -1,0 +1,83 @@
+{
+  "discovery_limit": "Bounded complete corpus; historical direct-call search rebound to current blobs, plus exact current source scan. Not fresh exhaustive repository search.",
+  "occurrences": [
+    {
+      "key": "ui_save",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+      "line": 12,
+      "source_line": "enum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);"
+    },
+    {
+      "key": "ui_save",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+      "line": 305,
+      "source_line": "            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()"
+    },
+    {
+      "key": "ui_save",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "line": 839,
+      "source_line": "            ui(R.string.ui_save) to {requestSave(false)},"
+    },
+    {
+      "key": "save20_title",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "line": 840,
+      "source_line": "            ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},"
+    },
+    {
+      "key": "ui_save_a5d0d9",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "line": 1078,
+      "source_line": "            .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }"
+    },
+    {
+      "key": "ui_save",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+      "line": 134,
+      "source_line": "            .setNeutralButton(ui(R.string.ui_save),null)"
+    },
+    {
+      "key": "save20_file_name",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "line": 53,
+      "source_line": "        body.addView(TextView(activity).apply {text=ui(R.string.save20_file_name)})"
+    },
+    {
+      "key": "save20_file_name",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "line": 58,
+      "source_line": "            contentDescription=ui(R.string.save20_file_name)"
+    },
+    {
+      "key": "save20_file_format",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "line": 62,
+      "source_line": "        body.addView(TextView(activity).apply {text=ui(R.string.save20_file_format)})"
+    },
+    {
+      "key": "save20_file_format",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "line": 109,
+      "source_line": "            tag=\"export_format\";contentDescription=ui(R.string.save20_file_format)"
+    },
+    {
+      "key": "save20_file_name",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "line": 170,
+      "source_line": "            field(ui(R.string.save20_file_name),nameColumn)"
+    },
+    {
+      "key": "save20_file_format",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "line": 171,
+      "source_line": "            field(ui(R.string.save20_file_format),body.findViewWithTag<Spinner>(\"export_format\"))"
+    },
+    {
+      "key": "save20_title",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "line": 187,
+      "source_line": "        dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))"
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "author_reconciliation": "Accept four unchanged retentions and explicitly accept save20_title revision to አስቀምጥ እንደ… as source-supported editorial register consistency. Do not declare the original nominal LibreOffice form wrong. Original drafts and independent artifacts unchanged.",
+  "ready_reviewed_candidates": [
+    {
+      "key": "string/ui_save",
+      "english": "Save",
+      "draft": "አስቀምጥ",
+      "decision": "retain",
+      "recommended": "አስቀምጥ",
+      "confidence": "High lexical and semantic confidence within this static review.",
+      "reason": "An imperative generic saving command fits all verified consumers. It does not narrow the command to saving an image, downloading, exporting or closing the editor. The primary Android Settings comment expressly identifies its source as a generic save action.",
+      "consumer_findings": [
+        "File menu and quick Save icon call requestSave(false). With a saved target they reuse its URI and options; otherwise they open initial PNG save options. writeImage applies pending canvas work.",
+        "Palette replacement validates fields, commits the chosen colour, persists CustomColours preferences and selects that colour; it is not image-file saving.",
+        "The credits editor runs its validated persistence callback and leaves the editor open. Its Saved notification follows a successful save() return; Done is a separate control."
+      ],
+      "primary_lexical_evidence": [
+        {
+          "source": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT",
+          "snapshot_file": "android-settings-en.xml",
+          "locator": "lines 574–575, save",
+          "basis": "Generic save-action comment and English Save.",
+          "sha256": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e"
+        },
+        {
+          "source": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+          "snapshot_file": "android-settings-am.xml",
+          "locator": "line 247, save",
+          "basis": "Exact አስቀምጥ translation.",
+          "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6"
+        },
+        {
+          "source": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_file": "android-gallery2-am.xml",
+          "locator": "line 207, save; paired English line 529",
+          "basis": "Same imperative in another AOSP product, corroborating but not a wholly independent authority.",
+          "sha256": "248cc8e0fa60e39535054a90dbc3ee3852aafabe7f57e435cf4417975de77601"
+        }
+      ],
+      "source_evidence": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L585",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L842",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L985-L1001",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1104-L1128",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1377",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L305-L325",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/CustomColours.kt#L14-L20",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L100-L142",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1461-L1488",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L235-L246",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/CreditEditSession.kt#L31-L40"
+      ],
+      "limitations": [
+        "A label is not a save-success guarantee. Static checks do not certify storage reliability or runtime behavior.",
+        "The shared imperative is retained without adding an object such as image or file."
+      ],
+      "source_sha256": "1509f561f2416598629b886ad7d3c05a7e221e4e0675c84bbff4ee6d9e03913d",
+      "original_draft_XML_text": "\"አስቀምጥ\"",
+      "candidate_XML_text": "\"አስቀምጥ\"",
+      "candidate_XML_text_sha256": "d41572e2bf293bfc5245a37875dbd50cf27602bcbe0de67f778e3da5c9a32d80",
+      "author_reconciliation": "Accept unchanged retention with original qualifications."
+    },
+    {
+      "key": "string/ui_save_a5d0d9",
+      "english": "Save…",
+      "draft": "አስቀምጥ…",
+      "decision": "retain",
+      "recommended": "አስቀምጥ…",
+      "confidence": "High for the verb and explicit punctuation adaptation.",
+      "reason": "The same generic imperative fits the positive saving choice before replacing a dirty image. Preserve English U+2026. The source convention does not promise that every invocation opens another dialog.",
+      "consumer_findings": [
+        "confirmReplacement applies pending work, then offers Save…, Discard changes and Keep editing only when the document is dirty.",
+        "Save… records the continuation and calls requestSave(false). An existing target can be written directly. A successful non-export write consumes the continuation; picker cancellation, missing URI, picker-launch failure or I/O failure clears it."
+      ],
+      "primary_lexical_evidence": [
+        {
+          "source": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+          "snapshot_file": "android-settings-am.xml",
+          "locator": "line 247, save",
+          "basis": "Exact verb only. Appending U+2026 is an explicitly identified adaptation to the current English source, not an exact corpus pair.",
+          "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6"
+        }
+      ],
+      "source_evidence": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1108",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1110-L1128",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1177-L1185",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1250-L1259",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1377",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1422-L1423"
+      ],
+      "limitations": [
+        "Do not change this to a completed-state wording or unconditional save/replacement promise.",
+        "No source defect is established merely because a saved target skips a further dialog."
+      ],
+      "source_sha256": "a5d0d97e6a235f1306ff1efd84c15c0cc1fd1ba94832b55af8acb761d08c20d6",
+      "original_draft_XML_text": "\"አስቀምጥ…\"",
+      "candidate_XML_text": "\"አስቀምጥ…\"",
+      "candidate_XML_text_sha256": "f5f96db4bfa5fea33542a78941742d2adfa33eeedc289822c5032a3e97f9bfa8",
+      "author_reconciliation": "Accept unchanged retention with original qualifications."
+    },
+    {
+      "key": "string/save20_title",
+      "english": "Save as…",
+      "draft": "ማስቀመጫ እንደ…",
+      "decision": "revise",
+      "recommended": "አስቀምጥ እንደ…",
+      "confidence": "Medium-high: direct primary imperative example plus matching menu/dialog semantics; editorial register choice, not a finding that the nominal alternative is ungrammatical.",
+      "reason": "Use a coherent imperative register with retained Save. This key is both an actionable menu item and its dialog title; the fresh primary evidence supplies the previously unestablished imperative alternative. No change to English or meaning is proposed.",
+      "consumer_findings": [
+        "File-menu Save as… opens save options even when a saved target exists. The same key titles ordinary save options only.",
+        "The panel sets name, format and related options, then invokes Android ACTION_CREATE_DOCUMENT. Successful non-export output replaces the remembered target and settings. It is not rename-only, export, or Save a copy with the old target preserved."
+      ],
+      "primary_lexical_evidence": [
+        {
+          "source": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "snapshot_file": "libreoffice-am-ui.po",
+          "locator": "lines 20870–20878, GenericCommands .uno:SaveAs Label",
+          "basis": "The original nominal ማስቀመጫ ~እንደ... is genuinely attested and non-fuzzy; removing mnemonic and normalizing ellipsis supports the original draft as an alternative.",
+          "sha256": "58e8087d71f01c78f53b3440a60db40246e4795b5326dcb894afaaa57f32d110"
+        },
+        {
+          "source": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+          "snapshot_file": "libreoffice-am-help01.po",
+          "locator": "lines 2386–2393, 01070000.xhp tit",
+          "basis": "The same nominal wording also titles Save As help. This does not force a nominal register in AN-Paint.",
+          "sha256": "a1d93dc2d370e83de23544557e9346d43d44d7e517e3f5e6e2d20ce7a8bf46b7"
+        },
+        {
+          "source": "https://download.microsoft.com/download/6/2/a/62a993f1-d3b2-4f28-b3e7-22965eb91426/amh-eth-styleguide.pdf",
+          "locator": "printed pages 40–41; rendered and visually inspected",
+          "basis": "Page 40 explicitly gives አስቀምጥ እንደ... for Save As. Page 41 favors consistency between dialog titles and invoking commands. This is Microsoft-specific historical guidance, not an AN-Paint mandate.",
+          "sha256": "37765487f868b0cf1f4bb6d0afc42fb8086b1af6c25eea3e277865bdc9095272"
+        }
+      ],
+      "source_evidence": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L842",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L187-L201",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1110-L1128",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1377"
+      ],
+      "adaptation": "Use the visually verified imperative phrase, remove its editorial (+) marker, and normalize three source ASCII dots to current English U+2026. Preserve one space between the words.",
+      "limitations": [
+        "This recommendation is a source-supported register improvement. LibreOffice nominal usage is not rejected as a proven linguistic error.",
+        "The 2011 guide does not certify current naturalness. Native-reader and in-app checks remain unperformed.",
+        "PDF text extraction mis-maps Ethiopic code points. The recommendation is based on rendered glyphs, corroborated by the official document search result, not copied from the faulty extracted text."
+      ],
+      "source_sha256": "06359c03b085b86f1189c396647ef1b5dafee568af02ff4374f0ac13652ccd2c",
+      "original_draft_XML_text": "\"ማስቀመጫ እንደ…\"",
+      "candidate_XML_text": "\"አስቀምጥ እንደ…\"",
+      "candidate_XML_text_sha256": "22cbfd74f32965f9c5f4b0d5b6386e6fb1f9edf30e4958009d73f76e32361234",
+      "author_reconciliation": "Accept source-supported imperative register revision; nominal LibreOffice wording remains valid attested alternative."
+    },
+    {
+      "key": "string/save20_file_name",
+      "english": "File name",
+      "draft": "የፋይል ስም",
+      "decision": "retain",
+      "recommended": "የፋይል ስም",
+      "confidence": "High lexical; joined-prefix orthographic adaptation explicitly supported.",
+      "reason": "A noun phrase for the editable file name, not its location or full path, fits the same field in save, export and share. Joining the possessive prefix changes spacing rather than the meaning.",
+      "consumer_findings": [
+        "The key labels the filename EditText and its content description, and is reused in the vertical form.",
+        "Known extensions are replaced or a new extension appended; validation rejects slash/backslash/control characters, blank stems and dot/dot-dot stems. The name is offered to the system destination picker.",
+        "No translation of user-entered filenames or format extensions is implied."
+      ],
+      "primary_lexical_evidence": [
+        {
+          "source": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+          "snapshot_file": "libreoffice-am-help01.po",
+          "locator": "lines 2431–2438, Save As / hd_id3154810",
+          "basis": "Exact non-fuzzy File name → የ ፋይል ስም, before joining የ to ፋይል.",
+          "sha256": "a1d93dc2d370e83de23544557e9346d43d44d7e517e3f5e6e2d20ce7a8bf46b7"
+        },
+        {
+          "source": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_file": "android-gallery2-am.xml",
+          "locator": "line 133, resource file_size; paired English line 312",
+          "basis": "የፋይል መጠን፡ demonstrates joined የፋይል; corroborating orthography, not an exact File name or File format match.",
+          "sha256": "248cc8e0fa60e39535054a90dbc3ee3852aafabe7f57e435cf4417975de77601"
+        },
+        {
+          "source": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+          "snapshot_file": "android-settings-am.xml",
+          "locator": "line 4146, resource usb_file_transfer_title; paired English line 10267",
+          "basis": "የፋይል ማስተላለፊያ አማራጮች independently corroborates joined-prefix spelling within the AOSP family.",
+          "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6"
+        }
+      ],
+      "source_evidence": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L29-L62",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L108-L118",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L148-L171",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L187-L198",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1123-L1128"
+      ],
+      "adaptation": "የ ፋይል ስም → የፋይል ስም. This is not a verbatim whole-label match.",
+      "limitations": [
+        "The AOSP examples validate comparable prefix spelling, not an exact independent File name translation.",
+        "Fix the dossier explanation that says preserving source spaces and then describes joining them; the evidence preserves original spaces, while the proposed label deliberately removes one."
+      ],
+      "source_sha256": "3efed3de9d4b5170f223c8abdeaafa7e9a9b8884ca0886bd44c6d3c3e72d4766",
+      "original_draft_XML_text": "\"የፋይል ስም\"",
+      "candidate_XML_text": "\"የፋይል ስም\"",
+      "candidate_XML_text_sha256": "fe8a1ff230c203a523dfcbaf8df71caf49b02c8ebf211436ee06940853b6b73e",
+      "author_reconciliation": "Accept unchanged retention with original qualifications."
+    },
+    {
+      "key": "string/save20_file_format",
+      "english": "File format",
+      "draft": "የፋይል አቀራረብ",
+      "decision": "retain",
+      "recommended": "የፋይል አቀራረብ",
+      "confidence": "Medium-high semantic fit, medium lexical independence: justified phrase extraction plus orthographic adaptation.",
+      "reason": "The phrase is used for file-saving format and export-file format, not merely visual layout. Extracting an intact noun phrase from these contexts is adequate evidence for a translated field label; no universal whole-label-match requirement is imposed.",
+      "consumer_findings": [
+        "The label and content description identify the format Spinner in all three flows and the vertical form. Selection changes extension and available encoding settings.",
+        "Ordinary save includes non-derived formats; export includes derived formats; share allows all. ImageExporter dispatches by the chosen ImageFormat. The phrase must cover encoded file representation rather than just file extension or page layout."
+      ],
+      "primary_lexical_evidence": [
+        {
+          "source": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+          "snapshot_file": "libreoffice-am-help01.po",
+          "locator": "lines 2458–2465, 01070000.xhp par_id3156343",
+          "basis": "Non-fuzzy saving prose explicitly uses የ ፋይል አቀራረብ for file format.",
+          "sha256": "a1d93dc2d370e83de23544557e9346d43d44d7e517e3f5e6e2d20ce7a8bf46b7"
+        },
+        {
+          "source": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_file": "libreoffice-am-cui.po",
+          "locator": "lines 17541–17545, optsavepage|label3",
+          "basis": "The same phrase occurs in Default File Format and ODF Settings.",
+          "sha256": "a1d524a820c0c6de187d0625b9eced32733642ad196d79857500c91977a428b4"
+        },
+        {
+          "source": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+          "snapshot_file": "libreoffice-am-help01.po",
+          "locator": "lines 43975–43982, 06150110.xhp par_id3149549",
+          "basis": "Export-dialog prose separately identifies ፋይል አቀራረብ as the File format box.",
+          "sha256": "a1d93dc2d370e83de23544557e9346d43d44d7e517e3f5e6e2d20ce7a8bf46b7"
+        },
+        {
+          "source": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_file": "android-gallery2-am.xml",
+          "locator": "line 133, resource file_size; paired English line 312",
+          "basis": "የፋይል መጠን፡ demonstrates joined የፋይል; corroborating orthography, not an exact File name or File format match.",
+          "sha256": "248cc8e0fa60e39535054a90dbc3ee3852aafabe7f57e435cf4417975de77601"
+        },
+        {
+          "source": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+          "snapshot_file": "android-settings-am.xml",
+          "locator": "line 4146, resource usb_file_transfer_title; paired English line 10267",
+          "basis": "የፋይል ማስተላለፊያ አማራጮች independently corroborates joined-prefix spelling within the AOSP family.",
+          "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6"
+        }
+      ],
+      "source_evidence": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L11-L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L47-L62",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L86-L118",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L170-L171",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt#L9-L27"
+      ],
+      "adaptation": "Extract የ ፋይል አቀራረብ and join the bound prefix to produce የፋይል አቀራረብ.",
+      "limitations": [
+        "The standalone File format entry at help01 lines 2674–2681 has empty msgstr and is excluded from positive evidence.",
+        "All phrase evidence is one LibreOffice translation ecosystem; AOSP only corroborates the joining. Do not count repeated contexts as independent translators.",
+        "Do not replace format with the attested File type alternative solely because that alternative has a standalone record. Encoding implementation quality is outside review."
+      ],
+      "source_sha256": "d63b2b691e7e74791728762f2759fa89f5b2c3cb09c96bd53e87ebb9604c23fb",
+      "original_draft_XML_text": "\"የፋይል አቀራረብ\"",
+      "candidate_XML_text": "\"የፋይል አቀራረብ\"",
+      "candidate_XML_text_sha256": "1e50437e49b7d53190905d6a7cd009194c95c98109df8e86640d5b352a2669ea",
+      "author_reconciliation": "Accept unchanged retention with original qualifications."
+    }
+  ],
+  "held_proposals_this_group": [],
+  "counts": {
+    "this_group_ready": 5,
+    "unchanged_retained": 4,
+    "revisions_accepted": 1,
+    "prior_ready": 72,
+    "accumulated_ready_candidates": 77,
+    "total_held": 12,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "translatable_containers": 717,
+    "all_english_containers": 720,
+    "excluded_nontranslatable": 3
+  },
+  "prior_locator": "https://github.com/c933103/AN-Paint/blob/b808034de4d1f3081b02176f5b5a355ac1057d38/records/localization-review/2026-10-24/amharic-dialog-controls/r01/reviewed-candidates-and-holds.json",
+  "dossier_corrections": [
+    "Original source evidence retains separated prefix spacing; candidate joins it. The original phrase preserving source spaces refers to retained evidence, not the proposed joined spelling.",
+    "New Microsoft primary evidence supersedes the previous bounded failure to establish an imperative Save as alternative. Original nominal evidence remains preserved.",
+    "717 means translatable containers; full English XML has720 including3nontranslatable exclusions."
+  ],
+  "scope_limits": [
+    "Exactly two ellipses are preserved as U+2026, on ui_save_a5d0d9 and save20_title. No placeholders, units, numerals, added success claims or extra semantic objects are introduced.",
+    "No English source defect was established. If a source defect is later established, correct English and flag the affected term across languages rather than quietly rewriting one translation.",
+    "Consumer search is bounded to the 20 supplied complete source files; exact direct-call audit reconfirmed 13 occurrences in five files. This is not a fresh exhaustive repository scan.",
+    "The original seven lexical snapshots and 32 exact records are genuine within the seal, but are reused rather than newly retrieved. The Microsoft document is new supplemental evidence outside that input seal.",
+    "No native-speaker review, device font/rendering, interaction, accessibility, codec behavior or persistence testing occurred. Original corpus and production resources were not modified."
+  ],
+  "publication_exclusions": [
+    "Complete third-party PDF and page renders are excluded; only bounded evidence links, hashes, exact phrase and qualifications retained."
+  ]
+}

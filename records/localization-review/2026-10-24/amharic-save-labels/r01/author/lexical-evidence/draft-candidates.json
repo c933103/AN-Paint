@@ -1,0 +1,89 @@
+[
+  {
+    "key": "ui_save",
+    "english": "Save",
+    "value": "አስቀምጥ",
+    "confidence": "high lexical, draft only",
+    "basis": [
+      "aosp-settings-save",
+      "aosp-gallery2-save"
+    ],
+    "adaptation": "Exact Android action label.",
+    "alternatives": [
+      {
+        "value": "ማስቀመጫ",
+        "basis": "LibreOffice Save, cui optsavepage|label2 and help 01060000.xhp title; nominal UI register rather than Android imperative."
+      }
+    ]
+  },
+  {
+    "key": "ui_save_a5d0d9",
+    "english": "Save…",
+    "value": "አስቀምጥ…",
+    "confidence": "high lexical plus explicit punctuation adaptation, draft only",
+    "basis": [
+      "aosp-settings-save",
+      "aosp-gallery2-save"
+    ],
+    "adaptation": "Append canonical English U+2026 ellipsis to the exact Android Save action. This is not claimed as an exact source pair.",
+    "alternatives": [
+      {
+        "value": "ማስቀመጫ…",
+        "basis": "LibreOffice GenericCommands .uno:SaveGraphic ContextLabel Save... → ማስቀመጫ...; normalize three ASCII dots to U+2026."
+      }
+    ]
+  },
+  {
+    "key": "save20_title",
+    "english": "Save as…",
+    "value": "ማስቀመጫ እንደ…",
+    "confidence": "medium-high lexical; title/register needs review",
+    "basis": [
+      "LibreOffice GenericCommands .uno:SaveAs Label",
+      "LibreOffice help 01070000.xhp tit"
+    ],
+    "adaptation": "Remove LibreOffice ~ mnemonic and replace ASCII ... with canonical U+2026. Preserves sourced word order.",
+    "alternatives": [],
+    "caution": "No independent non-fuzzy imperative Save as variant established. Do not treat fuzzy GIMP በሌላ ስም _አስቀምጥ as accepted evidence."
+  },
+  {
+    "key": "save20_file_name",
+    "english": "File name",
+    "value": "የፋይል ስም",
+    "confidence": "high lexical, draft only",
+    "basis": [
+      "LibreOffice help 01070000.xhp hd_id3154810"
+    ],
+    "adaptation": "Exact non-fuzzy Save As dialog help label, preserving source spaces. Draft joins the bound prefix የ to ፋይል for consistency with reviewed project style; this is explicitly an editorial adaptation, not a verbatim pair.",
+    "alternatives": [
+      {
+        "value": "የ ፋይል ስም",
+        "basis": "Exact source spacing retained as an alternative; proposed draft joins bound prefix."
+      }
+    ],
+    "attested_phrase": "የ ፋይል ስም"
+  },
+  {
+    "key": "save20_file_format",
+    "english": "File format",
+    "value": "የፋይል አቀራረብ",
+    "confidence": "medium lexical; phrase extraction, draft only",
+    "basis": [
+      "LibreOffice help 01070000.xhp par_id3156343",
+      "LibreOffice cui optsavepage|label3",
+      "LibreOffice help 06150110.xhp par_id3149549"
+    ],
+    "adaptation": "Extract exact phrase from non-fuzzy save-dialog prose and Default File Format and ODF Settings label. The standalone File format entry at help01 line 2680 has empty msgstr and is explicitly NOT positive evidence. Draft joins the bound prefix የ to ፋይል for consistency with reviewed project style; this is explicitly an editorial adaptation, not a verbatim pair.",
+    "alternatives": [
+      {
+        "value": "የ ፋይል አቀራረብ",
+        "basis": "Exact source spacing retained as an alternative; proposed draft joins bound prefix."
+      },
+      {
+        "value": "የ ፋይል አይነት",
+        "basis": "Exact source File type in Save As help; semantic alternative only, not a direct File format translation."
+      }
+    ],
+    "attested_phrase": "የ ፋይል አቀራረብ"
+  }
+]

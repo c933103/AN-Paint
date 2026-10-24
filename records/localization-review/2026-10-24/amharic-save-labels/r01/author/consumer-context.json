@@ -1,0 +1,57 @@
+{
+  "source_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "source_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "no_source_defect_established": true,
+  "rows": {
+    "ui_save": {
+      "meaning": "Generic saving/persisting command, deliberately not image-only: File menu and quick icon reuse saved destination/options or open initial PNG Save as panel; palette replacement commits chosen colour into CustomColours preferences; credits editor saves current credit edits and remains open. No claim of success before validation/I/O.",
+      "complete_context": [
+        "ClassicPaintActivity.kt: requestSave, showSaveOptions, chooseSaveLocation, writeImage, ioFailed, addColour, showImageCredits",
+        "SaveOptionsDialog.kt: show, ExportNames",
+        "ActionButton.kt: EditIcon.SAVE, init contentDescription and tooltip",
+        "AdvancedColourDialog.kt: show positive callback and dismiss logic",
+        "CustomColours.kt: replace",
+        "GalleryCredits.kt: buildEditor save and neutral button override",
+        "MediaGalleryActivity.kt: showCreditEditor",
+        "CreditEditSession.kt and ImageCreditArchive.kt: actual callback persistence"
+      ],
+      "qualification": "Save label must not mean Download/Export/Close or only save image. Image Save applies pending canvas work; successful non-export updates remembered destination and document saved state. Credit Save does not close the editor; palette Save also selects colour."
+    },
+    "ui_save_a5d0d9": {
+      "meaning": "Positive Save… in confirmReplacement, before replacing dirty image. Stores requested continuation then requestSave(false); successful non-export write invokes it. Cancellation/failure clears continuation. Existing saved target can be written without another dialog; ellipsis is retained from English, not a promise every invocation opens one.",
+      "complete_context": [
+        "ClassicPaintActivity.kt: confirmReplacement, requestSave, launchPicker, onActivityResult, writeImage, ioFailed"
+      ],
+      "qualification": "Not immediate discard or replacement, not an unconditional success claim; unchanged source ellipsis not a proven defect."
+    },
+    "save20_title": {
+      "meaning": "File menu Save as… command and ordinary save-options dialog title. Opens format/name/settings form then Android create-document location picker; not immediate saving. A successful ordinary save replaces remembered save destination/settings.",
+      "complete_context": [
+        "ClassicPaintActivity.kt: file menu, showSaveOptions, chooseSaveLocation, writeImage",
+        "SaveOptionsDialog.kt: show"
+      ],
+      "qualification": "Not rename-only, not Save a copy with unchanged destination, not Export as. Excludes share/export titles and complex explanations."
+    },
+    "save20_file_name": {
+      "meaning": "Visible filename field label and its contentDescription, reused in horizontal and vertical forms. Editable basename with format extension: known extension replaced/appended on format change; validation forbids slashes/control characters and invalid blank/dot stems. Proposed name sent to Android document picker.",
+      "complete_context": [
+        "SaveOptionsDialog.kt: ExportNames.withExtension/valid, show filename, update spinner, vertical field, confirm",
+        "ClassicPaintActivity.kt: chooseSaveLocation"
+      ],
+      "qualification": "File name, not full path/location; label does not translate typed user filenames or extensions. Same label is shared by save/export/share panels."
+    },
+    "save20_file_format": {
+      "meaning": "Visible format chooser label and contentDescription, reused in vertical form. Selects encoded output format and associated settings; ordinary save excludes derived formats, export filters derived formats, share can show all. Changes filename extension and applicable controls.",
+      "complete_context": [
+        "SaveOptionsDialog.kt: ImageFormat, show format filter and Spinner update; ExportNames",
+        "ImageExporter.kt: encode dispatch"
+      ],
+      "qualification": "Format/type of output file, not page layout, style, format-device action or filename extension alone. Format names and compression descriptions not translated in this group."
+    }
+  },
+  "limits": [
+    "Static complete-source inspection, not runtime/native-reader/assistive-technology certification.",
+    "No production edits or translation acceptance.",
+    "Prior 72 ready and 12 held keys excluded."
+  ]
+}
