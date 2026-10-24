@@ -1,0 +1,394 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "author_reconciliation": "Accept seven exact retain recommendations and preserve Crop HOLD. No wording revision or substitute acceptance.",
+  "ready_reviewed_candidates": [
+    {
+      "key": "string/ui_flip_horizontal",
+      "English": "Flip horizontal",
+      "source_sha256": "9692a0ce7511d6a39b7433957f49f71875519c002caad673949ee26c0db7f56a",
+      "existing_Amharic_key": "absent",
+      "decision": "retain",
+      "original_XML_text": "\"በአግድም ገልብጥ\"",
+      "recommended_XML_text": "\"በአግድም ገልብጥ\"",
+      "recommended_XML_element": "<string name=\"ui_flip_horizontal\">\"በአግድም ገልብጥ\"</string>",
+      "recommended_XML_text_sha256": "381d906aea0a7f83ba93efec0a3a5db807f23130ca89081f120ed1477c6e9b62",
+      "held_XML_text": null,
+      "reason": "The horizontal modifier and flip family are explicitly paired in a nonfuzzy LibreOffice reflection command. The supplied imperative is a sound grammatical composition, not a translation of rotation or orientation. Newly located Android Settings evidence directly attests the imperative form ገልብጥ in another flip construction, reducing the form-only evidence gap. It does not directly attest this complete image-editing phrase.",
+      "source_semantics": "The signed X scale reflects the full bitmap left/right; Y is unchanged. applyPending first commits pending edits and floating content. A reflection is not a 180-degree rotation.",
+      "confidence": {
+        "source_semantics": "high",
+        "translation_UI": "medium",
+        "nature": "Independent evidence-based AI review; not native-speaker certification, user approval or runtime acceptance."
+      },
+      "primary_lexical_evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "context": ".uno:FlipHorizontal / Label",
+          "line": 24523,
+          "English": "Flip Horizontally",
+          "Amharic": "በ አግድም መገልበጫ",
+          "fuzzy": false
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml#4479",
+          "context": "double_twist_for_camera_mode_title",
+          "English": "Flip camera for selfie",
+          "Amharic": "ለራስ ምስል ካሜራን ገልብጥ",
+          "limit": "Imperative form only; camera switching is not raster reflection."
+        }
+      ],
+      "consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L854-L854",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L453-L459"
+      ],
+      "exact_full_phrase_attested": false,
+      "English_source_defect_established": false,
+      "limitations": "Joined በ prefix and the assembled directional imperative are editorial composition. No direct full-phrase or native-speaker attestation was established; short-label layout remains untested.",
+      "implementation_status": "Not implemented; review-only recommendation."
+    },
+    {
+      "key": "string/ui_flip_vertical",
+      "English": "Flip vertical",
+      "source_sha256": "30122ff97c9a942bfe997de53c15a3505cdf5ea25bd5c193095da72867f0f059",
+      "existing_Amharic_key": "absent",
+      "decision": "retain",
+      "original_XML_text": "\"በቁመት ገልብጥ\"",
+      "recommended_XML_text": "\"በቁመት ገልብጥ\"",
+      "recommended_XML_element": "<string name=\"ui_flip_vertical\">\"በቁመት ገልብጥ\"</string>",
+      "recommended_XML_text_sha256": "a6a7e4d568cbbd739fdc2da5bad50d4c706b74bd2cc29a3dab3d8b0d83c8373d",
+      "held_XML_text": null,
+      "reason": "The vertical modifier and reflection noun are paired in a nonfuzzy LibreOffice command. Using the same imperative as the horizontal command preserves the operation pair and contrasts with the rotation verb. Android Settings independently supports the imperative form, though in a different operation.",
+      "source_semantics": "The signed Y scale reflects the full bitmap top/bottom; X is unchanged. This is not a turn, orientation setting, or selected-content-only transform.",
+      "confidence": {
+        "source_semantics": "high",
+        "translation_UI": "medium",
+        "nature": "Independent evidence-based AI review; not native-speaker certification, user approval or runtime acceptance."
+      },
+      "primary_lexical_evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "context": ".uno:FlipVertical / Label",
+          "line": 24533,
+          "English": "Flip Vertically",
+          "Amharic": "በ ቁመት መገልበጫ",
+          "fuzzy": false
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml#4479",
+          "context": "double_twist_for_camera_mode_title",
+          "English": "Flip camera for selfie",
+          "Amharic": "ለራስ ምስል ካሜራን ገልብጥ",
+          "limit": "Imperative form only."
+        }
+      ],
+      "consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L855-L855",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L453-L459"
+      ],
+      "exact_full_phrase_attested": false,
+      "English_source_defect_established": false,
+      "limitations": "በቁመት is a composed directional modifier here, not a claim that LibreOffice provides this exact imperative. UI naturalness and fit remain medium-confidence judgments.",
+      "implementation_status": "Not implemented; review-only recommendation."
+    },
+    {
+      "key": "string/ui_rotate_90_clockwise",
+      "English": "Rotate 90° clockwise",
+      "source_sha256": "80700703f3d69dfc97e778c1796adff9cc920d40d45334618f23bfbd702bfd46",
+      "existing_Amharic_key": "absent",
+      "decision": "retain",
+      "original_XML_text": "\"90° ወደ ቀኝ አሽከርክር\"",
+      "recommended_XML_text": "\"90° ወደ ቀኝ አሽከርክር\"",
+      "recommended_XML_element": "<string name=\"ui_rotate_90_clockwise\">\"90° ወደ ቀኝ አሽከርክር\"</string>",
+      "recommended_XML_text_sha256": "52e36457f77e2074ffc9681ab4ecf210573934e316aa3b98e3084517f4b66bda",
+      "held_XML_text": null,
+      "reason": "The Android Gallery2 rotate-right imperative is directly attested. Adding the exact 90° angle is independently supported by the LibreOffice 90-degree-right label and preserves the intended quarter-turn. In an explicit rotation command, right denotes the clockwise turn rather than translating the image to the right. Prefer the attested አሽከርክር over a shorter, less directly supported alternative solely for brevity.",
+      "source_semantics": "setRotate(90f) applies to the entire bitmap after pending edits are committed, then the view is fitted. The positive screen-graphics rotation convention is clockwise, corroborated by the Skia reference; no on-device measurement was performed.",
+      "confidence": {
+        "source_semantics": "high",
+        "translation_UI": "medium-high",
+        "nature": "Independent evidence-based AI review; not native-speaker certification, user approval or runtime acceptance."
+      },
+      "primary_lexical_evidence": [
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml#88",
+          "context": "rotate_right",
+          "English": "Rotate right",
+          "Amharic": "ወደ ቀኝ አሽከርክር"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "context": ".uno:RotateRight / Label",
+          "line": 34293,
+          "English": "Rotate 90° ~Right",
+          "Amharic": "ማዞሪያ 90° ወደ ~ቀኝ",
+          "fuzzy": false
+        },
+        {
+          "url": "https://api.skia.org/classSkMatrix.html",
+          "context": "setRotate",
+          "limit": "Technical rotation convention, not Amharic lexical evidence."
+        }
+      ],
+      "consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L856-L856",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L453-L459"
+      ],
+      "exact_full_phrase_attested": false,
+      "English_source_defect_established": false,
+      "limitations": "The full phrase combines sources; it is not an exact quotation. Keep ASCII 90 and the degree sign. LibreOffice mnemonic ~ is not part of the proposal. No width/glyph testing.",
+      "implementation_status": "Not implemented; review-only recommendation."
+    },
+    {
+      "key": "string/ui_rotate_180",
+      "English": "Rotate 180°",
+      "source_sha256": "cffb26b0098b16fea9684c2fcfbe542c08758893071ae25bc3905df80cd55bbf",
+      "existing_Amharic_key": "absent",
+      "decision": "retain",
+      "original_XML_text": "\"180° አሽከርክር\"",
+      "recommended_XML_text": "\"180° አሽከርክር\"",
+      "recommended_XML_element": "<string name=\"ui_rotate_180\">\"180° አሽከርክር\"</string>",
+      "recommended_XML_text_sha256": "b9255d5b7da736178051368eaf2a9683548fdaf5dac32568c5bb563c088bfa30",
+      "held_XML_text": null,
+      "reason": "The directly attested Android imperative matches the adjacent quarter-turn command, and LibreOffice independently supports the 180° amount. Omitting a direction follows English and avoids adding a distinction that has no effect for a half-turn.",
+      "source_semantics": "setRotate(180f) transforms the entire bitmap after applyPending. A half-turn is distinct from either single-axis reflection.",
+      "confidence": {
+        "source_semantics": "high",
+        "translation_UI": "medium-high",
+        "nature": "Independent evidence-based AI review; not native-speaker certification, user approval or runtime acceptance."
+      },
+      "primary_lexical_evidence": [
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml#88",
+          "context": "rotate_right",
+          "English": "Rotate right",
+          "Amharic": "ወደ ቀኝ አሽከርክር",
+          "limit": "Evidence for the rotate imperative, not the complete 180° string."
+        },
+        {
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "context": ".uno:Rotate180 / Label",
+          "line": 34303,
+          "English": "Rotate 1~80°",
+          "Amharic": "ማዞሪያ 1~80°",
+          "fuzzy": false
+        }
+      ],
+      "consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L857-L857",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L453-L459"
+      ],
+      "exact_full_phrase_attested": false,
+      "English_source_defect_established": false,
+      "limitations": "The angle-plus-imperative remains an original composition. No direction or extra object is needed merely to mirror another label’s length.",
+      "implementation_status": "Not implemented; review-only recommendation."
+    },
+    {
+      "key": "string/ui_invert_colours",
+      "English": "Invert colours",
+      "source_sha256": "1d9c281c11223391192aed63bffcf11c334bc648ee3ba4051e66ece5fcd2f804",
+      "existing_Amharic_key": "absent",
+      "decision": "retain",
+      "original_XML_text": "\"ቀለሞችን ገልብጥ\"",
+      "recommended_XML_text": "\"ቀለሞችን ገልብጥ\"",
+      "recommended_XML_element": "<string name=\"ui_invert_colours\">\"ቀለሞችን ገልብጥ\"</string>",
+      "recommended_XML_text_sha256": "86a8f4aec8bf6930c2b5bc1c2572f6199a3587024e9ce6ddc096b2b09de8cf25",
+      "held_XML_text": null,
+      "reason": "The explicit colour object gives ገልብጥ its colour-inversion sense. LibreOffice’s nonfuzzy GraphicFilterInvert label and help sentence establish this lexical family specifically for colour values, and Android Settings independently uses the inversion noun. Replacing this with swap/change terminology would introduce foreground/background exchange or arbitrary colour modification not present in the source.",
+      "source_semantics": "Every bitmap pixel has its low 24 RGB bits complemented while its high 8 alpha bits are retained, after pending edits and the selection are committed. This is neither spatial reflection nor colour-swatch exchange.",
+      "confidence": {
+        "source_semantics": "high",
+        "translation_UI": "medium",
+        "nature": "Independent evidence-based AI review; not native-speaker certification, user approval or runtime acceptance."
+      },
+      "primary_lexical_evidence": [
+        {
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "context": ".uno:GraphicFilterInvert / Label",
+          "line": 24853,
+          "English": "Invert",
+          "Amharic": "መገልበጫ",
+          "fuzzy": false
+        },
+        {
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+          "context": "24010000.xhp / par_id3145345",
+          "line": 18412,
+          "English_excerpt": "Inverts the color values of a color image",
+          "Amharic_excerpt": "የ ቀለም ዋጋዎች መገልበጫ",
+          "fuzzy": false
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml#2341",
+          "context": "accessibility_display_inversion_switch_title",
+          "English": "Use color inversion",
+          "Amharic": "የቀለም ግልበጣን ተጠቀም"
+        }
+      ],
+      "consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L858-L858",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L467-L476"
+      ],
+      "exact_full_phrase_attested": false,
+      "English_source_defect_established": false,
+      "limitations": "The exact plural-object imperative is composed. The lexical sources support the operation category, not AN Paint’s byte-level RGB/alpha implementation. Same verb as flip is acceptable with this explicit object; it is not evidence that the operations themselves are identical.",
+      "implementation_status": "Not implemented; review-only recommendation."
+    },
+    {
+      "key": "string/ui_clear_image",
+      "English": "Clear image",
+      "source_sha256": "20231a4032390f0886c87b9f301481ac336659f40d9ab50981fa1039663b6afc",
+      "existing_Amharic_key": "absent",
+      "decision": "retain",
+      "original_XML_text": "\"ምስሉን አጽዳ\"",
+      "recommended_XML_text": "\"ምስሉን አጽዳ\"",
+      "recommended_XML_element": "<string name=\"ui_clear_image\">\"ምስሉን አጽዳ\"</string>",
+      "recommended_XML_text_sha256": "979a1a1a4a2f808385a135a8b7434c1a2563829a8602b80f3fd6cbec8b4cb91f",
+      "held_XML_text": null,
+      "reason": "Android Gallery2 attests አጽዳ for clearing effects, while nonfuzzy LibreOffice Clear Contents supports content-clearing semantics for the same family. The image object distinguishes scope, and the chosen verb remains distinct from the deletion command. There is insufficient evidence for changing to a deletion verb; no specific mistranslation is established.",
+      "source_semantics": "The current image is filled with the current background colour without changing canvas dimensions or deleting a saved image file. Pending/floating edits are committed first; image credits are then cleared. It does not promise transparency, new-document creation, or clipboard clearing.",
+      "confidence": {
+        "source_semantics": "high",
+        "translation_UI": "medium",
+        "nature": "Independent evidence-based AI review; not native-speaker certification, user approval or runtime acceptance."
+      },
+      "primary_lexical_evidence": [
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml#348",
+          "context": "clear_effects",
+          "English": "Clear effects",
+          "Amharic": "ማሳመሪያዎች አጽዳ"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "context": ".uno:ClearContents / Label",
+          "line": 1746,
+          "English": "Clear Contents",
+          "Amharic": "ይዞታዎችን ማጽጃ",
+          "fuzzy": false
+        }
+      ],
+      "consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L859-L859",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L478-L478"
+      ],
+      "exact_full_phrase_attested": false,
+      "English_source_defect_established": false,
+      "limitations": "Neither source attests the full clear-image phrase. A generic clean/clear verb is context-dependent; this review supports its command reading but does not certify that native users could never interpret it as image cleanup. No unsupported stronger wording is substituted.",
+      "implementation_status": "Not implemented; review-only recommendation."
+    },
+    {
+      "key": "string/ui_delete_selection",
+      "English": "Delete selection",
+      "source_sha256": "ba80b318c95bac56e59bd260fb78eba9ba8aeb7c4dab417027913c2685484e18",
+      "existing_Amharic_key": "absent",
+      "decision": "retain",
+      "original_XML_text": "\"የተመረጠውን ሰርዝ\"",
+      "recommended_XML_text": "\"የተመረጠውን ሰርዝ\"",
+      "recommended_XML_element": "<string name=\"ui_delete_selection\">\"የተመረጠውን ሰርዝ\"</string>",
+      "recommended_XML_text_sha256": "48c97c4ba21460cde2e9808ae3e8c2166e3aef06969062b290896b4388cd6074",
+      "held_XML_text": null,
+      "reason": "የተመረጠውን nominalizes what is selected and makes it the object of the directly attested ሰርዝ imperative. This is a better fit for deleting selected content than an instruction to clear the abstract selection state. Android’s selected-item confirmation supports the grammatical construction but is not equated with pixel deletion.",
+      "source_semantics": "For nonfloating content, the selected rectangle or mask is filled with background after a checkpoint; for already-floating content, that content is discarded without committing it. The selection object is cleared in either case. It is not mere deselection, file deletion, or a promise of a fresh separate undo checkpoint for the floating branch.",
+      "confidence": {
+        "source_semantics": "high",
+        "translation_UI": "medium",
+        "nature": "Independent evidence-based AI review; not native-speaker certification, user approval or runtime acceptance."
+      },
+      "primary_lexical_evidence": [
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml#52",
+          "context": "delete",
+          "English": "Delete",
+          "Amharic": "ሰርዝ"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml#53",
+          "context": "delete_selection / one",
+          "English": "Delete selected item?",
+          "Amharic": "የተመረጠው ንጥል ይሰረዝ?",
+          "limit": "Selected media-item vocabulary and syntax only; not an image-region operation."
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml#65",
+          "context": "deselect_all",
+          "English": "Deselect all",
+          "Amharic": "ሁሉንም አትምረጥ",
+          "limit": "Contrast only, not a proposed translation."
+        }
+      ],
+      "consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L850-L850",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L373-L377"
+      ],
+      "exact_full_phrase_attested": false,
+      "English_source_defect_established": false,
+      "limitations": "The exact nominalized object plus imperative is new composition. Its selected-content reading is supported by grammar and context, not by native-speaker testing or a direct exact-match catalogue entry.",
+      "implementation_status": "Not implemented; review-only recommendation."
+    }
+  ],
+  "held_proposals": [
+    {
+      "key": "string/ui_crop_to_selection",
+      "English": "Crop to selection",
+      "source_sha256": "64e97c73d0718e85281f4505772c4185a79af679cfa00be4addb90a8504b6775",
+      "existing_Amharic_key": "absent",
+      "decision": "hold",
+      "original_XML_text": "\"በምርጫው መጠን ከርክም\"",
+      "recommended_XML_text": null,
+      "recommended_XML_element": null,
+      "recommended_XML_text_sha256": null,
+      "held_XML_text": "\"በምርጫው መጠን ከርክም\"",
+      "reason": "The crop imperative is attested, but the added selection-size phrase is not. መጠን foregrounds size/extent and does not settle the precise relation between keeping selected content and replacing the canvas. It risks suggesting a dimension-based operation rather than a selection-bound crop. That is a translation precision concern, not a demonstrated English defect. The alternative according-to-selected construction in the draft is also unverified and is not accepted merely because it avoids size.",
+      "source_semantics": "cropSelection obtains the transformed selected-content bitmap, including transformed bounds and mask, then finishes the selection and replaces the canvas as an edit. Transparent margins flatten over the background in replace. The operation requires a selection and keeps the selected result; it is not deletion of selected pixels or resizing an unchanged full image.",
+      "confidence": {
+        "source_semantics": "high",
+        "translation_UI": "low-medium for phrase; high for hold",
+        "nature": "Independent evidence-based AI review; not native-speaker certification, user approval or runtime acceptance."
+      },
+      "primary_lexical_evidence": [
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml#94",
+          "context": "crop_action",
+          "English": "Crop",
+          "Amharic": "ከርክም"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "context": ".uno:Crop / Label and TooltipLabel",
+          "English": "Crop / Crop Image",
+          "Amharic": "መከርከሚያ / ምስል መከርከሚያ",
+          "fuzzy": false
+        }
+      ],
+      "consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L852-L852",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L349-L364",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L461-L465",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L197-L218"
+      ],
+      "exact_full_phrase_attested": false,
+      "English_source_defect_established": false,
+      "limitations": "No independently supported full replacement is established. Keep both author proposals out of an implementation set. Resolve selected-content versus dimensions and naturalness in a focused language review; do not delete selection scope by shortening to the bare Crop verb.",
+      "implementation_status": "Not implemented; review-only recommendation."
+    }
+  ],
+  "counts": {
+    "this_group_ready": 7,
+    "prior_ready": 29,
+    "accumulated_ready_candidates": 36,
+    "additional_held_proposals": 1,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717
+  },
+  "prior29_locator": "https://github.com/c933103/AN-Paint/blob/366fd3bc9de5ee801ba7b5a88ef6bcac8e78fe80/records/localization-review/2026-10-24/amharic-tabs/r01/reviewed-candidates-and-reconciliation.json",
+  "limits": [
+    "All exact full phrases are compositions; primary roots and context do not amount to direct complete-phrase or native attestation.",
+    "Crop proposal and unverified alternate remain excluded from implementation candidates.",
+    "No production, Work, app build/test, CI or release."
+  ]
+}

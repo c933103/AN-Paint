@@ -1,0 +1,129 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": [
+    {
+      "key": "string/ui_flip_horizontal",
+      "English": "Flip horizontal",
+      "source_sha256": "9692a0ce7511d6a39b7433957f49f71875519c002caad673949ee26c0db7f56a",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "After applyPending, setScale(-1f,1f) reflects the entire current bitmap left/right. It is not rotating by180°, changing screen orientation, or transforming only a floating selection.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L854-L854",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L453-L459"
+      ]
+    },
+    {
+      "key": "string/ui_flip_vertical",
+      "English": "Flip vertical",
+      "source_sha256": "30122ff97c9a942bfe997de53c15a3505cdf5ea25bd5c193095da72867f0f059",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "After applyPending, setScale(1f,-1f) reflects the entire current bitmap top/bottom, not a180° turn.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L855-L855",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L453-L459"
+      ]
+    },
+    {
+      "key": "string/ui_rotate_90_clockwise",
+      "English": "Rotate 90° clockwise",
+      "source_sha256": "80700703f3d69dfc97e778c1796adff9cc920d40d45334618f23bfbd702bfd46",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "After applyPending, setRotate(90f) transforms the whole bitmap and then fits the canvas view. Positive Android screen-coordinate rotation is clockwise. Preserve90 and degree sign, not arbitrary rotation or horizontal flip.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L856-L856",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L453-L459"
+      ]
+    },
+    {
+      "key": "string/ui_rotate_180",
+      "English": "Rotate 180°",
+      "source_sha256": "cffb26b0098b16fea9684c2fcfbe542c08758893071ae25bc3905df80cd55bbf",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "After applyPending, setRotate(180f) gives the whole bitmap a half-turn. English intentionally does not specify direction; either direction gives same result.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L857-L857",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L453-L459"
+      ]
+    },
+    {
+      "key": "string/ui_invert_colours",
+      "English": "Invert colours",
+      "source_sha256": "1d9c281c11223391192aed63bffcf11c334bc648ee3ba4051e66ece5fcd2f804",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "After applyPending, invert complements low24 RGB bits while preserving high8 alpha bits. It is not swapping foreground/background or geometrically reflecting the image.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L858-L858",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L467-L476"
+      ]
+    },
+    {
+      "key": "string/ui_clear_image",
+      "English": "Clear image",
+      "source_sha256": "20231a4032390f0886c87b9f301481ac336659f40d9ab50981fa1039663b6afc",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "After applyPending, clear finishes selection, checkpoints, fills the bitmap with current background and clears committed image credits. It does not delete a saved image file, replace with transparent canvas, clear clipboard, or create a new document size.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L859-L859",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L478-L478"
+      ]
+    },
+    {
+      "key": "string/ui_crop_to_selection",
+      "English": "Crop to selection",
+      "source_sha256": "64e97c73d0718e85281f4505772c4185a79af679cfa00be4addb90a8504b6775",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Requires selection; otherwise shows select-area-first. Renders the transformed selection into its bounding rectangle, finishes selection, then replaces canvas as edit and fits view. Masked/rotated transparent margins are flattened over background by replace. It is not deletion of selected content or a promise to preserve original canvas bounds.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L852-L852",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L349-L364"
+      ]
+    },
+    {
+      "key": "string/ui_delete_selection",
+      "English": "Delete selection",
+      "source_sha256": "ba80b318c95bac56e59bd260fb78eba9ba8aeb7c4dab417027913c2685484e18",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Requires selection; otherwise shows select-area-first. Nonfloating selection is checkpointed and its mask/rectangle filled with current background. Floating content is removed without committing it; clearSelection removes the selection object. Not mere deselection, saved-file deletion or guaranteed new standalone undo checkpoint for already-floating content.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L850-L850",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L373-L377"
+      ]
+    }
+  ],
+  "shared_links": [
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L327-L363",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L551-L556",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L924-L931",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L443-L449",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L197-L218",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L308-L337",
+    "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L461-L465"
+  ],
+  "limits": [
+    "Complete twelve source copies included; no exhaustive repository consumer-search claim.",
+    "Commands use common panel buttons, including text/contentDescription/tooltip; that binding is not screen-reader acceptance.",
+    "Flip/rotate/invert/clear applyPending first, including pending trim/polygon/curve and floating content. Crop/delete use selected-content branches without that preliminary applyPending call.",
+    "Common buttons gate busy/autosaving and catch specified edit failures; wording is an operation label, not a guaranteed success claim.",
+    "No application build/test, CI, production edits, Work task or release.",
+    "No English source defect established at this bounded source inspection.",
+    "No native-speaker, runtime, glyph/layout or lifecycle validation."
+  ],
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717,
+    "prior_reviewed_candidates": 29,
+    "new_drafts": 8,
+    "new_independent_acceptance": 0,
+    "implemented": 0
+  }
+}

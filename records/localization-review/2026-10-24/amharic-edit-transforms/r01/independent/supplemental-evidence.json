@@ -1,0 +1,42 @@
+{
+  "independently_found_lexical_record": {
+    "source_key": "double_twist_for_camera_mode_title",
+    "role": "Direct form evidence for the imperative ገልብጥ only. Camera switching is not the same operation as raster reflection or RGB inversion.",
+    "exact_AN_Paint_phrase_attestation": false,
+    "sources": [
+      {
+        "language": "en",
+        "snapshot": "input/lexical-evidence/android-settings-en.xml",
+        "sha256": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e",
+        "line": 11203,
+        "raw_line": "    <string name=\"double_twist_for_camera_mode_title\">Flip camera for selfie</string>",
+        "XML_text": "Flip camera for selfie",
+        "msgid": null,
+        "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml#11203"
+      },
+      {
+        "language": "am",
+        "snapshot": "input/lexical-evidence/android-settings-am.xml",
+        "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6",
+        "line": 4479,
+        "raw_line": "    <string name=\"double_twist_for_camera_mode_title\" msgid=\"472455236910935684\">\"ለራስ ምስል ካሜራን ገልብጥ\"</string>",
+        "XML_text": "\"ለራስ ምስል ካሜራን ገልብጥ\"",
+        "msgid": "472455236910935684",
+        "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml#4479"
+      }
+    ]
+  },
+  "technical_reference": [
+    {
+      "title": "Skia SkMatrix class reference, setRotate",
+      "url": "https://api.skia.org/classSkMatrix.html",
+      "verified_UTC_date": "2026-10-24",
+      "relevant_quote": "Positive degrees rotates clockwise.",
+      "role": "Corroborates the screen-graphics rotation convention; actual AN Paint call is pinned in ClassicPaintActivity.kt line 856. Not an on-device runtime measurement."
+    }
+  ],
+  "retrieval_limit": {
+    "url": "https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/libs/hwui/jni/Matrix.cpp",
+    "result": "Web reader returned an internal access error; no source contents used and no denial or user refusal inferred."
+  }
+}
