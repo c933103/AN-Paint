@@ -1,0 +1,182 @@
+{
+  "schema": "amharic-fit-caption-independent-adjudication-v1",
+  "date": "2026-10-24",
+  "key": "string/ui_fit_entire_canvas_in_view",
+  "canonical_english": "Fit entire canvas in view",
+  "decision": "release_with_revision",
+  "accepted_candidate": "ሸራውን በሙሉ በመስኮቱ ልክ አሳይ",
+  "back_translation": "Show the canvas in full, fitted to the window.",
+  "old_held_candidate": "የመሳያ ቦታውን በሙሉ አሳይ",
+  "old_candidate_disposition": "Not accepted; superseded by this exact replacement in the bounded translation review.",
+  "decision_scope": "One translation-precision hold only. Not implementation approval or an app-release decision.",
+  "reason": "Technical canvas vocabulary resolves the old canvas-versus-viewport noun gap. The fit-to-window relation combined with entirety and the show imperative supplies the missing display-fitting meaning. No specific remaining grammatical or semantic defect warrants retaining that hold.",
+  "component_findings": [
+    {
+      "component": "ሸራውን",
+      "finding": "The technical canvas head noun plus productive definite and direct-object morphology is adequate in a painting app. The glossary vector example is lexical support, not an imported object model.",
+      "evidence": [
+        "E1",
+        "E2",
+        "E5",
+        "E6"
+      ]
+    },
+    {
+      "component": "በሙሉ",
+      "finding": "The canvas is shown in its entirety. This does not exclude outlying editing bounds or mean Full screen mode.",
+      "evidence": [
+        "E2",
+        "E7"
+      ]
+    },
+    {
+      "component": "በመስኮቱ ልክ",
+      "finding": "An attested display-fitting relation. Its transfer from desktop window to editor viewport is independently accepted at medium confidence, not inherited from the short Fit review.",
+      "evidence": [
+        "E3",
+        "E4"
+      ]
+    },
+    {
+      "component": "አሳይ",
+      "finding": "A software-attested show imperative. Its object-before-verb composition is grammatical and display-facing, not a request to modify document dimensions.",
+      "evidence": [
+        "E6",
+        "E7"
+      ]
+    }
+  ],
+  "whole_caption_judgment": {
+    "accepted": true,
+    "confidence": "medium",
+    "window_to_viewport_transfer": "Accepted as contextual software usage. Canvas is the displayed object; window is the display target. The combined caption supports fitting into view without claiming stretching, edge-to-edge filling or application-window resizing.",
+    "exact_full_phrase_attestation": "Not found and not required; the accepted caption is a new supported composition.",
+    "short_fit_prior_acceptance": "Consistency context only; not authority for the long-caption decision.",
+    "native_or_fluent_human_approval": false
+  },
+  "source_behavior": {
+    "confidence": "high",
+    "role": "Long accessibility description; also icon tooltip/help text on the vertical status path. The visible horizontal Fit caption is a different resource.",
+    "fit_target": "Union of entire bitmap canvas, trim rectangle and rotated floating-selection bounds.",
+    "operation": "Uniform viewport zoom and centering with padding, plus fit-state and polygon-tap bookkeeping. A too-small viewport can return early.",
+    "not_operation": [
+      "Destructive resizing or cropping of the editable document",
+      "Fitting selection geometry into the canvas",
+      "Entering Full screen mode"
+    ],
+    "resampling_qualification": "Display-only overview downsampling may occur. Do not claim no resampling anywhere.",
+    "english_defect_established": false,
+    "future_source_change": "Correct canonical English first, flag affected language terms, and review them individually rather than change only this translation."
+  },
+  "confidence": {
+    "source_semantics": "high",
+    "canvas_vocabulary": "medium-high",
+    "productive_morphology": "medium-high",
+    "complete_caption": "medium"
+  },
+  "alternatives": "No alternate proposed wording is accepted by this decision.",
+  "verification": {
+    "supplied_manifest_entries_verified": 48,
+    "application_source_bindings_verified": 17,
+    "supplied_commit_tree_relationship_verified": true,
+    "source_tree_truncated": false,
+    "original_public_packet_unchanged": true,
+    "original_hold_examined": true,
+    "cited_lexical_page_images_examined": true,
+    "libreoffice_nonfuzzy_record_examined": true,
+    "android_show_record_english_amharic_alignment_verified": true,
+    "exact_key_absent_from_reviewed_amharic_resource": true,
+    "new_web_retrievals": [
+      "ICT Development Office/ELRC glossary",
+      "Beermann/Ephrem grammar paper"
+    ],
+    "retrieval_limits": [
+      "The separate LibreOffice web fetch returned a cache miss; its supplied pinned record was inspected.",
+      "Leslau evidence was inspected from the preserved scan, not freshly downloaded.",
+      "Application source integrity was verified against the supplied commit/tree snapshots, not a new remote-head fetch."
+    ]
+  },
+  "accounting": {
+    "supplied_baseline": {
+      "ready": 104,
+      "held": 4,
+      "implemented": 0,
+      "pending": 90
+    },
+    "decision_delta": {
+      "ready": 1,
+      "held": -1,
+      "implemented": 0,
+      "pending": 0
+    },
+    "if_recorded_against_supplied_baseline": {
+      "ready": 105,
+      "held": 3,
+      "implemented": 0,
+      "pending": 90
+    },
+    "ledger_mutated_by_reviewer": false,
+    "other_terms_changed": false
+  },
+  "limits": [
+    "No native-reader or fluent-human validation; no runtime, glyph/layout, tooltip-fit, screen-reader or device validation.",
+    "No production edit, Work task, app build/test, CI, release or remote publication.",
+    "This medium-confidence translation decision does not certify uniquely optimal idiom or universal reader interpretation.",
+    "Publication URLs provide document/page locators, not immutable hosted PDF revisions; software source URLs are commit-pinned."
+  ],
+  "sources": [
+    {
+      "id": "E1",
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=85",
+      "locator": "Printed/PDF page 85, entry 1011, English Term and Amharic Translation columns"
+    },
+    {
+      "id": "E2",
+      "url": "https://conference.usu.edu/SYSTEM/Uploads/Handouts/15233_1981miriamredleaf.pdf#page=8",
+      "locator": "Printed/PDF page 8, vocabulary below the ለ and ሸ rows"
+    },
+    {
+      "id": "E3",
+      "url": "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po#L29836-L29844",
+      "locator": "MathCommands.xcu / .uno:FitInWindow / Label; nonfuzzy record"
+    },
+    {
+      "id": "E4",
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=105",
+      "locator": "Printed/PDF page 105, entry 1246"
+    },
+    {
+      "id": "E5",
+      "url": "https://web.stanford.edu/group/cslipublications/cslipublications/TLS/TLS9-2005/TLS9_Beermann_and_Ephrem.pdf#page=3",
+      "locator": "Section 2.2, printed page 23, examples 2–4 and discussion"
+    },
+    {
+      "id": "E6",
+      "url": "https://e-learning.tsu.ge/pluginfile.php/6774/mod_resource/content/0/amharic_rg.pdf#page=64",
+      "locator": "Section 16, printed pages 47–48, PDF pages 64–65"
+    },
+    {
+      "id": "E7",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml#5109",
+      "locator": "lockscreen_privacy_controls_setting_toggle"
+    },
+    {
+      "id": "S1",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L650-L675",
+      "locator": null
+    },
+    {
+      "id": "S2",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L160-L192",
+      "locator": null
+    },
+    {
+      "id": "S3",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L237-L287",
+      "locator": null
+    }
+  ],
+  "historical_record": "https://github.com/c933103/AN-Paint/tree/fe0657e03789ca58d9cf786d1da6093296612fda/records/localization-review/2026-10-24/amharic-view-controls/r01",
+  "canonical_source": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L199",
+  "report": "INDEPENDENT-ADJUDICATION.md"
+}

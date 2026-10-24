@@ -1,0 +1,11 @@
+# Fit entire canvas in view: revised candidate adopted
+
+Author reconciliation accepts RELEASE_WITH_REVISION for **ui_fit_entire_canvas_in_view**, exact **ሸራውን በሙሉ በመስኮቱ ልክ አሳይ**. The previous **የመሳያ ቦታውን በሙሉ አሳይ** remains historical held/rejected wording, not an accepted alternative. The [original view-controls record](https://github.com/c933103/AN-Paint/tree/fe0657e03789ca58d9cf786d1da6093296612fda/records/localization-review/2026-10-24/amharic-view-controls/r01) is preserved.
+
+The whole composition separates canvas object from display target, expresses entirety and the fitting relation, and uses a display-facing imperative. Medium confidence explicitly includes the desktop-window-to-editor-viewport contextual transfer; no uniquely best idiom, exact prior full-caption or native-reader claim is made. Short Fit's prior acceptance is context only, not transferred authority.
+
+This is the long accessibility description and vertical icon tooltip/help, not the short visible Fit caption. A 44dp icon is not a 44dp visible-caption constraint. Fit uniformly zooms/centers the canvas plus outlying editing bounds with padding; it does not destructively resize the document. Display-only bitmap downsampling can occur. Runtime speech, tooltip fit and rendering remain unassessed. No English defect is established.
+
+Source binding: 66be61df27c5359bffc32d56db21f3949899f873, tree 870c5a584120d92710be516af0dc3b3847b183d9. Independent review verified supplied source/tree bindings, not a new remote-head fetch. Apply once: **105 reviewed ready additions, 3 held proposals, zero implemented**. Pending 90-value implementation batch remains exactly unchanged; this candidate is outside it. Production remains 12 present / 705 missing of 717 canonical containers. No whole-language acceptance total is inferred.
+
+The four allowlisted public adjudication files are preserved byte-for-byte, including their original public-only manifest and checksums. That manifest seals the independent report/decision, not this additive reconciliation or index. Local-only material and metadata are intentionally omitted. Prior history/index entries are unchanged. No Work task, production edit, build, test, CI, release or native/runtime/accessibility certification.
