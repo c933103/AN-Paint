@@ -1,0 +1,78 @@
+{
+  "scope": "string/ui_crop_to_selection only",
+  "locale": "am",
+  "language": "Amharic",
+  "english": "Crop to selection",
+  "decision": "release_hold_with_revision",
+  "candidate_status": "ready_for_implementation",
+  "previous_held_candidate": "በምርጫው መጠን ከርክም",
+  "accepted_candidate": "የተመረጠው ክፍል ብቻ እንዲቀር ከርክም",
+  "back_translation": "Crop so that only the selected part remains.",
+  "semantic_hold_resolved": true,
+  "reason": "The positive purpose clause explicitly identifies selected content as what remains, rather than using selection dimensions as an ambiguous relation. The crop imperative preserves the operation category. Productive grammar and the actual transformed, masked selected-content rendering support the complete construction.",
+  "english_change_required": false,
+  "cross_language_source_change_pass_triggered": false,
+  "confidence": {
+    "source_semantics": "high",
+    "grammatical_construction": "high",
+    "full_phrase_semantic_fit": "medium-high",
+    "modern_ui_idiom": "medium",
+    "rendered_fit": "unassessed"
+  },
+  "interpretation_limits": [
+    "Retains selected artwork with its current transform and mask within axis-aligned rectangular output bounds.",
+    "Does not promise a nonrectangular canvas, alpha preservation, or absence of generated background margins.",
+    "Does not promise that undo restores an editable floating selection.",
+    "The full label is productive composition, not an externally attested exact phrase or native-certified wording."
+  ],
+  "implementation_checks": [
+    "Inspect the 24-character Amharic caption in the compact tile at supported font scales, with special attention to truncation of the final crop imperative.",
+    "Check the full accessible name and tooltip; no rendered or screen-reader result is claimed."
+  ],
+  "verification": {
+    "input_manifest_entries_checked": 682,
+    "input_manifest_mismatches": 0,
+    "source_file_bindings_checked": 591,
+    "source_binding_mismatches": 0,
+    "audited_extension_coverage_missing": 0,
+    "supplied_tree_complete": true,
+    "independent_live_branch_freshness_check": false,
+    "direct_production_key_references": 1,
+    "english_value_verified": true,
+    "amharic_key_absent": true,
+    "candidate_nfc": true,
+    "candidate_xml_fragment_parses": true,
+    "placeholders_added": false,
+    "candidate_unicode_characters_including_spaces": 24,
+    "old_candidate_unicode_characters_including_spaces": 14,
+    "grammar_pages_visually_checked": [
+      {"printed_page": 443, "pdf_page": 425},
+      {"printed_page": 445, "pdf_page": 427}
+    ],
+    "dictionary_pages_visually_checked": [
+      {"printed_page": 429, "pdf_page": 428, "entry": "part"},
+      {"printed_page": 456, "pdf_page": 455, "entry": "remain"},
+      {"printed_page": 423, "pdf_page": 422, "entry": "only"}
+    ],
+    "fuzzy_gimp_record_excluded": true,
+    "application_tests_run": false
+  },
+  "ledger_effect_when_incorporated": {
+    "before": {"ready": 103, "held": 5, "implemented": 0},
+    "after": {"ready": 104, "held": 4, "implemented": 0},
+    "pending_90_unchanged": true,
+    "ledger_changed_by_this_review": false
+  },
+  "actions_not_taken": [
+    "production edits",
+    "Work task creation or resumption",
+    "application execution",
+    "build",
+    "application tests",
+    "CI",
+    "remote publication",
+    "deployment",
+    "release"
+  ],
+  "report": "REVIEW.md"
+}
