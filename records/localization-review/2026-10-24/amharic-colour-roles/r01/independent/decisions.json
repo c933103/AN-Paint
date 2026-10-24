@@ -1,0 +1,74 @@
+{
+  "input_manifest_sha256": "bedd1144d33e9e54b4edb3e915877ec515f3dd355be7339c29ed203a26667842",
+  "production_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "outcome": {
+    "retain": 2,
+    "revise": 0,
+    "hold": 1
+  },
+  "decisions": [
+    {
+      "key": "ui_foreground_colour",
+      "english": "Foreground colour",
+      "value": "የፊት ለፊት ቀለም",
+      "verdict": "RETAIN",
+      "candidate_ledger_ready": true,
+      "confidence": "medium-high lexical and orthographic; medium complete UI idiom",
+      "adaptation": "Attach genitive prefix, normalize ለፊት spacing, remove terminal colon absent from English.",
+      "evidence": [
+        "input:lo_pattern_foreground",
+        "input:gimp_foreground_rgb",
+        "additional:gtk Foreground color name (1103-1105)",
+        "additional:gtk Foreground color (1111-1113), definite variant only"
+      ],
+      "reason": "Full role phrase is directly supported in colour controls; normalized sequence has additional non-fuzzy colour-property corroboration. Not image-layer movement or depth."
+    },
+    {
+      "key": "ui_background_colour",
+      "english": "Background colour",
+      "value": "የመደብ ቀለም",
+      "verdict": "RETAIN",
+      "candidate_ledger_ready": true,
+      "confidence": "medium-high lexical; medium complete UI idiom",
+      "adaptation": "Attach genitive prefix; omit terminal colon where absent from English.",
+      "evidence": [
+        "input:lo_pattern_background",
+        "input:lo_background_colour",
+        "input:gimp_background_rgb",
+        "additional:gtk Background color and Background color name (1087-1097), definite variants only"
+      ],
+      "reason": "Preserves noun-label meaning across editor, status and swatch-to-background menu use. Not accepted from inherited Edit background wording."
+    },
+    {
+      "key": "ui_swap23",
+      "english": "Swap colors",
+      "value": "ቀለሞችን ያለዋውጡ",
+      "verdict": "HOLD",
+      "candidate_ledger_ready": false,
+      "confidence": "high operation semantics; medium component evidence; insufficient full-command idiom/register",
+      "adaptation": "Compose plural colours plus object ending with exact AOSP role-exchange command verb.",
+      "evidence": [
+        "input:aosp_swap_buttons",
+        "input:lo_colours",
+        "input:aosp_colours, alternate plural only"
+      ],
+      "reason": "Two-property exchange is verified and AOSP provides a useful role-exchange analogue, but complete-command idiom and reader interpretation remain unvalidated. No grammatical defect asserted and no speculative replacement accepted.",
+      "next_evidence": "Proficient Amharic assessment of the complete command in the two-swatch context, especially reciprocal exchange rather than ordinary change/cycling and UI register."
+    }
+  ],
+  "previous_86_ready_12_holds": "Separate and unchanged. Do not interpret these three results as a replacement ledger.",
+  "native_reader_approval": false,
+  "production_acceptance_or_implementation": false,
+  "full_combined_status_accessibility_acceptance": false,
+  "no_english_source_defect_established": true,
+  "excluded_keys": [
+    "ui_swap_foreground_background",
+    "ui_edit_foreground",
+    "ui_edit_background"
+  ],
+  "limits": [
+    "Bounded supplied source, not fresh exhaustive repository search.",
+    "New GTK evidence is historical and source-related to other GNOME translations, not independent native-reader votes.",
+    "No runtime/rendering/accessibility validation, build, CI, release, Work task or remote publication."
+  ]
+}

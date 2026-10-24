@@ -1,0 +1,41 @@
+{
+  "source_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "source_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": {
+    "ui_foreground_colour": {
+      "meaning": "Title of the normal foreground colour editor and one part of combined foreground/background status contentDescription. Foreground is the current opaque drawing colour used by ordinary strokes, flood fill, shape outlines/most fills and text, rather than a distinct image layer.",
+      "complete_context": [
+        "AdvancedColourDialog.kt: show conditional title, preview, validation and commit",
+        "ColourStatusButton.kt: refresh combined contentDescription and target callbacks",
+        "ClassicPaintActivity.kt: colourStatus construction, colourDialog, setColour, updateColours",
+        "PaintDocument.kt: foreground setter, drawingPaint, floodFill, drawShape, drawText"
+      ],
+      "qualification": "Does not select/reorder a front layer, describe photographic foreground depth, change all existing pixels or promise immediate painting. Current value may preview before confirmation. Short FG caption and hex-specific Edit colour accessibility templates are separate untranslated resources."
+    },
+    "ui_background_colour": {
+      "meaning": "Title of normal background-colour editor, combined status description, and existing custom-slot context-menu action assigning that swatch to document.background. Background is current opaque secondary/erase/fill colour, not a layer.",
+      "complete_context": [
+        "AdvancedColourDialog.kt: show conditional title and callback",
+        "ColourStatusButton.kt: refresh combined contentDescription",
+        "ClassicPaintActivity.kt: colourDialog, editPaletteColour action0, setColour, updateColours",
+        "PaintDocument.kt: background setter, drawingPaint eraser, drawShape style2 fill, clear/new/resize/selection deletion/text background"
+      ],
+      "qualification": "Changing property alone does not repaint the whole existing image. It is used by subsequent erasing/clearing/new canvas/fill operations and some geometry previews; not OS wallpaper or app theme. Existing ui_edit_background inherited wording is reference history, not new acceptance."
+    },
+    "ui_swap23": {
+      "meaning": "Colour dock button exchanges the two current document colour properties via a temporary variable, then refreshes status, invalidates canvas and schedules autosave.",
+      "complete_context": [
+        "ClassicPaintActivity.kt: colourHeader swap button and updateColours",
+        "PaintDocument.kt: foreground/background setters",
+        "ColourStatusButton.kt: refresh"
+      ],
+      "qualification": "Swaps current foreground/background colours only, not arbitrary palette slots, image layers, pixel colour inversion, black/white reset or selected pixels. Existing pixels are not rewritten by the callback; invalidation can affect previews. No forced colour reversal terminology from fuzzy exchange evidence."
+    }
+  },
+  "no_source_defect_established": true,
+  "limits": [
+    "Three plain labels, no placeholders/units/ellipsis. Combined status joins two labels using slash externally; no concatenated-template linguistic acceptance inferred.",
+    "Dormant longer swap and Edit foreground keys excluded, not declared reviewed or globally dead.",
+    "Prior86ready/12held remain unchanged; inherited Palette and Edit background not re-reviewed."
+  ]
+}

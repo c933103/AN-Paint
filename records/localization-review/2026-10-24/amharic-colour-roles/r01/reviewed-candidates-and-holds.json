@@ -1,0 +1,93 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "author_reconciliation": "Accept two colour-role noun labels unchanged; preserve Swap colors tentative author hold as independently adjudicated HOLD. No replacement or error assertion.",
+  "ready_reviewed_candidates": [
+    {
+      "key": "string/ui_foreground_colour",
+      "english": "Foreground colour",
+      "value": "የፊት ለፊት ቀለም",
+      "verdict": "RETAIN",
+      "candidate_ledger_ready": true,
+      "confidence": "medium-high lexical and orthographic; medium complete UI idiom",
+      "adaptation": "Attach genitive prefix, normalize ለፊት spacing, remove terminal colon absent from English.",
+      "evidence": [
+        "input:lo_pattern_foreground",
+        "input:gimp_foreground_rgb",
+        "additional:gtk Foreground color name (1103-1105)",
+        "additional:gtk Foreground color (1111-1113), definite variant only"
+      ],
+      "reason": "Full role phrase is directly supported in colour controls; normalized sequence has additional non-fuzzy colour-property corroboration. Not image-layer movement or depth.",
+      "source_sha256": "482aa087e5c1b6a7386c14ce0b57e3b800a0fb0e3e39ec6fbdd7467f97637e52",
+      "candidate_XML_text": "\"የፊት ለፊት ቀለም\"",
+      "candidate_XML_text_sha256": "0d081ff2d05f1b43b9ab0e1f4f62d64837cc977033f403d013d663380bf2b442",
+      "author_reconciliation": "Accept unchanged retention with medium full-UI idiom qualification."
+    },
+    {
+      "key": "string/ui_background_colour",
+      "english": "Background colour",
+      "value": "የመደብ ቀለም",
+      "verdict": "RETAIN",
+      "candidate_ledger_ready": true,
+      "confidence": "medium-high lexical; medium complete UI idiom",
+      "adaptation": "Attach genitive prefix; omit terminal colon where absent from English.",
+      "evidence": [
+        "input:lo_pattern_background",
+        "input:lo_background_colour",
+        "input:gimp_background_rgb",
+        "additional:gtk Background color and Background color name (1087-1097), definite variants only"
+      ],
+      "reason": "Preserves noun-label meaning across editor, status and swatch-to-background menu use. Not accepted from inherited Edit background wording.",
+      "source_sha256": "743baa308f660e8e63d38b38bced95af0608f513a2e6a9607478a25dfa4aa6bc",
+      "candidate_XML_text": "\"የመደብ ቀለም\"",
+      "candidate_XML_text_sha256": "4fafcafb00ac9545cb91954595d9cf501ef68c40e6747b32bd37e6d870a211e1",
+      "author_reconciliation": "Accept unchanged retention with medium full-UI idiom qualification."
+    }
+  ],
+  "held_proposals_this_group": [
+    {
+      "key": "string/ui_swap23",
+      "english": "Swap colors",
+      "value": "ቀለሞችን ያለዋውጡ",
+      "verdict": "HOLD",
+      "candidate_ledger_ready": false,
+      "confidence": "high operation semantics; medium component evidence; insufficient full-command idiom/register",
+      "adaptation": "Compose plural colours plus object ending with exact AOSP role-exchange command verb.",
+      "evidence": [
+        "input:aosp_swap_buttons",
+        "input:lo_colours",
+        "input:aosp_colours, alternate plural only"
+      ],
+      "reason": "Two-property exchange is verified and AOSP provides a useful role-exchange analogue, but complete-command idiom and reader interpretation remain unvalidated. No grammatical defect asserted and no speculative replacement accepted.",
+      "next_evidence": "Proficient Amharic assessment of the complete command in the two-swatch context, especially reciprocal exchange rather than ordinary change/cycling and UI register.",
+      "source_sha256": "ed32fd14ff2f2e30ab73ecdc6c31c9341602f4009237e734c82065e55af492a6",
+      "candidate_XML_text": "\"ቀለሞችን ያለዋውጡ\"",
+      "candidate_XML_text_sha256": "9c7fabc0ec2e3a4efe6ebc497457553f668086eb4e5617a8a05463ed6fb3ebc4",
+      "author_reconciliation": "Preserve unchanged HOLD for complete command idiom/register; no grammatical error asserted."
+    }
+  ],
+  "counts": {
+    "this_group_ready": 2,
+    "prior_ready": 86,
+    "accumulated_ready_candidates": 88,
+    "this_group_held": 1,
+    "prior_held": 12,
+    "total_held": 13,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "translatable_containers": 717
+  },
+  "prior_locator": "https://github.com/c933103/AN-Paint/blob/44007be2530d28a9565dee696341b611a0bc025a/records/localization-review/2026-10-24/amharic-colour-actions/r01/reviewed-candidates-and-holds.json",
+  "scope_limits": [
+    "Bounded supplied source, not fresh exhaustive repository search.",
+    "New GTK evidence is historical and source-related to other GNOME translations, not independent native-reader votes.",
+    "No runtime/rendering/accessibility validation, build, CI, release, Work task or remote publication.",
+    "Whole combined status description, FG/BG abbreviations and hex-specific edit templates are not accepted by these two noun labels.",
+    "Inherited Edit background and Palette uncertainty unchanged; dormant discovery exclusions not global dead-code findings.",
+    "New GTK exact records are historical colour-property corroboration, not unrelated native-reader votes."
+  ],
+  "publication_scope": "Complete judgments, exact source bindings, immutable source links and extracted new GTK records retained; full broad project/PO snapshot copies stay described by original manifests, not duplicated into compact public record."
+}

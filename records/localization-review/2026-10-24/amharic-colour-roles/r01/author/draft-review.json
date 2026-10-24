@@ -1,0 +1,130 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_foreground_colour",
+      "English": "Foreground colour",
+      "source_attributes": {
+        "name": "ui_foreground_colour"
+      },
+      "source_sha256": "482aa087e5c1b6a7386c14ce0b57e3b800a0fb0e3e39ec6fbdd7467f97637e52",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "proposed_XML_text": "\"የፊት ለፊት ቀለም\"",
+      "proposed_XML_text_sha256": "0d081ff2d05f1b43b9ab0e1f4f62d64837cc977033f403d013d663380bf2b442",
+      "proposed_XML_element": "<string name=\"ui_foreground_colour\">\"የፊት ለፊት ቀለም\"</string>",
+      "rationale": {
+        "key": "ui_foreground_colour",
+        "english": "Foreground colour",
+        "value": "የፊት ለፊት ቀለም",
+        "confidence": "medium; source-backed normalized draft, not accepted",
+        "evidence_ids": [
+          "lo_pattern_foreground",
+          "gimp_foreground_rgb"
+        ],
+        "rationale": "LibreOffice pattern-colour control directly attests the full colour-role phrase. Remove its terminal colon and normalize spaces after the genitive prefix and within ለፊት, with GIMP non-fuzzy RGB foreground status supporting ፊት ለፊት as a colour role. Not based on layer stacking. The normalization and AN-Paint idiomatic fit require independent review.",
+        "status": "draft for review, not production acceptance"
+      },
+      "consumer_context": {
+        "meaning": "Title of the normal foreground colour editor and one part of combined foreground/background status contentDescription. Foreground is the current opaque drawing colour used by ordinary strokes, flood fill, shape outlines/most fills and text, rather than a distinct image layer.",
+        "complete_context": [
+          "AdvancedColourDialog.kt: show conditional title, preview, validation and commit",
+          "ColourStatusButton.kt: refresh combined contentDescription and target callbacks",
+          "ClassicPaintActivity.kt: colourStatus construction, colourDialog, setColour, updateColours",
+          "PaintDocument.kt: foreground setter, drawingPaint, floodFill, drawShape, drawText"
+        ],
+        "qualification": "Does not select/reorder a front layer, describe photographic foreground depth, change all existing pixels or promise immediate painting. Current value may preview before confirmation. Short FG caption and hex-specific Edit colour accessibility templates are separate untranslated resources."
+      },
+      "confidence": "medium; source-backed normalized draft, not accepted",
+      "author_status": "draft for independent review, not accepted"
+    },
+    {
+      "key": "string/ui_background_colour",
+      "English": "Background colour",
+      "source_attributes": {
+        "name": "ui_background_colour"
+      },
+      "source_sha256": "743baa308f660e8e63d38b38bced95af0608f513a2e6a9607478a25dfa4aa6bc",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "proposed_XML_text": "\"የመደብ ቀለም\"",
+      "proposed_XML_text_sha256": "4fafcafb00ac9545cb91954595d9cf501ef68c40e6747b32bd37e6d870a211e1",
+      "proposed_XML_element": "<string name=\"ui_background_colour\">\"የመደብ ቀለም\"</string>",
+      "rationale": {
+        "key": "ui_background_colour",
+        "english": "Background colour",
+        "value": "የመደብ ቀለም",
+        "confidence": "medium-high lexical; normalized draft, not accepted",
+        "evidence_ids": [
+          "lo_pattern_background",
+          "lo_background_colour",
+          "gimp_background_rgb"
+        ],
+        "rationale": "Exact non-fuzzy LibreOffice colour-role noun phrase with genitive-prefix space removed; pattern-control evidence is not layer stacking. GIMP RGB status corroborates መደብ. Existing ui_edit_background is inherited context, not new acceptance and is unchanged.",
+        "status": "draft for review, not production acceptance"
+      },
+      "consumer_context": {
+        "meaning": "Title of normal background-colour editor, combined status description, and existing custom-slot context-menu action assigning that swatch to document.background. Background is current opaque secondary/erase/fill colour, not a layer.",
+        "complete_context": [
+          "AdvancedColourDialog.kt: show conditional title and callback",
+          "ColourStatusButton.kt: refresh combined contentDescription",
+          "ClassicPaintActivity.kt: colourDialog, editPaletteColour action0, setColour, updateColours",
+          "PaintDocument.kt: background setter, drawingPaint eraser, drawShape style2 fill, clear/new/resize/selection deletion/text background"
+        ],
+        "qualification": "Changing property alone does not repaint the whole existing image. It is used by subsequent erasing/clearing/new canvas/fill operations and some geometry previews; not OS wallpaper or app theme. Existing ui_edit_background inherited wording is reference history, not new acceptance."
+      },
+      "confidence": "medium-high lexical; normalized draft, not accepted",
+      "author_status": "draft for independent review, not accepted"
+    },
+    {
+      "key": "string/ui_swap23",
+      "English": "Swap colors",
+      "source_attributes": {
+        "name": "ui_swap23"
+      },
+      "source_sha256": "ed32fd14ff2f2e30ab73ecdc6c31c9341602f4009237e734c82065e55af492a6",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "proposed_XML_text": "\"ቀለሞችን ያለዋውጡ\"",
+      "proposed_XML_text_sha256": "9c7fabc0ec2e3a4efe6ebc497457553f668086eb4e5617a8a05463ed6fb3ebc4",
+      "proposed_XML_element": "<string name=\"ui_swap23\">\"ቀለሞችን ያለዋውጡ\"</string>",
+      "rationale": {
+        "key": "ui_swap23",
+        "english": "Swap colors",
+        "value": "ቀለሞችን ያለዋውጡ",
+        "confidence": "low-to-medium compositional; HOLD pending idiomatic review",
+        "evidence_ids": [
+          "aosp_swap_buttons",
+          "lo_colours",
+          "aosp_colours"
+        ],
+        "rationale": "Compose LibreOffice plural colours with the accusative ending ን and preserve the exact AOSP swap verb from swapping the two mouse-button roles. This role-exchange context is closer than character replacement. AOSP verb spelling/register is not independently validated here, and the complete phrase is unattested; do not force acceptance. The action exchanges foreground/background properties, not pixels, layers or RGB inversion.",
+        "status": "HOLD; candidate only; native/independent review needed"
+      },
+      "consumer_context": {
+        "meaning": "Colour dock button exchanges the two current document colour properties via a temporary variable, then refreshes status, invalidates canvas and schedules autosave.",
+        "complete_context": [
+          "ClassicPaintActivity.kt: colourHeader swap button and updateColours",
+          "PaintDocument.kt: foreground/background setters",
+          "ColourStatusButton.kt: refresh"
+        ],
+        "qualification": "Swaps current foreground/background colours only, not arbitrary palette slots, image layers, pixel colour inversion, black/white reset or selected pixels. Existing pixels are not rewritten by the callback; invalidation can affect previews. No forced colour reversal terminology from fuzzy exchange evidence."
+      },
+      "confidence": "low-to-medium compositional; HOLD pending idiomatic review",
+      "author_status": "tentative author HOLD pending independent idiom review"
+    }
+  ],
+  "prior_status": {
+    "ready": 86,
+    "held": 12,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "containers": 717
+  },
+  "no_source_defect_established": true
+}

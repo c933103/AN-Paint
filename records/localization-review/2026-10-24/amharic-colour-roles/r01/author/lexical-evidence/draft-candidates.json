@@ -1,0 +1,40 @@
+[
+  {
+    "key": "ui_foreground_colour",
+    "english": "Foreground colour",
+    "value": "የፊት ለፊት ቀለም",
+    "confidence": "medium; source-backed normalized draft, not accepted",
+    "evidence_ids": [
+      "lo_pattern_foreground",
+      "gimp_foreground_rgb"
+    ],
+    "rationale": "LibreOffice pattern-colour control directly attests the full colour-role phrase. Remove its terminal colon and normalize spaces after the genitive prefix and within ለፊት, with GIMP non-fuzzy RGB foreground status supporting ፊት ለፊት as a colour role. Not based on layer stacking. The normalization and AN-Paint idiomatic fit require independent review.",
+    "status": "draft for review, not production acceptance"
+  },
+  {
+    "key": "ui_background_colour",
+    "english": "Background colour",
+    "value": "የመደብ ቀለም",
+    "confidence": "medium-high lexical; normalized draft, not accepted",
+    "evidence_ids": [
+      "lo_pattern_background",
+      "lo_background_colour",
+      "gimp_background_rgb"
+    ],
+    "rationale": "Exact non-fuzzy LibreOffice colour-role noun phrase with genitive-prefix space removed; pattern-control evidence is not layer stacking. GIMP RGB status corroborates መደብ. Existing ui_edit_background is inherited context, not new acceptance and is unchanged.",
+    "status": "draft for review, not production acceptance"
+  },
+  {
+    "key": "ui_swap23",
+    "english": "Swap colors",
+    "value": "ቀለሞችን ያለዋውጡ",
+    "confidence": "low-to-medium compositional; HOLD pending idiomatic review",
+    "evidence_ids": [
+      "aosp_swap_buttons",
+      "lo_colours",
+      "aosp_colours"
+    ],
+    "rationale": "Compose LibreOffice plural colours with the accusative ending ን and preserve the exact AOSP swap verb from swapping the two mouse-button roles. This role-exchange context is closer than character replacement. AOSP verb spelling/register is not independently validated here, and the complete phrase is unattested; do not force acceptance. The action exchanges foreground/background properties, not pixels, layers or RGB inversion.",
+    "status": "HOLD; candidate only; native/independent review needed"
+  }
+]
