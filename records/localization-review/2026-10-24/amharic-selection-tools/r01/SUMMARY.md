@@ -1,0 +1,13 @@
+# Amharic selection tools: Eyedropper retained, three captions held
+
+Author accepts ጠብታ መለኪያ for Eyedropper unchanged at medium-high bounded confidence. Exact non-fuzzy Pipette caption plus adjacent image-colour sampling-control help resolves the tentative metaphor concern. Different downstream use does not invalidate the sampling metaphor. A second matching-colour selection context corroborates spelling only, not foreground sampling or independent authority. No native-reader preference certification.
+
+Rectangle select, Free-form select and Bucket fill remain held. Selection-by-shape captions are unvalidated full compositions. Fill Color precedent does not yet validate the specific flood-fill tool versus a colour-setting label; dropping the bucket metaphor is not inherently wrong, and the caption need not explain every algorithm detail. No speculative replacement or English defect asserted.
+
+Author accepts consumer correction: every selectTool invokes applyPending, which unconditionally finishes selection; floating selection can commit even when selecting/reselecting SELECT or LASSO, not only on leaving selection tools. Eyedropper assignment forces opaque foreground alpha. Neither correction changes English or authorizes production changes. Longer hints, composed status/accessibility strings and runtime rendering remain outside acceptance.
+
+All 47 draft payload files, 15 complete current source identities, 12 eligible PO records, 18 excluded fuzzy/empty GIMP records and four glossary terms were independently checked. Source binding: 66be61df27c5359bffc32d56db21f3949899f873 / tree870c5a584120d92710be516af0dc3b3847b183d9. Independent reviewer checked supplied provenance, not fresh remote HEAD. Original draft and independent judgments remain byte-exact; this addendum supersedes the restricted selection-commit explanation. Primary-authored glossary uses a public mirror; PDF/renders/full-page text and broad PO snapshots stay local-only. Bounded terms, hashes and locators retained. Nested manifests describe complete original packets; root seals actual compact publication.
+
+Totals: 91 reviewed ready candidates, 17 held proposals, zero implemented. The newly retained Eyedropper is separate from the previously requested 90-value implementation batch, not silently added. Production coverage stays 12 present / 705 missing of717 containers. All prior holds/optional recommendations preserved. New groups stopped; next work is targeted resolution of existing holds with new evidence, not automatic release or a blanket exact-corpus/native-review gate.
+
+Records only, never merge this branch into application branches. No Work task, production changes, build, CI or release. No whole-language/native/runtime/accessibility certification.

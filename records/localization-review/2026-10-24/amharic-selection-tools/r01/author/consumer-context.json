@@ -1,0 +1,71 @@
+{
+  "source_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "source_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": {
+    "ui_rectangle_select": {
+      "meaning": "SELECT tool creates a rectangular image-area selection from sorted pointer drag bounds; clips to bitmap, ignores empty/subpixel extents and copies selected pixels into selection image. It does not draw a rectangle outline into the image.",
+      "complete_context": [
+        "PaintDocument.kt enum label getter:15-36",
+        "ToolButton.kt constructor: visible text/contentDescription/tooltip",
+        "ClassicPaintActivity.kt makeToolButton:493-497, chooseTool:732-736, options heading:750",
+        "PaintCanvas.kt selectTool:153-157 (applyPending, conditional finishSelection)",
+        "ClassicPaintActivity.kt help label+hint:496 and status interpolation:689",
+        "ToolCategoryButton.kt SELECTION membership:15 and selected-tool content description:27",
+        "PaintCanvas.kt pointer handling:735-816, bounds:406, selection manipulation:617-644",
+        "PaintDocument.kt select:289-306, startMovingSelection/finishSelection:319-338",
+        "SelectionGeometry.kt complete resize/rotation geometry"
+      ],
+      "qualification": "Tool caption, not imperative to select a rectangle object, not Select all. New area selection alone copies pixels without erasing them, but finishing an existing floating selection commits it. Dragging inside/handles can move, resize or rotate selected pixels after startMovingSelection erases source area with background; do not call entire selection tool non-mutating. Selecting a tool can commit pending geometry. Larger hints/options/accessibility compositions excluded."
+    },
+    "ui_free_form_select": {
+      "meaning": "LASSO tool traces freehand pointer motion, closes the trace at pointer-up, computes bounds and passes path mask to the same selection routine. Canvas clips copied pixels by mask; this is selecting an arbitrary drawn outline rather than drawing a freeform line.",
+      "complete_context": [
+        "PaintDocument.kt enum label getter:15-36",
+        "ToolButton.kt constructor: visible text/contentDescription/tooltip",
+        "ClassicPaintActivity.kt makeToolButton:493-497, chooseTool:732-736, options heading:750",
+        "PaintCanvas.kt selectTool:153-157 (applyPending, conditional finishSelection)",
+        "ClassicPaintActivity.kt help label+hint:496 and status interpolation:689",
+        "ToolCategoryButton.kt SELECTION membership:15 and selected-tool content description:27",
+        "PaintCanvas.kt trace initialization:761, lineTo:788, close/computeBounds/select:816",
+        "PaintDocument.kt masked selection:289-306, moving/finishing:319-338",
+        "SelectionGeometry.kt complete resize/rotation geometry"
+      ],
+      "qualification": "Free-form concerns the shape of the area boundary, not no-cost software or unrestricted editing. Existing-selection manipulation is shared with rectangular tool. Closed trace need not be simple/nondegenerate; no quality promise. No full hint or Lock proportions acceptance inherited."
+    },
+    "ui_bucket_fill": {
+      "meaning": "FILL tool fills a connected region from the touched pixel with document foreground. Pointer-up delegates to onFill, activity runs document.fill via backgroundEdit; ScanlineFill walks horizontal runs and above/below neighbours, accepting colours within squared RGBA-distance threshold from original seed.",
+      "complete_context": [
+        "PaintDocument.kt enum label getter:15-36",
+        "ToolButton.kt constructor: visible text/contentDescription/tooltip",
+        "ClassicPaintActivity.kt makeToolButton:493-497, chooseTool:732-736, options heading:750",
+        "PaintCanvas.kt selectTool:153-157 (applyPending, conditional finishSelection)",
+        "ClassicPaintActivity.kt help label+hint:496 and status interpolation:689",
+        "ClassicPaintActivity.kt primary tool row:293-295, onFill:202, tolerance option:767, backgroundEdit:942-951",
+        "PaintCanvas.kt pointer-up FILL:810",
+        "PaintDocument.kt fill:260-270",
+        "ScanlineFill.kt complete algorithm and pixel cache"
+      ],
+      "qualification": "Bucket is a painting-tool metaphor, not filling a physical container, whole-canvas clear, shape interior style, gradient or disconnected same-colour replacement. Tolerance zero requires exact pixel equality; positive threshold uses squared RGBA distance, not an ordinary percentage of image area. Bounds/same-colour early return and failure restoration are preserved; no guaranteed operation success. Choosing the tool is distinct from tapping to fill, though tool switch may commit prior work. No new tolerance/hint acceptance."
+    },
+    "ui_eyedropper": {
+      "meaning": "PICKER tool reads the current bitmap pixel at in-bounds pointer-up coordinates and sets document.foreground. onPick adds recent colour, refreshes colours/status and schedules autosave.",
+      "complete_context": [
+        "PaintDocument.kt enum label getter:15-36",
+        "ToolButton.kt constructor: visible text/contentDescription/tooltip",
+        "ClassicPaintActivity.kt makeToolButton:493-497, chooseTool:732-736, options heading:750",
+        "PaintCanvas.kt selectTool:153-157 (applyPending, conditional finishSelection)",
+        "ClassicPaintActivity.kt help label+hint:496 and status interpolation:689",
+        "ClassicPaintActivity.kt primary tool row:293-295, onPick:200, Tap a pixel option:776",
+        "PaintCanvas.kt pointer-up PICKER:811-813"
+      ],
+      "qualification": "Single image-pixel colour sampling, not choosing an image/file, opening a general colour dialog, averaging a neighbourhood or automatically sampling background. No physical medical-dropper action. Sampling itself changes foreground property rather than painting pixels; switching away from a floating selection can commit that selection first. Larger help/status/selected-category phrases outside label review."
+    }
+  },
+  "no_source_defect_established": true,
+  "limits": [
+    "Four tool captions only; no units/placeholders/ellipsis.",
+    "Two selection tools occur within SELECTION category; Fill and Eyedropper are standalone primary tool buttons, not automatically SELECTION category members.",
+    "Complete source-only behavior inspection, no runtime or visual/native-reader certification.",
+    "Prior90ready/14held/zeroimplemented remain unchanged."
+  ]
+}

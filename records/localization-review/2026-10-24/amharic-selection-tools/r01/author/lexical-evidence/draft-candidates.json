@@ -1,0 +1,278 @@
+[
+  {
+    "key": "ui_rectangle_select",
+    "english": "Rectangle select",
+    "value": "በቀጤ ጎነ አራት መምረጫ",
+    "status": "provisional compositional candidate; HOLD whole-phrase naturalness for independent review",
+    "evidence_ids": [
+      "ict_rectangle",
+      "lo_selection_mode",
+      "lo_select_all",
+      "lo_pipette_other_context_behavior"
+    ],
+    "attestation": "Components only. Added በ- method/shape preposition and composed phrase are author proposals, not an exact source quotation.",
+    "rationale": "Names selecting by a rectangular boundary rather than drawing a rectangle or choosing a pre-existing rectangle object. Retains the precise glossary geometry term; square is a valid rectangle subtype.",
+    "confidence": {
+      "component_attestation": "high",
+      "semantic_composition": "medium",
+      "whole_phrase_idiom": "unvalidated; HOLD",
+      "native_certification": false
+    },
+    "alternatives": [
+      {
+        "value": "የቀጤ ጎነ አራት ምርጫ",
+        "assessment": "Composed noun-phrase alternative. Could read as selection of a rectangle object rather than a rectangular image-area selection; not preferred without native review."
+      },
+      {
+        "value": "በአራት ማእዘን መምረጫ",
+        "assessment": "Uses shorter LibreOffice geometry wording, but loses the precise right-angle terminology and is still an unattested composed phrase."
+      }
+    ],
+    "independent_question": "Is the በ- construction natural for a persistent area-selection tool, and is the precise geometry term suitably familiar without suggesting rectangle-object selection?",
+    "accepted": false,
+    "implemented": false,
+    "consumer_context_file": "../consumer-context.json",
+    "composition": "Components only. Added በ- method/shape preposition and composed phrase are author proposals, not an exact source quotation.",
+    "review_hold": {
+      "held_pending_independent_review": true,
+      "reason": "Is the በ- construction natural for a persistent area-selection tool, and is the precise geometry term suitably familiar without suggesting rectangle-object selection?",
+      "not_prior_inventory_hold": true
+    },
+    "source_contexts": [
+      {
+        "id": "ict_rectangle",
+        "file": "ict-elrc-glossary.pdf",
+        "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=188",
+        "context": "Glossary entry 2174",
+        "supports": "Precise rectangular geometry component. Does not independently establish whole-phrase selection caption or modern UI familiarity."
+      },
+      {
+        "id": "lo_selection_mode",
+        "file": "libreoffice-am-help02.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+        "context": "20050000.xhp\ntit\nhelp.text",
+        "supports": "Attests instrumental selector stem መምረጫ in UI mode caption."
+      },
+      {
+        "id": "lo_select_all",
+        "file": "libreoffice-am-ui.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+        "context": "GenericCommands.xcu\n..GenericCommands.UserInterface.Commands..uno:SelectAll\nLabel\nvalue.text",
+        "supports": "Attests instrumental selection verb/noun form መምረጫ in a UI action."
+      },
+      {
+        "id": "lo_pipette_other_context_behavior",
+        "file": "libreoffice-am-svx.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+        "context": "floatingcontour|extended_tip|TBI_PIPETTE",
+        "supports": "Keeps the second Pipette context transparent and attests መምረጫ in bitmap-area selection prose."
+      }
+    ]
+  },
+  {
+    "key": "ui_free_form_select",
+    "english": "Free-form select",
+    "value": "በስድ ቅርጽ መምረጫ",
+    "status": "provisional compositional candidate; HOLD whole-phrase naturalness for independent review",
+    "evidence_ids": [
+      "ict_freeform",
+      "lo_selection_mode",
+      "lo_select_all",
+      "lo_freeform_behavior"
+    ],
+    "attestation": "The geometry component ስድ ቅርጽ is exact glossary text. በ- plus selection head is a new composition, not a sourced whole phrase.",
+    "rationale": "Makes the freely drawn outline a selection method and keeps selection distinct from creation of a freeform line. The source freeform sense includes hand-drawn curves, not freeware or lack of restrictions.",
+    "confidence": {
+      "component_attestation": "high",
+      "semantic_composition": "medium",
+      "whole_phrase_idiom": "unvalidated; HOLD",
+      "native_certification": false
+    },
+    "alternatives": [
+      {
+        "value": "በነፃ እጅ መምረጫ",
+        "assessment": "Freehand-oriented composition from LibreOffice ነፃ እጅ. It may be more transparent about tracing but the complete construction is not attested."
+      },
+      {
+        "value": "ነፃ መስመር መፍጠሪያ",
+        "assessment": "Rejected as a complete caption: exact source says Freeform Line and creates a line. AN-Paint selects an area; source attestation does not cure wrong task semantics."
+      }
+    ],
+    "independent_question": "Does ስድ ቅርጽ sound appropriate and current for a lasso area-selection tool, and is the selection-by-shape construction idiomatic?",
+    "accepted": false,
+    "implemented": false,
+    "consumer_context_file": "../consumer-context.json",
+    "composition": "The geometry component ስድ ቅርጽ is exact glossary text. በ- plus selection head is a new composition, not a sourced whole phrase.",
+    "review_hold": {
+      "held_pending_independent_review": true,
+      "reason": "Does ስድ ቅርጽ sound appropriate and current for a lasso area-selection tool, and is the selection-by-shape construction idiomatic?",
+      "not_prior_inventory_hold": true
+    },
+    "source_contexts": [
+      {
+        "id": "ict_freeform",
+        "file": "ict-elrc-glossary.pdf",
+        "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=113",
+        "context": "Glossary entry 1334",
+        "supports": "Precise component for arbitrary drawn geometry. Describes a shape including freehand curves; does not attest complete selection caption."
+      },
+      {
+        "id": "lo_selection_mode",
+        "file": "libreoffice-am-help02.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+        "context": "20050000.xhp\ntit\nhelp.text",
+        "supports": "Attests instrumental selector stem መምረጫ in UI mode caption."
+      },
+      {
+        "id": "lo_select_all",
+        "file": "libreoffice-am-ui.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+        "context": "GenericCommands.xcu\n..GenericCommands.UserInterface.Commands..uno:SelectAll\nLabel\nvalue.text",
+        "supports": "Attests instrumental selection verb/noun form መምረጫ in a UI action."
+      },
+      {
+        "id": "lo_freeform_behavior",
+        "file": "libreoffice-am-help02.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+        "context": "01140000.xhp\npar_id3154163\nhelp.text",
+        "supports": "Supports the freehand trace sense of freeform, not no-cost/free software."
+      }
+    ]
+  },
+  {
+    "key": "ui_bucket_fill",
+    "english": "Bucket fill",
+    "value": "ቀለም መሙያ",
+    "status": "source-backed semantic-adaptation draft, not acceptance; retain HOLD if distinction from fill-colour setting is insufficient",
+    "evidence_ids": [
+      "lo_fill_color",
+      "ict_fill",
+      "ict_fill_color"
+    ],
+    "attestation": "Exact character sequence is sourced for Fill Color, not Bucket Fill. Adaptation from a colour-fill property/action label to a flood-fill tool is explicitly proposed.",
+    "rationale": "Names colour filling rather than a physical bucket; short nominal form suits a tool. It does not claim whole-canvas filling, disconnected colour replacement, gradient filling, or outline-only painting. However, it omits the bucket metaphor and does not itself encode contiguous/tolerance semantics, so context and distinction from fill settings require review.",
+    "confidence": {
+      "phrase_attestation_for_Fill_Color": "high",
+      "Bucket_Fill_semantic_transfer": "medium",
+      "UI_distinction": "unvalidated",
+      "native_certification": false
+    },
+    "alternatives": [
+      {
+        "value": "ቀለም አልብስ",
+        "assessment": "Exact glossary imperative for Fill color; another source ecosystem and register, not an exact flood-fill tool caption."
+      },
+      {
+        "value": "መሙያ",
+        "assessment": "Shorter sourced fill stem, but more underspecified and liable to collide with shape fill controls."
+      }
+    ],
+    "independent_question": "Can ቀለም መሙያ unambiguously name the bucket/flood-fill tool beside colour and shape-fill controls, or is an idiomatic fuller tool name required?",
+    "accepted": false,
+    "implemented": false,
+    "consumer_context_file": "../consumer-context.json",
+    "composition": "Exact character sequence is sourced for Fill Color, not Bucket Fill. Adaptation from a colour-fill property/action label to a flood-fill tool is explicitly proposed.",
+    "review_hold": {
+      "held_pending_independent_review": true,
+      "reason": "Can ቀለም መሙያ unambiguously name the bucket/flood-fill tool beside colour and shape-fill controls, or is an idiomatic fuller tool name required?",
+      "not_prior_inventory_hold": true
+    },
+    "source_contexts": [
+      {
+        "id": "lo_fill_color",
+        "file": "libreoffice-am-ui.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+        "context": "GenericCommands.xcu\n..GenericCommands.UserInterface.Commands..uno:FillColor\nLabel\nvalue.text",
+        "supports": "Exact candidate character sequence ቀለም መሙያ is attested as a drawing UI label."
+      },
+      {
+        "id": "ict_fill",
+        "file": "ict-elrc-glossary.pdf",
+        "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=104",
+        "context": "Glossary entry 1223",
+        "supports": "Alternative fill verb; source context is object/table shading, not flood fill."
+      },
+      {
+        "id": "ict_fill_color",
+        "file": "ict-elrc-glossary.pdf",
+        "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=104",
+        "context": "Glossary entry 1224",
+        "supports": "Alternative color-application imperative; source defines filling a closed shape, not AN-Paint’s connected RGBA flood fill."
+      }
+    ]
+  },
+  {
+    "key": "ui_eyedropper",
+    "english": "Eyedropper",
+    "value": "ጠብታ መለኪያ",
+    "status": "exact analogous UI term; HOLD idiomatic tool-metaphor suitability",
+    "evidence_ids": [
+      "lo_pipette",
+      "lo_pipette_behavior",
+      "lo_pipette_other_context",
+      "lo_pipette_other_context_behavior"
+    ],
+    "attestation": "Exact non-fuzzy Pipette UI caption. Sampling from a clicked image colour is documented in the same control’s help; this is not merely an unrelated medical dictionary term.",
+    "rationale": "The pipette/eyedropper metaphor has a directly attested software caption, but the Amharic phrase can suggest drop measurement. AN-Paint samples one bitmap pixel into foreground; it does not replace image colours, select same-colour regions, measure physical drops, or open a general colour chooser. Source presence alone is insufficient to settle naturalness.",
+    "confidence": {
+      "exact_analogous_caption_attestation": "high",
+      "single_colour_sampling_analogy": "medium-high",
+      "idiom_for_AN_Paint": "unvalidated; HOLD",
+      "native_certification": false
+    },
+    "alternatives": [
+      {
+        "value": "ከምስል ቀለም መምረጫ",
+        "assessment": "Descriptive author composition, approximately color picker from image. More explicit about image sampling but not an exact sourced caption; still needs native review."
+      },
+      {
+        "value": "ቀለም መምረጫ",
+        "assessment": "Generic descriptive composition risks conflating image-pixel sampling with palette/colour-dialog choice; no whole-phrase attestation is claimed here."
+      },
+      {
+        "value": "ቀለም መቀየሪያ",
+        "assessment": "Rejected for this tool: LibreOffice’s containing Color Replacer dialog name, not the pipette caption. Would imply replacing colour rather than sampling it."
+      }
+    ],
+    "independent_question": "Is the sourced pipette metaphor familiar and idiomatic, or should a separately validated descriptive sample-from-image caption replace it?",
+    "accepted": false,
+    "implemented": false,
+    "consumer_context_file": "../consumer-context.json",
+    "composition": "Exact non-fuzzy Pipette UI caption. Sampling from a clicked image colour is documented in the same control’s help; this is not merely an unrelated medical dictionary term.",
+    "review_hold": {
+      "held_pending_independent_review": true,
+      "reason": "Is the sourced pipette metaphor familiar and idiomatic, or should a separately validated descriptive sample-from-image caption replace it?",
+      "not_prior_inventory_hold": true
+    },
+    "source_contexts": [
+      {
+        "id": "lo_pipette",
+        "file": "libreoffice-am-svx.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+        "context": "dockingcolorreplace|pipette",
+        "supports": "Exact short caption for image-colour sampling control, nearest direct tool-metaphor precedent."
+      },
+      {
+        "id": "lo_pipette_behavior",
+        "file": "libreoffice-am-svx.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+        "context": "dockingcolorreplace|extended_tip|pipette",
+        "supports": "Confirms that cited Pipette samples a clicked colour from an image, not a physical medical instrument or generic palette chooser."
+      },
+      {
+        "id": "lo_pipette_other_context",
+        "file": "libreoffice-am-svx.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+        "context": "floatingcontour|TBI_PIPETTE",
+        "supports": "Corroborates spelling of Pipette caption in a second UI context."
+      },
+      {
+        "id": "lo_pipette_other_context_behavior",
+        "file": "libreoffice-am-svx.po",
+        "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+        "context": "floatingcontour|extended_tip|TBI_PIPETTE",
+        "supports": "Keeps the second Pipette context transparent and attests መምረጫ in bitmap-area selection prose."
+      }
+    ]
+  }
+]
