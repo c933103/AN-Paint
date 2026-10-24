@@ -1,0 +1,306 @@
+{
+  "schema": "amharic-top-level-tabs-independent-review-v1",
+  "review_date": "2026-10-24",
+  "reviewer": "Independent AI review, not native-speaker certification",
+  "input_manifest_sha256": "b676ebfe81ecbc03ff8b56781bdb15acb6a0c9451460fef7bd49d4b2ebe43c90",
+  "production_revision_reviewed": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "status": "Review complete: 5 retain, 0 revise, 0 hold. No implementation, acceptance publication, build, CI or release.",
+  "decision_definition": "retain means preserve this exact candidate as evidence-supported at the stated confidence; it is not a claim of native approval, runtime acceptance or permission to implement.",
+  "counts": {
+    "retain": 5,
+    "revise": 0,
+    "hold": 0,
+    "implemented": 0
+  },
+  "source_verification": {
+    "manifest_entries_checked": 22,
+    "all_manifest_hashes_match": true,
+    "all_eight_source_blobs_match_independently_fetched_commit_tree": true,
+    "source_files": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+        "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+        "matches_manifest_and_independent_tree": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RibbonWidgets.kt",
+        "sha256": "bc3dd4186f6ef75662dd7f30e75eff9639f4611c292f04279a2b84c8f6af2d08",
+        "git_blob": "671a5e8a0ccae9226d39857f28fbb0740baf9407",
+        "matches_manifest_and_independent_tree": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt",
+        "sha256": "aca95429dbfa000850b52682f08c09c59a9717054646c474bee8329fd923d30d",
+        "git_blob": "19bfc730ac08c2f2d18ec441a5e20b8de54d308a",
+        "matches_manifest_and_independent_tree": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt",
+        "sha256": "3e886b5d845e61e267bb8e6b4ae7d4842b9fcd090819f80ce369cc7dab709dbc",
+        "git_blob": "5663d6174c5e46189872f06588612d7982e87eb2",
+        "matches_manifest_and_independent_tree": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt",
+        "sha256": "3976dfe5147077465fecc7117fde830d5773656efb7bd07ed4f4e64247e802e4",
+        "git_blob": "c6005810e1885d01a3dde088b40822e2cc64578e",
+        "matches_manifest_and_independent_tree": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleText.kt",
+        "sha256": "1f70b6536b3339b7ad3548b44012d76248757d45fe356da65f459256841b5381",
+        "git_blob": "39410202af5d30db46320c41433bf586dc83b472",
+        "matches_manifest_and_independent_tree": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values/strings.xml",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "matches_manifest_and_independent_tree": true
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+am/strings.xml",
+        "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+        "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+        "matches_manifest_and_independent_tree": true
+      }
+    ],
+    "additional_source": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt",
+      "sha": "22167000707d610301bbf1a78dcdec68c6aaaad0",
+      "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt"
+    },
+    "original_and_independently_downloaded_pdfs_identical": true,
+    "all_five_English_text_hashes_and_proposed_XML_text_hashes_recomputed": true,
+    "all_five_exact_Amharic_resource_keys_absent_at_reviewed_revision": true
+  },
+  "shared_consumer_findings": [
+    "ClassicPaintActivity.kt lines 588-599 construct exactly five RibbonTab controls in View, Draw, File, Edit, Color order and set contentDescription to the same translated caption.",
+    "menuTitle at lines 829-832 maps the five source keys. selectTab at lines 461-464 changes activeTab, expands the panel and synchronizes it; Color additionally refreshes custom palette. It does not draw or execute an Edit/File command.",
+    "RibbonWidgets.kt lines 193-209 explicitly implements tabs, including ActionBar$Tab accessibility class. The label is therefore both visual and accessibility category text.",
+    "Draw contents at ClassicPaintActivity.kt lines 286-326 use ToolCategory.values; the independently retrieved ToolCategoryButton.kt lines 13-19 verifies BRUSH, SELECTION and INSERT.",
+    "View controls are at lines 862-874; File commands at 835-846; Edit commands at 847-861; Color controls at 415-432.",
+    "The exact English sources remain View, Draw, File, Edit, Color. No source defect or source correction is established by this review. Explanatory phrases such as drawing-category are consumer analysis, not substitute source strings."
+  ],
+  "rows": [
+    {
+      "key": "string/ui_menu_view",
+      "source": "View",
+      "source_sha256": "dcc839a4015c4b7dd9db959a8f757833b8adb92462a751b973386e453c6d58a3",
+      "proposed_XML_text": "\"መመልከቻ\"",
+      "proposed_XML_text_sha256": "d8a9b34b64e331406a3872b217b4e5bcb1075cc61e44886e2c22991cb3c13a65",
+      "decision": "retain",
+      "retained_XML_element": "<string name=\"ui_menu_view\">\"መመልከቻ\"</string>",
+      "replacement_XML_text": null,
+      "source_semantics_confidence": "high",
+      "linguistic_UI_fit_confidence": "medium-high",
+      "rationale": "Retain the established nominal viewing/display label for the View control category. Its menu and settings uses are directly attested, and the actual panel controls navigation, grid, cursor, magnifier, language and fullscreen. It must not be narrowed to a Zoom action.",
+      "register_and_grammar": "Conventional software-UI register. መመልከቻ has an instrumental/nominal shape, not an instruction to look now. The competing glossary noun does not invalidate this attested UI convention.",
+      "evidence_ids": [
+        "lo_view",
+        "lo_view_menu",
+        "ict"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L588-L599",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L829-L832",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L461-L464",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L514-L539",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L393-L414",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L862-L874"
+      ],
+      "limitations": "No native naturalness ranking between this label and other attested View nouns; screen fit was not tested."
+    },
+    {
+      "key": "string/ui_draw26",
+      "source": "Draw",
+      "source_sha256": "61517c08b3bf84b42ac5a38367a9ca07dbc54e9c00ee92df09debe4f38df34d4",
+      "proposed_XML_text": "\"መሳያ\"",
+      "proposed_XML_text_sha256": "1385a39add9307a18d797c0a3f7cb4d64866ef97eea2139fb14125d016e90da3",
+      "decision": "retain",
+      "retained_XML_element": "<string name=\"ui_draw26\">\"መሳያ\"</string>",
+      "replacement_XML_text": null,
+      "source_semantics_confidence": "high",
+      "linguistic_UI_fit_confidence": "medium",
+      "rationale": "Retain መሳያ as a defensible short drawing-category label. The source tab opens the existing drawing panel without selecting a new tool or making a mark. Additional exact-revision source confirms BRUSH, SELECTION and INSERT tool families. LibreOffice drawing-bar content likewise includes selection and insertion, so the category is not limited to freehand drawing.",
+      "register_and_grammar": "Nominal/instrumental drawing-domain term. It does not carry the lottery/chance sense of English draw. Using the attested component as a standalone tab is a context-based inference, not a directly observed standalone-tab translation. Do not replace it with a generic Tools label or rewrite the English source on this evidence.",
+      "evidence_ids": [
+        "lo_draw",
+        "ict"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L588-L599",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L829-L832",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L461-L464",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L514-L539",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L286-L326"
+      ],
+      "limitations": "Standalone tab idiomaticity is the weakest inference among the five. The glossary also attests ስእል for a Drawing toolbar; there is no evidence here that it is uniquely preferable. Native idiom and runtime fit remain untested."
+    },
+    {
+      "key": "string/ui_menu_file",
+      "source": "File",
+      "source_sha256": "50009ce1da4d15e1c4a04024df691eed5f0d598e2c4c67092f205366d0adf99e",
+      "proposed_XML_text": "\"ፋይል\"",
+      "proposed_XML_text_sha256": "c6025d05e44c1307d88d8a6b6fdd86203ec233b047227d5519fa5d398d30d523",
+      "decision": "retain",
+      "retained_XML_element": "<string name=\"ui_menu_file\">\"ፋይል\"</string>",
+      "replacement_XML_text": null,
+      "source_semantics_confidence": "high",
+      "linguistic_UI_fit_confidence": "high",
+      "rationale": "Retain the conventional file noun/loanword. An actual File menu path supports the exact form; AN Paint uses this tab for new/open/save/export/share and related document commands, not a filing verb.",
+      "register_and_grammar": "Established computing loanword in the same software-UI register as the other labels. Native-origin morphology in neighboring labels does not require replacing a conventional loanword.",
+      "evidence_ids": [
+        "lo_file"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L588-L599",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L829-L832",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L461-L464",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L514-L539",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L846"
+      ],
+      "limitations": "No claim that the File category excludes help/about; its full source scope is retained. Runtime rendering was not tested."
+    },
+    {
+      "key": "string/ui_menu_edit",
+      "source": "Edit",
+      "source_sha256": "464c4ffd019e1e9691dcf0537c797353ef2b1c1d4833d3d463e5b74ae4547344",
+      "proposed_XML_text": "\"ማረሚያ\"",
+      "proposed_XML_text_sha256": "af4d3a84a4baa7a13c0761bb4d9a7465e7a1bcc7cf8c8ed9510a8bc80352ae29",
+      "decision": "retain",
+      "retained_XML_element": "<string name=\"ui_menu_edit\">\"ማረሚያ\"</string>",
+      "replacement_XML_text": null,
+      "source_semantics_confidence": "high",
+      "linguistic_UI_fit_confidence": "medium-high",
+      "rationale": "Retain the established Edit-menu label. Direct clipboard-menu evidence defeats a narrow reading as only correcting errors. It is suitable for the AN Paint editing category including selection, size, crop, transforms, inversion and clear.",
+      "register_and_grammar": "Conventional nominal/instrumental software label. Do not infer that an imperative alternative would be wrong merely because a tab is a category. Microsoft permits either grammatical convention.",
+      "evidence_ids": [
+        "lo_edit",
+        "microsoft"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L588-L599",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L829-L832",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L461-L464",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L514-L539",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L339-L362",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L847-L861"
+      ],
+      "limitations": "The cited LibreOffice path establishes conventional usage, not native preference for every image-editing context. Microsoft uncertain Ethiopic glyphs are excluded, not resolved by guessing. Runtime fit was not tested."
+    },
+    {
+      "key": "string/ui_colour_tab23",
+      "source": "Color",
+      "source_sha256": "6b73191a0a4b67420e61d51c9f207c35277eaf18fbbf5beb52a320a23fe09653",
+      "proposed_XML_text": "\"ቀለም\"",
+      "proposed_XML_text_sha256": "94e8bd12345ff0bfbf7460a6d966d1238ca91e8715589b4360d80240494d2b42",
+      "decision": "retain",
+      "retained_XML_element": "<string name=\"ui_colour_tab23\">\"ቀለም\"</string>",
+      "replacement_XML_text": null,
+      "source_semantics_confidence": "high",
+      "linguistic_UI_fit_confidence": "high",
+      "rationale": "Retain the color noun. It matches foreground/background, swap/reset, palette and advanced color controls. LibreOffice independently uses the exact term to open the Color toolbar, a close category-navigation analogue.",
+      "register_and_grammar": "Neutral color noun, not an imperative to color the image. No added singular-object or immediate-action restriction is introduced.",
+      "evidence_ids": [
+        "lo_color"
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L588-L599",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L829-L832",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L461-L464",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L514-L539",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L415-L437",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L461-L464"
+      ],
+      "limitations": "This does not decide the separate Palette translation. Runtime rendering was not tested."
+    }
+  ],
+  "references": [
+    {
+      "id": "lo_view",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/optionen/01060100.html",
+      "snapshot": "evidence/lo-view.html",
+      "excerpt": "መመልከቻ",
+      "establishes": "View heading and settings-navigation label; controls displayed spreadsheet elements.",
+      "retrieved_utc_date": "2026-10-24",
+      "sha256": "6886a903e4c8f4bc5b68f107a840aaade5a240750c129dfd591faad58926abf6"
+    },
+    {
+      "id": "lo_view_menu",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/optionen/01160200.html",
+      "snapshot": "evidence/lo-view-menu.html",
+      "excerpt": "መመልከቻ - የ ዳታ ምንጮች",
+      "establishes": "View menu ancestor in navigation, independently retrieved after web cache miss.",
+      "retrieved_utc_date": "2026-10-24",
+      "sha256": "d90b6733f0e39f4803dbf3c19bbe2019f2da40bfaaad945ff6263874eb3b1609"
+    },
+    {
+      "id": "lo_draw",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/02/01140000.html",
+      "snapshot": "evidence/lo-draw.html",
+      "excerpt": "የ መሳያ ተግባሮች ማሳያ",
+      "establishes": "Drawing-toolbar domain; toolbar includes selection, shapes, lines and text. Exact standalone Draw-tab use is NOT established.",
+      "retrieved_utc_date": "2026-10-24",
+      "sha256": "5df4e995b738c5caf7390e2bb91ce904cb96a662d144bc4c08d124c10ad54f63"
+    },
+    {
+      "id": "lo_file",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/guide/template_manager.html?DbPAR=SHARED",
+      "snapshot": "evidence/lo-file.html",
+      "excerpt": "ፋይል - አዲስ - ቴምፕሌቶች",
+      "establishes": "Actual File menu ancestor.",
+      "retrieved_utc_date": "2026-10-24",
+      "sha256": "5a49c89983a0ef863b4fd9a4712392f863d085187876ec89af036b9cd686938b"
+    },
+    {
+      "id": "lo_edit",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/optionen/01010800.html",
+      "snapshot": "evidence/lo-edit.html",
+      "excerpt": "ማረሚያ - ኮፒ/መቁረጫ /ማስገቢያ",
+      "establishes": "Actual Edit menu ancestor, explicitly broader than error correction.",
+      "retrieved_utc_date": "2026-10-24",
+      "sha256": "b9a28a990c952f88560d72aea2c5d675c582342febbc7db892d76d8c209063f6"
+    },
+    {
+      "id": "lo_color",
+      "url": "https://help.libreoffice.org/latest/am/text/shared/menu/submenu_image.html",
+      "snapshot": "evidence/lo-color.html",
+      "excerpt": "ቀለም",
+      "establishes": "Color submenu opens color controls rather than immediately applying a color.",
+      "retrieved_utc_date": "2026-10-24",
+      "sha256": "694b3a5b12f1a3cf3d3270f2f3385b98bb04e3ef1aab5dab231df6c9cfd10ca3"
+    },
+    {
+      "id": "ict",
+      "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf",
+      "snapshot": "evidence/ict-retrieved.pdf",
+      "establishes": "Primary-authored ICT/ELRC glossary on third-party mirror. Printed p85 entries 1009/1010 and p232 entry 2739 visually inspected in sealed images. Draw-tool component መሳያ is corroborated; Drawing toolbar alternative is ስእል and View alternative is ትይታ. These are alternatives, not mandatory replacements.",
+      "retrieved_utc_date": "2026-10-24",
+      "sha256": "6eddbd874ac0710ac02cb959fd073d2501dc88404d88d29ee6ce20bc1941eab2"
+    },
+    {
+      "id": "microsoft",
+      "url": "https://download.microsoft.com/download/6/2/a/62a993f1-d3b2-4f28-b3e7-22965eb91426/amh-eth-styleguide.pdf",
+      "snapshot": "evidence/microsoft-retrieved.pdf",
+      "establishes": "Printed p39 English guidance visually inspected: main menus may use nouns, infinitives or imperatives. Only English guidance is used. No exact Ethiopic Edit transcription or corrupted extraction is used.",
+      "retrieved_utc_date": "2026-10-24",
+      "sha256": "37765487f868b0cf1f4bb6d0afc42fb8086b1af6c25eea3e277865bdc9095272"
+    }
+  ],
+  "global_limitations": [
+    "No native-speaker review or user-preference ranking was performed. This is independent source-backed AI review.",
+    "No application run, layout, font, truncation or accessibility-rendering test was performed. Source-level consumer inspection is not runtime verification.",
+    "LibreOffice /latest/ pages are mutable and partially translated. Exact pertinent forms were verified in independent downloads, whose hashes and snapshots are retained; wider locale completeness is not inferred.",
+    "Primary-authored ICT/ELRC content is hosted on a third-party mirror. Both PDFs independently downloaded byte-identically to the sealed originals.",
+    "No whole-repository exhaustive consumer search is claimed; the displayed top-level tab consumer and its exact control path are verified.",
+    "Microsoft Ethiopic extraction and uncertain exact Edit glyphs remain excluded. No purported repair of corrupted extracted text was used.",
+    "The earlier 24 reviewed additions, 12 resources, Palette uncertainty, optional Horizontal and held Help are separate and unchanged. No aggregate accepted-coverage increment is made here."
+  ],
+  "retrieval_notes": [
+    "One LibreOffice View-menu URL returned a web cache miss; ordinary HTTPS retrieval then succeeded and exact menu-path text was checked. This was a fetch failure, not a denial.",
+    "Microsoft web open rejected an octet-stream content type; ordinary HTTPS retrieval succeeded. No access restriction was bypassed."
+  ]
+}
