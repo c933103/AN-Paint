@@ -1,0 +1,196 @@
+{
+  "review_type": "Independent static translation and consumer-context review",
+  "date_utc": "2026-10-24",
+  "input_directory": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024",
+  "input_manifest_sha256": "e89ed5d8ab634f777cabe9bac2c52ec3a2ea27332a13749772e555a9edd0c27a",
+  "production_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "production_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "decisions": {
+    "retain": 3,
+    "revise": 0,
+    "hold": 3
+  },
+  "decision_meanings": {
+    "RETAIN": "Independent textual-review support for the exact draft under stated evidence and limits; not production implementation, native-reader validation or runtime/UI acceptance.",
+    "REVISE": "Evidence-backed replacement required; none proposed in this pass.",
+    "HOLD": "Do not accept/implement this draft based on this review; resolve the stated complete-phrase uncertainty. A hold is not a finding of incorrect translation."
+  },
+  "rows": [
+    {
+      "key": "string/ui_same_width",
+      "english": "Same width",
+      "reviewed_draft": "ተመሳሳይ ስፋት",
+      "proposed_xml": "<string name=\"ui_same_width\">\"ተመሳሳይ ስፋት\"</string>",
+      "decision": "HOLD",
+      "confidence": "Medium lexical/structural plausibility; insufficient full-label semantic/idiomatic assurance for release.",
+      "reason": "The draft is a plausible adjective-plus-dimension noun phrase, but this review cannot sufficiently establish that the complete short label unambiguously means one equal/common width rather than similar width. The LO Fontwork and locale records plus the AOSP dimension noun are not full-label validation. No mistranslation is established; the hold is evidentiary, not an instruction to rewrite.",
+      "release_condition": "A competent contextual Amharic review must assess the complete phrase as both the toolbar opener and dialog title, with exact shared width and independently proportional cropped heights. An exact corpus match is not a universal requirement, but component lookup alone is not enough.",
+      "semantic_check": "The toolbar opens the WIDTH dialog; it does not immediately normalize. Apply later gives all assembly inputs the same selected-axis pixel target. Other dimensions follow each crop ratio, subject to integer rounding. No equal file size, area, whole-image shape, or equal height claim.",
+      "alternative_disposition": "እኩል ስፋት remains an unaccepted alternative. Do not substitute it solely to remove an English ambiguity without complete-label review.",
+      "input_evidence_record_ids": [
+        "width_aosp_image",
+        "same_height_lo_fontwork",
+        "same_lo_locale",
+        "equalize_width_variant"
+      ],
+      "source_consumers": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+      ],
+      "replacement": null
+    },
+    {
+      "key": "string/ui_same_height",
+      "english": "Same height",
+      "reviewed_draft": "ተመሳሳይ ቁመት",
+      "proposed_xml": "<string name=\"ui_same_height\">\"ተመሳሳይ ቁመት\"</string>",
+      "decision": "HOLD",
+      "confidence": "Medium lexical/structural plausibility; insufficient full-label semantic/idiomatic assurance for release.",
+      "reason": "AOSP supports ቁመት for image height, while the actual LO Same Letter Heights record uses እርዝመት. The proposed shortened/substituted phrase is new. Its exact common-height reading, rather than similarity or vertical alignment, is not sufficiently independently established by the retained evidence.",
+      "release_condition": "Review the complete phrase in both toolbar/title uses with common height, crop-proportional widths and all-input scope. Prior acceptance of the dimension noun cannot stand in for this check.",
+      "semantic_check": "The toolbar opens the HEIGHT dialog, not immediate resizing. Apply normalizes selected-axis height for every input and computes each width separately from that image crop, subject to integer rounding. No matching shape, equal width or aligned-position claim.",
+      "alternative_disposition": "Preserve the real LO እርዝመት variation and both supplied alternatives without silently accepting or flattening them.",
+      "input_evidence_record_ids": [
+        "height_aosp_image",
+        "same_height_lo_fontwork",
+        "equalize_height_variant"
+      ],
+      "source_consumers": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+      ],
+      "replacement": null
+    },
+    {
+      "key": "string/ui_smallest",
+      "english": "Smallest",
+      "reviewed_draft": "ትንሹ",
+      "proposed_xml": "<string name=\"ui_smallest\">\"ትንሹ\"</string>",
+      "decision": "RETAIN",
+      "confidence": "High lexical confidence; medium-high source-context confidence. No native-reader or UI-fit claim.",
+      "reason": "The exact complete short label ትንሹ is present in the nonfuzzy LO Smallest entry, and the separately retained smallest-width and smallest-height records corroborate the dimension sense. In this dialog it is a noun-omitting preset just as the English is, not an imperative or a whole-image selection. No evidence-backed revision is needed.",
+      "release_condition": "Retain the exact draft for this independent textual review; rendering/accessibility/native-reader acceptance and implementation remain separate.",
+      "semantic_check": "Preset derives the minimum current placedSize value on the chosen axis across all inputs at dialog opening, including tray inputs. It updates input/preview only. It is not minimum file bytes, area, original uncropped dimensions or an immediate resize. Existing percentage display/rounding is not a translation promise.",
+      "alternative_disposition": "Keep AOSP አነስተኛ as a genuine cross-context variant, not automatically preferable. Exclude the contradictory smallest-percent sentence containing largest wording.",
+      "input_evidence_record_ids": [
+        "smallest_exact",
+        "smallest_width_context",
+        "smallest_height_context",
+        "smallest_aosp_variant",
+        "smallest_percent_bad_prose"
+      ],
+      "source_consumers": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L19-L21",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L34-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L63-L66",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85"
+      ],
+      "replacement": null
+    },
+    {
+      "key": "string/ui_largest",
+      "english": "Largest",
+      "reviewed_draft": "ትልቁ",
+      "proposed_xml": "<string name=\"ui_largest\">\"ትልቁ\"</string>",
+      "decision": "RETAIN",
+      "confidence": "High lexical confidence; medium-high source-context confidence. No native-reader or UI-fit claim.",
+      "reason": "The complete ትልቁ label has an exact nonfuzzy LO Largest record plus greatest-width and greatest-height corroboration. The short definite superlative preserves the English noun omission without adding an operation or a different measurement.",
+      "release_condition": "Retain the exact draft for this independent textual review; rendering/accessibility/native-reader acceptance and implementation remain separate.",
+      "semantic_check": "Preset derives the maximum current placedSize chosen-axis value across all inputs at dialog opening and stages input/preview only. The maximum is also the percent baseline, not a bound on custom targets. It is not area or file size.",
+      "alternative_disposition": "No evidence-backed wording change proposed.",
+      "input_evidence_record_ids": [
+        "largest_exact",
+        "greatest_width_context",
+        "greatest_height_context"
+      ],
+      "source_consumers": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L19-L35",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L63-L66",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85"
+      ],
+      "replacement": null
+    },
+    {
+      "key": "string/ui_apply_to_all",
+      "english": "Apply to all",
+      "reviewed_draft": "ለሁሉም ተግብር",
+      "proposed_xml": "<string name=\"ui_apply_to_all\">\"ለሁሉም ተግብር\"</string>",
+      "decision": "RETAIN",
+      "confidence": "Medium-high whole-command and context confidence, strengthened by new complete-phrase evidence; no native-reader/UI-fit claim.",
+      "reason": "New independent evidence supplies the exact full command: ICT Development Office/ELRC glossary entry 152, page 12, pairs Apply to All with ለሁሉም ተግብር and defines all-item application. The full Amharic column was visually checked against extracted text. This closes the dossier component-only gap. The target-before-imperative construction preserves both operation and all-item scope; no noun-label or selected-only substitution is justified.",
+      "release_condition": "Retain this exact draft under the augmented evidence, not solely on Apply + for-all components. Preserve the mirror/source-age and non-native-review limitations.",
+      "semantic_check": "The positive dialog button validates the target then applies normalization to the complete assembly state, including unplaced tray images. It changes project metadata/history, not source-file pixel content. Reflow may adjust attachments. All is bounded by this assembly, not every device image.",
+      "alternative_disposition": "The LO exact-English Apply to All record remains excluded because its msgstr is empty; new evidence does not retroactively make that record translated. LO መፈጸሚያ remains a real generic Apply variant, not an instruction to change the command.",
+      "input_evidence_record_ids": [
+        "apply_aosp",
+        "for_all_aosp",
+        "to_all_lo",
+        "apply_lo_variant",
+        "apply_all_untranslated"
+      ],
+      "source_consumers": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L37-L48",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L248"
+      ],
+      "replacement": null,
+      "additional_evidence_record_ids": [
+        "elrc_apply_to_all_152"
+      ]
+    },
+    {
+      "key": "string/ui_restore_original_sizes",
+      "english": "Restore original sizes",
+      "reviewed_draft": "ዋናዎቹን መጠኖች መልስ",
+      "proposed_xml": "<string name=\"ui_restore_original_sizes\">\"ዋናዎቹን መጠኖች መልስ\"</string>",
+      "decision": "HOLD",
+      "confidence": "Medium component evidence; low-to-medium confidence in complete plural restoration command and original-versus-main reading.",
+      "reason": "Maintain the author idiom hold. Singular ዋናው መጠን, plural መጠኖች and restoration verbs do not establish the plural adjective/object command ዋናዎቹን መጠኖች መልስ. This review cannot confidently resolve original rather than main sizes or the complete object/adjective idiom. No alternative is approved.",
+      "release_condition": "A competent contextual Amharic reviewer must assess the full plural command and the intended original-size reading, without promising uncropping, file rollback or global Undo. Any English-source defect established later must be fixed in English and tracked across affected languages, not patched silently in Amharic.",
+      "semantic_check": "Unlike the presets, this button immediately calls resetSizes and dismisses on success. It sets normalization to null for every input, retains crop/source-dimension/file data, and returns effective dimensions to each retained croppedSize. Attached placement can reflow. This is not global Undo, previous arbitrary sizing, source-file restoration, or resetting crops.",
+      "alternative_disposition": "Do not inherit the prior singular Original size acceptance. Keep singular ዋነኛው evidence separate. Do not silently translate a different English operation such as Remove normalization.",
+      "input_evidence_record_ids": [
+        "original_size_ui",
+        "original_size_help_variant",
+        "original_size_return_context",
+        "original_size_restore_context",
+        "sizes_plural_component",
+        "restore_aosp",
+        "reset_lo_variant",
+        "restart_reset_exclusion"
+      ],
+      "source_consumers": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L68-L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L248"
+      ],
+      "replacement": null
+    }
+  ],
+  "source_gate": "No English defect established in this bounded review. Current canonical help explicitly says normalization is removed and crops are kept. Keep English fidelity; do not translate a different operation to compensate for an assumed source problem.",
+  "prior_review_status": "Prior 66 ready and eight held are not reopened or recounted. These six labels remain a separate review batch.",
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_translatable_containers": 717,
+    "implemented_by_this_review": 0
+  },
+  "verification_file": "verification.json",
+  "additional_evidence_file": "additional-evidence.json",
+  "limits": [
+    "No Work task/subtask created or resumed. No production edit, commit, issue, branch, PR, build, CI, release, deployment or external write.",
+    "Only sealed-input read-only inspection and temporary local research/review artifacts.",
+    "No native-speaker consultation, device rendering, accessibility test or application execution.",
+    "Original sources, candidate wording and supplied evidence remain unchanged.",
+    "External follow-on search was bounded, not exhaustive; search absence is not proof of ungrammaticality.",
+    "Supplied fresh commit/tree provenance was cross-checked internally but not independently re-fetched remotely."
+  ]
+}

@@ -1,0 +1,236 @@
+[
+  {
+    "key": "string/ui_same_width",
+    "english": "Same width",
+    "draft": "ተመሳሳይ ስፋት",
+    "source_attributes": {
+      "name": "ui_same_width"
+    },
+    "rationale": "Original concise Same + image Width composition. AOSP pairs Width with ስፋት, and LO attests ተመሳሳይ for Same, including a heights context. The complete two-word phrase is not an exact source match. It labels the shared-width dialog/action without promising identical whole-image size.",
+    "confidence": "medium-high lexical components; medium whole-label idiom; unaccepted",
+    "evidence_record_ids": [
+      "width_aosp_image",
+      "same_height_lo_fontwork",
+      "same_lo_locale",
+      "equalize_width_variant"
+    ],
+    "limitations": [
+      "Must mean one common width for every input, while each height follows its own cropped aspect ratio; not approximate similarity, equal file size, equal height or frozen scale.",
+      "Native contextual review must confirm that ተመሳሳይ reads as same/equal rather than merely similar in this short title.",
+      "Keep adjective/noun construction suitable both for toolbar button and dialog title.",
+      "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+      "No Work task, production edit, app build, CI, release or remote write was performed."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "እኩል ስፋት",
+        "note": "Original shorter equal-width alternative built from attested LO equalization construction. Not an exact full-phrase source match or accepted substitution."
+      }
+    ],
+    "consumer_context": "Toolbar button opens normalization dialog for WIDTH and same key is dialog title. Gives all inputs common target width; each other dimension derives proportionally from its own current crop with integer rounding. Does not mean identical total sizes, same heights, equal file sizes or identical aspect ratios. Includes unplaced inputs in tray.",
+    "consumer_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+    ]
+  },
+  {
+    "key": "string/ui_same_height",
+    "english": "Same height",
+    "draft": "ተመሳሳይ ቁመት",
+    "source_attributes": {
+      "name": "ui_same_height"
+    },
+    "rationale": "Original Same + image Height composition. Select the directly attested AOSP image noun ቁመት, consistent with the prior reviewed dimension noun; retain rather than erase LO እርዝመት variation. Prior singular/dimension acceptance does not accept this label.",
+    "confidence": "medium-high lexical components; medium whole-label idiom; unaccepted",
+    "evidence_record_ids": [
+      "height_aosp_image",
+      "same_height_lo_fontwork",
+      "equalize_height_variant"
+    ],
+    "limitations": [
+      "Must mean one common height for all inputs, preserving each crop ratio; not vertical alignment, same width or identical image shape.",
+      "The source Fontwork Same Letter Heights uses እርዝመት; replacing it with the AOSP image noun is an explicit original adaptation.",
+      "Native review must check same-versus-similar reading and shared button/title fit.",
+      "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+      "No Work task, production edit, app build, CI, release or remote write was performed."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "እኩል ቁመት",
+        "note": "Original equal-height construction; combines LO equality component with AOSP image-height noun."
+      },
+      {
+        "draft": "ተመሳሳይ እርዝመት",
+        "note": "Original shortened phrase retaining the actual LO height lexical family. Not selected because existing reviewed dimension terminology uses ቁመት."
+      }
+    ],
+    "consumer_context": "Toolbar button opens HEIGHT normalization dialog and same key is title. Sets all inputs common target height, computes each width from own crop aspect ratio with integer rounding. Not width, file size, alignment position or guaranteed identical shape.",
+    "consumer_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+    ]
+  },
+  {
+    "key": "string/ui_smallest",
+    "english": "Smallest",
+    "draft": "ትንሹ",
+    "source_attributes": {
+      "name": "ui_smallest"
+    },
+    "rationale": "Exact nonfuzzy LO Smallest → ትንሹ, corroborated by Fit to smallest width/height. Reuse the short superlative, not the external numeric-filter or layout behavior.",
+    "confidence": "high lexical; medium-high contextual short-label confidence; unaccepted",
+    "evidence_record_ids": [
+      "smallest_exact",
+      "smallest_width_context",
+      "smallest_height_context",
+      "smallest_aosp_variant",
+      "smallest_percent_bad_prose"
+    ],
+    "limitations": [
+      "The omitted noun is the current selected-axis dimension: minimum placedSize width or height, not area, file bytes, resolution total or memory-safe size.",
+      "The button only fills the target/preview; it does not apply resizing until Apply to all.",
+      "AOSP alternative አነስተኛ is preserved separately; exclude contradictory neighboring LO smallest-percent prose.",
+      "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+      "No Work task, production edit, app build, CI, release or remote write was performed."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "አነስተኛ",
+        "note": "Component-only alternative from AOSP Smallest width → አነስተኛ ስፋት. May be less explicitly superlative standalone; requires contextual review."
+      }
+    ],
+    "consumer_context": "Preset button fills target field with minimum current placedSize selected-axis value among all inputs at dialog creation. It is smallest width in WIDTH mode, smallest height in HEIGHT mode, including current crop/normalization. Does not mean area, file size or smallest memory-safe copy. Button updates field/preview only; Apply to all commits.",
+    "consumer_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L19-L21",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L34-L36",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L63-L66",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85"
+    ]
+  },
+  {
+    "key": "string/ui_largest",
+    "english": "Largest",
+    "draft": "ትልቁ",
+    "source_attributes": {
+      "name": "ui_largest"
+    },
+    "rationale": "Exact nonfuzzy LO Largest → ትልቁ, independently corroborated by greatest-width/height labels. Matches the comparative preset without adding area, file-size or apply-action semantics.",
+    "confidence": "high lexical; medium-high contextual short-label confidence; unaccepted",
+    "evidence_record_ids": [
+      "largest_exact",
+      "greatest_width_context",
+      "greatest_height_context"
+    ],
+    "limitations": [
+      "Means maximum current placedSize selected-axis dimension among all inputs at dialog creation. It is also the percent baseline, not a guaranteed upper bound on custom input.",
+      "The button updates target/preview only; applying remains a separate action.",
+      "The short adjective omits width/height as the English does; inspect both dialogs in contextual review.",
+      "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+      "No Work task, production edit, app build, CI, release or remote write was performed."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [],
+    "consumer_context": "Preset button fills target field with maximum current placedSize selected-axis value among all inputs at dialog creation. Largest width or height depending mode, not total area/file size. Updates field/preview only; subsequent Apply commits. This largest value is also percent baseline.",
+    "consumer_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L19-L35",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L63-L66",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85"
+    ]
+  },
+  {
+    "key": "string/ui_apply_to_all",
+    "english": "Apply to all",
+    "draft": "ለሁሉም ተግብር",
+    "source_attributes": {
+      "name": "ui_apply_to_all"
+    },
+    "rationale": "Original command joining attested to/for all ለሁሉም with exact AOSP Apply → ተግብር. The exact LO Apply to All record has an empty translation and is explicitly excluded. Preserves all-input scope, not selected-image scope.",
+    "confidence": "medium-high component evidence; medium whole-command idiom; unaccepted",
+    "evidence_record_ids": [
+      "apply_aosp",
+      "for_all_aosp",
+      "to_all_lo",
+      "apply_lo_variant",
+      "apply_all_untranslated"
+    ],
+    "limitations": [
+      "No eligible whole-phrase attestation was found in the bounded corpus; the full phrase is original composition.",
+      "Applies normalization to every assembly input, including unplaced images, not only selected thumbnails and not every image on the device.",
+      "Native review should check imperative register against the retained LO noun-label alternative; no automatic register preference is claimed.",
+      "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+      "No Work task, production edit, app build, CI, release or remote write was performed."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "ለሁሉም መፈጸሚያ",
+        "note": "Original combination using actual LO Apply noun-label variant. Not an exact source phrase or automatically interchangeable imperative."
+      }
+    ],
+    "consumer_context": "Positive dialog button validates target then normalizes entire assembly.images/state list, including unplaced inputs, not selected thumbnails only. Sets same selected-axis dimension preserving each crop aspect ratio; writes project metadata/history, not source image pixel files. May reflow attached placement.",
+    "consumer_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L37-L48",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L248"
+    ]
+  },
+  {
+    "key": "string/ui_restore_original_sizes",
+    "english": "Restore original sizes",
+    "draft": "ዋናዎቹን መጠኖች መልስ",
+    "source_attributes": {
+      "name": "ui_restore_original_sizes"
+    },
+    "rationale": "Original plural restoration command built from singular Original Size → ዋናው መጠን, attested plural sizes መጠኖች, and AOSP restore verb መልስ. The plural adjective/object inflection and complete command are original, not covered by prior singular acceptance. Retains current English wording rather than silently changing it to Remove normalization.",
+    "confidence": "medium lexical components; low-to-medium plural-command idiom; HOLD",
+    "evidence_record_ids": [
+      "original_size_ui",
+      "original_size_help_variant",
+      "original_size_return_context",
+      "original_size_restore_context",
+      "sizes_plural_component",
+      "restore_aosp",
+      "reset_lo_variant",
+      "restart_reset_exclusion"
+    ],
+    "limitations": [
+      "IDIOM HOLD: no exact plural restoration command was established. Independent review must confirm that ዋናዎቹን መጠኖች naturally means the original sizes rather than main sizes, and confirm object/adjective grammar.",
+      "This button acts immediately, removes normalization on all inputs and closes the dialog; it does not merely stage a preset.",
+      "Effective sizes return to each retained crop size. Crops, source files and original source-dimension metadata remain; attached placement may reflow. Do not imply uncropping, file rollback, prior arbitrary size or global Undo.",
+      "No English defect is established: canonical English help explicitly states normalization removal and crop preservation. Keep that contextual qualification in review; do not rewrite the Amharic label into a different operation.",
+      "Alternative ዋነኛው is an actual source variant only in the singular. Neither its plural nor the draft plural gets inherited acceptance.",
+      "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+      "No Work task, production edit, app build, CI, release or remote write was performed."
+    ],
+    "author_status": "hold",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "ወደ ዋናዎቹ መጠኖች መመለሻ",
+        "note": "Original return-to noun-label construction using LO restoration family. Also held; not an attested full phrase or a proven repair."
+      }
+    ],
+    "consumer_context": "Immediate button removes every normalization record (sets null), then closes dialog. Retains crops, source dimensions/files and other image records; effective size becomes croppedSize, not necessarily uncropped file dimensions. reflow may relocate attachments to fit. This is not resetting crop, restoring file contents, restoring previous arbitrary size or global undo. Existing English explanation states normalization removal and crop preservation.",
+    "consumer_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L68-L71",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L248"
+    ]
+  }
+]

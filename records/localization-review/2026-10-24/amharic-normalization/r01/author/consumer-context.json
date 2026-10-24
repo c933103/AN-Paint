@@ -1,0 +1,127 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_same_width",
+      "English": "Same width",
+      "source_attributes": {
+        "name": "ui_same_width"
+      },
+      "source_sha256": "343b80a5623fdd4d8af79af2f5c428e2f53495a88539b88fc4bd291e47812f7f",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Toolbar button opens normalization dialog for WIDTH and same key is dialog title. Gives all inputs common target width; each other dimension derives proportionally from its own current crop with integer rounding. Does not mean identical total sizes, same heights, equal file sizes or identical aspect ratios. Includes unplaced inputs in tray.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+      ]
+    },
+    {
+      "key": "string/ui_same_height",
+      "English": "Same height",
+      "source_attributes": {
+        "name": "ui_same_height"
+      },
+      "source_sha256": "6f143ed6580b3aeb793d5b21fe8991687de6572b7921a658eb71b9f2eb09880c",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Toolbar button opens HEIGHT normalization dialog and same key is title. Sets all inputs common target height, computes each width from own crop aspect ratio with integer rounding. Not width, file size, alignment position or guaranteed identical shape.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+      ]
+    },
+    {
+      "key": "string/ui_smallest",
+      "English": "Smallest",
+      "source_attributes": {
+        "name": "ui_smallest"
+      },
+      "source_sha256": "b2443d1a486e89394d77d9823d55af518353744d29b727f2fcaeaff48198d574",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Preset button fills target field with minimum current placedSize selected-axis value among all inputs at dialog creation. It is smallest width in WIDTH mode, smallest height in HEIGHT mode, including current crop/normalization. Does not mean area, file size or smallest memory-safe copy. Button updates field/preview only; Apply to all commits.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L19-L21",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L34-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L63-L66",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85"
+      ]
+    },
+    {
+      "key": "string/ui_largest",
+      "English": "Largest",
+      "source_attributes": {
+        "name": "ui_largest"
+      },
+      "source_sha256": "5511a4b7d571662097f8c45c5d65b463eb6d6b872a0ddf4284ee7af8df086e5b",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Preset button fills target field with maximum current placedSize selected-axis value among all inputs at dialog creation. Largest width or height depending mode, not total area/file size. Updates field/preview only; subsequent Apply commits. This largest value is also percent baseline.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L19-L35",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L63-L66",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85"
+      ]
+    },
+    {
+      "key": "string/ui_apply_to_all",
+      "English": "Apply to all",
+      "source_attributes": {
+        "name": "ui_apply_to_all"
+      },
+      "source_sha256": "64158bae6499ebac9cea090fe0a803e6052f14613eef645376f8939b27e6ec65",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Positive dialog button validates target then normalizes entire assembly.images/state list, including unplaced inputs, not selected thumbnails only. Sets same selected-axis dimension preserving each crop aspect ratio; writes project metadata/history, not source image pixel files. May reflow attached placement.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L37-L48",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L248"
+      ]
+    },
+    {
+      "key": "string/ui_restore_original_sizes",
+      "English": "Restore original sizes",
+      "source_attributes": {
+        "name": "ui_restore_original_sizes"
+      },
+      "source_sha256": "c01785150ad18a3a53e7c573afa41e67e73c714c4d8844f835ddac46802c946e",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Immediate button removes every normalization record (sets null), then closes dialog. Retains crops, source dimensions/files and other image records; effective size becomes croppedSize, not necessarily uncropped file dimensions. reflow may relocate attachments to fit. This is not resetting crop, restoring file contents, restoring previous arbitrary size or global undo. Existing English explanation states normalization removal and crop preservation.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L68-L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L248"
+      ]
+    }
+  ],
+  "shared_source_chain": "AssemblyActivity opens NormalizeImagesDialog, which derives current placed dimensions, offers unit/preset targets and invokes ImageAssembly.normalize/resetSizes. ImageAssembly computes proportional other dimension from crop, reflows attachment metadata and records state/history. All source copies complete. No rendering, native naturalness or exhaustive repository-wide search claim.",
+  "source_gate": "No English defect established in this bounded scope. Restore original sizes is contextual to normalization and keeps crops, supported by current canonical explanatory help. Preserve that distinction; if English wording is separately judged defective, correct source first and flag all affected languages rather than silently changing Amharic alone.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_containers": 717,
+    "prior_ready": 66,
+    "prior_holds": 8,
+    "new_independent_acceptance": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Original drafts only; independent checking required.",
+    "No transfer of prior singular Original size acceptance to plural restoration command.",
+    "No whole Help acceptance or amendment; English help used only as contextual evidence.",
+    "No Work, production edit, app build, CI, release or runtime/native validation."
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_same_width",
+      "English": "Same width",
+      "source_attributes": {
+        "name": "ui_same_width"
+      },
+      "source_sha256": "343b80a5623fdd4d8af79af2f5c428e2f53495a88539b88fc4bd291e47812f7f",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Toolbar button opens normalization dialog for WIDTH and same key is dialog title. Gives all inputs common target width; each other dimension derives proportionally from its own current crop with integer rounding. Does not mean identical total sizes, same heights, equal file sizes or identical aspect ratios. Includes unplaced inputs in tray.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+      ],
+      "proposed_XML_text": "\"ተመሳሳይ ስፋት\"",
+      "proposed_XML_element": "<string name=\"ui_same_width\">\"ተመሳሳይ ስፋት\"</string>",
+      "proposed_XML_text_sha256": "c43c0b1b330f309aff2b9154d97653b2a9a8d29685df210a8a8c9823465b2022",
+      "author_status": "review",
+      "rationale": "Original concise Same + image Width composition. AOSP pairs Width with ስፋት, and LO attests ተመሳሳይ for Same, including a heights context. The complete two-word phrase is not an exact source match. It labels the shared-width dialog/action without promising identical whole-image size.",
+      "confidence": "medium-high lexical components; medium whole-label idiom; unaccepted",
+      "limitations": [
+        "Must mean one common width for every input, while each height follows its own cropped aspect ratio; not approximate similarity, equal file size, equal height or frozen scale.",
+        "Native contextual review must confirm that ተመሳሳይ reads as same/equal rather than merely similar in this short title.",
+        "Keep adjective/noun construction suitable both for toolbar button and dialog title.",
+        "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+        "No Work task, production edit, app build, CI, release or remote write was performed."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_same_height",
+      "English": "Same height",
+      "source_attributes": {
+        "name": "ui_same_height"
+      },
+      "source_sha256": "6f143ed6580b3aeb793d5b21fe8991687de6572b7921a658eb71b9f2eb09880c",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Toolbar button opens HEIGHT normalization dialog and same key is title. Sets all inputs common target height, computes each width from own crop aspect ratio with integer rounding. Not width, file size, alignment position or guaranteed identical shape.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+      ],
+      "proposed_XML_text": "\"ተመሳሳይ ቁመት\"",
+      "proposed_XML_element": "<string name=\"ui_same_height\">\"ተመሳሳይ ቁመት\"</string>",
+      "proposed_XML_text_sha256": "ab02914cacd44a1f9b776d925cb0bfae73eb09157fd4ae2ddd2e40e6add8f952",
+      "author_status": "review",
+      "rationale": "Original Same + image Height composition. Select the directly attested AOSP image noun ቁመት, consistent with the prior reviewed dimension noun; retain rather than erase LO እርዝመት variation. Prior singular/dimension acceptance does not accept this label.",
+      "confidence": "medium-high lexical components; medium whole-label idiom; unaccepted",
+      "limitations": [
+        "Must mean one common height for all inputs, preserving each crop ratio; not vertical alignment, same width or identical image shape.",
+        "The source Fontwork Same Letter Heights uses እርዝመት; replacing it with the AOSP image noun is an explicit original adaptation.",
+        "Native review must check same-versus-similar reading and shared button/title fit.",
+        "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+        "No Work task, production edit, app build, CI, release or remote write was performed."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_smallest",
+      "English": "Smallest",
+      "source_attributes": {
+        "name": "ui_smallest"
+      },
+      "source_sha256": "b2443d1a486e89394d77d9823d55af518353744d29b727f2fcaeaff48198d574",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Preset button fills target field with minimum current placedSize selected-axis value among all inputs at dialog creation. It is smallest width in WIDTH mode, smallest height in HEIGHT mode, including current crop/normalization. Does not mean area, file size or smallest memory-safe copy. Button updates field/preview only; Apply to all commits.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L19-L21",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L34-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L63-L66",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85"
+      ],
+      "proposed_XML_text": "\"ትንሹ\"",
+      "proposed_XML_element": "<string name=\"ui_smallest\">\"ትንሹ\"</string>",
+      "proposed_XML_text_sha256": "1843f23c4fa46443a17a5fc49077b562381a8970ae304b95df8d488e92c1591e",
+      "author_status": "review",
+      "rationale": "Exact nonfuzzy LO Smallest → ትንሹ, corroborated by Fit to smallest width/height. Reuse the short superlative, not the external numeric-filter or layout behavior.",
+      "confidence": "high lexical; medium-high contextual short-label confidence; unaccepted",
+      "limitations": [
+        "The omitted noun is the current selected-axis dimension: minimum placedSize width or height, not area, file bytes, resolution total or memory-safe size.",
+        "The button only fills the target/preview; it does not apply resizing until Apply to all.",
+        "AOSP alternative አነስተኛ is preserved separately; exclude contradictory neighboring LO smallest-percent prose.",
+        "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+        "No Work task, production edit, app build, CI, release or remote write was performed."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_largest",
+      "English": "Largest",
+      "source_attributes": {
+        "name": "ui_largest"
+      },
+      "source_sha256": "5511a4b7d571662097f8c45c5d65b463eb6d6b872a0ddf4284ee7af8df086e5b",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Preset button fills target field with maximum current placedSize selected-axis value among all inputs at dialog creation. Largest width or height depending mode, not total area/file size. Updates field/preview only; subsequent Apply commits. This largest value is also percent baseline.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L19-L35",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L63-L66",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85"
+      ],
+      "proposed_XML_text": "\"ትልቁ\"",
+      "proposed_XML_element": "<string name=\"ui_largest\">\"ትልቁ\"</string>",
+      "proposed_XML_text_sha256": "f592abb90665228311a0eda026cfee3cbc189c9f8a48bcafdedc1a4afcdf7183",
+      "author_status": "review",
+      "rationale": "Exact nonfuzzy LO Largest → ትልቁ, independently corroborated by greatest-width/height labels. Matches the comparative preset without adding area, file-size or apply-action semantics.",
+      "confidence": "high lexical; medium-high contextual short-label confidence; unaccepted",
+      "limitations": [
+        "Means maximum current placedSize selected-axis dimension among all inputs at dialog creation. It is also the percent baseline, not a guaranteed upper bound on custom input.",
+        "The button updates target/preview only; applying remains a separate action.",
+        "The short adjective omits width/height as the English does; inspect both dialogs in contextual review.",
+        "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+        "No Work task, production edit, app build, CI, release or remote write was performed."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_apply_to_all",
+      "English": "Apply to all",
+      "source_attributes": {
+        "name": "ui_apply_to_all"
+      },
+      "source_sha256": "64158bae6499ebac9cea090fe0a803e6052f14613eef645376f8939b27e6ec65",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Positive dialog button validates target then normalizes entire assembly.images/state list, including unplaced inputs, not selected thumbnails only. Sets same selected-axis dimension preserving each crop aspect ratio; writes project metadata/history, not source image pixel files. May reflow attached placement.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L37-L48",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L78-L85",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L248"
+      ],
+      "proposed_XML_text": "\"ለሁሉም ተግብር\"",
+      "proposed_XML_element": "<string name=\"ui_apply_to_all\">\"ለሁሉም ተግብር\"</string>",
+      "proposed_XML_text_sha256": "1c2467f230664e536a87b580e968d09668e09a2c4141d375d572b56b0400a9d5",
+      "author_status": "review",
+      "rationale": "Original command joining attested to/for all ለሁሉም with exact AOSP Apply → ተግብር. The exact LO Apply to All record has an empty translation and is explicitly excluded. Preserves all-input scope, not selected-image scope.",
+      "confidence": "medium-high component evidence; medium whole-command idiom; unaccepted",
+      "limitations": [
+        "No eligible whole-phrase attestation was found in the bounded corpus; the full phrase is original composition.",
+        "Applies normalization to every assembly input, including unplaced images, not only selected thumbnails and not every image on the device.",
+        "Native review should check imperative register against the retained LO noun-label alternative; no automatic register preference is claimed.",
+        "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+        "No Work task, production edit, app build, CI, release or remote write was performed."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_restore_original_sizes",
+      "English": "Restore original sizes",
+      "source_attributes": {
+        "name": "ui_restore_original_sizes"
+      },
+      "source_sha256": "c01785150ad18a3a53e7c573afa41e67e73c714c4d8844f835ddac46802c946e",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Immediate button removes every normalization record (sets null), then closes dialog. Retains crops, source dimensions/files and other image records; effective size becomes croppedSize, not necessarily uncropped file dimensions. reflow may relocate attachments to fit. This is not resetting crop, restoring file contents, restoring previous arbitrary size or global undo. Existing English explanation states normalization removal and crop preservation.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L68-L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L151",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L248"
+      ],
+      "proposed_XML_text": "\"ዋናዎቹን መጠኖች መልስ\"",
+      "proposed_XML_element": "<string name=\"ui_restore_original_sizes\">\"ዋናዎቹን መጠኖች መልስ\"</string>",
+      "proposed_XML_text_sha256": "d686636bcf57dc13489bcd9a0ce91b3875097b2b5483b27772de6b1d926e5740",
+      "author_status": "hold",
+      "rationale": "Original plural restoration command built from singular Original Size → ዋናው መጠን, attested plural sizes መጠኖች, and AOSP restore verb መልስ. The plural adjective/object inflection and complete command are original, not covered by prior singular acceptance. Retains current English wording rather than silently changing it to Remove normalization.",
+      "confidence": "medium lexical components; low-to-medium plural-command idiom; HOLD",
+      "limitations": [
+        "IDIOM HOLD: no exact plural restoration command was established. Independent review must confirm that ዋናዎቹን መጠኖች naturally means the original sizes rather than main sizes, and confirm object/adjective grammar.",
+        "This button acts immediately, removes normalization on all inputs and closes the dialog; it does not merely stage a preset.",
+        "Effective sizes return to each retained crop size. Crops, source files and original source-dimension metadata remain; attached placement may reflow. Do not imply uncropping, file rollback, prior arbitrary size or global Undo.",
+        "No English defect is established: canonical English help explicitly states normalization removal and crop preservation. Keep that contextual qualification in review; do not rewrite the Amharic label into a different operation.",
+        "Alternative ዋነኛው is an actual source variant only in the singular. Neither its plural nor the draft plural gets inherited acceptance.",
+        "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+        "No Work task, production edit, app build, CI, release or remote write was performed."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    }
+  ],
+  "shared_source_chain": "AssemblyActivity opens NormalizeImagesDialog, which derives current placed dimensions, offers unit/preset targets and invokes ImageAssembly.normalize/resetSizes. ImageAssembly computes proportional other dimension from crop, reflows attachment metadata and records state/history. All source copies complete. No rendering, native naturalness or exhaustive repository-wide search claim.",
+  "source_gate": "No English defect established in this bounded scope. Restore original sizes is contextual to normalization and keeps crops, supported by current canonical explanatory help. Preserve that distinction; if English wording is separately judged defective, correct source first and flag all affected languages rather than silently changing Amharic alone.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_containers": 717,
+    "prior_ready": 66,
+    "prior_holds": 8,
+    "new_independent_acceptance": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Original drafts only; independent checking required.",
+    "No transfer of prior singular Original size acceptance to plural restoration command.",
+    "No whole Help acceptance or amendment; English help used only as contextual evidence.",
+    "No Work, production edit, app build, CI, release or runtime/native validation."
+  ],
+  "lexical_sources": [
+    {
+      "file": "libreoffice-am-cui.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+      "sha256": "a1d524a820c0c6de187d0625b9eced32733642ad196d79857500c91977a428b4",
+      "bytes": 733737,
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "libreoffice-am-svx.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/libreoffice-am-svx.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+      "sha256": "69d5adb5831b13831d8393b9c09ff0d5f2f9741a34a8d5ccb3a5ca5869bbbb37",
+      "bytes": 558173,
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-svx.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "libreoffice-am-help01.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/libreoffice-am-help01.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+      "sha256": "a1d93dc2d370e83de23544557e9346d43d44d7e517e3f5e6e2d20ce7a8bf46b7",
+      "bytes": 1739104,
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-help01.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "libreoffice-am-ui.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/libreoffice-am-ui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+      "sha256": "58e8087d71f01c78f53b3440a60db40246e4795b5326dcb894afaaa57f32d110",
+      "bytes": 910384,
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-ui.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "android-gallery2-en.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/android-gallery2-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values/strings.xml?format=TEXT",
+      "sha256": "6dd4606186f7ae3b18de3f75af77caf3ad6ed058e28fa6d91ecb23b48876565a",
+      "bytes": 64038,
+      "pin": "c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-gallery2-en.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "android-gallery2-am.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/android-gallery2-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+      "sha256": "248cc8e0fa60e39535054a90dbc3ee3852aafabe7f57e435cf4417975de77601",
+      "bytes": 44609,
+      "pin": "c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-gallery2-am.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "android-settings-en.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT",
+      "sha256": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e",
+      "bytes": 1135503,
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "android-settings-am.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+      "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6",
+      "bytes": 890123,
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "libreoffice-am-help02.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/libreoffice-am-help02.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+      "sha256": "5eb91cd3041d5f579bf80dfcd0da76e9efa60942e44b15c9ef252baed7fe941a",
+      "bytes": 693513,
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "retrieval": "Reused complete pinned snapshot. SHA-256 recomputed and matches prior provenance; no successful fresh retrieval claimed.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-help02.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/sources.json"
+    },
+    {
+      "file": "project-en-strings.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-normalization-draft-20261024/lexical-evidence/project-en-strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml",
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "bytes": 80549,
+      "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+      "pin": "66be61df27c5359bffc32d56db21f3949899f873",
+      "retrieval": "Copied complete canonical source XML from parent current12 dossier and checked source-bindings SHA-256. This lexical task did not refetch production.",
+      "role": "Canonical key/value/attribute evidence, not external lexical authority."
+    }
+  ],
+  "date": "2026-10-24",
+  "schema": "amharic-normalization-draft-v1",
+  "unit_placeholder_check": "Six plain labels have no placeholders or explicit units. Related percentage/numeric result templates and full Help remain outside translation scope."
+}
