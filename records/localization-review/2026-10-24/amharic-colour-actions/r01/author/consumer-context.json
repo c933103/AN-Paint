@@ -1,0 +1,53 @@
+{
+  "source_commit": "66be61df27c5359bffc32d56db21f3949899f873",
+  "source_tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": {
+    "ui_basic_colours": {
+      "meaning": "Section caption above built-in 48-swatch grid:16 predefined RGB colours plus32 HSV-derived colours. A swatch click updates current ColourValue and syncs the preview; it does not by itself save a custom slot.",
+      "complete_context": [
+        "AdvancedColourDialog.kt: show basics array, swatch callback, sync; nested ColourValue"
+      ],
+      "qualification": "Basic denotes supplied standard choice set, not a scientific primary-colour-only set or elementary colour theory. Caption, not action; plural retained."
+    },
+    "ui_selected_colour23": {
+      "meaning": "Caption beside current sample preview. The sample draws value.colour; sync invalidates it after current selection/field changes. The selected value may be provisional before final acceptance.",
+      "complete_context": [
+        "AdvancedColourDialog.kt: show sampleColumn/sample.onDraw, sync, positive callback and cancel/dismiss handlers"
+      ],
+      "qualification": "Selected is a current-state description, not Select colour imperative, not original colour or saved palette colour. Invalid field input may retain last valid preview. No rendering outcome certified."
+    },
+    "ui_add_colour26": {
+      "meaning": "Colour-tab Add colour opens custom-slot workflow. First empty slot is selected; if full, user chooses a slot to replace. In a new-slot dialog the same label serves title and positive action. After valid fields, positive callback stores current opaque colour, refreshes palette and makes it foreground.",
+      "complete_context": [
+        "ClassicPaintActivity.kt: makeCustomPalette, addColour, editPaletteColour, setColour",
+        "AdvancedColourDialog.kt: show conditional title/positive label, validation and commit",
+        "CustomColours.kt: has, entries, replace"
+      ],
+      "qualification": "Not paint/add pixels immediately, not adding a new layer. Outer action opens dialog; inner action commits. Full-palette route may replace existing slot; no promise of increasing slot count. Separate Add to palette key is outside scope."
+    },
+    "ui_edit_colour26": {
+      "meaning": "Menu action for an existing saved custom-colour cell, and title for replacement dialog. Choosing it calls addColour(index), initializes existing colour and passes replacingPaletteColour=true; positive button in that mode is separately labeled Save.",
+      "complete_context": [
+        "ClassicPaintActivity.kt: editPaletteColour and addColour",
+        "AdvancedColourDialog.kt: conditional title, positive callback",
+        "CustomColours.kt: replace"
+      ],
+      "qualification": "Edits chosen saved swatch, not every pixel of that colour, whole-image colour adjustment or text formatting. Title/action share resource; retain functional editing semantics."
+    },
+    "ui_use_colour": {
+      "meaning": "Positive dialog action when not adding/replacing a custom slot. After validation it accepts current colour and invokes caller commit for foreground or background, then dismisses. Preview changes may already have updated document colour property; cancel restores original preview.",
+      "complete_context": [
+        "AdvancedColourDialog.kt: show positive listener, sync, cancel and dismiss",
+        "ClassicPaintActivity.kt: colourDialog, setColour",
+        "PaintDocument.kt: foreground/background properties"
+      ],
+      "qualification": "Use means apply the selected drawing/background colour, not save image or necessarily store a custom slot. Does not itself paint a stroke or recolour existing pixels. Separate custom-palette changes may persist independently; no blanket rollback promise."
+    }
+  },
+  "no_source_defect_established": true,
+  "limits": [
+    "Static consumer inspection, not native-reader/runtime/rendering/colour-science verification.",
+    "Inherited Palette and held fill/calligraphy proposals excluded.",
+    "No placeholders, units or ellipses in five selected labels."
+  ]
+}

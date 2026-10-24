@@ -1,0 +1,94 @@
+{
+  "scope": "Independent linguistic and consumer-context review only",
+  "input_directory": "/workspace/scratch/bbca2890f602/amharic-colour-actions-draft-20261024",
+  "input_manifest_sha256": "3b9ae3162debcf9759d8f8c439233efef73cfaca8856ba5747deaa2cf32874be",
+  "outcome_counts": {
+    "retain": 3,
+    "revise": 2,
+    "hold": 0
+  },
+  "rows": [
+    {
+      "key": "string/ui_basic_colours",
+      "english": "Basic colours",
+      "original": "መሰረታዊ ቀለሞች",
+      "disposition": "retain",
+      "recommended": "መሰረታዊ ቀለሞች",
+      "confidence": "medium",
+      "reason": "A plural caption for the built-in baseline swatch group. Basic Shapes/Basic and Colors supply the broad ordinary sense and construction. No evidence establishes that this adjective exclusively denotes scientific primaries. Preserve author spelling and plural; do not silently replace Basic with Default, Standard or Built-in.",
+      "limits": [
+        "Possible basic/primary colour association is contextual ambiguity, not certified eliminated.",
+        "The exact full English/Amharic label pair is not attested; this is an original two-word composition."
+      ]
+    },
+    {
+      "key": "string/ui_selected_colour23",
+      "english": "Selected color",
+      "original": "የተመረጠው ቀለም",
+      "disposition": "retain",
+      "recommended": "የተመረጠው ቀለም",
+      "confidence": "medium-high for grammatical structure; medium overall",
+      "reason": "A definite singular selected-state noun phrase fits the current valid preview. The relative modifier carries definiteness; the label is not a direct object and needs no accusative suffix. AOSP singular selected-language wording and Gasser relative-clause contrasts independently support the structure.",
+      "limits": [
+        "Does not denote final acceptance or saving.",
+        "Not equivalent to Select color imperative or a complete state sentence."
+      ]
+    },
+    {
+      "key": "string/ui_add_colour26",
+      "english": "Add colour",
+      "original": "ቀለም አክል",
+      "disposition": "retain",
+      "recommended": "ቀለም አክል",
+      "confidence": "medium",
+      "reason": "Bare-object introduction of a colour is defensible for the new-item operation, matching Add a language/Add account constructions. Works as a short action and shared dialog title. Do not force definiteness merely for visual symmetry with Edit and Use.",
+      "limits": [
+        "The outer action opens the editor; it does not immediately save.",
+        "Full slots can trigger replacement; the wording makes no guaranteed count-increase promise."
+      ]
+    },
+    {
+      "key": "string/ui_edit_colour26",
+      "english": "Edit colour",
+      "original": "ቀለም አርትዕ",
+      "disposition": "revise",
+      "recommended": "ቀለሙን አርትዕ",
+      "confidence": "medium-high for preference; medium overall naturalness",
+      "reason": "This operation edits the already-identified custom swatch. Prefer definite ቀለሙ plus accusative ን. Crucially the closest cited AOSP dialog title Edit word is ቃሉን አርትዕ, not a bare-object model. The English articleless UI label does not require articleless Amharic.",
+      "limits": [
+        "Bare-object labels exist in AOSP, e.g. Edit access point; original is not declared universally ungrammatical.",
+        "A grammatical contextual improvement, not an English source rewrite and not a Save action."
+      ]
+    },
+    {
+      "key": "string/ui_use_colour",
+      "english": "Use colour",
+      "original": "ቀለም ተጠቀም",
+      "disposition": "revise",
+      "recommended": "ቀለሙን ተጠቀም",
+      "confidence": "medium-high for preference; medium overall naturalness",
+      "reason": "Acceptance concerns the specific current colour, not colour as a generic mode. Definite accusative ቀለሙን preserves this reference while keeping the singular imperative register. Genuine AOSP Use color inversion/correction and Use System Selection support object-before-verb with case marking.",
+      "limits": [
+        "Exclude Use details from imperative corroboration because its source context is a battery-usage subtitle.",
+        "Some AOSP Use labels have unmarked objects; recommendation is contextual, not a universal grammatical prohibition.",
+        "No need to substitute Save, Select, Apply or add an instrumental prefix merely to avoid the object marking."
+      ]
+    }
+  ],
+  "status": "Recommendations only. Revised strings are not author adoption, production changes, native-reader sign-off or release approval. This report does not alter the prior 81 ready / 12 held totals.",
+  "palette_uncertainty": "Existing Palette terminology remains separate and unresolved; none of these five choices certifies it.",
+  "register": "Use one consistent short singular-imperative family for Add/Edit/Use. AOSP itself mixes registers and cannot impose a global standard; the supplied production ui_edit_background already uses a bare singular imperative. Shared Add/Edit title contexts do not require nominal-action substitution.",
+  "evidence_correction": "The original aosp_use_details record is byte-valid but functionally weak/misleading as evidence of imperative Use. Exclude from that rationale; use actual Use action records instead.",
+  "no_english_defect_established": true,
+  "unperformed": [
+    "No Work task",
+    "No production edits",
+    "No build",
+    "No CI",
+    "No release",
+    "No runtime/rendering/accessibility validation",
+    "No new exhaustive current-repository search",
+    "No contacting external reviewers"
+  ],
+  "next_step": "Coordinator may adopt the two recommended revisions into the research candidate record, preserving composition provenance and caveats. Perform separately authorized runtime/native-user checks before claiming those outcomes."
+}

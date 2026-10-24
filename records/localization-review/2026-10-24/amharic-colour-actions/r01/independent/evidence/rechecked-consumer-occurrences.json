@@ -1,0 +1,50 @@
+[
+  {
+    "key": "ui_basic_colours",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "line": 123,
+    "source_line": "        palette.addView(label(ui(R.string.ui_basic_colours)))"
+  },
+  {
+    "key": "ui_selected_colour23",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "line": 211,
+    "source_line": "        sampleColumn.addView(label(ui(R.string.ui_selected_colour23)).apply {tag=\"selected_colour_caption\"})"
+  },
+  {
+    "key": "ui_edit_colour26",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "line": 304,
+    "source_line": "        val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)"
+  },
+  {
+    "key": "ui_add_colour26",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "line": 304,
+    "source_line": "        val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)"
+  },
+  {
+    "key": "ui_add_colour26",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "line": 305,
+    "source_line": "            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()"
+  },
+  {
+    "key": "ui_use_colour",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "line": 305,
+    "source_line": "            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()"
+  },
+  {
+    "key": "ui_add_colour26",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 974,
+    "source_line": "        row.addView(panelButton(ui(R.string.ui_add_colour26),\"add_colour\",R.drawable.classic_palette) {addColour()},LinearLayout.LayoutParams(-2,toolHeight))"
+  },
+  {
+    "key": "ui_edit_colour26",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 1007,
+    "source_line": "            .setItems(arrayOf(ui(R.string.ui_background_colour),ui(R.string.ui_edit_colour26),ui(R.string.ui_remove_palette23))) {_,action ->"
+  }
+]
