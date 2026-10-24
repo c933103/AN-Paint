@@ -1,0 +1,122 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": [
+    {
+      "key": "string/ui_fit",
+      "English": "Fit",
+      "source_sha256": "9f872ed43d00d8bdb372b1c05bd345b22f2ad5f7f41e06656d05625602e065b1",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Displayed button in status zoom controls, Navigate options and canvas-bounds editor. Calls paintCanvas.fit: adjusts zoom/pan to include whole canvas plus outlying trim/floating-selection bounds with handle padding. No image resampling or document-dimension change. May return early if viewport too small. Not the separate Fit image to canvas selected-image placement operation.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L668-L675",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L768-L773",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1055-L1055",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L177-L192"
+      ]
+    },
+    {
+      "key": "string/ui_fit_entire_canvas_in_view",
+      "English": "Fit entire canvas in view",
+      "source_sha256": "7139070fc66831d5355018225f02b0f6ba9429f89559b34037113c0b85f0dfe7",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Accessible caption for fit status button; also EditIcon.FIT label used for contentDescription and tooltip. Same viewport-only fit operation as ui_fit, including outlying selected/trim bounds rather than excluding them. Exact text is accessibility wording but source inspection is not screen-reader acceptance.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L668-L675",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt#L12-L34",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L177-L192"
+      ]
+    },
+    {
+      "key": "string/ui_draw_again",
+      "English": "Draw again",
+      "source_sha256": "074748afc64791405a238233bee2b7ac4abc9fc677ac8218c90714ce59f76467",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Navigate options button chooses drawingTool remembered by showToolOptions whenever tool is not ZOOM; default PENCIL. It returns to the preceding non-navigation tool and Draw panel, not Undo/Redo, replay a stroke, or automatically draw. selectTool applies pending content before switch. Non-ZOOM includes selection/fill/etc, so label is conventional return-to-drawing-workspace phrasing, not guarantee that every prior tool makes a mark.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L732-L744",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L768-L773",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L153-L158"
+      ]
+    },
+    {
+      "key": "string/ui_pixel_grid33",
+      "English": "Pixel grid",
+      "source_sha256": "379bb9128efa84d0502198e3ca7946d9fe44df583ae3ec6ca38d461a77ef026c",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "View command toggles paintCanvas.grid; grid lines are drawn only when enabled and zoom>=8 (800%). Image-pixel rulers depend on grid toggle, not that same threshold. A display overlay, not grid baked into document pixels or image resolution change.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L862-L864",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L278-L286",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L83-L85"
+      ]
+    },
+    {
+      "key": "string/ui_fullscreen33",
+      "English": "Full screen",
+      "source_sha256": "674fe2acd0d5f47b46180dd66e26e349cd9c9db215046f5e86ea2f5728d18117",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "View command toggles fullscreen and calls syncFullscreen. Hides root controls except workspace, sidebar/status rails; adds Show controls return button and requests Android fullscreen status-bar flag. Does not claim navigation-bar immersive mode, image resizing, saving, or permanently hiding controls.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L871-L871",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1574-L1585"
+      ]
+    },
+    {
+      "key": "string/ui_show_controls",
+      "English": "Show controls",
+      "source_sha256": "e3e3f1acab9a5a9c63ef86b2e3e331a45750da2fc4d07d36b67175634b9b06c2",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "Full-screen workspace return button sets fullscreen=false then syncFullscreen restores editor root controls/rails and system UI flag subject to panel state. It does not open device-control settings or change canvas image content.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1574-L1585"
+      ]
+    },
+    {
+      "key": "string/ui_navigate",
+      "English": "Navigate",
+      "source_sha256": "5ea5fbe811dbe99a3f3d0d79704d2f54194692b349f2d682bd6fb86a9cbf8f12",
+      "current_XML_text": null,
+      "current_status": "exact Amharic key missing",
+      "consumer_context": "PaintTool.ZOOM label shown as View tool tile. chooseTool selects View and paintCanvas.selectTool first applies pending trim/polygon/curve/floating content. Subsequent ordinary single-finger drag pans and single tap neither draws nor zooms; pinch is separate zoom behavior. Navigation here is canvas inspection, not route guidance or file browsing.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L14-L22",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolButton.kt#L10-L12",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L490-L497",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L732-L744",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L153-L158",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L739-L744",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L770-L804"
+      ]
+    }
+  ],
+  "source_gate": "No English-source defect established in this bounded inspection. Draw again denotes return to prior drawing-workspace tool, not automatic stroke replay. Fit description is inclusive of whole canvas, not exclusive of outlying handles/content.",
+  "excluded": [
+    "Existing Zoom in/out translations and all36 ready additions plus Crop HOLD excluded.",
+    "ui_canvas_zoom initial caption is overwritten by formatted ui_canvas_zoom_771f84 in updateStatus; both excluded from this format-free group.",
+    "No generic claims that tool switching cannot commit pending content.",
+    "Separate ui_fit_selection34 / Fit image to canvas changes selected-image placement and is not this viewport-only Fit group."
+  ],
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717,
+    "prior_ready": 36,
+    "prior_held": 1,
+    "new_original_drafts": 7,
+    "new_independent_acceptances": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Fourteen complete source copies, exact commit/tree/blob binding; no exhaustive whole-repository consumer-search claim.",
+    "No native-speaker, runtime, glyph/layout, screen-reader or lifecycle acceptance.",
+    "No production edit, Work task, app builds/tests, CI or release.",
+    "Palette uncertainty, optional Horizontal and all held Help remain separate."
+  ]
+}
