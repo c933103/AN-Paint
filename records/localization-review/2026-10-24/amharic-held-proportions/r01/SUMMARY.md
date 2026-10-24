@@ -1,0 +1,13 @@
+# Three existing Amharic textual holds resolved
+
+Author agrees with independent adjudication: revise Same width to እኩል ስፋት; revise Same height to እኩል ቁመት; retain Lock proportions as ተመጣጣኝነት መጠበቂያ. High semantic and medium-high full-label confidence. These are three existing held keys becoming ready, not newly reviewed unique keys.
+
+New Writer equal-width control and tooltip establish numerical equality; the exact width phrase is a constituent shortened from a table-scoped control. Height is a justified productive parallel with an established image-height noun, not an exact standalone corpus match. Grammar supports modifier+noun order but is not automatic full-caption acceptance. A new actual Impress aspect-preservation checkbox supplies the nominal on/off label pattern missing from the former proportions assessment; prior exact resizing prose supplies the target phrase. Formal-register familiarity is unmeasured. Multiple LibreOffice files remain one ecosystem, not independent native judgments.
+
+Both equality labels work as toolbar openers and dialog titles; application occurs later. Each image retains its own cropped ratio on the other axis. The checkbox preserves current gesture-start ratio, not original imported ratio, fixed size or frozen movement/rotation. No English defect or source rewrite established.
+
+Old holds, alternatives, release conditions and disagreement are preserved unchanged in author/independent evidence. The enlarged evidence changes the current decision without claiming earlier uncertainty was error. Original same/similar wording is not universally wrong. Exact-corpus identity and native certification are not universal textual gates; no actual remaining semantic/grammatical objection was identified by this independent pass.
+
+94 reviewed ready candidates, 14 holds, zero implemented. These three and Eyedropper remain outside the requested90-entry implementation scope. Production coverage unchanged:12present/705missing of717containers. No production, Work, build, CI or release. No native-reader/runtime/rendering/speech/accessibility certification.
+
+All49 original payload files and16 complete source bindings verified, along with independent report. Six fresh primary GitHub sources reproduce blob IDs; reused sources retain provenance. Primary grammar snapshot is web text extraction, not raw PDF. Compact public package preserves judgments/bounded excerpts/immutable locators, not full external snapshots. Nested manifests refer to original complete packets; root seals actual published files. Records-only branch must never merge into app branches.

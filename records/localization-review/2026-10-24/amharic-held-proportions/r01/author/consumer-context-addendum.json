@@ -1,0 +1,42 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "rows": [
+    {
+      "key": "string/ui_same_width",
+      "actual_meaning": "Toolbar opener and dialog title, equal common WIDTH target for all assembly inputs, including unplaced; each other dimension comes from its own crop ratio with integer rounding. Opener alone does not apply changes.",
+      "complete_files": [
+        "AssemblyActivity.kt",
+        "NormalizeImagesDialog.kt",
+        "ImageAssembly.kt"
+      ],
+      "static_explanatory_example": "For cropped inputs 100×50 and 80×120, choosing common width 200 leads to 200×100 and 200×300. Same width, not same height, area, file size or aspect ratio. This is hand-derived source explanation, not an executed test.",
+      "not_claimed": "Source image files are not rewritten by normalization metadata; placement may reflow. No native/runtime acceptance."
+    },
+    {
+      "key": "string/ui_same_height",
+      "actual_meaning": "Toolbar opener and dialog title, equal common HEIGHT target for all assembly inputs; crop-derived width individually, integer rounding.",
+      "complete_files": [
+        "AssemblyActivity.kt",
+        "NormalizeImagesDialog.kt",
+        "ImageAssembly.kt"
+      ],
+      "static_explanatory_example": "For cropped inputs 100×50 and 80×120, common height 150 yields 300×150 and 100×150. Same height, not equal width or vertical alignment. Hand-derived source explanation, not executed test.",
+      "not_claimed": "Not all-image shape equality and not selected thumbnails only."
+    },
+    {
+      "key": "string/ui_lock_proportions",
+      "actual_meaning": "Standalone checkbox in both rectangle and free-form selection tool options toggles lockSelectionAspect. Checked edge/corner resize scales current gesture-start width and height together; unchecked dimensions can vary independently. Movement and rotation remain possible.",
+      "complete_files": [
+        "ClassicPaintActivity.kt",
+        "PaintCanvas.kt",
+        "SelectionGeometry.kt",
+        "PaintDocument.kt"
+      ],
+      "static_explanatory_example": "Current selected bounds 200×100 have 2:1 ratio; checked resizing to width 300 implies height 150. It preserves this current ratio, not necessarily the original imported image ratio, and does not freeze size or repair previous distortion. Hand-derived explanation, not executed test.",
+      "not_claimed": "No exact UI wording accepted from this mathematical relation."
+    }
+  ],
+  "scope": "Only these three held captions; other eleven original holds and new selection-tool independent review remain separate.",
+  "fresh_context_result": "No English source defect established; three original English labels faithful to source behavior. New evidence/revision assessment must address complete label idiom, not merely rediscover these already-known semantics."
+}

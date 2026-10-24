@@ -1,0 +1,191 @@
+{
+  "original14_scope_preserved": true,
+  "original14_ledger": "../amharic-held-key-ledger-20261024/held-key-ledger.json",
+  "selection_successor_locator": "https://github.com/c933103/AN-Paint/blob/f3ce344991cbf95a1e629386c39723b9da537fec/records/localization-review/2026-10-24/amharic-selection-tools/r01/reviewed-candidates-and-holds.json",
+  "ready_before_adjudication": 91,
+  "held_before_adjudication": 17,
+  "implemented": 0,
+  "this_scope": [
+    "string/ui_same_width",
+    "string/ui_same_height",
+    "string/ui_lock_proportions"
+  ],
+  "selection_holds_outside_active_subset": [
+    {
+      "key": "string/ui_rectangle_select",
+      "english": "Rectangle select",
+      "candidate": "በቀጤ ጎነ አራት መምረጫ",
+      "decision": "hold",
+      "confidence": {
+        "source_semantics": "high",
+        "component_attestation": "high",
+        "semantic_composition": "medium",
+        "whole_phrase_idiom": "insufficient to pass"
+      },
+      "rationale": "The components and rectangular image-area meaning are supported. The new method/shape construction is not itself attested. The evidence does not settle whether the geometry phrase plus በ- and selector head is an idiomatic tool caption, rather than selection by or of a geometric object. No demonstrated mistranslation is asserted; do not replace it with another unvalidated composition merely to remove a hold.",
+      "evidence": [
+        {
+          "id": "ict_rectangle",
+          "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=188",
+          "source_sha256": "6eddbd874ac0710ac02cb959fd073d2501dc88404d88d29ee6ce20bc1941eab2",
+          "entry": 2174,
+          "page": 188
+        },
+        {
+          "id": "lo_selection_mode",
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+          "source_sha256": "5eb91cd3041d5f579bf80dfcd0da76e9efa60942e44b15c9ef252baed7fe941a",
+          "context": "20050000.xhp\ntit\nhelp.text",
+          "lines": [
+            18073,
+            18080
+          ]
+        },
+        {
+          "id": "lo_select_all",
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "source_sha256": "58e8087d71f01c78f53b3440a60db40246e4795b5326dcb894afaaa57f32d110",
+          "context": "GenericCommands.xcu\n..GenericCommands.UserInterface.Commands..uno:SelectAll\nLabel\nvalue.text",
+          "lines": [
+            23746,
+            23754
+          ]
+        }
+      ],
+      "behavior_sources": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L406",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L815-L816",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L289-L306"
+      ],
+      "resolution": "Validate the whole caption with an Amharic reviewer in the rectangular image-area selection context, or obtain a stronger primary whole-caption precedent. Preserve distinction from drawing a rectangle.",
+      "english_change_required": false,
+      "source_sha256": "5f336169b06c34837d9fe4f4b2e358eaa5f8d3f44ebf6db0d24266511f91af60",
+      "candidate_XML_text": "\"በቀጤ ጎነ አራት መምረጫ\"",
+      "candidate_XML_text_sha256": "a8e9b5d470a30dbde8753d40a951b73b4f2617fd1200207c6495d478095eba4b",
+      "author_reconciliation": "Preserve complete-caption idiom/semantic-transfer HOLD; no replacement approved."
+    },
+    {
+      "key": "string/ui_free_form_select",
+      "english": "Free-form select",
+      "candidate": "በስድ ቅርጽ መምረጫ",
+      "decision": "hold",
+      "confidence": {
+        "source_semantics": "high",
+        "component_attestation": "high",
+        "semantic_composition": "medium",
+        "whole_phrase_idiom": "insufficient to pass"
+      },
+      "rationale": "The glossary component denotes drawn freeform geometry, not freeware or free price. The proposed composition plausibly names selecting by that outline, but source attestation for the complete selection caption and its naturalness are absent. A line-creation caption would change the operation and is not an acceptable substitute.",
+      "evidence": [
+        {
+          "id": "ict_freeform",
+          "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=113",
+          "source_sha256": "6eddbd874ac0710ac02cb959fd073d2501dc88404d88d29ee6ce20bc1941eab2",
+          "entry": 1334,
+          "page": 113
+        },
+        {
+          "id": "lo_selection_mode",
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+          "source_sha256": "5eb91cd3041d5f579bf80dfcd0da76e9efa60942e44b15c9ef252baed7fe941a",
+          "context": "20050000.xhp\ntit\nhelp.text",
+          "lines": [
+            18073,
+            18080
+          ]
+        },
+        {
+          "id": "lo_select_all",
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "source_sha256": "58e8087d71f01c78f53b3440a60db40246e4795b5326dcb894afaaa57f32d110",
+          "context": "GenericCommands.xcu\n..GenericCommands.UserInterface.Commands..uno:SelectAll\nLabel\nvalue.text",
+          "lines": [
+            23746,
+            23754
+          ]
+        },
+        {
+          "id": "lo_freeform_behavior",
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+          "source_sha256": "5eb91cd3041d5f579bf80dfcd0da76e9efa60942e44b15c9ef252baed7fe941a",
+          "context": "01140000.xhp\npar_id3154163\nhelp.text",
+          "lines": [
+            370,
+            377
+          ]
+        }
+      ],
+      "behavior_sources": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L761",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L815-L816",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L289-L306"
+      ],
+      "resolution": "Validate the complete area-selection caption, explicitly distinguishing a freehand closed selection boundary from a freeform line drawing tool.",
+      "english_change_required": false,
+      "source_sha256": "fd9f9421566176b63ae7b0a91189060dc706ef9595255b0361f4fc6292df03e6",
+      "candidate_XML_text": "\"በስድ ቅርጽ መምረጫ\"",
+      "candidate_XML_text_sha256": "da46e4142d1bfd3864bfafbc75fd8279fc3e2a1652323064386ad15bfb9b7ee2",
+      "author_reconciliation": "Preserve complete-caption idiom/semantic-transfer HOLD; no replacement approved."
+    },
+    {
+      "key": "string/ui_bucket_fill",
+      "english": "Bucket fill",
+      "candidate": "ቀለም መሙያ",
+      "decision": "hold",
+      "confidence": {
+        "source_semantics": "high",
+        "exact_Fill_Color_attestation": "high",
+        "Bucket_fill_fidelity": "plausible but insufficient",
+        "tool_setting_distinction": "unvalidated"
+      },
+      "rationale": "The exact phrase is a Fill Color precedent, not a Bucket fill precedent. Colour filling is a real part of the target action, so this is not an unrelated or proven false rendering. However, it generalizes a specific flood-fill tool into a label also supported for an object area-colour control. Omitting the bucket metaphor is not automatically wrong, and a short caption need not spell out contiguity or tolerance. The actual unresolved question is whether the phrase is a natural functional equivalent identifying this tool, including as a standalone accessible name, rather than a fill-colour setting. The supplied evidence does not establish that transfer.",
+      "evidence": [
+        {
+          "id": "lo_fill_color",
+          "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "source_sha256": "58e8087d71f01c78f53b3440a60db40246e4795b5326dcb894afaaa57f32d110",
+          "context": "GenericCommands.xcu\n..GenericCommands.UserInterface.Commands..uno:FillColor\nLabel\nvalue.text",
+          "lines": [
+            21955,
+            21963
+          ]
+        },
+        {
+          "id": "ict_fill",
+          "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=104",
+          "source_sha256": "6eddbd874ac0710ac02cb959fd073d2501dc88404d88d29ee6ce20bc1941eab2",
+          "entry": 1223,
+          "page": 104
+        },
+        {
+          "id": "ict_fill_color",
+          "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=104",
+          "source_sha256": "6eddbd874ac0710ac02cb959fd073d2501dc88404d88d29ee6ce20bc1941eab2",
+          "entry": 1224,
+          "page": 104
+        }
+      ],
+      "behavior_sources": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L810",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L260-L270",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ScanlineFill.kt#L12-L54",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolButton.kt#L10-L11"
+      ],
+      "additional_source": {
+        "url": "https://help.libreoffice.org/latest/en-US/text/sdraw/main0210.html",
+        "finding": "Official LibreOffice Help identifies Fill Color as setting the area colour of the selected object, confirming that the attested source action is not the target raster flood-fill tool.",
+        "retrieved": "2026-10-24",
+        "limit": "Context corroboration only, not new Amharic lexical support."
+      },
+      "resolution": "Obtain a validated idiomatic bucket/flood-fill caption or validate this functional equivalent specifically against colour and shape-fill controls. Do not silently relabel English as Fill Color. If the product intentionally changes the English term, correct English first and flag affected translations across languages.",
+      "english_change_required": false,
+      "source_sha256": "bf62f8d4a4445b6017fb57314507a20027f83512f2d1974d54f054b2ffb8b9c2",
+      "candidate_XML_text": "\"ቀለም መሙያ\"",
+      "candidate_XML_text_sha256": "71e9aa9dae3142f5d151371d0d510899620c71f3721a658f09db1fb11054dc18",
+      "author_reconciliation": "Preserve complete-caption idiom/semantic-transfer HOLD; no replacement approved."
+    }
+  ],
+  "Eyedropper_separate_from_requested90_batch": true,
+  "no_hold_closed_by_proposal": true
+}

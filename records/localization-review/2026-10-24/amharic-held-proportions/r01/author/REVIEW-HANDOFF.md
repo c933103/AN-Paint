@@ -1,0 +1,11 @@
+# Independent adjudication: three existing holds
+
+Read revision-proposals.json, lexical-evidence/REVISION-DOSSIER.md, original-held-rows.json and consumer-context-addendum.json. Six newly retrieved complete primary GitHub sources, five rebound prior sources and primary grammar text extraction supply new evidence. Sixteen complete project files are fresh current-tree-bound. Full upstream snapshots are local review sources; bounded public excerpts are separate.
+
+Proposals: Same width → እኩል ስፋት; Same height → እኩል ቁመት; retain Lock proportions → ተመጣጣኝነት መጠበቂያ. Author supports these for independent textual adjudication based on complete phrase grammar and actual controls, not dictionary equivalence alone. Equality revisions do not declare former same/similar wording universally wrong. New actual preservation-checkbox precedent addresses the proportions phrase's prior register gap. Not every complete target is a standalone corpus match; that limitation is disclosed, not made a universal acceptance gate.
+
+Independently accept, revise or hold each exact full value with substantive reasoning. Do not merely repeat prior conditions or assume absent native-study/rendering validation requires every textual decision to stay held. Do not release a value with a remaining actual grammatical/semantic objection. No native certification, runtime test or implementation is claimed. Original values and alternatives remain preserved.
+
+Same width/height are openers and titles; Apply later sets all inputs to a common axis size while each other axis follows its own crop ratio. Lock proportions names an on/off setting preserving current gesture-start ratio during resizing, not original imported ratio, frozen dimensions or disabled movement/rotation. Source-derived arithmetic examples are explanatory, not executed tests. No English defect established.
+
+Historical14-hold ledger remains exact. Since then the already-started selection review added one ready and three holds: current91ready/17holds/zeroimplemented before this adjudication. New Eyedropper stays outside requested90-value implementation batch. These three proposals add no ready credit. No new groups, Work task, production edits, builds, CI or release.

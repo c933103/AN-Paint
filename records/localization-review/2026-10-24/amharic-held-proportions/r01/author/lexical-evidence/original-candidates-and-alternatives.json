@@ -1,0 +1,116 @@
+[
+  {
+    "key": "string/ui_same_width",
+    "english": "Same width",
+    "draft": "ተመሳሳይ ስፋት",
+    "source_attributes": {
+      "name": "ui_same_width"
+    },
+    "rationale": "Original concise Same + image Width composition. AOSP pairs Width with ስፋት, and LO attests ተመሳሳይ for Same, including a heights context. The complete two-word phrase is not an exact source match. It labels the shared-width dialog/action without promising identical whole-image size.",
+    "confidence": "medium-high lexical components; medium whole-label idiom; unaccepted",
+    "evidence_record_ids": [
+      "width_aosp_image",
+      "same_height_lo_fontwork",
+      "same_lo_locale",
+      "equalize_width_variant"
+    ],
+    "limitations": [
+      "Must mean one common width for every input, while each height follows its own cropped aspect ratio; not approximate similarity, equal file size, equal height or frozen scale.",
+      "Native contextual review must confirm that ተመሳሳይ reads as same/equal rather than merely similar in this short title.",
+      "Keep adjective/noun construction suitable both for toolbar button and dialog title.",
+      "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+      "No Work task, production edit, app build, CI, release or remote write was performed."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "እኩል ስፋት",
+        "note": "Original shorter equal-width alternative built from attested LO equalization construction. Not an exact full-phrase source match or accepted substitution."
+      }
+    ],
+    "consumer_context": "Toolbar button opens normalization dialog for WIDTH and same key is dialog title. Gives all inputs common target width; each other dimension derives proportionally from its own current crop with integer rounding. Does not mean identical total sizes, same heights, equal file sizes or identical aspect ratios. Includes unplaced inputs in tray.",
+    "consumer_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+    ],
+    "preserved_from": "amharic-normalization-draft-20261024/lexical-evidence/draft-candidates.json"
+  },
+  {
+    "key": "string/ui_same_height",
+    "english": "Same height",
+    "draft": "ተመሳሳይ ቁመት",
+    "source_attributes": {
+      "name": "ui_same_height"
+    },
+    "rationale": "Original Same + image Height composition. Select the directly attested AOSP image noun ቁመት, consistent with the prior reviewed dimension noun; retain rather than erase LO እርዝመት variation. Prior singular/dimension acceptance does not accept this label.",
+    "confidence": "medium-high lexical components; medium whole-label idiom; unaccepted",
+    "evidence_record_ids": [
+      "height_aosp_image",
+      "same_height_lo_fontwork",
+      "equalize_height_variant"
+    ],
+    "limitations": [
+      "Must mean one common height for all inputs, preserving each crop ratio; not vertical alignment, same width or identical image shape.",
+      "The source Fontwork Same Letter Heights uses እርዝመት; replacing it with the AOSP image noun is an explicit original adaptation.",
+      "Native review must check same-versus-similar reading and shared button/title fit.",
+      "Original AI-authored draft, unaccepted and not implemented. No native-speaker, visual-fit, accessibility or runtime acceptance is claimed.",
+      "No Work task, production edit, app build, CI, release or remote write was performed."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "እኩል ቁመት",
+        "note": "Original equal-height construction; combines LO equality component with AOSP image-height noun."
+      },
+      {
+        "draft": "ተመሳሳይ እርዝመት",
+        "note": "Original shortened phrase retaining the actual LO height lexical family. Not selected because existing reviewed dimension terminology uses ቁመት."
+      }
+    ],
+    "consumer_context": "Toolbar button opens HEIGHT normalization dialog and same key is title. Sets all inputs common target height, computes each width from own crop aspect ratio with integer rounding. Not width, file size, alignment position or guaranteed identical shape.",
+    "consumer_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+    ],
+    "preserved_from": "amharic-normalization-draft-20261024/lexical-evidence/draft-candidates.json"
+  },
+  {
+    "key": "string/ui_lock_proportions",
+    "english": "Lock proportions",
+    "draft": "ተመጣጣኝነት መጠበቂያ",
+    "source_attributes": {
+      "name": "ui_lock_proportions"
+    },
+    "status": "original draft; unaccepted; not implemented",
+    "confidence": "medium-high same-function component phrase; original shortened draft",
+    "evidence_record_ids": [
+      "keep_proportions_context",
+      "keep_proportions_phrase",
+      "keep_ratio_short_ambiguous"
+    ],
+    "rationale": "Original concise phrase built from exact nonfuzzy LO proportions-preserving resize prose, including the contiguous phrase ተመጣጣኝነት መጠበቂያ. Chooses preserve proportions rather than a security-lock noun. It keeps the current gesture-start aspect ratio, not necessarily the original image ratio.",
+    "review_flags": [
+      "Full English Lock proportions short-label equivalent was NOT established in the primary corpus.",
+      "The LO Keep ratio → መጠን መጠበቂያ alternative could misleadingly suggest keeping fixed size; do not automatically adopt it.",
+      "Do not imply frozen position, rotation, or dimensions, or retroactive correction of prior distortion.",
+      "Native grammar, checkbox-state clarity and width/fit review remain unaccepted."
+    ],
+    "alternatives": [],
+    "limitations": [
+      "Full English Lock proportions short-label equivalent was NOT established in the primary corpus.",
+      "The LO Keep ratio → መጠን መጠበቂያ alternative could misleadingly suggest keeping fixed size; do not automatically adopt it.",
+      "Do not imply frozen position, rotation, or dimensions, or retroactive correction of prior distortion.",
+      "Native grammar, checkbox-state clarity and width/fit review remain unaccepted."
+    ],
+    "author_status": "review",
+    "preserved_from": "amharic-size-controls-draft-20261024/lexical-evidence/draft-candidates.json"
+  }
+]

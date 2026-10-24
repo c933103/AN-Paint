@@ -1,0 +1,310 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "author_reconciliation": "Accept two releases with revision and one unchanged release on enlarged evidence. Prior holds remain historical; original sameness variants not declared erroneous.",
+  "ready_reviewed_candidates": [
+    {
+      "key": "string/ui_same_width",
+      "english": "Same width",
+      "source_English_sha256": "343b80a5623fdd4d8af79af2f5c428e2f53495a88539b88fc4bd291e47812f7f",
+      "original_value": "ተመሳሳይ ስፋት",
+      "adjudicated_value": "እኩል ስፋት",
+      "adjudicated_XML_text": "\"እኩል ስፋት\"",
+      "adjudicated_XML_text_sha256": "7f8419610b2919f89e9db4e77f1b11c79eaaa1dd2fd5997f04c37745fd9198ea",
+      "display_value_utf8_sha256": "f136debae13f3f3a2d3a4b395c76dd493cd0c03d6db795fee383d945fc32d141",
+      "adjudicated_XML_element": "<string name=\"ui_same_width\">\"እኩል ስፋት\"</string>",
+      "adjudicated_XML_element_sha256": "86da7625355c2d33113cf85a02bad092f8fffe08e4c3aae73ea86439a7960fe4",
+      "decision": "release_with_revision",
+      "semantic_confidence": "high",
+      "whole_label_confidence": "medium-high",
+      "reason": "The complete phrase names equal width, not approximate likeness. The new Writer equal-width control supplies this exact constituent in a numerical-width setting, and its tooltip binds the expression to equal widths. Removing only the table-specific scope phrase yields a coherent property caption; the app dialog and Apply-to-all supply the input scope. In both opener and title positions the noun phrase names the intended common-width configuration, rather than claiming that clicking the opener has already applied it. This exceeds component lookup and resolves the original common-versus-similar concern for the revised value.",
+      "attestation": "Exact two-word constituent in a longer same-dimension control, not an exact whole standalone caption.",
+      "remaining_objection": null,
+      "new_evidence_ids": [
+        "new_equal_width_control",
+        "new_equal_width_tooltip",
+        "new_equal_width_columns",
+        "new_similarity_contrast",
+        "grammar_order"
+      ],
+      "prior_record_url": "https://github.com/c933103/AN-Paint/blob/15b0fdc15cb46ef237bc9c26a3a4d32e64605db8/records/localization-review/2026-10-24/amharic-normalization/r01/reviewed-candidates-and-holds.json",
+      "prior_decision": {
+        "key": "string/ui_same_width",
+        "english": "Same width",
+        "reviewed_draft": "ተመሳሳይ ስፋት",
+        "proposed_xml": "<string name=\"ui_same_width\">\"ተመሳሳይ ስፋት\"</string>",
+        "decision": "HOLD",
+        "confidence": "Medium lexical/structural plausibility; insufficient full-label semantic/idiomatic assurance for release.",
+        "reason": "The draft is a plausible adjective-plus-dimension noun phrase, but this review cannot sufficiently establish that the complete short label unambiguously means one equal/common width rather than similar width. The LO Fontwork and locale records plus the AOSP dimension noun are not full-label validation. No mistranslation is established; the hold is evidentiary, not an instruction to rewrite.",
+        "release_condition": "A competent contextual Amharic review must assess the complete phrase as both the toolbar opener and dialog title, with exact shared width and independently proportional cropped heights. An exact corpus match is not a universal requirement, but component lookup alone is not enough.",
+        "semantic_check": "The toolbar opens the WIDTH dialog; it does not immediately normalize. Apply later gives all assembly inputs the same selected-axis pixel target. Other dimensions follow each crop ratio, subject to integer rounding. No equal file size, area, whole-image shape, or equal height claim.",
+        "alternative_disposition": "እኩል ስፋት remains an unaccepted alternative. Do not substitute it solely to remove an English ambiguity without complete-label review.",
+        "input_evidence_record_ids": [
+          "width_aosp_image",
+          "same_height_lo_fontwork",
+          "same_lo_locale",
+          "equalize_width_variant"
+        ],
+        "source_consumers": [
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+        ],
+        "replacement": null,
+        "source_sha256": "343b80a5623fdd4d8af79af2f5c428e2f53495a88539b88fc4bd291e47812f7f",
+        "candidate_XML_text": "\"ተመሳሳይ ስፋት\"",
+        "candidate_XML_text_sha256": "c43c0b1b330f309aff2b9154d97653b2a9a8d29685df210a8a8c9823465b2022"
+      },
+      "preserved_alternatives": [
+        {
+          "draft": "እኩል ስፋት",
+          "note": "Original shorter equal-width alternative built from attested LO equalization construction. Not an exact full-phrase source match or accepted substitution."
+        }
+      ],
+      "implementation_status": "not implemented; absent from supplied production target",
+      "implementation_batch_scope": "Excluded from pending 90-value batch unless explicitly settled by the parent/user. Textual acceptance does not expand that scope.",
+      "english_change_required": false,
+      "native_review": false,
+      "runtime_verified": false,
+      "rendering_verified": false
+    },
+    {
+      "key": "string/ui_same_height",
+      "english": "Same height",
+      "source_English_sha256": "6f143ed6580b3aeb793d5b21fe8991687de6572b7921a658eb71b9f2eb09880c",
+      "original_value": "ተመሳሳይ ቁመት",
+      "adjudicated_value": "እኩል ቁመት",
+      "adjudicated_XML_text": "\"እኩል ቁመት\"",
+      "adjudicated_XML_text_sha256": "7b22be619ed478f83bb00f2f7523e63fc61605cead645cf8919ca145de30bb7f",
+      "display_value_utf8_sha256": "056fa5fdb9263f385bb068d454a7a1970353fce564ad52a8b01d486f54343424",
+      "adjudicated_XML_element": "<string name=\"ui_same_height\">\"እኩል ቁመት\"</string>",
+      "adjudicated_XML_element_sha256": "f8448c13404bfa3888b82dc9bd8b1a717c37f20f0728ccc0d1f793b3bf10d885",
+      "decision": "release_with_revision",
+      "semantic_confidence": "high",
+      "whole_label_confidence": "medium-high, lower evidentiary directness than width",
+      "reason": "The whole phrase applies equality to the image-height scalar. AOSP establishes this head noun in image dimensions; the new equal-width noun phrase establishes the productive equality-plus-dimension construction, and prior Equalize Height confirms the relation transfers to height, although its noun differs. In this assembled-image dialog, equal height is not equal vertical position: the noun names extent, and no position or alignment term occurs. The same property-label form works for the opener and title without asserting immediate application. No grammatical agreement or suffix change is triggered by replacing the bare width head with the bare height head. This is an independently endorsed productive adaptation, not acceptance inferred only from the noun.",
+      "attestation": "Exact standalone two-word target not established in the bounded corpus.",
+      "remaining_objection": null,
+      "new_evidence_ids": [
+        "new_equal_width_control",
+        "new_same_height_context",
+        "new_similarity_contrast",
+        "grammar_order"
+      ],
+      "prior_record_url": "https://github.com/c933103/AN-Paint/blob/15b0fdc15cb46ef237bc9c26a3a4d32e64605db8/records/localization-review/2026-10-24/amharic-normalization/r01/reviewed-candidates-and-holds.json",
+      "prior_decision": {
+        "key": "string/ui_same_height",
+        "english": "Same height",
+        "reviewed_draft": "ተመሳሳይ ቁመት",
+        "proposed_xml": "<string name=\"ui_same_height\">\"ተመሳሳይ ቁመት\"</string>",
+        "decision": "HOLD",
+        "confidence": "Medium lexical/structural plausibility; insufficient full-label semantic/idiomatic assurance for release.",
+        "reason": "AOSP supports ቁመት for image height, while the actual LO Same Letter Heights record uses እርዝመት. The proposed shortened/substituted phrase is new. Its exact common-height reading, rather than similarity or vertical alignment, is not sufficiently independently established by the retained evidence.",
+        "release_condition": "Review the complete phrase in both toolbar/title uses with common height, crop-proportional widths and all-input scope. Prior acceptance of the dimension noun cannot stand in for this check.",
+        "semantic_check": "The toolbar opens the HEIGHT dialog, not immediate resizing. Apply normalizes selected-axis height for every input and computes each width separately from that image crop, subject to integer rounding. No matching shape, equal width or aligned-position claim.",
+        "alternative_disposition": "Preserve the real LO እርዝመት variation and both supplied alternatives without silently accepting or flattening them.",
+        "input_evidence_record_ids": [
+          "height_aosp_image",
+          "same_height_lo_fontwork",
+          "equalize_height_variant"
+        ],
+        "source_consumers": [
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L98",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L268-L271",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L17-L38",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L19-L32",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L123-L124"
+        ],
+        "replacement": null,
+        "source_sha256": "6f143ed6580b3aeb793d5b21fe8991687de6572b7921a658eb71b9f2eb09880c",
+        "candidate_XML_text": "\"ተመሳሳይ ቁመት\"",
+        "candidate_XML_text_sha256": "ab02914cacd44a1f9b776d925cb0bfae73eb09157fd4ae2ddd2e40e6add8f952"
+      },
+      "preserved_alternatives": [
+        {
+          "draft": "እኩል ቁመት",
+          "note": "Original equal-height construction; combines LO equality component with AOSP image-height noun."
+        },
+        {
+          "draft": "ተመሳሳይ እርዝመት",
+          "note": "Original shortened phrase retaining the actual LO height lexical family. Not selected because existing reviewed dimension terminology uses ቁመት."
+        }
+      ],
+      "implementation_status": "not implemented; absent from supplied production target",
+      "implementation_batch_scope": "Excluded from pending 90-value batch unless explicitly settled by the parent/user. Textual acceptance does not expand that scope.",
+      "english_change_required": false,
+      "native_review": false,
+      "runtime_verified": false,
+      "rendering_verified": false
+    },
+    {
+      "key": "string/ui_lock_proportions",
+      "english": "Lock proportions",
+      "source_English_sha256": "5c66db32dfaaf528a8c9451204fae25b54546714582431ed43962b7641436f4d",
+      "original_value": "ተመጣጣኝነት መጠበቂያ",
+      "adjudicated_value": "ተመጣጣኝነት መጠበቂያ",
+      "adjudicated_XML_text": "\"ተመጣጣኝነት መጠበቂያ\"",
+      "adjudicated_XML_text_sha256": "5cf3b18011b5153843765e7a5be513598d44b74d66cfc62cfdce30ea64f1041a",
+      "display_value_utf8_sha256": "8ba00c3dc6b2fb9f8eb83b54b436646d474a462d5c8aa0f915264414bdbda242",
+      "adjudicated_XML_element": "<string name=\"ui_lock_proportions\">\"ተመጣጣኝነት መጠበቂያ\"</string>",
+      "adjudicated_XML_element_sha256": "c0aa2e5ac4d1bf1bf241b9fe8ad00039ea822e4d5187f5aef5c2f1784d7c162f",
+      "decision": "release_unchanged",
+      "semantic_confidence": "high",
+      "whole_label_confidence": "medium-high, more formal register than dimension labels",
+      "reason": "The full nominal phrase names a function preserving proportionality. The existing contiguous phrase in actual width/height resizing prose establishes the object-function relation; the new aspect-ratio GtkCheckButton independently supports a preservation-noun label as an on/off option, rather than only running prose. The complete label has no fixed-size, imported-original, restoration, position or security-lock claim. Checked activates preserving the current gesture-start relation; unchecked deactivates that named function, so the stable noun phrase is coherent in both states. Neither setting needs to be phrased as a current-state assertion. This combination resolves the prior checkbox-register gap without falsely asserting an exact standalone match or native review.",
+      "attestation": "Exact phrase within same-function resizing prose plus a new same-function checkbox construction using different aspect-ratio terminology; no exact standalone target match claimed.",
+      "remaining_objection": null,
+      "new_evidence_ids": [
+        "new_aspect_checkbox"
+      ],
+      "prior_record_url": "https://github.com/c933103/AN-Paint/blob/15b0fdc15cb46ef237bc9c26a3a4d32e64605db8/records/localization-review/2026-10-24/amharic-size-controls/r01/reviewed-candidates-and-holds.json",
+      "prior_decision": {
+        "key": "string/ui_lock_proportions",
+        "key_utf8_sha256": "ee4f15e3d4f13b1b30b5becbc03d96b3551b8e75a3bc2c813f48aba0c38cd92e",
+        "english": "Lock proportions",
+        "source_value_utf8_sha256": "5c66db32dfaaf528a8c9451204fae25b54546714582431ed43962b7641436f4d",
+        "source_attributes": {
+          "name": "ui_lock_proportions"
+        },
+        "proposed_XML_text": "\"ተመጣጣኝነት መጠበቂያ\"",
+        "proposed_XML_text_utf8_sha256": "5cf3b18011b5153843765e7a5be513598d44b74d66cfc62cfdce30ea64f1041a",
+        "proposed_XML_element": "<string name=\"ui_lock_proportions\">\"ተመጣጣኝነት መጠበቂያ\"</string>",
+        "proposed_XML_element_utf8_sha256": "c0aa2e5ac4d1bf1bf241b9fe8ad00039ea822e4d5187f5aef5c2f1784d7c162f",
+        "display_value": "ተመጣጣኝነት መጠበቂያ",
+        "display_value_utf8_sha256": "8ba00c3dc6b2fb9f8eb83b54b436646d474a462d5c8aa0f915264414bdbda242",
+        "production_key_status": "Absent in supplied production values-b+am catalogue; no implementation performed.",
+        "verdict": "hold",
+        "confidence": "High consumer meaning; medium compositional semantic support; insufficient independent confidence in the standalone checkbox idiom.",
+        "rationale": "The candidate is a contiguous phrase in same-function LibreOffice explanatory prose, and maintaining proportionality matches the feature. However, extracting this nominal phrase does not by itself establish a clear standalone on/off checkbox label. I cannot confidently endorse its checkbox-state idiom from these records alone. This is an evidence/idiom hold, not a finding that the phrase is grammatically wrong, and not a blanket rule requiring every new translation to have an exact full-phrase precedent.",
+        "verified_consumer_meaning": "ClassicPaintActivity.kt:761..764 toggles lockSelectionAspect. PaintCanvas.kt:617..642 uses initialSelectionRect for the current gesture. SelectionGeometry.kt:28..60 scales both current dimensions together for corner and edge drags. It preserves the current gesture-start ratio, not necessarily the source-image ratio, and does not freeze movement, rotation, or size or repair prior distortion.",
+        "consumer_links": [
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L761-L764",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L617-L642",
+          "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SelectionGeometry.kt#L25-L67"
+        ],
+        "primary_evidence": [
+          {
+            "id": "keep_proportions_context",
+            "source_file": "libreoffice-am-cui.po",
+            "start_line": 19963,
+            "end_line": 19967,
+            "flags": [],
+            "fuzzy": false,
+            "msgctxt": "possizetabpage|extended_tip|CBX_SCALE",
+            "msgid": "Maintains proportions when you resize the selected object.",
+            "msgstr": "የ ተመረጠው እቃ እንደገና በሚመጠን ጊዜ ተመጣጣኝነቱን መጠበቂያ ",
+            "raw_po_record": "#. 9AxVT\n#: cui/uiconfig/ui/possizetabpage.ui:256\nmsgctxt \"possizetabpage|extended_tip|CBX_SCALE\"\nmsgid \"Maintains proportions when you resize the selected object.\"\nmsgstr \"የ ተመረጠው እቃ እንደገና በሚመጠን ጊዜ ተመጣጣኝነቱን መጠበቂያ \"",
+            "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po"
+          },
+          {
+            "id": "keep_proportions_phrase",
+            "source_file": "libreoffice-am-help01.po",
+            "start_line": 27244,
+            "end_line": 27251,
+            "flags": [],
+            "fuzzy": false,
+            "msgctxt": "05200100.xhp\npar_id3156326\nhelp.text",
+            "msgid": "<ahelp hid=\"cui/ui/linetabpage/CB_SYMBOL_RATIO\">Maintains the proportions of the symbol when you enter a new height or width value.</ahelp>",
+            "msgstr": "<ahelp hid=\"cui/ui/linetabpage/CB_SYMBOL_RATIO\">የ ምልክት ተመጣጣኝነት መጠበቂያ እርስዎ አዲስ የ እርዝመት ወይንም የ ስፋት ዋጋ ሲያስገቡ </ahelp>",
+            "raw_po_record": "#. z9BZT\n#: 05200100.xhp\nmsgctxt \"\"\n\"05200100.xhp\\n\"\n\"par_id3156326\\n\"\n\"help.text\"\nmsgid \"<ahelp hid=\\\"cui/ui/linetabpage/CB_SYMBOL_RATIO\\\">Maintains the proportions of the symbol when you enter a new height or width value.</ahelp>\"\nmsgstr \"<ahelp hid=\\\"cui/ui/linetabpage/CB_SYMBOL_RATIO\\\">የ ምልክት ተመጣጣኝነት መጠበቂያ እርስዎ አዲስ የ እርዝመት ወይንም የ ስፋት ዋጋ ሲያስገቡ </ahelp>\"",
+            "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po"
+          }
+        ],
+        "excluded_or_noncontrolling_evidence": [
+          {
+            "id": "keep_ratio_empty_rejected",
+            "source_file": "libreoffice-am-cui.po",
+            "start_line": 19951,
+            "end_line": 19955,
+            "flags": [],
+            "fuzzy": false,
+            "msgctxt": "possizetabpage|ratio_tip",
+            "msgid": "Keep ratio",
+            "msgstr": "",
+            "raw_po_record": "#. gb8JF\n#: cui/uiconfig/ui/possizetabpage.ui:250\nmsgctxt \"possizetabpage|ratio_tip\"\nmsgid \"Keep ratio\"\nmsgstr \"\"",
+            "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po"
+          },
+          {
+            "id": "keep_ratio_short_ambiguous",
+            "source_file": "libreoffice-am-help01.po",
+            "start_line": 27235,
+            "end_line": 27242,
+            "flags": [],
+            "fuzzy": false,
+            "msgctxt": "05200100.xhp\nhd_id3147620\nhelp.text",
+            "msgid": "Keep ratio",
+            "msgstr": "መጠን መጠበቂያ",
+            "raw_po_record": "#. e5KDq\n#: 05200100.xhp\nmsgctxt \"\"\n\"05200100.xhp\\n\"\n\"hd_id3147620\\n\"\n\"help.text\"\nmsgid \"Keep ratio\"\nmsgstr \"መጠን መጠበቂያ\"",
+            "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po"
+          }
+        ],
+        "limitations": [
+          "Do not automatically replace it with መጠን መጠበቂያ, whose shortened noun can suggest preserving size instead of proportions.",
+          "The empty Keep ratio UI record is not a translation.",
+          "The separate AOSP Aspect ratio noun is not a complete replacement for Lock proportions.",
+          "No exact new wording is justified here; hold the proposed value without adding it to accepted coverage."
+        ],
+        "unblock_requirement": "Obtain competent native-context review of this exact checkbox label with unchecked/checked states and resizing examples, or a reliable standalone same-function Amharic UI precedent. Confirm that it means preserve current width:height proportion while resizing, not freeze dimensions.",
+        "source_file_binding": {
+          "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+          "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+          "local_complete_copy": "source/Paintroid/src/main/res/values/strings.xml",
+          "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml"
+        },
+        "target_file_binding": {
+          "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+          "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+          "local_complete_copy": "source/Paintroid/src/main/res/values-b+am/strings.xml",
+          "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+        },
+        "decision_binding_sha256": "5ab0f0e5657202cbad3550b3b8bc514e3289a7315ba8b37228f80a944e0b605d"
+      },
+      "preserved_alternatives": [
+        {
+          "value": "መጠን መጠበቂያ",
+          "disposition": "Prior attested Keep ratio variant; not preferred because its size noun is less specific."
+        },
+        {
+          "value": "የ መጠን አንጻር መጠበቂያ",
+          "disposition": "New attested Keep aspect ratio checkbox; retained verbatim, not adopted as clearer."
+        }
+      ],
+      "implementation_status": "not implemented; absent from supplied production target",
+      "implementation_batch_scope": "Excluded from pending 90-value batch unless explicitly settled by the parent/user. Textual acceptance does not expand that scope.",
+      "english_change_required": false,
+      "native_review": false,
+      "runtime_verified": false,
+      "rendering_verified": false
+    }
+  ],
+  "held_proposals_this_group": [],
+  "resolved_prior_hold_keys": [
+    "string/ui_same_width",
+    "string/ui_same_height",
+    "string/ui_lock_proportions"
+  ],
+  "counts": {
+    "prior_ready": 91,
+    "prior_held": 17,
+    "released_existing_holds": 3,
+    "accumulated_ready_candidates": 94,
+    "total_held": 14,
+    "implemented": 0
+  },
+  "implementation_scope": "These three plus the separately reviewed Eyedropper remain outside requested90-value implementation batch; no silent expansion or authority inferred.",
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "translatable_containers": 717
+  },
+  "limits": [
+    "Height phrase is productive image-domain adaptation, not exact standalone attestation.",
+    "Proportions exact phrase from resizing prose plus newly verified checkbox pattern; formal-register familiarity unmeasured.",
+    "Multiple LibreOffice modules one translation ecosystem, not independent native votes.",
+    "Independent reviewer verified supplied source bytes/tree, not fresh remote HEAD.",
+    "No native-reader, rendering, runtime or accessibility certification; no implementation/build/CI/Work/release."
+  ],
+  "prior_programme": "https://github.com/c933103/AN-Paint/blob/f3ce344991cbf95a1e629386c39723b9da537fec/records/localization-review/2026-10-24/amharic-selection-tools/r01/reviewed-candidates-and-holds.json"
+}
