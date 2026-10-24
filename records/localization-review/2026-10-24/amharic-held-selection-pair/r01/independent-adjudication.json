@@ -1,0 +1,265 @@
+{
+  "schema": "bounded-caption-independent-adjudication-v1",
+  "date": "2026-10-24",
+  "scope": "Two exact Amharic selection-tool captions, adjudicated independently and separately. This releases linguistic holds only, not an application deployment or runtime acceptance.",
+  "decisions": [
+    {
+      "resource": "string/ui_rectangle_select",
+      "english": "Rectangle select",
+      "candidate": "በቀጤ ጎነ አራት መምረጫ",
+      "decision": "release_unchanged",
+      "review_status": "ready for the bounded short-caption language review",
+      "contextual_back_translation": "selector using rectangular bounds",
+      "rationale": "The selecting head supplies the operation and the prefixed geometry expression supplies its method. In this construction the rectangle is not presented as the direct object to be selected, and the phrase is not merely the separate Rectangle shape label. The complete phrase is a defensible short name for selecting an image region by rectangular bounds, including as a standalone accessible label. It does not need an explicit image-area noun to preserve the source distinction.",
+      "actual_gap_closure": [
+        "The earlier evidence established separate components but left their relation in a tool caption unresolved. The primary grammar now supports both the means relation of በ- and its attachment before a qualified geometry expression.",
+        "The instrumental analysis, together with the independently attested selector lexeme, supports an operation-bearing tool head that can be modified by how the operation is performed. The morphology is not being used to invent the spelling.",
+        "The non-fuzzy software captions for dotted underlining and horizontal flipping establish that a geometric manner/orientation phrase can precede an instrumental action head in this software register. They bridge the gap between a possible prose construction and a plausible short UI caption, without becoming exact-caption evidence.",
+        "The actual target selects a bounded pixel region rather than choosing pre-existing rectangle objects. This constrains the whole-phrase interpretation. The grammar alone would not identify that operation."
+      ],
+      "alternative_assessment": "Adding ቅርጽ would make an already geometric term longer without an evidenced gain. Removing በ- would weaken the method/object distinction. Neither alternative warrants replacing the supported candidate.",
+      "confidence": {
+        "source_operation": "high within the supplied verified source snapshot",
+        "technical_components": "high in the cited technical register",
+        "complete_caption_fidelity": "medium-high",
+        "contemporary_idiomatic_preference": "medium and unmeasured",
+        "overall": "medium-high"
+      },
+      "remaining_limits": [
+        "No exact historical occurrence of the whole caption was found or is claimed. Exact phrase matching is not a required acceptance gate.",
+        "Modern familiarity with the formal rectangle expression is not directly measured. This is a residual usage-preference uncertainty, not an identified mistranslation or open construction defect.",
+        "Square selections are compatible with the geometry term. The glossary emphasizes unequal adjacent sides as a common case, not a mandatory exclusion of squares.",
+        "No native-reader, rendering, UI-fit or accessibility-speech certification is claimed."
+      ],
+      "english_change_required": false,
+      "evidence_ids": [
+        "ict-rectangle",
+        "ict-region-selection",
+        "ict-selector",
+        "leslau-instrumental",
+        "leslau-preposition",
+        "lo-selector-head",
+        "lo-modified-action-caption"
+      ]
+    },
+    {
+      "resource": "string/ui_free_form_select",
+      "english": "Free-form select",
+      "candidate": "በስድ ቅርጽ መምረጫ",
+      "decision": "release_unchanged",
+      "review_status": "ready for the bounded short-caption language review",
+      "contextual_back_translation": "selector using a free-form boundary",
+      "rationale": "The exact technical modifier denotes freely drawn geometry, including freehand curves, while መምረጫ makes selection, not line creation, the operation. With the supported በ- method relation, the complete phrase names selection using that geometry. This fits the traced, automatically closed path used as a pixel-selection mask. The phrase neither promises manual closure nor describes drawing the trace into the image.",
+      "actual_gap_closure": [
+        "The earlier hold questioned whether an attested freeform component could be composed naturally with the selector head. The qualified-phrase rule explains the prefix placement on ስድ without severing it from ቅርጽ.",
+        "The grammar and non-fuzzy software construction precedents support a geometric manner phrase modifying an instrumental action caption. This supports the actual full composition, not merely the presence of its words in a dictionary.",
+        "The freeform entry was independently checked in the Amharic column and in its drawn-geometry definition. That rules out free price, licensing and a generic freedom-to-edit reading as intended technical senses.",
+        "The complete target phrase retains a selecting head, unlike the alternative software line-creation caption. In the verified selection-tool context, the modifier identifies the boundary method and the head identifies what happens with it. This per-key semantic assessment does not inherit the Rectangle outcome."
+      ],
+      "alternative_assessment": "A freehand-oriented በነፃ እጅ መምረጫ remains a possible alternative, but its superior clarity is not established and it would also be a new composition. The line-creation head መፍጠሪያ would change the operation and must not be substituted.",
+      "confidence": {
+        "source_operation": "high within the supplied verified source snapshot",
+        "technical_components": "high in the cited technical register",
+        "complete_caption_fidelity": "medium-high",
+        "contemporary_idiomatic_familiarity": "medium, with more uncertainty than Rectangle",
+        "overall": "medium"
+      },
+      "remaining_limits": [
+        "Contemporary familiarity with ስድ ቅርጽ is unmeasured. The evidence establishes a relevant technical sense and a supported construction, not a preferred term for every Amharic-speaking audience.",
+        "No exact prior complete caption or native-reader certification is claimed. Neither absence alone warrants retaining a hold after the construction and semantic fit have been assessed.",
+        "The freeform glossary describes geometry creation, and the region-selection entry concerns objects. Neither is misrepresented as an exact raster-selection precedent.",
+        "No smoothness, simplicity or nondegeneracy guarantee for the boundary is implied. The short caption need not encode masking, automatic closure or later transformation behavior.",
+        "No rendering, UI-fit or accessibility-speech certification is claimed."
+      ],
+      "english_change_required": false,
+      "evidence_ids": [
+        "ict-freeform",
+        "ict-region-selection",
+        "ict-selector",
+        "leslau-instrumental",
+        "leslau-preposition",
+        "lo-selector-head",
+        "lo-modified-action-caption",
+        "lo-freehand-alternative"
+      ]
+    }
+  ],
+  "reviewer_checks": [
+    "Independently inspected the full relevant grammar page images: printed 213-215 / physical PDF 231-233, printed 397 / PDF 379, and printed 399 / PDF 381. The scan does not have one constant page offset.",
+    "Independently inspected the Amharic column and surrounding definitions of glossary entries 1334, 2174, 2186 and 2316.",
+    "Independently matched seven exact PO blocks to their retained full originals and verified that they are nonempty, non-fuzzy and not obsolete.",
+    "Independently checked all fourteen source-file identities against the supplied remote tree and checked the supplied ref/commit/tree chain. This adjudicator did not perform an additional live remote refresh.",
+    "Read the actual enum mappings, selection paths, pixel-copy/mask implementation, complete tool-selection commit chain, button accessibility text and relevant composed consumers.",
+    "Checked the supplied input manifest for consistency. These are evidence-integrity checks, not application tests."
+  ],
+  "consumer_semantics": [
+    "SELECT uses sorted drag bounds and a clipped rectangular pixel copy. LASSO records pointer movement, closes the path on pointer-up and uses the path as a pixel-copy mask. Neither initial outline is drawn into the image.",
+    "Every selectTool call invokes applyPending, which invokes finishSelection. Choosing either selection tool, switching between them or reselecting the current tool can therefore commit floating work or clear a nonfloating selection. Commitment is not restricted to leaving selection tools.",
+    "Later moving, resizing or rotating a selection can lift and erase source pixels and subsequently commit transformed pixels. The complete tools must not be described as non-mutating.",
+    "Toggling options for an already expanded category is a separate action from choosing a tool.",
+    "The short labels are also standalone accessible names. Larger help, status, category-accessibility and options strings are not accepted by this review.",
+    "The canonical English captions fit the observed operations. No English-source correction is required by either adjudication."
+  ],
+  "bounded_sources": [
+    {
+      "id": "ict-rectangle",
+      "links": [
+        "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=188"
+      ],
+      "locator": "Printed/PDF page 188, entry 2174, Rectangle row, Amharic column."
+    },
+    {
+      "id": "ict-freeform",
+      "links": [
+        "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=113"
+      ],
+      "locator": "Printed/PDF page 113, entry 1334, freeform row, Amharic column."
+    },
+    {
+      "id": "ict-region-selection",
+      "links": [
+        "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=189"
+      ],
+      "locator": "Printed/PDF page 189, entry 2186, region selection row, Amharic column."
+    },
+    {
+      "id": "ict-selector",
+      "links": [
+        "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf#page=201"
+      ],
+      "locator": "Printed/PDF page 201, entry 2316, selector row, Amharic column."
+    },
+    {
+      "id": "leslau-instrumental",
+      "links": [
+        "https://e-learning.tsu.ge/pluginfile.php/6774/mod_resource/content/0/amharic_rg.pdf#page=231",
+        "https://e-learning.tsu.ge/pluginfile.php/6774/mod_resource/content/0/amharic_rg.pdf#page=232",
+        "https://e-learning.tsu.ge/pluginfile.php/6774/mod_resource/content/0/amharic_rg.pdf#page=233"
+      ],
+      "locator": "Section 50, printed pages 213–214 / PDF pages 231–232; section 50.1, printed page 215 / PDF page 233."
+    },
+    {
+      "id": "leslau-preposition",
+      "links": [
+        "https://e-learning.tsu.ge/pluginfile.php/6774/mod_resource/content/0/amharic_rg.pdf#page=379",
+        "https://e-learning.tsu.ge/pluginfile.php/6774/mod_resource/content/0/amharic_rg.pdf#page=381"
+      ],
+      "locator": "Printed page 397 / PDF page 379, opening paragraph before section 87.1; section 88.1, printed page 399 / PDF page 381. The PDF page offset changes; these physical pages were checked visually."
+    },
+    {
+      "id": "lo-selector-head",
+      "links": [
+        "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po#L23746-L23754",
+        "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po#L18073-L18080"
+      ],
+      "locator": "UI.po GenericCommands.xcu / .uno:SelectAll / Label; shared/02.po 20050000.xhp / tit / help.text. Both entries are nonempty, non-fuzzy, and not obsolete."
+    },
+    {
+      "id": "lo-modified-action-caption",
+      "links": [
+        "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po#L19340-L19348",
+        "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po#L24516-L24524"
+      ],
+      "locator": "GenericCommands.xcu / .uno:UnderlineDotted / Label and .uno:FlipHorizontal / Label. Both entries are nonempty, non-fuzzy, and not obsolete."
+    },
+    {
+      "id": "lo-freehand-alternative",
+      "links": [
+        "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po#L11341-L11348",
+        "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po#L24796-L24804"
+      ],
+      "locator": "shared/01.po 02220000.xhp / hd_id3153140 / help.text; UI.po GenericCommands.xcu / .uno:Freeline_Unfilled / Label. Nonempty, non-fuzzy, not obsolete."
+    }
+  ],
+  "operation_sources": [
+    {
+      "id": "english-labels",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L210",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L322"
+      ]
+    },
+    {
+      "id": "enum-and-consumers",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L14-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolButton.kt#L10-L11",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt#L13-L28",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L300-L304",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L493-L506",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L689",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L732-L753"
+      ]
+    },
+    {
+      "id": "selection-commit-correction",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L153-L157",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L443-L449",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L328-L338"
+      ]
+    },
+    {
+      "id": "rectangle-geometry",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L406",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L815",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L289-L306"
+      ]
+    },
+    {
+      "id": "freeform-geometry",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L761",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L788",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L816",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L289-L306"
+      ]
+    },
+    {
+      "id": "shared-preview-and-transform",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L265-L273",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L617-L644",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L744-L761",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L313-L338",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SelectionGeometry.kt#L8-L60"
+      ]
+    },
+    {
+      "id": "catalogue-boundary",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+      ]
+    }
+  ],
+  "decision_accounting": {
+    "within_scope": {
+      "release_unchanged": 2,
+      "revise": 0,
+      "keep_held": 0,
+      "implemented": 0
+    },
+    "parent_inventory_before": {
+      "ready": 105,
+      "held": 3,
+      "implemented": 0
+    },
+    "parent_inventory_if_these_two_decisions_are_applied": {
+      "ready": 107,
+      "held": 1,
+      "implemented": 0
+    },
+    "pending_90_item_batch": "unchanged",
+    "inventory_files_modified_by_reviewer": false,
+    "other_caption_decisions": "unchanged"
+  },
+  "limits": [
+    "These are two independent bounded language adjudications, not forced pairwise acceptance. Both happen to support the unchanged wording for separate stated reasons.",
+    "The newly examined passages strengthen composition evidence; they do not constitute new independent translation ecosystems. All LibreOffice entries count as one corpus.",
+    "A primary-authored grammar or glossary read through a mirror is not newly conducted native-reader research.",
+    "No approval is transferred from the separate Rectangle drawing label. Fuzzy or empty GIMP translations were excluded.",
+    "No production resource, application build, application test suite, Work task, CI, remote publication, deployment or release was performed.",
+    "The original proposal files remain unchanged. No full PDFs, page images, raw PO files, private paths or integrity hashes are included in this public report."
+  ]
+}
