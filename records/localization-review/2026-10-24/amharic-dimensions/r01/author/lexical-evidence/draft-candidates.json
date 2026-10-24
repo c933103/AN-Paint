@@ -1,0 +1,225 @@
+[
+  {
+    "key": "string/ui_pixels",
+    "english": "Pixels",
+    "draft": "ፒክሰሎች",
+    "source_attributes": {
+      "name": "ui_pixels"
+    },
+    "rationale": "Bare plural selector noun directly drawn from the AOSP 13M/4M pixels token. The same spelling family as the previously reviewed pixel terminology is retained. Amharic has no uppercase/lowercase distinction, but this is the standalone key, not the interpolated key.",
+    "confidence": "medium-high lexical; medium standalone-context transfer; unaccepted",
+    "evidence_record_ids": [
+      "pixels_aosp_13mp",
+      "pixels_aosp_4mp",
+      "pixels_lo_plural",
+      "pixels_lo_ui_variant"
+    ],
+    "limitations": [
+      "The selected complete standalone noun is an original extraction from an attested compound; direct standalone LibreOffice spellings differ.",
+      "Shared by resize/assembly dimensions, crop margins and normalization. Do not add a baseline, pixel count, px abbreviation, metric length unit, or singular/plural agreement tied to a value.",
+      "Original AI-authored review draft, not native-reader or release acceptance.",
+      "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "ፒክስሎች",
+        "note": "Exact LibreOffice standalone plural variant; not the selected project/AOSP spelling family."
+      }
+    ]
+  },
+  {
+    "key": "string/ui_percent",
+    "english": "Percent",
+    "draft": "ፐርሰንት",
+    "source_attributes": {
+      "name": "ui_percent"
+    },
+    "rationale": "Exact nonfuzzy LibreOffice Percent unit/category label. Kept generic because the shared selector does not encode one denominator: consumers supply their own image-dimension or largest-selected-axis baseline.",
+    "confidence": "high lexical; medium-high shared unit semantics; unaccepted",
+    "evidence_record_ids": [
+      "percent_lo_category",
+      "percent_lo_command",
+      "percent_aosp_native_variant",
+      "percent_aosp_preposition_variant"
+    ],
+    "limitations": [
+      "መቶኛ is an attested AOSP native alternative; choosing the direct standalone loanword here is not a finding that the alternative is wrong.",
+      "Do not add original size, width, height, hundred, percent sign, or any one percentage denominator to this shared label.",
+      "Original AI-authored review draft, not native-reader or release acceptance.",
+      "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "መቶኛ",
+        "note": "Native AOSP alternative attested inside accessibility and settings phrases. If adopted, review the standalone and interpolated keys together rather than mix families."
+      }
+    ]
+  },
+  {
+    "key": "string/ui_pixels_6ec9c2",
+    "english": "pixels",
+    "draft": "ፒክሰሎች",
+    "source_attributes": {
+      "name": "ui_pixels_6ec9c2"
+    },
+    "rationale": "Bare plural unit noun for substitution into Width/Height in %1$s. The በ preposition belongs to the templates, not this resource. Same spelling as the standalone selector is permissible because Amharic has no English case distinction; semantic role and key remain separate.",
+    "confidence": "medium-high lexical; medium interpolated-morphology confidence; unaccepted",
+    "evidence_record_ids": [
+      "pixels_aosp_13mp",
+      "pixels_aosp_4mp",
+      "pixels_lo_in_unit",
+      "units_aosp_attached_preposition"
+    ],
+    "limitations": [
+      "Must remain a bare unit: adding በ here would duplicate the template preposition.",
+      "Evaluate the complete forms ስፋት በፒክሰሎች and ቁመት በፒክሰሎች in native/accessibility review; standalone evidence alone does not validate the composed labels.",
+      "A singular measure-word form ፒክሰል may be preferred by a native reviewer; the plural is selected because English pixels is plural and primary in-pixels prose supports plural usage, not because singular is impossible.",
+      "Original AI-authored review draft, not native-reader or release acceptance.",
+      "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  },
+  {
+    "key": "string/ui_percent_fd8671",
+    "english": "percent",
+    "draft": "ፐርሰንት",
+    "source_attributes": {
+      "name": "ui_percent_fd8671"
+    },
+    "rationale": "Bare percent unit for substitution into the two accessibility labels. LibreOffice exact Percent and in percent → በ ፐርሰንት support this noun; the templates provide attached በ. Capitalization does not require a separate Amharic spelling.",
+    "confidence": "high lexical; medium interpolated-morphology confidence; unaccepted",
+    "evidence_record_ids": [
+      "percent_lo_category",
+      "percent_lo_in_unit",
+      "percent_aosp_preposition_variant"
+    ],
+    "limitations": [
+      "Keep bare ፐርሰንት rather than embedding በ or a percent symbol.",
+      "Evaluate complete ስፋት በፐርሰንት and ቁመት በፐርሰንት; accessibility speech and native label idiom remain unverified.",
+      "The መቶኛ alternative remains available but requires coordinated contextual review.",
+      "Original AI-authored review draft, not native-reader or release acceptance.",
+      "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  },
+  {
+    "key": "string/ui_width",
+    "english": "Width (%1$s)",
+    "draft": "ስፋት (%1$s)",
+    "source_attributes": {
+      "name": "ui_width"
+    },
+    "rationale": "Compose exact AOSP image Width → ስፋት with the unchanged source parentheses and full positional string placeholder. The consumer supplies literal px or %, not the translated unit names.",
+    "confidence": "high noun evidence; medium-high original format composition; unaccepted",
+    "evidence_record_ids": [
+      "width_aosp_image",
+      "width_lo_graphics"
+    ],
+    "limitations": [
+      "Preserve exact %1$s once and preserve the parentheses; never replace it with %s, %1, a fixed px/% sign, or a translated unit.",
+      "DimensionControls uses this as a visible label; NormalizeImagesDialog also uses it as a px contentDescription. The wording must not imply an action, image area, DPI, screen width or percentage denominator.",
+      "Original AI-authored review draft, not native-reader or release acceptance.",
+      "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  },
+  {
+    "key": "string/ui_height",
+    "english": "Height (%1$s)",
+    "draft": "ቁመት (%1$s)",
+    "source_attributes": {
+      "name": "ui_height"
+    },
+    "rationale": "Compose exact AOSP media/image Height → ቁመት with the unchanged parentheses and positional string placeholder. Prefer the directly paired image-details dimension noun over the LibreOffice graphics alternate እርዝመት, while retaining that alternative explicitly.",
+    "confidence": "high image noun evidence; medium-high original format composition; unaccepted",
+    "evidence_record_ids": [
+      "height_aosp_image",
+      "height_lo_graphics_variant"
+    ],
+    "limitations": [
+      "Preserve exact %1$s once and source parentheses.",
+      "The ቁመት versus እርዝመት choice needs native contextual review; neither source is treated as universally authoritative.",
+      "Includes visible labels and normalization px contentDescription; it means image vertical dimension, not person height, text glyph metrics, area, resolution density, or a resize action.",
+      "Original AI-authored review draft, not native-reader or release acceptance.",
+      "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "እርዝመት (%1$s)",
+        "note": "Original template composition using the exact LibreOffice graphics Height noun. Not selected because AOSP provides an exact image-details Height counterpart."
+      }
+    ]
+  },
+  {
+    "key": "string/ui_width_in",
+    "english": "Width in %1$s",
+    "draft": "ስፋት በ%1$s",
+    "source_attributes": {
+      "name": "ui_width_in"
+    },
+    "rationale": "Original accessibility label composition using exact image Width noun followed by በ attached to the bare substituted unit. In-pixels/in-percent primary prose supports the unit preposition; the entire Width in template is not an exact quoted translation.",
+    "confidence": "medium compositional and unit-morphology confidence; unaccepted",
+    "evidence_record_ids": [
+      "width_aosp_image",
+      "pixels_lo_in_unit",
+      "percent_lo_in_unit",
+      "units_aosp_attached_preposition"
+    ],
+    "limitations": [
+      "Preserve the complete %1$s exactly once. The argument is translated pixels/percent, not a numeric width and not literal px/%.",
+      "Check both completed phrases separately: ስፋት በፒክሰሎች; ስፋት በፐርሰንት.",
+      "The attached በ spacing and noun-first label order are original editorial choices. No exact whole-phrase precedent or native/screen-reader acceptance is claimed.",
+      "Do not add a metric length unit or an original-image baseline to the label; the unit alone is intended.",
+      "Original AI-authored review draft, not native-reader or release acceptance.",
+      "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": []
+  },
+  {
+    "key": "string/ui_height_in",
+    "english": "Height in %1$s",
+    "draft": "ቁመት በ%1$s",
+    "source_attributes": {
+      "name": "ui_height_in"
+    },
+    "rationale": "Original accessibility label composition using exact AOSP image Height noun and attached በ plus the bare unit argument. This keeps height separate from width and does not import the LibreOffice alternate without review.",
+    "confidence": "medium compositional and unit-morphology confidence; unaccepted",
+    "evidence_record_ids": [
+      "height_aosp_image",
+      "height_lo_graphics_variant",
+      "pixels_lo_in_unit",
+      "percent_lo_in_unit",
+      "units_aosp_attached_preposition"
+    ],
+    "limitations": [
+      "Preserve the complete %1$s exactly once. It receives translated pixels/percent, not a number or literal px/%.",
+      "Check both completed phrases separately: ቁመት በፒክሰሎች; ቁመት በፐርሰንት.",
+      "The entire phrase, attached preposition spacing, and noun-first label order are original composition, not exact primary-source bytes.",
+      "Native review may prefer the retained እርዝመት noun family; no automatic acceptance is implied by exact component evidence.",
+      "Original AI-authored review draft, not native-reader or release acceptance.",
+      "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+    ],
+    "author_status": "review",
+    "status": "original draft; unaccepted; not implemented",
+    "alternatives": [
+      {
+        "draft": "እርዝመት በ%1$s",
+        "note": "Original full composition using LibreOffice Height; would require joint review with ui_height and both substituted unit forms."
+      }
+    ]
+  }
+]

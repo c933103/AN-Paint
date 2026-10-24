@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-24",
+  "scope": "Eight exact dimension-control keys only. No prior60 addition, Lock proportions, aspect lock, trim labels, normalization-specific percent labels, or other new key.",
+  "sources": "Eight full previously pinned primary snapshots, searched locally; selected complete PO/XML records retained with line numbers. Not exhaustive all upstream files or all dictionaries.",
+  "fresh_network_attempts": [
+    {
+      "tool": "web open",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+      "outcome": "Failed to fetch: Cache miss",
+      "classification": "Generic retrieval failure, not verified access denial; no source bytes returned."
+    },
+    {
+      "tool": "web open",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+      "outcome": "Failed to fetch: Cache miss",
+      "classification": "Generic retrieval failure, not verified access denial; no source bytes returned."
+    }
+  ],
+  "reuse_policy": "Every source hash recomputed and matched prior sources.json; no fresh content/current-web validation claimed.",
+  "excluded_as_acceptance": [
+    "Empty or fuzzy PO translations are not used as positive evidence. Nonfuzzy is not a native-quality guarantee.",
+    "LO ፒክስሎች/ፒክስልስ and AOSP ፒክሰሎች are distinct source bytes; selected plural is directly attested in AOSP, not a silent LO normalization.",
+    "AOSP መቶኛ is an explicit alternate, not silently treated as identical to ፐርሰንት.",
+    "LO እርዝመት is a real Height alternate, not misreported as AOSP ቁመት.",
+    "Noun and preposition records do not prove the complete original accessibility labels or force review acceptance."
+  ],
+  "source_inspection": "Inspected actual supplied DimensionControls.kt and relevant crop/normalization callers. Source bindings/freshness belong to the parent dossier.",
+  "consumer_semantics": [
+    "DimensionControls preserves canonical image dimensions; percent relates each current value to its respective original width or height.",
+    "Shared selector labels also serve crop margins and normalization. Normalization percent is based on the largest selected current axis, not necessarily an original image. Labels therefore remain denominator-neutral.",
+    "DimensionControls visible labels use literal px/% arguments. Lowercase unit resources are separate bare nouns interpolated only in Width/Height in accessibility templates.",
+    "NormalizeImagesDialog also uses Width/Height (%1$s) with literal px for accessibility."
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_pixels",
+      "English": "Pixels",
+      "source_attributes": {
+        "name": "ui_pixels"
+      },
+      "source_sha256": "48b027ebcdab5067b2f39188207faa13921c025d8fd8282f5976ceb94149d642",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Shared unit radio choices in DimensionControls, NormalizeImagesDialog and ImageCropDialog. Dimension percent means percent of each original width/height; normalization percent uses largest current placed size on selected axis; crop percent uses each source image width for left/right margins and height for top/bottom. The shared unit words must not encode one baseline. Pixels are integer image pixels in these controls, not screen dp, resolution DPI or physical units.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L30-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L50-L61",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L96-L108",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L39-L50"
+      ],
+      "proposed_XML_text": "\"ፒክሰሎች\"",
+      "proposed_XML_element": "<string name=\"ui_pixels\">\"ፒክሰሎች\"</string>",
+      "proposed_XML_text_sha256": "995eb4b9165b940a62b910949c0e99396cf45da0d6451aa90e4ada9253b74140",
+      "author_status": "review",
+      "rationale": "Bare plural selector noun directly drawn from the AOSP 13M/4M pixels token. The same spelling family as the previously reviewed pixel terminology is retained. Amharic has no uppercase/lowercase distinction, but this is the standalone key, not the interpolated key.",
+      "confidence": "medium-high lexical; medium standalone-context transfer; unaccepted",
+      "limitations": [
+        "The selected complete standalone noun is an original extraction from an attested compound; direct standalone LibreOffice spellings differ.",
+        "Shared by resize/assembly dimensions, crop margins and normalization. Do not add a baseline, pixel count, px abbreviation, metric length unit, or singular/plural agreement tied to a value.",
+        "Original AI-authored review draft, not native-reader or release acceptance.",
+        "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_percent",
+      "English": "Percent",
+      "source_attributes": {
+        "name": "ui_percent"
+      },
+      "source_sha256": "716d633b125adb76832f17bee5bce63be33094820cd46ef1222cec4a7ae8eb58",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Shared unit radio choices in DimensionControls, NormalizeImagesDialog and ImageCropDialog. Dimension percent means percent of each original width/height; normalization percent uses largest current placed size on selected axis; crop percent uses each source image width for left/right margins and height for top/bottom. The shared unit words must not encode one baseline. Pixels are integer image pixels in these controls, not screen dp, resolution DPI or physical units.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L30-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L29-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L50-L61",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L96-L108",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L39-L50"
+      ],
+      "proposed_XML_text": "\"ፐርሰንት\"",
+      "proposed_XML_element": "<string name=\"ui_percent\">\"ፐርሰንት\"</string>",
+      "proposed_XML_text_sha256": "ea81e985913506c1413427b1fbbe504e0ae4ac7cbc3c0507b411c26db488ea76",
+      "author_status": "review",
+      "rationale": "Exact nonfuzzy LibreOffice Percent unit/category label. Kept generic because the shared selector does not encode one denominator: consumers supply their own image-dimension or largest-selected-axis baseline.",
+      "confidence": "high lexical; medium-high shared unit semantics; unaccepted",
+      "limitations": [
+        "መቶኛ is an attested AOSP native alternative; choosing the direct standalone loanword here is not a finding that the alternative is wrong.",
+        "Do not add original size, width, height, hundred, percent sign, or any one percentage denominator to this shared label.",
+        "Original AI-authored review draft, not native-reader or release acceptance.",
+        "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_pixels_6ec9c2",
+      "English": "pixels",
+      "source_attributes": {
+        "name": "ui_pixels_6ec9c2"
+      },
+      "source_sha256": "6ec9c2b0eb14010746c8bce8939303b382344b296206612eb8a907a37b2b2f37",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Lowercase English unit noun substituted into Width in and Height in accessibility content descriptions. Keep exact separate key; Amharic has no English upper/lowercase requirement. Literal px remains separate visible unit. Review full interpolated phrases, not isolated noun alone.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87"
+      ],
+      "proposed_XML_text": "\"ፒክሰሎች\"",
+      "proposed_XML_element": "<string name=\"ui_pixels_6ec9c2\">\"ፒክሰሎች\"</string>",
+      "proposed_XML_text_sha256": "995eb4b9165b940a62b910949c0e99396cf45da0d6451aa90e4ada9253b74140",
+      "author_status": "review",
+      "rationale": "Bare plural unit noun for substitution into Width/Height in %1$s. The በ preposition belongs to the templates, not this resource. Same spelling as the standalone selector is permissible because Amharic has no English case distinction; semantic role and key remain separate.",
+      "confidence": "medium-high lexical; medium interpolated-morphology confidence; unaccepted",
+      "limitations": [
+        "Must remain a bare unit: adding በ here would duplicate the template preposition.",
+        "Evaluate the complete forms ስፋት በፒክሰሎች and ቁመት በፒክሰሎች in native/accessibility review; standalone evidence alone does not validate the composed labels.",
+        "A singular measure-word form ፒክሰል may be preferred by a native reviewer; the plural is selected because English pixels is plural and primary in-pixels prose supports plural usage, not because singular is impossible.",
+        "Original AI-authored review draft, not native-reader or release acceptance.",
+        "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_percent_fd8671",
+      "English": "percent",
+      "source_attributes": {
+        "name": "ui_percent_fd8671"
+      },
+      "source_sha256": "fd86717aca41c558c78c19ab2b50691179a57ba5200bc7e3317be70efd4043ad",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Lowercase English unit noun substituted into Width in and Height in accessibility labels. Here relative to original corresponding dimension, not percent of pixel count/area. Keep separate key and review complete resulting phrases.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87"
+      ],
+      "proposed_XML_text": "\"ፐርሰንት\"",
+      "proposed_XML_element": "<string name=\"ui_percent_fd8671\">\"ፐርሰንት\"</string>",
+      "proposed_XML_text_sha256": "ea81e985913506c1413427b1fbbe504e0ae4ac7cbc3c0507b411c26db488ea76",
+      "author_status": "review",
+      "rationale": "Bare percent unit for substitution into the two accessibility labels. LibreOffice exact Percent and in percent → በ ፐርሰንት support this noun; the templates provide attached በ. Capitalization does not require a separate Amharic spelling.",
+      "confidence": "high lexical; medium interpolated-morphology confidence; unaccepted",
+      "limitations": [
+        "Keep bare ፐርሰንት rather than embedding በ or a percent symbol.",
+        "Evaluate complete ስፋት በፐርሰንት and ቁመት በፐርሰንት; accessibility speech and native label idiom remain unverified.",
+        "The መቶኛ alternative remains available but requires coordinated contextual review.",
+        "Original AI-authored review draft, not native-reader or release acceptance.",
+        "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_width",
+      "English": "Width (%1$s)",
+      "source_attributes": {
+        "name": "ui_width"
+      },
+      "source_sha256": "26452d4d4e24d067c14d1b46f59743fd2d85a52dc8ec93464008974fe38b89d5",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Visible width label with exactly one string argument, replaced px or %. Also pixel-mode normalization input contentDescription with px. Width is horizontal image dimension. Parentheses and %1$s exact; percent uses original width in DimensionControls. No numeric input value is substituted into this label.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L50-L61"
+      ],
+      "proposed_XML_text": "\"ስፋት (%1$s)\"",
+      "proposed_XML_element": "<string name=\"ui_width\">\"ስፋት (%1$s)\"</string>",
+      "proposed_XML_text_sha256": "4885032ddde2ca2aecc6827110c59af087491faf6bfe94356c2411c7765785af",
+      "author_status": "review",
+      "rationale": "Compose exact AOSP image Width → ስፋት with the unchanged source parentheses and full positional string placeholder. The consumer supplies literal px or %, not the translated unit names.",
+      "confidence": "high noun evidence; medium-high original format composition; unaccepted",
+      "limitations": [
+        "Preserve exact %1$s once and preserve the parentheses; never replace it with %s, %1, a fixed px/% sign, or a translated unit.",
+        "DimensionControls uses this as a visible label; NormalizeImagesDialog also uses it as a px contentDescription. The wording must not imply an action, image area, DPI, screen width or percentage denominator.",
+        "Original AI-authored review draft, not native-reader or release acceptance.",
+        "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_height",
+      "English": "Height (%1$s)",
+      "source_attributes": {
+        "name": "ui_height"
+      },
+      "source_sha256": "691378ea0a4b0e5023bf65437a044ade7923f64d6349516079a0607d768619ed",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Visible height label with exactly one string argument, replaced px or %. Also pixel-mode normalization input contentDescription with px. Height is vertical image dimension, not length of diagonal. Parentheses and %1$s exact; percent uses original height in DimensionControls.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L50-L61"
+      ],
+      "proposed_XML_text": "\"ቁመት (%1$s)\"",
+      "proposed_XML_element": "<string name=\"ui_height\">\"ቁመት (%1$s)\"</string>",
+      "proposed_XML_text_sha256": "479b99cc3edf33d8f6de233a16760e7a9d1921be978706c368adb4e650e5753a",
+      "author_status": "review",
+      "rationale": "Compose exact AOSP media/image Height → ቁመት with the unchanged parentheses and positional string placeholder. Prefer the directly paired image-details dimension noun over the LibreOffice graphics alternate እርዝመት, while retaining that alternative explicitly.",
+      "confidence": "high image noun evidence; medium-high original format composition; unaccepted",
+      "limitations": [
+        "Preserve exact %1$s once and source parentheses.",
+        "The ቁመት versus እርዝመት choice needs native contextual review; neither source is treated as universally authoritative.",
+        "Includes visible labels and normalization px contentDescription; it means image vertical dimension, not person height, text glyph metrics, area, resolution density, or a resize action.",
+        "Original AI-authored review draft, not native-reader or release acceptance.",
+        "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_width_in",
+      "English": "Width in %1$s",
+      "source_attributes": {
+        "name": "ui_width_in"
+      },
+      "source_sha256": "3297aa59eb3953cb425c7ae48189df1234f398453e2f481339806861eeb4e604",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Width-input accessibility label contains translated unit noun via exactly one %1$s. Both resulting forms (pixels and percent) must be grammatically reviewed. Does not include entered numeric value; no screen-reader behavior certification.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87"
+      ],
+      "proposed_XML_text": "\"ስፋት በ%1$s\"",
+      "proposed_XML_element": "<string name=\"ui_width_in\">\"ስፋት በ%1$s\"</string>",
+      "proposed_XML_text_sha256": "f09978dd693620c5aea2ea702aa42b4d1f71f6d1cb39822f7da9e64bbbd5f1ff",
+      "author_status": "review",
+      "rationale": "Original accessibility label composition using exact image Width noun followed by በ attached to the bare substituted unit. In-pixels/in-percent primary prose supports the unit preposition; the entire Width in template is not an exact quoted translation.",
+      "confidence": "medium compositional and unit-morphology confidence; unaccepted",
+      "limitations": [
+        "Preserve the complete %1$s exactly once. The argument is translated pixels/percent, not a numeric width and not literal px/%.",
+        "Check both completed phrases separately: ስፋት በፒክሰሎች; ስፋት በፐርሰንት.",
+        "The attached በ spacing and noun-first label order are original editorial choices. No exact whole-phrase precedent or native/screen-reader acceptance is claimed.",
+        "Do not add a metric length unit or an original-image baseline to the label; the unit alone is intended.",
+        "Original AI-authored review draft, not native-reader or release acceptance.",
+        "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_height_in",
+      "English": "Height in %1$s",
+      "source_attributes": {
+        "name": "ui_height_in"
+      },
+      "source_sha256": "193af0dda260fe2967e99a5c3eda5b77eb36345e9283f09aa6f7c92148fa4112",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Height-input accessibility label contains translated unit noun via exactly one %1$s. Both resulting forms require grammatical review. Do not convert height into length of whole image, font height or screen coordinates.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87"
+      ],
+      "proposed_XML_text": "\"ቁመት በ%1$s\"",
+      "proposed_XML_element": "<string name=\"ui_height_in\">\"ቁመት በ%1$s\"</string>",
+      "proposed_XML_text_sha256": "a4b146f3e07107aa8478242d392e6686ffc0c9a9406a131cebf58b09f578ed43",
+      "author_status": "review",
+      "rationale": "Original accessibility label composition using exact AOSP image Height noun and attached በ plus the bare unit argument. This keeps height separate from width and does not import the LibreOffice alternate without review.",
+      "confidence": "medium compositional and unit-morphology confidence; unaccepted",
+      "limitations": [
+        "Preserve the complete %1$s exactly once. It receives translated pixels/percent, not a number or literal px/%.",
+        "Check both completed phrases separately: ቁመት በፒክሰሎች; ቁመት በፐርሰንት.",
+        "The entire phrase, attached preposition spacing, and noun-first label order are original composition, not exact primary-source bytes.",
+        "Native review may prefer the retained እርዝመት noun family; no automatic acceptance is implied by exact component evidence.",
+        "Original AI-authored review draft, not native-reader or release acceptance.",
+        "No production edit, app build, CI, rendering, UI-fit, accessibility speech, or runtime validation was performed by this lexical task."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    }
+  ],
+  "shared_source_chain": "DimensionControls is used by main new/canvas-size/image-resize dialog (ClassicPaintActivity1012-1030), large-import resize chooser (ImageResizeDialog31) and assembly output-copy chooser (AssemblyActivity306). Same unit labels also used by normalization and cropping. Complete current consumer files supplied. Main canvas-size copies pixels at top-left; resize scales. Unit conversion maintains canonical target pixels; unrelated memory errors, detailed instructions, result formatters and aspect-lock wording excluded.",
+  "source_gate": "No English defect established in these unit/dimension labels. Placeholders and generic unit semantics must be preserved. Any later real source defect must be corrected in English first and flagged across affected languages, not silently compensated only in Amharic.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_containers": 717,
+    "prior_ready": 60,
+    "prior_holds": 6,
+    "new_independent_acceptance": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Original drafts only, independent checking required.",
+    "No exhaustive repository-wide consumer search claim; discovery in prior cached source then complete current consumers checked.",
+    "No native-reader, rendering, screen-reader, numeric-input correctness, lifecycle or release acceptance.",
+    "Prior60 ready/sixholds excluded. Aspect lock, prior held Lock proportions and inherited uncertainties remain separate."
+  ],
+  "lexical_sources": [
+    {
+      "file": "libreoffice-am-cui.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+      "sha256": "a1d524a820c0c6de187d0625b9eced32733642ad196d79857500c91977a428b4",
+      "bytes": 733737,
+      "retrieval": "Reused complete commit-pinned snapshot; bytes copied from prior same-day packet and SHA-256 recomputed against its recorded provenance. No successful fresh retrieval is claimed for this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "libreoffice-am-svx.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-svx.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+      "sha256": "69d5adb5831b13831d8393b9c09ff0d5f2f9741a34a8d5ccb3a5ca5869bbbb37",
+      "bytes": 558173,
+      "retrieval": "Reused complete commit-pinned snapshot; bytes copied from prior same-day packet and SHA-256 recomputed against its recorded provenance. No successful fresh retrieval is claimed for this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-svx.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "libreoffice-am-help01.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-help01.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+      "sha256": "a1d93dc2d370e83de23544557e9346d43d44d7e517e3f5e6e2d20ce7a8bf46b7",
+      "bytes": 1739104,
+      "retrieval": "Reused complete commit-pinned snapshot; bytes copied from prior same-day packet and SHA-256 recomputed against its recorded provenance. No successful fresh retrieval is claimed for this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-help01.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "libreoffice-am-ui.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-ui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+      "sha256": "58e8087d71f01c78f53b3440a60db40246e4795b5326dcb894afaaa57f32d110",
+      "bytes": 910384,
+      "retrieval": "Reused complete commit-pinned snapshot; bytes copied from prior same-day packet and SHA-256 recomputed against its recorded provenance. No successful fresh retrieval is claimed for this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/libreoffice-am-ui.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/sources.json",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de"
+    },
+    {
+      "file": "android-gallery2-en.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-gallery2-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values/strings.xml?format=TEXT",
+      "sha256": "6dd4606186f7ae3b18de3f75af77caf3ad6ed058e28fa6d91ecb23b48876565a",
+      "bytes": 64038,
+      "retrieval": "Reused complete commit-pinned snapshot; bytes copied from prior same-day packet and SHA-256 recomputed against its recorded provenance. No successful fresh retrieval is claimed for this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/android-gallery2-en.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/sources.json",
+      "pin": "c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb"
+    },
+    {
+      "file": "android-gallery2-am.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-gallery2-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+      "sha256": "248cc8e0fa60e39535054a90dbc3ee3852aafabe7f57e435cf4417975de77601",
+      "bytes": 44609,
+      "retrieval": "Reused complete commit-pinned snapshot; bytes copied from prior same-day packet and SHA-256 recomputed against its recorded provenance. No successful fresh retrieval is claimed for this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/android-gallery2-am.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/sources.json",
+      "pin": "c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb"
+    },
+    {
+      "file": "android-settings-en.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT",
+      "sha256": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e",
+      "bytes": 1135503,
+      "retrieval": "Reused complete commit-pinned snapshot; bytes copied from prior same-day packet and SHA-256 recomputed against its recorded provenance. No successful fresh retrieval is claimed for this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/sources.json",
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3"
+    },
+    {
+      "file": "android-settings-am.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+      "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6",
+      "bytes": 890123,
+      "retrieval": "Reused complete commit-pinned snapshot; bytes copied from prior same-day packet and SHA-256 recomputed against its recorded provenance. No successful fresh retrieval is claimed for this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-text-geometry-draft-20261024/lexical-evidence/sources.json",
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3"
+    },
+    {
+      "file": "project-en-strings.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/project-en-strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml",
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+      "bytes": 80549,
+      "retrieval": "Copied complete canonical XML from the current source dossier supplied by the parent. Recomputed SHA-256 and Git blob match source-bindings.json. This lexical task did not refetch production.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/source/Paintroid/src/main/res/values/strings.xml",
+      "pin": "66be61df27c5359bffc32d56db21f3949899f873",
+      "role": "Canonical English key/value and attribute evidence, not external lexical authority."
+    }
+  ],
+  "date": "2026-10-24",
+  "schema": "amharic-dimensions-draft-v1",
+  "unit_placeholder_check": "Exactly one %1$s is preserved in each of four templates. Visible labels substitute literal px/%; accessibility templates substitute translated unit nouns. Unit resources have no placeholders. English upper/lowercase variants retain separate keys, even if Amharic values match."
+}

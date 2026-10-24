@@ -1,0 +1,429 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "author_reconciliation": "Accept six unchanged lexical/static retentions and preserve both new complete-spoken-label holds ui_width_in/ui_height_in. No proven mistranslation, grammatical defect or replacement. Bare-unit retentions do not clear held compositions or plural measure-word questions. Original drafts unchanged.",
+  "ready_reviewed_candidates": [
+    {
+      "key": "string/ui_pixels",
+      "English": "Pixels",
+      "English_sha256": "48b027ebcdab5067b2f39188207faa13921c025d8fd8282f5976ceb94149d642",
+      "candidate_XML_text": "\"ፒክሰሎች\"",
+      "candidate_XML_text_sha256": "995eb4b9165b940a62b910949c0e99396cf45da0d6451aa90e4ada9253b74140",
+      "candidate_display_text": "ፒክሰሎች",
+      "candidate_display_sha256": "8201371b5dc132f57d961527d59a1da3e321bbef8312f1205b5e149b67f20c9a",
+      "candidate_element_sha256": "868aed6965276fa85f854aa725cd2a10f53ca7a21e84696f7bd7ad99f95b264f",
+      "placeholder_count": 0,
+      "English_source_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L301",
+      "decision": "retain",
+      "confidence": "medium-high lexical and contextual",
+      "reason": "The AOSP paired camera records attest the exact plural ፒክሰሎች. Removing the explicit camera quantity leaves the generic unit without introducing a resize, crop, normalization, DPI or screen-density meaning. A bare plural is suitable for the unit choice. This is a justified component extraction, not an exact standalone AOSP label. LibreOffice alternatives are not silently normalized.",
+      "evidence": [
+        {
+          "record_id": "pixels_aosp_13mp",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 255,
+          "evidence_role": "positive lexical component evidence"
+        },
+        {
+          "record_id": "pixels_aosp_4mp",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 258,
+          "evidence_role": "positive lexical component evidence"
+        },
+        {
+          "record_id": "pixels_lo_plural",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+          "snapshot_line": 32968,
+          "evidence_role": "alternative unit-label evidence"
+        },
+        {
+          "record_id": "pixels_lo_ui_variant",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 22253,
+          "evidence_role": "alternative spelling evidence"
+        }
+      ],
+      "alternatives": [
+        {
+          "draft": "ፒክስሎች",
+          "note": "Exact LibreOffice standalone plural variant; not the selected project/AOSP spelling family."
+        }
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L30-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L50-L61",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L96-L108",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L39-L50"
+      ],
+      "release_or_native_acceptance": false,
+      "implementation_status": "not implemented",
+      "follow_up": "No textual revision requested by this review. Keep exact key and source contract; usual native, rendering and runtime validation remains outside this review.",
+      "ready_XML_element": "<string name=\"ui_pixels\">\"ፒክሰሎች\"</string>"
+    },
+    {
+      "key": "string/ui_percent",
+      "English": "Percent",
+      "English_sha256": "716d633b125adb76832f17bee5bce63be33094820cd46ef1222cec4a7ae8eb58",
+      "candidate_XML_text": "\"ፐርሰንት\"",
+      "candidate_XML_text_sha256": "ea81e985913506c1413427b1fbbe504e0ae4ac7cbc3c0507b411c26db488ea76",
+      "candidate_display_text": "ፐርሰንት",
+      "candidate_display_sha256": "efa86045b92ae7519efde8ca8c0742e113c1cd582892dc4ccc549ba785c80756",
+      "candidate_element_sha256": "f30c3b7e4028034dcce08c4868a24aa92069eec35a8d7524484b7ab138b73265",
+      "placeholder_count": 0,
+      "English_source_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L296",
+      "decision": "retain",
+      "confidence": "high lexical; medium-high contextual",
+      "reason": "LibreOffice has an exact nonfuzzy Percent label with ፐርሰንት in two contexts. The candidate names the unit alone, so it survives every inspected percentage baseline. The AOSP native alternative መቶኛ is legitimate but is not evidence that this loanword is wrong.",
+      "evidence": [
+        {
+          "record_id": "percent_lo_category",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 37,
+          "evidence_role": "positive exact unit-label evidence"
+        },
+        {
+          "record_id": "percent_lo_command",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+          "snapshot_line": 4250,
+          "evidence_role": "corroborating exact unit-label evidence"
+        },
+        {
+          "record_id": "percent_aosp_native_variant",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 524,
+          "evidence_role": "alternative native percent noun evidence"
+        },
+        {
+          "record_id": "percent_aosp_preposition_variant",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 2688,
+          "evidence_role": "alternative native noun and preposition evidence"
+        }
+      ],
+      "alternatives": [
+        {
+          "draft": "መቶኛ",
+          "note": "Native AOSP alternative attested inside accessibility and settings phrases. If adopted, review the standalone and interpolated keys together rather than mix families."
+        }
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L30-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L29-L36",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L50-L61",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L96-L108",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L39-L50"
+      ],
+      "release_or_native_acceptance": false,
+      "implementation_status": "not implemented",
+      "follow_up": "No textual revision requested by this review. Keep exact key and source contract; usual native, rendering and runtime validation remains outside this review.",
+      "ready_XML_element": "<string name=\"ui_percent\">\"ፐርሰንት\"</string>"
+    },
+    {
+      "key": "string/ui_pixels_6ec9c2",
+      "English": "pixels",
+      "English_sha256": "6ec9c2b0eb14010746c8bce8939303b382344b296206612eb8a907a37b2b2f37",
+      "candidate_XML_text": "\"ፒክሰሎች\"",
+      "candidate_XML_text_sha256": "995eb4b9165b940a62b910949c0e99396cf45da0d6451aa90e4ada9253b74140",
+      "candidate_display_text": "ፒክሰሎች",
+      "candidate_display_sha256": "8201371b5dc132f57d961527d59a1da3e321bbef8312f1205b5e149b67f20c9a",
+      "candidate_element_sha256": "34ff36c173b1ca4dca0a47c5cac7f0a76acace45a83fefdd6ae04090987bdb1a",
+      "placeholder_count": 0,
+      "English_source_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L302",
+      "decision": "retain",
+      "confidence": "medium-high lexical; complete spoken phrase pending",
+      "reason": "Retain the exact attested plural as a bare unit resource. It has no preposition, number, screen-density meaning or fixed baseline. It can be combined with the template without duplicated በ. This lexical retention does not clear the held Width/Height-in compositions; whether a singular measure-word is more idiomatic in those phrases remains open.",
+      "evidence": [
+        {
+          "record_id": "pixels_aosp_13mp",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 255,
+          "evidence_role": "positive lexical component evidence"
+        },
+        {
+          "record_id": "pixels_aosp_4mp",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 258,
+          "evidence_role": "positive lexical component evidence"
+        },
+        {
+          "record_id": "pixels_lo_in_unit",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 22259,
+          "evidence_role": "grammatical component evidence"
+        },
+        {
+          "record_id": "units_aosp_attached_preposition",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 423,
+          "evidence_role": "grammatical component evidence"
+        }
+      ],
+      "alternatives": [],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87"
+      ],
+      "release_or_native_acceptance": false,
+      "implementation_status": "not implemented",
+      "follow_up": "No textual revision requested by this review. Keep exact key and source contract; usual native, rendering and runtime validation remains outside this review.",
+      "ready_XML_element": "<string name=\"ui_pixels_6ec9c2\">\"ፒክሰሎች\"</string>"
+    },
+    {
+      "key": "string/ui_percent_fd8671",
+      "English": "percent",
+      "English_sha256": "fd86717aca41c558c78c19ab2b50691179a57ba5200bc7e3317be70efd4043ad",
+      "candidate_XML_text": "\"ፐርሰንት\"",
+      "candidate_XML_text_sha256": "ea81e985913506c1413427b1fbbe504e0ae4ac7cbc3c0507b411c26db488ea76",
+      "candidate_display_text": "ፐርሰንት",
+      "candidate_display_sha256": "efa86045b92ae7519efde8ca8c0742e113c1cd582892dc4ccc549ba785c80756",
+      "candidate_element_sha256": "1c557b82e3d7f1688ecea92b22bed58dde8c89a6a7594ae35cc367912c04fe68",
+      "placeholder_count": 0,
+      "English_source_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L297",
+      "decision": "retain",
+      "confidence": "high lexical; complete spoken phrase pending",
+      "reason": "Retain the same denominator-neutral percent noun. The LibreOffice in-percent prose supports use with በ, and the resource correctly does not contain that preposition itself. English capitalization does not require distinct Amharic values or permit merging the separate keys. Full spoken-label acceptance is withheld with the templates.",
+      "evidence": [
+        {
+          "record_id": "percent_lo_category",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 37,
+          "evidence_role": "positive exact unit-label evidence"
+        },
+        {
+          "record_id": "percent_lo_in_unit",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 8543,
+          "evidence_role": "grammatical component evidence"
+        },
+        {
+          "record_id": "percent_aosp_preposition_variant",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 2688,
+          "evidence_role": "alternative native noun and preposition evidence"
+        }
+      ],
+      "alternatives": [],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87"
+      ],
+      "release_or_native_acceptance": false,
+      "implementation_status": "not implemented",
+      "follow_up": "No textual revision requested by this review. Keep exact key and source contract; usual native, rendering and runtime validation remains outside this review.",
+      "ready_XML_element": "<string name=\"ui_percent_fd8671\">\"ፐርሰንት\"</string>"
+    },
+    {
+      "key": "string/ui_width",
+      "English": "Width (%1$s)",
+      "English_sha256": "26452d4d4e24d067c14d1b46f59743fd2d85a52dc8ec93464008974fe38b89d5",
+      "candidate_XML_text": "\"ስፋት (%1$s)\"",
+      "candidate_XML_text_sha256": "4885032ddde2ca2aecc6827110c59af087491faf6bfe94356c2411c7765785af",
+      "candidate_display_text": "ስፋት (%1$s)",
+      "candidate_display_sha256": "612871284621dc0ed13ffedf9de79df847c629ec4f3225b35214fe3476efefe4",
+      "candidate_element_sha256": "27bee52acb2cdb93b105a5d09ccba5e5f9df54b4b5c26c1efa8fbb6dfc3f6e8d",
+      "placeholder_count": 1,
+      "English_source_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L469",
+      "decision": "retain",
+      "confidence": "high noun evidence; medium-high composed-label confidence",
+      "reason": "The AOSP image-details Width record and LibreOffice graphics Width record agree on ስፋት. Both static results, ስፋት (px) and ስፋት (%), are clear noun-plus-parenthetical-unit labels. There is no unit inflection across the parenthesis boundary. The argument remains a unit token, not a numeric value.",
+      "evidence": [
+        {
+          "record_id": "width_aosp_image",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 128,
+          "evidence_role": "positive exact image-dimension noun evidence"
+        },
+        {
+          "record_id": "width_lo_graphics",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+          "snapshot_line": 20603,
+          "evidence_role": "corroborating graphics dimension noun evidence"
+        }
+      ],
+      "alternatives": [],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L50-L61"
+      ],
+      "release_or_native_acceptance": false,
+      "implementation_status": "not implemented",
+      "follow_up": "No textual revision requested by this review. Keep exact key and source contract; usual native, rendering and runtime validation remains outside this review.",
+      "ready_XML_element": "<string name=\"ui_width\">\"ስፋት (%1$s)\"</string>"
+    },
+    {
+      "key": "string/ui_height",
+      "English": "Height (%1$s)",
+      "English_sha256": "691378ea0a4b0e5023bf65437a044ade7923f64d6349516079a0607d768619ed",
+      "candidate_XML_text": "\"ቁመት (%1$s)\"",
+      "candidate_XML_text_sha256": "479b99cc3edf33d8f6de233a16760e7a9d1921be978706c368adb4e650e5753a",
+      "candidate_display_text": "ቁመት (%1$s)",
+      "candidate_display_sha256": "5885d4fe8b0b54fc7d9fb94e837e0663debfda38c5a13c52e86e5318a768f893",
+      "candidate_element_sha256": "98e1a93ef10f2b144799a829d3d3fae56624619018127de6a47dd7d8a1b5261a",
+      "placeholder_count": 1,
+      "English_source_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L218",
+      "decision": "retain",
+      "confidence": "high image-noun evidence; medium-high composed-label confidence",
+      "reason": "The exact paired AOSP image-details Height record supports ቁመት in this image-dimension context. Both ቁመት (px) and ቁመት (%) retain that meaning without action or area semantics. LibreOffice እርዝመት remains a genuine alternative, but the more directly paired image evidence supports retaining the proposed noun rather than forcing a revision.",
+      "evidence": [
+        {
+          "record_id": "height_aosp_image",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 129,
+          "evidence_role": "positive exact image-dimension noun evidence"
+        },
+        {
+          "record_id": "height_lo_graphics_variant",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+          "snapshot_line": 20621,
+          "evidence_role": "alternative graphics dimension noun evidence"
+        }
+      ],
+      "alternatives": [
+        {
+          "draft": "እርዝመት (%1$s)",
+          "note": "Original template composition using the exact LibreOffice graphics Height noun. Not selected because AOSP provides an exact image-details Height counterpart."
+        }
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L50-L61"
+      ],
+      "release_or_native_acceptance": false,
+      "implementation_status": "not implemented",
+      "follow_up": "No textual revision requested by this review. Keep exact key and source contract; usual native, rendering and runtime validation remains outside this review.",
+      "ready_XML_element": "<string name=\"ui_height\">\"ቁመት (%1$s)\"</string>"
+    }
+  ],
+  "held_proposals_this_group": [
+    {
+      "key": "string/ui_width_in",
+      "English": "Width in %1$s",
+      "English_sha256": "3297aa59eb3953cb425c7ae48189df1234f398453e2f481339806861eeb4e604",
+      "candidate_XML_text": "\"ስፋት በ%1$s\"",
+      "candidate_XML_text_sha256": "f09978dd693620c5aea2ea702aa42b4d1f71f6d1cb39822f7da9e64bbbd5f1ff",
+      "candidate_display_text": "ስፋት በ%1$s",
+      "candidate_display_sha256": "e3e29c593ffe6cc0654bdee080fc3d10d5271032e7fca6710d5ae14ecedd5d0a",
+      "candidate_element_sha256": "8c1bc132f390971e5959bd07d7938d37c5fde8569ac463254c9ee436171c1b50",
+      "placeholder_count": 1,
+      "English_source_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L470",
+      "decision": "hold",
+      "confidence": "medium semantic plausibility; insufficient complete-label idiom confidence",
+      "reason": "The two results are semantically intelligible: ስፋት በፒክሰሎች and ስፋት በፐርሰንት. The attached በ is structurally plausible, occurs exactly once, and is supported by AOSP unit-preposition usage. However, the preserved pixel/percent precedents are finite prose, and the AOSP seconds example is an imperative. They do not settle the naturalness of this noun-first short accessibility label or the plural versus singular pixel measure-word in it. Supplemental LibreOffice width-as-percentage prose corroborates the sequence but still does not settle the label idiom. Hold the exact candidate, do not invent a replacement or call it incorrect.",
+      "evidence": [
+        {
+          "record_id": "width_aosp_image",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 128,
+          "evidence_role": "positive exact image-dimension noun evidence"
+        },
+        {
+          "record_id": "pixels_lo_in_unit",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 22259,
+          "evidence_role": "grammatical component evidence"
+        },
+        {
+          "record_id": "percent_lo_in_unit",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 8543,
+          "evidence_role": "grammatical component evidence"
+        },
+        {
+          "record_id": "units_aosp_attached_preposition",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 423,
+          "evidence_role": "grammatical component evidence"
+        }
+      ],
+      "alternatives": [],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87"
+      ],
+      "release_or_native_acceptance": false,
+      "implementation_status": "not implemented",
+      "follow_up": "A competent Amharic reviewer should assess both complete unit expansions as short accessibility labels, including noun order and singular/plural pixel measure-word choice. Review both dimension templates and both bare unit resources together; runtime speech remains a separate later check.",
+      "ready_XML_element": null
+    },
+    {
+      "key": "string/ui_height_in",
+      "English": "Height in %1$s",
+      "English_sha256": "193af0dda260fe2967e99a5c3eda5b77eb36345e9283f09aa6f7c92148fa4112",
+      "candidate_XML_text": "\"ቁመት በ%1$s\"",
+      "candidate_XML_text_sha256": "a4b146f3e07107aa8478242d392e6686ffc0c9a9406a131cebf58b09f578ed43",
+      "candidate_display_text": "ቁመት በ%1$s",
+      "candidate_display_sha256": "1a86276fc8cef5bf4f6fc1759b1649eaa5fc4cffcc8c2061176b92128fe625ec",
+      "candidate_element_sha256": "86cb466d71b4560ca8ab996c78490c4dc432548ee63523cf5bae9608dba9fcb5",
+      "placeholder_count": 1,
+      "English_source_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L219",
+      "decision": "hold",
+      "confidence": "medium semantic plausibility; insufficient complete-label idiom confidence",
+      "reason": "The results ቁመት በፒክሰሎች and ቁመት በፐርሰንት preserve height and the intended units. Placeholder, preposition and bare-noun integration are structurally sound. Whole-label naturalness and pixel measure-word choice remain unresolved for the same reason as Width-in; the additional height-as-percentage prose uses the alternative እርዝመት, not this exact noun. Hold this candidate and retain that alternative for a coordinated contextual decision. No grammatical defect is proved and no stronger replacement is established.",
+      "evidence": [
+        {
+          "record_id": "height_aosp_image",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 129,
+          "evidence_role": "positive exact image-dimension noun evidence"
+        },
+        {
+          "record_id": "height_lo_graphics_variant",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+          "snapshot_line": 20621,
+          "evidence_role": "alternative graphics dimension noun evidence"
+        },
+        {
+          "record_id": "pixels_lo_in_unit",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 22259,
+          "evidence_role": "grammatical component evidence"
+        },
+        {
+          "record_id": "percent_lo_in_unit",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+          "snapshot_line": 8543,
+          "evidence_role": "grammatical component evidence"
+        },
+        {
+          "record_id": "units_aosp_attached_preposition",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+          "snapshot_line": 423,
+          "evidence_role": "grammatical component evidence"
+        }
+      ],
+      "alternatives": [
+        {
+          "draft": "እርዝመት በ%1$s",
+          "note": "Original full composition using LibreOffice Height; would require joint review with ui_height and both substituted unit forms."
+        }
+      ],
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L76-L87"
+      ],
+      "release_or_native_acceptance": false,
+      "implementation_status": "not implemented",
+      "follow_up": "A competent Amharic reviewer should assess both complete unit expansions as short accessibility labels, including noun order and singular/plural pixel measure-word choice. Review both dimension templates and both bare unit resources together; runtime speech remains a separate later check.",
+      "ready_XML_element": null
+    }
+  ],
+  "counts": {
+    "this_group_ready": 6,
+    "prior_ready": 60,
+    "accumulated_ready_candidates": 66,
+    "held_proposals_this_group": 2,
+    "prior_held_proposals": 6,
+    "total_held_proposals": 8,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717
+  },
+  "prior60_locator": "https://github.com/c933103/AN-Paint/blob/c9d8c74a73784f4ed02a40cea50a4b711d78c62b/records/localization-review/2026-10-24/amharic-text-geometry/r01/reviewed-candidates-and-holds.json",
+  "scope_limits": [
+    "ui_pixels_6ec9c2 and ui_percent_fd8671 retain lexical-only scope; do not infer full spoken-template acceptance or implementation readiness of their compositions.",
+    "Four full spoken expansions remain held for complete-label idiom and pixel singular/plural measure choice. Exact placeholder and semantic checks do not resolve these linguistic questions.",
+    "The holds are reviewer confidence limits, not an exact-corpus-match policy or proof of wrong wording. No alternative accepted.",
+    "Shared generic units remain baseline-neutral across dimensions, cropping and normalization. DimensionControls original means its supplied baseline, not necessarily an untouched historical file.",
+    "Reviewer verified18 source copies,43 input files,16 records/24 fragments and8 substitutions. Static checking is not app formatter execution or native/accessibility acceptance.",
+    "Reviewer did not fetch production; eight external lexical snapshots remain reused pinned bytes. Supplemental live LO language pages differ in displayed version and are not a same-revision bilingual pair."
+  ]
+}
