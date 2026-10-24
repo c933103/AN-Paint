@@ -1,0 +1,49 @@
+{
+  "review_date_utc": "2026-10-24",
+  "language": "Amharic",
+  "locale": "am",
+  "key": "string/ui_done",
+  "english": "Done",
+  "previous_status": "hold",
+  "previous_candidate": "ተከናውኗል",
+  "decision": "release_hold_retain_unchanged",
+  "accepted_candidate": "ተከናውኗል",
+  "evidence_correction": "Ten direct Done references occur in seven files, not the eight stated by the author packet. The 36-reference/17-file common-control total is unchanged.",
+  "replacement": null,
+  "status": "ready_after_independent_adjudication",
+  "hold_remains": false,
+  "confidence": {
+    "exact_attestation_and_observed_convention": "high",
+    "fit_to_inspected_contexts": "moderate-to-high",
+    "native_reader_certification": false
+  },
+  "reason": "The exact Amharic label is independently verified in a pinned AOSP failed-install interface with a finish-only callback. This closes the contextual gap between generic lexical evidence and the failure-acknowledgement reading. All ten current direct uses and both indirect vertical-card paths remain compatible with interaction completion, including the validated save-before-close editor.",
+  "english_change_required": false,
+  "english_source_defect_established": false,
+  "production_change_made": false,
+  "review_counts": {
+    "retain_unchanged": 1,
+    "revise": 0,
+    "keep_held": 0
+  },
+  "ledger_effect": {
+    "ready_delta": 1,
+    "held_delta": -1,
+    "implementation_delta": 0,
+    "separate_pending_90_packet_changed": false,
+    "baseline_ready": 102,
+    "baseline_held": 6,
+    "resulting_ready_if_no_concurrent_change": 103,
+    "resulting_held_if_no_concurrent_change": 5
+  },
+  "source": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L137",
+  "limits": [
+    "Source-bound static and linguistic adjudication, not native-reader certification or a comprehension study.",
+    "No exact external translation of AN-Paint's full failure sentence.",
+    "AOSP product corroboration is not an unrelated translation authority.",
+    "No independent live AN-Paint branch-head re-fetch in this review.",
+    "No implementation, rendered app check, runtime/accessibility test, build, CI, deployment or release."
+  ],
+  "evidence_file": "bounded-evidence.json",
+  "report_file": "ADJUDICATION.md"
+}

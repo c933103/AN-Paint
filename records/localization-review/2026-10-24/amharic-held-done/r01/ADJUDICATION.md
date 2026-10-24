@@ -1,0 +1,46 @@
+# Independent adjudication: Amharic Done
+
+Date: 24 October 2026. Scope: `string/ui_done` only.
+
+## Decision
+
+**Release the evidence hold and retain ተከናውኗል unchanged for English Done.** This is accepted translation-review wording, not an application release or a claim of implementation. No replacement or English-source change is warranted by the evidence inspected.
+
+Confidence is **high in exact spelling and the demonstrated Android failure-dismissal convention**, and **moderate-to-high in contextual suitability across the inspected AN-Paint consumers**. This is an evidence-based linguistic judgment, not native-reader certification or a measured comprehension result.
+
+## Why the earlier gap is now closed
+
+The [original review](https://github.com/c933103/AN-Paint/tree/b808034de4d1f3081b02176f5b5a355ac1057d38/records/localization-review/2026-10-24/amharic-dialog-controls/r01) already accepted strong lexical attestation from Settings and Gallery2. Its hold concerned the completed-result form beside an unsuccessful save/restore, not an established mistranslation. Counting another identical translation would not, by itself, resolve that concern.
+
+The new PackageInstaller evidence is materially different. I independently retrieved and compared its complete pinned English and Amharic resources, layout, and installation activity. The chain is coherent:
+
+1. [English `done`](https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/values/strings.xml#21) and [Amharic `done`](https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/values-am/strings.xml#22) pair Done with ተከናውኗል.
+2. [The layout](https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/layout/op_progress.xml#45) assigns that resource to the actual Done button; [activity initialization](https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/src/com/android/packageinstaller/InstallAppProgress.java#226) binds the layout and control.
+3. [The generic failure branch](https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/src/com/android/packageinstaller/InstallAppProgress.java#120) presents failed-install text, hides Launch, and exposes Done. The [Amharic failure resource](https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/values-am/strings.xml#34) is separate from the button.
+4. [Done's callback](https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/src/com/android/packageinstaller/InstallAppProgress.java#294) finishes the activity. It does not retry installation, launch the application, or change failure into success. The insufficient-storage dialog and automatic return-result route are outside this observed button path.
+
+This supplies positive target-language interface usage for completing an interaction with a failed outcome. My inference is that the conventional button reading is compatible with AN-Paint's failure acknowledgements. The completed-result construction alone does not require interpreting it as a successful save/restore assertion. The evidence does not prove every reader will interpret either product identically, and AOSP is not infallible. Nevertheless, requiring an externally attested copy of AN-Paint's exact sentence or a human certificate would impose a new gate rather than resolve the identified evidence question.
+
+The [Microsoft Amharic guide, page 42](https://download.microsoft.com/download/6/2/a/62a993f1-d3b2-4f28-b3e7-22965eb91426/amh-eth-styleguide.pdf#page=42), visually checked, permits noun or conjugated-verb button forms. This is secondary, generic guidance, not independent approval of this word. The decision rests on the contextual Android evidence, not on treating a style-guide example as approved terminology.
+
+## Full-context fit
+
+The independent literal-resource scan reproduces **36 common-control references across 17 files**, including **all 10 Done references across seven files**. The proposal's eight-file figure is a clerical overcount; seven is the independently verified count. Only Done is re-adjudicated. Every Done occurrence and both production feedback-card instantiation chains were inspected.
+
+- The [restore-failure notice](https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L231-L240) dismisses; the [session-failure notice](https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L49-L66) finishes its activity. Neither retries nor declares success. The [body text](https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L701) expressly identifies the failure and suggests trying again. Done ends the current interaction; it does not perform that retry.
+- About, language-settings, and legal views close. Legal Done does not accept an agreement. [Drawing settings](https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1553-L1572) apply changes through toggle/slider callbacks before Done closes the form.
+- [GalleryCredits](https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L100-L146) is not dismissal-only: Done validates and attempts the current edit, then closes only on success. A validation or I/O failure leaves the editor open. Save remains a separate stay-open action. Caller persistence, document/result updates, and dismissal cleanup were inspected; later cleanup can still fail. Done requests completion rather than guaranteeing prior or future durability.
+- The gallery and legacy-credit viewers finish independently of their other actions. Already accepted edits are not undone; lifecycle draft preservation/cleanup and the posted-download guard still apply. A previously queued legacy export can continue. The label does not certify an export or introduce a new save/insertion operation.
+- Both [vertical feedback controls](https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L70-L89) invoke their injected dismiss action, including the compact accessibility-labelled equivalent. The notification path removes its notice and timers. The additional [tooltip path](https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTooltip.kt#L151-L170) removes its overlay and clears bindings/listeners, not the described tool action. Both production paths require a vertical UI profile. [Ordinary Amharic is horizontal](https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L20-L40); these are shared-key semantics, not evidence of normal Amharic display of those cards.
+
+The same interaction-completion convention accommodates failure acknowledgement, neutral viewing, live settings, and validated save-and-close. Replacing unchanged Done globally with Close, OK, or Save would overfit one caller. No stronger replacement is established, and no English-label defect is demonstrated. If a source defect is established later, correct English first, flag the affected term across languages, and review them individually rather than silently compensating in Amharic.
+
+## Boundaries and record effect
+
+The current source's Amharic resource still lacks this key. The review changes **one held candidate to ready**, with **zero implementations**; it does not change the separate pending 90-key packet. From the supplied baseline alone, that is 102 → 103 ready and 6 → 5 held. Reconcile any concurrent decisions before using those aggregate totals.
+
+The full supplied main Kotlin/Java/XML source corpus was independently checked against its recorded Git identities and tree membership. This adjudication did not independently re-fetch the live AN-Paint branch head; all conclusions are bounded to the linked source revision. A literal scan does not establish absence of arbitrary reflective or generated references.
+
+Settings and Gallery2 remain reused evidence, not newly discovered or freshly retrieved here. PackageInstaller is another AOSP product, not an unrelated translation authority. Its operation differs from image-credit saving/restoration; no exact external match of AN-Paint's failure sentence is claimed.
+
+No production resource edit, rendered application check, runtime/accessibility test, build, CI, Work-task launch, deployment, or release was performed or authorized by this adjudication. The former contextual evidence hold is resolved; implementation and applicable product verification remain separate work.

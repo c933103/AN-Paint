@@ -1,0 +1,13 @@
+# Done: unchanged candidate adopted and count correction
+
+Author reconciliation accepts the independent release of **ui_done**, English **Done**, exact unchanged candidate **ተከናውኗል**. The [original dialog-controls hold](https://github.com/c933103/AN-Paint/tree/b808034de4d1f3081b02176f5b5a355ac1057d38/records/localization-review/2026-10-24/amharic-dialog-controls/r01) remains historical. The author packet is preserved unchanged; this addendum corrects its clerical eight-file claim: **10 direct Done references span seven files**. The broader **36 common-control references across 17 files** is unchanged. This correction changes no resource count or linguistic scope.
+
+New exact AOSP PackageInstaller evidence traces English/Amharic resources through the actual layout, generic installation-failure branch and finish-only Done callback. It supports interaction completion despite an unsuccessful operation, not a successful-save assertion. Settings/Gallery2 are reused evidence; another AOSP product is not an unrelated translation authority. No external duplicate of AN Paint's complete failure sentence is required or claimed.
+
+All ten direct uses and both indirect notification/tooltip feedback-card paths were inspected. GalleryCredits validates and saves before closing only on success; other uses dismiss or finish without undoing prior accepted edits, certifying exports or retrying failures. Vertical-card paths are shared semantics, not ordinary horizontal Amharic display. No English-source defect is established.
+
+Confidence is high in spelling/observed failure-dismissal convention and moderate-to-high across inspected contexts, not native-reader or comprehension-study certification. Source binding: 66be61df27c5359bffc32d56db21f3949899f873, tree 870c5a584120d92710be516af0dc3b3847b183d9. Independent adjudication checked the supplied complete tree/source identities but did not independently refetch the live project head. Literal scans do not exclude arbitrary generated/reflected references.
+
+Apply this decision once: **103 reviewed ready additions, 5 held proposals, zero implemented**. Pending 90-value implementation batch remains exactly unchanged; this candidate is outside it. Production remains 12 present / 705 missing of 717 canonical containers. No whole-language acceptance total is inferred.
+
+Public package contains only three permitted independent artifacts, this reconciliation/count-correction addendum, and public-only manifest/seal. Local-only material and metadata are intentionally omitted. Prior records/history/index entries remain unchanged. No Work task, production edit, build, test, CI, release or runtime/rendering/accessibility certification.

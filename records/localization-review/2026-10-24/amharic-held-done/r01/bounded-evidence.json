@@ -1,0 +1,223 @@
+{
+  "key": "string/ui_done",
+  "decision": "release_hold_retain_unchanged",
+  "accepted_candidate": "ተከናውኗል",
+  "evidence_status": "independently_checked_for_this_adjudication",
+  "primary_evidence": [
+    {
+      "id": "packageinstaller_failure_done",
+      "new_or_reused": "new contextual evidence",
+      "publisher": "Android Open Source Project",
+      "locators": [
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/values/strings.xml#21",
+          "locator": "done, line 21",
+          "bounded_excerpt": "Done"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/values-am/strings.xml#22",
+          "locator": "done, line 22",
+          "bounded_excerpt": "ተከናውኗል"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/layout/op_progress.xml#45",
+          "locator": "lines 45–52, done_button",
+          "bounded_excerpt": "android:text=\"@string/done\""
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/src/com/android/packageinstaller/InstallAppProgress.java#120",
+          "locator": "lines 120–142, failure status and Done listener",
+          "bounded_excerpt": "centerTextLabel = R.string.install_failed;"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/values/strings.xml#50",
+          "locator": "install_failed, line 50",
+          "bounded_excerpt": "App not installed."
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/res/values-am/strings.xml#34",
+          "locator": "install_failed, line 34",
+          "bounded_excerpt": "ትግበራ አልተጫነም።"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/src/com/android/packageinstaller/InstallAppProgress.java#226",
+          "locator": "lines 226–261, activity layout and button binding"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/PackageInstaller/+/e1f563871cc343d9487a68d8df0ddef366e1e551/src/com/android/packageinstaller/InstallAppProgress.java#294",
+          "locator": "lines 294–303, Done versus Launch",
+          "bounded_excerpt": "finish();"
+        }
+      ],
+      "finding": "The error branch shows the failed-install status, hides Launch, and exposes the same Done button as success. Clicking Done finishes the activity; it does not install again or change the failure result. Insufficient-storage uses a different dialog, so this claim is limited to the generic failure branch.",
+      "limitation": "Another AOSP product, not a new independent translation authority or a native-reader study. Different operation from image-credit save/restore; an actual failure-dismissal analogue, not an exact AN-Paint sentence match."
+    },
+    {
+      "id": "prior_aosp_done_pairs",
+      "new_or_reused": "reused original lexical evidence, not newly discovered",
+      "locators": [
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml#577",
+          "locator": "done, line 577",
+          "bounded_excerpt": "Done"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml#248",
+          "locator": "done, line 248",
+          "bounded_excerpt": "ተከናውኗል"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values/strings.xml#286",
+          "locator": "done, line 286",
+          "bounded_excerpt": "Done"
+        },
+        {
+          "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml#121",
+          "locator": "done, line 121",
+          "bounded_excerpt": "ተከናውኗል"
+        }
+      ],
+      "finding": "Exact spelling and generic Android command convention. These original pairs alone did not resolve the earlier failure-notice question."
+    },
+    {
+      "id": "microsoft_button_grammar",
+      "new_or_reused": "new application to this hold; guide already existed in project research",
+      "publisher": "Microsoft",
+      "locators": [
+        {
+          "url": "https://download.microsoft.com/download/6/2/a/62a993f1-d3b2-4f28-b3e7-22965eb91426/amh-eth-styleguide.pdf#page=42",
+          "locator": "Amharic Style Guide, printed/PDF page 42, Buttons",
+          "bounded_excerpt": "Typically, buttons should be a noun or a conjugated verb."
+        },
+        {
+          "url": "https://download.microsoft.com/download/6/2/a/62a993f1-d3b2-4f28-b3e7-22965eb91426/amh-eth-styleguide.pdf#page=40",
+          "locator": "printed/PDF page 40, Menu Items and Commands"
+        }
+      ],
+      "finding": "The button guidance is not a universal requirement to turn every button into an imperative. Page 40 gives a typical imperative convention for commands/menu items; page 42 separately permits noun or conjugated-verb buttons. This is generic product guidance, not approval of this exact Done label.",
+      "limitation": "Does not independently prove the interpretation of this exact Amharic word. Its examples are illustrative, not approved terminology."
+    }
+  ],
+  "current_project_contexts": [
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L166",
+      "meaning_and_effect": "Finishes viewing the language-settings chooser. The null negative listener closes it; a different row callback opens the picker, whose selection changes the language. Done does not apply a pending choice.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L162-L166",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L185-L197"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L239",
+      "meaning_and_effect": "Acknowledges/dismisses the credit-session restore exception. The preceding attempt failed. The null positive listener neither retries nor saves, restores or marks success. The saved session token is not cleared by this button.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L231-L240",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt#L118-L152"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L892",
+      "meaning_and_effect": "Closes the About/credits chooser. The item-selection listener invokes a chosen action; the separate Done button has no such action.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L877-L892"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1572",
+      "meaning_and_effect": "Closes drawing/magnifier settings. Toggle/slider callbacks have already applied changes, invalidated the canvas and scheduled autosave. Done is not a new save command and does not roll back those effects.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1553-L1572"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L135",
+      "meaning_and_effect": "The on-show handler replaces the nominal null listener. Done calls save(), then dismisses only on true. save() validates the field, invokes the caller onEdit, and catches size/I/O failure as false while leaving the dialog open. It requests accepting the current field and finishing the editor, not a report that saving already succeeded. Dismissal calls onDismiss unless preserving for recreation.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L100-L146",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1462-L1488",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L235-L248",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/CreditEditSession.kt#L31-L46",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L101-L122"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L127",
+      "meaning_and_effect": "Finishes the legacy-credit viewer. Add-to-image and Save-text are separate actions; Done does not create an export or claim an earlier export succeeded. Activity destruction shuts down the worker after queued work; it is not a blanket rollback.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L96-L127",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L131-L164"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L122",
+      "meaning_and_effect": "Dismisses the legal/about notice dialog. onDismiss unregisters its configuration callback. No agreement acceptance or save is attached.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L82-L137"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L63",
+      "meaning_and_effect": "Acknowledges a failed create/open credit session and calls finish(). The failure branch returns before gallery setup; original file/intent is preserved for explicit recovery. This is not retry or successful restoration.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L49-L66",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L435-L441"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L114",
+      "meaning_and_effect": "Finishes the gallery view. Already accepted credit edits can have set an activity result independently. Lifecycle preservation and cleanup still run; an unaccepted, draftless, unhanded-back session may be discarded. A posted download cannot insert after the activity is finishing. Done is not a fresh save, insertion, or universal undo.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L100-L114",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L235-L248",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L396-L404",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L409-L441"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "occurrence": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L73",
+      "meaning_and_effect": "The visible Done text and compact icon accessible name share this one resource reference; both call the injected dismiss lambda. Two production instantiators exist: LocaleNotification and VerticalTooltipOverlay. Both lead to removal/cleanup of their own notice, not to the operation described in its text. Both production branches are vertical-only, not ordinary Amharic display paths.",
+      "support": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L70-L89",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L126-L137",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt#L20-L48",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNotification.kt#L40-L57",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNotification.kt#L67-L107",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNotification.kt#L175-L183",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTooltip.kt#L151-L170",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalTooltipOverlay.kt#L21-L34",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalTooltipOverlay.kt#L121-L139",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt#L20-L40"
+      ]
+    }
+  ],
+  "english_notice": {
+    "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L701",
+    "bounded_excerpt": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+    "interpretation": "The body identifies the failure and suggests a later retry. The Done control ends the current notice; it does not execute that retry."
+  },
+  "independent_checks": {
+    "packageinstaller_four_complete_files_independently_refetched_and_matched": true,
+    "microsoft_button_page_visually_inspected": true,
+    "direct_scan_common_control_references": 36,
+    "direct_scan_common_control_files": 17,
+    "done_direct_references": 10,
+    "done_direct_files": 7,
+    "vertical_card_instantiators": 2,
+    "all_context_entries_independently_inspected": true,
+    "target_locale_key_absent": true,
+    "candidate_nfc": true,
+    "candidate_parses_as_xml": true,
+    "live_project_branch_head_independently_refetched": false
+  },
+  "decision_boundary": "The failure-dismissal analogue plus full context closes the prior evidence hold; it does not prove universal reader interpretation or authorize production implementation."
+}
