@@ -1,0 +1,112 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_ok",
+      "English": "OK",
+      "source_attributes": {
+        "name": "ui_ok"
+      },
+      "source_sha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Positive acknowledgment button on informational/error/help messages, null callback dismisses dialog (ClassicPaintActivity.message, AssemblyActivity.message). Not proof an operation succeeded and not a separate Save/Apply action. Full Help text itself excluded.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1587",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L120"
+      ]
+    },
+    {
+      "key": "string/ui_done",
+      "English": "Done",
+      "source_attributes": {
+        "name": "ui_done"
+      },
+      "source_sha256": "11a6767d5674c7e45f7e00dc525762275b3a48491ad6045427d2609cc496c516",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Generic finish/close-interaction label. Used to close about/legal/language views, exit gallery/legacy screens, dismiss vertical feedback and failure notices. Drawing-setting toggles have already applied live. IMPORTANT GalleryCredits overrides Done to save() then dismiss only on success, so not universally dismissal-only or universally-save. Error notice Done does not certify success.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L239",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L892",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1572",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L127",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L122",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L73",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L166",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L63",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L114",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L135"
+      ]
+    },
+    {
+      "key": "string/ui_cancel",
+      "English": "Cancel",
+      "source_attributes": {
+        "name": "ui_cancel"
+      },
+      "source_sha256": "19766ed6ccb2f4a32778eed80d1928d2c87a18d7c275ccb163ec6709d3eb2e27",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Cancel current interaction, caller-specific semantics. Many negative buttons dismiss before pending changes commit. AdvancedColourDialog restores preview(original) on Cancel; trim_cancel clears trim and refits viewport; ImportSelection cancellation cleans up/calls cancellation path; SaveOptionsDialog invokes supplied cancellation callback; ImageResizeDialog onDismiss cancels if not accepted. Does not guarantee global undo, no side effects, rollback of prior changes or deletion of user source files.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L190",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L96",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L116",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L824",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L909",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L992",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1009",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1054",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1162",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L70",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L120",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L197",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L142",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L308",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L305",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L345",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99"
+      ]
+    },
+    {
+      "key": "string/ui_apply",
+      "English": "Apply",
+      "source_attributes": {
+        "name": "ui_apply"
+      },
+      "source_sha256": "31e392d1c0378beca611de66c0f4c71cba29159905cc54242d9bddee5b23d851",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Confirm/apply current validated input: NumericSlider parses integer/range then changes progress and calls setting callback; ClassicPaintActivity dimensions validates size/budget then creates/resizes canvas and fits view; AssemblyPositionDialog validates nonnegative integral coordinates and changes placement. Invalid values can keep dialog open. Not file Save or unconditional success. Existing Apply to all acceptance does not transfer automatically.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L71"
+      ]
+    }
+  ],
+  "shared_source_chain": "Seventeen direct caller files plus supporting dialog/formatting/document source are complete and current-tree-bound. EditorDialogBuilder in VerticalUi preserves caller-specific button callbacks; VerticalFeedbackCard also calls dismiss directly. Labels are generic affordances, not promises of universal success, save or rollback. Full current methods available; lookup list alone is not the entire review.",
+  "source_gate": "No English defect established. Preserve distinct generic interaction meanings and caller-specific side effects. Any real defect found later must be fixed in English first and tracked across languages, not silently compensated in Amharic.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_containers": 717,
+    "prior_ready": 69,
+    "prior_holds": 11,
+    "new_independent_acceptance": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Original drafts only; independent linguistic/context checking required.",
+    "Bounded current consumer corpus discovered from historical source, not exhaustive fresh repository search.",
+    "No native-reader, rendered, speech, lifecycle, app-execution or release validation.",
+    "Prior69 ready/11holds and all inherited uncertainties remain excluded."
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_ok",
+      "English": "OK",
+      "source_attributes": {
+        "name": "ui_ok"
+      },
+      "source_sha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Positive acknowledgment button on informational/error/help messages, null callback dismisses dialog (ClassicPaintActivity.message, AssemblyActivity.message). Not proof an operation succeeded and not a separate Save/Apply action. Full Help text itself excluded.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1587",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L120"
+      ],
+      "proposed_XML_text": "\"እሺ\"",
+      "proposed_XML_element": "<string name=\"ui_ok\">\"እሺ\"</string>",
+      "proposed_XML_text_sha256": "365549aa2ce043168fd74f6a2b34001031bf1b5a2494629365f73d24291c46d1",
+      "author_status": "review",
+      "rationale": "Use the exact AOSP generic OK label, corroborated by AOSP Gallery2 and LibreOffice stock _OK. Current AN-Paint message helpers attach it to a positive message-acknowledgement button with no application-specific mutation callback. It acknowledges or closes the message; it does not promise success, saving, or acceptance of terms.",
+      "confidence": {
+        "lexical": "high",
+        "contextual": "high",
+        "overall": "high for independent review; not release approval"
+      },
+      "limitations": [
+        "Original author draft for independent review only; not production-ready acceptance, native-reader sign-off, or evidence that an Android rendering/accessibility test passed.",
+        "Static current caller inspection supports the stated role but no runtime interaction or layout validation was performed.",
+        "Other ready drafts and held keys are excluded; no prior acceptance is inherited.",
+        "Gallery2 ok is an operation-control context; it corroborates the label, not the AN-Paint acknowledgement semantics."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_done",
+      "English": "Done",
+      "source_attributes": {
+        "name": "ui_done"
+      },
+      "source_sha256": "11a6767d5674c7e45f7e00dc525762275b3a48491ad6045427d2609cc496c516",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Generic finish/close-interaction label. Used to close about/legal/language views, exit gallery/legacy screens, dismiss vertical feedback and failure notices. Drawing-setting toggles have already applied live. IMPORTANT GalleryCredits overrides Done to save() then dismiss only on success, so not universally dismissal-only or universally-save. Error notice Done does not certify success.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L239",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L892",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1572",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L127",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L122",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L73",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L166",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L63",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L114",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L135"
+      ],
+      "proposed_XML_text": "\"ተከናውኗል\"",
+      "proposed_XML_element": "<string name=\"ui_done\">\"ተከናውኗል\"</string>",
+      "proposed_XML_text_sha256": "63eee6753686763951e76590d7a4cf68133c8a6fa69e17c106e10052f2e89170",
+      "author_status": "review",
+      "rationale": "Retain the exact generic Android Done convention, separately present as an exact label in Gallery2 after a selection interaction. In AN-Paint the common role is finishing the current interaction: some callers only close a screen, drawing settings already change live, GalleryCredits saves and validates before dismissal, and failure notices also use Done. The selected source convention must therefore be reviewed as a completion/exit button, never as an assertion that the failed operation succeeded or that every caller saved.",
+      "confidence": {
+        "lexical": "high",
+        "contextual": "medium",
+        "overall": "medium; special independent semantic review required for error notices"
+      },
+      "limitations": [
+        "Original author draft for independent review only; not production-ready acceptance, native-reader sign-off, or evidence that an Android rendering/accessibility test passed.",
+        "Static current caller inspection supports the stated role but no runtime interaction or layout validation was performed.",
+        "Other ready drafts and held keys are excluded; no prior acceptance is inherited.",
+        "The Amharic form is morphologically completed-result wording. Its exact Android generic-button attestation is strong, but the author cannot independently certify native-reader interpretation on a failed-save notice. Reviewer may hold this key without blocking the other three.",
+        "No numbered Done headword was found in the locally searched glossary; absence is limited to that extraction.",
+        "Done is not always dismissal-only, always-save, or always-successful."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_cancel",
+      "English": "Cancel",
+      "source_attributes": {
+        "name": "ui_cancel"
+      },
+      "source_sha256": "19766ed6ccb2f4a32778eed80d1928d2c87a18d7c275ccb163ec6709d3eb2e27",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Cancel current interaction, caller-specific semantics. Many negative buttons dismiss before pending changes commit. AdvancedColourDialog restores preview(original) on Cancel; trim_cancel clears trim and refits viewport; ImportSelection cancellation cleans up/calls cancellation path; SaveOptionsDialog invokes supplied cancellation callback; ImageResizeDialog onDismiss cancels if not accepted. Does not guarantee global undo, no side effects, rollback of prior changes or deletion of user source files.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L190",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L96",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L116",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L824",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L909",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L992",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1009",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1054",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1162",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L70",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L120",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L197",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L142",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L308",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L305",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L345",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99"
+      ],
+      "proposed_XML_text": "\"ይቅር\"",
+      "proposed_XML_element": "<string name=\"ui_cancel\">\"ይቅር\"</string>",
+      "proposed_XML_text_sha256": "226aefe394b52942fa54be52ff52b89f17fc0de2ec1ce0ebe4adaf06a0f94704",
+      "author_status": "review",
+      "rationale": "Use the exact AOSP generic Cancel control and Gallery2 corroboration. It can dismiss a pending dialog, abort import/save workflow callbacks, exit trim, or restore a color preview, according to the caller. It does not mean global undo or deletion. Prefer this recognizable cancel label over glossary ሰርዝ because both retained AOSP applications separately use ሰርዝ for Delete.",
+      "confidence": {
+        "lexical": "high",
+        "contextual": "high",
+        "overall": "high for independent review; not release approval"
+      },
+      "limitations": [
+        "Original author draft for independent review only; not production-ready acceptance, native-reader sign-off, or evidence that an Android rendering/accessibility test passed.",
+        "Static current caller inspection supports the stated role but no runtime interaction or layout validation was performed.",
+        "Other ready drafts and held keys are excluded; no prior acceptance is inherited.",
+        "Do not describe Cancel as merely dismissal in all callers: AdvancedColourDialog explicitly runs preview(original).",
+        "Do not imply all changes are rolled back: previously committed settings or palette actions are outside a generic cancel guarantee."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_apply",
+      "English": "Apply",
+      "source_attributes": {
+        "name": "ui_apply"
+      },
+      "source_sha256": "31e392d1c0378beca611de66c0f4c71cba29159905cc54242d9bddee5b23d851",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Confirm/apply current validated input: NumericSlider parses integer/range then changes progress and calls setting callback; ClassicPaintActivity dimensions validates size/budget then creates/resizes canvas and fits view; AssemblyPositionDialog validates nonnegative integral coordinates and changes placement. Invalid values can keep dialog open. Not file Save or unconditional success. Existing Apply to all acceptance does not transfer automatically.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L71"
+      ],
+      "proposed_XML_text": "\"ተግብር\"",
+      "proposed_XML_element": "<string name=\"ui_apply\">\"ተግብር\"</string>",
+      "proposed_XML_text_sha256": "6045988e86d12228ed3491846803636d69480f589bc1a073700438f22d065e7a",
+      "author_status": "review",
+      "rationale": "Use AOSP’s exact generic Apply imperative, independently corroborated by glossary entry 149 for putting selected settings or changes into effect. Current exact-key callers validate entered numbers, placement settings, or dimensions before invoking their operation. Apply is an action request, not a completed-success report; invalid values may keep the dialog open.",
+      "confidence": {
+        "lexical": "high",
+        "contextual": "high",
+        "overall": "high for independent review; not release approval"
+      },
+      "limitations": [
+        "Original author draft for independent review only; not production-ready acceptance, native-reader sign-off, or evidence that an Android rendering/accessibility test passed.",
+        "Static current caller inspection supports the stated role but no runtime interaction or layout validation was performed.",
+        "Other ready drafts and held keys are excluded; no prior acceptance is inherited.",
+        "Only exact key ui_apply is covered. ui_apply_to_all, ui_apply_crop, ui_apply_bounds, and ui_apply_to_these_images are separate strings and must not inherit this result.",
+        "A successful click is not guaranteed to complete if validation or an operation fails; translation does not add a success or persistence promise."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    }
+  ],
+  "shared_source_chain": "Seventeen direct caller files plus supporting dialog/formatting/document source are complete and current-tree-bound. EditorDialogBuilder in VerticalUi preserves caller-specific button callbacks; VerticalFeedbackCard also calls dismiss directly. Labels are generic affordances, not promises of universal success, save or rollback. Full current methods available; lookup list alone is not the entire review.",
+  "source_gate": "No English defect established. Preserve distinct generic interaction meanings and caller-specific side effects. Any real defect found later must be fixed in English first and tracked across languages, not silently compensated in Amharic.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_containers": 717,
+    "prior_ready": 69,
+    "prior_holds": 11,
+    "new_independent_acceptance": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Original drafts only; independent linguistic/context checking required.",
+    "Bounded current consumer corpus discovered from historical source, not exhaustive fresh repository search.",
+    "No native-reader, rendered, speech, lifecycle, app-execution or release validation.",
+    "Prior69 ready/11holds and all inherited uncertainties remain excluded."
+  ],
+  "lexical_sources": [
+    {
+      "file": "android-settings-en.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dialog-controls-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT",
+      "sha256": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e",
+      "bytes": 1135503,
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json",
+      "retrieval": "Complete supplied commit-pinned snapshot reused byte-for-byte; source SHA-256 checked against prior provenance and recomputed. No fresh network retrieval is claimed by this author.",
+      "role": "External source-product translation evidence; not AN-Paint acceptance or native-reader approval."
+    },
+    {
+      "file": "android-settings-am.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dialog-controls-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+      "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6",
+      "bytes": 890123,
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json",
+      "retrieval": "Complete supplied commit-pinned snapshot reused byte-for-byte; source SHA-256 checked against prior provenance and recomputed. No fresh network retrieval is claimed by this author.",
+      "role": "External source-product translation evidence; not AN-Paint acceptance or native-reader approval."
+    },
+    {
+      "file": "android-gallery2-en.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dialog-controls-draft-20261024/lexical-evidence/android-gallery2-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values/strings.xml?format=TEXT",
+      "sha256": "6dd4606186f7ae3b18de3f75af77caf3ad6ed058e28fa6d91ecb23b48876565a",
+      "bytes": 64038,
+      "pin": "c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-gallery2-en.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json",
+      "retrieval": "Complete supplied commit-pinned snapshot reused byte-for-byte; source SHA-256 checked against prior provenance and recomputed. No fresh network retrieval is claimed by this author.",
+      "role": "External source-product translation evidence; not AN-Paint acceptance or native-reader approval."
+    },
+    {
+      "file": "android-gallery2-am.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dialog-controls-draft-20261024/lexical-evidence/android-gallery2-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT",
+      "sha256": "248cc8e0fa60e39535054a90dbc3ee3852aafabe7f57e435cf4417975de77601",
+      "bytes": 44609,
+      "pin": "c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/android-gallery2-am.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json",
+      "retrieval": "Complete supplied commit-pinned snapshot reused byte-for-byte; source SHA-256 checked against prior provenance and recomputed. No fresh network retrieval is claimed by this author.",
+      "role": "External source-product translation evidence; not AN-Paint acceptance or native-reader approval."
+    },
+    {
+      "file": "libreoffice-am-cui.po",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dialog-controls-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+      "sha256": "a1d524a820c0c6de187d0625b9eced32733642ad196d79857500c91977a428b4",
+      "bytes": 733737,
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json",
+      "retrieval": "Complete supplied commit-pinned snapshot reused byte-for-byte; source SHA-256 checked against prior provenance and recomputed. No fresh network retrieval is claimed by this author.",
+      "role": "External source-product translation evidence; not AN-Paint acceptance or native-reader approval."
+    },
+    {
+      "file": "project-en-strings.xml",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-dialog-controls-draft-20261024/lexical-evidence/project-en-strings.xml",
+      "url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml",
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "bytes": 80549,
+      "pin": "66be61df27c5359bffc32d56db21f3949899f873",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/project-en-strings.xml",
+      "prior_provenance_file": "/workspace/scratch/bbca2890f602/amharic-dimensions-draft-20261024/lexical-evidence/sources.json",
+      "retrieval": "Complete supplied commit-pinned snapshot reused byte-for-byte; source SHA-256 checked against prior provenance and recomputed. No fresh network retrieval is claimed by this author.",
+      "role": "Canonical English key/value and attribute evidence, not external lexical authority."
+    }
+  ],
+  "date": "2026-10-24",
+  "schema": "amharic-dialog-controls-draft-v1",
+  "unit_placeholder_check": "Four plain labels have no placeholders or explicit units. Dialog titles/messages, validation strings, full Help and operation-specific buttons remain outside translation scope."
+}

@@ -1,0 +1,15 @@
+# Amharic common dialog controls: three retained, Done held
+
+Author accepts unchanged OK → እሺ, Cancel → ይቅር, Apply → ተግብር, and accepts the independent Done → ተከናውኗል hold. No revision or replacement is accepted. Exact AOSP Done attestation is strong but does not resolve interpretation beside failed-save/restore notices. This is an evidence hold, not proof of mistranslation or an English-source defect. No silent substitution with Close, OK or Save.
+
+Accumulated totals: 72 reviewed ready candidates (69 plus 3), 12 held proposals (11 plus Done), zero implemented. Production remains 12 present / 705 missing of 717 containers. Prior holds, inherited Palette uncertainty and optional recommendations are unchanged.
+
+Complete original judgments and qualifications are preserved. Original 52-file draft seal remains 5955bf3fa6f1e3f072b44c56948166446ad91d5c6111576e5bc2b0036db0d944. Independent seal remains 9e47fd440924ae08ca9f0e988b5c1f242a1a2aba0ecf4b07fe9a63a14fae6ef1. The original 29 source copies plus two separately bound complete caller files make 31 verified source copies. Both LocaleTypography and LocaleNotification supplemental files are included here. The independent callback audit covers all 36 exact occurrences across 17 direct caller files in the bounded original corpus, not an exhaustive fresh repository-wide search.
+
+Done is not universally dismissal-only: GalleryCredits attempts save and closes only on success. Failed-save/restore notices merely dismiss or finish their activity. Live settings have already applied changes. Vertical feedback's injected callback removes notice/timers, not underlying operation completion; its conditional vertical branch does not establish Amharic rendering. Cancel may restore preview, clean staged files or advance to the next batch item; it is not global Undo, deletion of provider originals, entire-batch abort or a no-side-effects promise. Apply validates current input and may keep the dialog open; it is not Save or guaranteed change/success. OK acknowledges messages, not operation success or legal consent.
+
+Primary AOSP and LibreOffice exact records retain original source provenance. AOSP Settings and Gallery2 are not unrelated authorities. Reused external snapshots are not new retrieval. Bounded glossary link/excerpts retain public-mirror provenance and reviewer non-rerender qualification; no complete PDF, page image or full extraction is published.
+
+Production binding: 66be61df27c5359bffc32d56db21f3949899f873, tree 870c5a584120d92710be516af0dc3b3847b183d9. Reviewer used supplied provenance rather than independently re-fetching branch head. Supplementary paths were freshly checked against that tree and exact blobs. Immutable source locators/hashes preserve the remaining complete-source evidence without repeated broad copies. Nested manifests describe original full packets; this root manifest seals actual published files.
+
+No native-reader, rendering, spoken-accessibility, lifecycle/runtime, whole-language or release certification. Records-only branch must never merge into production. No production edits, Work task, app builds, CI or release.

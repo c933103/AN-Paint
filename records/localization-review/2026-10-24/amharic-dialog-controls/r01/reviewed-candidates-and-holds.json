@@ -1,0 +1,191 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "author_reconciliation": "Accept OK, Cancel and Apply unchanged. Accept Done contextual evidence hold despite exact AOSP attestation; no replacement, mistranslation or English defect established. Preserve original draft and independent report byte-exact.",
+  "ready_reviewed_candidates": [
+    {
+      "key": "string/ui_ok",
+      "english": "OK",
+      "draft": "እሺ",
+      "verdict": "retain",
+      "replacement": null,
+      "confidence": {
+        "lexical_attestation": "high",
+        "fit_to_inspected_callbacks": "high",
+        "overall": "high within bounded static review"
+      },
+      "reason": "Exact generic AOSP OK is independently corroborated by LibreOffice stock OK. Neutral acknowledgement fits both supplied null-listener message helpers without adding save, success, or consent meaning.",
+      "primary_evidence": [
+        {
+          "record_id": "aosp_settings_okay",
+          "english": "OK",
+          "amharic": "እሺ",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT"
+        },
+        {
+          "record_id": "aosp_gallery2_ok",
+          "english": "OK",
+          "amharic": "እሺ",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT"
+        },
+        {
+          "record_id": "lo_cui_stock_ok",
+          "english": "OK",
+          "amharic": "እሺ",
+          "source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po"
+        }
+      ],
+      "consumer_count": 2,
+      "scope_limit": "Independent static evidence review only, not native-reader approval, rendering/speech/accessibility validation, production acceptance, or release authorization.",
+      "source_sha256": "565339bc4d33d72817b583024112eb7f5cdf3e5eef0252d6ec1b9c9a94e12bb3",
+      "candidate_XML_text": "\"እሺ\"",
+      "candidate_XML_text_sha256": "365549aa2ce043168fd74f6a2b34001031bf1b5a2494629365f73d24291c46d1"
+    },
+    {
+      "key": "string/ui_cancel",
+      "english": "Cancel",
+      "draft": "ይቅር",
+      "verdict": "retain",
+      "replacement": null,
+      "confidence": {
+        "lexical_attestation": "high",
+        "fit_to_inspected_callbacks": "high",
+        "overall": "high within bounded static review"
+      },
+      "reason": "The generic AOSP Cancel pair is corroborated by Gallery2. It fits abandoning the current interaction across dismissal, staged-item cancellation, colour-preview rollback and trim cancellation. Prefer it over an unsupported global Undo reading and over importing the glossary form ሰርዝ when the same retained AOSP sources use that for Delete. The glossary alternative is not declared wrong in every context.",
+      "primary_evidence": [
+        {
+          "record_id": "aosp_settings_cancel",
+          "english": "Cancel",
+          "amharic": "ይቅር",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT"
+        },
+        {
+          "record_id": "aosp_gallery2_cancel",
+          "english": "Cancel",
+          "amharic": "ይቅር",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT"
+        },
+        {
+          "record_id": "android_settings_delete_contrast",
+          "english": "Delete",
+          "amharic": "ሰርዝ",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT"
+        },
+        {
+          "record_id": "android_gallery2_delete_contrast",
+          "english": "Delete",
+          "amharic": "ሰርዝ",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT"
+        }
+      ],
+      "consumer_count": 21,
+      "important_qualifiers": [
+        "Assembly import cancellation advances to the next file; it is not whole-batch abort.",
+        "Staged temporary file cleanup is not deletion of the original provider file.",
+        "Trim entry already applies pending canvas work; cancelling trim is not undo of that prior work.",
+        "Colour preview rollback does not undo separately committed palette actions."
+      ],
+      "scope_limit": "Independent static evidence review only, not native-reader approval, rendering/speech/accessibility validation, production acceptance, or release authorization.",
+      "source_sha256": "19766ed6ccb2f4a32778eed80d1928d2c87a18d7c275ccb163ec6709d3eb2e27",
+      "candidate_XML_text": "\"ይቅር\"",
+      "candidate_XML_text_sha256": "226aefe394b52942fa54be52ff52b89f17fc0de2ec1ce0ebe4adaf06a0f94704"
+    },
+    {
+      "key": "string/ui_apply",
+      "english": "Apply",
+      "draft": "ተግብር",
+      "verdict": "retain",
+      "replacement": null,
+      "confidence": {
+        "lexical_attestation": "high",
+        "fit_to_inspected_callbacks": "high",
+        "overall": "high within bounded static review"
+      },
+      "reason": "Exact AOSP imperative matches putting selected changes into effect; bounded glossary entry 149 independently corroborates the same form. All three exact-key consumers validate the prospective input and then invoke the relevant change. The label does not promise success, file persistence, or automatic dismissal on invalid input.",
+      "primary_evidence": [
+        {
+          "record_id": "aosp_settings_apply",
+          "english": "Apply",
+          "amharic": "ተግብር",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT"
+        }
+      ],
+      "bounded_additional_evidence": {
+        "record_id": "ict_apply_149",
+        "entry": 149,
+        "pdf_page_ordinal": 12,
+        "english": "apply",
+        "amharic": "ተግብር",
+        "url": "https://oromianeconomist.com/wp-content/uploads/2017/08/ict-glossary-in-afaan-oromoo-amharic-and-tigarinya.pdf",
+        "independent_verification_limit": "This reviewer used the supplied bounded reference, not a new PDF render or publisher-authentication check; AOSP exact pair is independently checked from retained XML."
+      },
+      "consumer_count": 3,
+      "scope_limit": "Independent static evidence review only, not native-reader approval, rendering/speech/accessibility validation, production acceptance, or release authorization. No acceptance transfers to ui_apply_to_all, ui_apply_crop, ui_apply_bounds, or ui_apply_to_these_images.",
+      "source_sha256": "31e392d1c0378beca611de66c0f4c71cba29159905cc54242d9bddee5b23d851",
+      "candidate_XML_text": "\"ተግብር\"",
+      "candidate_XML_text_sha256": "6045988e86d12228ed3491846803636d69480f589bc1a073700438f22d065e7a"
+    }
+  ],
+  "held_proposals_this_group": [
+    {
+      "key": "string/ui_done",
+      "english": "Done",
+      "draft": "ተከናውኗል",
+      "verdict": "hold",
+      "replacement": null,
+      "confidence": {
+        "lexical_attestation": "high",
+        "fit_to_all_inspected_contexts": "unresolved for failed-save/restore notices",
+        "hold_decision": "high",
+        "overall": "insufficient for unqualified retain"
+      },
+      "reason": "Exact AOSP Done convention is well attested, but that alone does not establish how an Amharic reader interprets the completed-result form beside a failed-save/restore notice. Two real callbacks only acknowledge/exit failure; others close views/live settings; GalleryCredits attempts a validated save before close. Do not describe this as a proven mistranslation or success assertion, and do not invent a Close/OK translation for unchanged English Done.",
+      "primary_evidence": [
+        {
+          "record_id": "aosp_settings_done",
+          "english": "Done",
+          "amharic": "ተከናውኗል",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT"
+        },
+        {
+          "record_id": "aosp_gallery2_done",
+          "english": "Done",
+          "amharic": "ተከናውኗል",
+          "source_url": "https://android.googlesource.com/platform/packages/apps/Gallery2/+/c0712a1daee50e52cd6f3e8e7698ddb8da3e1bcb/res/values-am/strings.xml?format=TEXT"
+        }
+      ],
+      "consumer_count": 10,
+      "unblock_condition": "Obtain contextual linguistic evidence that this conventional button is understood as finishing/dismissing the interaction, not as reporting successful save/restore, with the actual failure message and the contrasting save-and-close form. No source edit is mandated by this evidence.",
+      "source_gate": "If a genuine English-label/caller defect is established, correct English and flag the affected term across all languages, then review them individually. Do not compensate only in Amharic.",
+      "scope_limit": "Independent static evidence review only, not native-reader approval, rendering/speech/accessibility validation, production acceptance, or release authorization.",
+      "source_sha256": "11a6767d5674c7e45f7e00dc525762275b3a48491ad6045427d2609cc496c516",
+      "candidate_XML_text": "\"ተከናውኗል\"",
+      "candidate_XML_text_sha256": "63eee6753686763951e76590d7a4cf68133c8a6fa69e17c106e10052f2e89170"
+    }
+  ],
+  "counts": {
+    "this_group_ready": 3,
+    "prior_ready": 69,
+    "accumulated_ready_candidates": 72,
+    "this_group_held": 1,
+    "prior_held": 11,
+    "total_held": 12,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717
+  },
+  "prior_locator": "https://github.com/c933103/AN-Paint/blob/1aa7f8d363c29a3f7c63a6c857603e17a24c62fe/records/localization-review/2026-10-24/amharic-normalization/r01/reviewed-candidates-and-holds.json",
+  "scope_limits": [
+    "Input is the exact sealed packet, not a fresh exhaustive repository crawl. Current-commit/tree claims originate in supplied provenance; this reviewer independently recomputed all 29 Git blob identities but did not re-fetch production branch state.",
+    "All 36 direct references in the supplied Kotlin corpus match its ledger: 2 OK, 10 Done, 21 Cancel, 3 Apply across 17 files. Indirect callback effects were followed in the supplied files and two commit-bound addendum files. The omitted original-packet VerticalFeedbackCard caller is resolved by the addendum; this is still not a fresh exhaustive whole-repository search.",
+    "Six retained snapshots and all 16 exact lexical records are integrity-checked; external snapshots were reused, not freshly fetched. Settings and Gallery2 are related AOSP sources, not independent translation authorities.",
+    "Glossary evidence remains bounded to attributed word pairs/links. Public mirror authorship/revision is unauthenticated; this reviewer did not re-render its PDF. No full glossary or page images are included.",
+    "No native-reader consultation, layout/rendering, speech/accessibility, Android lifecycle execution, build, CI, production edit, Work task, deployment or release was performed.",
+    "Prior 69 ready and 11 held keys remain separate and are not re-evaluated, merged into these verdicts, or implemented. All four exact target keys remain absent from the supplied production Amharic resource.",
+    "A hold is an unresolved evidence gate, not a finding that the English source or existing target convention is wrong. No alternate target wording is recommended without evidence."
+  ]
+}

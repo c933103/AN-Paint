@@ -1,0 +1,223 @@
+[
+  {
+    "key": "ui_ok",
+    "english": "OK",
+    "draft": "እሺ",
+    "rationale": "Use the exact AOSP generic OK label, corroborated by AOSP Gallery2 and LibreOffice stock _OK. Current AN-Paint message helpers attach it to a positive message-acknowledgement button with no application-specific mutation callback. It acknowledges or closes the message; it does not promise success, saving, or acceptance of terms.",
+    "confidence": {
+      "lexical": "high",
+      "contextual": "high",
+      "overall": "high for independent review; not release approval"
+    },
+    "evidence_ids": [
+      "aosp_settings_okay",
+      "aosp_gallery2_ok",
+      "lo_cui_stock_ok"
+    ],
+    "variants": [
+      {
+        "form": "ይሁን",
+        "source": "ict_ok_1914",
+        "decision": "Not selected",
+        "reason": "Attested in the older mirrored glossary, but AOSP generic Android and LibreOffice stock controls agree on እሺ, which more directly matches acknowledgement here."
+      }
+    ],
+    "limitations": [
+      "Original author draft for independent review only; not production-ready acceptance, native-reader sign-off, or evidence that an Android rendering/accessibility test passed.",
+      "Static current caller inspection supports the stated role but no runtime interaction or layout validation was performed.",
+      "Other ready drafts and held keys are excluded; no prior acceptance is inherited.",
+      "Gallery2 ok is an operation-control context; it corroborates the label, not the AN-Paint acknowledgement semantics."
+    ],
+    "author_status": "review",
+    "consumer_evidence": {
+      "file": "../consumer-context.json",
+      "sha256": "a45acf8da8e642a52a4e6a119dd28559b8d56a5edcb34ff0242bae4472c40524",
+      "production": "66be61df27c5359bffc32d56db21f3949899f873",
+      "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+      "context": "Positive acknowledgment button on informational/error/help messages, null callback dismisses dialog (ClassicPaintActivity.message, AssemblyActivity.message). Not proof an operation succeeded and not a separate Save/Apply action. Full Help text itself excluded.",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1587",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L120"
+      ]
+    },
+    "review_condition": "Independent reviewer must assess this exact candidate and its entire caller context. A hold is valid; source attestation alone is not acceptance."
+  },
+  {
+    "key": "ui_done",
+    "english": "Done",
+    "draft": "ተከናውኗል",
+    "rationale": "Retain the exact generic Android Done convention, separately present as an exact label in Gallery2 after a selection interaction. In AN-Paint the common role is finishing the current interaction: some callers only close a screen, drawing settings already change live, GalleryCredits saves and validates before dismissal, and failure notices also use Done. The selected source convention must therefore be reviewed as a completion/exit button, never as an assertion that the failed operation succeeded or that every caller saved.",
+    "confidence": {
+      "lexical": "high",
+      "contextual": "medium",
+      "overall": "medium; special independent semantic review required for error notices"
+    },
+    "evidence_ids": [
+      "aosp_settings_done",
+      "aosp_gallery2_done"
+    ],
+    "variants": [
+      {
+        "form": "ጨርስ",
+        "source": null,
+        "decision": "Not promoted",
+        "reason": "A possible imperative Finish alternative considered by the author, but no exact Done → ጨርስ pair was established in the retained sources; do not replace direct evidence with an unsupported synonym."
+      },
+      {
+        "form": "ዝጋ",
+        "source": null,
+        "decision": "Not selected",
+        "reason": "Close-only wording would narrow the shared role and hide the save-validation callback in GalleryCredits. This is a conceptual alternative, not an attested Done record in this packet."
+      }
+    ],
+    "limitations": [
+      "Original author draft for independent review only; not production-ready acceptance, native-reader sign-off, or evidence that an Android rendering/accessibility test passed.",
+      "Static current caller inspection supports the stated role but no runtime interaction or layout validation was performed.",
+      "Other ready drafts and held keys are excluded; no prior acceptance is inherited.",
+      "The Amharic form is morphologically completed-result wording. Its exact Android generic-button attestation is strong, but the author cannot independently certify native-reader interpretation on a failed-save notice. Reviewer may hold this key without blocking the other three.",
+      "No numbered Done headword was found in the locally searched glossary; absence is limited to that extraction.",
+      "Done is not always dismissal-only, always-save, or always-successful."
+    ],
+    "author_status": "review",
+    "consumer_evidence": {
+      "file": "../consumer-context.json",
+      "sha256": "a45acf8da8e642a52a4e6a119dd28559b8d56a5edcb34ff0242bae4472c40524",
+      "production": "66be61df27c5359bffc32d56db21f3949899f873",
+      "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+      "context": "Generic finish/close-interaction label. Used to close about/legal/language views, exit gallery/legacy screens, dismiss vertical feedback and failure notices. Drawing-setting toggles have already applied live. IMPORTANT GalleryCredits overrides Done to save() then dismiss only on success, so not universally dismissal-only or universally-save. Error notice Done does not certify success.",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L239",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L892",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1572",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L127",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L122",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L73",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L166",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L63",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L114",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L135"
+      ]
+    },
+    "review_condition": "Independent reviewer must assess this exact candidate and its entire caller context. A hold is valid; source attestation alone is not acceptance. Specifically assess whether ተከናውኗል reads as a conventional finish/exit control on failed-save notices without implying success. If this cannot be supported, hold ui_done rather than promoting an unattested replacement."
+  },
+  {
+    "key": "ui_cancel",
+    "english": "Cancel",
+    "draft": "ይቅር",
+    "rationale": "Use the exact AOSP generic Cancel control and Gallery2 corroboration. It can dismiss a pending dialog, abort import/save workflow callbacks, exit trim, or restore a color preview, according to the caller. It does not mean global undo or deletion. Prefer this recognizable cancel label over glossary ሰርዝ because both retained AOSP applications separately use ሰርዝ for Delete.",
+    "confidence": {
+      "lexical": "high",
+      "contextual": "high",
+      "overall": "high for independent review; not release approval"
+    },
+    "evidence_ids": [
+      "aosp_settings_cancel",
+      "aosp_gallery2_cancel",
+      "android_settings_delete_contrast",
+      "android_gallery2_delete_contrast"
+    ],
+    "variants": [
+      {
+        "form": "መሰረዣ",
+        "source": "lo_cui_stock_cancel",
+        "decision": "Not selected",
+        "reason": "Exact LibreOffice stock noun-style Cancel label, but Android generic command evidence is closer to the target control."
+      },
+      {
+        "form": "ሰርዝ",
+        "source": "ict_cancel_437",
+        "decision": "Not selected",
+        "reason": "Exact glossary cancel form, but AOSP also attests the identical token for Delete. Avoid making a shared cancel control sound destructive."
+      },
+      {
+        "form": "ተወው",
+        "source": "aosp_settings_cancel_variant",
+        "decision": "Not selected",
+        "reason": "Attested in a specific lock-screen cancel dialog; the generic Android resource and Gallery2 agree on ይቅር."
+      }
+    ],
+    "limitations": [
+      "Original author draft for independent review only; not production-ready acceptance, native-reader sign-off, or evidence that an Android rendering/accessibility test passed.",
+      "Static current caller inspection supports the stated role but no runtime interaction or layout validation was performed.",
+      "Other ready drafts and held keys are excluded; no prior acceptance is inherited.",
+      "Do not describe Cancel as merely dismissal in all callers: AdvancedColourDialog explicitly runs preview(original).",
+      "Do not imply all changes are rolled back: previously committed settings or palette actions are outside a generic cancel guarantee."
+    ],
+    "author_status": "review",
+    "consumer_evidence": {
+      "file": "../consumer-context.json",
+      "sha256": "a45acf8da8e642a52a4e6a119dd28559b8d56a5edcb34ff0242bae4472c40524",
+      "production": "66be61df27c5359bffc32d56db21f3949899f873",
+      "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+      "context": "Cancel current interaction, caller-specific semantics. Many negative buttons dismiss before pending changes commit. AdvancedColourDialog restores preview(original) on Cancel; trim_cancel clears trim and refits viewport; ImportSelection cancellation cleans up/calls cancellation path; SaveOptionsDialog invokes supplied cancellation callback; ImageResizeDialog onDismiss cancels if not accepted. Does not guarantee global undo, no side effects, rollback of prior changes or deletion of user source files.",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L190",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L96",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L116",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L824",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L909",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L992",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1009",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1054",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1162",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L70",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L120",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L38",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L197",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L142",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L308",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L305",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L345",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99"
+      ]
+    },
+    "review_condition": "Independent reviewer must assess this exact candidate and its entire caller context. A hold is valid; source attestation alone is not acceptance."
+  },
+  {
+    "key": "ui_apply",
+    "english": "Apply",
+    "draft": "ተግብር",
+    "rationale": "Use AOSP’s exact generic Apply imperative, independently corroborated by glossary entry 149 for putting selected settings or changes into effect. Current exact-key callers validate entered numbers, placement settings, or dimensions before invoking their operation. Apply is an action request, not a completed-success report; invalid values may keep the dialog open.",
+    "confidence": {
+      "lexical": "high",
+      "contextual": "high",
+      "overall": "high for independent review; not release approval"
+    },
+    "evidence_ids": [
+      "aosp_settings_apply",
+      "ict_apply_149"
+    ],
+    "variants": [
+      {
+        "form": "መፈጸሚያ",
+        "source": "lo_cui_stock_apply",
+        "decision": "Not selected",
+        "reason": "Exact LibreOffice stock noun-style label. Prefer the directly attested imperative from generic Android controls and the glossary for this validation-gated action."
+      }
+    ],
+    "limitations": [
+      "Original author draft for independent review only; not production-ready acceptance, native-reader sign-off, or evidence that an Android rendering/accessibility test passed.",
+      "Static current caller inspection supports the stated role but no runtime interaction or layout validation was performed.",
+      "Other ready drafts and held keys are excluded; no prior acceptance is inherited.",
+      "Only exact key ui_apply is covered. ui_apply_to_all, ui_apply_crop, ui_apply_bounds, and ui_apply_to_these_images are separate strings and must not inherit this result.",
+      "A successful click is not guaranteed to complete if validation or an operation fails; translation does not add a success or persistence promise."
+    ],
+    "author_status": "review",
+    "consumer_evidence": {
+      "file": "../consumer-context.json",
+      "sha256": "a45acf8da8e642a52a4e6a119dd28559b8d56a5edcb34ff0242bae4472c40524",
+      "production": "66be61df27c5359bffc32d56db21f3949899f873",
+      "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+      "context": "Confirm/apply current validated input: NumericSlider parses integer/range then changes progress and calls setting callback; ClassicPaintActivity dimensions validates size/budget then creates/resizes canvas and fits view; AssemblyPositionDialog validates nonnegative integral coordinates and changes placement. Invalid values can keep dialog open. Not file Save or unconditional success. Existing Apply to all acceptance does not transfer automatically.",
+      "links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L71"
+      ]
+    },
+    "review_condition": "Independent reviewer must assess this exact candidate and its entire caller context. A hold is valid; source attestation alone is not acceptance."
+  }
+]

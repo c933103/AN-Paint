@@ -1,0 +1,458 @@
+[
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+    "line": 190,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L190",
+    "reviewed_effect": "Invokes cancel(), then the ordinary negative-button dismissal. The supplied caller clears afterSave and shareAfterSave; no export/save request is confirmed.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L187-L201",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1110-L1121"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+    "line": 38,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_resize_and_load), null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L38",
+    "reviewed_effect": "The negative button dismisses; onDismiss invokes cancel() while accepted is false. Supplied caller deletes the staged import copy, clears pendingImportFile, and ends I/O. Not deletion of the original provider source.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L35-L61",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1299-L1306"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+    "line": 96,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel)) {_,_->cancel()}.setOnCancelListener {cancel()}.show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L96",
+    "reviewed_effect": "cancel() calls dispose() then cancelled(): disposes this staged file/preview and invalidates the pending generation. ClassicPaintActivity ends I/O; AssemblyActivity advances to the next batch item. Does not universally abort an entire batch.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L69-L96",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1281-L1290",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L247-L260"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+    "line": 116,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel)) {_,_->cancel()}.setOnCancelListener {cancel()}.create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L116",
+    "reviewed_effect": "Same cancellation chain as the animation chooser: abandons this staged page selection; AssemblyActivity continues with the next item.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L69-L76",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L113-L117",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L247-L260"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 239,
+    "text": ".setPositiveButton(ui(R.string.ui_done),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L239",
+    "reviewed_effect": "In the session-restoration exception path, shows the could-not-save-or-restore message. Done has a null positive listener and acknowledges/dismisses it; no save, restore, retry, or success transition occurs in that callback.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L231-L240"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 824,
+    "text": "}.setNegativeButton(ui(R.string.ui_cancel), null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L824",
+    "reviewed_effect": "Dismisses the tool-option chooser without choosing a new option. A selection instead applies immediately and dismisses, so Cancel is not undo of earlier selections.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L819-L825"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 892,
+    "text": ".setNegativeButton(ui(R.string.ui_done),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L892",
+    "reviewed_effect": "Closes the About/credits chooser via a null negative listener; does not open a selected action or save.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L877-L892"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 909,
+    "text": "}.setNegativeButton(ui(R.string.ui_cancel),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L909",
+    "reviewed_effect": "Dismisses the Other images source chooser; the source-selection callback, not Cancel, launches an import or gallery.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L895-L909"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 992,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L992",
+    "reviewed_effect": "Dismisses the palette-slot replacement chooser before a slot is chosen.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L985-L1001"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 1009,
+    "text": "}.setNegativeButton(ui(R.string.ui_cancel),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1009",
+    "reviewed_effect": "Dismisses palette-action menu. Does not perform background-colour, edit-colour, or remove-palette action; does not undo previously committed palette work.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1003-L1009"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 1018,
+    "text": "val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018",
+    "reviewed_effect": "Dismisses dimensions form without invoking its positive listener. Existing document changes outside the form are not rolled back.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1012-L1027"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_apply",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 1018,
+    "text": "val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018",
+    "reviewed_effect": "Overrides the positive button: requires dimensions; editAction checks size/budget, applies pending canvas work, creates or resizes the document, fits the canvas, updates status, and dismisses only after that path reaches the end. Validation/failure can prevent dismissal.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1012-L1027",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L924-L930"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 1054,
+    "text": "editDetails.addView(button(ui(R.string.ui_cancel),\"trim_cancel\") {paintCanvas.cancelTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1054",
+    "reviewed_effect": "Runs cancelTrim(), which clears trim, fits, invalidates, and updates status; then hides trim controls. beginTrim() had already called applyPending(). Not blanket Undo of earlier drawing/selection commits.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1044-L1057",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L429-L436"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 1162,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1162",
+    "reviewed_effect": "Dismisses the recovery-copy chooser without selecting and exporting one.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1152-L1162"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 1572,
+    "text": ".setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1572",
+    "reviewed_effect": "Closes drawing/magnifier settings. Toggle/slider callbacks already update their values, invalidate the canvas, and schedule autosave before Done. Done itself does not newly save or roll back them.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1553-L1572"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_ok",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+    "line": 1587,
+    "text": "private fun message(text: String) { if (!isFinishing && !isDestroyed) EditorDialogBuilder(this).setTitle(\"AN Paint\").setMessage(text).setPositiveButton(ui(R.string.ui_ok), null).show() }",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1587",
+    "reviewed_effect": "Generic informational/error/help acknowledgement: null positive listener closes the message, without a caller-specific mutation or success assertion.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1586-L1587"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_apply",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt",
+    "line": 71,
+    "text": ".setView(input).setPositiveButton(ui(R.string.ui_apply),null).setNegativeButton(ui(R.string.ui_cancel),null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71",
+    "reviewed_effect": "Overrides positive listener; accepts an integer within bounds, sets slider.progress, and dismisses. Changed progress invokes changed(n) through the SeekBar listener. An unchanged value need not trigger a new change; invalid input shows an error and stays open.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L60-L76"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt",
+    "line": 71,
+    "text": ".setView(input).setPositiveButton(ui(R.string.ui_apply),null).setNegativeButton(ui(R.string.ui_cancel),null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71",
+    "reviewed_effect": "Dismisses exact-entry dialog without applying the typed value. It does not undo prior outer-slider changes.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L60-L76"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+    "line": 70,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel), null)",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L70",
+    "reviewed_effect": "Dismisses the exact-position form without assembly.position().",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L29-L43",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L64-L72"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_apply",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+    "line": 71,
+    "text": ".setPositiveButton(ui(R.string.ui_apply), null)",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L71",
+    "reviewed_effect": "Overrides positive listener; requires finite, nonnegative integral coordinates within Int range; calls assembly.position and dismisses. Exceptions set error text and leave it open.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L29-L43",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L64-L72"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+    "line": 127,
+    "text": "action(ui(R.string.ui_done),\"legacy_credit_done\") {finish()}",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L127",
+    "reviewed_effect": "Calls Activity.finish(). Add-to-image and Save-text actions are separate. Ending the view does not assert an earlier export succeeded.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L102-L127",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L148-L155"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+    "line": 120,
+    "text": "}.setNegativeButton(ui(R.string.ui_cancel),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L120",
+    "reviewed_effect": "Dismisses nested Other terms chooser without navigating to another notice.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L104-L120"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+    "line": 122,
+    "text": "action(ui(R.string.ui_done),\"terms_done\") { dialog.dismiss() }",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L122",
+    "reviewed_effect": "Calls dialog.dismiss(); unregisters the configuration callback through onDismiss. This is notice closure, not consent or save.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L122-L137"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+    "line": 38,
+    "text": ".setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_to_all),null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L38",
+    "reviewed_effect": "Dismisses the normalization form; does not invoke assembly.normalize. Separate Restore original sizes action applies and dismisses directly; Cancel is not rollback of prior completed actions.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L37-L48",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L68-L84"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt",
+    "line": 73,
+    "text": "this.text=context.getString(org.catrobat.paintroid.R.string.ui_done)",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L73",
+    "reviewed_effect": "Both text Done and compact accessible equivalent invoke the supplied dismiss lambda. The independently checked source addendum binds it to LocaleNotification.Notice.dismiss(), which cancels expiry/deferred-dismiss callbacks and removes the notice view. No underlying operation save, retry, or success transition. Instantiation is in the vertical-only branch.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalFeedbackView.kt#L67-L87",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt#L43-L48",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNotification.kt#L82-L107",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleNotification.kt#L175-L183"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+    "line": 166,
+    "text": ".setNegativeButton(ui(R.string.ui_done), null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L166",
+    "reviewed_effect": "Closes language-settings summary; choosing its current-language row instead opens the picker.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L162-L167"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+    "line": 197,
+    "text": "}.setNegativeButton(ui(R.string.ui_cancel), null).show().also { dialog ->",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L197",
+    "reviewed_effect": "Dismisses language picker without selecting a locale. Clicking a language applies and closes immediately; Cancel is not a rollback of an already selected language.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L181-L201"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+    "line": 63,
+    "text": ".setPositiveButton(ui(R.string.ui_done)) {_,_->finish()}",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L63",
+    "reviewed_effect": "In failed credit-session open/create path, Done calls finish(). Existing input is kept for recovery. It does not retry or assert successful save/restore.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L49-L66",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L435-L441"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+    "line": 114,
+    "text": "action(ui(R.string.ui_done),\"gallery_done\") {finish()};controls.addView(actionRow(row))",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L114",
+    "reviewed_effect": "Calls finish() to exit gallery. Prior accepted credit edits may already have set a result; lifecycle may preserve a draft or discard an unaccepted empty session. No universal save or rollback claim.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L107-L114",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L235-L249",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L409-L441"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+    "line": 142,
+    "text": ".setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_crop),null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L142",
+    "reviewed_effect": "Dismisses crop form without invoking apply(crops). Preview/reset/include controls update local prospective selection; actual crop apply is the positive callback.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L125-L150"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_ok",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+    "line": 120,
+    "text": "if (!isDestroyed && !isFinishing) EditorDialogBuilder(this).setTitle(\"AN Paint\").setMessage(value).setPositiveButton(ui(R.string.ui_ok),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L120",
+    "reviewed_effect": "Generic message acknowledgement with null positive listener; no application-specific mutation callback. Used for failure messages as well as help.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L117-L121",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L347"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+    "line": 308,
+    "text": "val dialog = EditorDialogBuilder(this).setTitle(ui(R.string.ui_assembly_output_size)).setView(ScrollView(this).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_create_output),null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L308",
+    "reviewed_effect": "Dismisses output-size form without calling makeOutput. No assertion of file creation/deletion or rollback of assembly edits.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L297-L317"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_done",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+    "line": 135,
+    "text": ".setPositiveButton(ui(R.string.ui_done),null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L135",
+    "reviewed_effect": "OnShow overrides the positive listener: if(save()) dialog.dismiss(). save() validates bounds, snapshots text, runs onEdit, catches validation/I/O errors with false, and updates entries only on success. Dismissal additionally invokes onDismiss unless preserving. This Done is an attempted accept/save-and-close, not close-only and not pre-certified success.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L100-L116",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L131-L146",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1466-L1479",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L235-L245"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "line": 305,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L305",
+    "reviewed_effect": "Negative/onCancel invokes preview(original); onDismiss repeats preview rollback if not accepted and calls closed(). Does not invoke commit. Explicitly restores preview but does not undo separately saved palette entries.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L304-L327",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L338-L345",
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L995-L1001"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+    "line": 345,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel),null).show()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L345",
+    "reviewed_effect": "Dismisses palette-slot replacement chooser without selecting a replacement. Does not undo earlier palette saves or close the entire outer colour editor.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L338-L345"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  },
+  {
+    "key": "string/ui_cancel",
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+    "line": 99,
+    "text": ".setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()",
+    "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99",
+    "reviewed_effect": "Dismisses text-placement form without commit(settings, face). Form preview is separate; positive action validates and commits.",
+    "supporting_links": [
+      "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L69-L111"
+    ],
+    "review_method": "Static full-method and supplied callback-chain inspection; not runtime execution."
+  }
+]

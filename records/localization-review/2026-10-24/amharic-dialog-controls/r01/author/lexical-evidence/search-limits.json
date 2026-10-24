@@ -1,0 +1,26 @@
+{
+  "scope": "Only four missing common dialog controls; no prior 69 ready or 11 held key is re-evaluated or included as a candidate.",
+  "retained_sources": [
+    "android-settings-en.xml",
+    "android-settings-am.xml",
+    "android-gallery2-en.xml",
+    "android-gallery2-am.xml",
+    "libreoffice-am-cui.po",
+    "project-en-strings.xml"
+  ],
+  "method": [
+    "Paired Android XML resources by exact resource key, searched all English labels case-insensitively equal to OK, Done, Cancel, or Apply; exact spelling retained in all-android-label-matches.json.",
+    "Scanned complete LibreOffice cui PO snapshot for exact command msgid, allowing only leading underscore accelerator marker.",
+    "Searched the complete local glossary extraction for numbered headwords; visually inspected relevant Amharic table cells for three hits.",
+    "Read exact project English records and current full caller files supplied by the parent."
+  ],
+  "source_freshness": "Previously retained commit-pinned external snapshots were reused, not freshly retrieved. Source URLs, local file paths, exact hashes and prior provenance are included.",
+  "independence": "Settings and Gallery2 are two AOSP applications, not two unrelated translation authorities. LibreOffice provides independent matching OK and alternatives for Cancel/Apply. The old glossary is an independently attributed but unauthenticated public mirror.",
+  "not_done": [
+    "No production resource change.",
+    "No Work-side task, build, CI, runtime testing, release, or remote publication.",
+    "No native-speaker consultation.",
+    "No full-PDF or page-image republication.",
+    "No acceptance carried over from Apply to all or any prior draft."
+  ]
+}
