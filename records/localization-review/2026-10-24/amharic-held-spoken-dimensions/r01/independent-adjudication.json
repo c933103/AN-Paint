@@ -1,0 +1,273 @@
+{
+  "review_date": "2026-10-24",
+  "kind": "Independent evidence-based Amharic contextual translation adjudication",
+  "scope": "Exactly two existing spoken dimension holds, plus exactly one separate revision of a previously-ready spoken-pixel dependency. No other group reopened.",
+  "outcome": {
+    "held_templates_released_to_ready": 2,
+    "held_templates_remaining_within_review": 0,
+    "previously_ready_dependency_revisions_accepted": 1,
+    "new_unique_ready_dependency_keys": 0,
+    "production_edits": 0,
+    "implementations": 0,
+    "builds_CI_releases": 0,
+    "external_publication_performed": false
+  },
+  "exact_values": [
+    {
+      "key": "string/ui_width_in",
+      "english": "Width in %1$s",
+      "english_sha256": "3297aa59eb3953cb425c7ae48189df1234f398453e2f481339806861eeb4e604",
+      "display_text": "ስፋት በ%1$s",
+      "display_sha256": "e3e29c593ffe6cc0654bdee080fc3d10d5271032e7fca6710d5ae14ecedd5d0a",
+      "XML_text": "\"ስፋት በ%1$s\"",
+      "XML_text_sha256": "f09978dd693620c5aea2ea702aa42b4d1f71f6d1cb39822f7da9e64bbbd5f1ff",
+      "XML_element": "<string name=\"ui_width_in\">\"ስፋት በ%1$s\"</string>",
+      "XML_element_sha256": "8c1bc132f390971e5959bd07d7938d37c5fde8569ac463254c9ee436171c1b50",
+      "placeholder_count": 1
+    },
+    {
+      "key": "string/ui_height_in",
+      "english": "Height in %1$s",
+      "english_sha256": "193af0dda260fe2967e99a5c3eda5b77eb36345e9283f09aa6f7c92148fa4112",
+      "display_text": "ቁመት በ%1$s",
+      "display_sha256": "1a86276fc8cef5bf4f6fc1759b1649eaa5fc4cffcc8c2061176b92128fe625ec",
+      "XML_text": "\"ቁመት በ%1$s\"",
+      "XML_text_sha256": "a4b146f3e07107aa8478242d392e6686ffc0c9a9406a131cebf58b09f578ed43",
+      "XML_element": "<string name=\"ui_height_in\">\"ቁመት በ%1$s\"</string>",
+      "XML_element_sha256": "86cb466d71b4560ca8ab996c78490c4dc432548ee63523cf5bae9608dba9fcb5",
+      "placeholder_count": 1
+    },
+    {
+      "key": "string/ui_pixels_6ec9c2",
+      "english": "pixels",
+      "english_sha256": "6ec9c2b0eb14010746c8bce8939303b382344b296206612eb8a907a37b2b2f37",
+      "display_text": "ፒክሰል",
+      "display_sha256": "98c8afed36fc915df9015043f907730a043a8ce9139be2528ac009d31904f270",
+      "XML_text": "\"ፒክሰል\"",
+      "XML_text_sha256": "0b424efdfa63c2583e4d1f75b1127f9b90a57617c72661f737a91a8b04bdc201",
+      "XML_element": "<string name=\"ui_pixels_6ec9c2\">\"ፒክሰል\"</string>",
+      "XML_element_sha256": "a890d5ee254f58bc6902c7316ba0b30d1ec03f597fda9e808792719ebc56c783",
+      "placeholder_count": 0
+    }
+  ],
+  "template_decisions": [
+    {
+      "key": "string/ui_width_in",
+      "previous_decision": "hold",
+      "decision": "release hold to translation-ready, retaining exact template",
+      "candidate": "ስፋት በ%1$s",
+      "confidence": "medium-high construction/meaning; selected pixel full realization medium overall",
+      "reason": "The textbook is an actual short dimension-plus-unit heading, addressing the specific earlier label-register gap. Width is a parallel field head already directly supported in image context. Attached በ and a bare unit produce a complete, compact field label without a command, a copula, a definite article or added numerical content. Both selected unit expansions and the original plural alternative were separately adjudicated.",
+      "dependencies": [
+        {
+          "key": "string/ui_pixels_6ec9c2",
+          "selected_value": "ፒክሰል",
+          "decision_reference": "separate_dependency_decision",
+          "must_not_silently_change_pending_batch": true
+        },
+        {
+          "key": "string/ui_percent_fd8671",
+          "selected_value": "ፐርሰንት",
+          "decision": "unchanged prior ready value"
+        }
+      ],
+      "alternative": {
+        "text": "በ%1$s ስፋት",
+        "decision": "not selected; no demonstrated need to reverse supported dimension-first order"
+      }
+    },
+    {
+      "key": "string/ui_height_in",
+      "previous_decision": "hold",
+      "decision": "release hold to translation-ready, retaining exact template",
+      "candidate": "ቁመት በ%1$s",
+      "confidence": "medium-high construction/meaning; selected pixel full realization medium overall",
+      "reason": "The textbook directly attests the same height noun in a short noun-first unit heading; AOSP independently supports it for image height. Both selected unit expansions and the original plural alternative were adjudicated, not inferred from the width decision alone. Retaining the noun also preserves the already-reviewed visible/spoken dimension family.",
+      "dependencies": [
+        {
+          "key": "string/ui_pixels_6ec9c2",
+          "selected_value": "ፒክሰል",
+          "decision_reference": "separate_dependency_decision",
+          "must_not_silently_change_pending_batch": true
+        },
+        {
+          "key": "string/ui_percent_fd8671",
+          "selected_value": "ፐርሰንት",
+          "decision": "unchanged prior ready value"
+        }
+      ],
+      "preserved_alternatives": [
+        {
+          "text": "እርዝመት በ%1$s",
+          "decision": "preserved, not selected and not declared incorrect; adopting it would require coordinated visible/spoken noun-family review"
+        },
+        {
+          "text": "በ%1$s ቁመት",
+          "decision": "not selected; no demonstrated need to reverse supported dimension-first order"
+        }
+      ]
+    }
+  ],
+  "separate_dependency_decision": {
+    "key": "string/ui_pixels_6ec9c2",
+    "previous_decision": "retain lexical-only; full spoken composition unresolved",
+    "previous_value": "ፒክሰሎች",
+    "decision": "accept contextual revision to ፒክሰል for ready candidate inventory; not implemented",
+    "selected_value": "ፒክሰል",
+    "confidence": "medium editorial preference, not a correctness ranking or universal singular rule",
+    "reason": "An unmarked unit name is appropriate when a content description identifies a measurement scale rather than appending a unit to a number. The new short Pluma label supplies positive support for singular pixels in this register. Its margin mistranslation, alternate spelling and separated preposition limit its weight. AOSP supports the selected stem in a megapixel compound; the singular and original -och plural are a transparent morphological family. The new construction evidence and source context make this revision defensible without claiming that the plural was wrong.",
+    "consumer_review": {
+      "direct_uses": 2,
+      "locations": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L81",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L82"
+      ],
+      "current_main_scan_files": 104,
+      "scan_gaps": 0,
+      "independent_full_source_copies_checked": 18,
+      "scan_provenance": "Supplied sealed 104-file scan was inspected and reconciled with 18 supplied full project copies. This reviewer did not independently retrieve/rescan all 104 bodies or fresh-query current remote HEAD.",
+      "dynamic_runtime_proof": false
+    },
+    "unchanged_resources": {
+      "string/ui_pixels": "ፒክሰሎች",
+      "string/ui_percent": "ፐርሰንት",
+      "string/ui_percent_fd8671": "ፐርሰንት",
+      "string/ui_width": "unchanged prior reviewed candidate",
+      "string/ui_height": "unchanged prior reviewed candidate"
+    },
+    "alternatives": [
+      {
+        "value": "ፒክሰሎች",
+        "decision": "original lexical acceptance preserved; both full plural compositions explicitly accepted as admissible alternatives, but unselected here"
+      },
+      {
+        "value": "ፒክስል",
+        "decision": "exact Pluma spelling preserved as evidence, not selected; no universal spelling claim"
+      },
+      {
+        "value": "ፒክስሎች",
+        "decision": "original LibreOffice spelling alternative preserved, not selected"
+      }
+    ],
+    "implementation_batch_warning": "This key is already inside the pending 90-key implementation batch. Adjudication does not silently alter that frozen payload, authorize implementation, or add a 91st key. An adopted change must be recorded as an explicit versioned value amendment before any implementation consumes it."
+  },
+  "complete_expansion_decisions": [
+    {
+      "template_key": "string/ui_width_in",
+      "template": "ስፋት በ%1$s",
+      "unit_key": "string/ui_pixels_6ec9c2",
+      "unit_value": "ፒክሰል",
+      "complete_text": "ስፋት በፒክሰል",
+      "complete_text_sha256": "4ba1d792ca5f656b9c1a5e530e63146b631e2139038e6648271f36b9054b5f6c",
+      "decision": "accept; selected pixel realization",
+      "confidence": "medium overall; medium-high semantic/syntactic fit; medium singular preference",
+      "reason": "The head names the dimension; attached በ introduces an unmarked unit name. This names the measurement scale, not a single counted pixel. The textbook validates short-label construction; Pluma supplies a closer-register singular pixel analogue. The AOSP-family stem is retained rather than copied from Pluma.",
+      "native_or_runtime_certification": false
+    },
+    {
+      "template_key": "string/ui_width_in",
+      "template": "ስፋት በ%1$s",
+      "unit_key": "string/ui_percent_fd8671",
+      "unit_value": "ፐርሰንት",
+      "complete_text": "ስፋት በፐርሰንት",
+      "complete_text_sha256": "a7c32485b45f03b68ca6effcb375220b0fa57432292b3591285f43f02691ce71",
+      "decision": "accept; selected percent realization",
+      "confidence": "medium-high contextual composition",
+      "reason": "The generic percent noun is independently retained. Its prepositional unit meaning combines productively with the short dimension-first construction. The phrase neither supplies a denominator nor restricts values to 100; source code determines the axis-specific reference dimension.",
+      "native_or_runtime_certification": false
+    },
+    {
+      "template_key": "string/ui_width_in",
+      "template": "ስፋት በ%1$s",
+      "unit_key": "string/ui_pixels_6ec9c2",
+      "unit_value": "ፒክሰሎች",
+      "complete_text": "ስፋት በፒክሰሎች",
+      "complete_text_sha256": "a514bb26e08bca0037578b1e2ae84e226439f1402625f2d1a04ec33714e47ecf",
+      "decision": "accept as admissible original alternative; not selected by this revision",
+      "confidence": "medium-high intelligibility and grammatical admissibility; no superiority claim",
+      "reason": "The plural is not a defect. Original plural unit-preposition evidence plus the new short-label construction supports this whole phrase too. Singular is an editorial measure-name preference, not a prerequisite for grammatical acceptance. Do not silently mix the accepted singular inventory with a frozen plural implementation batch.",
+      "native_or_runtime_certification": false
+    },
+    {
+      "template_key": "string/ui_height_in",
+      "template": "ቁመት በ%1$s",
+      "unit_key": "string/ui_pixels_6ec9c2",
+      "unit_value": "ፒክሰል",
+      "complete_text": "ቁመት በፒክሰል",
+      "complete_text_sha256": "497e1dc5ecdde457b8f025c7dc308e47133b7dcaef86f46ff726bb91698ea483",
+      "decision": "accept; selected pixel realization",
+      "confidence": "medium overall; medium-high semantic/syntactic fit; medium singular preference",
+      "reason": "The head names the dimension; attached በ introduces an unmarked unit name. This names the measurement scale, not a single counted pixel. The textbook validates short-label construction; Pluma supplies a closer-register singular pixel analogue. The AOSP-family stem is retained rather than copied from Pluma.",
+      "native_or_runtime_certification": false
+    },
+    {
+      "template_key": "string/ui_height_in",
+      "template": "ቁመት በ%1$s",
+      "unit_key": "string/ui_percent_fd8671",
+      "unit_value": "ፐርሰንት",
+      "complete_text": "ቁመት በፐርሰንት",
+      "complete_text_sha256": "e3bcc710deca304939ac20b751254acfd887a5f553da173d7ebdff055fd32c4b",
+      "decision": "accept; selected percent realization",
+      "confidence": "medium-high contextual composition",
+      "reason": "The generic percent noun is independently retained. Its prepositional unit meaning combines productively with the short dimension-first construction. The phrase neither supplies a denominator nor restricts values to 100; source code determines the axis-specific reference dimension.",
+      "native_or_runtime_certification": false
+    },
+    {
+      "template_key": "string/ui_height_in",
+      "template": "ቁመት በ%1$s",
+      "unit_key": "string/ui_pixels_6ec9c2",
+      "unit_value": "ፒክሰሎች",
+      "complete_text": "ቁመት በፒክሰሎች",
+      "complete_text_sha256": "14010ba7793e037eaa8c6468115a72617919e31c679e67a364308a523e6598da",
+      "decision": "accept as admissible original alternative; not selected by this revision",
+      "confidence": "medium-high intelligibility and grammatical admissibility; no superiority claim",
+      "reason": "The plural is not a defect. Original plural unit-preposition evidence plus the new short-label construction supports this whole phrase too. Singular is an editorial measure-name preference, not a prerequisite for grammatical acceptance. Do not silently mix the accepted singular inventory with a frozen plural implementation batch.",
+      "native_or_runtime_certification": false
+    }
+  ],
+  "grammar_contract": {
+    "one_positional_placeholder_per_template": true,
+    "exact_placeholder": "%1$s",
+    "one_attached_preposition_per_full_phrase": "በ",
+    "unit_resources_are_bare": true,
+    "case_number_agreement": "No numeral, adjective or determiner in the template creates a count agreement obligation. The singular is used as an unmarked measure name; the plural remains admissible.",
+    "noun_order": "dimension first, prepositional measurement-scale phrase second",
+    "label_ellipsis": "No finite verb or copula is required by this field-label context; actual published short heading supplies direct precedent.",
+    "percent_denominator": "Width uses original.width and height uses original.height in DimensionControls; translation adds no denominator, numerical value, 100%-ceiling or image-area meaning.",
+    "English_source_defect_established": false,
+    "source_rewrite_required": false
+  },
+  "counts_and_adoption": {
+    "baseline": {
+      "ready": 94,
+      "held": 14,
+      "implemented": 0
+    },
+    "delta_if_adopted": {
+      "ready": 2,
+      "held": -2,
+      "implemented": 0
+    },
+    "result_if_adopted": {
+      "ready": 96,
+      "held": 12,
+      "implemented": 0
+    },
+    "pending_implementation_batch_key_count": 90,
+    "batch_modified_by_this_review": false,
+    "batch_value_revision_needed_if_adopting_singular": true,
+    "held_templates_automatically_added_to_90_batch": false,
+    "dependency_revision_is_not_new_unique_key": true,
+    "global_queue_updated_by_this_review": false
+  },
+  "limits": {
+    "native_speaker_certification": false,
+    "Android_build_or_formatter_execution": false,
+    "TTS_or_TalkBack_execution": false,
+    "UI_rendering_test": false,
+    "runtime_reflection_search_proof": false,
+    "production_freshness": "Bound to supplied exact commit/tree; the supplied dossier establishes current-production freshness. Recheck source/consumer changes before implementation.",
+    "release_approval": false,
+    "longer_result_help_and_aspect_lock_acceptance": false
+  }
+}

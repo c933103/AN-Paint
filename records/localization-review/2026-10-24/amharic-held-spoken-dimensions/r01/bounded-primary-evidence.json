@@ -1,0 +1,41 @@
+[
+  {
+    "id": "new_anrseb_short_height_unit_heading",
+    "source_url": "https://anrseb.gov.et/wp-content/uploads/New_Text_Books/Grade3/Grade%203_Mathematics_Textbook.pdf#page=165",
+    "exact_excerpt": "ቁመት በሳ.ሜ",
+    "english_gloss": "Height in cm (reviewer gloss, not a published bilingual pair).",
+    "location": "Printed p.155; PDF p.165 (zero-based index 164); third column header.",
+    "form": "Short nominal table label, not finite prose or an imperative.",
+    "new_vs_old": "New primary publisher and new evidence type. Prior dimensions dossier had image-height nouns, finite unit prose and an imperative, but no confirmed short dimension-plus-unit heading.",
+    "supports": [
+      "A complete noun-first dimension label can be followed by attached በ plus a unit.",
+      "The exact retained noun ቁመት occurs in this short-label pattern.",
+      "No relative clause, copula or action verb is needed to make a unit label intelligible."
+    ],
+    "limits": [
+      "Human/animal height and centimetres, not image pixels or a screen reader.",
+      "Abbreviated metric unit does not by itself choose pixel singular versus plural.",
+      "Transfer to width uses the already-supported image-width noun, not an exact width quotation."
+    ],
+    "confidence": "High source/form evidence; medium-high contextual transfer."
+  },
+  {
+    "id": "new_pluma_short_pixel_measure_label",
+    "source_url": "https://github.com/mate-desktop/pluma/blob/b5e619eb833d44d52b9c6cb5677c89b9d7749a3e/po/am.po#L4793-L4795",
+    "location": "po/am.po lines 4793–4795, reference plugins/taglist/HTML.tags.xml.in:2212.",
+    "form": "Short HTML tag-list label naming topmargin, not a finite sentence or runtime value.",
+    "new_vs_old": "New source project and new short pixel-measure label. Unlike the original LibreOffice plural-in-pixels prose, the unit is morphologically singular in this label.",
+    "supports": [
+      "Noun phrase followed by በ + a pixel unit in short UI metadata.",
+      "Singular/unmarked pixel unit as a genuine alternative to the original plural measure phrase.",
+      "English pixels does not force an Amharic plural in a unit label."
+    ],
+    "limits": [
+      "The translated margin noun is መስመር (line), so the full source is not treated as unquestioned translation quality. Only the unit construction and label register are transferred.",
+      "The source spells pixel ፒክስል and separates በ; proposed ፒክሰል with attached በ is an explicit synthesis using the existing AOSP spelling family and the textbook construction.",
+      "HTML top-margin metadata is related spatial measurement but is not an image-width/height input or spoken accessibility label.",
+      "Nonfuzzy is a catalog flag, not native certification."
+    ],
+    "confidence": "Medium contextual evidence; strong enough to motivate an independently adjudicated preference, not a universal singular rule."
+  }
+]
