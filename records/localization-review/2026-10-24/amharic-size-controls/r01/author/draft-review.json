@@ -1,0 +1,301 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "catalogue": "Paintroid/src/main/res/values-b+am/strings.xml",
+  "rows": [
+    {
+      "key": "string/ui_size_px",
+      "English": "Size (px)",
+      "source_attributes": {
+        "name": "ui_size_px"
+      },
+      "source_sha256": "2c1cb5c678172ab54740dc1dac9cef90006b4c168faa7359b348e116ef0d6790",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Separate Pencil size or shared stroke width, both1..100 pixels. Shared width is also shown for some tools where it is not the principal effective parameter (e.g. Spray uses fixed1px dots and its own radius). Do not promise that Size changes every mark dimension for every tool.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L774-L784",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L527-L537"
+      ],
+      "proposed_XML_text": "\"መጠን (px)\"",
+      "proposed_XML_element": "<string name=\"ui_size_px\">\"መጠን (px)\"</string>",
+      "proposed_XML_text_sha256": "d6590da501c9d51e667db4eab26d39add1be18113dfb90b1560f6b14f79d8fb6",
+      "author_status": "review",
+      "rationale": "Exact nonfuzzy Size → መጠን in graphics Position and Size UI. Append source literal (px), rather than localizing the unit. Generic size noun avoids promising that this shared parameter determines every mark dimension.",
+      "confidence": "high lexical; untested UI draft",
+      "limitations": [
+        "Preserve literal (px).",
+        "Inspect each tool context: Pencil has independent size; most shared controls edit strokeWidth, while Spray still draws fixed 1px dots.",
+        "Native/contextual and visual-fit review remain outstanding."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_radius_px",
+      "English": "Radius (px)",
+      "source_attributes": {
+        "name": "ui_radius_px"
+      },
+      "source_sha256": "1ec84edf1e8551f375b863282a8e1117715ab18312f4bdaf52d39cb3b9cbc794",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Rounded-rectangle corner radius. Slider min0, max=max(64,half shorter bitmap dimension,current radius); geometry clamps radius to half shorter dragged rectangle dimension. Pixel units, not diameter.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L779-L782",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L411-L411"
+      ],
+      "proposed_XML_text": "\"ራዲየስ (px)\"",
+      "proposed_XML_element": "<string name=\"ui_radius_px\">\"ራዲየስ (px)\"</string>",
+      "proposed_XML_text_sha256": "a10340f6a7aaa67f46851000a1b0ccdd722a017da813c8c2a2e29163bff8d8fc",
+      "author_status": "review",
+      "rationale": "Exact nonfuzzy Radius → ራዲየስ occurs in the LibreOffice rounded-rectangle corner-radius help. This is not diameter or rounding a number. The untranslated Radius → Radius measurement record is excluded.",
+      "confidence": "high lexical and matching corner-radius context; untested UI draft",
+      "limitations": [
+        "Preserve literal (px).",
+        "Rounded-corner geometry is clamped separately from slider maximum.",
+        "Loanword choice and native visual fit remain unaccepted."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_spray_radius_px",
+      "English": "Spray radius (px)",
+      "source_attributes": {
+        "name": "ui_spray_radius_px"
+      },
+      "source_sha256": "dbce2d022204ede1adbb04a6bc8e3546066f52befe68f00fd6532690b8ee242e",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Random spray disk radius1..100 image pixels. Each1px point offset uses sqrt(random)*radius, uniformly distributed in disk. Point count max(8,integer radius) also changes. Not spray-dot width or diameter.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L784-L784",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L527-L537"
+      ],
+      "proposed_XML_text": "\"የመርጫ ራዲየስ (px)\"",
+      "proposed_XML_element": "<string name=\"ui_spray_radius_px\">\"የመርጫ ራዲየስ (px)\"</string>",
+      "proposed_XML_text_sha256": "e07620a3c22a2d26d2b5d41a558fb4406556571fc44bb9bd9c7b4bb47a57499e",
+      "author_status": "hold",
+      "rationale": "Original composition meaning spray radius. Only Radius → ራዲየስ has eligible exact primary lexical evidence. The spray component መርጫ is an original draft, not an attested LibreOffice/AOSP term in this corpus. It refers to the random spray disk, not the dot width.",
+      "confidence": "low compositional; terminology HOLD",
+      "limitations": [
+        "TERMINOLOGY HOLD: no eligible primary attestation for Spray or Spray radius was established.",
+        "Do not treat the complete phrase as source-backed or release-ready.",
+        "Native review must confirm that መርጫ naturally names the spray tool rather than a selection/sprinkler sense.",
+        "Preserve literal (px), radius not diameter; point density/count also changes with radius."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_strength",
+      "English": "Strength (%)",
+      "source_attributes": {
+        "name": "ui_strength",
+        "formatted": "false"
+      },
+      "source_sha256": "10071fc0ff7b2ee939efb78974a73b25390bee49e5e9595c496bde71516f06a7",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Watercolor Strength (%)1..100 controls paint alpha=(strength*255/100), not stroke width. Source has formatted=false and literal(%); preserve literal percent sign and formatting attribute. Composition via numeric slider remains outside wording acceptance.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L783-L783",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258"
+      ],
+      "proposed_XML_text": "\"ጥንካሬ (%)\"",
+      "proposed_XML_element": "<string name=\"ui_strength\" formatted=\"false\">\"ጥንካሬ (%)\"</string>",
+      "proposed_XML_text_sha256": "24e59b19c58c9b4e0d8492f43bcc83f2a24d5902f4730a99e85fd10df9d9e1e0",
+      "author_status": "review",
+      "rationale": "AOSP color-correction Intensity → ጥንካሬ is an exact paired short label; signal and vibration strength phrases independently use the same noun. Reusing it for watercolor Strength is an original cross-context adaptation, not an exact painting translation. Consumer source confirms alpha strength in 1..100, so no unsupported opacity assumption is needed.",
+      "confidence": "medium-high component evidence; original cross-context draft",
+      "limitations": [
+        "Preserve literal (%) and formatted=\"false\".",
+        "Do not replace the visible source Strength with an independently invented opacity label.",
+        "Check native sense and consistency with neighboring watercolor terminology; no exact Strength (%) painting-source match."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_tolerance",
+      "English": "Tolerance",
+      "source_attributes": {
+        "name": "ui_tolerance"
+      },
+      "source_sha256": "f71041bb481fcfb42b6e8fd8c081fa11320ff3ce7ceae2634a285814dee860c3",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Bucket fill tolerance0..100 is absolute Euclidean ARGB component-distance threshold from seed color (squared distance<=tolerance squared), not a percentage. Zero requires exact color. Connected scanline flood fill, not global color replacement.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L767-L767",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L260-L267",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ScanlineFill.kt#L11-L50"
+      ],
+      "proposed_XML_text": "\"ገደብ\"",
+      "proposed_XML_element": "<string name=\"ui_tolerance\">\"ገደብ\"</string>",
+      "proposed_XML_text_sha256": "e03cc67d9bebf4fa46f953aaeb189898ebbcccda701a10006e8a09047b88ac1f",
+      "author_status": "review",
+      "rationale": "Exact nonfuzzy graphics Tolerance → ገደብ is used for accepting a color range. The app uses connected flood fill with an absolute Euclidean ARGB distance, not LibreOffice global color replacement. Transfer only the noun, not the source algorithm or percentage unit.",
+      "confidence": "high lexical; same color-difference family, different algorithm",
+      "limitations": [
+        "Do not add (%) or infer percentage from a 0..100 range.",
+        "LibreOffice color-tolerance percent help retained as exclusion evidence, NOT applicable app semantics.",
+        "Native clarity of short generic threshold/limit word remains unaccepted."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_original_size34",
+      "English": "Original size",
+      "source_attributes": {
+        "name": "ui_original_size34",
+        "formatted": "false"
+      },
+      "source_sha256": "097c5b7689bb87ac95e60328a1ef7d486461f4fb352178189f2ae2d0ec467184",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Selection action restores floating selection rectangle width/height to retained source-image pixel dimensions, keeps rectangle center and rotation; startMovingSelection may lift pixels/establish history first. Does not restore original location or undo edits. Caller then fits viewport. formatted=false preserved.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L758-L760",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L415-L422"
+      ],
+      "proposed_XML_text": "\"ዋናው መጠን\"",
+      "proposed_XML_element": "<string name=\"ui_original_size34\" formatted=\"false\">\"ዋናው መጠን\"</string>",
+      "proposed_XML_text_sha256": "485bbce47a52af47e428bcd2f4805f041e7c847b3cd0085edddf6af02a54bee4",
+      "author_status": "review",
+      "rationale": "Nonfuzzy crop-page _Original Size → _ዋናው መጠን; remove the foreign desktop accelerator underscore only. Selection action restores retained source-image dimensions, not position, rotation, or arbitrary prior edits. The alternate help spelling ዋነኛው መጠን is retained rather than silently treated as identical.",
+      "confidence": "high lexical; untested selection-action draft",
+      "limitations": [
+        "Preserve formatted=\"false\".",
+        "Do not imply undo, original location, original rotation or viewport zoom reset.",
+        "Native preference between attested variants and action clarity require review."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    },
+    {
+      "key": "string/ui_lock_proportions",
+      "English": "Lock proportions",
+      "source_attributes": {
+        "name": "ui_lock_proportions"
+      },
+      "source_sha256": "5c66db32dfaaf528a8c9451204fae25b54546714582431ed43962b7641436f4d",
+      "current_XML_text": null,
+      "current_status": "exact key absent",
+      "consumer_context": "Checkbox toggles lockSelectionAspect for selection corner/edge resize gestures. Keeps current rectangle aspect ratio, not necessarily source-image ratio after earlier distortion. It does not lock movement, rotation or dimensions, and does not retroactively restore ratio. Handler saves state.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L761-L764",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L617-L642",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SelectionGeometry.kt#L25-L67"
+      ],
+      "proposed_XML_text": "\"ተመጣጣኝነት መጠበቂያ\"",
+      "proposed_XML_element": "<string name=\"ui_lock_proportions\">\"ተመጣጣኝነት መጠበቂያ\"</string>",
+      "proposed_XML_text_sha256": "5cf3b18011b5153843765e7a5be513598d44b74d66cfc62cfdce30ea64f1041a",
+      "author_status": "review",
+      "rationale": "Original concise phrase built from exact nonfuzzy LO proportions-preserving resize prose, including the contiguous phrase ተመጣጣኝነት መጠበቂያ. Chooses preserve proportions rather than a security-lock noun. It keeps the current gesture-start aspect ratio, not necessarily the original image ratio.",
+      "confidence": "medium-high same-function component phrase; original shortened draft",
+      "limitations": [
+        "Full English Lock proportions short-label equivalent was NOT established in the primary corpus.",
+        "The LO Keep ratio → መጠን መጠበቂያ alternative could misleadingly suggest keeping fixed size; do not automatically adopt it.",
+        "Do not imply frozen position, rotation, or dimensions, or retroactive correction of prior distortion.",
+        "Native grammar, checkbox-state clarity and width/fit review remain unaccepted."
+      ],
+      "independent_review_status": "pending",
+      "implementation_status": "not implemented"
+    }
+  ],
+  "shared_source_chain": "ClassicPaintActivity.addSlider creates NumericSlider; label is used in visible number template, slider contentDescription, numeric dialog title and composed input hint. NumericSlider formats integer values separately. Related formatter/hint strings are NOT drafted or accepted here. Activity callbacks invalidate and schedule autosave. Selection labels use button/checkbox contexts. Full source copies supplied, no runtime/accessibility claim.",
+  "source_gate": "No English defect established in this bounded label scope. Size has tool-specific effectiveness limits and Tolerance is not percent; preserve current English meaning rather than silently rewrite. Any real source correction must be English-first and flag all affected locales.",
+  "coverage": {
+    "present": 12,
+    "missing": 705,
+    "canonical_containers": 717,
+    "prior_ready": 47,
+    "prior_holds": 4,
+    "new_independent_acceptance": 0,
+    "implemented": 0
+  },
+  "limits": [
+    "Original drafts only, independent checking required.",
+    "Prior47 ready and4holds excluded; inherited Palette/Horizontal/Help remain unchanged.",
+    "Source-only bounded consumer inspection, not native, rendered, accessibility or lifecycle acceptance."
+  ],
+  "lexical_sources": [
+    {
+      "file": "libreoffice-am-cui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po",
+      "sha256": "a1d524a820c0c6de187d0625b9eced32733642ad196d79857500c91977a428b4",
+      "bytes": 733737,
+      "retrieval": "Reused full pinned snapshot from prior same-day research; recomputed SHA-256 matches recorded provenance. No fresh HTTP retrieval claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-brush-shape-draft-20261024/lexical-evidence/libreoffice-am-cui.po",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-cui.po"
+    },
+    {
+      "file": "libreoffice-am-svx.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po",
+      "sha256": "69d5adb5831b13831d8393b9c09ff0d5f2f9741a34a8d5ccb3a5ca5869bbbb37",
+      "bytes": 558173,
+      "retrieval": "Reused full pinned snapshot from prior same-day research; recomputed SHA-256 matches recorded provenance. No fresh HTTP retrieval claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-brush-shape-draft-20261024/lexical-evidence/libreoffice-am-svx.po",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-svx.po"
+    },
+    {
+      "file": "libreoffice-am-help01.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po",
+      "sha256": "a1d93dc2d370e83de23544557e9346d43d44d7e517e3f5e6e2d20ce7a8bf46b7",
+      "bytes": 1739104,
+      "retrieval": "Reused full pinned snapshot from prior same-day research; recomputed SHA-256 matches recorded provenance. No fresh HTTP retrieval claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-view-controls-draft-20261024/lexical-evidence/libreoffice-am-help01.po",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-help01.po"
+    },
+    {
+      "file": "libreoffice-am-help02.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po",
+      "sha256": "5eb91cd3041d5f579bf80dfcd0da76e9efa60942e44b15c9ef252baed7fe941a",
+      "bytes": 693513,
+      "retrieval": "Reused full pinned snapshot from prior same-day research; recomputed SHA-256 matches recorded provenance. No fresh HTTP retrieval claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-brush-shape-draft-20261024/lexical-evidence/libreoffice-am-help02.po",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-help02.po"
+    },
+    {
+      "file": "libreoffice-am-ui.po",
+      "url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/officecfg/registry/data/org/openoffice/Office/UI.po",
+      "sha256": "58e8087d71f01c78f53b3440a60db40246e4795b5326dcb894afaaa57f32d110",
+      "bytes": 910384,
+      "retrieval": "Reused full pinned snapshot from prior same-day research; recomputed SHA-256 matches recorded provenance. No fresh HTTP retrieval claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-view-controls-draft-20261024/lexical-evidence/libreoffice-am-ui.po",
+      "pin": "681a7f1e79cd6e27496259dab7940c8e490059de",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/libreoffice-am-ui.po"
+    },
+    {
+      "file": "android-settings-am.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT",
+      "sha256": "2acc33e8e8c98c132f448d639967dcefb727c92d0f63fd4246a05a2dd8e44ad6",
+      "bytes": 890123,
+      "retrieval": "Reused full pinned snapshot from prior same-day research; recomputed SHA-256 matches recorded provenance. No fresh HTTP retrieval claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-brush-shape-draft-20261024/lexical-evidence/android-settings-am.xml",
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/android-settings-am.xml"
+    },
+    {
+      "file": "android-settings-en.xml",
+      "url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT",
+      "sha256": "c63321cfc2f40f62aa67b5da70be012378d5aacba313615d369d5a0fbb35c15e",
+      "bytes": 1135503,
+      "retrieval": "Reused full pinned snapshot from prior same-day research; recomputed SHA-256 matches recorded provenance. No fresh HTTP retrieval claimed in this task.",
+      "reused_from": "/workspace/scratch/bbca2890f602/amharic-brush-shape-draft-20261024/lexical-evidence/android-settings-en.xml",
+      "pin": "7c598253ff60f06f8e6fe046f18fd88e9daa72d3",
+      "local_source_path": "/workspace/scratch/bbca2890f602/amharic-size-controls-draft-20261024/lexical-evidence/android-settings-en.xml"
+    }
+  ],
+  "date": "2026-10-24",
+  "schema": "amharic-size-controls-draft-v1",
+  "unit_placeholder_check": "(px) and (%) preserved literally; formatted=false retained for Strength and Original size. No printf placeholders in selected values; surrounding NumericSlider formatter/accessibility templates remain excluded."
+}

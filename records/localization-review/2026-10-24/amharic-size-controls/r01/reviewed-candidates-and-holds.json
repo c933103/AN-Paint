@@ -1,0 +1,635 @@
+{
+  "production": "66be61df27c5359bffc32d56db21f3949899f873",
+  "tree": "870c5a584120d92710be516af0dc3b3847b183d9",
+  "author_reconciliation": "Accept five exact retain recommendations. Preserve Spray radius terminology HOLD and accept new Lock proportions standalone-checkbox idiom HOLD. Original draft remains intact; no wording revision or replacement is accepted. Lock hold is insufficient confidence, not a claim that the phrase is wrong or that all translations require exact prior phrase attestation.",
+  "ready_reviewed_candidates": [
+    {
+      "key": "string/ui_size_px",
+      "key_utf8_sha256": "5f91baf7f8b17aca678b3595f7cf88de5de421a3ab14591863e1438fd5ff33e5",
+      "english": "Size (px)",
+      "source_value_utf8_sha256": "2c1cb5c678172ab54740dc1dac9cef90006b4c168faa7359b348e116ef0d6790",
+      "source_attributes": {
+        "name": "ui_size_px"
+      },
+      "proposed_XML_text": "\"መጠን (px)\"",
+      "proposed_XML_text_utf8_sha256": "d6590da501c9d51e667db4eab26d39add1be18113dfb90b1560f6b14f79d8fb6",
+      "proposed_XML_element": "<string name=\"ui_size_px\">\"መጠን (px)\"</string>",
+      "proposed_XML_element_utf8_sha256": "7efee7d13b01c4119d47471e73ce47b000dc0dc35c81487adf4997b14b595c68",
+      "display_value": "መጠን (px)",
+      "display_value_utf8_sha256": "d638b4f91e2eeac7e99ea0e5652f77573a3dfc617a99c3346f9b32418db95209",
+      "production_key_status": "Absent in supplied production values-b+am catalogue; no implementation performed.",
+      "verdict": "retain",
+      "confidence": "High lexical and semantic confidence; no native-reader or rendered acceptance.",
+      "rationale": "The exact graphics UI Size record supports መጠን. It retains the same generic noun as the English source and does not incorrectly narrow a shared setting to diameter, line width, or a guarantee that every tool mark changes. The literal pixel unit is unchanged.",
+      "verified_consumer_meaning": "ClassicPaintActivity.kt:774,778 supplies a separate Pencil size or shared strokeWidth, each 1..100. PaintCanvas.kt:18..20 maps Pencil size to pencilWidth. PaintDocument.kt:247..258 consumes width; PaintCanvas.kt:526..535 separately draws Spray with fixed 1px points. This is a bounded label approval, not validation of every shared tool option.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L774-L784",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L527-L537"
+      ],
+      "primary_evidence": [
+        {
+          "id": "size_label",
+          "source_file": "libreoffice-am-cui.po",
+          "start_line": 19993,
+          "end_line": 19997,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "possizetabpage|label2",
+          "msgid": "Size",
+          "msgstr": "መጠን",
+          "raw_po_record": "#. C2Xds\n#: cui/uiconfig/ui/possizetabpage.ui:430\nmsgctxt \"possizetabpage|label2\"\nmsgid \"Size\"\nmsgstr \"መጠን\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po"
+        }
+      ],
+      "excluded_or_noncontrolling_evidence": [],
+      "limitations": [
+        "A shared Size control being ineffective for an individual tool cannot be repaired by changing only this translation. No English correction is established by this review.",
+        "Native preference and UI fit remain unverified."
+      ],
+      "unblock_requirement": null,
+      "source_file_binding": {
+        "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "local_complete_copy": "source/Paintroid/src/main/res/values/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml"
+      },
+      "target_file_binding": {
+        "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+        "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+        "local_complete_copy": "source/Paintroid/src/main/res/values-b+am/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+      },
+      "decision_binding_sha256": "72f9e32493654f015defd91589e9384a1d6b70b0aad2c97706aeb504326e7992"
+    },
+    {
+      "key": "string/ui_radius_px",
+      "key_utf8_sha256": "7e5bffed7e802424689d8afe0350a2b16f2f8ac3d2fe633fd384f7c02c05d56f",
+      "english": "Radius (px)",
+      "source_value_utf8_sha256": "1ec84edf1e8551f375b863282a8e1117715ab18312f4bdaf52d39cb3b9cbc794",
+      "source_attributes": {
+        "name": "ui_radius_px"
+      },
+      "proposed_XML_text": "\"ራዲየስ (px)\"",
+      "proposed_XML_text_utf8_sha256": "a10340f6a7aaa67f46851000a1b0ccdd722a017da813c8c2a2e29163bff8d8fc",
+      "proposed_XML_element": "<string name=\"ui_radius_px\">\"ራዲየስ (px)\"</string>",
+      "proposed_XML_element_utf8_sha256": "c7940ef3ee7f68d57ee1137d752ed577629ebfb685af7daebb75008ef72a8c8e",
+      "display_value": "ራዲየስ (px)",
+      "display_value_utf8_sha256": "d16d9b8a69eb2d6468e7629dd825e5376f6cb7a66ba1f6dad502face5b8bb648",
+      "production_key_status": "Absent in supplied production values-b+am catalogue; no implementation performed.",
+      "verdict": "retain",
+      "confidence": "High lexical and same-function semantic confidence; no native-reader or rendered acceptance.",
+      "rationale": "The Radius record and its adjacent corner-rounding explanation directly support ራዲየስ for this geometric radius. Corner radius in the UI supplies independent same-domain corroboration. The untranslated Radius-to-Radius record is not positive evidence.",
+      "verified_consumer_meaning": "ClassicPaintActivity.kt:779..782 exposes the rounded-rectangle corner-radius slider, minimum 0. PaintCanvas.kt:411 clamps the actual radius to half the shorter rectangle dimension. This is radius, not diameter; slider range and effective geometry clamp are distinct.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L779-L782",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L411-L411"
+      ],
+      "primary_evidence": [
+        {
+          "id": "radius_label",
+          "source_file": "libreoffice-am-help01.po",
+          "start_line": 30529,
+          "end_line": 30536,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "05230400.xhp\nhd_id3153935\nhelp.text",
+          "msgid": "Radius",
+          "msgstr": "ራዲየስ",
+          "raw_po_record": "#. wu4h7\n#: 05230400.xhp\nmsgctxt \"\"\n\"05230400.xhp\\n\"\n\"hd_id3153935\\n\"\n\"help.text\"\nmsgid \"Radius\"\nmsgstr \"ራዲየስ\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po"
+        },
+        {
+          "id": "radius_corner_context",
+          "source_file": "libreoffice-am-help01.po",
+          "start_line": 30538,
+          "end_line": 30545,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "05230400.xhp\npar_id3147373\nhelp.text",
+          "msgid": "<ahelp hid=\"cui/ui/slantcornertabpage/MTR_FLD_RADIUS\">Enter the radius of the circle that you want to use to round the corners.</ahelp>",
+          "msgstr": "<ahelp hid=\"cui/ui/slantcornertabpage/MTR_FLD_RADIUS\">ራዲየስ ያስገቡ ለ ክብ እርስዎ መጠቀም የሚፈልጉትን ጠርዞችን ለ መክበብ </ahelp>",
+          "raw_po_record": "#. Caxbr\n#: 05230400.xhp\nmsgctxt \"\"\n\"05230400.xhp\\n\"\n\"par_id3147373\\n\"\n\"help.text\"\nmsgid \"<ahelp hid=\\\"cui/ui/slantcornertabpage/MTR_FLD_RADIUS\\\">Enter the radius of the circle that you want to use to round the corners.</ahelp>\"\nmsgstr \"<ahelp hid=\\\"cui/ui/slantcornertabpage/MTR_FLD_RADIUS\\\">ራዲየስ ያስገቡ ለ ክብ እርስዎ መጠቀም የሚፈልጉትን ጠርዞችን ለ መክበብ </ahelp>\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po"
+        },
+        {
+          "id": "radius_corner_svx",
+          "source_file": "libreoffice-am-svx.po",
+          "start_line": 2122,
+          "end_line": 2126,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "SIP_SA_CORNER_RADIUS",
+          "msgid": "Corner radius",
+          "msgstr": "የ ጠርዝ ራዲየስ",
+          "raw_po_record": "#. 8sDXi\n#: include/svx/strings.hrc:378\nmsgctxt \"SIP_SA_CORNER_RADIUS\"\nmsgid \"Corner radius\"\nmsgstr \"የ ጠርዝ ራዲየስ\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po"
+        }
+      ],
+      "excluded_or_noncontrolling_evidence": [
+        {
+          "id": "radius_untranslated_rejected",
+          "source_file": "libreoffice-am-svx.po",
+          "start_line": 1676,
+          "end_line": 1680,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "STR_ItemValMEASURE_RADIUS",
+          "msgid": "Radius",
+          "msgstr": "Radius",
+          "raw_po_record": "#. sNziy\n#: include/svx/strings.hrc:302\nmsgctxt \"STR_ItemValMEASURE_RADIUS\"\nmsgid \"Radius\"\nmsgstr \"Radius\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po"
+        }
+      ],
+      "limitations": [
+        "The evidence supports the loanword and geometry, not a claim that it is the only preferred native technical term.",
+        "Preserve literal (px)."
+      ],
+      "unblock_requirement": null,
+      "source_file_binding": {
+        "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "local_complete_copy": "source/Paintroid/src/main/res/values/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml"
+      },
+      "target_file_binding": {
+        "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+        "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+        "local_complete_copy": "source/Paintroid/src/main/res/values-b+am/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+      },
+      "decision_binding_sha256": "fb2bc18cd5e7d2275ae5081a3d5ebf81d27f7afd3c9c6c0675a8c98e754ebbdd"
+    },
+    {
+      "key": "string/ui_strength",
+      "key_utf8_sha256": "cbf6b328daa3ec3ef70dc79ecdca219a079f924ebe0979ae4716256dcb0eb90d",
+      "english": "Strength (%)",
+      "source_value_utf8_sha256": "10071fc0ff7b2ee939efb78974a73b25390bee49e5e9595c496bde71516f06a7",
+      "source_attributes": {
+        "name": "ui_strength",
+        "formatted": "false"
+      },
+      "proposed_XML_text": "\"ጥንካሬ (%)\"",
+      "proposed_XML_text_utf8_sha256": "24e59b19c58c9b4e0d8492f43bcc83f2a24d5902f4730a99e85fd10df9d9e1e0",
+      "proposed_XML_element": "<string name=\"ui_strength\" formatted=\"false\">\"ጥንካሬ (%)\"</string>",
+      "proposed_XML_element_utf8_sha256": "eb46c603f1d6aae5044b9ac70e21f04092b13ea4b066a8054abb24c96ce4e373",
+      "display_value": "ጥንካሬ (%)",
+      "display_value_utf8_sha256": "a61e0591961bb75213da205343b6cfc6c54e3028237c28bf562da011bc8499d7",
+      "production_key_status": "Absent in supplied production values-b+am catalogue; no implementation performed.",
+      "verdict": "retain",
+      "confidence": "Medium-high lexical transfer confidence; high consumer/format confidence; no native-reader or rendered acceptance.",
+      "rationale": "AOSP pairs the short visual Intensity label with ጥንካሬ and independently uses the same noun in signal and vibration strength phrases. This supports the ordinary strength/intensity noun without rewriting English Strength into Opacity. The painting application is a cross-context translation, not an exact pre-existing watercolor UI translation.",
+      "verified_consumer_meaning": "ClassicPaintActivity.kt:783 exposes the watercolor slider at 1..100. PaintDocument.kt:254..256 sets paint alpha to integer strength*255/100 and separately applies blur. Strength is not width. The source has literal (%) and formatted=false.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L783-L783",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258"
+      ],
+      "primary_evidence": [
+        {
+          "id": "strength_intensity",
+          "source_type": "paired Android XML records",
+          "name": "daltonizer_saturation_title",
+          "fuzzy": "not applicable to Android XML",
+          "records": [
+            {
+              "source_file": "android-settings-en.xml",
+              "start_line": 5682,
+              "end_line": 5682,
+              "raw_xml_record": "<string name=\"daltonizer_saturation_title\">Intensity</string>",
+              "pinned_source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT"
+            },
+            {
+              "source_file": "android-settings-am.xml",
+              "start_line": 2452,
+              "end_line": 2452,
+              "raw_xml_record": "<string name=\"daltonizer_saturation_title\" msgid=\"2999486412114963068\">\"ጥንካሬ\"</string>",
+              "pinned_source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT"
+            }
+          ]
+        },
+        {
+          "id": "strength_signal",
+          "source_type": "paired Android XML records",
+          "name": "wifi_signal",
+          "fuzzy": "not applicable to Android XML",
+          "records": [
+            {
+              "source_file": "android-settings-en.xml",
+              "start_line": 2253,
+              "end_line": 2253,
+              "raw_xml_record": "<string name=\"wifi_signal\">Signal strength</string>",
+              "pinned_source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT"
+            },
+            {
+              "source_file": "android-settings-am.xml",
+              "start_line": 1002,
+              "end_line": 1002,
+              "raw_xml_record": "<string name=\"wifi_signal\" msgid=\"4442182285304271424\">\"የሲግናል ጥንካሬ\"</string>",
+              "pinned_source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT"
+            }
+          ]
+        },
+        {
+          "id": "strength_vibration",
+          "source_type": "paired Android XML records",
+          "name": "accessibility_vibration_settings_summary",
+          "fuzzy": "not applicable to Android XML",
+          "records": [
+            {
+              "source_file": "android-settings-en.xml",
+              "start_line": 5499,
+              "end_line": 5499,
+              "raw_xml_record": "<string name=\"accessibility_vibration_settings_summary\">Control the vibration strength for different usages</string>",
+              "pinned_source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values/strings.xml?format=TEXT"
+            },
+            {
+              "source_file": "android-settings-am.xml",
+              "start_line": 2363,
+              "end_line": 2363,
+              "raw_xml_record": "<string name=\"accessibility_vibration_settings_summary\" msgid=\"3690308537483465527\">\"ለተለያዩ አጠቃቀሞች የንዝረት ጥንካሬን ይቆጣጠሩ\"</string>",
+              "pinned_source_url": "https://android.googlesource.com/platform/packages/apps/Settings/+/7c598253ff60f06f8e6fe046f18fd88e9daa72d3/res/values-am/strings.xml?format=TEXT"
+            }
+          ]
+        }
+      ],
+      "excluded_or_noncontrolling_evidence": [],
+      "limitations": [
+        "Retain (%) and formatted=\"false\" exactly.",
+        "Watercolor-specific naturalness remains below the confidence of direct graphics-label matches.",
+        "No inference that AOSP already contains this full Strength (%) painting label."
+      ],
+      "unblock_requirement": null,
+      "source_file_binding": {
+        "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "local_complete_copy": "source/Paintroid/src/main/res/values/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml"
+      },
+      "target_file_binding": {
+        "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+        "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+        "local_complete_copy": "source/Paintroid/src/main/res/values-b+am/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+      },
+      "decision_binding_sha256": "8a8655c9355046dbd2cb4cca10f083a556c2d7758aef5eb9d9869e22fd147873"
+    },
+    {
+      "key": "string/ui_tolerance",
+      "key_utf8_sha256": "5bb3c0291f095bc8f0d73ae7175abd544e3b3b8fe6842d80fb7f3eb2cea2a007",
+      "english": "Tolerance",
+      "source_value_utf8_sha256": "f71041bb481fcfb42b6e8fd8c081fa11320ff3ce7ceae2634a285814dee860c3",
+      "source_attributes": {
+        "name": "ui_tolerance"
+      },
+      "proposed_XML_text": "\"ገደብ\"",
+      "proposed_XML_text_utf8_sha256": "e03cc67d9bebf4fa46f953aaeb189898ebbcccda701a10006e8a09047b88ac1f",
+      "proposed_XML_element": "<string name=\"ui_tolerance\">\"ገደብ\"</string>",
+      "proposed_XML_element_utf8_sha256": "8334c8dd2fceeaf4ca4e8e452c118f34780f8f6e5e271c3a17c661aabb0fc21d",
+      "display_value": "ገደብ",
+      "display_value_utf8_sha256": "397192fce78c2f59807642e798dd3a7cc31bf91dd2559f9cf0e1b84e6734ff4e",
+      "production_key_status": "Absent in supplied production values-b+am catalogue; no implementation performed.",
+      "verdict": "retain",
+      "confidence": "High for same-domain short-label support and app semantics; medium-high for standalone clarity; no native-reader or rendered acceptance.",
+      "rationale": "The nonfuzzy graphics Tolerance label gives ገደብ, with Color Tolerance independently using the same noun. A limit/threshold noun fits acceptance of color differences. The adjacent replacement-help prose is useful for context but uses other wording and does not prove completely consistent Amharic terminology. No percentage or global-replacement behavior is imported.",
+      "verified_consumer_meaning": "ClassicPaintActivity.kt:767 exposes 0..100. ScanlineFill.kt:14..32 takes the seed color, squares tolerance.toInt(), and compares squared absolute ARGB component differences; zero requires exact equality. Lines 34..54 implement connected scanline expansion. The value is an absolute component-distance threshold, not percent.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L767-L767",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L260-L267",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ScanlineFill.kt#L11-L50"
+      ],
+      "primary_evidence": [
+        {
+          "id": "tolerance_label",
+          "source_file": "libreoffice-am-svx.po",
+          "start_line": 16068,
+          "end_line": 16072,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "dockingcolorreplace|label3",
+          "msgid": "Tolerance",
+          "msgstr": "ገደብ",
+          "raw_po_record": "#. rAyBY\n#: svx/uiconfig/ui/dockingcolorreplace.ui:71\nmsgctxt \"dockingcolorreplace|label3\"\nmsgid \"Tolerance\"\nmsgstr \"ገደብ\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po"
+        },
+        {
+          "id": "tolerance_color_label",
+          "source_file": "libreoffice-am-svx.po",
+          "start_line": 17412,
+          "end_line": 17416,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "floatingcontour|spinbutton|tooltip_text",
+          "msgid": "Color Tolerance",
+          "msgstr": "የ ቀለም ገደብ",
+          "raw_po_record": "#. vRR3B\n#: svx/uiconfig/ui/floatingcontour.ui:452\nmsgctxt \"floatingcontour|spinbutton|tooltip_text\"\nmsgid \"Color Tolerance\"\nmsgstr \"የ ቀለም ገደብ\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po"
+        },
+        {
+          "id": "tolerance_color_context",
+          "source_file": "libreoffice-am-svx.po",
+          "start_line": 16150,
+          "end_line": 16154,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "dockingcolorreplace|extended_tip|tol1",
+          "msgid": "Set the tolerance for replacing a source color in the source image. To replace colors that are similar to the color that you selected, enter a low value. To replace a wider range of colors, enter a higher value.",
+          "msgstr": "የ ቀለም ምንጭ ለ መቀየር ከ ምስል ምንጭ ውስጥ ማካካሻ ማሰናጃ: ቀለም ለ መቀየር ተመሳሳይ የሆነ እርስዎ የ መረጡት: ዝቅተኛ ዋጋ ያስገቡ: ለ መቀየር ሰፊ የ ቀለም መጠኖች: ከፍተኛ ዋጋ ያስገቡ ",
+          "raw_po_record": "#. 5yRXd\n#: svx/uiconfig/ui/dockingcolorreplace.ui:199\nmsgctxt \"dockingcolorreplace|extended_tip|tol1\"\nmsgid \"Set the tolerance for replacing a source color in the source image. To replace colors that are similar to the color that you selected, enter a low value. To replace a wider range of colors, enter a higher value.\"\nmsgstr \"የ ቀለም ምንጭ ለ መቀየር ከ ምስል ምንጭ ውስጥ ማካካሻ ማሰናጃ: ቀለም ለ መቀየር ተመሳሳይ የሆነ እርስዎ የ መረጡት: ዝቅተኛ ዋጋ ያስገቡ: ለ መቀየር ሰፊ የ ቀለም መጠኖች: ከፍተኛ ዋጋ ያስገቡ \"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po"
+        }
+      ],
+      "excluded_or_noncontrolling_evidence": [
+        {
+          "id": "tolerance_percent_not_transferred",
+          "source_file": "libreoffice-am-svx.po",
+          "start_line": 17418,
+          "end_line": 17422,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "floatingcontour|extended_tip|spinbutton",
+          "msgid": "Enter the color tolerance for the Color Replacer as a percentage. To increase the color range that the Color Replacer selects, enter a high percentage.",
+          "msgstr": "የ ቀለም ገደብ ያስገቡ ለ ቀለም መቀየሪያው በ ፐርሰንት: የ ቀለም መጠን ለ መጨመር በ ቀለም መቀየሪያው የተመረጠውን: ከፍተኛ ፐርሰንት ያስገቡ",
+          "raw_po_record": "#. o4Dxq\n#: svx/uiconfig/ui/floatingcontour.ui:457\nmsgctxt \"floatingcontour|extended_tip|spinbutton\"\nmsgid \"Enter the color tolerance for the Color Replacer as a percentage. To increase the color range that the Color Replacer selects, enter a high percentage.\"\nmsgstr \"የ ቀለም ገደብ ያስገቡ ለ ቀለም መቀየሪያው በ ፐርሰንት: የ ቀለም መጠን ለ መጨመር በ ቀለም መቀየሪያው የተመረጠውን: ከፍተኛ ፐርሰንት ያስገቡ\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po"
+        }
+      ],
+      "limitations": [
+        "Do not append (%) or treat a 0..100 control range as percentage.",
+        "Transfer the short lexical choice only, not LibreOffice Color Replacer semantics.",
+        "No need to add Color to the translation when the current English is simply Tolerance."
+      ],
+      "unblock_requirement": null,
+      "source_file_binding": {
+        "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "local_complete_copy": "source/Paintroid/src/main/res/values/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml"
+      },
+      "target_file_binding": {
+        "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+        "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+        "local_complete_copy": "source/Paintroid/src/main/res/values-b+am/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+      },
+      "decision_binding_sha256": "615bdbb922f8e4647ec217adf3a7ce59ef7925389b72130a0926e36f1e33f11c"
+    },
+    {
+      "key": "string/ui_original_size34",
+      "key_utf8_sha256": "fbe9a88ab091997b089429230ddd4fb8201c89d2dce063404d779bef37b879fe",
+      "english": "Original size",
+      "source_value_utf8_sha256": "097c5b7689bb87ac95e60328a1ef7d486461f4fb352178189f2ae2d0ec467184",
+      "source_attributes": {
+        "name": "ui_original_size34",
+        "formatted": "false"
+      },
+      "proposed_XML_text": "\"ዋናው መጠን\"",
+      "proposed_XML_text_utf8_sha256": "485bbce47a52af47e428bcd2f4805f041e7c847b3cd0085edddf6af02a54bee4",
+      "proposed_XML_element": "<string name=\"ui_original_size34\" formatted=\"false\">\"ዋናው መጠን\"</string>",
+      "proposed_XML_element_utf8_sha256": "82b80998b162c354685be97da4f42244e4d9bbe2d63e281f8489ab806ac0af26",
+      "display_value": "ዋናው መጠን",
+      "display_value_utf8_sha256": "bc000871ab26dd9d87c965d38cc15838e085b34cff0890e21214e7a8a32a6e15",
+      "production_key_status": "Absent in supplied production values-b+am catalogue; no implementation performed.",
+      "verdict": "retain",
+      "confidence": "High direct UI lexical support and verified consumer semantics; no native-reader or rendered acceptance.",
+      "rationale": "The crop-page Original Size UI label supplies _ዋናው መጠን; removing only the desktop mnemonic underscore yields the proposed exact phrase. The help-heading ዋነኛው መጠን is a distinct alternative, not silently identical evidence. Neither the source label nor the candidate promises a general undo.",
+      "verified_consumer_meaning": "PaintDocument.kt:415..420 resets the floating rectangle width/height to retained s.image pixel dimensions around its existing center and leaves rotation unchanged. startMovingSelection at 319..325 can checkpoint and lift pixels first. ClassicPaintActivity.kt:758..760 subsequently fits the viewport. This is not restoration of location, rotation, all edits, or a 100% zoom command.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L758-L760",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L415-L422"
+      ],
+      "primary_evidence": [
+        {
+          "id": "original_size_label",
+          "source_file": "libreoffice-am-cui.po",
+          "start_line": 8913,
+          "end_line": 8917,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "croppage|origsize",
+          "msgid": "_Original Size",
+          "msgstr": "_ዋናው መጠን",
+          "raw_po_record": "#. BSBCG\n#: cui/uiconfig/ui/croppage.ui:333\nmsgctxt \"croppage|origsize\"\nmsgid \"_Original Size\"\nmsgstr \"_ዋናው መጠን\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po"
+        },
+        {
+          "id": "original_size_alt",
+          "source_file": "libreoffice-am-help01.po",
+          "start_line": 23320,
+          "end_line": 23327,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "05030800.xhp\nhd_id3148676\nhelp.text",
+          "msgid": "Original Size",
+          "msgstr": "ዋነኛው መጠን",
+          "raw_po_record": "#. cpADy\n#: 05030800.xhp\nmsgctxt \"\"\n\"05030800.xhp\\n\"\n\"hd_id3148676\\n\"\n\"help.text\"\nmsgid \"Original Size\"\nmsgstr \"ዋነኛው መጠን\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po"
+        }
+      ],
+      "excluded_or_noncontrolling_evidence": [],
+      "limitations": [
+        "Retain formatted=\"false\".",
+        "Preserve the exact ui_original_size34 key, not another Original size resource.",
+        "Native preference between attested variants and rendered button fit remain unverified."
+      ],
+      "unblock_requirement": null,
+      "source_file_binding": {
+        "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "local_complete_copy": "source/Paintroid/src/main/res/values/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml"
+      },
+      "target_file_binding": {
+        "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+        "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+        "local_complete_copy": "source/Paintroid/src/main/res/values-b+am/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+      },
+      "decision_binding_sha256": "195af77a6a6601c851efb85c2e913a04b4b82951e1e7a2bee3831e0749550b5c"
+    }
+  ],
+  "held_proposals_this_group": [
+    {
+      "key": "string/ui_spray_radius_px",
+      "key_utf8_sha256": "0154df348079b3e4715d31811af2b6c9f8dcee755dec493706897e66778ec4a7",
+      "english": "Spray radius (px)",
+      "source_value_utf8_sha256": "dbce2d022204ede1adbb04a6bc8e3546066f52befe68f00fd6532690b8ee242e",
+      "source_attributes": {
+        "name": "ui_spray_radius_px"
+      },
+      "proposed_XML_text": "\"የመርጫ ራዲየስ (px)\"",
+      "proposed_XML_text_utf8_sha256": "e07620a3c22a2d26d2b5d41a558fb4406556571fc44bb9bd9c7b4bb47a57499e",
+      "proposed_XML_element": "<string name=\"ui_spray_radius_px\">\"የመርጫ ራዲየስ (px)\"</string>",
+      "proposed_XML_element_utf8_sha256": "62ac35bb4017ea99f35606f311ab6cc824c3e58e80943c4bd83169b0cc9c14df",
+      "display_value": "የመርጫ ራዲየስ (px)",
+      "display_value_utf8_sha256": "418a0c4c9b7dc1cc4d1ee9ee03cc1b4d2590a768b2d93d4e5f140e3813eaf883",
+      "production_key_status": "Absent in supplied production values-b+am catalogue; no implementation performed.",
+      "verdict": "hold",
+      "confidence": "Low for the complete Amharic compound; high for the radius component and consumer meaning.",
+      "rationale": "The exact Radius attestation cannot certify the original spray component መርጫ or the whole compound. The supplied bounded corpus contains no eligible Spray or Spray radius primary record. The existing terminology hold is therefore preserved, without calling the proposed word definitively wrong or inventing a replacement.",
+      "verified_consumer_meaning": "ClassicPaintActivity.kt:784 exposes 1..100 image pixels. PaintCanvas.kt:526..535 generates points in a disk using sqrt(random)*radius, with fixed 1px points and max(8,integer radius) point count. The label concerns the spray disk radius, not dot width or diameter.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L784-L784",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L527-L537"
+      ],
+      "primary_evidence": [
+        {
+          "id": "radius_label",
+          "source_file": "libreoffice-am-help01.po",
+          "start_line": 30529,
+          "end_line": 30536,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "05230400.xhp\nhd_id3153935\nhelp.text",
+          "msgid": "Radius",
+          "msgstr": "ራዲየስ",
+          "raw_po_record": "#. wu4h7\n#: 05230400.xhp\nmsgctxt \"\"\n\"05230400.xhp\\n\"\n\"hd_id3153935\\n\"\n\"help.text\"\nmsgid \"Radius\"\nmsgstr \"ራዲየስ\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po"
+        }
+      ],
+      "excluded_or_noncontrolling_evidence": [],
+      "limitations": [
+        "No claim that no translation exists outside the searched corpus.",
+        "Native graphics-tool terminology review is needed for Spray and the full compound.",
+        "Preserve literal (px); do not promote this value to accepted coverage."
+      ],
+      "unblock_requirement": "Obtain a reliable Amharic graphics-tool attestation or competent native-context review confirming the spray noun and complete radius label against the disk-radius behavior.",
+      "source_file_binding": {
+        "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "local_complete_copy": "source/Paintroid/src/main/res/values/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml"
+      },
+      "target_file_binding": {
+        "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+        "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+        "local_complete_copy": "source/Paintroid/src/main/res/values-b+am/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+      },
+      "decision_binding_sha256": "8d7dd5080c084cf26a088a26bc6f030ffc4438205cf25e7ffd4a1e61e650c4e8"
+    },
+    {
+      "key": "string/ui_lock_proportions",
+      "key_utf8_sha256": "ee4f15e3d4f13b1b30b5becbc03d96b3551b8e75a3bc2c813f48aba0c38cd92e",
+      "english": "Lock proportions",
+      "source_value_utf8_sha256": "5c66db32dfaaf528a8c9451204fae25b54546714582431ed43962b7641436f4d",
+      "source_attributes": {
+        "name": "ui_lock_proportions"
+      },
+      "proposed_XML_text": "\"ተመጣጣኝነት መጠበቂያ\"",
+      "proposed_XML_text_utf8_sha256": "5cf3b18011b5153843765e7a5be513598d44b74d66cfc62cfdce30ea64f1041a",
+      "proposed_XML_element": "<string name=\"ui_lock_proportions\">\"ተመጣጣኝነት መጠበቂያ\"</string>",
+      "proposed_XML_element_utf8_sha256": "c0aa2e5ac4d1bf1bf241b9fe8ad00039ea822e4d5187f5aef5c2f1784d7c162f",
+      "display_value": "ተመጣጣኝነት መጠበቂያ",
+      "display_value_utf8_sha256": "8ba00c3dc6b2fb9f8eb83b54b436646d474a462d5c8aa0f915264414bdbda242",
+      "production_key_status": "Absent in supplied production values-b+am catalogue; no implementation performed.",
+      "verdict": "hold",
+      "confidence": "High consumer meaning; medium compositional semantic support; insufficient independent confidence in the standalone checkbox idiom.",
+      "rationale": "The candidate is a contiguous phrase in same-function LibreOffice explanatory prose, and maintaining proportionality matches the feature. However, extracting this nominal phrase does not by itself establish a clear standalone on/off checkbox label. I cannot confidently endorse its checkbox-state idiom from these records alone. This is an evidence/idiom hold, not a finding that the phrase is grammatically wrong, and not a blanket rule requiring every new translation to have an exact full-phrase precedent.",
+      "verified_consumer_meaning": "ClassicPaintActivity.kt:761..764 toggles lockSelectionAspect. PaintCanvas.kt:617..642 uses initialSelectionRect for the current gesture. SelectionGeometry.kt:28..60 scales both current dimensions together for corner and edge drags. It preserves the current gesture-start ratio, not necessarily the source-image ratio, and does not freeze movement, rotation, or size or repair prior distortion.",
+      "consumer_links": [
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L761-L764",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L617-L642",
+        "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/SelectionGeometry.kt#L25-L67"
+      ],
+      "primary_evidence": [
+        {
+          "id": "keep_proportions_context",
+          "source_file": "libreoffice-am-cui.po",
+          "start_line": 19963,
+          "end_line": 19967,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "possizetabpage|extended_tip|CBX_SCALE",
+          "msgid": "Maintains proportions when you resize the selected object.",
+          "msgstr": "የ ተመረጠው እቃ እንደገና በሚመጠን ጊዜ ተመጣጣኝነቱን መጠበቂያ ",
+          "raw_po_record": "#. 9AxVT\n#: cui/uiconfig/ui/possizetabpage.ui:256\nmsgctxt \"possizetabpage|extended_tip|CBX_SCALE\"\nmsgid \"Maintains proportions when you resize the selected object.\"\nmsgstr \"የ ተመረጠው እቃ እንደገና በሚመጠን ጊዜ ተመጣጣኝነቱን መጠበቂያ \"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po"
+        },
+        {
+          "id": "keep_proportions_phrase",
+          "source_file": "libreoffice-am-help01.po",
+          "start_line": 27244,
+          "end_line": 27251,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "05200100.xhp\npar_id3156326\nhelp.text",
+          "msgid": "<ahelp hid=\"cui/ui/linetabpage/CB_SYMBOL_RATIO\">Maintains the proportions of the symbol when you enter a new height or width value.</ahelp>",
+          "msgstr": "<ahelp hid=\"cui/ui/linetabpage/CB_SYMBOL_RATIO\">የ ምልክት ተመጣጣኝነት መጠበቂያ እርስዎ አዲስ የ እርዝመት ወይንም የ ስፋት ዋጋ ሲያስገቡ </ahelp>",
+          "raw_po_record": "#. z9BZT\n#: 05200100.xhp\nmsgctxt \"\"\n\"05200100.xhp\\n\"\n\"par_id3156326\\n\"\n\"help.text\"\nmsgid \"<ahelp hid=\\\"cui/ui/linetabpage/CB_SYMBOL_RATIO\\\">Maintains the proportions of the symbol when you enter a new height or width value.</ahelp>\"\nmsgstr \"<ahelp hid=\\\"cui/ui/linetabpage/CB_SYMBOL_RATIO\\\">የ ምልክት ተመጣጣኝነት መጠበቂያ እርስዎ አዲስ የ እርዝመት ወይንም የ ስፋት ዋጋ ሲያስገቡ </ahelp>\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po"
+        }
+      ],
+      "excluded_or_noncontrolling_evidence": [
+        {
+          "id": "keep_ratio_empty_rejected",
+          "source_file": "libreoffice-am-cui.po",
+          "start_line": 19951,
+          "end_line": 19955,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "possizetabpage|ratio_tip",
+          "msgid": "Keep ratio",
+          "msgstr": "",
+          "raw_po_record": "#. gb8JF\n#: cui/uiconfig/ui/possizetabpage.ui:250\nmsgctxt \"possizetabpage|ratio_tip\"\nmsgid \"Keep ratio\"\nmsgstr \"\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/cui/messages.po"
+        },
+        {
+          "id": "keep_ratio_short_ambiguous",
+          "source_file": "libreoffice-am-help01.po",
+          "start_line": 27235,
+          "end_line": 27242,
+          "flags": [],
+          "fuzzy": false,
+          "msgctxt": "05200100.xhp\nhd_id3147620\nhelp.text",
+          "msgid": "Keep ratio",
+          "msgstr": "መጠን መጠበቂያ",
+          "raw_po_record": "#. e5KDq\n#: 05200100.xhp\nmsgctxt \"\"\n\"05200100.xhp\\n\"\n\"hd_id3147620\\n\"\n\"help.text\"\nmsgid \"Keep ratio\"\nmsgstr \"መጠን መጠበቂያ\"",
+          "pinned_source_url": "https://raw.githubusercontent.com/LibreOffice/translations/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/01.po"
+        }
+      ],
+      "limitations": [
+        "Do not automatically replace it with መጠን መጠበቂያ, whose shortened noun can suggest preserving size instead of proportions.",
+        "The empty Keep ratio UI record is not a translation.",
+        "The separate AOSP Aspect ratio noun is not a complete replacement for Lock proportions.",
+        "No exact new wording is justified here; hold the proposed value without adding it to accepted coverage."
+      ],
+      "unblock_requirement": "Obtain competent native-context review of this exact checkbox label with unchecked/checked states and resizing examples, or a reliable standalone same-function Amharic UI precedent. Confirm that it means preserve current width:height proportion while resizing, not freeze dimensions.",
+      "source_file_binding": {
+        "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "local_complete_copy": "source/Paintroid/src/main/res/values/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml"
+      },
+      "target_file_binding": {
+        "git_blob": "270594dc5e2b8109b561e5c987f99922f34684bc",
+        "sha256": "f02e2408a370e65c3068fb9a81d460f7fb0a03a1010137158cb980b9691b64f6",
+        "local_complete_copy": "source/Paintroid/src/main/res/values-b+am/strings.xml",
+        "immutable_url": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values-b+am/strings.xml"
+      },
+      "decision_binding_sha256": "5ab0f0e5657202cbad3550b3b8bc514e3289a7315ba8b37228f80a944e0b605d"
+    }
+  ],
+  "counts": {
+    "this_group_ready": 5,
+    "prior_ready": 47,
+    "accumulated_ready_candidates": 52,
+    "held_proposals_this_group": 2,
+    "prior_held_proposals": 4,
+    "total_held_proposals": 6,
+    "implemented": 0
+  },
+  "production_coverage": {
+    "present": 12,
+    "missing": 705,
+    "denominator": 717
+  },
+  "prior47_locator": "https://github.com/c933103/AN-Paint/blob/fe51d699eed5b068444c46168339b41b6cd1010a/records/localization-review/2026-10-24/amharic-brush-shape/r01/reviewed-candidates-and-holds.json",
+  "scope_limits": [
+    "Tolerance is absolute ARGB distance, not percent. Source generic Size does not promise effects for every tool.",
+    "Original size restores retained selection dimensions while keeping center and rotation, may first lift pixels/checkpoint, then fits viewport; not general undo or100% zoom.",
+    "Lock proportions preserves gesture-start aspect ratio, not original ratio after distortion; native-context or reliable same-function standalone evidence is needed to clear idiom hold.",
+    "Strength is cross-context strength/intensity noun adaptation, not an exact painting phrase attestation.",
+    "Independent reviewer checked sealed bytes but did not freshly fetch production or lexical sources; author fresh production binding and reused pinned lexical provenance remain distinct.",
+    "Literal(px),(%),formatted=false attributes preserved. Surrounding numeric/accessibility templates excluded."
+  ]
+}

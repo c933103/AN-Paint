@@ -1,0 +1,209 @@
+[
+  {
+    "key": "string/ui_size_px",
+    "english": "Size (px)",
+    "draft": "መጠን (px)",
+    "source_attributes": {
+      "name": "ui_size_px"
+    },
+    "status": "original draft; unaccepted; not implemented",
+    "confidence": "high lexical; untested UI draft",
+    "evidence_record_ids": [
+      "size_label"
+    ],
+    "rationale": "Exact nonfuzzy Size → መጠን in graphics Position and Size UI. Append source literal (px), rather than localizing the unit. Generic size noun avoids promising that this shared parameter determines every mark dimension.",
+    "review_flags": [
+      "Preserve literal (px).",
+      "Inspect each tool context: Pencil has independent size; most shared controls edit strokeWidth, while Spray still draws fixed 1px dots.",
+      "Native/contextual and visual-fit review remain outstanding."
+    ],
+    "alternatives": [],
+    "limitations": [
+      "Preserve literal (px).",
+      "Inspect each tool context: Pencil has independent size; most shared controls edit strokeWidth, while Spray still draws fixed 1px dots.",
+      "Native/contextual and visual-fit review remain outstanding."
+    ],
+    "author_status": "review"
+  },
+  {
+    "key": "string/ui_radius_px",
+    "english": "Radius (px)",
+    "draft": "ራዲየስ (px)",
+    "source_attributes": {
+      "name": "ui_radius_px"
+    },
+    "status": "original draft; unaccepted; not implemented",
+    "confidence": "high lexical and matching corner-radius context; untested UI draft",
+    "evidence_record_ids": [
+      "radius_label",
+      "radius_corner_context",
+      "radius_corner_svx"
+    ],
+    "rationale": "Exact nonfuzzy Radius → ራዲየስ occurs in the LibreOffice rounded-rectangle corner-radius help. This is not diameter or rounding a number. The untranslated Radius → Radius measurement record is excluded.",
+    "review_flags": [
+      "Preserve literal (px).",
+      "Rounded-corner geometry is clamped separately from slider maximum.",
+      "Loanword choice and native visual fit remain unaccepted."
+    ],
+    "alternatives": [],
+    "limitations": [
+      "Preserve literal (px).",
+      "Rounded-corner geometry is clamped separately from slider maximum.",
+      "Loanword choice and native visual fit remain unaccepted."
+    ],
+    "author_status": "review"
+  },
+  {
+    "key": "string/ui_spray_radius_px",
+    "english": "Spray radius (px)",
+    "draft": "የመርጫ ራዲየስ (px)",
+    "source_attributes": {
+      "name": "ui_spray_radius_px"
+    },
+    "status": "original draft; unaccepted; not implemented",
+    "confidence": "low compositional; terminology HOLD",
+    "evidence_record_ids": [
+      "radius_label"
+    ],
+    "rationale": "Original composition meaning spray radius. Only Radius → ራዲየስ has eligible exact primary lexical evidence. The spray component መርጫ is an original draft, not an attested LibreOffice/AOSP term in this corpus. It refers to the random spray disk, not the dot width.",
+    "review_flags": [
+      "TERMINOLOGY HOLD: no eligible primary attestation for Spray or Spray radius was established.",
+      "Do not treat the complete phrase as source-backed or release-ready.",
+      "Native review must confirm that መርጫ naturally names the spray tool rather than a selection/sprinkler sense.",
+      "Preserve literal (px), radius not diameter; point density/count also changes with radius."
+    ],
+    "alternatives": [],
+    "limitations": [
+      "TERMINOLOGY HOLD: no eligible primary attestation for Spray or Spray radius was established.",
+      "Do not treat the complete phrase as source-backed or release-ready.",
+      "Native review must confirm that መርጫ naturally names the spray tool rather than a selection/sprinkler sense.",
+      "Preserve literal (px), radius not diameter; point density/count also changes with radius."
+    ],
+    "author_status": "hold"
+  },
+  {
+    "key": "string/ui_strength",
+    "english": "Strength (%)",
+    "draft": "ጥንካሬ (%)",
+    "source_attributes": {
+      "name": "ui_strength",
+      "formatted": "false"
+    },
+    "status": "original draft; unaccepted; not implemented",
+    "confidence": "medium-high component evidence; original cross-context draft",
+    "evidence_record_ids": [
+      "strength_intensity",
+      "strength_signal",
+      "strength_vibration"
+    ],
+    "rationale": "AOSP color-correction Intensity → ጥንካሬ is an exact paired short label; signal and vibration strength phrases independently use the same noun. Reusing it for watercolor Strength is an original cross-context adaptation, not an exact painting translation. Consumer source confirms alpha strength in 1..100, so no unsupported opacity assumption is needed.",
+    "review_flags": [
+      "Preserve literal (%) and formatted=\"false\".",
+      "Do not replace the visible source Strength with an independently invented opacity label.",
+      "Check native sense and consistency with neighboring watercolor terminology; no exact Strength (%) painting-source match."
+    ],
+    "alternatives": [],
+    "limitations": [
+      "Preserve literal (%) and formatted=\"false\".",
+      "Do not replace the visible source Strength with an independently invented opacity label.",
+      "Check native sense and consistency with neighboring watercolor terminology; no exact Strength (%) painting-source match."
+    ],
+    "author_status": "review"
+  },
+  {
+    "key": "string/ui_tolerance",
+    "english": "Tolerance",
+    "draft": "ገደብ",
+    "source_attributes": {
+      "name": "ui_tolerance"
+    },
+    "status": "original draft; unaccepted; not implemented",
+    "confidence": "high lexical; same color-difference family, different algorithm",
+    "evidence_record_ids": [
+      "tolerance_label",
+      "tolerance_color_context",
+      "tolerance_color_label"
+    ],
+    "rationale": "Exact nonfuzzy graphics Tolerance → ገደብ is used for accepting a color range. The app uses connected flood fill with an absolute Euclidean ARGB distance, not LibreOffice global color replacement. Transfer only the noun, not the source algorithm or percentage unit.",
+    "review_flags": [
+      "Do not add (%) or infer percentage from a 0..100 range.",
+      "LibreOffice color-tolerance percent help retained as exclusion evidence, NOT applicable app semantics.",
+      "Native clarity of short generic threshold/limit word remains unaccepted."
+    ],
+    "alternatives": [
+      {
+        "draft": "የቀለም ገደብ",
+        "note": "More explicit color-tolerance composition; supported by exact LO Color Tolerance → የ ቀለም ገደብ, with spacing normalized. Changes English label specificity, so not preferred without review."
+      }
+    ],
+    "limitations": [
+      "Do not add (%) or infer percentage from a 0..100 range.",
+      "LibreOffice color-tolerance percent help retained as exclusion evidence, NOT applicable app semantics.",
+      "Native clarity of short generic threshold/limit word remains unaccepted."
+    ],
+    "author_status": "review"
+  },
+  {
+    "key": "string/ui_original_size34",
+    "english": "Original size",
+    "draft": "ዋናው መጠን",
+    "source_attributes": {
+      "name": "ui_original_size34",
+      "formatted": "false"
+    },
+    "status": "original draft; unaccepted; not implemented",
+    "confidence": "high lexical; untested selection-action draft",
+    "evidence_record_ids": [
+      "original_size_label",
+      "original_size_alt"
+    ],
+    "rationale": "Nonfuzzy crop-page _Original Size → _ዋናው መጠን; remove the foreign desktop accelerator underscore only. Selection action restores retained source-image dimensions, not position, rotation, or arbitrary prior edits. The alternate help spelling ዋነኛው መጠን is retained rather than silently treated as identical.",
+    "review_flags": [
+      "Preserve formatted=\"false\".",
+      "Do not imply undo, original location, original rotation or viewport zoom reset.",
+      "Native preference between attested variants and action clarity require review."
+    ],
+    "alternatives": [
+      {
+        "draft": "ዋነኛው መጠን",
+        "note": "Exact nonfuzzy Original Size help-heading variant; prefer the shorter directly attested UI wording unless native review favors this."
+      }
+    ],
+    "limitations": [
+      "Preserve formatted=\"false\".",
+      "Do not imply undo, original location, original rotation or viewport zoom reset.",
+      "Native preference between attested variants and action clarity require review."
+    ],
+    "author_status": "review"
+  },
+  {
+    "key": "string/ui_lock_proportions",
+    "english": "Lock proportions",
+    "draft": "ተመጣጣኝነት መጠበቂያ",
+    "source_attributes": {
+      "name": "ui_lock_proportions"
+    },
+    "status": "original draft; unaccepted; not implemented",
+    "confidence": "medium-high same-function component phrase; original shortened draft",
+    "evidence_record_ids": [
+      "keep_proportions_context",
+      "keep_proportions_phrase",
+      "keep_ratio_short_ambiguous"
+    ],
+    "rationale": "Original concise phrase built from exact nonfuzzy LO proportions-preserving resize prose, including the contiguous phrase ተመጣጣኝነት መጠበቂያ. Chooses preserve proportions rather than a security-lock noun. It keeps the current gesture-start aspect ratio, not necessarily the original image ratio.",
+    "review_flags": [
+      "Full English Lock proportions short-label equivalent was NOT established in the primary corpus.",
+      "The LO Keep ratio → መጠን መጠበቂያ alternative could misleadingly suggest keeping fixed size; do not automatically adopt it.",
+      "Do not imply frozen position, rotation, or dimensions, or retroactive correction of prior distortion.",
+      "Native grammar, checkbox-state clarity and width/fit review remain unaccepted."
+    ],
+    "alternatives": [],
+    "limitations": [
+      "Full English Lock proportions short-label equivalent was NOT established in the primary corpus.",
+      "The LO Keep ratio → መጠን መጠበቂያ alternative could misleadingly suggest keeping fixed size; do not automatically adopt it.",
+      "Do not imply frozen position, rotation, or dimensions, or retroactive correction of prior distortion.",
+      "Native grammar, checkbox-state clarity and width/fit review remain unaccepted."
+    ],
+    "author_status": "review"
+  }
+]
