@@ -1,0 +1,82 @@
+{
+  "resource": "string/ui_solid_fill",
+  "locale": "am",
+  "english": "Solid fill",
+  "decision": "release_with_revision",
+  "review_state": "ready_after_independent_adjudication",
+  "previous_held_candidate": "መሙያ ብቻ",
+  "accepted_value": "የነጠላ ቀለም መሙያ",
+  "accepted_xml": "<string name=\"ui_solid_fill\">የነጠላ ቀለም መሙያ</string>",
+  "contextual_gloss": "single-colour fill",
+  "decision_reason": "The revision explicitly preserves uniform colour and fill, using attested graphics components and a productive, grammatical yä-prefixed qualifier. No specific remaining fidelity or grammatical defect warrants the hold.",
+  "source_change_required": false,
+  "production_changed": false,
+  "implemented": false,
+  "confidence": {
+    "source_interpretation": "high",
+    "translation_fidelity_and_composition": "medium-high",
+    "idiom_and_ui_preference": "medium, not native-certified"
+  },
+  "acceptance_boundary": "Translation-review acceptance only; no runtime, visual-fit, accessibility, native-reader or application-release acceptance.",
+  "whole_caption_attestation": "Not claimed or required; accepted as a reasoned composition.",
+  "consumer": {
+    "style_0": "opaque foreground outline; no interior fill",
+    "style_1": "uniform opaque foreground fill; no separate outline pass",
+    "style_2": "opaque background fill plus opaque foreground outline",
+    "normalization": "Selected and sampled colours pass through setters that OR with Color.BLACK (0xff000000), forcing stored alpha to 255.",
+    "sampled_alpha_preserved": false,
+    "boundary_pixels": "Antialias coverage may blend boundary pixels without making the selected colour or fill paint semitransparent.",
+    "open_polygon": "Preview and commit dispatch LINE; no interior fill regardless of style.",
+    "other_app_transparency_inferred_for_an_paint": false
+  },
+  "history": "The original hold was valid. The opacity correction supersedes earlier incomplete alpha reasoning; both histories remain preserved.",
+  "inventory_effect": {
+    "before": {
+      "ready": 100,
+      "held": 8,
+      "implemented": 0,
+      "pending": 90
+    },
+    "after_recording_this_decision": {
+      "ready": 101,
+      "held": 7,
+      "implemented": 0,
+      "pending": 90
+    },
+    "external_inventory_updated_by_reviewer": false
+  },
+  "source_links": {
+    "english": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/res/values/strings.xml#L379-L382",
+    "choice": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L785-L800",
+    "setter": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L44-L47",
+    "picker": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L811-L813",
+    "selection": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1425-L1427",
+    "preview_selection": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L954-L958",
+    "paint": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L247-L258",
+    "shape": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L272-L286",
+    "polygon_preview": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L272-L277",
+    "polygon_commit": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L443-L446",
+    "single_colour": "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po#L15414-L15418",
+    "fill": "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/svx/messages.po#L19823-L19827",
+    "leslau": "https://e-learning.tsu.ge/pluginfile.php/6774/mod_resource/content/0/amharic_rg.pdf#page=66",
+    "adafre": "https://aclanthology.org/2004.eamt-1.6.pdf#page=3",
+    "solid": "https://learn.microsoft.com/en-us/office/vba/api/powerpoint.fillformat.solid",
+    "transparency": "https://learn.microsoft.com/en-us/office/vba/api/powerpoint.fillformat.transparency",
+    "black": "https://developer.android.com/reference/android/graphics/Color#BLACK",
+    "setcolor": "https://developer.android.com/reference/android/graphics/Paint#setColor(int)",
+    "prior_review": "https://github.com/c933103/AN-Paint/blob/fe51d699eed5b068444c46168339b41b6cd1010a/records/localization-review/2026-10-24/amharic-brush-shape/r01/independent/REVIEW.md",
+    "tinycore": "https://github.com/tinycorelinux/fltk_projects/blob/f5b51578084f650ef347fe044ce27a1dc5b28145/translations/am.po#L906-L908",
+    "tinycore_consumer": "https://github.com/tinycorelinux/fltk_projects/blob/f5b51578084f650ef347fe044ce27a1dc5b28145/wallpaper/wallpaper.cxx#L66-L106",
+    "monochrome": "https://github.com/LibreOffice/translations/blob/681a7f1e79cd6e27496259dab7940c8e490059de/source/am/helpcontent2/source/text/shared/02.po#L19045-L19052"
+  },
+  "not_performed": [
+    "Work task",
+    "production edits",
+    "application tests",
+    "build",
+    "CI",
+    "remote publication",
+    "merge",
+    "release"
+  ]
+}
