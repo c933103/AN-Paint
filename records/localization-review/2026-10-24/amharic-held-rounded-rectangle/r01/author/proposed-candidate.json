@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-24",
+  "language": "am",
+  "resource": "string/ui_rounded_rectangle",
+  "english": "Rounded rectangle",
+  "previous_held_value": "የተከበበ አራት ማእዘን",
+  "proposed_value": "ማዕዘኖቹ ክብ የሆኑ ቀጤ ጎነ አራት",
+  "literal_analysis": "rectangle whose corners are round",
+  "author_recommendation": "REVISE_PENDING_INDEPENDENT_ADJUDICATION",
+  "existing_hold_remains": true,
+  "accepted": false,
+  "implemented": false,
+  "attestation": "Productive complete composition. Components and grammatical pattern are supported; exact prior publication of the whole label is not claimed or required.",
+  "reason": "Explicitly predicates roundness of the corners rather than enclosure of the whole figure, while retaining a precise rectangular-base noun.",
+  "confidence": {
+    "semantic_fit": "medium-high",
+    "productive_grammar": "medium-high",
+    "whole_caption_idiom": "medium",
+    "technical_term_familiarity": "medium",
+    "rendered_fit": "unassessed",
+    "native_reader_certification": false
+  },
+  "alternatives": [
+    {
+      "value": "ክብ ማዕዘኖች ያሉት ቀጤ ጎነ አራት",
+      "assessment": "Defensible having-round-corners composition; same descriptive length; not independently accepted."
+    },
+    {
+      "value": "ክብ ጠርዝ ያለው ቀጤ ጎነ አራት",
+      "assessment": "Uses known software component but may describe a rounded edge/rim rather than specifically corners; not preferred."
+    },
+    {
+      "value": "የተከበበ ቀጤ ጎነ አራት",
+      "assessment": "More precise head does not remove the original enclosed/surrounded modifier ambiguity; not recommended."
+    },
+    {
+      "value": "ማዕዘኖቹ የተጠጋጉ ቀጤ ጎነ አራት",
+      "assessment": "Possible alternative, but adequate primary geometric evidence for the modifier was not established in this pass. Not judged incorrect."
+    }
+  ],
+  "behavior_limits": [
+    "Drawing-tool family with adjustable corner radius, including zero.",
+    "Can draw outline or filled shapes; not a hollow-only shape.",
+    "Changing tools may commit previously pending edits.",
+    "No English-source defect established."
+  ],
+  "review_questions": [
+    "Does the whole phrase naturally describe rounded corners rather than a circular or enclosed object?",
+    "Does the precise rectangle noun remain appropriate for the rounded-corner family?",
+    "Is the relative clause natural as a generic tool caption?",
+    "Treat compact-tile rendering as untested; do not infer fit or failure from word count alone."
+  ],
+  "evidence_ids": [
+    "leslau_round_corner",
+    "leslau_relative_grammar",
+    "ict_rectangle",
+    "mcps_pattern",
+    "lo_reexamined",
+    "jgraph_reexamined",
+    "unicode_round_corners",
+    "application_semantics"
+  ],
+  "scope_limits": [
+    "No production resource changes.",
+    "No app builds, tests, CI, deployment or release.",
+    "No native-reader, pronunciation, screen-reader or runtime certification.",
+    "No automatic removal of the existing hold."
+  ]
+}

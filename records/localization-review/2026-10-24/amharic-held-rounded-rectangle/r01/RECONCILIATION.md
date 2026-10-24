@@ -1,0 +1,11 @@
+# Rounded rectangle: revised candidate adopted
+
+Author reconciliation accepts the independent RELEASE_WITH_REVISION for **ui_rounded_rectangle**, English **Rounded rectangle**. Exact reviewed value: **ማዕዘኖቹ ክብ የሆኑ ቀጤ ጎነ አራት**. The previous **የተከበበ አራት ማእዘን** remains historical held wording, not an accepted alternative. The [original shape review](https://github.com/c933103/AN-Paint/tree/15b0fdc15cb46ef237bc9c26a3a4d32e64605db8/records/localization-review/2026-10-24/amharic-shape-names/r01) remains unchanged.
+
+This successor explicitly accepts the whole productive composition, not merely isolated words or inherited Rectangle acceptance. Roundness is predicated of the corners, preserving the rectangular base. The preserved author proposal's pending status is historical and superseded only for this exact revised value by the independent decision. Its source-link addendum supplies immutable project links where the original author prose used branch URLs. Alternatives remain unselected, not universally rejected.
+
+Semantic and grammatical confidence remain medium-high; whole-caption idiom and technical familiarity remain medium. The configurable radius includes zero and is clamped to half the shorter dimension. The six-word caption has untested rendering fit in ellipsizing tiles; complete tooltip/accessibility assignments in source do not certify actual spoken delivery. No English-source defect is established. No native-reader or runtime certification is claimed.
+
+Current source binding: 66be61df27c5359bffc32d56db21f3949899f873, tree 870c5a584120d92710be516af0dc3b3847b183d9. After recording: **99 reviewed ready additions, 9 held proposals, zero implemented**. Pending 90-value implementation batch remains exactly unchanged; this revision is outside it. Production coverage remains 12 present / 705 missing of 717 canonical containers. No whole-language acceptance total is inferred.
+
+Only the two independent public artifacts, four preserved author public files and this clean reconciliation are included, with a public-only manifest and seal. Local-only material and metadata are intentionally omitted. Prior history/index entries are preserved. Records only: no Work task, production edits, builds, tests, CI or release.
