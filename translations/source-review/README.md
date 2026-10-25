@@ -98,3 +98,13 @@ passing their preservation tests does **not** renew semantic acceptance.
 No application build, Gradle, APK, workflow dispatch or runtime/device check is
 needed or claimed for this wording review. No version, release input, signing or
 application-publication change is included. The release pause remains in force.
+
+## 25 October 2026: bounded Ainu warning successors
+
+The historical queue above and `memory-warning-successors-20261023.json` are preserved unchanged. The current compact behavioral fixture is now [memory-warning-successors-20261025.json](memory-warning-successors-20261025.json): it retains the earlier 114 exact pairs and adds only the two reviewed warnings in each of `ain-Kana` and `ain-Latn`.
+
+The [exact source/value review](https://github.com/c933103/AN-Paint/blob/ed90d5ce76b9971ee934a4175fb585215cd22b37/records/localization-review/2026-10-25/ainu-partial-help-warnings/r01/warnings.json) supports these four successor values. Review remains bounded, with medium idiom confidence and no native-reader or runtime certification. The loading warning's existing cancel/smaller-source sentence is retained, not independently perfected.
+
+The active two-key contract covers 118 reviewed successor pairs across 59 options; four present pairs remain outside that successor set (`jje` and `vi-Hani`), alongside 218 missing pairs and two canonical-English pairs. These are warning-key inventory counts, not whole-language acceptance or Help-key approval. The separate Ainu estimate-label correction is not part of this two-key registry.
+
+The registry continues to require exact source, historical target, locale/key inventory and expected current wording. Existing corruption checks remain, now also exercising the four Ainu successors; held-case controls use the still-held `jje`/ `vi-Hani` identities. No old receipt or queue value is rewritten to make the new text pass.
