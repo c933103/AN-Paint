@@ -65,6 +65,8 @@ CASES = {'lzh-Hant': {'folder': 'values-b+lzh+Hant',
                  'choice': 'Su-chhut nā chhiau-kòe kì-ek-thé siōng-hān, têng-sek nā ū thê-kiong khah sè ê su-chhut hù-pún hō͘ lí kéng, chhiáⁿ kéng khah sè ê hù-pún.',
                  'warning': 'Tō-sǹg su-chhut í-keng chin sè, nā iáu-sī chhiau-kòe kì-ek-thé siōng-hān, têng-sek ē hián-sī kì-ek-thé kéng-kò, bē hián-sī chhùn-chhioh soán-chhú ōe-bīn.'},
  'wuu-Hans': {'folder': 'values-b+wuu+Hans',
+              'paragraph_count': 8,
+              'memory_paragraph': 6,
               'old_dimensions': '裁剪尺寸',
               'dimensions': '裁剪搭用「相同宽度」或「相同高度」调整后个图片尺寸',
               'old_memory': '假使输出超出内存上限，请拣小眼个输出副本。',
@@ -80,7 +82,7 @@ def catalogue(tag):
         raise AssertionError(f'{tag}: expected exactly one {KEY}')
     values = {node.get('name'): ''.join(node.itertext()) for node in nodes}
     paragraphs = values[KEY].split(r'\n\n')
-    # Five independently accepted Help values have eight paragraphs; Wu stays at seven.
+    # All six independently accepted Help successors have eight paragraphs.
     expected_count = CASES[tag].get('paragraph_count', 7)
     if len(paragraphs) != expected_count:
         raise AssertionError(f'{tag}: assembly help paragraph structure changed')
@@ -88,6 +90,30 @@ def catalogue(tag):
 
 
 class AssemblyHelpPr6Tests(unittest.TestCase):
+    def test_wu_reviewed_successor_preserves_repaired_distinctions(self):
+        # 25-Oct source-semantic successor. These bounded clauses supplement,
+        # rather than replace, the original PR6 dimension/memory checks below.
+        _, paragraphs = catalogue('wuu-Hans')
+        required = {
+            0: ('文件提供者有提供文件修改时间个辰光，也会显示搿个时间。',),
+            2: ('半透明预览会显示准确个贴齐结果。',
+                '用贴齐方式摆图片个辰光，第一张图片由原点开始。',
+                '裁剪母图片个辰光，接牢母图片个图片有可能会移位。',
+                '用贴齐方式摆图片个辰光，程序勿接受有重叠个摆法。'),
+            3: ('设定搿张图片左上角个 X/Y 坐标。',
+                '坐标用整数像素来算，从零开始。',
+                '别个图片保持现在个位置。搿搭允许重叠。'),
+            4: ('每张图片本身个长宽比例勿变。',),
+            5: ('别个已摆好个图片还是留辣做事区里向；接牢个图片有可能会移过来填补空位。',
+                '两只手指合拢或分开，好缩放画面。',
+                '只会缩放视图以显示整个拼合结果，勿会改输出尺寸。'),
+            6: ('换脱编辑器里向原来个图片；搿步操作好撤销。',),
+        }
+        for paragraph, clauses in required.items():
+            for clause in clauses:
+                with self.subTest(paragraph=paragraph, clause=clause):
+                    self.assertEqual(1, paragraphs[paragraph].count(clause))
+
     def test_scope_is_the_six_active_pr6_catalogues(self):
         self.assertEqual(set(CASES), {
             'lzh-Hant', 'hak-Hant-TW', 'hak-Latn-TW',
