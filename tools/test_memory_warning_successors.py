@@ -21,8 +21,8 @@ class MemoryWarningSuccessors(unittest.TestCase):
         cls.index = successors()
 
     def test_exact_inventory_and_every_complete_current_value(self):
-        self.assertEqual(114, len(self.index))
-        self.assertEqual(57, len({tag for tag, key in self.index}))
+        self.assertEqual(118, len(self.index))
+        self.assertEqual(59, len({tag for tag, key in self.index}))
         for (tag, key), (old, expected, source, path) in self.index.items():
             with self.subTest(tag=tag, key=key):
                 self.assertNotEqual(old, expected)
@@ -75,7 +75,7 @@ class MemoryWarningSuccessors(unittest.TestCase):
             data = deepcopy(self.data); tag = next(iter(data['values']))
             if mutation == 'missing': data['values'].pop(tag)
             elif mutation in ('extra', 'held', 'unknown'):
-                name = {'extra': 'en-001', 'held': 'ain-Kana', 'unknown': 'unknown'}[mutation]
+                name = {'extra': 'en-001', 'held': 'jje', 'unknown': 'unknown'}[mutation]
                 data['values'][name] = deepcopy(data['values'][tag])
             elif mutation == 'missing-key': data['values'][tag].pop(next(iter(KEYS)))
             else: data['values'][tag]['other_key'] = 'arbitrary'
@@ -93,7 +93,7 @@ class MemoryWarningSuccessors(unittest.TestCase):
                 if tag == 'en-001': counts['canonical'] += 1
                 elif term['value'] is None: counts['missing'] += 1
                 else: counts['held'] += 1
-        self.assertEqual({'held': 8, 'missing': 218, 'canonical': 2}, counts)
+        self.assertEqual({'held': 4, 'missing': 218, 'canonical': 2}, counts)
 
     def test_compact_behavior_oracle_corruption_is_rejected(self):
         original_read = Path.read_bytes
@@ -117,14 +117,14 @@ class MemoryWarningSuccessors(unittest.TestCase):
 
     def test_held_historical_target_drift_is_rejected_without_acceptance(self):
         for option in review_record()['options']:
-            if option['tag'] not in ('ain-Kana', 'ain-Latn', 'jje', 'vi-Hani'): continue
+            if option['tag'] not in ('jje', 'vi-Hani'): continue
             for key, term in option['terms'].items():
                 self.assertEqual(term['value'], current_source_expectation(key, option['tag'], term['value']))
                 with self.assertRaises(ValueError):
                     current_source_expectation(key, option['tag'], term['value'] + ' changed')
 
     def test_unmapped_keys_cannot_obtain_acceptance(self):
-        for tag, key in [('unknown', next(iter(KEYS))), ('af', 'unrelated'), ('ain-Kana', next(iter(KEYS)))]:
+        for tag, key in [('unknown', next(iter(KEYS))), ('af', 'unrelated'), ('jje', next(iter(KEYS)))]:
             with self.subTest(tag=tag, key=key), self.assertRaises(ValueError): accepted_warning(key, tag)
         self.assertEqual('unrelated', current_source_expectation('other_key', 'af', 'unrelated'))
         with self.assertRaises(ValueError): current_source_expectation(next(iter(KEYS)), 'unknown', 'arbitrary actual')

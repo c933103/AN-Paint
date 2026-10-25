@@ -10,13 +10,13 @@ from pathlib import Path
 from types import MappingProxyType
 
 ROOT = Path(__file__).resolve().parents[1]
-RECORD = ROOT / 'translations/source-review/memory-warning-successors-20261023.json'
+RECORD = ROOT / 'translations/source-review/memory-warning-successors-20261025.json'
 QUEUE = ROOT / 'translations/source-review/memory-warnings-20261021.json'
 # This seals only the compact behavioral fixture, never production source files.
-ORACLE_HASH = 'e8fc3180c14478f72a377b883078302b12af45c9dc410fde9d3d54e843644406'
+ORACLE_HASH = 'd7a40b123878ae60788c900d98343eb96b862b718700fd0acd481150ad7bacf7'
 SOURCES = {'ui_no_resize_fits_decoder_memory': 'Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.', 'ui_assembly_source_memory_floor': 'This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.'}
 KEYS = frozenset(SOURCES)
-ACCEPTED_TAGS = frozenset(('af', 'ar', 'bo', 'ceb', 'cs', 'de', 'dz', 'el', 'en-AU', 'en-CA', 'en-GB', 'en-IN', 'en-SG', 'en-US', 'en-XV', 'eo', 'es-419', 'es-ES', 'et', 'fi', 'fil', 'fr', 'hak-Hant-TW', 'hak-Latn-TW', 'hu', 'id', 'it', 'ja', 'ko-Kore-KR', 'ko-KP', 'ko-KR', 'lt', 'lv', 'lzh-Hant', 'mn-Cyrl-MN', 'mn-Mong', 'mnc-Mong', 'ms', 'nan-Hant-TW', 'nan-Latn-TW', 'nl', 'pl', 'pt-BR', 'pt-PT', 'qaa-Zsye-XV', 'ru', 'ryu', 'sv', 'sw', 'tr', 'vi', 'wuu-Hans', 'yue-Hant', 'yue-Latn', 'zh-CN', 'zh-HK', 'zh-TW'))
+ACCEPTED_TAGS = frozenset(('af', 'ain-Kana', 'ain-Latn', 'ar', 'bo', 'ceb', 'cs', 'de', 'dz', 'el', 'en-AU', 'en-CA', 'en-GB', 'en-IN', 'en-SG', 'en-US', 'en-XV', 'eo', 'es-419', 'es-ES', 'et', 'fi', 'fil', 'fr', 'hak-Hant-TW', 'hak-Latn-TW', 'hu', 'id', 'it', 'ja', 'ko-Kore-KR', 'ko-KP', 'ko-KR', 'lt', 'lv', 'lzh-Hant', 'mn-Cyrl-MN', 'mn-Mong', 'mnc-Mong', 'ms', 'nan-Hant-TW', 'nan-Latn-TW', 'nl', 'pl', 'pt-BR', 'pt-PT', 'qaa-Zsye-XV', 'ru', 'ryu', 'sv', 'sw', 'tr', 'vi', 'wuu-Hans', 'yue-Hant', 'yue-Latn', 'zh-CN', 'zh-HK', 'zh-TW'))
 
 
 def require(condition, message):
@@ -49,7 +49,7 @@ def validated_successors(data):
             old = options[tag]['terms'][key]['value']
             require(isinstance(old, str) and old != expected, 'Historical target binding differs')
             result[(tag, key)] = (old, expected, SOURCES[key], options[tag]['catalogue'])
-    require(len(result) == 114, 'Accepted inventory differs')
+    require(len(result) == 118, 'Accepted inventory differs')
     return MappingProxyType(result)
 
 
