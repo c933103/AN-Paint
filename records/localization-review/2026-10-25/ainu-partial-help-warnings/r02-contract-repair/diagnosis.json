@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-25",
+  "repository": "c933103/AN-Paint",
+  "pr": 169,
+  "failed_head": "1fd22c51cabf1f1997076c282c0dc7c24f883053",
+  "repair_head": "ee0394c19f448774bcbb2d1e22f22e6ca61ff3f7",
+  "hosted_failed_run": "https://github.com/c933103/AN-Paint/actions/runs/40195249272",
+  "hosted_failed_job": "https://github.com/c933103/AN-Paint/actions/runs/40195249272/job/121174582902",
+  "hosted_python": {
+    "tests": 1337,
+    "failures": 9,
+    "skipped": 2,
+    "match_local_failures": true
+  },
+  "diagnosis": "The explicit current-successor registry lacked the four reviewed Ainu warning values. Two contracts still required historical held targets, causing four value mismatches each and a consequent count assertion.",
+  "failed_methods": [
+    "MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit",
+    "MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted"
+  ],
+  "focused_snapshot": "180 files fetched from the exact failed head and individually verified against Git blob SHA. Includes all 171 catalogues needed by these two suites; not a complete repository checkout.",
+  "commands": [
+    "python3 -m unittest -v test_memory_warning_source_review test_memory_warning_successors",
+    "python3 -O -m unittest -v test_memory_warning_source_review test_memory_warning_successors"
+  ],
+  "before": {
+    "tests": 17,
+    "failures": 9
+  },
+  "after": {
+    "normal": {
+      "tests": 17,
+      "status": "passed"
+    },
+    "optimized": {
+      "tests": 17,
+      "status": "passed"
+    },
+    "ainu_structural_placeholder_validation": "passed for both scripts"
+  },
+  "repair": {
+    "new_fixture": "translations/source-review/memory-warning-successors-20261025.json",
+    "sha256": "d7a40b123878ae60788c900d98343eb96b862b718700fd0acd481150ad7bacf7",
+    "preserved_historical_fixture": "translations/source-review/memory-warning-successors-20261023.json",
+    "preserved_historical_sha256": "e8fc3180c14478f72a377b883078302b12af45c9dc410fde9d3d54e843644406",
+    "historical_queue_unchanged": true,
+    "existing_114_pairs_unchanged": true,
+    "new_ainu_pairs": 4,
+    "current_pairs": 118,
+    "current_options": 59,
+    "still_held_present_pairs": 4,
+    "still_held_options": [
+      "jje",
+      "vi-Hani"
+    ],
+    "missing_pairs": 218,
+    "canonical_pairs": 2,
+    "corruption_controls": "Preserved and extended to the four Ainu successors; held negative controls use still-held identities.",
+    "production_xml_changed_by_repair": false
+  },
+  "scope_limits": [
+    "No language-wide or whole-Help acceptance from test results.",
+    "No later researched Help, estimate-context or Wu candidate is included.",
+    "Focused tests are not full CI, rendered layout, native-reader or runtime acceptance."
+  ],
+  "fresh_run": "https://github.com/c933103/AN-Paint/actions/runs/40197039705"
+}

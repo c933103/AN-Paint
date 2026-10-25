@@ -1,0 +1,127 @@
+test_complete_english_source_and_scalar_contract (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_complete_english_source_and_scalar_contract) ... ok
+test_default_source_binding_preserves_unknown_and_unrelated_pairs (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_default_source_binding_preserves_unknown_and_unrelated_pairs) ... ok
+test_initial_queue_grants_no_renewed_acceptance_or_language_credit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_initial_queue_grants_no_renewed_acceptance_or_language_credit) ... ok
+test_queue_covers_every_offered_option_in_sequential_order (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_queue_covers_every_offered_option_in_sequential_order) ... ok
+test_source_rejects_old_diagnosis_and_corruptions (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_source_rejects_old_diagnosis_and_corruptions) ... ok
+test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) ... 
+  test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='ain-Kana', key='ui_no_resize_fits_decoder_memory') ... FAIL
+  test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='ain-Kana', key='ui_assembly_source_memory_floor') ... FAIL
+  test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='ain-Latn', key='ui_no_resize_fits_decoder_memory') ... FAIL
+  test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='ain-Latn', key='ui_assembly_source_memory_floor') ... FAIL
+test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) ... FAIL
+test_all_current_values_have_positive_and_corruption_controls (test_memory_warning_successors.MemoryWarningSuccessors.test_all_current_values_have_positive_and_corruption_controls) ... ok
+test_canonical_old_source_drift_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_canonical_old_source_drift_rejected) ... ok
+test_compact_behavior_oracle_corruption_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_compact_behavior_oracle_corruption_is_rejected) ... ok
+test_every_successor_rejects_wrong_historical_target (test_memory_warning_successors.MemoryWarningSuccessors.test_every_successor_rejects_wrong_historical_target) ... ok
+test_exact_inventory_and_every_complete_current_value (test_memory_warning_successors.MemoryWarningSuccessors.test_exact_inventory_and_every_complete_current_value) ... ok
+test_expected_constant_and_source_corruption_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_expected_constant_and_source_corruption_is_rejected) ... ok
+test_held_historical_target_drift_is_rejected_without_acceptance (test_memory_warning_successors.MemoryWarningSuccessors.test_held_historical_target_drift_is_rejected_without_acceptance) ... ok
+test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) ... 
+  test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='ain-Kana', key='ui_no_resize_fits_decoder_memory') ... FAIL
+  test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='ain-Kana', key='ui_assembly_source_memory_floor') ... FAIL
+  test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='ain-Latn', key='ui_no_resize_fits_decoder_memory') ... FAIL
+  test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='ain-Latn', key='ui_assembly_source_memory_floor') ... FAIL
+test_historical_source_drift_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_historical_source_drift_is_rejected) ... ok
+test_missing_extra_held_and_unknown_candidates_are_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_missing_extra_held_and_unknown_candidates_are_rejected) ... ok
+test_unmapped_keys_cannot_obtain_acceptance (test_memory_warning_successors.MemoryWarningSuccessors.test_unmapped_keys_cannot_obtain_acceptance) ... ok
+
+======================================================================
+FAIL: test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='ain-Kana', key='ui_no_resize_fits_decoder_memory')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_source_review.py", line 82, in test_values_absences_fallbacks_and_english_variants_are_explicit
+    self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
+AssertionError: 'イヨッタ ポン ノカ アサンケ ヤッカ, タネ アエイワンケ エアㇱカイ RAM アニ タン ノカ アヌイェ クス アマカ [41 chars] ヤン.' != 'イヨッタ ポン ノカ アサンケ ヤッカ, チヌイェㇷ゚ コㇿ タトゥㇺ ノカ ネ アカㇻ コㇿ アエイワンケ RAM アナㇰ[68 chars] ヤン.'
+- イヨッタ ポン ノカ アサンケ ヤッカ, タネ アエイワンケ エアㇱカイ RAM アニ タン ノカ アヌイェ クス アマカ エアイカㇷ゚. ホントモトゥイェ ワ エトㇰ コㇿ ノカ ナ ポン ペ エイワンケ ヤン.
++ イヨッタ ポン ノカ アサンケ ヤッカ, チヌイェㇷ゚ コㇿ タトゥㇺ ノカ ネ アカㇻ コㇿ アエイワンケ RAM アナㇰ タネ ノカ ヌイェ クス アエイワンケ エアㇱカイ ポロル カス. ホントモトゥイェ ワ エトㇰ コㇿ ノカ ナ ポン ペ エイワンケ ヤン.
+
+
+======================================================================
+FAIL: test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='ain-Kana', key='ui_assembly_source_memory_floor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_source_review.py", line 82, in test_values_absences_fallbacks_and_english_variants_are_explicit
+    self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
+AssertionError: 'タン ノカ ウコテ アナㇰ, イヨッタ ポン ノカ アサンケ ヤッカ, タネ ノカ[213 chars]モ キ.' != 'イヨッタ ポン ノカ アサンケ ヤッカ, エトㇰ コㇿ チヌイェㇷ゚ ワノ ノカ [136 chars]モ キ.'
+- タン ノカ ウコテ アナㇰ, イヨッタ ポン ノカ アサンケ ヤッカ, タネ ノカ ヌイェ クス アエイワンケ エアㇱカイ RAM アッカリ ナ ポロンノ RAM アエイワンケ クニ アラム. ノカ ウコテ コㇿ ポロル アポンテ パテㇰ ヤッカ, タネ ノカ ヌイェ クス アエイワンケ エアㇱカイ RAM エハイェ. アエイワンケㇷ゚ オㇿ タ アマㇰパ ワ オカ モㇱマ チヌイェㇷ゚ ロㇱキ ヘネ ナ ポン エトㇰ ノカ カㇻ ヘネ キ ワ スイ キ ヤン. エコㇿ ノカ ウコテ アシンナレ カ ソモ キ.
++ イヨッタ ポン ノカ アサンケ ヤッカ, エトㇰ コㇿ チヌイェㇷ゚ ワノ ノカ アカㇻ クス タネ アン アッカリ ナ ポロンノ RAM アエイワンケ. ノカ ウコテ アポンテ ヤッカ タンペ ピㇼカ カ ソモ キ. モㇱマ チヌイェㇷ゚ エシナ ヘネ ナ ポン エトㇰ ノカ カㇻ ヘネ ワ スイ キ ヤン. エコㇿ ノカ ウコテ アシンナレ カ ソモ キ.
+
+
+======================================================================
+FAIL: test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='ain-Latn', key='ui_no_resize_fits_decoder_memory')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_source_review.py", line 82, in test_values_absences_fallbacks_and_english_variants_are_explicit
+    self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
+AssertionError: 'Iyot[22 chars]kka, tane a=eywanke easkay RAM ani tan noka a=[72 chars]yan.' != 'Iyot[22 chars]kka, cinuyep kor tatum noka ne a=kar kor a=eyw[111 chars]yan.'
+- Iyotta pon noka a=sanke yakka, tane a=eywanke easkay RAM ani tan noka a=nuye kusu a=maka eaykap. Hontomotuye wa etok kor noka na pon pe eywanke yan.
++ Iyotta pon noka a=sanke yakka, cinuyep kor tatum noka ne a=kar kor a=eywanke RAM anak tane noka nuye kusu a=eywanke easkay pororu kasu. Hontomotuye wa etok kor noka na pon pe eywanke yan.
+
+
+======================================================================
+FAIL: test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='ain-Latn', key='ui_assembly_source_memory_floor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_source_review.py", line 82, in test_values_absences_fallbacks_and_english_variants_are_explicit
+    self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
+AssertionError: 'Tan noka ukote anak, iyotta pon noka a=sa[322 chars] ki.' != 'Iyotta pon noka a=sanke yakka, etok kor c[218 chars] ki.'
+- Tan noka ukote anak, iyotta pon noka a=sanke yakka, tane noka nuye kusu a=eywanke easkay RAM akkari na poronno RAM a=eywanke kuni a=ramu. Noka ukote kor pororu a=ponte patek yakka, tane noka nuye kusu a=eywanke easkay RAM ehaye. Aeywankep or ta a=makpa wa oka mosma cinuyep roski hene na pon etok noka kar hene ki wa suy ki yan. E=kor noka ukote a=sinnare ka somo ki.
++ Iyotta pon noka a=sanke yakka, etok kor cinuyep wano noka a=kar kusu tane an akkari na poronno RAM a=eywanke. Noka ukote a=ponte yakka tanpe pirka ka somo ki. Mosma cinuyep esina hene na pon etok noka kar hene wa suy ki yan. E=kor noka ukote a=sinnare ka somo ki.
+
+
+======================================================================
+FAIL: test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_source_review.py", line 88, in test_values_absences_fallbacks_and_english_variants_are_explicit
+    self.assertEqual(62, counts[(key, 'present')])
+AssertionError: 62 != 60
+
+======================================================================
+FAIL: test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='ain-Kana', key='ui_no_resize_fits_decoder_memory')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_successors.py", line 91, in test_held_missing_and_canonical_values_are_preserved_not_accepted
+    self.assertEqual(term['value'], actual.get(key))
+AssertionError: 'イヨッタ ポン ノカ アサンケ ヤッカ, チヌイェㇷ゚ コㇿ タトゥㇺ ノカ ネ アカㇻ コㇿ アエイワンケ RAM アナㇰ[68 chars] ヤン.' != 'イヨッタ ポン ノカ アサンケ ヤッカ, タネ アエイワンケ エアㇱカイ RAM アニ タン ノカ アヌイェ クス アマカ [41 chars] ヤン.'
+- イヨッタ ポン ノカ アサンケ ヤッカ, チヌイェㇷ゚ コㇿ タトゥㇺ ノカ ネ アカㇻ コㇿ アエイワンケ RAM アナㇰ タネ ノカ ヌイェ クス アエイワンケ エアㇱカイ ポロル カス. ホントモトゥイェ ワ エトㇰ コㇿ ノカ ナ ポン ペ エイワンケ ヤン.
++ イヨッタ ポン ノカ アサンケ ヤッカ, タネ アエイワンケ エアㇱカイ RAM アニ タン ノカ アヌイェ クス アマカ エアイカㇷ゚. ホントモトゥイェ ワ エトㇰ コㇿ ノカ ナ ポン ペ エイワンケ ヤン.
+
+
+======================================================================
+FAIL: test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='ain-Kana', key='ui_assembly_source_memory_floor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_successors.py", line 91, in test_held_missing_and_canonical_values_are_preserved_not_accepted
+    self.assertEqual(term['value'], actual.get(key))
+AssertionError: 'イヨッタ ポン ノカ アサンケ ヤッカ, エトㇰ コㇿ チヌイェㇷ゚ ワノ ノカ [136 chars]モ キ.' != 'タン ノカ ウコテ アナㇰ, イヨッタ ポン ノカ アサンケ ヤッカ, タネ ノカ[213 chars]モ キ.'
+- イヨッタ ポン ノカ アサンケ ヤッカ, エトㇰ コㇿ チヌイェㇷ゚ ワノ ノカ アカㇻ クス タネ アン アッカリ ナ ポロンノ RAM アエイワンケ. ノカ ウコテ アポンテ ヤッカ タンペ ピㇼカ カ ソモ キ. モㇱマ チヌイェㇷ゚ エシナ ヘネ ナ ポン エトㇰ ノカ カㇻ ヘネ ワ スイ キ ヤン. エコㇿ ノカ ウコテ アシンナレ カ ソモ キ.
++ タン ノカ ウコテ アナㇰ, イヨッタ ポン ノカ アサンケ ヤッカ, タネ ノカ ヌイェ クス アエイワンケ エアㇱカイ RAM アッカリ ナ ポロンノ RAM アエイワンケ クニ アラム. ノカ ウコテ コㇿ ポロル アポンテ パテㇰ ヤッカ, タネ ノカ ヌイェ クス アエイワンケ エアㇱカイ RAM エハイェ. アエイワンケㇷ゚ オㇿ タ アマㇰパ ワ オカ モㇱマ チヌイェㇷ゚ ロㇱキ ヘネ ナ ポン エトㇰ ノカ カㇻ ヘネ キ ワ スイ キ ヤン. エコㇿ ノカ ウコテ アシンナレ カ ソモ キ.
+
+
+======================================================================
+FAIL: test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='ain-Latn', key='ui_no_resize_fits_decoder_memory')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_successors.py", line 91, in test_held_missing_and_canonical_values_are_preserved_not_accepted
+    self.assertEqual(term['value'], actual.get(key))
+AssertionError: 'Iyot[22 chars]kka, cinuyep kor tatum noka ne a=kar kor a=eyw[111 chars]yan.' != 'Iyot[22 chars]kka, tane a=eywanke easkay RAM ani tan noka a=[72 chars]yan.'
+- Iyotta pon noka a=sanke yakka, cinuyep kor tatum noka ne a=kar kor a=eywanke RAM anak tane noka nuye kusu a=eywanke easkay pororu kasu. Hontomotuye wa etok kor noka na pon pe eywanke yan.
++ Iyotta pon noka a=sanke yakka, tane a=eywanke easkay RAM ani tan noka a=nuye kusu a=maka eaykap. Hontomotuye wa etok kor noka na pon pe eywanke yan.
+
+
+======================================================================
+FAIL: test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='ain-Latn', key='ui_assembly_source_memory_floor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_memory_warning_successors.py", line 91, in test_held_missing_and_canonical_values_are_preserved_not_accepted
+    self.assertEqual(term['value'], actual.get(key))
+AssertionError: 'Iyotta pon noka a=sanke yakka, etok kor c[218 chars] ki.' != 'Tan noka ukote anak, iyotta pon noka a=sa[322 chars] ki.'
+- Iyotta pon noka a=sanke yakka, etok kor cinuyep wano noka a=kar kusu tane an akkari na poronno RAM a=eywanke. Noka ukote a=ponte yakka tanpe pirka ka somo ki. Mosma cinuyep esina hene na pon etok noka kar hene wa suy ki yan. E=kor noka ukote a=sinnare ka somo ki.
++ Tan noka ukote anak, iyotta pon noka a=sanke yakka, tane noka nuye kusu a=eywanke easkay RAM akkari na poronno RAM a=eywanke kuni a=ramu. Noka ukote kor pororu a=ponte patek yakka, tane noka nuye kusu a=eywanke easkay RAM ehaye. Aeywankep or ta a=makpa wa oka mosma cinuyep roski hene na pon etok noka kar hene ki wa suy ki yan. E=kor noka ukote a=sinnare ka somo ki.
+
+
+----------------------------------------------------------------------
+Ran 17 tests in 1.640s
+
+FAILED (failures=9)
