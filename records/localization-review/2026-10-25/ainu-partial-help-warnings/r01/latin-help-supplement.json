@@ -1,0 +1,96 @@
+{
+  "locale": "ain-Latn",
+  "key": "ui_add_up_to_20_images_with_android_s",
+  "predecessor_sha256": "e6194cc9bb4b419871f081bed8294ff7ec89a654828a990a46fe0f8ba065ce42",
+  "final_sha256": "1f0381cea6613990adfce478bf78f7161552bd94ec1d5b9e2c051df0ae1c9527",
+  "operations": [
+    {
+      "from": "Corpok ta pon noka, cinuyep rehe, noka a=tuye pororu newa cinuyep a=sinnare hi a=nukare. Tan oruspe anak cinuyep a=kore aeywankep kor yak patek an.",
+      "to": "Corpok ta pon noka, cinuyep rehe newa noka kor pororu a=nukare. Noka a=tuye hene 「Upakno a=kar seri」 hene 「Upakno a=kar kewerihi」 hene ani pororu a=sinnare hene ki yakun, a=nukare pororu ka ne neno a=sinnare. Cinuyep kore aeywankep cinuyep a=sinnare hi ka kore yakun, nea hi ka a=nukare.",
+      "occurrences": 1,
+      "source_units": [
+        "E02"
+      ],
+      "meaning": "The bottom tray displays thumbnail, name and current image dimensions; that one displayed size follows crop and any Same width or Same height adjustment. Only modification time depends on what the file provider supplies."
+    },
+    {
+      "from": "A=sanke noka anak kikay kor memori akkari poro yakun, na pon noka numke yan.",
+      "to": "A=sanke noka a=kar hi ta, tane noka nuye kusu a=eywanke easkay RAM akkari na poronno RAM a=eywanke kuni a=ramu yakun, noka kor pororu a=numke uske a=nukare yakun, a=sanke kusu a=attupte noka na pon pe numke yan. A=sanke noka ponpon yakka nea RAM akkari na poronno RAM a=eywanke kuni a=ramu yakun, AN Paint anak noka kor pororu a=numke uske nukare ka somo ki no, RAM ehaye sekor an itak nukare.",
+      "occurrences": 1,
+      "source_units": [
+        "E30",
+        "E31"
+      ],
+      "meaning": "When creating the output is expected to need more than currently usable editing RAM, choose a smaller output copy only if the size chooser appears. If even a tiny output needs more than that budget, AN Paint shows a RAM-insufficiency message and does not show the size chooser."
+    }
+  ],
+  "review": {
+    "date": "2026-10-25",
+    "disposition": "Focused support for both exact final replacement chunks, medium idiom confidence.",
+    "tray_reason": "One displayed value is established and then updated; no separate original/crop/normalized fields are asserted. hene ... hene ki groups crop versus normalization using either exact current caption. Provider condition attaches only to modification time.",
+    "memory_reason": "Finite expected-use comparison preserves current working budget versus required RAM. Nested chooser-visibility condition avoids a universal offer. The tiny-output branch explicitly excludes the size chooser and supplies the warning instead.",
+    "limits": "Current reviewer compositions, not attested fixed software sentences. No native-reader-certification gate. No complete-key or complete-catalogue acceptance; untouched inherited clauses retain their separate review status. Published modern neologisms are not declared universal or traditional terms."
+  },
+  "consumer_evidence": [
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+      "blob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+      "lines": "19-33",
+      "finding": "placedSize is crop dimensions if no normalization, otherwise dimensions normalized from that crop while preserving aspect ratio."
+    },
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "blob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+      "lines": "135-157,207-215,283-317",
+      "finding": "Tray renders one placedSize width x height. Provider modification time is optional. Output-size chooser is bypassed for memory warning when suggested size is null."
+    },
+    {
+      "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt",
+      "blob": "3714ed88f9ddb393601e5370e9ad263245f17d6c",
+      "finding": "fits compares estimatedBytes to current workingBytes, plus bitmap pixel cap. suggested returns null when even 1x1 does not fit."
+    }
+  ],
+  "linguistic_evidence": [
+    {
+      "url": "https://ainu.ninjal.ac.jp/folklore/en/",
+      "type": "Primary grammar and glossed speaker corpus",
+      "supports": "SOV ordering, participant marking and zero third-person marking. Explicit provider/application subjects take kore/nukare, not impersonal a= forms."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic?word=Tan",
+      "type": "Tamura primary dictionary, kuni/kunak",
+      "supports": "Finite proposition plus kuni a=ramu expresses expected/thought prospective state. We avoid unsupported long-distance relative extraction for the estimate."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic?word=kar",
+      "type": "Tamura primary dictionary",
+      "supports": "akkari introduces the standard in comparative expressions; RAM is compared with RAM rather than output dimensions with installed device memory."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic/mobile?word=%2A",
+      "type": "Kayano primary dictionary, Saru; freshly indexed entry",
+      "supports": "ehaye means insufficient/lacking. The verified entry is between ehawkasu and ehaytahayta; exact headword is not inferred from a homonym."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/siror/contents/lib_pdf/C227.pdf",
+      "type": "Primary speaker text, printed p154",
+      "supports": "ponpon qualifies a very small single fire, supporting intensive tiny rather than obligatory plural-only reading."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/siror/contents/lib_pdf/Library_1.pdf",
+      "type": "Primary speaker text, printed p156 line145",
+      "supports": "Additional ponpon with singular fire, and kore giving in the following speaker passage."
+    },
+    {
+      "url": "https://ss1.xrea.com/toracatman.s324.xrea.com/ainu/dictionary.html",
+      "type": "Primary modern glossary author's published proposals",
+      "supports": "pororu is explicitly labelled size, poro+ru, neologism. attupte is transitive copy attributed to Oota. We retain documented modern usage, not historical audit acceptance or an assertion of universal standard terminology."
+    }
+  ],
+  "remaining_work": [
+    "Preview precision and translucent snapped result",
+    "Possible movement of attached images when parent crop changes",
+    "Unplace keeps other images placed and only attached images may move to fill the gap",
+    "Full per-image aspect-ratio explanation and remaining inherited clauses are not newly accepted by this bounded supplement"
+  ]
+}
