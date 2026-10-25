@@ -1,0 +1,129 @@
+{
+  "repository": "c933103/AN-Paint",
+  "locale": "ain-Latn",
+  "key": "ui_add_up_to_20_images_with_android_s",
+  "path": "Paintroid/src/main/res/values-b+ain+Latn/strings.xml",
+  "status": "Focused independent support for five exact new Help changes. Not whole-Help acceptance. Prepared separately after PR169; no remote write.",
+  "predecessor": {
+    "ref": "1fd22c51cabf1f1997076c282c0dc7c24f883053",
+    "pull_request": "https://github.com/c933103/AN-Paint/pull/169",
+    "freshly_fetched_latin_xml_blob": "c56efc0ceef82f6f830656f9602d694080968b92",
+    "value_sha256": "1f0381cea6613990adfce478bf78f7161552bd94ec1d5b9e2c051df0ae1c9527"
+  },
+  "english": {
+    "blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+    "value_sha256": "6ae12f86846110a7573a5c608b8561b0c03b037454f1905d3b5bf8342fb26aac",
+    "source_correction_required": false
+  },
+  "candidate_value_sha256": "5b515a6d18c078c830233ed304aff876ab5cde61f2ec87e693d2ef115b5d48c3",
+  "operations": [
+    {
+      "id": "crop-movement",
+      "from": "Noka e=tuye yakun, or un a=kote noka ka a=moymoye.",
+      "to": "Noka a=tuye yakun, nea noka or un a=kote noka a=moymoye hi ka an.",
+      "source_meaning": "Attached images may move when their parent is cropped.",
+      "repair": "Explicit parent antecedent and contingent occurrence, rather than unconditional movement or permission/ability."
+    },
+    {
+      "id": "unplace",
+      "from": "Ios an noka anak nea isam uske un a=anu.",
+      "to": "Mosma noka anak a=ari wa oka. A=kote noka anak nea isam uske un a=moymoye hi ka an.",
+      "source_meaning": "Other images stay placed; attached images may move to fill the gap.",
+      "repair": "Restore the preserved placement state of other images; restrict possible gap-filling movement to attached images."
+    },
+    {
+      "id": "snap-overlap",
+      "from": "Tan katu ani noka a=anu hi ta, sine uske ta tu noka anu ka eaykap.",
+      "to": "Tan katu ani noka a=anu hi ta, noka a=ukaomare eaykap.",
+      "source_meaning": "Overlaps are rejected when snapping.",
+      "repair": "Retain previously reviewed snap-mode scope; replace ambiguous identical-place prohibition with accepted overlap predicate plus impossibility."
+    },
+    {
+      "id": "common-dimension",
+      "from": "「Upakno a=kar seri」 hene 「Upakno a=kar kewerihi」 hene ani noka opitta kor pararu hene riru hene uneno a=kar.",
+      "to": "「Upakno a=kar seri」 hene 「Upakno a=kar kewerihi」 hene ani noka opitta kor pararu hene riru hene upakno a=kar.",
+      "source_meaning": "Same width/height give every input a common dimension.",
+      "repair": "Use quantity-specific equal-degree upakno, retaining exact current captions and other existing words."
+    },
+    {
+      "id": "exact-preview",
+      "from": "Naa e=anu ka somo ki kor, e=anu kusu an noka a=nukare. Nea noka pok anpe ka a=nukar easkay.",
+      "to": "Naa e=anu ka somo ki kor, e=anu kusu an noka a=nukare. Noka e=anu okere yakun, nea a=nukare noka kor uske ta an; pororu ka nea a=nukare noka kor pororu pakno an. Nea noka pok anpe ka a=nukar easkay.",
+      "source_meaning": "The translucent preview shows the exact snapped result.",
+      "repair": "After completion, committed image location and size match the immediately preceding preview; do not assert that the preview is fixed during dragging. The prior see-through explanation is retained."
+    }
+  ],
+  "preconditions": "Every from substring must occur once. Recheck fresh predecessor and unchanged source; preserve all prior accepted/routed changes. Literal Android escape sequences and formatted=false remain. Value files have one terminal storage LF, excluded from value hashes.",
+  "independent_review": {
+    "reviewer": "independent Ainu Help reviewer",
+    "date": "2026-10-25",
+    "disposition": "Focused support for crop-movement, Unplace, overlap, quantitative equality and revised preview result-comparison. Bounded semantic confidence; medium idiom. No native-certification or exact-software-sentence attestation claim.",
+    "preview_message": "Completion condition fixes prior temporal objection; result matches immediate preview location and size, without saying moving ghost stays fixed."
+  },
+  "positive_retention": {
+    "aspect_ratio_sentence": "Noka sinep sinep kor pararu newa riru anak uneno % ani a=sinnare.",
+    "disposition": "Retain. Explicit distributive each-image scope plus a common percentage for that image's two dimensions preserves each image's own aspect ratio. Medium idiom. No additional ratio term or mandatory upakno an % rewrite is required.",
+    "reviewer": "independent Ainu Help reviewer"
+  },
+  "primary_evidence": [
+    {
+      "url": "https://ainugo.nam.go.jp/siror/monthly/201804.html",
+      "author": "Kitahara Jirota",
+      "section": "Bus announcements, item 3, lines189-190; Saru basis line241",
+      "supports": "hi ka an expresses possible occurrence of a bus stopping suddenly, not the driver's ability or passengers' permission. Both current reviewers read the primary article."
+    },
+    {
+      "url": "https://www.ff-ainu.or.jp/web/potal_site/files/saru_tyukyu.pdf",
+      "section": "p95",
+      "supports": "wa an / plural wa oka expresses result state."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic?word=%28%3F%29",
+      "section": "ari entry",
+      "supports": "ari is the plural-object counterpart of anu; the retained-placement predicate uses a=ari wa oka."
+    },
+    {
+      "url": "https://github.com/c933103/AN-Paint/blob/7a653672121333a3f30e85ae57347d4005987559/verification/assembly-position-review-20261015/group-i-ainu-help-anchor-independent-review.json",
+      "supports": "Prior separately accepted coordinate dialogue uses a=ukaomare for intentional image overlap and a=ari for plural placed images. Current negative snap clause is a new reviewed composition, not automatic transfer of whole prior acceptance."
+    },
+    {
+      "url": "https://www.ff-ainu.or.jp/radio/files/2015vol3.pdf",
+      "section": "p20-21",
+      "supports": "eaykap after finite verb expresses impossibility; here actual UI rejection, not possible automatic movement."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/search/word?matCd=&maxLineCd=&minLineCd=&person=&typeDict=on&word=okkay",
+      "section": "Tamura uneno entry",
+      "supports": "uneno refers to sameness of qualities/situation; equal quantity/degree is specifically upakno."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic?word=sinep",
+      "section": "Tamura sinep entry",
+      "supports": "sinep sinep is distributive one by one/each, supporting per-image scope in retained percentage explanation."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/siror/contents/lib_pdf/C207.pdf",
+      "section": "printed p115",
+      "supports": "Productive verb + okere completion, in primary narrative (canoe overturn completed). The UI result-comparison is a current composition, not an attested software phrase."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic?word=Tan",
+      "section": "Tamura an and pak(no) an",
+      "supports": "Existence/location predicate and equal degree/size comparison."
+    }
+  ],
+  "static_consumers": {
+    "ImageAssembly.kt": "Blob a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14: crop changes metadata; attached rectangles derive from parent edges in layout. detached removes only selected item from placement, may promote/reflow attached successors, preserves remaining placement state. Snap validation rejects intersections, numeric position allows overlap. placedSize normalizes one dimension and scales the other from each input's crop dimensions.",
+    "AssemblyCanvas.kt": "Freshly read blob 8c7eb34215388fa7808cde21c851934d2283cd15 at66be61df for remaining preview research; no code edit."
+  },
+  "preview_consumer": "AssemblyCanvas blob 8c7eb34215388fa7808cde21c851934d2283cd15: ghost changes with target during drag, is drawn using target.rect with alpha180, and placement commits target.attachment. Exactness refers final preview versus committed placement.",
+  "remaining_scope": "This packet does not approve untouched Help sentences or other resource keys. Separate review of six erampetek estimate contexts is recorded independently.",
+  "validation": {
+    "five_single_occurrence_replacements": true,
+    "paragraph_count_before": 8,
+    "paragraph_count_after": 8,
+    "literal_newline_count_unchanged": true,
+    "prior_earlier_corrections_preserved_by_literal_delta": true
+  },
+  "execution": "Temporary text preparation and static source reading only. No product code changes, tests, builds, Work, CI/runtime/device/release, remote writes or historical-blob retry."
+}

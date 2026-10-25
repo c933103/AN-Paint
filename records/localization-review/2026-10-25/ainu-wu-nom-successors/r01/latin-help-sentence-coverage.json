@@ -1,0 +1,284 @@
+{
+  "repository": "c933103/AN-Paint",
+  "locale": "ain-Latn",
+  "key": "ui_add_up_to_20_images_with_android_s",
+  "candidate_value_sha256": "5b515a6d18c078c830233ed304aff876ab5cde61f2ec87e693d2ef115b5d48c3",
+  "source_value_sha256": "6ae12f86846110a7573a5c608b8561b0c03b037454f1905d3b5bf8342fb26aac",
+  "source_semantic_review": "All 34 current English sentences covered after composing PR169 plus the five exact next corrections. No remaining concrete semantic gap identified in this full-value pass. Independent full-coverage crosscheck pending; each new correction already has focused independent support.",
+  "qualification": "Medium idiom, including documented productive modern vocabulary; not universal/traditional term standardization. No rendered, runtime, layout or device acceptance. No blanket whole-key HOLD based solely on those nonblocking confidence limits.",
+  "english_defect_found": false,
+  "rows": [
+    {
+      "sentence": 1,
+      "paragraph": 1,
+      "english": "Add up to 20 images with Android\\'s file picker.",
+      "candidate_span": "Android ani cinuyep numke wa noka 20 pakno omare yan.",
+      "coverage": "covered",
+      "semantic_reason": "Android file-choice operation, 20-image limit and add instruction all explicit."
+    },
+    {
+      "sentence": 2,
+      "paragraph": 1,
+      "english": "The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider.",
+      "candidate_span": "Corpok ta pon noka, cinuyep rehe newa noka kor pororu a=nukare. Noka a=tuye hene 「Upakno a=kar seri」 hene 「Upakno a=kar kewerihi」 hene ani pororu a=sinnare hene ki yakun, a=nukare pororu ka ne neno a=sinnare. Cinuyep kore aeywankep cinuyep a=sinnare hi ka kore yakun, nea hi ka a=nukare.",
+      "coverage": "covered",
+      "semantic_reason": "One displayed dimension updates after crop/normalization. Provider availability qualifies modification time only."
+    },
+    {
+      "sentence": 3,
+      "paragraph": 1,
+      "english": "Sort by filename or modification time; sorting does not rearrange placed images.",
+      "candidate_span": "Cinuyep rehe hene a=sinnare hi hene ani upekare easkay. Upekare yakka, a=anu noka kor uske a=sinnare ka somo ki.",
+      "coverage": "covered",
+      "semantic_reason": "Filename/time sorting distinct from positions of placed images."
+    },
+    {
+      "sentence": 4,
+      "paragraph": 2,
+      "english": "Tap a thumbnail to select it.",
+      "candidate_span": "Pon noka kik wa numke yan.",
+      "coverage": "covered",
+      "semantic_reason": "Thumbnail selection by tap."
+    },
+    {
+      "sentence": 5,
+      "paragraph": 2,
+      "english": "Crop image trims that image; Batch crop applies pixel or percentage margins to selected images.",
+      "candidate_span": "「Noka tuye」 ani nea noka tuye easkay. 「Poronno noka tuye」 ani a=numke noka kor pes tuye kusu pixel hene % hene cipiskip anu yan.",
+      "coverage": "covered",
+      "semantic_reason": "Crop selected image and batch selected images using pixel/percentage edge amounts; exact captions."
+    },
+    {
+      "sentence": 6,
+      "paragraph": 2,
+      "english": "Drag crop handles or type amounts.",
+      "candidate_span": "Noka kor pes or ta an itokpa moymoye hene cipiskip nuye hene ki yan.",
+      "coverage": "covered",
+      "semantic_reason": "Drag edge markers or enter numbers."
+    },
+    {
+      "sentence": 7,
+      "paragraph": 2,
+      "english": "Reset crop restores the original edges.",
+      "candidate_span": "「Noka pes hosipire」 ani hoski pes a=hosipire.",
+      "coverage": "covered",
+      "semantic_reason": "Reset crop restores initial edges."
+    },
+    {
+      "sentence": 8,
+      "paragraph": 2,
+      "english": "Cropping is non-destructive and can be undone.",
+      "candidate_span": "A=omare cinuyep a=sinnare ka somo ki. 「Husko katukar」 ani tuye etoko an katu hosipire easkay.",
+      "coverage": "covered",
+      "semantic_reason": "Non-destructive expressed as input file unchanged; Undo restores pre-crop condition."
+    },
+    {
+      "sentence": 9,
+      "paragraph": 3,
+      "english": "Hold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge.",
+      "candidate_span": "Pon noka kisma wa moymoye yan. Uske or ta a=anu noka ka moymoye easkay. A=nukare pes or un noka anu yan.",
+      "coverage": "covered",
+      "semantic_reason": "Hold/drag thumbnail or move placed image, then place at displayed edge target. Displayed edge is the visible highlighted drop target in consumer, not an arbitrary image edge."
+    },
+    {
+      "sentence": 10,
+      "paragraph": 3,
+      "english": "The translucent preview shows the exact snapped result.",
+      "candidate_span": "Naa e=anu ka somo ki kor, e=anu kusu an noka a=nukare. Noka e=anu okere yakun, nea a=nukare noka kor uske ta an; pororu ka nea a=nukare noka kor pororu pakno an. Nea noka pok anpe ka a=nukar easkay.",
+      "coverage": "covered",
+      "semantic_reason": "Preview before placing is see-through and matches committed position/size after completion. No invariant-while-dragging claim."
+    },
+    {
+      "sentence": 11,
+      "paragraph": 3,
+      "english": "A right attachment aligns the tops; a bottom attachment aligns the left edges.",
+      "candidate_span": "Simoysam un e=kote yakun sapa uneno an. Corpok un e=kote yakun harkisam pes uneno an.",
+      "coverage": "covered",
+      "semantic_reason": "Right attachment aligns tops; lower attachment aligns left edges. Spatial sameness is appropriate uneno context."
+    },
+    {
+      "sentence": 12,
+      "paragraph": 3,
+      "english": "You can also tap a thumbnail and then a + target.",
+      "candidate_span": "Pon noka kik wa + kik ka easkay.",
+      "coverage": "covered",
+      "semantic_reason": "Alternate thumbnail then + target interaction."
+    },
+    {
+      "sentence": 13,
+      "paragraph": 3,
+      "english": "When snapping, the first image starts at the origin.",
+      "candidate_span": "Tan katu ani noka a=anu hi ta, hoski noka anak x=0, y=0 ta a=anu.",
+      "coverage": "covered",
+      "semantic_reason": "Anaphoric mode restriction scopes origin to preceding snap method."
+    },
+    {
+      "sentence": 14,
+      "paragraph": 3,
+      "english": "Attached images may move when their parent is cropped.",
+      "candidate_span": "Noka a=tuye yakun, nea noka or un a=kote noka a=moymoye hi ka an.",
+      "coverage": "covered",
+      "semantic_reason": "Explicit cropped parent antecedent; contingent movement, not permission or guaranteed motion."
+    },
+    {
+      "sentence": 15,
+      "paragraph": 3,
+      "english": "Overlaps are rejected when snapping.",
+      "candidate_span": "Tan katu ani noka a=anu hi ta, noka a=ukaomare eaykap.",
+      "coverage": "covered",
+      "semantic_reason": "Snap-specific overlap impossibility, including partial overlap; distinct from coordinate mode."
+    },
+    {
+      "sentence": 16,
+      "paragraph": 4,
+      "english": "Select an image and use Exact position to set its top-left X/Y coordinates in whole pixels, starting at zero.",
+      "candidate_span": "Noka numke wa 「A=nuye cipiskip koracipo a=anu uske」 eywanke yan. A=sanke noka a=nuye uske or ta, tan noka tuyka ta ka tan noka harkisama ta ka an sikkew anu yan. X ka Y ka, 「0, 1, 2, 3, …」 or wa a=numke cipiskip ne; pixel ani, 0 wano a=piski.",
+      "coverage": "covered",
+      "semantic_reason": "Exact operation title, selected image, output-space top-left, X/Y, nonnegative whole pixel units explicit; accepted PR67 construction."
+    },
+    {
+      "sentence": 17,
+      "paragraph": 4,
+      "english": "Other images keep their positions, and overlaps are allowed.",
+      "candidate_span": "Mosma noka a=ari uske anak a=sinnare ka somo ki. Te ta noka a=ukaomare yakka pirka.",
+      "coverage": "covered",
+      "semantic_reason": "Other placements invariant and overlap permitted specifically in immediately named numeric mode."
+    },
+    {
+      "sentence": 18,
+      "paragraph": 5,
+      "english": "Same width and Same height give every input a common dimension while preserving each image\\'s own aspect ratio.",
+      "candidate_span": "「Upakno a=kar seri」 hene 「Upakno a=kar kewerihi」 hene ani noka opitta kor pararu hene riru hene upakno a=kar. Noka sinep sinep kor pararu newa riru anak uneno % ani a=sinnare.",
+      "coverage": "covered",
+      "semantic_reason": "Common axis equalized quantitatively; per-image width/height change by same percentage, preserving that image's ratio. No need for literal aspect-ratio noun."
+    },
+    {
+      "sentence": 19,
+      "paragraph": 5,
+      "english": "Choose pixels, percent, Smallest or Largest.",
+      "candidate_span": "Pixel, %, 「Iyotta pon」 hene 「Iyotta poro」 hene numke yan.",
+      "coverage": "covered",
+      "semantic_reason": "All four choices preserved and captions match."
+    },
+    {
+      "sentence": 20,
+      "paragraph": 5,
+      "english": "Restore original sizes removes normalization and keeps crops.",
+      "candidate_span": "「Hoski pororu hosipire」 ani pororu patek a=hosipire. A=tuye pes anak a=ama.",
+      "coverage": "covered",
+      "semantic_reason": "Restore only size/normalization, retain cropped edges."
+    },
+    {
+      "sentence": 21,
+      "paragraph": 6,
+      "english": "Unplace returns only the selected image to the tray.",
+      "candidate_span": "「A=anu noka hosipire」 e=kik yakun a=numke noka patek corpok un a=hosipire.",
+      "coverage": "covered",
+      "semantic_reason": "Only selected input returns to bottom tray."
+    },
+    {
+      "sentence": 22,
+      "paragraph": 6,
+      "english": "Other images stay placed; attached images may move to fill the gap.",
+      "candidate_span": "Mosma noka anak a=ari wa oka. A=kote noka anak nea isam uske un a=moymoye hi ka an.",
+      "coverage": "covered",
+      "semantic_reason": "Other inputs remain placed; attached subset may move toward vacated space. Placement state is not identical-position invariance."
+    },
+    {
+      "sentence": 23,
+      "paragraph": 6,
+      "english": "Remove deletes only that input.",
+      "candidate_span": "「Isamka」 ani nea noka patek a=isamka.",
+      "coverage": "covered",
+      "semantic_reason": "Only that input removed."
+    },
+    {
+      "sentence": 24,
+      "paragraph": 6,
+      "english": "Undo/Redo restore these changes.",
+      "candidate_span": "「Husko katukar」 newa 「Suy ki」 ani tan sinna a=hosipire easkay.",
+      "coverage": "covered",
+      "semantic_reason": "Undo/Redo restore these changes."
+    },
+    {
+      "sentence": 25,
+      "paragraph": 6,
+      "english": "Drag a placed image to rearrange it; empty-space dragging pans.",
+      "candidate_span": "A=anu noka moymoye wa a=anu uske sinnare yan. Noka isam uske moymoye yakun, noka somo nuye no nukar uske a=moymoye.",
+      "coverage": "covered",
+      "semantic_reason": "Placed-image drag repositions; empty-space drag moves viewing area without drawing."
+    },
+    {
+      "sentence": 26,
+      "paragraph": 6,
+      "english": "Pinch to zoom.",
+      "candidate_span": "Tu askepet ani porore hene ponte hene ki yan.",
+      "coverage": "covered",
+      "semantic_reason": "Two-finger enlarge/shrink in adjacent view-navigation context, a usable pinch-to-zoom paraphrase; does not imply output resize."
+    },
+    {
+      "sentence": 27,
+      "paragraph": 6,
+      "english": "«Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.",
+      "candidate_span": "「Opitta nukare」 ani noka ukote opitta a=nukar pakno nukar pororu a=sinnare. A=sanke noka kor pororu a=sinnare ka somo ki.",
+      "coverage": "covered",
+      "semantic_reason": "Show-all adjusts viewing size to complete assembly, never output size."
+    },
+    {
+      "sentence": 28,
+      "paragraph": 7,
+      "english": "Save PNG saves the assembled image directly.",
+      "candidate_span": "「PNG ama」 ani ukote noka PNG ne a=ama.",
+      "coverage": "covered",
+      "semantic_reason": "Named Save PNG action saves assembled PNG. Direct save is expressed operationally, contrasted with next editor-transfer action, not omitted functionality."
+    },
+    {
+      "sentence": 29,
+      "paragraph": 7,
+      "english": "Edit in Paint transfers it into the main editor as an undoable replacement.",
+      "candidate_span": "「Paint or ta nuye」 ani noka nuye kusu AN Paint un a=eikra. Nea noka ani tane an noka a=itasare; 「Husko katukar」 ani hosipire easkay.",
+      "coverage": "covered",
+      "semantic_reason": "Exact Edit-in-Paint caption anchors main drawing editor; replaces current image and can Undo. No separate application launch claim necessary."
+    },
+    {
+      "sentence": 30,
+      "paragraph": 7,
+      "english": "If the output exceeds the memory budget, choose a smaller output copy if offered.",
+      "candidate_span": "A=sanke noka a=kar hi ta, tane noka nuye kusu a=eywanke easkay RAM akkari na poronno RAM a=eywanke kuni a=ramu yakun, noka kor pororu a=numke uske a=nukare yakun, a=sanke kusu a=attupte noka na pon pe numke yan.",
+      "coverage": "covered",
+      "semantic_reason": "Expected output-operation memory versus currently usable image-editing budget. Choose smaller output copy only if chooser displayed."
+    },
+    {
+      "sentence": 31,
+      "paragraph": 7,
+      "english": "If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.",
+      "candidate_span": "A=sanke noka ponpon yakka nea RAM akkari na poronno RAM a=eywanke kuni a=ramu yakun, AN Paint anak noka kor pororu a=numke uske nukare ka somo ki no, RAM ehaye sekor an itak nukare.",
+      "coverage": "covered",
+      "semantic_reason": "Even tiny output over budget causes insufficiency warning, explicitly without size chooser."
+    },
+    {
+      "sentence": 32,
+      "paragraph": 7,
+      "english": "Original source files stay unchanged.",
+      "candidate_span": "A=omare cinuyep a=sinnare ka somo ki.",
+      "coverage": "covered",
+      "semantic_reason": "Original input files unchanged."
+    },
+    {
+      "sentence": 33,
+      "paragraph": 7,
+      "english": "The current assembly is stored locally and reopens when you return.",
+      "candidate_span": "Tane noka ukote anak kikay or ta a=ama. Suy e=maka yakun nea noka ukote a=hosipire.",
+      "coverage": "covered",
+      "semantic_reason": "Current assembly stored on device and restored on reopening/return."
+    },
+    {
+      "sentence": 34,
+      "paragraph": 8,
+      "english": "This mode uses the same Catrobat/AGPL and asset credits shown in the main editor\\'s «File > About, licences & credits» panel.",
+      "candidate_span": "Tan aeywankep anak Catrobat/AGPL newa noka kar kur kor irenka ani a=eywanke. AN Paint kor 「Cinuyep → Yayopeyope, uesere newa kar kur」 or ta irenka newa kar kur kor rehe opitta nukar easkay.",
+      "coverage": "covered",
+      "semantic_reason": "Catrobat/AGPL and image-credit terms refer to the exact main-editor information/licence/credits route. Same attribution is operationally identified, not a new licence grant."
+    }
+  ]
+}

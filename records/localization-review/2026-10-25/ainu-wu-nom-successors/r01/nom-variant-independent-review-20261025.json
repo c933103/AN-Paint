@@ -1,0 +1,50 @@
+{
+  "reviewer": "independent Nôm variant reviewer",
+  "reviewed_at": "2026-10-25T13:55:03.216601+00:00",
+  "status": "Fresh independent focused review; not a recovered historical receipt",
+  "decision": "ACCEPT — only the two U+25A28 to U+259EA substitutions",
+  "source_path": "nom-help-original-accepted-value.txt",
+  "source_sha256": "612852fa5926a8cdd7960e4d5af3455bc06acd32ab091804fe84f597249c6ff9",
+  "candidate_path": "nom-help-accepted-value.txt",
+  "candidate_sha256": "d33cbe183658d2e8d71924a6ebbabf1f04792fa8a76d5c0eb26db33f41775232",
+  "operation": {
+    "from": "𥨨",
+    "from_codepoint": "U+25A28",
+    "to": "𥧪",
+    "to_codepoint": "U+259EA",
+    "occurrences": 2
+  },
+  "integrity_verification": "Independently calculated both file hashes; source.replace(𥨨,𥧪) equals candidate exactly, with two occurrences and no other character changes. Both files contain 1194 Unicode characters and 2471 UTF-8 bytes. Candidate exactly equals vi-Hani Help accepted_candidate in exact-changed-values.json.",
+  "contexts": [
+    {
+      "source": "各 影 恪 吻 得 撻; 各 影 㐌 𮇜 𣎏 体 移轉 抵 垃 曠 𥨨.",
+      "candidate": "各 影 恪 吻 得 撻; 各 影 㐌 𮇜 𣎏 体 移轉 抵 垃 曠 𥧪.",
+      "finding": "曠 𥧪 supplies khoảng trống, an empty space/gap. The replacement preserves the intended empty-space sense."
+    },
+    {
+      "source": "捁 影 㐌 撻 抵 𢯛 揷 來; 捁 漨 𥨨 抵 移轉 椌 𥆾.",
+      "candidate": "捁 影 㐌 撻 抵 𢯛 揷 來; 捁 漨 𥧪 抵 移轉 椌 𥆾.",
+      "finding": "漨 𥧪 supplies vùng trống, an empty area. It still distinguishes dragging empty space to move the view from dragging an image."
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://hvdic.thivien.net/nom/tr%E1%BB%91ng",
+      "independently_opened": true,
+      "evidence": "The entry identifies 𥧪 U+259EA as trống, also rỗng, with trống trải, attributed to Từ điển Hồ Lê; and 𥨨 U+25A28 as trống with trống trải, attributed to Từ điển Viện Hán Nôm. This supports contextual lexical equivalence, not universal Unicode interchangeability."
+    }
+  ],
+  "independent_lookup_limitations": [
+    "The direct Nôm Foundation lookup at https://www.nomfoundation.org/nom-tools/Tu-Dien-Chu-Nom-Dan_Giai?nom=%F0%A5%A7%AA&uiLang=vn returned a tool accessibility error and is not counted as independently retrieved evidence.",
+    "Dictionary attribution was inspected through Thi Viện, not original printed dictionary pages."
+  ],
+  "confidence": "High for only these two substitutions, based on matching dictionary senses and sentence contexts; not native-speaker certification.",
+  "conclusion": "No concrete linguistic defect introduced by either substitution was found.",
+  "scope_constraints": [
+    "Preserve original whole-Help review qualifications.",
+    "No enlargement of historical PR12 acceptance or PR67 provenance claims.",
+    "No change to unrelated PR113 keys or held warning-term decisions.",
+    "No font, rendering, runtime, code or test certification; font coverage is proposal motivation, not linguistic evidence.",
+    "Review was read-only. This JSON records evidence only; no source XML, code or tests modified, no Work task invoked and nothing published."
+  ]
+}

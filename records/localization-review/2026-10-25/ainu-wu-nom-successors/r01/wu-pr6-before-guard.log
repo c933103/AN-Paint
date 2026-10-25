@@ -1,0 +1,57 @@
+test_conditional_choice_hak_Hant_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_conditional_choice_hak_Hant_TW) ... ok
+test_conditional_choice_hak_Latn_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_conditional_choice_hak_Latn_TW) ... ok
+test_conditional_choice_lzh_Hant (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_conditional_choice_lzh_Hant) ... ok
+test_conditional_choice_nan_Hant_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_conditional_choice_nan_Hant_TW) ... ok
+test_conditional_choice_nan_Latn_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_conditional_choice_nan_Latn_TW) ... ok
+test_conditional_choice_wuu_Hans (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_conditional_choice_wuu_Hans) ... FAIL
+test_scope_is_the_six_active_pr6_catalogues (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_scope_is_the_six_active_pr6_catalogues) ... ok
+test_tray_dimensions_hak_Hant_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_tray_dimensions_hak_Hant_TW) ... ok
+test_tray_dimensions_hak_Latn_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_tray_dimensions_hak_Latn_TW) ... ok
+test_tray_dimensions_lzh_Hant (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_tray_dimensions_lzh_Hant) ... ok
+test_tray_dimensions_nan_Hant_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_tray_dimensions_nan_Hant_TW) ... ok
+test_tray_dimensions_nan_Latn_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_tray_dimensions_nan_Latn_TW) ... ok
+test_tray_dimensions_wuu_Hans (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_tray_dimensions_wuu_Hans) ... FAIL
+test_warning_instead_of_chooser_hak_Hant_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_warning_instead_of_chooser_hak_Hant_TW) ... ok
+test_warning_instead_of_chooser_hak_Latn_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_warning_instead_of_chooser_hak_Latn_TW) ... ok
+test_warning_instead_of_chooser_lzh_Hant (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_warning_instead_of_chooser_lzh_Hant) ... ok
+test_warning_instead_of_chooser_nan_Hant_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_warning_instead_of_chooser_nan_Hant_TW) ... ok
+test_warning_instead_of_chooser_nan_Latn_TW (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_warning_instead_of_chooser_nan_Latn_TW) ... ok
+test_warning_instead_of_chooser_wuu_Hans (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_warning_instead_of_chooser_wuu_Hans) ... FAIL
+
+======================================================================
+FAIL: test_conditional_choice_wuu_Hans (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_conditional_choice_wuu_Hans)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_assembly_help_pr6.py", line 117, in test
+    _, paragraphs = catalogue(tag)
+                    ^^^^^^^^^^^^^^
+  File "<focused-snapshot>/tools/test_assembly_help_pr6.py", line 86, in catalogue
+    raise AssertionError(f'{tag}: assembly help paragraph structure changed')
+AssertionError: wuu-Hans: assembly help paragraph structure changed
+
+======================================================================
+FAIL: test_tray_dimensions_wuu_Hans (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_tray_dimensions_wuu_Hans)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_assembly_help_pr6.py", line 104, in test
+    values, paragraphs = catalogue(tag)
+                         ^^^^^^^^^^^^^^
+  File "<focused-snapshot>/tools/test_assembly_help_pr6.py", line 86, in catalogue
+    raise AssertionError(f'{tag}: assembly help paragraph structure changed')
+AssertionError: wuu-Hans: assembly help paragraph structure changed
+
+======================================================================
+FAIL: test_warning_instead_of_chooser_wuu_Hans (test_assembly_help_pr6.AssemblyHelpPr6Tests.test_warning_instead_of_chooser_wuu_Hans)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_assembly_help_pr6.py", line 126, in test
+    _, paragraphs = catalogue(tag)
+                    ^^^^^^^^^^^^^^
+  File "<focused-snapshot>/tools/test_assembly_help_pr6.py", line 86, in catalogue
+    raise AssertionError(f'{tag}: assembly help paragraph structure changed')
+AssertionError: wuu-Hans: assembly help paragraph structure changed
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.028s
+
+FAILED (failures=3)

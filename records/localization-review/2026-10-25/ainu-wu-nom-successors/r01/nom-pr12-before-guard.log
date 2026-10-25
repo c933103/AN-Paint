@@ -1,0 +1,60 @@
+test_conditional_chooser_vi (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_conditional_chooser_vi) ... ok
+test_conditional_chooser_vi_Hani (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_conditional_chooser_vi_Hani) ... FAIL
+test_default_contract_still_requires_both_repairs (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_default_contract_still_requires_both_repairs) ... ok
+test_live_tray_uses_crop_and_normalization_with_the_named_controls (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_live_tray_uses_crop_and_normalization_with_the_named_controls) ... ok
+test_memory_floor_warns_and_returns_before_size_chooser_construction (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_memory_floor_warns_and_returns_before_size_chooser_construction) ... ok
+test_nom_repaired_paragraphs_have_bundled_glyph_coverage (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_nom_repaired_paragraphs_have_bundled_glyph_coverage) ... FAIL
+test_scope_is_two_registered_canonical_vietnamese_catalogues (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_scope_is_two_registered_canonical_vietnamese_catalogues) ... ok
+test_tray_dimensions_vi (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_tray_dimensions_vi) ... ok
+test_tray_dimensions_vi_Hani (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_tray_dimensions_vi_Hani) ... FAIL
+test_warning_without_chooser_vi (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_warning_without_chooser_vi) ... ok
+test_warning_without_chooser_vi_Hani (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_warning_without_chooser_vi_Hani) ... FAIL
+
+======================================================================
+FAIL: test_conditional_chooser_vi_Hani (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_conditional_chooser_vi_Hani)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_assembly_help_pr12.py", line 135, in test
+    _, paragraphs = catalogue(case['folder'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<focused-snapshot>/tools/test_assembly_help_pr12.py", line 55, in catalogue
+    raise AssertionError(f'{folder}: expected {expected_count} assembly-help paragraphs')
+AssertionError: values-b+vi+Hani: expected 7 assembly-help paragraphs
+
+======================================================================
+FAIL: test_nom_repaired_paragraphs_have_bundled_glyph_coverage (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_nom_repaired_paragraphs_have_bundled_glyph_coverage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_assembly_help_pr12.py", line 110, in test_nom_repaired_paragraphs_have_bundled_glyph_coverage
+    _, paragraphs = catalogue(CASES['vi-Hani']['folder'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<focused-snapshot>/tools/test_assembly_help_pr12.py", line 55, in catalogue
+    raise AssertionError(f'{folder}: expected {expected_count} assembly-help paragraphs')
+AssertionError: values-b+vi+Hani: expected 7 assembly-help paragraphs
+
+======================================================================
+FAIL: test_tray_dimensions_vi_Hani (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_tray_dimensions_vi_Hani)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_assembly_help_pr12.py", line 121, in test
+    values, paragraphs = catalogue(case['folder'])
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<focused-snapshot>/tools/test_assembly_help_pr12.py", line 55, in catalogue
+    raise AssertionError(f'{folder}: expected {expected_count} assembly-help paragraphs')
+AssertionError: values-b+vi+Hani: expected 7 assembly-help paragraphs
+
+======================================================================
+FAIL: test_warning_without_chooser_vi_Hani (test_assembly_help_pr12.AssemblyHelpPr12Tests.test_warning_without_chooser_vi_Hani)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_assembly_help_pr12.py", line 135, in test
+    _, paragraphs = catalogue(case['folder'])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<focused-snapshot>/tools/test_assembly_help_pr12.py", line 55, in catalogue
+    raise AssertionError(f'{folder}: expected {expected_count} assembly-help paragraphs')
+AssertionError: values-b+vi+Hani: expected 7 assembly-help paragraphs
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.033s
+
+FAILED (failures=4)

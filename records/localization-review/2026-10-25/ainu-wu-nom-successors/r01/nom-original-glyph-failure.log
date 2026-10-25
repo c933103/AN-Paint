@@ -1,0 +1,21 @@
+test_every_nom_catalogue_ideograph_is_bundled (test_locale_font_coverage.LocaleFontCoverageTest.test_every_nom_catalogue_ideograph_is_bundled) ... FAIL
+
+======================================================================
+FAIL: test_every_nom_catalogue_ideograph_is_bundled (test_locale_font_coverage.LocaleFontCoverageTest.test_every_nom_catalogue_ideograph_is_bundled)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<focused-snapshot>/tools/test_locale_font_coverage.py", line 31, in test_every_nom_catalogue_ideograph_is_bundled
+    self.assertEqual([], [f'U+{cp:04X}' for cp in sorted(required - points)])
+AssertionError: Lists differ: [] != ['U+25A28']
+
+Second list contains 1 additional elements.
+First extra element 0:
+'U+25A28'
+
+- []
++ ['U+25A28']
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (failures=1)

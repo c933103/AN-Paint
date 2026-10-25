@@ -1,0 +1,232 @@
+{
+  "decision": "ACCEPT, bounded linguistic and semantic review only",
+  "candidate_raw_sha256": "a898bdda8993642d70449d3b31d5e99a5fc55b0ba3fdbf5ddcbfcd934236d53f",
+  "base": "4c8a6d07d9a7dd079a9ba7d8269b24cd8abc29a6",
+  "locale": "wuu-Hans",
+  "key": "ui_add_up_to_20_images_with_android_s",
+  "linguistic_acceptance": true,
+  "required_text_corrections": [],
+  "english_change_required": false,
+  "all_34_source_sentences_reviewed": true,
+  "paragraph_count": 8,
+  "xml_candidate_text_matches_json": true,
+  "confidence": {
+    "semantic_completeness": "high",
+    "Shanghai_based_written_Wu_register": "moderate; coherent technical register, not native-speaker or pan-Wu certification"
+  },
+  "summary": "The candidate repairs every concrete semantic fault identified in the historical HOLD without discarding the protected cropped-and-normalized dimensions or conditional-memory branches. Productive clauses replace the unclear margins predicate, broad gesture descriptions and replacement-operation nominalization. Shared technical vocabulary and retained formal constructions are not by themselves defects. No unrepresented source meaning or mandatory correction was found.",
+  "qualification": "This acceptance concerns the exact supplied text, not current source implementation, source save, integration, rendered UI, font coverage, accessibility, runtime behavior, tests, build, merge, deployment or release. No Work task, code edit, build or external write was performed.",
+  "caption_check": {
+    "provenance": "Current resource bindings supplied by resolve_wuu_help_wording after direct verification at the stated base; this review compared the candidate's quotations against that binding list.",
+    "url": "https://github.com/c933103/AN-Paint/blob/4c8a6d07d9a7dd079a9ba7d8269b24cd8abc29a6/Paintroid/src/main/res/values-b%2Bwuu%2BHans/strings.xml",
+    "result": "All quoted UI names match: 精确位置, 裁剪图片, 批次裁剪, 重设裁剪, 相同宽度, 相同高度, 还原原本大小, 取消摆, 拿脱, 撤销, 重做, 全部显示, 保存 PNG, 辣 Paint 编辑, 文件, 关于、授权搭致谢. 最小 and 最大 also match current options. The combined 撤销／重做 phrase joins two actual labels. + is the literal target marker."
+  },
+  "sentence_review": [
+    {
+      "sentence": 1,
+      "verdict": "accept",
+      "reason": "Android file picker, adding images and maximum 20 are retained; 最多好加进 is a readable ability/limit construction."
+    },
+    {
+      "sentence": 2,
+      "verdict": "accept",
+      "reason": "Tray thumbnails, filenames and cropped/normalized dimensions are unconditional display items; provider qualification now applies only to modification time. The retained dimensions phrase describes resulting dimensions, not a requirement to perform both adjustments."
+    },
+    {
+      "sentence": 3,
+      "verdict": "accept",
+      "reason": "Both sort keys and non-rearrangement of placed images are explicit; 修改时间 is clearer than 改时间."
+    },
+    {
+      "sentence": 4,
+      "verdict": "accept",
+      "reason": "Tap-to-select relation is expressed directly as action followed by result, with the thumbnail's image as referent."
+    },
+    {
+      "sentence": 5,
+      "verdict": "accept",
+      "reason": "Single-image crop and batch margins applied to selected images are distinct. 照设好个边距裁剪 provides the missing clear predicate; both pixel and percentage units remain."
+    },
+    {
+      "sentence": 6,
+      "verdict": "accept",
+      "reason": "Dragging crop handles and entering amounts remain alternatives."
+    },
+    {
+      "sentence": 7,
+      "verdict": "accept",
+      "reason": "Reset restores original edges and retains the actual caption."
+    },
+    {
+      "sentence": 8,
+      "verdict": "accept",
+      "reason": "Original-image preservation and undoability both survive in direct clauses."
+    },
+    {
+      "sentence": 9,
+      "verdict": "accept",
+      "reason": "Long press or workspace-image drag, then drag to highlighted edge and release preserves the gesture. 高亮 no longer invents reverse-colour highlighting. 做事区 is a transparent workspace referent in context, not a different physical workplace claim."
+    },
+    {
+      "sentence": 10,
+      "verdict": "accept",
+      "reason": "Translucency and exact snapped result are retained; 贴齐 is consistently used for snapping."
+    },
+    {
+      "sentence": 11,
+      "verdict": "accept",
+      "reason": "Right attachment aligns tops and bottom attachment aligns left sides. 左面 denotes the image side/edge in the alignment context."
+    },
+    {
+      "sentence": 12,
+      "verdict": "accept",
+      "reason": "Thumbnail then + target remains an alternative input sequence."
+    },
+    {
+      "sentence": 13,
+      "verdict": "accept",
+      "reason": "Origin placement is now explicitly limited to snapping."
+    },
+    {
+      "sentence": 14,
+      "verdict": "accept",
+      "reason": "The potentially moving objects are attached images, their parent relationship is explicit, cropping is the trigger, and 有可能 restores contingency."
+    },
+    {
+      "sentence": 15,
+      "verdict": "accept",
+      "reason": "Overlap rejection is explicitly limited to snapping and no longer contradicts Exact position."
+    },
+    {
+      "sentence": 16,
+      "verdict": "accept",
+      "reason": "Previously absent image selection, current Exact position caption, top-left X/Y coordinates, whole pixels and zero-based coordinates are all supplied."
+    },
+    {
+      "sentence": 17,
+      "verdict": "accept",
+      "reason": "Other images keep current positions and overlaps are allowed in the immediately established Exact position context. 搿搭 is contextually sufficient, not a global overlap permission."
+    },
+    {
+      "sentence": 18,
+      "verdict": "accept",
+      "reason": "Separate width and height predicates identify the selected common axis; each image's own aspect ratio remains unchanged. Does not promise equal dimensions on both axes."
+    },
+    {
+      "sentence": 19,
+      "verdict": "accept",
+      "reason": "Pixels, percentage, Smallest and Largest all survive."
+    },
+    {
+      "sentence": 20,
+      "verdict": "accept",
+      "reason": "Restore removes normalization but retains crops. The supported prior wording is preserved."
+    },
+    {
+      "sentence": 21,
+      "verdict": "accept",
+      "reason": "Only the selected image returns to the tray. 将…放回 is more formal than neighbouring clauses, but it is understandable technical written register and creates no material semantic defect."
+    },
+    {
+      "sentence": 22,
+      "verdict": "accept",
+      "reason": "All other placed images remain in the workspace; only attached-image gap-filling is described as possible. It does not assert that all later images must move."
+    },
+    {
+      "sentence": 23,
+      "verdict": "accept",
+      "reason": "Only that input is deleted. Retained 该 is a formal demonstrative, not a different referent or reason to reject the complete value."
+    },
+    {
+      "sentence": 24,
+      "verdict": "accept",
+      "reason": "Undo/Redo and restoring these changes survive; 修改 is a clear change-event noun replacing the awkward bare nominal 改."
+    },
+    {
+      "sentence": 25,
+      "verdict": "accept",
+      "reason": "Dragging placed content rearranges it; dragging empty space moves the view."
+    },
+    {
+      "sentence": 26,
+      "verdict": "accept",
+      "reason": "Two fingers moving together or apart now states the pinch/spread gesture, not merely an unspecified two-finger action."
+    },
+    {
+      "sentence": 27,
+      "verdict": "accept",
+      "reason": "Show all fits the entire assembly through view zoom and explicitly does not alter output dimensions."
+    },
+    {
+      "sentence": 28,
+      "verdict": "accept",
+      "reason": "Save PNG directly saves the assembled image."
+    },
+    {
+      "sentence": 29,
+      "verdict": "accept",
+      "reason": "Assembly goes to the main editor, replaces its existing image and can be undone. Direct sequential clauses avoid the earlier unclear replacement-operation nominalization; no new layer is claimed."
+    },
+    {
+      "sentence": 30,
+      "verdict": "accept",
+      "reason": "Both over-budget and if-offered conditions remain, and the smaller entity is an output copy, not the sources."
+    },
+    {
+      "sentence": 31,
+      "verdict": "accept",
+      "reason": "Even tiny output over budget produces a warning instead of a size chooser. Protected prior conditional-memory wording is retained."
+    },
+    {
+      "sentence": 32,
+      "verdict": "accept",
+      "reason": "Original image files are unchanged."
+    },
+    {
+      "sentence": 33,
+      "verdict": "accept",
+      "reason": "Current assembly is stored locally on the device and reopens on return; no remote synchronization claim is introduced."
+    },
+    {
+      "sentence": 34,
+      "verdict": "accept",
+      "reason": "Same Catrobat/AGPL and asset credits, main-editor panel destination and exact File/About captions remain intact."
+    }
+  ],
+  "primary_sources_read": [
+    {
+      "url": "https://mzj.sh.gov.cn/lnb-hf/20240305/1f239725bbe7495ab39e6511aad8826f.html",
+      "title": "丁迪蒙, 《繁花》沪语纠错, 2024-03-05",
+      "use": "Contemporary distinctions between literary and vernacular readings, and usage of 摆, 侪, 就算, 搭, 搿搭 and resultative 脱. Supports construction choices, not complete software sentences."
+    },
+    {
+      "url": "https://www.gutenberg.org/files/62128/62128-h/62128-h.htm",
+      "title": "Edkins, A Grammar of Colloquial Chinese as Exhibited in the Shanghai Dialect, 1868",
+      "use": "Sections 175, 177(c), 246, 248 and 250: relative 个, small-quantity comparative, modal 好, imperatives and 个辰光. Historical structural support only, not modern orthographic authority."
+    },
+    {
+      "url": "https://www.cuhk.edu.hk/ics/clrc/scl_29/lin.pdf",
+      "title": "林素娥, 早期吴语的句法类型特征, 2010",
+      "use": "Text-extracted Shanghai topic and 拿-disposal discussion in printed pages 4–7; no visual PDF check claimed. Ningbo and Wenzhou examples are not used as Shanghai prescriptions."
+    }
+  ],
+  "historical_review_read": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6349315226",
+  "register_notes": [
+    "The text is coherent Shanghai-based written Wu with shared technical vocabulary, not a claim to cover all Wu varieties.",
+    "The formal terms 将, 该, 返回此功能 and 输入数值 remain readable in technical Help. A stylistic preference for more vernacular alternatives is not a newly invented acceptance gate.",
+    "No demand is made for a native-speaker certificate, exact-sentence corpus match or replacement of every shared Chinese technical word.",
+    "Existing captions are anchors: this review does not authorize changing them to more colloquial labels."
+  ],
+  "blockers": [],
+  "actions_not_performed": [
+    "Work delegation",
+    "project code or resource edits",
+    "software tests",
+    "builds",
+    "runtime/font verification",
+    "GitHub writes",
+    "merge",
+    "deployment",
+    "release"
+  ]
+}

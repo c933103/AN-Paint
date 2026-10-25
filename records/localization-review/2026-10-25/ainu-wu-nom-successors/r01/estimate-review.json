@@ -1,0 +1,132 @@
+{
+  "status": "Final bounded linguistic disposition: all twelve exact replacements are supportable for the next separate translation batch. No whole-key/catalogue acceptance.",
+  "reviewedValuesSha256": "22c183ce77f65bc833fff4ffbd67a1bc05347e3498df11207def2f3562f536ad",
+  "statusNote": "values.json is the unchanged exact review-time candidate snapshot; its pending status is superseded by this final review.",
+  "locales": [
+    "ain-Kana",
+    "ain-Latn"
+  ],
+  "sourceEnglishChanged": false,
+  "freshBaseCheck": {
+    "head": "1fd22c51cabf1f1997076c282c0dc7c24f883053",
+    "englishBlob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+    "kanaBlob": "6a4f74c242273cb9281fac96b1b3311bcb384385",
+    "latinBlob": "c56efc0ceef82f6f830656f9602d694080968b92",
+    "result": "All six source and current target strings exactly match earlier source-bound values after XML parsing."
+  },
+  "defect": "erampetek denotes not understanding, not estimated quantity. Each changed clause instead expresses an expected amount of RAM use with finite kuni a=ramu, retaining the distinct operation/size context.",
+  "construction": "Quantity + pakno RAM a=eywanke kuni a=ramu. In prose, tan/nea RAM kor cipiskip supplies the explicit displayed-memory-figure antecedent. No relative extraction through a thought complement is required.",
+  "primaryEvidence": [
+    {
+      "url": "https://www.ff-ainu.or.jp/web/potal_site/files/2026Ainugoradiovol.1_A4.pdf",
+      "location": "printed page19 / PDF page index20",
+      "quote": "eraman エラマン「わかる」 → erampetek エランペテㇰ「わからない」",
+      "supports": "Wrong lexical polarity of current estimate term."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic?word=Tan",
+      "location": "Tamura kunak/kuni",
+      "quote": "kuni ramu",
+      "supports": "A proposition concerning future/inferred use as complement of think; does not assert actual measured use."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/pages/ainu_basic.html",
+      "location": "section7(4) connective particles",
+      "supports": "Nominalized quotation/complement construction before ramu."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic?word=inep",
+      "location": "Tamura pakno sense2",
+      "quote": "about; roughly",
+      "supports": "Quantity approximation with a numeric amount; indexed primary entry freshly read."
+    },
+    {
+      "url": "https://ainugo.nam.go.jp/dic?word=puyar",
+      "location": "Tamura maka1",
+      "quote": "to open",
+      "supports": "Ordinary transitive open, deliberately extended to opening an image for editing. Not claimed to be a historical software-specific lexeme."
+    },
+    {
+      "url": "https://www.ff-ainu.or.jp/web/potal_site/files/saru_tyukyu.pdf",
+      "location": "page80",
+      "quote": "maka",
+      "supports": "Primary teaching support for open. Its software use is bounded by immediate image context and the previously reviewed warning construction."
+    }
+  ],
+  "perKey": [
+    {
+      "key": "ui_assembly_decoded_output_estimated_editing_render_memory_at",
+      "changedScope": "Third line only",
+      "liveConsumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L304",
+      "meaning": "Estimated editing/render RAM at the original assembly dimensions. Renderer estimates resident output plus work/decode peaks, not installed RAM or current budget.",
+      "implementation": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt#L23-L37",
+      "qualification": "Retains existing original-size and editing/render paraphrase; finite expected-use assertion is the newly reviewed correction."
+    },
+    {
+      "key": "ui_copy_decoded_image_at_this_size_estimated_loading",
+      "changedScope": "Third line only; selected-copy opening/editing phrase plus finite expected amount",
+      "liveConsumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L48",
+      "meaning": "Selected output copy dimensions determine the estimated loading/editing amount. %3$s is total estimated use for the selected plan; not the budget or measured use.",
+      "implementation": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L75-L79",
+      "qualification": "maka open is a modern software metaphor explicitly scoped by image/copy context. First two labels retained."
+    },
+    {
+      "key": "ui_estimates_include_the_current_canvas_and_clipboard_sampled",
+      "changedScope": "Opening estimate-reference clause only",
+      "liveConsumer": null,
+      "meaning": "Retained resource source says estimates include current canvas/clipboard plus sampled decoding and editing buffers.",
+      "qualification": "No literal reference among all104 main Kotlin/Java files, nor alias in current base strings. Not claimed a live UI blocker. Existing component list and opaque-background clause retained, not independently certified."
+    },
+    {
+      "key": "ui_sampled_resize_memory_explanation",
+      "changedScope": "Opening estimate-reference clause only",
+      "liveConsumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L34",
+      "meaning": "Explanation shown on the non-native-work sampled-decoding branch. Estimated amount includes resident image state and decoding/editing work; following actual-use-varies sentence remains.",
+      "implementation": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L27-L38",
+      "qualification": "Current canvas/clipboard, sampled decoding and buffer wording retained rather than silently certified. Exact further wording concern remains pon noka ne nure kusu RAM, whose technical decoding meaning has not been established by this bounded review. This is not a reason to withhold the corrected estimate modality."
+    },
+    {
+      "key": "ui_original_decoded_image_rgba_4_bytes_pixel_estimated",
+      "changedScope": "Third line only",
+      "liveConsumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L26",
+      "meaning": "Estimated editing memory at original source dimensions without a resize. Separate exact decoded RGBA 4-bytes/pixel line and placeholders remain unchanged.",
+      "implementation": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L75-L79",
+      "qualification": "No new decoder-only restriction or current-budget claim introduced."
+    },
+    {
+      "key": "ui_the_arrow_on_the_left_directly_below_the",
+      "changedScope": "Only the sentence containing erampetek in the old import paragraph, now split into display plus expectation sentences",
+      "liveConsumer": null,
+      "meaning": "If the resize dialog is needed, it displays dimensions, pixel count, and a memory figure interpreted as expected RAM use.",
+      "qualification": "Old long Help has no literal reference in the104 main Kotlin/Java source scan; current showHelp calls ui_help23 instead. This does not accept or repair other stale claims in the old long Help, including its assembly paragraph.",
+      "actualHelpConsumer": "https://github.com/c933103/AN-Paint/blob/66be61df27c5359bffc32d56db21f3949899f873/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1586"
+    }
+  ],
+  "independentReview": {
+    "reviewer_role": "independent Latin/Kana linguistic reviewer",
+    "disposition": "I read the exact six-context values and changed clauses, including the full import paragraph around the legacy Help replacement. Focused support for all six Latin replacements and their exact Kana renderings: finite kuni a=ramu preserves estimate, purpose clauses distinguish original-size editing/rendering, selected-copy opening/editing and no-resize editing; numerical RAM reference avoids complement extraction. I reconstructed all12 single replacements and candidate hashes, with unchanged placeholders and literal newline counts.",
+    "limits": "Medium idiom, only changed estimate clauses approved; retained decoding list is not certified and the two unreferenced resources are not claimed live UI blockers."
+  },
+  "dispositionLimits": [
+    "Not a full-native-fluency certification or whole-key acceptance.",
+    "No exact historical software sentence or native-review gate imposed.",
+    "Current finalized warning packet and five-edit Help packets unchanged.",
+    "No source-English defect found; no across-language source-change flag warranted.",
+    "No builds/tests/Gradle/APK/CI/device/runtime/release/Work or remote mutations performed by this reviewer.",
+    "Apply in the separate successor batch only after fresh source/target equality; do not widen PR169."
+  ],
+  "artifactScope": [
+    "values.json",
+    "changes-only.json",
+    "review.json",
+    "consumer-scan.json",
+    "static-checks.json",
+    "candidate-resources-kana.xml",
+    "candidate-resources-latin.xml",
+    "candidate-kana.diff.txt",
+    "candidate-latin.diff.txt",
+    "README.md",
+    "SHA256SUMS.json"
+  ],
+  "localOnlySnapshots": "source-snapshots.json and pr169-snapshots.json are temporary inspection inputs, not required for durable evidence upload."
+}

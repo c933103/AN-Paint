@@ -1,0 +1,65 @@
+[
+  {
+    "id": "origin-scope",
+    "source_english": "When snapping, the first image starts at the origin.",
+    "old": "影 頭先 扒 頭 在 㭲 座 度.",
+    "proposal": "欺 𢯖 蹺 𧣲, 影 頭先 扒 頭 在 㭲 座 度.",
+    "rationale": "Add khi ghép theo cạnh (when joining along an edge), using existing khi/ghép/cạnh forms and catalogue theo. Retain existing origin wording. Current targets() creates origin only for snap root; explicit position is separate.",
+    "review_confidence": "medium: edge-snapping paraphrase needs independent contextual review",
+    "decision": "PROPOSED FOR INDEPENDENT REVIEW; NOT APPLIED OR ACCEPTED"
+  },
+  {
+    "id": "crop-movement",
+    "source_english": "Attached images may move when their parent is cropped.",
+    "old": "各 影 㐌 𮇜 仕 移轉 欺 影 媄 𣖾 割.",
+    "proposal": "各 影 㐌 𮇜 𣎏 体 移轉 欺 影 媄 𣖾 割.",
+    "rationale": "Replace assertive/future sẽ (仕) with existing có thể (𣎏 体); do not change attached-image or parent vocabulary. crop/layout source supports possibility rather than unconditional motion.",
+    "review_confidence": "medium-high for modal change only",
+    "decision": "PROPOSED FOR INDEPENDENT REVIEW; NOT APPLIED OR ACCEPTED"
+  },
+  {
+    "id": "overlap-scope",
+    "source_english": "Overlaps are rejected when snapping.",
+    "old": "空 朱 法 𫯳 𢭹.",
+    "proposal": "空 朱 法 𫯳 𢭹 欺 𢯖 蹺 𧣲.",
+    "rationale": "Qualify the existing prohibition with same edge-snapping phrase. validateSnapPlacement checks overlap; position() explicitly allows overlap.",
+    "review_confidence": "medium: independent check must compare this overlap vocabulary with the PR67 phrase",
+    "decision": "PROPOSED FOR INDEPENDENT REVIEW; NOT APPLIED OR ACCEPTED"
+  },
+  {
+    "id": "exact-position-paragraph",
+    "source_english": "Select an image and use Exact position to set its top-left X/Y coordinates in whole pixels, starting at zero. Other images keep their positions, and overlaps are allowed.",
+    "old": null,
+    "proposal": "譔 𠬠 影 耒 用 「位置 正確」 抵 撻 𧣳 𨑗 邊 債 𧵑 影. X 吧 Y 𪜀 數 元 併 蹺 單位 點影, 扒 頭 自 0. 各 影 恪 𡨺 原 位置 現在. 於 低 朱 法 各 影 重 𬨠 僥.",
+    "rationale": "Use exact caption 位置 正確; select/use/set-corner clause composes existing catalogue forms. Remaining three clauses are verbatim current PR67 position Help clauses, except omission of its unrelated stacking suffix. X/Y integer pixel coordinates and zero origin remain explicit; four target sentences render two English sentences without added behavior.",
+    "review_confidence": "medium-high: first sentence is newly composed and requires independent review; remaining coordinate/other-position/overlap clauses have narrow PR67 precedent",
+    "decision": "PROPOSED FOR INDEPENDENT REVIEW; NOT APPLIED OR ACCEPTED"
+  },
+  {
+    "id": "normalization-captions",
+    "source_english": "Same width and Same height give every input a common dimension while preserving each image's own aspect ratio.",
+    "old": "共 𣊿 𢌌 吧 共 𣊿 高",
+    "proposal": "「共 朝 𢌌」 吧 「共 朝 高」",
+    "rationale": "Quote exact current ui_same_width/ui_same_height captions already used in tray paragraph; no global replacement of 𣊿 or assertion that a variant is universally invalid. Remaining normalization sentence retained.",
+    "review_confidence": "high for exact-caption identity; sentence-level interpretation still independently reviewable",
+    "decision": "PROPOSED FOR INDEPENDENT REVIEW; NOT APPLIED OR ACCEPTED"
+  },
+  {
+    "id": "unplace-scope-modality",
+    "source_english": "Other images stay placed; attached images may move to fill the gap.",
+    "old": "各 影 𡢐 仕 垃 曠 𤿰 扔 吻 得 撻.",
+    "proposal": "各 影 恪 吻 得 撻; 各 影 㐌 𮇜 𣎏 体 移轉 抵 垃 曠 𤿰.",
+    "rationale": "Explicit other images remain placed, then attached-image possible movement. detached() preserves or promotes/reflows according to attachment state; not every other image must move. Retain existing gap vocabulary, do not import PR113 blank-map codepoint patch.",
+    "review_confidence": "medium: gap vocabulary 曠 𤿰 remains lexically unresolved, deliberately not silently accepted",
+    "decision": "PROPOSED FOR INDEPENDENT REVIEW; NOT APPLIED OR ACCEPTED"
+  },
+  {
+    "id": "remove-caption",
+    "source_english": "Remove deletes only that input.",
+    "old": "攑 𠬃 址 扠 頭 𠓨 妬.",
+    "proposal": "「扠」 址 扠 頭 𠓨 妬.",
+    "rationale": "Quote exact current ui_remove caption 扠 instead of paraphrased action name. Preserve only-that-input predicate; unplace remains distinct.",
+    "review_confidence": "high for exact-caption identity",
+    "decision": "PROPOSED FOR INDEPENDENT REVIEW; NOT APPLIED OR ACCEPTED"
+  }
+]
