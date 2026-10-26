@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "scope": "Local postmerge artifact verification only; not a CI product failure",
+      "outcome": "Initial artifact byte/source/resource/signature verification passed, but its metadata argument labelled the merge SHA as the reviewed head. The verified merge and PR head have the identical source tree.",
+      "correction": "Re-run with reviewed PR head 3c8123707106dfc991221517e443276f857797db and tested merge df9bc04b848ab5e99457bc67265d771bb839ec9d separately."
+    },
+    {
+      "scope": "Local verification rerun",
+      "outcome": "Shell reported the first metadata-correction rerun process as Killed; exact cause not established. No CI job or repository write was cancelled or retried.",
+      "correction": "Changed the local verifier to stream large archive hashes, extracted files and embedded/external source comparison, preserving all comparisons. The full rerun passed against the unchanged artifact; final metadata distinguishes reviewed PR head from tested merged commit."
+    }
+  ],
+  "limits": "These local checker outcomes do not change application source or linguistic acceptance; they are preserved rather than mislabeled as product or hosted CI failures."
+}

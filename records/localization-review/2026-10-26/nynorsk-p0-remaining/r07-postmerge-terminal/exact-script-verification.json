@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "artifact_id": 12631594816,
+  "archive_sha256": "87aa2a71f367fdde677c2e08f74de4ba4b84e1df781ff5bce08b67f4f0f4c958",
+  "run_id": 40281975192,
+  "reviewed_pr_head": "3c8123707106dfc991221517e443276f857797db",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "probe_count": 13,
+  "all_log_hashes_and_expected_exits_verified": true,
+  "probes": [
+    {
+      "name": "01-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "b610676b1fc118d1a5f3a461f44a7ce7b79ec7c7dcac48cd149123422a38a8de"
+    },
+    {
+      "name": "02-clean-debug-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "b16f7a515fb3afdbe9410098ae7936c49e5e9ed153f63857a5b634cad80a6e94"
+    },
+    {
+      "name": "03-unchanged",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "49d052383496126b82ba4b8a4e2a2e0405a6d208610d7303bf7a6b48ea957820"
+    },
+    {
+      "name": "04-1-input-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "0ae27a691b9cc763726d6c4faafe50a8f20e3341a1e34bfd7ecdf2add908a818"
+    },
+    {
+      "name": "05-1-restored-input-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "6e5b881b3b7c131b1fc14cb4070e7ec601987f9481175d69fdc3bd301e03a49b"
+    },
+    {
+      "name": "04-2-input-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "0ae27a691b9cc763726d6c4faafe50a8f20e3341a1e34bfd7ecdf2add908a818"
+    },
+    {
+      "name": "05-2-restored-input-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "1e98d67038eff88c6c2680c802b4c5e24ee8b2ecd30dd50fe522dd90c9ddb6b1"
+    },
+    {
+      "name": "05-source-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "cf2ae6efb3d6277fe6818cc808e19caffbae97504c5c4b04aedf5d1e5af0bb53"
+    },
+    {
+      "name": "05-source-companion-added",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "1349fc6f6f5bfbe369c70b706ccfff9e6168ab73d37639f307f858343b9b69a7"
+    },
+    {
+      "name": "05-source-companion-removed",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "be40b19f937804d4682f8395980dd555e9b621e39e30e016bc36c2f5f57aa73d"
+    },
+    {
+      "name": "06-reserved-app-variant-rejected",
+      "exit_code": 1,
+      "expected_success": false,
+      "log_sha256": "0c7d8c9f2f201dab5b1bfc5174e89318c57a15fdfd7e3b1eb3123aa5040b85ac"
+    },
+    {
+      "name": "06-second-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "160fdda4b5269a8c3f4b95e0ca85ceb8017051d7273700016520d714c2f9e4ae"
+    },
+    {
+      "name": "07-release-first-after-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "555af0935808666f661a2beea63e610ce7afcfb521055ed33cf3e8484eb35147"
+    }
+  ],
+  "limits": "Exact-script resource generation only; deliberate reserved-variant rejection is expected. Not language/layout/native-human or release acceptance."
+}
