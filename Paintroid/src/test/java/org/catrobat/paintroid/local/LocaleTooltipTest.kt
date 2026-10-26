@@ -1,6 +1,8 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -33,11 +35,16 @@ import java.util.Locale
 @Config(sdk=[26,27,30,35])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class LocaleTooltipTest {
-    private val context get()=RuntimeEnvironment.getApplication()
+    private lateinit var context: Context
     private lateinit var previous: Locale
-    @Before fun remember() {previous=Locale.getDefault()}
+    @Before fun remember() {previous=Locale.getDefault();context=RuntimeEnvironment.getApplication()}
     @After fun restore() {Locale.setDefault(previous)}
-    private fun select(tag: String) {Locale.setDefault(Locale.forLanguageTag(tag))}
+    private fun select(tag: String) {
+        val locale=Locale.forLanguageTag(tag)
+        Locale.setDefault(locale)
+        val base=RuntimeEnvironment.getApplication()
+        context=base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(locale)})
+    }
     private fun spans(text: CharSequence?): Array<out MetricAffectingSpan> {
         val value=requireNotNull(text)
         return (value as? Spanned)?.getSpans(0,value.length,MetricAffectingSpan::class.java).orEmpty()
@@ -116,32 +123,34 @@ class LocaleTooltipTest {
         assertNull(LocaleTooltip.format(context,null));assertSame("",LocaleTooltip.format(context,""))
     }
 
-    @Test fun allPickerLocalesKeepNativeTextAndOnlyHorizontalBundledFacesAreAdded() {
+    @Test fun allPickerLocalesKeepCompleteTextAndSelectNativeOrColumnOwnership() {
         val tags=context.resources.getStringArray(R.array.app_language_tags)
-        assertEquals(140,tags.size)
+        assertEquals(171,tags.size)
         val previousResources=PaintApplication.currentResources
         try { for(tag in tags) {
             select(tag)
-            val config=android.content.res.Configuration(context.resources.configuration).apply {setLocale(Locale.getDefault())}
-            val localized=context.createConfigurationContext(config)
+            val localized=context
             PaintApplication.currentResources=localized.resources
             val view=View(localized).apply {contentDescription="accessible label"}
             val original=SpannableString("$tag tooltip")
             LocaleTooltip.set(view,original)
-            assertEquals(original.toString(),view.tooltipText.toString())
+            val vertical=VerticalText.uiVertical(localized)
+            fun text(v: View)=if(vertical) LocaleTooltip.logicalText(v) else v.tooltipText
+            if(vertical) assertNull("No duplicate native tooltip",view.tooltipText)
+            assertEquals(original.toString(),text(view).toString())
             assertEquals("accessible label",view.contentDescription)
             val count=if(tag in setOf("vi-Hani","wuu-Hans")) 1 else 0
-            assertEquals(tag,count,spans(view.tooltipText).size)
-            if(count==0) assertSame(tag,original,view.tooltipText)
+            assertEquals(tag,count,spans(text(view)).size)
+            if(count==0) assertSame(tag,original,text(view))
             val category=ToolCategoryButton(localized,ToolCategory.BRUSH,PaintTool.PENCIL,true)
             for(control in listOf(ToolButton(localized,PaintTool.PENCIL),ActionButton(localized,EditIcon.UNDO),category)) {
-                assertEquals(tag,control.contentDescription.toString(),control.tooltipText.toString())
-                assertEquals(tag,count,spans(control.tooltipText).size)
+                assertEquals(tag,control.contentDescription.toString(),text(control).toString())
+                assertEquals(tag,count,spans(text(control)).size)
             }
             category.expanded=true;category.selectedTool=PaintTool.WATERCOLOR;category.refresh()
-            assertEquals(category.contentDescription.toString(),category.tooltipText.toString())
-            assertTrue(category.tooltipText.toString().contains(PaintTool.WATERCOLOR.label))
-            assertEquals(tag,count,spans(category.tooltipText).size)
+            assertEquals(category.contentDescription.toString(),text(category).toString())
+            assertTrue(text(category).toString().contains(PaintTool.WATERCOLOR.label))
+            assertEquals(tag,count,spans(text(category)).size)
             LocaleTooltip.set(view,null);assertNull(view.tooltipText)
             LocaleTooltip.set(view,original);LocaleTooltip.set(view,"");assertNull(view.tooltipText)
         } } finally {PaintApplication.currentResources=previousResources}

@@ -11,10 +11,10 @@ class NomNotificationSourceTest(unittest.TestCase):
     def test_current_api_bundled_horizontal_route_keeps_nom_and_includes_wu(self):
         text=(JAVA/'LocaleTypography.kt').read_text()
         self.assertIn('fun showMessage(',text)
-        self.assertIn('Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical()',text)
+        self.assertIn('if(Build.VERSION.SDK_INT>=30)',text)
         self.assertIn('val font=typeface(context)',text)
         self.assertNotIn('asset()=="fonts/anpaintnomui.ttf"',text)
-        self.assertIn('if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return',text)
+        self.assertIn('if((font!=null || VerticalText.uiVertical(context)) && LocaleNotification.show(context,text,duration,font,anchor)) return',text)
         self.assertIn('if(Build.VERSION.SDK_INT<30) toast.view?.let {install(it)}',text)
 
     def test_surface_is_an_in_app_view_with_explicit_font_and_visibility_boundaries(self):
@@ -23,7 +23,7 @@ class NomNotificationSourceTest(unittest.TestCase):
                          'owner.isFinishing || owner.isDestroyed','host.isAttachedToWindow',
                          'host.isShown','host.windowVisibility!=View.VISIBLE',
                          'while(current is ContextWrapper)','if(next===current) return null',
-                         'override fun dispatchTouchEvent(event: MotionEvent)=false'):
+                         'if(!capturingGesture) return false', 'capturingGesture=interactive'):
             self.assertIn(expected,text)
         for forbidden in ('WindowManager','PopupWindow','Toast.makeText','Toast(context)','setView('):
             self.assertNotIn(forbidden,text)

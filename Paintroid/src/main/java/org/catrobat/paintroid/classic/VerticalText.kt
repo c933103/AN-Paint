@@ -3,6 +3,7 @@ package org.catrobat.paintroid.classic
 
 import android.content.Context
 import android.graphics.*
+import android.os.Build
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
@@ -19,26 +20,42 @@ internal object VerticalText {
     fun uiDirection(locale: Locale=Locale.getDefault()): TextDirection = when {
         locale.script=="Mong" -> TextDirection.VERTICAL_LR
         locale.language=="lzh" -> TextDirection.VERTICAL_RL
+        // The private resource alias keeps emoji columns right-to-left while
+        // supplying English grammar. Ordinary en-XV remains left-to-right.
+        locale.toLanguageTag()=="en-Zsye-XV-anpaint" -> TextDirection.VERTICAL_RL
         locale.language=="en" && locale.country=="XV" -> TextDirection.VERTICAL_LR
         locale.language=="qaa" && locale.script=="Zsye" && locale.country=="XV" -> TextDirection.VERTICAL_RL
         else -> TextDirection.HORIZONTAL
     }
+    // Rendering follows the locale of its resource context. Android can reset
+    // the process default during configuration dispatch after our activity's
+    // override has already been applied; that must not turn existing UI sideways.
+    @Suppress("DEPRECATION")
+    fun uiLocale(context: Context): Locale {
+        val configuration=context.resources.configuration
+        return if(Build.VERSION.SDK_INT>=24) configuration.locales[0] else configuration.locale
+    }
+    fun uiDirection(context: Context): TextDirection = uiDirection(uiLocale(context))
+    fun uiVertical(context: Context)=uiDirection(context)!=TextDirection.HORIZONTAL
     fun uiVertical()=uiDirection()!=TextDirection.HORIZONTAL
-    fun uiTypeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? = LocaleTypography.typeface(context,locale)
+    fun uiTypeface(context: Context,locale: Locale=uiLocale(context)): Typeface? = LocaleTypography.typeface(context,locale)
     /** Preserve surrogate pairs, combining marks, variation selectors and emoji sequences. */
     fun clusters(text: String): List<String> {
-        val result=mutableListOf<String>();var i=0;var previous=-1;var regionalCount=0
+        val result=mutableListOf<String>();var i=0;var start=0;var previous=-1;var regionalCount=0
         while(i<text.length) {
-            val cp=Character.codePointAt(text,i);val count=Character.charCount(cp);val part=text.substring(i,i+count)
+            val cp=Character.codePointAt(text,i);val count=Character.charCount(cp)
             val type=Character.getType(cp)
             val regional=cp in 0x1f1e6..0x1f1ff
-            val attach=result.isNotEmpty() && (previous==0x200d || cp==0x200d || cp in 0xfe00..0xfe0f || cp in 0xe0100..0xe01ef ||
+            val attach=i>0 && (previous==0x200d || cp==0x200d || cp in 0xfe00..0xfe0f || cp in 0xe0100..0xe01ef ||
                 // UAX #29 classifies emoji tags as Extend despite their FORMAT category.
                 cp in 0xe0020..0xe007f || cp in 0x1f3fb..0x1f3ff || type==Character.NON_SPACING_MARK.toInt() || type==Character.COMBINING_SPACING_MARK.toInt() ||
                 type==Character.ENCLOSING_MARK.toInt() || regional && regionalCount%2==1)
-            if(attach) result[result.lastIndex]+=part else result.add(part)
+            // Copy a completed cluster once. Rebuilding it for every combining
+            // mark made a valid long label allocate quadratic temporary text.
+            if(i>0 && !attach) {result.add(text.substring(start,i));start=i}
             regionalCount=if(regional) regionalCount+1 else 0;previous=cp;i+=count
         }
+        if(start<text.length) result.add(text.substring(start))
         return result
     }
     private fun upright(text: String): Boolean {
@@ -53,15 +70,26 @@ internal object VerticalText {
     }
     private val punctuation=mapOf('、' to '︑','。' to '︒','「' to '﹁','」' to '﹂','『' to '﹃','』' to '﹄','（' to '︵','）' to '︶','【' to '︻','】' to '︼','…' to '︙')
     private data class Run(val text: String,val upright: Boolean)
+    private fun mongolian(cluster: String): Boolean {
+        val cp=Character.codePointAt(cluster,0)
+        return cp in 0x1800..0x18af && Character.isLetter(cp)
+    }
+    private fun suffixBoundary(previous: String?,cluster: String,next: String?): Boolean =
+        cluster=="\u202f" && previous!=null && next!=null && !mongolian(previous) && mongolian(next)
     private fun runs(line: String,orientation: GlyphOrientation): List<Run> {
-        if(orientation==GlyphOrientation.SIDEWAYS) return listOf(Run(line,false))
-        val result=mutableListOf<Run>()
-        for(cluster in clusters(line)) {
-            val up=orientation==GlyphOrientation.UPRIGHT || upright(cluster)
-            if(!up && result.lastOrNull()?.upright==false) {
-                val last=result.removeAt(result.lastIndex);result.add(Run(last.text+cluster,false))
-            } else result.add(Run(cluster,up))
+        val result=mutableListOf<Run>();val sideways=StringBuilder()
+        fun flush() {if(sideways.isNotEmpty()) {result.add(Run(sideways.toString(),false));sideways.setLength(0)}}
+        val parts=clusters(line)
+        for((index,cluster) in parts.withIndex()) {
+            val up=orientation==GlyphOrientation.UPRIGHT || orientation==GlyphOrientation.MIXED && upright(cluster)
+            // Keep the unchanged NNBSP with its Mongolian suffix in a shaping
+            // run, including after Latin/Common script. This is not a word or
+            // column break. The incremental measurer uses this same boundary.
+            val split=suffixBoundary(parts.getOrNull(index-1),cluster,parts.getOrNull(index+1))
+            if(up) {flush();result.add(Run(cluster,true))}
+            else {if(split) flush();sideways.append(cluster)}
         }
+        flush()
         return result
     }
     @Suppress("DEPRECATION")
@@ -101,24 +129,78 @@ internal object VerticalText {
     /** Wrap at CJK cluster or word boundaries, never inside a joined Mongolian word. */
     fun wrapLabel(text: String,paint: Paint,height: Float,direction: TextDirection=uiDirection()): String {
         if(direction==TextDirection.HORIZONTAL) return text
+        fun noBreak(char: Char)=char=='\u202f' || char=='\u00a0' || char=='\u2007'
+        fun breakableSpace(char: Char)=char.isWhitespace() && !noBreak(char)
         val columns=mutableListOf<String>()
         text.split('\n').forEach {paragraph ->
-            val tokens=mutableListOf<String>();var word=""
-            fun flush() {if(word.isNotEmpty()) {tokens.add(word);word=""}}
+            val tokens=mutableListOf<String>();val word=StringBuilder()
+            fun flush() {if(word.isNotEmpty()) {tokens.add(word.toString());word.setLength(0)}}
             clusters(paragraph).forEach {cluster ->
-                when {upright(cluster)->{flush();tokens.add(cluster)}
+                when {
+                    // Kotlin considers nonbreaking spaces blank. Keep them in
+                    // the word: Mongolian NNBSP also selects suffix glyph forms.
+                    // Glue upright neighbors too, without changing their draw orientation.
+                    cluster.length==1 && noBreak(cluster[0])->{
+                        if(word.isEmpty() && tokens.lastOrNull()?.all {breakableSpace(it)}==false)
+                            word.append(tokens.removeAt(tokens.lastIndex))
+                        word.append(cluster)
+                    }
+                    upright(cluster)->{
+                        if(word.lastOrNull()?.let {noBreak(it)}==true) {word.append(cluster);flush()}
+                        else {flush();tokens.add(cluster)}
+                    }
                     cluster.isBlank()->{flush();tokens.add(" ")}
-                    else->word+=cluster}
+                    else->word.append(cluster)}
             };flush()
-            var line=""
+            val line=StringBuilder();var hasContent=false;var measurement=MixedLineMeasurement(paint)
             tokens.forEach {token ->
-                val candidate=line+token
-                if(line.isNotBlank() && bounds(candidate,paint,direction,GlyphOrientation.MIXED,1f).height()>height) {
-                    columns.add(line.trim());line=token.trimStart()
-                } else line=candidate
+                val previousLength=line.length
+                line.append(token);measurement.append(token)
+                if(hasContent && measurement.height()>height) {
+                    line.setLength(previousLength)
+                    columns.add(line.toString().trim {breakableSpace(it)})
+                    val first=token.trimStart {breakableSpace(it)}
+                    line.setLength(0);line.append(first)
+                    measurement=MixedLineMeasurement(paint).apply {append(first)}
+                    hasContent=first.any {!breakableSpace(it)}
+                } else hasContent=hasContent || token.any {!breakableSpace(it)}
             }
-            columns.add(line.trim())
+            columns.add(line.toString().trim {breakableSpace(it)})
         }
         return columns.joinToString("\n")
+    }
+
+    /** Match bounds(..., MIXED, 1f) without rebuilding and reclustering the
+     * completed part of a column for every wrapping token. Adjacent sideways
+     * text is still shaped as one run, including its spaces and suffix marks. */
+    private class MixedLineMeasurement(private val paint: Paint) {
+        private val cell=paint.fontSpacing
+        private var completed=0.0
+        private val sideways=StringBuilder()
+        private var sidewaysWidth=0
+        private var dirty=false
+        private var previous: String?=null
+        private fun width(): Int {
+            if(dirty) {sidewaysWidth=layout(sideways.toString(),paint).width;dirty=false}
+            return sidewaysWidth
+        }
+        private fun flush() {
+            if(sideways.isNotEmpty()) {completed+=width();sideways.setLength(0);sidewaysWidth=0}
+        }
+        fun append(text: String) {
+            // Wrapping tokens keep NNBSP with its following Mongolian suffix.
+            // The preceding cluster can be in an earlier token (for example a
+            // breakable space), so retain it across incremental appends.
+            val parts=clusters(text)
+            for((index,cluster) in parts.withIndex()) {
+                val split=suffixBoundary(previous,cluster,parts.getOrNull(index+1))
+                if(upright(cluster)) {
+                    flush()
+                    completed+=cell.toDouble()
+                } else {if(split) flush();sideways.append(cluster);dirty=true}
+                previous=cluster
+            }
+        }
+        fun height(): Float=(completed+width()).toFloat().coerceAtLeast(cell)
     }
 }

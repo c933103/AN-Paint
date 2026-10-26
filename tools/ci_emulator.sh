@@ -144,26 +144,162 @@ SEED_REPORT
     return 1
   fi
   printf 'COMPLETED: see strict verify summary\n' > "$phase_root/verify-status.txt"
-  python3 - "$report/app/androidTest-results/summary.json" "$phase_root" <<'COVERAGE'
-import json, sys
-from pathlib import Path
-sys.path.insert(0, 'tools')
-from run_android_instrumentation import declared_tests, restart_sdk, verify_restart_reports
-root = Path(sys.argv[2])
-reports = [json.loads(path.read_text()) for path in
-           (Path(sys.argv[1]), root/'seed/summary.json', root/'verify/summary.json')]
-sdk_level = restart_sdk(reports)
-coverage = verify_restart_reports(declared_tests(Path('app/src/androidTest'), sdk_level=sdk_level), reports)
-(root/'coverage.json').write_text(json.dumps(coverage, indent=2)+'\n')
-COVERAGE
+  # The main driver checks the disjoint ordinary/gallery/vertical-shards/seed/verify union only
+  # after every selected invocation. The process boundary itself is unchanged.
+}
+
+run_vertical_locale_matrix() {
+  local vertical_class=paint.anpaint.android.VerticalLocaleDeviceTest
+  local failed=0
+  # Never reuse screenshots or a successful summary from a previous invocation.
+  rm -rf "$report/app-vertical" "$report/app/vertical-locale-evidence" "$report/vertical-locale-export"
+  rm -f "$report/vertical-locale-screenshots.json" "$report/vertical-control-reachability.json" "$report/vertical-locale-export.json"
+  timeout --kill-after=3s 10s "$adb" shell \
+    'rm -rf /sdcard/Download/anpaint-ci-vertical-evidence && test ! -e /sdcard/Download/anpaint-ci-vertical-evidence' || return
+  vertical_started=1
+  # Two disjoint invocations provision 360s aggregate vertical time (formerly
+  # 180s). Each keeps the existing 180s ceiling; CI.md models the enclosing budget.
+  # Each original method runs once, with its native input and both orientations.
+  phase='Vertical locale native-input matrix: English + Manchu'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-vertical/english-manchu/androidTest-results" \
+    --suite app-vertical-english-manchu --timeout-seconds 180 \
+    --include-test "$vertical_class#verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" \
+    --include-test "$vertical_class#manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" || failed=1
+  # A failed first shard remains failed; the second is distinct coverage, never
+  # a retry. Preserve all partial evidence for the existing EXIT collector.
+  phase='Vertical locale native-input matrix: Literary Chinese + emoji'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-vertical/literary-chinese-emoji/androidTest-results" \
+    --suite app-vertical-literary-chinese-emoji --timeout-seconds 180 \
+    --include-test "$vertical_class#literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations" \
+    --include-test "$vertical_class#verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations" || failed=1
+  return "$failed"
+}
+
+# Same unchanged class, fixtures and method bodies, now a separate ordinary
+# instrumentation process. The explicit 90s budget adds to (never extends) the
+# existing 180s ordinary-app ceiling; CI.md models the enclosing budget.
+run_gallery_draft_regression() {
+  local gallery_class=paint.anpaint.android.GalleryDraftDeviceTest
+  phase='Gallery-draft instrumentation (90s maximum)'
+  progress "$phase"
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-gallery-draft/androidTest-results" \
+    --suite app-gallery-draft --timeout-seconds 90 \
+    --include-test "$gallery_class#cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits" \
+    --include-test "$gallery_class#confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor" \
+    --include-test "$gallery_class#savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+}
+
+# Explicit API35 dialog workload; ordinary retains its original 180s cap.
+# Three normal-font colour cases replace the archived limitation identity.
+run_dialog_regression() {
+  local dialog_class=paint.anpaint.android.LocalizedDialogDeviceTest
+  local colour_class=paint.anpaint.android.ColourViewportDeviceTest
+  phase='Installed dialog phase (300s maximum)'
+  progress "$phase"
+  dialog_started=1
+  python3 tools/run_android_instrumentation.py --adb "$adb" \
+    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+    --source-tests app/src/androidTest --output "$report/app-dialog/androidTest-results" \
+    --suite app-dialog --timeout-seconds 300 \
+    --include-test "$dialog_class#northKoreanAttributionAndConditionalCropUseRealConsumers" \
+    --include-test "$dialog_class#southKoreanAttributionAndConditionalCropUseRealConsumers" \
+    --include-test "$dialog_class#mixedKoreanAttributionAndConditionalCropUseRealConsumers" \
+    --include-test "$dialog_class#aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow" \
+    --include-test "$dialog_class#aboutArtworkNoticeCompletesNativeFooterFlow" \
+    --include-test "$dialog_class#aboutGimpTranslationNoticeCompletesNativeFooterFlow" \
+    --include-test "$dialog_class#retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation" \
+    --include-test "$colour_class#normalAdvancedColourKeepsFiniteViewportAndFixedControls" \
+    --include-test "$colour_class#retainedColourStateSurvivesRotationImeCancelAndReopen" \
+    --include-test "$colour_class#hungarianColourCaptionsFitPortraitAndLandscape" \
+    --include-test "$colour_class#largeEnglishColourCaptionsAndPreviewRemainReachable" \
+    --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable"
 }
 
 cleanup() {
-  local status=$?
+  local status=$? pull_status logcat_status adb_server_log
   trap - ERR
   set +e
   progress "Collecting logs and stopping emulator (result $status, phase: $phase)"
-  timeout --kill-after=3s 10s "$adb" logcat -d > "$report/logcat.txt" 2>&1
+  # Mandatory app-owned exports come before the best-effort bulk diagnostic.
+  # A logcat transport failure must not prevent an otherwise available capture.
+  # This does not retry pulls, recapture screenshots or relax validation.
+  : > "$report/collection-status.log"
+  if (( ${dialog_started:-0} )); then
+    if timeout --kill-after=3s 15s "$adb" pull \
+        /sdcard/Download/anpaint-ci-dialog-evidence \
+        "$report/dialog-export" > "$report/dialog-pull.log" 2>&1; then
+      pull_status=0
+    else
+      pull_status=$?
+    fi
+    printf 'dialog_pull_exit=%s\n' "$pull_status" >> "$report/collection-status.log"
+    if (( pull_status != 0 )); then
+      progress 'FAILED: could not collect installed dialog evidence' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/dialog_evidence_transport.py "$report/dialog-export" \
+        --dialog-summary "$report/app-dialog/androidTest-results/summary.json" \
+        --output "$report/app/dialog-evidence" --receipt "$report/dialog-evidence.json" \
+        > "$report/dialog-export.log" 2>&1; then
+      progress 'FAILED: incomplete or corrupt installed dialog evidence' >&2
+      if (( status == 0 )); then status=1; fi
+    fi
+  fi
+  if (( ${vertical_started:-0} )); then
+    mkdir -p "$report/app"
+    if timeout --kill-after=3s 15s "$adb" pull \
+        /sdcard/Download/anpaint-ci-vertical-evidence \
+        "$report/vertical-locale-export" > "$report/vertical-locale-pull.log" 2>&1; then
+      pull_status=0
+    else
+      pull_status=$?
+    fi
+    printf 'vertical_pull_exit=%s\n' "$pull_status" >> "$report/collection-status.log"
+    if (( pull_status != 0 )); then
+      progress 'FAILED: could not collect vertical locale screenshots' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_evidence_transport.py "$report/vertical-locale-export" \
+        --sdk "$TEST_API" --output "$report/app/vertical-locale-evidence" \
+        --receipt "$report/vertical-locale-export.json" > "$report/vertical-locale-export.log" 2>&1; then
+      progress 'FAILED: incomplete or corrupt app-owned vertical evidence export' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_locale_matrix.py verify-screenshots \
+        "$report/app/vertical-locale-evidence" --output "$report/vertical-locale-screenshots.json" \
+        > "$report/vertical-locale-inventory.log" 2>&1; then
+      progress 'FAILED: incomplete vertical locale screenshot matrix' >&2
+      if (( status == 0 )); then status=1; fi
+    elif ! python3 tools/vertical_control_reachability.py \
+        "$report/app/vertical-locale-evidence/reachability" --sdk "$TEST_API" --output "$report/vertical-control-reachability.json" \
+        > "$report/vertical-control-reachability.log" 2>&1; then
+      progress 'FAILED: incomplete native control-reachability evidence' >&2
+      if (( status == 0 )); then status=1; fi
+    fi
+  fi
+  progress 'Collecting best-effort logcat after mandatory evidence'
+  if timeout --kill-after=3s 10s "$adb" logcat -d > "$report/logcat.txt" 2>&1; then
+    logcat_status=0
+  else
+    logcat_status=$?
+  fi
+  printf 'logcat_exit=%s\n' "$logcat_status" >> "$report/collection-status.log"
+  # Retain a bounded tail of the existing runner-owned server log when present.
+  # Do not start/restart ADB or add another device command during cleanup.
+  adb_server_log="${TMPDIR:-/tmp}/adb.$UID.log"
+  if [[ -f "$adb_server_log" && ! -L "$adb_server_log" ]]; then
+    tail -c 65536 "$adb_server_log" > "$report/adb-server-tail.log" 2>&1
+  fi
+  printf 'result=%s\n' "$status" >> "$report/collection-status.log"
   timeout --kill-after=3s 10s "$adb" emu kill
   if test -n "$emulator_pid"; then
     kill "$emulator_pid" 2>/dev/null
@@ -173,11 +309,17 @@ cleanup() {
     done
     kill -KILL "$emulator_pid" 2>/dev/null || true
   fi
+  exit "$status"
 }
 
 main() {
-  : "${TEST_API:?Set TEST_API to 30 or 35}"
-  case "$TEST_API" in 30|35) ;; *) exit 2;; esac
+  : "${TEST_API:?Set TEST_API to 21, 24, 30, or 35}"
+  case "$TEST_API" in 21|24|30|35) ;; *) exit 2;; esac
+  emulator_abi="${EMULATOR_ABI:-x86_64}"
+  case "$emulator_abi" in x86|x86_64) ;; *) exit 2;; esac
+  app_group="${APP_TEST_GROUP:-core}"
+  if (( TEST_API < 30 )); then app_group=all; fi
+  case "$app_group" in all|core) ;; position) (( TEST_API >= 30 )) || exit 2;; *) exit 2;; esac
   variant="${BUILD_VARIANT:-debug}"
   case "$variant" in debug|release) ;; *) exit 2;; esac
   export ANDROID_SERIAL=emulator-5554
@@ -185,13 +327,19 @@ main() {
   report="build/reports/android-api-$TEST_API"
   mkdir -p "$report"
   emulator_pid=''
+  vertical_started=0
+  dialog_started=0
+  rm -rf "$report/dialog-export" "$report/app/dialog-evidence"
+  rm -f "$report/dialog-evidence.json"
+  rm -f "$report/app/coverage.json" "$report/app/ordinary-gallery-coverage.json" \
+    "$report/app/vertical-coverage.json" "$report/app/accepted-credit-restart/coverage.json"
   phase='Create virtual device'
   trap cleanup EXIT
   trap 'progress "Interrupted during $phase"; exit 124' TERM INT
   trap 'status=$?; progress "FAILED: $phase (exit $status): $BASH_COMMAND" >&2; exit "$status"' ERR
-  progress "$phase"
+  progress "$phase (API $TEST_API, $emulator_abi)"
   timeout --kill-after=5s 30s "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd \
-    --force --name "codec$TEST_API" --package "system-images;android-$TEST_API;google_apis;x86_64" <<< no
+    --force --name "codec$TEST_API" --package "system-images;android-$TEST_API;google_apis;$emulator_abi" <<< no
   phase='Launch emulator'
   progress "$phase"
   "$ANDROID_HOME/emulator/emulator" -avd "codec$TEST_API" -port 5554 \
@@ -201,26 +349,55 @@ main() {
   phase='Discover ADB device (60s maximum)'
   progress "$phase"
   timeout --kill-after=5s 60s "$adb" wait-for-device
-  readiness_deadline=$((SECONDS + 120))
+  # Legacy system images need more time to finish first-boot services.
+  if (( TEST_API < 30 )); then
+    readiness_deadline=$((SECONDS + 180))
+  else
+    readiness_deadline=$((SECONDS + 120))
+  fi
   wait_until_ready 'Android boot' 1 shell getprop sys.boot_completed
   wait_until_ready 'Verify Android API' '*' shell getprop ro.build.version.sdk
   if [[ "$ready_output" != "$TEST_API" ]]; then
     progress "FAILED: expected API $TEST_API, received $ready_output" >&2
     exit 1
   fi
-  wait_until_ready 'Package manager' 'package:*' shell cmd package path android
+  wait_until_ready 'Verify native ABI' '*' shell getprop ro.product.cpu.abi
+  if [[ "$ready_output" != "$emulator_abi" ]]; then
+    progress "FAILED: expected emulator ABI $emulator_abi, received $ready_output" >&2
+    exit 1
+  fi
+  if (( TEST_API < 30 )); then
+    # Android 5/7 predates some modern `cmd package` entry points.
+    wait_until_ready 'Package manager' 'package:*' shell pm path android
+  else
+    wait_until_ready 'Package manager' 'package:*' shell cmd package path android
+  fi
   for setting in window_animation_scale transition_animation_scale animator_duration_scale; do
     wait_until_ready "Disable $setting" '*' shell settings put global "$setting" 0
   done
   # A synthetic MENU key can wait for a launcher window that has not appeared
   # yet, triggering an input-dispatch ANR during first boot. Dismiss directly.
-  wait_until_ready 'Dismiss keyguard' '*' shell wm dismiss-keyguard
+  if (( TEST_API >= 23 )); then
+    wait_until_ready 'Dismiss keyguard' '*' shell wm dismiss-keyguard
+  else
+    # Android 5 predates `wm dismiss-keyguard`; the fresh emulator has no secure lock.
+    # Do not send MENU during boot: it can stall waiting for input dispatch.
+    progress 'Android 5: no wm dismiss-keyguard; proceeding on unprotected emulator'
+  fi
   phase='Install main APK (60s maximum)'
   progress "$phase"
   timeout --kill-after=5s 60s "$adb" install -r -t "build/prebuilt/app/build/outputs/apk/$variant/app-$variant.apk"
+  # Separate job, same bounded startup/cleanup and exact prebuilt APKs. It does
+  # not add invocations to the already-budgeted 43-minute core execution step.
+  if [[ "$app_group" == position ]]; then
+    source tools/ci_position.sh
+    run_position_regression
+    exit "$?"
+  fi
   failed=0
   extra=()
-  if test "$TEST_API" = 30; then
+  if (( TEST_API < 35 )); then
+    # Gain-map decoding needs API 34; the API35 run remains responsible for it.
     extra+=(--exclude-class org.catrobat.paintroid.classic.UltraHdrImportTest)
   fi
   phase='Native/import instrumentation'
@@ -230,30 +407,62 @@ main() {
     --component org.catrobat.paintroid.test/androidx.test.runner.AndroidJUnitRunner \
     --source-tests Paintroid/src/androidTest --output "$report/Paintroid/androidTest-results" \
     --suite Paintroid --timeout-seconds 180 "${extra[@]}" || failed=1
-  rm -rf "$report/app/accepted-credit-restart"
+  rm -rf "$report/app" "$report/app-gallery-draft" "$report/app-dialog" "$report/app-vertical"
   editor_failed=0
-  phase='Editor instrumentation'
-  progress "$phase"
-  python3 tools/run_android_instrumentation.py --adb "$adb" \
-    --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
-    --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
-    --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
-    --suite app --timeout-seconds 180 \
-    --exclude-class paint.anpaint.android.AcceptedCreditRestartSeedTest \
-    --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest || editor_failed=1
+  if (( TEST_API >= 26 )); then
+    phase='Editor instrumentation'
+    progress "$phase"
+    python3 tools/run_android_instrumentation.py --adb "$adb" \
+      --apk "build/prebuilt/app/build/outputs/apk/androidTest/$variant/app-$variant-androidTest.apk" \
+      --component paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner \
+      --source-tests app/src/androidTest --output "$report/app/androidTest-results" \
+      --suite app --timeout-seconds 180 \
+      --exclude-class paint.anpaint.android.AcceptedCreditRestartSeedTest \
+      --exclude-class paint.anpaint.android.AcceptedCreditRestartVerifyTest \
+      --exclude-class paint.anpaint.android.VerticalLocaleDeviceTest \
+      --exclude-class paint.anpaint.android.GalleryDraftDeviceTest \
+      --exclude-class paint.anpaint.android.LocalizedDialogDeviceTest \
+      --exclude-class paint.anpaint.android.AssemblyPositionDeviceTest \
+      --exclude-class paint.anpaint.android.ColourViewportDeviceTest || editor_failed=1
+  else
+    mkdir -p "$report/app"
+    printf 'NOT RUN: ordinary editor classes require API 26 or later; actual API %s\n' "$TEST_API" \
+      > "$report/app/status.txt"
+  fi
+  if (( TEST_API >= 30 )); then
+    run_gallery_draft_regression || editor_failed=1
+  else
+    mkdir -p "$report/app-gallery-draft"
+    printf 'NOT RUN: gallery-draft class requires API 30; actual API %s\n' "$TEST_API" \
+      > "$report/app-gallery-draft/status.txt"
+  fi
+  if test "$TEST_API" = 35; then run_dialog_regression || editor_failed=1; fi
   if (( editor_failed )); then failed=1; fi
+  phase='Vertical locale native-input matrix'
+  progress "$phase"
+  if (( TEST_API >= 29 )); then
+    run_vertical_locale_matrix || failed=1
+  else
+    mkdir -p "$report/app-vertical"
+    printf 'NOT RUN: vertical-locale class requires API 29; actual API %s\n' "$TEST_API" \
+      > "$report/app-vertical/status.txt"
+  fi
   if test "$TEST_API" = 35; then
     if (( editor_failed )); then
       mkdir -p "$report/app/accepted-credit-restart"
-      printf 'NOT RUN: ordinary editor suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
+      printf 'NOT RUN: ordinary editor, gallery-draft or dialog suite failed\n' > "$report/app/accepted-credit-restart/verify-status.txt"
     else
       run_credit_restart_regression || failed=1
     fi
   else
     mkdir -p "$report/app/accepted-credit-restart"
-    printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API30\n' \
+    printf 'NOT RUN: accepted-credit abrupt-process-stop regression is API35-only; both phase classes excluded on API %s\n' "$TEST_API" \
       > "$report/app/accepted-credit-restart/verify-status.txt"
   fi
+  phase='Verify core SDK-specific app phase inventory (position job required separately)'
+  progress "$phase"
+  python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest \
+    --sdk "$TEST_API" --root "$report" --group "$app_group" || failed=1
   phase='Instrumentation complete'
   progress "$phase (result $failed)"
   exit "$failed"

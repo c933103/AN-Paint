@@ -2,6 +2,8 @@
 package org.catrobat.paintroid.local
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Looper
 import android.view.InputDevice
 import android.view.MotionEvent
@@ -34,7 +36,14 @@ import java.util.Locale
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @LooperMode(LooperMode.Mode.PAUSED)
 class LocaleTooltipWindowTest {
-    private lateinit var controller: ActivityController<Activity>
+    class TooltipActivity: Activity() {
+        override fun attachBaseContext(base: Context) {
+            val config=Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())}
+            super.attachBaseContext(base.createConfigurationContext(config))
+        }
+    }
+
+    private lateinit var controller: ActivityController<TooltipActivity>
     private lateinit var previous: Locale
     private lateinit var host: FrameLayout
     private lateinit var anchor: View
@@ -43,7 +52,7 @@ class LocaleTooltipWindowTest {
 
     @Before fun attach() {
         previous=Locale.getDefault();Locale.setDefault(Locale.forLanguageTag("vi-Hani"))
-        controller=Robolectric.buildActivity(Activity::class.java).setup()
+        controller=Robolectric.buildActivity(TooltipActivity::class.java).setup()
         host=FrameLayout(activity)
         anchor=View(activity).apply {isClickable=true;contentDescription="original accessible label"}
         host.addView(anchor,FrameLayout.LayoutParams(80,60).apply {leftMargin=100;topMargin=100})

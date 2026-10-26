@@ -19,7 +19,7 @@ This records review findings and concrete source evidence. A resolved thread,
 outdated diff, complete catalogue, or green build is not linguistic sign-off.
 Original conversation handoffs are a separate obligation from these PR reviews.
 
-**28 September correction:** the current [discussion/source reconciliation](../verification/localization-reconciliation-2026-09-28.md)
+**28 September correction:** the current [discussion/source reconciliation](https://github.com/c933103/AN-Paint/blob/04b128889a4ff9159f199d1737bd07d41e22162d/verification/localization-reconciliation-2026-09-28.md)
 finds a residual omission in #8's reviewed legacy manual. That finding is only
 partially repaired despite its resolved GitHub flag. Later discussion discoveries,
 including the Malay labels and review-coverage gap, are recorded separately in

@@ -43,6 +43,7 @@ class MediaGalleryActivity : Activity() {
     private lateinit var controlsScroll: GalleryControlsScroll
     private val worker=Executors.newSingleThreadExecutor()
     internal var openConnection: (URL)->HttpURLConnection = { it.openConnection() as HttpURLConnection }
+    internal var launchExternalActivity: (Intent)->Unit = { startActivity(it) }
     @Volatile private var activeConnection: HttpURLConnection?=null
     @Volatile internal var downloading=false; private set
     override fun onCreate(state: Bundle?) {
@@ -77,21 +78,22 @@ class MediaGalleryActivity : Activity() {
             // The shared caption is one atomic span: a literal paragraph break
             // would make TextView draw that entire span once for each paragraph.
             // Keep every word, using a space only for the vertical column run.
-            text=provider.label+(if(VerticalText.uiVertical()) " " else "\n")+ui(provider.descriptionId)
+            text=provider.label+(if(VerticalText.uiVertical(this@MediaGalleryActivity)) " " else "\n")+ui(provider.descriptionId)
             textSize=13f
             setTextColor(EditorColours.onSurface);setPadding(dp(12),dp(8),dp(12),dp(8))
             VerticalUi.caption(this,64)
         }
-        val descriptionContent=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        val descriptionContent=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             tag="gallery_description_columns";addView(description)
         } else description
         controls.addView(descriptionContent,LinearLayout.LayoutParams(-1,-2))
-        status=TextView(this).apply {
+        status=(if(android.os.Build.VERSION.SDK_INT>=35 && !VerticalText.uiVertical(this@MediaGalleryActivity))
+            GlyphBoundsStatusView(this) else TextView(this)).apply {
             tag="gallery_status";visibility=View.GONE;setTextColor(EditorColours.onSurface);setPadding(dp(12),0,dp(12),dp(4))
             accessibilityLiveRegion=View.ACCESSIBILITY_LIVE_REGION_POLITE
             VerticalUi.caption(this,144)
         }
-        statusHost=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        statusHost=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             tag="gallery_status_columns";visibility=View.GONE;addView(status)
         } else status
         controls.addView(statusHost)
@@ -99,7 +101,7 @@ class MediaGalleryActivity : Activity() {
         fun action(label: String,tagName: String,run: ()->Unit) {
             row.addView(galleryButton(this,label,tagName,12f,run=run))
         }
-        fun actionRow(actions: GalleryActions): View=if(VerticalText.uiVertical()) ColumnScrollView(this).apply {
+        fun actionRow(actions: GalleryActions): View=if(VerticalText.uiVertical(this@MediaGalleryActivity)) ColumnScrollView(this).apply {
             addView(actions)
         } else actions
         action(ui(R.string.ui_copy_all),"gallery_copy_credits") {
@@ -126,7 +128,7 @@ class MediaGalleryActivity : Activity() {
         }.apply {contentDescription=ui(R.string.ui_gallery_back34)})
         val searchLabel=ui(if(provider==IllustrationSource.IRASUTOYA) R.string.ui_search_english34 else R.string.ui_search34)
         val search=gallerySearchField(this,searchLabel)
-        if(VerticalText.uiVertical()) {
+        if(VerticalText.uiVertical(this@MediaGalleryActivity)) {
             // Keep editing in Android's native field; the label uses the same
             // script-aware columns as the rest of the surrounding app controls.
             val caption=TextView(this).apply {
@@ -265,23 +267,49 @@ class MediaGalleryActivity : Activity() {
                     if(!isFinishing && !isDestroyed) {GalleryCredits.copy(this,record.text(imported=false));hideStatus()}
                 }
             } catch(error: Exception) {
-                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.ui_could_not_load_gallery_image,error.message))}
+                runOnUiThread {if(!isFinishing && !isDestroyed) {
+                    val reason=commonsMetadataReason(error)?.takeIf {it.isNotBlank()}
+                    showStatus(if(reason==null) ui(R.string.commons_credit_copy_failed)
+                        else ui(R.string.commons_credit_copy_failed_reason,reason))
+                }}
             } catch(_: OutOfMemoryError) {
-                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image))}
+                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.commons_credit_copy_out_of_memory))}
             } catch(_: LinkageError) {
-                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.colour_converter_unavailable))}
+                runOnUiThread {if(!isFinishing && !isDestroyed) showStatus(ui(R.string.commons_credit_copy_failed))}
             } finally {activeConnection?.disconnect();activeConnection=null;downloading=false}
         }
     }
 
+    /** Do not classify provider/framework exceptions by their text or format their detail twice. */
+    private fun commonsMetadataReason(error: Exception): String? =
+        if(error is CommonsAttribution.HttpException) ui(R.string.commons_metadata_http_error,error.status.toString())
+        else if(error is CommonsAttribution.ResponseLimitException) ui(R.string.commons_metadata_response_too_large)
+        else if(error is CommonsAttribution.QueryFailureException) ui(R.string.commons_metadata_query_failed)
+        else if(error is CommonsImportFailure) ui(when(error) {
+            is CommonsImportFailure.NotFilePage -> R.string.commons_metadata_not_file_page
+            is CommonsImportFailure.AmbiguousFile -> R.string.commons_metadata_ambiguous_file
+            is CommonsImportFailure.MetadataUnavailable -> R.string.commons_metadata_unavailable
+            is CommonsImportFailure.MetadataOriginalMismatch -> R.string.commons_metadata_original_mismatch
+            is CommonsImportFailure.InvalidAttributionPage -> R.string.commons_metadata_invalid_page
+            is CommonsImportFailure.FieldTooLarge -> R.string.commons_metadata_field_too_large
+            is CommonsImportFailure.CacheFailed -> R.string.commons_metadata_cache_failed
+            is CommonsImportFailure.DownloadOriginalMismatch -> R.string.commons_download_original_mismatch
+            is CommonsImportFailure.PngEncodeFailed -> R.string.commons_svg_png_encode_failed
+        })
+        else error.message
+
     private fun showStatus(message: String) {
-        status.text=message;status.visibility=View.VISIBLE;statusHost.visibility=View.VISIBLE
+        if(android.os.Build.VERSION.SDK_INT>=35 && status is GlyphBoundsStatusView)
+            (status as GlyphBoundsStatusView).setStatusText(message)
+        else status.text=message
+        status.visibility=View.VISIBLE;statusHost.visibility=View.VISIBLE
         (statusHost as? ColumnScrollView)?.resetToReadingStart()
         controlsScroll.revealStart(statusHost)
     }
     private fun hideStatus() {status.visibility=View.GONE;statusHost.visibility=View.GONE}
     private fun openExternal(uri: Uri) {
-        try {startActivity(Intent(Intent.ACTION_VIEW,uri))} catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.ui_the_online_gallery_could_not_be_loaded_check))}
+        try {launchExternalActivity(Intent(Intent.ACTION_VIEW,uri))}
+        catch(_: android.content.ActivityNotFoundException) {showStatus(ui(R.string.gallery_external_link_no_handler))}
     }
     private fun insert(uri: Uri,page: String=web.url.orEmpty(),title: String=web.title.orEmpty(),author: String="",licence: String="",authorUrl: String="") {
         if(downloading || isFinishing || isDestroyed)return
@@ -308,7 +336,7 @@ class MediaGalleryActivity : Activity() {
                     require(provider.allowsDownload(Uri.parse(url.toString()))) {ui(R.string.ui_the_gallery_redirected_outside_its_supported_hosts)}
                     val current=openConnection(url);activeConnection=current
                     current.setRequestProperty("Referer",page.takeIf {provider.allowsPage(Uri.parse(it))} ?: provider.home)
-                    if(provider==IllustrationSource.COMMONS) current.setRequestProperty("User-Agent","AN-Paint/0.0.38 (https://github.com/c933103/AN-Paint) Android")
+                    if(provider==IllustrationSource.COMMONS) current.setRequestProperty("User-Agent",CommonsAttribution.userAgent(this@MediaGalleryActivity))
                     current.connectTimeout=15000;current.readTimeout=30000;current.instanceFollowRedirects=false
                     if(current.responseCode in 300..399) {
                         val redirect=current.getHeaderField("Location");current.disconnect();activeConnection=null
@@ -317,9 +345,8 @@ class MediaGalleryActivity : Activity() {
                 }
                 val source=connection ?: error(ui(R.string.ui_too_many_gallery_redirects))
                 check(source.responseCode in 200..299) {ui(R.string.ui_the_image_could_not_be_downloaded)}
-                if(provider==IllustrationSource.COMMONS) require(CommonsAttribution.sameOriginal(uri.toString(),url.toString())) {
-                    "The Commons download redirected to a different original file."
-                }
+                if(provider==IllustrationSource.COMMONS && !CommonsAttribution.sameOriginal(uri.toString(),url.toString()))
+                    throw CommonsImportFailure.DownloadOriginalMismatch()
                 val file=File.createTempFile("gallery-",".image",cacheDir);temporary=file
                 source.inputStream.use {input -> file.outputStream().use {out ->
                     val buffer=ByteArray(65536);var total=0L
@@ -353,14 +380,16 @@ class MediaGalleryActivity : Activity() {
                 // The callback owns only the returned file. Always remove a downloaded SVG after rendering.
                 if(resultFile===file) temporary=null else rendered=null
             } catch(error: Exception) {
-                val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {
-                    SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable
-                    SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large
-                }) else error.message
-                failure(ui(R.string.ui_could_not_load_gallery_image,reason))
+                runOnUiThread {if(!isFinishing && !isDestroyed) {
+                    val reason=if(error is SvgOriginalSize.SizeException) ui(when(error.reason) {
+                        SvgOriginalSize.Reason.UNUSABLE_ORIGINAL_SIZE -> R.string.commons_svg_original_size_unavailable
+                        SvgOriginalSize.Reason.EXCEEDS_BITMAP_DIMENSIONS -> R.string.commons_svg_original_size_too_large
+                    }) else commonsMetadataReason(error)
+                    showStatus(ui(R.string.ui_could_not_load_gallery_image,reason))
+                }}
             }
               catch(error: OutOfMemoryError) {failure(ui(R.string.ui_not_enough_memory_to_inspect_the_gallery_image))}
-              catch(error: LinkageError) {failure(ui(R.string.ui_could_not_load_gallery_image,ui(R.string.colour_converter_unavailable)))}
+              catch(error: LinkageError) {failure(ui(R.string.ui_could_not_load_gallery_image,ui(R.string.gallery_image_component_unavailable)))}
             finally {activeConnection?.disconnect();activeConnection=null;temporary?.delete();rendered?.delete();downloading=false}
         }
     }
@@ -410,5 +439,61 @@ class MediaGalleryActivity : Activity() {
         if(::web.isInitialized) web.destroy()
         if(isFinishing && !sessionHandedBack && ::creditSession.isInitialized && !creditSession.accepted && creditSession.draft==null) creditSession.discard()
         worker.shutdownNow();activeConnection?.disconnect();super.onDestroy()
+    }
+}
+
+/** Horizontal API35 status only: keep the message and font, reserve measured leading glyph ink. */
+@androidx.annotation.RequiresApi(35)
+private class GlyphBoundsStatusView(context: android.content.Context): TextView(context) {
+    private var sourceText: String?=null
+    private var leadingInset=0
+    private var measuredSignature: List<Any?>?=null
+    init {
+        useBoundsForWidth=true
+        shiftDrawingOffsetForStartOverhang=false
+    }
+    fun setStatusText(message: String) {
+        sourceText=message;leadingInset=0;measuredSignature=null;text=message
+        // TextView can replace a fixed-width, same-height Layout without remeasurement.
+        // The new message must still run our glyph-inset measurement on normal traversal.
+        requestLayout()
+    }
+    override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+        val message=sourceText
+        val signature=listOf(widthMeasureSpec,paint.textSize,paint.textScaleX,paint.textSkewX,
+            paint.typeface,paint.textLocales,paint.letterSpacing,paint.fontFeatureSettings,
+            compoundPaddingLeft,compoundPaddingRight,layoutDirection,textDirection,textAlignment,gravity,
+            breakStrategy,hyphenationFrequency,lineBreakStyle,lineBreakWordStyle)
+        if(message!=null && signature!=measuredSignature) {
+            if(leadingInset!=0) {leadingInset=0;text=message}
+            measuredSignature=signature
+        }
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        if(message.isNullOrEmpty()) return
+        // Width-based breaking handles trailing ink; a native paragraph margin moves the
+        // logical start anchor too, including the RTL right edge. Never alter glyphs/text.
+        repeat(3) {
+            val measured=layout ?: return
+            if(measured.width<=0 || measured.lineCount==0) return
+            val bounds=android.graphics.RectF(measured.computeDrawingBoundingBox())
+            if(!listOf(bounds.left,bounds.top,bounds.right,bounds.bottom).all {it.isFinite()}) return
+            val hasLtr=(0 until measured.lineCount).any {measured.getParagraphDirection(it)>0}
+            val hasRtl=(0 until measured.lineCount).any {measured.getParagraphDirection(it)<0}
+            // This API omits the paragraph margin when locating bounds. Treat its
+            // result as an absolute required inset, never add it again on remeasure.
+            val needed=kotlin.math.ceil(maxOf(0f,if(hasLtr) -bounds.left else 0f,
+                if(hasRtl) bounds.right-measured.width else 0f)).toInt()
+            if(needed<=leadingInset) return
+            val next=needed
+            // Bound remeasurement/allocation for arbitrary provider error text. This is
+            // not an acceptance allowance: the strict native ink checks must still pass.
+            if(next>kotlin.math.ceil(paint.textSize*2f).toInt()) return
+            leadingInset=next
+            text=android.text.SpannableString(message).apply {
+                setSpan(android.text.style.LeadingMarginSpan.Standard(leadingInset),0,length,
+                    android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+            super.onMeasure(widthMeasureSpec,heightMeasureSpec)
+        }
     }
 }

@@ -1,259 +1,201 @@
 # Android build and test workflow
 
-**Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
+## Working policy
 
-See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+Keep the application tree focused on code, meaningful tests, compact current
+product fixtures, licence inputs and current instructions. Historical raw logs,
+images, source inventories and one-time preservation audits belong in CI
+artifacts or an immutable evidence ref linked from [the archive index](verification/README.md).
+Normal CI does not reconstruct old source snapshots or require inverse adapters.
+Current source/test discovery and per-run APK/source binding remain required.
 
-Updated 23 September 2026. APK production, regression checks and emulator results
-are separate outcomes. An emulator must not prevent obtaining an already-built
-APK or completing unrelated work.
+Localization status remains scoped: earlier withdrawn review conclusions are
+not restored by this migration. The compact 59-locale wording fixtures preserve
+current regression expectations and explicitly retain the 112 open fallbacks;
+matching them does not certify fluency or complete linguistic review.
 
 ## What runs
 
-| Trigger / choice | Regression and lint | Universal APK | Emulator coverage |
-|---|---|---|---|
-| Code push to `develop`, or pull request targeting any branch | Yes, independently | Yes | API 35, all native and app checks |
-| Run workflow → `current` | Yes | Yes | API 35 |
-| Run workflow → `full` | Yes | Yes | API 30 and 35 in parallel |
-| Run workflow → `none` | Yes | Yes | Explicitly not run |
-| Markdown / historical verification changes only | Not automatically rerun | Not automatically rebuilt | Not automatically rerun |
+- Code push to `develop` or a PR targeting any branch: independent host/JVM/lint,
+  universal APK/corresponding source, exact-script generation and API35 jobs.
+- Workflow dispatch `device_tests`: `current` (API35), `full` (API30+35), or `none`
+  (explicitly not run). Release selects full coverage.
+- PR label `ci:full-android` selects API30+35 on its next normal source event.
+  `ci:release-android` additionally selects release-configured host/APK/tests.
+  Label changes alone do not trigger or cancel a run.
+- A develop commit subject starting `Release `, or manual `build_type: release`,
+  selects the release variant and API30+35. CI release configuration uses the
+  temporary CI key, not the private upgrade key, and does not publish a release.
+- Markdown/historical-verification-only changes do not automatically rebuild.
 
-Direct pushes to a working branch do not duplicate a PR/default-branch run.
-Pull requests targeting another working branch receive the same checks as those
-targeting `develop`. Stacked localization PRs therefore do not need temporary
-CI-only PRs or retargeting to obtain build and regression results.
-New commits cancel obsolete runs for the same branch/PR. Failed emulator matrix
-jobs do not cancel the other platform. A failed test remains a failed check;
-there is no `continue-on-error` or replacement of failures with green results.
+Test APKs compile once after delivery artifacts are available. Device jobs use
+those prebuilt binaries through `adb shell am instrument -w -r`, without Gradle
+or native-codec rebuilds. SDK-aware source discovery determines the expected
+identities and explicit exclusions; never freeze a past test count as a source
+oracle. API30 omits SDK-ineligible tests and the explicitly API35 restart pair.
+API35 includes ordinary, gallery-draft, dialog, two vertical shards, two position
+shards and the external force-stop seed/verify phases. A missing or excluded test is not a pass.
 
-Host translation checks cover every Android catalogue, including English and
-resource locales not listed in the picker. They reject equivalent resource
-directories, Android quoting errors, altered syntax/licence identifiers,
-incorrect GIF limit numbers and format-placeholder mismatches. The scoped
-localization batch also has a completeness gate against the current default
-catalogue, so adding an English string requires updating that whole batch.
-These structural checks do not certify linguistic accuracy; semantic review
-remains necessary, especially for minority languages.
+The exact-script job tests clean debug/release resource merges, release-first,
+producer-before-consumer order, identical generated XML, an unchanged up-to-date
+run, input-change regeneration and stale-output removal in a disposable worktree.
+Both the mixed-script Korean and emoji-English mirrors are checked independently.
+Only `:Paintroid:bundleCorrespondingSource` is excluded there; the normal build
+verifies that native-source/bundling graph. Production translations are not edited.
 
-The build job uploads `apk-and-source-<commit>` immediately after assembly and
-before compiling instrumented-test APKs. Regression/lint runs in a separate job;
-neither those results nor emulator completion is a prerequisite for the upload.
-The artifact includes the exact corresponding source ZIP, SHA-256 hashes, commit,
-run ID, runtime inventory, notices and signing/alignment tools. It uses a temporary
-CI debug key; the existing private signing step supplies an upgradeable delivery.
-Artifact availability is not a claim that all tests passed.
+The same resource probe now verifies the generated canonical fallback catalogue
+and its ordering/clean/incremental behavior. See [translation runtime boundaries](TRANSLATION_RUNTIME.md).
 
-Test APKs are compiled once, after the delivery artifact is available. Emulator
-jobs download those binaries and run `adb shell am instrument -w -r` directly;
-they do not invoke Gradle or rebuild native codecs. Full runs use independent
-API 30 and 35 jobs. API 30 excludes Ultra HDR (no gain-map API) and the two explicitly API35-only
-accepted-credit restart phase classes. API35 runs all declared methods: its
-ordinary app invocation excludes the restart pair, which run separately before
-and after an external force-stop. Their exact disjoint union is checked against
-the full source inventory; an exclusion is never treated as a passed test.
+## Local commands
 
-Dependencies and pinned native source trees are cached. Starting with local.20,
-the build job also uses ccache 4.5.1-1 from Ubuntu 22.04's archive, through CMake's
-C/C++ compiler-launcher environment variables. Its separate 2 GB cache lives
-outside the checkout and hashes the NDK/CMake configuration, pinned-source
-fetch scripts and native source files. The root app-version declaration is not
-part of that key. Native-source changes can restore the previous compatible
-cache, after which ccache checks the compiler binary content, flags and
-preprocessed source for each compilation. Direct and depend modes are disabled,
-and no sloppiness checks are relaxed. Java/Kotlin classes, APKs, linked libraries
-and CMake output directories still rebuild from the current checkout.
+Run relevant focused tests first, then the current host suite:
 
-Cache statistics are printed after assembly. On 12 September 2026, the initial
-[local.20 build](https://github.com/c933103/AN-Paint/actions/runs/34705339120)
-took 17m1s for universal assembly. The final
-[source-clean build](https://github.com/c933103/AN-Paint/actions/runs/34706970961)
-took 3m54s, with 2,666 hits from 3,058 cacheable compiler calls (87.18%). These
-are observed run timings, not a controlled benchmark or a guarantee for future
-changes. Direct mode stayed disabled; these were preprocessed cache hits.
-Regression and emulator jobs do not depend on this cache. References: the official
-[CMake 3.22 launcher documentation](https://cmake.org/cmake/help/v3.22/envvar/CMAKE_LANG_COMPILER_LAUNCHER.html),
-[ccache 4.5.1 manual](https://ccache.dev/manual/4.5.1.html), and
-[Ubuntu Jammy package record](https://launchpad.net/ubuntu/jammy/+package/ccache).
+```sh
+python3 -m unittest discover -s tools -p 'test_*.py' -v
+python3 -O -m unittest discover -s tools -p 'test_*.py'
+```
 
-Local.22 adds a fallback restore prefix for the same OS and ccache version when
-adding TIFF changes the integration-script namespace. Restoring that cache does
-not accept an object without ccache's existing compiler-content, command and
-preprocessed-input checks. Strict header checking, disabled direct/depend modes,
-empty sloppiness and rebuilding linked libraries/APKs remain unchanged. This
-allows unchanged codecs to reuse their valid objects while the new codec builds.
+Use the repository Gradle wrapper with the installed SDK/toolchain for
+`:Paintroid:testDebugUnitTest`, lint and APK compilation. The workflow is the
+canonical command/variant source. If Android tools are absent locally, report
+compile/native/device stages as unrun and use the exact-source hosted results.
+Focused checks do not turn an incomplete aggregate into a pass.
 
 ## Deadlines and evidence
 
-- Regression job: 20 minutes; build job: 35 minutes; each emulator job: 25 minutes.
-- Emulator SDK installation: 5-minute command deadline; device discovery:
-  60 seconds; boot and Android service readiness share 120 seconds; main APK
-  installation: 60 seconds. Readiness probes have a maximum 10-second attempt
-  inside that shared deadline, with progress and failure logs. They may retry
-  transient startup failures; APK installation and app tests are not retried.
-- Each test APK installation: 60 seconds; runner discovery: 15 seconds. Each
-  ordinary native/app instrumentation invocation: 180 seconds; each accepted-credit
-  seed/verify invocation: 60 seconds. The existing whole emulator execution step
-  remains capped at 15 minutes. Inner command budgets are ceilings, not a promise
-  that every ceiling can be exhausted in one step. The new phase durations need
-  exact-head API35 measurement; deadline exhaustion fails rather than relaxing
-  a timeout or substituting a weaker restart test.
-- Emulator shutdown and log collection are bounded. Failure reports upload with
-  `always()` even if a test step fails; forced job cancellation may leave partial
-  evidence, which must not be described as a pass.
+- Regression job: 55 minutes; Python contracts: 8 minutes; JVM regression: 20 minutes;
+  build job: 45 minutes;
+  universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
+- SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
+  shared 120 seconds, each transient probe at most 10 seconds within that budget.
+  Main and each test APK installation: 60 seconds; runner discovery: 15 seconds.
+- Native and ordinary app phases: 180 seconds each; gallery-draft: 90 seconds;
+  API35 dialog phase: 300 seconds; each vertical shard: 180 seconds; seed and
+  verify: 60 seconds each. Core app ceilings total 630 seconds on API30 and 1,050 seconds on API35.
+  Including native gives 810 / 1,230 seconds before setup/collection.
+- Separate position job: two 180-second invocations, a 16-minute execution step,
+  6-minute image step and 26-minute job cap. Its controlled path is 270 seconds
+  startup + 360 instrumentation + 180 preparation + 10 capture tails + 20 failure
+  recovery + 36 cleanup = 876 seconds; a 60-second processing allowance rounds
+  up to 16 minutes. These are cancellation budgets, not proven runtime bounds.
+  Across both jobs, app ceilings total 990 / 1,410 seconds on API30 / API35.
+- The current 43-minute step includes separately bounded setup, processing and
+  cleanup allowances. Inner deadlines and failure behavior must not be relaxed
+  to obtain green results. Test/installation failures are not automatically retried.
 
-`tools/run_android_instrumentation.py` streams raw output into the live Actions
-log, saves partial output, and writes JUnit XML plus `summary.json`. Success requires
-the runner's final result, successful results for every declared method, and no
-missing, unexpected, ignored, failed or aborted tests. An `adb` exit code of zero
-alone is insufficient. No automatic retry hides a failure or doubles a long run.
-Reports are separate artifacts: `regression-and-lint-<commit>` and
-`emulator-api-<api>-<commit>`. They are retained for 14 days; archive final release
-evidence during private packaging rather than depending on temporary artifacts.
+The expanded regression suite exceeded its former 4-minute Python and 12-minute
+JVM caps in [run 39427728235](https://github.com/c933103/AN-Paint/actions/runs/39427728235):
+the command receipts exited zero after 250.311 and 773.047 seconds, respectively,
+but Actions explicitly timed out both steps. The artifact contains 1,066 Python
+tests (two skipped) and 1,186 successful JVM tests; those results do not turn the
+timed-out workflow into a pass. The job's terminal conclusion was cancelled;
+the available log proves the step timeouts, not the separate source of that
+aggregate conclusion. Nearby successful [run 39427218699](https://github.com/c933103/AN-Paint/actions/runs/39427218699)
+took 232 seconds for Python and 614 seconds for JVM by step timestamps.
 
-The old private `package18.py` describes the historical local.18 artifact layout
-and requires all its recorded results. Future packaging must collect the new
-separate artifacts and report the selected matrix, pending checks and failures
-explicitly. Do not manufacture missing reports to satisfy the old helper.
+The new caps leave about 92% and 55% margin over the slower hosted command
+measurements. The regression job's explicit phase maxima are 2 minutes for
+compiler-cache installation, 8 for preparation, 8 for Python, 20 for JVM, 6 for
+native lint dependencies and 6 for lint: 50 minutes total. Its 55-minute hard
+stop additionally reserves 5 minutes for checkout, cache and evidence overhead.
+This is an explicit cancellation policy, not a universal runtime guarantee.
+All tests, assertions, failure propagation and existing device/interaction caps
+remain unchanged. A future timeout still fails; it must be diagnosed, not
+silently retried or counted as success.
+
+The runner retains live raw output, JUnit XML and summaries, including partial
+failures. Success requires the final protocol plus every selected identity,
+without unexpected, missing, ignored, failed or aborted methods. A zero ADB exit
+alone is insufficient. Artifact upload runs even on failure, but cancellation
+can leave partial evidence. Keep passed, failed, timed out and unrun distinct.
+Mandatory dialog and vertical exports are pulled and fully validated before
+best-effort bulk logcat collection. Each pull still runs once within its original
+15-second deadline plus 3-second kill grace; logcat keeps 10 seconds plus 3 seconds.
+A failed/partial export keeps the job failed and its raw files available, while a
+logcat failure remains diagnostic only. Collection exit codes and, when available,
+the last 64 KiB of the existing runner ADB server log are retained before shutdown.
+There is no screenshot recapture, ADB restart or automatic collection retry. This
+ordering avoids exposing mandatory evidence to an earlier diagnostic transport
+failure; it does not diagnose or claim to fix an underlying emulator disconnect.
+
+Actions artifacts expire after 14 days; preserve needed final evidence on a
+separate durable ref before expiration. Never include keys, credentials or
+unrelated private data.
 
 ## How to conclude work
 
-Continue useful implementation while asynchronous checks run. A task can conclude
-with source published and a development build delivered after its build, source
-and signature checks, while clearly stating which runtime checks are pending.
-Do not wait through every device run simply to end a turn. A fully verified release
-still requires the relevant completed checks; a runtime defect remains work to
-fix even when the APK has already been made available.
+Publish the concrete reviewed change and report the exact asynchronous run.
+Continue useful work while it runs. Development delivery requires a built APK,
+matching source and correct signature, with pending checks clearly stated.
+A verified release requires its complete exact-source gates. Inspect a failure
+before retrying; use the affected scope, not a repeated full matrix by default.
 
-For failure investigation, inspect the failing job and retained logs first.
-Run the affected class/method locally or through the direct-ADB runner when an
-Android runtime is available. Repeat the complete matrix only for a release or
-when a diagnosed risk spans both supported test platforms.
+## Localized dialog evidence and separate phase
 
-## The local.18 delay and correction
+Twelve installed dialog method/class pairs run in the `app-dialog` report: four
+current notice/credit cases, three Korean attribution/crop consumer cases, three normal-font colour cases and two 2× short-landscape preview-rail cases. Source discovery
+still requires every SDK-eligible app identity, without duplication or omission.
+The colour cases replace the old zero-height limitation characterization; its
+original failed positive and measured negative results remain historical evidence,
+not claims about the repaired source. See [PR51's accepted bounded baseline](https://github.com/c933103/AN-Paint/pull/51).
 
-The prior workflow put everything in one 80-minute job: host checks, API 30,
-API 35, then a universal rebuild and finally artifact upload. Its concurrency key
-included the commit SHA and disabled cancellation, leaving superseded runs active.
+The dialog 300-second cancellation cap and each 45-second interaction limit stay
+unchanged. Twelve individual maxima exceed that aggregate cap; fresh actual combined
+execution must fit, and a timeout remains a failure. Neither historical timings
+nor synthetic transport fixtures prove the combined runtime. The new 2× cases cover English/Hungarian caption and preview-rail reachability
+only. Large-font IME/footer, physical-device and TalkBack coverage remain separate
+limits; C05 large-font ancestor visibility is still open.
 
-The final successful local.18 run lasted 40m44s; its emulator step took about
-20m23s. Earlier failed iterations extended the work across multiple runs. These
-timings do not excuse using that chain as a blocker for other tasks.
+The three Korean cases select `ko-KP`, `ko-KR` and `ko-Kore-KR` through the real
+picker and require their public/platform/resource identities. They open the
+actual image-credit editor from the About row with a synthetic document credit,
+then the production crop dialog with synthetic pixels and placed/linked image
+metadata. Exact complete title/Copy text, accessible text and native layout-line
+coverage are bound to source-checked fixtures. Four screenshots per case show
+the attribution title, Copy control and conditional crop status for one/two
+selected images after a real text-watcher margin update and native checkbox tap.
+Native Back/Cancel must preserve the fixture credit and never apply the crop.
+Copy is displayed and measured, not executed in these Korean cases; assembly
+movement, the assembly toolbar launch route, expanded fonts, full catalogues,
+pixel-level glyph clipping and native-language acceptance are not claimed.
+No provider is opened and no user image is read. Existing immutable Mongolian,
+PR56 and Hakka holds and historical evidence remain unchanged. New test code is
+not installed evidence until its exact-source API35 run and captures are checked.
 
-The app tests also incurred eight unnecessary 45-second waits per platform.
-After moving the app to `CREATED` to await autosave, AndroidX Test Core 1.6.1's
-`close()` restarted its already-visible helper activity and waited for another
-resume notification. API 30's app suite increased from 39.849s to 399.623s.
-Teardown now preserves the autosave wait, finishes the stopped activity normally,
-waits for destruction, and then closes the scenario's observer. Production app
-code and functional test assertions are unchanged. The local.19 API 35 run
-confirmed the correction: all eight editor tests finished in 37.24 seconds,
-compared with the prior 399.623-second API 30 run. These are different platform
-runs, so the timing comparison is not a controlled benchmark.
+The dialog collector checks a bounded native-screenshot PNG profile: noninterlaced
+RGB8/RGBA8, with IHDR, optional single sRGB/sBIT before consecutive IDAT chunks,
+and final IEND. It checks CRCs, small metadata fields, size limits and the exact
+zlib/scanline envelope. Other encodings or chunks fail as **unsupported profile**;
+this is not a general PNG decoder or conformance claim. UiDevice promises PNG,
+not this exact encoding, so a future producer change needs explicit review.
+The current API30/API35 capture corpus fits this profile. Actual images still
+need standard-decoder and visual/input review; source/hash checks alone cannot
+establish rendered correctness. No new image-decoder dependency is installed.
 
-Sources: [the completed local.18 run](https://github.com/c933103/AN-Paint/actions/runs/34692671218),
-[AndroidX helper implementation](https://github.com/android/android-test/blob/axt_06_26_2024/core/java/androidx/test/core/app/InstrumentationActivityInvoker.java),
-[Android command-line testing](https://developer.android.com/studio/test/command-line),
-[GitHub artifact sharing](https://docs.github.com/en/actions/tutorials/store-and-share-data),
-[GitHub workflow syntax](https://docs.github.com/actions/reference/workflow-syntax-for-github-actions).
+## Historical composed cancellation budgets
 
-## First independent emulator startup correction
+Older budgets, timings, raw captures and source-preservation checks are in the
+[immutable pre-migration CI history](https://github.com/c933103/AN-Paint/blob/04b128889a4ff9159f199d1737bd07d41e22162d/CI.md).
+They do not set current caps. Current workflow and phase-budget tests are authoritative.
 
-The first split run built the APK and passed regression/lint, but its API 35
-emulator stopped before installing the app. The emulator log reports boot in
-38.220 seconds. Logcat then reports no focused setup/launcher window and a
-launcher input-dispatch ANR; the 10-second synthetic MENU-key command is the
-strongly indicated failure point from that timing. The old script did not label
-each command, so the exact timed-out command cannot be established from its
-Actions log alone.
+## Rendering requirements and diagnostics
 
-Startup now dismisses keyguard through WindowManager instead of injecting MENU.
-Boot, package-manager availability, animation settings and keyguard dismissal
-share one 120-second readiness budget. Short transient command failures retry
-within that same budget; all phases and probe results are saved in `startup.log`.
-The 15-minute emulator step limit and independent artifact delivery remain
-unchanged. Host checks cover transient failure, deadline enforcement, premature
-boot-property values, package readiness and emulator death.
+Hard requirements include full text and UTF-16 line coverage, no ellipsis,
+accessible text, reachable controls/scroll endpoints, and correct natural
+same-height status updates. Native capture must use a complete independently
+bounded reference, with unsupported drawing state and unsafe allocation rejected.
+Keep unmasked exact ARGB/alpha comparisons and genuine native overflow/clipping
+controls. A completely missing ink component or opaque stroke sample is a hard
+failure; components are not glyph segmentation. Other pixel differences require
+explicit review, including partial marks/strokes. A reviewed antialias fringe is
+not a universal tolerance, and a diagnostic difference is never labelled exact-pixel pass.
+The proportional positive-frame policy currently applies to the M04 JVM captures.
+The two installed Arabic helper/decoder profiles retain their exact zero-difference
+gate; both passed in the archived04 run. A future installed fringe difference
+still needs explicit severity review before adding a production workaround.
+Installed software-raster evidence is not a hardware screenshot or network-route proof.
 
-The [local.19 API 35 run](https://github.com/c933103/AN-Paint/actions/runs/34702846656)
-passed: all 35 native/import tests finished in 64.154 seconds and all eight editor
-tests in 37.24 seconds. The emulator script reached successful completion at
-166 seconds, including startup and installations; log collection and shutdown
-followed. This establishes emulator verification of the startup and teardown
-corrections. It does not stand in for physical-device verification. Local.20
-uses the new app test component `paint.anpaint.android.test`; the library test
-component remains `org.catrobat.paintroid.test`.
-
-## Release builds and GitHub publication (0.0.28)
-
-A `develop` code commit whose subject starts with `Release ` selects the release
-variant and the full API 30/35 matrix. Alternatively choose `build_type: release`
-when manually running the workflow. Release always overrides `device_tests: none`.
-Other code pushes and PRs retain the debug/API 35 defaults. Both release host
-regressions/lint and instrumentation compile against the release variant.
-The shipped manifest is not debuggable. Code shrinking is disabled in both
-modules, so the tested Java/Kotlin code is preserved. Native release compilation
-uses its release optimization settings. Kvazaar explicitly requests GNU C11 for
-its x86 inline assembly; strict C11 inherited from AOM did not compile it.
-Dependency notices use the selected variant's actual runtime dependencies.
-
-GitHub release publication is a separate workflow triggered by a reviewed
-`verification/releases/request.json` commit, after private upgrade signing.
-The private signing key remains outside GitHub. A small public APK patch contains
-ZIP headers, alignment and signatures plus copy ranges for the unchanged CI
-payload; it contains no signing key. The publisher requires the declared original
-APK hash, final signed APK hash, unchanged non-signature ZIP contents, matching
-embedded source, four ABIs, 16 KB alignment, the existing certificate, release
-manifest and successful regression/build/API 30/API 35 jobs for that exact commit.
-It then uploads APK, corresponding source, checksums and verification evidence to
-a draft release, and publishes it. This uses the repository-scoped Actions token
-with contents-write and actions-read permissions; routine build jobs remain read-only.
-See [GitHub token permissions](https://docs.github.com/en/actions/tutorials/authenticate-with-github_token)
-and [release API](https://docs.github.com/en/rest/releases/releases#create-a-release).
-
-The first universal release attempt passed regression/lint but failed to compile
-libheif's C++ file streams on 32-bit API 21. AOM's CMake flag helper uses
-`CACHE ... FORCE`, adding `_FILE_OFFSET_BITS=64` to shared release flags. Those
-stdio aliases need API 24 on 32-bit Android. The libheif target now explicitly
-undefines that inherited macro on 32-bit API levels below 24; its bounded in-memory
-image import/export API remains unchanged. The targeted compile check covers both
-armeabi-v7a and x86. The original native source trees remain unchanged.
-
-
-## Node 24 action migration and test compilation (0.0.33)
-
-Run [35001403001](https://github.com/c933103/AN-Paint/actions/runs/35001403001)
-built the APK and passed the API 35 emulator job. Its regression job stopped at
-`compileDebugUnitTestKotlin`: the new test helper traversed an object inferred as
-both `ViewParent` and `View`, making their inherited `parent` properties ambiguous.
-The helper now traverses explicitly typed nullable `View` references. This keeps
-the group-opening and visible-command assertions intact; no test is skipped.
-The regression suite did not execute in that run.
-
-Both workflows pin Node 24 action releases by full commit SHA:
-
-| Action | Release | Pinned commit |
-|---|---|---|
-| checkout | [v7.0.1](https://github.com/actions/checkout/releases/tag/v7.0.1) | `3d3c42e5aac5ba805825da76410c181273ba90b1` |
-| cache | [v6.1.0](https://github.com/actions/cache/releases/tag/v6.1.0) | `55cc8345863c7cc4c66a329aec7e433d2d1c52a9` |
-| upload-artifact | [v7.0.1](https://github.com/actions/upload-artifact/releases/tag/v7.0.1) | `043fb46d1a93c77aae656e7c1c64a875d1fc6a0a` |
-| download-artifact | [v8.0.1](https://github.com/actions/download-artifact/releases/tag/v8.0.1) | `3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c` |
-
-Their pinned action manifests declare `node24`. The observed hosted runner is
-2.337.0, above the 2.327.1 minimum for Node 24. Uploads explicitly retain ZIP
-archives; named downloads still extract into the existing paths. Download v8
-rejects digest mismatches by default. Existing permissions, cache paths, source
-checks, deadlines and test matrix remain in effect. No insecure Node opt-out or
-unsafe fork-checkout option is enabled. See GitHub's
-[Node 20 migration notice](https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/).
-
-## Locale UI font inventory check (24 September 2026)
-
-The repaired [PR #12 run](https://github.com/c933103/AN-Paint/actions/runs/35934972156)
-and [integrated run](https://github.com/c933103/AN-Paint/actions/runs/35935361997)
-passed APK/test-APK compilation, regression tests and lint. Both API 35 runs
-completed all 71 native checks and all 11 editor checks; their sole failure was
-`NativeCodecTest.everyAdvertisedBundledFontLoadsItsActualFontFile`, which expected
-20 drawing font choices but found 21 after the Nôm UI subset was added.
+## Locale UI font inventory check
 
 The Nôm asset is a subset for catalogue and picker text, so it has the
 `ui_only` role and is excluded from the drawing-font selector.
@@ -264,98 +206,120 @@ instead of freezing catalogue size. The Android test additionally opens, hashes
 and loads every declared asset, including UI-only subsets; hiding a subset from
 the selector does not remove its font-load coverage.
 
-The subsequent [PR #12 run](https://github.com/c933103/AN-Paint/actions/runs/35937278241)
-at `29ef7eab4587071c59a2d013cd7e88112decd674` and
-[integrated run](https://github.com/c933103/AN-Paint/actions/runs/35937264365)
-at `ee6d2d5e258d9424f8987bb14b11517953019843` passed the full workflow.
-The integrated run reports 307 unit tests, lint, production/test APK compilation,
-all 71 native tests and all 11 editor device tests passing. This verifies the
-font-role and gallery-credit recreation repairs in that snapshot; later changes
-still require their own exact-head checks.
 
-## Literal percent checks in translated resources
+AN Paint Nom UI is a renamed subset of Nom Na Tong (MIT) and Gothic Nguyen
+(SIL OFL 1.1), distributed under SIL OFL 1.1 with the original MIT notice retained.
+AN Paint Wu Fallback is a glyph-only subset of Nom Na Tong under MIT.
+Keep actual asset/notice/inventory consistency, bundled cmap coverage, current
+glyph metrics and upstream input provenance. Historical binary reconstruction
+is an archived one-time check, not a normal CI dependency.
 
-The final Ainu completion introduced literal percent signs into translated
-instructions. Strict AAPT2 compilation caught two errors that the old host
-placeholder comparison missed. Static text now explicitly uses
-`formatted="false"`; strings with runtime arguments escape literal percent
-signs as `%%`. The validator applies these checks to every string, plural and
-string-array, including unoffered locales. Disabling AAPT format checking does
-not bypass the check for an unescaped percent mixed with runtime arguments.
-`%%` consumes no argument, so it is excluded from placeholder-count comparisons;
-a translation may use the sign where English spells out “percent”.
+API30–33 font-setting synchronization uses bounded shell work and a private
+virtual-display acknowledgement. Under normal FIFO ordering this orders relevant
+ATMS messages; a synchronization barrier prevents a portable queue-drain guarantee.
+Do not describe it as a universal synchronization proof.
 
-## API35 accepted-credit abrupt-process-stop regression
+## Cache and corresponding-source rules
 
-This is one regression split into two one-method app instrumentation classes.
-After the ordinary editor suite passes, the host starts the ordinary launcher and
-records its live PID. The seed-only `--leave-target-running` wrapper option is
-restricted to the seed class and emits both `am instrument --no-restart` and
-`-e waitForActivitiesToComplete false`. Normal invocations, protocol parsing,
-APK installation, missing/ignored/aborted-test rejection and final-result checks
-retain their original behavior.
+Cache downloaded dependencies, pinned native source trees and content-checked
+ccache objects only. Compiler identity/content, flags, preprocessed inputs and
+strict headers remain checked; direct/depend modes are disabled, sloppiness empty.
+Do not restore Java/Kotlin classes, APKs, linked libraries or CMake build output.
+Build corresponding source from the same checkout and required pinned native
+inputs, retaining licences, font attribution and build scripts. Verify the
+embedded source ZIP equals the separately delivered ZIP and matches current source.
 
-The seed uses the established synthetic insertion fixture, then removes its
-monitor before opening the actual Gallery from the editor. Both synthetic Gallery
-insertion monitors echo the exact opaque session token supplied by their launch;
-this keeps the existing editor fixtures compatible with result-ownership checks. Real Save accepts
-large mixed Unicode credit text while the parent remains stopped with the known
-original drawing and ledger already autosaved. Read-only ZIP/JSON assertions
-prove the accepted session and retained snapshot are durable and that the original
-drawing was not updated. No accepted archive/session API manufactures acceptance.
-The method deliberately leaves Gallery and its credit dialog open.
+## Release publication
 
-Only a complete successful seed report allows the host boundary to proceed. The
-host verifies the original PID still exists and Gallery remains resumed, rechecks
-the PID immediately before a bounded external force-stop, then positively checks
-absence with a protocol that distinguishes `pidof` absence from ADB failure. The
-bootstrap is bounded to 30 seconds; PID, activity-evidence and force-stop commands
-to 10 seconds each. There is no test retry, data clear, main-APK reinstall or
-orderly Gallery dismissal between acceptance and force-stop.
+The separate publisher consumes `verification/releases/request.json`, its
+selected version's public signing patch and release notes. Preserve these
+operational inputs during evidence cleanup. Private upgrade signing happens
+outside GitHub; never publish the key or private backup. Publication requires
+successful exact-develop regression/build/API30/API35 jobs, release manifest,
+existing certificate, unchanged non-signature payload, four ABIs, 16KB alignment
+and matching embedded source. A normal PR update does not authorize a release.
 
-The ordinary verify runner starts a new process. Before launching the editor it
-compares the seed's process identity and exact on-disk digests. It then checks the
-original drawing and ledger, reaches the archive through the actual Save dialog,
-reconstructs all visible credit pages, and confirms browsing leaves association
-unchanged. Production New creates a different blank drawing with no credits.
-Only choosing Add for the exact accepted record attaches that source and text;
-the new drawing's pixels stay unchanged.
+## Android 5.0 and 7.0 compatibility
 
-Reports remain under the existing API-specific artifact root:
-`app/accepted-credit-restart/seed`, `verify`, `boundary.log`, `verify-status.txt`
-and `coverage.json`. Coverage success requires the ordinary, seed and verify
-reports to contain mutually disjoint completed identities whose union equals all
-app methods declared in source, including future ordinary classes. A failed seed
-or host boundary prevents verification and records it as not run. API30 explicitly
-omits both phase classes and records that this API35 flow was not run.
+`.github/workflows/android-legacy.yml` is manual-only (`workflow_dispatch`).
+Choose API21, API24 or both and x86, x86_64 or both. It builds one universal debug
+APK and reuses strict SDK-aware native/app inventory checks. SDK-ineligible app
+phases are explicitly NOT RUN; no fake empty passing report is produced. This
+workflow does not expand ordinary API35/full API30+35 or implicit release gates.
+Emulator results do not establish physical ARM-device or vendor-picker coverage.
 
-Local Python/fake-ADB checks establish command ordering, complete-result gating,
-PID/deadline/error propagation and inventory accounting only. They do not establish
-Android compilation or runtime success. The exact-head API35 emulator must first
-prove complete seed success with the same live PID and undelivered Gallery result;
-if that gate fails, diagnose it without claiming Activity recreation or an
-already-dead-process force-stop is equivalent. No workflow YAML, dependency,
-release matrix or outer deadline is changed.
+## Exact-position dialog coverage
 
+Seven installed `AssemblyPositionDeviceTest` methods are source-discovered in
+two explicit position shards on API30/API35: Ainu Kana/Latin, Manchu, Tibetan,
+Dzongkha, Jeju and Nôm. They exercise the actual production position dialog
+with explicit locale/image-metadata fixtures, full caption and accessibility
+text, line/vertical-column extent and native scroll reachability in portrait
+and landscape. Native focus/input, invalid-value rejection, Apply, saved-project
+reload, Cancel and Back are separate assertions. Manchu must mount the
+left-to-right vertical shell and retain its complete vertical caption spans.
 
-## SDK-aware instrumentation inventory (0.0.38 release verification)
+The ordinary 180-second phase cap remains unchanged. The seven position methods
+run once in a separate emulator job: Ainu Kana/Latin + Manchu (three), and
+Tibetan/Dzongkha + Jeju + Nôm (four), each capped at 180 seconds. Each method keeps
+its 45-second interaction bound. Native Back dismisses a previous field's IME
+before revealing/tapping the next field; view clipping alone does not account
+for keyboard occlusion. Native focus/input and all persistence assertions remain.
+Caption reveal visits the same 64dp tiles column-first, avoiding a repeated
+horizontal sweep for every row of a wide vertical caption. Host checks execute
+the device helper and compare the exact tile set/area with the former row order;
+their scroll model is not an Android runtime measurement. Timeout diagnostics
+distinguish the shared 45-second budget from the individual 8-second wait bound.
+Neither deadline nor any text/input/persistence assertion is relaxed.
 
-The source inventory now queries the connected device SDK and applies literal
-`@SdkSuppress` minimum/maximum bounds before comparing every eligible method
-with AndroidJUnitRunner's completed methods. A method annotation overrides the
-class annotation, matching AndroidX. The report records the device SDK and every
-SDK-ineligible method separately; those methods are not counted as test passes.
-Unknown or malformed SDK annotation syntax fails closed. Existing explicit
-class exclusions, skipped-test rejection and restart-phase completeness checks
-remain in force.
+Core and position jobs use the same API selection and prebuilt artifacts. Their
+partial receipts cannot stand in for the complete union. The final `Emulator API`
+gate requires both jobs to succeed, identical checkout/run/variant,
+main/test APK and corresponding-source hashes, and the exact disjoint source-bound
+app report union. Exact-identity groups from earlier attempts of the same run may
+be reused; both positive attempt numbers are recorded and cannot be in the future.
+Missing/failed/duplicate methods, wrong selectors/deadlines,
+stale artifacts and SDK mismatches fail closed. All 45 declared methods remain
+required according to their existing SDK rules (30 selected on API30; 45 on API35).
+Count/selector contracts and synthetic receipts do not prove Android execution
+or runtime. These
+checks cover native layout boxes and input, not pixel-level glyph clipping,
+linguistic acceptance, picker/import/export, forced IME visibility, enlarged-font
+layouts, physical devices or all catalogue languages. The production dialog is
+opened as a fixture; the assembly toolbar launch route retains its separate JVM
+coverage. The existing glyph/font checks remain complementary.
 
-The first release run 38013637833 passed build, 737 regression tests, lint and
-94 API35 tests. API30 completed 90 successful tests but correctly failed the old
-inventory check: it expected the API33-only device-language picker method. The
-method's `@SdkSuppress(minSdkVersion=33)` was already present, and the method ran
-and passed on API35. That run remains failed; a new exact-source full release
-run is required after this inventory correction. No test or SDK annotation was
-removed or relaxed.
+## Selecting artifacts after a partial retry
 
-AndroidX precedence and bounds:
-https://developer.android.com/reference/androidx/test/filters/SdkSuppress
+The final emulator gate resolves each exact core/position artifact name to an
+explicit ID before download. It paginates current-run artifacts and jobs, requires
+the latest matching job to have succeeded, and requires exactly one nonexpired
+artifact created/updated inside that job's recorded start/end interval. Repository,
+run, workflow head, exact checkout in the name, SDK and positive/nonfuture attempt
+identities must match. Duplicate names from earlier attempts are retained; numeric
+artifact IDs and API list order are not chronological selection rules. Ambiguous
+or incomplete metadata fails closed.
+
+On a partial rerun, GitHub may carry a successful earlier job into the current
+attempt's job metadata with its original execution interval. That interval selects
+the existing successful core artifact, while the rerun position job selects its
+new artifact. The unchanged composer still checks complete successful inventories,
+exact prebuilt/source hashes and each artifact's declared original attempt. The
+selection receipt does not replace those content checks. PR workflow head and
+synthetic merge checkout are distinct identities and are checked separately.
+
+Only the final composition job receives read-only Actions metadata permission;
+no write permission or persistent credential is added. The selector has a one-minute
+step cap inside the unchanged eight-minute composition-job cap. Existing device,
+interaction, setup, report and composition deadlines remain unchanged.
+
+The pinned download action re-lists with `latest: true` even for explicit IDs; its
+SDK filters duplicate names by highest ID. The final gate therefore uses the
+runner's existing GitHub CLI to GET each selected REST artifact ID directly, then
+checks the selected SHA-256 before safe report extraction. Each transfer has a
+90-second deadline; the two-transfer step is capped at four minutes within the
+unchanged eight-minute job. Report archives are limited to 128 MiB compressed,
+512 MiB expanded and 10,000 members. Unsafe paths, symlinks, duplicate members,
+unsupported encodings and attempts to overwrite existing evidence are rejected.
+No downloaded artifact can replace the saved selection receipt. The normal
+content/inventory composer still runs after extraction.

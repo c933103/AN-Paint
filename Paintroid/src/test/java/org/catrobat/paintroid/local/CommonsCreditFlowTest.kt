@@ -2,6 +2,7 @@
 package org.catrobat.paintroid.local
 
 import android.app.Activity
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
@@ -14,7 +15,10 @@ import android.os.Looper
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
+import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.After
@@ -31,6 +35,7 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowDialog
 import org.robolectric.shadows.ShadowAlertDialog
+import org.robolectric.shadows.ShadowToast
 import org.robolectric.util.ReflectionHelpers
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -123,6 +128,31 @@ class CommonsCreditFlowTest {
         CommonsAttribution.cache(context,record)
         return ImageCredit(source,record.text(true))
     }
+    @Test fun metadataAndImageRequestsUseTheInstalledApplicationVersion() {
+        val info=context.packageManager.getPackageInfo(context.packageName,0)
+        val originalVersion=info.versionName
+        info.versionName="91.2-regression"
+        shadowOf(context.packageManager).installPackage(info)
+        val controller=gallery();val activity=controller.get()
+        val connections=mutableListOf<Connection>()
+        try {
+            activity.openConnection={url ->
+                Connection(url,ByteArrayInputStream((if(url.host=="commons.wikimedia.org")
+                    CommonsTestMetadata.response(source,page) else svg).toByteArray())).also {connections.add(it)}
+            }
+            select(activity);await {activity.isFinishing && !activity.downloading}
+            assertEquals(setOf("commons.wikimedia.org","upload.wikimedia.org"),connections.map {it.url.host}.toSet())
+            assertEquals(2,connections.size)
+            for(connection in connections) assertEquals(
+                "AN-Paint/91.2-regression (https://github.com/c933103/AN-Paint; Android)",
+                connection.getRequestProperty("User-Agent"))
+        } finally {
+            controller.pause().stop().destroy()
+            info.versionName=originalVersion
+            shadowOf(context.packageManager).installPackage(info)
+        }
+    }
+
     @Test fun copyFromFileFetchesOnlyMetadataAndDoesNotRecordInsertion() {
         selectLanguage("fr")
         val controller=gallery();val activity=controller.get();var count=0
@@ -177,6 +207,151 @@ class CommonsCreditFlowTest {
                 } finally {reopened.pause().stop().destroy()}
             } finally {mainController.pause().stop();await {!main.busy};mainController.destroy()}
         } finally {controller.pause().stop().destroy()}
+    }
+    private fun setClipboard(text: String) {
+        (context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager)
+            .setPrimaryClip(ClipData.newPlainText("credit test",text))
+    }
+    private fun assertNoCreditTextMessage(activity: MediaGalleryActivity) {
+        val message=activity.window.decorView.findViewWithTag<TextView>("locale_notification_text")?.text?.toString()
+            ?: ShadowToast.getTextOfLatestToast()
+        assertEquals("No image credit text is available.",message)
+        assertEquals(activity.getString(R.string.ui_no_gallery_images_have_been_inserted),message)
+    }
+    @Test fun everyPickerLocaleResolvesCompleteEmptyCreditTextOrEnglishFallback() {
+        val fixture=JSONObject(File("../tools/fixtures/current_localization/gallery_empty_credit_current_wording.json").readText())
+        val expected=fixture.getJSONObject("values").getJSONObject("ui_no_gallery_images_have_been_inserted")
+        val scope=JSONObject(File("../tools/fixtures/current_localization/locale_contract_scope.json").readText())
+        val baselineFallback=scope.getJSONArray("fallback_tags").let { values ->
+            (0 until values.length()).map { values.getString(it) }.toSet()
+        }
+        val additional=fixture.getJSONArray("additional_reviewed_tags").let { values ->
+            (0 until values.length()).map { values.getString(it) }.toSet()
+        }
+        val scoped=scope.getJSONArray("scoped_tags").let { values ->
+            (0 until values.length()).map { values.getString(it) }.toSet()
+        }
+        assertTrue("Family extensions must come from the explicit baseline fallbacks",
+            baselineFallback.containsAll(additional))
+        val reviewed=scoped+additional
+        val fallback=baselineFallback-additional
+        assertTrue(reviewed.intersect(fallback).isEmpty())
+        assertEquals(AppLanguage.tags(context).toSet(),reviewed+fallback)
+        assertEquals(reviewed+"default",expected.keys().asSequence().toSet())
+        for(tag in AppLanguage.tags(context)) {
+            AppLanguage.select(context,tag)
+            val selected=AppLanguage.wrap(context)
+            val raw=if(tag in fallback) expected.getString("default") else expected.getString(tag)
+            val message=raw.replace("\\'", "'").replace("\\\"", "\"")
+            assertEquals("Complete empty-credit message for $tag",message,
+                selected.getString(R.string.ui_no_gallery_images_have_been_inserted))
+        }
+    }
+    @Test fun initiallyEmptyCreditCopyAndEditorDescribeTextAndLeaveClipboardUntouched() {
+        val controller=gallery();val activity=controller.get()
+        try {
+            activity.openConnection={error("An empty credit action must work offline")}
+            setClipboard("Keep the existing clipboard")
+            activity.window.decorView.findViewWithTag<Button>("gallery_copy_credits").performClick()
+            assertNoCreditTextMessage(activity)
+            assertEquals("Keep the existing clipboard",clipboard())
+            ShadowToast.reset()
+            activity.window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+            assertNoCreditTextMessage(activity)
+            assertNull(ReflectionHelpers.getField<GalleryCredits.EditorSession>(activity,"creditEditor"))
+            assertEquals("Keep the existing clipboard",clipboard())
+            assertTrue(session(activity).credits.isEmpty())
+            assertFalse(session(activity).accepted)
+            assertFalse(activity.isFinishing)
+        } finally {controller.pause().stop().destroy();ShadowToast.reset()}
+    }
+    @Test fun insertedImageThenSavedEmptyCreditReportsUnavailableTextAfterGalleryReentry() =
+        insertedImageThenSavedBlankCredit("")
+
+    @Test fun insertedImageThenSavedWhitespaceCreditPreservesRawEditAndReportsUnavailableText() =
+        insertedImageThenSavedBlankCredit(" \n\t ")
+
+    private fun insertedImageThenSavedBlankCredit(blankText: String) {
+        val mainController=Robolectric.buildActivity(ClassicPaintActivity::class.java).setup()
+        val main=mainController.get()
+        try {
+            awaitEditorStartup(main);main.document.newImage(40,24)
+            val first=gallery(main)
+            try {
+                fixtureConnections(first.get())
+                select(first.get());await {first.get().isFinishing && !first.get().downloading}
+                assertEquals(Activity.RESULT_OK,shadowOf(first.get()).resultCode)
+                // The download gallery has finished; insertion happens only after its result returns.
+                main.onActivityResult(ClassicPaintActivity.GALLERY_IMAGE,shadowOf(first.get()).resultCode,shadowOf(first.get()).resultIntent)
+                await {!main.busy};assertNull(main.lastIoError);assertNotNull(main.document.selection)
+                assertEquals(40,main.document.selection!!.image!!.width)
+                assertEquals(24,main.document.selection!!.image!!.height)
+                main.document.finishSelection()
+            } finally {first.pause().stop().destroy()}
+            val original=main.document.imageCredits.single()
+            assertEquals(source,original.source);assertTrue(original.text.isNotBlank())
+            val pixels=main.document.bitmap.copy(Bitmap.Config.ARGB_8888,false)
+            try {
+                // Reopen through the editor's source picker with this document's ownership session.
+                val reopened=gallery(main);val activity=reopened.get()
+                try {
+                    activity.openConnection={error("Stored credit edit/copy must work offline")}
+                    activity.window.decorView.findViewWithTag<Button>("gallery_copy_credits").performClick()
+                    assertEquals(original.text,clipboard()) // Nonempty Copy all control.
+                    assertFalse(session(activity).accepted)
+                    activity.window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+                    shadowOf(Looper.getMainLooper()).idle()
+                    val dialog=ShadowAlertDialog.getLatestAlertDialog()
+                    val field=dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text")
+                    assertEquals(original.text,field.text.toString())
+                    field.setText(blankText)
+                    dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_save").performClick()
+                    assertTrue(dialog.isShowing)
+                    assertTrue(session(activity).accepted)
+                    assertEquals(listOf(original.copy(text=blankText)),session(activity).credits)
+                    dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_done").performClick()
+                    assertFalse(dialog.isShowing)
+                    assertEquals("",ImageCredit.text(session(activity).credits))
+                    setClipboard("Keep the existing clipboard")
+                    activity.window.decorView.findViewWithTag<Button>("gallery_copy_credits").performClick()
+                    assertNoCreditTextMessage(activity)
+                    assertEquals("Keep the existing clipboard",clipboard())
+                    assertFalse(activity.isFinishing)
+                    activity.window.decorView.findViewWithTag<Button>("gallery_done").performClick()
+                    assertTrue(activity.isFinishing)
+                    assertEquals(Activity.RESULT_OK,shadowOf(activity).resultCode)
+                    main.onActivityResult(ClassicPaintActivity.GALLERY_IMAGE,shadowOf(activity).resultCode,shadowOf(activity).resultIntent)
+                    assertEquals(listOf(original.copy(text=blankText)),main.document.imageCredits)
+                    assertNull(main.document.selection)
+                    assertTrue("Editing attribution must not remove or alter the inserted image",pixels.sameAs(main.document.bitmap))
+                } finally {reopened.pause().stop().destroy()}
+                val persisted=gallery(main)
+                try {
+                    persisted.get().window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+                    val dialog=ShadowAlertDialog.getLatestAlertDialog()
+                    assertTrue("A source with blank credit text remains editable",dialog.isShowing)
+                    assertEquals(blankText,dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").text.toString())
+                    dialog.cancel()
+                } finally {persisted.pause().stop().destroy()}
+            } finally {pixels.recycle()}
+        } finally {mainController.pause().stop();await {!main.busy};mainController.destroy();ShadowToast.reset()}
+    }
+    @Test fun explicitSingleCreditCopyStillAcceptsAndCopiesAnEmptyField() {
+        val original=storedCredit();val controller=gallery(listOf(original));val activity=controller.get()
+        try {
+            setClipboard("previous text")
+            activity.window.decorView.findViewWithTag<Button>("gallery_edit_credits").performClick()
+            // The dialog's onShow callback installs the tagged Copy button and listener.
+            shadowOf(Looper.getMainLooper()).idle()
+            val dialog=ShadowAlertDialog.getLatestAlertDialog()
+            dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text").setText("")
+            dialog.window!!.decorView.findViewWithTag<Button>("gallery_credit_copy").performClick()
+            assertEquals("",clipboard())
+            assertTrue(session(activity).accepted)
+            assertEquals(listOf(original.copy(text="")),session(activity).credits)
+            assertTrue(dialog.isShowing)
+            dialog.cancel()
+        } finally {controller.pause().stop().destroy();ShadowToast.reset()}
     }
     @Test fun failedEditorDecodeCannotAttachCachedMetadataOrChangeTheDrawing() {
         val controller=gallery();val activity=controller.get()

@@ -21,7 +21,7 @@ import translation_catalogues as translations
 # All earlier progress is withdrawn; preserve every key-coverage assertion.
 SCOPED_TAGS = set("""
     ja zh-HK zh-TW zh-CN yue-Hant yue-Latn
-    tl ceb ms id sw fi hu af nl et lv lt
+    fil ceb ms id sw fi hu af nl et lv lt
     es-ES es-419 fr de ru ar eo
     lzh-Hant hak-Hant-TW hak-Latn-TW nan-Hant-TW nan-Latn-TW wuu-Hans
     en-001 en-AU en-CA en-GB en-IN en-SG en-US pt-PT pt-BR it el tr
@@ -164,7 +164,7 @@ class TranslationCatalogueTests(unittest.TestCase):
         data = json.loads((translations.DATA / "main-menu-translations.json").read_text())
         requested = set(
             "ja zh-TW zh-HK zh-CN yue-Hant yue-Latn lzh-Hant ar de pl ru "
-            "es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi tl th "
+            "es-419 es-ES pt-PT pt-BR it fr he ko-KR ko-KP id ms vi fil th "
             "el sr-Cyrl sr-Latn tr hy".split()
         )
         self.assertEqual(requested, set(data["locales"]))
@@ -198,6 +198,23 @@ class TranslationCatalogueTests(unittest.TestCase):
         ja = translations.read_strings(translations.catalogue_paths()["ja"])
         self.assertEqual("左右反転", ja["ui_flip_horizontal"])
         self.assertEqual("上下反転", ja["ui_flip_vertical"])
+
+    def test_eight_arabic_corrections_remain_exact(self):
+        # Text regression only: not native-speaker, layout, bidi or accessibility acceptance.
+        ar = translations.read_strings(translations.catalogue_paths()["ar"])
+        expected = {
+            'ui_bg': 'خلفية',
+            'ui_d_d_px_d_pixels_2f_mp': '%1$d × %2$d px · عدد البكسلات: %3$,d (%4$.2f ميغابكسل)',
+            'ui_fg': 'مقدمة',
+            'ui_hex_rrggbb': 'سداسي عشري #RRGGBB',
+            'ui_invalid_selection_outline': 'محيط التحديد غير صالح.',
+            'ui_trim_amounts_must_fit_inside_each_image_use': 'يجب ألا تتجاوز مقادير القص أبعاد كل صورة؛ استخدم أعدادًا صحيحة من البكسلات أو نسبًا مئوية.',
+            'formats22_animation_message': 'عدد الإطارات في ملف %1$s هذا: %2$s. يحرر AN Paint الصور الثابتة ولا يحتفظ بالحركة.',
+            'save20_gif_description': 'صورة ثابتة، حتى 256 لونًا. ينعّم تمويه الألوان بالنقط تدرجات الألوان. تفتح صور GIF المتحركة بإطارها الأول.',
+        }
+        for key, value in expected.items():
+            with self.subTest(key=key):
+                self.assertEqual(value, ar[key])
 
     def test_unsaved_prompt_actions_are_distinct(self):
         def normalized(value):

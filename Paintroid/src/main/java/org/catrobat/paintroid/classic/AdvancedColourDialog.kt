@@ -77,9 +77,26 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         this.text = text; this.tag = tag; isAllCaps = false; textSize = 12f; setOnClickListener { action() }
     }
     fun show(): AlertDialog {
-        val shell = column().apply { setPadding(dp(12), dp(4), dp(12), dp(4)) }
+        val shell = column().apply { isBaselineAligned=false;setPadding(dp(12), dp(4), dp(12), dp(4)) }
+        // These groups retain their children, focus and values when the live
+        // window switches between a portrait stack and compact landscape columns.
+        val editorPanel=column()
+        val fixedPanel=column()
+        shell.addView(editorPanel,LinearLayout.LayoutParams(-1,0,1f))
+        // Measure the saved colours and preview at their natural text height.
+        // Short windows may scroll this rail independently instead of squeezing
+        // a wrapped Add caption (or the selected-colour preview) to the remainder.
+        val controlsScroll=ScrollView(activity).apply {
+            tag="colour_controls_scroll"
+            isVerticalScrollBarEnabled=true;isScrollbarFadingEnabled=false
+            scrollBarStyle=View.SCROLLBARS_INSIDE_OVERLAY
+            addView(fixedPanel)
+        }
+        shell.addView(controlsScroll,LinearLayout.LayoutParams(-1,-2))
         val body = column().apply { setPadding(0, dp(4), 0, dp(8)) }
-        val tabs = LinearLayout(activity)
+        // Wrapped captions must align by their view bounds, not their differing
+        // text baselines, which can move a taller button outside the row.
+        val tabs = LinearLayout(activity).apply { isBaselineAligned=false }
         val palette = column().apply { tag = "colour_palette" }
         surface = ColourSurface(activity, value).apply { tag = "colour_surface"; changed = { sync() }; visibility = View.GONE }
         val advanced = column().apply { tag = "colour_advanced"; visibility = View.GONE }
@@ -94,12 +111,12 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             for (i in 0 until tabs.childCount) tabs.getChildAt(i).isSelected = i == when (mode) { 0 -> 0; 3 -> 1; else -> 2 }
         }
         listOf(Triple(ui(R.string.ui_palette), "colour_mode_0", 0), Triple(ui(R.string.ui_honeycomb), "colour_mode_3", 3), Triple(ui(R.string.ui_advanced), "colour_advanced_tab", 1)).forEach { (name, tag, mode) ->
-            tabs.addView(button(name, tag) { selectMode(mode) }, LinearLayout.LayoutParams(0, dp(44), 1f))
+            tabs.addView(button(name, tag) { selectMode(mode) }.apply { minHeight=dp(44);minimumHeight=dp(44) }, LinearLayout.LayoutParams(0, -2, 1f))
         }
-        shell.addView(tabs)
-        val advancedTabs = LinearLayout(activity)
+        editorPanel.addView(tabs)
+        val advancedTabs = LinearLayout(activity).apply { isBaselineAligned=false }
         listOf(ui(R.string.ui_spectrum), ui(R.string.ui_wheel)).forEachIndexed { i, name ->
-            advancedTabs.addView(button(name, "colour_mode_${i + 1}") { selectMode(i + 1) }, LinearLayout.LayoutParams(0, dp(44), 1f))
+            advancedTabs.addView(button(name, "colour_mode_${i + 1}") { selectMode(i + 1) }.apply { minHeight=dp(44);minimumHeight=dp(44) }, LinearLayout.LayoutParams(0, -2, 1f))
         }
         advanced.addView(advancedTabs)
         advanced.addView(surface, LinearLayout.LayoutParams(-1, dp(190)))
@@ -119,19 +136,23 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         }
         body.addView(palette); body.addView(honeycomb, LinearLayout.LayoutParams(-1, dp(278)))
         body.addView(advanced)
-        val scroll = ScrollView(activity).apply { tag="colour_editor_scroll";addView(body) }
-        shell.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))
+        val scroll = ScrollView(activity).apply {
+            tag="colour_editor_scroll"
+            // The colour surface must keep its own drag gestures. A visible
+            // native scrollbar and end gutter give scrolling a separate route.
+            setPaddingRelative(0,0,dp(32),0)
+            isVerticalScrollBarEnabled=true;isScrollbarFadingEnabled=false
+            scrollBarStyle=View.SCROLLBARS_INSIDE_INSET;scrollBarSize=dp(6)
+            addView(body)
+        }
+        editorPanel.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))
         // Custom colours are shared by every selector. Choosing a stored swatch
         // loads it; an empty slot directly stores the current colour.
         val customPanel = column().apply { tag="custom_colours_panel" }
         customHeading = label("").apply { tag="custom_colour_selection" }
         customPanel.addView(customHeading)
-        val compact = activity.resources.configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
-        val grid = column()
-        repeat(if (compact) 1 else 2) { row ->
-            val line = LinearLayout(activity)
-            repeat(if (compact) 16 else 8) { col ->
-                val index = row * 8 + col
+        val grid=GridLayout(activity).apply {columnCount=16;rowCount=2}
+        repeat(16) { index ->
                 val view = object : View(activity) {
                     override fun onDraw(canvas: Canvas) {
                         val p=Paint(Paint.ANTI_ALIAS_FLAG)
@@ -162,15 +183,32 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
                     }
                 }
                 custom.add(view)
-                line.addView(view,if(compact) LinearLayout.LayoutParams(dp(44),dp(44)) else LinearLayout.LayoutParams(0,dp(44),1f))
-            }
-            grid.addView(line)
+                grid.addView(view,GridLayout.LayoutParams().apply {width=dp(44);height=dp(44)})
         }
-        if (compact) customPanel.addView(HorizontalScrollView(activity).apply { addView(grid) }) else customPanel.addView(grid)
-        shell.addView(customPanel)
+        var gridCompact: Boolean?=null
+        fun updateCustomGrid() {
+            val compact=activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE
+            if(gridCompact==compact) return
+            gridCompact=compact
+            // Change constraints only: all sixteen swatch objects keep their
+            // listeners, selection, accessibility identity and focus.
+            val columns=if(compact) 16 else 8
+            grid.columnCount=16;grid.rowCount=2
+            custom.forEachIndexed {index,view ->
+                view.layoutParams=GridLayout.LayoutParams().apply {
+                    width=if(compact) dp(44) else 0;height=dp(44)
+                    rowSpec=GridLayout.spec(index/columns)
+                    columnSpec=GridLayout.spec(index%columns,if(compact) 0f else 1f)
+                }
+            }
+            grid.columnCount=columns;grid.rowCount=if(compact) 1 else 2
+        }
+        updateCustomGrid()
+        customPanel.addView(HorizontalScrollView(activity).apply {isFillViewport=true;addView(grid)})
+        fixedPanel.addView(customPanel)
         val previewRow = LinearLayout(activity).apply { gravity = Gravity.CENTER_VERTICAL }
         val sampleColumn=column()
-        sampleColumn.addView(label(ui(R.string.ui_selected_colour23)))
+        sampleColumn.addView(label(ui(R.string.ui_selected_colour23)).apply {tag="selected_colour_caption"})
         sample = object : View(activity) {
             override fun onDraw(canvas: Canvas) {
                 val p = Paint()
@@ -179,10 +217,10 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         }.apply { tag = "new_colour_preview" }
         sampleColumn.addView(sample,LinearLayout.LayoutParams(dp(64),dp(24)))
         previewRow.addView(sampleColumn,LinearLayout.LayoutParams(dp(76),-2))
-        saveCustomButton=button(ui(R.string.ui_add_palette23), "add_custom_colour") { saveCustom() }.apply { minWidth=0;minimumWidth=0 }
+        saveCustomButton=button(ui(R.string.ui_add_palette23), "add_custom_colour") { saveCustom() }.apply { minWidth=0;minimumWidth=0;minHeight=dp(48);minimumHeight=dp(48) }
         if(addingToPalette) saveCustomButton.visibility=View.GONE
-        previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,dp(48),1f))
-        shell.addView(previewRow)
+        previewRow.addView(saveCustomButton,LinearLayout.LayoutParams(0,-2,1f))
+        fixedPanel.addView(previewRow)
         refreshCustom()
         fun field(key: String, hintText: String, max: Int): LinearLayout {
             val wrap = column(); wrap.addView(label(hintText))
@@ -215,19 +253,39 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         }
         // Keep the tabs, custom slots and Save action reachable while the long
         // Advanced controls scroll, including on short landscape screens.
-        val preferredHeight=minOf(dp(650),(activity.resources.displayMetrics.heightPixels*.68f).toInt())
+        fun preferredHeight()=minOf(dp(650),(activity.resources.displayMetrics.heightPixels*.68f).toInt())
         val holder=object : FrameLayout(activity) {
             override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
-                val available=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) preferredHeight
+                val available=if(MeasureSpec.getMode(heightMeasureSpec)==MeasureSpec.UNSPECIFIED) preferredHeight()
                     else MeasureSpec.getSize(heightMeasureSpec)
-                shell.layoutParams.height=minOf(preferredHeight,available)
+                updateCustomGrid()
+                val columns=!VerticalText.uiVertical(activity) &&
+                    activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE &&
+                    MeasureSpec.getSize(widthMeasureSpec)>=dp(520)
+                shell.orientation=if(columns) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
+                (editorPanel.layoutParams as LinearLayout.LayoutParams).apply {
+                    width=if(columns) 0 else -1;height=if(columns) -1 else 0;weight=1f
+                }
+                // Reserve caption width from the rendering configuration before
+                // measuring. Repeated parent measurements use the same widths;
+                // normal-font geometry stays unchanged and the editor keeps half.
+                val railWidth=if(columns) (dp(220)*activity.resources.configuration.fontScale.coerceAtLeast(1f))
+                    .toInt().coerceAtMost((MeasureSpec.getSize(widthMeasureSpec)-shell.paddingLeft-
+                        shell.paddingRight-dp(12))/2) else dp(220)
+                (controlsScroll.layoutParams as LinearLayout.LayoutParams).apply {
+                    width=if(columns) railWidth else -1;height=-2;weight=0f
+                    marginStart=if(columns) dp(12) else 0
+                }
+                sampleColumn.layoutParams.width=if(columns) dp(76)*railWidth/dp(220) else dp(76)
+                shell.layoutParams.height=minOf(preferredHeight(),available)
+                shell.forceLayout()
                 super.onMeasure(widthMeasureSpec,heightMeasureSpec)
             }
         }.apply {
             tag="colour_dialog_holder"
-            addView(shell,FrameLayout.LayoutParams(-1,preferredHeight))
+            addView(shell,FrameLayout.LayoutParams(-1,preferredHeight()))
         }
-        val dialogContent=if(VerticalText.uiVertical()) {
+        val dialogContent=if(VerticalText.uiVertical(activity)) {
             VerticalUi.panel(tabs,112);VerticalUi.panel(advanced,160)
             val form=LinearLayout(activity).apply {orientation=LinearLayout.HORIZONTAL;isBaselineAligned=false;tag="vertical_colour_form"}
             form.addView(VerticalUi.detach(tabs),LinearLayout.LayoutParams(-2,-2))
@@ -245,11 +303,27 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
         } else holder
         val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)
             .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()
-        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            if (fields.values.any { it.error != null }) return@setOnClickListener
-            accepted=true;commit(value.colour or Color.BLACK);dialog.dismiss()
-        } }
-        dialog.setOnDismissListener {if(!accepted) preview(original);closed()}
+        fun resizeHorizontalWindow() {
+            if(VerticalText.uiVertical(activity)) return
+            val frame=Rect();activity.window.decorView.getWindowVisibleDisplayFrame(frame)
+            val wide=activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE &&
+                frame.width()>=dp(560)
+            val width=if(wide) minOf(frame.width(),dp(900)) else ViewGroup.LayoutParams.WRAP_CONTENT
+            if(dialog.window!!.attributes.width!=width) dialog.window!!.setLayout(width,ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
+        val layoutListener=android.view.ViewTreeObserver.OnGlobalLayoutListener {resizeHorizontalWindow()}
+        dialog.setOnShowListener {
+            if(!VerticalText.uiVertical(activity)) activity.window.decorView.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
+            resizeHorizontalWindow()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                if (fields.values.any { it.error != null }) return@setOnClickListener
+                accepted=true;commit(value.colour or Color.BLACK);dialog.dismiss()
+            }
+        }
+        dialog.setOnDismissListener {
+            activity.window.decorView.viewTreeObserver.takeIf {it.isAlive}?.removeOnGlobalLayoutListener(layoutListener)
+            if(!accepted) preview(original);closed()
+        }
         sync();selectMode(initialMode);dialog.show();return dialog
     }
     private fun refreshCustom() {

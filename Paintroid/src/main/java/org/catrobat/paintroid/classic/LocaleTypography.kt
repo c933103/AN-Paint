@@ -25,7 +25,7 @@ internal object LocaleTypography {
         locale.language=="wuu" && locale.script=="Hans" -> "fonts/anpaintwuufallback.ttf"
         else -> null
     }
-    fun typeface(context: Context,locale: Locale=Locale.getDefault()): Typeface? {
+    fun typeface(context: Context,locale: Locale=VerticalText.uiLocale(context)): Typeface? {
         val asset=asset(locale) ?: return null
         return faces.getOrPut(asset) {Typeface.createFromAsset(context.assets,asset)}
     }
@@ -35,15 +35,15 @@ internal object LocaleTypography {
         Toast.makeText(context,text,duration).also {toast ->
             if(Build.VERSION.SDK_INT<30) toast.view?.let {install(it)}
         }
-    /** Use each horizontal locale's bundled UI font in the visible app window.
-     * Vertical scripts need their own column layout, not this horizontal surface.
+    /** Use bundled UI fonts and native vertical columns in the visible app window.
+     * Overflow stays reachable in a bounded, explicitly dismissible card.
      * An anchor keeps dialog feedback inside that dialog instead of behind it.
      * Background/application contexts retain a standard, system-rendered text toast.
      */
     fun showMessage(context: Context,text: CharSequence,duration: Int,anchor: View?=null) {
-        if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical()) {
+        if(Build.VERSION.SDK_INT>=30) {
             val font=typeface(context)
-            if(font!=null && LocaleNotification.show(context,text,duration,font,anchor)) return
+            if((font!=null || VerticalText.uiVertical(context)) && LocaleNotification.show(context,text,duration,font,anchor)) return
         }
         toast(context,text,duration).show()
     }

@@ -18,7 +18,7 @@
     <string name="ui_add_images_then_drag_a_thumbnail_here">Add images, then drag a thumbnail here</string>
     <string name="ui_add_text">Add text</string>
     <string name="ui_add_to_custom_colours">Add to custom colours</string>
-    <string name="ui_add_up_to_20_images_with_android_s">Add up to 20 images with Android\'s file picker. The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\n\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\n\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. The first image starts at the origin. Existing attachments move when their parent is cropped. Overlaps are rejected.\n\nSame width and Same height give every input a common dimension while preserving each image\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\n\nUnplace returns only the selected image to the tray. Following images fill its gap; they stay placed. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\n\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy if offered. If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\n\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\'s «File &gt; About, licences &amp; credits» panel.</string>
+    <string name="ui_add_up_to_20_images_with_android_s">Add up to 20 images with Android\'s file picker. The bottom tray shows thumbnails, filenames, image dimensions after cropping and any Same width or Same height adjustment, and file modification times when supplied by the provider. Sort by filename or modification time; sorting does not rearrange placed images.\n\nTap a thumbnail to select it. Crop image trims that image; Batch crop applies pixel or percentage margins to selected images. Drag crop handles or type amounts. Reset crop restores the original edges. Cropping is non-destructive and can be undone.\n\nHold a thumbnail, or drag an image already in the workspace, then drop it onto a highlighted edge. The translucent preview shows the exact snapped result. A right attachment aligns the tops; a bottom attachment aligns the left edges. You can also tap a thumbnail and then a + target. When snapping, the first image starts at the origin. Attached images may move when their parent is cropped. Overlaps are rejected when snapping.\n\nSelect an image and use Exact position to set its top-left X/Y coordinates in whole pixels, starting at zero. Other images keep their positions, and overlaps are allowed.\n\nSame width and Same height give every input a common dimension while preserving each image\'s own aspect ratio. Choose pixels, percent, Smallest or Largest. Restore original sizes removes normalization and keeps crops.\n\nUnplace returns only the selected image to the tray. Other images stay placed; attached images may move to fill the gap. Remove deletes only that input. Undo/Redo restore these changes. Drag a placed image to rearrange it; empty-space dragging pans. Pinch to zoom. «Show all» adjusts the zoom to show the whole assembly; it never changes output dimensions.\n\nSave PNG saves the assembled image directly. Edit in Paint transfers it into the main editor as an undoable replacement. If the output exceeds the memory budget, choose a smaller output copy if offered. If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser. Original source files stay unchanged. The current assembly is stored locally and reopens when you return.\n\nThis mode uses the same Catrobat/AGPL and asset credits shown in the main editor\'s «File &gt; About, licences &amp; credits» panel.</string>
     <string name="ui_advanced">Advanced</string>
     <string name="ui_airbrush">Airbrush</string>
     <string name="ui_all">All</string>
@@ -127,7 +127,7 @@
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">Custom colours · hold a swatch to replace it</string>
     <string name="ui_cut">Cut</string>
     <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.</string>
-    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · %3$,d pixels (%4$.2f MP)</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)</string>
     <string name="ui_delete_selection">Delete selection</string>
     <string name="ui_disable_cursor_drawing">Disable cursor drawing</string>
     <string name="ui_discard">Discard</string>
@@ -179,6 +179,7 @@
     <string name="ui_eraser">Eraser</string>
     <string name="ui_estimated_memory_current_working_budget">Estimated memory: %1$s\nCurrent working budget: %2$s\n</string>
     <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. Imports use the selected opaque background; the original file stays unchanged.</string>
+    <string name="ui_sampled_resize_memory_explanation">Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.</string>
     <string name="ui_expand_colour_palette">Expand colour palette</string>
     <string name="ui_expand_toolbox">Expand toolbox</string>
     <string name="ui_export_recovery_copy">Export recovery copy…</string>
@@ -270,7 +271,7 @@
     <string name="ui_new_colour">New colour</string>
     <string name="ui_new_image">New image</string>
     <string name="ui_no_attachment_fits_within_the_current_coordinate_range">No attachment fits within the current coordinate range. Try smaller image sizes.</string>
-    <string name="ui_no_gallery_images_have_been_inserted">No gallery images have been inserted.</string>
+    <string name="ui_no_gallery_images_have_been_inserted">No image credit text is available.</string>
     <string name="ui_no_readable_image_data">No readable image data.</string>
     <string name="ui_none">None</string>
     <string name="ui_not_enough_memory_for_this_operation_the_assembly">Not enough memory for this operation. The assembly source files are retained.</string>
@@ -318,7 +319,7 @@
     <string name="ui_rectangle_select">Rectangle select</string>
     <string name="ui_redo">Redo</string>
     <string name="ui_remove">Remove</string>
-    <string name="ui_rendering_images">Rendering %1$s / %2$s images…</string>
+    <string name="ui_rendering_images">Images processed: %1$s / %2$s…</string>
     <string name="ui_reset_crop">Reset crop</string>
     <string name="ui_reset_to_black_white">Reset to black / white</string>
     <string name="ui_resize_and_load">Resize and load</string>
@@ -413,7 +414,7 @@
     <string name="ui_the_full_image_and_working_buffers_exceed_the">The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.</string>
     <string name="ui_the_gallery_download_is_too_large">The gallery download is too large.</string>
     <string name="ui_the_gallery_image_is_unavailable">The gallery image is unavailable.</string>
-    <string name="ui_the_gallery_redirected_outside_its_supported_hosts">The gallery redirected outside its supported hosts.</string>
+    <string name="ui_the_gallery_redirected_outside_its_supported_hosts">The gallery redirected to an unsupported image URL.</string>
     <string name="ui_the_image_could_not_be_downloaded">The image could not be downloaded.</string>
     <string name="ui_the_image_was_saved_but_android_could_not">The image was saved, but Android could not open sharing: %1$s</string>
     <string name="ui_the_images_cannot_fit_within_android_s_coordinate">The images cannot fit within Android\'s coordinate range. Choose smaller image sizes.</string>
@@ -465,7 +466,7 @@
     <string name="ui_width_in">Width in %1$s</string>
     <string name="ui_widths">Widths</string>
     <string name="ui_working">Working…</string>
-    <string name="ui_you_can_add_more_images_select_fewer_files">You can add %1$s more images. Select fewer files.</string>
+    <string name="ui_you_can_add_more_images_select_fewer_files">Number of images you can still add: %1$s. Select fewer files.</string>
     <string name="ui_your_current_image_has_unsaved_changes">Your current image has unsaved changes.</string>
     <string name="ui_zoom_in">Zoom in</string>
     <string name="ui_zoom_out">Zoom out</string>
@@ -545,6 +546,7 @@
     <string name="colour_truncated_metadata">The image ends inside its colour metadata.</string>
     <string name="colour_unsupported_icc_model">This image uses an ICC colour model that the image decoder cannot convert. Export an RGB copy in a colour-managed application first.</string>
     <string name="colour_converter_unavailable">The image colour converter could not start. The image was not imported.</string>
+    <string name="gallery_image_component_unavailable">A required image component is unavailable. The image was not imported.</string>
     <string name="ui_lossless_format">Lossless %1$s</string>
     <string name="ui_save_as_webp">Save as WebP…</string>
     <string name="ui_save_as_heic">Save as HEIC…</string>
@@ -555,12 +557,12 @@
     <string name="formats22_base64_label">Base64 text</string>
     <string name="formats22_ascii_label">ASCII art</string>
     <string name="formats22_tiff_compression">Lossless compression (Deflate)</string>
-    <string name="formats22_tiff_description">Saves one RGB page. Compression reduces file size without changing pixels; turn it off for uncompressed TIFF.</string>
+    <string name="formats22_tiff_description">Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.</string>
     <string name="formats22_dib_description">Saves an uncompressed 24-bit Windows DIB. Use BMP if the receiving app requires a BMP file header.</string>
     <string name="formats22_dib_size_limit">The image exceeds the DIB file-size limit.</string>
     <string name="formats22_import_limit">This file exceeds the 512 MiB import limit. Choose a smaller file.</string>
     <string name="formats22_select_page">Choose a page</string>
-    <string name="formats22_page_description">%1$s · %2$s\n%3$d pages. Choose one page to edit as an image.</string>
+    <string name="formats22_page_description">%1$s · %2$s\nNumber of pages: %3$d. Choose one page to edit as an image.</string>
     <string name="formats22_pdf_raster_hint">PDF pages are rendered at 144 dpi. Text and vector objects become pixels.</string>
     <string name="formats22_page_number">Page number</string>
     <string name="formats22_previous_page">Previous page</string>
@@ -674,8 +676,8 @@
     <string name="ui_irasutoya_credit34">Copyright retained by the creator. Use is subject to Irasutoya’s terms; this is not a Creative Commons licence.</string>
     <string name="ui_history_unavailable34">The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.</string>
     <plurals name="ui_crop_preview_images">
-            <item quantity="one">Preview: %1$d × %2$d px\nApply to %3$d image. Cropping placed images repositions their attachments.</item>
-            <item quantity="other">Preview: %1$d × %2$d px\nApply to %3$d images. Cropping placed images repositions their attachments.</item>
+            <item quantity="one">Preview: %1$d × %2$d px\nApply to %3$d image. Cropping placed images may move their attached images.</item>
+            <item quantity="other">Preview: %1$d × %2$d px\nApply to %3$d images. Cropping placed images may move their attached images.</item>
         </plurals>
 
     <string name="ui_normalize_width_intro">Give all images the same width. Number of images: %1$d. Each image keeps its own aspect ratio. Original files and crop settings stay unchanged.</string>
@@ -697,4 +699,29 @@
     <string name="commons_svg_original_size_too_large">The original SVG size exceeds Android bitmap dimensions. No resizing was applied.</string>
     <string name="commons_import_svg_changes">AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.</string>
     <string name="commons_import_raster_changes">AN Paint: background=#FFFFFF (alpha compositing).</string>
+    <string name="commons_credit_copy_failed">Could not copy image credit.</string>
+    <string name="commons_credit_copy_failed_reason">Could not copy image credit: %1$s</string>
+    <string name="commons_credit_copy_out_of_memory">Not enough memory to copy image credit.</string>
+    <string name="commons_metadata_http_error">Commons metadata: HTTP %1$s</string>
+    <string name="commons_metadata_response_too_large">Commons metadata exceeds the response limit</string>
+    <string name="commons_metadata_query_failed">Commons metadata query failed</string>
+    <string name="save20_unsupported_image_colour">This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.</string>
+    <string name="ui_assembly_exact_position">Exact position</string>
+    <string name="ui_assembly_target_x">Target X (pixels from left)</string>
+    <string name="ui_assembly_target_y">Target Y (pixels from top)</string>
+    <string name="ui_assembly_position_help">Set the top-left corner of this image on the output canvas. X and Y are whole pixels, starting at zero. Other images keep their current positions. Overlap is allowed here; images imported later are drawn on top. The canvas expands to include all placed images. Crops and sizes stay unchanged.</string>
+    <string name="ui_assembly_position_nonnegative">X and Y must be whole numbers from zero to 2147483647.</string>
+    <string name="ui_assembly_unknown_image">The selected image is no longer in this assembly.</string>
+    <string name="gallery_external_link_no_handler">Android could not find an app to open this link.</string>
+
+    <!-- Commons/import reasons: English wording or private-use English-hint layout fixture. -->
+    <string name="commons_metadata_not_file_page">Not a Commons file page</string>
+    <string name="commons_metadata_ambiguous_file">Commons metadata returned an ambiguous file</string>
+    <string name="commons_metadata_unavailable">Commons file metadata is unavailable</string>
+    <string name="commons_metadata_original_mismatch">Commons attribution does not match the selected original file</string>
+    <string name="commons_metadata_invalid_page">Invalid Commons attribution page</string>
+    <string name="commons_metadata_field_too_large">Commons attribution field exceeds the text limit</string>
+    <string name="commons_metadata_cache_failed">Could not retain Commons attribution</string>
+    <string name="commons_download_original_mismatch">The Commons download redirected to a different original file.</string>
+    <string name="commons_svg_png_encode_failed">Could not encode blank map as PNG</string>
 </resources>

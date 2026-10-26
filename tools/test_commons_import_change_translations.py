@@ -8,7 +8,7 @@ from test_translations import SCOPED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-MANIFEST = ROOT / 'verification/commons-import-changes-2026-10-09/translations.json'
+MANIFEST = ROOT / 'tools/fixtures/current_localization/commons_import_current_wording.json'
 KEYS = {
     'commons_import_svg_changes':
         'AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.',
@@ -30,9 +30,10 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         translated = set(manifest['translations'])
         blocked = set(manifest['blocked_scoped_locales'])
         self.assertFalse(translated & blocked)
-        self.assertEqual(set(SCOPED_TAGS), translated | blocked)
-        unscoped = set(catalogues.offered_tags()) - set(SCOPED_TAGS)
-        self.assertEqual(81, len(unscoped))
+        self.assertEqual(['cs', 'sv'], manifest['additional_reviewed_tags'])
+        self.assertEqual(set(SCOPED_TAGS) | {'cs', 'sv'}, translated | blocked)
+        unscoped = set(catalogues.offered_tags()) - set(SCOPED_TAGS) - {'cs', 'sv'}
+        self.assertEqual(110, len(unscoped))
         self.assertEqual(unscoped, set(manifest['remaining_other_offered_locales']))
         paths = catalogues.catalogue_paths()
         for tag, expected in manifest['translations'].items():

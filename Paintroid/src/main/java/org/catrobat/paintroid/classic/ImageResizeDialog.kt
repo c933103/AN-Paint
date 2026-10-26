@@ -9,7 +9,6 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.widget.*
-import java.util.Locale
 import kotlin.math.roundToInt
 
 class ImageResizeDialog(
@@ -32,7 +31,7 @@ class ImageResizeDialog(
         val sizing = DimensionControls(activity,source,suggested,"resize",true)
         body.addView(label(ui(R.string.ui_resize_the_copy), "resize_heading")); body.addView(sizing)
         val estimate = label("", "resize_estimate"); body.addView(estimate)
-        body.addView(label(ui(if(memoryRequirements.hasNativeWork) R.string.ui_codec_resize_memory_floor else R.string.ui_estimates_include_the_current_canvas_and_clipboard_sampled), "resize_explanation"))
+        body.addView(label(ui(if(memoryRequirements.hasNativeWork) R.string.ui_codec_resize_memory_floor else R.string.ui_sampled_resize_memory_explanation), "resize_explanation"))
         var accepted = false
         val dialog = EditorDialogBuilder(activity).setTitle(ui(R.string.ui_resize_large_image))
             .setView(ScrollView(activity).apply { addView(body) })
@@ -40,7 +39,7 @@ class ImageResizeDialog(
         fun target(): ImageDimensions? = sizing.dimensions?.takeIf { it.width <= source.width && it.height <= source.height }
         fun refresh(): Boolean {
             val current = policy()
-            budget.text = String.format(Locale.ROOT, ui(R.string.ui_current_safe_editing_budget_s_up_to_2f), memoryLabel(current.workingBytes.toDouble()), current.maxPixels(residentPixels) / 1_000_000.0)
+            budget.text = ui(R.string.ui_current_safe_editing_budget_s_up_to_2f, memoryLabel(current.workingBytes.toDouble()), current.maxPixels(residentPixels) / 1_000_000.0)
             val size = target()
             val plan = size?.let { ImportPlan.create(source,it) }
             val fits = plan != null && memoryRequirements.accepts(current,plan,residentPixels)

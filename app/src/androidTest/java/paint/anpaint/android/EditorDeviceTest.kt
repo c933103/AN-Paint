@@ -4,6 +4,7 @@ package paint.anpaint.android
 import android.app.Activity
 import android.app.Dialog
 import android.app.Instrumentation
+import android.app.LocaleConfig
 import android.app.LocaleManager
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -744,6 +745,23 @@ class EditorDeviceTest {
 
     @Test @SdkSuppress(minSdkVersion=33)
     fun deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches() {
+        // Read the installed app's manifest-bound platform configuration, not the XML
+        // directly. This proves framework discovery, not visibility in a Settings UI.
+        val expected=context.resources.getStringArray(R.array.app_language_tags).toList()
+        val config=if(Build.VERSION.SDK_INT>=34) LocaleConfig.fromContextIgnoringOverride(context)
+            else LocaleConfig(context)
+        android.util.Log.i("LanguagePickerTest","platformLocaleConfigStatus=${config.status} " +
+            "expected=${expected.joinToString(",")} actual=${config.supportedLocales?.toLanguageTags()}")
+        assertEquals("Installed app declares a readable platform locale configuration",
+            LocaleConfig.STATUS_SUCCESS,config.status)
+        val supported=config.supportedLocales
+            ?: throw AssertionError("Successful locale configuration must expose supported locales")
+        val actual=(0 until supported.size()).map {supported[it].toLanguageTag()}
+        assertTrue("The current picker inventory must not be empty",expected.isNotEmpty())
+        assertEquals("Current picker tags are unique",expected.size,expected.toSet().size)
+        assertEquals("Platform and picker locale counts match",expected.size,actual.size)
+        assertEquals("Platform exposes every exact current picker tag",expected.toSet(),actual.toSet())
+
         // The repository's emulator fixture boots in en-US. Keep this oracle independent
         // of AppLanguage.deviceDefaultLabel and the app-overridden resource context.
         assertEquals("Controlled emulator device locale","en-US",
@@ -774,6 +792,76 @@ class EditorDeviceTest {
                 try {localePickerList(count);false} catch(_: AssertionError) {true}
             }
         }
+    }
+
+    @Test @SdkSuppress(minSdkVersion=30)
+    fun mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation() {
+        var originalOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        onMain {originalOrientation=it.requestedOrientation}
+        fun assertCatalogue(tag: String,phase: String) {
+            val mixed=tag=="ko-Kore-KR"
+            val configured=if(mixed) "ko-Kore-KR-anpaint" else "ko-KR"
+            val verb=if(mixed) "複寫" else "복사"
+            awaitState("$phase exact Korean resource override") {
+                it.startupReady && !it.busy &&
+                    it.resources.configuration.locales[0].toLanguageTag()==configured
+            }
+            onMain {
+                val preferences=it.getSharedPreferences("app-language",0)
+                assertEquals("Public persisted identity",tag,preferences.getString("language-tag",null))
+                assertEquals("Public Java default identity",tag,java.util.Locale.getDefault().toLanguageTag())
+                if(Build.VERSION.SDK_INT>=33) assertEquals("Public platform identity",tag,
+                    it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+                val values=linkedMapOf(
+                    "ui_save" to it.getString(R.string.ui_save),
+                    "commons_credit_copy_failed" to it.getString(R.string.commons_credit_copy_failed),
+                    "commons_credit_copy_failed_reason" to it.getString(R.string.commons_credit_copy_failed_reason,"probe"),
+                    "commons_credit_copy_out_of_memory" to it.getString(R.string.commons_credit_copy_out_of_memory))
+                assertEquals(if(mixed) "貯藏" else "저장",values["ui_save"])
+                assertEquals("이미지 크레딧을 ${verb}할 수 없습니다.",values["commons_credit_copy_failed"])
+                assertEquals("이미지 크레딧을 ${verb}할 수 없습니다: probe",values["commons_credit_copy_failed_reason"])
+                assertEquals("이미지 크레딧을 ${verb}할 메모리가 부족합니다.",values["commons_credit_copy_out_of_memory"])
+                val config=it.resources.configuration
+                android.util.Log.i("ExactScriptResourceTest",org.json.JSONObject()
+                    .put("api",Build.VERSION.SDK_INT).put("phase",phase).put("requested_tag",tag)
+                    .put("persisted_tag",preferences.getString("language-tag",null))
+                    .put("configured_tag",config.locales[0].toLanguageTag())
+                    .put("default_tag",java.util.Locale.getDefault().toLanguageTag())
+                    .put("platform_tag",if(Build.VERSION.SDK_INT>=33)
+                        it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags() else org.json.JSONObject.NULL)
+                    .put("orientation",config.orientation).put("screen_width_dp",config.screenWidthDp)
+                    .put("screen_height_dp",config.screenHeightDp)
+                    .put("strings",org.json.JSONObject().apply {values.forEach { (key,value) -> put(key,value) }}).toString())
+            }
+        }
+        try {
+            // All selections go through the visible native picker and its original
+            // listener. The test never writes a selected preference to make it pass.
+            chooseAppLanguage("ko-Kore-KR")
+            assertCatalogue("ko-Kore-KR","mixed-selected")
+            var beforeWidth=0
+            var beforeHeight=0
+            var expectedOrientation=0
+            onMain {
+                val config=it.resources.configuration
+                beforeWidth=config.screenWidthDp;beforeHeight=config.screenHeightDp
+                val toLandscape=config.orientation!=android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                expectedOrientation=if(toLandscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                    else android.content.res.Configuration.ORIENTATION_PORTRAIT
+                it.requestedOrientation=if(toLandscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                    else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            }
+            awaitState("real display rotation changes live resource dimensions") {
+                val config=it.resources.configuration
+                config.orientation==expectedOrientation && config.screenWidthDp!=beforeWidth &&
+                    config.screenHeightDp!=beforeHeight && it.paintCanvas.width>0 && it.paintCanvas.height>0
+            }
+            assertCatalogue("ko-Kore-KR","mixed-after-rotation")
+            chooseAppLanguage("ko-KR")
+            assertCatalogue("ko-KR","ordinary-selected")
+            chooseAppLanguage("ko-Kore-KR")
+            assertCatalogue("ko-Kore-KR","mixed-reselected")
+        } finally {onMain {it.requestedOrientation=originalOrientation}}
     }
 
     private fun restoreOriginalLanguage() {
@@ -986,7 +1074,23 @@ class EditorDeviceTest {
     }
     private fun clickText(value: String) {
         val view=device.findObject(UiSelector().text(value))
-        assertTrue("Visible control: $value",view.waitForExists(5000));assertTrue(view.click())
+        val visible=view.waitForExists(5000)
+        if(!visible && Build.VERSION.SDK_INT>=29) onMain {editor ->
+            // Preserve read-only failure context. Never scroll, retry or synthesize the failed click.
+            fun dump(node: View,depth: Int) {
+                if(depth>30) return
+                val bounds=Rect();val shown=node.getGlobalVisibleRect(bounds)
+                if(node is TextView || node is ListView) android.util.Log.e("DialogVisibilityFailure",
+                    org.json.JSONObject().put("requested",value).put("class",node.javaClass.name)
+                        .put("tag",node.tag).put("shown",shown).put("bounds",bounds.toShortString())
+                        .put("width",node.width).put("height",node.height)
+                        .put("text",(node as? TextView)?.text)
+                        .put("first",(node as? ListView)?.firstVisiblePosition).toString())
+                if(node is ViewGroup) for(index in 0 until node.childCount) dump(node.getChildAt(index),depth+1)
+            }
+            WindowInspector.getGlobalWindowViews().forEach {dump(it,0)}
+        }
+        assertTrue("Visible control: $value",visible);assertTrue(view.click())
         instrumentation.waitForIdleSync()
     }
     private fun menu(group: String,item: String) {

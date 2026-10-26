@@ -49,9 +49,9 @@ import kotlin.math.max
 import kotlin.math.min
 
 /**
- * Current compiled-resource characterization, NOT a vertical foreground implementation.
- * C02/C03 call the unchanged horizontal helper directly. C04 inserts a test-only
- * vertical drawing child. Production routes for all five profiles remain system toasts.
+ * Compiled-resource route coverage plus retained horizontal/renderer diagnostics.
+ * C02/C03 explicitly select the horizontal helper branch. C04 inserts a test-only
+ * vertical drawing child; its exact-pixel counterexamples are not card verification.
  * Host event requests are not a recording of TalkBack speech or installed-device events.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -84,7 +84,7 @@ class VerticalNoticeResizeCharacterizationTest {
     }
 
     /** C01: compiled resources and actual message entry point, not an actual save/provider operation. */
-    @Test fun compiledAppResourcesKeepFiveVerticalProfilesOnSystemToasts()=withLanguageState {
+    @Test fun compiledAppResourcesRouteFiveVerticalProfilesToWindowCards()=withLanguageState {
         report("routes") {rows->
             assertTrue(AppLanguage.tags(app).containsAll(tags))
             assertTrue(ExportNames.valid(joinedEmoji,ImageFormat.PNG))
@@ -107,12 +107,13 @@ class VerticalNoticeResizeCharacterizationTest {
                     ShadowToast.reset()
                     LocaleTypography.showMessage(a,text,Toast.LENGTH_LONG)
                     settle()
-                    assertNull("Vertical profile must not take the direct-helper diagnostic route",notice(a))
-                    assertEquals(1,ShadowToast.shownToastCount())
-                    assertEquals(text,ShadowToast.getTextOfLatestToast())
+                    assertNotNull("Vertical profile must use its foreground window card",notice(a))
+                    assertEquals(0,ShadowToast.shownToastCount())
+                    assertLogicalText(label(a),text)
                     rows.put(baseRow(tag).put("kind",kind).put("text",text)
-                        .put("route","system-toast").put("configured_face",LocaleTypography.asset() ?: JSONObject.NULL)
+                        .put("route","vertical-window-card").put("configured_face",LocaleTypography.asset() ?: JSONObject.NULL)
                         .put("direction",expectedDirection.name).put("resource_locale",a.resources.configuration.locales[0].toLanguageTag()))
+                    host(a).removeView(notice(a));settle()
                 }
             }
             assertEquals(10,rows.length())
@@ -136,7 +137,7 @@ class VerticalNoticeResizeCharacterizationTest {
                         },FrameLayout.LayoutParams(-1,-1))
                         ShadowToast.reset()
                         val shownAt=now()
-                        assertTrue(LocaleNotification.show(a,text,Toast.LENGTH_SHORT,
+                        assertTrue(LocaleNotification.show(horizontalDiagnosticContext(a),text,Toast.LENGTH_SHORT,
                             LocaleTypography.typeface(a) ?: TextView(a).typeface,null))
                         settle()
                         val n=notice(a);val body=label(a)
@@ -206,7 +207,7 @@ class VerticalNoticeResizeCharacterizationTest {
                 try {
                     recorder.phase="initial"
                     val text=combined(a)
-                    assertTrue(LocaleNotification.show(a,text,Toast.LENGTH_LONG,
+                    assertTrue(LocaleNotification.show(horizontalDiagnosticContext(a),text,Toast.LENGTH_LONG,
                         LocaleTypography.typeface(a) ?: TextView(a).typeface,null))
                     settle(300)
                     val n=notice(a);val body=label(a)
@@ -277,10 +278,13 @@ class VerticalNoticeResizeCharacterizationTest {
                     val text=a.getString(R.string.ui_saved,name)
                     ShadowToast.reset()
                     LocaleTypography.showMessage(a,text,Toast.LENGTH_SHORT)
-                    assertNull(notice(a));assertEquals(1,ShadowToast.shownToastCount())
+                    assertNotNull(notice(a));assertEquals(0,ShadowToast.shownToastCount())
+                    assertLogicalText(label(a),text)
+                    host(a).removeView(notice(a));settle()
                     ShadowToast.reset()
-                    // Test-only bypass. Null-configured faces use the actual TextView default face.
-                    assertTrue(LocaleNotification.show(a,text,Toast.LENGTH_LONG,
+                    // Explicit horizontal diagnostic. The independent vertical renderer
+                    // below still receives the original language direction and configured face.
+                    assertTrue(LocaleNotification.show(horizontalDiagnosticContext(a),text,Toast.LENGTH_LONG,
                         LocaleTypography.typeface(a) ?: TextView(a).typeface,null))
                     settle()
                     val n=notice(a);val original=label(a)
@@ -336,7 +340,7 @@ class VerticalNoticeResizeCharacterizationTest {
                             .put("paint_locales",paint.textLocales.toLanguageTags())
                             .put("nominal_width",bounds.width()).put("nominal_height",bounds.height())
                             .put("safe_width",safeW).put("safe_height",safeH).put("nominal_fits",true)
-                            .put("scope","test-only vertical drawing child through unchanged Notice").put("pixels",pixels))
+                            .put("scope","test-only vertical drawing child through explicitly horizontal Notice").put("pixels",pixels))
                     } finally {reference.recycle();host(a).removeView(n);settle()}
                     assertEquals(0,ShadowToast.shownToastCount())
                 }
@@ -344,6 +348,14 @@ class VerticalNoticeResizeCharacterizationTest {
             assertEquals(5,clippedCounterexamples);assertEquals(10,ordinaryControls);assertEquals(15,rows.length())
         }
     }
+
+    // Keep the old horizontal geometry/deadline and negative-raster controls
+    // independent of the newly enabled vertical card. This wrapper retains its
+    // real Activity owner and supplied language font; it does not change app locale.
+    private fun horizontalDiagnosticContext(a: Activity): Context =
+        android.view.ContextThemeWrapper(a,R.style.ClassicPaintTheme).apply {
+            applyOverrideConfiguration(android.content.res.Configuration().apply {setLocale(Locale.ENGLISH)})
+        }
 
     private fun horizontalPixels(n: FrameLayout,body: TextView,id: String,capture: Boolean): JSONObject {
         assertEquals(0,body.scrollX);assertEquals(0,body.scrollY)
@@ -488,7 +500,9 @@ class VerticalNoticeResizeCharacterizationTest {
         a.setContentView(FrameLayout(a))
         controller.visible().windowFocusChanged(true);settle()
         try {
-            assertEquals(tag,a.resources.configuration.locales[0].toLanguageTag())
+            val resourceTag=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
+            assertEquals(resourceTag,a.resources.configuration.locales[0].toLanguageTag())
+            assertEquals(tag,AppLanguage.selectedTag(a))
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertTrue(host(a).isAttachedToWindow);assertTrue(host(a).width>0 && host(a).height>0)
             assertEquals(1f,a.resources.configuration.fontScale,0f)
@@ -519,7 +533,7 @@ class VerticalNoticeResizeCharacterizationTest {
                 .put("build_commit",System.getenv("GITHUB_SHA") ?: "local-unreported")
                 .put("run_id",System.getenv("GITHUB_RUN_ID") ?: JSONObject.NULL)
                 .put("evidence_kind","Compiled-resource Robolectric NATIVE characterization; not installed execution or TalkBack speech")
-                .put("production_vertical_route",false).put("rows",rows).toString(2)+"\n")
+                .put("production_vertical_route",true).put("rows",rows).toString(2)+"\n")
         }
     }
 

@@ -15,6 +15,15 @@ import java.net.URL
 
 /** Capture file-specific attribution, not the Commons site footer's unrelated licence. */
 internal object CommonsAttribution {
+    /** Application-owned metadata status only; localize at the alive UI boundary. */
+    class HttpException(val status: Int): IOException()
+
+    /** Application-owned streaming response limit; localize only at the alive UI boundary. */
+    class ResponseLimitException: IOException()
+
+    /** Application-owned API error presence; keep provider error fields out of UI text. */
+    class QueryFailureException: IOException()
+
     private const val MAX_RESPONSE = 2 * 1024 * 1024
     private const val MAX_FIELD = 64 * 1024
     private val fields = listOf("ObjectName", "Artist", "Credit", "Attribution", "LicenseShortName",
@@ -41,7 +50,7 @@ internal object CommonsAttribution {
 
     fun requestUrl(page: String): URL {
         val uri = Uri.parse(page)
-        require(IllustrationSource.COMMONS.isArtworkPage(uri)) { "Not a Commons file page" }
+        if (!IllustrationSource.COMMONS.isArtworkPage(uri)) throw CommonsImportFailure.NotFilePage()
         val title = if (uri.path == "/w/index.php") uri.getQueryParameter("title")!!
             else uri.path!!.removePrefix("/wiki/")
         require(title.startsWith("File:") && title.length in 6..1024 && !title.contains('|'))
@@ -54,6 +63,11 @@ internal object CommonsAttribution {
             .appendQueryParameter("iiextmetadatalanguage", "en").build().toString())
     }
 
+    fun userAgent(context: Context): String {
+        val version = context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "unknown"
+        return "AN-Paint/$version (https://github.com/c933103/AN-Paint; Android)"
+    }
+
     fun fetch(context: Context, source: String, page: String, open: (URL) -> HttpURLConnection,
         checkActive: () -> Unit, active: (HttpURLConnection?) -> Unit): Record {
         checkActive()
@@ -61,19 +75,18 @@ internal object CommonsAttribution {
         try {
             connection.instanceFollowRedirects = false
             connection.connectTimeout = 15000; connection.readTimeout = 30000
-            val version = context.packageManager.getPackageInfo(context.packageName, 0).versionName ?: "unknown"
-            connection.setRequestProperty("User-Agent", "AN-Paint/$version (https://github.com/c933103/AN-Paint; Android)")
+            connection.setRequestProperty("User-Agent", userAgent(context))
             connection.setRequestProperty("Referer", page)
             connection.setRequestProperty("Accept", "application/json")
             val status = connection.responseCode
-            if (status != 200) throw IOException("Commons metadata: HTTP $status")
+            if (status != 200) throw HttpException(status)
             val bytes = ByteArrayOutputStream()
             connection.inputStream.use { input ->
                 val buffer = ByteArray(16384)
                 while (true) {
                     checkActive()
                     val count = input.read(buffer); if (count < 0) break
-                    if (bytes.size().toLong() + count > MAX_RESPONSE) throw IOException("Commons metadata exceeds the response limit")
+                    if (bytes.size().toLong() + count > MAX_RESPONSE) throw ResponseLimitException()
                     bytes.write(buffer, 0, count)
                 }
             }
@@ -85,16 +98,16 @@ internal object CommonsAttribution {
     fun parse(json: String, expectedSource: String): Record {
         require(json.length <= MAX_RESPONSE)
         val root = JSONObject(json)
-        if (root.has("error")) throw IOException("Commons metadata query failed")
+        if (root.has("error")) throw QueryFailureException()
         val pages = root.getJSONObject("query").getJSONArray("pages")
-        if (pages.length() != 1) throw IOException("Commons metadata returned an ambiguous file")
+        if (pages.length() != 1) throw CommonsImportFailure.AmbiguousFile()
         val page = pages.getJSONObject(0)
-        if (page.optBoolean("missing") || page.optInt("ns", -1) != 6) throw IOException("Commons file metadata is unavailable")
+        if (page.optBoolean("missing") || page.optInt("ns", -1) != 6) throw CommonsImportFailure.MetadataUnavailable()
         val image = page.getJSONArray("imageinfo").getJSONObject(0)
         val source = image.getString("url")
-        if (!sameOriginal(expectedSource, source)) throw IOException("Commons attribution does not match the selected original file")
+        if (!sameOriginal(expectedSource, source)) throw CommonsImportFailure.MetadataOriginalMismatch()
         val pageUrl = image.getString("descriptionurl")
-        if (!IllustrationSource.COMMONS.isArtworkPage(Uri.parse(pageUrl))) throw IOException("Invalid Commons attribution page")
+        if (!IllustrationSource.COMMONS.isArtworkPage(Uri.parse(pageUrl))) throw CommonsImportFailure.InvalidAttributionPage()
         val title = page.getString("title").removePrefix("File:")
         val metadata = image.optJSONObject("extmetadata") ?: JSONObject()
         val text = fields.associateWith { key ->
@@ -113,7 +126,7 @@ internal object CommonsAttribution {
     /** HTML is decoded as text, never loaded or executed. Preserve safe credit URLs separately. */
     @Suppress("DEPRECATION")
     internal fun plain(html: String): String {
-        if (html.length > MAX_FIELD) throw IOException("Commons attribution field exceeds the text limit")
+        if (html.length > MAX_FIELD) throw CommonsImportFailure.FieldTooLarge()
         val spanned = if (Build.VERSION.SDK_INT >= 24) Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) else Html.fromHtml(html)
         val text = spanned.toString().trim()
         val links = spanned.getSpans(0, spanned.length, URLSpan::class.java).mapNotNull { span ->
@@ -134,7 +147,7 @@ internal object CommonsAttribution {
         val value = JSONObject().put("source", record.source).put("page", record.page).put("title", record.title)
             .put("metadata", JSONObject(record.metadata))
         if (!context.getSharedPreferences("commons-attribution-v1", Context.MODE_PRIVATE).edit()
-                .putString(record.source, value.toString()).commit()) throw IOException("Could not retain Commons attribution")
+                .putString(record.source, value.toString()).commit()) throw CommonsImportFailure.CacheFailed()
     }
 
     fun cached(context: Context, source: String): Record? {

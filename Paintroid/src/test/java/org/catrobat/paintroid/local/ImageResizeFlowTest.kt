@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.exifinterface.media.ExifInterface
 import org.catrobat.paintroid.classic.*
+import org.catrobat.paintroid.R
 import org.junit.Assert.*
 import org.junit.After
 import org.junit.Before
@@ -83,6 +84,57 @@ class ImageResizeFlowTest {
         val intent = shadowOf(activity).nextStartedActivityForResult.intent
         shadowOf(activity).receiveResult(intent,Activity.RESULT_OK,Intent().setData(uri))
     }
+    private fun loadCommons() {
+        val galleryFile = File(activity.cacheDir,"gallery-resize-regression.png")
+        provider.file.copyTo(galleryFile,overwrite=true)
+        EditorTestNavigation.otherImage(activity,4)
+        val intent = shadowOf(activity).nextStartedActivityForResult.intent
+        val sessionToken = requireNotNull(intent.getStringExtra(CreditEditSession.EXTRA_SESSION))
+        shadowOf(activity).receiveResult(intent,Activity.RESULT_OK,Intent()
+            .putExtra(CreditEditSession.EXTRA_SESSION,sessionToken)
+            .putExtra("gallery_file",galleryFile.name)
+            .putExtra("gallery_source","https://upload.wikimedia.org/wikipedia/commons/a/ab/Resize.png")
+            .putExtra("gallery_provider",IllustrationSource.COMMONS.name)
+            .putExtra("gallery_page","https://commons.wikimedia.org/wiki/File:Resize.png")
+            .putExtra("gallery_title","Resize regression"))
+    }
+    private fun assertSampledGuidance(dialog: AlertDialog) {
+        val text = dialog.window!!.decorView.findViewWithTag<TextView>("resize_explanation").text.toString()
+        assertEquals(activity.getString(R.string.ui_sampled_resize_memory_explanation),text)
+        assertFalse(text.contains("selected opaque background"))
+        assertTrue(text.contains("Actual memory use varies"))
+        assertTrue(text.contains("smaller copy loses detail"))
+        assertTrue(text.contains("original file stays unchanged"))
+    }
+    @Test fun oversizedCommonsUsesNeutralGuidanceAndWhiteBackingWithNonwhiteBackground() {
+        fixture(); val originalFile = provider.file.readBytes(); memoryBudget(24*mib)
+        activity.document.background = Color.MAGENTA
+        activity.document.bitmap.eraseColor(Color.BLUE)
+        val original = activity.document.bitmap
+        loadCommons(); val dialog = resizeDialog(); assertSampledGuidance(dialog); setWidth(dialog,"400")
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idleUntil { !activity.busy }
+        assertSame(original,activity.document.bitmap)
+        val image = activity.document.selection!!.image
+        assertEquals(400,image.width); assertEquals(600,image.height)
+        assertEquals(Color.RED,image.getPixel(50,50)); assertEquals(Color.BLUE,image.getPixel(350,50))
+        assertEquals(Color.rgb(127,255,127),image.getPixel(50,500))
+        assertEquals(Color.WHITE,image.getPixel(350,500))
+        assertEquals(Color.BLUE,original.getPixel(50,50))
+        assertArrayEquals(originalFile,provider.file.readBytes()); assertNull(activity.lastIoError)
+        assertNoCachedImport()
+    }
+    @Test fun cancellingOversizedCommonsPreservesCanvasSelectionAndSource() {
+        fixture(); val originalFile = provider.file.readBytes(); memoryBudget(24*mib)
+        activity.document.background = Color.MAGENTA
+        activity.document.bitmap.setPixel(2,3,Color.GREEN)
+        val original = activity.document.bitmap
+        loadCommons(); val dialog = resizeDialog(); assertSampledGuidance(dialog)
+        dialog.cancel(); idleUntil { !activity.busy }
+        assertSame(original,activity.document.bitmap); assertEquals(Color.GREEN,original.getPixel(2,3))
+        assertNull(activity.document.selection); assertTrue(activity.document.imageCredits.isEmpty())
+        assertArrayEquals(originalFile,provider.file.readBytes()); assertNull(activity.lastIoError)
+        assertNoCachedImport()
+    }
     private fun resizeDialog(): AlertDialog {
         idleUntil { ShadowAlertDialog.getLatestAlertDialog()?.window?.decorView?.findViewWithTag<View>("resize_width") != null }
         return ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
@@ -92,27 +144,29 @@ class ImageResizeFlowTest {
         shadowOf(Looper.getMainLooper()).idle()
     }
     @Test fun approvedResizeLoadsExactDimensionsAndOpaquePixelsFromOneProviderRead() {
-        fixture(); val originalFile = provider.file.readBytes(); memoryBudget(24 * mib); load()
-        val dialog = resizeDialog(); val root = dialog.window!!.decorView
+        fixture(); val originalFile = provider.file.readBytes(); memoryBudget(24 * mib)
+        activity.document.background = Color.MAGENTA; load()
+        val dialog = resizeDialog(); assertSampledGuidance(dialog); val root = dialog.window!!.decorView
         val text = root.findViewWithTag<TextView>("resize_original").text.toString()
-        assertTrue(text,text.contains("1600 × 2400")); assertTrue(text.contains("3,840,000 pixels"))
+        assertTrue(text,text.contains("1600 × 2400")); assertTrue(text.contains("Pixel count: 3,840,000"))
         assertTrue(text.contains("14.6 MiB")); assertTrue(text.contains("44.0 MiB"))
         setWidth(dialog,"800")
         assertEquals("1200",root.findViewWithTag<EditText>("resize_height").text.toString())
-        assertTrue(root.findViewWithTag<TextView>("resize_estimate").text.contains("960,000 pixels"))
+        assertTrue(root.findViewWithTag<TextView>("resize_estimate").text.contains("Pixel count: 960,000"))
         render(dialog,"resize-image.png")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idleUntil { !activity.busy }
         val image = activity.document.bitmap
         assertEquals(800,image.width); assertEquals(1200,image.height)
         assertEquals(Color.RED,image.getPixel(100,100)); assertEquals(Color.BLUE,image.getPixel(700,100))
-        assertEquals(Color.rgb(127,255,127),image.getPixel(100,1000)); assertEquals(Color.WHITE,image.getPixel(700,1000))
+        assertEquals(Color.rgb(127,128,127),image.getPixel(100,1000)); assertEquals(Color.MAGENTA,image.getPixel(700,1000))
         assertEquals(1,provider.reads); assertArrayEquals(originalFile,provider.file.readBytes()); assertNull(activity.lastIoError)
         assertNoCachedImport()
     }
     @Test @Config(sdk = [28]) fun resizeImportCreatesSelectionAtChosenSizeOnAndroidNine() {
-        fixture(); memoryBudget(24*mib); activity.document.bitmap.eraseColor(Color.BLUE)
+        fixture(); memoryBudget(24*mib); activity.document.background = Color.MAGENTA
+        activity.document.bitmap.eraseColor(Color.BLUE)
         val original = activity.document.bitmap; load(true)
-        val dialog = resizeDialog(); setWidth(dialog,"400")
+        val dialog = resizeDialog(); assertSampledGuidance(dialog); setWidth(dialog,"400")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idleUntil { !activity.busy }
         assertSame(original,activity.document.bitmap)
         val selection = activity.document.selection!!.image

@@ -119,7 +119,7 @@ class PickerFallbackNoticePr6Tests(unittest.TestCase):
         self.assertEqual(1, len(code_locations(picker, '.setCustomTitle(')))
         self.assertCode(picker, 'return AlertDialog.Builder(activity)'
                         '.setTitle(ui(R.string.language20_app_language))'
-                        '.setCustomTitle(if (VerticalText.uiVertical())'
+                        '.setCustomTitle(if (VerticalText.uiVertical(activity))'
                         'ColumnScrollView(activity).apply { addView(note) } else note)')
 
     def test_picker_notice_retains_typography_and_vertical_transformation(self):
@@ -133,7 +133,7 @@ class PickerFallbackNoticePr6Tests(unittest.TestCase):
     def test_vertical_notice_caption_keeps_text_and_horizontal_bypass(self):
         caption = kotlin_block(self.classic_source('VerticalUi.kt'),
                                'fun caption(view: TextView, heightDp: Int = 144,'
-                               'direction: TextDirection = VerticalText.uiDirection()) {')
+                               'direction: TextDirection = VerticalText.uiDirection(view.context)) {')
         self.assertCode(caption, 'if (direction == TextDirection.HORIZONTAL || view is EditText'
                         '|| view is FlowButton || view is FlowTextView) return')
         self.assertCode(caption, 'VerticalText.uiTypeface(view.context)?.let { view.typeface = it }')
@@ -155,7 +155,7 @@ class PickerFallbackNoticePr6Tests(unittest.TestCase):
         self.assertCode(layout, 'super.onLayout(changed, left, top, right, bottom)')
         first_layout = kotlin_block(layout, 'if (!positioned && childCount > 0 && width > 0) {')
         self.assertCode(first_layout, 'positioned = true')
-        self.assertCode(first_layout, 'if (VerticalText.uiDirection() == TextDirection.VERTICAL_RL)'
+        self.assertCode(first_layout, 'if (VerticalText.uiDirection(context) == TextDirection.VERTICAL_RL)'
                         'scrollTo((getChildAt(0).width - width + paddingLeft + paddingRight)'
                         '.coerceAtLeast(0), 0)')
 

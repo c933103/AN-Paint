@@ -8,17 +8,23 @@ import java.io.IOException
 
 /** Packed Windows DIB import/export, using private scoped BMP wrappers for Android decoding. */
 object DibCodec {
-    fun isDib(file: File): Boolean = PackedDib.isDib(file)
+    // Do not relabel provider/storage errors or exceptions from the consumer block.
+    private inline fun <T> readImage(block: () -> T): T = try { block() }
+    catch (error: PackedDib.InvalidImage) {
+        throw IOException(ui(R.string.ui_no_readable_image_data), error)
+    } catch (error: LegacyColourMetadata.UnsupportedColour) {
+        throw IOException(ui(R.string.save20_unsupported_image_colour), error)
+    }
+
+    fun isDib(file: File): Boolean = readImage { PackedDib.isDib(file) }
 
     fun <T> withBmpFile(file: File, block: (File) -> T): T {
         if (!isDib(file)) return block(file)
         val temporary = File.createTempFile("dib-input-", ".bmp", file.absoluteFile.parentFile)
         try {
-            try {
+            readImage {
                 temporary.outputStream().buffered().use { PackedDib.toBmp(file, it) }
                 LegacyColourMetadata.check(temporary)
-            } catch (error: LegacyColourMetadata.UnsupportedColour) {
-                throw IOException(ui(R.string.save20_unsupported_tagged_colour), error)
             }
             return block(temporary)
         } finally { temporary.delete() }

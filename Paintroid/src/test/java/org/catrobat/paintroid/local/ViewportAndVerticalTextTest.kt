@@ -1,6 +1,7 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.content.res.Configuration
 import android.graphics.*
 import android.view.MotionEvent
 import org.catrobat.paintroid.classic.*
@@ -142,6 +143,77 @@ class ViewportAndVerticalTextTest {
     @Test fun unicodeClustersPreserveCombiningCharactersAndEmojiSequences() {
         assertEquals(listOf("Á","👩🏽‍🎨","🇲🇳","𠀀"),VerticalText.clusters("Á👩🏽‍🎨🇲🇳𠀀"))
     }
+    @Test fun nonbreakingSpacesStayInsideWordsAcrossVerticalWraps() {
+        val paint=Paint().apply {textSize=32f}
+        for(space in listOf('\u202f','\u00a0','\u2007')) {
+            assertTrue("The old isBlank branch incorrectly consumes this boundary",space.isWhitespace())
+            val word="A${space}B"
+            for(direction in listOf(TextDirection.VERTICAL_LR,TextDirection.VERTICAL_RL)) {
+                assertEquals(word,VerticalText.wrapLabel(word,paint,10000f,direction))
+                assertEquals("C\n$word\nD",VerticalText.wrapLabel("C $word D",paint,1f,direction))
+                for(joined in listOf("漢${space}字","✅${space}A","A${space}✅","${space}漢","漢${space}")) {
+                    assertEquals(joined,VerticalText.wrapLabel(joined,paint,1f,direction))
+                    assertEquals("C\n$joined\nD",VerticalText.wrapLabel("C $joined D",paint,1f,direction))
+                }
+                assertEquals("漢${space}字\nA",VerticalText.wrapLabel("漢${space}字A",paint,1f,direction))
+                assertEquals("A${space}✅\n字",VerticalText.wrapLabel("A${space}✅字",paint,1f,direction))
+            }
+        }
+        assertEquals("A\nB",VerticalText.wrapLabel("A B",paint,1f,TextDirection.VERTICAL_LR))
+        assertEquals("漢\n字",VerticalText.wrapLabel("漢字",paint,paint.fontSpacing,TextDirection.VERTICAL_RL))
+        assertEquals("A B C",VerticalText.wrapLabel("A B C",paint,1f,TextDirection.HORIZONTAL))
+    }
+    @Test fun completeMongolianPositionValuesKeepEverySuffixWhenWrapped() {
+        val base=RuntimeEnvironment.getApplication() as android.content.Context
+        val locale=Locale.forLanguageTag("mn-Mong")
+        val context=base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(locale)})
+        val paint=Paint().apply {typeface=VerticalText.uiTypeface(context);textSize=32f}
+        val keys=listOf(org.catrobat.paintroid.R.string.ui_assembly_exact_position,
+            org.catrobat.paintroid.R.string.ui_assembly_target_x,org.catrobat.paintroid.R.string.ui_assembly_target_y,
+            org.catrobat.paintroid.R.string.ui_assembly_position_help,org.catrobat.paintroid.R.string.ui_assembly_position_nonnegative,
+            org.catrobat.paintroid.R.string.ui_assembly_unknown_image)
+        for(key in keys) {
+            val value=context.getString(key)
+            assertTrue(value.any {it in '\u1820'..'\u1842'})
+            assertEquals(value,VerticalText.wrapLabel(value,paint,100000f,TextDirection.VERTICAL_LR))
+            val wrapped=VerticalText.wrapLabel(value,paint,1f,TextDirection.VERTICAL_LR)
+            // Ordinary spaces may become column boundaries; NNBSP is part of
+            // the same shaped word, even if that word exceeds the target height.
+            assertEquals(value.split(' '),wrapped.split('\n'))
+            assertEquals(value.count {it=='\u202f'},wrapped.count {it=='\u202f'})
+        }
+    }
+    @Test fun replacingMongolianSuffixBoundaryChangesNativeInk() {
+        val base=RuntimeEnvironment.getApplication() as android.content.Context
+        val context=base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.forLanguageTag("mn-Mong"))})
+        val paint=Paint(Paint.ANTI_ALIAS_FLAG).apply {typeface=VerticalText.uiTypeface(context);textSize=36f;color=Color.BLACK}
+        val value="ᠵᠢᠷᠤᠭ ᠤᠨ ᠪᠠᠶᠢᠷᠢᠯᠠᠯ ᠢᠶᠠᠨ"
+        fun render(text: String)=Bitmap.createBitmap(100,1200,Bitmap.Config.ARGB_8888).apply {
+            eraseColor(Color.WHITE);VerticalText.draw(Canvas(this),text,paint,TextDirection.VERTICAL_LR,GlyphOrientation.MIXED)
+        }
+        val exact=render(value)
+        val wrapped=render(VerticalText.wrapLabel(value,paint,100000f,TextDirection.VERTICAL_LR))
+        val replaced=render(value.replace('\u202f',' '))
+        try {
+            assertTrue("Wrapping without a column break must preserve exact shaped ink",exact.sameAs(wrapped))
+            assertFalse("ASCII substitution must be a meaningful native negative control",exact.sameAs(replaced))
+        } finally {exact.recycle();wrapped.recycle();replaced.recycle()}
+    }
+    @Test fun verticalCaptionDisablesEllipsisWithoutRemovingMongolianSuffixes() {
+        val base=RuntimeEnvironment.getApplication() as android.content.Context
+        val context=base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.forLanguageTag("mn-Mong"))})
+        val value=context.getString(org.catrobat.paintroid.R.string.ui_assembly_position_help)
+        val view=android.widget.TextView(context).apply {text=value;setSingleLine(true);ellipsize=android.text.TextUtils.TruncateAt.END}
+        VerticalUi.caption(view,32)
+        val spec=android.view.View.MeasureSpec.makeMeasureSpec(4000,android.view.View.MeasureSpec.AT_MOST)
+        view.measure(spec,spec);view.layout(0,0,view.measuredWidth,view.measuredHeight)
+        assertEquals(value,view.text.toString());assertNull(view.ellipsize)
+        assertEquals(Int.MAX_VALUE,view.maxLines)
+        val text=view.text as android.text.Spanned
+        val span=text.getSpans(0,text.length,android.text.style.ReplacementSpan::class.java).single()
+        assertEquals(0,text.getSpanStart(span));assertEquals(value.length,text.getSpanEnd(span))
+        for(line in 0 until view.layout.lineCount) assertEquals(0,view.layout.getEllipsisCount(line))
+    }
     @Test fun mixedVerticalEmojiSymbolsSelectorsAndKeycapsStayUpright() {
         val paint=Paint().apply {textSize=32f}
         val box=VerticalText.bounds("✅⚙️1️⃣",paint,TextDirection.VERTICAL_RL,GlyphOrientation.MIXED,1f)
@@ -179,13 +251,16 @@ class ViewportAndVerticalTextTest {
     }
     @Test fun verticalLocaleDefaultsAndSettingsSurviveSerialization() {
         val old=Locale.getDefault()
+        fun localizedContext()=RuntimeEnvironment.getApplication().let {base ->
+            base.createConfigurationContext(Configuration(base.resources.configuration).apply {setLocale(Locale.getDefault())})
+        }
         try {
             Locale.setDefault(Locale.forLanguageTag("lzh-Hant"));assertEquals(TextDirection.VERTICAL_RL,TextSettings().direction)
             Locale.setDefault(Locale.forLanguageTag("mn-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
-            val font=VerticalText.uiTypeface(RuntimeEnvironment.getApplication());assertNotNull(font)
+            val font=VerticalText.uiTypeface(localizedContext());assertNotNull(font)
             val paint=Paint().apply {typeface=font;textSize=40f};assertTrue(paint.hasGlyph("ᠮ"))
             Locale.setDefault(Locale.forLanguageTag("mnc-Mong"));assertEquals(TextDirection.VERTICAL_LR,TextSettings().direction)
-            assertSame(font,VerticalText.uiTypeface(RuntimeEnvironment.getApplication()))
+            assertSame(font,VerticalText.uiTypeface(localizedContext()))
             assertTrue(paint.hasGlyph("ᡤ"))
             assertEquals(TextDirection.VERTICAL_LR,VerticalText.uiDirection(Locale.forLanguageTag("en-XV")))
             assertEquals(TextDirection.VERTICAL_RL,VerticalText.uiDirection(Locale.forLanguageTag("qaa-Zsye-XV")))

@@ -49,22 +49,25 @@ class LocaleNumberInputTest {
     private fun withActivity(tag: String, check: (Activity) -> Unit) {
         val oldLocale=Locale.getDefault()
         val oldResources=PaintApplication.currentResources
-        val controller=Robolectric.buildActivity(Activity::class.java)
+        val application=RuntimeEnvironment.getApplication()
+        val oldTag=AppLanguage.selectedTag(application)
+        AppLanguage.select(application,tag)
+        val controller=Robolectric.buildActivity(LocalizedTestActivity::class.java)
         val activity=controller.get()
         activity.setTheme(R.style.ClassicPaintTheme)
         controller.setup()
-        val oldConfig=Configuration(activity.resources.configuration)
         try {
             val locale=Locale.forLanguageTag(tag)
-            activity.resources.updateConfiguration(Configuration(oldConfig).apply {setLocale(locale);setLayoutDirection(locale)}, activity.resources.displayMetrics)
-            PaintApplication.currentResources=activity.resources
-            Locale.setDefault(locale)
+            AppLanguage.refresh(activity)
+            assertNotSame(application.resources,activity.resources)
+            assertEquals(locale,application.resources.configuration.locale)
+            assertEquals(locale,activity.resources.configuration.locale)
             check(activity)
         } finally {
             ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
             idle()
             controller.pause().stop().destroy()
-            activity.resources.updateConfiguration(oldConfig,activity.resources.displayMetrics)
+            AppLanguage.select(application,oldTag)
             PaintApplication.currentResources=oldResources
             Locale.setDefault(oldLocale)
         }
@@ -130,7 +133,7 @@ class LocaleNumberInputTest {
         val old=Locale.getDefault()
         try {
             val tags=AppLanguage.tags(context)
-            assertEquals(140,tags.size)
+            assertEquals(171,tags.size)
             for(tag in tags) {
                 val locale=Locale.forLanguageTag(tag)
                 val localized=context.createConfigurationContext(Configuration(context.resources.configuration).apply {setLocale(locale);setLayoutDirection(locale)})
@@ -151,7 +154,7 @@ class LocaleNumberInputTest {
                         enter(field,text)
                         assertEquals(tag,expected,uiNumber(field.text.toString())!!,0.0)
                     }
-                    for(sign in setOf('-',symbols.minusSign)) {
+                    for(sign in setOf('-', '\u2212', symbols.minusSign)) {
                         enter(field,sign+digits("12"))
                         val parsed=uiNumber(field.text.toString())
                         assertTrue("$tag must not turn a negative into positive input",parsed==null || parsed<0)

@@ -61,7 +61,18 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
             crop.right.toFloat()*bitmap.width/item.dimensions.width,crop.bottom.toFloat()*bitmap.height/item.dimensions.height)
         val matrix = Matrix().apply { setRectToRect(src,RectF(rect),Matrix.ScaleToFit.FILL) }
         canvas.save(); canvas.clipRect(rect)
-        canvas.drawBitmap(bitmap,matrix,Paint(Paint.FILTER_BITMAP_FLAG).apply { this.alpha = alpha }); canvas.restore()
+        val unscaled = bitmap.width == item.dimensions.width && bitmap.height == item.dimensions.height &&
+            rect.width() == crop.width() && rect.height() == crop.height()
+        // Paint(0) still enables bitmap filtering on Android Q and newer.
+        // Keep original-size source pixels crisp even when the workspace is zoomed.
+        val paint = Paint(0).apply { isFilterBitmap = !unscaled; this.alpha = alpha }
+        canvas.drawBitmap(bitmap,matrix,paint); canvas.restore()
+    }
+    // Attachment resolution may insert an anchor into layout before its child.
+    // Layer order follows the source list, just as it does during export.
+    private fun topImageAt(x: Float,y: Float): String? {
+        val layout = assembly.layout()
+        return assembly.images.lastOrNull { item -> layout[item.id]?.let { x >= it.left && x < it.right && y >= it.top && y < it.bottom } == true }?.id
     }
     private fun targetPoint(target: SnapTarget) = PointF(target.rect.left.toFloat(),target.rect.top.toFloat())
     override fun onDraw(canvas: Canvas) {
@@ -69,7 +80,7 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
         val layout = dragging?.let { assembly.layoutWithout(it) } ?: assembly.layout()
         if (layout.isEmpty() && selectedId == null) {
             val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = EditorColours.onSurface; textSize = 16*density; textAlign = Paint.Align.CENTER; typeface = VerticalText.uiTypeface(context) }
-            val direction=VerticalText.uiDirection()
+            val direction=VerticalText.uiDirection(context)
             if(direction==TextDirection.HORIZONTAL) {
                 canvas.drawText(ui(R.string.ui_add_images_then_drag_a_thumbnail_here),width/2f,height/2f,p)
             } else {
@@ -80,10 +91,15 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
         }
         canvas.save(); canvas.translate(panX,panY); canvas.scale(zoom,zoom)
         val p = Paint(Paint.ANTI_ALIAS_FLAG)
-        layout.forEach { (id,rect) ->
-            p.color = Color.WHITE; p.style = Paint.Style.FILL; canvas.drawRect(rect,p)
-            drawImage(canvas,assembly.image(id),rect)
-            p.style = Paint.Style.STROKE; p.color = if (id == selectedId) EditorColours.primary else EditorColours.outline; p.strokeWidth = (if (id == selectedId) 3 else 1)*density/zoom; canvas.drawRect(rect,p)
+        if (layout.isNotEmpty()) {
+            p.color = Color.WHITE; p.style = Paint.Style.FILL
+            canvas.drawRect(0f,0f,layout.values.maxOf { it.right }.toFloat(),layout.values.maxOf { it.bottom }.toFloat(),p)
+        }
+        assembly.images.forEach { item ->
+            layout[item.id]?.let { rect ->
+                drawImage(canvas,item,rect)
+                p.style = Paint.Style.STROKE; p.color = if (item.id == selectedId) EditorColours.primary else EditorColours.outline; p.strokeWidth = (if (item.id == selectedId) 3 else 1)*density/zoom; canvas.drawRect(rect,p)
+            }
         }
         ghost?.let { target -> selectedId?.let { id -> drawImage(canvas,assembly.image(id),target.rect,180) }
             p.style = Paint.Style.FILL; p.color = (EditorColours.tertiary and 0x00ffffff or 0x33000000); canvas.drawRect(target.rect,p)
@@ -136,9 +152,8 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
                 pinching = false; moved = false; touchDragging = false
                 start = PointF(event.x,event.y); previous = start
                 val p=toImage(event.x,event.y)
-                val hit=assembly.layout().entries.lastOrNull { it.value.contains(p.x.toInt(),p.y.toInt()) }
-                touchImage=hit?.key
-                hit?.let { val origin=toScreen(it.value.left.toFloat(),it.value.top.toFloat()); dragOffset=PointF(event.x-origin.x,event.y-origin.y) }
+                touchImage=topImageAt(p.x,p.y)
+                touchImage?.let { id -> val rect=assembly.layout().getValue(id); val origin=toScreen(rect.left.toFloat(),rect.top.toFloat()); dragOffset=PointF(event.x-origin.x,event.y-origin.y) }
                 parent?.requestDisallowInterceptTouchEvent(true)
             }
             MotionEvent.ACTION_MOVE -> if (!pinching) {
@@ -154,7 +169,7 @@ class AssemblyCanvas(context: Context, val assembly: ImageAssembly, private val 
                     val p = toImage(event.x,event.y)
                     val target = targets.minByOrNull { val t = targetPoint(it); hypot(p.x-t.x,p.y-t.y) }
                     if (target != null && (assembly.layout().isEmpty() || hypot(p.x-target.rect.left,p.y-target.rect.top)*zoom < 36*density)) dropImage(event.x,event.y)
-                    else assembly.layout().entries.lastOrNull { it.value.contains(p.x.toInt(),p.y.toInt()) }?.let { select(it.key,false); onSelect(it.key) }
+                    else topImageAt(p.x,p.y)?.let { select(it,false); onSelect(it) }
                 }
                 touchImage=null; touchDragging=false; dragging=null; ghost=null
                 parent?.requestDisallowInterceptTouchEvent(false); performClick(); invalidate()

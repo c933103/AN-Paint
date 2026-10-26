@@ -196,7 +196,7 @@
     <string name="ui_add_images_first">先加圖。</string>
     <string name="ui_add_images_then_drag_a_thumbnail_here">先加圖，後曳縮圖至此</string>
     <string name="ui_add_to_custom_colours">加於自定色</string>
-    <string name="ui_add_up_to_20_images_with_android_s">可用 Android 選檔器加圖，至多二十。下盤若得來源所供，示縮圖、檔名、裁切及「同寬」或「同高」調整後之圖寸及改檔之時。可按檔名或改時排序；排序不移已置之圖。\n\n點縮圖以選。「裁圖」只裁此圖；「批裁」則以像素或百分比之邊距施於所選諸圖。曳裁切柄，或輸數。「復裁域」則復其原邊。裁切不改原本，亦可撤前。\n\n按縮圖不放，或曳工作區中已置之圖，再投於發亮之邊。半透明預覽即示貼合後實貌。接右則齊上；接下則齊左。亦可點縮圖後點「+」之標。首圖起於原點。裁其母圖，所附諸圖隨之而移。圖不可相疊。\n\n「同寬」「同高」使諸輸入圖同一尺寸，而各守其本來比例。可擇像素、百分比、最小或最大。「復原尺寸」去其齊一，而保留裁切。\n\n「撤置」但還所選圖於下盤；後圖補其空而仍為已置。「去」但去此輸入。撤前／復行可還此變。曳已置圖可改序；曳空處可移視野。兩指可縮放。「示全部」但縮放至可見全合圖，不改輸出之寸。\n\n「存 PNG」徑存合成圖。「入 Paint 編修」則送入主編輯器，作可撤之圖像替換。若輸出逾記憶體限，且程式示尺寸選單，宜擇較小副本。若輸出雖極小仍逾限，程式但示記憶體警告，不示尺寸選單。原始檔不改。今合圖之狀存於本機，復入時重開。\n\n此式之 Catrobat/AGPL 與素材致謝，同主編輯器；見「文檔」→「本程、授權與致謝」。</string>
+    <string name="ui_add_up_to_20_images_with_android_s">用 Android 選檔器加圖，至多二十。下盤示縮圖、檔名及裁切後之圖寸；若施「同寬」或「同高」，則示調整後之寸；供檔者若報改檔之時，亦示之。可依檔名或改檔之時排序；已置之圖，不為之移。\n\n點縮圖以選之。「裁圖」裁此一圖；「批裁」以像素或百分比所定之邊距裁所選諸圖。曳裁切之柄，或輸入其數。「復裁域」復其原邊。裁切不毀原圖，亦可撤前。\n\n按縮圖不放，或曳工作區中已置之圖，再放於發亮之邊。半透明預覽即示貼合後之實貌。接於右，則上緣相齊；接於下，則左緣相齊。亦可先點縮圖，後點「+」之標。以貼合之法置圖，首圖起於原點。若裁一圖，附於此圖者或隨之而移。貼合置圖，不許相疊。\n\n選一圖，以「精確位置」定其左上角之 X、Y 座標，皆以整數像素計，自零起。餘圖仍守其位，此處許圖相疊。\n\n「同寬」齊諸輸入圖之寬，「同高」齊諸輸入圖之高；各圖縱橫之比，仍其舊。可擇「像素」、「百分比」、「最小」或「最大」。「復原尺寸」撤去「同寬」或「同高」之調整，而留裁域。\n\n「撤置」但還所選之圖於下盤。餘圖仍為已置；所附之圖，或移以補其隙。「去」但刪此一輸入圖。「撤前」可撤所改，「復行」可復所撤。曳已置圖以更其位；曳空處以移視野。兩指開合以縮放。「示全部」調視圖之縮放，以盡見合圖；輸出之寸，始終不改。\n\n「存 PNG」徑存合成之圖。「入 Paint 編修」送合圖入主編輯器，以代其中之圖，其變可撤。若輸出所需記憶體逾所定之限，且有較小輸出副本可選，則擇之。若輸出雖極小，其所需記憶體猶逾所定之限，程式則示記憶體警告，而不示尺寸選單。原檔皆不改。今合圖之狀存於本機，復入時重開。\n\n此式所用之 Catrobat/AGPL 及素材致謝，與主編輯器「文檔」→「本程、授權與致謝」中所示者同。</string>
     <string name="ui_all">皆</string>
     <string name="ui_an_assembly_can_contain_up_to_20_images">合圖至多二十張。欲加新圖，先去一圖。</string>
     <string name="ui_an_assembly_can_contain_up_to_20_images_86d995">合圖至多二十張。</string>
@@ -352,6 +352,7 @@
     <string name="ui_enter_valid_dimensions">入有效尺寸。</string>
     <string name="ui_estimated_memory_current_working_budget">估算記憶體：%1$s\n今作業之限：%2$s\n</string>
     <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">所估者含今畫布、剪貼簿、取樣解碼及編修緩衝區；實際耗用或異。副本愈小，細節愈少。匯入時襯以所選之不透明背景色；原檔不改。</string>
+    <string name="ui_sampled_resize_memory_explanation">所估者含今畫布、剪貼簿、取樣解碼及編修緩衝區；實際耗用或異。副本愈小，細節愈少。原檔不改。</string>
     <string name="ui_expand_colour_palette">展色盤</string>
     <string name="ui_export_recovery_copy_144b8a">匯出復本</string>
     <string name="ui_export_this_version_s_source_code">匯出此版本之原始碼…</string>
@@ -406,7 +407,7 @@
     <string name="ui_modified_oldest_first">修改時間：最舊優先</string>
     <string name="ui_new_colour">新色</string>
     <string name="ui_no_attachment_fits_within_the_current_coordinate_range">今座標域內，無可容此圖之連接處。宜縮其寸而復試。</string>
-    <string name="ui_no_gallery_images_have_been_inserted">尚未置入圖庫之圖。</string>
+    <string name="ui_no_gallery_images_have_been_inserted">無圖像致謝之文。</string>
     <string name="ui_no_readable_image_data">無可讀之圖像資料。</string>
     <string name="ui_none">無</string>
     <string name="ui_not_enough_memory_for_this_operation_the_assembly">記憶體不足，此舉未成。合圖之源檔仍存。</string>
@@ -501,7 +502,7 @@
     <string name="ui_the_full_image_and_working_buffers_exceed_the">完整圖及工作緩衝區逾今安全之限，或 Android 不能配置所須記憶體。調一份副本之大小後再編輯。本檔不改。</string>
     <string name="ui_the_gallery_download_is_too_large">圖庫下載內容過大。</string>
     <string name="ui_the_gallery_image_is_unavailable">圖庫圖不能用。</string>
-    <string name="ui_the_gallery_redirected_outside_its_supported_hosts">圖庫轉址至所支援主機之外。</string>
+    <string name="ui_the_gallery_redirected_outside_its_supported_hosts">圖庫轉址至不支援之圖像 URL。</string>
     <string name="ui_the_image_could_not_be_downloaded">不能下載圖。</string>
     <string name="ui_the_image_was_saved_but_android_could_not">圖已存，但 Android 不能啟分享功能：%1$s</string>
     <string name="ui_the_images_cannot_fit_within_android_s_coordinate">圖不能放入 Android 座標域。擇較小之圖尺寸。</string>
@@ -582,13 +583,14 @@
     <string name="colour_truncated_metadata">色彩中繼資料未盡，圖像資料已斷。</string>
     <string name="colour_unsupported_icc_model">此圖用 ICC 色模型，圖解碼器不能轉之。先以支援色彩管理之程式匯出 RGB 副本。</string>
     <string name="colour_converter_unavailable">不能啟色彩轉換器，圖未匯入。</string>
+    <string name="gallery_image_component_unavailable">圖像所需之組件不可用。圖未匯入。</string>
     <string name="ui_lossless_format">無損 %1$s</string>
     <string name="ui_save_as_webp">存為 WebP…</string>
     <string name="ui_save_as_heic">存為 HEIC…</string>
     <string name="ui_save_as_avif">存為 AVIF…</string>
     <string name="ui_image_codec_licences">圖編解碼器授權條款</string>
     <string name="ui_codec_resize_memory_floor">此格式須先解源圖或源圖塊，而後可伸縮。輸出雖小，所需記憶體仍或逾可用之量。</string>
-    <string name="ui_no_resize_fits_decoder_memory">雖取最小輸出，此圖之解碼器緩衝區仍逾今記憶體之限。罷之，改用較小源圖。</string>
+    <string name="ui_no_resize_fits_decoder_memory">雖取最小輸出尺寸，此圖仍不可於今記憶體之限內載入以編修。罷之，改用較小源圖。</string>
     <string name="formats22_base64_label">Base64 文字</string>
     <string name="formats22_tiff_compression">無損壓縮（Deflate）</string>
     <string name="formats22_tiff_description">存單頁 RGB 圖。壓縮可省檔案大小而不改像素；停之，則存未壓縮之 TIFF。</string>
@@ -639,7 +641,7 @@
     <string name="gallery_credit_gallery">圖庫：%1$s</string>
     <string name="gallery_credit_licence">Catrobat 原創作品：CC BY-SA 4.0 — %1$s</string>
     <string name="gallery_credit_saved">已存致謝文字</string>
-    <string name="ui_assembly_source_memory_floor">源圖之解碼所需記憶體，雖取極小輸出，仍逾今可用之量；縮合圖無益。請閉他文件，或先備較小源圖而復試。今合圖未改。</string>
+    <string name="ui_assembly_source_memory_floor">據估，此合圖所需工作記憶體，雖取最小輸出尺寸，仍逾今所定之限。於今之限，僅縮合圖尺寸，猶未足也。請閉他文件，或先備較小源圖而復試。今合圖未改。</string>
     <string name="formats22_ico_size">圖示大小</string>
     <string name="formats22_ico_description">以所選之寸（16–256 像素），存一幅 PNG 壓縮之圖示。圖守縱橫比，居透明正方形之中。</string>
     <string name="formats22_ico_decode_budget">解碼此圖示所須記憶體逾可用圖記憶體上限。</string>
@@ -674,7 +676,7 @@
     <string name="ui_irasutoya_credit34">版權仍歸作者。用之須循「いらすとや」條款；非 Creative Commons 授權。</string>
     <string name="ui_history_unavailable34">畫布已復，然撤前紀錄不可讀。原稿已別存為復原副本。</string>
     <plurals name="ui_crop_preview_images">
-        <item quantity="other">預覽：%1$d × %2$d px\n施於 %3$d 圖。裁已置之圖，所連諸圖亦隨之移。</item>
+        <item quantity="other">預覽：%1$d × %2$d px\n施於 %3$d 圖。裁已置之圖，所連諸圖或因之而移。</item>
     </plurals>
 
     <string name="ui_normalize_width_intro">使諸圖等寬。圖數：%1$d。各圖縱橫之比仍其舊，原檔及裁切設定皆不改。</string>
@@ -696,4 +698,29 @@
     <string name="commons_svg_original_size_too_large">SVG 原寸逾 Android 位圖尺寸之限。未改其大小。</string>
     <string name="commons_import_svg_changes">AN Paint: SVG → PNG; 原寸; antiAlias=false; strokeDashArray=none; background=#FFFFFF.</string>
     <string name="commons_import_raster_changes">AN Paint: background=#FFFFFF (依透明度合成).</string>
+    <string name="commons_credit_copy_failed">未能複製圖像出處。</string>
+    <string name="commons_credit_copy_failed_reason">未能複製圖像出處：%1$s</string>
+    <string name="commons_credit_copy_out_of_memory">記憶體不足，未能複製圖像出處。</string>
+    <string name="commons_metadata_http_error">Commons 之中繼資料：HTTP %1$s</string>
+    <string name="commons_metadata_response_too_large">Commons 中繼資料之應答逾應答大小之限。</string>
+    <string name="commons_metadata_query_failed">查詢 Commons 中繼資料未成。</string>
+    <string name="save20_unsupported_image_colour">此圖用 AN Paint 未能轉換之色描述檔。先在支援色管理之編輯器轉換為 sRGB PNG，再入。</string>
+    <string name="ui_assembly_exact_position">精確位置</string>
+    <string name="ui_assembly_target_x">X 位（自左緣起算之像素）</string>
+    <string name="ui_assembly_target_y">Y 位（自上緣起算之像素）</string>
+    <string name="ui_assembly_position_help">置此圖左上角於輸出畫布。X、Y 皆以整數像素計，自零起。餘圖仍守今位。此處許圖相疊，後匯入者繪於上。畫布隨之擴展，以容所有已置之圖。裁域及尺寸皆不變。</string>
+    <string name="ui_assembly_position_nonnegative">X、Y 須為 0 至 2147483647 之整數。</string>
+    <string name="ui_assembly_unknown_image">所選之圖已不在此合圖中。</string>
+    <string name="gallery_external_link_no_handler">Android 未尋得可啟此連結之程式。</string>
+
+    <!-- Commons/import reasons accepted by independent review; held keys remain absent. -->
+    <string name="commons_metadata_not_file_page">非 Commons 檔案頁。</string>
+    <string name="commons_metadata_ambiguous_file">Commons 中繼資料未能確指唯一檔案。</string>
+    <string name="commons_metadata_unavailable">Commons 檔案之中繼資料不可得。</string>
+    <string name="commons_metadata_original_mismatch">Commons 署名資料與所選原檔不合。</string>
+    <string name="commons_metadata_invalid_page">Commons 署名頁無效。</string>
+    <string name="commons_metadata_field_too_large">Commons 署名欄位之文長逾限。</string>
+    <string name="commons_metadata_cache_failed">未能留存 Commons 署名資料。</string>
+    <string name="commons_download_original_mismatch">Commons 下載轉址至別一原檔。</string>
+    <string name="commons_svg_png_encode_failed">未能將空白輿圖編碼為 PNG。</string>
 </resources>

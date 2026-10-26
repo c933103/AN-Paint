@@ -366,6 +366,27 @@ class ClassicWorkspaceTest {
         assertTrue((45..70).any { y -> (20..75).any { x -> doc.bitmap.getPixel(x, y) != Color.WHITE } })
         click("undo"); assertEquals(lineInk, inkCount())
     }
+    @Test fun finishCurveCommitsBeforeBothBendsWithoutDuplicatingTheUndoStep() {
+        tool(PaintTool.CURVE)
+        for (bends in 0..1) {
+            doc.newImage(96, 96); canvas.fit()
+            drag(10f, 30f, 80f, 30f)
+            if (bends == 1) drag(25f, 30f, 25f, 75f)
+            assertEquals(bends + 1, canvas.draftState().getInt("curve_stage"))
+            assertTrue(canvas.hasPendingEdit)
+            assertEquals(0, inkCount())
+            // The real Finish curve button commits the current path, not an attachment.
+            click("apply")
+            assertFalse(canvas.hasPendingEdit)
+            assertEquals(0, canvas.draftState().getInt("curve_stage"))
+            val committed = inkCount()
+            assertTrue(committed > 0)
+            click("apply")
+            assertEquals(committed, inkCount())
+            click("undo"); assertEquals(0, inkCount())
+            click("redo"); assertEquals(committed, inkCount())
+        }
+    }
     @Test fun polygonClosesAndAllThreeShapeTypesRenderTheirGeometry() {
         tool(PaintTool.POLYGON); doc.shapeStyle = 1
         tap(15f, 15f); tap(75f, 15f); tap(45f, 70f); click("apply")

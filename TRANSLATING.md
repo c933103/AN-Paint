@@ -2,7 +2,22 @@
 
 **Localization status reset — 28 September 2026: all previous progress, completion, repair, verification and no-defect conclusions for PRs #2–#9, #12 and #15 are withdrawn. Every item requires a full recheck; no previous progress is accepted.**
 
-See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. Completing the other 81 locales is outside this task.
+See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/review/localization-integration/verification/localization-recheck-register.md). The rejected delivery is additional material to check, not an accepted audit. Historical source, test outputs and evidence classifications remain available as inputs. They carry no current completion credit. The current picker scope (14 October 2026) is 171 locale options: 59 scoped catalogues and 112 outside-scope catalogues with explicit English fallback for this bounded work. Completing those 112 catalogues is outside this task. These counts do not claim translation completeness or linguistic acceptance. The 81-locale scope counts in withdrawn historical audits refer to the earlier 140-choice inventory, not the current 171-option scope.
+
+## Translation importance tiers
+
+Each translatable source key belongs to exactly one P0–P3 importance tier,
+independent of its language-specific coverage and linguistic-review status.
+P0 prioritizes data loss/recovery and irreversible warnings; P1 covers basic
+editing; P2 covers extended features; P3 covers detailed help and reference.
+This does not exempt any tier from eventual translation or legal obligations.
+
+See [the tier policy](translations/STRING_IMPORTANCE.md) and the exact
+[per-key manifest](translations/string-importance.json). Run
+`python3 tools/string_importance.py --locale ceb --missing-keys` for a
+P0-first gap list for a locale. The tool counts exact-catalogue presence only;
+neither presence nor tier classification certifies that a translation was
+reviewed. Existing withdrawn translation-review claims remain withdrawn.
 
 AN Paint uses ordinary Android resource catalogues. The English source catalogue is
 `Paintroid/src/main/res/values/strings.xml`. Keep every translatable default string,
@@ -22,7 +37,67 @@ The intended end state is a complete catalogue for every language offered by
 View → Languages and Android's App languages page. English fallback is only a
 temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
 
+## Six language options added on 12 October 2026
+
+The first addition brought the inventory to 146 choices. Hausa (`ha`), Igbo (`ig`), Lingala (`ln`),
+Sundanese (`su`), Yoruba (`yo`) and Zulu (`zu`) are selectable in the app and in
+Android App languages. Their exact canonical XML catalogues intentionally contain
+no translated entries yet: all current translatable source strings and plural
+resources use default English fallback. Selecting a language is not a
+claim of translated UI, linguistic review, or installed-device verification.
+
+The existing picker explains untranslated English fallback. The dedicated
+[translation progress tracker](https://github.com/c933103/AN-Paint/pull/56)
+records the outstanding catalogue and review work. The addition fixture at
+`tools/fixtures/language_option_additions_20261012.json` records the six identities
+and status. Historical 140-choice/81-fallback evidence remains available in the
+[immutable archive](verification/README.md). Current regressions check the live
+resources and the explicit current scope directly.
+
+## Further options and principal varieties requested on 12 October 2026
+
+The 12 October inventory had **167 choices**, adding **21 options** to the merged
+146-choice baseline. Fourteen requested languages retain their individual option:
+Nigerian Pidgin (`pcm`), Somali (`so`), Assamese (`as`), Wolof (`wo`), Haitian Creole
+(`ht`), Tok Pisin (`tpi`), Navajo (`nv`), Cherokee (`chr`), Yucatec Maya (`yua`),
+Chamorro (`ch`), Samoan (`sm`), Māori (`mi`), Sanskrit (`sa`) and Tajik (`tg`).
+The current IANA registry marks Sanskrit as a macrolanguage; no narrower Sanskrit
+variety was requested.
+
+Following the clarification to use the main varieties, the broad `nah` and `qu`
+placeholders are replaced by seven concrete individual-language options:
+
+- Nahuatl: Central Huasteca (`nch`), Eastern Huasteca (`nhe`), Western Huasteca (`nhw`).
+- Quechua: Cusco (`quz`), Ayacucho / Chanka (`quy`), South Bolivian (`quh`),
+  Chimborazo Highland Quichua (`qug`).
+
+This is a practical principal-variety set, not an exhaustive catalogue. In
+particular, `quz` is not all Southern Quechua and `qug` is not all Ecuadorian Kichwa.
+Native-name bases are source-backed; regional qualifiers are explicit editorial
+disambiguators. No automatic fallback between these individual tags is implied.
+The source and selection limits are recorded with the addition fixture.
+
+Each new catalogue has **zero translated strings and plural resources**;
+all current translatable keys use default-English fallback pending actual translation.
+The active fixture is `tools/fixtures/language_option_additions_20261012_second.json`.
+That inventory preserved the original 59 scoped catalogues and all
+81 existing fallback identities, adding **27 empty catalogues for 108 fallbacks**.
+The 14 October additions below extend the current contract to 112 fallbacks.
+It checks current identity, status, resource values and fallback behavior without
+reconstructing historical snapshots. The earlier unpublished 162-choice candidate is superseded; its
+retained test/review evidence is historical and does not accept this successor.
+
+## Further languages and Filipino — 14 October 2026
+
+Four individually registered selectable tags bring the inventory to **171**: Old English (`ang`, Ænglisc), Old Norse (`non`, Norrœna), Moroccan Arabic (`ary`, الدارجة المغربية) and Standard Moroccan Tamazight (`zgh`, ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco)). Moroccan Arabic is distinct from `ar`; `zgh` is not all Amazigh languages, including the existing separate Kabyle `kab`. The first two are historical languages, not variants of modern English or Norwegian.
+
+These four have empty exact canonical XML catalogues with **0 strings and 0 plurals translated**, default-English fallback, no linguistic review, and no claim of historical phrasing or script/font acceptance. See `tools/fixtures/language_option_additions_20261014.json`. The `tl` Tagalog menu identity is replaced with **Filipino (`fil`)**. Its pre-existing translations are transferred byte-identically to `values-b+fil/strings.xml`, and saved `tl` preferences and Android 13 choices migrate to `fil`. This is **not** independent linguistic review for Filipino. Historical `tl` import/provenance files remain, but `tl` is not a duplicate selectable option. The 59 scoped catalogues now include `fil` instead of `tl`; fallback count rises to **112**. All previous review obligations remain open.
+
 ## Editing a translation
+
+The [two memory-warning source corrections and review queue](translations/source-review/README.md)
+flag both affected terms across all 171 options. Review them one by one against
+the corrected English; older exact-key receipts do not grant renewed acceptance.
 
 Edit the locale directly, for example:
 

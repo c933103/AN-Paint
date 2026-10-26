@@ -119,6 +119,41 @@ class LegacyImageCreditsUpgradeTest {
         assertEquals(listOf(legacy.copy(text="")),activity.document.imageCredits)
     }
 
+    @Test fun attachmentDistinguishesGeneralBusyFromAutosaveAndDoesNotMutateCredits() {
+        launch()
+        val beforeCredits=activity.document.imageCreditsState().toString()
+        val beforeHistory=activity.document.historySnapshot()
+        val beforeBitmap=activity.document.bitmap
+        fun deliver()=activity.onActivityResult(ClassicPaintActivity.LEGACY_CREDITS,Activity.RESULT_OK,
+            Intent().putExtra(LegacyImageCreditsActivity.EXTRA_SELECTED_TOKEN,
+                ImageCreditArchive.selectionToken(LegacyImageCredits.read(activity).single())))
+        try {
+            // Real autosave sets both flags; retain the autosaving-only defensive case too.
+            for ((busy,autosaving,resource) in listOf(
+                    Triple(true,false,R.string.ui_please_wait_for_the_current_operation),
+                    Triple(true,true,R.string.ui_the_draft_is_saving_try_again_shortly),
+                    Triple(false,true,R.string.ui_the_draft_is_saving_try_again_shortly))) {
+                ReflectionHelpers.setField(activity,"busy",busy)
+                ReflectionHelpers.setField(activity,"autosaving",autosaving)
+                deliver()
+                shadowOf(Looper.getMainLooper()).idle()
+                val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+                assertEquals(ui(resource),shadowOf(dialog).message.toString())
+                assertEquals(beforeCredits,activity.document.imageCreditsState().toString())
+                assertEquals(beforeHistory,activity.document.historySnapshot())
+                assertSame(beforeBitmap,activity.document.bitmap)
+                dialog.dismiss()
+                ReflectionHelpers.setField(activity,"busy",false)
+                ReflectionHelpers.setField(activity,"autosaving",false)
+            }
+            deliver()
+            assertEquals(listOf(legacy),activity.document.imageCredits)
+        } finally {
+            ReflectionHelpers.setField(activity,"busy",false)
+            ReflectionHelpers.setField(activity,"autosaving",false)
+        }
+    }
+
     @Test fun rejectedProspectiveAttachmentLeavesPixelsSelectionHistoryAndCreditsUnchanged() {
         val folder=File(context.cacheDir,"legacy-atomic-${java.util.UUID.randomUUID()}")
         val doc=PaintDocument(8,6,folder)

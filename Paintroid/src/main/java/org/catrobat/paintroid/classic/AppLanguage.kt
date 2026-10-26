@@ -32,9 +32,12 @@ internal object AppLanguage {
                 // Migrate the preference once when a device upgrades from Android 12.
                 if (!preferences.getBoolean("platform-initialized", false)) {
                     val saved = supportedTag(context,preferences.getString(LANGUAGE, "").orEmpty())
-                    if (manager.applicationLocales.isEmpty && saved in tags(context))
+                    val migration = preferences.edit().putBoolean("platform-initialized", true)
+                    if (manager.applicationLocales.isEmpty && saved in tags(context)) {
                         manager.applicationLocales = LocaleList.forLanguageTags(saved)
-                    preferences.edit().putBoolean("platform-initialized", true).apply()
+                        migration.putString(LANGUAGE, saved)
+                    }
+                    migration.apply()
                 }
                 val current=if(manager.applicationLocales.isEmpty) "" else manager.applicationLocales[0].toLanguageTag()
                 val selected=supportedTag(context,current)
@@ -60,25 +63,67 @@ internal object AppLanguage {
     fun locale(context: Context): Locale = selectedTag(context).takeIf { it.isNotEmpty() }
         ?.let(Locale::forLanguageTag) ?: deviceLocale(context)
 
+    /** Keep the public preference distinct from an internal resource-selection qualifier.
+     * Android infers Kore for ko-KR, so ko-KR and ko-Kore-KR otherwise tie. The
+     * build mirrors the complete exact catalogue under this private app variant.
+     * Emoji English uses an English resource locale so its one/other forms use
+     * English plural rules rather than qaa's root rules. Its complete catalogue
+     * is mirrored too; the public preference/default locale retain qaa-Zsye-XV.
+     */
+    internal fun resourceLocale(chosen: Locale): Locale =
+        if(chosen.toLanguageTag()=="ko-Kore-KR")
+            Locale.Builder().setLocale(chosen).setVariant("anpaint").build()
+        else if(chosen.toLanguageTag()=="qaa-Zsye-XV")
+            Locale.forLanguageTag("en-Zsye-XV-anpaint")
+        else chosen
+
     fun wrap(context: Context): Context {
         val chosen = locale(context)
+        val resource = resourceLocale(chosen)
         // An override is a delta: copying the current screen configuration would
         // pin orientation, window size and font scale for this context's lifetime.
         val config = Configuration().apply {
             fontScale = 0f
-            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(resource)) else setLocale(resource)
             setLayoutDirection(chosen)
         }
         Locale.setDefault(chosen)
         return context.createConfigurationContext(config)
     }
 
+    /** Android restores the process default from Application resources, sometimes without
+     * dispatching another configuration callback. Read the current choice from the unwrapped
+     * base, not a startup-locale override. Framework-facing resources need the public locale;
+     * UI contexts still use resourceLocale's private exact-catalogue variants above.
+     * Keep the base Resources/AssetManager: WebView injects its provider assets through
+     * Application.getAssets(), then looks them up through Application.getResources().
+     * A separate configuration context would split those two resource owners.
+     * This read must not mutate the default or the device's configuration.
+     */
+    @Suppress("DEPRECATION")
+    fun applicationResources(base: Context): Resources {
+        val chosen = locale(base)
+        val resources = base.resources
+        val current = resources.configuration
+        val config = Configuration(current).apply {
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            setLayoutDirection(chosen)
+        }
+        // API21 Configuration.compareTo/equals compares language/country/variant,
+        // omitting script. Ainu Kana -> Latin must still update the shared owner.
+        val currentLocale = if (Build.VERSION.SDK_INT >= 24) current.locales[0] else current.locale
+        if (currentLocale != chosen || config != current)
+            resources.updateConfiguration(config, resources.displayMetrics)
+        return resources
+    }
+
     /** Updating the current Activity avoids throwing away undo or an unfinished selection. */
     @Suppress("DEPRECATION")
     fun refresh(activity: Activity, configuration: Configuration = activity.resources.configuration) {
         val chosen = locale(activity)
+        val resource = resourceLocale(chosen)
         val config = Configuration(configuration).apply {
-            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            if (Build.VERSION.SDK_INT >= 24) setLocales(LocaleList(resource)) else setLocale(resource)
             setLayoutDirection(chosen)
         }
         activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
@@ -105,12 +150,13 @@ internal object AppLanguage {
 
     /** Resolve against the device language, without inheriting the app's override. */
     internal fun deviceDefaultLabel(context: Context, chosen: Locale=deviceLocale(context)): String {
+        val resource = resourceLocale(chosen)
         val config=Configuration().apply {
             fontScale=0f
-            if(Build.VERSION.SDK_INT>=24) setLocales(LocaleList(chosen)) else setLocale(chosen)
+            if(Build.VERSION.SDK_INT>=24) setLocales(LocaleList(resource)) else setLocale(resource)
             setLayoutDirection(chosen)
         }
-        return context.createConfigurationContext(config).getString(R.string.language20_device_default)
+        return uiText(context.createConfigurationContext(config).resources,R.string.language20_device_default)
     }
 
     fun showSettings(activity: Activity, changed: () -> Unit) {
@@ -133,7 +179,7 @@ internal object AppLanguage {
             VerticalUi.caption(this,128)
         }
         return AlertDialog.Builder(activity).setTitle(ui(R.string.language20_app_language))
-            .setCustomTitle(if(VerticalText.uiVertical()) ColumnScrollView(activity).apply {addView(note)} else note)
+            .setCustomTitle(if(VerticalText.uiVertical(activity)) ColumnScrollView(activity).apply {addView(note)} else note)
             .setSingleChoiceItems(object: android.widget.ArrayAdapter<String>(activity,android.R.layout.simple_list_item_single_choice,labels) {
                 override fun getView(position: Int,convertView: android.view.View?,parent: android.view.ViewGroup): android.view.View {
                     // Script-specific rows are never recycled as ordinary horizontal rows.

@@ -137,6 +137,7 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.robolectric:robolectric:4.14.1'
+    testImplementation 'org.mockito:mockito-core:4.11.0'
 
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test:runner:1.6.2'
@@ -145,6 +146,57 @@ dependencies {
 }
 
 tasks.withType(Javadoc).configureEach { enabled = false }
+
+// Android infers Kore for ordinary ko-KR. A whole-catalogue variant breaks its
+// resource-ranking tie with the explicitly selected mixed-script catalogue.
+// The canonical source stays in res/values-b+ko+Kore+KR; never edit a second copy.
+// The private emoji-English mirror supplies English plural rules while keeping
+// the public qaa-Zsye-XV tag and the entire canonical emoji catalogue unchanged.
+def exactScriptResourceDirectory = layout.buildDirectory.dir('generated/exactScriptResources')
+def generateExactScriptResources = tasks.register('generateExactScriptResources', Sync) {
+    from('src/main/res/values-b+ko+Kore+KR') {
+        include '*.xml'
+        into 'values-b+ko+Kore+KR+anpaint'
+    }
+    from('src/main/res/values-b+qaa+Zsye+XV') {
+        include '*.xml'
+        into 'values-b+en+Zsye+XV+anpaint'
+    }
+    into exactScriptResourceDirectory
+}
+android.sourceSets.main.res.srcDir(exactScriptResourceDirectory)
+tasks.named('preBuild').configure { dependsOn(generateExactScriptResources) }
+
+// AAPT decodes canonical English under reserved IDs. Generation validates and
+// rebinds aliases, so fallback never re-enters a translated catalogue.
+def sourceTextDirectory = layout.buildDirectory.dir('generated/sourceTextResources')
+def generateSourceTextResources = tasks.register('generateSourceTextResources', Exec) {
+    inputs.file(rootProject.file('tools/SourceTextResources.java'))
+    inputs.files(fileTree('src/main/res/values') { include '*.xml' })
+    outputs.dir(sourceTextDirectory)
+    // Its copied catalogues also participate in the reserved-name check.
+    dependsOn(generateExactScriptResources)
+}
+android.sourceSets.main.res.srcDir(sourceTextDirectory)
+tasks.named('preBuild').configure { dependsOn(generateSourceTextResources) }
+// Source sets are finalized by every Android project before discovering roots.
+// Include application/library variants and currently absent conventional roots;
+// exclude only this generator's own output, never another source-set overlay.
+gradle.projectsEvaluated {
+    def ownOutput = sourceTextDirectory.get().asFile.canonicalFile
+    def resourceRoots = rootProject.allprojects.findAll {
+        it.plugins.hasPlugin('com.android.application') || it.plugins.hasPlugin('com.android.library')
+    }.collectMany { project ->
+        project.extensions.getByName('android').sourceSets.collectMany { it.res.srcDirs }
+    }.collect { it.canonicalFile }.findAll { it != ownOutput }.unique().sort { it.absolutePath }
+    generateSourceTextResources.configure {
+        inputs.property('sourceResourceRoots', resourceRoots.collect { it.absolutePath })
+        inputs.files(resourceRoots.collect { directory -> fileTree(directory) { include 'values*/**/*.xml' } })
+        commandLine([new File(System.getProperty('java.home'), 'bin/java').absolutePath,
+            rootProject.file('tools/SourceTextResources.java').absolutePath,
+            file('src/main/res').absolutePath, ownOutput.absolutePath] + resourceRoots.collect { it.absolutePath })
+    }
+}
 
 // Host-side Android graphics tests supplement the upstream unit tests.
 tasks.withType(Test).configureEach {

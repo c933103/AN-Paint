@@ -90,7 +90,7 @@ class ImageCropDialog(private val activity: Activity, private val images: List<A
                 if (updatePreview) { preview.bitmap = previewBitmap(reference); preview.crop = CropOverlay(reference.dimensions,crop); preview.invalidate() }
                 val count = images.count { it.id in selected }
                 images.filter { it.id in selected }.forEach { m.rect(it.dimensions) }
-                status.text = activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,crop.width(),crop.height(),count)
+                status.text = uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,crop.width(),crop.height(),count)
             } catch (error: IllegalArgumentException) { status.text = error.message }
         }
         listOf(ui(R.string.ui_pixels), ui(R.string.ui_percent)).forEachIndexed { index, name ->

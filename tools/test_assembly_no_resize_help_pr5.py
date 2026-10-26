@@ -1,4 +1,4 @@
-"""Guard the two memory-limit branches in the five reviewed assembly help texts.
+"""Guard the two memory-limit branches in the reviewed assembly help texts.
 
 AssemblyRenderer.suggested() can return null when even 1x1 does not fit.
 AssemblyActivity.outputSizeDialog then shows ui_assembly_source_memory_floor
@@ -16,6 +16,14 @@ import xml.etree.ElementTree as ET
 RES = Path(__file__).resolve().parents[1] / "Paintroid/src/main/res"
 ASSEMBLY = "ui_add_up_to_20_images_with_android_s"
 PHRASES = {
+    "values-b+pt+PT": (
+        "Se a saída exceder o limite de memória, escolha uma cópia de saída mais pequena, se essa opção estiver disponível.",
+        "Se até uma saída mínima exceder o limite, a aplicação mostra um aviso de falta de memória em vez de um seletor de tamanho.",
+    ),
+    "values-it": (
+        "Se l’uscita supera il limite di memoria, scegli una copia di uscita più piccola, se viene proposta.",
+        "Se anche un’uscita molto piccola supera il limite, l’app mostra un avviso di memoria insufficiente invece della finestra per scegliere le dimensioni.",
+    ),
     "values-b+es+ES": (
         "Si la salida supera el límite de memoria, elige una copia de salida más pequeña si se ofrece esa opción.",
         "Si incluso una salida diminuta supera el límite, la aplicación muestra una advertencia de memoria en lugar de un selector de tamaño.",
@@ -52,13 +60,21 @@ def strings(directory):
 def check_memory_help(test, directory):
     # Do not accept the correct phrase in the source-memory warning resource,
     # a separate help paragraph, or an unrelated part of the main editor manual.
-    paragraph = strings(directory)[ASSEMBLY].split(r"\n\n")[5]
+    # English and these reviewed counterparts have a separate Exact position paragraph.
+    output_index = 6 if directory in ("values", "values-de", "values-b+es+ES", "values-it", "values-b+pt+PT", "values-fr", "values-b+eo", "values-b+es+419") else 5
+    paragraph = strings(directory)[ASSEMBLY].split(r"\n\n")[output_index]
     for branch, phrase in zip(("conditional resize", "warning without chooser"), PHRASES[directory]):
         with test.subTest(locale=directory, branch=branch):
             test.assertIn(phrase, paragraph, f"{directory}: missing assembly output guidance for {branch}")
 
 
 class AssemblyNoResizeHelpTests(unittest.TestCase):
+    def test_portuguese_memory_limit_branches(self):
+        check_memory_help(self, "values-b+pt+PT")
+
+    def test_italian_memory_limit_branches(self):
+        check_memory_help(self, "values-it")
+
     def test_spanish_spain_memory_limit_branches(self):
         check_memory_help(self, "values-b+es+ES")
 
