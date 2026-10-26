@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "workflow_head": "3160b02e939cd732536f4f3c896e082b19325eee",
+  "reviewed_pr_head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+  "tested_commit": "3160b02e939cd732536f4f3c896e082b19325eee",
+  "source_tree": "385bd19a6cd68c7b8ce9644f157e4acb4e4cf93e",
+  "run_id": 40393553909,
+  "artifact_id": 12687393997,
+  "artifact_sha256": "a68d27c9d355b91a757ac78bdc249e6217a8f850c05b09ae4e68a3681a8a6e5b",
+  "instrumentation_apks_archive_sha256": "a855c9e07975d9302fa89b164b4668ad8a7051dd4753f77ff75ffde2d9362a34",
+  "composed_device_identity": {
+    "commit": "3160b02e939cd732536f4f3c896e082b19325eee",
+    "run_id": "40393553909",
+    "build_variant": "debug",
+    "source_tests_sha256": "1df8991685f4222341cd15088c50d290529eeae55f305a3f6a177e785f329952",
+    "device_sdk": 35,
+    "apk_sha256": "57288d1c81e68b7352280518445eb81ff6614029358592ea9e1db2870f597457",
+    "source_sha256": "9a8ec925a95e83c21c874903a3d727a7fda7d8fe7511700c9067cdc9880b9192",
+    "test_apk_sha256": "27ba1e9774fdb261750dac4a6abcddbb80dd6e5c27461a9f83ceaa8a07eb602f",
+    "group_run_attempts": {
+      "core": 2,
+      "position": 1
+    },
+    "composed_in_run_attempt": 2
+  },
+  "app_source_bound_selected": 45,
+  "app_source_bound_completed": 45,
+  "app_phases": {
+    "ordinary": 17,
+    "gallery-draft": 3,
+    "vertical-english-manchu": 2,
+    "vertical-literary-chinese-emoji": 2,
+    "position-ainu-manchu": 3,
+    "position-tibetan-jeju-nom": 4,
+    "dialog": 12,
+    "seed": 1,
+    "verify": 1
+  },
+  "app_composed_validator_matches_original_except_separately_verified_identity": true,
+  "native_source_bound_selected": 74,
+  "native_source_bound_completed": 74,
+  "native_source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827",
+  "native_all_unique_case_identities_exact_match": true,
+  "native_missing_unexpected_errors": [],
+  "native_return_code": 0,
+  "native_timed_out": false,
+  "artifact_selection": {
+    "run_id": 40393553909,
+    "current_attempt": 2,
+    "checkout": "3160b02e939cd732536f4f3c896e082b19325eee",
+    "workflow_head": "3160b02e939cd732536f4f3c896e082b19325eee",
+    "device_sdk": 35,
+    "selected": {
+      "core": {
+        "artifact_id": 12687453907,
+        "name": "emulator-core-api-35-3160b02e939cd732536f4f3c896e082b19325eee",
+        "digest": "sha256:f368f6cc5a06754ffd3d3592d346ec6f95c8f5ab2687a274158903c356f12669",
+        "created_at": "2026-10-26T20:50:21Z",
+        "updated_at": "2026-10-26T20:50:21Z",
+        "job_id": 121832978533,
+        "job_record_run_attempt": 2,
+        "job_started_at": "2026-10-26T20:36:20Z",
+        "job_completed_at": "2026-10-26T20:50:23Z"
+      },
+      "position": {
+        "artifact_id": 12686561220,
+        "name": "emulator-position-api-35-3160b02e939cd732536f4f3c896e082b19325eee",
+        "digest": "sha256:99b394a504257fec9200a5e3343bbe110e9fbddd9bcc642730f9ab9761bfead8",
+        "created_at": "2026-10-26T20:26:51Z",
+        "updated_at": "2026-10-26T20:26:51Z",
+        "job_id": 121832981759,
+        "job_record_run_attempt": 2,
+        "job_started_at": "2026-10-26T20:21:50Z",
+        "job_completed_at": "2026-10-26T20:26:53Z"
+      }
+    }
+  },
+  "expected_selection_sha256": "001cdcf057a3b0099bbcc0cca079cc2fbab983fb7f123750aec95585884cb2a1",
+  "expected_selection_exact_match": true,
+  "attempt_contract": {
+    "core": 2,
+    "position": 1,
+    "composed": 2
+  },
+  "limits": "Existing API35 emulator regression coverage; not Serbian Cyrillic/Latin, Slovak, Slovenian, Catalan, Romanian, Danish, Norwegian or Nynorsk physical-device/layout/native-human or whole-language certification."
+}

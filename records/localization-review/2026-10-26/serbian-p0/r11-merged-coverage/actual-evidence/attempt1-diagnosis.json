@@ -1,0 +1,1559 @@
+{
+  "run_id": 40393553909,
+  "attempt": 1,
+  "core_job_id": 121825391024,
+  "core_artifact_id": 12685578440,
+  "core_artifact_sha256": "880f90408be03db43faedd79c1cda063f5d0439af428ed034794c0d563ea67d3",
+  "native_completed_passed": 74,
+  "ordinary_app_case_completions": 17,
+  "ordinary_app_terminal_result": "failed: adb255 and missing final instrumentation result",
+  "later_app_phases": "not completed after device offline",
+  "composition_job_id": 121828052206,
+  "composition_failure": "dependency gate core failure, position success",
+  "retry_at_2026_10_26T20_29Z": {
+    "admitted": false,
+    "http_status": 403,
+    "reason": "The workflow run containing this job is already running"
+  },
+  "next_action": "wait for terminal run then targeted failed core retry; no bypass or successful-job rerun",
+  "partial_receipts": {
+    "Paintroid/androidTest-results/summary.json": {
+      "sha256": "ddda4bfe3b4984d166b9cad7ff1a70ab2963835de68ae70b0db0f62201c9738e",
+      "success": true,
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827",
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.classic.AnimationImportTest",
+          "name": "apngImportsItsSeparateDefaultPoster",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.AnimationImportTest",
+          "name": "gifImportsTheFirstFrame",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.AnimationImportTest",
+          "name": "apngImportsTheFirstFrameWhenItIsTheDefaultImage",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.AnimationImportTest",
+          "name": "webpImportsTheFirstFrame",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "name": "nativeMetadataParsingAndRetentionPreserveCreatorsLinksAndTheActualLicence",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "name": "svgOriginalAndCreditActionsAreStableAndDoNotUseThePreview",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.CommonsCreditDeviceTest",
+          "name": "rasterOriginalHasCreditActionsOnIndexPhpFilePagesToo",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "name": "galleryDownloadButtonsUseAppLabelsAndPreserveArtworkTitlesAndUnrelatedLinks",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "name": "openclipartUsesItsLargePngAndDoesNotTreatTheVectorLinkAsABitmap",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.GalleryPageDeviceTest",
+          "name": "irasutoyaAddsLocalizedUseButtonsToFullArtworkWithoutTouchingThumbnailsOrAds",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "heicExportKeepsLongOddImageDimensionsAcrossTiles",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "colouredHlgUsesActualPrimariesForDisplayLuminance",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "translucentHighDepthAvifKeepsAlphaUntilChosenBackgroundComposition",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "tenBitLinearAvifConvertsTransferBeforeEightBitQuantization",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "commonImporterAndAssemblyUseNativeAvifWithExactCropPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "avifTiledRoundTripAndCrossTileCropKeepExactPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "heicAndAvifQualityControlsProduceDecodableOpaqueImages",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "tenBitPqAndHlgAvifToneMapHighlightsInsteadOfTreatingHdrAsSrgb",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "malformedFilesAndInsufficientWorkingMemoryFailBeforeEditing",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "avifLosslessPreservesEveryRgbPixelIncludingOddDimensions",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.HeifCodecTest",
+          "name": "avifIccProfileAndNclxWideGamutAreConvertedToSrgb",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "name": "failedBudgetPreservesExistingDestinationAndSourcePixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "name": "bmpAndGifRoundTripThroughPlatformAndSharedImportWithExactSmallPalettes",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.LegacyCodecTest",
+          "name": "bmpAndGifAssemblyCropsUseOriginalPixelsWithAvailableDecoder",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "lossyEncodingHandlesLongPortraitAndLandscapeImages",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "losslessEncodingPreservesPixelsAcrossThe2048PixelChunkBoundary",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "regionDecodePreservesChosenCropAndScalesWithoutAllocatingAFullOutput",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "lossyQualityAndReducedDecodeProduceUsableImages",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "tenBitPqAndHlgAreToneMappedToSdrWithoutClippingAllHighlights",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "IccColourConversionPreservesAlphaUntilCompositingOntoChosenBackground",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "corruptedInputAndInsufficientBudgetFailWithoutChangingTheSourceBitmap",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "everyAdvertisedBundledFontLoadsItsActualFontFile",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "nativeAllocationFailureLeavesTheBitmapUsableAndAllowsAnotherEncode",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "sixteenBitLinearAndEmbeddedP3IccConvertToSrgbBeforeQuantization",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.NativeCodecTest",
+          "name": "losslessJxlRoundTripKeepsEveryOpaquePixelAndDimensions",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "malformedPdfIsDetectedByItsBytesAndConstructorFailureDoesNotLeakDescriptors",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "invalidPagesCropsAndInsufficientBudgetFailWithoutChangingTheInput",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "scalingAndSourcePixelCropRenderWithoutChangingPageOrientation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "generatedMultipageDocumentUsesSelectedPageAnd144DpiDimensions",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "tileRenderingUsesTheSameCoordinatesAsTheWholePage",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "assemblyCropRetainsTheSelectedPageInsteadOfFallingBackToPageOne",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "descriptorsCloseAfterRepeatedSuccessAndPageFailures",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "selectedPageOpensAsEditablePixelsWithoutChangingThePdf",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PdfCodecTest",
+          "name": "pdfRotationMetadataChangesDisplayedDimensionsAndRasterDirection",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "transparentPixelsCompositeAgainstDocumentBackgroundAfterResize",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "malformedColourMetadataFailsWithoutModifyingSourceOrLeakingCopies",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "pngGammaAndChromaticitiesUseSameConversionOnEveryAndroidVersion",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "p3IccPng16ConvertsBeforeQuantizationAndKeepsAlpha",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "linear16AndPqPngRenderWithTransferAndHighlightDetail",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "colourMemoryIncludesF16AndConversionAndRejectsInsufficientBudget",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "jpegAndWebpIccAreConvertedExactlyOnce",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.PlatformColourImportTest",
+          "name": "assemblyCropUsesSameColourConversionAndWhiteBackground",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "associatedAndUnassociatedAlphaRemainCorrectAfterPremultiplication",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "constrainedEncodePreservesDestinationAndSourceAndCanRecover",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "unsupportedAndDamagedFilesRejectWithoutAcceptingPartialPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "independentlyEncodedEndianBigTiffStripsTilesAndPlanarSamplesImportExactly",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "nonexistentAndNegativeTiffPageIndexesFailWithoutChangingTheFile",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "croppedTiledImagesIncludePartialEdgeTilesAndScaleFromOriginalPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "jpegCompressedTiffMatchesIndependentHostDecoder",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "sharedImportRecognizesTiffBySignatureAndUsesFirstPage",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "uncompressedAndDeflateExportsPreserveAllOpaquePixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "constrainedDecodePreservesSourceAndCanRecoverWithSufficientBudget",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "packedGrayscalePalettesAndSixteenBitSamplesHaveCorrectSampleInterpretation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "selectedTiffPagesHaveIndependentDimensionsOrientationAndCropPixels",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "linearRgbAndGrayIccProfilesConvertSixteenBitSamplesBeforeQuantization",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "independentLzwPredictorPackBitsAndCcittFixturesImportExactly",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "invalidOrExcessiveTiffPageChainsRejectBeforeShowingAPageCount",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "transparentEncodeRejectsBeforeOverwritingDestination",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.TiffCodecTest",
+          "name": "allEightOrientationsApplyToPixelsDimensionsCropsAndResizing",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.UltraHdrImportTest",
+          "name": "ultraHdrJpegUsesAuthoredSdrBaseAndRemovesStaleGainmap",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.WebpCodecTest",
+          "name": "losslessRoundTripPreservesEveryRgbPixelOddDimensionsAndTheSource",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.WebpCodecTest",
+          "name": "transparentInputIsRejectedWithoutChangingItsPixelsOrTheDestination",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.WebpCodecTest",
+          "name": "lossyQualityChangesTheFileAndHigherQualityReducesPixelError",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "org.catrobat.paintroid.classic.WebpCodecTest",
+          "name": "memoryAndFormatDimensionLimitsPreserveExistingOutputAndBitmap",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "errors": [],
+      "returncode": 0,
+      "timed_out": false,
+      "device_sdk": 35
+    },
+    "app/androidTest-results/summary.json": {
+      "sha256": "c5e60d7584cb44f9084b0323dd31658788b8ed4d75d8d3ea94f3b05273058f06",
+      "success": false,
+      "expected_tests": 17,
+      "completed_tests": 17,
+      "source_tests_sha256": "1df8991685f4222341cd15088c50d290529eeae55f305a3f6a177e785f329952",
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "responsiveCategoriesOpenBesideTheToolStripInBothOrientations",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryViewportDeviceTest",
+          "name": "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation",
+          "status": "passed",
+          "message": "."
+        },
+        {
+          "classname": "paint.anpaint.android.PageCountWordingDeviceTest",
+          "name": "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench",
+          "status": "passed",
+          "message": "."
+        }
+      ],
+      "missing": [],
+      "unexpected": [],
+      "errors": [
+        "adb exited with status 255",
+        "Missing or unsuccessful final instrumentation result: []"
+      ],
+      "returncode": 255,
+      "timed_out": false,
+      "device_sdk": 35
+    },
+    "app-dialog/androidTest-results/summary.json": {
+      "sha256": "2097d124618118b8f5b6de476e10daa51c761c8d90d003c7863b1e81f2d09b71",
+      "success": false,
+      "expected_tests": 45,
+      "completed_tests": 0,
+      "source_tests_sha256": "1df8991685f4222341cd15088c50d290529eeae55f305a3f6a177e785f329952",
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "name": "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "name": "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "ainuKanaPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "ainuLatinPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "dzongkhaPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "jejuPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "manchuPositionColumnsAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "nomPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "tibetanPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "hungarianColourCaptionsFitPortraitAndLandscape",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "largeEnglishColourCaptionsAndPreviewRemainReachable",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "largeHungarianColourCaptionsAndPreviewRemainReachable",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "responsiveCategoriesOpenBesideTheToolStripInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryViewportDeviceTest",
+          "name": "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutArtworkNoticeCompletesNativeFooterFlow",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "mixedKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "northKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "southKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.PageCountWordingDeviceTest",
+          "name": "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        }
+      ],
+      "missing": [
+        [
+          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "ainuKanaPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "ainuLatinPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "dzongkhaPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "jejuPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "manchuPositionColumnsAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "nomPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "tibetanPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "hungarianColourCaptionsFitPortraitAndLandscape"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeEnglishColourCaptionsAndPreviewRemainReachable"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeHungarianColourCaptionsAndPreviewRemainReachable"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "retainedColourStateSurvivesRotationImeCancelAndReopen"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+        ],
+        [
+          "paint.anpaint.android.GalleryViewportDeviceTest",
+          "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutArtworkNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "northKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "southKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.PageCountWordingDeviceTest",
+          "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ]
+      ],
+      "unexpected": [],
+      "errors": [
+        "Command '['/usr/local/lib/android/sdk/platform-tools/adb', 'shell', 'getprop', 'ro.build.version.sdk']' returned non-zero exit status 1.",
+        "adb exited with status None",
+        "Missing or unsuccessful final instrumentation result: []",
+        "No tests completed",
+        "Runner test counts [] do not match 45 declared methods",
+        "45 declared test method(s) did not complete"
+      ],
+      "returncode": null,
+      "timed_out": false,
+      "device_sdk": null
+    },
+    "app-gallery-draft/androidTest-results/summary.json": {
+      "sha256": "a110c332b3fba29db504050a8c846158d739b495bec33fd3e699051b855598fb",
+      "success": false,
+      "expected_tests": 45,
+      "completed_tests": 0,
+      "source_tests_sha256": "1df8991685f4222341cd15088c50d290529eeae55f305a3f6a177e785f329952",
+      "cases": [
+        {
+          "classname": "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "name": "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "name": "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "ainuKanaPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "ainuLatinPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "dzongkhaPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "jejuPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "manchuPositionColumnsAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "nomPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "name": "tibetanPositionTextAndNativeEditing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "hungarianColourCaptionsFitPortraitAndLandscape",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "largeEnglishColourCaptionsAndPreviewRemainReachable",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "largeHungarianColourCaptionsAndPreviewRemainReachable",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+          "name": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "responsiveCategoriesOpenBesideTheToolStripInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryDraftDeviceTest",
+          "name": "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.GalleryViewportDeviceTest",
+          "name": "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutArtworkNoticeCompletesNativeFooterFlow",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "mixedKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "northKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "name": "southKoreanAttributionAndConditionalCropUseRealConsumers",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.PageCountWordingDeviceTest",
+          "name": "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        },
+        {
+          "classname": "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "name": "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations",
+          "status": "error",
+          "message": "Declared test was not executed"
+        }
+      ],
+      "missing": [
+        [
+          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+        ],
+        [
+          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "ainuKanaPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "ainuLatinPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "dzongkhaPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "jejuPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "manchuPositionColumnsAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "nomPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.AssemblyPositionDeviceTest",
+          "tibetanPositionTextAndNativeEditing"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "hungarianColourCaptionsFitPortraitAndLandscape"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeEnglishColourCaptionsAndPreviewRemainReachable"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "largeHungarianColourCaptionsAndPreviewRemainReachable"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+        ],
+        [
+          "paint.anpaint.android.ColourViewportDeviceTest",
+          "retainedColourStateSurvivesRotationImeCancelAndReopen"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+        ],
+        [
+          "paint.anpaint.android.EditorDeviceTest",
+          "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+        ],
+        [
+          "paint.anpaint.android.GalleryDraftDeviceTest",
+          "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+        ],
+        [
+          "paint.anpaint.android.GalleryViewportDeviceTest",
+          "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutArtworkNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "northKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+        ],
+        [
+          "paint.anpaint.android.LocalizedDialogDeviceTest",
+          "southKoreanAttributionAndConditionalCropUseRealConsumers"
+        ],
+        [
+          "paint.anpaint.android.PageCountWordingDeviceTest",
+          "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ],
+        [
+          "paint.anpaint.android.VerticalLocaleDeviceTest",
+          "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+        ]
+      ],
+      "unexpected": [],
+      "errors": [
+        "Command '['/usr/local/lib/android/sdk/platform-tools/adb', 'shell', 'getprop', 'ro.build.version.sdk']' returned non-zero exit status 1.",
+        "adb exited with status None",
+        "Missing or unsuccessful final instrumentation result: []",
+        "No tests completed",
+        "Runner test counts [] do not match 45 declared methods",
+        "45 declared test method(s) did not complete"
+      ],
+      "returncode": null,
+      "timed_out": false,
+      "device_sdk": null
+    }
+  },
+  "missing_core_reports": [
+    "app-vertical/english-manchu/androidTest-results/summary.json",
+    "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+    "app/accepted-credit-restart/seed/summary.json",
+    "app/accepted-credit-restart/verify/summary.json"
+  ],
+  "retry_at_2026_10_26T20_36Z": {
+    "admitted": true,
+    "success": true,
+    "job_id": 121825391024,
+    "changed_condition": "run terminal failure, independent regression job success",
+    "method": "rerun_workflow_job"
+  }
+}
