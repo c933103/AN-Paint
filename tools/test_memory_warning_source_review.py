@@ -80,7 +80,8 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
             for key, term in row['terms'].items():
                 with self.subTest(tag=tag, key=key):
                     self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
-                    present = key in strings
+                    # Queue status describes immutable historical presence, not successors.
+                    present = term['value'] is not None
                     self.assertEqual('present' if present else 'missing', term['value_status'])
                     self.assertEqual(None if present else 'canonical-english', term['fallback'])
                     counts[(key, term['value_status'])] += 1

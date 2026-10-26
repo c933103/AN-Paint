@@ -108,3 +108,16 @@ The [exact source/value review](https://github.com/c933103/AN-Paint/blob/ed90d5c
 The active two-key contract covers 118 reviewed successor pairs across 59 options; four present pairs remain outside that successor set (`jje` and `vi-Hani`), alongside 218 missing pairs and two canonical-English pairs. These are warning-key inventory counts, not whole-language acceptance or Help-key approval. The separate Ainu estimate-label correction is not part of this two-key registry.
 
 The registry continues to require exact source, historical target, locale/key inventory and expected current wording. Existing corruption checks remain, now also exercising the four Ainu successors; held-case controls use the still-held `jje`/ `vi-Hani` identities. No old receipt or queue value is rewritten to make the new text pass.
+
+
+## 25 October 2026: bounded Amharic priority successors
+
+The current compact behavioral fixture is now
+[memory-warning-successors-amharic-20261025.json](memory-warning-successors-amharic-20261025.json).
+It retains all 118 earlier exact pairs and adds the two independently reviewed
+Amharic priority strings. The historical queue and both earlier successor
+fixtures remain unchanged. Amharic's historical values are explicitly required
+to be absent; this is not permission to accept missing history for other locales.
+The current registry covers 120 pairs across 60 options, leaving four held pairs,
+216 historically missing pairs without successors, and two canonical-English pairs.
+These counts do not certify whole-language, native-reader or runtime completion.

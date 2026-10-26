@@ -21,8 +21,8 @@ class MemoryWarningSuccessors(unittest.TestCase):
         cls.index = successors()
 
     def test_exact_inventory_and_every_complete_current_value(self):
-        self.assertEqual(118, len(self.index))
-        self.assertEqual(59, len({tag for tag, key in self.index}))
+        self.assertEqual(120, len(self.index))
+        self.assertEqual(60, len({tag for tag, key in self.index}))
         for (tag, key), (old, expected, source, path) in self.index.items():
             with self.subTest(tag=tag, key=key):
                 self.assertNotEqual(old, expected)
@@ -36,7 +36,7 @@ class MemoryWarningSuccessors(unittest.TestCase):
 
     def test_every_successor_rejects_wrong_historical_target(self):
         for (tag, key), (old, expected, source, path) in self.index.items():
-            for wrong in (old + ' changed', expected, source, ''):
+            for wrong in ((old or '') + ' changed', expected, source, ''):
                 if wrong == old: continue
                 with self.subTest(tag=tag, key=key, wrong=wrong), self.assertRaises(ValueError):
                     current_source_expectation(key, tag, wrong)
@@ -93,7 +93,7 @@ class MemoryWarningSuccessors(unittest.TestCase):
                 if tag == 'en-001': counts['canonical'] += 1
                 elif term['value'] is None: counts['missing'] += 1
                 else: counts['held'] += 1
-        self.assertEqual({'held': 4, 'missing': 218, 'canonical': 2}, counts)
+        self.assertEqual({'held': 4, 'missing': 216, 'canonical': 2}, counts)
 
     def test_compact_behavior_oracle_corruption_is_rejected(self):
         original_read = Path.read_bytes
@@ -110,6 +110,20 @@ class MemoryWarningSuccessors(unittest.TestCase):
                 raw = original_read(path, *args, **kwargs)
                 if path == binding_module.QUEUE:
                     data = json.loads(raw); data['keys'][key]['corrected_english'] += ' changed'
+                    return json.dumps(data)
+                return raw
+            with self.subTest(key=key), patch.object(Path, 'read_text', corrupt), self.assertRaises(ValueError):
+                validated_successors(self.data)
+
+    def test_amharic_missing_history_cannot_be_rewritten(self):
+        original_read = Path.read_text
+        for key in KEYS:
+            def corrupt(path, *args, **kwargs):
+                raw = original_read(path, *args, **kwargs)
+                if path == binding_module.QUEUE:
+                    data = json.loads(raw)
+                    option = next(o for o in data['options'] if o['tag'] == 'am')
+                    option['terms'][key]['value'] = 'invented old target'
                     return json.dumps(data)
                 return raw
             with self.subTest(key=key), patch.object(Path, 'read_text', corrupt), self.assertRaises(ValueError):
