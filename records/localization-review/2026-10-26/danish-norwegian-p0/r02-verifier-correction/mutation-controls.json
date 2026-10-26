@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "verifier_sha256": "8b88defd651331f9891995cb890e83d7fb01edc4e32a1f4048810bb6d3333bdf",
+  "positive_cases": 1,
+  "negative_cases": 8,
+  "all_expected_outcomes_observed": true,
+  "controls": [
+    {
+      "case": "positive",
+      "exit_code": 0,
+      "expected_success": true,
+      "outcome": "passed"
+    },
+    {
+      "case": "extra-unindexed-s",
+      "exit_code": 1,
+      "expected_success": false,
+      "outcome": "target hash/placeholder"
+    },
+    {
+      "case": "extra-indexed-d",
+      "exit_code": 1,
+      "expected_success": false,
+      "outcome": "target hash/placeholder"
+    },
+    {
+      "case": "invalid-q",
+      "exit_code": 1,
+      "expected_success": false,
+      "outcome": "invalid or unescaped format token"
+    },
+    {
+      "case": "stray-percent",
+      "exit_code": 1,
+      "expected_success": false,
+      "outcome": "invalid or unescaped format token"
+    },
+    {
+      "case": "missing-argument",
+      "exit_code": 1,
+      "expected_success": false,
+      "outcome": "target hash/placeholder"
+    },
+    {
+      "case": "duplicate-identity",
+      "exit_code": 1,
+      "expected_success": false,
+      "outcome": "candidate grain"
+    },
+    {
+      "case": "duplicate-JSON-key",
+      "exit_code": 1,
+      "expected_success": false,
+      "outcome": "duplicate JSON key: schema_version"
+    },
+    {
+      "case": "missing-group-file",
+      "exit_code": 1,
+      "expected_success": false,
+      "outcome": "incomplete candidates"
+    }
+  ],
+  "limits": "Data-only synthetic mutations in temporary copies; actual candidate/source files unchanged."
+}

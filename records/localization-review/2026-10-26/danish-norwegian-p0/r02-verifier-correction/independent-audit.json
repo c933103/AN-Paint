@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "finding": "Original indexed-only candidate verifier wrongly accepted an extra unindexed %s when declared hashes were refreshed. Actual 156 candidates independently pass fuller placeholder and Android-string checks.",
+  "repaired_checker_sha256": "8b88defd651331f9891995cb890e83d7fb01edc4e32a1f4048810bb6d3333bdf",
+  "repair_result": "independently confirmed",
+  "clean_actual_packet": {"exit_code": 0, "candidates": 156, "source_bindings": 323, "consumer_windows": 140},
+  "independent_negative_controls": [
+    {"mutation": "refreshed-hash extra unindexed %s", "exit_code": 1, "reason": "placeholder mismatch"},
+    {"mutation": "%q", "exit_code": 1, "reason": "invalid format"},
+    {"mutation": "bare %", "exit_code": 1, "reason": "invalid format"},
+    {"mutation": "%1$q", "exit_code": 1, "reason": "invalid format"},
+    {"mutation": "incomplete %1$", "exit_code": 1, "reason": "invalid format"},
+    {"mutation": "extra %%", "exit_code": 1, "reason": "placeholder mismatch"},
+    {"mutation": "extra %s in formatted=false", "exit_code": 1, "reason": "placeholder mismatch"}
+  ],
+  "failed_controls_emit_no_verification_output": true,
+  "eight_candidate_files_match_original_manifest_bytes_sha256_and_Git_identities": true,
+  "other_audit_checks": "78 missing-only identities per locale, 127/115 inherited values, ten held absences, actual command compositions, all 1367 source blobs, privacy and manifest bindings verified.",
+  "limits": "No new linguistic acceptance, original packet/source mutation, publication or CI polling by the independent audit."
+}
