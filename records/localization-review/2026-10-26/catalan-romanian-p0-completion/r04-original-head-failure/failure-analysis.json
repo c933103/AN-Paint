@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "record_kind": "Actual original-head failed JVM run; not merge eligible",
+  "run_id": 40340230583,
+  "reviewed_head": "93f27ed172cc730c80ed7a2ffbcacc1b0c04383f",
+  "tested_commit": "867b4e86919a7b382cf10b5199ef1450093ba500",
+  "tree": "571ec84860cb837ae8376f72d0becfb8fd2b7b6d",
+  "artifact_id": 12659458077,
+  "artifact_sha256": "15354ddab8e37e914f86583e1fbe0a612598d803670ee0fbffd697fa5b9f361c",
+  "junit_files": 148,
+  "junit_totals": {
+    "tests": 1366,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failed_cases": [
+    {
+      "class": "org.catrobat.paintroid.local.NumericDisplayLocaleTest",
+      "method": "oversizeWarningUsesResourceDigitsAndDecimalsWithoutChangingAdmission",
+      "seconds": "0.445",
+      "status": "failure",
+      "detail_type": "java.lang.AssertionError",
+      "detail_message": "java.lang.AssertionError",
+      "detail": "java.lang.AssertionError\n\tat org.junit.Assert.fail(Assert.java:87)\n\tat org.junit.Assert.assertTrue(Assert.java:42)\n\tat org.junit.Assert.assertTrue(Assert.java:53)\n\tat org.catrobat.paintroid.local.NumericDisplayLocaleTest.oversizeWarningUsesResourceDigitsAndDecimalsWithoutChangingAdmission(NumericDisplayLocaleTest.kt:99)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n\tSuppressed: org.robolectric.android.internal.AndroidTestEnvironment$UnExecutedRunnablesException: Main looper has queued unexecuted runnables. This might be the cause of the test failure. You might need a shadowOf(Looper.getMainLooper()).idle() call.\n"
+    }
+  ],
+  "new_completion_class": {
+    "cases": [
+      {
+        "class": "org.catrobat.paintroid.local.CatalanRomanianCompletionWordingTest",
+        "method": "failedDraftRecoveryReportsPreservationOnlyAfterKeepingItsExactBytes",
+        "seconds": "0.076",
+        "status": "passed"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.CatalanRomanianCompletionWordingTest",
+        "method": "all55CompiledValuesPerLocaleMatchWhileHeldAndP1FallbacksRemainEnglish",
+        "seconds": "0.103",
+        "status": "passed"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.CatalanRomanianCompletionWordingTest",
+        "method": "realEncodingFailuresKeepSourcePixelsAndAtomicDerivedDestinations",
+        "seconds": "0.068",
+        "status": "passed"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.CatalanRomanianCompletionWordingTest",
+        "method": "realMemoryAdmissionFailureFormatsAllFourArgumentsBeforeAllocation",
+        "seconds": "0.048",
+        "status": "passed"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.CatalanRomanianCompletionWordingTest",
+        "method": "recoveredDraftRetainsUnsavedPixelsAndOneFloatingSelectionWithoutSaveAssociation",
+        "seconds": "0.06",
+        "status": "passed"
+      }
+    ]
+  },
+  "hosted_python": {
+    "run": 1398,
+    "passed": 1396,
+    "skipped": 2,
+    "seconds": 256.972,
+    "log_sha256": "4d66045ebabc430552b6854c17cbbbccfe6bb7b7ca1246a935b728c89672f9ca",
+    "skipped_identities": "Not named in hosted non-verbose terminal summary; not inferred from local results."
+  },
+  "lint_issues": 0,
+  "phase_receipts": {
+    "python": {
+      "exit_code": 0,
+      "receipt_sha256": "2d44285bd6a14f60788bd21c07bb6af0b1007a042df87b3ab248d4f443460017"
+    },
+    "jvm": {
+      "exit_code": 1,
+      "receipt_sha256": "fa47b4a974fb1ff211dd08bde34411b92c2bf114a274a6d13e14e6d89fdc15d7"
+    },
+    "native": {
+      "exit_code": 0,
+      "receipt_sha256": "be1f5dbc5e5ada5ac8796ea0b0023129842f21824c93cc16e513b49f9518fa30"
+    },
+    "lint": {
+      "exit_code": 0,
+      "receipt_sha256": "687222f66fec839905c4e7899089ae73a237a1b33f863154398a8bef4e39ce52"
+    }
+  },
+  "diagnosis": "The existing Romanian numeric test literal still required the English fallback prefix. Its immediately preceding complete resource-formatted message assertion passed; the reviewed Romanian source starts with Dimensiunea de, so line99 stale fallback-prefix assertion fails. This is a test oracle integration defect, not evidence that the approved translation or production numeric admission changed.",
+  "preservation": "Original failure retained separately from any later repaired-head pass. Raw archive identity and per-XML hashes retained; runner hostname and local infrastructure paths omitted from derived records.",
+  "limits": "Actual hosted JVM failure; new five-method test success does not override aggregate failure. Device/source/compiled checks are separate; no native-human/whole-locale/release certification."
+}
