@@ -1,0 +1,808 @@
+{
+  "schema_version": 1,
+  "record_kind": "independent bounded per-entry review, not runtime or native-human acceptance",
+  "reviewer_task": "independent AI linguistic/static reviewer",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "857a20103285a77846e340b326667c15a402ff9e",
+  "source_tree": "6bb4fa11534149df7f8f58cb3d21faf2b802089f",
+  "group": "01-import-and-format-explanations",
+  "locale": "nn",
+  "packet_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+  "packet_expected_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+  "packet_hash_match": true,
+  "summary": {
+    "reviewed": 14,
+    "accepted_unchanged": 12,
+    "revised": 2,
+    "held": 0,
+    "semantic_mismatch_found": false,
+    "placeholder_mismatch_found": false,
+    "revisions_are": "Editorial improvements to the duplicated Lagring lagar sentence only; no change to animation/import semantics."
+  },
+  "source_verification": {
+    "tree_manifest_truncated": false,
+    "root_tree_reconstructed_sha1": "6bb4fa11534149df7f8f58cb3d21faf2b802089f",
+    "root_tree_matches_packet": true,
+    "commit_binding_limit": "Commit association uses the supplied packet and local GitHub tree-response record; no live GitHub request or independent commit-object retrieval was performed. File bytes and reconstructed root tree were independently hashed.",
+    "bound_files": [
+      {
+        "path": "Paintroid/src/main/res/values/strings.xml",
+        "git_blob_sha1": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "bytes": 80549,
+        "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/res/values/strings.xml",
+        "observed_bytes": 80549,
+        "observed_sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+        "observed_git_blob_sha1": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+        "checks": {
+          "bytes_match": true,
+          "sha256_match": true,
+          "git_blob_match": true,
+          "blob_matches_tree_manifest": true
+        }
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+        "git_blob_sha1": "f8020f1bbcf7bd9e79d231dd495f43f48c7292d7",
+        "sha256": "91961c52e1f5ca58c282a187121dd023b57f28abba82287a7a26619611aa4f9a",
+        "bytes": 7256,
+        "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/res/values-b+nn/strings.xml",
+        "observed_bytes": 7256,
+        "observed_sha256": "91961c52e1f5ca58c282a187121dd023b57f28abba82287a7a26619611aa4f9a",
+        "observed_git_blob_sha1": "f8020f1bbcf7bd9e79d231dd495f43f48c7292d7",
+        "checks": {
+          "bytes_match": true,
+          "sha256_match": true,
+          "git_blob_match": true,
+          "blob_matches_tree_manifest": true
+        }
+      },
+      {
+        "path": "translations/string-importance.json",
+        "git_blob_sha1": "e76a3a440a8b169d31f5ab5d163a2695b0db93b1",
+        "sha256": "9b5bfb6d25f2ad034158816d943b94feed8296ad4117c2176f09a95dad506879",
+        "bytes": 32088,
+        "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/translations/string-importance.json",
+        "observed_bytes": 32088,
+        "observed_sha256": "9b5bfb6d25f2ad034158816d943b94feed8296ad4117c2176f09a95dad506879",
+        "observed_git_blob_sha1": "e76a3a440a8b169d31f5ab5d163a2695b0db93b1",
+        "checks": {
+          "bytes_match": true,
+          "sha256_match": true,
+          "git_blob_match": true,
+          "blob_matches_tree_manifest": true
+        }
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+        "git_blob_sha1": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+        "sha256": "e9f2870a1f1f70783df7004b32a1d57325dc9ef90491273ce3f8a11c57323250",
+        "bytes": 2122,
+        "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+        "observed_bytes": 2122,
+        "observed_sha256": "e9f2870a1f1f70783df7004b32a1d57325dc9ef90491273ce3f8a11c57323250",
+        "observed_git_blob_sha1": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+        "checks": {
+          "bytes_match": true,
+          "sha256_match": true,
+          "git_blob_match": true,
+          "blob_matches_tree_manifest": true
+        }
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "git_blob_sha1": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+        "sha256": "a1ad195fd2e76115181e56d2b541ebde58de1a07687319ec65bd1994c63e74a3",
+        "bytes": 5576,
+        "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+        "observed_bytes": 5576,
+        "observed_sha256": "a1ad195fd2e76115181e56d2b541ebde58de1a07687319ec65bd1994c63e74a3",
+        "observed_git_blob_sha1": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+        "checks": {
+          "bytes_match": true,
+          "sha256_match": true,
+          "git_blob_match": true,
+          "blob_matches_tree_manifest": true
+        }
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+        "git_blob_sha1": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+        "sha256": "86169c732b8a5520b3f95b82f010ec6ef8d22ef1422cf86df3b5303822d6be69",
+        "bytes": 9563,
+        "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+        "observed_bytes": 9563,
+        "observed_sha256": "86169c732b8a5520b3f95b82f010ec6ef8d22ef1422cf86df3b5303822d6be69",
+        "observed_git_blob_sha1": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+        "checks": {
+          "bytes_match": true,
+          "sha256_match": true,
+          "git_blob_match": true,
+          "blob_matches_tree_manifest": true
+        }
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+        "git_blob_sha1": "029c2b242b6629de09fce5904f72255fb7455473",
+        "sha256": "e67e05d74fc037201a0fac717a9aa8eb45f414651754ce3852741f93b935f8a0",
+        "bytes": 13748,
+        "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+        "observed_bytes": 13748,
+        "observed_sha256": "e67e05d74fc037201a0fac717a9aa8eb45f414651754ce3852741f93b935f8a0",
+        "observed_git_blob_sha1": "029c2b242b6629de09fce5904f72255fb7455473",
+        "checks": {
+          "bytes_match": true,
+          "sha256_match": true,
+          "git_blob_match": true,
+          "blob_matches_tree_manifest": true
+        }
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+        "git_blob_sha1": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+        "sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+        "bytes": 14903,
+        "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+        "observed_bytes": 14903,
+        "observed_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+        "observed_git_blob_sha1": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+        "checks": {
+          "bytes_match": true,
+          "sha256_match": true,
+          "git_blob_match": true,
+          "blob_matches_tree_manifest": true
+        }
+      }
+    ],
+    "untouched_nynorsk_values_checked": 118,
+    "untouched_nynorsk_values_match_exact_xml_and_attributes": true,
+    "all_14_source_and_candidate_value_hashes_match": true,
+    "all_supplied_consumer_windows_match_local_source": true
+  },
+  "unchanged_english_count_qualifier": {
+    "key": "formats22_at_least_frames",
+    "value": "at least %1$d",
+    "target_absent_at_baseline": true,
+    "action": "Leave unchanged, as explicitly out of scope.",
+    "composition_result": "Understandable meaning but mixed-language sentence, not full composed-dialog localization."
+  },
+  "global_limits": [
+    "Independent model review, not a native-human linguistic endorsement.",
+    "No device/layout/runtime/compilation testing performed.",
+    "No existing 118 target values accepted anew or modified.",
+    "No P1 or fallback-string scope expansion.",
+    "No source or external mutations; only this temporary review record and its generator were written."
+  ],
+  "entries": [
+    {
+      "identity": "string/formats22_animation_message",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "candidate": "Dette %1$s-biletet har %2$s biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.",
+      "source_value_sha256_utf8": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+      "candidate_value_sha256_utf8": "646836a3bcc48355c32a64d8d3aa054be5e2a381457fdbff9e23c32f42ec3816",
+      "accepted_value": "Dette %1$s-biletet har %2$s biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "646836a3bcc48355c32a64d8d3aa054be5e2a381457fdbff9e23c32f42ec3816",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "placeholder_tokens": [
+        "%1$s",
+        "%2$s"
+      ],
+      "actual_caller_semantics": "Preserves format, frame-count string, still-image editing and non-preservation of animation. ImportSelection only selects this counted branch for frameCount >= 2, so plural biletruter is appropriate. Hyphenated %1$s-biletet composes with a format label rather than a numeric or filename argument.",
+      "nynorsk_review": "Dette, biletet, biletruter, stillbilete and tek ikkje vare på are coherent Nynorsk. The exact-count sentence is idiomatic; the inexact-count sentence necessarily includes the explicitly untouched English qualifier.",
+      "composition_review": "Exact count example: Dette GIF-biletet har 3 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon. Inexact count example: Dette GIF-biletet har at least 3 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon. The latter deliberately retains the English qualifier; %2$s must remain a string. Both are then followed by two newlines and the appropriate poster/still paragraph. This verdict does not establish fully localized composed UI.",
+      "confidence": 0.93,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:92",
+          "window_exact_match": true,
+          "window_sha256_utf8": "5a776194e8965b0e3d886158fdb1ceccc58da219123d4f7dce863a98f37db10d"
+        }
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "verdict": "revise",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "candidate": "Dette PNG-biletet har eit eige standardbilete. Det vert importert i staden for dei animerte biletrutene. Lagring lagar eit stillbilete.",
+      "source_value_sha256_utf8": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+      "candidate_value_sha256_utf8": "af879bb0c278dd76a5b282b7d69e3940fea9f53843d63501ea6c69a3694288eb",
+      "accepted_value": "Dette PNG-biletet har eit eige standardbilete. Det vert importert i staden for dei animerte biletrutene. Ved lagring vert det laga eit stillbilete.",
+      "replacement_value": "Dette PNG-biletet har eit eige standardbilete. Det vert importert i staden for dei animerte biletrutene. Ved lagring vert det laga eit stillbilete.",
+      "accepted_value_sha256_utf8": "dcb326d7df1129edd00571220df8ad1df189046d31b5893c2e21c3ea4cd2951b",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves all three claims: PNG has a separate default image; that image, not the animated frames, is imported; saving produces a still image. The pronoun Det refers to the immediately preceding standardbilete. This is the pngDefaultImageSeparate branch, not the ordinary first-frame branch.",
+      "nynorsk_review": "Revise only the final sentence to avoid the stilted repeated root Lagring lagar. Ved lagring vert det laga eit stillbilete is idiomatic and preserves the same output claim. The submitted wording was semantically sound, not a functional defect.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.94,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93",
+          "window_exact_match": true,
+          "window_sha256_utf8": "a5e27cda10d98773ca8d7814c48e7f7df20b702e8c2c24dc5ade1b059f567271"
+        }
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "verdict": "revise",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "candidate": "Berre den første biletruta vert importert. Lagring lagar eit stillbilete.",
+      "source_value_sha256_utf8": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+      "candidate_value_sha256_utf8": "9c6b0ed2fe2c1ebab810d97a4ee9652dbdf87b705c6281bbe85de80e678d9e8a",
+      "accepted_value": "Berre den første biletruta vert importert. Ved lagring vert det laga eit stillbilete.",
+      "replacement_value": "Berre den første biletruta vert importert. Ved lagring vert det laga eit stillbilete.",
+      "accepted_value_sha256_utf8": "1189f1a8d400e7d494d8768a18dd173a9b6edcd123ce89513431ea4af0d7a9b7",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves the exclusivity of first-frame import and the fact that saving creates a still image. ImportSelection appends it only when pngDefaultImageSeparate is false in the multi-frame branch.",
+      "nynorsk_review": "Revise only the final sentence in parallel with formats22_animation_poster. Berre den første biletruta correctly retains both only and first.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.95,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93",
+          "window_exact_match": true,
+          "window_sha256_utf8": "a5e27cda10d98773ca8d7814c48e7f7df20b702e8c2c24dc5ade1b059f567271"
+        }
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "Animated image",
+      "candidate": "Animert bilete",
+      "source_value_sha256_utf8": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+      "candidate_value_sha256_utf8": "f669d113fd35a4cfcdbc53d200dc7f236afc6288cb5ec4c1a00ed3989e013e6c",
+      "accepted_value": "Animert bilete",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "f669d113fd35a4cfcdbc53d200dc7f236afc6288cb5ec4c1a00ed3989e013e6c",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Animated image is a noun-phrase title for the known multi-frame branch, not a claim that animation is edited or preserved.",
+      "nynorsk_review": "Animert bilete is idiomatic Nynorsk and consistent with existing Bilete terminology.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.98,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+          "window_exact_match": true,
+          "window_sha256_utf8": "e05d6772dcf8a927bcc78b7daa1aafb2fb9c36f0494caf9b99a5d3ead450f0fb"
+        }
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "candidate": "Dette %1$s-biletet er for komplekst til å stadfesta om det har fleire biletruter. AN Paint opnar berre eit stillbilete og tek ikkje vare på nokon animasjon.",
+      "source_value_sha256_utf8": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+      "candidate_value_sha256_utf8": "f58758fadd26851093db64226c00a2742246f4c586d299bd004f945447603a4d",
+      "accepted_value": "Dette %1$s-biletet er for komplekst til å stadfesta om det har fleire biletruter. AN Paint opnar berre eit stillbilete og tek ikkje vare på nokon animasjon.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "f58758fadd26851093db64226c00a2742246f4c586d299bd004f945447603a4d",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "actual_caller_semantics": "Preserves complexity/inspection uncertainty about multiple frames, still-image-only opening, and non-preservation of any animation. Does not turn frameCount < 2 into proof of a one-frame file or proof that animation is absent.",
+      "nynorsk_review": "The full message is understandable, valid Nynorsk; stadfesta, fleire biletruter and tek ikkje vare på nokon animasjon retain the required uncertainty and warning. No semantic or grammatical correction is needed.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.9,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:91",
+          "window_exact_match": true,
+          "window_sha256_utf8": "fe174e2d2072ea4cf1efee73c7287184f5e31e25d17d8ede8b7d4a1081a06c2b"
+        }
+      ]
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "candidate": "Skriv rein tekst med lyse og mørke teikn. Vis teksten med ei skrift med fast teiknbreidd. Dette er ei visuell attgjeving; ho kan ikkje opnast att som det opphavlege biletet.",
+      "source_value_sha256_utf8": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+      "candidate_value_sha256_utf8": "444dc656830228236ffc017eebe199a9d9a24fdc4ad59f2adaca0ad07d866dbd",
+      "accepted_value": "Skriv rein tekst med lyse og mørke teikn. Vis teksten med ei skrift med fast teiknbreidd. Dette er ei visuell attgjeving; ho kan ikkje opnast att som det opphavlege biletet.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "444dc656830228236ffc017eebe199a9d9a24fdc4ad59f2adaca0ad07d866dbd",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves plain-text output, light/dark characters, monospaced viewing advice, visual-rendition status, and inability to reopen it as the original image. SaveOptionsDialog uses this explanation only for ASCII_ART. It does not promise a reversible image save.",
+      "nynorsk_review": "Rein tekst, fast teiknbreidd and visuell attgjeving are natural Nynorsk technical wording. Ho correctly refers to the feminine attgjeving. Opnast att preserves reopening, and opphavlege biletet preserves original image.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.93,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:101",
+          "window_exact_match": true,
+          "window_sha256_utf8": "418d92517ee2bfe7e9a00146f8eee6c1162d6327e18e9cc14c16d153b2db6fbc"
+        }
+      ]
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "Open still image",
+      "candidate": "Opna stillbilete",
+      "source_value_sha256_utf8": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+      "candidate_value_sha256_utf8": "1158cfeea9bf1cbee298d5db58bc14a90fd811db1ae3b6b4dade0c56c785c947",
+      "accepted_value": "Opna stillbilete",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "1158cfeea9bf1cbee298d5db58bc14a90fd811db1ae3b6b4dade0c56c785c947",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Appropriate both as the uncertain-inspection dialog title and as the positive action that finishes selection of page/frame index 0. It does not label the action as opening or preserving animation.",
+      "nynorsk_review": "Opna stillbilete is a concise Nynorsk action label, with a-infinitive/imperative style compatible with existing Lagra and Angra.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.98,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+          "window_exact_match": true,
+          "window_sha256_utf8": "e05d6772dcf8a927bcc78b7daa1aafb2fb9c36f0494caf9b99a5d3ead450f0fb"
+        },
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:95",
+          "window_exact_match": true,
+          "window_sha256_utf8": "46a7e324d45d5b4891a78614de5f389ef9ee25dc9946005bac4363c38781a607"
+        }
+      ]
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "candidate": "PDF-sider vert rasteriserte med 144 dpi. Tekst og vektorobjekt vert til pikslar.",
+      "source_value_sha256_utf8": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+      "candidate_value_sha256_utf8": "ebb5f2d892147e456fc7f5a7b37274b043f1e5a8bbe3c3375bf2aea05c92d43b",
+      "accepted_value": "PDF-sider vert rasteriserte med 144 dpi. Tekst og vektorobjekt vert til pikslar.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "ebb5f2d892147e456fc7f5a7b37274b043f1e5a8bbe3c3375bf2aea05c92d43b",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves the exact 144 dpi claim and conversion of text and vector objects into pixels. Caller adds it only for PDF; the inspected PdfCodec comment also states 144 dpi. Rasteriserte accurately expresses rendering in this pixel-producing context.",
+      "nynorsk_review": "PDF-sider, rasteriserte, vektorobjekt and pikslar are appropriate technical Nynorsk. The two-sentence explanation is idiomatic.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.95,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:102",
+          "window_exact_match": true,
+          "window_sha256_utf8": "f81f941476ce8faf820cb8ae86a6dd7b46952f96eb03e366f2f9baf532cf2190"
+        }
+      ]
+    },
+    {
+      "identity": "string/save20_file_format",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "File format",
+      "candidate": "Filformat",
+      "source_value_sha256_utf8": "d63b2b691e7e74791728762f2759fa89f5b2c3cb09c96bd53e87ebb9604c23fb",
+      "candidate_value_sha256_utf8": "78e192fb3dd74b719f526ebd7d078ae0757646c151df2d665b2fd44d8b8264bd",
+      "accepted_value": "Filformat",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "78e192fb3dd74b719f526ebd7d078ae0757646c151df2d665b2fd44d8b8264bd",
+      "attributes": {
+        "name": "save20_file_format"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Suitable as the save/export format field label and Spinner accessibility description in both ordinary and alternate layout paths. No verb or implied action was added.",
+      "nynorsk_review": "Filformat is the normal compound and matches existing Filnamn terminology.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.99,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:62",
+          "window_exact_match": true,
+          "window_sha256_utf8": "2bdacaf222fe3bf8170665eaaf41912573119d49c573a5ef7dd7d9a167d7e943"
+        },
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:109",
+          "window_exact_match": true,
+          "window_sha256_utf8": "32c1c1581f6a9fab24217a29053f3426f8db8af36ec651fa872f73fca39cf703"
+        },
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:171",
+          "window_exact_match": true,
+          "window_sha256_utf8": "18547f5ae0f718b1657b3c5ec226d468a7dd3ffa44dd4ae78f8d7e54445c05a2"
+        }
+      ]
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "candidate": "Stillbilete med opptil 256 fargar. Utjamning gjer fargeovergangane jamnare. Animerte GIF-bilete vert opna som den første biletruta.",
+      "source_value_sha256_utf8": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "candidate_value_sha256_utf8": "a9c7f37a349d0cc8e1fc8a8ecfc056fb458e19f0f4554ebabe0b91742a8f1984",
+      "accepted_value": "Stillbilete med opptil 256 fargar. Utjamning gjer fargeovergangane jamnare. Animerte GIF-bilete vert opna som den første biletruta.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "a9c7f37a349d0cc8e1fc8a8ecfc056fb458e19f0f4554ebabe0b91742a8f1984",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves still-image output, the up-to-256-colour limit, the effect of dithering on gradients, and first-frame-only opening of animated GIFs. It does not promise animation export. Used when GIF is the selected export format.",
+      "nynorsk_review": "Stillbilete, opptil 256 fargar and fargeovergangane jamnare are idiomatic. Utjamning deliberately matches the untouched save20_dither label. The final sentence conveys each animated GIF opening as its first frame; no rewrite is necessary.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.93,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:95",
+          "window_exact_match": true,
+          "window_sha256_utf8": "c194e6918f494c2f45648681e8fdcc4cd5770ae17855791064bbcdb897f734e2"
+        }
+      ]
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "Enter a file name without slashes or control characters.",
+      "candidate": "Skriv inn eit filnamn utan skråstrekar eller kontrollteikn.",
+      "source_value_sha256_utf8": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+      "candidate_value_sha256_utf8": "c8eb2595fb57beafe32794d4edfd61a9139259ea5bcea1a3b7e98c504bde48a7",
+      "accepted_value": "Skriv inn eit filnamn utan skråstrekar eller kontrollteikn.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "c8eb2595fb57beafe32794d4edfd61a9139259ea5bcea1a3b7e98c504bde48a7",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves the instruction to enter a filename without slashes or control characters. Displayed on the filename field when ExportNames.valid fails; does not add a promise that every other filename is accepted.",
+      "nynorsk_review": "Skriv inn eit filnamn utan skråstrekar eller kontrollteikn is clear idiomatic Nynorsk and uses the established Filnamn term.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.98,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:194",
+          "window_exact_match": true,
+          "window_sha256_utf8": "6dc91bdcaabba5651f2054f277e126502561b0e8976faa72d5f72e96b57848e3"
+        }
+      ]
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "candidate": "Høgare kvalitet tek vare på fleire detaljar og gjev vanlegvis ei større fil.",
+      "source_value_sha256_utf8": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+      "candidate_value_sha256_utf8": "403894f8a78f2d4a9d80258be224716abc7f8e841cb7d293ad180331625fd87c",
+      "accepted_value": "Høgare kvalitet tek vare på fleire detaljar og gjev vanlegvis ei større fil.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "403894f8a78f2d4a9d80258be224716abc7f8e841cb7d293ad180331625fd87c",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves comparative quality, retention of more detail, and the non-absolute usually-qualified larger-file consequence. Caller uses it for JPEG and HEIC.",
+      "nynorsk_review": "Høgare kvalitet tek vare på fleire detaljar og gjev vanlegvis ei større fil is idiomatic Nynorsk. Fleire detaljar faithfully renders more detail rather than promising all details.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.97,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:102",
+          "window_exact_match": true,
+          "window_sha256_utf8": "2bb09c6830e014ec3b89a332a9e920e44ad8b07ec6cbfd737b115d1ff340936e"
+        }
+      ]
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "candidate": "Dette biletet brukar ein fargeprofil som AN Paint enno ikkje kan konvertera. Konverter det til sRGB PNG i eit bilethandsamingsprogram med fargestyring før du importerer det.",
+      "source_value_sha256_utf8": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+      "candidate_value_sha256_utf8": "fcb2c970767c6b85ce0721ad2ac1d2544d48fb543ecaf2424d4a840b6379041b",
+      "accepted_value": "Dette biletet brukar ein fargeprofil som AN Paint enno ikkje kan konvertera. Konverter det til sRGB PNG i eit bilethandsamingsprogram med fargestyring før du importerer det.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "fcb2c970767c6b85ce0721ad2ac1d2544d48fb543ecaf2424d4a840b6379041b",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves the unsupported colour-profile condition, current inability to convert it, and the instruction to convert the image to sRGB PNG in an external colour-managed editor before importing. The exceptions originate specifically from UnsupportedColour in DibCodec, IcoCodec and PlatformImageColour, not arbitrary provider failures. No automatic conversion, relabelling or guaranteed future capability is promised.",
+      "nynorsk_review": "Enno ikkje, bilethandsamingsprogram med fargestyring and før du importerer det are clear Nynorsk. Neuter det refers to biletet rather than masculine fargeprofil. The sRGB and PNG identifiers remain unchanged.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.95,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:16",
+          "window_exact_match": true,
+          "window_sha256_utf8": "f09989f3e904e87dfd36966375d6d3268a6469d796a1e0c197aaf3a499067f01"
+        },
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:23",
+          "window_exact_match": true,
+          "window_sha256_utf8": "affcc43653cb69d6c9562b4b838e070b8434498442005985f711ade452232666"
+        },
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt:115",
+          "window_exact_match": true,
+          "window_sha256_utf8": "39a2e00477ebbf1c15421340f9b0e9757eab35b925990cadafa088d0ec6c81c2"
+        }
+      ]
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "verdict": "accept",
+      "acceptance_scope": "independent model-level full-message linguistic and caller-semantic review only",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "candidate": "Høgare kvalitet gjev vanlegvis ei større fil. Tapsfri komprimering tek vare på kvar fargeverdi.",
+      "source_value_sha256_utf8": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+      "candidate_value_sha256_utf8": "4989c94ec94f7ec9ff70d20bb637c5537091c33e94aa68392413ba140ffd308b",
+      "accepted_value": "Høgare kvalitet gjev vanlegvis ei større fil. Tapsfri komprimering tek vare på kvar fargeverdi.",
+      "replacement_value": null,
+      "accepted_value_sha256_utf8": "4989c94ec94f7ec9ff70d20bb637c5537091c33e94aa68392413ba140ffd308b",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "placeholder_tokens": [],
+      "actual_caller_semantics": "Preserves usually-qualified larger files and preservation of every colour value in lossless mode. Adding komprimering makes the compression-mode referent explicit without broadening it to preserving all metadata or animation. The fallback explanation branch in SaveOptionsDialog uses it; PNG hides the explanation.",
+      "nynorsk_review": "Høgare, gjev vanlegvis, tapsfri komprimering and kvar fargeverdi are idiomatic Nynorsk. Existing English fallback mode labels are not translated or implicitly accepted by this verdict.",
+      "composition_review": "Reviewed in the supplied caller context; no changed placeholder, markup, attribute or adjacent fallback is required.",
+      "confidence": 0.96,
+      "limits": [
+        "No native-human review.",
+        "No device, layout, accessibility-runtime or Android resource-compilation validation.",
+        "No whole-locale or untouched fallback acceptance."
+      ],
+      "checks": {
+        "source_value_matches_bound_xml": true,
+        "attributes_match_bound_xml": true,
+        "source_value_hash_matches_packet": true,
+        "candidate_value_hash_matches_packet": true,
+        "placeholder_sequence_matches": true,
+        "key_is_P0": true,
+        "target_is_absent_at_baseline": true,
+        "no_markup_or_attribute_changes": true
+      },
+      "consumer_window_checks": [
+        {
+          "id": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:103",
+          "window_exact_match": true,
+          "window_sha256_utf8": "a915c0389349c78e2343fd37389c1db91b1a7819c995ee2914731969478497ef"
+        }
+      ]
+    }
+  ],
+  "candidate_file": "group-01-import-format-candidates.json",
+  "candidate_url": "https://github.com/c933103/AN-Paint/blob/e2609828254d03b9f25ac7d46965c8895e90c2de/records/localization-review/2026-10-26/nynorsk-p0-remaining/r01/group-01-import-format-candidates.json",
+  "public_export": {
+    "original_review_sha256": "3a01159ecdae16f607c2a9abdc44858c230ac51dafd04657a3f03d8e38f36500",
+    "metadata_changes": [
+      "reviewer_task replaced with public role",
+      "packet_path removed",
+      "source_verification.local_source_root removed",
+      "source_verification.tree_manifest_path removed"
+    ],
+    "judgments_values_hashes_qualifications_and_limits": "preserved unchanged; no new acceptance introduced by export"
+  }
+}

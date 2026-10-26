@@ -1,0 +1,1288 @@
+{
+  "schema_version": 1,
+  "record_kind": "independent source-bound per-entry review; not native-human or runtime acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "857a20103285a77846e340b326667c15a402ff9e",
+  "source_tree": "6bb4fa11534149df7f8f58cb3d21faf2b802089f",
+  "locale": "nn",
+  "group": "02-autosave-recovery-and-undo",
+  "reviewer": "independent AI linguistic/static reviewer",
+  "candidate_file": "group-02-recovery-candidates.json",
+  "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+  "candidate_file_sha256_verified": true,
+  "summary": {
+    "candidate_count": 28,
+    "accepted_unchanged": 27,
+    "revised": 1,
+    "held": 0,
+    "direct_consumer_windows_verified": 42,
+    "scanned_production_files": 322,
+    "group_source_bindings_verified": 9
+  },
+  "verification_methods": [
+    "Independent SHA-256 and Git blob SHA-1 calculations for all nine bound source files; exact blob equality against the stored untruncated 857a201 merged-tree response.",
+    "Independent Git blob hash check of every one of the 322 scanned production files against that pinned tree.",
+    "DOM extraction of exact whole source values and attributes; candidate/source SHA-256 recomputation; exact placeholder comparisons.",
+    "Independent re-extraction of all 42 direct production consumer identities and exact validation of every supplied line window.",
+    "Read complete EditorDraftRecovery.kt, AutosaveStore.kt and RasterHistory.kt plus File-menu/recovery-export/autosave flow in ClassicPaintActivity.kt.",
+    "Also ran the packet-wide verify_candidates.py: 325 bound files, 322 production files, 72 candidates, 5 existing holds and 120 consumer windows passed structural/source checks. That structural result is not a linguistic acceptance."
+  ],
+  "source_bindings": [
+    {
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "git_blob_sha1": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "bytes": 80549,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/res/values/strings.xml",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    },
+    {
+      "path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+      "git_blob_sha1": "f8020f1bbcf7bd9e79d231dd495f43f48c7292d7",
+      "sha256": "91961c52e1f5ca58c282a187121dd023b57f28abba82287a7a26619611aa4f9a",
+      "bytes": 7256,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/res/values-b+nn/strings.xml",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    },
+    {
+      "path": "translations/string-importance.json",
+      "git_blob_sha1": "e76a3a440a8b169d31f5ab5d163a2695b0db93b1",
+      "sha256": "9b5bfb6d25f2ad034158816d943b94feed8296ad4117c2176f09a95dad506879",
+      "bytes": 32088,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/translations/string-importance.json",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+      "git_blob_sha1": "3fdd7aff659a3a2cdf2b78ed16472b5850225567",
+      "sha256": "db643208844218829b59c5a741ff83b4d8755499b21527fe7a0a8e585b647c9a",
+      "bytes": 9198,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt",
+      "git_blob_sha1": "5e76c84c80a42326ac74073fd44fdea2cbf6006d",
+      "sha256": "7d2d4a94b8082f27dfa58d3a8f2a3ad31dd867df1516b85c4e630a5e925ab235",
+      "bytes": 738,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "git_blob_sha1": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+      "bytes": 115623,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+      "git_blob_sha1": "b8a97637df61f8e50694e4a9d65b924b3e0af4f5",
+      "sha256": "f6781d9a04961ed7b2b4a8cc52a8164001da9be8155d1ae7967905c84ef8326a",
+      "bytes": 5907,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt",
+      "git_blob_sha1": "34648cb4cf1cf0f9dbf3e31b7366c6e03ca8b1da",
+      "sha256": "79231137d133a6e645b5576840c05bbbc0fe8e25bdb6035194444afd7443da4a",
+      "bytes": 4645,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+      "git_blob_sha1": "ad69e51d04f7342927f3040929332eb3bcaa7d34",
+      "sha256": "c4a2807d5a278a377697bfc912f92526b4e45ab7e0daa79d8e35950e024b1a85",
+      "bytes": 5529,
+      "url": "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+      "bytes_sha256_git_blob_and_pinned_tree_match": true
+    }
+  ],
+  "terminology_findings": [
+    {
+      "term": "gjenopprettingskopi",
+      "verdict": "accept within these exact reviewed strings",
+      "reason": "Transparent compound from recovery/restoration plus copy. It identifies a copy retained for possible recovery, not proof that restoration succeeded. The gjenoppretta verb is supported by Nynorskordboka; the complete compound is a contextual reviewer judgement, not claimed as an independently attested official glossary entry.",
+      "source": "https://ordbokene.no/nn/GJENOPPRETTE"
+    },
+    {
+      "term": "flytande utval",
+      "verdict": "accept term; revise quantity in export-success sentence",
+      "reason": "Appropriate selection terminology and independently attested in official GIMP Nynorsk documentation. Production supports one optional floating selection; final message uses eit eventuelt flytande utval. This does not imply cross-application behavior is identical.",
+      "source": "https://docs.gimp.org/3.0/nn/gimp-edit-paste.html"
+    },
+    {
+      "term": "angrelogg / mellomlager for angring",
+      "verdict": "accept contextual distinction",
+      "reason": "Angrelogg denotes undo history; mellomlager for angring denotes on-disk snapshot cache. Official GIMP Nynorsk documents angrelogg, but AN Paint storage/RAM semantics were checked in this app’s source, not imported from GIMP.",
+      "source": "https://docs.gimp.org/3.2/nn/gimp-prefs-system-resources.html"
+    }
+  ],
+  "composition_guards": [
+    {
+      "identity": "string/ui_menu_file",
+      "current_nynorsk_display": "Fil",
+      "source_verified": true
+    },
+    {
+      "identity": "string/ui_load_image",
+      "current_nynorsk_presence": "absent",
+      "canonical_effective_display": "Load image…",
+      "preserve_exact_mixed_path": "Fil > Load image…",
+      "source_verified": true,
+      "scope": "No P1 action translation is proposed."
+    },
+    {
+      "identity": "string/ui_save",
+      "current_nynorsk_display": "Lagra",
+      "source_verified": true
+    },
+    {
+      "identity": "string/save20_title",
+      "current_nynorsk_display": "Lagra som…",
+      "source_verified": true
+    },
+    {
+      "identity": "string/save20_file_format",
+      "proposed_group01_display": "Filformat",
+      "condition": "Must match group-01 final review before the composed recovery instruction is implemented."
+    }
+  ],
+  "boundaries": [
+    "No application source, external repository state or existing locale values changed. Only temporary review artifacts were written.",
+    "No native-human, physical-device, layout, runtime, whole-locale, release or end-to-end recovery acceptance is claimed.",
+    "No translation of absent P1 ui_load_image or other neighboring strings is proposed.",
+    "Existing 118 Nynorsk values and the five explicit packet holds remain unchanged.",
+    "The unrelated Help archive/callback work remains paused and was not resumed.",
+    "Exception placeholders may carry untranslated details; no complete-language-coverage claim.",
+    "The source pin is a stored, hash-verified merge snapshot; no fresh remote branch-state or signature verification was performed by this reviewer."
+  ],
+  "blocked_actions": [],
+  "entries": [
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "candidate": "%1$s Ein eigen gjenopprettingskopi er teken vare på. Bruk «Fil > Eksporter gjenopprettingskopi…» til å lagra ZIP-fila. Pakk ut canvas.png frå henne og last inn biletet for å bruka dei vanlege alternativa for skalering om det trengst.",
+      "verdict": "accept",
+      "final_value": "%1$s Ein eigen gjenopprettingskopi er teken vare på. Bruk «Fil > Eksporter gjenopprettingskopi…» til å lagra ZIP-fila. Pakk ut canvas.png frå henne og last inn biletet for å bruka dei vanlege alternativa for skalering om det trengst.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "severity": null,
+      "reason": "Retains the failure-reason prefix and correctly reports an already-preserved separate copy. The imperative chain exports its ZIP, extracts canvas.png, loads the image, then uses normal resizing. Ein eigen is a natural rendering of separate; feminine henne correctly refers to ZIP-fila. The quoted command agrees with the reviewed menu candidate.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.91,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [
+        {
+          "identity": "string/ui_export_recovery_copy",
+          "required_final_value": "Eksporter gjenopprettingskopi…",
+          "status": "accepted within this bounded review"
+        }
+      ],
+      "source_value_sha256_utf8": "579fea23054e5ac24d9dad1aee8a1dd13af1d810fbed9f92e059cce26f6ed0a0",
+      "candidate_value_sha256_utf8": "4d2064182c085697785c8e6c87e05e6ce8139762ea4731ca4f5f3174edf45346",
+      "final_value_sha256_utf8": "4d2064182c085697785c8e6c87e05e6ce8139762ea4731ca4f5f3174edf45346",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L34-L45"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "source": "Autosave failed · use Save",
+      "candidate": "Autolagring feila · bruk «Lagra»",
+      "verdict": "accept",
+      "final_value": "Autolagring feila · bruk «Lagra»",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "severity": null,
+      "reason": "Autolagring names the failed draft mechanism; quoted Lagra points to the actual explicit Save action rather than claiming the user file was saved. The middle-dot status form remains intact.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "9fab2239be3a11b6843125b73bedddcef714c0188d682cb0f145f6a7fdd1457a",
+      "candidate_value_sha256_utf8": "9e3c74a3b310ae702666578311f192c17ed48230549b140f3f2ed936717648d3",
+      "final_value_sha256_utf8": "9e3c74a3b310ae702666578311f192c17ed48230549b140f3f2ed936717648d3",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1622-L1633"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "source": "Autosave image encoding failed.",
+      "candidate": "Koding av biletet for autolagring feila.",
+      "verdict": "accept",
+      "final_value": "Koding av biletet for autolagring feila.",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "severity": null,
+      "reason": "Koding av biletet for autolagring precisely describes failure of canvas.png PNG compression; it does not claim an earlier draft is lost.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "f83897890596e2776edb9f66dca76dce2e53f64fb26f43c2462116d978d64201",
+      "candidate_value_sha256_utf8": "e0470cf4d8218d653513830a31a62abf7a2ac7ef0c6f1411b289068538bd18b6",
+      "final_value_sha256_utf8": "e0470cf4d8218d653513830a31a62abf7a2ac7ef0c6f1411b289068538bd18b6",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L127-L138"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "candidate": "%1$s Autolagring er sett på pause for å verna det utkastet. Bruk «Fil → Eksporter gjenopprettingskopi…» til å ta vare på det, og «Fil → Lagra som…» (Filformat: PNG / JPEG) til å lagra arbeidet du held på med.",
+      "verdict": "accept",
+      "final_value": "%1$s Autolagring er sett på pause for å verna det utkastet. Bruk «Fil → Eksporter gjenopprettingskopi…» til å ta vare på det, og «Fil → Lagra som…» (Filformat: PNG / JPEG) til å lagra arbeidet du held på med.",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "severity": null,
+      "reason": "Correctly distinguishes an unpreserved separate copy from the existing protected draft. Pause is explicit, the draft should be exported, and current work still needs explicit saving. File/Save-as labels are actual existing Nynorsk labels; recovery command matches the reviewed candidate. Filformat is conditional on the independently reviewed group-01 label remaining identical.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.92,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [
+        {
+          "identity": "string/ui_export_recovery_copy",
+          "required_final_value": "Eksporter gjenopprettingskopi…",
+          "status": "accepted within this bounded review"
+        },
+        {
+          "identity": "string/save20_file_format",
+          "required_final_value": "Filformat",
+          "status": "group-01 review dependency; reconcile exact final label before implementation"
+        }
+      ],
+      "source_value_sha256_utf8": "45af3acf76284540e468a05d80591e36743472a7625da0c6b7153a8173e007a7",
+      "candidate_value_sha256_utf8": "1d8df61f5a29176c4e0f0bb600cd56abd3974e5c476c6901a9ca7e77313f58e3",
+      "final_value_sha256_utf8": "1d8df61f5a29176c4e0f0bb600cd56abd3974e5c476c6901a9ca7e77313f58e3",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L40-L51"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "source": "Autosave metadata is missing.",
+      "candidate": "Metadata for autolagringa manglar.",
+      "verdict": "accept",
+      "final_value": "Metadata for autolagringa manglar.",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "severity": null,
+      "reason": "Metadata for autolagringa manglar is idiomatic and denotes the missing draft.json entry, not missing canvas pixels or a generic read error.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "1115f993a7d75ef4a554c7ef1cf900d88970a5c05144cf1c9038ab0d86965de4",
+      "candidate_value_sha256_utf8": "a6a37586a88d6146b9ec7faf8d8e793949bc5fb62d88e78773c9b88f62d09520",
+      "final_value_sha256_utf8": "a6a37586a88d6146b9ec7faf8d8e793949bc5fb62d88e78773c9b88f62d09520",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L142-L153"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "source": "Autosave paused · use Save",
+      "candidate": "Autolagring er sett på pause · bruk «Lagra»",
+      "verdict": "accept",
+      "final_value": "Autolagring er sett på pause · bruk «Lagra»",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "severity": null,
+      "reason": "Accurately reports paused autosaving and directs the user to the existing Lagra command. It neither promises successful preservation nor says current work is saved.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "3dfab3c54ba3d7700fc9d12ae3d767eda448501ba5df52284905edd71c7f30bd",
+      "candidate_value_sha256_utf8": "8527569a914c41bd027983935fc2e0e49a774cb48f10260b15ea0202b33bc009",
+      "final_value_sha256_utf8": "8527569a914c41bd027983935fc2e0e49a774cb48f10260b15ea0202b33bc009",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L39-L50"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "source": "Autosave pixels are missing.",
+      "candidate": "Pikseldata for autolagringa manglar.",
+      "verdict": "accept",
+      "final_value": "Pikseldata for autolagringa manglar.",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "severity": null,
+      "reason": "Pikseldata preserves the meaning of missing stored pixel data. The consumer can be reading canvas.png or floating.png; no narrower filename is introduced.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "4af9f86e590fa90219121ad8f4cbbe372eaeeca8fb1927e01917a7fdd881de31",
+      "candidate_value_sha256_utf8": "a6af09a013ff8cdd580455446c9f4ab6341def65239b39013527b81f14ba11b9",
+      "final_value_sha256_utf8": "a6af09a013ff8cdd580455446c9f4ab6341def65239b39013527b81f14ba11b9",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L147-L158"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "source": "Autosave pixels could not be read.",
+      "candidate": "Kunne ikkje lesa pikseldata for autolagringa.",
+      "verdict": "accept",
+      "final_value": "Kunne ikkje lesa pikseldata for autolagringa.",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "severity": null,
+      "reason": "Correctly conveys decode/read failure of saved pixel data, distinct from the missing-entry diagnostic, with idiomatic Kunne ikkje lesa.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "b6c10f2c0238abb6190525baa6d50140fc4e8c33de2cfab12b99930e833ba2f3",
+      "candidate_value_sha256_utf8": "f665885dcb789e68f74da2eea2457d0219acc681ee20940085a8d2126740d05a",
+      "final_value_sha256_utf8": "f665885dcb789e68f74da2eea2457d0219acc681ee20940085a8d2126740d05a",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L153-L164"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "source": "Autosave selection encoding failed.",
+      "candidate": "Koding av utvalet for autolagring feila.",
+      "verdict": "accept",
+      "final_value": "Koding av utvalet for autolagring feila.",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "severity": null,
+      "reason": "Utvalet matches existing Nynorsk selection vocabulary and the optional floating.png encoder. It remains a selection encoding error, not a canvas encoding error.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.95,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "4f03c5b20f4fee753afcccbbaddc08e6361f85e6ebd9a1275d69cfd5ffa906e0",
+      "candidate_value_sha256_utf8": "8b8e44d09a2e4f17b0a6f613aee2f25be8423705b5ffff36ccd022b46f07d710",
+      "final_value_sha256_utf8": "8b8e44d09a2e4f17b0a6f613aee2f25be8423705b5ffff36ccd022b46f07d710",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L129-L140"
+      ]
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "candidate": "Kan ikkje oppretta mellomlageret for angring. Frigjer lagringsplass på eininga og prøv på nytt.",
+      "verdict": "accept",
+      "final_value": "Kan ikkje oppretta mellomlageret for angring. Frigjer lagringsplass på eininga og prøv på nytt.",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "severity": null,
+      "reason": "Mellomlageret for angring is an intelligible undo-cache phrase, distinct from the user-facing angrelogg. Frigjer lagringsplass på eininga correctly addresses disk storage: both consumers are mkdirs failures for on-disk snapshots, not RAM allocation failures.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.94,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "candidate_value_sha256_utf8": "47e44c0b6965aa04a2f27849a6629653e41a93f131f1ab048b8c96d8e9614fbe",
+      "final_value_sha256_utf8": "47e44c0b6965aa04a2f27849a6629653e41a93f131f1ab048b8c96d8e9614fbe",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L17-L28",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L46-L57"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "source": "Could not export the recovery copy",
+      "candidate": "Kunne ikkje eksportera gjenopprettingskopien",
+      "verdict": "accept",
+      "final_value": "Kunne ikkje eksportera gjenopprettingskopien",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "severity": null,
+      "reason": "Natural error prefix for failure to export the copy, with recovery-copy terminology consistent across this group. No terminal punctuation is added before ioFailed appends detail.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.95,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "66c703a27ccf6fd0c8400514fd0417449b780e644313ed3b5565bd8060be1815",
+      "candidate_value_sha256_utf8": "3067372ac10edc60e73058158f8aaef7e84b74e656d8ef080f460ad954572ee7",
+      "final_value_sha256_utf8": "3067372ac10edc60e73058158f8aaef7e84b74e656d8ef080f460ad954572ee7",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1404-L1415"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "source": "Draft not saved yet",
+      "candidate": "Utkastet er ikkje lagra enno",
+      "verdict": "accept",
+      "final_value": "Utkastet er ikkje lagra enno",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "severity": null,
+      "reason": "Initial draft-specific not-yet-saved status. Utkastet prevents conflation with explicit Save or the current destination, while enno preserves yet.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.97,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "47bfd1dafcd6d9d6d49ae9f60f5b5c60d0180661684733aaa73e559734f7d447",
+      "candidate_value_sha256_utf8": "e57a70e3d84643f8f334ffb63ddbc4936b26e178c73fd3b5f9dc8353a75a38ae",
+      "final_value_sha256_utf8": "e57a70e3d84643f8f334ffb63ddbc4936b26e178c73fd3b5f9dc8353a75a38ae",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L126-L137",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L27-L38"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "source": "Draft restored",
+      "candidate": "Utkastet er gjenoppretta",
+      "verdict": "accept",
+      "final_value": "Utkastet er gjenoppretta",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "severity": null,
+      "reason": "Draft-restoration status is faithful in both current autosave and legacy-image recovery paths. It does not claim complete undo-history restoration, which is separately reported.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "b22e11b3de90d4a130e7c63753a46f3b853fc949ca2fe95dd156138a384b5dcb",
+      "candidate_value_sha256_utf8": "760f3f67ead209dcdabad208aa1c1dc80087803b23c7edf568cb9b41e23fee76",
+      "final_value_sha256_utf8": "760f3f67ead209dcdabad208aa1c1dc80087803b23c7edf568cb9b41e23fee76",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L77-L88",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L90-L101"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "source": "Draft saved",
+      "candidate": "Utkastet er lagra",
+      "verdict": "accept",
+      "final_value": "Utkastet er lagra",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "severity": null,
+      "reason": "The subject remains Utkastet, so the autosave success message does not become a claim that explicit Save updated the destination or cleared document.dirty.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "5ccb8caacdc5383597f882b5c366969ee1cdd1a32b1d122a42b0280a51f9a5a6",
+      "candidate_value_sha256_utf8": "0810540b4c5b18f2a66ea5c01d75a236f6c28fdd85f8581309644c92a4133a74",
+      "final_value_sha256_utf8": "0810540b4c5b18f2a66ea5c01d75a236f6c28fdd85f8581309644c92a4133a74",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1621-L1632"
+      ]
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "source": "Export recovery copy…",
+      "candidate": "Eksporter gjenopprettingskopi…",
+      "verdict": "accept",
+      "final_value": "Eksporter gjenopprettingskopi…",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "severity": null,
+      "reason": "A clear imperative menu command; gjenopprettingskopi is a transparent contextual compound meaning a copy retained for recovery, not a promise of successful recovery. The ellipsis agrees with the document picker/choice flow.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.91,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "d642d7ea56f8deaece6e022241000cf5ef28239a5d066391c1e1e4bd5fe7a197",
+      "candidate_value_sha256_utf8": "1b082cc0c2213557369bf918882d641575732db653f4c5a3b5fff8a395882b97",
+      "final_value_sha256_utf8": "1b082cc0c2213557369bf918882d641575732db653f4c5a3b5fff8a395882b97",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:846"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L841-L852"
+      ]
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "source": "Export recovery copy",
+      "candidate": "Eksporter gjenopprettingskopi",
+      "verdict": "accept",
+      "final_value": "Eksporter gjenopprettingskopi",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "severity": null,
+      "reason": "Same coherent recovery-copy term as the action, but correctly without an ellipsis for the dialog title that chooses an existing copy.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.92,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "144b8a2d9ee28d7aaa90dbbd22a6e1f487e99fd78a9c5f4d4131e48c0c3a0644",
+      "candidate_value_sha256_utf8": "703a49f4340963ca86234e848ad281dffa8fc071877a59dc81690510c304e27b",
+      "final_value_sha256_utf8": "703a49f4340963ca86234e848ad281dffa8fc071877a59dc81690510c304e27b",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1156-L1167"
+      ]
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "candidate": "Lerretet vart gjenoppretta, men angreloggen kunne ikkje lesast. Det opphavlege utkastet er teke vare på som ein gjenopprettingskopi.",
+      "verdict": "accept",
+      "final_value": "Lerretet vart gjenoppretta, men angreloggen kunne ikkje lesast. Det opphavlege utkastet er teke vare på som ein gjenopprettingskopi.",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "severity": null,
+      "reason": "Preserves all three distinct outcomes: canvas restored, undo history unreadable, and original draft retained as a recovery copy. Angreloggen is suitable for the history, rather than the physical cache. The preserved-copy statement occurs only after preserveForRecovery returns. formatted=false must be retained.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.94,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "445a2a9744ed258c1815920072f46042e9bb4aeb519a2c2d2d34eac8a95a589e",
+      "candidate_value_sha256_utf8": "825bfe91a356acf03a21a8a1d17d78a18ccd42ab86c2a8c8e726218c0c9f4a10",
+      "final_value_sha256_utf8": "825bfe91a356acf03a21a8a1d17d78a18ccd42ab86c2a8c8e726218c0c9f4a10",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L59-L70"
+      ]
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "source": "Invalid autosave metadata.",
+      "candidate": "Ugyldige metadata for autolagringa.",
+      "verdict": "accept",
+      "final_value": "Ugyldige metadata for autolagringa.",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "severity": null,
+      "reason": "Ugyldige metadata is correct plural agreement; for autolagringa retains source specificity across every direct consumer, including reused credit-session/history validators. No extra diagnosis or repair guarantee is added.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.95,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "4a62b9a9531a09d3f34b967194d530070ddf65a66811f5ce52f39c332de3e2eb",
+      "candidate_value_sha256_utf8": "1f0f08b41a3cc8d35297442b9615e2992bb851a63a104027f264ecc49564f3bb",
+      "final_value_sha256_utf8": "1f0f08b41a3cc8d35297442b9615e2992bb851a63a104027f264ecc49564f3bb",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L143-L154",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L33-L44",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L34-L45",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt#L10-L20",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1214-L1225",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt#L15-L26",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt#L28-L39"
+      ]
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "source": "Previous draft kept for recovery",
+      "candidate": "Det førre utkastet er teke vare på for gjenoppretting",
+      "verdict": "accept",
+      "final_value": "Det førre utkastet er teke vare på for gjenoppretting",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "severity": null,
+      "reason": "Correctly describes the earlier draft as retained for recovery, with neuter teke agreeing with utkastet. This is not a claim that recovery itself succeeded.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.95,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "f31aee8ae34783790412c745919799d37484bf8e70be9dc2865ec4defc829ff8",
+      "candidate_value_sha256_utf8": "3b17e6e169cffe301399e6595bdc95b536261f7d60c1fa0d528b40809c77e978",
+      "final_value_sha256_utf8": "3b17e6e169cffe301399e6595bdc95b536261f7d60c1fa0d528b40809c77e978",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L35-L46"
+      ]
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "source": "Recovered image",
+      "candidate": "Gjenoppretta bilete",
+      "verdict": "accept",
+      "final_value": "Gjenoppretta bilete",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "severity": null,
+      "reason": "Gjenoppretta bilete is grammatical and appropriate as a fallback filename/title in both restore paths. It is not turned into an additional success notification.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "f31f8410df9ce45c66f3c7e7af9c7bf126ee2481a825f0e31cfae2a4881a43a8",
+      "candidate_value_sha256_utf8": "50242c72d7d9bbc6fbfe64a53a65cbdc48a7240a3bb41ba5c287f52f9148a594",
+      "final_value_sha256_utf8": "50242c72d7d9bbc6fbfe64a53a65cbdc48a7240a3bb41ba5c287f52f9148a594",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L66-L77",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L88-L99"
+      ]
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "candidate": "Gjenopprettingskopien er eksportert. Pakk ut canvas.png frå ZIP-fila og opna biletet med «Fil > Load image…». ZIP-fila inneheld òg innstillingane for utkastet og eventuelle flytande utval.",
+      "verdict": "revise",
+      "final_value": "Gjenopprettingskopien er eksportert. Pakk ut canvas.png frå ZIP-fila og opna biletet med «Fil > Load image…». ZIP-fila inneheld òg innstillingane for utkastet og eit eventuelt flytande utval.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "severity": "minor source/consumer fidelity precision",
+      "reason": "The draft stores one optional floating selection (one nullable floating bitmap, one floating.png and one floating_rect), so replace plural eventuelle flytande utval with eit eventuelt flytande utval. This is a small source/consumer-fidelity precision revision, not a rejection of flytande utval as terminology. Preserve canvas.png, ZIP and the actual mixed-language Fil > Load image… command.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.94,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "candidate_value_sha256_utf8": "850321fa461dcb421667528bc629a6b4ffb2f3c5ecbbeab20e40d2710350e6f9",
+      "final_value_sha256_utf8": "cabc45f2643c19a382bbf6b0877e7c8a8e72b5fcde0bd3abb1e1e2a70c786829",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1403-L1414"
+      ]
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "source": "The draft is saving. Try again shortly.",
+      "candidate": "Utkastet vert lagra. Prøv på nytt om litt.",
+      "verdict": "accept",
+      "final_value": "Utkastet vert lagra. Prøv på nytt om litt.",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "severity": null,
+      "reason": "Vert lagra denotes an ongoing draft save and om litt naturally conveys shortly. The two consumers temporarily block edits/credit attachment while autosaving; the text does not ask the user to invoke Save again.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+      "candidate_value_sha256_utf8": "b407dd7ccf63f39d76a8dd336cb17232b979d6f26f18bba2b061fd638f201dba",
+      "final_value_sha256_utf8": "b407dd7ccf63f39d76a8dd336cb17232b979d6f26f18bba2b061fd638f201dba",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1438-L1449",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L920-L931"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "candidate": "Det førre utkastet kunne ikkje flyttast til ein gjenopprettingskopi.",
+      "verdict": "accept",
+      "final_value": "Det førre utkastet kunne ikkje flyttast til ein gjenopprettingskopi.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "severity": null,
+      "reason": "Could-not-move remains a failure, with no promise that a recovery copy exists. Flyttast preserves the canonical wording used for a missing original or failed rename, rather than inventing a more specific cause.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.94,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "58a948005b3938c7d8ca4ea368db1b4b390a98d9f517f4851c5b98f8b57e71e5",
+      "candidate_value_sha256_utf8": "dc8de49138f1afdc3409bf23d488d034af2ff641664a6f8ad79d98cae00d2f8e",
+      "final_value_sha256_utf8": "dc8de49138f1afdc3409bf23d488d034af2ff641664a6f8ad79d98cae00d2f8e",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L107-L118",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L99-L110"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "source": "The previous draft could not be preserved separately.",
+      "candidate": "Det førre utkastet kunne ikkje takast vare på for seg.",
+      "verdict": "accept",
+      "final_value": "Det førre utkastet kunne ikkje takast vare på for seg.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "severity": null,
+      "reason": "For seg naturally conveys separately, and the negative statement correctly avoids saying that a separate copy was retained. It does not assert the original was deleted.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.94,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "0231e19f5f7e376d0872735d1e3f8f9698fbd43564ea52240f454efc21d3c8ec",
+      "candidate_value_sha256_utf8": "11c359e2482febb29bd42b5e6207dc89ed684c61a2cdef0d34fc53781d7b50e2",
+      "final_value_sha256_utf8": "11c359e2482febb29bd42b5e6207dc89ed684c61a2cdef0d34fc53781d7b50e2",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L38-L49"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "source": "The previous draft could not be restored.",
+      "candidate": "Det førre utkastet kunne ikkje gjenopprettast.",
+      "verdict": "accept",
+      "final_value": "Det førre utkastet kunne ikkje gjenopprettast.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "severity": null,
+      "reason": "Gjenopprettast conveys failed restoration of the earlier draft. This reason is composed with either preserved-copy or paused-autosave instructions, without claiming either branch outcome itself.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "1cc58fbbe1b76be657fc2eafbf8250b6231f06484eda3fbf7758e1b5cf88ea13",
+      "candidate_value_sha256_utf8": "5e611fd41f45df36102e039fed69ed4b8fd5d44cd86b963f45f9f4d9ce8f42d3",
+      "final_value_sha256_utf8": "5e611fd41f45df36102e039fed69ed4b8fd5d44cd86b963f45f9f4d9ce8f42d3",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L78-L89"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "source": "The previous draft needs more memory to reopen.",
+      "candidate": "Det trengst meir minne for å opna det førre utkastet att.",
+      "verdict": "accept",
+      "final_value": "Det trengst meir minne for å opna det førre utkastet att.",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "severity": null,
+      "reason": "Meir minne correctly denotes RAM pressure for the OutOfMemoryError path, distinct from lagringsplass in the undo-cache creation error. Opna ... att naturally conveys reopen.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "cf655bbea013a29738b4f078166b9dde719f694052a7f1755e2bd0a40c1b9170",
+      "candidate_value_sha256_utf8": "9f7cc69394a3eda50014a2fae942cce52fa94730a93b804d633b4649b327372e",
+      "final_value_sha256_utf8": "9f7cc69394a3eda50014a2fae942cce52fa94730a93b804d633b4649b327372e",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L79-L90"
+      ]
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "source": "The undo cache is damaged.",
+      "candidate": "Mellomlageret for angring er skadd.",
+      "verdict": "accept",
+      "final_value": "Mellomlageret for angring er skadd.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "severity": null,
+      "reason": "Skadd appropriately conveys a damaged undo cache for digest/header mismatches. The noun phrase remains distinct from angrelogg and does not add a recoverability claim.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.95,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "19e62ed88ca1118a10f0062c76f9f7b3629b34cceed02628aefe5ca3bbb44cef",
+      "candidate_value_sha256_utf8": "2c6c3d8551d501716c5017e8eb59797e45f4ac2a6a3bcc67fe43b69f5edbe2f3",
+      "final_value_sha256_utf8": "2c6c3d8551d501716c5017e8eb59797e45f4ac2a6a3bcc67fe43b69f5edbe2f3",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L55-L66",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L57-L68",
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L76-L87"
+      ]
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "source": "Unexpected data in the undo cache.",
+      "candidate": "Uventa data i mellomlageret for angring.",
+      "verdict": "accept",
+      "final_value": "Uventa data i mellomlageret for angring.",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "severity": null,
+      "reason": "Uventa data conveys unexpected trailing content in the on-disk undo cache, without claiming every kind of cache corruption or adding an unsupported repair action.",
+      "confidence": {
+        "source_and_contract": "high",
+        "linguistic_and_contextual": 0.96,
+        "scale": "0 to 1, reviewer judgement, not native-human certification"
+      },
+      "hold_reason": null,
+      "dependencies": [],
+      "source_value_sha256_utf8": "9005bd155636cba50a7b1139426614c2878b1b6651e86c0acb7d1ca0de8b0b22",
+      "candidate_value_sha256_utf8": "45b66ed046cdd6936238f5fbe214f4cc1359b8ce1e446dd079c95f68517d5cb2",
+      "final_value_sha256_utf8": "45b66ed046cdd6936238f5fbe214f4cc1359b8ce1e446dd079c95f68517d5cb2",
+      "placeholder_tokens": [],
+      "verification": {
+        "source_exact_full_value_matches_pinned_xml": true,
+        "attributes_exactly_match_pinned_xml": true,
+        "candidate_value_hash_matches": true,
+        "final_placeholder_contract_matches": true,
+        "target_absent_in_pinned_locale": true,
+        "all_direct_production_consumers_recomputed": true,
+        "all_supplied_consumer_windows_match_source": true
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ],
+      "source_urls": [
+        "https://github.com/c933103/AN-Paint/blob/857a20103285a77846e340b326667c15a402ff9e/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L92-L103"
+      ]
+    }
+  ],
+  "candidate_url": "https://github.com/c933103/AN-Paint/blob/e2609828254d03b9f25ac7d46965c8895e90c2de/records/localization-review/2026-10-26/nynorsk-p0-remaining/r01/group-02-recovery-candidates.json",
+  "public_export": {
+    "original_review_sha256": "8cf14e5c4e2c343111742937ddbd917ee74d23c5c260d77698c5ec994f95d45c",
+    "metadata_changes": [
+      "reviewer replaced with public role"
+    ],
+    "judgments_values_hashes_qualifications_and_limits": "preserved unchanged; no new acceptance introduced by export"
+  }
+}
