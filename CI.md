@@ -144,8 +144,10 @@ unchanged. Fourteen individual maxima exceed that aggregate cap; fresh actual co
 execution must fit, and a timeout remains a failure. Neither historical timings
 nor synthetic transport fixtures prove the combined runtime. The existing
 2× cases cover English/Hungarian caption and preview-rail reachability only.
-The separate 2× lifecycle
-cases require the configured native IME window stable for 250 ms (including fullscreen
+The separate 2× lifecycle cases use explicitly labelled synthetic field focus and
+`showSoftInput` fixture activation; initial native field activation and initial full
+hex visibility are untested/unaccepted. They require the configured native IME
+window stable for 250 ms (including fullscreen
 extract with zero app inset), one Back retaining the exact draft/selection/dialog,
 sequential full-caption/footer reachability, native Cancel, reopened Back and
 invalid/valid commit outcomes. IME-open raw field/footer bounds, ancestor clipping

@@ -106,6 +106,10 @@ class ColourViewportContractTest(unittest.TestCase):
                          'assertEquals(640,activity.window.decorView.width)',
                          'assertEquals(320,activity.window.decorView.height)',
                          'field.setText("#13579B");field.setSelection(2,5)',
+                         'val focused=field.requestFocus()', '"colour-2x-synthetic-ime-activation"',
+                         '"focus_request_returned",focused', '"field_focused",field.hasFocus()',
+                         '"ime_request_returned",requested', '"initial_native_field_activation","not-tested"',
+                         '"initial_full_hex_visibility","not-accepted"',
                          'awaitNativeImeWindow(true,root,field,"colour-2x-ime-open")',
                          'awaitNativeImeWindow(false,root,field,"colour-2x-ime-hidden")',
                          'nativeBack("hide 2x colour IME"', '!nativeImePresent()',
@@ -117,6 +121,9 @@ class ColourViewportContractTest(unittest.TestCase):
                          'preview==android.graphics.Color.RED', '"simultaneous_ime_field_footer_fit","not-accepted"'):
             self.assertIn(required, body)
         self.assertNotIn('rootWindowInsets', body)
+        self.assertNotIn('tap("2x hex field"', body)
+        self.assertLess(body.index('evidence.capture("colour-2x-initial")'), body.index('field.requestFocus()'))
+        self.assertLess(body.index('"colour-2x-synthetic-ime-activation"'), body.index('awaitNativeImeWindow(true'))
         self.assertEqual(re.findall(r'evidence.capture\("([^"]+)"\)', body), [
             'colour-2x-initial', 'colour-2x-cancel-reached', 'colour-2x-reopened', 'colour-2x-use-reached',
             'colour-2x-failed-before-dismiss'])

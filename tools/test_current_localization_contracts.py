@@ -39,7 +39,7 @@ def wording_fixture(name):
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl'}
+TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn'}
 # Explicit runtime parent inheritance, not an additional reviewed catalogue.
 TAGGED_COLOUR_INHERITED_CATALOGUES = {'ca-ES-valencia': 'ca'}
 
@@ -78,6 +78,12 @@ def tagged_colour_expectations(data):
             reviewed = reviewed[1:-1]
         if data[tag] != reviewed:
             raise ValueError('Tagged-colour expectation differs from reviewed SK/SL value: ' + tag)
+    for tag in ('sr-Cyrl', 'sr-Latn'):
+        reviewed = fixture('serbian_p0_wording.json')['values'][TAGGED_COLOUR_KEY][tag]
+        if reviewed.startswith('"') and reviewed.endswith('"'):
+            reviewed = reviewed[1:-1]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour expectation differs from reviewed Serbian value: ' + tag)
     return data
 
 
@@ -96,7 +102,7 @@ def require_tagged_colour_resolution(data, strings, offered, english):
         expected = data[catalogue] if catalogue in data else english
         # Catalogue values retain Android apostrophe escapes; this family uses no other escapes.
         actual = strings[catalogue].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
-        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl') and actual.startswith('"') and actual.endswith('"'):
+        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn') and actual.startswith('"') and actual.endswith('"'):
             actual = actual[1:-1]  # Android removes the reviewed outer quoting.
         if actual != expected:
             raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
@@ -153,10 +159,10 @@ class CurrentLocalizationContracts(unittest.TestCase):
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(72, len(data))
-        self.assertEqual(99, len(offered - set(data)))  # Missing direct values, not all English at runtime.
+        self.assertEqual(74, len(data))
+        self.assertEqual(97, len(offered - set(data)))  # Missing direct values, not all English at runtime.
         self.assertEqual({'ca-ES-valencia': 'ca'}, TAGGED_COLOUR_INHERITED_CATALOGUES)
-        self.assertEqual(98, len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))
+        self.assertEqual(96, len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:

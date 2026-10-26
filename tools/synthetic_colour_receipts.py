@@ -82,9 +82,14 @@ def synthetic_colour_ime_observations(method):
                  route='UiDevice.pressKeyCode(KEYCODE_BACK)', keycode=4, injection_count=1, injected=True),
             dict(kind='native-back-after', label=label, state=after, injected=True, completed=True, postcondition_met=True)])
     observations.append(dict(kind='colour-2x-initial', locale=LARGE_COLOUR_IME_METHODS[method], density=1, font_scale=2,
-                             setup='synthetic hex #13579B selection [2,5]; native IME and footer input',
+                             setup='synthetic hex #13579B selection [2,5]; synthetic focus/IME activation; native Back and footer input',
+                             initial_native_field_activation='not-tested', initial_full_hex_visibility='not-accepted',
                              display=geometry(bounds=(0, 0, 640, 320)), state=state(), simultaneous_ime_field_footer_fit='not-accepted'))
-    pointer('2x hex field'); ime(True)
+    observations.append(dict(kind='colour-2x-synthetic-ime-activation',
+                             strategy='View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)',
+                             focus_request_returned=True, field_focused=True, ime_request_returned=False, state=state(),
+                             initial_native_field_activation='not-tested', initial_full_hex_visibility='not-accepted'))
+    ime(True)
     observations.append(dict(kind='colour-2x-ime-occlusion', state=state(ime=True),
                              simultaneous_ime_field_footer_fit='not-accepted',
                              controls=[dict(key=key, geometry=geometry(), parent_id=7, ancestors=chain(),
@@ -105,6 +110,7 @@ def synthetic_colour_ime_observations(method):
                              dialog_showing=True, error_present=True, commit_callbacks=0, closed_callbacks=2))
     pointer('2x valid committed')
     observations.append(dict(kind='colour-2x-complete', commit_callbacks=1, closed_callbacks=3,
+                             initial_native_field_activation='not-tested', initial_full_hex_visibility='not-accepted',
                              selected_colour=-14391124, dialog_showing=False, root_attached=False,
                              simultaneous_ime_field_footer_fit='not-accepted'))
     return observations

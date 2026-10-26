@@ -147,6 +147,46 @@ def write_archive(root, method, *, change_receipt=None, change_manifest=None, ex
 class LargeColourImeLifecycleContractTest(unittest.TestCase):
     METHODS = ('largeEnglishColourImeBackAndFooterLifecycle', 'largeHungarianColourImeBackAndFooterLifecycle')
 
+    def test_synthetic_activation_is_explicit_and_cannot_claim_native_entry(self):
+        for method in self.METHODS:
+            data = receipt(method)
+            activation = observation(data, 'colour-2x-synthetic-ime-activation')
+            self.assertIs(activation['ime_request_returned'], False)
+            # A request result is not the native-window oracle, in either direction.
+            verify_receipt(data, method, DIGEST)
+            activation['ime_request_returned'] = True
+            verify_receipt(data, method, DIGEST)
+            for event in ('colour-2x-initial', 'colour-2x-synthetic-ime-activation', 'colour-2x-complete'):
+                self.assertEqual(observation(data, event)['initial_native_field_activation'], 'not-tested')
+                self.assertEqual(observation(data, event)['initial_full_hex_visibility'], 'not-accepted')
+
+    def test_missing_misbound_or_misrepresented_synthetic_activation_fails(self):
+        def claimed_native_pointer(r):
+            item = copy.deepcopy(observation(r, 'pointer-before')); item['label'] = '2x hex field'
+            r['observations'].insert(0, item)
+            r['observations'].insert(1, dict(kind='pointer-injected', label='2x hex field'))
+        mutations = [
+            lambda r: r['observations'].remove(observation(r, 'colour-2x-synthetic-ime-activation')),
+            lambda r: r['observations'].append(copy.deepcopy(observation(r, 'colour-2x-synthetic-ime-activation'))),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(strategy='native tap'),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(focus_request_returned=False),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(field_focused=False),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(ime_request_returned=1),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation')['state'].update(field_id=999),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation')['state'].update(root_id=999),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation')['state'].update(selection_start=0),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation')['state'].update(commit_callbacks=1),
+            claimed_native_pointer,
+        ]
+        for kind in ('colour-2x-initial', 'colour-2x-synthetic-ime-activation', 'colour-2x-complete'):
+            for key in ('initial_native_field_activation', 'initial_full_hex_visibility'):
+                mutations.append(lambda r, kind=kind, key=key: observation(r, kind).update({key: 'accepted'}))
+        for method in self.METHODS:
+            for mutate in mutations:
+                data = receipt(method); mutate(data)
+                with self.subTest(method=method, mutate=mutate), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
+
     def test_separate_lifecycle_profile_has_exact_six_pngs_and_no_extra_acceptance(self):
         for method in self.METHODS:
             data = receipt(method)

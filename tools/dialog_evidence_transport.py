@@ -323,7 +323,7 @@ COLOUR_POINTERS = {
 }
 COLOUR_POINTERS.update(dict.fromkeys(LARGE_COLOUR_METHODS, ['large colour Cancel']))
 COLOUR_POINTERS.update(dict.fromkeys(LARGE_COLOUR_IME_METHODS,
-    ['2x hex field', '2x Cancel', '2x invalid rejected', '2x valid committed']))
+    ['2x Cancel', '2x invalid rejected', '2x valid committed']))
 COLOUR_CAPTIONS = ['colour_mode_0', 'colour_mode_3', 'colour_advanced_tab',
                    'colour_mode_1', 'colour_mode_2', 'add_custom_colour']
 
@@ -447,7 +447,7 @@ def verify_large_colour_ime(method, observations):
     require(initial.get('locale') == LARGE_COLOUR_IME_METHODS[method]
             and type(initial.get('font_scale')) in (int, float) and initial['font_scale'] == 2
             and type(initial.get('density')) in (int, float) and initial['density'] == 1
-            and initial.get('setup') == 'synthetic hex #13579B selection [2,5]; native IME and footer input',
+            and initial.get('setup') == 'synthetic hex #13579B selection [2,5]; synthetic focus/IME activation; native Back and footer input',
             'Wrong 2x lifecycle fixture')
     display = colour_geometry(initial.get('display'), complete=True)
     require(display[2] - display[0] == 640 and display[3] - display[1] == 320,
@@ -468,6 +468,12 @@ def verify_large_colour_ime(method, observations):
                 and (ime is None or state['native_ime_present'] is ime), '2x draft/selection/root identity or callbacks changed')
 
     retained(identity, False)
+    activation = one(observations, 'colour-2x-synthetic-ime-activation')
+    require(activation.get('strategy') == 'View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)'
+            and activation.get('focus_request_returned') is True and activation.get('field_focused') is True
+            and type(activation.get('ime_request_returned')) is bool,
+            'Explicit synthetic focus/IME activation required; request return is not rendered IME evidence')
+    retained(activation.get('state'), None)
     occlusion = one(observations, 'colour-2x-ime-occlusion')
     hidden = one(observations, 'colour-2x-hidden-retained')
     retained(occlusion.get('state'), True)
@@ -603,7 +609,7 @@ def verify_large_colour_ime(method, observations):
         lines = [o for o in observations if o.get('kind') == 'colour-2x-caption-line' and o.get('key') == key]
         require([o.get('line') for o in lines] == list(range(caption['lines']))
                 and all(type(o.get('line')) is int for o in lines), 'Missing sequential 2x caption lines')
-        boundary = observations.index(pointers[2] if key == 'use' else pointers[1])
+        boundary = observations.index(pointers[1] if key == 'use' else pointers[0])
         following = [observations.index(c) for c in captions if observations.index(c) > index]
         if following:
             boundary = min(boundary, following[0])
@@ -616,12 +622,16 @@ def verify_large_colour_ime(method, observations):
                     '2x caption line clipped or belongs to another control')
             validate_colour_ancestor_chain(line, expected_root)
     pointers = [o for o in observations if o.get('kind') == 'pointer-before']
-    order = [initial, pointers[0], ime_events[0], occlusion, *backs[:3], ime_events[1], hidden,
-             *captions[:-1], pointers[1], cancelled, reopened, *backs[3:], captions[-1], pointers[2], invalid, pointers[3], complete]
+    order = [initial, activation, ime_events[0], occlusion, *backs[:3], ime_events[1], hidden,
+             *captions[:-1], pointers[0], cancelled, reopened, *backs[3:], captions[-1], pointers[1], invalid, pointers[2], complete]
     indices = [observations.index(o) for o in order]
     require(indices == sorted(set(indices)), '2x native lifecycle order changed')
     for event in (initial, occlusion, complete):
         require(event.get('simultaneous_ime_field_footer_fit') == 'not-accepted', 'Do not grant IME-open simultaneous fit')
+    for event in (initial, activation, complete):
+        require(event.get('initial_native_field_activation') == 'not-tested'
+                and event.get('initial_full_hex_visibility') == 'not-accepted',
+                'Synthetic setup must not masquerade as native initial entry or full hex visibility acceptance')
 
 
 def observe_colour_geometry(value):
@@ -1017,6 +1027,9 @@ def extract(exports, destination, dialog_summary):
             'large_font_preview_rail_source_bound_pass': True,
             'large_font_ime_footer_lifecycle_source_bound_pass': True,
             'large_font_ime_footer_scope': 'API35 en-US/hu 2x 640x320 mdpi; native IME presence/absence, retained Back, sequential captions/footers and callbacks only',
+            'large_font_ime_activation': 'synthetic requestFocus + showSoftInput; actual configured native IME separately required',
+            'initial_native_field_activation': 'not-tested',
+            'initial_full_hex_visibility': 'not-accepted',
             'large_font_preview_rail_scope': 'API35 en-US/hu 2x 640x320 mdpi, native caption/preview/top reachability and Cancel only',
             'universal_colour_acceptance': False,
             'colour_interaction_timing': 'original source-enforced 45000ms deadline; no exported whole-interval measurement',

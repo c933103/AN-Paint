@@ -421,16 +421,28 @@ class ColourViewportDeviceTest {
                 // Synthetic value/selection setup, not keyboard transcription acceptance.
                 field.setText("#13579B");field.setSelection(2,5)
                 evidence.observe(JSONObject().put("kind","colour-2x-initial")
-                    .put("setup","synthetic hex #13579B selection [2,5]; native IME and footer input")
+                    .put("setup","synthetic hex #13579B selection [2,5]; synthetic focus/IME activation; native Back and footer input")
+                    .put("initial_native_field_activation","not-tested").put("initial_full_hex_visibility","not-accepted")
                     .put("locale",tag).put("density",activity.resources.displayMetrics.density)
                     .put("font_scale",activity.resources.configuration.fontScale)
                     .put("display",geometry(activity.window.decorView)).put("state",state())
                     .put("simultaneous_ime_field_footer_fit","not-accepted"))
             }
             evidence.capture("colour-2x-initial")
-            tap("2x hex field",field)
-            onMain {field.setSelection(2,5)
-                activity.getSystemService(InputMethodManager::class.java).showSoftInput(field,InputMethodManager.SHOW_IMPLICIT)}
+            onMain {
+                // Fixture activation, not a claim of native initial field reachability.
+                // The original failed full-line tap cohort is preserved separately.
+                val focused=field.requestFocus()
+                field.setSelection(2,5)
+                val requested=activity.getSystemService(InputMethodManager::class.java)
+                    .showSoftInput(field,InputMethodManager.SHOW_IMPLICIT)
+                evidence.observe(JSONObject().put("kind","colour-2x-synthetic-ime-activation")
+                    .put("strategy","View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)")
+                    .put("focus_request_returned",focused).put("field_focused",field.hasFocus())
+                    .put("ime_request_returned",requested).put("state",state())
+                    .put("initial_native_field_activation","not-tested").put("initial_full_hex_visibility","not-accepted"))
+                assertTrue("Synthetic fixture hex focus established",focused && field.hasFocus())
+            }
             val ime=awaitNativeImeWindow(true,root,field,"colour-2x-ime-open")
             onMain {
                 val windows=(0 until ime.length()).map {ime.getJSONObject(it)}
@@ -512,6 +524,7 @@ class ColourViewportDeviceTest {
                 activity.window.decorView.hasWindowFocus() && commits==1 && closes==3 && selected==0xff2468ac.toInt()}
             checkDeadline()
             evidence.observe(JSONObject().put("kind","colour-2x-complete").put("commit_callbacks",commits)
+                .put("initial_native_field_activation","not-tested").put("initial_full_hex_visibility","not-accepted")
                 .put("closed_callbacks",closes).put("selected_colour",selected)
                 .put("dialog_showing",onMain {dialog.isShowing}).put("root_attached",onMain {finalRoot.isAttachedToWindow})
                 .put("simultaneous_ime_field_footer_fit","not-accepted"))
