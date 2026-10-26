@@ -1,0 +1,1227 @@
+{
+  "schema_version": 1,
+  "source_commit": "857a20103285a77846e340b326667c15a402ff9e",
+  "locale": "nn",
+  "P0_total": 92,
+  "P0_existing": 15,
+  "P0_absent": 77,
+  "existing_total_values_untouched": 118,
+  "proposed_whole_values": 72,
+  "held_no_current_consumer": 5,
+  "direct_consumer_windows": 120,
+  "direct_consumer_files": 21,
+  "static_scan": {
+    "scope": "all tracked production src/main Kotlin, Java and XML files",
+    "files": 322,
+    "unreferenced_aliases": 0,
+    "limitations": "Static evidence does not prove a resource can never be reached. No runtime coverage or absence-as-defect inference."
+  },
+  "holds_unchanged": [
+    "PR56 never merge",
+    "PR159 freeze",
+    "PR113 retarget/held work",
+    "Help callback/archive identity",
+    "release pause"
+  ],
+  "entries": [
+    {
+      "identity": "string/formats22_animation_message",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:92"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "source": "Animated image",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:91"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:101"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/formats22_derived_exported",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      },
+      "direct_production_consumer_ids": [],
+      "direct_consumer_count": 0,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "held-no-current-consumer-evidenced",
+      "candidate": null,
+      "reason": "No direct current production Kotlin/Java reference or XML resource alias found. Generic generated-source lookup does not establish a caller for this identity. Keep absent/canonical fallback unless a real consumer is evidenced; not a linguistic rejection or proof of dead code."
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "source": "Open still image",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:95"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:102"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:238",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:908",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1194",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1197",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1203",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1207",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1478",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1488",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1495",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:113",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:243",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:415"
+      ],
+      "direct_consumer_count": 14,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1218",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1453",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:111"
+      ],
+      "direct_consumer_count": 3,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt:93"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "source": "The completed image could not replace its destination.",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:19",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:40",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:103",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:62"
+      ],
+      "direct_consumer_count": 4,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:24",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:43",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:56"
+      ],
+      "direct_consumer_count": 4,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/save20_file_format",
+      "source": "File format",
+      "attributes": {
+        "name": "save20_file_format"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:109",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:171"
+      ],
+      "direct_consumer_count": 3,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:95"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "source": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:194"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:102"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:16",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:23",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt:115"
+      ],
+      "direct_consumer_count": 3,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "source": "An assembly source image is missing.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:262"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "source": "Assembly saved",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:342"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:300"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "source": "Autosave failed · use Save",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "source": "Autosave image encoding failed.",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "source": "Autosave metadata is missing.",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "source": "Autosave paused · use Save",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "source": "Autosave pixels are missing.",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "source": "Autosave pixels could not be read.",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "source": "Autosave selection encoding failed.",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "source": "Clear all",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:101"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_clear_image",
+      "source": "Clear image",
+      "attributes": {
+        "name": "ui_clear_image"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:859"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "source": "Could not export the recovery copy",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "source": "Could not open image",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1288",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1293",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1337",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1350"
+      ],
+      "direct_consumer_count": 4,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "source": "Could not save the assembly: %1$s",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:343"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "source": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:229"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt:46"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "source": "Draft not saved yet",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "source": "Draft restored",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "source": "Draft saved",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "source": "Export recovery copy…",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:846"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "source": "Export recovery copy",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:103"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-01-import-format-candidates.json"
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "source": "Invalid autosave metadata.",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ],
+      "direct_consumer_count": 7,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1016"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:117",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:294"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1376"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "source": "PNG encoding failed.",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:324"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "source": "Previous draft kept for recovery",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "source": "Recovered image",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "source": "Resize large image?",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:36"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:34"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "source": "Save and share…",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:842"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "source": "Save and share",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:187"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_save_as",
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      },
+      "direct_production_consumer_ids": [],
+      "direct_consumer_count": 0,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "held-no-current-consumer-evidenced",
+      "candidate": null,
+      "reason": "No direct current production Kotlin/Java reference or XML resource alias found. Generic generated-source lookup does not establish a caller for this identity. Keep absent/canonical fallback unless a real consumer is evidenced; not a linguistic rejection or proof of dead code."
+    },
+    {
+      "identity": "string/ui_save_as_jpeg",
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      },
+      "direct_production_consumer_ids": [],
+      "direct_consumer_count": 0,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "held-no-current-consumer-evidenced",
+      "candidate": null,
+      "reason": "No direct current production Kotlin/Java reference or XML resource alias found. Generic generated-source lookup does not establish a caller for this identity. Keep absent/canonical fallback unless a real consumer is evidenced; not a linguistic rejection or proof of dead code."
+    },
+    {
+      "identity": "string/ui_save_as_jpeg_xl",
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      },
+      "direct_production_consumer_ids": [],
+      "direct_consumer_count": 0,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "held-no-current-consumer-evidenced",
+      "candidate": null,
+      "reason": "No direct current production Kotlin/Java reference or XML resource alias found. Generic generated-source lookup does not establish a caller for this identity. Keep absent/canonical fallback unless a real consumer is evidenced; not a linguistic rejection or proof of dead code."
+    },
+    {
+      "identity": "string/ui_save_as_png",
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      },
+      "direct_production_consumer_ids": [],
+      "direct_consumer_count": 0,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "held-no-current-consumer-evidenced",
+      "candidate": null,
+      "reason": "No direct current production Kotlin/Java reference or XML resource alias found. Generic generated-source lookup does not establish a caller for this identity. Keep absent/canonical fallback unless a real consumer is evidenced; not a linguistic rejection or proof of dead code."
+    },
+    {
+      "identity": "string/ui_save_png",
+      "source": "Save PNG",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:88"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "source": "The draft is saving. Try again shortly.",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "source": "The encoder did not finish.",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:100",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt:25",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:33"
+      ],
+      "direct_consumer_count": 3,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1389"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "source": "The previous draft could not be preserved separately.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "source": "The previous draft could not be restored.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "source": "The previous draft needs more memory to reopen.",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "source": "The saved assembly could not be opened: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:60"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "source": "The selected location is not writable.",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:341",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1366"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "source": "The trim would remove the entire image.",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:49"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "source": "The undo cache is damaged.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ],
+      "direct_consumer_count": 3,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:938"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-03-assembly-memory-candidates.json"
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "source": "This location is not writable.",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1396",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1407"
+      ],
+      "direct_consumer_count": 2,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-04-save-credit-candidates.json"
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "source": "Unexpected data in the undo cache.",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "direct_production_consumer_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ],
+      "direct_consumer_count": 1,
+      "current_nynorsk_value": null,
+      "absence_is_defect": false,
+      "status": "author-proposed; independent review pending",
+      "candidate_group_file": "group-02-recovery-candidates.json"
+    }
+  ]
+}

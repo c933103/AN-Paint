@@ -1,0 +1,29 @@
+{
+  "status": "passed structural/source validation; no linguistic verdict",
+  "source_commit": "857a20103285a77846e340b326667c15a402ff9e",
+  "bound_files_checked": 325,
+  "production_files_scanned": 322,
+  "missing_P0": 77,
+  "author_proposals": 72,
+  "held": 5,
+  "consumer_windows": 120,
+  "consumer_files": 21,
+  "untouched_values": 118,
+  "group_sha256": {
+    "group-01-import-format-candidates.json": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+    "group-02-recovery-candidates.json": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+    "group-03-assembly-memory-candidates.json": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+    "group-04-save-credit-candidates.json": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e"
+  },
+  "validation_method": "Independent DOM parse and git hash-object, compared with ElementTree extraction; no linguistic verdict.",
+  "validation_utc": "2026-10-26T05:53:41Z",
+  "initial_validator_failure_and_resolution": "Initial denominator guard counted three canonical translatable=false artifact-identity strings as translatable containers. Corrected guard explicitly verifies 720 XML resources = 717 translatable containers + 3 nontranslatable identities. No source or candidate changed.",
+  "semantic_privacy_review": {
+    "status": "reviewed decoded UTF-8 content before upload",
+    "scope": "Only authorized public AN-Paint source windows, proposal values, public immutable evidence links, hashes, scope, holds and reproducible scripts. No credentials, signed URLs, internal execution paths, private links, control transcripts, or unrelated private data.",
+    "script_exemption": "Scanner source contains abstract detection patterns, not secret values; reviewed as code rather than flagged for its own pattern literals."
+  },
+  "acceptance": "none; author proposals pending independent review",
+  "ordinary_validator": "passed",
+  "optimized_validator": "passed separately; explicit checks remain active under -O"
+}

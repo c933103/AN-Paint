@@ -1,0 +1,12 @@
+# Gated implementation and test plan
+
+Status: preparation only; independent linguistic/static judgments pending.
+
+1. Reconcile each reviewer receipt to the exact group SHA-256 and full source/target pair. Apply only accepted exact final values; retain all holds and qualifications. Resolve cross-group quoted-label changes before implementation. Do not add the missing P1 assembly-warning companion by implication.
+2. Recheck `develop`, keep the candidate snapshot pinned, and inspect any intervening affected source/context changes. Create a separate minimal implementation branch/PR based on a verified current integration base. No main/release changes.
+3. Add only approved missing scalar values to `values-b+nn/strings.xml`; preserve all 118 original values, XML attributes, placeholders, literals and untouched neighbors. Existing 59 scoped/112 fallback option accounting does not turn Nynorsk into a whole-locale accepted language.
+4. Add a compact exact-value/structural fixture and focused host checks for scope, original-value preservation, source contracts, placeholder integrity, no additions for five held identities, actual fallback command naming and any individually accepted warning scope. Preserve historical review queues; never falsify paired-warning coverage to satisfy a count test.
+5. Exercise meaningful JVM/resource/consumer assertions: compiled NN resource retrieval, multiple format placeholders, conditional import warning composition, draft/recovery status versus Save, chosen share-copy behavior, assembly warning semantics, and actual configuration lifecycle if labels depend on locale. Avoid tests that manually force success labels or weaken production export/dirty-state checks.
+6. Run focused ordinary and optimized host checks separately, then full required host/JVM/lint/API35 CI and exact-head Codex review. Preserve failures, fix recoverable defects at a new exact head, and re-review required changes. Optional review lanes are not invented merge gates.
+7. Report exact head/base, required gates and source-bound artifact verification to the integration owner before merge. After authorized merge, verify exact merged tree/parents, source and compiled values, actual merge-run CI/artifacts to terminal. Keep PR evidence distinct from postmerge evidence. No release.
+8. Compute a source-bound coverage delta only for actual integrated values. Candidate count is not acceptance count or shipped count; five no-consumer holds may remain missing without being defects.
