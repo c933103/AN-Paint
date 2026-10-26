@@ -226,6 +226,21 @@ class SerbianP0Tests(unittest.TestCase):
                 if tag == 'sr-Latn':self.assertNotRegex(value(key), r'[\u0400-\u04ff]')
                 else:self.assertRegex(value(key), r'[\u0400-\u04ff]')
 
+    def test_numeric_locale_caption_table_covers_the_entire_runtime_loop(self):
+        source = (catalogues.ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt').read_text()
+        loop = source.split('private val tags=listOf(', 1)[1].split(')', 1)[0]
+        tags = re.findall(r'"([^"\n]+)"', loop)
+        table = source.split('val captions=mapOf(', 1)[1].split('for(tag in tags)', 1)[0]
+        caption_tags = re.findall(r'"([A-Za-z0-9-]+)"\s+to\s+\(', table)
+        self.assertEqual(len(tags), len(set(tags)))
+        self.assertEqual(len(caption_tags), len(set(caption_tags)))
+        self.assertEqual(set(tags), set(caption_tags))
+        for tag in ('sr-Cyrl', 'sr-Latn'):
+            expected = ('"' + tag + '" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to')
+            self.assertIn(expected, table)
+        # The unchanged P1 text falls back to English, but numeric formatting uses Serbian.
+        self.assertIn('Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead', table)
+
     def test_single_P0_warnings_have_no_paired_acceptance_or_rewritten_history(self):
         key = 'ui_assembly_source_memory_floor';other = 'ui_no_resize_fits_decoder_memory'
         self.assertEqual({(tag, key) for tag in ('nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn')}, warnings.SINGLE_KEY_EXPECTATIONS)

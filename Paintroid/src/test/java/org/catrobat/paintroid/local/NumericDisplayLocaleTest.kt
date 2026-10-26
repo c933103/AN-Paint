@@ -135,8 +135,13 @@ class NumericDisplayLocaleTest {
             "sk" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
             "sl" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
+                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "sr-Cyrl" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
+                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "sr-Latn" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead")
         )
+        assertEquals(tags.toSet(), captions.keys)
         for(tag in tags) {
             select(tag)
             val (initialCaption,updatedCaption)=captions.getValue(tag)
