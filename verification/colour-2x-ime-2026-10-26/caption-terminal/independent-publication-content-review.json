@@ -1,0 +1,441 @@
+{
+  "schema": 1,
+  "reviewer": "native agent /root/review_large_font_ime",
+  "review_type": "bounded public-evidence content screen, not product acceptance",
+  "source_tree": "08550405b070ef263d1511226f8295519ea2ab65",
+  "reviewed_head": "73c21b75fa27fc9dab36c508b8f6120804897124",
+  "tested_commit": "911f74a2ce5f99fbef9f81fcbb228b275a479260",
+  "run_id": 40414094733,
+  "directory": "ci-caption/verified-dialog-ordinary",
+  "file_count": 80,
+  "pngs_visually_inspected": 51,
+  "original_pngs_inspected_for_publication_only": 39,
+  "new_pngs_already_inspected_for_lifecycle_and_content": 12,
+  "json_files_scanned": 29,
+  "manifest_inventory_sha256": "4b9b3f3132ec63a0357563b7f5ada6ed981e304ec80e2802dab5e13bdf479115",
+  "result": "No visible credentials, secret values, personal/private user material or unrelated content identified in inspected pixels. No credential/secret/URL/email indicators found in the 29 JSON metadata files.",
+  "observed_content": [
+    "Expected Android emulator UI and synthetic gallery-draft-save.png document",
+    "Bundled public third-party/artwork/translation notices",
+    "Synthetic colour values, palette surfaces, Native IME and footer captions",
+    "Synthetic attribution/crop fixture names korean-fixture.png, dialog-fixture.png, Synthetic creator / local fixture, Synthetic A and Synthetic B",
+    "IME clipboard chips are source-traced synthetic prior test data, not assumed clean merely because emulator-based"
+  ],
+  "clipboard_fixture_source": {
+    "path": "app/src/androidTest/java/paint/anpaint/android/GalleryDraftDeviceTest.kt",
+    "lines": [
+      99,
+      101
+    ],
+    "text_description": "Canvas 作品 / Artist A / CC BY-SA 4.0 / https://example.org/artist-a; Floating Зураг / Artist B / https://example.org/artist-b"
+  },
+  "files": [
+    {
+      "path": "aboutArtworkNoticeCompletesNativeFooterFlow/0-notice-1-initial.png",
+      "bytes": 44422,
+      "sha256": "31c7f098ec2e3dafa2c21c87e4c1f8e4f908967136a1cec5eddb7fac71aaeabc"
+    },
+    {
+      "path": "aboutArtworkNoticeCompletesNativeFooterFlow/manifest.json",
+      "bytes": 383,
+      "sha256": "32f91399bda593b031478f5814ae3237433f5cc5469829eaac23f6f84f34f088"
+    },
+    {
+      "path": "aboutArtworkNoticeCompletesNativeFooterFlow/receipt.json",
+      "bytes": 29467,
+      "sha256": "1d338de5d3de966b0c07fb202d18347d887d73e0127f97c7ec9cbd11fd71bea6"
+    },
+    {
+      "path": "aboutGimpTranslationNoticeCompletesNativeFooterFlow/0-notice-2-initial.png",
+      "bytes": 41490,
+      "sha256": "9182477240cfbc03dc6de3cbdb640590824e7b8d99a3b7547cdde486165f83c6"
+    },
+    {
+      "path": "aboutGimpTranslationNoticeCompletesNativeFooterFlow/manifest.json",
+      "bytes": 391,
+      "sha256": "aa5a13315109014be05a7e60e2537c86694135f26ec95972b4da2c39945ce958"
+    },
+    {
+      "path": "aboutGimpTranslationNoticeCompletesNativeFooterFlow/receipt.json",
+      "bytes": 27785,
+      "sha256": "58cea3d16954937b0700933fd771b2c901d1322edf52f72b82d39b8a5b0f4e23"
+    },
+    {
+      "path": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/0-about-portrait.png",
+      "bytes": 42744,
+      "sha256": "baa6ee50343b13dc354f53540e34c0a4a5149ea13d5554c6b9d20531d3d4c3b8"
+    },
+    {
+      "path": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/1-about-landscape.png",
+      "bytes": 41461,
+      "sha256": "a53042b963252ea6a907adadb68333e4945b3076aa7d9ad8899b6ead4a496e12"
+    },
+    {
+      "path": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/2-notice-0-initial.png",
+      "bytes": 40571,
+      "sha256": "b06ee8f07ce786bea5686bce060d7b5385710ac4d9a5ec25d3ecc30043eaeef2"
+    },
+    {
+      "path": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/3-notice-0-portrait.png",
+      "bytes": 52021,
+      "sha256": "86e5ddcd86603a29d479aa32b5a760590213b94d31c30be4853a7ed5f60ac414"
+    },
+    {
+      "path": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/manifest.json",
+      "bytes": 765,
+      "sha256": "3241ffa695262d3a2b4063d65ce802122063beff9828aa57f43c56058ec78ae7"
+    },
+    {
+      "path": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow/receipt.json",
+      "bytes": 32876,
+      "sha256": "7b9f7623b7458bec23cc1b5642fded4b9e906ce834678a5f0a1b99a39d9558ea"
+    },
+    {
+      "path": "hungarianColourCaptionsFitPortraitAndLandscape/0-hungarian-captions-landscape.png",
+      "bytes": 23877,
+      "sha256": "6f3c0b1bbeca1f4c775ff947306781717b693e203e8861bafe57992c391dc3b9"
+    },
+    {
+      "path": "hungarianColourCaptionsFitPortraitAndLandscape/1-hungarian-captions-portrait.png",
+      "bytes": 35713,
+      "sha256": "9aa8e4c4735a390260ed77513da0046dff3f6b9806a51a49a1e22d6e7d2f617f"
+    },
+    {
+      "path": "hungarianColourCaptionsFitPortraitAndLandscape/manifest.json",
+      "bytes": 533,
+      "sha256": "cb4d7b62768b69c1e1b8f5f4e533af2cebe2a3cecdcaaf7a025ed9f4be8ed6bd"
+    },
+    {
+      "path": "hungarianColourCaptionsFitPortraitAndLandscape/receipt.json",
+      "bytes": 20224,
+      "sha256": "af8750e756dab1dd2fea7a36679a190c49359d53d79418967435f26c4804212d"
+    },
+    {
+      "path": "largeEnglishColourCaptionsAndPreviewRemainReachable/0-colour-large-initial.png",
+      "bytes": 31470,
+      "sha256": "1b3c3454d934b129cf72950102f6290bdd21964c0f700aa843fe4179ca53f46c"
+    },
+    {
+      "path": "largeEnglishColourCaptionsAndPreviewRemainReachable/1-colour-large-preview-reached.png",
+      "bytes": 31444,
+      "sha256": "dddcf6be79482342c51af663eb044d7334c8ac388f5336d39932b06fe806fe3f"
+    },
+    {
+      "path": "largeEnglishColourCaptionsAndPreviewRemainReachable/2-colour-large-top-reached.png",
+      "bytes": 32222,
+      "sha256": "409cfd695511a2453fef8cb834d043bf072af3e48d83611c4bf1f87a78eccd74"
+    },
+    {
+      "path": "largeEnglishColourCaptionsAndPreviewRemainReachable/manifest.json",
+      "bytes": 663,
+      "sha256": "16edf8d107fea70f35a37555a990af56385250cf260482ba1cf1b826b5b05e0e"
+    },
+    {
+      "path": "largeEnglishColourCaptionsAndPreviewRemainReachable/receipt.json",
+      "bytes": 21046,
+      "sha256": "64deebc297fca417c0e09bd9bc01109543f100a915139697953a6b369d700980"
+    },
+    {
+      "path": "largeEnglishColourImeBackAndFooterLifecycle/0-colour-2x-initial.png",
+      "bytes": 31403,
+      "sha256": "663f7ff4c943a40f09ff339dc497f5df6915063187f75ea87487c332c4de0cc3"
+    },
+    {
+      "path": "largeEnglishColourImeBackAndFooterLifecycle/1-colour-2x-ime-open.png",
+      "bytes": 29962,
+      "sha256": "7c68bccb0856099a4c6b79d97ac28b3536233c0fb83215295b59a2bf95e67b78"
+    },
+    {
+      "path": "largeEnglishColourImeBackAndFooterLifecycle/2-colour-2x-ime-hidden.png",
+      "bytes": 30827,
+      "sha256": "379ce8b4470c7e3a0cd2e6af7309aa98f62659e420de79582904c41f92007ff2"
+    },
+    {
+      "path": "largeEnglishColourImeBackAndFooterLifecycle/3-colour-2x-cancel-reached.png",
+      "bytes": 30466,
+      "sha256": "f5a697f57a1aaf84db4893903d695563d6466a65926641879e4d309402d8bf6e"
+    },
+    {
+      "path": "largeEnglishColourImeBackAndFooterLifecycle/4-colour-2x-reopened.png",
+      "bytes": 31203,
+      "sha256": "af657d1696dfa2ebaa88d5e28eb50c41b96ce94edb0dc7fdd66951f9fd006820"
+    },
+    {
+      "path": "largeEnglishColourImeBackAndFooterLifecycle/5-colour-2x-use-reached.png",
+      "bytes": 31204,
+      "sha256": "ad59bc3726c79d2049333c9bfcb678539d01fc0110db4e6e17cdf2eaad1d03dd"
+    },
+    {
+      "path": "largeEnglishColourImeBackAndFooterLifecycle/manifest.json",
+      "bytes": 1026,
+      "sha256": "97fca32dc2784edc8adb70dda81bf7cf60f9b14437444941d2976ed594111674"
+    },
+    {
+      "path": "largeEnglishColourImeBackAndFooterLifecycle/receipt.json",
+      "bytes": 161577,
+      "sha256": "ae5288317d74d82fca4d354a7cc78906b236104d9634c6e3cf9134dc428559f2"
+    },
+    {
+      "path": "largeHungarianColourCaptionsAndPreviewRemainReachable/0-colour-large-initial.png",
+      "bytes": 29957,
+      "sha256": "b7c658dffebd0c976154f7a5ddd3c8fb2fd8304e7dc460296302f7446c6ec924"
+    },
+    {
+      "path": "largeHungarianColourCaptionsAndPreviewRemainReachable/1-colour-large-preview-reached.png",
+      "bytes": 32170,
+      "sha256": "4e4e8161d2e6cf3eab3157c02d177dd3afa1d88742e5b366a3403971a29945cd"
+    },
+    {
+      "path": "largeHungarianColourCaptionsAndPreviewRemainReachable/2-colour-large-top-reached.png",
+      "bytes": 29973,
+      "sha256": "0ab62f5e7e198a3ed7a7a18798461fd43e73157efa44f1c6112bf5c956bfa9d8"
+    },
+    {
+      "path": "largeHungarianColourCaptionsAndPreviewRemainReachable/manifest.json",
+      "bytes": 665,
+      "sha256": "ee79d8c6ea8b9268e59949b2f7ad1d17edd1e333c141afea5a784817c2786949"
+    },
+    {
+      "path": "largeHungarianColourCaptionsAndPreviewRemainReachable/receipt.json",
+      "bytes": 23023,
+      "sha256": "4a3243e4f7e31ac728f8327c6bc1d1318241017641440c1aec50842aa45aa698"
+    },
+    {
+      "path": "largeHungarianColourImeBackAndFooterLifecycle/0-colour-2x-initial.png",
+      "bytes": 29940,
+      "sha256": "92892f06a80eeaa10b12a4e7b72bf4f36dca47f210217a0e77bb5e9929b457f3"
+    },
+    {
+      "path": "largeHungarianColourImeBackAndFooterLifecycle/1-colour-2x-ime-open.png",
+      "bytes": 32179,
+      "sha256": "19b8be16b778b9a91ae8f9d4153a249688beec48065267ed40f7edc9d8b8552e"
+    },
+    {
+      "path": "largeHungarianColourImeBackAndFooterLifecycle/2-colour-2x-ime-hidden.png",
+      "bytes": 29724,
+      "sha256": "9fce4b698cdf6e69d0b68dcebc47945ff8010670c1a49342764d31beeee19df4"
+    },
+    {
+      "path": "largeHungarianColourImeBackAndFooterLifecycle/3-colour-2x-cancel-reached.png",
+      "bytes": 30111,
+      "sha256": "1308aba1fb1efe172269399f6da48046a061169c5de09b58610f9c1440cbbb7f"
+    },
+    {
+      "path": "largeHungarianColourImeBackAndFooterLifecycle/4-colour-2x-reopened.png",
+      "bytes": 29877,
+      "sha256": "a899d5dfcb0edf66fe7b78ccdde1505349eead1474c9dfde54d094a5425ac58a"
+    },
+    {
+      "path": "largeHungarianColourImeBackAndFooterLifecycle/5-colour-2x-use-reached.png",
+      "bytes": 29874,
+      "sha256": "edf85351d96eae75da1259585da62ef82d124aaa3503e1fae20ba2e509a21e35"
+    },
+    {
+      "path": "largeHungarianColourImeBackAndFooterLifecycle/manifest.json",
+      "bytes": 1028,
+      "sha256": "6700c56265be675b905fe2c574973139cc8082485ee2343a4abc965c7e002af5"
+    },
+    {
+      "path": "largeHungarianColourImeBackAndFooterLifecycle/receipt.json",
+      "bytes": 162897,
+      "sha256": "b126a1843868c2e3d3d73d386b1c96c01cfc305162e52679a79f7e85a7a1fbed"
+    },
+    {
+      "path": "mixedKoreanAttributionAndConditionalCropUseRealConsumers/0-korean-attribution-title.png",
+      "bytes": 45679,
+      "sha256": "b597198cfa1258a99a12dc15b105af0fc15ddc5e1fe083a6adb0c9c0f2af64f7"
+    },
+    {
+      "path": "mixedKoreanAttributionAndConditionalCropUseRealConsumers/1-korean-attribution-copy.png",
+      "bytes": 45684,
+      "sha256": "dcbf4ca4d4b39aaf3176589d6c456f08dbc4bb828c62ae1c1b88b96e4243bd63"
+    },
+    {
+      "path": "mixedKoreanAttributionAndConditionalCropUseRealConsumers/2-korean-crop-one.png",
+      "bytes": 39351,
+      "sha256": "6aab79a0fb7a9375c94dacf05afe266fae7526b3666734be7a1127ca02fcdca1"
+    },
+    {
+      "path": "mixedKoreanAttributionAndConditionalCropUseRealConsumers/3-korean-crop-two.png",
+      "bytes": 42816,
+      "sha256": "ba5b98c7538364524e7bc88470646abe5e3c25901666167c6dab93bef899299b"
+    },
+    {
+      "path": "mixedKoreanAttributionAndConditionalCropUseRealConsumers/manifest.json",
+      "bytes": 781,
+      "sha256": "1f1d42189b0a02011e1f35d45d72d7c9395563b86d10abd3771c5d6eb0f53729"
+    },
+    {
+      "path": "mixedKoreanAttributionAndConditionalCropUseRealConsumers/receipt.json",
+      "bytes": 30057,
+      "sha256": "41f8b1f9834033213ae5267bacce15ee6227dc0967b34ed3e31a60125d3c7bbf"
+    },
+    {
+      "path": "normalAdvancedColourKeepsFiniteViewportAndFixedControls/0-colour-pre-assert-allocation.png",
+      "bytes": 24017,
+      "sha256": "21559932fdbbc3f3f816a08ac74c4b037ae836f5e660a778aa730cd61ebf2ec6"
+    },
+    {
+      "path": "normalAdvancedColourKeepsFiniteViewportAndFixedControls/1-colour-normal-before.png",
+      "bytes": 23998,
+      "sha256": "64e742a9b8560b328c791953c8c3e66c8b6f0b029394ccf6750ea1b25c8e30f5"
+    },
+    {
+      "path": "normalAdvancedColourKeepsFiniteViewportAndFixedControls/2-colour-normal-scrolled.png",
+      "bytes": 25859,
+      "sha256": "ca79d7b0f48dcaa93b2e727a00369eb4f9975b9580e300aab9d3f83110ea8546"
+    },
+    {
+      "path": "normalAdvancedColourKeepsFiniteViewportAndFixedControls/manifest.json",
+      "bytes": 665,
+      "sha256": "ab121490e472bbf2b8b858e6b3727afd913c4d17eebc58065f9fb1296e1b1e5f"
+    },
+    {
+      "path": "normalAdvancedColourKeepsFiniteViewportAndFixedControls/receipt.json",
+      "bytes": 18773,
+      "sha256": "1527d488e3c25179f4106c691684760b43f18946fec36de39a1516bbf92b1f35"
+    },
+    {
+      "path": "northKoreanAttributionAndConditionalCropUseRealConsumers/0-korean-attribution-title.png",
+      "bytes": 42020,
+      "sha256": "cbd63d4304f905b77f885307e9ed02932e628d7c63e7823c7c8e8c8ce89a8e5e"
+    },
+    {
+      "path": "northKoreanAttributionAndConditionalCropUseRealConsumers/1-korean-attribution-copy.png",
+      "bytes": 42020,
+      "sha256": "cbd63d4304f905b77f885307e9ed02932e628d7c63e7823c7c8e8c8ce89a8e5e"
+    },
+    {
+      "path": "northKoreanAttributionAndConditionalCropUseRealConsumers/2-korean-crop-one.png",
+      "bytes": 38164,
+      "sha256": "15543464df4132b091e5682f3fca9630d60a1b457e604a62cd703d828a8b93f5"
+    },
+    {
+      "path": "northKoreanAttributionAndConditionalCropUseRealConsumers/3-korean-crop-two.png",
+      "bytes": 42020,
+      "sha256": "3217d5a895e7096f233ae91bf010b92f50437d87ae4ab42e1370574d495ead76"
+    },
+    {
+      "path": "northKoreanAttributionAndConditionalCropUseRealConsumers/manifest.json",
+      "bytes": 781,
+      "sha256": "7773554c09207d316f37f8cb1fc706c64d93c8cedee57067de447f82b8751655"
+    },
+    {
+      "path": "northKoreanAttributionAndConditionalCropUseRealConsumers/receipt.json",
+      "bytes": 28435,
+      "sha256": "e8a34e5d0c9e467727324eb986549ed5f3907b0a6da3a8b84d096f39a839c597"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/0-retained-landscape.png",
+      "bytes": 23782,
+      "sha256": "7b7babbc878ec24378e5c16aae7e9837aca339ef44c21cbdc4f896c9173c1470"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/1-retained-portrait.png",
+      "bytes": 40757,
+      "sha256": "339498420ae628327eefdbaae6fe52272858ed835b22df89ce3a9c65ec5b0591"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/2-retained-landscape.png",
+      "bytes": 23754,
+      "sha256": "63bdf24b42014ee8baa41d7cd3104e55553c02a8e15af8c58ba13eba62188563"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/3-colour-surface-dragged.png",
+      "bytes": 24174,
+      "sha256": "56ebdb2e144b991101262c8bae36f7848ab953587eb21bd3f9d436fa2553b9c5"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/4-colour-ime-visible.png",
+      "bytes": 22295,
+      "sha256": "b0464155c68391e617b869e908b1f4574441aa1274d6b3d30e927c149a37e951"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/5-colour-ime-hidden.png",
+      "bytes": 23592,
+      "sha256": "c4a9e0ee1006de2b5de220d2181b766f1a8d7085b9153a443ac38fe4b1c606cb"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/6-colour-ime-hidden-retained.png",
+      "bytes": 23592,
+      "sha256": "c4a9e0ee1006de2b5de220d2181b766f1a8d7085b9153a443ac38fe4b1c606cb"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/7-colour-reopened-back-closed.png",
+      "bytes": 20498,
+      "sha256": "589a5d8dd44c77ebfac9bce08acd3290a6196d6128562df6234f656b7c900b34"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/manifest.json",
+      "bytes": 1296,
+      "sha256": "195f35f3e5586f2afab1a315a00389c257a4ec291d0537dddc703d443db3073a"
+    },
+    {
+      "path": "retainedColourStateSurvivesRotationImeCancelAndReopen/receipt.json",
+      "bytes": 41382,
+      "sha256": "4bafeea860be912bf20be45bf33074d2db040904edcf46cd125a8778ddf3ed20"
+    },
+    {
+      "path": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation/0-credit-landscape.png",
+      "bytes": 45953,
+      "sha256": "43df0a6e181d49abad94d07bcd074b19cc9a2ffc3424755b935600f7364eeef6"
+    },
+    {
+      "path": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation/1-credit-portrait.png",
+      "bytes": 50938,
+      "sha256": "50710e58eae345acff6a30426174b6523ef27630a79f241a6f3cc1659e1f0168"
+    },
+    {
+      "path": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation/manifest.json",
+      "bytes": 534,
+      "sha256": "fac7424f526b5a35181671febe027bfd0329e2d08eb0c69fea9d59dc68952163"
+    },
+    {
+      "path": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation/receipt.json",
+      "bytes": 21881,
+      "sha256": "a4611a832ed372b671c1a6fb5696765caf3ad4797d7bdeb55d8770eebb1c821a"
+    },
+    {
+      "path": "source-summary.json",
+      "bytes": 4916,
+      "sha256": "877b10ecb323d48b2fd8b89a79442c0ade18f4c8174754a01a7238d31850297c"
+    },
+    {
+      "path": "southKoreanAttributionAndConditionalCropUseRealConsumers/0-korean-attribution-title.png",
+      "bytes": 42465,
+      "sha256": "3d472e8b371fee42ef69ed712a58f58b0f690d0c1f20bb2411efd82d944f1f0d"
+    },
+    {
+      "path": "southKoreanAttributionAndConditionalCropUseRealConsumers/1-korean-attribution-copy.png",
+      "bytes": 42465,
+      "sha256": "3d472e8b371fee42ef69ed712a58f58b0f690d0c1f20bb2411efd82d944f1f0d"
+    },
+    {
+      "path": "southKoreanAttributionAndConditionalCropUseRealConsumers/2-korean-crop-one.png",
+      "bytes": 37623,
+      "sha256": "53e9ff6df0a6153cc389d4d623d25ada26d116d0171f57ccba4228fea24b76fb"
+    },
+    {
+      "path": "southKoreanAttributionAndConditionalCropUseRealConsumers/3-korean-crop-two.png",
+      "bytes": 41556,
+      "sha256": "eb990fad04eea5c737ec9762c8e046455979e5655a8033dc79e741191d265557"
+    },
+    {
+      "path": "southKoreanAttributionAndConditionalCropUseRealConsumers/manifest.json",
+      "bytes": 781,
+      "sha256": "6ae82bd251ad54b520428187b0d1cc86cf0bce64d6156ee3ecfccb011a02f6f9"
+    },
+    {
+      "path": "southKoreanAttributionAndConditionalCropUseRealConsumers/receipt.json",
+      "bytes": 27899,
+      "sha256": "e58e733ffb85d4677142cd8d83722ac0758880f3339eaf1687ed64e375dd1406"
+    }
+  ],
+  "limits": [
+    "Screening covers only these exact 80 files; owner terminal metadata and other evidence require their own publication-content check",
+    "Not a guarantee against every possible hidden encoding, not a security audit",
+    "Original 39 PNG inspection adds no C05, full-layout, linguistic, physical-device, TalkBack or release acceptance",
+    "Raw artifact ZIP and source/APK artifacts are not included in this public-content screen; source/build identity review is separately recorded",
+    "No publication or source edits performed by reviewer"
+  ]
+}

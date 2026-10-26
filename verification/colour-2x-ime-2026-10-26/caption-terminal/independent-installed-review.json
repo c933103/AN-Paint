@@ -1,0 +1,1244 @@
+{
+  "schema": 1,
+  "reviewer": "native agent /root/review_large_font_ime",
+  "review_type": "independent successful installed receipt and pixel review",
+  "reviewed_head": "73c21b75fa27fc9dab36c508b8f6120804897124",
+  "source_tree": "08550405b070ef263d1511226f8295519ea2ab65",
+  "tested_commit": "911f74a2ce5f99fbef9f81fcbb228b275a479260",
+  "run_id": 40414094733,
+  "core_archive_sha256": "f12571b3e988d4e067fcddb0c0d9a150d21fb73cf26a3fc255f6c5ba1b992083",
+  "source_tests_sha256": "c94aa440f38cb4418b321b6095595223523f71315dd69d335f3c37f15e174f63",
+  "device_identity": {
+    "group": "core",
+    "commit": "911f74a2ce5f99fbef9f81fcbb228b275a479260",
+    "run_id": "40414094733",
+    "run_attempt": "1",
+    "build_variant": "debug",
+    "source_tests_sha256": "c94aa440f38cb4418b321b6095595223523f71315dd69d335f3c37f15e174f63",
+    "device_sdk": 35,
+    "apk_sha256": "9ff4628a8d71e79f59940d8ae85574da7c7e317110bd54db0557360e1af4b21f",
+    "source_sha256": "4228d78413c0056111c165ecdffdded22dc34c20e3e996112d1e44d15e367755",
+    "test_apk_sha256": "e8114ed45324290e90cd973b9144b907918e9779376c8298c92a333c0c3345bc"
+  },
+  "result": "no concrete blocker; bounded installed lifecycle accepted for the two specified API35 emulator profiles",
+  "independent_checks": [
+    "Raw core archive hash matches specified immutable input; all used ZIP members match extracted core bytes",
+    "Exact current source tree unchanged; 1385 packaged tracked source bytes/executable modes match reviewed tree, three documented packaging exclusions; APK embedded source equals external archive",
+    "Executed app/source/test APK hashes match core device identity and exact test-source digest",
+    "All 14 method/class profiles and 51 PNGs pass source-bound archive validator; ordinary and optimized extraction bytes independently match raw manifest hashes",
+    "All 12 new PNGs visually inspected, not used as replacement for callback/input/geometry assertions",
+    "Per new method all 11 captions and 16 Layout-line rectangles independently satisfy complete linked ancestor containment, exact root binding, and ordering before subsequent caption/native action",
+    "Native pressKeyCode BACK is one injection each, followed by real outcome before cleanup; native footer device.click at visible button centers precedes callback outcomes",
+    "18 additional actual-receipt mutation negatives rejected: extra Back injection, stale root, changed selection, wrong Cancel preview, stale reopen value, invalid commit, duplicate valid commit, swapped native action id, invented native-entry acceptance"
+  ],
+  "counts": {
+    "dialog_methods_passed": 14,
+    "pngs": 51,
+    "original_methods": 12,
+    "original_pngs": 39,
+    "new_methods": 2,
+    "new_pngs_visually_inspected": 12
+  },
+  "timing": {
+    "dialog_phase_seconds": 213.5246781950001,
+    "dialog_phase_cap_seconds": 300,
+    "source_enforced_interaction_deadline_ms": 45000,
+    "separate_interaction_elapsed_measurement": "not invented; fixture intervals include setup+interaction+teardown and exclude export"
+  },
+  "methods": [
+    {
+      "method": "largeEnglishColourImeBackAndFooterLifecycle",
+      "receipt_sha256": "ae5288317d74d82fca4d354a7cc78906b236104d9634c6e3cf9134dc428559f2",
+      "observations": 105,
+      "fixture_elapsed_ms": 20482,
+      "fixture_interval_scope": "setup+interaction+teardown; excludes export",
+      "ime_windows": [
+        {
+          "kind": "colour-native-ime-window",
+          "requested_visible": true,
+          "condition_passed": true,
+          "windows": [
+            {
+              "id": 291,
+              "type": 2,
+              "bounds": [
+                0,
+                24,
+                640,
+                320
+              ],
+              "root_bounds": [
+                0,
+                24,
+                640,
+                320
+              ],
+              "package": "com.google.android.inputmethod.latin",
+              "root_visible": true,
+              "root_children": 2,
+              "configured_ime": true
+            }
+          ],
+          "root_id": 224447468,
+          "field_id": 126850904,
+          "stable_window_ms": 273,
+          "ime_visible": true,
+          "ime_inset_bottom": 0,
+          "fullscreen_ime": true,
+          "dialog": {
+            "class": "com.android.internal.policy.DecorView",
+            "tag": null,
+            "raw": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "visible": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "field": {
+            "class": "android.widget.EditText",
+            "tag": "colour_hex",
+            "raw": [
+              28,
+              157,
+              288,
+              212
+            ],
+            "visible": [
+              28,
+              157,
+              288,
+              212
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "value": "#13579B",
+          "note": "Native window observation; inspect actual PNG; no simultaneous field/footer fit acceptance"
+        },
+        {
+          "kind": "colour-native-ime-window",
+          "requested_visible": false,
+          "condition_passed": true,
+          "windows": [],
+          "root_id": 224447468,
+          "field_id": 126850904,
+          "stable_window_ms": 252,
+          "ime_visible": false,
+          "ime_inset_bottom": 0,
+          "fullscreen_ime": false,
+          "dialog": {
+            "class": "com.android.internal.policy.DecorView",
+            "tag": null,
+            "raw": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "visible": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "field": {
+            "class": "android.widget.EditText",
+            "tag": "colour_hex",
+            "raw": [
+              28,
+              157,
+              288,
+              212
+            ],
+            "visible": [
+              28,
+              157,
+              288,
+              212
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "value": "#13579B",
+          "note": "Native window observation; inspect actual PNG; no simultaneous field/footer fit acceptance"
+        }
+      ],
+      "first_back_after": {
+        "kind": "native-back-after",
+        "label": "hide 2x colour IME",
+        "injected": true,
+        "completed": true,
+        "postcondition_met": true,
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_insets_available": true,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "dialog_id": 141102164,
+          "root_id": 224447468,
+          "field_id": 126850904,
+          "picker_id": 57935869,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true,
+          "value": "#13579B",
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "native_ime_present": false
+        }
+      },
+      "retained_hidden": {
+        "kind": "colour-2x-hidden-retained",
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_insets_available": true,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "dialog_id": 141102164,
+          "root_id": 224447468,
+          "field_id": 126850904,
+          "picker_id": 57935869,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true,
+          "value": "#13579B",
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "native_ime_present": false
+        }
+      },
+      "captions": [
+        {
+          "key": "colour_mode_0",
+          "text": "Palette",
+          "expected_text": "Palette",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Palette",
+          "layout_text": "Palette",
+          "accessible_text": "Palette",
+          "lines": 2,
+          "line_ranges": [
+            [
+              0,
+              5
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "key": "colour_mode_3",
+          "text": "Honeycomb",
+          "expected_text": "Honeycomb",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Honeycomb",
+          "layout_text": "Honeycomb",
+          "accessible_text": "Honeycomb",
+          "lines": 3,
+          "line_ranges": [
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              8
+            ],
+            [
+              8,
+              9
+            ]
+          ]
+        },
+        {
+          "key": "colour_advanced_tab",
+          "text": "Advanced",
+          "expected_text": "Advanced",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Advanced",
+          "layout_text": "Advanced",
+          "accessible_text": "Advanced",
+          "lines": 2,
+          "line_ranges": [
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              8
+            ]
+          ]
+        },
+        {
+          "key": "colour_mode_1",
+          "text": "Spectrum",
+          "expected_text": "Spectrum",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Spectrum",
+          "layout_text": "Spectrum",
+          "accessible_text": "Spectrum",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        {
+          "key": "colour_mode_2",
+          "text": "Wheel",
+          "expected_text": "Wheel",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Wheel",
+          "layout_text": "Wheel",
+          "accessible_text": "Wheel",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "key": "add_custom_colour",
+          "text": "Add to palette",
+          "expected_text": "Add to palette",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Add to palette",
+          "layout_text": "Add to palette",
+          "accessible_text": "Add to palette",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              14
+            ]
+          ]
+        },
+        {
+          "key": "selected_colour_caption",
+          "text": "Selected color",
+          "expected_text": "Selected color",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Selected color",
+          "layout_text": "Selected color",
+          "accessible_text": "Selected color",
+          "lines": 2,
+          "line_ranges": [
+            [
+              0,
+              9
+            ],
+            [
+              9,
+              14
+            ]
+          ]
+        },
+        {
+          "key": "custom_colour_selection",
+          "text": "Saved palette",
+          "expected_text": "Saved palette",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Saved palette",
+          "layout_text": "Saved palette",
+          "accessible_text": "Saved palette",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              13
+            ]
+          ]
+        },
+        {
+          "key": "colour_hex",
+          "text": "#13579B",
+          "expected_text": "#13579B",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "android.text.method.SingleLineTransformationMethod",
+          "transformed_text": "#13579B",
+          "layout_text": "#13579B",
+          "accessible_text": "#13579B",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "key": "cancel",
+          "text": "Cancel",
+          "expected_text": "Cancel",
+          "source_resource": "ui_cancel",
+          "view_id": 16908314,
+          "transformation_method": "android.text.method.AllCapsTransformationMethod",
+          "transformed_text": "CANCEL",
+          "layout_text": "CANCEL",
+          "accessible_text": "CANCEL",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              6
+            ]
+          ]
+        },
+        {
+          "key": "use",
+          "text": "Use color",
+          "expected_text": "Use color",
+          "source_resource": "ui_use_colour",
+          "view_id": 16908313,
+          "transformation_method": "android.text.method.AllCapsTransformationMethod",
+          "transformed_text": "USE COLOR",
+          "layout_text": "USE COLOR",
+          "accessible_text": "USE COLOR",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              9
+            ]
+          ]
+        }
+      ],
+      "verified_caption_lines": 16,
+      "native_footer_taps": [
+        {
+          "kind": "pointer-before",
+          "label": "2x Cancel",
+          "tap": [
+            390,
+            248
+          ],
+          "geometry": {
+            "class": "android.widget.Button",
+            "tag": null,
+            "raw": [
+              329,
+              220,
+              452,
+              276
+            ],
+            "visible": [
+              329,
+              220,
+              452,
+              276
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          }
+        },
+        {
+          "kind": "pointer-before",
+          "label": "2x invalid rejected",
+          "tap": [
+            532,
+            248
+          ],
+          "geometry": {
+            "class": "android.widget.Button",
+            "tag": null,
+            "raw": [
+              452,
+              220,
+              612,
+              276
+            ],
+            "visible": [
+              452,
+              220,
+              612,
+              276
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          }
+        },
+        {
+          "kind": "pointer-before",
+          "label": "2x valid committed",
+          "tap": [
+            532,
+            248
+          ],
+          "geometry": {
+            "class": "android.widget.Button",
+            "tag": null,
+            "raw": [
+              452,
+              220,
+              612,
+              276
+            ],
+            "visible": [
+              452,
+              220,
+              612,
+              276
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          }
+        }
+      ],
+      "cancelled": {
+        "kind": "colour-2x-cancelled",
+        "commit_callbacks": 0,
+        "closed_callbacks": 1,
+        "selected_colour": -65536,
+        "preview_colour": -65536,
+        "dialog_showing": false,
+        "root_attached": false
+      },
+      "reopened": {
+        "kind": "colour-2x-reopened",
+        "root_id": 128753225,
+        "dialog_id": 114757920,
+        "value": "#FF0000"
+      },
+      "reopened_back_after": {
+        "kind": "native-back-after",
+        "label": "close 2x reopened colour",
+        "injected": true,
+        "completed": true,
+        "postcondition_met": true,
+        "state": {
+          "target_attached": false,
+          "target_showing": false,
+          "target_focused": false,
+          "target_insets_available": false,
+          "target_ime_visible": null,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": false,
+          "focused_app_window_is_editor": true,
+          "focused_insets_available": true,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": false,
+          "root_id": 128753225,
+          "dialog_id": 114757920,
+          "same_root": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 2,
+          "selected_colour": -65536,
+          "preview_colour": -65536
+        }
+      },
+      "invalid_rejected": {
+        "kind": "colour-2x-invalid-rejected",
+        "root_id": 44666411,
+        "dialog_id": 146082859,
+        "dialog_showing": true,
+        "error_present": true,
+        "value": "#broken",
+        "commit_callbacks": 0,
+        "closed_callbacks": 2
+      },
+      "complete": {
+        "kind": "colour-2x-complete",
+        "commit_callbacks": 1,
+        "initial_native_field_activation": "not-tested",
+        "initial_full_hex_visibility": "not-accepted",
+        "closed_callbacks": 3,
+        "selected_colour": -14391124,
+        "dialog_showing": false,
+        "root_attached": false,
+        "simultaneous_ime_field_footer_fit": "not-accepted"
+      },
+      "visually_inspected_pngs": [
+        {
+          "name": "0-colour-2x-initial.png",
+          "sha256": "663f7ff4c943a40f09ff339dc497f5df6915063187f75ea87487c332c4de0cc3"
+        },
+        {
+          "name": "1-colour-2x-ime-open.png",
+          "sha256": "7c68bccb0856099a4c6b79d97ac28b3536233c0fb83215295b59a2bf95e67b78"
+        },
+        {
+          "name": "2-colour-2x-ime-hidden.png",
+          "sha256": "379ce8b4470c7e3a0cd2e6af7309aa98f62659e420de79582904c41f92007ff2"
+        },
+        {
+          "name": "3-colour-2x-cancel-reached.png",
+          "sha256": "f5a697f57a1aaf84db4893903d695563d6466a65926641879e4d309402d8bf6e"
+        },
+        {
+          "name": "4-colour-2x-reopened.png",
+          "sha256": "af657d1696dfa2ebaa88d5e28eb50c41b96ce94edb0dc7fdd66951f9fd006820"
+        },
+        {
+          "name": "5-colour-2x-use-reached.png",
+          "sha256": "ad59bc3726c79d2049333c9bfcb678539d01fc0110db4e6e17cdf2eaad1d03dd"
+        }
+      ]
+    },
+    {
+      "method": "largeHungarianColourImeBackAndFooterLifecycle",
+      "receipt_sha256": "b126a1843868c2e3d3d73d386b1c96c01cfc305162e52679a79f7e85a7a1fbed",
+      "observations": 110,
+      "fixture_elapsed_ms": 23344,
+      "fixture_interval_scope": "setup+interaction+teardown; excludes export",
+      "ime_windows": [
+        {
+          "kind": "colour-native-ime-window",
+          "requested_visible": true,
+          "condition_passed": true,
+          "windows": [
+            {
+              "id": 291,
+              "type": 2,
+              "bounds": [
+                0,
+                24,
+                640,
+                320
+              ],
+              "root_bounds": [
+                0,
+                24,
+                640,
+                320
+              ],
+              "package": "com.google.android.inputmethod.latin",
+              "root_visible": true,
+              "root_children": 2,
+              "configured_ime": true
+            }
+          ],
+          "root_id": 217966215,
+          "field_id": 130517408,
+          "stable_window_ms": 267,
+          "ime_visible": true,
+          "ime_inset_bottom": 0,
+          "fullscreen_ime": true,
+          "dialog": {
+            "class": "com.android.internal.policy.DecorView",
+            "tag": null,
+            "raw": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "visible": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "field": {
+            "class": "android.widget.EditText",
+            "tag": "colour_hex",
+            "raw": [
+              28,
+              157,
+              288,
+              212
+            ],
+            "visible": [
+              28,
+              157,
+              288,
+              212
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "value": "#13579B",
+          "note": "Native window observation; inspect actual PNG; no simultaneous field/footer fit acceptance"
+        },
+        {
+          "kind": "colour-native-ime-window",
+          "requested_visible": false,
+          "condition_passed": true,
+          "windows": [],
+          "root_id": 217966215,
+          "field_id": 130517408,
+          "stable_window_ms": 253,
+          "ime_visible": false,
+          "ime_inset_bottom": 0,
+          "fullscreen_ime": false,
+          "dialog": {
+            "class": "com.android.internal.policy.DecorView",
+            "tag": null,
+            "raw": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "visible": [
+              0,
+              24,
+              640,
+              296
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "field": {
+            "class": "android.widget.EditText",
+            "tag": "colour_hex",
+            "raw": [
+              28,
+              157,
+              288,
+              212
+            ],
+            "visible": [
+              28,
+              157,
+              288,
+              212
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          },
+          "value": "#13579B",
+          "note": "Native window observation; inspect actual PNG; no simultaneous field/footer fit acceptance"
+        }
+      ],
+      "first_back_after": {
+        "kind": "native-back-after",
+        "label": "hide 2x colour IME",
+        "injected": true,
+        "completed": true,
+        "postcondition_met": true,
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_insets_available": true,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "dialog_id": 262482204,
+          "root_id": 217966215,
+          "field_id": 130517408,
+          "picker_id": 58800421,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true,
+          "value": "#13579B",
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "native_ime_present": false
+        }
+      },
+      "retained_hidden": {
+        "kind": "colour-2x-hidden-retained",
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_insets_available": true,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "dialog_id": 262482204,
+          "root_id": 217966215,
+          "field_id": 130517408,
+          "picker_id": 58800421,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true,
+          "value": "#13579B",
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "native_ime_present": false
+        }
+      },
+      "captions": [
+        {
+          "key": "colour_mode_0",
+          "text": "Paletta",
+          "expected_text": "Paletta",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Paletta",
+          "layout_text": "Paletta",
+          "accessible_text": "Paletta",
+          "lines": 2,
+          "line_ranges": [
+            [
+              0,
+              5
+            ],
+            [
+              5,
+              7
+            ]
+          ]
+        },
+        {
+          "key": "colour_mode_3",
+          "text": "Méhsejt",
+          "expected_text": "Méhsejt",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Méhsejt",
+          "layout_text": "Méhsejt",
+          "accessible_text": "Méhsejt",
+          "lines": 2,
+          "line_ranges": [
+            [
+              0,
+              4
+            ],
+            [
+              4,
+              7
+            ]
+          ]
+        },
+        {
+          "key": "colour_advanced_tab",
+          "text": "Speciális",
+          "expected_text": "Speciális",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Speciális",
+          "layout_text": "Speciális",
+          "accessible_text": "Speciális",
+          "lines": 2,
+          "line_ranges": [
+            [
+              0,
+              5
+            ],
+            [
+              5,
+              9
+            ]
+          ]
+        },
+        {
+          "key": "colour_mode_1",
+          "text": "Spektrum",
+          "expected_text": "Spektrum",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Spektrum",
+          "layout_text": "Spektrum",
+          "accessible_text": "Spektrum",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              8
+            ]
+          ]
+        },
+        {
+          "key": "colour_mode_2",
+          "text": "Színkerék",
+          "expected_text": "Színkerék",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Színkerék",
+          "layout_text": "Színkerék",
+          "accessible_text": "Színkerék",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              9
+            ]
+          ]
+        },
+        {
+          "key": "add_custom_colour",
+          "text": "Hozzáadás a palettához",
+          "expected_text": "Hozzáadás a palettához",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Hozzáadás a palettához",
+          "layout_text": "Hozzáadás a palettához",
+          "accessible_text": "Hozzáadás a palettához",
+          "lines": 2,
+          "line_ranges": [
+            [
+              0,
+              12
+            ],
+            [
+              12,
+              22
+            ]
+          ]
+        },
+        {
+          "key": "selected_colour_caption",
+          "text": "Kijelölt szín",
+          "expected_text": "Kijelölt szín",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Kijelölt szín",
+          "layout_text": "Kijelölt szín",
+          "accessible_text": "Kijelölt szín",
+          "lines": 2,
+          "line_ranges": [
+            [
+              0,
+              9
+            ],
+            [
+              9,
+              13
+            ]
+          ]
+        },
+        {
+          "key": "custom_colour_selection",
+          "text": "Mentett paletta",
+          "expected_text": "Mentett paletta",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "none",
+          "transformed_text": "Mentett paletta",
+          "layout_text": "Mentett paletta",
+          "accessible_text": "Mentett paletta",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              15
+            ]
+          ]
+        },
+        {
+          "key": "colour_hex",
+          "text": "#13579B",
+          "expected_text": "#13579B",
+          "source_resource": "view-text",
+          "view_id": -1,
+          "transformation_method": "android.text.method.SingleLineTransformationMethod",
+          "transformed_text": "#13579B",
+          "layout_text": "#13579B",
+          "accessible_text": "#13579B",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              7
+            ]
+          ]
+        },
+        {
+          "key": "cancel",
+          "text": "Mégse",
+          "expected_text": "Mégse",
+          "source_resource": "ui_cancel",
+          "view_id": 16908314,
+          "transformation_method": "android.text.method.AllCapsTransformationMethod",
+          "transformed_text": "MÉGSE",
+          "layout_text": "MÉGSE",
+          "accessible_text": "MÉGSE",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              5
+            ]
+          ]
+        },
+        {
+          "key": "use",
+          "text": "Szín használata",
+          "expected_text": "Szín használata",
+          "source_resource": "ui_use_colour",
+          "view_id": 16908313,
+          "transformation_method": "android.text.method.AllCapsTransformationMethod",
+          "transformed_text": "SZÍN HASZNÁLATA",
+          "layout_text": "SZÍN HASZNÁLATA",
+          "accessible_text": "SZÍN HASZNÁLATA",
+          "lines": 1,
+          "line_ranges": [
+            [
+              0,
+              15
+            ]
+          ]
+        }
+      ],
+      "verified_caption_lines": 16,
+      "native_footer_taps": [
+        {
+          "kind": "pointer-before",
+          "label": "2x Cancel",
+          "tap": [
+            304,
+            248
+          ],
+          "geometry": {
+            "class": "android.widget.Button",
+            "tag": null,
+            "raw": [
+              249,
+              220,
+              359,
+              276
+            ],
+            "visible": [
+              249,
+              220,
+              359,
+              276
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          }
+        },
+        {
+          "kind": "pointer-before",
+          "label": "2x invalid rejected",
+          "tap": [
+            485,
+            248
+          ],
+          "geometry": {
+            "class": "android.widget.Button",
+            "tag": null,
+            "raw": [
+              359,
+              220,
+              612,
+              276
+            ],
+            "visible": [
+              359,
+              220,
+              612,
+              276
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          }
+        },
+        {
+          "kind": "pointer-before",
+          "label": "2x valid committed",
+          "tap": [
+            485,
+            248
+          ],
+          "geometry": {
+            "class": "android.widget.Button",
+            "tag": null,
+            "raw": [
+              359,
+              220,
+              612,
+              276
+            ],
+            "visible": [
+              359,
+              220,
+              612,
+              276
+            ],
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "shown": true
+          }
+        }
+      ],
+      "cancelled": {
+        "kind": "colour-2x-cancelled",
+        "commit_callbacks": 0,
+        "closed_callbacks": 1,
+        "selected_colour": -65536,
+        "preview_colour": -65536,
+        "dialog_showing": false,
+        "root_attached": false
+      },
+      "reopened": {
+        "kind": "colour-2x-reopened",
+        "root_id": 221689167,
+        "dialog_id": 233416889,
+        "value": "#FF0000"
+      },
+      "reopened_back_after": {
+        "kind": "native-back-after",
+        "label": "close 2x reopened colour",
+        "injected": true,
+        "completed": true,
+        "postcondition_met": true,
+        "state": {
+          "target_attached": false,
+          "target_showing": false,
+          "target_focused": false,
+          "target_insets_available": false,
+          "target_ime_visible": null,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": false,
+          "focused_app_window_is_editor": true,
+          "focused_insets_available": true,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": false,
+          "root_id": 221689167,
+          "dialog_id": 233416889,
+          "same_root": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 2,
+          "selected_colour": -65536,
+          "preview_colour": -65536
+        }
+      },
+      "invalid_rejected": {
+        "kind": "colour-2x-invalid-rejected",
+        "root_id": 67387368,
+        "dialog_id": 145745384,
+        "dialog_showing": true,
+        "error_present": true,
+        "value": "#broken",
+        "commit_callbacks": 0,
+        "closed_callbacks": 2
+      },
+      "complete": {
+        "kind": "colour-2x-complete",
+        "commit_callbacks": 1,
+        "initial_native_field_activation": "not-tested",
+        "initial_full_hex_visibility": "not-accepted",
+        "closed_callbacks": 3,
+        "selected_colour": -14391124,
+        "dialog_showing": false,
+        "root_attached": false,
+        "simultaneous_ime_field_footer_fit": "not-accepted"
+      },
+      "visually_inspected_pngs": [
+        {
+          "name": "0-colour-2x-initial.png",
+          "sha256": "92892f06a80eeaa10b12a4e7b72bf4f36dca47f210217a0e77bb5e9929b457f3"
+        },
+        {
+          "name": "1-colour-2x-ime-open.png",
+          "sha256": "19b8be16b778b9a91ae8f9d4153a249688beec48065267ed40f7edc9d8b8552e"
+        },
+        {
+          "name": "2-colour-2x-ime-hidden.png",
+          "sha256": "9fce4b698cdf6e69d0b68dcebc47945ff8010670c1a49342764d31beeee19df4"
+        },
+        {
+          "name": "3-colour-2x-cancel-reached.png",
+          "sha256": "1308aba1fb1efe172269399f6da48046a061169c5de09b58610f9c1440cbbb7f"
+        },
+        {
+          "name": "4-colour-2x-reopened.png",
+          "sha256": "a899d5dfcb0edf66fe7b78ccdde1505349eead1474c9dfde54d094a5425ac58a"
+        },
+        {
+          "name": "5-colour-2x-use-reached.png",
+          "sha256": "edf85351d96eae75da1259585da62ef82d124aaa3503e1fae20ba2e509a21e35"
+        }
+      ]
+    }
+  ],
+  "pixel_observation": "Both real fullscreen extract IMEs show #13579B selection; post-hide captures retain dialog/value/selection. CANCEL/USE COLOR and MÉGSE/SZÍN HASZNÁLATA are visually intact. Initial/reopened/Use captures contain partially occluded scrolled content, consistent with sequential reveal only. No unexplained pixel blocker identified. Full line coverage derives from ordered measurements, not the sparse screenshots.",
+  "limits": [
+    "Initial field activation remains synthetic requestFocus/showSoftInput, not-tested as native entry; initial full hex visibility not-accepted",
+    "IME-open field/footer overlap is observed, not simultaneous-fit acceptance; fullscreen zero app inset is valid",
+    "Not universal or whole-dialog 2x usability, C05 closure, glyph-ink proof, physical-device, TalkBack, keyboard transcription, linguistic fluency or release/upgrade-signing acceptance",
+    "Reviewer validated hosted installed artifacts, did not locally compile or execute Android; remote merge and all-job/review eligibility are parent-owned checks",
+    "Original 39 PNG pixels not inspected by this lifecycle review; publication-content inspection is separate"
+  ]
+}
