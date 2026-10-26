@@ -1,0 +1,1542 @@
+{
+  "schema_version": 1,
+  "locale": "sk",
+  "source_commit": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+  "source_tree": "806d9577409c4044212d1c12e6e38da46417bae6",
+  "review_role": "Independent complete-value AI linguistic/source-static reviewer; distinct from candidate author",
+  "candidate_sha256": "03679e36a2b1e7bcf2412e14692a8dec9385f2d4db20af6a35f8d11c66924d6a",
+  "source_context_sha256": "ab50576189d1daf12d0c16cba38a0a885bcb7822e0e05d572ac2d3527745cad4",
+  "terminology_sha256": "7fbf1726ead175699bf7ea211866b7bdf2ea892259872f4648aa14526159b229",
+  "source_tree_sha256": "735bf325ec37d03b6c3150dbc0ecdbae46145a0d02ea32e98e34d5173f10503e",
+  "verification": {
+    "source_blobs_and_modes_verified": 1379,
+    "canonical_values_attributes_and_full_tokens_verified": 78,
+    "current_consumer_windows_verified": 140,
+    "unique_consumer_windows_verified": 124,
+    "preserved_values_and_attributes_verified": 127,
+    "source_catalogue_git_blob": "eb74c1fc2ad46076c143261fcbbb8c97213e0b02",
+    "candidate_identity_scope": "Exact 78 selected missing P0 keys, all absent in current Slovak source; no inherited replacement",
+    "complete_value_decisions": {
+      "accept": 73,
+      "revise": 5
+    },
+    "five_no_consumer_holds_untouched": [
+      "formats22_derived_exported",
+      "ui_save_as",
+      "ui_save_as_jpeg",
+      "ui_save_as_jpeg_xl",
+      "ui_save_as_png"
+    ],
+    "expected_structural_endpoint_if_exact_values_applied": {
+      "containers": 205,
+      "P0_present": 87,
+      "P0_total": 92
+    },
+    "immutable_control_labels": {
+      "save": "Uložiť",
+      "save_as": "Uložiť ako…",
+      "discard": "Zahodiť zmeny",
+      "keep_editing": "Zrušiť",
+      "format": "Image format",
+      "load_image_fallback": "Load image…",
+      "save_question": "Save changes?"
+    },
+    "scope_limits": [
+      "AI whole-value review only, not native-human, whole-language, layout, runtime or physical-device certification.",
+      "All inherited values/attributes are preserved as context, not newly accepted.",
+      "Global 59/112, paired 120-entry/60-tag warning oracle and all frozen holds remain unchanged."
+    ]
+  },
+  "entries": [
+    {
+      "identity": "string/formats22_animation_message",
+      "decision": "accept",
+      "original_xml_text": "\"Tento obrázok vo formáte %1$s má nasledujúci počet snímok: %2$s. AN Paint upravuje statické obrázky a nezachováva animáciu.\"",
+      "accepted_xml_text": "\"Tento obrázok vo formáte %1$s má nasledujúci počet snímok: %2$s. AN Paint upravuje statické obrázky a nezachováva animáciu.\"",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "reason": "The introductory count phrase accepts both exact and inherited English lower-bound counts without incorrect Slovak numeral agreement; still-image editing and animation loss remain explicit.",
+      "qualifications": [
+        "The inherited at least count and format label may be English; complete composition is not certified wholly Slovak."
+      ],
+      "source_value_sha256_utf8": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+      "original_value_sha256_utf8": "2ed7673520175b7fe46a976196c0ffbad04ba78f2634242d1dcf6a56ed55c1e7",
+      "accepted_value_sha256_utf8": "2ed7673520175b7fe46a976196c0ffbad04ba78f2634242d1dcf6a56ed55c1e7",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:92"
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "decision": "accept",
+      "original_xml_text": "\"Tento obrázok PNG má samostatný predvolený obrázok. Namiesto animovaných snímok sa importuje tento obrázok. Uložením sa vytvorí statický obrázok.\"",
+      "accepted_xml_text": "\"Tento obrázok PNG má samostatný predvolený obrázok. Namiesto animovaných snímok sa importuje tento obrázok. Uložením sa vytvorí statický obrázok.\"",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "reason": "The separate default PNG image is selected instead of animated frames; the result of saving remains explicitly static, not animation-preserving.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+      "original_value_sha256_utf8": "d682eb017e85dbe20ae09bba158bf6f0e9629b1461452842218ac70212af2f7b",
+      "accepted_value_sha256_utf8": "d682eb017e85dbe20ae09bba158bf6f0e9629b1461452842218ac70212af2f7b",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "decision": "accept",
+      "original_xml_text": "\"Importuje sa iba prvá snímka. Uložením sa vytvorí statický obrázok.\"",
+      "accepted_xml_text": "\"Importuje sa iba prvá snímka. Uložením sa vytvorí statický obrázok.\"",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "reason": "Iba prvá snímka preserves first-frame-only import and the second sentence does not imply animated output.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+      "original_value_sha256_utf8": "0a7cc4c11233740f8cea5bdf888ce6b30ada6c6ec7d471f15960fb83b71257d2",
+      "accepted_value_sha256_utf8": "0a7cc4c11233740f8cea5bdf888ce6b30ada6c6ec7d471f15960fb83b71257d2",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "decision": "accept",
+      "original_xml_text": "\"Animovaný obrázok\"",
+      "accepted_xml_text": "\"Animovaný obrázok\"",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "reason": "The adjective correctly identifies an animated image rather than an animation-editing mode.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+      "original_value_sha256_utf8": "24508380be7536a6273a2cc08144e0e5bbd57fb75dbfc172d62a3993ced19f65",
+      "accepted_value_sha256_utf8": "24508380be7536a6273a2cc08144e0e5bbd57fb75dbfc172d62a3993ced19f65",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94"
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "decision": "accept",
+      "original_xml_text": "\"Tento obrázok vo formáte %1$s je príliš zložitý na overenie, či obsahuje viacero snímok. AN Paint otvorí iba statický obrázok a nezachová žiadnu animáciu.\"",
+      "accepted_xml_text": "\"Tento obrázok vo formáte %1$s je príliš zložitý na overenie, či obsahuje viacero snímok. AN Paint otvorí iba statický obrázok a nezachová žiadnu animáciu.\"",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "reason": "Príliš zložitý na overenie preserves inspection uncertainty; opening a still image is distinguished from detecting a genuinely single-frame file.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+      "original_value_sha256_utf8": "174b86ddfe57a518f4f66d503f60e3f9c33d633ced2faa651bc7487fd97b5df9",
+      "accepted_value_sha256_utf8": "174b86ddfe57a518f4f66d503f60e3f9c33d633ced2faa651bc7487fd97b5df9",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:91"
+      ]
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "decision": "accept",
+      "original_xml_text": "\"Zapíše obyčajný text pomocou svetlých a tmavých znakov. Zobrazte ho písmom s pevnou šírkou znakov. Ide o vizuálne stvárnenie; nemožno ho znova otvoriť ako pôvodný obrázok.\"",
+      "accepted_xml_text": "\"Zapíše obyčajný text pomocou svetlých a tmavých znakov. Zobrazte ho písmom s pevnou šírkou znakov. Ide o vizuálne stvárnenie; nemožno ho znova otvoriť ako pôvodný obrázok.\"",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "reason": "Obyčajný text and fixed-width characters retain text rendering, and the final clause explicitly denies recovery of the original image from the rendition.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+      "original_value_sha256_utf8": "2b606610e2db0f3cadd24cb980d9aa995e0af98701b78427f71d912a3c301842",
+      "accepted_value_sha256_utf8": "2b606610e2db0f3cadd24cb980d9aa995e0af98701b78427f71d912a3c301842",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:101"
+      ]
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "decision": "accept",
+      "original_xml_text": "\"Otvoriť statický obrázok\"",
+      "accepted_xml_text": "\"Otvoriť statický obrázok\"",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "reason": "The infinitive action opens a still image and does not promise animation playback.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+      "original_value_sha256_utf8": "f892358817a6ff8584937f63126f40d7eed9505dceb077aec5adfb7aa4010fe4",
+      "accepted_value_sha256_utf8": "f892358817a6ff8584937f63126f40d7eed9505dceb077aec5adfb7aa4010fe4",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:95"
+      ]
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "decision": "accept",
+      "original_xml_text": "\"Strany PDF sa vykresľujú s rozlíšením 144 dpi. Text a vektorové objekty sa zmenia na pixely.\"",
+      "accepted_xml_text": "\"Strany PDF sa vykresľujú s rozlíšením 144 dpi. Text a vektorové objekty sa zmenia na pixely.\"",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "reason": "The exact 144 dpi claim and conversion of text/vector objects into pixels are both retained.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+      "original_value_sha256_utf8": "4997df0362116d4fd9aaaedf9454f52dd35965c9ca66d1d3cb4142a4262a4e0b",
+      "accepted_value_sha256_utf8": "4997df0362116d4fd9aaaedf9454f52dd35965c9ca66d1d3cb4142a4262a4e0b",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:102"
+      ]
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "decision": "accept",
+      "original_xml_text": "\"Statický obrázok s najviac 256 farbami. Rozptyľovanie vyhladzuje farebné prechody. Animované obrázky GIF sa otvoria ako ich prvá snímka.\"",
+      "accepted_xml_text": "\"Statický obrázok s najviac 256 farbami. Rozptyľovanie vyhladzuje farebné prechody. Animované obrázky GIF sa otvoria ako ich prvá snímka.\"",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "reason": "Rozptyľovanie matches the inherited dithering label; the 256-colour ceiling, static output and first-frame animated-GIF import remain separate statements.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "original_value_sha256_utf8": "4f4965c8b01f00c4d743b1f3be51c1b78c45e355a6527e8a9800f9596144e299",
+      "accepted_value_sha256_utf8": "4f4965c8b01f00c4d743b1f3be51c1b78c45e355a6527e8a9800f9596144e299",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:95"
+      ]
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "decision": "accept",
+      "original_xml_text": "\"Zadajte názov súboru bez lomiek a riadiacich znakov.\"",
+      "accepted_xml_text": "\"Zadajte názov súboru bez lomiek a riadiacich znakov.\"",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "reason": "The imperative rejects slashes and control characters without claiming those are the only filename validation rules.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+      "original_value_sha256_utf8": "d16ae1f3a6cbb787e4a67db0d6219706485137680a8f37f9f47a27829d779f3b",
+      "accepted_value_sha256_utf8": "d16ae1f3a6cbb787e4a67db0d6219706485137680a8f37f9f47a27829d779f3b",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:194"
+      ]
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "decision": "accept",
+      "original_xml_text": "\"Vyššia kvalita zachová viac detailov a zvyčajne vytvorí väčší súbor.\"",
+      "accepted_xml_text": "\"Vyššia kvalita zachová viac detailov a zvyčajne vytvorí väčší súbor.\"",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "reason": "Zvyčajne preserves the probabilistic size relationship; vyššia kvalita and viac detailov do not promise losslessness.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+      "original_value_sha256_utf8": "3e4fa93717ab8a3f8856aa985883666b3a8b47f37eea9f875987eed257e2dac3",
+      "accepted_value_sha256_utf8": "3e4fa93717ab8a3f8856aa985883666b3a8b47f37eea9f875987eed257e2dac3",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:102"
+      ]
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "decision": "accept",
+      "original_xml_text": "\"Tento obrázok používa farebný profil, ktorý AN Paint zatiaľ nedokáže previesť. Pred importom ho preveďte na PNG v priestore sRGB v editore so správou farieb.\"",
+      "accepted_xml_text": "\"Tento obrázok používa farebný profil, ktorý AN Paint zatiaľ nedokáže previesť. Pred importom ho preveďte na PNG v priestore sRGB v editore so správou farieb.\"",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "reason": "The message retains not-yet-supported conversion and explicitly directs conversion to PNG in sRGB using a colour-managed editor, not profile relabelling.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+      "original_value_sha256_utf8": "9fefab696ddb1dcd0aa6d39a2242a3a61f6461ed31c6aeb52b9a8cf657bb38a3",
+      "accepted_value_sha256_utf8": "9fefab696ddb1dcd0aa6d39a2242a3a61f6461ed31c6aeb52b9a8cf657bb38a3",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:16",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:23",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt:115"
+      ]
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "decision": "accept",
+      "original_xml_text": "\"Vyššia kvalita zvyčajne vytvorí väčší súbor. Bezstratová kompresia zachová každú farebnú hodnotu.\"",
+      "accepted_xml_text": "\"Vyššia kvalita zvyčajne vytvorí väčší súbor. Bezstratová kompresia zachová každú farebnú hodnotu.\"",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "reason": "Bezstratová kompresia unambiguously identifies the mode and retains every colour value; usual larger-file behaviour is not made absolute.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+      "original_value_sha256_utf8": "5bdcc1f9f680d5081ef14bcdb507cff73989d343b51264e440a35cbedc55915e",
+      "accepted_value_sha256_utf8": "5bdcc1f9f680d5081ef14bcdb507cff73989d343b51264e440a35cbedc55915e",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:103"
+      ]
+    },
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "decision": "accept",
+      "original_xml_text": "\"%1$s Bola zachovaná samostatná kópia na obnovu. Pomocou Súbor > Exportovať kópiu na obnovu… uložte jej archív ZIP. Extrahujte z neho canvas.png a načítajte tento obrázok, aby ste v prípade potreby mohli použiť bežné možnosti zmeny mierky.\"",
+      "accepted_xml_text": "\"%1$s Bola zachovaná samostatná kópia na obnovu. Pomocou Súbor > Exportovať kópiu na obnovu… uložte jej archív ZIP. Extrahujte z neho canvas.png a načítajte tento obrázok, aby ste v prípade potreby mohli použiť bežné možnosti zmeny mierky.\"",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "reason": "The failure prefix remains first, preservation is asserted only on the successful-copy branch, and the actual Súbor/recovery-export label and literal canvas.png/ZIP instructions agree.",
+      "qualifications": [
+        "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+      ],
+      "source_value_sha256_utf8": "579fea23054e5ac24d9dad1aee8a1dd13af1d810fbed9f92e059cce26f6ed0a0",
+      "original_value_sha256_utf8": "fe2198da7058beffeafa29ccc1526c72e8c68b9beb2ea6c89ff5f8f2067d5511",
+      "accepted_value_sha256_utf8": "fe2198da7058beffeafa29ccc1526c72e8c68b9beb2ea6c89ff5f8f2067d5511",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "decision": "accept",
+      "original_xml_text": "\"Automatické ukladanie zlyhalo · použite Uložiť\"",
+      "accepted_xml_text": "\"Automatické ukladanie zlyhalo · použite Uložiť\"",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "reason": "Failure remains failure and the remedy names inherited Uložiť, not an automatic success or retry guarantee.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "9fab2239be3a11b6843125b73bedddcef714c0188d682cb0f145f6a7fdd1457a",
+      "original_value_sha256_utf8": "6735c4788d2d91211614b9ad74a7dfc69495ba125c583166455a841cc7123632",
+      "accepted_value_sha256_utf8": "6735c4788d2d91211614b9ad74a7dfc69495ba125c583166455a841cc7123632",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "decision": "accept",
+      "original_xml_text": "\"Kódovanie obrázka pri automatickom ukladaní zlyhalo.\"",
+      "accepted_xml_text": "\"Kódovanie obrázka pri automatickom ukladaní zlyhalo.\"",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "reason": "The failed step is image encoding during autosave, not all image writing or recovery.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f83897890596e2776edb9f66dca76dce2e53f64fb26f43c2462116d978d64201",
+      "original_value_sha256_utf8": "75c7e694706cb4be30fc894739bce30fa825093cc2371249edf299bd74611929",
+      "accepted_value_sha256_utf8": "75c7e694706cb4be30fc894739bce30fa825093cc2371249edf299bd74611929",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "decision": "accept",
+      "original_xml_text": "\"%1$s Automatické ukladanie je pozastavené, aby sa ochránila táto rozpracovaná kresba. Pomocou „Súbor → Exportovať kópiu na obnovu…“ ju zachovajte a pomocou „Súbor → Uložiť ako…“ (Image format: PNG / JPEG) uložte svoju aktuálnu prácu.\"",
+      "accepted_xml_text": "\"%1$s Automatické ukladanie je pozastavené, aby sa ochránila táto rozpracovaná kresba. Pomocou „Súbor → Exportovať kópiu na obnovu…“ ju zachovajte a pomocou „Súbor → Uložiť ako…“ (Image format: PNG / JPEG) uložte svoju aktuálnu prácu.\"",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "reason": "The protected draft and current work are distinct; recovery export is for the former while Uložiť ako… with inherited Image format is for the latter. No separate-copy success is asserted.",
+      "qualifications": [
+        "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+      ],
+      "source_value_sha256_utf8": "45af3acf76284540e468a05d80591e36743472a7625da0c6b7153a8173e007a7",
+      "original_value_sha256_utf8": "89213feba4bf11d08f3de73430614828f7a0ed9d4117248e0c032e392d4d0016",
+      "accepted_value_sha256_utf8": "89213feba4bf11d08f3de73430614828f7a0ed9d4117248e0c032e392d4d0016",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "decision": "accept",
+      "original_xml_text": "\"Chýbajú metadáta automatického uloženia.\"",
+      "accepted_xml_text": "\"Chýbajú metadáta automatického uloženia.\"",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "reason": "The missing object is autosave metadata, not pixels or the whole source file.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "1115f993a7d75ef4a554c7ef1cf900d88970a5c05144cf1c9038ab0d86965de4",
+      "original_value_sha256_utf8": "4e023871f93f9d1ebd3d81126b83e96c52de5e982873fb95cf5f5c493b1d8133",
+      "accepted_value_sha256_utf8": "4e023871f93f9d1ebd3d81126b83e96c52de5e982873fb95cf5f5c493b1d8133",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "decision": "accept",
+      "original_xml_text": "\"Automatické ukladanie je pozastavené · použite Uložiť\"",
+      "accepted_xml_text": "\"Automatické ukladanie je pozastavené · použite Uložiť\"",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "reason": "Pozastavené describes a paused operation, not a completed or failed save, and the remedy retains Uložiť.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "3dfab3c54ba3d7700fc9d12ae3d767eda448501ba5df52284905edd71c7f30bd",
+      "original_value_sha256_utf8": "84cbcf794b48ad95c9753825a21902a4f6f947799490b2351b27ff552f4aca85",
+      "accepted_value_sha256_utf8": "84cbcf794b48ad95c9753825a21902a4f6f947799490b2351b27ff552f4aca85",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "decision": "accept",
+      "original_xml_text": "\"Chýbajú pixely automatického uloženia.\"",
+      "accepted_xml_text": "\"Chýbajú pixely automatického uloženia.\"",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "reason": "The wording reports missing autosaved pixels; it does not claim that current canvas pixels were deleted.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4af9f86e590fa90219121ad8f4cbbe372eaeeca8fb1927e01917a7fdd881de31",
+      "original_value_sha256_utf8": "53c07765d8ad54481983809a898c39ba1bfaae143b0e9d57d40961883db271e9",
+      "accepted_value_sha256_utf8": "53c07765d8ad54481983809a898c39ba1bfaae143b0e9d57d40961883db271e9",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "decision": "accept",
+      "original_xml_text": "\"Pixely automatického uloženia sa nepodarilo prečítať.\"",
+      "accepted_xml_text": "\"Pixely automatického uloženia sa nepodarilo prečítať.\"",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "reason": "The pixel-read failure remains distinct from missing metadata and does not infer successful restoration.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "b6c10f2c0238abb6190525baa6d50140fc4e8c33de2cfab12b99930e833ba2f3",
+      "original_value_sha256_utf8": "fb6875a1a4cae7a15142d66d435408918db08adecee414463dd2abae61c0effd",
+      "accepted_value_sha256_utf8": "fb6875a1a4cae7a15142d66d435408918db08adecee414463dd2abae61c0effd",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "decision": "accept",
+      "original_xml_text": "\"Kódovanie výberu pri automatickom ukladaní zlyhalo.\"",
+      "accepted_xml_text": "\"Kódovanie výberu pri automatickom ukladaní zlyhalo.\"",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "reason": "The failed encoding refers specifically to the selection during autosave, rather than the whole image.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4f03c5b20f4fee753afcccbbaddc08e6361f85e6ebd9a1275d69cfd5ffa906e0",
+      "original_value_sha256_utf8": "85b960192a24148c44e69c9a9cf3c5f775162e93b5bfe8a4ef7c4de198aaf247",
+      "accepted_value_sha256_utf8": "85b960192a24148c44e69c9a9cf3c5f775162e93b5bfe8a4ef7c4de198aaf247",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ]
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "decision": "accept",
+      "original_xml_text": "\"Nemožno vytvoriť vyrovnávaciu pamäť na vrátenie zmien. Uvoľnite miesto v úložisku zariadenia a skúste to znova.\"",
+      "accepted_xml_text": "\"Nemožno vytvoriť vyrovnávaciu pamäť na vrátenie zmien. Uvoľnite miesto v úložisku zariadenia a skúste to znova.\"",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "reason": "The cache terminology is qualified by an explicit device-storage remedy, so this does not incorrectly instruct the user to free RAM.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "original_value_sha256_utf8": "50101a91b23770b21df3d60838e243af1f7bea30c0621a7aae695770c7f203ee",
+      "accepted_value_sha256_utf8": "50101a91b23770b21df3d60838e243af1f7bea30c0621a7aae695770c7f203ee",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "decision": "accept",
+      "original_xml_text": "\"Kópiu na obnovu sa nepodarilo exportovať\"",
+      "accepted_xml_text": "\"Kópiu na obnovu sa nepodarilo exportovať\"",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "reason": "The recovery-copy export failure has no added final punctuation, fitting the caller's error-detail composition.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "66c703a27ccf6fd0c8400514fd0417449b780e644313ed3b5565bd8060be1815",
+      "original_value_sha256_utf8": "5560c0e649a9f9b754abf88192527f50484af775cc8a9536dfdd85e219825893",
+      "accepted_value_sha256_utf8": "5560c0e649a9f9b754abf88192527f50484af775cc8a9536dfdd85e219825893",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "decision": "accept",
+      "original_xml_text": "\"Rozpracovaná kresba ešte nie je uložená\"",
+      "accepted_xml_text": "\"Rozpracovaná kresba ešte nie je uložená\"",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "reason": "Ešte nie je uložená retains the not-yet state for the autosave draft, not the explicit Save destination.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "47bfd1dafcd6d9d6d49ae9f60f5b5c60d0180661684733aaa73e559734f7d447",
+      "original_value_sha256_utf8": "10a58f3b9766fcd8fd9b936a3e8dfe8f4073ab829cce11dfe6f6c786c1923e7d",
+      "accepted_value_sha256_utf8": "10a58f3b9766fcd8fd9b936a3e8dfe8f4073ab829cce11dfe6f6c786c1923e7d",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "decision": "accept",
+      "original_xml_text": "\"Rozpracovaná kresba bola obnovená\"",
+      "accepted_xml_text": "\"Rozpracovaná kresba bola obnovená\"",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "reason": "The draft-restored status is natural Slovak and does not claim that the separate undo-history restoration necessarily succeeded.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "b22e11b3de90d4a130e7c63753a46f3b853fc949ca2fe95dd156138a384b5dcb",
+      "original_value_sha256_utf8": "81005c73e4d60a8f659831660b03736bcf757d15411bcfc423e7da4952fa406c",
+      "accepted_value_sha256_utf8": "81005c73e4d60a8f659831660b03736bcf757d15411bcfc423e7da4952fa406c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "decision": "accept",
+      "original_xml_text": "\"Rozpracovaná kresba bola uložená\"",
+      "accepted_xml_text": "\"Rozpracovaná kresba bola uložená\"",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "reason": "The subject is the rozpracovaná kresba draft; this status does not say the ordinary Save target or drawing dirty flag was updated.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "5ccb8caacdc5383597f882b5c366969ee1cdd1a32b1d122a42b0280a51f9a5a6",
+      "original_value_sha256_utf8": "698b60e23c03591119e9f308320d6f937d0d7e6a7379336e3e213e8ad2237e8a",
+      "accepted_value_sha256_utf8": "698b60e23c03591119e9f308320d6f937d0d7e6a7379336e3e213e8ad2237e8a",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ]
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "decision": "accept",
+      "original_xml_text": "\"Exportovať kópiu na obnovu…\"",
+      "accepted_xml_text": "\"Exportovať kópiu na obnovu…\"",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "reason": "The menu command uses an infinitive and ellipsis; the same complete wording is reused by the recovery instructions.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "d642d7ea56f8deaece6e022241000cf5ef28239a5d066391c1e1e4bd5fe7a197",
+      "original_value_sha256_utf8": "97bfa3b5b4130cb9e011e88cf1bf22cce0ee04a2ce80bf071dfa4a073731a1f5",
+      "accepted_value_sha256_utf8": "97bfa3b5b4130cb9e011e88cf1bf22cce0ee04a2ce80bf071dfa4a073731a1f5",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:846"
+      ]
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "decision": "accept",
+      "original_xml_text": "\"Exportovať kópiu na obnovu\"",
+      "accepted_xml_text": "\"Exportovať kópiu na obnovu\"",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "reason": "The no-ellipsis dialog title exactly matches the corresponding menu wording minus its ellipsis.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "144b8a2d9ee28d7aaa90dbbd22a6e1f487e99fd78a9c5f4d4131e48c0c3a0644",
+      "original_value_sha256_utf8": "2bb9e7c18727c6dbe1e550398487cb23a1457d417623f92c0883c69d71faa641",
+      "accepted_value_sha256_utf8": "2bb9e7c18727c6dbe1e550398487cb23a1457d417623f92c0883c69d71faa641",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ]
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "decision": "accept",
+      "original_xml_text": "\"Plátno bolo obnovené, ale jeho históriu vrátenia zmien sa nepodarilo prečítať. Pôvodná rozpracovaná kresba bola zachovaná ako kópia na obnovu.\"",
+      "accepted_xml_text": "\"Plátno bolo obnovené, ale jeho históriu vrátenia zmien sa nepodarilo prečítať. Pôvodná rozpracovaná kresba bola zachovaná ako kópia na obnovu.\"",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "reason": "The restored canvas, unreadable undo history and retained original recovery copy are all stated separately; formatted=false remains unchanged.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "445a2a9744ed258c1815920072f46042e9bb4aeb519a2c2d2d34eac8a95a589e",
+      "original_value_sha256_utf8": "58b47155e4852dcee97f8540aea9c2b3cc814d5d2e5672390d7df818adfcf346",
+      "accepted_value_sha256_utf8": "58b47155e4852dcee97f8540aea9c2b3cc814d5d2e5672390d7df818adfcf346",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ]
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "decision": "accept",
+      "original_xml_text": "\"Neplatné metadáta automatického uloženia.\"",
+      "accepted_xml_text": "\"Neplatné metadáta automatického uloženia.\"",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "reason": "Neplatné metadáta states invalidity without guessing a corruption cause or implying missing pixels.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4a62b9a9531a09d3f34b967194d530070ddf65a66811f5ce52f39c332de3e2eb",
+      "original_value_sha256_utf8": "803cf6f0bc02f8bcc84dba9d5d89c07f2433b5f7fdbb98c3332535c37ca943e2",
+      "accepted_value_sha256_utf8": "803cf6f0bc02f8bcc84dba9d5d89c07f2433b5f7fdbb98c3332535c37ca943e2",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ]
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "decision": "accept",
+      "original_xml_text": "\"Predchádzajúca rozpracovaná kresba bola zachovaná na obnovu\"",
+      "accepted_xml_text": "\"Predchádzajúca rozpracovaná kresba bola zachovaná na obnovu\"",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "reason": "Predchádzajúca refers to the earlier draft and preservation remains for recovery, not ordinary saved output.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f31aee8ae34783790412c745919799d37484bf8e70be9dc2865ec4defc829ff8",
+      "original_value_sha256_utf8": "2d38611973ddd9074ab1a64ab4905b15b44470f43b4e54608033f0cd03ab28bf",
+      "accepted_value_sha256_utf8": "2d38611973ddd9074ab1a64ab4905b15b44470f43b4e54608033f0cd03ab28bf",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ]
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "decision": "accept",
+      "original_xml_text": "\"Obnovený obrázok\"",
+      "accepted_xml_text": "\"Obnovený obrázok\"",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "reason": "Obnovený obrázok is a suitable fallback filename/title and adds no format or preservation guarantee.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f31f8410df9ce45c66f3c7e7af9c7bf126ee2481a825f0e31cfae2a4881a43a8",
+      "original_value_sha256_utf8": "bf370d780a84eb119074a72bbc0cf5a1365741cf38768e9a3063324ff0dac690",
+      "accepted_value_sha256_utf8": "bf370d780a84eb119074a72bbc0cf5a1365741cf38768e9a3063324ff0dac690",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ]
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "decision": "accept",
+      "original_xml_text": "\"Kópia na obnovu bola exportovaná. Extrahujte canvas.png z archívu ZIP a otvorte ho pomocou „Súbor > Load image…“. Archív ZIP obsahuje aj nastavenia rozpracovanej kresby a prípadný plávajúci výber.\"",
+      "accepted_xml_text": "\"Kópia na obnovu bola exportovaná. Extrahujte canvas.png z archívu ZIP a otvorte ho pomocou „Súbor > Load image…“. Archív ZIP obsahuje aj nastavenia rozpracovanej kresby a prípadný plávajúci výber.\"",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "reason": "The ZIP success is separate from the manual extraction/open instructions; actual Load image… remains English and prípadný plávajúci výber correctly denotes one optional selection.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "original_value_sha256_utf8": "8ff5bd7fbd151be64325896709de5ef9ba24690f450e6fcbab20f752c95bd969",
+      "accepted_value_sha256_utf8": "8ff5bd7fbd151be64325896709de5ef9ba24690f450e6fcbab20f752c95bd969",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ]
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "decision": "accept",
+      "original_xml_text": "\"Rozpracovaná kresba sa ukladá. Skúste to znova o chvíľu.\"",
+      "accepted_xml_text": "\"Rozpracovaná kresba sa ukladá. Skúste to znova o chvíľu.\"",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "reason": "The progressive sa ukladá and short wait instruction preserve the in-progress autosave state without asking for another Save.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+      "original_value_sha256_utf8": "4d521b68ab5512119265d0dc5ee0c59b6d5a0bfe6d50d8a986e40dfff8bf9385",
+      "accepted_value_sha256_utf8": "4d521b68ab5512119265d0dc5ee0c59b6d5a0bfe6d50d8a986e40dfff8bf9385",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "decision": "revise",
+      "original_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo presunúť do kópie na obnovu.\"",
+      "accepted_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo presunúť do súboru na obnovu.\"",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "reason": "Revised presunúť do súboru na obnovu avoids the awkward suggestion of moving into an already existing copy; it describes the failed recovery-file move and does not promise preservation.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "58a948005b3938c7d8ca4ea368db1b4b390a98d9f517f4851c5b98f8b57e71e5",
+      "original_value_sha256_utf8": "3edf2e0c598ee08d7ce2f89b3686de70bad4e1b37a7d760d5a654e33d1bd717e",
+      "accepted_value_sha256_utf8": "3417adcb5145982b4ba390add2dbea78ef6853daff7f5af9508a281ac60b2b8b",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "decision": "accept",
+      "original_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo zachovať samostatne.\"",
+      "accepted_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo zachovať samostatne.\"",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "reason": "Samostatne preserves the distinct separate-copy failure and makes no claim that the draft was lost or successfully copied.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "0231e19f5f7e376d0872735d1e3f8f9698fbd43564ea52240f454efc21d3c8ec",
+      "original_value_sha256_utf8": "e2a6f4884a744ea74354428e314af8359c4676e493999c3bc65983a00c6b7b77",
+      "accepted_value_sha256_utf8": "e2a6f4884a744ea74354428e314af8359c4676e493999c3bc65983a00c6b7b77",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "decision": "accept",
+      "original_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo obnoviť.\"",
+      "accepted_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo obnoviť.\"",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "reason": "The previous-draft restoration failure is negative and remains independent of the subsequent attempt to preserve its bytes.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "1cc58fbbe1b76be657fc2eafbf8250b6231f06484eda3fbf7758e1b5cf88ea13",
+      "original_value_sha256_utf8": "d3ce5f23118f886a4a6ac5293a69b7c52707fb46db487c0f7fd2a4927c936f7f",
+      "accepted_value_sha256_utf8": "d3ce5f23118f886a4a6ac5293a69b7c52707fb46db487c0f7fd2a4927c936f7f",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "decision": "revise",
+      "original_xml_text": "\"Na opätovné otvorenie predchádzajúcej rozpracovanej kresby je potrebná väčšia pamäť.\"",
+      "accepted_xml_text": "\"Na opätovné otvorenie predchádzajúcej rozpracovanej kresby je potrebné viac pamäte.\"",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "reason": "Revised potrebné viac pamäte names an amount of available memory rather than a physically larger memory device, preserving the retry requirement.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "cf655bbea013a29738b4f078166b9dde719f694052a7f1755e2bd0a40c1b9170",
+      "original_value_sha256_utf8": "72c47858ba77ade2e5f1f972bd7c65071f7d415a4b67aba0a42659e3b4b25572",
+      "accepted_value_sha256_utf8": "4b6ba6d09bcec07ccee560b6399ba7ed4ceacea6cbafd2edf044312c47f2319d",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ]
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "decision": "accept",
+      "original_xml_text": "\"Vyrovnávacia pamäť na vrátenie zmien je poškodená.\"",
+      "accepted_xml_text": "\"Vyrovnávacia pamäť na vrátenie zmien je poškodená.\"",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "reason": "Poškodená correctly reports undo-cache corruption, not insufficient capacity or a recoverable success.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "19e62ed88ca1118a10f0062c76f9f7b3629b34cceed02628aefe5ca3bbb44cef",
+      "original_value_sha256_utf8": "3bb1be96bcde81ef2759b8894a2d9ff79944abd81e85e34bc8229ac41e2ae827",
+      "accepted_value_sha256_utf8": "3bb1be96bcde81ef2759b8894a2d9ff79944abd81e85e34bc8229ac41e2ae827",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ]
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "decision": "accept",
+      "original_xml_text": "\"Neočakávané údaje vo vyrovnávacej pamäti na vrátenie zmien.\"",
+      "accepted_xml_text": "\"Neočakávané údaje vo vyrovnávacej pamäti na vrátenie zmien.\"",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "reason": "Neočakávané údaje captures unexpected trailing cache data without falsely claiming the entire cache is absent.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "9005bd155636cba50a7b1139426614c2878b1b6651e86c0acb7d1ca0de8b0b22",
+      "original_value_sha256_utf8": "93c66145b25b5a66edc87f7e5d973338f8248aeaee0e69119ad08f72971901a0",
+      "accepted_value_sha256_utf8": "93c66145b25b5a66edc87f7e5d973338f8248aeaee0e69119ad08f72971901a0",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ]
+    },
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "decision": "accept",
+      "original_xml_text": "\"Chýba zdrojový obrázok zostavy.\"",
+      "accepted_xml_text": "\"Chýba zdrojový obrázok zostavy.\"",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "reason": "Zdrojový obrázok zostavy identifies the assembly input rather than the rendered output or saved editor drawing.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "03cf15a2a8c5dc8bef80963ac8b5b4ba7cafb00edab05c3d7862d5d02a33723f",
+      "original_value_sha256_utf8": "2a745f15856d309d338187d647de345c5b6f356047e9418bbdf99e8bf151896c",
+      "accepted_value_sha256_utf8": "2a745f15856d309d338187d647de345c5b6f356047e9418bbdf99e8bf151896c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:262"
+      ]
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "decision": "accept",
+      "original_xml_text": "\"Zostava bola uložená\"",
+      "accepted_xml_text": "\"Zostava bola uložená\"",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "reason": "The status reports saved assembly output; it does not name an editable project format or a current drawing Save-target update.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "766dc3e6dbd1b817e2d2c2615c6a53a9b8c306e768f44a5931525c836ec27d37",
+      "original_value_sha256_utf8": "091055637d8a51d06fdca3c01ad00b35a09ae47bfc1e323748f65bca9e626bb4",
+      "accepted_value_sha256_utf8": "091055637d8a51d06fdca3c01ad00b35a09ae47bfc1e323748f65bca9e626bb4",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:342"
+      ]
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "decision": "accept",
+      "original_xml_text": "\"Odhaduje sa, že táto zostava prekročí aktuálny limit pracovnej pamäte aj pri najmenšej veľkosti výstupu. Pri súčasných obmedzeniach samotné zmenšenie rozmerov zostavy nestačí. Pred ďalším pokusom zatvorte iné dokumenty alebo pripravte menší zdrojový obrázok. Vaša zostava zostáva nezmenená.\"",
+      "accepted_xml_text": "\"Odhaduje sa, že táto zostava prekročí aktuálny limit pracovnej pamäte aj pri najmenšej veľkosti výstupu. Pri súčasných obmedzeniach samotné zmenšenie rozmerov zostavy nestačí. Pred ďalším pokusom zatvorte iné dokumenty alebo pripravte menší zdrojový obrázok. Vaša zostava zostáva nezmenená.\"",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "reason": "Zostava is coherent across this batch. The complete warning retains estimate, current working-memory limit, smallest output, insufficient dimension-only reduction, both remedies and unchanged assembly. It does not narrow the failure to decoder memory.",
+      "qualifications": [
+        "Only this P0 value accepted; P1 companion and historical paired warning oracle remain absent/unmodified."
+      ],
+      "source_value_sha256_utf8": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+      "original_value_sha256_utf8": "a0b3360307a749b0b24dcc3e080da6f1c566a9fd25bc076c8cd58e0f04c06336",
+      "accepted_value_sha256_utf8": "a0b3360307a749b0b24dcc3e080da6f1c566a9fd25bc076c8cd58e0f04c06336",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:300"
+      ]
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "decision": "accept",
+      "original_xml_text": "\"Vymazať všetko\"",
+      "accepted_xml_text": "\"Vymazať všetko\"",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "reason": "Vymazať všetko correctly names the assembly-wide clear operation, not removal of one selected image.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "29a390f9237e3c84e5641785eca25199620e53f7b6f4b9d843b23dcb5c12904f",
+      "original_value_sha256_utf8": "f168b013a1c4a3169ff58892b2f68b419814402bc40d0e3db1a303cd0d38ba5e",
+      "accepted_value_sha256_utf8": "f168b013a1c4a3169ff58892b2f68b419814402bc40d0e3db1a303cd0d38ba5e",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:101"
+      ]
+    },
+    {
+      "identity": "string/ui_clear_image",
+      "decision": "revise",
+      "original_xml_text": "\"Vymazať obrázok\"",
+      "accepted_xml_text": "\"Vymazať obsah obrázka\"",
+      "attributes": {
+        "name": "ui_clear_image"
+      },
+      "reason": "Revised Vymazať obsah obrázka makes the actual canvas-clearing action explicit and avoids suggesting file deletion; this remains distinct from assembly-wide clearing.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "20231a4032390f0886c87b9f301481ac336659f40d9ab50981fa1039663b6afc",
+      "original_value_sha256_utf8": "ea8b91395eb0387a9aa4472738c2089fd8fa6950f354a9814bb47f011c644d26",
+      "accepted_value_sha256_utf8": "304e31a6761666d81c0aaaaa2bd061cc3f6fe67e74915b6b2fb39b6602368ab8",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:859"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "decision": "accept",
+      "original_xml_text": "\"Zostavu sa nepodarilo uložiť: %1$s\"",
+      "accepted_xml_text": "\"Zostavu sa nepodarilo uložiť: %1$s\"",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "reason": "The assembly-save failure retains its colon and exactly one exception-detail placeholder; it does not imply the URI write succeeded.",
+      "qualifications": [
+        "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+      ],
+      "source_value_sha256_utf8": "d23570f6a13edc7bc9f443628c6fe0a00f889d71e6d24135122cd5dc4ad6614a",
+      "original_value_sha256_utf8": "8110190aaa09f31d1981972c5c1cb0db7e57caa78277ea2d248375bb109026cc",
+      "accepted_value_sha256_utf8": "8110190aaa09f31d1981972c5c1cb0db7e57caa78277ea2d248375bb109026cc",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:343"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "decision": "accept",
+      "original_xml_text": "\"Zostavu sa nepodarilo uložiť.\"",
+      "accepted_xml_text": "\"Zostavu sa nepodarilo uložiť.\"",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "reason": "The internal assembly-store failure is negative and keeps the assembly subject without inventing storage medium or permission cause.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "8896816c5ab28f698bf634e2b040419b89f9771e16f482d9684c3170e688d859",
+      "original_value_sha256_utf8": "a4cbc1bf72e3eac6de33292105b432c18014dbbd600c9df593208cc9292b2dd9",
+      "accepted_value_sha256_utf8": "a4cbc1bf72e3eac6de33292105b432c18014dbbd600c9df593208cc9292b2dd9",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:229"
+      ]
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "decision": "accept",
+      "original_xml_text": "\"%1$d × %2$d pixelov (%3$.2f MP) prekračuje aktuálny bezpečný limit na úpravy %4$.2f MP. AN Paint uchováva celý obrázok v pamäti a vyhradzuje priestor na transformácie a výbery. Tento limit závisí od dostupnej pamäte. Operácia bola zastavená pred pridelením pamäte pre príliš veľkú bitmapu. Nebola použitá automatická zmena mierky.\"",
+      "accepted_xml_text": "\"%1$d × %2$d pixelov (%3$.2f MP) prekračuje aktuálny bezpečný limit na úpravy %4$.2f MP. AN Paint uchováva celý obrázok v pamäti a vyhradzuje priestor na transformácie a výbery. Tento limit závisí od dostupnej pamäte. Operácia bola zastavená pred pridelením pamäte pre príliš veľkú bitmapu. Nebola použitá automatická zmena mierky.\"",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "reason": "All four format tokens, multiplication sign, image/budget megapixels, complete-image/reserved memory explanation, preallocation stop and explicit no-automatic-scaling statement are retained.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "dcdd3aa9015cb728f6695ffac6100c85790b70563ddea87c0d568f1afc15b6b3",
+      "original_value_sha256_utf8": "f04b0845479e7a2b824874fb9d2a578a9c3b5749e4a0e61d75658c3fd4e48a51",
+      "accepted_value_sha256_utf8": "f04b0845479e7a2b824874fb9d2a578a9c3b5749e4a0e61d75658c3fd4e48a51",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt:46"
+      ]
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "decision": "revise",
+      "original_xml_text": "\"Zachová pixely vľavo hore. Menšie rozmery plátna odstránia pixely za pravým a dolným okrajom; príkaz Vrátiť späť ich obnoví.\"",
+      "accepted_xml_text": "\"Zachová pixely vľavo hore. Menšie rozmery plátna odstránia pixely za pravým alebo dolným okrajom; príkaz Vrátiť späť ich obnoví.\"",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "reason": "Revised alebo makes right-edge or bottom-edge clipping disjunctive, avoiding an interpretation that only pixels beyond both edges are removed. The inherited Vrátiť späť command still restores them.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4d6da1792a4751708d0bb36eda8365c72b66b1a2b2db70c77cdc4c48486634dc",
+      "original_value_sha256_utf8": "0462cd5f8f7547aa2e732c19274d6c146fffaceb91b93ece8a40c1a53e002d7d",
+      "accepted_value_sha256_utf8": "bd31d8f5d766be2c8c18340d0f429c9982235373d2c2e8711326d1a6dc110a2c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1016"
+      ]
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "decision": "accept",
+      "original_xml_text": "\"Na túto operáciu nie je dostatok pamäte. Zdrojové súbory zostavy zostávajú zachované.\"",
+      "accepted_xml_text": "\"Na túto operáciu nie je dostatok pamäte. Zdrojové súbory zostavy zostávajú zachované.\"",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "reason": "The operation's memory failure and retained assembly source files are distinct; no output-file or success claim is added.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "cba5063c6a726597187fc64fc75c20c2f858db585fd5f89d691420f5eaa55534",
+      "original_value_sha256_utf8": "b7906d1fa6a8d7e88810d9a78bd8fb5b4f2a3c4b3c76b859009cffcbd2ce4645",
+      "accepted_value_sha256_utf8": "b7906d1fa6a8d7e88810d9a78bd8fb5b4f2a3c4b3c76b859009cffcbd2ce4645",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:117",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:294"
+      ]
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "decision": "accept",
+      "original_xml_text": "\"Zmeniť mierku veľkého obrázka?\"",
+      "accepted_xml_text": "\"Zmeniť mierku veľkého obrázka?\"",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "reason": "Zmeniť mierku matches the inherited resize action, and the question retains the large-image subject rather than canvas cropping.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f037d36a47f4f0df7ac2da56fe4351da145993413a10d3518211e6bcac613a83",
+      "original_value_sha256_utf8": "427a88b572f9ca2cde768d690b16c38c65e1d3e78f5fb60ff6763fe1bf4839c4",
+      "accepted_value_sha256_utf8": "427a88b572f9ca2cde768d690b16c38c65e1d3e78f5fb60ff6763fe1bf4839c4",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:36"
+      ]
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "decision": "accept",
+      "original_xml_text": "\"Odhady zahŕňajú aktuálne plátno a schránku, dekódovanie so zníženým rozlíšením a vyrovnávacie pamäte na úpravy. Skutočná spotreba pamäte sa líši. Menšia kópia stráca detaily. Pôvodný súbor zostáva nezmenený.\"",
+      "accepted_xml_text": "\"Odhady zahŕňajú aktuálne plátno a schránku, dekódovanie so zníženým rozlíšením a vyrovnávacie pamäte na úpravy. Skutočná spotreba pamäte sa líši. Menšia kópia stráca detaily. Pôvodný súbor zostáva nezmenený.\"",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "reason": "Reduced-resolution decoding, canvas/clipboard and editing buffers are all included in the estimates; variability, detail loss and untouched original file are explicit.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+      "original_value_sha256_utf8": "53fffbd82246952a3057c55c0ac15555f9501ab9196af6ec551f6e7ee0f85ae8",
+      "accepted_value_sha256_utf8": "53fffbd82246952a3057c55c0ac15555f9501ab9196af6ec551f6e7ee0f85ae8",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:34"
+      ]
+    },
+    {
+      "identity": "string/ui_save_png",
+      "decision": "accept",
+      "original_xml_text": "\"Uložiť PNG\"",
+      "accepted_xml_text": "\"Uložiť PNG\"",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "reason": "Uložiť PNG names the assembly PNG action without adding a normal drawing Save-target claim.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f38f79763d122bfa76922a03b3f04d653847e220238e71704c9a245c59e21e7c",
+      "original_value_sha256_utf8": "a7e5214f974b5e28a2088e93d037fa5abf010c771816819699e84df6bce94875",
+      "accepted_value_sha256_utf8": "a7e5214f974b5e28a2088e93d037fa5abf010c771816819699e84df6bce94875",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:88"
+      ]
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "decision": "accept",
+      "original_xml_text": "\"Uloženú zostavu sa nepodarilo otvoriť: %1$s\"",
+      "accepted_xml_text": "\"Uloženú zostavu sa nepodarilo otvoriť: %1$s\"",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "reason": "The saved assembly failed to open; the exception-detail placeholder is retained and no import or rendering success is implied.",
+      "qualifications": [
+        "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+      ],
+      "source_value_sha256_utf8": "2a936511bfc752ebf7f24e635feaa6de5f2e041c23ae4ab6c0b4237966628113",
+      "original_value_sha256_utf8": "ceb63e8599463e8b4920e487c6e0d23f6aca6f580e788f8ee7cba9a1b6a7c0c4",
+      "accepted_value_sha256_utf8": "ceb63e8599463e8b4920e487c6e0d23f6aca6f580e788f8ee7cba9a1b6a7c0c4",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:60"
+      ]
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "decision": "accept",
+      "original_xml_text": "\"Orezanie by odstránilo celý obrázok.\"",
+      "accepted_xml_text": "\"Orezanie by odstránilo celý obrázok.\"",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "reason": "The conditional by preserves the hypothetical all-image removal rejected before applying a trim.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "21b8edd92e5c183515dcb267c2cddceebc4eb5b02e1d053d952cec2d818ad4ca",
+      "original_value_sha256_utf8": "1ce4a01a1c9d671af763a9e2cb7530610688e1429184095561057d0c421ee748",
+      "accepted_value_sha256_utf8": "1ce4a01a1c9d671af763a9e2cb7530610688e1429184095561057d0c421ee748",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:49"
+      ]
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "decision": "accept",
+      "original_xml_text": "\"Na túto operáciu pri pôvodnom rozlíšení nie je dostatok pamäte. Nebola použitá automatická zmena mierky.\"",
+      "accepted_xml_text": "\"Na túto operáciu pri pôvodnom rozlíšení nie je dostatok pamäte. Nebola použitá automatická zmena mierky.\"",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "reason": "The original-resolution memory failure and absence of automatic scaling are both retained; it does not claim universal impossibility at reduced resolution.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f481ea6d7fb74a1dcf1f376c05c084d9283ccb7e0860c392cd1294bfcb0e1520",
+      "original_value_sha256_utf8": "ba5c910325c643bc996458089c98e1170ed044863cb677991687cfa04d4ae534",
+      "accepted_value_sha256_utf8": "ba5c910325c643bc996458089c98e1170ed044863cb677991687cfa04d4ae534",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:938"
+      ]
+    },
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "decision": "accept",
+      "original_xml_text": "\"Údaje o pôvode obrázka sa nepodarilo uložiť alebo obnoviť. Existujúce uložené údaje boli zachované. Skúste to znova.\"",
+      "accepted_xml_text": "\"Údaje o pôvode obrázka sa nepodarilo uložiť alebo obnoviť. Existujúce uložené údaje boli zachované. Skúste to znova.\"",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "reason": "Údaje o pôvode is accepted as a broad image-attribution/provenance data term, not money or authors alone; save/restore failure, existing retained data and retry instruction remain complete.",
+      "qualifications": [
+        "Broad provenance term judged suitable in the full attribution-data context; no independent native-human terminology certification."
+      ],
+      "source_value_sha256_utf8": "d669638ab30435fe654a24b1c18e73208959c1cc873975ab190e629e7c2ed6af",
+      "original_value_sha256_utf8": "0cfc4556a3998fe2e876bc036a471742f7e829f8296b8ab8c2a42ff15fd029e2",
+      "accepted_value_sha256_utf8": "0cfc4556a3998fe2e876bc036a471742f7e829f8296b8ab8c2a42ff15fd029e2",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:238",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:908",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1194",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1197",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1203",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1207",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1478",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1488",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1495",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:113",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:243",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:415"
+      ]
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "decision": "accept",
+      "original_xml_text": "\"Tieto údaje o pôvode obrázka by spôsobili, že kresba bude príliš veľká na obnovenie. Vaša predchádzajúca kresba a údaje o pôvode boli zachované.\"",
+      "accepted_xml_text": "\"Tieto údaje o pôvode obrázka by spôsobili, že kresba bude príliš veľká na obnovenie. Vaša predchádzajúca kresba a údaje o pôvode boli zachované.\"",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "reason": "The conditional size limit concerns restoring the drawing's data, and both previous drawing and attribution data remain explicitly preserved.",
+      "qualifications": [
+        "Broad provenance term judged suitable in the full attribution-data context; no independent native-human terminology certification."
+      ],
+      "source_value_sha256_utf8": "0cc17cfda89358526b83adbc36b90440ef773ed2f945768e3e9f32bb90b35dd5",
+      "original_value_sha256_utf8": "4748125dceb64c751e22a79ae6e8ff13770edc48b89d43d86eab593da022d5f7",
+      "accepted_value_sha256_utf8": "4748125dceb64c751e22a79ae6e8ff13770edc48b89d43d86eab593da022d5f7",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1218",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1453",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:111"
+      ]
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "decision": "accept",
+      "original_xml_text": "\"Niektoré uložené údaje o pôvode sa nepodarilo prečítať. Ich uložené kópie boli zachované.\"",
+      "accepted_xml_text": "\"Niektoré uložené údaje o pôvode sa nepodarilo prečítať. Ich uložené kópie boli zachované.\"",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "reason": "Niektoré preserves partial unreadability; their stored copies remain retained rather than deleted, repaired or all readable.",
+      "qualifications": [
+        "Broad provenance term judged suitable in the full attribution-data context; no independent native-human terminology certification."
+      ],
+      "source_value_sha256_utf8": "764c1dfa02ddd35964d108f4cc4ccc6dbcc59f5520513ac2528f32bacdb73f5b",
+      "original_value_sha256_utf8": "1433c37a03e0f0c209ecc6a8fb63fa88f5bc9044c9bf626e2c641ed3d81de98b",
+      "accepted_value_sha256_utf8": "1433c37a03e0f0c209ecc6a8fb63fa88f5bc9044c9bf626e2c641ed3d81de98b",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt:93"
+      ]
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "decision": "revise",
+      "original_xml_text": "\"Dokončeným obrázkom sa nepodarilo nahradiť cieľový súbor.\"",
+      "accepted_xml_text": "\"Cieľový súbor sa nepodarilo nahradiť výsledným súborom.\"",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "reason": "Revised výsledný súbor covers the common temporary-file replacement path used for image/text export and decoding; it avoids narrowing the failure to a finished raster image and makes no successful destination-write claim.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "de68e5576968021c8471674791a609c056d1049abe53f1c1e4dc77e00679e001",
+      "original_value_sha256_utf8": "487b7d49be9e54629aaee2ae39d1c32af3df77179e6930b87b0bd43b557b73e2",
+      "accepted_value_sha256_utf8": "fe3600e80ac13198fd8b55ac61bc1d6e7af74b914e7cb7654b6661729f5a2f7c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:19",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:40",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:103",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:62"
+      ]
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "decision": "accept",
+      "original_xml_text": "\"Obrázok a vyrovnávacie pamäte na kódovanie prekračujú pamäťový limit pre export.\"",
+      "accepted_xml_text": "\"Obrázok a vyrovnávacie pamäte na kódovanie prekračujú pamäťový limit pre export.\"",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "reason": "The budget includes the image plus encoder buffers and is explicitly memory for export, not disk capacity or solely image pixels.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "ee437ea8cac1ec7af3db9e48064cf9e0a2e49c3c4f89706eb34887bc52d6b75e",
+      "original_value_sha256_utf8": "35c783c56bea6a60f2d1321b111173b1b4b3d5385514644ae4cc845f5948b43f",
+      "accepted_value_sha256_utf8": "35c783c56bea6a60f2d1321b111173b1b4b3d5385514644ae4cc845f5948b43f",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:24",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:43",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:56"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "decision": "accept",
+      "original_xml_text": "\"Obrázok sa nepodarilo otvoriť\"",
+      "accepted_xml_text": "\"Obrázok sa nepodarilo otvoriť\"",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "reason": "The open-image failure is an unpunctuated prefix suitable for the caller's appended full stop and exception detail.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "6143ae23db90cc7e75e0a79869b2e047e20878b9478ac9e07dcebe064c5b25ef",
+      "original_value_sha256_utf8": "6377699d909117cc05eecb24cb749817d38faa1ab379a420fa4d7edf7914be9b",
+      "accepted_value_sha256_utf8": "6377699d909117cc05eecb24cb749817d38faa1ab379a420fa4d7edf7914be9b",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1288",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1293",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1337",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1350"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "decision": "accept",
+      "original_xml_text": "\"Obrázok sa nepodarilo uložiť\"",
+      "accepted_xml_text": "\"Obrázok sa nepodarilo uložiť\"",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "reason": "The save-image failure is negative and unpunctuated, retaining the error-prefix composition without asserting complete loss or recovery.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "original_value_sha256_utf8": "267ea065d797e83f3ae9e5b2781a61a0f6dd727cadaca05d800751d2cdca26db",
+      "accepted_value_sha256_utf8": "267ea065d797e83f3ae9e5b2781a61a0f6dd727cadaca05d800751d2cdca26db",
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ]
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "decision": "accept",
+      "original_xml_text": "\"Export bol vytvorený. Pred pokračovaním uložte aktuálny obrázok pomocou príkazu „Uložiť“ alebo „Uložiť ako…“.\"",
+      "accepted_xml_text": "\"Export bol vytvorený. Pred pokračovaním uložte aktuálny obrázok pomocou príkazu „Uložiť“ alebo „Uložiť ako…“.\"",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "reason": "Export is explicitly already created; before continuing the current image still needs inherited Uložiť or Uložiť ako…, so successful export is not confused with satisfying pending ordinary Save.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "original_value_sha256_utf8": "035953b866802adc16b22ae01a5fa34343ea7c5bb2c7f15d9d6aa2ffbae116b4",
+      "accepted_value_sha256_utf8": "035953b866802adc16b22ae01a5fa34343ea7c5bb2c7f15d9d6aa2ffbae116b4",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ]
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "decision": "accept",
+      "original_xml_text": "\"Exportujte ikonu, text Base64 alebo ASCII art. Export ponechá aktuálny obrázok aj jeho cieľ pre príkaz Uložiť nezmenené.\"",
+      "accepted_xml_text": "\"Exportujte ikonu, text Base64 alebo ASCII art. Export ponechá aktuálny obrázok aj jeho cieľ pre príkaz Uložiť nezmenené.\"",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "reason": "All three derived outputs remain present; both the current image and the destination used by Uložiť remain unchanged, without denying creation of the export file.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "original_value_sha256_utf8": "a1bbdf53e3a254c5e32d3c7fa91c5e76af0f1cdaad95738622ae19b249ced353",
+      "accepted_value_sha256_utf8": "a1bbdf53e3a254c5e32d3c7fa91c5e76af0f1cdaad95738622ae19b249ced353",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ]
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "decision": "accept",
+      "original_xml_text": "\"Na uloženie v tomto formáte nie je dostatok pamäte. Skúste PNG\"",
+      "accepted_xml_text": "\"Na uloženie v tomto formáte nie je dostatok pamäte. Skúste PNG\"",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "reason": "The failed-format memory message recommends PNG without guaranteeing that PNG fits; the absent final punctuation preserves the caller's detail suffix.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f85d438ebb3c8e8c55be242b5b0938f6e33144d8789553e32711449d9e67e66b",
+      "original_value_sha256_utf8": "91083476d2e82f6eef4e5aecb15b738ca01024ed66c30342393cbfe6fa5dfda4",
+      "accepted_value_sha256_utf8": "91083476d2e82f6eef4e5aecb15b738ca01024ed66c30342393cbfe6fa5dfda4",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1376"
+      ]
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "decision": "accept",
+      "original_xml_text": "\"Kódovanie PNG zlyhalo.\"",
+      "accepted_xml_text": "\"Kódovanie PNG zlyhalo.\"",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "reason": "Kódovanie PNG zlyhalo identifies the failed compression/encoding step and does not promise a written image.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "121e3e5c5523ca65104b683c53c625d9f76c600cb5ac2d41924dc5fa2659ba3e",
+      "original_value_sha256_utf8": "9805fd0bd5124fd93c9456b04505cdeeb5ebd4d0bcbbc0d5d96b578b33fe2721",
+      "accepted_value_sha256_utf8": "9805fd0bd5124fd93c9456b04505cdeeb5ebd4d0bcbbc0d5d96b578b33fe2721",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:324"
+      ]
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "decision": "accept",
+      "original_xml_text": "\"Uložiť a zdieľať…\"",
+      "accepted_xml_text": "\"Uložiť a zdieľať…\"",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "reason": "The Save-and-share menu action retains ellipsis and agrees exactly with its dialog-title counterpart, while surrounding explanation limits it to copy output.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "af8c25f4421cf91f4eedcbac21b3ef0e7f5286ba29dec7b6359a7dac6ff625fd",
+      "original_value_sha256_utf8": "0acf349738fa630b8e8f0245ba71f903a31baff9aa39a80f3282d435aea402f8",
+      "accepted_value_sha256_utf8": "0acf349738fa630b8e8f0245ba71f903a31baff9aa39a80f3282d435aea402f8",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:842"
+      ]
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "decision": "accept",
+      "original_xml_text": "\"Uložiť a zdieľať\"",
+      "accepted_xml_text": "\"Uložiť a zdieľať\"",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "reason": "The dialog title agrees with the menu without the ellipsis, and does not itself claim the share operation completed.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "41edb42591bb2694c768ea901a5a82cbaebb0d2110321c5f2c309afd1262a7f4",
+      "original_value_sha256_utf8": "a0ae55200bbd652bb0beab87ffb862deab68cb80847a76c7721b4542e28e8a3f",
+      "accepted_value_sha256_utf8": "a0ae55200bbd652bb0beab87ffb862deab68cb80847a76c7721b4542e28e8a3f",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:187"
+      ]
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "decision": "accept",
+      "original_xml_text": "\"Vyberte formát obrázka a nastavenia kompresie. Príkaz Uložiť znova použije tento názov súboru, umiestnenie, formát a nastavenia.\"",
+      "accepted_xml_text": "\"Vyberte formát obrázka a nastavenia kompresie. Príkaz Uložiť znova použije tento názov súboru, umiestnenie, formát a nastavenia.\"",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "reason": "The format/compression choice and all four reused attributes—name, location, format and settings—are explicit for subsequent Uložiť.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "original_value_sha256_utf8": "5c354d6d8fd787a0b30cd5704aea733f3658a0b40575d99160aadf5a9352f373",
+      "accepted_value_sha256_utf8": "5c354d6d8fd787a0b30cd5704aea733f3658a0b40575d99160aadf5a9352f373",
+      "consumer_context_ids": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ]
+    },
+    {
+      "identity": "string/ui_saved",
+      "decision": "accept",
+      "original_xml_text": "\"Uložené: %1$s\"",
+      "accepted_xml_text": "\"Uložené: %1$s\"",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "reason": "Uložené plus the filename is a neutral named-output success toast, valid for export/share writes without asserting the drawing is clean.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "original_value_sha256_utf8": "d62ea34b2ebf942599f0ca9e512ecc1a9e8369a259fb50df539559f65b090860",
+      "accepted_value_sha256_utf8": "d62ea34b2ebf942599f0ca9e512ecc1a9e8369a259fb50df539559f65b090860",
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ]
+    },
+    {
+      "identity": "string/ui_share_explanation34",
+      "decision": "accept",
+      "original_xml_text": "\"Uložte kópiu na vybrané miesto a potom vyberte aplikáciu na jej zdieľanie. Váš aktuálny cieľ pre príkaz Uložiť zostane nezmenený.\"",
+      "accepted_xml_text": "\"Uložte kópiu na vybrané miesto a potom vyberte aplikáciu na jej zdieľanie. Váš aktuálny cieľ pre príkaz Uložiť zostane nezmenený.\"",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "reason": "The copy is written to a chosen location before app selection; the ordinary Uložiť destination stays unchanged and no sharing success is claimed. formatted=false is preserved.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+      "original_value_sha256_utf8": "7f3f7157104dd4b0d8125d2236a40b09c8c6e25535ea211ba8f37b07c513671b",
+      "accepted_value_sha256_utf8": "7f3f7157104dd4b0d8125d2236a40b09c8c6e25535ea211ba8f37b07c513671b",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ]
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "decision": "accept",
+      "original_xml_text": "\"Kódovanie sa nedokončilo.\"",
+      "accepted_xml_text": "\"Kódovanie sa nedokončilo.\"",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "reason": "Kódovanie sa nedokončilo names the encoding process rather than a human coder and preserves the negative completion state.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "original_value_sha256_utf8": "8c76e6c2676132ee4d24567a0fefdd1989e164ce628e2fc523775552e4d8d79e",
+      "accepted_value_sha256_utf8": "8c76e6c2676132ee4d24567a0fefdd1989e164ce628e2fc523775552e4d8d79e",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:100",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt:25",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:33"
+      ]
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "decision": "accept",
+      "original_xml_text": "\"Obrázok bol uložený, ale Android nedokázal otvoriť zdieľanie: %1$s\"",
+      "accepted_xml_text": "\"Obrázok bol uložený, ale Android nedokázal otvoriť zdieľanie: %1$s\"",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "reason": "The already-saved image is distinguished from Android's failed sharing launch; exactly one exception detail remains after the colon.",
+      "qualifications": [
+        "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+      ],
+      "source_value_sha256_utf8": "290a2340c93b4dfc627bf2d73d85ab3841e3300933d1f2212ba33a3e04c4f903",
+      "original_value_sha256_utf8": "fafa574407c7203d8b6539f2dda9c830a010f3f3f2d162e37997d97f9e12b3ea",
+      "accepted_value_sha256_utf8": "fafa574407c7203d8b6539f2dda9c830a010f3f3f2d162e37997d97f9e12b3ea",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1389"
+      ]
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "decision": "accept",
+      "original_xml_text": "\"Na vybrané miesto nemožno zapisovať.\"",
+      "accepted_xml_text": "\"Na vybrané miesto nemožno zapisovať.\"",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "reason": "Na vybrané miesto nemožno zapisovať describes the selected destination generically without guessing permission denial or read-only media.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "bd5906312d80fa9c5c6f855faf23030f089b50f54d0f82a39a8bcdb60328581d",
+      "original_value_sha256_utf8": "6da9f0b84df491a7fe6120c313662934c4ab7cb9ce6ef7dec58b951de3f86c4a",
+      "accepted_value_sha256_utf8": "6da9f0b84df491a7fe6120c313662934c4ab7cb9ce6ef7dec58b951de3f86c4a",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:341",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1366"
+      ]
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "decision": "accept",
+      "original_xml_text": "\"Na toto miesto nemožno zapisovať.\"",
+      "accepted_xml_text": "\"Na toto miesto nemožno zapisovať.\"",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "reason": "Na toto miesto nemožno zapisovať remains generic for both recovery ZIP and source-output consumers; it does not narrow the cause or change either export path.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "aeeaa3653ff0cebc035c0010f47d2e6fef2ba1abd8d6c77df663010f13a4a13e",
+      "original_value_sha256_utf8": "ee19b5694703752be8f555b5e53e97856f7c3456dbdaac26268b9d77d2f3b753",
+      "accepted_value_sha256_utf8": "ee19b5694703752be8f555b5e53e97856f7c3456dbdaac26268b9d77d2f3b753",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1396",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1407"
+      ]
+    },
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "decision": "accept",
+      "original_xml_text": "\"Váš aktuálny obrázok obsahuje neuložené zmeny.\"",
+      "accepted_xml_text": "\"Váš aktuálny obrázok obsahuje neuložené zmeny.\"",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "reason": "Aktuálny obrázok and neuložené zmeny correctly refer to the current dirty drawing; inherited Save/discard/keep-editing controls remain untouched.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "original_value_sha256_utf8": "1c07e2168aa99134cf881cc330c87405c59ee23bff5e0eecf3574172dc89ab00",
+      "accepted_value_sha256_utf8": "1c07e2168aa99134cf881cc330c87405c59ee23bff5e0eecf3574172dc89ab00",
+      "consumer_context_ids": [
+        "dirty-document-replacement-guard"
+      ]
+    }
+  ],
+  "composition_examples": [
+    {
+      "case": "Exact two-frame count",
+      "identity": "string/formats22_animation_message",
+      "composed_display": "Tento obrázok vo formáte GIF má nasledujúci počet snímok: 2. AN Paint upravuje statické obrázky a nezachováva animáciu.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Inherited lower-bound English count",
+      "identity": "string/formats22_animation_message",
+      "composed_display": "Tento obrázok vo formáte GIF má nasledujúci počet snímok: at least 2. AN Paint upravuje statické obrázky a nezachováva animáciu.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Inspection uncertainty",
+      "identity": "string/formats22_animation_unknown",
+      "composed_display": "Tento obrázok vo formáte GIF je príliš zložitý na overenie, či obsahuje viacero snímok. AN Paint otvorí iba statický obrázok a nezachová žiadnu animáciu.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Retained-copy recovery branch",
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "composed_display": "Predchádzajúcu rozpracovanú kresbu sa nepodarilo obnoviť. Bola zachovaná samostatná kópia na obnovu. Pomocou Súbor > Exportovať kópiu na obnovu… uložte jej archív ZIP. Extrahujte z neho canvas.png a načítajte tento obrázok, aby ste v prípade potreby mohli použiť bežné možnosti zmeny mierky.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Blocked-autosave branch with distinct old/current work",
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "composed_display": "Predchádzajúcu rozpracovanú kresbu sa nepodarilo obnoviť. Automatické ukladanie je pozastavené, aby sa ochránila táto rozpracovaná kresba. Pomocou „Súbor → Exportovať kópiu na obnovu…“ ju zachovajte a pomocou „Súbor → Uložiť ako…“ (Image format: PNG / JPEG) uložte svoju aktuálnu prácu.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "ZIP extraction and optional selection",
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "composed_display": "Kópia na obnovu bola exportovaná. Extrahujte canvas.png z archívu ZIP a otvorte ho pomocou „Súbor > Load image…“. Archív ZIP obsahuje aj nastavenia rozpracovanej kresby a prípadný plávajúci výber.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Comma-decimal image and budget warning",
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "composed_display": "1500 × 2000 pixelov (3,00 MP) prekračuje aktuálny bezpečný limit na úpravy 2,25 MP. AN Paint uchováva celý obrázok v pamäti a vyhradzuje priestor na transformácie a výbery. Tento limit závisí od dostupnej pamäte. Operácia bola zastavená pred pridelením pamäte pre príliš veľkú bitmapu. Nebola použitá automatická zmena mierky.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Export preserves ordinary Save destination",
+      "identity": "string/ui_export_explanation23",
+      "composed_display": "Exportujte ikonu, text Base64 alebo ASCII art. Export ponechá aktuálny obrázok aj jeho cieľ pre príkaz Uložiť nezmenené.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Save reuses four attributes",
+      "identity": "string/ui_save_explanation23",
+      "composed_display": "Vyberte formát obrázka a nastavenia kompresie. Príkaz Uložiť znova použije tento názov súboru, umiestnenie, formát a nastavenia.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Share writes copy but keeps ordinary Save target",
+      "identity": "string/ui_share_explanation34",
+      "composed_display": "Uložte kópiu na vybrané miesto a potom vyberte aplikáciu na jej zdieľanie. Váš aktuálny cieľ pre príkaz Uložiť zostane nezmenený.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Named-output success with percent in filename",
+      "identity": "string/ui_saved",
+      "composed_display": "Uložené: drawing 100%.png",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Sharing failed after successful write",
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "composed_display": "Obrázok bol uložený, ale Android nedokázal otvoriť zdieľanie: provider 50% unavailable",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Unpunctuated open-error prefix with caller punctuation",
+      "identity": "string/ui_could_not_open_image",
+      "composed_display": "Obrázok sa nepodarilo otvoriť. provider 100% unavailable",
+      "kind": "static review example; not runtime execution"
+    }
+  ]
+}

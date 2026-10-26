@@ -1,0 +1,1659 @@
+{
+  "schema_version": 1,
+  "source_commit": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+  "source_tree": "806d9577409c4044212d1c12e6e38da46417bae6",
+  "scope_context_sha256": "ab50576189d1daf12d0c16cba38a0a885bcb7822e0e05d572ac2d3527745cad4",
+  "terminology_sha256": "7fbf1726ead175699bf7ea211866b7bdf2ea892259872f4648aa14526159b229",
+  "review_bindings": {
+    "sk": {
+      "candidate_sha256": "03679e36a2b1e7bcf2412e14692a8dec9385f2d4db20af6a35f8d11c66924d6a",
+      "review_sha256": "fcef4f5df9d8a372308787d5feeec313f26bbfba7e4dd33458ecc1196487a267"
+    },
+    "sl": {
+      "candidate_sha256": "d1fc23c6ef3ee3208c1e43e4e54e916b775e7ab953a57e4e28545c6ffbf53f52",
+      "review_sha256": "7d0581cc5c1682739d797be35b66d3f11919d60eb60e0723a158e5ba096e7d02"
+    }
+  },
+  "counts": {
+    "sk": {
+      "accept": 73,
+      "revise": 5
+    },
+    "sl": {
+      "accept": 75,
+      "revise": 3
+    }
+  },
+  "approved_values": {
+    "sk": {
+      "formats22_animation_message": {
+        "accepted_xml_text": "\"Tento obrázok vo formáte %1$s má nasledujúci počet snímok: %2$s. AN Paint upravuje statické obrázky a nezachováva animáciu.\"",
+        "attributes": {
+          "name": "formats22_animation_message"
+        },
+        "decision": "accept",
+        "reason": "The introductory count phrase accepts both exact and inherited English lower-bound counts without incorrect Slovak numeral agreement; still-image editing and animation loss remain explicit.",
+        "qualifications": [
+          "The inherited at least count and format label may be English; complete composition is not certified wholly Slovak."
+        ],
+        "sha256": "2ed7673520175b7fe46a976196c0ffbad04ba78f2634242d1dcf6a56ed55c1e7"
+      },
+      "formats22_animation_poster": {
+        "accepted_xml_text": "\"Tento obrázok PNG má samostatný predvolený obrázok. Namiesto animovaných snímok sa importuje tento obrázok. Uložením sa vytvorí statický obrázok.\"",
+        "attributes": {
+          "name": "formats22_animation_poster"
+        },
+        "decision": "accept",
+        "reason": "The separate default PNG image is selected instead of animated frames; the result of saving remains explicitly static, not animation-preserving.",
+        "qualifications": [],
+        "sha256": "d682eb017e85dbe20ae09bba158bf6f0e9629b1461452842218ac70212af2f7b"
+      },
+      "formats22_animation_still": {
+        "accepted_xml_text": "\"Importuje sa iba prvá snímka. Uložením sa vytvorí statický obrázok.\"",
+        "attributes": {
+          "name": "formats22_animation_still"
+        },
+        "decision": "accept",
+        "reason": "Iba prvá snímka preserves first-frame-only import and the second sentence does not imply animated output.",
+        "qualifications": [],
+        "sha256": "0a7cc4c11233740f8cea5bdf888ce6b30ada6c6ec7d471f15960fb83b71257d2"
+      },
+      "formats22_animation_title": {
+        "accepted_xml_text": "\"Animovaný obrázok\"",
+        "attributes": {
+          "name": "formats22_animation_title"
+        },
+        "decision": "accept",
+        "reason": "The adjective correctly identifies an animated image rather than an animation-editing mode.",
+        "qualifications": [],
+        "sha256": "24508380be7536a6273a2cc08144e0e5bbd57fb75dbfc172d62a3993ced19f65"
+      },
+      "formats22_animation_unknown": {
+        "accepted_xml_text": "\"Tento obrázok vo formáte %1$s je príliš zložitý na overenie, či obsahuje viacero snímok. AN Paint otvorí iba statický obrázok a nezachová žiadnu animáciu.\"",
+        "attributes": {
+          "name": "formats22_animation_unknown"
+        },
+        "decision": "accept",
+        "reason": "Príliš zložitý na overenie preserves inspection uncertainty; opening a still image is distinguished from detecting a genuinely single-frame file.",
+        "qualifications": [],
+        "sha256": "174b86ddfe57a518f4f66d503f60e3f9c33d633ced2faa651bc7487fd97b5df9"
+      },
+      "formats22_ascii_description": {
+        "accepted_xml_text": "\"Zapíše obyčajný text pomocou svetlých a tmavých znakov. Zobrazte ho písmom s pevnou šírkou znakov. Ide o vizuálne stvárnenie; nemožno ho znova otvoriť ako pôvodný obrázok.\"",
+        "attributes": {
+          "name": "formats22_ascii_description"
+        },
+        "decision": "accept",
+        "reason": "Obyčajný text and fixed-width characters retain text rendering, and the final clause explicitly denies recovery of the original image from the rendition.",
+        "qualifications": [],
+        "sha256": "2b606610e2db0f3cadd24cb980d9aa995e0af98701b78427f71d912a3c301842"
+      },
+      "formats22_open_still": {
+        "accepted_xml_text": "\"Otvoriť statický obrázok\"",
+        "attributes": {
+          "name": "formats22_open_still"
+        },
+        "decision": "accept",
+        "reason": "The infinitive action opens a still image and does not promise animation playback.",
+        "qualifications": [],
+        "sha256": "f892358817a6ff8584937f63126f40d7eed9505dceb077aec5adfb7aa4010fe4"
+      },
+      "formats22_pdf_raster_hint": {
+        "accepted_xml_text": "\"Strany PDF sa vykresľujú s rozlíšením 144 dpi. Text a vektorové objekty sa zmenia na pixely.\"",
+        "attributes": {
+          "name": "formats22_pdf_raster_hint"
+        },
+        "decision": "accept",
+        "reason": "The exact 144 dpi claim and conversion of text/vector objects into pixels are both retained.",
+        "qualifications": [],
+        "sha256": "4997df0362116d4fd9aaaedf9454f52dd35965c9ca66d1d3cb4142a4262a4e0b"
+      },
+      "save20_gif_description": {
+        "accepted_xml_text": "\"Statický obrázok s najviac 256 farbami. Rozptyľovanie vyhladzuje farebné prechody. Animované obrázky GIF sa otvoria ako ich prvá snímka.\"",
+        "attributes": {
+          "name": "save20_gif_description"
+        },
+        "decision": "accept",
+        "reason": "Rozptyľovanie matches the inherited dithering label; the 256-colour ceiling, static output and first-frame animated-GIF import remain separate statements.",
+        "qualifications": [],
+        "sha256": "4f4965c8b01f00c4d743b1f3be51c1b78c45e355a6527e8a9800f9596144e299"
+      },
+      "save20_invalid_name": {
+        "accepted_xml_text": "\"Zadajte názov súboru bez lomiek a riadiacich znakov.\"",
+        "attributes": {
+          "name": "save20_invalid_name"
+        },
+        "decision": "accept",
+        "reason": "The imperative rejects slashes and control characters without claiming those are the only filename validation rules.",
+        "qualifications": [],
+        "sha256": "d16ae1f3a6cbb787e4a67db0d6219706485137680a8f37f9f47a27829d779f3b"
+      },
+      "save20_lossy_quality_description": {
+        "accepted_xml_text": "\"Vyššia kvalita zachová viac detailov a zvyčajne vytvorí väčší súbor.\"",
+        "attributes": {
+          "name": "save20_lossy_quality_description"
+        },
+        "decision": "accept",
+        "reason": "Zvyčajne preserves the probabilistic size relationship; vyššia kvalita and viac detailov do not promise losslessness.",
+        "qualifications": [],
+        "sha256": "3e4fa93717ab8a3f8856aa985883666b3a8b47f37eea9f875987eed257e2dac3"
+      },
+      "save20_unsupported_image_colour": {
+        "accepted_xml_text": "\"Tento obrázok používa farebný profil, ktorý AN Paint zatiaľ nedokáže previesť. Pred importom ho preveďte na PNG v priestore sRGB v editore so správou farieb.\"",
+        "attributes": {
+          "name": "save20_unsupported_image_colour"
+        },
+        "decision": "accept",
+        "reason": "The message retains not-yet-supported conversion and explicitly directs conversion to PNG in sRGB using a colour-managed editor, not profile relabelling.",
+        "qualifications": [],
+        "sha256": "9fefab696ddb1dcd0aa6d39a2242a3a61f6461ed31c6aeb52b9a8cf657bb38a3"
+      },
+      "ui_higher_quality_usually_makes_a_larger_file_lossless": {
+        "accepted_xml_text": "\"Vyššia kvalita zvyčajne vytvorí väčší súbor. Bezstratová kompresia zachová každú farebnú hodnotu.\"",
+        "attributes": {
+          "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+        },
+        "decision": "accept",
+        "reason": "Bezstratová kompresia unambiguously identifies the mode and retains every colour value; usual larger-file behaviour is not made absolute.",
+        "qualifications": [],
+        "sha256": "5bdcc1f9f680d5081ef14bcdb507cff73989d343b51264e440a35cbedc55915e"
+      },
+      "ui_a_separate_recovery_copy_has_been_kept_use": {
+        "accepted_xml_text": "\"%1$s Bola zachovaná samostatná kópia na obnovu. Pomocou Súbor > Exportovať kópiu na obnovu… uložte jej archív ZIP. Extrahujte z neho canvas.png a načítajte tento obrázok, aby ste v prípade potreby mohli použiť bežné možnosti zmeny mierky.\"",
+        "attributes": {
+          "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+        },
+        "decision": "accept",
+        "reason": "The failure prefix remains first, preservation is asserted only on the successful-copy branch, and the actual Súbor/recovery-export label and literal canvas.png/ZIP instructions agree.",
+        "qualifications": [
+          "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+        ],
+        "sha256": "fe2198da7058beffeafa29ccc1526c72e8c68b9beb2ea6c89ff5f8f2067d5511"
+      },
+      "ui_autosave_failed_use_save": {
+        "accepted_xml_text": "\"Automatické ukladanie zlyhalo · použite Uložiť\"",
+        "attributes": {
+          "name": "ui_autosave_failed_use_save"
+        },
+        "decision": "accept",
+        "reason": "Failure remains failure and the remedy names inherited Uložiť, not an automatic success or retry guarantee.",
+        "qualifications": [],
+        "sha256": "6735c4788d2d91211614b9ad74a7dfc69495ba125c583166455a841cc7123632"
+      },
+      "ui_autosave_image_encoding_failed": {
+        "accepted_xml_text": "\"Kódovanie obrázka pri automatickom ukladaní zlyhalo.\"",
+        "attributes": {
+          "name": "ui_autosave_image_encoding_failed"
+        },
+        "decision": "accept",
+        "reason": "The failed step is image encoding during autosave, not all image writing or recovery.",
+        "qualifications": [],
+        "sha256": "75c7e694706cb4be30fc894739bce30fa825093cc2371249edf299bd74611929"
+      },
+      "ui_autosave_is_paused_to_protect_that_draft_use": {
+        "accepted_xml_text": "\"%1$s Automatické ukladanie je pozastavené, aby sa ochránila táto rozpracovaná kresba. Pomocou „Súbor → Exportovať kópiu na obnovu…“ ju zachovajte a pomocou „Súbor → Uložiť ako…“ (Image format: PNG / JPEG) uložte svoju aktuálnu prácu.\"",
+        "attributes": {
+          "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+        },
+        "decision": "accept",
+        "reason": "The protected draft and current work are distinct; recovery export is for the former while Uložiť ako… with inherited Image format is for the latter. No separate-copy success is asserted.",
+        "qualifications": [
+          "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+        ],
+        "sha256": "89213feba4bf11d08f3de73430614828f7a0ed9d4117248e0c032e392d4d0016"
+      },
+      "ui_autosave_metadata_is_missing": {
+        "accepted_xml_text": "\"Chýbajú metadáta automatického uloženia.\"",
+        "attributes": {
+          "name": "ui_autosave_metadata_is_missing"
+        },
+        "decision": "accept",
+        "reason": "The missing object is autosave metadata, not pixels or the whole source file.",
+        "qualifications": [],
+        "sha256": "4e023871f93f9d1ebd3d81126b83e96c52de5e982873fb95cf5f5c493b1d8133"
+      },
+      "ui_autosave_paused_use_save": {
+        "accepted_xml_text": "\"Automatické ukladanie je pozastavené · použite Uložiť\"",
+        "attributes": {
+          "name": "ui_autosave_paused_use_save"
+        },
+        "decision": "accept",
+        "reason": "Pozastavené describes a paused operation, not a completed or failed save, and the remedy retains Uložiť.",
+        "qualifications": [],
+        "sha256": "84cbcf794b48ad95c9753825a21902a4f6f947799490b2351b27ff552f4aca85"
+      },
+      "ui_autosave_pixels_are_missing": {
+        "accepted_xml_text": "\"Chýbajú pixely automatického uloženia.\"",
+        "attributes": {
+          "name": "ui_autosave_pixels_are_missing"
+        },
+        "decision": "accept",
+        "reason": "The wording reports missing autosaved pixels; it does not claim that current canvas pixels were deleted.",
+        "qualifications": [],
+        "sha256": "53c07765d8ad54481983809a898c39ba1bfaae143b0e9d57d40961883db271e9"
+      },
+      "ui_autosave_pixels_could_not_be_read": {
+        "accepted_xml_text": "\"Pixely automatického uloženia sa nepodarilo prečítať.\"",
+        "attributes": {
+          "name": "ui_autosave_pixels_could_not_be_read"
+        },
+        "decision": "accept",
+        "reason": "The pixel-read failure remains distinct from missing metadata and does not infer successful restoration.",
+        "qualifications": [],
+        "sha256": "fb6875a1a4cae7a15142d66d435408918db08adecee414463dd2abae61c0effd"
+      },
+      "ui_autosave_selection_encoding_failed": {
+        "accepted_xml_text": "\"Kódovanie výberu pri automatickom ukladaní zlyhalo.\"",
+        "attributes": {
+          "name": "ui_autosave_selection_encoding_failed"
+        },
+        "decision": "accept",
+        "reason": "The failed encoding refers specifically to the selection during autosave, rather than the whole image.",
+        "qualifications": [],
+        "sha256": "85b960192a24148c44e69c9a9cf3c5f775162e93b5bfe8a4ef7c4de198aaf247"
+      },
+      "ui_cannot_create_the_undo_cache_free_some_device": {
+        "accepted_xml_text": "\"Nemožno vytvoriť vyrovnávaciu pamäť na vrátenie zmien. Uvoľnite miesto v úložisku zariadenia a skúste to znova.\"",
+        "attributes": {
+          "name": "ui_cannot_create_the_undo_cache_free_some_device"
+        },
+        "decision": "accept",
+        "reason": "The cache terminology is qualified by an explicit device-storage remedy, so this does not incorrectly instruct the user to free RAM.",
+        "qualifications": [],
+        "sha256": "50101a91b23770b21df3d60838e243af1f7bea30c0621a7aae695770c7f203ee"
+      },
+      "ui_could_not_export_the_recovery_copy": {
+        "accepted_xml_text": "\"Kópiu na obnovu sa nepodarilo exportovať\"",
+        "attributes": {
+          "name": "ui_could_not_export_the_recovery_copy"
+        },
+        "decision": "accept",
+        "reason": "The recovery-copy export failure has no added final punctuation, fitting the caller's error-detail composition.",
+        "qualifications": [],
+        "sha256": "5560c0e649a9f9b754abf88192527f50484af775cc8a9536dfdd85e219825893"
+      },
+      "ui_draft_not_saved_yet": {
+        "accepted_xml_text": "\"Rozpracovaná kresba ešte nie je uložená\"",
+        "attributes": {
+          "name": "ui_draft_not_saved_yet"
+        },
+        "decision": "accept",
+        "reason": "Ešte nie je uložená retains the not-yet state for the autosave draft, not the explicit Save destination.",
+        "qualifications": [],
+        "sha256": "10a58f3b9766fcd8fd9b936a3e8dfe8f4073ab829cce11dfe6f6c786c1923e7d"
+      },
+      "ui_draft_restored": {
+        "accepted_xml_text": "\"Rozpracovaná kresba bola obnovená\"",
+        "attributes": {
+          "name": "ui_draft_restored"
+        },
+        "decision": "accept",
+        "reason": "The draft-restored status is natural Slovak and does not claim that the separate undo-history restoration necessarily succeeded.",
+        "qualifications": [],
+        "sha256": "81005c73e4d60a8f659831660b03736bcf757d15411bcfc423e7da4952fa406c"
+      },
+      "ui_draft_saved": {
+        "accepted_xml_text": "\"Rozpracovaná kresba bola uložená\"",
+        "attributes": {
+          "name": "ui_draft_saved"
+        },
+        "decision": "accept",
+        "reason": "The subject is the rozpracovaná kresba draft; this status does not say the ordinary Save target or drawing dirty flag was updated.",
+        "qualifications": [],
+        "sha256": "698b60e23c03591119e9f308320d6f937d0d7e6a7379336e3e213e8ad2237e8a"
+      },
+      "ui_export_recovery_copy": {
+        "accepted_xml_text": "\"Exportovať kópiu na obnovu…\"",
+        "attributes": {
+          "name": "ui_export_recovery_copy"
+        },
+        "decision": "accept",
+        "reason": "The menu command uses an infinitive and ellipsis; the same complete wording is reused by the recovery instructions.",
+        "qualifications": [],
+        "sha256": "97bfa3b5b4130cb9e011e88cf1bf22cce0ee04a2ce80bf071dfa4a073731a1f5"
+      },
+      "ui_export_recovery_copy_144b8a": {
+        "accepted_xml_text": "\"Exportovať kópiu na obnovu\"",
+        "attributes": {
+          "name": "ui_export_recovery_copy_144b8a"
+        },
+        "decision": "accept",
+        "reason": "The no-ellipsis dialog title exactly matches the corresponding menu wording minus its ellipsis.",
+        "qualifications": [],
+        "sha256": "2bb9e7c18727c6dbe1e550398487cb23a1457d417623f92c0883c69d71faa641"
+      },
+      "ui_history_unavailable34": {
+        "accepted_xml_text": "\"Plátno bolo obnovené, ale jeho históriu vrátenia zmien sa nepodarilo prečítať. Pôvodná rozpracovaná kresba bola zachovaná ako kópia na obnovu.\"",
+        "attributes": {
+          "name": "ui_history_unavailable34",
+          "formatted": "false"
+        },
+        "decision": "accept",
+        "reason": "The restored canvas, unreadable undo history and retained original recovery copy are all stated separately; formatted=false remains unchanged.",
+        "qualifications": [],
+        "sha256": "58b47155e4852dcee97f8540aea9c2b3cc814d5d2e5672390d7df818adfcf346"
+      },
+      "ui_invalid_autosave_metadata": {
+        "accepted_xml_text": "\"Neplatné metadáta automatického uloženia.\"",
+        "attributes": {
+          "name": "ui_invalid_autosave_metadata"
+        },
+        "decision": "accept",
+        "reason": "Neplatné metadáta states invalidity without guessing a corruption cause or implying missing pixels.",
+        "qualifications": [],
+        "sha256": "803cf6f0bc02f8bcc84dba9d5d89c07f2433b5f7fdbb98c3332535c37ca943e2"
+      },
+      "ui_previous_draft_kept_for_recovery": {
+        "accepted_xml_text": "\"Predchádzajúca rozpracovaná kresba bola zachovaná na obnovu\"",
+        "attributes": {
+          "name": "ui_previous_draft_kept_for_recovery"
+        },
+        "decision": "accept",
+        "reason": "Predchádzajúca refers to the earlier draft and preservation remains for recovery, not ordinary saved output.",
+        "qualifications": [],
+        "sha256": "2d38611973ddd9074ab1a64ab4905b15b44470f43b4e54608033f0cd03ab28bf"
+      },
+      "ui_recovered_image": {
+        "accepted_xml_text": "\"Obnovený obrázok\"",
+        "attributes": {
+          "name": "ui_recovered_image"
+        },
+        "decision": "accept",
+        "reason": "Obnovený obrázok is a suitable fallback filename/title and adds no format or preservation guarantee.",
+        "qualifications": [],
+        "sha256": "bf370d780a84eb119074a72bbc0cf5a1365741cf38768e9a3063324ff0dac690"
+      },
+      "ui_recovery_copy_exported_extract_canvas_png_from_the": {
+        "accepted_xml_text": "\"Kópia na obnovu bola exportovaná. Extrahujte canvas.png z archívu ZIP a otvorte ho pomocou „Súbor > Load image…“. Archív ZIP obsahuje aj nastavenia rozpracovanej kresby a prípadný plávajúci výber.\"",
+        "attributes": {
+          "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+        },
+        "decision": "accept",
+        "reason": "The ZIP success is separate from the manual extraction/open instructions; actual Load image… remains English and prípadný plávajúci výber correctly denotes one optional selection.",
+        "qualifications": [],
+        "sha256": "8ff5bd7fbd151be64325896709de5ef9ba24690f450e6fcbab20f752c95bd969"
+      },
+      "ui_the_draft_is_saving_try_again_shortly": {
+        "accepted_xml_text": "\"Rozpracovaná kresba sa ukladá. Skúste to znova o chvíľu.\"",
+        "attributes": {
+          "name": "ui_the_draft_is_saving_try_again_shortly"
+        },
+        "decision": "accept",
+        "reason": "The progressive sa ukladá and short wait instruction preserve the in-progress autosave state without asking for another Save.",
+        "qualifications": [],
+        "sha256": "4d521b68ab5512119265d0dc5ee0c59b6d5a0bfe6d50d8a986e40dfff8bf9385"
+      },
+      "ui_the_previous_draft_could_not_be_moved_to": {
+        "accepted_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo presunúť do súboru na obnovu.\"",
+        "attributes": {
+          "name": "ui_the_previous_draft_could_not_be_moved_to"
+        },
+        "decision": "revise",
+        "reason": "Revised presunúť do súboru na obnovu avoids the awkward suggestion of moving into an already existing copy; it describes the failed recovery-file move and does not promise preservation.",
+        "qualifications": [],
+        "sha256": "3417adcb5145982b4ba390add2dbea78ef6853daff7f5af9508a281ac60b2b8b"
+      },
+      "ui_the_previous_draft_could_not_be_preserved_separately": {
+        "accepted_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo zachovať samostatne.\"",
+        "attributes": {
+          "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+        },
+        "decision": "accept",
+        "reason": "Samostatne preserves the distinct separate-copy failure and makes no claim that the draft was lost or successfully copied.",
+        "qualifications": [],
+        "sha256": "e2a6f4884a744ea74354428e314af8359c4676e493999c3bc65983a00c6b7b77"
+      },
+      "ui_the_previous_draft_could_not_be_restored": {
+        "accepted_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo obnoviť.\"",
+        "attributes": {
+          "name": "ui_the_previous_draft_could_not_be_restored"
+        },
+        "decision": "accept",
+        "reason": "The previous-draft restoration failure is negative and remains independent of the subsequent attempt to preserve its bytes.",
+        "qualifications": [],
+        "sha256": "d3ce5f23118f886a4a6ac5293a69b7c52707fb46db487c0f7fd2a4927c936f7f"
+      },
+      "ui_the_previous_draft_needs_more_memory_to_reopen": {
+        "accepted_xml_text": "\"Na opätovné otvorenie predchádzajúcej rozpracovanej kresby je potrebné viac pamäte.\"",
+        "attributes": {
+          "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+        },
+        "decision": "revise",
+        "reason": "Revised potrebné viac pamäte names an amount of available memory rather than a physically larger memory device, preserving the retry requirement.",
+        "qualifications": [],
+        "sha256": "4b6ba6d09bcec07ccee560b6399ba7ed4ceacea6cbafd2edf044312c47f2319d"
+      },
+      "ui_the_undo_cache_is_damaged": {
+        "accepted_xml_text": "\"Vyrovnávacia pamäť na vrátenie zmien je poškodená.\"",
+        "attributes": {
+          "name": "ui_the_undo_cache_is_damaged"
+        },
+        "decision": "accept",
+        "reason": "Poškodená correctly reports undo-cache corruption, not insufficient capacity or a recoverable success.",
+        "qualifications": [],
+        "sha256": "3bb1be96bcde81ef2759b8894a2d9ff79944abd81e85e34bc8229ac41e2ae827"
+      },
+      "ui_unexpected_data_in_the_undo_cache": {
+        "accepted_xml_text": "\"Neočakávané údaje vo vyrovnávacej pamäti na vrátenie zmien.\"",
+        "attributes": {
+          "name": "ui_unexpected_data_in_the_undo_cache"
+        },
+        "decision": "accept",
+        "reason": "Neočakávané údaje captures unexpected trailing cache data without falsely claiming the entire cache is absent.",
+        "qualifications": [],
+        "sha256": "93c66145b25b5a66edc87f7e5d973338f8248aeaee0e69119ad08f72971901a0"
+      },
+      "ui_an_assembly_source_image_is_missing": {
+        "accepted_xml_text": "\"Chýba zdrojový obrázok zostavy.\"",
+        "attributes": {
+          "name": "ui_an_assembly_source_image_is_missing"
+        },
+        "decision": "accept",
+        "reason": "Zdrojový obrázok zostavy identifies the assembly input rather than the rendered output or saved editor drawing.",
+        "qualifications": [],
+        "sha256": "2a745f15856d309d338187d647de345c5b6f356047e9418bbdf99e8bf151896c"
+      },
+      "ui_assembly_saved": {
+        "accepted_xml_text": "\"Zostava bola uložená\"",
+        "attributes": {
+          "name": "ui_assembly_saved"
+        },
+        "decision": "accept",
+        "reason": "The status reports saved assembly output; it does not name an editable project format or a current drawing Save-target update.",
+        "qualifications": [],
+        "sha256": "091055637d8a51d06fdca3c01ad00b35a09ae47bfc1e323748f65bca9e626bb4"
+      },
+      "ui_assembly_source_memory_floor": {
+        "accepted_xml_text": "\"Odhaduje sa, že táto zostava prekročí aktuálny limit pracovnej pamäte aj pri najmenšej veľkosti výstupu. Pri súčasných obmedzeniach samotné zmenšenie rozmerov zostavy nestačí. Pred ďalším pokusom zatvorte iné dokumenty alebo pripravte menší zdrojový obrázok. Vaša zostava zostáva nezmenená.\"",
+        "attributes": {
+          "name": "ui_assembly_source_memory_floor"
+        },
+        "decision": "accept",
+        "reason": "Zostava is coherent across this batch. The complete warning retains estimate, current working-memory limit, smallest output, insufficient dimension-only reduction, both remedies and unchanged assembly. It does not narrow the failure to decoder memory.",
+        "qualifications": [
+          "Only this P0 value accepted; P1 companion and historical paired warning oracle remain absent/unmodified."
+        ],
+        "sha256": "a0b3360307a749b0b24dcc3e080da6f1c566a9fd25bc076c8cd58e0f04c06336"
+      },
+      "ui_clear_all": {
+        "accepted_xml_text": "\"Vymazať všetko\"",
+        "attributes": {
+          "name": "ui_clear_all"
+        },
+        "decision": "accept",
+        "reason": "Vymazať všetko correctly names the assembly-wide clear operation, not removal of one selected image.",
+        "qualifications": [],
+        "sha256": "f168b013a1c4a3169ff58892b2f68b419814402bc40d0e3db1a303cd0d38ba5e"
+      },
+      "ui_clear_image": {
+        "accepted_xml_text": "\"Vymazať obsah obrázka\"",
+        "attributes": {
+          "name": "ui_clear_image"
+        },
+        "decision": "revise",
+        "reason": "Revised Vymazať obsah obrázka makes the actual canvas-clearing action explicit and avoids suggesting file deletion; this remains distinct from assembly-wide clearing.",
+        "qualifications": [],
+        "sha256": "304e31a6761666d81c0aaaaa2bd061cc3f6fe67e74915b6b2fb39b6602368ab8"
+      },
+      "ui_could_not_save_the_assembly": {
+        "accepted_xml_text": "\"Zostavu sa nepodarilo uložiť: %1$s\"",
+        "attributes": {
+          "name": "ui_could_not_save_the_assembly"
+        },
+        "decision": "accept",
+        "reason": "The assembly-save failure retains its colon and exactly one exception-detail placeholder; it does not imply the URI write succeeded.",
+        "qualifications": [
+          "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+        ],
+        "sha256": "8110190aaa09f31d1981972c5c1cb0db7e57caa78277ea2d248375bb109026cc"
+      },
+      "ui_could_not_store_the_assembly": {
+        "accepted_xml_text": "\"Zostavu sa nepodarilo uložiť.\"",
+        "attributes": {
+          "name": "ui_could_not_store_the_assembly"
+        },
+        "decision": "accept",
+        "reason": "The internal assembly-store failure is negative and keeps the assembly subject without inventing storage medium or permission cause.",
+        "qualifications": [],
+        "sha256": "a4cbc1bf72e3eac6de33292105b432c18014dbbd600c9df593208cc9292b2dd9"
+      },
+      "ui_d_d_pixels_2f_mp_exceeds_the_current": {
+        "accepted_xml_text": "\"%1$d × %2$d pixelov (%3$.2f MP) prekračuje aktuálny bezpečný limit na úpravy %4$.2f MP. AN Paint uchováva celý obrázok v pamäti a vyhradzuje priestor na transformácie a výbery. Tento limit závisí od dostupnej pamäte. Operácia bola zastavená pred pridelením pamäte pre príliš veľkú bitmapu. Nebola použitá automatická zmena mierky.\"",
+        "attributes": {
+          "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+        },
+        "decision": "accept",
+        "reason": "All four format tokens, multiplication sign, image/budget megapixels, complete-image/reserved memory explanation, preallocation stop and explicit no-automatic-scaling statement are retained.",
+        "qualifications": [],
+        "sha256": "f04b0845479e7a2b824874fb9d2a578a9c3b5749e4a0e61d75658c3fd4e48a51"
+      },
+      "ui_keeps_pixels_at_the_top_left_smaller_canvas": {
+        "accepted_xml_text": "\"Zachová pixely vľavo hore. Menšie rozmery plátna odstránia pixely za pravým alebo dolným okrajom; príkaz Vrátiť späť ich obnoví.\"",
+        "attributes": {
+          "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+        },
+        "decision": "revise",
+        "reason": "Revised alebo makes right-edge or bottom-edge clipping disjunctive, avoiding an interpretation that only pixels beyond both edges are removed. The inherited Vrátiť späť command still restores them.",
+        "qualifications": [],
+        "sha256": "bd31d8f5d766be2c8c18340d0f429c9982235373d2c2e8711326d1a6dc110a2c"
+      },
+      "ui_not_enough_memory_for_this_operation_the_assembly": {
+        "accepted_xml_text": "\"Na túto operáciu nie je dostatok pamäte. Zdrojové súbory zostavy zostávajú zachované.\"",
+        "attributes": {
+          "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+        },
+        "decision": "accept",
+        "reason": "The operation's memory failure and retained assembly source files are distinct; no output-file or success claim is added.",
+        "qualifications": [],
+        "sha256": "b7906d1fa6a8d7e88810d9a78bd8fb5b4f2a3c4b3c76b859009cffcbd2ce4645"
+      },
+      "ui_resize_large_image": {
+        "accepted_xml_text": "\"Zmeniť mierku veľkého obrázka?\"",
+        "attributes": {
+          "name": "ui_resize_large_image"
+        },
+        "decision": "accept",
+        "reason": "Zmeniť mierku matches the inherited resize action, and the question retains the large-image subject rather than canvas cropping.",
+        "qualifications": [],
+        "sha256": "427a88b572f9ca2cde768d690b16c38c65e1d3e78f5fb60ff6763fe1bf4839c4"
+      },
+      "ui_sampled_resize_memory_explanation": {
+        "accepted_xml_text": "\"Odhady zahŕňajú aktuálne plátno a schránku, dekódovanie so zníženým rozlíšením a vyrovnávacie pamäte na úpravy. Skutočná spotreba pamäte sa líši. Menšia kópia stráca detaily. Pôvodný súbor zostáva nezmenený.\"",
+        "attributes": {
+          "name": "ui_sampled_resize_memory_explanation"
+        },
+        "decision": "accept",
+        "reason": "Reduced-resolution decoding, canvas/clipboard and editing buffers are all included in the estimates; variability, detail loss and untouched original file are explicit.",
+        "qualifications": [],
+        "sha256": "53fffbd82246952a3057c55c0ac15555f9501ab9196af6ec551f6e7ee0f85ae8"
+      },
+      "ui_save_png": {
+        "accepted_xml_text": "\"Uložiť PNG\"",
+        "attributes": {
+          "name": "ui_save_png"
+        },
+        "decision": "accept",
+        "reason": "Uložiť PNG names the assembly PNG action without adding a normal drawing Save-target claim.",
+        "qualifications": [],
+        "sha256": "a7e5214f974b5e28a2088e93d037fa5abf010c771816819699e84df6bce94875"
+      },
+      "ui_the_saved_assembly_could_not_be_opened": {
+        "accepted_xml_text": "\"Uloženú zostavu sa nepodarilo otvoriť: %1$s\"",
+        "attributes": {
+          "name": "ui_the_saved_assembly_could_not_be_opened"
+        },
+        "decision": "accept",
+        "reason": "The saved assembly failed to open; the exception-detail placeholder is retained and no import or rendering success is implied.",
+        "qualifications": [
+          "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+        ],
+        "sha256": "ceb63e8599463e8b4920e487c6e0d23f6aca6f580e788f8ee7cba9a1b6a7c0c4"
+      },
+      "ui_the_trim_would_remove_the_entire_image": {
+        "accepted_xml_text": "\"Orezanie by odstránilo celý obrázok.\"",
+        "attributes": {
+          "name": "ui_the_trim_would_remove_the_entire_image"
+        },
+        "decision": "accept",
+        "reason": "The conditional by preserves the hypothetical all-image removal rejected before applying a trim.",
+        "qualifications": [],
+        "sha256": "1ce4a01a1c9d671af763a9e2cb7530610688e1429184095561057d0c421ee748"
+      },
+      "ui_there_is_not_enough_memory_for_this_operation": {
+        "accepted_xml_text": "\"Na túto operáciu pri pôvodnom rozlíšení nie je dostatok pamäte. Nebola použitá automatická zmena mierky.\"",
+        "attributes": {
+          "name": "ui_there_is_not_enough_memory_for_this_operation"
+        },
+        "decision": "accept",
+        "reason": "The original-resolution memory failure and absence of automatic scaling are both retained; it does not claim universal impossibility at reduced resolution.",
+        "qualifications": [],
+        "sha256": "ba5c910325c643bc996458089c98e1170ed044863cb677991687cfa04d4ae534"
+      },
+      "gallery_credit_could_not_save": {
+        "accepted_xml_text": "\"Údaje o pôvode obrázka sa nepodarilo uložiť alebo obnoviť. Existujúce uložené údaje boli zachované. Skúste to znova.\"",
+        "attributes": {
+          "name": "gallery_credit_could_not_save"
+        },
+        "decision": "accept",
+        "reason": "Údaje o pôvode is accepted as a broad image-attribution/provenance data term, not money or authors alone; save/restore failure, existing retained data and retry instruction remain complete.",
+        "qualifications": [
+          "Broad provenance term judged suitable in the full attribution-data context; no independent native-human terminology certification."
+        ],
+        "sha256": "0cfc4556a3998fe2e876bc036a471742f7e829f8296b8ab8c2a42ff15fd029e2"
+      },
+      "gallery_credit_too_large": {
+        "accepted_xml_text": "\"Tieto údaje o pôvode obrázka by spôsobili, že kresba bude príliš veľká na obnovenie. Vaša predchádzajúca kresba a údaje o pôvode boli zachované.\"",
+        "attributes": {
+          "name": "gallery_credit_too_large"
+        },
+        "decision": "accept",
+        "reason": "The conditional size limit concerns restoring the drawing's data, and both previous drawing and attribution data remain explicitly preserved.",
+        "qualifications": [
+          "Broad provenance term judged suitable in the full attribution-data context; no independent native-human terminology certification."
+        ],
+        "sha256": "4748125dceb64c751e22a79ae6e8ff13770edc48b89d43d86eab593da022d5f7"
+      },
+      "legacy_credits_unreadable": {
+        "accepted_xml_text": "\"Niektoré uložené údaje o pôvode sa nepodarilo prečítať. Ich uložené kópie boli zachované.\"",
+        "attributes": {
+          "name": "legacy_credits_unreadable"
+        },
+        "decision": "accept",
+        "reason": "Niektoré preserves partial unreadability; their stored copies remain retained rather than deleted, repaired or all readable.",
+        "qualifications": [
+          "Broad provenance term judged suitable in the full attribution-data context; no independent native-human terminology certification."
+        ],
+        "sha256": "1433c37a03e0f0c209ecc6a8fb63fa88f5bc9044c9bf626e2c641ed3d81de98b"
+      },
+      "save20_destination_error": {
+        "accepted_xml_text": "\"Cieľový súbor sa nepodarilo nahradiť výsledným súborom.\"",
+        "attributes": {
+          "name": "save20_destination_error"
+        },
+        "decision": "revise",
+        "reason": "Revised výsledný súbor covers the common temporary-file replacement path used for image/text export and decoding; it avoids narrowing the failure to a finished raster image and makes no successful destination-write claim.",
+        "qualifications": [],
+        "sha256": "fe3600e80ac13198fd8b55ac61bc1d6e7af74b914e7cb7654b6661729f5a2f7c"
+      },
+      "save20_encoding_budget": {
+        "accepted_xml_text": "\"Obrázok a vyrovnávacie pamäte na kódovanie prekračujú pamäťový limit pre export.\"",
+        "attributes": {
+          "name": "save20_encoding_budget"
+        },
+        "decision": "accept",
+        "reason": "The budget includes the image plus encoder buffers and is explicitly memory for export, not disk capacity or solely image pixels.",
+        "qualifications": [],
+        "sha256": "35c783c56bea6a60f2d1321b111173b1b4b3d5385514644ae4cc845f5948b43f"
+      },
+      "ui_could_not_open_image": {
+        "accepted_xml_text": "\"Obrázok sa nepodarilo otvoriť\"",
+        "attributes": {
+          "name": "ui_could_not_open_image"
+        },
+        "decision": "accept",
+        "reason": "The open-image failure is an unpunctuated prefix suitable for the caller's appended full stop and exception detail.",
+        "qualifications": [],
+        "sha256": "6377699d909117cc05eecb24cb749817d38faa1ab379a420fa4d7edf7914be9b"
+      },
+      "ui_could_not_save_image": {
+        "accepted_xml_text": "\"Obrázok sa nepodarilo uložiť\"",
+        "attributes": {
+          "name": "ui_could_not_save_image"
+        },
+        "decision": "accept",
+        "reason": "The save-image failure is negative and unpunctuated, retaining the error-prefix composition without asserting complete loss or recovery.",
+        "qualifications": [],
+        "sha256": "267ea065d797e83f3ae9e5b2781a61a0f6dd727cadaca05d800751d2cdca26db"
+      },
+      "ui_export_did_not_save23": {
+        "accepted_xml_text": "\"Export bol vytvorený. Pred pokračovaním uložte aktuálny obrázok pomocou príkazu „Uložiť“ alebo „Uložiť ako…“.\"",
+        "attributes": {
+          "name": "ui_export_did_not_save23"
+        },
+        "decision": "accept",
+        "reason": "Export is explicitly already created; before continuing the current image still needs inherited Uložiť or Uložiť ako…, so successful export is not confused with satisfying pending ordinary Save.",
+        "qualifications": [],
+        "sha256": "035953b866802adc16b22ae01a5fa34343ea7c5bb2c7f15d9d6aa2ffbae116b4"
+      },
+      "ui_export_explanation23": {
+        "accepted_xml_text": "\"Exportujte ikonu, text Base64 alebo ASCII art. Export ponechá aktuálny obrázok aj jeho cieľ pre príkaz Uložiť nezmenené.\"",
+        "attributes": {
+          "name": "ui_export_explanation23"
+        },
+        "decision": "accept",
+        "reason": "All three derived outputs remain present; both the current image and the destination used by Uložiť remain unchanged, without denying creation of the export file.",
+        "qualifications": [],
+        "sha256": "a1bbdf53e3a254c5e32d3c7fa91c5e76af0f1cdaad95738622ae19b249ced353"
+      },
+      "ui_not_enough_memory_to_save_in_this_format": {
+        "accepted_xml_text": "\"Na uloženie v tomto formáte nie je dostatok pamäte. Skúste PNG\"",
+        "attributes": {
+          "name": "ui_not_enough_memory_to_save_in_this_format"
+        },
+        "decision": "accept",
+        "reason": "The failed-format memory message recommends PNG without guaranteeing that PNG fits; the absent final punctuation preserves the caller's detail suffix.",
+        "qualifications": [],
+        "sha256": "91083476d2e82f6eef4e5aecb15b738ca01024ed66c30342393cbfe6fa5dfda4"
+      },
+      "ui_png_encoding_failed": {
+        "accepted_xml_text": "\"Kódovanie PNG zlyhalo.\"",
+        "attributes": {
+          "name": "ui_png_encoding_failed"
+        },
+        "decision": "accept",
+        "reason": "Kódovanie PNG zlyhalo identifies the failed compression/encoding step and does not promise a written image.",
+        "qualifications": [],
+        "sha256": "9805fd0bd5124fd93c9456b04505cdeeb5ebd4d0bcbbc0d5d96b578b33fe2721"
+      },
+      "ui_save_and_share": {
+        "accepted_xml_text": "\"Uložiť a zdieľať…\"",
+        "attributes": {
+          "name": "ui_save_and_share"
+        },
+        "decision": "accept",
+        "reason": "The Save-and-share menu action retains ellipsis and agrees exactly with its dialog-title counterpart, while surrounding explanation limits it to copy output.",
+        "qualifications": [],
+        "sha256": "0acf349738fa630b8e8f0245ba71f903a31baff9aa39a80f3282d435aea402f8"
+      },
+      "ui_save_and_share_41edb4": {
+        "accepted_xml_text": "\"Uložiť a zdieľať\"",
+        "attributes": {
+          "name": "ui_save_and_share_41edb4"
+        },
+        "decision": "accept",
+        "reason": "The dialog title agrees with the menu without the ellipsis, and does not itself claim the share operation completed.",
+        "qualifications": [],
+        "sha256": "a0ae55200bbd652bb0beab87ffb862deab68cb80847a76c7721b4542e28e8a3f"
+      },
+      "ui_save_explanation23": {
+        "accepted_xml_text": "\"Vyberte formát obrázka a nastavenia kompresie. Príkaz Uložiť znova použije tento názov súboru, umiestnenie, formát a nastavenia.\"",
+        "attributes": {
+          "name": "ui_save_explanation23"
+        },
+        "decision": "accept",
+        "reason": "The format/compression choice and all four reused attributes—name, location, format and settings—are explicit for subsequent Uložiť.",
+        "qualifications": [],
+        "sha256": "5c354d6d8fd787a0b30cd5704aea733f3658a0b40575d99160aadf5a9352f373"
+      },
+      "ui_saved": {
+        "accepted_xml_text": "\"Uložené: %1$s\"",
+        "attributes": {
+          "name": "ui_saved"
+        },
+        "decision": "accept",
+        "reason": "Uložené plus the filename is a neutral named-output success toast, valid for export/share writes without asserting the drawing is clean.",
+        "qualifications": [],
+        "sha256": "d62ea34b2ebf942599f0ca9e512ecc1a9e8369a259fb50df539559f65b090860"
+      },
+      "ui_share_explanation34": {
+        "accepted_xml_text": "\"Uložte kópiu na vybrané miesto a potom vyberte aplikáciu na jej zdieľanie. Váš aktuálny cieľ pre príkaz Uložiť zostane nezmenený.\"",
+        "attributes": {
+          "name": "ui_share_explanation34",
+          "formatted": "false"
+        },
+        "decision": "accept",
+        "reason": "The copy is written to a chosen location before app selection; the ordinary Uložiť destination stays unchanged and no sharing success is claimed. formatted=false is preserved.",
+        "qualifications": [],
+        "sha256": "7f3f7157104dd4b0d8125d2236a40b09c8c6e25535ea211ba8f37b07c513671b"
+      },
+      "ui_the_encoder_did_not_finish": {
+        "accepted_xml_text": "\"Kódovanie sa nedokončilo.\"",
+        "attributes": {
+          "name": "ui_the_encoder_did_not_finish"
+        },
+        "decision": "accept",
+        "reason": "Kódovanie sa nedokončilo names the encoding process rather than a human coder and preserves the negative completion state.",
+        "qualifications": [],
+        "sha256": "8c76e6c2676132ee4d24567a0fefdd1989e164ce628e2fc523775552e4d8d79e"
+      },
+      "ui_the_image_was_saved_but_android_could_not": {
+        "accepted_xml_text": "\"Obrázok bol uložený, ale Android nedokázal otvoriť zdieľanie: %1$s\"",
+        "attributes": {
+          "name": "ui_the_image_was_saved_but_android_could_not"
+        },
+        "decision": "accept",
+        "reason": "The already-saved image is distinguished from Android's failed sharing launch; exactly one exception detail remains after the colon.",
+        "qualifications": [
+          "Dynamic exception/reason text can remain untranslated; acceptance is for this complete static value and its token contract."
+        ],
+        "sha256": "fafa574407c7203d8b6539f2dda9c830a010f3f3f2d162e37997d97f9e12b3ea"
+      },
+      "ui_the_selected_location_is_not_writable": {
+        "accepted_xml_text": "\"Na vybrané miesto nemožno zapisovať.\"",
+        "attributes": {
+          "name": "ui_the_selected_location_is_not_writable"
+        },
+        "decision": "accept",
+        "reason": "Na vybrané miesto nemožno zapisovať describes the selected destination generically without guessing permission denial or read-only media.",
+        "qualifications": [],
+        "sha256": "6da9f0b84df491a7fe6120c313662934c4ab7cb9ce6ef7dec58b951de3f86c4a"
+      },
+      "ui_this_location_is_not_writable": {
+        "accepted_xml_text": "\"Na toto miesto nemožno zapisovať.\"",
+        "attributes": {
+          "name": "ui_this_location_is_not_writable"
+        },
+        "decision": "accept",
+        "reason": "Na toto miesto nemožno zapisovať remains generic for both recovery ZIP and source-output consumers; it does not narrow the cause or change either export path.",
+        "qualifications": [],
+        "sha256": "ee19b5694703752be8f555b5e53e97856f7c3456dbdaac26268b9d77d2f3b753"
+      },
+      "ui_your_current_image_has_unsaved_changes": {
+        "accepted_xml_text": "\"Váš aktuálny obrázok obsahuje neuložené zmeny.\"",
+        "attributes": {
+          "name": "ui_your_current_image_has_unsaved_changes"
+        },
+        "decision": "accept",
+        "reason": "Aktuálny obrázok and neuložené zmeny correctly refer to the current dirty drawing; inherited Save/discard/keep-editing controls remain untouched.",
+        "qualifications": [],
+        "sha256": "1c07e2168aa99134cf881cc330c87405c59ee23bff5e0eecf3574172dc89ab00"
+      }
+    },
+    "sl": {
+      "formats22_animation_message": {
+        "accepted_xml_text": "\"Število sličic v tej datoteki %1$s je %2$s. AN Paint ureja statične slike in ne ohrani animacije.\"",
+        "attributes": {
+          "name": "formats22_animation_message"
+        },
+        "decision": "accept",
+        "reason": "The labelled frame quantity handles both an exact integer and the English at-least phrase without false Slovenian number agreement; it still states no animation preservation.",
+        "qualifications": [
+          "Dynamic frame-count labels remain inherited and may be English; this review does not certify those separate values."
+        ],
+        "sha256": "bbb08128ac629a804e7866057d005cf05faddb15f2b8ce63d1d202089dc96100"
+      },
+      "formats22_animation_poster": {
+        "accepted_xml_text": "\"Ta PNG ima ločeno privzeto sliko. Uvožena bo ta slika namesto animiranih sličic. Pri shranjevanju nastane statična slika.\"",
+        "attributes": {
+          "name": "formats22_animation_poster"
+        },
+        "decision": "accept",
+        "reason": "The default PNG image is separate, is selected instead of animated frames, and produces still output on save; none of these three conditions is lost.",
+        "qualifications": [
+          "Dynamic frame-count labels remain inherited and may be English; this review does not certify those separate values."
+        ],
+        "sha256": "85e7ecdc5f821a51dee4fc32f744339bfac77c0a50a9872323a1d6882d44a5aa"
+      },
+      "formats22_animation_still": {
+        "accepted_xml_text": "\"Uvožena bo samo prva sličica. Pri shranjevanju nastane statična slika.\"",
+        "attributes": {
+          "name": "formats22_animation_still"
+        },
+        "decision": "accept",
+        "reason": "Only the first frame is imported and subsequent save is still, not an animated export; the concise Slovenian is idiomatic.",
+        "qualifications": [
+          "Dynamic frame-count labels remain inherited and may be English; this review does not certify those separate values."
+        ],
+        "sha256": "5a78d599414015abe513f6ed18a8b1de663335d1952500b7fcdcbe1f2a72e2b1"
+      },
+      "formats22_animation_title": {
+        "accepted_xml_text": "\"Animirana slika\"",
+        "attributes": {
+          "name": "formats22_animation_title"
+        },
+        "decision": "accept",
+        "reason": "The adjective agrees with slika and names the animation warning without promising animation support.",
+        "qualifications": [
+          "Dynamic frame-count labels remain inherited and may be English; this review does not certify those separate values."
+        ],
+        "sha256": "b0224e1774a19a721f00a01d083386a9b2ba5a1625ef2d53dd1400127efae807"
+      },
+      "formats22_animation_unknown": {
+        "accepted_xml_text": "\"Ta datoteka %1$s je preveč zapletena, da bi bilo mogoče potrditi, ali vsebuje več sličic. AN Paint bo odprl samo statično sliko in ne bo ohranil nobene animacije.\"",
+        "attributes": {
+          "name": "formats22_animation_unknown"
+        },
+        "decision": "accept",
+        "reason": "The uncertainty is retained as inability to confirm multiple frames, followed by an explicit still-only/no-animation outcome.",
+        "qualifications": [
+          "Dynamic frame-count labels remain inherited and may be English; this review does not certify those separate values."
+        ],
+        "sha256": "0c36ece518f8f55435cb27956d3ea88f843ec0991c2cc6ba32037de3e7dc3e47"
+      },
+      "formats22_ascii_description": {
+        "accepted_xml_text": "\"Zapiše navadno besedilo s svetlimi in temnimi znaki. Oglejte si ga s pisavo z enako širino znakov. To je slikovni prikaz; ni ga mogoče znova odpreti kot izvirno sliko.\"",
+        "attributes": {
+          "name": "formats22_ascii_description"
+        },
+        "decision": "accept",
+        "reason": "The whole instruction distinguishes ordinary text, equal-width glyph viewing and irreversibility to the original image; slikovni prikaz describes a visual rendition, not an editable bitmap.",
+        "qualifications": [],
+        "sha256": "89f9373a17049f4a3f6836d68f9717e77f307f0778b038adeca225041b33883a"
+      },
+      "formats22_open_still": {
+        "accepted_xml_text": "\"Odpri statično sliko\"",
+        "attributes": {
+          "name": "formats22_open_still"
+        },
+        "decision": "accept",
+        "reason": "An imperative action for a static image matches the dialog's actual first-frame selection handler.",
+        "qualifications": [],
+        "sha256": "74529f54502659e1426506350f67076efd9f987857f282bf3518769dfb844073"
+      },
+      "formats22_pdf_raster_hint": {
+        "accepted_xml_text": "\"Strani PDF se izrišejo pri 144 dpi. Besedilo in vektorski objekti postanejo slikovne točke.\"",
+        "attributes": {
+          "name": "formats22_pdf_raster_hint"
+        },
+        "decision": "accept",
+        "reason": "Both the fixed 144 dpi resolution and conversion of text/vector objects into pixels are explicit; slikovne točke matches inherited pixel terminology.",
+        "qualifications": [],
+        "sha256": "0c13b57cf841165ccecf8217f6e02d7237f35df8740a6ed87ec100a3ce2ea1ae"
+      },
+      "save20_gif_description": {
+        "accepted_xml_text": "\"Statična slika z največ 256 barvami. Stresanje zgladi barvne prehode. Animirani GIF-i se odprejo kot prva sličica.\"",
+        "attributes": {
+          "name": "save20_gif_description"
+        },
+        "decision": "accept",
+        "reason": "Stresanje deliberately matches the existing dither control; the 256-colour ceiling and animated-GIF first-frame behavior remain distinct from still export.",
+        "qualifications": [
+          "Inherited labels are preserved as composition context, not newly linguistically accepted."
+        ],
+        "sha256": "42248b7fef1ea09483a18306e08dc3f57fcc23edd06aba7d57922975ae0b7205"
+      },
+      "save20_invalid_name": {
+        "accepted_xml_text": "\"Vnesite ime datoteke brez poševnic ali krmilnih znakov.\"",
+        "attributes": {
+          "name": "save20_invalid_name"
+        },
+        "decision": "accept",
+        "reason": "The prohibition covers slash characters and control characters rather than inventing a general restriction on punctuation or paths.",
+        "qualifications": [],
+        "sha256": "ba919973f6a002f7a3d18127e4f2418974da0ab9547e9f65b6bfa63a856dc027"
+      },
+      "save20_lossy_quality_description": {
+        "accepted_xml_text": "\"Višja kakovost ohrani več podrobnosti in običajno pomeni večjo datoteko.\"",
+        "attributes": {
+          "name": "save20_lossy_quality_description"
+        },
+        "decision": "accept",
+        "reason": "Običajno preserves the non-guaranteed relation between quality and file size; detail retention is stated independently.",
+        "qualifications": [],
+        "sha256": "3390ea684916624dd617e4a7de90ffbdef6e7d11f7b423aa1d02d463fec6437b"
+      },
+      "save20_unsupported_image_colour": {
+        "accepted_xml_text": "\"Ta slika uporablja barvni profil, ki ga AN Paint še ne more pretvoriti. Pred uvozom jo v urejevalniku z upravljanjem barv pretvorite v PNG z barvnim prostorom sRGB.\"",
+        "attributes": {
+          "name": "save20_unsupported_image_colour"
+        },
+        "decision": "accept",
+        "reason": "The editor limitation remains temporary and the remedy requires actual conversion in a colour-managed editor to PNG in sRGB, not merely relabelling a file.",
+        "qualifications": [],
+        "sha256": "a2154120801c06eb197ba9b58b4e2e87f4a175fc11493dca3167d312998ccee2"
+      },
+      "ui_higher_quality_usually_makes_a_larger_file_lossless": {
+        "accepted_xml_text": "\"Višja kakovost običajno pomeni večjo datoteko. Stiskanje brez izgub ohrani vsako barvno vrednost.\"",
+        "attributes": {
+          "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+        },
+        "decision": "accept",
+        "reason": "The lossless clause preserves every colour value; the usually qualifier applies only to size and does not weaken the lossless claim.",
+        "qualifications": [],
+        "sha256": "2b5f8b96d78272950941ebf0804ecec3b4672a99dfc1fde22b6f4a1711fde51f"
+      },
+      "ui_a_separate_recovery_copy_has_been_kept_use": {
+        "accepted_xml_text": "\"%1$s Ohranjen je ločen obnovitveni izvod. Njegov ZIP shranite z možnostjo Datoteka → Izvozi obnovitveni izvod…. Iz njega izvlecite canvas.png in naložite to sliko, da po potrebi uporabite običajne možnosti spreminjanja merila.\"",
+        "attributes": {
+          "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+        },
+        "decision": "accept",
+        "reason": "The already-retained separate copy is distinct from a future ZIP export; literal canvas.png and the existing Datoteka menu plus proposed recovery action are correct. An arrow is a valid path separator.",
+        "qualifications": [
+          "Dynamic exception/failure detail may remain untranslated; the accepted surrounding value does not certify it."
+        ],
+        "sha256": "cf9e7f99d2e94cf12049597a13746dff38b6a3bc9b18623a1b5372175657b6aa"
+      },
+      "ui_autosave_failed_use_save": {
+        "accepted_xml_text": "\"Samodejno shranjevanje ni uspelo · uporabite Shrani\"",
+        "attributes": {
+          "name": "ui_autosave_failed_use_save"
+        },
+        "decision": "accept",
+        "reason": "The failed autosave state points to the exact Shrani action, not a claim that ordinary Save has already succeeded.",
+        "qualifications": [],
+        "sha256": "0b1dbbc0ed0c13babcdeb6347da55c88b4a8118b54a0f5ffaa87649b1afb7a6b"
+      },
+      "ui_autosave_image_encoding_failed": {
+        "accepted_xml_text": "\"Kodiranje slike za samodejno shranjevanje ni uspelo.\"",
+        "attributes": {
+          "name": "ui_autosave_image_encoding_failed"
+        },
+        "decision": "accept",
+        "reason": "This names autosave image encoding, retaining the distinction from pixel reading, metadata parsing and storage writes.",
+        "qualifications": [],
+        "sha256": "7d19162cabba491fe4ba29f5c5d17568c50c89c8d98d11c6e835cc0d8284a1f9"
+      },
+      "ui_autosave_is_paused_to_protect_that_draft_use": {
+        "accepted_xml_text": "\"%1$s Samodejno shranjevanje je začasno ustavljeno, da se zaščiti ta osnutek. Ohranite ga z možnostjo »Datoteka → Izvozi obnovitveni izvod…«, trenutno delo pa shranite z možnostjo »Datoteka → Shrani kot…« (Image format: PNG / JPEG).\"",
+        "attributes": {
+          "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+        },
+        "decision": "accept",
+        "reason": "The endangered prior draft and current work have separate preservation/save instructions. Shrani kot… and Image format remain the actual labels; the reason prefix and protective pause are retained.",
+        "qualifications": [
+          "Dynamic exception/failure detail may remain untranslated; the accepted surrounding value does not certify it.",
+          "Inherited labels are preserved as composition context, not newly linguistically accepted."
+        ],
+        "sha256": "cf767b4b84c6af4229708145dc389d435d98c87dfbc0f61f2af6f86ba538c2d0"
+      },
+      "ui_autosave_metadata_is_missing": {
+        "accepted_xml_text": "\"Manjkajo metapodatki samodejnega shranjevanja.\"",
+        "attributes": {
+          "name": "ui_autosave_metadata_is_missing"
+        },
+        "decision": "accept",
+        "reason": "The metadata are missing, not merely invalid; no conclusion about all image content being lost is added.",
+        "qualifications": [],
+        "sha256": "e29b146fad9241281a254acb0501aca1f7015169a80e85f80fa4afa4729324f6"
+      },
+      "ui_autosave_paused_use_save": {
+        "accepted_xml_text": "\"Samodejno shranjevanje je začasno ustavljeno · uporabite Shrani\"",
+        "attributes": {
+          "name": "ui_autosave_paused_use_save"
+        },
+        "decision": "accept",
+        "reason": "The paused state is not mislabeled failed; Shrani still refers to the inherited explicit-save action.",
+        "qualifications": [],
+        "sha256": "2d8b7d2d1800b11f85002c3c2d5c31afd03ad7d215588cdcf75b1dc0c1c85704"
+      },
+      "ui_autosave_pixels_are_missing": {
+        "accepted_xml_text": "\"Manjkajo slikovne točke samodejno shranjene slike.\"",
+        "attributes": {
+          "name": "ui_autosave_pixels_are_missing"
+        },
+        "decision": "accept",
+        "reason": "The absent payload is the autosaved image's pixels; this is not a complaint about available memory or missing metadata.",
+        "qualifications": [],
+        "sha256": "4eb6891f94982a9dacb15bcd5691e8cce5d6cd54c2fe1d7986bbf36ba343b0cc"
+      },
+      "ui_autosave_pixels_could_not_be_read": {
+        "accepted_xml_text": "\"Slikovnih točk samodejno shranjene slike ni bilo mogoče prebrati.\"",
+        "attributes": {
+          "name": "ui_autosave_pixels_could_not_be_read"
+        },
+        "decision": "accept",
+        "reason": "The pixel payload cannot be read; the sentence does not assert it is absent or permanently destroyed.",
+        "qualifications": [],
+        "sha256": "5de87c6a6142c0f17522e31aef1413d741cc302a4830ebf92b18df49ecba5a92"
+      },
+      "ui_autosave_selection_encoding_failed": {
+        "accepted_xml_text": "\"Kodiranje izbora za samodejno shranjevanje ni uspelo.\"",
+        "attributes": {
+          "name": "ui_autosave_selection_encoding_failed"
+        },
+        "decision": "accept",
+        "reason": "Izbor agrees with inherited selection vocabulary, and the encoding failure is explicitly in autosave rather than normal save.",
+        "qualifications": [],
+        "sha256": "bb542e2d9613a29a6af7dcd53ea84080d23c5de0fad45221f7feef88d343e5d4"
+      },
+      "ui_cannot_create_the_undo_cache_free_some_device": {
+        "accepted_xml_text": "\"Predpomnilnika za razveljavitev ni mogoče ustvariti. Sprostite nekaj prostora v shrambi naprave in poskusite znova.\"",
+        "attributes": {
+          "name": "ui_cannot_create_the_undo_cache_free_some_device"
+        },
+        "decision": "accept",
+        "reason": "The instruction correctly asks for device storage space, not RAM; creating the undo cache failed and retry is conditional on freeing space.",
+        "qualifications": [],
+        "sha256": "386bc5018640a18e2c6754f3731f404f87078c46bc8bb729ef2e0f4f1ebefc29"
+      },
+      "ui_could_not_export_the_recovery_copy": {
+        "accepted_xml_text": "\"Obnovitvenega izvoda ni bilo mogoče izvoziti\"",
+        "attributes": {
+          "name": "ui_could_not_export_the_recovery_copy"
+        },
+        "decision": "accept",
+        "reason": "The export failure is a composable prefix without punctuation that would duplicate ioFailed's separator; it does not imply restoration failed.",
+        "qualifications": [],
+        "sha256": "7e7c3c7176c66acc34037930f4542934e1e9b6408ea372fc0b3b8e533a8a12a5"
+      },
+      "ui_draft_not_saved_yet": {
+        "accepted_xml_text": "\"Osnutek še ni shranjen\"",
+        "attributes": {
+          "name": "ui_draft_not_saved_yet"
+        },
+        "decision": "accept",
+        "reason": "The draft has not yet been saved, matching initialization rather than a current explicit-save error.",
+        "qualifications": [],
+        "sha256": "addb8ce99f9a98128c658121cd994fe06707098cd5e3b634221e21713b1edb35"
+      },
+      "ui_draft_restored": {
+        "accepted_xml_text": "\"Osnutek je obnovljen\"",
+        "attributes": {
+          "name": "ui_draft_restored"
+        },
+        "decision": "accept",
+        "reason": "The status reports a restored draft only; it does not certify undo history, whose failed path has a separate warning.",
+        "qualifications": [],
+        "sha256": "a9a023ca0885a3175a818ab4996db22717a9f3bfe9b5df47957981c967288dfa"
+      },
+      "ui_draft_saved": {
+        "accepted_xml_text": "\"Osnutek je shranjen\"",
+        "attributes": {
+          "name": "ui_draft_saved"
+        },
+        "decision": "accept",
+        "reason": "The success is explicitly the osnutek, not the current document's Save target or dirty-state clearance.",
+        "qualifications": [],
+        "sha256": "baf211012c878820616855d712411ba37d40111693539c2d974e979ed269a8b1"
+      },
+      "ui_export_recovery_copy": {
+        "accepted_xml_text": "\"Izvozi obnovitveni izvod…\"",
+        "attributes": {
+          "name": "ui_export_recovery_copy"
+        },
+        "decision": "accept",
+        "reason": "The menu imperative and ellipsis are appropriate for the recovery-copy selection/export workflow.",
+        "qualifications": [],
+        "sha256": "f6e26836165803bf3e3e7fc304213bde8ee7e6ee2db92404d36fa56056307fbb"
+      },
+      "ui_export_recovery_copy_144b8a": {
+        "accepted_xml_text": "\"Izvozi obnovitveni izvod\"",
+        "attributes": {
+          "name": "ui_export_recovery_copy_144b8a"
+        },
+        "decision": "accept",
+        "reason": "The dialog title is the same complete action without ellipsis; terminology stays consistent with all recovery instructions.",
+        "qualifications": [],
+        "sha256": "3fccc66a6c769a8db77584e1accc654d65a3a890db6cb22f2dcec109cdc1e284"
+      },
+      "ui_history_unavailable34": {
+        "accepted_xml_text": "\"Platno je bilo obnovljeno, vendar njegove zgodovine razveljavitev ni bilo mogoče prebrati. Izvirni osnutek je ohranjen kot obnovitveni izvod.\"",
+        "attributes": {
+          "name": "ui_history_unavailable34",
+          "formatted": "false"
+        },
+        "decision": "accept",
+        "reason": "The restored canvas, unreadable undo history and retained original are three correctly distinct outcomes, with formatted=false unchanged.",
+        "qualifications": [],
+        "sha256": "3ebd8bfa745f3e82ca85869dfca4bcb808039731b60664b2ec90f2203fbd6a47"
+      },
+      "ui_invalid_autosave_metadata": {
+        "accepted_xml_text": "\"Neveljavni metapodatki samodejnega shranjevanja.\"",
+        "attributes": {
+          "name": "ui_invalid_autosave_metadata"
+        },
+        "decision": "accept",
+        "reason": "Invalidity is correctly distinguished from absence; the fragment is suitable as an exception reason.",
+        "qualifications": [],
+        "sha256": "b954f120e70622c4fd8d3cc767fbaf75bba157f9bef1b5b5134e6941d84887b5"
+      },
+      "ui_previous_draft_kept_for_recovery": {
+        "accepted_xml_text": "\"Prejšnji osnutek je ohranjen za obnovitev\"",
+        "attributes": {
+          "name": "ui_previous_draft_kept_for_recovery"
+        },
+        "decision": "accept",
+        "reason": "The previous draft was kept for future recovery, not successfully restored already.",
+        "qualifications": [],
+        "sha256": "e8b75b353248191c6998f8b41e862ecf95cdf46ea4b6f8073384a2230eaa99ee"
+      },
+      "ui_recovered_image": {
+        "accepted_xml_text": "\"Obnovljena slika\"",
+        "attributes": {
+          "name": "ui_recovered_image"
+        },
+        "decision": "accept",
+        "reason": "Obnovljena slika is an appropriate restored-image fallback name without an additional promise about draft metadata.",
+        "qualifications": [],
+        "sha256": "293ebaa4864d47f3024ae9288153d40007d3d58ce01785d14edc3ba1d88b1f38"
+      },
+      "ui_recovery_copy_exported_extract_canvas_png_from_the": {
+        "accepted_xml_text": "\"Obnovitveni izvod je izvožen. Iz datoteke ZIP izvlecite canvas.png in jo odprite z možnostjo Datoteka → Load image…. ZIP vsebuje tudi nastavitve osnutka in morebitni plavajoči izbor.\"",
+        "attributes": {
+          "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+        },
+        "decision": "accept",
+        "reason": "The ZIP export succeeded, canvas.png is the file to open, and the optional floating selection remains singular. The current English Load image… command is preserved rather than invented in Slovenian.",
+        "qualifications": [
+          "Inherited labels are preserved as composition context, not newly linguistically accepted."
+        ],
+        "sha256": "3177810804789849d6388f60b091b575ee25af59b95a3766593a0d3f884d010d"
+      },
+      "ui_the_draft_is_saving_try_again_shortly": {
+        "accepted_xml_text": "\"Osnutek se shranjuje. Kmalu poskusite znova.\"",
+        "attributes": {
+          "name": "ui_the_draft_is_saving_try_again_shortly"
+        },
+        "decision": "accept",
+        "reason": "The draft is currently being written and the user should retry shortly; the progressive state is not converted to completion.",
+        "qualifications": [],
+        "sha256": "cb8aee61966a13a15c7646840dae5c6d534c8c19a0f8463afba723cf208f287b"
+      },
+      "ui_the_previous_draft_could_not_be_moved_to": {
+        "accepted_xml_text": "\"Prejšnjega osnutka ni bilo mogoče premakniti v datoteko za obnovitev.\"",
+        "attributes": {
+          "name": "ui_the_previous_draft_could_not_be_moved_to"
+        },
+        "decision": "revise",
+        "reason": "Revise the unnatural destination 'into a recovery copy' to a recovery file: AutosaveStore either lacks the source or fails renaming it to a separate ZIP. The revised negative still does not promise a surviving copy.",
+        "qualifications": [],
+        "sha256": "1e0a26dda229ebac6ed8212a7f724c8a4e26cfdd57b59c022d566d01a3ac5855"
+      },
+      "ui_the_previous_draft_could_not_be_preserved_separately": {
+        "accepted_xml_text": "\"Prejšnjega osnutka ni bilo mogoče ohraniti ločeno.\"",
+        "attributes": {
+          "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+        },
+        "decision": "accept",
+        "reason": "Failure to preserve separately is narrower than total data loss; that distinction survives naturally in Slovenian.",
+        "qualifications": [],
+        "sha256": "b6b25cdee103b66dddc419e51ec21e3d9db739f09afa0f389d5e6d82052f8ede"
+      },
+      "ui_the_previous_draft_could_not_be_restored": {
+        "accepted_xml_text": "\"Prejšnjega osnutka ni bilo mogoče obnoviti.\"",
+        "attributes": {
+          "name": "ui_the_previous_draft_could_not_be_restored"
+        },
+        "decision": "accept",
+        "reason": "Only the prior draft restoration failed; the current document and separate preservation outcomes remain unspecified.",
+        "qualifications": [],
+        "sha256": "24828681b78726b6c9e3d1c41a9a254da01ca1112946769c52b56bb8a81e0324"
+      },
+      "ui_the_previous_draft_needs_more_memory_to_reopen": {
+        "accepted_xml_text": "\"Za ponovno odprtje prejšnjega osnutka je potrebno več pomnilnika.\"",
+        "attributes": {
+          "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+        },
+        "decision": "accept",
+        "reason": "This asks for additional working memory to reopen the previous draft and does not confuse it with disk space.",
+        "qualifications": [],
+        "sha256": "a52c1582da204c1025b29e9efb8d227f7913cb25cac08098a476641c952fcd77"
+      },
+      "ui_the_undo_cache_is_damaged": {
+        "accepted_xml_text": "\"Predpomnilnik za razveljavitev je poškodovan.\"",
+        "attributes": {
+          "name": "ui_the_undo_cache_is_damaged"
+        },
+        "decision": "accept",
+        "reason": "The damaged object is the undo cache, not the current image or original saved file.",
+        "qualifications": [],
+        "sha256": "6cdec0c4462ad13cc107e36c522f62208438d4e9e5829b8ab7943b86ad659180"
+      },
+      "ui_unexpected_data_in_the_undo_cache": {
+        "accepted_xml_text": "\"Nepričakovani podatki v predpomnilniku za razveljavitev.\"",
+        "attributes": {
+          "name": "ui_unexpected_data_in_the_undo_cache"
+        },
+        "decision": "accept",
+        "reason": "Unexpected undo-cache data remain a parsing/integrity problem without an invented cause or automatic recovery promise.",
+        "qualifications": [],
+        "sha256": "18ddd109c34d25d775c68ce52c819a245751a329bdfb910980ef1a9526adbd5a"
+      },
+      "ui_an_assembly_source_image_is_missing": {
+        "accepted_xml_text": "\"Manjka izvorna slika sestava.\"",
+        "attributes": {
+          "name": "ui_an_assembly_source_image_is_missing"
+        },
+        "decision": "accept",
+        "reason": "The missing assembly input is an izvorna slika; sestav consistently names the multi-image composition, not a saved flat image.",
+        "qualifications": [],
+        "sha256": "f2678a93a96c0cfd37067372052ff70486c15630ccfa063df256fc444b67c068"
+      },
+      "ui_assembly_saved": {
+        "accepted_xml_text": "\"Sestav je shranjen\"",
+        "attributes": {
+          "name": "ui_assembly_saved"
+        },
+        "decision": "accept",
+        "reason": "The output-save success is limited to the sestav; it says nothing about the drawing editor's independent Save association.",
+        "qualifications": [],
+        "sha256": "c99ce8a54ea6f5df7bb9c8d7210ec89c5dedcf8cdf8b63e53a3de2aafd71c74e"
+      },
+      "ui_assembly_source_memory_floor": {
+        "accepted_xml_text": "\"Ocenjena poraba delovnega pomnilnika za ta sestav presega trenutno omejitev tudi pri najmanjši izhodni velikosti. Samo zmanjšanje mer sestava pri trenutnih omejitvah ne zadostuje. Pred ponovnim poskusom zaprite druge dokumente ali pripravite manjšo izvorno sliko. Vaš sestav ostaja nespremenjen.\"",
+        "attributes": {
+          "name": "ui_assembly_source_memory_floor"
+        },
+        "decision": "accept",
+        "reason": "The complete warning retains estimated RAM use, the minimum output-size case, insufficiency of dimension reduction alone, both remedies under current limits and the unchanged assembly. This is only the P0 warning, not its absent P1 companion.",
+        "qualifications": [
+          "Single P0 value only; no P1 companion, paired-warning acceptance or frozen historical record is changed."
+        ],
+        "sha256": "8592f65a5a770618866da800d6e8a5ee78b1f249fb7f05fbdd186d92bf83d936"
+      },
+      "ui_clear_all": {
+        "accepted_xml_text": "\"Počisti vse\"",
+        "attributes": {
+          "name": "ui_clear_all"
+        },
+        "decision": "accept",
+        "reason": "Počisti vse correctly identifies the assembly-wide clear action rather than removing just the selected input.",
+        "qualifications": [],
+        "sha256": "db19c6de037a84eb09e18c8363b05a71dc0c4d3e13d7687e9528cc27b73b7f95"
+      },
+      "ui_clear_image": {
+        "accepted_xml_text": "\"Počisti sliko\"",
+        "attributes": {
+          "name": "ui_clear_image"
+        },
+        "decision": "accept",
+        "reason": "Počisti sliko is the drawing-clear action, distinct from the assembly's clear-all command.",
+        "qualifications": [],
+        "sha256": "12b6dcf6054295aac85828369e4f42cdc87e8a6d9eac3282fb6eca4e934cd2a1"
+      },
+      "ui_could_not_save_the_assembly": {
+        "accepted_xml_text": "\"Sestava ni bilo mogoče shraniti: %1$s\"",
+        "attributes": {
+          "name": "ui_could_not_save_the_assembly"
+        },
+        "decision": "accept",
+        "reason": "The failed output save keeps the complete exception placeholder and separator; sestava is the correct inflected noun.",
+        "qualifications": [
+          "Dynamic exception/failure detail may remain untranslated; the accepted surrounding value does not certify it."
+        ],
+        "sha256": "e29f0d8ae425791858832a37fccd78e06914c882387e3510bf788110f21ee757"
+      },
+      "ui_could_not_store_the_assembly": {
+        "accepted_xml_text": "\"Sestava ni bilo mogoče shraniti.\"",
+        "attributes": {
+          "name": "ui_could_not_store_the_assembly"
+        },
+        "decision": "accept",
+        "reason": "The internal assembly-storage failure is negative and does not claim a successful output or change the meaning of the more specific exception-bearing message.",
+        "qualifications": [],
+        "sha256": "5268ad57b88674da6daba02792dc7461deb16eb031f879b2a7c52d907c7fee59"
+      },
+      "ui_d_d_pixels_2f_mp_exceeds_the_current": {
+        "accepted_xml_text": "\"Slika velikosti %1$d × %2$d slikovnih točk (%3$.2f MP) presega trenutno varno omejitev za urejanje, ki znaša %4$.2f MP. AN Paint hrani celotno sliko v pomnilniku in rezervira prostor za preoblikovanja in izbore. To omejitev določa razpoložljivi pomnilnik. Postopek je bil ustavljen pred dodelitvijo pomnilnika za preveliko bitno sliko. Samodejno spreminjanje velikosti ni bilo izvedeno.\"",
+        "attributes": {
+          "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+        },
+        "decision": "accept",
+        "reason": "All four ordered numeric arguments, both two-decimal precisions and × survive. The full message preserves resident image/reserves, available-memory limit, preallocation stop and explicit absence of automatic resizing.",
+        "qualifications": [],
+        "sha256": "d1b33134dcc467116d2d665fabc6666196e277fe9b17088d233258f26e1182aa"
+      },
+      "ui_keeps_pixels_at_the_top_left_smaller_canvas": {
+        "accepted_xml_text": "\"Ohrani slikovne točke zgoraj levo. Pri zmanjšanju mer platna se zavržejo slikovne točke za desnim ali spodnjim robom; z možnostjo Razveljavi jih obnovite.\"",
+        "attributes": {
+          "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+        },
+        "decision": "revise",
+        "reason": "Revise to a natural conditional and explicit right OR bottom edge. The original conjunction could suggest only pixels past both edges; the revised clause describes the canvas crop union and keeps the actual Razveljavi action.",
+        "qualifications": [],
+        "sha256": "00a75d4c01b53088406c48691a63db4cef1059ed5a6d105c8806da94356537c6"
+      },
+      "ui_not_enough_memory_for_this_operation_the_assembly": {
+        "accepted_xml_text": "\"Za ta postopek ni dovolj pomnilnika. Izvorne datoteke sestava so ohranjene.\"",
+        "attributes": {
+          "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+        },
+        "decision": "accept",
+        "reason": "The failed operation and retained assembly source files are separate clauses; this does not promise successful rendered output.",
+        "qualifications": [],
+        "sha256": "313d6b8647ffe6ba00b739e62d6788277b4587edeb124944e3dd2b676a607c1e"
+      },
+      "ui_resize_large_image": {
+        "accepted_xml_text": "\"Spremeni merilo velike slike?\"",
+        "attributes": {
+          "name": "ui_resize_large_image"
+        },
+        "decision": "accept",
+        "reason": "The question keeps the inherited Spremeni merilo terminology instead of suggesting canvas cropping.",
+        "qualifications": [],
+        "sha256": "d08cba44d06bea3497f5dae3809cb333503c59280b6be7c24fd39961a2c04eb4"
+      },
+      "ui_sampled_resize_memory_explanation": {
+        "accepted_xml_text": "\"Ocene vključujejo trenutno platno in odložišče, dekodiranje pri zmanjšani ločljivosti ter medpomnilnike za urejanje. Dejanska poraba pomnilnika se spreminja. Manjša kopija izgubi podrobnosti. Izvirna datoteka ostane nespremenjena.\"",
+        "attributes": {
+          "name": "ui_sampled_resize_memory_explanation"
+        },
+        "decision": "accept",
+        "reason": "Reduced-resolution decoding accurately describes the sampled path; current canvas, clipboard, editing buffers, variable actual use, detail loss and original-file preservation all remain.",
+        "qualifications": [],
+        "sha256": "9d9d02b763c2cd19cacd3aaffa9a000abbee651b10e70a2dfebf52657ed0c447"
+      },
+      "ui_save_png": {
+        "accepted_xml_text": "\"Shrani PNG\"",
+        "attributes": {
+          "name": "ui_save_png"
+        },
+        "decision": "accept",
+        "reason": "The PNG button remains an output-format command, without implying that the main drawing's normal Save destination changes.",
+        "qualifications": [],
+        "sha256": "b04823994564b8f6a0efb6fe4ba5a555540840c974149f54c274ec224ea07bf7"
+      },
+      "ui_the_saved_assembly_could_not_be_opened": {
+        "accepted_xml_text": "\"Shranjenega sestava ni bilo mogoče odpreti: %1$s\"",
+        "attributes": {
+          "name": "ui_the_saved_assembly_could_not_be_opened"
+        },
+        "decision": "accept",
+        "reason": "The internally saved assembly cannot be opened; the complete exception detail placeholder and negation remain.",
+        "qualifications": [
+          "Dynamic exception/failure detail may remain untranslated; the accepted surrounding value does not certify it."
+        ],
+        "sha256": "b245f47939340cc08baf9888c0100f87682f27bad842137cb94c62d60386a6b3"
+      },
+      "ui_the_trim_would_remove_the_entire_image": {
+        "accepted_xml_text": "\"Obrezovanje bi odstranilo celotno sliko.\"",
+        "attributes": {
+          "name": "ui_the_trim_would_remove_the_entire_image"
+        },
+        "decision": "accept",
+        "reason": "The conditional bi prevents a false claim that the entire image was already removed; this matches the invalid trim-boundary guard.",
+        "qualifications": [],
+        "sha256": "0df3ca483abc2993b6b1af2b863d96dc494ed9262a2533dcff10bc930efed812"
+      },
+      "ui_there_is_not_enough_memory_for_this_operation": {
+        "accepted_xml_text": "\"Za ta postopek pri izvirni ločljivosti ni dovolj pomnilnika. Samodejno spreminjanje velikosti ni bilo izvedeno.\"",
+        "attributes": {
+          "name": "ui_there_is_not_enough_memory_for_this_operation"
+        },
+        "decision": "accept",
+        "reason": "The failure is at original resolution and the explicit no-automatic-resize clause remains; there is no guarantee that smaller work always fits.",
+        "qualifications": [],
+        "sha256": "510600730f34801e2f1f7bc14429911a3bb65189d4405ce1c2a5e5f773b61c2e"
+      },
+      "gallery_credit_could_not_save": {
+        "accepted_xml_text": "\"Podatkov o virih slik ni bilo mogoče shraniti ali obnoviti. Obstoječi shranjeni podatki so ohranjeni. Poskusite znova.\"",
+        "attributes": {
+          "name": "gallery_credit_could_not_save"
+        },
+        "decision": "accept",
+        "reason": "Podatki o virih slik is a source-attribution umbrella, not monetary credit or merely author names; both save/restore failure and retention of existing saved data are explicit.",
+        "qualifications": [],
+        "sha256": "d5ff1f7dee262d2c5c40438e495af097a3f04997aa1822cde61cc4c41d39a17d"
+      },
+      "gallery_credit_too_large": {
+        "accepted_xml_text": "\"Zaradi teh podatkov o virih slik bi bila risba prevelika za obnovitev. Vaša prejšnja risba in podatki o virih so ohranjeni.\"",
+        "attributes": {
+          "name": "gallery_credit_too_large"
+        },
+        "decision": "accept",
+        "reason": "The metadata-size rejection is causally tied to source-attribution data, not a requested pixel dimension. The previous drawing and attribution data, not the rejected edit, are retained.",
+        "qualifications": [],
+        "sha256": "92c11a77e603354770d23a58d3cbdc77b0b19456daed1ce098c1043000e0869a"
+      },
+      "legacy_credits_unreadable": {
+        "accepted_xml_text": "\"Nekaterih shranjenih podatkov o virih slik ni bilo mogoče prebrati. Njihovi shranjeni izvodi so ohranjeni.\"",
+        "attributes": {
+          "name": "legacy_credits_unreadable"
+        },
+        "decision": "accept",
+        "reason": "Only some saved attribution data are unreadable, and their stored copies remain; retention is not incorrectly described as successful recovery.",
+        "qualifications": [],
+        "sha256": "d97d8a55f404ac3767e30d7af67a460ab365f13693af8f567439251fe3ea4d1c"
+      },
+      "save20_destination_error": {
+        "accepted_xml_text": "\"Ciljne datoteke ni bilo mogoče nadomestiti z nastalo datoteko.\"",
+        "attributes": {
+          "name": "save20_destination_error"
+        },
+        "decision": "revise",
+        "reason": "Revise končana slika to the resulting file: TextImageCodec.replace is shared by Base64 decoding, Base64 text export and ASCII text export as well as image-codec callers. The complete revised wording describes failed replacement by the resulting file without restricting output to a completed raster or promising provider-write success.",
+        "qualifications": [],
+        "sha256": "231651f6352204b2894df68d5a67b32ec26711487d4a0060f15112fc0b3a6bd0"
+      },
+      "save20_encoding_budget": {
+        "accepted_xml_text": "\"Slika in medpomnilniki za kodiranje presegajo pomnilniško omejitev za izvoz.\"",
+        "attributes": {
+          "name": "save20_encoding_budget"
+        },
+        "decision": "accept",
+        "reason": "Both the image and encoding buffers exceed an export RAM limit; neither disk capacity nor only image dimensions is substituted.",
+        "qualifications": [],
+        "sha256": "809a71b795ccf3cf6cebfea5b0c7debfd7cce5ae68950cc6ef8d1fa5d113e41a"
+      },
+      "ui_could_not_open_image": {
+        "accepted_xml_text": "\"Slike ni bilo mogoče odpreti\"",
+        "attributes": {
+          "name": "ui_could_not_open_image"
+        },
+        "decision": "accept",
+        "reason": "The open-error prefix has no terminal punctuation and composes cleanly with caller-provided details.",
+        "qualifications": [],
+        "sha256": "cfcd638d9adfff86d594a699744606f9d15d5d384706906fde10ba2417675cf6"
+      },
+      "ui_could_not_save_image": {
+        "accepted_xml_text": "\"Slike ni bilo mogoče shraniti\"",
+        "attributes": {
+          "name": "ui_could_not_save_image"
+        },
+        "decision": "accept",
+        "reason": "The save-error prefix is a write failure, not an open/import failure, with caller punctuation left intact.",
+        "qualifications": [],
+        "sha256": "e35b25aef798d75e9ca585483d185d2d7b77478ee88d647ecfa0193c5b524551"
+      },
+      "ui_export_did_not_save23": {
+        "accepted_xml_text": "\"Izvoz je bil ustvarjen. Pred nadaljevanjem shranite trenutno sliko z možnostjo Shrani ali Shrani kot….\"",
+        "attributes": {
+          "name": "ui_export_did_not_save23"
+        },
+        "decision": "accept",
+        "reason": "A successful export is acknowledged separately from the explicit Save/Save-as needed before continuation; both actual labels are retained and it does not say no file was created.",
+        "qualifications": [],
+        "sha256": "3e075b88d3add577682834e9211b5e6601e58d2ff160746426a9af4fea872543"
+      },
+      "ui_export_explanation23": {
+        "accepted_xml_text": "\"Izvozite ikono, besedilo Base64 ali sliko iz znakov ASCII. Izvoz ne spremeni trenutne slike niti ciljne datoteke za ukaz Shrani.\"",
+        "attributes": {
+          "name": "ui_export_explanation23"
+        },
+        "decision": "accept",
+        "reason": "The three derived-output families remain icon, Base64 text and ASCII rendering. The current image and normal Shrani target stay unchanged; the destination noun does not imply no export file exists.",
+        "qualifications": [],
+        "sha256": "be68ffc1eeeb1a17c12cd3e27c476d37a4d74720f9bb3df88cf8f2b01cb32217"
+      },
+      "ui_not_enough_memory_to_save_in_this_format": {
+        "accepted_xml_text": "\"Za shranjevanje v tej obliki ni dovolj pomnilnika. Poskusite PNG\"",
+        "attributes": {
+          "name": "ui_not_enough_memory_to_save_in_this_format"
+        },
+        "decision": "accept",
+        "reason": "The memory failure suggests PNG without guaranteeing success and leaves the final separator to the composed error path.",
+        "qualifications": [],
+        "sha256": "654ac8e64667f55e4d97bd6beb6fae8d400065d2c64561f98b99d761c40651ea"
+      },
+      "ui_png_encoding_failed": {
+        "accepted_xml_text": "\"Kodiranje PNG ni uspelo.\"",
+        "attributes": {
+          "name": "ui_png_encoding_failed"
+        },
+        "decision": "accept",
+        "reason": "PNG encoding failure is unambiguously negative and is not converted into an IO-location diagnosis.",
+        "qualifications": [],
+        "sha256": "2a027f33361c21c93e57050f286a1bf268cb8174247dd4329f47071765e81ed8"
+      },
+      "ui_save_and_share": {
+        "accepted_xml_text": "\"Shrani in deli…\"",
+        "attributes": {
+          "name": "ui_save_and_share"
+        },
+        "decision": "accept",
+        "reason": "The menu title pairs saving a copy with sharing, retaining the ellipsis and the corresponding explanation's separate Save-target semantics.",
+        "qualifications": [],
+        "sha256": "96569c729909689491b9f57317650d822e1b47ba14cc7e779fb84cc301fe4b68"
+      },
+      "ui_save_and_share_41edb4": {
+        "accepted_xml_text": "\"Shrani in deli\"",
+        "attributes": {
+          "name": "ui_save_and_share_41edb4"
+        },
+        "decision": "accept",
+        "reason": "The no-ellipsis title exactly pairs with the menu form and does not conflict with the three-mode panel semantics.",
+        "qualifications": [],
+        "sha256": "37c0d0254e8eae333a0f92409cab3acbcafeea0e73baf71e058de89313eba6ad"
+      },
+      "ui_save_explanation23": {
+        "accepted_xml_text": "\"Izberite obliko slike in nastavitve stiskanja. Ukaz Shrani bo znova uporabil to ime datoteke, mesto, obliko in nastavitve.\"",
+        "attributes": {
+          "name": "ui_save_explanation23"
+        },
+        "decision": "accept",
+        "reason": "All four reused properties—name, location, format and settings—remain; the explicit Shrani action is not generalized into autosave or export.",
+        "qualifications": [],
+        "sha256": "d44a0bf1090508659aedf23c7830125742e69664c95b2bdc8ee042bb6dd6d5f3"
+      },
+      "ui_saved": {
+        "accepted_xml_text": "\"Shranjeno: %1$s\"",
+        "attributes": {
+          "name": "ui_saved"
+        },
+        "decision": "accept",
+        "reason": "The saved filename token is retained as a literal output success; the neutral Shranjeno status does not claim that export cleared the dirty document.",
+        "qualifications": [],
+        "sha256": "4820a9211992a4e31b976c9d1cc725c76aad172b7ff57f5e7e93f4ada8838925"
+      },
+      "ui_share_explanation34": {
+        "accepted_xml_text": "\"Shranite kopijo na izbrano mesto, nato izberite aplikacijo za deljenje. Trenutna ciljna datoteka za ukaz Shrani ostane nespremenjena.\"",
+        "attributes": {
+          "name": "ui_share_explanation34",
+          "formatted": "false"
+        },
+        "decision": "accept",
+        "reason": "Copy creation precedes choosing a sharing app, while the current normal Save destination remains unchanged. The formatted=false attribute is retained.",
+        "qualifications": [],
+        "sha256": "4945ecf4eb1b3c9c67aee9270b3b64904e041df5dcb69f47ed201c06f65ababc"
+      },
+      "ui_the_encoder_did_not_finish": {
+        "accepted_xml_text": "\"Kodiranje slike se ni dokončalo.\"",
+        "attributes": {
+          "name": "ui_the_encoder_did_not_finish"
+        },
+        "decision": "accept",
+        "reason": "Kodiranje slike se ni dokončalo is a comprehensible process failure, not a human encoder; it does not imply bytes were fully written.",
+        "qualifications": [],
+        "sha256": "ffa320eb3254e36d978d15fcddbf249c22b3d1bab016f7def759474ecd6e06f0"
+      },
+      "ui_the_image_was_saved_but_android_could_not": {
+        "accepted_xml_text": "\"Slika je bila shranjena, vendar Android ni mogel odpreti deljenja: %1$s\"",
+        "attributes": {
+          "name": "ui_the_image_was_saved_but_android_could_not"
+        },
+        "decision": "accept",
+        "reason": "The image write succeeded but Android could not launch sharing. The exception detail remains a separate token after the colon, not a reversed failure outcome.",
+        "qualifications": [
+          "Dynamic exception/failure detail may remain untranslated; the accepted surrounding value does not certify it."
+        ],
+        "sha256": "35ea20a230f5eea71f4c6a5bdc10946f931c766d75563b2f183cf349a7ef6938"
+      },
+      "ui_the_selected_location_is_not_writable": {
+        "accepted_xml_text": "\"Na izbrano mesto ni mogoče zapisovati.\"",
+        "attributes": {
+          "name": "ui_the_selected_location_is_not_writable"
+        },
+        "decision": "accept",
+        "reason": "The selected destination cannot be written to; the wording avoids assuming a permission problem when a provider can fail for other reasons.",
+        "qualifications": [],
+        "sha256": "ac77e575b55d109ec1c32d5fe1027d4c27a0f4dced559460d16ce16753287993"
+      },
+      "ui_this_location_is_not_writable": {
+        "accepted_xml_text": "\"Na to mesto ni mogoče zapisovati.\"",
+        "attributes": {
+          "name": "ui_this_location_is_not_writable"
+        },
+        "decision": "accept",
+        "reason": "The generic destination cannot be written to, so it remains valid for both recovery export and source export callers.",
+        "qualifications": [],
+        "sha256": "bf8da9151b76df8d628d427616b03551d434aedaf2a2775c8d75e2ddf0aae5ec"
+      },
+      "ui_your_current_image_has_unsaved_changes": {
+        "accepted_xml_text": "\"Vaša trenutna slika ima neshranjene spremembe.\"",
+        "attributes": {
+          "name": "ui_your_current_image_has_unsaved_changes"
+        },
+        "decision": "accept",
+        "reason": "The current image's unsaved state and negation remain explicit; the pre-existing Save/Discard/Cancel buttons and title are untouched.",
+        "qualifications": [],
+        "sha256": "f47c995687463295d462593a373a9b5aaf644f09237b520c03f7003e31fb2576"
+      }
+    }
+  },
+  "preserved_values": 254,
+  "held_absent_per_locale": [
+    "formats22_derived_exported",
+    "ui_save_as",
+    "ui_save_as_jpeg",
+    "ui_save_as_jpeg_xl",
+    "ui_save_as_png"
+  ],
+  "result_per_locale": {
+    "total": 205,
+    "P0_present": 87,
+    "P0_total": 92
+  },
+  "fixture_sha256": "6b1256111320bed7b63df4323ce989770ca4a6375a974b91455f4665f5529594",
+  "qualification": "Bounded independent AI complete-value/source-static acceptance only; no inherited/whole-language/native-human/runtime/layout acceptance."
+}
