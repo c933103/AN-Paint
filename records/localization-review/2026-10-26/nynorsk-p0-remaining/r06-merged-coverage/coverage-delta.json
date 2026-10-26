@@ -1,0 +1,1434 @@
+{
+  "schema": "nynorsk-merge-coverage-delta-v1",
+  "baseline_commit": "857a20103285a77846e340b326667c15a402ff9e",
+  "merged_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "merged_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "options": 171,
+  "canonical_containers": 717,
+  "canonical_leaves": 718,
+  "tiers": {
+    "P0": 92,
+    "P1": 249,
+    "P2": 305,
+    "P3": 71
+  },
+  "presence_totals": {
+    "P0_present": 6526,
+    "P0_missing": 9206,
+    "P1_present": 20022,
+    "P1_missing": 22557,
+    "P2_present": 19636,
+    "P2_missing": 32519,
+    "P3_present": 4365,
+    "P3_missing": 7776,
+    "all_present": 50549,
+    "all_missing": 72058,
+    "leaves_present": 50583,
+    "leaves_missing": 72195,
+    "leaves_english_identical": 7051,
+    "leaves_source_different": 43532
+  },
+  "presence_delta": {
+    "P0_present": 72,
+    "P0_missing": -72,
+    "P1_present": 0,
+    "P1_missing": 0,
+    "P2_present": 0,
+    "P2_missing": 0,
+    "P3_present": 0,
+    "P3_missing": 0,
+    "all_present": 72,
+    "all_missing": -72,
+    "leaves_present": 72,
+    "leaves_missing": -72,
+    "leaves_english_identical": 0,
+    "leaves_source_different": 72
+  },
+  "full_presence_options": 59,
+  "zero_presence_options": 31,
+  "nn_before": {
+    "order": 106,
+    "tag": "nn",
+    "path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+    "blob": "f8020f1bbcf7bd9e79d231dd495f43f48c7292d7",
+    "P0_present": 15,
+    "P0_missing": 77,
+    "P1_present": 87,
+    "P1_missing": 162,
+    "P2_present": 16,
+    "P2_missing": 289,
+    "P3_present": 0,
+    "P3_missing": 71,
+    "all_present": 118,
+    "all_missing": 599,
+    "leaves_present": 118,
+    "leaves_missing": 600,
+    "leaves_english_identical": 0,
+    "leaves_source_different": 118
+  },
+  "nn_after": {
+    "order": 106,
+    "tag": "nn",
+    "path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+    "blob": "552a1144afad567dd02b7dc34cac50e86b1090a7",
+    "P0_present": 87,
+    "P0_missing": 5,
+    "P1_present": 87,
+    "P1_missing": 162,
+    "P2_present": 16,
+    "P2_missing": 289,
+    "P3_present": 0,
+    "P3_missing": 71,
+    "all_present": 190,
+    "all_missing": 527,
+    "leaves_present": 190,
+    "leaves_missing": 528,
+    "leaves_english_identical": 0,
+    "leaves_source_different": 190
+  },
+  "new_review_scopes": [
+    {
+      "identity": "string/formats22_animation_message",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "final_value": "Dette %1$s-biletet har %2$s biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+      "final_value_sha256_utf8": "646836a3bcc48355c32a64d8d3aa054be5e2a381457fdbff9e23c32f42ec3816",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "e50c8ccd73cb91d63bd14301b738b9ec403c85f53917d03c48aeb529ff9bed0b",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "final_value": "Dette PNG-biletet har eit eige standardbilete. Det vert importert i staden for dei animerte biletrutene. Ved lagring vert det laga eit stillbilete.",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "decision": "revise",
+      "source_value_sha256_utf8": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+      "final_value_sha256_utf8": "dcb326d7df1129edd00571220df8ad1df189046d31b5893c2e21c3ea4cd2951b",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "f146ca97f04d3acf4273f235e37ac04fbad2de403e915306cc1f0cd3815085cf",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "final_value": "Berre den første biletruta vert importert. Ved lagring vert det laga eit stillbilete.",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "decision": "revise",
+      "source_value_sha256_utf8": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+      "final_value_sha256_utf8": "1189f1a8d400e7d494d8768a18dd173a9b6edcd123ce89513431ea4af0d7a9b7",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "24cb6ae31501f73aa2eba31f32186ad78c7e599e0823eb1a24e28f5aa4ee69f7",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "source": "Animated image",
+      "final_value": "Animert bilete",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+      "final_value_sha256_utf8": "f669d113fd35a4cfcdbc53d200dc7f236afc6288cb5ec4c1a00ed3989e013e6c",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "e56a7fdbbcfb96d5c645fe401b46c9669ab9d1a564cc6d676ae3e2ab416564ae",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "final_value": "Dette %1$s-biletet er for komplekst til å stadfesta om det har fleire biletruter. AN Paint opnar berre eit stillbilete og tek ikkje vare på nokon animasjon.",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+      "final_value_sha256_utf8": "f58758fadd26851093db64226c00a2742246f4c586d299bd004f945447603a4d",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "3bf4c567abb9e5aae0c2b6936cd107bc845d1fd942819d18a87de21f60cdd8e8",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "final_value": "Skriv rein tekst med lyse og mørke teikn. Vis teksten med ei skrift med fast teiknbreidd. Dette er ei visuell attgjeving; ho kan ikkje opnast att som det opphavlege biletet.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+      "final_value_sha256_utf8": "444dc656830228236ffc017eebe199a9d9a24fdc4ad59f2adaca0ad07d866dbd",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "06e5d5b7082d294e74022504ac2d3bdfddc3e730114894d3462f9053b32f0f1e",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "source": "Open still image",
+      "final_value": "Opna stillbilete",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+      "final_value_sha256_utf8": "1158cfeea9bf1cbee298d5db58bc14a90fd811db1ae3b6b4dade0c56c785c947",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "779e41887af428481f40a1330ae53dfa70e01076a609b6c9e887aa46ce6ce1a8",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "final_value": "PDF-sider vert rasteriserte med 144 dpi. Tekst og vektorobjekt vert til pikslar.",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+      "final_value_sha256_utf8": "ebb5f2d892147e456fc7f5a7b37274b043f1e5a8bbe3c3375bf2aea05c92d43b",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "afb70e87b80c731d81552feeb18991812c6465a44d1ac4ae8526156a26c80d9d",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/save20_file_format",
+      "source": "File format",
+      "final_value": "Filformat",
+      "attributes": {
+        "name": "save20_file_format"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "d63b2b691e7e74791728762f2759fa89f5b2c3cb09c96bd53e87ebb9604c23fb",
+      "final_value_sha256_utf8": "78e192fb3dd74b719f526ebd7d078ae0757646c151df2d665b2fd44d8b8264bd",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "caad751577bfcd7f22aaa5f11b8feef97e2cb52f853f7e2807eb5a637c0167b6",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "final_value": "Stillbilete med opptil 256 fargar. Utjamning gjer fargeovergangane jamnare. Animerte GIF-bilete vert opna som den første biletruta.",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "final_value_sha256_utf8": "a9c7f37a349d0cc8e1fc8a8ecfc056fb458e19f0f4554ebabe0b91742a8f1984",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "ea3e9e28bb76759e415446db0feb460eba373858623d6e855bb2de0f34e3ef29",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "source": "Enter a file name without slashes or control characters.",
+      "final_value": "Skriv inn eit filnamn utan skråstrekar eller kontrollteikn.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+      "final_value_sha256_utf8": "c8eb2595fb57beafe32794d4edfd61a9139259ea5bcea1a3b7e98c504bde48a7",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "a2613dee42e7f64636cb98b9365e78eac402cb02e038ac447a749ba6f67730a5",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "final_value": "Høgare kvalitet tek vare på fleire detaljar og gjev vanlegvis ei større fil.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+      "final_value_sha256_utf8": "403894f8a78f2d4a9d80258be224716abc7f8e841cb7d293ad180331625fd87c",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "c12fdb7acfa89b2a144debce68fbe971d7bba9ae6962dbd0c9b71a0b2488a501",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "final_value": "Dette biletet brukar ein fargeprofil som AN Paint enno ikkje kan konvertera. Konverter det til sRGB PNG i eit bilethandsamingsprogram med fargestyring før du importerer det.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+      "final_value_sha256_utf8": "fcb2c970767c6b85ce0721ad2ac1d2544d48fb543ecaf2424d4a840b6379041b",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "c3adbd48efda4c5f68137835799f620030eecf342a19878c5243b8879c8bc570",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "final_value": "Høgare kvalitet gjev vanlegvis ei større fil. Tapsfri komprimering tek vare på kvar fargeverdi.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+      "final_value_sha256_utf8": "4989c94ec94f7ec9ff70d20bb637c5537091c33e94aa68392413ba140ffd308b",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "independent_review_file": "group-01-import-format-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "e168db26a29b00a240eb479e8d04628415c85256de88c0d7ea8ab86c966290d9",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "final_value": "%1$s Ein eigen gjenopprettingskopi er teken vare på. Bruk «Fil > Eksporter gjenopprettingskopi…» til å lagra ZIP-fila. Pakk ut canvas.png frå henne og last inn biletet for å bruka dei vanlege alternativa for skalering om det trengst.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "579fea23054e5ac24d9dad1aee8a1dd13af1d810fbed9f92e059cce26f6ed0a0",
+      "final_value_sha256_utf8": "4d2064182c085697785c8e6c87e05e6ce8139762ea4731ca4f5f3174edf45346",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "8a6e52c5dd197cfdffb4e943bea48f799e3a8aa0fa58acdce56616dafc7c9fc6",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "source": "Autosave failed · use Save",
+      "final_value": "Autolagring feila · bruk «Lagra»",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "9fab2239be3a11b6843125b73bedddcef714c0188d682cb0f145f6a7fdd1457a",
+      "final_value_sha256_utf8": "9e3c74a3b310ae702666578311f192c17ed48230549b140f3f2ed936717648d3",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "7f83d2121e78c106266c07c90593abf3e804128f2c0f364a3c57a014045a98bb",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "source": "Autosave image encoding failed.",
+      "final_value": "Koding av biletet for autolagring feila.",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f83897890596e2776edb9f66dca76dce2e53f64fb26f43c2462116d978d64201",
+      "final_value_sha256_utf8": "e0470cf4d8218d653513830a31a62abf7a2ac7ef0c6f1411b289068538bd18b6",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "af60990f81abdf2eee75665a7c7ed0faa18a6e7ad2567ddd9c8de27bd1318c3f",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "final_value": "%1$s Autolagring er sett på pause for å verna det utkastet. Bruk «Fil → Eksporter gjenopprettingskopi…» til å ta vare på det, og «Fil → Lagra som…» (Filformat: PNG / JPEG) til å lagra arbeidet du held på med.",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "45af3acf76284540e468a05d80591e36743472a7625da0c6b7153a8173e007a7",
+      "final_value_sha256_utf8": "1d8df61f5a29176c4e0f0bb600cd56abd3974e5c476c6901a9ca7e77313f58e3",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "65ca52bbd6a39c4a51383ca08ed7f07a6e0c9d26eae8e8be52201b366f76c6e1",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "source": "Autosave metadata is missing.",
+      "final_value": "Metadata for autolagringa manglar.",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "1115f993a7d75ef4a554c7ef1cf900d88970a5c05144cf1c9038ab0d86965de4",
+      "final_value_sha256_utf8": "a6a37586a88d6146b9ec7faf8d8e793949bc5fb62d88e78773c9b88f62d09520",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "f459da711a43b95f404125c0752659a00857d6c272d5b16fe0f144486f5f4c53",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "source": "Autosave paused · use Save",
+      "final_value": "Autolagring er sett på pause · bruk «Lagra»",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "3dfab3c54ba3d7700fc9d12ae3d767eda448501ba5df52284905edd71c7f30bd",
+      "final_value_sha256_utf8": "8527569a914c41bd027983935fc2e0e49a774cb48f10260b15ea0202b33bc009",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "537d0ac5c109a80c2b8271bb84c2649ed83c053ef691ec6dd82794365189efa9",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "source": "Autosave pixels are missing.",
+      "final_value": "Pikseldata for autolagringa manglar.",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "4af9f86e590fa90219121ad8f4cbbe372eaeeca8fb1927e01917a7fdd881de31",
+      "final_value_sha256_utf8": "a6af09a013ff8cdd580455446c9f4ab6341def65239b39013527b81f14ba11b9",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "d788370e80ad4a8373b1ee35b3b6ff1afb6d7e5758e3dd8c708015a854a451d3",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "source": "Autosave pixels could not be read.",
+      "final_value": "Kunne ikkje lesa pikseldata for autolagringa.",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "b6c10f2c0238abb6190525baa6d50140fc4e8c33de2cfab12b99930e833ba2f3",
+      "final_value_sha256_utf8": "f665885dcb789e68f74da2eea2457d0219acc681ee20940085a8d2126740d05a",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "e075f278e30cbd72e7403b8c08c4d608ebe41c59074bc2a277052b984c3d05ca",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "source": "Autosave selection encoding failed.",
+      "final_value": "Koding av utvalet for autolagring feila.",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "4f03c5b20f4fee753afcccbbaddc08e6361f85e6ebd9a1275d69cfd5ffa906e0",
+      "final_value_sha256_utf8": "8b8e44d09a2e4f17b0a6f613aee2f25be8423705b5ffff36ccd022b46f07d710",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "2cf0c4a6ebd000ce50f41e577ec49230470466a9a0a0084eb048ccd70dc70216",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "final_value": "Kan ikkje oppretta mellomlageret for angring. Frigjer lagringsplass på eininga og prøv på nytt.",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "final_value_sha256_utf8": "47e44c0b6965aa04a2f27849a6629653e41a93f131f1ab048b8c96d8e9614fbe",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "2144461cc17d45fb6d9275c16f0d7791ff57c8917a77640abf6c874e7fd952f4",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "source": "Could not export the recovery copy",
+      "final_value": "Kunne ikkje eksportera gjenopprettingskopien",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "66c703a27ccf6fd0c8400514fd0417449b780e644313ed3b5565bd8060be1815",
+      "final_value_sha256_utf8": "3067372ac10edc60e73058158f8aaef7e84b74e656d8ef080f460ad954572ee7",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "bdbb97b66076cd68c627ce67320f0a941373fcb78cc04a699918ff13091c4e0a",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "source": "Draft not saved yet",
+      "final_value": "Utkastet er ikkje lagra enno",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "47bfd1dafcd6d9d6d49ae9f60f5b5c60d0180661684733aaa73e559734f7d447",
+      "final_value_sha256_utf8": "e57a70e3d84643f8f334ffb63ddbc4936b26e178c73fd3b5f9dc8353a75a38ae",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "110ed9dc64f280f2a7a06d0f6b4a685f8f11cea281ed257ad6d40cbdcd4a9f88",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "source": "Draft restored",
+      "final_value": "Utkastet er gjenoppretta",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "b22e11b3de90d4a130e7c63753a46f3b853fc949ca2fe95dd156138a384b5dcb",
+      "final_value_sha256_utf8": "760f3f67ead209dcdabad208aa1c1dc80087803b23c7edf568cb9b41e23fee76",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "94257e09edaabc185860eedd1f4e3c2d34d1f5452ffe8db983e1cdde782f9436",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "source": "Draft saved",
+      "final_value": "Utkastet er lagra",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "5ccb8caacdc5383597f882b5c366969ee1cdd1a32b1d122a42b0280a51f9a5a6",
+      "final_value_sha256_utf8": "0810540b4c5b18f2a66ea5c01d75a236f6c28fdd85f8581309644c92a4133a74",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "3f7744b6403be5ffdba60ed97146181b42ced3ac1ef84008d3b57b5fd7c358da",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "source": "Export recovery copy…",
+      "final_value": "Eksporter gjenopprettingskopi…",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "d642d7ea56f8deaece6e022241000cf5ef28239a5d066391c1e1e4bd5fe7a197",
+      "final_value_sha256_utf8": "1b082cc0c2213557369bf918882d641575732db653f4c5a3b5fff8a395882b97",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "8793c8065e0feec14834167f4df796d05259a0fa63b76eda380b64a6723a1a0c",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "source": "Export recovery copy",
+      "final_value": "Eksporter gjenopprettingskopi",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "144b8a2d9ee28d7aaa90dbbd22a6e1f487e99fd78a9c5f4d4131e48c0c3a0644",
+      "final_value_sha256_utf8": "703a49f4340963ca86234e848ad281dffa8fc071877a59dc81690510c304e27b",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "0f393a830b210dda9d1a814a83b2705d7cd8f8eef3d58da5d98b31f539d1afa8",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "final_value": "Lerretet vart gjenoppretta, men angreloggen kunne ikkje lesast. Det opphavlege utkastet er teke vare på som ein gjenopprettingskopi.",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "445a2a9744ed258c1815920072f46042e9bb4aeb519a2c2d2d34eac8a95a589e",
+      "final_value_sha256_utf8": "825bfe91a356acf03a21a8a1d17d78a18ccd42ab86c2a8c8e726218c0c9f4a10",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "aa28b8b4c0d9d8f82fcddb8d0ce7e50d72ca8e4ded41fedbd89e520ed9d9c410",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "source": "Invalid autosave metadata.",
+      "final_value": "Ugyldige metadata for autolagringa.",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "4a62b9a9531a09d3f34b967194d530070ddf65a66811f5ce52f39c332de3e2eb",
+      "final_value_sha256_utf8": "1f0f08b41a3cc8d35297442b9615e2992bb851a63a104027f264ecc49564f3bb",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "f52a7eff5c724179db26825eda62712a59ed4950371f1682a5552e7a4e9beace",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "source": "Previous draft kept for recovery",
+      "final_value": "Det førre utkastet er teke vare på for gjenoppretting",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f31aee8ae34783790412c745919799d37484bf8e70be9dc2865ec4defc829ff8",
+      "final_value_sha256_utf8": "3b17e6e169cffe301399e6595bdc95b536261f7d60c1fa0d528b40809c77e978",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "76d36e0d18afe7c4c704ae3d3337e0dbb5f60875f95c068f1d6eabe5ddb71c93",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "source": "Recovered image",
+      "final_value": "Gjenoppretta bilete",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f31f8410df9ce45c66f3c7e7af9c7bf126ee2481a825f0e31cfae2a4881a43a8",
+      "final_value_sha256_utf8": "50242c72d7d9bbc6fbfe64a53a65cbdc48a7240a3bb41ba5c287f52f9148a594",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "880e502a37b36cb5895adfe96b85caf48136cdc7f5ef8cbf1b435fb04032216a",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "final_value": "Gjenopprettingskopien er eksportert. Pakk ut canvas.png frå ZIP-fila og opna biletet med «Fil > Load image…». ZIP-fila inneheld òg innstillingane for utkastet og eit eventuelt flytande utval.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "decision": "revise",
+      "source_value_sha256_utf8": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "final_value_sha256_utf8": "cabc45f2643c19a382bbf6b0877e7c8a8e72b5fcde0bd3abb1e1e2a70c786829",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "6135daf40d734bca297ae527ff1ae5ce3a83ac15b6bc7bb0d0f3d8bd553aaaa8",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "source": "The draft is saving. Try again shortly.",
+      "final_value": "Utkastet vert lagra. Prøv på nytt om litt.",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+      "final_value_sha256_utf8": "b407dd7ccf63f39d76a8dd336cb17232b979d6f26f18bba2b061fd638f201dba",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "164202c8bb76db3b63f4954f695bff91b3bc3dc11c8d4df4985c8419e3ec617e",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "final_value": "Det førre utkastet kunne ikkje flyttast til ein gjenopprettingskopi.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "58a948005b3938c7d8ca4ea368db1b4b390a98d9f517f4851c5b98f8b57e71e5",
+      "final_value_sha256_utf8": "dc8de49138f1afdc3409bf23d488d034af2ff641664a6f8ad79d98cae00d2f8e",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "a1fe8007bbb9af50f6df77308f475fb99925689413f4b1104cafe1938b9ce33c",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "source": "The previous draft could not be preserved separately.",
+      "final_value": "Det førre utkastet kunne ikkje takast vare på for seg.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "0231e19f5f7e376d0872735d1e3f8f9698fbd43564ea52240f454efc21d3c8ec",
+      "final_value_sha256_utf8": "11c359e2482febb29bd42b5e6207dc89ed684c61a2cdef0d34fc53781d7b50e2",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "5b7393d9f47a0add4b27a02fee04a7bd63dbcc95d23b800544bda5756cd58890",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "source": "The previous draft could not be restored.",
+      "final_value": "Det førre utkastet kunne ikkje gjenopprettast.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "1cc58fbbe1b76be657fc2eafbf8250b6231f06484eda3fbf7758e1b5cf88ea13",
+      "final_value_sha256_utf8": "5e611fd41f45df36102e039fed69ed4b8fd5d44cd86b963f45f9f4d9ce8f42d3",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "8a94b36fb3d612aad8355326da023e8491ab740907f93a57845275a53150fb7f",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "source": "The previous draft needs more memory to reopen.",
+      "final_value": "Det trengst meir minne for å opna det førre utkastet att.",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "cf655bbea013a29738b4f078166b9dde719f694052a7f1755e2bd0a40c1b9170",
+      "final_value_sha256_utf8": "9f7cc69394a3eda50014a2fae942cce52fa94730a93b804d633b4649b327372e",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "17bfc1d13261640468dc4d5ab270ef8ca814c4556e53f246932c044f725b5ae8",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "source": "The undo cache is damaged.",
+      "final_value": "Mellomlageret for angring er skadd.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "19e62ed88ca1118a10f0062c76f9f7b3629b34cceed02628aefe5ca3bbb44cef",
+      "final_value_sha256_utf8": "2c6c3d8551d501716c5017e8eb59797e45f4ac2a6a3bcc67fe43b69f5edbe2f3",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "2f342169da2224a9cbbfc6efce83c7c96bf1c1a08f4cb429d40341c163592bb8",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "source": "Unexpected data in the undo cache.",
+      "final_value": "Uventa data i mellomlageret for angring.",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "9005bd155636cba50a7b1139426614c2878b1b6651e86c0acb7d1ca0de8b0b22",
+      "final_value_sha256_utf8": "45b66ed046cdd6936238f5fbe214f4cc1359b8ce1e446dd079c95f68517d5cb2",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "independent_review_file": "group-02-recovery-independent-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "04d466dbbc84361c08eb5992a96f920623116e8c7ab53a1c1f9f7c0f956b07ee",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "source": "An assembly source image is missing.",
+      "final_value": "Eit kjeldebilete til biletmontasjen manglar.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "03cf15a2a8c5dc8bef80963ac8b5b4ba7cafb00edab05c3d7862d5d02a33723f",
+      "final_value_sha256_utf8": "6b576a0a8d432eddc553749e16c0e61ebb77d7448634b254a7cfb5b814b2e0e7",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "2e31c9a50692d22bacdd9ae01ab42233b95f124ad02c8afe42005aa13a214bd1",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "source": "Assembly saved",
+      "final_value": "Biletmontasjen er lagra",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "766dc3e6dbd1b817e2d2c2615c6a53a9b8c306e768f44a5931525c836ec27d37",
+      "final_value_sha256_utf8": "8ce183525ae94037cedc630712c1e4315b6732d5ed1b597518cdb99e4bb76767",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "43a94cfeb2034a2eabc6156f57992bfaa1a47680b70eddde59c1b13643de3664",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "final_value": "Denne biletmontasjen er estimert til å krevja meir arbeidsminne enn den gjeldande grensa tillèt, sjølv med den minste utdatastorleiken. Med dei gjeldande grensene er det ikkje nok å berre redusera dimensjonane på biletmontasjen. Lukk andre dokument eller lag til eit mindre kjeldebilete før du prøver på nytt. Biletmontasjen er uendra.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+      "final_value_sha256_utf8": "50046c1026a38833b6306f014e74ba0ae70251be0c043573e2ab9c823c164655",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "06917a28517ce6a43b65860d87b7fac6c5090429544e022789c09a837efb6678",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "source": "Clear all",
+      "final_value": "Tøm alt",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "29a390f9237e3c84e5641785eca25199620e53f7b6f4b9d843b23dcb5c12904f",
+      "final_value_sha256_utf8": "463a6e3e51a026b5a529bb783a5e0a1db7e775f890b9707d2292d317ec264269",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "53018aa39864524a5fb452336b9119ad0f328263bcd953319273dfae80e43dfe",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_clear_image",
+      "source": "Clear image",
+      "final_value": "Tøm biletet",
+      "attributes": {
+        "name": "ui_clear_image"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "20231a4032390f0886c87b9f301481ac336659f40d9ab50981fa1039663b6afc",
+      "final_value_sha256_utf8": "2ec7e16aba87a7befc9878d817902e9acb6b1eb407614e85203cafad495f1311",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "2491e5760047ad7be57a0951712bded82bb24ab6b1e60f9cc86b0f57a1e98424",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "source": "Could not save the assembly: %1$s",
+      "final_value": "Kunne ikkje lagra biletmontasjen: %1$s",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "d23570f6a13edc7bc9f443628c6fe0a00f889d71e6d24135122cd5dc4ad6614a",
+      "final_value_sha256_utf8": "84f35eeea73ec9d078218f6c5212b053d4ccded164cbd518a0e144ac90a5abca",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "c0445890e85e51829eaec81a95421784f227983776cbb8a7a42b81ccdfa8e575",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "source": "Could not store the assembly.",
+      "final_value": "Kunne ikkje lagra biletmontasjen.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "8896816c5ab28f698bf634e2b040419b89f9771e16f482d9684c3170e688d859",
+      "final_value_sha256_utf8": "71107e742fc212ccfab88e052c642aa5d95924f37b585f8fb1e50ef0b228eebb",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "7027f015cc67a8333447446450c979263aedc35ee879861335f187b4dbfc3476",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "final_value": "%1$d × %2$d pikslar (%3$.2f MP) er meir enn den gjeldande trygge redigeringsgrensa på %4$.2f MP. AN Paint held heile biletet i minnet og set av plass til transformasjonar og utval. Tilgjengeleg minne avgjer denne grensa. Operasjonen vart stoppa før det vart sett av minne til det for store punktbiletet. Det vart ikkje gjort noka automatisk skalering.",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "dcdd3aa9015cb728f6695ffac6100c85790b70563ddea87c0d568f1afc15b6b3",
+      "final_value_sha256_utf8": "8dfdf7206ec51f53d91aca43bcec0d6ecdbcdd02954a0d5379422160286e636d",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "1aeb4676e007b53e35b40f9913f17ea8de6ad9a56aeeeaa2a96d7148fc8b8a71",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "final_value": "Tek vare på pikslane øvst til venstre. Eit mindre lerret fjernar pikslar utanfor høgre kant eller nedre kant; «Angra» hentar dei tilbake.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "4d6da1792a4751708d0bb36eda8365c72b66b1a2b2db70c77cdc4c48486634dc",
+      "final_value_sha256_utf8": "37fbeb1a8d1fdcee8f81cd4d606e1e927eb038b6805ef15956f114cbf2700980",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "84b9f0055c5cc3043cbf2f94e31a82983d5035003f7e494508725e12d153bce0",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "final_value": "Det er ikkje nok minne til denne operasjonen. Kjeldefilene til biletmontasjen er tekne vare på.",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "cba5063c6a726597187fc64fc75c20c2f858db585fd5f89d691420f5eaa55534",
+      "final_value_sha256_utf8": "f13d0857a0880374d87c9139bd0524e0bac6abe9f850c7fbade29af7692eee3e",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "7d519f3b94fca8276b10b7bdd69a023dbf3038262fafa976e02dc9f99125f268",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "source": "Resize large image?",
+      "final_value": "Skalera stort bilete?",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f037d36a47f4f0df7ac2da56fe4351da145993413a10d3518211e6bcac613a83",
+      "final_value_sha256_utf8": "3feac89b2f91ccebd3db23bfe7fcb86d570dd766abf4211317a7f9d864556816",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "21c857a8e5d26c8472c440f91b643f33c8bced08a2a459d4535132d3a75cce68",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "final_value": "Estimata omfattar det gjeldande lerretet og utklippstavla, dekoding med redusert oppløysing og bufferar for redigering. Den faktiske minnebruken varierer. Ein mindre kopi mistar detaljar. Den opphavlege fila er uendra.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+      "final_value_sha256_utf8": "4728e7addd26ecaa4d2141aaa38affed3e4f5b90e7fc323c4b5291112b36a5a4",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "7d62abbe966dac2e08fac1216bb591bf708ef1420f06f0f45dcaaa646b96f42d",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_save_png",
+      "source": "Save PNG",
+      "final_value": "Lagra PNG",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f38f79763d122bfa76922a03b3f04d653847e220238e71704c9a245c59e21e7c",
+      "final_value_sha256_utf8": "39df8b9eed67f5e46df679bd6af2687eee24cfd65cf8fda1b49b878224edd9c1",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "98f48ae55983e42805060d44279df40389fa6193cf7fce747e25dab4bc29344b",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "source": "The saved assembly could not be opened: %1$s",
+      "final_value": "Kunne ikkje opna den lagra biletmontasjen: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "2a936511bfc752ebf7f24e635feaa6de5f2e041c23ae4ab6c0b4237966628113",
+      "final_value_sha256_utf8": "00cdfd9d0decfb4217c4a305002f95b57e755b8a08a6613b75ef73abe4f75fb7",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "eb0fbe667f31bd4c3a6a23cc5e8e99f3db74296d5e7860bd45a599c1815416c1",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "source": "The trim would remove the entire image.",
+      "final_value": "Beskjeringa ville fjerna heile biletet.",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "21b8edd92e5c183515dcb267c2cddceebc4eb5b02e1d053d952cec2d818ad4ca",
+      "final_value_sha256_utf8": "c2bc8b78fa00bdedde5bf0b8a871da3efc4e9f01b44695eb7ad36348ead518e4",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "28c65b3b7512564ea6ed7cc55221bc749cd83f33a8e045e68b21e6bdef1b3fcb",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "final_value": "Det er ikkje nok minne til denne operasjonen med den opphavlege oppløysinga. Det vart ikkje gjort noka automatisk skalering.",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f481ea6d7fb74a1dcf1f376c05c084d9283ccb7e0860c392cd1294bfcb0e1520",
+      "final_value_sha256_utf8": "4f72adee07d32ad561182e69d8ab46fee377b9613d50b646f50cae64f8037bd5",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "independent_review_file": "group-03-assembly-memory-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "e2b37f9963f213245ea7e6ea2d028d584d280b37007623592d1d52e61da294ba",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "final_value": "Biletkrediteringane kunne ikkje lagrast eller gjenopprettast. Krediteringar som alt var lagra, er tekne vare på. Prøv på nytt.",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "d669638ab30435fe654a24b1c18e73208959c1cc873975ab190e629e7c2ed6af",
+      "final_value_sha256_utf8": "2f244da3abe743724453ec1b307f9336c055be0ff52693eb7716f054bd356dff",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "65f52299f955bcec37af10c52a6c15ba02b040825164eac804b7092d30414f64",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "final_value": "Desse biletkrediteringane ville gjera teikninga for stor til å gjenoppretta. Den førre teikninga og krediteringane er tekne vare på.",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "0cc17cfda89358526b83adbc36b90440ef773ed2f945768e3e9f32bb90b35dd5",
+      "final_value_sha256_utf8": "389b435ba598cd71e6a2bd468984c9d2bc678faa04e6dcdd82210e663f356e53",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "3691a5a3ee04b54786369ad723aaa412e43acd0fff24e8e22b502e3a3d444c58",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "final_value": "Nokre lagra krediteringar kunne ikkje lesast. Dei lagra kopiane er tekne vare på.",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "764c1dfa02ddd35964d108f4cc4ccc6dbcc59f5520513ac2528f32bacdb73f5b",
+      "final_value_sha256_utf8": "67f8b61a155a4259912a5feae3c7708cad1c14af01cd486e835f4b5b0babb672",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "6ce8fc3d12608244e3282e926a6276f76903207ebaecbdd053211db752de1164",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "source": "The completed image could not replace its destination.",
+      "final_value": "Det ferdige biletet kunne ikkje erstatta målfila.",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "de68e5576968021c8471674791a609c056d1049abe53f1c1e4dc77e00679e001",
+      "final_value_sha256_utf8": "215baa06d8343aee79572b0f087f9535ca5c9bb10d03c0a38a31493592ccc661",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "ea8a3039de0344a2b03a1d8d758afceac0272f76b714ecd62ec23ba5c1f9e88a",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "final_value": "Biletet og bufferane for koding krev meir minne enn eksportgrensa tillèt.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "ee437ea8cac1ec7af3db9e48064cf9e0a2e49c3c4f89706eb34887bc52d6b75e",
+      "final_value_sha256_utf8": "842a475133f6cec5147a7666d8b69e1e630ef75ada3bbc25dd8fd8c0c382c6a4",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "fced32997d6598e5bde21da41323566d0946b2a8983731d6bf70be612050fc6d",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "source": "Could not open image",
+      "final_value": "Kunne ikkje opna biletet",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "6143ae23db90cc7e75e0a79869b2e047e20878b9478ac9e07dcebe064c5b25ef",
+      "final_value_sha256_utf8": "5d79853c99b462892ed27ea5b8f66ecdfca7c64ce3ef31f693258b4c1234f5f4",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "ca974b0142414c7efbd552b08c77287bfbbc61d19bc7e16daa898c274ea64e0d",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "final_value": "Det er ikkje nok minne til å lagra i dette formatet. Prøv PNG",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "f85d438ebb3c8e8c55be242b5b0938f6e33144d8789553e32711449d9e67e66b",
+      "final_value_sha256_utf8": "a8a79b262df10b376d51dc902e769a135e7452cc850fab41111aefe47acd5330",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "b082c7acc8052dd42dc265cf5696bd74328f7898ae389556e752413c2f3b5c12",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "source": "PNG encoding failed.",
+      "final_value": "PNG-koding feila.",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "121e3e5c5523ca65104b683c53c625d9f76c600cb5ac2d41924dc5fa2659ba3e",
+      "final_value_sha256_utf8": "c179d6898aa143b5ebea5702eb1878c3792aa690a3e026e38b8b236d79256c7d",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "5ea0258156f49791daaf57a8967e58a0c2c11feff5a98756f08620ab04e44c30",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "source": "Save and share…",
+      "final_value": "Lagra og del…",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "af8c25f4421cf91f4eedcbac21b3ef0e7f5286ba29dec7b6359a7dac6ff625fd",
+      "final_value_sha256_utf8": "ce90fc496bc929835a22be404af89dfe8876032c6c11c330284243ebf795f7de",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "e34e1744275f07f6f5f656cc8ca3cc1c7b5f49c7b77d1820ef01def5f153078b",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "source": "Save and share",
+      "final_value": "Lagra og del",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "41edb42591bb2694c768ea901a5a82cbaebb0d2110321c5f2c309afd1262a7f4",
+      "final_value_sha256_utf8": "fe9b728ba1daa2308d08b75e696d9ffc4d84c360d287712cf0a5dc4a2be1a460",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "093e24f8333e9714ccdceb48f9daa3afac62c96d790852d6c5619349dcdd3068",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "source": "The encoder did not finish.",
+      "final_value": "Biletkodinga vart ikkje fullført.",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "final_value_sha256_utf8": "cd00bd573756f226791b690af032d9cac08b2d67eb0fb3690635bd38f1ba34b1",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "0319cfa59ce3d95a164778e60e09ae49645f75e6dec1ea2570b1452c5339d3a8",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "final_value": "Biletet vart lagra, men Android kunne ikkje starta deling: %1$s",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "290a2340c93b4dfc627bf2d73d85ab3841e3300933d1f2212ba33a3e04c4f903",
+      "final_value_sha256_utf8": "183e415758e5815c13f4413f00dca85164f7254e1ba783c1456be5a063227b71",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "730b80d5104c28aed617658bd450d7babb40afe0a889818fbddccf3216894e36",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "source": "The selected location is not writable.",
+      "final_value": "Det er ikkje mogleg å skriva til den valde plasseringa.",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "bd5906312d80fa9c5c6f855faf23030f089b50f54d0f82a39a8bcdb60328581d",
+      "final_value_sha256_utf8": "1219bd9f30baad721eb6056498000174e802c68dee32dbdfa5df80971ba338d5",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "60af996175261c3aedfc2cb3f6e344cd799ad367fdd2089acf4140db1ac4d581",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "source": "This location is not writable.",
+      "final_value": "Det er ikkje mogleg å skriva til denne plasseringa.",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "decision": "accept",
+      "source_value_sha256_utf8": "aeeaa3653ff0cebc035c0010f47d2e6fef2ba1abd8d6c77df663010f13a4a13e",
+      "final_value_sha256_utf8": "026ee16b7d814a1d5b9dfc8b26a80dd4790e4d524a902d67bb34eb24b5ed617b",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "independent_review_file": "group-04-save-credit-review.json",
+      "scope": "bounded independent AI whole-value linguistic/static acceptance only; no native-human/device/layout/whole-locale certification",
+      "qualifications_from_review": "Full per-entry and global qualifications retained in the linked review receipt.",
+      "current_xml_text_sha256": "ae5ad8b624e67ad47c569cc078420616b903c31f9f13b424ae479e987aecd912",
+      "android_encoding": "exact double-quote wrapping; compiled display independently verified in PR artifact receipt"
+    }
+  ],
+  "new_disjoint_bounded_AI_whole_value_scopes": 72,
+  "total_bounded_nn_whole_value_scopes": 80,
+  "held_missing_identities": [
+    "string/formats22_derived_exported",
+    "string/ui_save_as",
+    "string/ui_save_as_jpeg",
+    "string/ui_save_as_jpeg_xl",
+    "string/ui_save_as_png"
+  ],
+  "review_receipts": [
+    {
+      "file": "group-01-import-format-independent-review.json",
+      "original_review_sha256": "3a01159ecdae16f607c2a9abdc44858c230ac51dafd04657a3f03d8e38f36500",
+      "public_export_sha256": "c4d0e2e12941a98a00b4aebb649d7c24acdfabc7d0e0fff2a78f2cbcf8486831",
+      "candidate_file": "group-01-import-format-candidates.json",
+      "candidate_file_sha256": "5875911b78dd5f117b24eba66499e755a8b50a64be63e08ed59a1715edb9d844",
+      "entries": 14
+    },
+    {
+      "file": "group-02-recovery-independent-review.json",
+      "original_review_sha256": "8cf14e5c4e2c343111742937ddbd917ee74d23c5c260d77698c5ec994f95d45c",
+      "public_export_sha256": "e38e003ad60300b97afd3d27c63ac411b99633bde242901f4409428be0be06dd",
+      "candidate_file": "group-02-recovery-candidates.json",
+      "candidate_file_sha256": "344c6ccef3ac027111b3b7b6276e03d6cac80535c265417b7713bce0d5f99abb",
+      "entries": 28
+    },
+    {
+      "file": "group-03-assembly-memory-review.json",
+      "original_review_sha256": "aa9589b644167893a1221a7c436e576220f1732d30ebd46269ed75a4b04e1e99",
+      "public_export_sha256": "957f5e4f89c1d2b4c3045ac5db94e1f29696b45af49f56aba663b9b7025bd8a3",
+      "candidate_file": "group-03-assembly-memory-candidates.json",
+      "candidate_file_sha256": "d933053d7a30981e213fb28f27f38c76d40cc2259cdd4fd44ae4f564462c1e89",
+      "entries": 16
+    },
+    {
+      "file": "group-04-save-credit-review.json",
+      "original_review_sha256": "f0d6d7db1c92c40d47586229bde99ccfc1705431771551034d9f648f122d86aa",
+      "public_export_sha256": "03c3becb871a63d53bdf780a4e8733640dcfe779b702d7f7fa1ebf7e52cc3c04",
+      "candidate_file": "group-04-save-credit-candidates.json",
+      "candidate_file_sha256": "ac5cd8de120f74c602bcb75b8e620f265b79d65218aed8b64277279a451c264e",
+      "entries": 14
+    }
+  ],
+  "prior_review_scopes": "All 118 previously present Nynorsk values and every other catalogue remain unchanged, including all eight prior reviewed identities. Exactly 72 new identities were absent from the baseline catalogue and are disjoint from its eight reviewed identities. No inherited author-only, historical, qualified, clause-only, unmatched or synthetic scope is revoked or upgraded. Global linguistic categories are not recomputed by these structural tables; consult the immutable prior evidence reports and exact new review receipts.",
+  "postmerge_ci": "pending separately at time of this structural delta; PR-head tests are not relabelled postmerge results",
+  "native_or_whole_language_certifications": 0
+}
