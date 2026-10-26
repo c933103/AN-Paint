@@ -11,7 +11,15 @@ from pathlib import Path
 RECORD = Path(__file__).resolve().parents[1] / 'translations/source-review/memory-warnings-20261021.json'
 KEYS = {'ui_no_resize_fits_decoder_memory', 'ui_assembly_source_memory_floor'}
 PRIORITY_TAGS = frozenset({'bg', 'bn'})
-SINGLE_KEY_EXPECTATIONS = frozenset({(tag, 'ui_assembly_source_memory_floor') for tag in ('nn', 'da', 'no')})
+SINGLE_KEY_FIXTURES = {
+    'nn': 'nynorsk_p0_remaining_wording.json',
+    'da': 'danish_norwegian_p0_wording.json',
+    'no': 'danish_norwegian_p0_wording.json',
+    'ca': 'catalan_romanian_completion_wording.json',
+    'ro': 'catalan_romanian_completion_wording.json',
+}
+SINGLE_KEY_EXPECTATIONS = frozenset(
+    (tag, 'ui_assembly_source_memory_floor') for tag in SINGLE_KEY_FIXTURES)
 
 
 def review_record():
@@ -35,8 +43,7 @@ old source snapshot.
         old = next(o for o in queue['options'] if o['tag'] == tag)['terms'][key]['value']
         if historical_value is not None or old is not None:
             raise ValueError('Historical single-key warning was absent: ' + tag + '/' + key)
-        data = fixture('nynorsk_p0_remaining_wording.json' if tag == 'nn' else
-                       'danish_norwegian_p0_wording.json')
+        data = fixture(SINGLE_KEY_FIXTURES[tag])
         if data['values'][key]['default'] != queue['keys'][key]['corrected_english']:
             raise ValueError('Single-key warning source differs: ' + key)
         return data['values'][key][tag]
