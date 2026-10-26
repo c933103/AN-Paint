@@ -1,0 +1,39 @@
+{
+  "schema": "nynorsk-save-host-validation-v1",
+  "head": "2d940e411829f991b3399c1fdb572dd12b0ad44f",
+  "tree": "6bb4fa11534149df7f8f58cb3d21faf2b802089f",
+  "full_host": [
+    {
+      "command": "python3 -m unittest discover -s tools -p 'test_*.py' -v",
+      "optimized": false,
+      "tests": 1357,
+      "seconds": 170.383,
+      "exit_code": 0,
+      "result": "pass",
+      "raw_log_sha256": "be527072696161292b2e820ad41718d4d4a4c0a69dbb2dd11de12d02823509f8",
+      "raw_log_in_this_record": false
+    },
+    {
+      "command": "python3 -O -m unittest discover -s tools -p 'test_*.py'",
+      "optimized": true,
+      "tests": 1357,
+      "seconds": 170.682,
+      "exit_code": 0,
+      "result": "pass",
+      "raw_log_sha256": "3bd35b1e906465b41e31f9b7120e66448b7d5390c821bbb81a9cd1c80ee6d4d1",
+      "raw_log_in_this_record": false
+    }
+  ],
+  "focused_host": {
+    "ordinary_tests": 5,
+    "optimized_tests": 5,
+    "result": "pass"
+  },
+  "local_Android_JVM_lint_device": "unrun; Android SDK/toolchain unavailable",
+  "not_claimed": [
+    "native-language acceptance",
+    "physical-device acceptance",
+    "whole-locale acceptance",
+    "release verification"
+  ]
+}

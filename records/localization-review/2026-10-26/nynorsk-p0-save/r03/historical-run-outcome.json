@@ -1,0 +1,49 @@
+{
+  "schema": "nynorsk-save-superseded-run-v1",
+  "head": "678360105a4f265b37ec41b5752a86ad4778b592",
+  "run_id": 40269594533,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/40269594533",
+  "terminal_conclusion": "cancelled",
+  "code_review_finding": {
+    "priority": "P2",
+    "url": "https://github.com/c933103/AN-Paint/pull/173#discussion_r4373972719",
+    "summary": "Resource refresh did not rebuild already-created command captions before Nynorsk label navigation.",
+    "fixed_by": "2d940e411829f991b3399c1fdb572dd12b0ad44f"
+  },
+  "jobs": [
+    {
+      "id": 121399317224,
+      "name": "Regression tests and lint",
+      "conclusion": "cancelled",
+      "cancelled_phase": "Run JVM regression tests"
+    },
+    {
+      "id": 121399317298,
+      "name": "Build APK and corresponding source",
+      "conclusion": "cancelled",
+      "cancelled_phase": "Build universal APK"
+    },
+    {
+      "id": 121399317303,
+      "name": "Exact-script resource generation",
+      "conclusion": "success"
+    },
+    {
+      "id": 121401324388,
+      "name": "Emulator API 35 aggregate gate",
+      "conclusion": "failure",
+      "log_observation": "CORE_RESULT: cancelled; POSITION_RESULT: cancelled; aggregate command exited 1"
+    },
+    {
+      "id": 121401324810,
+      "name": "Position dialog child",
+      "conclusion": "cancelled"
+    },
+    {
+      "id": 121401325274,
+      "name": "Core emulator child",
+      "conclusion": "cancelled"
+    }
+  ],
+  "limits": "Cancelled execution is not counted as a passing regression run. The logs record cancellation; no unobserved operator intent or completed JVM/device result is inferred."
+}

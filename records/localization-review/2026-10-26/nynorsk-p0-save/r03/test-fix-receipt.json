@@ -1,0 +1,28 @@
+{
+  "schema": "nynorsk-save-test-fix-v1",
+  "previous_head": "678360105a4f265b37ec41b5752a86ad4778b592",
+  "head": "2d940e411829f991b3399c1fdb572dd12b0ad44f",
+  "tree": "6bb4fa11534149df7f8f58cb3d21faf2b802089f",
+  "review_finding": "https://github.com/c933103/AN-Paint/pull/173#discussion_r4373972719",
+  "resolution": "Use the real activity configuration-change lifecycle to refresh resources and rebuild command controls before navigation and when restoring the selected locale.",
+  "changed_path": "Paintroid/src/test/java/org/catrobat/paintroid/local/DerivedExportStateTest.kt",
+  "git_blob": "62295dc5c5e9cbe98cab034c336d2f0b95a19198",
+  "sha256": "d64e14f80b7560598f2af10fa93dfc6f5e56c0af5b564f569c3724f022c3c8bb",
+  "all_1364_remote_blobs_modes_verified": true,
+  "unchanged_prior_head_blobs": 1363,
+  "all_eight_reviewed_values_unchanged": true,
+  "static_hard_assertions_preserved": [
+    "assertTrue(\"The export must really have been written\", file.length() > 0)",
+    "expectedStatus?.let { assertEquals(it(file.name), ShadowToast.getTextOfLatestToast()) }",
+    "assertTrue(activity.document.dirty)",
+    "assertSame(bitmap, activity.document.bitmap)",
+    "assertArrayEquals(original, actual)",
+    "assertEquals(originalTitle, title())",
+    "assertNull(\"The blocked replacement must not run during a later save\", pending.get(activity))",
+    "activity.onConfigurationChanged(Configuration(activity.resources.configuration))"
+  ],
+  "local_runtime_mutation_test_performed": false,
+  "runtime_limit": "No local Android SDK; source assertion preservation is not claimed as executed negative-control proof. Hosted exact-head JVM execution pending.",
+  "new_run_id": 40270220462,
+  "prior_run_id": 40269594533
+}
