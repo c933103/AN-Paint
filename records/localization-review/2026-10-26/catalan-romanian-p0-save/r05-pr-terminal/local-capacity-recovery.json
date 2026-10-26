@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "operation": "local APK artifact extraction",
+  "outcome": "OSError errno 28; temporary filesystem full before extraction completed",
+  "classification": "local capacity failure, not CI failure or tool denial",
+  "archive_sha256": "6fce6f922086e73d8db2ba4b2837a78312d50cb1df3f36aabf9cf8252bc5097d",
+  "recovery": "Moved unchanged local verification workspace to available authorized storage; all copied bytes SHA-256 matched before removing original copies. Incomplete APK retained separately; rerun extracts original exact artifact archive.",
+  "incomplete_apk_bytes": 122630144
+}
