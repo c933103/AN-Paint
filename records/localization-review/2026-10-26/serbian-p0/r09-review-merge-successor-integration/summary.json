@@ -1,0 +1,41 @@
+{
+  "record": "PR180 terminal review/merge and successor PR182 integration/local verification",
+  "PR180": {
+    "head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+    "code_review": "completed with no findings/unresolved findings",
+    "merge": "3160b02e939cd732536f4f3c896e082b19325eee",
+    "tree": "385bd19a6cd68c7b8ce9644f157e4acb4e4cf93e",
+    "natural_postmerge_verification": "Separate run40393553909; no postmerge CI pass claim in this record"
+  },
+  "successor": {
+    "pr": 182,
+    "head": "fc275264feae996b3366cfef24975c351d94689e",
+    "tree": "0c606e5dfaf497d59fdcadf85d453afb96b4ed6b",
+    "ordered_parents": [
+      "998dcfccbe3f54fc61b2deaa3579a08bbaa2da06",
+      "3160b02e939cd732536f4f3c896e082b19325eee"
+    ],
+    "original_successor_preserved": true,
+    "five_file_delta_preserved": true,
+    "ordinary_tests": 1423,
+    "ordinary_seconds": 197.627,
+    "optimized_tests": 1423,
+    "optimized_seconds": 197.524,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "synthetic_controls_each_mode": {
+      "positive": 5,
+      "negative_rejected": 97
+    },
+    "review_request": 6426366837,
+    "hosted_checks": "pending",
+    "exact_head_review": "pending"
+  },
+  "limits": [
+    "Local host tests and synthetic controls do not establish successor Android/JVM/emulator results.",
+    "Historical security review at d831 is not relabeled current-head.",
+    "R07/R08 and failed-attempt evidence preserved.",
+    "No release, native-human, whole-language or physical-device acceptance claim."
+  ]
+}
