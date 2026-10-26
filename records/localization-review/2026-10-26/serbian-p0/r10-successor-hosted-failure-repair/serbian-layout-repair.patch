@@ -1,0 +1,69 @@
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt
+@@ -33,6 +33,7 @@
+ import java.io.File
+ import java.io.IOException
+ import java.util.Locale
++import java.util.concurrent.TimeUnit
+ 
+ /** Bounded compiled wording and real memory/recovery/encoding consumers, not whole-locale acceptance. */
+ @RunWith(RobolectricTestRunner::class)
+@@ -63,17 +64,47 @@
+         return successor.getString("value").removeSurrounding("\"")
+     }
+ 
++    private fun awaitUi(label: String, ready: () -> Boolean) {
++        val until = System.nanoTime() + TimeUnit.SECONDS.toNanos(3)
++        while (!ready() && System.nanoTime() < until) {
++            shadowOf(Looper.getMainLooper()).idleFor(16, TimeUnit.MILLISECONDS)
++            if (!ready()) Thread.sleep(1)
++        }
++        assertTrue(label, ready())
++    }
++
+     private fun assertDistinctFormatAndFilenameControls(root: View, tag: String) {
+         val format = checkNotNull(root.findViewWithTag<Spinner>("export_format"))
+         val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
++        // Native accessibility nodes require a mounted, laid-out window. Do not
++        // replace node assertions with the simpler View property if mounting fails.
++        awaitUi("$tag Save dialog and both controls are attached, visible and laid out") {
++            root.isAttachedToWindow && root.width > 0 && root.height > 0 && !root.isLayoutRequested &&
++                listOf(format, filename).all {
++                    it.isAttachedToWindow && it.isShown && it.isLaidOut &&
++                        it.width > 0 && it.height > 0 && !it.isLayoutRequested
++                }
++        }
+         val expectedFormat = if (tag == "sr-Cyrl") "Формат датотеке" else "Format slike"
+         val expectedFilename = if (tag == "sr-Cyrl") "Назив датотеке" else "Naziv datoteke"
+         assertEquals(expectedFormat, formatLabel(tag))
+         assertEquals(expectedFilename, preserved(tag, "save20_file_name"))
+         assertEquals(expectedFormat, format.contentDescription.toString())
+         assertEquals(expectedFilename, filename.contentDescription.toString())
+-        assertEquals(expectedFormat, format.createAccessibilityNodeInfo().contentDescription.toString())
+-        assertEquals(expectedFilename, filename.createAccessibilityNodeInfo().contentDescription.toString())
++        val formatNode = checkNotNull(format.createAccessibilityNodeInfo()) {
++            "$tag format accessibility node missing after attached, visible layout"
++        }
++        val filenameNode = checkNotNull(filename.createAccessibilityNodeInfo()) {
++            "$tag filename accessibility node missing after attached, visible layout"
++        }
++        val formatNodeDescription = checkNotNull(formatNode.contentDescription) {
++            "$tag format accessibility node has no contentDescription after attached, visible layout"
++        }
++        val filenameNodeDescription = checkNotNull(filenameNode.contentDescription) {
++            "$tag filename accessibility node has no contentDescription after attached, visible layout"
++        }
++        assertEquals(expectedFormat, formatNodeDescription.toString())
++        assertEquals(expectedFilename, filenameNodeDescription.toString())
+         assertNotEquals(format.contentDescription, filename.contentDescription)
+         fun labels(view: View): List<String> =
+             (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
+@@ -101,7 +132,7 @@
+             val controller = Robolectric.buildActivity(Activity::class.java)
+             val activity = controller.get()
+             activity.setTheme(R.style.ClassicPaintTheme)
+-            controller.setup()
++            controller.setup().windowFocusChanged(true)
+             try {
+                 AppLanguage.select(activity, tag)
+                 AppLanguage.refresh(activity)

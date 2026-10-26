@@ -1,0 +1,38 @@
+{
+  "observed_at_utc": "2026-10-26T20:49:10Z",
+  "head": "a17194b2402fbcea85ee526964b4adc497295ebf",
+  "tree": "bc5e10affc54ba2e0788c749b4b78968379596ba",
+  "parent": [
+    "fc275264feae996b3366cfef24975c351d94689e"
+  ],
+  "test_merge": {
+    "sha": "157be5343f45a9f36312f38a24774d82fa654615",
+    "tree": "bc5e10affc54ba2e0788c749b4b78968379596ba",
+    "parents": [
+      "3160b02e939cd732536f4f3c896e082b19325eee",
+      "a17194b2402fbcea85ee526964b4adc497295ebf"
+    ]
+  },
+  "run": {
+    "id": 40398554058,
+    "status": "in_progress",
+    "head": "a17194b2402fbcea85ee526964b4adc497295ebf"
+  },
+  "verified_remote_blobs_modes": 1385,
+  "delta": [
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be4a1553b14d461e5433be037bed184f40e7da6e",
+      "size": 24854,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/git/blobs/be4a1553b14d461e5433be037bed184f40e7da6e"
+    }
+  ],
+  "review_request": {
+    "id": 6426928218,
+    "body": "@codex review\n\nPlease review corrected exact head a17194b2402fbcea85ee526964b4adc497295ebf. The previous head fc275264 had two actual JVM failures: newly added panel tests queried accessibility node descriptions before ensuring the dialog controls were attached. Only SerbianP0WordingTest.kt changes: bounded attachment/visibility/layout synchronization and explicit non-null diagnostics retain both full accessibility-description assertions. Production values, fixture and protected-draft tests are unchanged. Full frozen local suites pass 1,423 ordinary and 1,423 optimized tests, zero failures/errors/skips; actual repaired JVM and other fresh checks remain pending. Preserve the prior clean review and failed runtime result as separate historical evidence; please bind the fresh result to this corrected head. No merge or release is requested.",
+    "author": "c933103"
+  },
+  "status": "Fresh corrected-head CI and review pending; no corrected hosted pass"
+}

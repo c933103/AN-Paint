@@ -1,0 +1,39 @@
+{
+  "record": "Original PR182 hosted failure plus one-JVM-file repair; corrected hosted verification pending",
+  "original_head": "fc275264feae996b3366cfef24975c351d94689e",
+  "original_run": 40394383114,
+  "actual_JVM": {
+    "reports": 150,
+    "unique_cases": 1384,
+    "failures": 2,
+    "errors": 0,
+    "skips": 0,
+    "protected_draft_passes": 6
+  },
+  "original_successful_subsets": "APK/source,13 exact-script probes,45app+74native API35 and clean Code+Security are historical fc-only, not repaired-head acceptance",
+  "corrected_head": "a17194b2402fbcea85ee526964b4adc497295ebf",
+  "corrected_tree": "bc5e10affc54ba2e0788c749b4b78968379596ba",
+  "corrected_run": 40398554058,
+  "corrected_review_request": 6426928218,
+  "repair_scope": "Exactly one JVM test file; production and fixture bytes unchanged; attached/visible/layout synchronization and explicit nonnull diagnostics retain exact accessibility-node assertions",
+  "local_host_tests": {
+    "ordinary": 1423,
+    "ordinary_seconds": 198.808,
+    "optimized": 1423,
+    "optimized_seconds": 197.686,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "focused": 15
+  },
+  "synthetic_controls_each_mode": {
+    "positive": 5,
+    "negative_rejected": 97,
+    "identical": true
+  },
+  "limits": [
+    "Actual corrected-head JVM/CI and Codex review remain pending.",
+    "Attachment timing is source-supported mechanism, not directly observed mAttachInfo state. setup already calls visible; no never-visible Activity claim.",
+    "No test relaxation, native-human, whole-language, physical-device or release claim."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "android_reference": {
+    "repository": "aosp-mirror/platform_frameworks_base",
+    "ref": "android-13.0.0_r1",
+    "path": "core/java/android/view/View.java",
+    "blob": "ba6ba63e4ed054a0620a6a2182e5737352066193",
+    "mechanism": "createAccessibilityNodeInfoInternal obtains a node and invokes initialization; onInitializeAccessibilityNodeInfoInternal returns before setting contentDescription when mAttachInfo is null. This explains how the node can exist with null contentDescription while the View property is populated.",
+    "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-13.0.0_r1/core/java/android/view/View.java"
+  },
+  "robolectric_reference": {
+    "version": "4.14.1",
+    "path": "shadows/framework/src/main/java/org/robolectric/android/controller/ActivityController.java",
+    "url": "https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/android/controller/ActivityController.java",
+    "finding": "setup() already calls visible(); do not attribute failure to Activity never being made visible. The important missing synchronization is dialog/child attachment after show(). Explicit focus plus bounded actual attached/shown/laid-out preconditions preserve the node assertion."
+  },
+  "observed": "Both actual failures are null AccessibilityNodeInfo.contentDescription at helper line75; six protected-draft cases pass.",
+  "limits": "Source-backed initialization mechanism and test repair rationale, not a completed repaired JVM run."
+}

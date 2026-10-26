@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "reviewer_role": "Independent AI static repair reviewer; not repair author",
+  "reviewed_at_utc": "2026-10-26T20:44:45Z",
+  "target": "PR182 one-JVM-file accessibility initialization repair",
+  "decision": "accept for exact-head compilation/runtime verification; no blocking static findings",
+  "reviewed_source": {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt",
+    "sha256": "f6a98aab5b8073244c9f690914a1133ad2f8ead5bbd2d1245f1f5be245ab09f5",
+    "prior_sha256": "912128b1d245e4b6067927988beca4254bd98aefeb2726c74023971e5e87b0f0"
+  },
+  "inputs": [
+    {
+      "path": "checks/serbian-layout-repair.patch",
+      "sha256": "3708afe3b1b471841b2cf5711d6b0d30f9ca16336f603afca06c8aa112426150"
+    },
+    {
+      "path": "checks/accessibility-initialization-evidence.json",
+      "sha256": "affa7520d40c7488271edbb496d65045227fe286315d97f8337058dbbf4f9f68"
+    }
+  ],
+  "patch_matches_exact_before_after": true,
+  "source_diff_check": {
+    "comparison": "original-fc-source versus source, excluding generated __pycache__ files",
+    "changed_files": [
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt"
+    ],
+    "production_and_fixture_changes": false
+  },
+  "observed_prior_runtime_evidence": [
+    {
+      "path": "r10-prepared/original-failure/TEST-org.catrobat.paintroid.local.SerbianP0WordingTest.xml",
+      "sha256": "c1ec5096aa7fe751f7c4cddde1e4a64e62ab5ff6036b4ab8b54cca96aca76b98",
+      "suite": "org.catrobat.paintroid.local.SerbianP0WordingTest",
+      "tests": 8,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0,
+      "failure_details": [
+        {
+          "test": "realFormatPanelUpdatesDescriptionsRejectsInvalidNamesAndCancelsRepeatedly",
+          "message": "java.lang.NullPointerException: Cannot invoke \"Object.toString()\" because the return value of \"android.view.accessibility.AccessibilityNodeInfo.getContentDescription()\" is null",
+          "first_frame": "at org.catrobat.paintroid.local.SerbianP0WordingTest.assertDistinctFormatAndFilenameControls(SerbianP0WordingTest.kt:75)"
+        },
+        {
+          "test": "actualSaveExportSharePanelsKeepDistinctMessagesAndRepeatedCancel",
+          "message": "java.lang.NullPointerException: Cannot invoke \"Object.toString()\" because the return value of \"android.view.accessibility.AccessibilityNodeInfo.getContentDescription()\" is null",
+          "first_frame": "at org.catrobat.paintroid.local.SerbianP0WordingTest.assertDistinctFormatAndFilenameControls(SerbianP0WordingTest.kt:75)"
+        }
+      ]
+    },
+    {
+      "path": "r10-prepared/original-failure/TEST-org.catrobat.paintroid.local.ProtectedDraftWarningTest.xml",
+      "sha256": "a4f7b8cb8bf2c52e996fe5b556ba667e94c898ae484d845ece59b099b444299a",
+      "suite": "org.catrobat.paintroid.local.ProtectedDraftWarningTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failure_details": []
+    }
+  ],
+  "review": {
+    "assertion_integrity": "Both exact Cyrillic/Latin format and filename captions, View contentDescription equality, accessibility-node contentDescription equality, caption presence and control-distinction assertions remain. No expected-label relaxation, test skipping, swallowed failure or fallback to View-only checks.",
+    "real_node_population": "The repair invokes createAccessibilityNodeInfo on the actual Spinner and EditText only after attachment/layout conditions. It never writes a node description, installs an accessibility delegate, invokes initialization directly, mocks a populated node, or manually fabricates view attachment/layout.",
+    "synchronization": "Activity setup gains explicit window focus. Each actual dialog root must be attached, nonzero-size and free of pending layout; both controls must additionally be shown and laid out. These preconditions run before native node creation.",
+    "bounded_wait": "awaitUi has a three-second System.nanoTime deadline, advances the main looper by 16 ms on each iteration, sleeps only one millisecond when still unready, and asserts readiness on exit. No lock, future wait, synchronous callback recursion or apparent circular dependency was introduced. Like any looper pump, the deadline cannot itself preempt an independently blocking callback; runtime/CI timeouts remain separate.",
+    "diagnostics": "checkNotNull distinguishes a missing node from missing node contentDescription after readiness. Exact equality assertions still follow both checks.",
+    "kotlin_static_check": "TimeUnit is imported; Duration conversion and idleFor overload are coherent. checkNotNull and local variables preserve node descriptions for exact string assertions. No apparent compilation trap identified. The same bounded looper-pump pattern already exists in UiDirectionContextTest.",
+    "diagnosis_boundary": "Prior XML proves two null node-description failures after View-description checks, not that mAttachInfo was directly observed null. Android initialization behavior supports attachment timing as a plausible mechanism. The repaired run must confirm the explanation and repair; this review does not label the old activity never visible."
+  },
+  "primary_source_checks": [
+    {
+      "source": "AOSP Android 13 View.java",
+      "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android-13.0.0_r1/core/java/android/view/View.java",
+      "lines": "8143-8149, 9750-9753, 9825",
+      "independent_check": "Opened the tag source. Node creation invokes initialization; a null mAttachInfo returns before setContentDescription. Supplied blob identity ba6ba63e4ed054a0620a6a2182e5737352066193 was not separately recomputed in this review."
+    },
+    {
+      "source": "Robolectric 4.14.1 ActivityController.java",
+      "url": "https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/shadows/framework/src/main/java/org/robolectric/android/controller/ActivityController.java",
+      "lines": "234-246, 316-317",
+      "independent_check": "Opened versioned source: setup already includes visible(); explicit windowFocusChanged flushes pending work where needed and delivers focus. No claim that setup omitted visibility."
+    }
+  ],
+  "limits": [
+    "No repaired Kotlin compilation, JVM run or device run performed or accepted by this static receipt. Exact repaired-head hosted confirmation remains required.",
+    "The currently running source-only full suites are not accepted or rejected by this review.",
+    "Existing six ProtectedDraft passes belong to the original failed run and do not turn its two Serbian panel failures into a pass.",
+    "Shown/nonzero-size/layout readiness is not a complete clipping, TalkBack-service, native-human or release certification."
+  ],
+  "blocking_findings": [],
+  "source_edits_performed": false,
+  "publication_performed": false
+}
