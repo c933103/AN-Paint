@@ -119,5 +119,6 @@ Amharic priority strings. The historical queue and both earlier successor
 fixtures remain unchanged. Amharic's historical values are explicitly required
 to be absent; this is not permission to accept missing history for other locales.
 The current registry covers 120 pairs across 60 options, leaving four held pairs,
-216 historically missing pairs without successors, and two canonical-English pairs.
+212 missing pairs without current translations, four separately qualified Bulgarian/Bengali
+priority pairs (not accepted by this registry), and two canonical-English pairs.
 These counts do not certify whole-language, native-reader or runtime completion.
