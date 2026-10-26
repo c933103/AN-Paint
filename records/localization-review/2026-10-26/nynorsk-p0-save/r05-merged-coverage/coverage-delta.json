@@ -1,0 +1,192 @@
+{
+  "schema": "nynorsk-merge-coverage-delta-v1",
+  "baseline_commit": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+  "merged_commit": "857a20103285a77846e340b326667c15a402ff9e",
+  "merged_tree": "6bb4fa11534149df7f8f58cb3d21faf2b802089f",
+  "options": 171,
+  "canonical_containers": 717,
+  "canonical_leaves": 718,
+  "tiers": {
+    "P0": 92,
+    "P1": 249,
+    "P2": 305,
+    "P3": 71
+  },
+  "presence_totals": {
+    "P0_present": 6454,
+    "P0_missing": 9278,
+    "P1_present": 20022,
+    "P1_missing": 22557,
+    "P2_present": 19636,
+    "P2_missing": 32519,
+    "P3_present": 4365,
+    "P3_missing": 7776,
+    "all_present": 50477,
+    "all_missing": 72130,
+    "leaves_present": 50511,
+    "leaves_missing": 72267,
+    "leaves_english_identical": 7051,
+    "leaves_source_different": 43460
+  },
+  "presence_delta": {
+    "P0_present": 8,
+    "P0_missing": -8,
+    "P1_present": 0,
+    "P1_missing": 0,
+    "P2_present": 0,
+    "P2_missing": 0,
+    "P3_present": 0,
+    "P3_missing": 0,
+    "all_present": 8,
+    "all_missing": -8,
+    "leaves_present": 8,
+    "leaves_missing": -8,
+    "leaves_english_identical": 0,
+    "leaves_source_different": 8
+  },
+  "full_presence_options": 59,
+  "zero_presence_options": 31,
+  "nn_before": {
+    "order": 106,
+    "tag": "nn",
+    "path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+    "blob": "4279aa6667f82ef76d966fd88efab1c6810424e7",
+    "P0_present": 7,
+    "P0_missing": 85,
+    "P1_present": 87,
+    "P1_missing": 162,
+    "P2_present": 16,
+    "P2_missing": 289,
+    "P3_present": 0,
+    "P3_missing": 71,
+    "all_present": 110,
+    "all_missing": 607,
+    "leaves_present": 110,
+    "leaves_missing": 608,
+    "leaves_english_identical": 0,
+    "leaves_source_different": 110
+  },
+  "nn_after": {
+    "order": 106,
+    "tag": "nn",
+    "path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+    "blob": "f8020f1bbcf7bd9e79d231dd495f43f48c7292d7",
+    "P0_present": 15,
+    "P0_missing": 77,
+    "P1_present": 87,
+    "P1_missing": 162,
+    "P2_present": 16,
+    "P2_missing": 289,
+    "P3_present": 0,
+    "P3_missing": 71,
+    "all_present": 118,
+    "all_missing": 599,
+    "leaves_present": 118,
+    "leaves_missing": 600,
+    "leaves_english_identical": 0,
+    "leaves_source_different": 118
+  },
+  "new_review_scopes": [
+    {
+      "identity": "string/ui_save_your_changes",
+      "source_sha256": "56dd16e7b1fdfa54fece443cdc52f4a13ad74d87836c189abc726dfaf4993642",
+      "approved_xml_text_sha256": "20bfbb633c55cf6d09a9adb32b9f1cda5024fe449b34c74544e7747b378a86cb",
+      "verdict": "accept-as-is",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_attributes": {
+        "name": "ui_save_your_changes"
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "source_sha256": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "approved_xml_text_sha256": "cb28ac03fe3c4da7e666b26ff68932928b99d38706eabac27d2f2a16c9c5d3ea",
+      "verdict": "accept-as-is",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "source_sha256": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "approved_xml_text_sha256": "27b0df85451b14f9bb9e185468365675c253e00c54a65df75b02c17830b2deab",
+      "verdict": "revise",
+      "confidence": "medium-high for the replacement as bounded linguistic/static review",
+      "approved_attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "source_sha256": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "approved_xml_text_sha256": "6ae3b9eaa3da64d58651a3968cd5df90beed844f15767e35c2989b674b2ba439",
+      "verdict": "accept-as-is",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "identity": "string/ui_saved",
+      "source_sha256": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "approved_xml_text_sha256": "283f3e1cb1b270c2ca35ddbf24a051c652afa9428ecdc5097d9d6aa6f0d78385",
+      "verdict": "accept-as-is",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_attributes": {
+        "name": "ui_saved"
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "source_sha256": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "approved_xml_text_sha256": "cb7fa81a9b3019c65f21c1efa611fd4578fb1b0efced78c3557cb288784feb9a",
+      "verdict": "revise",
+      "confidence": "medium-high for the replacement as bounded linguistic/static review; the full wording is a reviewer judgment, not an official prescribed software term",
+      "approved_attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "source_sha256": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "approved_xml_text_sha256": "069dd2b305cbb3f42a46f34893bee16d98c9319405f7f14108f603f736466a79",
+      "verdict": "accept-as-is",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "identity": "string/ui_share_explanation34",
+      "source_sha256": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+      "approved_xml_text_sha256": "ccb5443e81d408f42574c25f77eab61acdb04ed4176260d634485c7e5340bb98",
+      "verdict": "revise",
+      "confidence": "medium-high for the replacement as bounded linguistic/static review",
+      "approved_attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    }
+  ],
+  "new_disjoint_bounded_AI_whole_value_scopes": 8,
+  "prior_review_scopes": "All previously present catalogue values remain unchanged. No inherited scope is revoked or upgraded; the new nn identities were absent from the prior mixed evidence inventory. Prior author-only, historical, qualified, clause-only and synthetic distinctions remain as documented in the immutable baseline report.",
+  "postmerge_ci": "pending separately at time of this structural delta; PR-head tests are not relabelled postmerge results",
+  "native_or_whole_language_certifications": 0
+}
