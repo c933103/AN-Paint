@@ -1,0 +1,399 @@
+{
+  "schema_version": 1,
+  "record_kind": "missing-only author candidates; not acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "05607f0d60131cc9148461ce595155d820748e4e",
+  "source_tree": "16ff3d877650ad4ad3198ce19007e8606fcd080a",
+  "locale": "ca",
+  "target_path": "Paintroid/src/main/res/values-ca/strings.xml",
+  "candidate_count": 10,
+  "shared_source_context": {
+    "file": "shared-source-context.json",
+    "sha256": "58f654029fcc03985006adad8a3fc2e846367e223fbd8f66c4485df076bffd33"
+  },
+  "existing_terminology": {
+    "file": "terminology-foundations.json",
+    "sha256": "e2e87e4b88d832fe92cc88df53bbbd21b0ef6163e53e75c9ebec56ae3d451fe9"
+  },
+  "instructions_to_reviewer": [
+    "Read every complete source/target pair and actual consumer windows. Review each locale independently; do not accept by analogy to prior languages.",
+    "Check actual Save/Save-as labels, Save/Export/Share dirty-state/destination distinctions, successful file write versus clean document, ioFailed separator and Android chooser error.",
+    "Preserve full format-token inventory including unindexed tokens and all attributes. Return exact final strings/hashes for any revision; no source changes.",
+    "No native-human, physical-device, runtime, layout or whole-locale acceptance. Keep inherited English/mixed values and holds intact."
+  ],
+  "candidates": [
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "priority": "P0",
+      "source": "Your current image has unsaved changes.",
+      "source_value_sha256_utf8": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "La imatge actual té canvis sense desar.",
+      "candidate_value_sha256_utf8": "f7d3b008e1b812ea5d964c8e4adaf6179018451c4967fb6a5766f361d2b36ced",
+      "candidate_xml_text": "\"La imatge actual té canvis sense desar.\"",
+      "candidate_xml_text_sha256_utf8": "e97d8fe4be8f7aa8a3fd921859483dd021526cca8e173f90cf000fa8a605191a",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "dirty-document-replacement-guard"
+      ],
+      "source_semantic_notes": [
+        "The current working image has unsaved changes. Keep negation and refer to the current document, not a previous draft."
+      ],
+      "author_semantic_qualifications": [
+        "The current working image has unsaved changes. Keep negation and refer to the current document, not a previous draft.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "priority": "P0",
+      "source": "Could not save image",
+      "source_value_sha256_utf8": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’ha pogut desar la imatge",
+      "candidate_value_sha256_utf8": "503bc440a8dee5eaaf4f6526d3749bde2c86f8e04d8b94fee3d42a00cf5def77",
+      "candidate_xml_text": "\"No s’ha pogut desar la imatge\"",
+      "candidate_xml_text_sha256_utf8": "d2ef533babd5520b30c3062e85428d659bef5f87472373717dabb0c7f46a10e9",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ],
+      "source_semantic_notes": [
+        "Save/write failure prefix. Caller appends a full stop, a space, and an exception message or fallback, so do not append punctuation or a placeholder."
+      ],
+      "author_semantic_qualifications": [
+        "Save/write failure prefix. Caller appends a full stop, a space, and an exception message or fallback, so do not append punctuation or a placeholder.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_saved",
+      "priority": "P0",
+      "source": "Saved %1$s",
+      "source_value_sha256_utf8": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "S’ha desat %1$s",
+      "candidate_value_sha256_utf8": "1cd21e6cee46042dca46578b0deddb9cc3554764ee8d1411f0a1ce647b2412d6",
+      "candidate_xml_text": "\"S’ha desat %1$s\"",
+      "candidate_xml_text_sha256_utf8": "f495a5db33816ed6ab100cee4c7d39827fcb990e5c822d539e6f1d09feb03eb1",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "source_semantic_notes": [
+        "The named output file was written. The same toast is used for Save, Export and Share writes.",
+        "Do not claim that all current document changes are saved: exporting leaves the dirty state and Save target untouched.",
+        "Preserve exactly one indexed string placeholder %1$s; it is the display name returned for the written URI."
+      ],
+      "author_semantic_qualifications": [
+        "The named output file was written. The same toast is used for Save, Export and Share writes.",
+        "Do not claim that all current document changes are saved: exporting leaves the dirty state and Save target untouched.",
+        "Preserve exactly one indexed string placeholder %1$s; it is the display name returned for the written URI.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "priority": "P0",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "source_value_sha256_utf8": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "S’ha creat el fitxer exportat. Fes servir «Desa» o «Anomena i desa…» per desar la imatge actual abans de continuar.",
+      "candidate_value_sha256_utf8": "cc659b03139257ecc4a3de501f5e2081ec125585e8aa2684139a136532a942f6",
+      "candidate_xml_text": "\"S’ha creat el fitxer exportat. Fes servir «Desa» o «Anomena i desa…» per desar la imatge actual abans de continuar.\"",
+      "candidate_xml_text_sha256_utf8": "43702addd25a5a1179f39cdf2ea92c47317c1f8e164af14d803a73665dfe7df5",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ],
+      "source_semantic_notes": [
+        "Export succeeded, but it did not satisfy the pending save-before-replacement action. Require Save or Save as before continuing.",
+        "Do not translate this as export failure, automatically saved current document, or a general inability to save.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_semantic_qualifications": [
+        "Export succeeded, but it did not satisfy the pending save-before-replacement action. Require Save or Save as before continuing.",
+        "Do not translate this as export failure, automatically saved current document, or a general inability to save.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "priority": "P0",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "source_value_sha256_utf8": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Tria un format d’imatge i els paràmetres de compressió. «Desa» reutilitzarà aquest nom de fitxer, aquesta ubicació, aquest format i aquests paràmetres.",
+      "candidate_value_sha256_utf8": "ff4bd9e7597fad4a397958416b4fe3f5b427f6d073d94749ae31b0edb5f50ec1",
+      "candidate_xml_text": "\"Tria un format d’imatge i els paràmetres de compressió. «Desa» reutilitzarà aquest nom de fitxer, aquesta ubicació, aquest format i aquests paràmetres.\"",
+      "candidate_xml_text_sha256_utf8": "7f17221c6ed992986afa4a685e684b69754b4d3bc7ded62c9d230436945aa6ac",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "source_semantic_notes": [
+        "Choose an image format and compression settings. Later Save reuses filename, location, format and settings.",
+        "Keep all four reused items; do not confuse ordinary Save with export or claim compression is always lossy.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_semantic_qualifications": [
+        "Choose an image format and compression settings. Later Save reuses filename, location, format and settings.",
+        "Keep all four reused items; do not confuse ordinary Save with export or claim compression is always lossy.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "priority": "P0",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "source_value_sha256_utf8": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Exporta una icona, text Base64 o art ASCII. Exportar no modifica la imatge actual ni la destinació de l’opció «Desa».",
+      "candidate_value_sha256_utf8": "9c0357f4ad7d7167ea7a96f086e5905f79f34eef95a5f4c4e7f9facad93ad8dd",
+      "candidate_xml_text": "\"Exporta una icona, text Base64 o art ASCII. Exportar no modifica la imatge actual ni la destinació de l’opció «Desa».\"",
+      "candidate_xml_text_sha256_utf8": "aa607863a506944b32274b4010f9c956f2d8812c467d20daf5c326ea064f5d5f",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "source_semantic_notes": [
+        "Three derived outputs: icon, Base64 text, ASCII art. Export keeps current document and Save destination unchanged.",
+        "No implication that exporting to a file clears unsaved changes; preserve neither/nor scope over both image and Save target.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_semantic_qualifications": [
+        "Three derived outputs: icon, Base64 text, ASCII art. Export keeps current document and Save destination unchanged.",
+        "No implication that exporting to a file clears unsaved changes; preserve neither/nor scope over both image and Save target.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_share_explanation34",
+      "priority": "P0",
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "source_value_sha256_utf8": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Desa una còpia a la ubicació que triïs i després tria una aplicació per compartir-la. La destinació actual de «Desa» no canvia.",
+      "candidate_value_sha256_utf8": "e4d9332a1ac5e07dbc3aee9d7f9ffb1214dbf57e6f3589680cf812d4fcb47d4d",
+      "candidate_xml_text": "\"Desa una còpia a la ubicació que triïs i després tria una aplicació per compartir-la. La destinació actual de «Desa» no canvia.\"",
+      "candidate_xml_text_sha256_utf8": "4637792875432558e81ace43102cf759f0ca07d3fc79391bea2821323fba7db0",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "source_semantic_notes": [
+        "Save a copy to the selected location first, then pick a sharing app. The existing Save destination remains unchanged.",
+        "The menu calls share=true and export=true, so writeImage does not set savedTarget or markSaved; sharing is invoked after the file write.",
+        "Do not say the copy is already shared or that picking a sharing app changes the current Save destination.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_semantic_qualifications": [
+        "Save a copy to the selected location first, then pick a sharing app. The existing Save destination remains unchanged.",
+        "The menu calls share=true and export=true, so writeImage does not set savedTarget or markSaved; sharing is invoked after the file write.",
+        "Do not say the copy is already shared or that picking a sharing app changes the current Save destination.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "priority": "P0",
+      "source": "Save and share…",
+      "source_value_sha256_utf8": "af8c25f4421cf91f4eedcbac21b3ef0e7f5286ba29dec7b6359a7dac6ff625fd",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Desa i comparteix…",
+      "candidate_value_sha256_utf8": "870ead81a35282238242c64739a9b36c7ae9ec3e47836b5ed834c06566ffc53a",
+      "candidate_xml_text": "\"Desa i comparteix…\"",
+      "candidate_xml_text_sha256_utf8": "e3c02a4e0d17bd1498dfc27e63f3c2efd2f7bfe90e87999c0d27b512b87c1985",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:842"
+      ],
+      "source_semantic_notes": [
+        "Existing share flow saves a copy then opens sharing; export=true means it does not update current Save target or clear unsaved drawing state. Ellipsis menu form."
+      ],
+      "author_semantic_qualifications": [
+        "Existing share flow saves a copy then opens sharing; export=true means it does not update current Save target or clear unsaved drawing state. Ellipsis menu form.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "priority": "P0",
+      "source": "Save and share",
+      "source_value_sha256_utf8": "41edb42591bb2694c768ea901a5a82cbaebb0d2110321c5f2c309afd1262a7f4",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Desa i comparteix",
+      "candidate_value_sha256_utf8": "7ed24d2c4009dad0998fe52823cbe5f1cf211b123d2e6444301aca784b453a39",
+      "candidate_xml_text": "\"Desa i comparteix\"",
+      "candidate_xml_text_sha256_utf8": "aa421ed3f74ebad187c3a8ba9442bc478738a744cb43450e95c032236aff4f4e",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:187"
+      ],
+      "source_semantic_notes": [
+        "Keep consistent with the same-group proposed share explanation and ellipsis menu form; neither is accepted before independent review."
+      ],
+      "author_semantic_qualifications": [
+        "Keep consistent with the same-group proposed share explanation and ellipsis menu form; neither is accepted before independent review.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "priority": "P0",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "source_value_sha256_utf8": "290a2340c93b4dfc627bf2d73d85ab3841e3300933d1f2212ba33a3e04c4f903",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "La imatge s’ha desat, però Android no ha pogut obrir el diàleg per compartir-la: %1$s",
+      "candidate_value_sha256_utf8": "c73f25d1f95db39de5b45198783a84cd2c18217906f64932825d110e6c489cfb",
+      "candidate_xml_text": "\"La imatge s’ha desat, però Android no ha pogut obrir el diàleg per compartir-la: %1$s\"",
+      "candidate_xml_text_sha256_utf8": "a4f6f519a962d740d466a2c49ae22b363e825efb566bfe665b793e63fb9a6974",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1389"
+      ],
+      "source_semantic_notes": [
+        "Copy was written successfully; Android sharing launch then failed. Preserve the successful write, failed sharing and appended %1$s exception detail separately. This does not mean the drawing Save target changed."
+      ],
+      "author_semantic_qualifications": [
+        "Copy was written successfully; Android sharing launch then failed. Preserve the successful write, failed sharing and appended %1$s exception detail separately. This does not mean the drawing Save target changed.",
+        "All127 inherited values/attributes remain unchanged. Save and Save-as references use actual current localized action labels. Existing Image format label is not newly translated.",
+        "ui_saved denotes successful output writing even for export/share; it does not certify the document is clean or ordinary Save target changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value grammar/idiom and exact consumer/composition review required; reject or revise unsupported destination/chooser terminology.",
+        "Existing Catalan Save changes? remains English; existing Romanian save confirmation remains unchanged. No broader consistency certification."
+      ],
+      "author_confidence": "medium-high bounded linguistic/source proposal; independent review pending",
+      "independent_review_status": "pending"
+    }
+  ]
+}

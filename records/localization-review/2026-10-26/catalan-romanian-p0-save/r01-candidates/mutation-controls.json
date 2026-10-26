@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "positive_packet": "passed",
+  "negative_controls": [
+    {
+      "case": "ca formatted=false refreshed-hash ' %s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %d'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %.2f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %1$s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %%'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %n'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %q'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %1$'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %3$.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %3$.f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca formatted=false refreshed-hash ' %t'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca missing candidate",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca duplicate candidate",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca wrong source pin",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered attribute",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca falsely accepted proposal",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %d'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %.2f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %1$s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %%'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %n'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %q'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %1$'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %3$.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %3$.f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro formatted=false refreshed-hash ' %t'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro missing candidate",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro duplicate candidate",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro wrong source pin",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered attribute",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro falsely accepted proposal",
+      "outcome": "rejected"
+    },
+    {
+      "case": "consumer window with refreshed input hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "corrupt source binding",
+      "outcome": "rejected"
+    },
+    {
+      "case": "corrupt inherited count",
+      "outcome": "rejected"
+    }
+  ],
+  "negative_controls_rejected": 39,
+  "source_mutations_performed": false,
+  "limits": "Synthetic packet validation only; not linguistic or runtime acceptance."
+}

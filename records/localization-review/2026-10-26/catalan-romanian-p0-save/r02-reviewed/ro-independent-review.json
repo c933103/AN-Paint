@@ -1,0 +1,410 @@
+{
+  "schema_version": 1,
+  "record_kind": "independent bounded Romanian whole-value linguistic/source-static review",
+  "review_date_utc": "2026-10-26",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "05607f0d60131cc9148461ce595155d820748e4e",
+  "source_tree": "16ff3d877650ad4ad3198ce19007e8606fcd080a",
+  "locale": "ro",
+  "target_path": "Paintroid/src/main/res/values-ro/strings.xml",
+  "candidate_packet": {
+    "file": "ro-save-export-share-candidates.json",
+    "sha256": "e361f03b86d64b3e25556cf83b0b9b53e8998ac1a170c9d27b2f0fc28415543d"
+  },
+  "input_bindings": [
+    {
+      "file": "shared-source-context.json",
+      "sha256": "58f654029fcc03985006adad8a3fc2e846367e223fbd8f66c4485df076bffd33"
+    },
+    {
+      "file": "terminology-foundations.json",
+      "sha256": "e2e87e4b88d832fe92cc88df53bbbd21b0ef6163e53e75c9ebec56ae3d451fe9"
+    },
+    {
+      "file": "scope-and-holds.json",
+      "sha256": "2c90bbc5d884412869ebe1de49cdd18cbf5ed8fe2faa34014e88cecee67506d5"
+    }
+  ],
+  "outcome": {
+    "reviewed": 10,
+    "accepted_unchanged": 10,
+    "revised": 0,
+    "new_holds": 0,
+    "native_human_acceptance": false,
+    "whole_locale_acceptance": false
+  },
+  "independent_checks": {
+    "fresh_source_file_hashes_and_Git_identities_verified": 323,
+    "consumer_windows_exactly_verified": 26,
+    "distinct_consumer_windows_read": 12,
+    "all_complete_source_target_pairs_read": 10,
+    "inherited_Romanian_values_and_attributes_verified": 127,
+    "unique_missing_P0_identities": 10,
+    "all_source_target_value_hashes_verified": true,
+    "full_format_token_inventory_including_unindexed_tokens_verified": true,
+    "formatted_false_attribute_preserved": true,
+    "XML_quoted_values_parse": true,
+    "five_preexisting_held_absences_preserved": true,
+    "source_root_or_remote_commit_graph_verification_limit": "Local source bindings and windows were independently checked; remote branch/commit authentication is supplied by the source packet, not independently fetched by this reviewer.",
+    "runtime_or_compilation_executed": false
+  },
+  "global_qualifications": [
+    "Bounded independent AI whole-value Romanian linguistic and source-static review only; not native-human review, Android execution, physical-device, layout or whole-locale certification.",
+    "All 127 inherited Romanian values and attributes remain unchanged. Existing Salvaţi modificările? retains its inherited spelling and formal/plural register; the new singular imperatives align the existing action-label style without re-reviewing or normalizing that inherited prompt.",
+    "Inherited Image format remains English, and Choose location…, Share saved image, Base64 text and the generic failure fallback remain canonical fallbacks. Mixed-language composed UI is explicitly qualified, not certified as a fully localized screen.",
+    "Successful export/share writes do not necessarily mark the current document saved or change its ordinary Save destination. The reviewed ui_saved statement is a write-success notification, not a clean-state assertion.",
+    "Provider exception messages and user-controlled file display names are substituted content, not translated or linguistically certified by this review.",
+    "All five no-current-consumer holds remain absent. No P1, paired-warning oracle, frozen-history, Help callback/archive identity, PR113/PR159, release or other paused scope is reopened."
+  ],
+  "verdicts": [
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Your current image has unsaved changes.",
+      "source_value_sha256_utf8": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "candidate_display_text": "Imaginea curentă are modificări nesalvate.",
+      "candidate_value_sha256_utf8": "f5c7a35632783e74d8229b8b9e45f4c83f82c8e8ad9d8a5c29d66055b487c383",
+      "final_display_text": "Imaginea curentă are modificări nesalvate.",
+      "final_value_sha256_utf8": "f5c7a35632783e74d8229b8b9e45f4c83f82c8e8ad9d8a5c29d66055b487c383",
+      "final_xml_text": "\"Imaginea curentă are modificări nesalvate.\"",
+      "final_xml_text_sha256_utf8": "526aa0f887e1c15f4bf18f0564416944f559fccbd6174f0e653f53ee75faf29c",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Complete and idiomatic Romanian: current image and unsaved modifications are explicit; no prior-draft or saving-success meaning is introduced.",
+      "consumer_context_ids": [
+        "dirty-document-replacement-guard"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Could not save image",
+      "source_value_sha256_utf8": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "candidate_display_text": "Imaginea nu a putut fi salvată",
+      "candidate_value_sha256_utf8": "d6847857fe509a3c73243346c7a0a71d0bb95baf08fc7ffb784e241cabbada56",
+      "final_display_text": "Imaginea nu a putut fi salvată",
+      "final_value_sha256_utf8": "d6847857fe509a3c73243346c7a0a71d0bb95baf08fc7ffb784e241cabbada56",
+      "final_xml_text": "\"Imaginea nu a putut fi salvată\"",
+      "final_xml_text_sha256_utf8": "931e8fc684857ee743a8c9affa943fcf67b7e6250cf5a10bf38a500666c01e2f",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Natural passive failure statement. The candidate correctly has no final punctuation: ioFailed appends a full stop, a space, and the exception detail or fallback.",
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_saved",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Saved %1$s",
+      "source_value_sha256_utf8": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "candidate_display_text": "S-a salvat %1$s",
+      "candidate_value_sha256_utf8": "57c78893f9b2178cd58c46cc1b722dd21d05ae181a565d8b11641f28eca9489c",
+      "final_display_text": "S-a salvat %1$s",
+      "final_value_sha256_utf8": "57c78893f9b2178cd58c46cc1b722dd21d05ae181a565d8b11641f28eca9489c",
+      "final_xml_text": "\"S-a salvat %1$s\"",
+      "final_xml_text_sha256_utf8": "298ce2123f19899e83f9f1b910e8dd5432ce9b5267505b940155e4cbf7a66ee1",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "confidence": "high",
+      "rationale": "The impersonal completed-write wording accepts the file display name without gender agreement. It does not claim all document edits are clean. Exactly one indexed string argument remains.",
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "source_value_sha256_utf8": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "candidate_display_text": "Fișierul exportat a fost creat. Folosește «Salvează» sau «Salvează ca…» pentru a salva imaginea curentă înainte de a continua.",
+      "candidate_value_sha256_utf8": "f8563d00ddc207f17b0a0a654d07796424bb4b81f268b27186c83fbaaad55c51",
+      "final_display_text": "Fișierul exportat a fost creat. Folosește «Salvează» sau «Salvează ca…» pentru a salva imaginea curentă înainte de a continua.",
+      "final_value_sha256_utf8": "f8563d00ddc207f17b0a0a654d07796424bb4b81f268b27186c83fbaaad55c51",
+      "final_xml_text": "\"Fișierul exportat a fost creat. Folosește «Salvează» sau «Salvează ca…» pentru a salva imaginea curentă înainte de a continua.\"",
+      "final_xml_text_sha256_utf8": "89d3e4736904212b6e9071e7f96858d23098bf722ed7ca953fb6dc3aa3a9da7e",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "An output file has been created, but ordinary Save or Save as is still required before the pending continuation. The quoted action names exactly match Salvează and Salvează ca…; the statement is not an export-failure message.",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "source_value_sha256_utf8": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "candidate_display_text": "Alege un format de imagine și setările de compresie. «Salvează» va reutiliza acest nume de fișier, această locație, acest format și aceste setări.",
+      "candidate_value_sha256_utf8": "a39073b0e4647ff8a17771dcad52e1450a02e4cf8857e542b3a8620b560817ee",
+      "final_display_text": "Alege un format de imagine și setările de compresie. «Salvează» va reutiliza acest nume de fișier, această locație, acest format și aceste setări.",
+      "final_value_sha256_utf8": "a39073b0e4647ff8a17771dcad52e1450a02e4cf8857e542b3a8620b560817ee",
+      "final_xml_text": "\"Alege un format de imagine și setările de compresie. «Salvează» va reutiliza acest nume de fișier, această locație, acest format și aceste setări.\"",
+      "final_xml_text_sha256_utf8": "52a9627a3af4dbe2ffba47a7bc965a00908baf130c73d3e59bfe5ccaaa3d87bd",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Both selection of image format/compression settings and subsequent reuse of all four items—file name, location, format and settings—are retained. Locație is acceptable technical UI wording here; no path or provider mechanism is invented.",
+      "consumer_context_ids": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "source_value_sha256_utf8": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "candidate_display_text": "Exportă o pictogramă, text Base64 sau artă ASCII. Exportul nu modifică nici imaginea curentă, nici destinația folosită de «Salvează».",
+      "candidate_value_sha256_utf8": "6a1a07320d93b4eb2a5855a100d4869b5f76559d0fc44e31762a878d11784b66",
+      "final_display_text": "Exportă o pictogramă, text Base64 sau artă ASCII. Exportul nu modifică nici imaginea curentă, nici destinația folosită de «Salvează».",
+      "final_value_sha256_utf8": "6a1a07320d93b4eb2a5855a100d4869b5f76559d0fc44e31762a878d11784b66",
+      "final_xml_text": "\"Exportă o pictogramă, text Base64 sau artă ASCII. Exportul nu modifică nici imaginea curentă, nici destinația folosită de «Salvează».\"",
+      "final_xml_text_sha256_utf8": "34733479a47846a5786c8d0a099e766f86d251a6b2f11ea1405c8b75a2a78a43",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The three derived output types remain distinct. Repeated nici…nici correctly scopes unchanged state over both the current image and the destination used by Salvează; it does not deny creation of a separate export file.",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_share_explanation34",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "source_value_sha256_utf8": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+      "candidate_display_text": "Salvează o copie în locația aleasă, apoi alege o aplicație pentru a o partaja. Destinația curentă folosită de «Salvează» rămâne neschimbată.",
+      "candidate_value_sha256_utf8": "320ab1e8f991daf589df1639d191548b02fcaa560d6cee62ce6c174b466d794d",
+      "final_display_text": "Salvează o copie în locația aleasă, apoi alege o aplicație pentru a o partaja. Destinația curentă folosită de «Salvează» rămâne neschimbată.",
+      "final_value_sha256_utf8": "320ab1e8f991daf589df1639d191548b02fcaa560d6cee62ce6c174b466d794d",
+      "final_xml_text": "\"Salvează o copie în locația aleasă, apoi alege o aplicație pentru a o partaja. Destinația curentă folosită de «Salvează» rămâne neschimbată.\"",
+      "final_xml_text_sha256_utf8": "01584afc622f9e0abf90be2be4312ff4284ae2c21ebc8210c2fb505873e76541",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The sequence is save a copy to the chosen location, then choose a sharing application. The last sentence explicitly retains the ordinary Save destination. It does not claim that the copy is already shared or that the document is marked clean.",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Save and share…",
+      "source_value_sha256_utf8": "af8c25f4421cf91f4eedcbac21b3ef0e7f5286ba29dec7b6359a7dac6ff625fd",
+      "candidate_display_text": "Salvează și partajează…",
+      "candidate_value_sha256_utf8": "578950622f1b6640b956bf3e5bd9490ebbf596d67c372a2d3d77ce7b4589f4f6",
+      "final_display_text": "Salvează și partajează…",
+      "final_value_sha256_utf8": "578950622f1b6640b956bf3e5bd9490ebbf596d67c372a2d3d77ce7b4589f4f6",
+      "final_xml_text": "\"Salvează și partajează…\"",
+      "final_xml_text_sha256_utf8": "82aa24fe5c6e72fe17ee46c1e5d0c931fe45b07bd951113eeea9bfdd1862bf80",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Concise idiomatic imperative action pair. The ellipsis is retained for the menu action and partajează is consistent with the sharing explanation.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:842"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Save and share",
+      "source_value_sha256_utf8": "41edb42591bb2694c768ea901a5a82cbaebb0d2110321c5f2c309afd1262a7f4",
+      "candidate_display_text": "Salvează și partajează",
+      "candidate_value_sha256_utf8": "e9040daee87a9c8e4cca82190174c0305874d6c1409c26e1fca855dc259cea33",
+      "final_display_text": "Salvează și partajează",
+      "final_value_sha256_utf8": "e9040daee87a9c8e4cca82190174c0305874d6c1409c26e1fca855dc259cea33",
+      "final_xml_text": "\"Salvează și partajează\"",
+      "final_xml_text_sha256_utf8": "7048771b3d25513d7cce7b4cfb9804e12ab4c97b4f75f815bc3dba55a7a4d2fd",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Matches the menu action wording exactly without the menu ellipsis, appropriate to the dialog title. No additional operation or outcome is asserted.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:187"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "priority": "P0",
+      "scope": "whole value; independently accepted with stated static/composition qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "source_value_sha256_utf8": "290a2340c93b4dfc627bf2d73d85ab3841e3300933d1f2212ba33a3e04c4f903",
+      "candidate_display_text": "Imaginea a fost salvată, dar Android nu a putut deschide dialogul de partajare: %1$s",
+      "candidate_value_sha256_utf8": "d85bd476ff8e290926da6588a33fd783b5ef06b025319bf79041d681b154d078",
+      "final_display_text": "Imaginea a fost salvată, dar Android nu a putut deschide dialogul de partajare: %1$s",
+      "final_value_sha256_utf8": "d85bd476ff8e290926da6588a33fd783b5ef06b025319bf79041d681b154d078",
+      "final_xml_text": "\"Imaginea a fost salvată, dar Android nu a putut deschide dialogul de partajare: %1$s\"",
+      "final_xml_text_sha256_utf8": "c916fc6c45bd4fa3725777a6c4076d1aeb9c8c8fadd661408abeff524f0b17f7",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "confidence": "high",
+      "rationale": "Preserves the successful write, subsequent Android sharing-launch failure and exception detail. Dialogul de partajare is an idiomatic, source-supported rendering for the Intent.createChooser launch; it is not presented as an exact localized Android system title.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1389"
+      ],
+      "qualifications": [
+        "The complete value is accepted only at the pinned source/consumer context and with the global scope qualifications."
+      ]
+    }
+  ],
+  "static_composition_examples": [
+    {
+      "kind": "dirty-document dialog",
+      "title_existing": "Salvaţi modificările?",
+      "message": "Imaginea curentă are modificări nesalvate.",
+      "buttons_existing": [
+        "Salvează",
+        "Renunță la modificări",
+        "Anulează"
+      ],
+      "qualification": "Inherited title/register remains unchanged; this is a static composition, not rendered UI evidence."
+    },
+    {
+      "kind": "write-success toast with literal percent in file name",
+      "argument_example": "desen 50%.png",
+      "composed": "S-a salvat desen 50%.png",
+      "qualification": "Filename is one substituted string, not a second format expression; no claim that the document became clean."
+    },
+    {
+      "kind": "save-error prefix composition",
+      "prefix": "Imaginea nu a putut fi salvată",
+      "separator": ". ",
+      "detail_example": "Provider error",
+      "composed": "Imaginea nu a putut fi salvată. Provider error",
+      "qualification": "ioFailed supplies the full stop and space; arbitrary provider wording is outside linguistic acceptance."
+    },
+    {
+      "kind": "save-options panel",
+      "title_existing": "Salvează ca…",
+      "message": "Alege un format de imagine și setările de compresie. «Salvează» va reutiliza acest nume de fișier, această locație, acest format și aceste setări.",
+      "field_labels_existing": [
+        "Nume fișier",
+        "Image format"
+      ],
+      "action_fallback": "Choose location…",
+      "qualification": "Image format and Choose location… are deliberately unchanged English/contextual fallback labels."
+    },
+    {
+      "kind": "share-copy panel",
+      "title": "Salvează și partajează",
+      "menu_label": "Salvează și partajează…",
+      "message": "Salvează o copie în locația aleasă, apoi alege o aplicație pentru a o partaja. Destinația curentă folosită de «Salvează» rămâne neschimbată.",
+      "chooser_title_fallback": "Share saved image",
+      "qualification": "The ordinary Save destination remains unchanged; system chooser behavior and layout are not executed or certified."
+    },
+    {
+      "kind": "sharing-launch failure after completed write",
+      "argument_example": "Provider error 50%",
+      "composed": "Imaginea a fost salvată, dar Android nu a putut deschide dialogul de partajare: Provider error 50%",
+      "qualification": "Synthetic exception detail preserves one indexed substitution and is not an accepted Romanian translation of provider text."
+    }
+  ],
+  "effects": {
+    "source_edits": false,
+    "external_publication": false,
+    "new_scopes_outside_ten_values": false,
+    "prior_holds_or_inherited_acceptance_reclassified": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "record_kind": "Additional independent malformed-metadata controls",
+  "original_public_verifier_sha256": "aa94ab0a11f6b5b173f3c685c5d77809def1922d72b32cfe63cb1ac2f92eed4c",
+  "actual_20_candidate_priority_and_context_bindings_correct": true,
+  "extra_controls": [
+    {
+      "mutation": "Set first Catalan candidate priority to P3",
+      "expected": "reject",
+      "observed": "accepted",
+      "remediation": "Require candidate priority exactly P0."
+    },
+    {
+      "mutation": "Replace first Catalan candidate consumer_context_ids with nonexistent-context",
+      "expected": "reject",
+      "observed": "accepted",
+      "remediation": "Require exact equality with the corresponding source entry context ID inventory."
+    }
+  ],
+  "severity": "Bounded verifier metadata-integrity gap; no actual wrong translation, source mutation or privacy defect identified.",
+  "prior_controls_independently_reproduced": {
+    "ordinary": 39,
+    "optimized": 39
+  },
+  "limits": "Synthetic packet mutations only; original reviewed candidate files were not modified."
+}
