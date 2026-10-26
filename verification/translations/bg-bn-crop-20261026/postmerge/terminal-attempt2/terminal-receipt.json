@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "repository": "c933103/AN-Paint",
+  "pull_request": 172,
+  "reviewed_head": "758a941b0dbe312aeda6206f5c90468490ceece9",
+  "merge_commit": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+  "merge_tree": "5f134de325b58f50ba2a26b32062e99845e803e4",
+  "ordered_merge_parents": [
+    "fc935251cf45749b1f83bdc2d1e9826ff2385dac",
+    "758a941b0dbe312aeda6206f5c90468490ceece9"
+  ],
+  "tree_composition": {
+    "leaf_count": 1358,
+    "reviewed_source_test_paths": 17,
+    "approved_documentation_paths": [
+      "README.md",
+      "docs/PROJECT_KANBAN.md"
+    ],
+    "unexplained_differences": 0,
+    "mode_mismatches": 0
+  },
+  "workflow_run": {
+    "id": 40257896119,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/40257896119",
+    "event": "push",
+    "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+    "run_attempt": 2,
+    "status": "completed",
+    "conclusion": "success",
+    "checked_at": "2026-10-26T02:54:00Z"
+  },
+  "retry": {
+    "endpoint": "rerun-failed-jobs",
+    "requests": 1,
+    "admission_verified": true,
+    "original_attempt": 1,
+    "original_conclusion": "failure",
+    "reason": "All selected instrumentation passed, but mandatory dialog/vertical collection failed after adb device offline; the deeper disconnection cause is not established.",
+    "unchanged": [
+      "source",
+      "test assertions",
+      "workflow",
+      "deadlines",
+      "settings"
+    ],
+    "failed_core_artifact_id": 12624101857,
+    "preserved_evidence_commit": "a610bd69e169a42d777365e0c51d6703c269f8d3"
+  },
+  "jobs": [
+    {
+      "id": 121370367681,
+      "name": "Core emulator API 35",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success",
+      "job_record_run_attempt": 2,
+      "started_at": "2026-10-26T02:38:23Z",
+      "completed_at": "2026-10-26T02:50:42Z",
+      "execution": "executed in attempt 2",
+      "prior_job_id": 121366019905,
+      "prior_conclusion": "failure",
+      "step_timestamps_equal_to_prior": false
+    },
+    {
+      "id": 121370368565,
+      "name": "Build APK and corresponding source",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success",
+      "job_record_run_attempt": 2,
+      "started_at": "2026-10-26T02:11:51Z",
+      "completed_at": "2026-10-26T02:21:16Z",
+      "execution": "carried successful attempt-1 result; new job metadata ID",
+      "prior_job_id": 121363600084,
+      "prior_conclusion": "success",
+      "step_timestamps_equal_to_prior": true
+    },
+    {
+      "id": 121370369292,
+      "name": "Regression tests and lint",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success",
+      "job_record_run_attempt": 2,
+      "started_at": "2026-10-26T02:11:51Z",
+      "completed_at": "2026-10-26T02:36:17Z",
+      "execution": "carried successful attempt-1 result; new job metadata ID",
+      "prior_job_id": 121363600020,
+      "prior_conclusion": "success",
+      "step_timestamps_equal_to_prior": true
+    },
+    {
+      "id": 121370402903,
+      "name": "Exact-script resource generation",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success",
+      "job_record_run_attempt": 2,
+      "started_at": "2026-10-26T02:11:51Z",
+      "completed_at": "2026-10-26T02:16:14Z",
+      "execution": "carried successful attempt-1 result; new job metadata ID",
+      "prior_job_id": 121363599835,
+      "prior_conclusion": "success",
+      "step_timestamps_equal_to_prior": true
+    },
+    {
+      "id": 121370410391,
+      "name": "Position dialog API 35",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success",
+      "job_record_run_attempt": 2,
+      "started_at": "2026-10-26T02:21:18Z",
+      "completed_at": "2026-10-26T02:26:36Z",
+      "execution": "carried successful attempt-1 result; new job metadata ID",
+      "prior_job_id": 121366019881,
+      "prior_conclusion": "success",
+      "step_timestamps_equal_to_prior": true
+    },
+    {
+      "id": 121373472426,
+      "name": "Emulator API 35",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success",
+      "job_record_run_attempt": 2,
+      "started_at": "2026-10-26T02:50:45Z",
+      "completed_at": "2026-10-26T02:50:59Z",
+      "execution": "executed in attempt 2",
+      "prior_job_id": 121369183535,
+      "prior_conclusion": "failure",
+      "step_timestamps_equal_to_prior": false
+    }
+  ],
+  "checks": [
+    {
+      "id": 121373472426,
+      "name": "Emulator API 35",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121370410391,
+      "name": "Position dialog API 35",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121370402903,
+      "name": "Exact-script resource generation",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121370369292,
+      "name": "Regression tests and lint",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121370368565,
+      "name": "Build APK and corresponding source",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 121370367681,
+      "name": "Core emulator API 35",
+      "head_sha": "f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12624468624,
+      "name": "emulator-core-api-35-f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "bytes": 11391679,
+      "digest": "sha256:09f29a7094e48ce8b358a7eac8c84405dae408374a632b7c8d2a529b6e2a6a30",
+      "expired": false,
+      "raw_bytes_independently_verified": false
+    },
+    {
+      "id": 12624101857,
+      "name": "emulator-core-api-35-f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "bytes": 3732328,
+      "digest": "sha256:4750cbd0df865ef9670b3f25ca7d2842bfed8163e2d1bdf95d0dcd57ff693b8e",
+      "expired": false,
+      "raw_bytes_independently_verified": true
+    },
+    {
+      "id": 12623509214,
+      "name": "emulator-api-35-f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "bytes": 11403977,
+      "digest": "sha256:0dade51b396c5b35b8ccc3c945f05b6a7bf1b35db7ed3fea9402b6d9279f7848",
+      "expired": false,
+      "raw_bytes_independently_verified": true
+    },
+    {
+      "id": 12623491898,
+      "name": "emulator-position-api-35-f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "bytes": 1894940,
+      "digest": "sha256:7f15101795884a42ac6640b8a1cf095178d0c366f68e29d40e6db1e036a18528",
+      "expired": false,
+      "raw_bytes_independently_verified": false
+    },
+    {
+      "id": 12622974607,
+      "name": "apk-and-source-f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "bytes": 142210477,
+      "digest": "sha256:0091f80733619084d57cbecd9a12eb8af6a766be83bc894e91f1b169aeb7e551",
+      "expired": false,
+      "raw_bytes_independently_verified": true
+    },
+    {
+      "id": 12622753407,
+      "name": "exact-script-generation-f942ab1995ffe4aa487bfe0c11ab590025e6241e",
+      "bytes": 11489,
+      "digest": "sha256:10c92e5558ec8503cd1a297dad6c22c284b868be2a245da395ed9530ef8195d3",
+      "expired": false,
+      "raw_bytes_independently_verified": true
+    }
+  ],
+  "byte_verification": {
+    "source_sha256": "2db043924b60e0b83ab497f7bdd24a07df4030e9c0252e1e017e581893510183",
+    "apk_sha256": "0c76593576e3864e6faeb7e52cff9556402fc4391c4d07b48815834daf323abc",
+    "build_info_matches": true,
+    "apk_embedded_source_matches_separate_zip": true,
+    "repository_source_blobs_verified": 1355,
+    "git_blob_or_mode_mismatches": 0,
+    "packaging_exclusions": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ]
+  },
+  "coverage": {
+    "sdk": 35,
+    "app_completed": 45,
+    "app_declared": 45,
+    "native_completed": 74,
+    "native_expected": 74,
+    "core_execution_attempt": 2,
+    "position_execution_attempt": 1,
+    "collection_passed": true,
+    "vertical_screenshots_validated": 32
+  },
+  "limitations": [
+    "Routine hosted API 35 suite, not a full device/API matrix or release acceptance.",
+    "Raw downloaded delivery and combined artifacts are verified; individual selected core/position artifact digests are GitHub/CI metadata, not separate downloads.",
+    "Test APK hash is CI-recorded; its archive was not independently downloaded.",
+    "Bulgarian/Bengali qualified source-only judgments and Hakka/Wu source-assisted whole-value qualifications remain unchanged; no native-speaker or physical-device linguistic certification."
+  ]
+}
