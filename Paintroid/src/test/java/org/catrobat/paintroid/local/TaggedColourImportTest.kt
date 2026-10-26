@@ -119,13 +119,14 @@ class TaggedColourImportTest {
     }
 
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
-        // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian values.
+        // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian values.
         // Global localization scope is unchanged; every other offered tag must use English.
         val expected = javaClass.getResourceAsStream("/tagged-colour/expected.json")!!
             .bufferedReader().use { JSONObject(it.readText()) }
-        assertEquals(68, expected.length())
+        assertEquals(70, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
+        assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
         assertTrue(expected.has("am")); assertTrue(expected.has("cs")); assertTrue(expected.has("pl")); assertTrue(expected.has("sv"))
         assertEquals(171, AppLanguage.tags(context).size)
         var fallbacks = 0
@@ -144,6 +145,6 @@ class TaggedColourImportTest {
             assertEquals("Family message or explicit English fallback for $tag",
                 expectedMessage, message)
         }
-        assertEquals(103, fallbacks)
+        assertEquals(101, fallbacks)
     }
 }
