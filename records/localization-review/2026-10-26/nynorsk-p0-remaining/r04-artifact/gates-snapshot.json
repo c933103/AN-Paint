@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "observed_utc": "2026-10-26T06:29:11Z",
+  "PR": 174,
+  "head": "3c8123707106dfc991221517e443276f857797db",
+  "base": "857a20103285a77846e340b326667c15a402ff9e",
+  "test_merge": "ccf60becbb36d17849b907c49bad7d23c17f02cf",
+  "tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "run_id": 40279026132,
+  "code_review": {
+    "status": "completed without findings",
+    "full_head_bound": true,
+    "receipt": "https://github.com/c933103/AN-Paint/pull/174#issuecomment-6409612193",
+    "summary": "https://github.com/c933103/AN-Paint/pull/174#issuecomment-6409590551"
+  },
+  "security_review": {
+    "status": "completed without findings",
+    "full_head_bound": true,
+    "merge_gate_enabled": false,
+    "trigger": "draft marked ready; not an invented required gate"
+  },
+  "jobs": {
+    "exact_script": {
+      "status": "success",
+      "probe_count": 13
+    },
+    "build_apk_source_and_test_apks": {
+      "status": "success",
+      "completed_at": "2026-10-26T06:27:40Z"
+    },
+    "hosted_python": {
+      "step_status": "success",
+      "completed_at": "2026-10-26T06:24:02Z",
+      "test_count": null,
+      "skip_count": null,
+      "count_limit": "Completed-job regression artifact not available at this snapshot; counts are not guessed from local runs."
+    },
+    "JVM": {
+      "status": "in_progress",
+      "started_at": "2026-10-26T06:24:02Z"
+    },
+    "lint": {
+      "status": "pending"
+    },
+    "API35_position": {
+      "status": "in_progress",
+      "test_step_started_at": "2026-10-26T06:28:36Z"
+    },
+    "API35_core": {
+      "status": "in_progress",
+      "test_step_started_at": "2026-10-26T06:28:40Z"
+    }
+  },
+  "merge_eligibility": "not yet; remaining required gates pending",
+  "local_Android_compile_JVM_device": "not executed; local SDK unavailable",
+  "release": "not performed"
+}

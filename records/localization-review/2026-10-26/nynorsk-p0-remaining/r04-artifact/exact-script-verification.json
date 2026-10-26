@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "artifact_id": 12631161935,
+  "archive_sha256": "43bd878b9853b4ca0aeeafeaf2e18daea374fdf2e5f405c0ff68bb35a03d61ad",
+  "run_id": 40279026132,
+  "reviewed_head": "3c8123707106dfc991221517e443276f857797db",
+  "tested_merge": "ccf60becbb36d17849b907c49bad7d23c17f02cf",
+  "tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "merge_parents_verified": [
+    "857a20103285a77846e340b326667c15a402ff9e",
+    "3c8123707106dfc991221517e443276f857797db"
+  ],
+  "probe_count": 13,
+  "all_log_hashes_and_expected_exits_verified": true,
+  "probes": [
+    {
+      "name": "01-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "bd5ab0debcf62b5ae524e279458ab2f9f02b9d2d162a4664970fae6f59adc89f"
+    },
+    {
+      "name": "02-clean-debug-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "3edda08943d1c2bbd7ebbd90ad287100f6ae54ca0d0f707f857479df8afa2ec7"
+    },
+    {
+      "name": "03-unchanged",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "aa4b5ed2c2284b7880d58826bc55346e72f6aeaf4f4a2fc17db44101d16ae76e"
+    },
+    {
+      "name": "04-1-input-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "0de342ae5c489e958442079a333da6f97bc326b13be83f2944ae9cab397e1afc"
+    },
+    {
+      "name": "05-1-restored-input-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "d52877980e7ead4df481bd8ffbd8c73104e54c2e0fc50ff07e3871fc88aa06ff"
+    },
+    {
+      "name": "04-2-input-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "ae784f670f92b37f27b523aaa750d7fb129c7c09ca9dc7a54c78d621bc42efaa"
+    },
+    {
+      "name": "05-2-restored-input-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "5d0cb6b9dca04556531c7daffa477ad4e5734d630b32a1765dfb57ee4fc0dad9"
+    },
+    {
+      "name": "05-source-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "5419afd39e692fba768ae9adc1fff8ecf25b613c71097e4bd94b1af3335d9656"
+    },
+    {
+      "name": "05-source-companion-added",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "5419afd39e692fba768ae9adc1fff8ecf25b613c71097e4bd94b1af3335d9656"
+    },
+    {
+      "name": "05-source-companion-removed",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "612d4de5e233b99ed5a67235582f585c7ca2095578e92870f1343bfba6054af8"
+    },
+    {
+      "name": "06-reserved-app-variant-rejected",
+      "exit_code": 1,
+      "expected_success": false,
+      "log_sha256": "b24d29a21004f5f62a8b6fc6fe7aca3a1b5776838819ca224f6535272fec94f8"
+    },
+    {
+      "name": "06-second-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "05a1a64d0e51d85a579c0f3af571296843c365681d35da112a6048cf6bfab3cc"
+    },
+    {
+      "name": "07-release-first-after-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "5ae9d7c80f84ba034c703028dbc21d3426af5091f0d61e17782289f14858ff39"
+    }
+  ],
+  "scope": "Exact-script/resource generation checks only; not JVM/device/language acceptance or release."
+}
