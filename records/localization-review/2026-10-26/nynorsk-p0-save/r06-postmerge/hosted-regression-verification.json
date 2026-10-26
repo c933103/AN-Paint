@@ -1,0 +1,95 @@
+{
+  "schema": "nynorsk-postmerge-hosted-regression-v1",
+  "artifact_id": 12629138409,
+  "artifact_sha256": "83fe8dca84ac546e4d105fece78de8672e22881a8610f570a3ed05a436e1aba5",
+  "reviewed_head": "2d940e411829f991b3399c1fdb572dd12b0ad44f",
+  "source_commit": "857a20103285a77846e340b326667c15a402ff9e",
+  "run_id": 40272570496,
+  "junit_files": 143,
+  "junit_totals": {
+    "tests": 1344,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "unique_junit_identities": 1344,
+  "focused_suites": [
+    {
+      "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.DerivedExportStateTest.xml",
+      "sha256": "775a6989411d158099f202f6d2d4f61ddbb9ada16cf80182481290f710bb7217",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "base64ExportKeepsOriginalDrawingAndWritesRecoverableImage",
+          "seconds": "0.472",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "nynorskExportStatusNamesTheWrittenFileWithoutClaimingTheDrawingIsSaved",
+          "seconds": "0.816",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "icoExportKeepsFullResolutionDrawingAndBlocksPendingClose",
+          "seconds": "0.479",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "asciiExportKeepsOriginalDrawingAndBlocksPendingClose",
+          "seconds": "0.478",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "savedAsciiOptionsDriveRealExportAfterActivityRecreationAndIconSizeRemainsAvailable",
+          "seconds": "0.866",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.NynorskSaveWordingTest.xml",
+      "sha256": "f887a92cd171c4ad3da6e72c92c05ca89b9426a1092bc495edf7951fe7e1720d",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.local.NynorskSaveWordingTest",
+          "name": "actualSaveExportAndSharePanelsShowDistinctWholeMessagesAndCancelWithoutSaving",
+          "seconds": "0.541",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.NynorskSaveWordingTest",
+          "name": "allEightCompleteCompiledValuesPreserveTheFilenameArgumentAndActionNames",
+          "seconds": "0.025",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "hosted_python": {
+    "run": 1357,
+    "passed": 1355,
+    "skipped": 2,
+    "seconds": 210.641,
+    "skipped_identities": "Not named in non-verbose hosted receipt; not guessed from source. Local ordinary and optimized receipts separately have zero skips."
+  },
+  "lint_issues": 0,
+  "lint_severities": [],
+  "phase_exit_codes": {
+    "python": 0,
+    "jvm": 0,
+    "native": 0,
+    "lint": 0
+  }
+}
