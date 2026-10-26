@@ -37,10 +37,14 @@ class CommonsSvgErrorTranslationTest {
     private val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Size_test.svg"
     private val page="https://commons.wikimedia.org/wiki/File:Size_test.svg"
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val tags=listOf("en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am")
+    private val tags=listOf("en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am","ast")
 
-    // Independent reviewed wording oracles for the eleven later exact catalogue additions.
+    // Independent reviewed wording oracles for the later exact catalogue additions.
     private val addedReasons=mapOf(
+        "am" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG ጥቅም ላይ ሊውል የሚችል ዋና መጠን አይገልጽም። በምትኩ በስዕል ሰሌዳው ላይ የተመሠረተ መጠን አልተተካም።",
+            R.string.commons_svg_original_size_too_large to "የSVG ዋና መጠን ከAndroid የቢትማፕ ልኬቶች ገደብ ይበልጣል። መጠኑ አልተቀየረም።"
+        ),
         "hak-Hant-TW" to mapOf(
             R.string.commons_svg_original_size_unavailable to "SVG 無提供做得用个原本大細。無用照畫布大細決定个大細來取代。",
             R.string.commons_svg_original_size_too_large to "SVG 个原本大細超出 Android 點陣圖个尺寸上限。並未調大細。"
@@ -154,7 +158,7 @@ class CommonsSvgErrorTranslationTest {
     private fun checkSizeFailure(svg: String,key: Int,english: String) {
         for(tag in tags) withGallery(tag) {activity ->
             val reason=activity.getString(key)
-            if(tag in listOf("en-US","am"))
+            if(tag in listOf("en-US","ast"))
                 assertEquals("Independent source oracle, including explicit incomplete-catalogue fallback",english,reason)
             else assertNotEquals("This representative exact catalogue must resolve its translation",english,reason)
             addedReasons[tag]?.get(key)?.let {

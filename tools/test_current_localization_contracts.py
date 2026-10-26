@@ -27,7 +27,7 @@ EXPECTED_KEYS = {
 
 
 # Additions are message-family-specific. Czech and Swedish have independently reviewed metadata/copy-credit values.
-FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'cs', 'pl', 'sv'}}
+FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv'}}
 
 
 def wording_tags(name):
@@ -39,7 +39,7 @@ def wording_fixture(name):
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'cs', 'pl', 'sv'}
+TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv'}
 
 
 def tagged_colour_expectations(data):
@@ -52,6 +52,9 @@ def tagged_colour_expectations(data):
         reviewed = fixture(name + suffix)['values'][TAGGED_COLOUR_KEY][tag]
         if data[tag] != reviewed:
             raise ValueError('Tagged-colour expectation differs from reviewed complete pair: ' + tag)
+    reviewed_am = fixture('amharic_priority.json')['values'][TAGGED_COLOUR_KEY]['expected'][1:-1]
+    if data['am'] != reviewed_am:
+        raise ValueError('Tagged-colour expectation differs from reviewed Amharic value')
     return data
 
 
@@ -62,6 +65,8 @@ def require_tagged_colour_resolution(data, strings, offered, english):
         expected = data[tag] if tag in data else english
         # Catalogue values retain Android apostrophe escapes; this family uses no other escapes.
         actual = strings[tag].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
+        if tag == 'am' and actual.startswith('"') and actual.endswith('"'):
+            actual = actual[1:-1]  # Android removes the reviewed outer quoting.
         if actual != expected:
             raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
 
@@ -91,9 +96,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
     def test_each_message_family_has_only_its_explicitly_reviewed_additions(self):
         svg = wording_fixture(FAMILIES[2])
-        extra_tags = {'cs', 'pl', 'sv'}
+        extra_tags = {'am', 'cs', 'pl', 'sv'}
         self.assertEqual({'cs', 'pl'}, set(svg['additional_draft_tags']))
-        self.assertEqual({'sv'}, set(svg['additional_reviewed_tags']))
+        self.assertEqual({'am', 'sv'}, set(svg['additional_reviewed_tags']))
         self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
@@ -103,6 +108,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
             self.assertEqual(['cs', 'sv'], wording_fixture(name)['additional_reviewed_tags'])
         self.assertEqual({'hu'}, wording_tags(FAMILIES[3]))
         self.assertEqual({'default'} | SCOPED_TAGS | extra_tags, wording_tags(FAMILIES[2]))
+        amharic = fixture('amharic_priority.json')
+        for key, values in svg['values'].items():
+            self.assertEqual(amharic['values'][key]['expected'], values['am'])
         swedish = fixture('swedish_remaining_p1_wording.json')
         for key, values in svg['values'].items():
             self.assertEqual(swedish['values'][key]['sv'], values['sv'])
@@ -112,8 +120,8 @@ class CurrentLocalizationContracts(unittest.TestCase):
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(62, len(data))
-        self.assertEqual(109, len(offered - set(data)))
+        self.assertEqual(63, len(data))
+        self.assertEqual(108, len(offered - set(data)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:
