@@ -33,6 +33,7 @@ import org.robolectric.annotation.GraphicsMode
 import java.io.File
 import java.io.IOException
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 /** Bounded compiled wording and real memory/recovery/encoding consumers, not whole-locale acceptance. */
 @RunWith(RobolectricTestRunner::class)
@@ -47,12 +48,70 @@ class SerbianP0WordingTest {
     }
 
     // Only this batch's simply quote-wrapped reviewed values use this decoder.
-    // All inherited values/attributes stay exact under the separate source contracts.
+    // 337 inherited values/attributes stay exact; the Cyrillic format label has its own reviewed successor.
     private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
         .getJSONObject(key).getString(tag).removeSurrounding("\"")
 
     private fun preserved(tag: String, key: String) = fixture.getJSONObject("preserved_values")
         .getJSONObject(tag).getJSONObject(key).getString("value").removeSurrounding("\"")
+
+    private fun formatLabel(tag: String): String {
+        if (tag != "sr-Cyrl") return preserved(tag, "save20_file_format")
+        val successor = fixture.getJSONObject("format_label_successor")
+        assertEquals("sr-Cyrl", successor.getString("locale"))
+        assertEquals("save20_file_format", successor.getString("key"))
+        assertEquals("save20_file_format", successor.getJSONObject("attributes").getString("name"))
+        return successor.getString("value").removeSurrounding("\"")
+    }
+
+    private fun awaitUi(label: String, ready: () -> Boolean) {
+        val until = System.nanoTime() + TimeUnit.SECONDS.toNanos(3)
+        while (!ready() && System.nanoTime() < until) {
+            shadowOf(Looper.getMainLooper()).idleFor(16, TimeUnit.MILLISECONDS)
+            if (!ready()) Thread.sleep(1)
+        }
+        assertTrue(label, ready())
+    }
+
+    private fun assertDistinctFormatAndFilenameControls(root: View, tag: String) {
+        val format = checkNotNull(root.findViewWithTag<Spinner>("export_format"))
+        val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
+        // Native accessibility nodes require a mounted, laid-out window. Do not
+        // replace node assertions with the simpler View property if mounting fails.
+        awaitUi("$tag Save dialog and both controls are attached, visible and laid out") {
+            root.isAttachedToWindow && root.width > 0 && root.height > 0 && !root.isLayoutRequested &&
+                listOf(format, filename).all {
+                    it.isAttachedToWindow && it.isShown && it.isLaidOut &&
+                        it.width > 0 && it.height > 0 && !it.isLayoutRequested
+                }
+        }
+        val expectedFormat = if (tag == "sr-Cyrl") "Формат датотеке" else "Format slike"
+        val expectedFilename = if (tag == "sr-Cyrl") "Назив датотеке" else "Naziv datoteke"
+        assertEquals(expectedFormat, formatLabel(tag))
+        assertEquals(expectedFilename, preserved(tag, "save20_file_name"))
+        assertEquals(expectedFormat, format.contentDescription.toString())
+        assertEquals(expectedFilename, filename.contentDescription.toString())
+        val formatNode = checkNotNull(format.createAccessibilityNodeInfo()) {
+            "$tag format accessibility node missing after attached, visible layout"
+        }
+        val filenameNode = checkNotNull(filename.createAccessibilityNodeInfo()) {
+            "$tag filename accessibility node missing after attached, visible layout"
+        }
+        val formatNodeDescription = checkNotNull(formatNode.contentDescription) {
+            "$tag format accessibility node has no contentDescription after attached, visible layout"
+        }
+        val filenameNodeDescription = checkNotNull(filenameNode.contentDescription) {
+            "$tag filename accessibility node has no contentDescription after attached, visible layout"
+        }
+        assertEquals(expectedFormat, formatNodeDescription.toString())
+        assertEquals(expectedFilename, filenameNodeDescription.toString())
+        assertNotEquals(format.contentDescription, filename.contentDescription)
+        fun labels(view: View): List<String> =
+            (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
+                (if (view is ViewGroup) (0 until view.childCount).flatMap { labels(view.getChildAt(it)) } else emptyList())
+        assertTrue("Visible format caption", labels(root).contains(expectedFormat))
+        assertTrue("Separate visible filename caption", labels(root).contains(expectedFilename))
+    }
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources
@@ -73,7 +132,7 @@ class SerbianP0WordingTest {
             val controller = Robolectric.buildActivity(Activity::class.java)
             val activity = controller.get()
             activity.setTheme(R.style.ClassicPaintTheme)
-            controller.setup()
+            controller.setup().windowFocusChanged(true)
             try {
                 AppLanguage.select(activity, tag)
                 AppLanguage.refresh(activity)
@@ -96,7 +155,7 @@ class SerbianP0WordingTest {
         val values = fixture.getJSONObject("values")
         assertEquals(74, values.length())
         val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
-        assertEquals(if (tag == "sr-Cyrl") 170 else 168, inherited.length())
+        assertEquals(if (tag == "sr-Cyrl") 169 else 168, inherited.length())
         for (key in values.keys()) {
             assertFalse("The missing-only batch must not replace $tag/$key", inherited.has(key))
             val id = activity.resources.getIdentifier(key, "string", activity.packageName)
@@ -109,7 +168,7 @@ class SerbianP0WordingTest {
         assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
         assertEquals("Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
             ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals(preserved(tag, "save20_file_format"), ui(R.string.save20_file_format))
+        assertEquals(formatLabel(tag), ui(R.string.save20_file_format))
         assertEquals(preserved(tag, "ui_load_image"), ui(R.string.ui_load_image))
         assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
         assertEquals("Choose location…", ui(R.string.ui_choose_location))
@@ -252,7 +311,8 @@ class SerbianP0WordingTest {
                 val lossless = checkNotNull(root.findViewWithTag<CheckBox>("export_lossless"))
                 val dither = checkNotNull(root.findViewWithTag<CheckBox>("export_dither"))
                 val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
-                assertEquals(preserved(tag, "save20_file_format"), spinner.contentDescription.toString())
+                assertDistinctFormatAndFilenameControls(root, tag)
+                assertEquals(formatLabel(tag), spinner.contentDescription.toString())
                 assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(preserved(tag, "ui_cancel"),
                     dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
@@ -313,12 +373,13 @@ class SerbianP0WordingTest {
             val dialog = SaveOptionsDialog(activity, ExportOptions(), share = sharing,
                 confirm = { confirmations++ }, cancel = { cancellations++ }, export = exporting).show()
             try {
+                assertDistinctFormatAndFilenameControls(dialog.window!!.decorView, tag)
                 val displayed = texts(dialog.window!!.decorView)
                 assertTrue(displayed.contains(message))
                 for (other in listOf(save, export, share).filter { it != message }) assertFalse(displayed.contains(other))
                 assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
                     else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(dialog).title.toString())
-                assertTrue(displayed.contains(preserved(tag, "save20_file_format")))
+                assertTrue(displayed.contains(formatLabel(tag)))
                 assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(preserved(tag, "ui_cancel"), dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
