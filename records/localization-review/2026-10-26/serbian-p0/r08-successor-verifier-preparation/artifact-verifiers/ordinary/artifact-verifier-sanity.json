@@ -1,0 +1,795 @@
+{
+  "schema_version": 1,
+  "record_kind": "Synthetic artifact-verifier sanity controls; not hosted result evidence",
+  "source_head": "998dcfccbe3f54fc61b2deaa3579a08bbaa2da06",
+  "source_tree": "0c606e5dfaf497d59fdcadf85d453afb96b4ed6b",
+  "source_head_binding_status": "explicit head argument",
+  "actual_source_blob_identities_verified": 1385,
+  "expected_packaged_tracked_count": 1382,
+  "packager_exclusions": [
+    ".gitignore",
+    ".idea/codeStyles/Project.xml",
+    "colorpicker/.gitignore"
+  ],
+  "compiled_review_scope_by_locale": {
+    "ca": 78,
+    "ro": 78,
+    "da": 78,
+    "no": 78,
+    "nn": 80,
+    "sk": 205,
+    "sl": 205,
+    "sr-Cyrl": 244,
+    "sr-Latn": 242
+  },
+  "current_Serbian_reviewed_scope": {
+    "sr-Cyrl": 75,
+    "sr-Latn": 74
+  },
+  "prior_reviewed_scope": {
+    "ca": 78,
+    "ro": 78,
+    "da": 78,
+    "no": 78,
+    "nn": 80,
+    "sk": 78,
+    "sl": 78
+  },
+  "inherited_preservation_scope": {
+    "sk": 127,
+    "sl": 127,
+    "sr-Cyrl": 169,
+    "sr-Latn": 168
+  },
+  "SK_SL_new_inherited_keys_disjoint": true,
+  "Serbian_new_inherited_keys_disjoint": true,
+  "explicit_Serbian_configuration_qualifiers": {
+    "sr-Cyrl": "b+sr+Cyrl",
+    "sr-Latn": "b+sr+Latn"
+  },
+  "total_compiled_check_scope": 1288,
+  "source_derived_focused_method_counts": {
+    "ProtectedDraftWarningTest": 6,
+    "SerbianP0WordingTest": 8,
+    "SlovakSlovenianP0WordingTest": 8,
+    "NumericDisplayLocaleTest": 6,
+    "CatalanRomanianCompletionWordingTest": 5,
+    "CatalanRomanianImportWordingTest": 2,
+    "CatalanRomanianSaveWordingTest": 2,
+    "DanishNorwegianP0Test": 4,
+    "NynorskRemainingP0Test": 4,
+    "NynorskSaveWordingTest": 2,
+    "DerivedExportStateTest": 7,
+    "ImportSelectionTitleTest": 12,
+    "TaggedColourImportTest": 5
+  },
+  "scripts_sha256": {
+    "verify_apk_artifact.py": "90fb9a6b27d95679edce7eda7783c79ede8a5cfd10db65819db19fc019ccc968",
+    "verify_regression_artifact.py": "a04fd61deb4f526bd1fc62fc12e1ae3c6b4dc2dd5177a07782436bccceb9189a",
+    "verify_api35_artifact.py": "ceb985c3d040c6ad57b38383736979229c4de8ba8d69bcf87dd62ec7ec8ac620",
+    "verify_exact_script_artifact.py": "feab491325a9026cb573f44110678b8053e3abd1a95729a0d5c29a1a187bde03",
+    "exact_generation_contract.py": "c594871da7dc70882d7791b3f4f43e282ef15db0bba4e3c56b4f5bf5fe52fc5b",
+    "prepare_source_expectations.py": "5f6a54f55ac9e08a6375dcc62daf271dca5677fd380f7b1493d2948a403a6b98",
+    "test_artifact_verifiers.py": "58a2535293ea033a987ed74fe95c2c47d5afc665097fdf465156a92132c2cea7"
+  },
+  "positive_controls": 5,
+  "negative_controls_rejected": 97,
+  "controls": [
+    {
+      "suite": "apk",
+      "case": "1288 exact new/prior/inherited displays with generic Serbian deliberately ignored and tree-bound packaged synthetic files",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "apk",
+      "case": "ca compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch ca/gallery_credit_could_not_save"
+    },
+    {
+      "suite": "apk",
+      "case": "ro compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch ro/gallery_credit_could_not_save"
+    },
+    {
+      "suite": "apk",
+      "case": "da compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch da/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "no compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch no/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "nn compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch nn/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "sk compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sk/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "sl compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sl/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "sr-Cyrl compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sr-Cyrl/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "sr-Latn compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sr-Latn/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "sk inherited display mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sk/ui_brush"
+    },
+    {
+      "suite": "apk",
+      "case": "sl inherited display mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sl/ui_brush"
+    },
+    {
+      "suite": "apk",
+      "case": "sr-Cyrl inherited display mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sr-Cyrl/ui_brush"
+    },
+    {
+      "suite": "apk",
+      "case": "sr-Latn inherited display mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sr-Latn/ui_brush"
+    },
+    {
+      "suite": "apk",
+      "case": "generic sr must not substitute for explicit Cyrillic",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled alias target outside exact scoped catalogue sr-Cyrl/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "generic sr must not substitute for explicit Latin",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled alias target outside exact scoped catalogue sr-Latn/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "Cyrillic and Latin configuration swap",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sr-Cyrl/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "missing explicit Cyrillic configuration",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled alias target outside exact scoped catalogue sr-Cyrl/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "missing explicit Latin configuration",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled alias target outside exact scoped catalogue sr-Latn/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "duplicate explicit Serbian configuration value",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "duplicate compiled value sr-Cyrl/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "Serbian symbolic alias target changed",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled symbolic reference mismatch sr-Cyrl/ui_save_a5d0d9"
+    },
+    {
+      "suite": "apk",
+      "case": "Serbian alias replaced by quoted literal lookalike",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled symbolic reference mismatch sr-Cyrl/ui_save_a5d0d9"
+    },
+    {
+      "suite": "apk",
+      "case": "Serbian alias target omitted",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled alias target outside exact scoped catalogue sr-Latn/ui_save"
+    },
+    {
+      "suite": "apk",
+      "case": "Serbian alias changed to direct display",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled symbolic reference mismatch sr-Latn/ui_save_a5d0d9"
+    },
+    {
+      "suite": "apk",
+      "case": "Serbian alias cycle rejected",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sr-Cyrl/ui_save"
+    },
+    {
+      "suite": "apk",
+      "case": "missing Catalan compiled value",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled alias target outside exact scoped catalogue ca/gallery_credit_could_not_save"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong archive digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact digest"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong source tree",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "tree binding"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong tracked count",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "tracked source inventory/tree reconstruction"
+    },
+    {
+      "suite": "apk",
+      "case": "missing tracked source file",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "unexpected packager exclusions"
+    },
+    {
+      "suite": "apk",
+      "case": "changed packaged bytes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "packaged source mismatch Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml"
+    },
+    {
+      "suite": "apk",
+      "case": "duplicate compiled locale value",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "duplicate compiled value ca/gallery_credit_could_not_save"
+    },
+    {
+      "suite": "apk",
+      "case": "missing v2 signature",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "signature schemes"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong packaged executable modes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "packaged executable mode mismatch Paintroid/src/main/res/values-b+ko+Kore+KR/strings.xml"
+    },
+    {
+      "suite": "apk",
+      "case": "overlapping CA/RO import and prior Save keys",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "overlapping CA/RO import and Save review scopes"
+    },
+    {
+      "suite": "apk",
+      "case": "overlapping CA/RO completion and prior import keys",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "overlapping CA/RO completion and prior review scopes"
+    },
+    {
+      "suite": "apk",
+      "case": "successor compiled pair mismatch save20_file_format",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sr-Cyrl/save20_file_format"
+    },
+    {
+      "suite": "apk",
+      "case": "successor compiled pair omission save20_file_format",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled alias target outside exact scoped catalogue sr-Cyrl/save20_file_format"
+    },
+    {
+      "suite": "apk",
+      "case": "successor compiled pair mismatch ui_autosave_is_paused_to_protect_that_draft_use",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch sr-Cyrl/ui_autosave_is_paused_to_protect_that_draft_use"
+    },
+    {
+      "suite": "apk",
+      "case": "successor compiled pair omission ui_autosave_is_paused_to_protect_that_draft_use",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled alias target outside exact scoped catalogue sr-Cyrl/ui_autosave_is_paused_to_protect_that_draft_use"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong successor review digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "successor immutable review receipt"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong successor locale",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "successor label identity"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong successor key",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "successor label identity"
+    },
+    {
+      "suite": "apk",
+      "case": "altered successor label expectation",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "successor complete pair review digest"
+    },
+    {
+      "suite": "apk",
+      "case": "altered successor warning expectation",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "successor complete pair review digest"
+    },
+    {
+      "suite": "apk",
+      "case": "duplicated successor preservation",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "Serbian prior/new overlap or inventory"
+    },
+    {
+      "suite": "regression",
+      "case": "source-derived focused suites and explicit hosted Python skips",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "regression",
+      "case": "wrong digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact digest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing new suite",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "missing focused suite"
+    },
+    {
+      "suite": "regression",
+      "case": "failed method",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused skipped/failed method SerbianP0WordingTest"
+    },
+    {
+      "suite": "regression",
+      "case": "skipped method",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused skipped/failed method SerbianP0WordingTest"
+    },
+    {
+      "suite": "regression",
+      "case": "failed phase",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "phase failure/ambiguous receipt jvm"
+    },
+    {
+      "suite": "regression",
+      "case": "ambiguous Python summary",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "ambiguous/missing Python terminal success"
+    },
+    {
+      "suite": "regression",
+      "case": "method not declared in source",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused source/method inventory differs SerbianP0WordingTest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing completion suite",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "missing focused suite"
+    },
+    {
+      "suite": "regression",
+      "case": "missing numeric display suite",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "missing focused suite"
+    },
+    {
+      "suite": "regression",
+      "case": "missing protected runtime method englishWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused source/method inventory differs ProtectedDraftWarningTest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing protected runtime method koreanWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused source/method inventory differs ProtectedDraftWarningTest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing protected runtime method northKoreanWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused source/method inventory differs ProtectedDraftWarningTest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing protected runtime method mixedScriptKoreanWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused source/method inventory differs ProtectedDraftWarningTest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing protected runtime method serbianCyrillicWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused source/method inventory differs ProtectedDraftWarningTest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing protected runtime method serbianLatinWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused source/method inventory differs ProtectedDraftWarningTest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing whole protected runtime class",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "missing focused suite"
+    },
+    {
+      "suite": "exact-script",
+      "case": "13 synthetic probes including expected rejection",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "exact-script",
+      "case": "wrong digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "archive digest"
+    },
+    {
+      "suite": "exact-script",
+      "case": "wrong commit",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "source identity/result"
+    },
+    {
+      "suite": "exact-script",
+      "case": "missing probe",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "probe inventory"
+    },
+    {
+      "suite": "exact-script",
+      "case": "unexpected exit",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "unexpected exit"
+    },
+    {
+      "suite": "exact-script",
+      "case": "corrupt log",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "probe log hash"
+    },
+    {
+      "suite": "exact-script",
+      "case": "forged wrapper source hash",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "wrapper source binding"
+    },
+    {
+      "suite": "exact-script",
+      "case": "forged generated mirror hash",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "source-bound generated mirror hashes 02-clean-debug-release"
+    },
+    {
+      "suite": "exact-script",
+      "case": "forged restored fallback hash",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "restored/comment-only fallback output differs 07-release-first-after-clean"
+    },
+    {
+      "suite": "exact-script",
+      "case": "forged task ordering receipt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "recorded task list differs from log 02-clean-debug-release"
+    },
+    {
+      "suite": "api35",
+      "case": "synthetic identity/case plumbing with stub coverage validators",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "api35",
+      "case": "synthetic partial retry core2 position1 composed2 with replayed position job record2 and alternate archive filename",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong core execution attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "identity group_run_attempts"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong position execution attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "identity group_run_attempts"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong composed attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "identity composed_in_run_attempt"
+    },
+    {
+      "suite": "api35",
+      "case": "zero requested attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "invalid requested attempts"
+    },
+    {
+      "suite": "api35",
+      "case": "future requested group attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "invalid requested attempts"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong selection current attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong selection run",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong selection checkout",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong selection sdk",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong selected artifact ID",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong selected digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong selected producer job",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong replayed job record attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong selected job timestamp",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "producer record before original execution attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "selection producer attempt bounds"
+    },
+    {
+      "suite": "api35",
+      "case": "future producer record attempt",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "selection producer attempt bounds"
+    },
+    {
+      "suite": "api35",
+      "case": "producer source name mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "selection producer source name"
+    },
+    {
+      "suite": "api35",
+      "case": "producer outside job interval",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "selection producer timestamp interval"
+    },
+    {
+      "suite": "api35",
+      "case": "malformed producer digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "selection producer digest"
+    },
+    {
+      "suite": "api35",
+      "case": "duplicate producer identity",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "selection duplicate producer identity"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "API35 artifact digest"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong app APK hash",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "identity apk_sha256"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong tested commit",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "identity commit"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong workflow head",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact selection differs from independently verified expected receipt"
+    },
+    {
+      "suite": "api35",
+      "case": "unexpected native case",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "native case identity"
+    },
+    {
+      "suite": "api35",
+      "case": "failed native case",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "native result"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong test APK archive",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "test APK archive digest"
+    }
+  ],
+  "limits": [
+    "All archive contents, run/artifact IDs, APK/signature output and execution outcomes in these controls are synthetic.",
+    "API35 source-validator calls are stubbed here only to test artifact identity/case plumbing; actual artifact verification must call the real exact-head source validators.",
+    "No Android compilation, JVM/emulator execution, APK authenticity, hosted success or release acceptance is established by synthetic controls.",
+    "Hosted Python skip counts are carried explicitly, not promoted to passed or inferred from local tests.",
+    "No new linguistic acceptance or whole-locale/native-human/device/layout certification."
+  ]
+}
