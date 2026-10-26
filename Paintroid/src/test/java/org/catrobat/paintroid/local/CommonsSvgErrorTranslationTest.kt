@@ -37,10 +37,14 @@ class CommonsSvgErrorTranslationTest {
     private val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Size_test.svg"
     private val page="https://commons.wikimedia.org/wiki/File:Size_test.svg"
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val tags=listOf("bg","bn","en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am")
+    private val tags=listOf("bg","bn","en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am","ast")
 
     // Independent reviewed wording oracles for later exact catalogue additions; model review is not native certification.
     private val addedReasons=mapOf(
+        "am" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG ጥቅም ላይ ሊውል የሚችል ዋና መጠን አይገልጽም። በምትኩ በስዕል ሰሌዳው ላይ የተመሠረተ መጠን አልተተካም።",
+            R.string.commons_svg_original_size_too_large to "የSVG ዋና መጠን ከAndroid የቢትማፕ ልኬቶች ገደብ ይበልጣል። መጠኑ አልተቀየረም።"
+        ),
         "bg" to mapOf(
             R.string.commons_svg_original_size_unavailable to "SVG не задава използваем оригинален размер. Не е заменен с размер, базиран на канавата.",
             R.string.commons_svg_original_size_too_large to "Оригиналният размер на SVG надвишава допустимите размери за растерно изображение в Android. Не е приложено мащабиране."
@@ -162,7 +166,7 @@ class CommonsSvgErrorTranslationTest {
     private fun checkSizeFailure(svg: String,key: Int,english: String) {
         for(tag in tags) withGallery(tag) {activity ->
             val reason=activity.getString(key)
-            if(tag in listOf("en-US","am"))
+            if(tag in listOf("en-US","ast"))
                 assertEquals("Independent source oracle, including explicit incomplete-catalogue fallback",english,reason)
             else assertNotEquals("This representative exact catalogue must resolve its translation",english,reason)
             addedReasons[tag]?.get(key)?.let {
