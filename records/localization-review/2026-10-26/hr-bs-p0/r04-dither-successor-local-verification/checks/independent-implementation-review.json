@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "reviewer_role": "Independent AI implementation/test reviewer, not successor author; no native-human terminology rereview",
+  "reviewed_at_utc": "2026-10-26T22:23:09Z",
+  "base_commit": "b97ba1e0b4abe31f9758242a82e8ff58f356ffe4",
+  "base_tree": "d41defc26ef6870aa35393c2f3fb909c5e803747",
+  "decision": "accept in bounded independent static/host-test scope; no blocking findings",
+  "source_state": "Separate isolated successor. PR183 source and acceptance records remain frozen. Rebind after actual base integration before publishing a successor PR.",
+  "reviewed_delta": {
+    "files_changed": 4,
+    "files_added": 0,
+    "files_removed": 0,
+    "base_blobs_and_modes_independently_verified": 1388,
+    "inventory_sha256": "2ae2da9658cabbd9a972b60da3e84ec6bd0cefe0118c308d5afd7896743fdd2f",
+    "files": [
+      {
+        "path": "Paintroid/src/main/res/values-hr/strings.xml",
+        "sha": "e12fb7feb21e61747503e1b742f2b031af1bbc12",
+        "sha256": "835111bff1ef6c55e0359da626ed0bc6943d527171a285aba3df61057a9ae1da",
+        "bytes": 17158,
+        "mode": "100644",
+        "old_sha": "98a03e2e6d50e30890864eec038192473259bbc5"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CroatianBosnianP0WordingTest.kt",
+        "sha": "71d080bfc7e366793c4b7531c0491da5124fe884",
+        "sha256": "947105dc5099281e02d56c1db77f8e3f65e537db2f21d8cbe82149e5fde3b309",
+        "bytes": 28430,
+        "mode": "100644",
+        "old_sha": "21b7485d9fb4b7ac194fc0bb6e1ab0982da2de04"
+      },
+      {
+        "path": "tools/fixtures/current_localization/croatian_bosnian_p0_wording.json",
+        "sha": "918e069ad5cb3f9e5498bdf791a5826f70546a13",
+        "sha256": "c50f4d203e8d2e870d250daa771506c9105fca660e69cac1a84bae3564c53240",
+        "bytes": 116919,
+        "mode": "100644",
+        "old_sha": "6fae9a153594179bf156976df28563a1756ccae6"
+      },
+      {
+        "path": "tools/test_croatian_bosnian_p0_wording.py",
+        "sha": "beda8a8128e536a24f8f0b1485537ba6f7947d3c",
+        "sha256": "946c81f7da3841ae36cb1d4aae846385e934844d176336565d1c7a6dbf485089",
+        "bytes": 28559,
+        "mode": "100644",
+        "old_sha": "fc930df45cd2755aabdb8689132b3066f2a2408f"
+      }
+    ]
+  },
+  "independent_wording_receipt": {
+    "review_commit": "71c32e5ec94613e3e3ba6e7b79e18526953a59e3",
+    "review_path": "records/localization-review/2026-10-26/hr-bs-p0/r03-dither-label-review/review.json",
+    "review_sha256": "1e0e5ffbc24347724514e7119a94f5f4ed654c4bab5e10b6514668fd383063bd",
+    "accepted_pair_sha256": "664335172ab32ab385869a99507d51f3278f30c9525c5e080d000a6b76010e19",
+    "accepted_values": [
+      {
+        "identity": "string/save20_dither",
+        "attributes": {
+          "name": "save20_dither"
+        },
+        "accepted_xml_text": "\"Dithering boja\""
+      },
+      {
+        "identity": "string/save20_gif_description",
+        "attributes": {
+          "name": "save20_gif_description"
+        },
+        "accepted_xml_text": "\"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja. Animirane GIF slike otvaraju se kao prvi kadar animacije.\""
+      }
+    ],
+    "terminology_qualification": "Moderate-confidence technical clarity for Dithering boja; not preferred native terminology certification."
+  },
+  "independently_recomputed_bindings": {
+    "original_156_pairs_sha256": "ecf526badf05941ed1a11be43af7e6192fda51828861fce34b385c991e2011dc",
+    "preserved_214_values_attributes_sha256": "e03d27a14f25aafb61d64d2b98ecb62fc87baff0f1d61ef70a27b390cc20e8f8",
+    "fixture_sha256": "c50f4d203e8d2e870d250daa771506c9105fca660e69cac1a84bae3564c53240",
+    "historical_gif_literal_matches_frozen_original": true,
+    "successor_metadata_matches_pinned_constant": true
+  },
+  "review_findings": {
+    "exact_scope": "Actual directory comparison matches precisely the four-file inventory and hashes. Only save20_dither and save20_gif_description change in existing Croatian XML entries, with exact original attributes. The new full texts match the accepted atomic pair. Bosnian and all other production files remain unchanged. Catalogue presence totals remain Croatian 176 and Bosnian 195.",
+    "current_accounting": "Of the original 156 reviewed values, 155 remain exact; the Croatian GIF value is superseded rather than counted twice. The replacement GIF plus newly reviewed inherited label gives 157 unique current reviewed values. Original 215 inherited records lose only Croatian save20_dither, leaving 97 Croatian + 117 Bosnian = 214 exact retained records.",
+    "history_integrity": "The original review_binding and ecf526... acceptance digest are unchanged. Host validation substitutes only the independently pinned literal HISTORICAL_GIF to verify the original 156 tuples and 155 unchanged current values. That literal equals the frozen source/fixture, independently of editable successor metadata. The separate 214-value digest independently derives from the frozen 215-record map with only the label removed. No prior source, immutable review, paired-warning history or P1/held scope is rewritten.",
+    "atomic_acceptance_guards": "Pinned successor metadata includes immutable review provenance, exact history literals, counts and moderate-confidence qualification. The new pair digest binds both complete current texts and attributes; half updates and matching fixture-digest refreshes fail. New label scope/source/constraints and actual XML are checked. Existing full-value/placeholder/attribute checks remain for the GIF and all original keys.",
+    "preservation_and_negative_guards": "All 214 retained value/attribute records are independently digest-pinned. Mutating each preserved expected value is rejected; source text/attribute mutations fail exact XML guards. Existing coordinated fixture+XML mutations across 156 values, token precision/type/index/flags, malformed/nonargument tokens, missing/duplicate/truncated/markup/type changes and held/P1 absence guards remain. Explicit exceptions/unittest checks survive -O.",
+    "consumer_semantics": "Unchanged SaveOptionsDialog initializes CheckBox from initial.dither, shows it only for GIF, keeps state during format changes and sends ditherBox.isChecked into SaveRequest. GIF description is shown independently of checked state. share=true exposes the full enum order, so test enum indices match the actual adapter. Confirmation re-normalizes the current filename to drawing.gif.",
+    "real_checkbox_accessibility": "assertDitherControl waits for the actual CheckBox to be attached, shown, laid out and nonzero-size. It reads exact box.text plus native node.text, isCheckable and isChecked. No contentDescription is fabricated or substituted, and no node/delegate initialization is mocked. Null node/text remains a diagnostic failure.",
+    "state_and_lifecycle_coverage": "The added JVM method spans hr/bs, both initial true/false states and confirm/negative-button/cancel routes. It toggles the real checkbox, repeats JPEG→GIF twice, checks hidden JPEG state retention and both full descriptions, then checks exactly one GIF SaveRequest with the toggled Boolean and drawing.gif or exactly one cancellation with no request. Existing family methods and exact label/accessibility assertions remain; fixture inherited counts change correctly.",
+    "static_runtime_quality": "No apparent Kotlin syntax/import/type or enum-index trap. The inherited bounded layout pump remains intact; no apparent circular wait. New runtime behavior still needs an actual exact-head JVM run.",
+    "no_snapshot_antipattern": "The guard retains compact current wording contracts and one explicitly superseded scalar, not a reconstructed source tree or recursive historical adapter. No permanent whole-source hash oracle or network fetch is introduced."
+  },
+  "focused_host_execution": {
+    "scope": "test_croatian_bosnian_p0_wording, independently rerun with PYTHONDONTWRITEBYTECODE=1 and -B",
+    "ordinary": {
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    },
+    "optimized": {
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    }
+  },
+  "limitations": [
+    "Full ordinary/optimized suites running under the parent are not accepted by this focused review.",
+    "No Kotlin/Android compilation, JVM execution, device, screenshot/layout or accessibility-service result is claimed.",
+    "Dithering boja retains the independent moderate-confidence technical-clarity qualification; this is not certification of preferred native terminology.",
+    "The new tests cover options-panel request/cancellation behavior, not an actual downstream GIF encoder output.",
+    "Any later base integration or source edit requires rebinding; no successor publication, merge, production or release approval is implied."
+  ],
+  "blocking_findings": [],
+  "source_edits_performed": false,
+  "publication_performed": false
+}
