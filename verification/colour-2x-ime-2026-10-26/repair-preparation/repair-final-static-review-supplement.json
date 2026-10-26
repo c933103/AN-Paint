@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "reviewer": "/root/review_large_font_ime",
+  "reviewed_at_utc": "2026-10-26T21:57:48Z",
+  "review_kind": "final exact-tree supplement to independent repair review",
+  "reviewed_tree": "a15d294db00490e737d23c5db3fc17a91f4ccde8",
+  "five_file_delta_sha256": "cc129697a61fa04d8eb6c8c6260384def76610264ce13ea7e90c85b681540b0a",
+  "prior_reviewed_tree": "bf812fdfa4481612e2c396dbc7f7e737cbfbbe14",
+  "prior_receipt": {
+    "path": "evidence/repair-independent-static-review.json",
+    "sha256": "9d199039c4a9aec48eabd0688977e3cf284629a0bb1fb280a6b4b199b19c7c69",
+    "preserved_unchanged": true
+  },
+  "incremental_change": {
+    "file": "tools/app_instrumentation_matrix.py",
+    "description": "Only rejection-message count text changes from twelve to fourteen. Exact byte replacement verified; no predicate or other code change.",
+    "mode": "100644",
+    "git_blob": "37ab07042b459c3147c49848c89a072368e5dc5f"
+  },
+  "files": [
+    {
+      "path": "CI.md",
+      "git_blob": "f78d605b6ea2468a4a5b71f30613bda8222af0dc",
+      "sha256": "2852dc83c4feb4b1ee1031c79a77e121b19ac53f695af4c569b4669a76e0a4c6"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+      "git_blob": "c03634eca7ec3b8ba92d4cd359bb1199498507ce",
+      "sha256": "7f1519d261aa399bfef4066349028dafff84dc438411565e0519feca0cb37eab"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourViewportTest.kt",
+      "git_blob": "e9dd7b663678b3a759fe83cbc086905fd2cf8252",
+      "sha256": "bc31bd57d7bf3ef1c6805bf0baaf40d9199cab9c6e65afd28271c4ff2db5a19b"
+    },
+    {
+      "path": "tools/app_instrumentation_matrix.py",
+      "git_blob": "37ab07042b459c3147c49848c89a072368e5dc5f",
+      "sha256": "df3dd6006de669eb2fc0d3796ef1609e7692193f65bfa22feae1a5f3e8677f30"
+    },
+    {
+      "path": "tools/test_colour_viewport_contract.py",
+      "git_blob": "a4cebdb8782e4196152882a3e7598c2b6f5732eb",
+      "sha256": "1a852d54b6494702985980db416cf7e8b57f3b5644ecb9e16c9eeb51e798ceb2"
+    }
+  ],
+  "conclusion": "No new findings. All prior bounded production/model/transition review conclusions apply to the unchanged four files. Native test and transport acceptance guards remain unchanged.",
+  "checks": [
+    "Working tree equals final frozen tree and staged diff hash matches.",
+    "git diff --cached --check passed.",
+    "Prior receipt content/hash unchanged.",
+    "Only app_instrumentation_matrix.py differs between prior and final trees.",
+    "Exact current-source API30/API35 inventory test passed.",
+    "Focused colour/transport plus exact inventory suite rerun on final tree:60 tests passed."
+  ],
+  "inventory": "API30 selected30 (32 SDK-eligible minus2 restart exclusions); API35 selected47; dialog14 methods/51 expected success PNGs. Synthetic/source counts are not installed execution.",
+  "remaining_gates": "Final full ordinary/optimized host runs are owner-controlled and pending at supplement time. No reviewer-run JVM/Robolectric/Android compilation or repaired installed acceptance. All earlier limitations remain.",
+  "writes": "No source or external-state changes. This supplement is a temporary local evidence handoff; prior receipt preserved."
+}

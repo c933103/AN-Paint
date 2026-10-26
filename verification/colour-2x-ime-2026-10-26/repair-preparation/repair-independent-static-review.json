@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "reviewer": "/root/review_large_font_ime",
+  "review_kind": "independent native read-only production repair static review and focused host checks",
+  "reviewed_at_utc": "2026-10-26T21:48:41Z",
+  "reviewed_tree": "bf812fdfa4481612e2c396dbc7f7e737cbfbbe14",
+  "repair_diff_sha256": "a200461869ac9afb2299ac1f37220b7c5797fe155d9e59343c7e902208dc53fa",
+  "integration_baseline_commit": "7cb739318bdaf734a8bac764e178b32dec3de04b",
+  "integration_baseline_tree": "8cc01aa544fe15939a4aee0fd80a339dfdc63dd2",
+  "upstream_baseline": "parent/owner-verified current develop0ebd41d4; file manifest independently compared locally",
+  "conclusion": "No remaining concrete findings in the bounded four-file repair delta after the model coordinate correction. This does not establish JVM/Android compilation or installed usability.",
+  "files": [
+    {
+      "path": "CI.md",
+      "mode": "100644",
+      "git_blob": "f78d605b6ea2468a4a5b71f30613bda8222af0dc",
+      "sha256": "2852dc83c4feb4b1ee1031c79a77e121b19ac53f695af4c569b4669a76e0a4c6"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+      "mode": "100644",
+      "git_blob": "c03634eca7ec3b8ba92d4cd359bb1199498507ce",
+      "sha256": "7f1519d261aa399bfef4066349028dafff84dc438411565e0519feca0cb37eab"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourViewportTest.kt",
+      "mode": "100644",
+      "git_blob": "e9dd7b663678b3a759fe83cbc086905fd2cf8252",
+      "sha256": "bc31bd57d7bf3ef1c6805bf0baaf40d9199cab9c6e65afd28271c4ff2db5a19b"
+    },
+    {
+      "path": "tools/test_colour_viewport_contract.py",
+      "mode": "100644",
+      "git_blob": "a4cebdb8782e4196152882a3e7598c2b6f5732eb",
+      "sha256": "1a852d54b6494702985980db416cf7e8b57f3b5644ecb9e16c9eeb51e798ceb2"
+    }
+  ],
+  "found_and_repaired": [
+    {
+      "finding": "The model added editor.scrollY to a target already expressed in editor content coordinates, causing scroll overshoot across repeated line measurements.",
+      "repair": "Changed only the model scroll destination to editor.scrollTo(0,target.top); full visible.contains(local) assertion retained.",
+      "basis": "Official AOSP android15 ViewGroup.offsetRectBetweenParentAndChild excludes the target ancestor scroll from its transform.",
+      "primary_source": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android15-release/core/java/android/view/ViewGroup.java",
+      "source_lines": "5788-5855"
+    }
+  ],
+  "production_review": [
+    "New behavior is restricted to existing horizontal landscape columns with fontScale>1; not only2x or only320pixel displays. Normal-font, stacked and vertical-script tab placement remains unchanged.",
+    "Tabs are moved before the holder super.onMeasure. Actual-parent comparison prevents duplicate remove/add operations during repeated measurements; existing shell.forceLayout and measurement path remain.",
+    "The same tab row/children/listeners and selected properties are reused. Field views are not reparented; production patch does not mutate draft, selection, callback wiring or colour state.",
+    "Returning to fixed placement restores the row at index0 with MATCH_PARENT/WRAP_CONTENT parameters matching the original placement.",
+    "Preview rail sizing/scrolling, native footer, editor gutter and colour-surface drag ownership are unchanged. Font sizes and44/48dp control minima are unchanged.",
+    "Model source covers1.3x and2x, en-US/hu, full layout-line visibility at104/109pixel editor allocations, independent rail offset, and three repeated stack/column cycles with duplicate measurements and field identity/value/selection checks. These model methods were statically reviewed, not executed by this reviewer."
+  ],
+  "independent_checks": [
+    {
+      "check": "59 focused tests from test_colour_viewport_contract and test_dialog_evidence_transport",
+      "result": "passed",
+      "elapsed_seconds": 0.543
+    },
+    {
+      "check": "Frozen tree/working tree equality, exact staged-diff hash, diff whitespace check",
+      "result": "passed"
+    },
+    {
+      "check": "Baseline comparison with provided current-develop tree manifest",
+      "result": "All1385 paths/modes present; exactly16 known diagnostic files differ; no additional missing/extra paths. Pre-repair AdvancedColourDialog and model bytes match upstream manifest."
+    },
+    {
+      "check": "Installed ColourViewportDeviceTest.kt and dialog_evidence_transport.py equality to integration baseline",
+      "result": "byte-identical; native IME/Back/full-caption/footer/callback guards are not relaxed"
+    },
+    {
+      "check": "Kotlin APIs/imports/visibility and measurement-parent transitions",
+      "result": "no further concrete static issue found"
+    }
+  ],
+  "preserved_limits": [
+    "No45second interaction or300second dialog cap changes.",
+    "No512-observation/20-capture bound changes.",
+    "Original12 cases and14-method/51-PNG success inventory unchanged.",
+    "Synthetic initial focus/IME activation still does not claim native field entry or initial full hex visibility.",
+    "Post-hide full native Layout-line/ancestor reachability remains required; previous33pixel-line versus28/23pixel-viewport failure was not hidden by changing that guard."
+  ],
+  "validation_limits": [
+    "No local Kotlin/Android/JVM compilation or Robolectric execution performed by this reviewer; focused Python/source contracts do not establish those gates.",
+    "No installed execution of repaired tree or repair PNG inspection yet. Native gesture, rotation, IME, accessibility focus and callback outcomes require exact-source execution.",
+    "Final full ordinary/optimized host suites are owner gates and were pending at receipt time.",
+    "No universal2x, simultaneous IME/field/footer fit, physical-device, TalkBack or glyph-ink acceptance."
+  ],
+  "prior_installed_review": {
+    "path": "evidence/successor-installed-failure-review.json",
+    "sha256": "80b8c86eb6b9f66d43be11338b335b8875f0eb01ffff0d7c8514d2430b658e51",
+    "scope": "Failed pre-repair run40401252157/tree89459b32, not this repair"
+  },
+  "writes": "Reviewer made no source or external-state changes. This temporary local JSON is the review handoff for authorized evidence preservation."
+}

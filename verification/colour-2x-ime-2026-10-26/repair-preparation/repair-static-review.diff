@@ -1,0 +1,202 @@
+diff --git a/CI.md b/CI.md
+index dd82b71..f78d605 100644
+--- a/CI.md
++++ b/CI.md
+@@ -144,6 +144,12 @@ unchanged. Fourteen individual maxima exceed that aggregate cap; fresh actual co
+ execution must fit, and a timeout remains a failure. Neither historical timings
+ nor synthetic transport fixtures prove the combined runtime. The existing
+ 2× cases cover English/Hungarian caption and preview-rail reachability only.
++In horizontal landscape columns, enlarged text (`fontScale > 1`) places the
++existing top tab row inside the editor scroll body; normal-font, stacked and
++vertical-script layouts retain their existing tab placement. API30/35 model
++checks cover 1.3× and 2× full caption lines at the measured short allocations and
++repeated column/stack remeasurement without replacing field or tab identities.
++Those model checks do not establish installed gesture, rotation or IME outcomes.
+ The separate 2× lifecycle cases use explicitly labelled synthetic field focus and
+ `showSoftInput` fixture activation; initial native field activation and initial full
+ hex visibility are untested/unaccepted. They require the configured native IME
+diff --git a/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt b/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt
+index 72c1778..c03634e 100644
+--- a/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt
++++ b/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt
+@@ -251,8 +251,8 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
+             group.forEach { (key, label, max) -> row.addView(field(key, ui(label), max), LinearLayout.LayoutParams(0, -2, 1f)) }
+             advanced.addView(row)
+         }
+-        // Keep the tabs, custom slots and Save action reachable while the long
+-        // Advanced controls scroll, including on short landscape screens.
++        // Keep the custom slots and Save action independently reachable while
++        // the long Advanced controls scroll, including on short landscape screens.
+         fun preferredHeight()=minOf(dp(650),(activity.resources.displayMetrics.heightPixels*.68f).toInt())
+         val holder=object : FrameLayout(activity) {
+             override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
+@@ -262,6 +262,16 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
+                 val columns=!VerticalText.uiVertical(activity) &&
+                     activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE &&
+                     MeasureSpec.getSize(widthMeasureSpec)>=dp(520)
++                // At enlarged text sizes the fixed top tabs can consume nearly
++                // the entire short editor viewport. Scroll those same objects
++                // with the editor instead; never shrink captions or touch minima.
++                // Normal-font, portrait and vertical-script layouts stay fixed.
++                val scrollTabs=columns && activity.resources.configuration.fontScale>1f
++                if(scrollTabs != (tabs.parent===body)) {
++                    (tabs.parent as? ViewGroup)?.removeView(tabs)
++                    (if(scrollTabs) body else editorPanel).addView(tabs,0,
++                        LinearLayout.LayoutParams(-1,-2))
++                }
+                 shell.orientation=if(columns) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
+                 (editorPanel.layoutParams as LinearLayout.LayoutParams).apply {
+                     width=if(columns) 0 else -1;height=if(columns) -1 else 0;weight=1f
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourViewportTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourViewportTest.kt
+index e679aee..e9dd7b6 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourViewportTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourViewportTest.kt
+@@ -9,6 +9,7 @@ import android.graphics.Rect
+ import android.os.Looper
+ import android.view.View
+ import android.widget.FrameLayout
++import android.widget.EditText
+ import android.widget.GridLayout
+ import android.widget.LinearLayout
+ import android.widget.ScrollView
+@@ -72,6 +73,8 @@ class AdvancedColourViewportTest {
+       for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
+         val root=dialog.window!!.decorView
+         val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
++        assertSame("Normal-font tabs remain outside the editor scroll",inner.parent,
++            root.findViewWithTag<View>("colour_mode_0").parent.parent)
+         val density=inner.resources.displayMetrics.density
+         assertEquals("Normal-font rail width is unchanged",(220*density+.5f).toInt(),
+             root.findViewWithTag<ScrollView>("colour_controls_scroll").width)
+@@ -151,6 +154,83 @@ class AdvancedColourViewportTest {
+       }
+     }
+ 
++    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-mdpi")
++    fun largeShortEditorScrollsTabsAndEveryFullCaptionLineWithoutShrinking()=
++        assertCompactEditorCaptionsAndIdentity()
++
++    @Test @Config(fontScale=1.3f,qualifiers="w640dp-h320dp-land-mdpi")
++    fun modestlyEnlargedEditorRetainsCaptionsAndIdentityAcrossRepeatedReparenting()=
++        assertCompactEditorCaptionsAndIdentity()
++
++    private fun assertCompactEditorCaptionsAndIdentity() {
++      for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
++        val root=dialog.window!!.decorView
++        val holder=root.findViewWithTag<FrameLayout>("colour_dialog_holder")
++        val editor=root.findViewWithTag<ScrollView>("colour_editor_scroll")
++        val controls=root.findViewWithTag<ScrollView>("colour_controls_scroll")
++        val tabs=root.findViewWithTag<View>("colour_mode_0").parent as LinearLayout
++        val body=editor.getChildAt(0) as LinearLayout
++        val field=root.findViewWithTag<EditText>("colour_hex")
++        val density=holder.resources.displayMetrics.density
++        val width=holder.width
++        // Exact retained API35 allocations: 109px English / 104px Hungarian,
++        // plus the shell's unchanged 8dp vertical padding. This is a model,
++        // not a replacement for installed native IME/Back/gesture evidence.
++        val panelHeight=if(tag=="en-US") 109 else 104
++        fun measureAt(w: Int) {
++            val height=((panelHeight+8)*density+.5f).toInt()
++            holder.measure(View.MeasureSpec.makeMeasureSpec(w,View.MeasureSpec.EXACTLY),
++                View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.EXACTLY))
++            holder.layout(holder.left,holder.top,holder.left+w,holder.top+height)
++        }
++        field.setText("#13579B");field.requestFocus();field.setSelection(2,5)
++        measureAt(width)
++        assertSame(body,tabs.parent)
++        assertSame(tabs,body.getChildAt(0))
++        assertEquals((panelHeight*density+.5f).toInt(),editor.height)
++        assertEquals((panelHeight*density+.5f).toInt(),controls.height)
++        assertTrue(editor.getChildAt(0).height>editor.height)
++        assertTrue(editor.paddingEnd>=32*density)
++        val railOffset=controls.scrollY
++        for(name in tabTags+"colour_hex") {
++            val view=root.findViewWithTag<TextView>(name)
++            caption(view)
++            val layout=checkNotNull(view.layout)
++            if(name!="colour_hex") {
++                assertTrue(view.height>=44*density)
++                assertEquals(android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_SP,
++                    12f,view.resources.displayMetrics),view.textSize,0f)
++            }
++            for(line in 0 until layout.lineCount) {
++                val local=Rect(view.totalPaddingLeft,view.totalPaddingTop+layout.getLineTop(line),
++                    view.width-view.totalPaddingRight,view.totalPaddingTop+layout.getLineBottom(line))
++                val target=Rect(local);editor.offsetDescendantRectToMyCoords(view,target)
++                editor.scrollTo(0,target.top)
++                val visible=Rect()
++                assertTrue("Visible caption line: $tag/$name/$line",view.getLocalVisibleRect(visible))
++                assertTrue("All ancestors expose the full line: $tag/$name/$line",visible.contains(local))
++            }
++        }
++        assertEquals("Editor scrolling leaves preview rail independent",railOffset,controls.scrollY)
++        // Live column -> stack -> column remeasurement reparents only the same
++        // tab row. Field identity, draft and selection must survive both changes.
++        repeat(3) {
++            measureAt((480*density+.5f).toInt())
++            assertSame(editor.parent,tabs.parent)
++            measureAt((480*density+.5f).toInt())
++            assertSame(editor.parent,tabs.parent)
++            measureAt(width)
++            assertSame(body,tabs.parent)
++            measureAt(width)
++            assertSame(body,tabs.parent)
++            assertSame(field,root.findViewWithTag<EditText>("colour_hex"))
++            assertEquals("#13579B",field.text.toString())
++            assertEquals(2,field.selectionStart);assertEquals(5,field.selectionEnd)
++        }
++        complete(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
++      }
++    }
++
+     @Test @Config(qualifiers="w320dp-h640dp-port-mdpi")
+     fun portraitKeepsAllSixteenSavedSlotsAtFiniteWidths() {
+       for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
+diff --git a/tools/app_instrumentation_matrix.py b/tools/app_instrumentation_matrix.py
+index 7655b3f..37ab070 100644
+--- a/tools/app_instrumentation_matrix.py
++++ b/tools/app_instrumentation_matrix.py
+@@ -95,7 +95,7 @@ def app_partition(expected: set[Identity], sdk: int) -> dict[str, set[Identity]]
+         raise ValueError('The app inventory requires exactly one seed and one verify method')
+     if dialog != ({(DIALOG, method) for method in DIALOG_METHODS} |
+                   {(COLOUR, method) for method in COLOUR_METHODS} if sdk == 35 else set()):
+-        raise ValueError('The exact twelve API35 method/class pairs and lower-SDK suppression are required')
++        raise ValueError('The exact fourteen API35 method/class pairs and lower-SDK suppression are required')
+     parts = {}
+     if sdk >= 30:
+         parts.update({'ordinary': ordinary, 'gallery-draft': gallery, **VERTICAL_SHARDS, **POSITION_SHARDS})
+diff --git a/tools/test_colour_viewport_contract.py b/tools/test_colour_viewport_contract.py
+index 637f773..a4cebdb 100644
+--- a/tools/test_colour_viewport_contract.py
++++ b/tools/test_colour_viewport_contract.py
+@@ -159,6 +159,30 @@ class ColourViewportContractTest(unittest.TestCase):
+                          'caption(view);complete(view)', 'controls.isSmoothScrollingEnabled=false'):
+             self.assertIn(required, model)
+ 
++    def test_large_compact_tabs_share_editor_scroll_without_changing_normal_layout(self):
++        source = PRODUCTION.read_text()
++        for required in ('val scrollTabs=columns && activity.resources.configuration.fontScale>1f',
++                         'if(scrollTabs != (tabs.parent===body))',
++                         '(tabs.parent as? ViewGroup)?.removeView(tabs)',
++                         '(if(scrollTabs) body else editorPanel).addView(tabs,0,',
++                         'LinearLayout.LayoutParams(-1,-2)',
++                         'minHeight=dp(44);minimumHeight=dp(44)',
++                         'minHeight=dp(48);minimumHeight=dp(48)'):
++            self.assertIn(required, source)
++        self.assertLess(source.index('val scrollTabs=columns'),
++                        source.index('super.onMeasure(widthMeasureSpec,heightMeasureSpec)'))
++        model = MODEL.read_text()
++        for required in ('largeShortEditorScrollsTabsAndEveryFullCaptionLineWithoutShrinking',
++                         'modestlyEnlargedEditorRetainsCaptionsAndIdentityAcrossRepeatedReparenting',
++                         '@Config(fontScale=1.3f,qualifiers="w640dp-h320dp-land-mdpi")',
++                         'repeat(3)',
++                         'val panelHeight=if(tag=="en-US") 109 else 104',
++                         'assertSame(body,tabs.parent)', 'assertSame(editor.parent,tabs.parent)',
++                         'visible.contains(local)', 'editor.offsetDescendantRectToMyCoords(view,target)',
++                         'assertEquals(2,field.selectionStart);assertEquals(5,field.selectionEnd)',
++                         'assertSame(field,root.findViewWithTag<EditText>("colour_hex"))'):
++            self.assertIn(required, model)
++
+ 
+ if __name__ == '__main__':
+     unittest.main()
