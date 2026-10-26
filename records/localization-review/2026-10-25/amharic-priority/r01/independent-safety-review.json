@@ -1,0 +1,122 @@
+{
+  "schema": "amharic-priority-independent-safety-review-v1",
+  "repository": "c933103/AN-Paint",
+  "base": "ea1ec8c9433a022af62b82742312cd30420f0cf5",
+  "reviewer": "independent-chat-side-source-test-review",
+  "reviewed_at_utc": "2026-10-25T14:28:14Z",
+  "recorded_at_utc": "2026-10-25T14:30:11Z",
+  "scope": "Read-only review of eight staged files, exact candidate/review bindings and focused snapshot source/test correctness; not linguistic re-review.",
+  "outcome": "scoped-acceptance",
+  "unresolved_concrete_defects": [],
+  "candidate_sha256": "2d9f240ecd8d1c526c64f371536786f7ca0026daf87b883532859568d7b64c58",
+  "independent_linguistic_review_sha256": "4e4fd0db8961793dbc3b8a914270fe57613e8c7061561f4a3d09f7a021bdafde",
+  "source_binding": [
+    {
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-b+am/strings.xml",
+      "git_blob": "9b2c1a5e904e4444b49932f6988f1d13bccba449"
+    },
+    {
+      "path": "translations/string-importance.json",
+      "git_blob": "e76a3a440a8b169d31f5ab5d163a2695b0db93b1"
+    }
+  ],
+  "reviewed_files": [
+    {
+      "path": "Paintroid/src/main/res/values-b+am/strings.xml",
+      "bytes": 43247,
+      "sha256": "3566085292e8345453666feb1859528de7912acd8cf9fcd3ba4ad25596463f67",
+      "git_blob": "be714b9406e9234ee450041109deb0cbc14770ba",
+      "base_sha256": "ffc88514bb8ccac82617c7bf9273be3f88e313d3244f3ba3b17cc7436b9adeb0"
+    },
+    {
+      "path": "tools/fixtures/current_localization/amharic_priority.json",
+      "bytes": 72873,
+      "sha256": "15a8e0d186f56de6be03ef6c36c2b6d490190472324162f9a9d9f9fdca91d639",
+      "git_blob": "abbf71c6e3cb1d61087d8a8ffeb54b68bac80805",
+      "base_sha256": null
+    },
+    {
+      "path": "tools/test_amharic_priority.py",
+      "bytes": 2546,
+      "sha256": "4c2cd735c2d81806f79467a7704460e2197578337944f34dee5bd13dc0c2997a",
+      "git_blob": "e3cac7f59be431dd501f2bc9cb69390dda3fe51c",
+      "base_sha256": null
+    },
+    {
+      "path": "tools/memory_warning_successors.py",
+      "bytes": 4560,
+      "sha256": "b52625c6aeb96e6786cbc39563382a4c8bf5daebe1b2b66d417b246d60daa2eb",
+      "git_blob": "abe2ae0131526f94a338aec2ca860cb6ef0eef8c",
+      "base_sha256": "3f64b5423fc0fac08ceb1faa6a2b4a52ed5c556d9cc39caf6dc6c87f4b183c9e"
+    },
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "bytes": 8849,
+      "sha256": "e8e64d327d4271eca10022ee866fd7273f7fd14c1d8676b8830760fb0f019c39",
+      "git_blob": "71a69f76bff257c4ef648eeb2469929a99125048",
+      "base_sha256": "22fce9a1d16f0884ef31bea40ecbe3c8e55703704c2fd2ca1648cd88044c5622"
+    },
+    {
+      "path": "tools/test_memory_warning_source_review.py",
+      "bytes": 6747,
+      "sha256": "1445b94261e2aac42cce1bcce39fe9a74524f10e933a4abef579a4c5bb23f24e",
+      "git_blob": "eae9032f7132457e0b001d2b647025d853aebf02",
+      "base_sha256": "eff556caea9b7638f3c0a3fa408bd56e37c0ec5334cd4b51e3b3a254f8ef3072"
+    },
+    {
+      "path": "translations/source-review/memory-warning-successors-amharic-20261025.json",
+      "bytes": 43712,
+      "sha256": "b4f76a6f9a9ae98b3a012e1a0769004f999d76c7fab51e733c76943ba96ae3a7",
+      "git_blob": "ab7ba7561f177649cc7239d4cdd2e3584f4da959",
+      "base_sha256": null
+    },
+    {
+      "path": "translations/source-review/README.md",
+      "bytes": 7989,
+      "sha256": "42ff794acb0fed3d1a774f2ee4c41952afddec7565c0db532f33d7542e6a01f0",
+      "git_blob": "fb99420266292fad712ce048da5cb6f0de33d732",
+      "base_sha256": "4269ce0a25bd9b42f1244714244e7e32c9296f7a234e3a84f00c5874f61d83d4"
+    }
+  ],
+  "findings": [
+    "All 255 candidate identities bind exactly to independent review text, English source, current-wording fixture and staged XML: 249 additions, three replacements and three retains.",
+    "All preexisting resource values outside the three reviewed replacements remain unchanged, including 86 accepted carries and the frozen plural. The prior 108 additions are covered by unchanged preexisting resources.",
+    "One-off reversal of the 249 additions and three replacements reconstructs the original manifest-bound Git blob. The scratch assignment XML contains an extra trailing newline relative to that blob; this is not a staged patch defect.",
+    "All eight staged manifest SHA-256 hashes match.",
+    "The new active warning oracle preserves the preceding 118 pairs exactly, adding only the two reviewed Amharic values. The old oracle is retained with its original SHA-256 d7a40b123878ae60788c900d98343eb96b862b718700fd0acd481150ad7bacf7. Its 43 KB successor size is not a material defect.",
+    "Amharic historical-null binding is explicit and corruption-tested. The historical queue presence-status assertion is distinct from the separate exact-current-output assertion.",
+    "Four held, 216 missing-without-successor and two canonical pairs remain guarded; no silently weakened corruption or held coverage found.",
+    "The new 255-entry fixture guards complete current wording, source binding, attributes, placeholders and Android XML string validity, with seven corruption controls per entry; it does not introduce permanent historical source reconstruction."
+  ],
+  "tests_actually_rerun": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tools -p test_*.py -q",
+      "test_count": 47,
+      "result": "passed",
+      "scope": "All six available test modules in the supplied snapshot; not the full repository host suite."
+    },
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 python -O -m unittest discover -s tools -p test_*.py -q",
+      "test_count": 47,
+      "result": "passed",
+      "scope": "All six available test modules in the supplied snapshot; not the full repository host suite."
+    }
+  ],
+  "verification_notes": [
+    "Independent ad hoc bookkeeping checked candidate hash, reviewed identities and source/target literals, source attributes, fixture content, target digest binding, decision counts, unchanged carries, manifest hashes and preserved old warning pairs.",
+    "Initial ad hoc whole-node comparison included ElementTree tail indentation and flagged the expected insertion boundary; investigation established unchanged resource content.",
+    "Initial byte-reconstruction comparison used the assignment scratch XML with one extra final newline; its newline-stripped bytes match both the declared original SHA-256 and original Git blob 9b2c1a5e904e4444b49932f6988f1d13bccba449."
+  ],
+  "limitations": [
+    "Full repository hosted CI has not been run by this reviewer.",
+    "Android compilation and resource packaging have not been run by this reviewer.",
+    "Device/runtime, layout and accessibility-output behavior remain unverified.",
+    "No linguistic re-review or native-reader/whole-language certification was performed.",
+    "Independent linguistic-review evidence must be preserved durably before final acceptance claims.",
+    "No source edits, Work launch or publication were performed by this reviewer; this JSON is evidence recording only."
+  ]
+}
