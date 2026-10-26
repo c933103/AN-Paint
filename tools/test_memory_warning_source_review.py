@@ -69,6 +69,7 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
     def test_values_absences_fallbacks_and_english_variants_are_explicit(self):
         paths = catalogues.catalogue_paths()
         counts = Counter()
+        current_counts = Counter()
         for row in self.data['options']:
             tag = row['tag']
             path = catalogues.RES / 'values/strings.xml' if tag == 'en-001' else paths[tag]
@@ -80,13 +81,17 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
             for key, term in row['terms'].items():
                 with self.subTest(tag=tag, key=key):
                     self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
-                    present = key in strings
+                    # The initial queue remains historical, including absences.
+                    present = term['value'] is not None
                     self.assertEqual('present' if present else 'missing', term['value_status'])
                     self.assertEqual(None if present else 'canonical-english', term['fallback'])
                     counts[(key, term['value_status'])] += 1
+                    current_counts[(key, 'present' if key in strings else 'missing')] += 1
         for key in KEYS:
             self.assertEqual(62, counts[(key, 'present')])
             self.assertEqual(109, counts[(key, 'missing')])
+            self.assertEqual(64, current_counts[(key, 'present')])
+            self.assertEqual(107, current_counts[(key, 'missing')])
 
     def test_initial_queue_grants_no_renewed_acceptance_or_language_credit(self):
         self.assertEqual(0, self.data['scope']['reviewed_against_corrected_source'])

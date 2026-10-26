@@ -37,10 +37,18 @@ class CommonsSvgErrorTranslationTest {
     private val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Size_test.svg"
     private val page="https://commons.wikimedia.org/wiki/File:Size_test.svg"
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val tags=listOf("en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am")
+    private val tags=listOf("bg","bn","en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am")
 
-    // Independent reviewed wording oracles for the eleven later exact catalogue additions.
+    // Independent reviewed wording oracles for later exact catalogue additions; model review is not native certification.
     private val addedReasons=mapOf(
+        "bg" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG не задава използваем оригинален размер. Не е заменен с размер, базиран на канавата.",
+            R.string.commons_svg_original_size_too_large to "Оригиналният размер на SVG надвишава допустимите размери за растерно изображение в Android. Не е приложено мащабиране."
+        ),
+        "bn" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG-তে ব্যবহারযোগ্য কোনো মূল আকার উল্লেখ করা নেই। এর বদলে ক্যানভাসভিত্তিক কোনো আকার ব্যবহার করা হয়নি।",
+            R.string.commons_svg_original_size_too_large to "SVG-এর মূল আকার Android বিটম্যাপের মাত্রার সীমা ছাড়িয়ে গেছে। আকার পরিবর্তন করা হয়নি।"
+        ),
         "hak-Hant-TW" to mapOf(
             R.string.commons_svg_original_size_unavailable to "SVG 無提供做得用个原本大細。無用照畫布大細決定个大細來取代。",
             R.string.commons_svg_original_size_too_large to "SVG 个原本大細超出 Android 點陣圖个尺寸上限。並未調大細。"

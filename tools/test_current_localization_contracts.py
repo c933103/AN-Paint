@@ -27,7 +27,7 @@ EXPECTED_KEYS = {
 
 
 # Additions are message-family-specific. Czech and Swedish have independently reviewed metadata/copy-credit values.
-FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'cs', 'pl', 'sv'}}
+FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'cs', 'pl', 'sv', 'bg', 'bn'}}
 
 
 def wording_tags(name):
@@ -39,7 +39,7 @@ def wording_fixture(name):
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'cs', 'pl', 'sv'}
+TAGGED_COLOUR_EXTRA_TAGS = {'cs', 'pl', 'sv', 'bg', 'bn'}
 
 
 def tagged_colour_expectations(data):
@@ -52,6 +52,10 @@ def tagged_colour_expectations(data):
         reviewed = fixture(name + suffix)['values'][TAGGED_COLOUR_KEY][tag]
         if data[tag] != reviewed:
             raise ValueError('Tagged-colour expectation differs from reviewed complete pair: ' + tag)
+    for tag in ('bg', 'bn'):
+        reviewed = fixture('bulgarian_bengali_priority_wording.json')['values'][TAGGED_COLOUR_KEY][tag]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour priority expectation differs: ' + tag)
     return data
 
 
@@ -91,9 +95,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
     def test_each_message_family_has_only_its_explicitly_reviewed_additions(self):
         svg = wording_fixture(FAMILIES[2])
-        extra_tags = {'cs', 'pl', 'sv'}
+        extra_tags = {'cs', 'pl', 'sv', 'bg', 'bn'}
         self.assertEqual({'cs', 'pl'}, set(svg['additional_draft_tags']))
-        self.assertEqual({'sv'}, set(svg['additional_reviewed_tags']))
+        self.assertEqual({'sv', 'bg', 'bn'}, set(svg['additional_reviewed_tags']))
         self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
@@ -106,14 +110,16 @@ class CurrentLocalizationContracts(unittest.TestCase):
         swedish = fixture('swedish_remaining_p1_wording.json')
         for key, values in svg['values'].items():
             self.assertEqual(swedish['values'][key]['sv'], values['sv'])
+            for tag in ('bg', 'bn'):
+                self.assertEqual(fixture('bulgarian_bengali_priority_wording.json')['values'][key][tag], values[tag])
 
     def test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks(self):
         data = json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(62, len(data))
-        self.assertEqual(109, len(offered - set(data)))
+        self.assertEqual(64, len(data))
+        self.assertEqual(107, len(offered - set(data)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:
