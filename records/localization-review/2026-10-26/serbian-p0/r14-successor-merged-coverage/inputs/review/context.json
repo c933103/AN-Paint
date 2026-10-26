@@ -1,0 +1,71 @@
+{
+  "source_head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+  "source_tree": "385bd19a6cd68c7b8ce9644f157e4acb4e4cf93e",
+  "source_status": "PR180 corrected head, not merged; no production edit authorized by this preparation",
+  "locale": "sr-Cyrl",
+  "scope": [
+    "save20_file_format",
+    "ui_autosave_is_paused_to_protect_that_draft_use"
+  ],
+  "entries": [
+    {
+      "identity": "string/save20_file_format",
+      "canonical": "File format",
+      "current_cyrillic": "Име слике",
+      "current_latin": "Format slike",
+      "attributes": {
+        "name": "save20_file_format"
+      }
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "canonical": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "current_cyrillic": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и изаберите формат PNG / JPEG (поље је означено „Име слике“).\"",
+      "current_latin": "\"%1$s Automatsko čuvanje je pauzirano radi zaštite te radne verzije. Da biste je zadržali, koristite „Datoteka → Izvezi kopiju za oporavak…“. Da biste sačuvali trenutni rad, koristite „Datoteka → Sačuvaj kao…“ (Format slike: PNG / JPEG).\"",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      }
+    }
+  ],
+  "labels": {
+    "ui_menu_file": "Датотека",
+    "save20_file_name": "\"Назив датотеке\"",
+    "save20_title": "Сачувај као…",
+    "ui_export_recovery_copy": "Извези копију за опоравак…"
+  },
+  "consumer_contexts": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+      "start_line": 50,
+      "end_line": 64,
+      "text": "        var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality.coerceIn(1,100);var lossless=initial.lossless\n        val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}\n        body.addView(TextView(activity).apply {text=ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})})\n        body.addView(TextView(activity).apply {text=ui(R.string.save20_file_name)})\n        val filename=EditText(activity).apply {\n            tag=\"export_filename\";setSingleLine(true)\n            inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES\n            setText(ExportNames.withExtension(initialFilename.ifBlank {ui(R.string.ui_untitled)},format))\n            contentDescription=ui(R.string.save20_file_name)\n            selectAll()\n        }\n        body.addView(filename,LinearLayout.LayoutParams(-1,-2))\n        body.addView(TextView(activity).apply {text=ui(R.string.save20_file_format)})\n        val losslessBox=CheckBox(activity).apply {tag=\"export_lossless\";isChecked=lossless}\n        val ditherBox=CheckBox(activity).apply {tag=\"export_dither\";text=ui(R.string.save20_dither);isChecked=initial.dither}"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+      "start_line": 102,
+      "end_line": 115,
+      "text": "                ImageFormat.JPEG,ImageFormat.HEIC -> R.string.save20_lossy_quality_description\n                else -> R.string.ui_higher_quality_usually_makes_a_larger_file_lossless\n            })\n            explanation.visibility=if(format==ImageFormat.PNG) View.GONE else View.VISIBLE\n        }\n        losslessBox.setOnCheckedChangeListener {_,checked ->lossless=checked;update()}\n        body.addView(Spinner(activity).apply {\n            tag=\"export_format\";contentDescription=ui(R.string.save20_file_format)\n            adapter=ArrayAdapter(activity,android.R.layout.simple_spinner_dropdown_item,formats.map {it.label})\n            setSelection(formats.indexOf(format))\n            onItemSelectedListener=object: AdapterView.OnItemSelectedListener {\n                override fun onNothingSelected(parent: AdapterView<*>?)=Unit\n                override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {\n                    format=formats[position]"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+      "start_line": 166,
+      "end_line": 173,
+      "text": "                override fun beforeTextChanged(s: CharSequence?,start: Int,count: Int,after: Int)=Unit\n                override fun onTextChanged(s: CharSequence?,start: Int,before: Int,count: Int) {preview.text=s}\n                override fun afterTextChanged(s: android.text.Editable?)=Unit\n            })\n            field(ui(R.string.save20_file_name),nameColumn)\n            field(ui(R.string.save20_file_format),body.findViewWithTag<Spinner>(\"export_format\"))\n            listOf(losslessBox,slider,ditherBox,tiffCompressionBox,iconControls,asciiControls,explanation).forEach {control ->\n                VerticalUi.detach(control)"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+      "sha256": "f6781d9a04961ed7b2b4a8cc52a8164001da9be8155d1ae7967905c84ef8326a",
+      "start_line": 24,
+      "end_line": 47,
+      "text": ")\n\ninternal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveStore.Recovery<RecoveredEditor> = autosave.recover {\n    var owner: PaintDocument?=null\n    fun checkSize(w: Int,h: Int) {ImageMemoryPolicy.forDevice(context).check(w,h,owner?.residentPixels ?: 0)}\n    var filename=ui(R.string.ui_untitled)\n    var textSettings=TextSettings()\n    var savedTarget: SavedTarget?=null\n    var draftStatus=ui(R.string.ui_draft_not_saved_yet)\n    var autosaveBlocked=false\n    var lastAutosaveError: String?=null\n    var recoveryNotice: String?=null\n    fun preserveFailedDraft(reason: String) {\n        try {\n            autosave.preserveForRecovery(retainOriginal=true)\n            recoveryNotice=ui(R.string.ui_a_separate_recovery_copy_has_been_kept_use,reason)\n            draftStatus=ui(R.string.ui_previous_draft_kept_for_recovery)\n        } catch(_: Exception) {\n            autosaveBlocked=true\n            lastAutosaveError=ui(R.string.ui_the_previous_draft_could_not_be_preserved_separately)\n            draftStatus=ui(R.string.ui_autosave_paused_use_save)\n            recoveryNotice=ui(R.string.ui_autosave_is_paused_to_protect_that_draft_use,reason)\n        }\n    }"
+    }
+  ],
+  "limits": [
+    "Review exactly two complete Cyrillic values together; no Latin edits.",
+    "Keep %1$s reason and old draft versus current work distinction.",
+    "No source mutations or native-human/whole-language certification."
+  ]
+}

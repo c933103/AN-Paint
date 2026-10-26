@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "reviewer_role": "Independent AI reviewer; not candidate author",
+  "reviewed_at_utc": "2026-10-26T18:12:00Z",
+  "locale": "sr-Cyrl",
+  "scope": [
+    "save20_file_format",
+    "ui_autosave_is_paused_to_protect_that_draft_use"
+  ],
+  "context_sha256": "39c1200f903afc3e264747e7e1e03e68c4251021ac2d9a4c52e9f2ada4143419",
+  "candidate_sha256": "0581bec716571aadb88e48cfe950041e6f81d4c03a6cf99617f5217517ae908a",
+  "candidates_sha256": "0581bec716571aadb88e48cfe950041e6f81d4c03a6cf99617f5217517ae908a",
+  "source_head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+  "source_tree": "385bd19a6cd68c7b8ce9644f157e4acb4e4cf93e",
+  "source_status": "PR180 corrected head, not merged; no production edit authorized by this preparation",
+  "source_binding_verification": "Local source-publication-state.json agrees with the supplied corrected PR180 head/tree. Independently compared actual source values, attributes, relevant file hashes, and every provided consumer line excerpt. This source snapshot has no .git metadata; no independent remote Git object or merge-state query was performed.",
+  "overall_decision": "accept",
+  "atomic_pair_required": true,
+  "entries": [
+    {
+      "identity": "string/save20_file_format",
+      "decision": "accept",
+      "original_xml_text": "Име слике",
+      "proposed_xml_text": "\"Формат датотеке\"",
+      "accepted_xml_text": "\"Формат датотеке\"",
+      "original_attributes": {
+        "name": "save20_file_format"
+      },
+      "proposed_attributes": {
+        "name": "save20_file_format"
+      },
+      "accepted_attributes": {
+        "name": "save20_file_format"
+      },
+      "attributes": {
+        "name": "save20_file_format"
+      },
+      "rationale": [
+        "Формат датотеке is natural standard Serbian Cyrillic for File format: формат names the kind/encoding and датотеке is the appropriate genitive. The inherited Име слике means image name and mislabels this control.",
+        "This is not a filename field. Source creates a separate Назив датотеке EditText (export_filename), then the save20_file_format caption and export_format Spinner. The same resource supplies the Spinner contentDescription and the vertical-form field label.",
+        "The corrected wording applies consistently to visible normal and vertical labels and to the accessibility name without changing application behavior. PNG and JPEG are real available non-derived save formats.",
+        "The surrounding ASCII double quotes are Android resource syntax, not intended visible punctuation; isolated AAPT2 compile/link/dump retained the exact display value Формат датотеке."
+      ],
+      "limitations": [
+        "Independent AI whole-value/source-context review; not native-human certification.",
+        "Static UI consumer validation and isolated resource compilation, not device rendering, accessibility-service execution, or a full application build."
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "decision": "accept",
+      "original_xml_text": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и изаберите формат PNG / JPEG (поље је означено „Име слике“).\"",
+      "proposed_xml_text": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и у пољу „Формат датотеке“ изаберите PNG / JPEG.\"",
+      "accepted_xml_text": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и у пољу „Формат датотеке“ изаберите PNG / JPEG.\"",
+      "original_attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "proposed_attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "accepted_attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "rationale": [
+        "The complete proposed message is grammatical, natural Serbian Cyrillic. Да бисте је задржали unambiguously refers to the protected feminine радна верзија; Да бисте сачували тренутни рад clearly introduces a different purpose and object.",
+        "The failure polarity is preserved: the prior draft cannot be restored or needs more memory, separate preservation then fails, and autosave is paused to protect the existing old draft. The text does not falsely announce a successful recovery, a separately retained copy, resumed autosave, or saving of current work.",
+        "File → Export recovery copy preserves the old draft: requestRecoveryExport selects the original .bak/base file when autosaveBlocked. File → Save as opens the current-work save options. The guidance keeps those actions and purposes separate.",
+        "и у пољу „Формат датотеке“ изаберите PNG / JPEG correctly directs selection in the Spinner rather than typing a format into the adjacent filename field. The exact new caption replaces the obsolete workaround, and поље is acceptable UI terminology for this selection control.",
+        "The full original %1$s reason placeholder is retained exactly once, with its index and string type intact. Exact live menu labels Датотека, Извези копију за опоравак…, and Сачувај као… are retained, along with the arrows, ellipses and PNG / JPEG spelling.",
+        "The Android outer ASCII quotation pair and inner Serbian „…“ punctuation compile/link correctly; dump retains the entire intended message. Acceptance depends on applying this value together with the corrected save20_file_format label."
+      ],
+      "limitations": [
+        "Independent AI whole-value/source-context review; not native-human certification.",
+        "Static UI consumer validation and isolated resource compilation, not device rendering, accessibility-service execution, or a full application build."
+      ]
+    }
+  ],
+  "source_evidence": [
+    {
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "lines": [
+        51,
+        431,
+        432,
+        635
+      ]
+    },
+    {
+      "path": "Paintroid/src/main/res/values-b+sr+Cyrl/strings.xml",
+      "sha256": "30f8cfabe6ebbd79ba785c8e351ce6e7edfc6671e49fdad461cd884045b0f74b",
+      "lines": [
+        42,
+        43,
+        93,
+        106,
+        144,
+        199,
+        240,
+        241
+      ]
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+      "lines": [
+        "11-24",
+        "49-62",
+        "108-120",
+        "148-171",
+        "187-196"
+      ]
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+      "sha256": "f6781d9a04961ed7b2b4a8cc52a8164001da9be8155d1ae7967905c84ef8326a",
+      "lines": [
+        "26-46",
+        "54-84"
+      ]
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+      "lines": [
+        "829-846",
+        "1152-1162",
+        "1402-1409",
+        "1589-1607"
+      ]
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+      "sha256": "db643208844218829b59c5a741ff83b4d8755499b21527fe7a0a8e585b647c9a",
+      "lines": [
+        "97-117"
+      ]
+    }
+  ],
+  "checks": {
+    "input_hash_binding": "pass",
+    "context_excerpts_against_actual_files": "pass",
+    "original_full_values_and_attributes": "pass",
+    "exact_menu_labels": "pass",
+    "filename_versus_format_spinner_normal_vertical_accessibility": "pass",
+    "blocked_recovery_polarity_old_draft_vs_current_work": "pass",
+    "full_placeholder_inventory": "pass: no placeholders in label; exactly one %1$s in message; no added or removed format tokens",
+    "isolated_android_resource_compile_link_dump": {
+      "status": "pass",
+      "tool": "Android Asset Packaging Tool (aapt) 2.19-11948202",
+      "scope": "Temporary two-string resource package only; both exact candidate values compiled, linked and were recovered in aapt2 dump resources. No app source changed.",
+      "initial_harness_issue": "First link command was assembled before compile output existed, so it linked no .flat files and the string-presence assertion failed. Diagnosed as reviewer harness setup, then reran sequential compile → discover nonempty .flat list → link → dump successfully. Not a candidate resource failure."
+    }
+  },
+  "implementation_follow_through": [
+    "If this pair is later implemented, update the exact accepted full-message fixture and preserved-label fixture in tools/fixtures/current_localization/serbian_p0_wording.json, plus the direct inherited-label expectation in tools/test_serbian_p0_wording.py:182. Preserve the recovery composition checks around lines 197-209; they must bind to the corrected actual label. No fixture or test edits were made in this review."
+  ],
+  "limitations": [
+    "Exactly two complete Serbian Cyrillic values reviewed. No Serbian Latin changes or whole-language/whole-catalogue acceptance.",
+    "PR180 is treated as the supplied corrected but unmerged source; this review makes no CI, merge, production, native-human, full-build, or runtime verification claim.",
+    "The two changes must land together; the new message alone would name a control not present in the unchanged UI."
+  ],
+  "source_mutations": false,
+  "publication_performed": false,
+  "merge_performed": false,
+  "blockers": []
+}
