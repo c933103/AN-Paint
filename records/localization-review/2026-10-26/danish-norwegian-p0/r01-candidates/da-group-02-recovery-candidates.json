@@ -1,0 +1,840 @@
+{
+  "schema_version": 1,
+  "record_kind": "missing-only author candidate group; not acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "locale": "da",
+  "locale_identity_policy": "Keep existing locale code and catalogue identity unchanged.",
+  "target_path": "Paintroid/src/main/res/values-da/strings.xml",
+  "group": 2,
+  "group_name": "recovery",
+  "candidate_count": 28,
+  "shared_source_context": {
+    "file": "shared-source-context.json",
+    "sha256": "2c486912d65af03dae2bb6976e17cacf0904d31a1132fa025e10edcb0b881baf"
+  },
+  "existing_terminology": {
+    "file": "terminology-foundations.json",
+    "sha256": "965bd3ac55fe64b09a66749a7b022b2e6c0abc48f5f7438c8daf9f639b2e7bb5",
+    "values_to_preserve": 127
+  },
+  "instructions_to_reviewer": [
+    "Judge each complete source/target value and every clause against its consumer context; accept, revise or hold each identity independently for this locale.",
+    "Shared source verification does not transfer linguistic acceptance between locales. Existing terminology is context, not proof of current acceptance.",
+    "Preserve all existing values including Save confirmation and Image format. Preserve actual fallback command names in compositions.",
+    "Retain per-entry qualifications and uncertainty; no native-human, physical-device, runtime, layout or whole-language certification.",
+    "Five held missing identities per locale, Nynorsk holds, P1/paired-warning boundaries and all explicit pauses remain unchanged."
+  ],
+  "candidates": [
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "priority": "P0",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "source_value_sha256_utf8": "579fea23054e5ac24d9dad1aee8a1dd13af1d810fbed9f92e059cce26f6ed0a0",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "%1$s En separat gendannelseskopi er bevaret. Brug »Filer > Eksportér gendannelseskopi…« til at gemme dens ZIP-fil. Pak canvas.png ud fra den, og indlæs billedet for at bruge de normale skaleringsindstillinger, hvis det er nødvendigt.",
+      "candidate_value_sha256_utf8": "a3e1c63a42159f010a1f2f44ed8bd279352d28ddd84c47570d5260f2c03abb60",
+      "candidate_xml_text": "\"%1$s En separat gendannelseskopi er bevaret. Brug »Filer > Eksportér gendannelseskopi…« til at gemme dens ZIP-fil. Pak canvas.png ud fra den, og indlæs billedet for at bruge de normale skaleringsindstillinger, hvis det er nødvendigt.\"",
+      "candidate_xml_text_sha256_utf8": "6e11f93a83f36fabf1778bfebfefb8e9edfec84773fb416da57fb7405e2a4b7d",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ],
+      "source_semantic_notes": [
+        "%1$s is an already-rendered failure reason; preserve prefix token and separation. A separate draft copy has actually been preserved before this branch.",
+        "Use actual Danish Filer / Norwegian Fil menu plus the proposed same-group recovery action; canvas.png and ZIP remain literal."
+      ],
+      "author_semantic_qualifications": [
+        "%1$s is an already-rendered failure reason; preserve prefix token and separation. A separate draft copy has actually been preserved before this branch.",
+        "Use actual Danish Filer / Norwegian Fil menu plus the proposed same-group recovery action; canvas.png and ZIP remain literal."
+      ],
+      "author_uncertainties": [
+        "Gendannelseskopi is proposed consistently for the recovery file; review compound terminology and the complete composed Filer action, without touching the Help archive scope."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "priority": "P0",
+      "source": "Autosave failed · use Save",
+      "source_value_sha256_utf8": "9fab2239be3a11b6843125b73bedddcef714c0188d682cb0f145f6a7fdd1457a",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Automatisk lagring mislykkedes · brug Gem",
+      "candidate_value_sha256_utf8": "60b4eef92244c3fd562891d5ce47843dd0045c70d0934c0fe0c048beebbe58e3",
+      "candidate_xml_text": "\"Automatisk lagring mislykkedes · brug Gem\"",
+      "candidate_xml_text_sha256_utf8": "c9f93345d54e77bc95a9e726477c7ed7c79983a279cf081f8b1eceba79d2bc54",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "priority": "P0",
+      "source": "Autosave image encoding failed.",
+      "source_value_sha256_utf8": "f83897890596e2776edb9f66dca76dce2e53f64fb26f43c2462116d978d64201",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Billedkodning til automatisk lagring mislykkedes.",
+      "candidate_value_sha256_utf8": "d29e2d9e096149f3f8fd8e05377334587cfd4ef0684acc0045cec19a7ed6da91",
+      "candidate_xml_text": "\"Billedkodning til automatisk lagring mislykkedes.\"",
+      "candidate_xml_text_sha256_utf8": "a42e00d08a9b4aadd858058cc6c7af4a9fe83ccdf227ced2c02cb2dfc9880196",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "priority": "P0",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "source_value_sha256_utf8": "45af3acf76284540e468a05d80591e36743472a7625da0c6b7153a8173e007a7",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "%1$s Automatisk lagring er sat på pause for at beskytte denne kladde. Brug »Filer → Eksportér gendannelseskopi…« til at bevare den og »Filer → Gem som…« (Image format: PNG / JPEG) til at gemme dit aktuelle arbejde.",
+      "candidate_value_sha256_utf8": "50b6c1d305b1220515c5861cca05a47117ac6221a92ddc8aec3ec00779bdbc63",
+      "candidate_xml_text": "\"%1$s Automatisk lagring er sat på pause for at beskytte denne kladde. Brug »Filer → Eksportér gendannelseskopi…« til at bevare den og »Filer → Gem som…« (Image format: PNG / JPEG) til at gemme dit aktuelle arbejde.\"",
+      "candidate_xml_text_sha256_utf8": "7b6985c860ffb078e41a211c833469bf0dbbd43b0f9f84f6b683f7b71cfdff69",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ],
+      "source_semantic_notes": [
+        "%1$s is an already-rendered failure reason. This branch cannot preserve a separate copy, so autosave remains blocked to protect the existing draft. Do not claim that current work is already saved.",
+        "Use actual existing menu labels: Danish Filer / Gem som…; Norwegian Fil / Lagre som…. Both existing save20_file_format labels are exactly Image format, not a translated label. New recovery action is a within-group proposed dependency; retain PNG / JPEG."
+      ],
+      "author_semantic_qualifications": [
+        "%1$s is an already-rendered failure reason. This branch cannot preserve a separate copy, so autosave remains blocked to protect the existing draft. Do not claim that current work is already saved.",
+        "Use actual existing menu labels: Danish Filer / Gem som…; Norwegian Fil / Lagre som…. Both existing save20_file_format labels are exactly Image format, not a translated label. New recovery action is a within-group proposed dependency; retain PNG / JPEG.",
+        "The exact existing Danish labels Filer, Gem som… and current Image format are preserved. Eksportér gendannelseskopi… is a same-group proposed dependency, not an already accepted label."
+      ],
+      "author_uncertainties": [
+        "Review the two separate purposes: preserving the protected old draft versus saving current work. The English Image format label is intentional current UI, not an accidental untranslated omission."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "priority": "P0",
+      "source": "Autosave metadata is missing.",
+      "source_value_sha256_utf8": "1115f993a7d75ef4a554c7ef1cf900d88970a5c05144cf1c9038ab0d86965de4",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Metadata for automatisk lagring mangler.",
+      "candidate_value_sha256_utf8": "00fe098f4d88919c94c387a23bfb4023037fe525ae9bcda9b4dc0c44279c02f4",
+      "candidate_xml_text": "\"Metadata for automatisk lagring mangler.\"",
+      "candidate_xml_text_sha256_utf8": "50973c6b13b0bc87e0ade3c35bf5f82ebcca3b294352143d1f1d785086b5d580",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "priority": "P0",
+      "source": "Autosave paused · use Save",
+      "source_value_sha256_utf8": "3dfab3c54ba3d7700fc9d12ae3d767eda448501ba5df52284905edd71c7f30bd",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Automatisk lagring er sat på pause · brug Gem",
+      "candidate_value_sha256_utf8": "b22b8f3302bf5393128679c9c7c4e5a6d469ac479457367d00ab37812b569e3a",
+      "candidate_xml_text": "\"Automatisk lagring er sat på pause · brug Gem\"",
+      "candidate_xml_text_sha256_utf8": "7d04313f5b5bb379e9a92546822eda8328da29bfc1324e5961b92a94ca41a458",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "priority": "P0",
+      "source": "Autosave pixels are missing.",
+      "source_value_sha256_utf8": "4af9f86e590fa90219121ad8f4cbbe372eaeeca8fb1927e01917a7fdd881de31",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Pixeldata til automatisk lagring mangler.",
+      "candidate_value_sha256_utf8": "ee49ed67d3ee81a6ca9845cc304f1d92bcce81d322c921953eec0ff40834c03f",
+      "candidate_xml_text": "\"Pixeldata til automatisk lagring mangler.\"",
+      "candidate_xml_text_sha256_utf8": "367ff6fedae33d28677a9543385346576c2b443ce7f13839b7eaf1bd51220bc0",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "priority": "P0",
+      "source": "Autosave pixels could not be read.",
+      "source_value_sha256_utf8": "b6c10f2c0238abb6190525baa6d50140fc4e8c33de2cfab12b99930e833ba2f3",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Pixeldataene fra den automatiske lagring kunne ikke læses.",
+      "candidate_value_sha256_utf8": "795fd927efd17e14323c48e842bd43726d0fa734d140f4450757a4c4b2f88278",
+      "candidate_xml_text": "\"Pixeldataene fra den automatiske lagring kunne ikke læses.\"",
+      "candidate_xml_text_sha256_utf8": "0ce7adc78282217fbf0a910b2899dce62c75672206fabddba2a288e9579c7b4f",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "priority": "P0",
+      "source": "Autosave selection encoding failed.",
+      "source_value_sha256_utf8": "4f03c5b20f4fee753afcccbbaddc08e6361f85e6ebd9a1275d69cfd5ffa906e0",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kodning af markeringen til automatisk lagring mislykkedes.",
+      "candidate_value_sha256_utf8": "0ad699e26f255ca5d3f963176f576312161c188842b99bdafc4a1336aa9c2212",
+      "candidate_xml_text": "\"Kodning af markeringen til automatisk lagring mislykkedes.\"",
+      "candidate_xml_text_sha256_utf8": "a29497b9eb56461e6bad47c00cd3a6cec41588c964ad0bf369c5a2e7e09f19f9",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "priority": "P0",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "source_value_sha256_utf8": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Fortrydelsescachen kan ikke oprettes. Frigør noget lagerplads på enheden, og prøv igen.",
+      "candidate_value_sha256_utf8": "698efecbe9822ceded6b8f58faa98cb14e67e2316b0e07114757604b28b3305d",
+      "candidate_xml_text": "\"Fortrydelsescachen kan ikke oprettes. Frigør noget lagerplads på enheden, og prøv igen.\"",
+      "candidate_xml_text_sha256_utf8": "8c8fcfdc0ec3e972d5ee2abb16b0703b506d29a42bb95f731482034d17c609ed",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ],
+      "source_semantic_notes": [
+        "This is device storage for on-disk undo snapshots, not RAM budget."
+      ],
+      "author_semantic_qualifications": [
+        "This is device storage for on-disk undo snapshots, not RAM budget."
+      ],
+      "author_uncertainties": [
+        "Fortrydelsescache is a proposed technical compound anchored to existing Fortryd; reviewer may prefer an equally precise plain-language phrase. Lagerplads is storage, not RAM."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "priority": "P0",
+      "source": "Could not export the recovery copy",
+      "source_value_sha256_utf8": "66c703a27ccf6fd0c8400514fd0417449b780e644313ed3b5565bd8060be1815",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Gendannelseskopien kunne ikke eksporteres",
+      "candidate_value_sha256_utf8": "c6a5b147df6e3394d24dc883819d955c29b027fa9f0fb8cefe48d68c56471384",
+      "candidate_xml_text": "\"Gendannelseskopien kunne ikke eksporteres\"",
+      "candidate_xml_text_sha256_utf8": "f6f558474dab5a83c9e0e30ef5f1dc241d18542e17301cac9f3540861bed0b65",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ],
+      "source_semantic_notes": [
+        "Prefix passed to ioFailed; caller attaches error details. Keep no added terminal punctuation."
+      ],
+      "author_semantic_qualifications": [
+        "Prefix passed to ioFailed; caller attaches error details. Keep no added terminal punctuation."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "priority": "P0",
+      "source": "Draft not saved yet",
+      "source_value_sha256_utf8": "47bfd1dafcd6d9d6d49ae9f60f5b5c60d0180661684733aaa73e559734f7d447",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kladde endnu ikke gemt",
+      "candidate_value_sha256_utf8": "767a932cde5b1bda3f7da1dcf4ba30d74995662fc73ac8314e0d3cebdff03065",
+      "candidate_xml_text": "\"Kladde endnu ikke gemt\"",
+      "candidate_xml_text_sha256_utf8": "5d59bb3d3924c60a137745e0b5072100718a8a13098fcbdb41b91cb0829402cb",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "priority": "P0",
+      "source": "Draft restored",
+      "source_value_sha256_utf8": "b22e11b3de90d4a130e7c63753a46f3b853fc949ca2fe95dd156138a384b5dcb",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kladde gendannet",
+      "candidate_value_sha256_utf8": "eca8215e2d43e443b59c09d185aa39ab419b7ae0b504768003e387287854bbdf",
+      "candidate_xml_text": "\"Kladde gendannet\"",
+      "candidate_xml_text_sha256_utf8": "8db85618b141b8099dbf2d2d27e15baac139daf5c30302804fbb3c2686bc0638",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ],
+      "source_semantic_notes": [
+        "Startup recovery status only; not a claim that all undo history was recovered."
+      ],
+      "author_semantic_qualifications": [
+        "Startup recovery status only; not a claim that all undo history was recovered."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "priority": "P0",
+      "source": "Draft saved",
+      "source_value_sha256_utf8": "5ccb8caacdc5383597f882b5c366969ee1cdd1a32b1d122a42b0280a51f9a5a6",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kladde gemt",
+      "candidate_value_sha256_utf8": "ab4500c0343b741f0b673445265a7257d13ef8fad7fd01b9c5147594b702c923",
+      "candidate_xml_text": "\"Kladde gemt\"",
+      "candidate_xml_text_sha256_utf8": "c8d0448700508c06e6da7f2c1538cdd35b88717eec537c2ff978d11c690180d4",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ],
+      "source_semantic_notes": [
+        "Autosave draft status only. Must not imply explicit Save target updated or unsaved drawing state cleared."
+      ],
+      "author_semantic_qualifications": [
+        "Autosave draft status only. Must not imply explicit Save target updated or unsaved drawing state cleared.",
+        "Kladde gemt is deliberately distinct from explicit drawing Save success; no dirty-state clearing or target update is asserted."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "priority": "P0",
+      "source": "Export recovery copy…",
+      "source_value_sha256_utf8": "d642d7ea56f8deaece6e022241000cf5ef28239a5d066391c1e1e4bd5fe7a197",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Eksportér gendannelseskopi…",
+      "candidate_value_sha256_utf8": "0459abd88d73d47a2980dce6af9b156fa53773d11f11b607f4dc914b7e0d19ff",
+      "candidate_xml_text": "\"Eksportér gendannelseskopi…\"",
+      "candidate_xml_text_sha256_utf8": "0d7534dca2b4d4e56eecca4d6c2af19a18024ac28b0d594c305e1d7afa22dc35",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:846"
+      ],
+      "source_semantic_notes": [
+        "Conditional File-menu action appears only when autosave is blocked or recovery copies exist. Ellipsis retained."
+      ],
+      "author_semantic_qualifications": [
+        "Conditional File-menu action appears only when autosave is blocked or recovery copies exist. Ellipsis retained."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "priority": "P0",
+      "source": "Export recovery copy",
+      "source_value_sha256_utf8": "144b8a2d9ee28d7aaa90dbbd22a6e1f487e99fd78a9c5f4d4131e48c0c3a0644",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Eksportér gendannelseskopi",
+      "candidate_value_sha256_utf8": "ed16281958c90431d8f41fc5d29a53ae6f57c6e2f76d0a5eb90e7b0a252da6aa",
+      "candidate_xml_text": "\"Eksportér gendannelseskopi\"",
+      "candidate_xml_text_sha256_utf8": "48ea952c217555ba440475f52baaff7ff6bd20749fd54d907a42ca7090091005",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ],
+      "source_semantic_notes": [
+        "Dialog title for choosing one of several recovery copies; no ellipsis in canonical title."
+      ],
+      "author_semantic_qualifications": [
+        "Dialog title for choosing one of several recovery copies; no ellipsis in canonical title."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "priority": "P0",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "source_value_sha256_utf8": "445a2a9744ed258c1815920072f46042e9bb4aeb519a2c2d2d34eac8a95a589e",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Lærredet blev gendannet, men dets fortrydelseshistorik kunne ikke læses. Den oprindelige kladde er bevaret som en gendannelseskopi.",
+      "candidate_value_sha256_utf8": "8177adcae7f04497b9dd9141573fffe01d3eedd3b191cafed01e9110b396536b",
+      "candidate_xml_text": "\"Lærredet blev gendannet, men dets fortrydelseshistorik kunne ikke læses. Den oprindelige kladde er bevaret som en gendannelseskopi.\"",
+      "candidate_xml_text_sha256_utf8": "db0c77a7b5f5265e7172d08c56f5f2f999efe2c1e879332a35ee1ee12bbd6a4f",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ],
+      "source_semantic_notes": [
+        "formatted=false must remain. Canvas restored, undo history unreadable, original retained separately. These three clauses have different outcomes."
+      ],
+      "author_semantic_qualifications": [
+        "formatted=false must remain. Canvas restored, undo history unreadable, original retained separately. These three clauses have different outcomes.",
+        "Keeps formatted=false and distinct success/failure/retention clauses; no full history restoration claim."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "priority": "P0",
+      "source": "Invalid autosave metadata.",
+      "source_value_sha256_utf8": "4a62b9a9531a09d3f34b967194d530070ddf65a66811f5ce52f39c332de3e2eb",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Ugyldige metadata for automatisk lagring.",
+      "candidate_value_sha256_utf8": "561cc27191fd2f8fd9806bebbb08584a772a04b27d3e24fe5d58d625d795e772",
+      "candidate_xml_text": "\"Ugyldige metadata for automatisk lagring.\"",
+      "candidate_xml_text_sha256_utf8": "70235b6760e7a9cb270eb5889c9d6a84c3add9e4ac5a666c40b943b1209375f3",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "priority": "P0",
+      "source": "Previous draft kept for recovery",
+      "source_value_sha256_utf8": "f31aee8ae34783790412c745919799d37484bf8e70be9dc2865ec4defc829ff8",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Den forrige kladde er bevaret til gendannelse",
+      "candidate_value_sha256_utf8": "e0adfacbb6955446f55ad5c8f5bbd653f361d55b5302dd354bbc7cbe2d75f12e",
+      "candidate_xml_text": "\"Den forrige kladde er bevaret til gendannelse\"",
+      "candidate_xml_text_sha256_utf8": "445433de61cd7955956362f4d6500a4c7ba3a3f3ddaf81c7d16143e7344eb643",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "priority": "P0",
+      "source": "Recovered image",
+      "source_value_sha256_utf8": "f31f8410df9ce45c66f3c7e7af9c7bf126ee2481a825f0e31cfae2a4881a43a8",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Gendannet billede",
+      "candidate_value_sha256_utf8": "4c4f5e12ae4feed8b6c4e8f9a21dcaf97e18c8eb54a57bbf0829b02f3e3d975a",
+      "candidate_xml_text": "\"Gendannet billede\"",
+      "candidate_xml_text_sha256_utf8": "379896a40c11f5f49fd14ce0ee1fd3593e4562ddb55370f1b6ba2f8e164c9d42",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ],
+      "source_semantic_notes": [
+        "Fallback filename/title, not a new success claim or format name."
+      ],
+      "author_semantic_qualifications": [
+        "Fallback filename/title, not a new success claim or format name."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "priority": "P0",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "source_value_sha256_utf8": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Gendannelseskopi eksporteret. Pak canvas.png ud fra ZIP-filen, og åbn billedet via »Filer > Load image…«. ZIP-filen indeholder også kladdens indstillinger og en eventuel flydende markering.",
+      "candidate_value_sha256_utf8": "3549ea19cd9b980c8cef8fe91e00cb5b01c74cf2ed670255fd77894c4ea97768",
+      "candidate_xml_text": "\"Gendannelseskopi eksporteret. Pak canvas.png ud fra ZIP-filen, og åbn billedet via »Filer > Load image…«. ZIP-filen indeholder også kladdens indstillinger og en eventuel flydende markering.\"",
+      "candidate_xml_text_sha256_utf8": "eb2aa54ebf6940a7739168026485b0d974dfc0931138e325f2144630c4f3de03",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ],
+      "source_semantic_notes": [
+        "canvas.png and ZIP are literal identities; this is the draft recovery archive, not the paused Help callback/archive-identity work.",
+        "Both locales have absent ui_load_image: actual command is Load image…. Quote that unchanged fallback, with actual Filer/Fil. The model permits one optional floating selection, so use singular optional wording. No Help archive identity work."
+      ],
+      "author_semantic_qualifications": [
+        "canvas.png and ZIP are literal identities; this is the draft recovery archive, not the paused Help callback/archive-identity work.",
+        "Both locales have absent ui_load_image: actual command is Load image…. Quote that unchanged fallback, with actual Filer/Fil. The model permits one optional floating selection, so use singular optional wording. No Help archive identity work.",
+        "Uses the untouched English command Load image… verbatim and singular optional flydende markering, consistent with one optional selection in the recovery model."
+      ],
+      "author_uncertainties": [
+        "Flydende markering is proposed for the optional floating selection; review terminology against existing Markering without expanding to a new P1 command translation."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "priority": "P0",
+      "source": "The draft is saving. Try again shortly.",
+      "source_value_sha256_utf8": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kladden gemmes. Prøv igen om lidt.",
+      "candidate_value_sha256_utf8": "6733880ef471004c73fd3b5f25c23f99ddbd3fe915b80ee786720c54c842e187",
+      "candidate_xml_text": "\"Kladden gemmes. Prøv igen om lidt.\"",
+      "candidate_xml_text_sha256_utf8": "27ec8d4bcb7742210ec280001f2afd149ab9790173d4b52b80afe0a3999444c3",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ],
+      "source_semantic_notes": [
+        "In-progress autosave prevents edits temporarily; not an instruction to Save again."
+      ],
+      "author_semantic_qualifications": [
+        "In-progress autosave prevents edits temporarily; not an instruction to Save again."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "priority": "P0",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "source_value_sha256_utf8": "58a948005b3938c7d8ca4ea368db1b4b390a98d9f517f4851c5b98f8b57e71e5",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Den forrige kladde kunne ikke flyttes til en gendannelseskopi.",
+      "candidate_value_sha256_utf8": "433af0416abff0a17814d9403c861b06c8c5f0bf75d68601379107c7a9440f25",
+      "candidate_xml_text": "\"Den forrige kladde kunne ikke flyttes til en gendannelseskopi.\"",
+      "candidate_xml_text_sha256_utf8": "de903db6d53be19f198f0ab311c2f6e3b659991d4a9f5eb1c6a3b462f6666563",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ],
+      "source_semantic_notes": [
+        "Used if the prior draft source is missing or rename to a separate recovery file fails. Retain source wording without promising a copy exists."
+      ],
+      "author_semantic_qualifications": [
+        "Used if the prior draft source is missing or rename to a separate recovery file fails. Retain source wording without promising a copy exists."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "priority": "P0",
+      "source": "The previous draft could not be preserved separately.",
+      "source_value_sha256_utf8": "0231e19f5f7e376d0872735d1e3f8f9698fbd43564ea52240f454efc21d3c8ec",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Den forrige kladde kunne ikke bevares separat.",
+      "candidate_value_sha256_utf8": "7863ffbd6423190979c66c7e1c4e9ae02a56acfd8cd4a99d886221af8b583192",
+      "candidate_xml_text": "\"Den forrige kladde kunne ikke bevares separat.\"",
+      "candidate_xml_text_sha256_utf8": "3c23a4f40dea6e62747572af4d1a080ccf9e08368c7948631029c742376206be",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "priority": "P0",
+      "source": "The previous draft could not be restored.",
+      "source_value_sha256_utf8": "1cc58fbbe1b76be657fc2eafbf8250b6231f06484eda3fbf7758e1b5cf88ea13",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Den forrige kladde kunne ikke gendannes.",
+      "candidate_value_sha256_utf8": "80d7bc7c23b8ce719ce906ea5edc8bb58fe30d0c2527d1bb16ed5c692528d02b",
+      "candidate_xml_text": "\"Den forrige kladde kunne ikke gendannes.\"",
+      "candidate_xml_text_sha256_utf8": "6c43977825c5af0404613ad08ca9f9394cefea4ea139487a5ece82f9a7e39b53",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "priority": "P0",
+      "source": "The previous draft needs more memory to reopen.",
+      "source_value_sha256_utf8": "cf655bbea013a29738b4f078166b9dde719f694052a7f1755e2bd0a40c1b9170",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det kræver mere hukommelse at genåbne den forrige kladde.",
+      "candidate_value_sha256_utf8": "21e952a8745b0c52a84bc359d80fa26bd943b30203a08ba1ec2f23adeced38ca",
+      "candidate_xml_text": "\"Det kræver mere hukommelse at genåbne den forrige kladde.\"",
+      "candidate_xml_text_sha256_utf8": "5e27e79dda6ddcab646368a70fa47853b8a636fcc4217dcee56de8c45339c147",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "priority": "P0",
+      "source": "The undo cache is damaged.",
+      "source_value_sha256_utf8": "19e62ed88ca1118a10f0062c76f9f7b3629b34cceed02628aefe5ca3bbb44cef",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Fortrydelsescachen er beskadiget.",
+      "candidate_value_sha256_utf8": "fc6652cb2ac0f858838ad299af2bb26b5469fcf10b1ad35e582e28aca1133458",
+      "candidate_xml_text": "\"Fortrydelsescachen er beskadiget.\"",
+      "candidate_xml_text_sha256_utf8": "c89c65bdf46cade93694d8a96ae6166df2569706b19daf671ddb47df2b071a0c",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Fortrydelsescache requires independent terminology review across the recovery family."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "priority": "P0",
+      "source": "Unexpected data in the undo cache.",
+      "source_value_sha256_utf8": "9005bd155636cba50a7b1139426614c2878b1b6651e86c0acb7d1ca0de8b0b22",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Uventede data i fortrydelsescachen.",
+      "candidate_value_sha256_utf8": "49a7414a4a18e296dce9f478649302e30ca3b1ec72e57bf20e085bb29e25676e",
+      "candidate_xml_text": "\"Uventede data i fortrydelsescachen.\"",
+      "candidate_xml_text_sha256_utf8": "674e323cc2dd85c85acce1b29cb73724e57aee1a75a04a18c5d191775fd2c114",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Fortrydelsescache requires independent terminology review across the recovery family."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    }
+  ]
+}

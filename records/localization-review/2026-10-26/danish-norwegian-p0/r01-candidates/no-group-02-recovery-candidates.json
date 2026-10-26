@@ -1,0 +1,841 @@
+{
+  "schema_version": 1,
+  "record_kind": "missing-only author candidate group; not acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "locale": "no",
+  "locale_identity_policy": "Keep existing locale code and catalogue identity unchanged.",
+  "target_path": "Paintroid/src/main/res/values-no/strings.xml",
+  "group": 2,
+  "group_name": "recovery",
+  "candidate_count": 28,
+  "shared_source_context": {
+    "file": "shared-source-context.json",
+    "sha256": "2c486912d65af03dae2bb6976e17cacf0904d31a1132fa025e10edcb0b881baf"
+  },
+  "existing_terminology": {
+    "file": "terminology-foundations.json",
+    "sha256": "965bd3ac55fe64b09a66749a7b022b2e6c0abc48f5f7438c8daf9f639b2e7bb5",
+    "values_to_preserve": 115
+  },
+  "instructions_to_reviewer": [
+    "Judge each complete source/target value and every clause against its consumer context; accept, revise or hold each identity independently for this locale.",
+    "Shared source verification does not transfer linguistic acceptance between locales. Existing terminology is context, not proof of current acceptance.",
+    "Preserve all existing values including Save confirmation and Image format. Preserve actual fallback command names in compositions.",
+    "Retain per-entry qualifications and uncertainty; no native-human, physical-device, runtime, layout or whole-language certification.",
+    "Five held missing identities per locale, Nynorsk holds, P1/paired-warning boundaries and all explicit pauses remain unchanged."
+  ],
+  "candidates": [
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "priority": "P0",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "source_value_sha256_utf8": "579fea23054e5ac24d9dad1aee8a1dd13af1d810fbed9f92e059cce26f6ed0a0",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "%1$s En egen gjenopprettingskopi er bevart. Bruk «Fil > Eksporter gjenopprettingskopi…» for å lagre ZIP-filen. Pakk ut canvas.png fra den og last inn bildet for å bruke de vanlige skaleringsvalgene ved behov.",
+      "candidate_value_sha256_utf8": "ae9be58572c8b25b13724dd20783654354d71017415dffd448fb6eae3a846d4c",
+      "candidate_xml_text": "\"%1$s En egen gjenopprettingskopi er bevart. Bruk «Fil > Eksporter gjenopprettingskopi…» for å lagre ZIP-filen. Pakk ut canvas.png fra den og last inn bildet for å bruke de vanlige skaleringsvalgene ved behov.\"",
+      "candidate_xml_text_sha256_utf8": "fbfdaa44fbd5a76ebc70c4ad4d47f5a5373a7b1f7d571fa05894ab06d7fc9758",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ],
+      "source_semantic_notes": [
+        "%1$s is an already-rendered failure reason; preserve prefix token and separation. A separate draft copy has actually been preserved before this branch.",
+        "Use actual Danish Filer / Norwegian Fil menu plus the proposed same-group recovery action; canvas.png and ZIP remain literal."
+      ],
+      "author_semantic_qualifications": [
+        "%1$s is an already-rendered failure reason; preserve prefix token and separation. A separate draft copy has actually been preserved before this branch.",
+        "Use actual Danish Filer / Norwegian Fil menu plus the proposed same-group recovery action; canvas.png and ZIP remain literal."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "priority": "P0",
+      "source": "Autosave failed · use Save",
+      "source_value_sha256_utf8": "9fab2239be3a11b6843125b73bedddcef714c0188d682cb0f145f6a7fdd1457a",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Automatisk lagring mislyktes · bruk Lagre",
+      "candidate_value_sha256_utf8": "fc9c05fbcd7cac4f63eeb90aaec2c878dd85b3d87a091ce516b0cf0dfe39be52",
+      "candidate_xml_text": "\"Automatisk lagring mislyktes · bruk Lagre\"",
+      "candidate_xml_text_sha256_utf8": "e5d8b17d50feede3c405355f4aaf4a876ff8f8e791953389c452e8b0ac1e6ba1",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "priority": "P0",
+      "source": "Autosave image encoding failed.",
+      "source_value_sha256_utf8": "f83897890596e2776edb9f66dca76dce2e53f64fb26f43c2462116d978d64201",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Bildet kunne ikke kodes for automatisk lagring.",
+      "candidate_value_sha256_utf8": "db98b7546c31aebe8ec873a8f9eda97c2ece08e0ba236d39de32c8fe8c54b650",
+      "candidate_xml_text": "\"Bildet kunne ikke kodes for automatisk lagring.\"",
+      "candidate_xml_text_sha256_utf8": "09ade79f80d9289f90c13f54712a27937ead0d329e69891cc23c114d658645fa",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "priority": "P0",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "source_value_sha256_utf8": "45af3acf76284540e468a05d80591e36743472a7625da0c6b7153a8173e007a7",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "%1$s Automatisk lagring er satt på pause for å beskytte det utkastet. Bruk «Fil → Eksporter gjenopprettingskopi…» for å ta vare på det, og «Fil → Lagre som…» (Image format: PNG / JPEG) for å lagre arbeidet ditt slik det er nå.",
+      "candidate_value_sha256_utf8": "dedda28e6ee6a5aef235d140fddad49b2797e0ac3a0761984de8c858f1d22633",
+      "candidate_xml_text": "\"%1$s Automatisk lagring er satt på pause for å beskytte det utkastet. Bruk «Fil → Eksporter gjenopprettingskopi…» for å ta vare på det, og «Fil → Lagre som…» (Image format: PNG / JPEG) for å lagre arbeidet ditt slik det er nå.\"",
+      "candidate_xml_text_sha256_utf8": "340882482ab395c08a12421ad7254f1c42dbec0cae9cc1a0ea42538eb1b87134",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ],
+      "source_semantic_notes": [
+        "%1$s is an already-rendered failure reason. This branch cannot preserve a separate copy, so autosave remains blocked to protect the existing draft. Do not claim that current work is already saved.",
+        "Use actual existing menu labels: Danish Filer / Gem som…; Norwegian Fil / Lagre som…. Both existing save20_file_format labels are exactly Image format, not a translated label. New recovery action is a within-group proposed dependency; retain PNG / JPEG."
+      ],
+      "author_semantic_qualifications": [
+        "%1$s is an already-rendered failure reason. This branch cannot preserve a separate copy, so autosave remains blocked to protect the existing draft. Do not claim that current work is already saved.",
+        "Use actual existing menu labels: Danish Filer / Gem som…; Norwegian Fil / Lagre som…. Both existing save20_file_format labels are exactly Image format, not a translated label. New recovery action is a within-group proposed dependency; retain PNG / JPEG.",
+        "Image format is intentionally the exact existing untranslated no label, not a proposed translation; Fil/Lagre som… match existing resources. Recovery action depends on the candidate in this same group."
+      ],
+      "author_uncertainties": [
+        "Review the complete composition and referent of det utkastet; it protects the existing draft while current work is saved separately."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "priority": "P0",
+      "source": "Autosave metadata is missing.",
+      "source_value_sha256_utf8": "1115f993a7d75ef4a554c7ef1cf900d88970a5c05144cf1c9038ab0d86965de4",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Metadata for automatisk lagring mangler.",
+      "candidate_value_sha256_utf8": "00fe098f4d88919c94c387a23bfb4023037fe525ae9bcda9b4dc0c44279c02f4",
+      "candidate_xml_text": "\"Metadata for automatisk lagring mangler.\"",
+      "candidate_xml_text_sha256_utf8": "50973c6b13b0bc87e0ade3c35bf5f82ebcca3b294352143d1f1d785086b5d580",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "priority": "P0",
+      "source": "Autosave paused · use Save",
+      "source_value_sha256_utf8": "3dfab3c54ba3d7700fc9d12ae3d767eda448501ba5df52284905edd71c7f30bd",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Automatisk lagring satt på pause · bruk Lagre",
+      "candidate_value_sha256_utf8": "33ae24b942b303ccb29df62efd188a4964a54b0185a3ac64261263fc119236aa",
+      "candidate_xml_text": "\"Automatisk lagring satt på pause · bruk Lagre\"",
+      "candidate_xml_text_sha256_utf8": "64a16a98a3b116704c734a972da9dd0f8bb537524d2e009ec6d57b8485c85588",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "priority": "P0",
+      "source": "Autosave pixels are missing.",
+      "source_value_sha256_utf8": "4af9f86e590fa90219121ad8f4cbbe372eaeeca8fb1927e01917a7fdd881de31",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Pikseldata for automatisk lagring mangler.",
+      "candidate_value_sha256_utf8": "f7fe939edabf2a3bd2db70e2c5297e0a3e6c98e30b285ae5f5a488d65bbc3fb7",
+      "candidate_xml_text": "\"Pikseldata for automatisk lagring mangler.\"",
+      "candidate_xml_text_sha256_utf8": "d9179db5e27d8c47dd77ecd480b63b27299bfc87330e8048f23dbffbd1e45199",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "priority": "P0",
+      "source": "Autosave pixels could not be read.",
+      "source_value_sha256_utf8": "b6c10f2c0238abb6190525baa6d50140fc4e8c33de2cfab12b99930e833ba2f3",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Pikseldata for automatisk lagring kunne ikke leses.",
+      "candidate_value_sha256_utf8": "c15befccc2f15336ac4b39caea1342e99f1f65b65d4aece11d242498ab95c5b3",
+      "candidate_xml_text": "\"Pikseldata for automatisk lagring kunne ikke leses.\"",
+      "candidate_xml_text_sha256_utf8": "9ac972bdc9929e06e24258ff86973f1e8cfe5d7046ce350728cc253ece030c1e",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "priority": "P0",
+      "source": "Autosave selection encoding failed.",
+      "source_value_sha256_utf8": "4f03c5b20f4fee753afcccbbaddc08e6361f85e6ebd9a1275d69cfd5ffa906e0",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Utvalget kunne ikke kodes for automatisk lagring.",
+      "candidate_value_sha256_utf8": "b366d5ea7edb1fc4b345140eb36aa0d43ad6e5c97f984d47d3033bfcc4a7454b",
+      "candidate_xml_text": "\"Utvalget kunne ikke kodes for automatisk lagring.\"",
+      "candidate_xml_text_sha256_utf8": "8acee3f5ed489bca5dea2b5a5de1fe63c963db4366e97ff321db1f554750bdca",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "priority": "P0",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "source_value_sha256_utf8": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kan ikke opprette mellomlageret for angrehistorikken. Frigjør lagringsplass på enheten og prøv igjen.",
+      "candidate_value_sha256_utf8": "389a84b8ef6650ea94c3a303b5e17b1e75c1c6abad0ae931672ef128ecbf74e3",
+      "candidate_xml_text": "\"Kan ikke opprette mellomlageret for angrehistorikken. Frigjør lagringsplass på enheten og prøv igjen.\"",
+      "candidate_xml_text_sha256_utf8": "a686d7d3e580bc6235c85e62756cd4f756ab0967040f2dfdddb45dfefd1fa779",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ],
+      "source_semantic_notes": [
+        "This is device storage for on-disk undo snapshots, not RAM budget."
+      ],
+      "author_semantic_qualifications": [
+        "This is device storage for on-disk undo snapshots, not RAM budget.",
+        "Lagringsplass explicitly refers to device storage, not working-memory/RAM."
+      ],
+      "author_uncertainties": [
+        "Mellomlager for angrehistorikk is an explicit proposed rendering of undo cache; reviewer should assess idiom and consistency without conflating disk storage with RAM."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "priority": "P0",
+      "source": "Could not export the recovery copy",
+      "source_value_sha256_utf8": "66c703a27ccf6fd0c8400514fd0417449b780e644313ed3b5565bd8060be1815",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kunne ikke eksportere gjenopprettingskopien",
+      "candidate_value_sha256_utf8": "5a43471417cfbdeaa5fa93a938b5664e51114f77c462e8fd4093db913b8538be",
+      "candidate_xml_text": "\"Kunne ikke eksportere gjenopprettingskopien\"",
+      "candidate_xml_text_sha256_utf8": "be50043bb67a01d38b0e37cde27f925ad30c7f5ad40a8374648edd7148836a65",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ],
+      "source_semantic_notes": [
+        "Prefix passed to ioFailed; caller attaches error details. Keep no added terminal punctuation."
+      ],
+      "author_semantic_qualifications": [
+        "Prefix passed to ioFailed; caller attaches error details. Keep no added terminal punctuation."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "priority": "P0",
+      "source": "Draft not saved yet",
+      "source_value_sha256_utf8": "47bfd1dafcd6d9d6d49ae9f60f5b5c60d0180661684733aaa73e559734f7d447",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Utkastet er ikke lagret ennå",
+      "candidate_value_sha256_utf8": "7d5be72fa3d7eeebf11a6d2006ba2263615d2090ff18a51fdf3b9cf289bc68aa",
+      "candidate_xml_text": "\"Utkastet er ikke lagret ennå\"",
+      "candidate_xml_text_sha256_utf8": "1deb857d15cced83cd3543153efeb4badfad39fb0f6724fa04fa6487f5a8cdb7",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "priority": "P0",
+      "source": "Draft restored",
+      "source_value_sha256_utf8": "b22e11b3de90d4a130e7c63753a46f3b853fc949ca2fe95dd156138a384b5dcb",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Utkast gjenopprettet",
+      "candidate_value_sha256_utf8": "2746693aee428a719a57b7fa2d8389bcdd6f2286e436326adfc3cf37d29b6de0",
+      "candidate_xml_text": "\"Utkast gjenopprettet\"",
+      "candidate_xml_text_sha256_utf8": "501b28d31270b9490e8cc6158392ea9e73fc2697b2db32932d1bd46c95c56c18",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ],
+      "source_semantic_notes": [
+        "Startup recovery status only; not a claim that all undo history was recovered."
+      ],
+      "author_semantic_qualifications": [
+        "Startup recovery status only; not a claim that all undo history was recovered."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "priority": "P0",
+      "source": "Draft saved",
+      "source_value_sha256_utf8": "5ccb8caacdc5383597f882b5c366969ee1cdd1a32b1d122a42b0280a51f9a5a6",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Utkast lagret",
+      "candidate_value_sha256_utf8": "168aed7d89d16e46f1b1de3eb1d3c17adf8aa5040480c8ba2a37ffb517911f26",
+      "candidate_xml_text": "\"Utkast lagret\"",
+      "candidate_xml_text_sha256_utf8": "f7ac97bba75643a5c854adf26add08a32776ff9dac0b0e1a497084eeda7cd9a1",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ],
+      "source_semantic_notes": [
+        "Autosave draft status only. Must not imply explicit Save target updated or unsaved drawing state cleared."
+      ],
+      "author_semantic_qualifications": [
+        "Autosave draft status only. Must not imply explicit Save target updated or unsaved drawing state cleared.",
+        "Utkast is an autosave/recovery draft. This status does not establish a saved drawing destination or clear the current unsaved document state."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "priority": "P0",
+      "source": "Export recovery copy…",
+      "source_value_sha256_utf8": "d642d7ea56f8deaece6e022241000cf5ef28239a5d066391c1e1e4bd5fe7a197",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Eksporter gjenopprettingskopi…",
+      "candidate_value_sha256_utf8": "1b082cc0c2213557369bf918882d641575732db653f4c5a3b5fff8a395882b97",
+      "candidate_xml_text": "\"Eksporter gjenopprettingskopi…\"",
+      "candidate_xml_text_sha256_utf8": "8793c8065e0feec14834167f4df796d05259a0fa63b76eda380b64a6723a1a0c",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:846"
+      ],
+      "source_semantic_notes": [
+        "Conditional File-menu action appears only when autosave is blocked or recovery copies exist. Ellipsis retained."
+      ],
+      "author_semantic_qualifications": [
+        "Conditional File-menu action appears only when autosave is blocked or recovery copies exist. Ellipsis retained."
+      ],
+      "author_uncertainties": [
+        "Gjenopprettingskopi is proposed technical wording, not inherited accepted terminology; review consistently with the title and instructions."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "priority": "P0",
+      "source": "Export recovery copy",
+      "source_value_sha256_utf8": "144b8a2d9ee28d7aaa90dbbd22a6e1f487e99fd78a9c5f4d4131e48c0c3a0644",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Eksporter gjenopprettingskopi",
+      "candidate_value_sha256_utf8": "703a49f4340963ca86234e848ad281dffa8fc071877a59dc81690510c304e27b",
+      "candidate_xml_text": "\"Eksporter gjenopprettingskopi\"",
+      "candidate_xml_text_sha256_utf8": "0f393a830b210dda9d1a814a83b2705d7cd8f8eef3d58da5d98b31f539d1afa8",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ],
+      "source_semantic_notes": [
+        "Dialog title for choosing one of several recovery copies; no ellipsis in canonical title."
+      ],
+      "author_semantic_qualifications": [
+        "Dialog title for choosing one of several recovery copies; no ellipsis in canonical title."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "priority": "P0",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "source_value_sha256_utf8": "445a2a9744ed258c1815920072f46042e9bb4aeb519a2c2d2d34eac8a95a589e",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Lerretet ble gjenopprettet, men angrehistorikken kunne ikke leses. Det opprinnelige utkastet er bevart som en gjenopprettingskopi.",
+      "candidate_value_sha256_utf8": "57f3a0f813b2199c04d326ff02021e1cdda2653d8cb6753676a0a612bce93356",
+      "candidate_xml_text": "\"Lerretet ble gjenopprettet, men angrehistorikken kunne ikke leses. Det opprinnelige utkastet er bevart som en gjenopprettingskopi.\"",
+      "candidate_xml_text_sha256_utf8": "3f3059d042bdd1069257050b69a40802b894e52c5ea468e5e90935187755da08",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ],
+      "source_semantic_notes": [
+        "formatted=false must remain. Canvas restored, undo history unreadable, original retained separately. These three clauses have different outcomes."
+      ],
+      "author_semantic_qualifications": [
+        "formatted=false must remain. Canvas restored, undo history unreadable, original retained separately. These three clauses have different outcomes.",
+        "The original formatted=false attribute must remain; no successful restoration of undo history is claimed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "priority": "P0",
+      "source": "Invalid autosave metadata.",
+      "source_value_sha256_utf8": "4a62b9a9531a09d3f34b967194d530070ddf65a66811f5ce52f39c332de3e2eb",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Ugyldige metadata for automatisk lagring.",
+      "candidate_value_sha256_utf8": "561cc27191fd2f8fd9806bebbb08584a772a04b27d3e24fe5d58d625d795e772",
+      "candidate_xml_text": "\"Ugyldige metadata for automatisk lagring.\"",
+      "candidate_xml_text_sha256_utf8": "70235b6760e7a9cb270eb5889c9d6a84c3add9e4ac5a666c40b943b1209375f3",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "priority": "P0",
+      "source": "Previous draft kept for recovery",
+      "source_value_sha256_utf8": "f31aee8ae34783790412c745919799d37484bf8e70be9dc2865ec4defc829ff8",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Forrige utkast bevart for gjenoppretting",
+      "candidate_value_sha256_utf8": "a4fd221bc19c7b5faa8068edc1352000db9d31d89fd074cf3c7c0a8b5a1c9315",
+      "candidate_xml_text": "\"Forrige utkast bevart for gjenoppretting\"",
+      "candidate_xml_text_sha256_utf8": "ea1f4f1c34c515af77bda9a17fb0a09c2222fbc905261c044e40c4c2d4631a04",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "priority": "P0",
+      "source": "Recovered image",
+      "source_value_sha256_utf8": "f31f8410df9ce45c66f3c7e7af9c7bf126ee2481a825f0e31cfae2a4881a43a8",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Gjenopprettet bilde",
+      "candidate_value_sha256_utf8": "3d72f60d5ec10b4098933ff14f92f14df89002f10cb7b6575b6d957ed1b4dd1f",
+      "candidate_xml_text": "\"Gjenopprettet bilde\"",
+      "candidate_xml_text_sha256_utf8": "962a34ffba94f1674a5570e0a3174063243fe831ccb68e8fabcb474e03b1cfb5",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ],
+      "source_semantic_notes": [
+        "Fallback filename/title, not a new success claim or format name."
+      ],
+      "author_semantic_qualifications": [
+        "Fallback filename/title, not a new success claim or format name."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "priority": "P0",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "source_value_sha256_utf8": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Gjenopprettingskopi eksportert. Pakk ut canvas.png fra ZIP-filen og åpne bildet med «Fil > Load image…». ZIP-filen inneholder også innstillingene for utkastet og et eventuelt flytende utvalg.",
+      "candidate_value_sha256_utf8": "212de491ba4f4438779dbd70fe8b209461e40e724e694b078ccf8646b85e0b55",
+      "candidate_xml_text": "\"Gjenopprettingskopi eksportert. Pakk ut canvas.png fra ZIP-filen og åpne bildet med «Fil > Load image…». ZIP-filen inneholder også innstillingene for utkastet og et eventuelt flytende utvalg.\"",
+      "candidate_xml_text_sha256_utf8": "c3e4accb8f057a192fcbf6514e4436e1d30b317340492f0374b7e4742a02ae39",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ],
+      "source_semantic_notes": [
+        "canvas.png and ZIP are literal identities; this is the draft recovery archive, not the paused Help callback/archive-identity work.",
+        "Both locales have absent ui_load_image: actual command is Load image…. Quote that unchanged fallback, with actual Filer/Fil. The model permits one optional floating selection, so use singular optional wording. No Help archive identity work."
+      ],
+      "author_semantic_qualifications": [
+        "canvas.png and ZIP are literal identities; this is the draft recovery archive, not the paused Help callback/archive-identity work.",
+        "Both locales have absent ui_load_image: actual command is Load image…. Quote that unchanged fallback, with actual Filer/Fil. The model permits one optional floating selection, so use singular optional wording. No Help archive identity work.",
+        "Load image… is intentionally the exact untouched fallback command. Singular et eventuelt flytende utvalg preserves one optional selection."
+      ],
+      "author_uncertainties": [
+        "Flytende utvalg follows existing utvalg vocabulary but remains a new technical term requiring independent judgment. The mixed English command is intentional."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "priority": "P0",
+      "source": "The draft is saving. Try again shortly.",
+      "source_value_sha256_utf8": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Utkastet lagres. Prøv igjen om litt.",
+      "candidate_value_sha256_utf8": "afa24adf574b0f31924a40abc9b5d5ba7f93f48c5e44bfb5bb0a86581141bdd7",
+      "candidate_xml_text": "\"Utkastet lagres. Prøv igjen om litt.\"",
+      "candidate_xml_text_sha256_utf8": "eae1838a34788254b832e182a54003c7ab72a84369fdeb5c252b044f63397f2f",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ],
+      "source_semantic_notes": [
+        "In-progress autosave prevents edits temporarily; not an instruction to Save again."
+      ],
+      "author_semantic_qualifications": [
+        "In-progress autosave prevents edits temporarily; not an instruction to Save again."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "priority": "P0",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "source_value_sha256_utf8": "58a948005b3938c7d8ca4ea368db1b4b390a98d9f517f4851c5b98f8b57e71e5",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det forrige utkastet kunne ikke flyttes til en gjenopprettingskopi.",
+      "candidate_value_sha256_utf8": "398edb953314576bf8e46b8c668ae130f6279ceba9dc0d403cf84465f506bc64",
+      "candidate_xml_text": "\"Det forrige utkastet kunne ikke flyttes til en gjenopprettingskopi.\"",
+      "candidate_xml_text_sha256_utf8": "7c34d29131dbf0623db0d563562213e61fd76bfd39fcb50bdb4dac218d98dd5a",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ],
+      "source_semantic_notes": [
+        "Used if the prior draft source is missing or rename to a separate recovery file fails. Retain source wording without promising a copy exists."
+      ],
+      "author_semantic_qualifications": [
+        "Used if the prior draft source is missing or rename to a separate recovery file fails. Retain source wording without promising a copy exists."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "priority": "P0",
+      "source": "The previous draft could not be preserved separately.",
+      "source_value_sha256_utf8": "0231e19f5f7e376d0872735d1e3f8f9698fbd43564ea52240f454efc21d3c8ec",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det forrige utkastet kunne ikke bevares separat.",
+      "candidate_value_sha256_utf8": "78e62c5118104851e88dafa8cc5de363c1831182063eecdf35296b87eca96391",
+      "candidate_xml_text": "\"Det forrige utkastet kunne ikke bevares separat.\"",
+      "candidate_xml_text_sha256_utf8": "506575972482441d06723877c6c08999f97ca97948dcc24919edeff06506c6e9",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "priority": "P0",
+      "source": "The previous draft could not be restored.",
+      "source_value_sha256_utf8": "1cc58fbbe1b76be657fc2eafbf8250b6231f06484eda3fbf7758e1b5cf88ea13",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det forrige utkastet kunne ikke gjenopprettes.",
+      "candidate_value_sha256_utf8": "6165f07cd0a50cced8fa9ae8f023da62ddfce193967dc1c1544af5c660c425e7",
+      "candidate_xml_text": "\"Det forrige utkastet kunne ikke gjenopprettes.\"",
+      "candidate_xml_text_sha256_utf8": "97a38d8c41ebc5d8d0ec82e979db421db707e57966c58886a51ce92d6d5cd515",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "priority": "P0",
+      "source": "The previous draft needs more memory to reopen.",
+      "source_value_sha256_utf8": "cf655bbea013a29738b4f078166b9dde719f694052a7f1755e2bd0a40c1b9170",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det trengs mer minne for å åpne det forrige utkastet igjen.",
+      "candidate_value_sha256_utf8": "a3ef43c69b00c907dccd01c2514645f8cafb0c0b3c7f036395906219c8861fbc",
+      "candidate_xml_text": "\"Det trengs mer minne for å åpne det forrige utkastet igjen.\"",
+      "candidate_xml_text_sha256_utf8": "1e1b701f56c580ffe6c3fad94bc42b831e0e9c270306f1c76b9eb0c1cdcbf9bf",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "priority": "P0",
+      "source": "The undo cache is damaged.",
+      "source_value_sha256_utf8": "19e62ed88ca1118a10f0062c76f9f7b3629b34cceed02628aefe5ca3bbb44cef",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Mellomlageret for angrehistorikken er skadet.",
+      "candidate_value_sha256_utf8": "606368bc818469f0ad835ccdafff4e4686e481b00f2c1b64d22fee551d539ae7",
+      "candidate_xml_text": "\"Mellomlageret for angrehistorikken er skadet.\"",
+      "candidate_xml_text_sha256_utf8": "de0b9c2ff55c30baa1cda01eec4e5e2e6e3d5e611855e418a074ab2a9ce1d043",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "priority": "P0",
+      "source": "Unexpected data in the undo cache.",
+      "source_value_sha256_utf8": "9005bd155636cba50a7b1139426614c2878b1b6651e86c0acb7d1ca0de8b0b22",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Uventede data i mellomlageret for angrehistorikken.",
+      "candidate_value_sha256_utf8": "2e4585802996e0f6e1edb22169a289733bbc9abd72e010eeca52670a24f44ff6",
+      "candidate_xml_text": "\"Uventede data i mellomlageret for angrehistorikken.\"",
+      "candidate_xml_text_sha256_utf8": "746897aacb78f703e3c94ba610ad250a8a393c9ce182679880408e14825d5a51",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,739 @@
+{
+  "schema_version": 1,
+  "record_kind": "missing-only author candidate group; not acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "locale": "no",
+  "locale_identity_policy": "Keep existing locale code and catalogue identity unchanged.",
+  "target_path": "Paintroid/src/main/res/values-no/strings.xml",
+  "group": 4,
+  "group_name": "save-share-credit",
+  "candidate_count": 21,
+  "shared_source_context": {
+    "file": "shared-source-context.json",
+    "sha256": "2c486912d65af03dae2bb6976e17cacf0904d31a1132fa025e10edcb0b881baf"
+  },
+  "existing_terminology": {
+    "file": "terminology-foundations.json",
+    "sha256": "965bd3ac55fe64b09a66749a7b022b2e6c0abc48f5f7438c8daf9f639b2e7bb5",
+    "values_to_preserve": 115
+  },
+  "instructions_to_reviewer": [
+    "Judge each complete source/target value and every clause against its consumer context; accept, revise or hold each identity independently for this locale.",
+    "Shared source verification does not transfer linguistic acceptance between locales. Existing terminology is context, not proof of current acceptance.",
+    "Preserve all existing values including Save confirmation and Image format. Preserve actual fallback command names in compositions.",
+    "Retain per-entry qualifications and uncertainty; no native-human, physical-device, runtime, layout or whole-language certification.",
+    "Five held missing identities per locale, Nynorsk holds, P1/paired-warning boundaries and all explicit pauses remain unchanged."
+  ],
+  "candidates": [
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "priority": "P0",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "source_value_sha256_utf8": "d669638ab30435fe654a24b1c18e73208959c1cc873975ab190e629e7c2ed6af",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Bildekrediteringene kunne ikke lagres eller gjenopprettes. Tidligere lagrede krediteringer er bevart. Prøv igjen.",
+      "candidate_value_sha256_utf8": "fb337cf78d65834fa70f122bce54ce90fc712f541a7f0d96e99d36bc875577c7",
+      "candidate_xml_text": "\"Bildekrediteringene kunne ikke lagres eller gjenopprettes. Tidligere lagrede krediteringer er bevart. Prøv igjen.\"",
+      "candidate_xml_text_sha256_utf8": "e0a6d94dffaaa20d5b2b7a25e43f91059c37b1df07f411b6f760ee7d20a3a2e7",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:238",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:908",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1194",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1197",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1203",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1207",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1478",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1488",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1495",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:113",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:243",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:415"
+      ],
+      "source_semantic_notes": [
+        "Credit data are user-editable source attribution text, not monetary credits or only author names. Preserve both save/restore failure and protection of existing stored data."
+      ],
+      "author_semantic_qualifications": [
+        "Credit data are user-editable source attribution text, not monetary credits or only author names. Preserve both save/restore failure and protection of existing stored data.",
+        "Bildekrediteringer denotes source attribution text, not financial credit or only names of contributors."
+      ],
+      "author_uncertainties": [
+        "Bildekrediteringer is proposed terminology for user-editable attribution text; reviewer should assess the whole meaning and consistency with the other credit values."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "priority": "P0",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "source_value_sha256_utf8": "0cc17cfda89358526b83adbc36b90440ef773ed2f945768e3e9f32bb90b35dd5",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Disse bildekrediteringene ville gjøre tegningen for stor til å gjenopprettes. Den forrige tegningen og krediteringene dine er bevart.",
+      "candidate_value_sha256_utf8": "0581031adaf8fb53832d05b46a29b27f9c9443b3030803b673446c0f762aea9f",
+      "candidate_xml_text": "\"Disse bildekrediteringene ville gjøre tegningen for stor til å gjenopprettes. Den forrige tegningen og krediteringene dine er bevart.\"",
+      "candidate_xml_text_sha256_utf8": "499b61779e12606bc425437a112f0b0dc98b26646de69464217ef7354370c01b",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1218",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1453",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:111"
+      ],
+      "source_semantic_notes": [
+        "Metadata admission failure, not image pixel dimensions. Previous drawing and credits retained; do not claim current attempted credit edit saved."
+      ],
+      "author_semantic_qualifications": [
+        "Metadata admission failure, not image pixel dimensions. Previous drawing and credits retained; do not claim current attempted credit edit saved."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "priority": "P0",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "source_value_sha256_utf8": "764c1dfa02ddd35964d108f4cc4ccc6dbcc59f5520513ac2528f32bacdb73f5b",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Noen lagrede krediteringer kunne ikke leses. De lagrede kopiene av dem er bevart.",
+      "candidate_value_sha256_utf8": "9a79b447aec4078dff48ef83c2342c5056b78e9ec8256494c5ee87299cf698f0",
+      "candidate_xml_text": "\"Noen lagrede krediteringer kunne ikke leses. De lagrede kopiene av dem er bevart.\"",
+      "candidate_xml_text_sha256_utf8": "c614a8538884f89f48a148201478ce49b02d5b896685ef00c5311629c7f9d3da",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt:93"
+      ],
+      "source_semantic_notes": [
+        "Some stored snapshots unreadable, copies retained. No claim that all credits were restored or that unreadable copies are usable."
+      ],
+      "author_semantic_qualifications": [
+        "Some stored snapshots unreadable, copies retained. No claim that all credits were restored or that unreadable copies are usable."
+      ],
+      "author_uncertainties": [
+        "Review the referent of the retained copies; it must not imply all saved credits were restored or that unreadable copies are usable."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "priority": "P0",
+      "source": "The completed image could not replace its destination.",
+      "source_value_sha256_utf8": "de68e5576968021c8471674791a609c056d1049abe53f1c1e4dc77e00679e001",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det ferdige bildet kunne ikke erstatte målfilen.",
+      "candidate_value_sha256_utf8": "3d4b6d0d2619c1a532de5df509fe2ee2ab9ffa408874aaef240b05d5be94478e",
+      "candidate_xml_text": "\"Det ferdige bildet kunne ikke erstatte målfilen.\"",
+      "candidate_xml_text_sha256_utf8": "dca5f1b1d860c40cf8407d63a225cebb8249edb7c959d2343d7c5118fe247078",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:19",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:40",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:103",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:62"
+      ],
+      "source_semantic_notes": [
+        "File-based temporary-output rename failed. A destination-file term is semantically supportable; do not claim completed provider write."
+      ],
+      "author_semantic_qualifications": [
+        "File-based temporary-output rename failed. A destination-file term is semantically supportable; do not claim completed provider write."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "priority": "P0",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "source_value_sha256_utf8": "ee437ea8cac1ec7af3db9e48064cf9e0a2e49c3c4f89706eb34887bc52d6b75e",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Bildet og bufferne for koding overskrider minnegrensen for eksport.",
+      "candidate_value_sha256_utf8": "e643bee767667232acaf356d8b63fd8e9addbd6ff96f986e511596226796f880",
+      "candidate_xml_text": "\"Bildet og bufferne for koding overskrider minnegrensen for eksport.\"",
+      "candidate_xml_text_sha256_utf8": "56d36095f408c14d7be6edd907e8795364c934c8b434efeba0ff4b7867a4128d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:24",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:43",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:56"
+      ],
+      "source_semantic_notes": [
+        "Image plus encoder buffers exceed a budget; not merely disk size and not solely the canvas footprint."
+      ],
+      "author_semantic_qualifications": [
+        "Image plus encoder buffers exceed a budget; not merely disk size and not solely the canvas footprint."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "priority": "P0",
+      "source": "Could not open image",
+      "source_value_sha256_utf8": "6143ae23db90cc7e75e0a79869b2e047e20878b9478ac9e07dcebe064c5b25ef",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kunne ikke åpne bildet",
+      "candidate_value_sha256_utf8": "a460786dec707901844a0960cbc4b2b96986fb7a7e88609cdbf0a313f354485b",
+      "candidate_xml_text": "\"Kunne ikke åpne bildet\"",
+      "candidate_xml_text_sha256_utf8": "4bdeda0476266e80d2cdf7fb6e9b0191a4d53c997b8d8e22105be0118881bf25",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1288",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1293",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1337",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1350"
+      ],
+      "source_semantic_notes": [
+        "Failure prefix passed to ioFailed; exception detail appended by caller. No added final punctuation."
+      ],
+      "author_semantic_qualifications": [
+        "Failure prefix passed to ioFailed; exception detail appended by caller. No added final punctuation."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "priority": "P0",
+      "source": "Could not save image",
+      "source_value_sha256_utf8": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kunne ikke lagre bildet",
+      "candidate_value_sha256_utf8": "a221dfe6750c04dba78fddabaf1ffdf0597733e3fe1e98abb7532862c62fff92",
+      "candidate_xml_text": "\"Kunne ikke lagre bildet\"",
+      "candidate_xml_text_sha256_utf8": "d742404c134a2931a74191c2ebda020960bc2f3f85e235c310c697168ea8ba55",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ],
+      "source_semantic_notes": [
+        "Save/write failure prefix. Caller appends a full stop, a space, and an exception message or fallback, so do not append punctuation or a placeholder."
+      ],
+      "author_semantic_qualifications": [
+        "Save/write failure prefix. Caller appends a full stop, a space, and an exception message or fallback, so do not append punctuation or a placeholder.",
+        "No punctuation or placeholder added: ioFailed appends a period, a space and its detail."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "priority": "P0",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "source_value_sha256_utf8": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Eksportfilen er opprettet. Bruk «Lagre» eller «Lagre som…» for å lagre det gjeldende bildet før du fortsetter.",
+      "candidate_value_sha256_utf8": "92dd373db6d100bed2aaf2012e809164fef6439381c908df08514bbe185df950",
+      "candidate_xml_text": "\"Eksportfilen er opprettet. Bruk «Lagre» eller «Lagre som…» for å lagre det gjeldende bildet før du fortsetter.\"",
+      "candidate_xml_text_sha256_utf8": "a2351dda131bab4eca77ddce8634adca857b31874c09cc4513bd8e7041fd68f1",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ],
+      "source_semantic_notes": [
+        "Export succeeded, but it did not satisfy the pending save-before-replacement action. Require Save or Save as before continuing.",
+        "Do not translate this as export failure, automatically saved current document, or a general inability to save.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_semantic_qualifications": [
+        "Export succeeded, but it did not satisfy the pending save-before-replacement action. Require Save or Save as before continuing.",
+        "Do not translate this as export failure, automatically saved current document, or a general inability to save.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+        "Eksportfilen explicitly names the successfully created artifact while preserving the need for ordinary Save/Save as; current action labels Lagre and Lagre som… are unchanged."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "priority": "P0",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "source_value_sha256_utf8": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Eksporter et ikon, Base64-tekst eller ASCII-kunst. Eksportering endrer verken det gjeldende bildet eller hvilken fil «Lagre» lagrer til.",
+      "candidate_value_sha256_utf8": "8f704543d96f322448b1393b66746a935958be0804bff124d40f31daa81e103e",
+      "candidate_xml_text": "\"Eksporter et ikon, Base64-tekst eller ASCII-kunst. Eksportering endrer verken det gjeldende bildet eller hvilken fil «Lagre» lagrer til.\"",
+      "candidate_xml_text_sha256_utf8": "9f45e3e26626000b1da943ed93a5c8f488b686826c22ec92bb18bb71474974ca",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "source_semantic_notes": [
+        "Three derived outputs: icon, Base64 text, ASCII art. Export keeps current document and Save destination unchanged.",
+        "No implication that exporting to a file clears unsaved changes; preserve neither/nor scope over both image and Save target.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_semantic_qualifications": [
+        "Three derived outputs: icon, Base64 text, ASCII art. Export keeps current document and Save destination unchanged.",
+        "No implication that exporting to a file clears unsaved changes; preserve neither/nor scope over both image and Save target.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+        "Hvilken fil «Lagre» lagrer til describes the full current Save target, not merely a directory and not the export destination."
+      ],
+      "author_uncertainties": [
+        "Review the full Save-target explanation for natural wording and exact behavior, independently of the other locales."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "priority": "P0",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "source_value_sha256_utf8": "f85d438ebb3c8e8c55be242b5b0938f6e33144d8789553e32711449d9e67e66b",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det er ikke nok minne til å lagre i dette formatet. Prøv PNG",
+      "candidate_value_sha256_utf8": "511f53bf0db2b481736f4828c26d667715ec253f2e92bcc80a982d7aba96ba02",
+      "candidate_xml_text": "\"Det er ikke nok minne til å lagre i dette formatet. Prøv PNG\"",
+      "candidate_xml_text_sha256_utf8": "beb06afc519f7273a65023b30dfe31000e0750672ec7f521c52d7486aea88643",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1376"
+      ],
+      "source_semantic_notes": [
+        "OOM failure prefix recommends PNG but does not guarantee PNG will fit. Caller attaches error detail; preserve no terminal period."
+      ],
+      "author_semantic_qualifications": [
+        "OOM failure prefix recommends PNG but does not guarantee PNG will fit. Caller attaches error detail; preserve no terminal period."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "priority": "P0",
+      "source": "PNG encoding failed.",
+      "source_value_sha256_utf8": "121e3e5c5523ca65104b683c53c625d9f76c600cb5ac2d41924dc5fa2659ba3e",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "PNG-koding mislyktes.",
+      "candidate_value_sha256_utf8": "69908a01fa50076eb5f37ba983ba78b306d8008b7042b96c8b088efc207102cc",
+      "candidate_xml_text": "\"PNG-koding mislyktes.\"",
+      "candidate_xml_text_sha256_utf8": "99c0ef74286f8b3dfe3aeaf28870938644deee168c0edd9dfe6371b91e9e9146",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:324"
+      ],
+      "source_semantic_notes": [
+        "Actual Bitmap.compress false branch, not a successful PNG save."
+      ],
+      "author_semantic_qualifications": [
+        "Actual Bitmap.compress false branch, not a successful PNG save."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "priority": "P0",
+      "source": "Save and share…",
+      "source_value_sha256_utf8": "af8c25f4421cf91f4eedcbac21b3ef0e7f5286ba29dec7b6359a7dac6ff625fd",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Lagre og del…",
+      "candidate_value_sha256_utf8": "43f8601fac2ad3e386cbd35a31de19701069ef0bfdcca049732244e7cdd03795",
+      "candidate_xml_text": "\"Lagre og del…\"",
+      "candidate_xml_text_sha256_utf8": "4381984b4f69669afbcb9461db0c6f95f21def67e73c7821a64d13b95cc1d0c6",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:842"
+      ],
+      "source_semantic_notes": [
+        "Existing share flow saves a copy then opens sharing; export=true means it does not update current Save target or clear unsaved drawing state. Ellipsis menu form."
+      ],
+      "author_semantic_qualifications": [
+        "Existing share flow saves a copy then opens sharing; export=true means it does not update current Save target or clear unsaved drawing state. Ellipsis menu form."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "priority": "P0",
+      "source": "Save and share",
+      "source_value_sha256_utf8": "41edb42591bb2694c768ea901a5a82cbaebb0d2110321c5f2c309afd1262a7f4",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Lagre og del",
+      "candidate_value_sha256_utf8": "8d3ae9bf9b8d4a2014e6c47c96da9ceb8501ec8303ce33246e55ee31e9affbe1",
+      "candidate_xml_text": "\"Lagre og del\"",
+      "candidate_xml_text_sha256_utf8": "8ee268887ef2bf114ef12a70871c77d03008eee748bcabb8ea29c5cda1b98cff",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:187"
+      ],
+      "source_semantic_notes": [
+        "Keep consistent with the same-group proposed share explanation and ellipsis menu form; neither is accepted before independent review."
+      ],
+      "author_semantic_qualifications": [
+        "Keep consistent with the same-group proposed share explanation and ellipsis menu form; neither is accepted before independent review."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "priority": "P0",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "source_value_sha256_utf8": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Velg et bildeformat og innstillingene for komprimering. «Lagre» bruker dette filnavnet, denne plasseringen, dette formatet og disse innstillingene på nytt.",
+      "candidate_value_sha256_utf8": "e0e4517856582b146575c904afc59001925085e5da742cfadd9ae64369539bec",
+      "candidate_xml_text": "\"Velg et bildeformat og innstillingene for komprimering. «Lagre» bruker dette filnavnet, denne plasseringen, dette formatet og disse innstillingene på nytt.\"",
+      "candidate_xml_text_sha256_utf8": "985985c3b8050afa7f88d1e34e26b5f44428fb8d263aa598d7c52ef537a21b10",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "source_semantic_notes": [
+        "Choose an image format and compression settings. Later Save reuses filename, location, format and settings.",
+        "Keep all four reused items; do not confuse ordinary Save with export or claim compression is always lossy.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_semantic_qualifications": [
+        "Choose an image format and compression settings. Later Save reuses filename, location, format and settings.",
+        "Keep all four reused items; do not confuse ordinary Save with export or claim compression is always lossy.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_saved",
+      "priority": "P0",
+      "source": "Saved %1$s",
+      "source_value_sha256_utf8": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Lagret %1$s",
+      "candidate_value_sha256_utf8": "625eae19d46b018d6e565cb5169b525abf9944b9fa52fc315fb6ba8fbe5e2bb9",
+      "candidate_xml_text": "\"Lagret %1$s\"",
+      "candidate_xml_text_sha256_utf8": "e27c82fa79262ee0c2ae5ac91f79c690b23b987309848a3620b62db8c1daf726",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "source_semantic_notes": [
+        "The named output file was written. The same toast is used for Save, Export and Share writes.",
+        "Do not claim that all current document changes are saved: exporting leaves the dirty state and Save target untouched.",
+        "Preserve exactly one indexed string placeholder %1$s; it is the display name returned for the written URI."
+      ],
+      "author_semantic_qualifications": [
+        "The named output file was written. The same toast is used for Save, Export and Share writes.",
+        "Do not claim that all current document changes are saved: exporting leaves the dirty state and Save target untouched.",
+        "Preserve exactly one indexed string placeholder %1$s; it is the display name returned for the written URI.",
+        "Lagret %1$s reports only the named output artifact; it must not be treated as a current-document-all-changes-saved claim."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_share_explanation34",
+      "priority": "P0",
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "source_value_sha256_utf8": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Lagre en kopi på den valgte plasseringen, og velg deretter en app for å dele den. Dette endrer ikke hvilken fil «Lagre» lagrer til.",
+      "candidate_value_sha256_utf8": "7f157c1a55f0e9af4e21878efb29c8a2dfe8a23e997fcce0233dcaebf6d8a246",
+      "candidate_xml_text": "\"Lagre en kopi på den valgte plasseringen, og velg deretter en app for å dele den. Dette endrer ikke hvilken fil «Lagre» lagrer til.\"",
+      "candidate_xml_text_sha256_utf8": "e784e5b1957615309052035ee522e1eeb20859b0af87895be12ee204af78021f",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "source_semantic_notes": [
+        "Save a copy to the selected location first, then pick a sharing app. The existing Save destination remains unchanged.",
+        "The menu calls share=true and export=true, so writeImage does not set savedTarget or markSaved; sharing is invoked after the file write.",
+        "Do not say the copy is already shared or that picking a sharing app changes the current Save destination.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "author_semantic_qualifications": [
+        "Save a copy to the selected location first, then pick a sharing app. The existing Save destination remains unchanged.",
+        "The menu calls share=true and export=true, so writeImage does not set savedTarget or markSaved; sharing is invoked after the file write.",
+        "Do not say the copy is already shared or that picking a sharing app changes the current Save destination.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+        "The new same-group action Lagre og del… writes a separate copy before sharing; the existing ordinary Save destination and dirty document state remain separate."
+      ],
+      "author_uncertainties": [
+        "Review complete copy-then-share ordering and the unchanged ordinary Save destination; source does not promise sharing already completed."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "priority": "P0",
+      "source": "The encoder did not finish.",
+      "source_value_sha256_utf8": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Bildekodingen ble ikke fullført.",
+      "candidate_value_sha256_utf8": "28a8c03928a478b97d5386142e4b12c0cf0ecad85c08edb13889056e772ebd89",
+      "candidate_xml_text": "\"Bildekodingen ble ikke fullført.\"",
+      "candidate_xml_text_sha256_utf8": "b0397b4e7045db9648103f54c60d9709405c3ed23d09ff633b53bd6df0b58d1a",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:100",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt:25",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:33"
+      ],
+      "source_semantic_notes": [
+        "Image encoding did not finish; candidate names the process rather than ambiguously a human coder. No output-success claim."
+      ],
+      "author_semantic_qualifications": [
+        "Image encoding did not finish; candidate names the process rather than ambiguously a human coder. No output-success claim."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "priority": "P0",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "source_value_sha256_utf8": "290a2340c93b4dfc627bf2d73d85ab3841e3300933d1f2212ba33a3e04c4f903",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Bildet ble lagret, men Android kunne ikke åpne deling: %1$s",
+      "candidate_value_sha256_utf8": "19f36ab41467ab8274fcf719920444173204654861d811d9fc567a9ddbcc2004",
+      "candidate_xml_text": "\"Bildet ble lagret, men Android kunne ikke åpne deling: %1$s\"",
+      "candidate_xml_text_sha256_utf8": "4b5250144a9e640a3489d774a6365a7d08a21b86602fcbfaa440b0312329fcec",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1389"
+      ],
+      "source_semantic_notes": [
+        "Copy was written successfully; Android sharing launch then failed. Preserve the successful write, failed sharing and appended %1$s exception detail separately. This does not mean the drawing Save target changed."
+      ],
+      "author_semantic_qualifications": [
+        "Copy was written successfully; Android sharing launch then failed. Preserve the successful write, failed sharing and appended %1$s exception detail separately. This does not mean the drawing Save target changed.",
+        "Successful copy write and failed sharing launch are separate outcomes; no claim that document Save association or dirty state changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "priority": "P0",
+      "source": "The selected location is not writable.",
+      "source_value_sha256_utf8": "bd5906312d80fa9c5c6f855faf23030f089b50f54d0f82a39a8bcdb60328581d",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det er ikke mulig å skrive til den valgte plasseringen.",
+      "candidate_value_sha256_utf8": "6b3da20e3fae38dbf785a604505dca804a748c3bc90784940bbef6f0fd4871d4",
+      "candidate_xml_text": "\"Det er ikke mulig å skrive til den valgte plasseringen.\"",
+      "candidate_xml_text_sha256_utf8": "f8e5db92daf406d2492f6ed47f9a2785af5af0a0bd136bb3651e2427dd34092d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:341",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1366"
+      ],
+      "source_semantic_notes": [
+        "openOutputStream returns null; do not narrow unspecified cause to write protection or permissions alone."
+      ],
+      "author_semantic_qualifications": [
+        "openOutputStream returns null; do not narrow unspecified cause to write protection or permissions alone."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "priority": "P0",
+      "source": "This location is not writable.",
+      "source_value_sha256_utf8": "aeeaa3653ff0cebc035c0010f47d2e6fef2ba1abd8d6c77df663010f13a4a13e",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det er ikke mulig å skrive til denne plasseringen.",
+      "candidate_value_sha256_utf8": "bee3de6d9a057bc136ddcb6988efdee156c3f673f79acbdcab90db1f82d0618c",
+      "candidate_xml_text": "\"Det er ikke mulig å skrive til denne plasseringen.\"",
+      "candidate_xml_text_sha256_utf8": "958ea9111a9574cfbeb24195daaccdba85aee299171e7c8240ebaaef756ca414",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1396",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1407"
+      ],
+      "source_semantic_notes": [
+        "Shared by recovery ZIP export and source-code export, generic write failure. No Help callback/archive identity or exported-source implementation change."
+      ],
+      "author_semantic_qualifications": [
+        "Shared by recovery ZIP export and source-code export, generic write failure. No Help callback/archive identity or exported-source implementation change."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "priority": "P0",
+      "source": "Your current image has unsaved changes.",
+      "source_value_sha256_utf8": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Det gjeldende bildet har ulagrede endringer.",
+      "candidate_value_sha256_utf8": "7d6f23fe218d705d221612e9006e2c18df6d898addd155a29b430be3cdd52e02",
+      "candidate_xml_text": "\"Det gjeldende bildet har ulagrede endringer.\"",
+      "candidate_xml_text_sha256_utf8": "448b4104eca69d590521ff25f06ee6ba3f27790a50709afcea2e3c28252a3986",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "dirty-document-replacement-guard"
+      ],
+      "source_semantic_notes": [
+        "The current working image has unsaved changes. Keep negation and refer to the current document, not a previous draft."
+      ],
+      "author_semantic_qualifications": [
+        "The current working image has unsaved changes. Keep negation and refer to the current document, not a previous draft."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value Norwegian review is required; this author proposal carries no native-human or runtime acceptance."
+      ],
+      "author_confidence": "medium-high; bounded author judgment only",
+      "independent_review_status": "pending"
+    }
+  ]
+}

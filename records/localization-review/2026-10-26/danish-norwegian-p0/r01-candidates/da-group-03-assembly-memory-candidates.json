@@ -1,0 +1,528 @@
+{
+  "schema_version": 1,
+  "record_kind": "missing-only author candidate group; not acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "locale": "da",
+  "locale_identity_policy": "Keep existing locale code and catalogue identity unchanged.",
+  "target_path": "Paintroid/src/main/res/values-da/strings.xml",
+  "group": 3,
+  "group_name": "assembly-memory",
+  "candidate_count": 16,
+  "shared_source_context": {
+    "file": "shared-source-context.json",
+    "sha256": "2c486912d65af03dae2bb6976e17cacf0904d31a1132fa025e10edcb0b881baf"
+  },
+  "existing_terminology": {
+    "file": "terminology-foundations.json",
+    "sha256": "965bd3ac55fe64b09a66749a7b022b2e6c0abc48f5f7438c8daf9f639b2e7bb5",
+    "values_to_preserve": 127
+  },
+  "instructions_to_reviewer": [
+    "Judge each complete source/target value and every clause against its consumer context; accept, revise or hold each identity independently for this locale.",
+    "Shared source verification does not transfer linguistic acceptance between locales. Existing terminology is context, not proof of current acceptance.",
+    "Preserve all existing values including Save confirmation and Image format. Preserve actual fallback command names in compositions.",
+    "Retain per-entry qualifications and uncertainty; no native-human, physical-device, runtime, layout or whole-language certification.",
+    "Five held missing identities per locale, Nynorsk holds, P1/paired-warning boundaries and all explicit pauses remain unchanged."
+  ],
+  "candidates": [
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "priority": "P0",
+      "source": "An assembly source image is missing.",
+      "source_value_sha256_utf8": "03cf15a2a8c5dc8bef80963ac8b5b4ba7cafb00edab05c3d7862d5d02a33723f",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Et kildebillede til billedsammensætningen mangler.",
+      "candidate_value_sha256_utf8": "6ed695962703029de4166b4fbc825f95efd62f2e7f925370ac1c6c4c43fe6909",
+      "candidate_xml_text": "\"Et kildebillede til billedsammensætningen mangler.\"",
+      "candidate_xml_text_sha256_utf8": "8a02b9bd6d74523d36cc4fb38f2c8c965102586ff7ce8ac82cde70dc09faa505",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:262"
+      ],
+      "source_semantic_notes": [
+        "Source image file in saved assembly metadata missing, not necessarily the rendered output image."
+      ],
+      "author_semantic_qualifications": [
+        "Source image file in saved assembly metadata missing, not necessarily the rendered output image."
+      ],
+      "author_uncertainties": [
+        "Billedsammensætning is proposed for the composition/assembly concept; independent terminology review should cover the complete family."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "priority": "P0",
+      "source": "Assembly saved",
+      "source_value_sha256_utf8": "766dc3e6dbd1b817e2d2c2615c6a53a9b8c306e768f44a5931525c836ec27d37",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Billedsammensætning gemt",
+      "candidate_value_sha256_utf8": "141c0a017772160ef03a5207a1dc7fd4818254b26707b46d7493b95bbc65d0e5",
+      "candidate_xml_text": "\"Billedsammensætning gemt\"",
+      "candidate_xml_text_sha256_utf8": "2389af603d96947ffc36f2d42751addff3128d5c53f30c7ef6f29b2208b66a95",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:342"
+      ],
+      "source_semantic_notes": [
+        "After assembled PNG bytes are written to chosen URI. Do not infer an editable assembly interchange format or a Save-target update for the separate drawing editor."
+      ],
+      "author_semantic_qualifications": [
+        "After assembled PNG bytes are written to chosen URI. Do not infer an editable assembly interchange format or a Save-target update for the separate drawing editor."
+      ],
+      "author_uncertainties": [
+        "Review billedsammensætning consistency; source consumer saves an assembled PNG, not a new editable interchange file."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "priority": "P0",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "source_value_sha256_utf8": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Denne billedsammensætning vurderes at overskride det aktuelle budget for arbejdshukommelse, selv ved den mindste outputstørrelse. Med de aktuelle grænser er det ikke nok kun at reducere billedsammensætningens dimensioner. Luk andre dokumenter, eller klargør et mindre kildebillede, før du prøver igen. Din billedsammensætning er uændret.",
+      "candidate_value_sha256_utf8": "c827cf4670ad7d3ff45e7a3a4df841889da8561d665adc6a780b9842f4d49b2a",
+      "candidate_xml_text": "\"Denne billedsammensætning vurderes at overskride det aktuelle budget for arbejdshukommelse, selv ved den mindste outputstørrelse. Med de aktuelle grænser er det ikke nok kun at reducere billedsammensætningens dimensioner. Luk andre dokumenter, eller klargør et mindre kildebillede, før du prøver igen. Din billedsammensætning er uændret.\"",
+      "candidate_xml_text_sha256_utf8": "ee0180dcc90036e452716dfa86fb52dc1f88ceb5469ed7fa8f2eb491d907f8bb",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:300"
+      ],
+      "source_semantic_notes": [
+        "Corrected canonical semantics: estimated combined assembly peak, current working-memory limits, even smallest output, dimensions alone insufficient, alternatives close other documents or prepare smaller source, assembly unchanged. Not a decoder-only or universal impossibility claim.",
+        "Implementation dependency: existing memory-warning-successor tests account for paired P0/P1 locale scopes. This packet proposes only this P0 whole value; the P1 ui_no_resize_fits_decoder_memory remains absent and unreviewed. Do not silently expand to P1, rewrite the frozen historical queue, or claim both warnings accepted. A narrow test/receipt design must preserve that distinction before implementation."
+      ],
+      "author_semantic_qualifications": [
+        "Corrected canonical semantics: estimated combined assembly peak, current working-memory limits, even smallest output, dimensions alone insufficient, alternatives close other documents or prepare smaller source, assembly unchanged. Not a decoder-only or universal impossibility claim.",
+        "Implementation dependency: existing memory-warning-successor tests account for paired P0/P1 locale scopes. This packet proposes only this P0 whole value; the P1 ui_no_resize_fits_decoder_memory remains absent and unreviewed. Do not silently expand to P1, rewrite the frozen historical queue, or claim both warnings accepted. A narrow test/receipt design must preserve that distinction before implementation.",
+        "Billedsammensætning is proposed consistently for assembly, without changing the current untouched Image assembly… control. The wording keeps estimated/current/minimum-output/dimensions-alone/remedy/unchanged clauses and does not accept the missing P1 companion."
+      ],
+      "author_uncertainties": [
+        "Review the full technical warning, especially billedsammensætning, budget for arbejdshukommelse and outputstørrelse. No paired P1 acceptance or universal impossibility is intended."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "priority": "P0",
+      "source": "Clear all",
+      "source_value_sha256_utf8": "29a390f9237e3c84e5641785eca25199620e53f7b6f4b9d843b23dcb5c12904f",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Ryd alt",
+      "candidate_value_sha256_utf8": "e1434bf0471f11b33dd3dde4d8c7056dcd3fe782707fa99ad1d0fc71b6ab8daa",
+      "candidate_xml_text": "\"Ryd alt\"",
+      "candidate_xml_text_sha256_utf8": "a5076b0352f3df99901a9b6b076abd6360e9da75bdcd1d071f844ccdccdb644d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:101"
+      ],
+      "source_semantic_notes": [
+        "Assembly toolbar calls assembly.clear(); this is not clearing one selected image."
+      ],
+      "author_semantic_qualifications": [
+        "Assembly toolbar calls assembly.clear(); this is not clearing one selected image."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_clear_image",
+      "priority": "P0",
+      "source": "Clear image",
+      "source_value_sha256_utf8": "20231a4032390f0886c87b9f301481ac336659f40d9ab50981fa1039663b6afc",
+      "attributes": {
+        "name": "ui_clear_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Ryd billede",
+      "candidate_value_sha256_utf8": "e53a8d9a403405739fa6efbcbc8190575ccde1989e9e1a8fa37386ec5a5852a2",
+      "candidate_xml_text": "\"Ryd billede\"",
+      "candidate_xml_text_sha256_utf8": "9b417d0932ecfe0aa1fc0b88891242eb69021e47e4090729e05aa4fec443c66c",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:859"
+      ],
+      "source_semantic_notes": [
+        "Drawing Edit action applies pending edits then document.clear(). Do not conflate with assembly Clear all."
+      ],
+      "author_semantic_qualifications": [
+        "Drawing Edit action applies pending edits then document.clear(). Do not conflate with assembly Clear all."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "priority": "P0",
+      "source": "Could not save the assembly: %1$s",
+      "source_value_sha256_utf8": "d23570f6a13edc7bc9f443628c6fe0a00f889d71e6d24135122cd5dc4ad6614a",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Billedsammensætningen kunne ikke gemmes: %1$s",
+      "candidate_value_sha256_utf8": "fe52216aea9f97b7b1889cff554b34e9269ba9b5020924242bed28ffe07da053",
+      "candidate_xml_text": "\"Billedsammensætningen kunne ikke gemmes: %1$s\"",
+      "candidate_xml_text_sha256_utf8": "23ed2a628af9b67e7a0afcc2d37946c18a91ffe478083c6bc9a9c86dc368dadd",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:343"
+      ],
+      "source_semantic_notes": [
+        "Output URI save failure; %1$s is the original exception message, potentially untranslated."
+      ],
+      "author_semantic_qualifications": [
+        "Output URI save failure; %1$s is the original exception message, potentially untranslated."
+      ],
+      "author_uncertainties": [
+        "Review billedsammensætning terminology; exception details in %1$s may remain untranslated."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "priority": "P0",
+      "source": "Could not store the assembly.",
+      "source_value_sha256_utf8": "8896816c5ab28f698bf634e2b040419b89f9771e16f482d9684c3170e688d859",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Billedsammensætningen kunne ikke lagres.",
+      "candidate_value_sha256_utf8": "c098dc39a6d5d664c6ba68daa42a42a76ebe156e54e6db5228b239eb32cd1602",
+      "candidate_xml_text": "\"Billedsammensætningen kunne ikke lagres.\"",
+      "candidate_xml_text_sha256_utf8": "530da8a2fc4fc609f04c35f96edb8910b7e0eef9c875daca926c92448e5e4f75",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:229"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Lagres denotes internal persistence here; gemmes in the separate save-failure message denotes the output-save path. No success or editable interchange format is asserted."
+      ],
+      "author_uncertainties": [
+        "Review whether lagres clearly distinguishes internal persistence without implying a different user command."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "priority": "P0",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "source_value_sha256_utf8": "dcdd3aa9015cb728f6695ffac6100c85790b70563ddea87c0d568f1afc15b6b3",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "%1$d × %2$d pixels (%3$.2f MP) overskrider det aktuelle budget for sikker redigering på %4$.2f MP. AN Paint holder hele billedet i hukommelsen og reserverer plads til transformationer og markeringer. Den tilgængelige hukommelse bestemmer dette budget. Handlingen blev stoppet, før der blev allokeret hukommelse til det for store bitmapbillede. Der blev ikke foretaget automatisk skalering.",
+      "candidate_value_sha256_utf8": "2573dfce5efaadd5048e8e8cdf53f5a981832e79f5af644ef4d9a6e1582159a0",
+      "candidate_xml_text": "\"%1$d × %2$d pixels (%3$.2f MP) overskrider det aktuelle budget for sikker redigering på %4$.2f MP. AN Paint holder hele billedet i hukommelsen og reserverer plads til transformationer og markeringer. Den tilgængelige hukommelse bestemmer dette budget. Handlingen blev stoppet, før der blev allokeret hukommelse til det for store bitmapbillede. Der blev ikke foretaget automatisk skalering.\"",
+      "candidate_xml_text_sha256_utf8": "5193b04f416d58e139a45221457a919a1896e85077a9704d6859e2ebf99df54c",
+      "placeholder_tokens": [
+        "%1$d",
+        "%2$d",
+        "%3$.2f",
+        "%4$.2f"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt:46"
+      ],
+      "source_semantic_notes": [
+        "ImageMemoryPolicy uses width, height, image megapixels and permitted megapixels in exactly that token order. Preserve × and both %.2f precisions.",
+        "Admission budget depends on available memory; original operation stopped before allocating oversized bitmap; no automatic resize. Not a guarantee against every later allocation failure."
+      ],
+      "author_semantic_qualifications": [
+        "ImageMemoryPolicy uses width, height, image megapixels and permitted megapixels in exactly that token order. Preserve × and both %.2f precisions.",
+        "Admission budget depends on available memory; original operation stopped before allocating oversized bitmap; no automatic resize. Not a guarantee against every later allocation failure."
+      ],
+      "author_uncertainties": [
+        "Budget for sikker redigering and bitmapbillede are technical choices requiring whole-value review. All four original numbered tokens, ×, MP and both two-decimal precisions are preserved."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "priority": "P0",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "source_value_sha256_utf8": "4d6da1792a4751708d0bb36eda8365c72b66b1a2b2db70c77cdc4c48486634dc",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Bevarer pixels øverst til venstre. Mindre lærredsdimensioner fjerner pixels uden for højre eller nederste kant; Fortryd gendanner dem.",
+      "candidate_value_sha256_utf8": "e25869b763dc1785736fe458ddff0a3beb1260f3d8f2153db18888f16f8b5f65",
+      "candidate_xml_text": "\"Bevarer pixels øverst til venstre. Mindre lærredsdimensioner fjerner pixels uden for højre eller nederste kant; Fortryd gendanner dem.\"",
+      "candidate_xml_text_sha256_utf8": "7104a6749c538272d263e6d01400d67658dab43b442120b22adb3bee6dbc5c1f",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1016"
+      ],
+      "source_semantic_notes": [
+        "Use existing undo label Fortryd for Danish / Angre for Norwegian. Canvas dimensions, not image scaling."
+      ],
+      "author_semantic_qualifications": [
+        "Use existing undo label Fortryd for Danish / Angre for Norwegian. Canvas dimensions, not image scaling.",
+        "Fortryd is the exact existing action label. The pixel loss applies to canvas bounds, not resampling."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "priority": "P0",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "source_value_sha256_utf8": "cba5063c6a726597187fc64fc75c20c2f858db585fd5f89d691420f5eaa55534",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Der er ikke nok hukommelse til denne handling. Billedsammensætningens kildefiler bevares.",
+      "candidate_value_sha256_utf8": "0796f3ea2c8a850dc175c4b9238a388c75df436dc86748f2d6b2af1d745e6f29",
+      "candidate_xml_text": "\"Der er ikke nok hukommelse til denne handling. Billedsammensætningens kildefiler bevares.\"",
+      "candidate_xml_text_sha256_utf8": "66960f4469cdb92498e4a0f5049eaaf458b3f8d78c2e6f2e3b60c01623c9ede3",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:117",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:294"
+      ],
+      "source_semantic_notes": [
+        "Assembly OutOfMemoryError branch retains source files; do not claim the operation succeeded or output was saved."
+      ],
+      "author_semantic_qualifications": [
+        "Assembly OutOfMemoryError branch retains source files; do not claim the operation succeeded or output was saved."
+      ],
+      "author_uncertainties": [
+        "Review billedsammensætning terminology and preserved source-files clause; no output-save success is intended."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "priority": "P0",
+      "source": "Resize large image?",
+      "source_value_sha256_utf8": "f037d36a47f4f0df7ac2da56fe4351da145993413a10d3518211e6bcac613a83",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Skalér stort billede?",
+      "candidate_value_sha256_utf8": "b53b27512f29728c641d7c2369a78ea7953a2aa1d80d0d107c7ba4d72bfc572a",
+      "candidate_xml_text": "\"Skalér stort billede?\"",
+      "candidate_xml_text_sha256_utf8": "22e5e795375a0b431eae24842472f970a0e50f29f2e77adacd7801dd18161cda",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:36"
+      ],
+      "source_semantic_notes": [
+        "Existing Danish image resize label must be checked in foundation; Norwegian uses Skaler bilde…. Preserve action terminology without changing neighboring resources."
+      ],
+      "author_semantic_qualifications": [
+        "Existing Danish image resize label must be checked in foundation; Norwegian uses Skaler bilde…. Preserve action terminology without changing neighboring resources.",
+        "Uses Skalér, matching existing Danish Skalér billede…; the question is an explicit user choice, not automatic resizing."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "priority": "P0",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "source_value_sha256_utf8": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Estimaterne omfatter det aktuelle lærred og udklipsholderen samt afkodning i reduceret opløsning og redigeringsbuffere. Det faktiske hukommelsesforbrug varierer. En mindre kopi mister detaljer. Den oprindelige fil forbliver uændret.",
+      "candidate_value_sha256_utf8": "4dd2dda276468507c271783528322db1dbf69a0fa17fbd531092ca122e70b0c6",
+      "candidate_xml_text": "\"Estimaterne omfatter det aktuelle lærred og udklipsholderen samt afkodning i reduceret opløsning og redigeringsbuffere. Det faktiske hukommelsesforbrug varierer. En mindre kopi mister detaljer. Den oprindelige fil forbliver uændret.\"",
+      "candidate_xml_text_sha256_utf8": "66fafe2def1b34f93ac089e18324820249c167f296f89890de6b8263e39f8157",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:34"
+      ],
+      "source_semantic_notes": [
+        "Used only when memoryRequirements.hasNativeWork is false. Other codec/native-memory explanation is untouched English fallback.",
+        "Sampled decoding is proposed as decoding at reduced resolution. Reviewer must judge this full technical description rather than importing acceptance from a dictionary term."
+      ],
+      "author_semantic_qualifications": [
+        "Used only when memoryRequirements.hasNativeWork is false. Other codec/native-memory explanation is untouched English fallback.",
+        "Sampled decoding is proposed as decoding at reduced resolution. Reviewer must judge this full technical description rather than importing acceptance from a dictionary term."
+      ],
+      "author_uncertainties": [
+        "Afkodning i reduceret opløsning is proposed for sampled decoding; reviewer should verify this entire technical description against the non-native-work consumer."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_save_png",
+      "priority": "P0",
+      "source": "Save PNG",
+      "source_value_sha256_utf8": "f38f79763d122bfa76922a03b3f04d653847e220238e71704c9a245c59e21e7c",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Gem PNG",
+      "candidate_value_sha256_utf8": "c6401d9b111ac893276a05254f146f97dee874db24de82d9e37d67ea45cb53e7",
+      "candidate_xml_text": "\"Gem PNG\"",
+      "candidate_xml_text_sha256_utf8": "afd73c73f706f883552a3b272107e74d50a87efd3c5c5f7b5131d61f7f677ed6",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:88"
+      ],
+      "source_semantic_notes": [
+        "Assembly output button writes PNG; it does not alter the drawing editor’s Save destination."
+      ],
+      "author_semantic_qualifications": [
+        "Assembly output button writes PNG; it does not alter the drawing editor’s Save destination."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "priority": "P0",
+      "source": "The saved assembly could not be opened: %1$s",
+      "source_value_sha256_utf8": "2a936511bfc752ebf7f24e635feaa6de5f2e041c23ae4ab6c0b4237966628113",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Den gemte billedsammensætning kunne ikke åbnes: %1$s",
+      "candidate_value_sha256_utf8": "45691c7ae7cc1ddb21f9358c0de1d98dac6678b0a6388ba5fd231c34cc4cd728",
+      "candidate_xml_text": "\"Den gemte billedsammensætning kunne ikke åbnes: %1$s\"",
+      "candidate_xml_text_sha256_utf8": "2a0cc7dac559741b7d72ad4f82a36265ab0f48ed3cfab460b08f18501fae31d9",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:60"
+      ],
+      "source_semantic_notes": [
+        "Restoring internally saved assembly metadata failed; %1$s is exception detail."
+      ],
+      "author_semantic_qualifications": [
+        "Restoring internally saved assembly metadata failed; %1$s is exception detail."
+      ],
+      "author_uncertainties": [
+        "Review billedsammensætning consistency; the saved object is internal assembly metadata and %1$s is unmodified exception detail."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "priority": "P0",
+      "source": "The trim would remove the entire image.",
+      "source_value_sha256_utf8": "21b8edd92e5c183515dcb267c2cddceebc4eb5b02e1d053d952cec2d818ad4ca",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Beskæringen ville fjerne hele billedet.",
+      "candidate_value_sha256_utf8": "3a46498a9c4d9fad65bd8821d6243de9ee1da31e63f3ffe3fc53f3dfadaf86dc",
+      "candidate_xml_text": "\"Beskæringen ville fjerne hele billedet.\"",
+      "candidate_xml_text_sha256_utf8": "8d755036f6839928cd0d3652212450ffacf0bc81e1349d506648bc267901a7d5",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:49"
+      ],
+      "source_semantic_notes": [
+        "Precondition rejects crop bounds with zero width or height; hypothetical destructive result, not already removed."
+      ],
+      "author_semantic_qualifications": [
+        "Precondition rejects crop bounds with zero width or height; hypothetical destructive result, not already removed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "priority": "P0",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "source_value_sha256_utf8": "f481ea6d7fb74a1dcf1f376c05c084d9283ccb7e0860c392cd1294bfcb0e1520",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Der er ikke nok hukommelse til denne handling ved den oprindelige opløsning. Der blev ikke foretaget automatisk skalering.",
+      "candidate_value_sha256_utf8": "1db050a3c40069ce3b38b3419f8e9872088c34c4ff375f1d3fbed1c50c42f6d3",
+      "candidate_xml_text": "\"Der er ikke nok hukommelse til denne handling ved den oprindelige opløsning. Der blev ikke foretaget automatisk skalering.\"",
+      "candidate_xml_text_sha256_utf8": "5d4d1ebef342273f07fd1865ee4c70159ffe9368f8e7a98acad1b3806fcb6c3c",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:938"
+      ],
+      "source_semantic_notes": [
+        "Drawing edit OOM fallback at original resolution, explicitly no automatic resize."
+      ],
+      "author_semantic_qualifications": [
+        "Drawing edit OOM fallback at original resolution, explicitly no automatic resize."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "pending"
+    }
+  ]
+}
