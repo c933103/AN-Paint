@@ -9,6 +9,7 @@ import android.graphics.Rect
 import android.os.Looper
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.EditText
 import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -72,6 +73,8 @@ class AdvancedColourViewportTest {
       for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
         val root=dialog.window!!.decorView
         val inner=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+        assertSame("Normal-font tabs remain outside the editor scroll",inner.parent,
+            root.findViewWithTag<View>("colour_mode_0").parent.parent)
         val density=inner.resources.displayMetrics.density
         assertEquals("Normal-font rail width is unchanged",(220*density+.5f).toInt(),
             root.findViewWithTag<ScrollView>("colour_controls_scroll").width)
@@ -148,6 +151,83 @@ class AdvancedColourViewportTest {
             val view=root.findViewWithTag<TextView>(name);caption(view);complete(view)
         }
         complete(root.findViewWithTag("new_colour_preview"))
+      }
+    }
+
+    @Test @Config(fontScale=2f,qualifiers="w640dp-h320dp-land-mdpi")
+    fun largeShortEditorScrollsTabsAndEveryFullCaptionLineWithoutShrinking()=
+        assertCompactEditorCaptionsAndIdentity()
+
+    @Test @Config(fontScale=1.3f,qualifiers="w640dp-h320dp-land-mdpi")
+    fun modestlyEnlargedEditorRetainsCaptionsAndIdentityAcrossRepeatedReparenting()=
+        assertCompactEditorCaptionsAndIdentity()
+
+    private fun assertCompactEditorCaptionsAndIdentity() {
+      for(tag in listOf("en-US","hu")) withPicker(tag) {dialog ->
+        val root=dialog.window!!.decorView
+        val holder=root.findViewWithTag<FrameLayout>("colour_dialog_holder")
+        val editor=root.findViewWithTag<ScrollView>("colour_editor_scroll")
+        val controls=root.findViewWithTag<ScrollView>("colour_controls_scroll")
+        val tabs=root.findViewWithTag<View>("colour_mode_0").parent as LinearLayout
+        val body=editor.getChildAt(0) as LinearLayout
+        val field=root.findViewWithTag<EditText>("colour_hex")
+        val density=holder.resources.displayMetrics.density
+        val width=holder.width
+        // Exact retained API35 allocations: 109px English / 104px Hungarian,
+        // plus the shell's unchanged 8dp vertical padding. This is a model,
+        // not a replacement for installed native IME/Back/gesture evidence.
+        val panelHeight=if(tag=="en-US") 109 else 104
+        fun measureAt(w: Int) {
+            val height=((panelHeight+8)*density+.5f).toInt()
+            holder.measure(View.MeasureSpec.makeMeasureSpec(w,View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(height,View.MeasureSpec.EXACTLY))
+            holder.layout(holder.left,holder.top,holder.left+w,holder.top+height)
+        }
+        field.setText("#13579B");field.requestFocus();field.setSelection(2,5)
+        measureAt(width)
+        assertSame(body,tabs.parent)
+        assertSame(tabs,body.getChildAt(0))
+        assertEquals((panelHeight*density+.5f).toInt(),editor.height)
+        assertEquals((panelHeight*density+.5f).toInt(),controls.height)
+        assertTrue(editor.getChildAt(0).height>editor.height)
+        assertTrue(editor.paddingEnd>=32*density)
+        val railOffset=controls.scrollY
+        for(name in tabTags+"colour_hex") {
+            val view=root.findViewWithTag<TextView>(name)
+            caption(view)
+            val layout=checkNotNull(view.layout)
+            if(name!="colour_hex") {
+                assertTrue(view.height>=44*density)
+                assertEquals(android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_SP,
+                    12f,view.resources.displayMetrics),view.textSize,0f)
+            }
+            for(line in 0 until layout.lineCount) {
+                val local=Rect(view.totalPaddingLeft,view.totalPaddingTop+layout.getLineTop(line),
+                    view.width-view.totalPaddingRight,view.totalPaddingTop+layout.getLineBottom(line))
+                val target=Rect(local);editor.offsetDescendantRectToMyCoords(view,target)
+                editor.scrollTo(0,target.top)
+                val visible=Rect()
+                assertTrue("Visible caption line: $tag/$name/$line",view.getLocalVisibleRect(visible))
+                assertTrue("All ancestors expose the full line: $tag/$name/$line",visible.contains(local))
+            }
+        }
+        assertEquals("Editor scrolling leaves preview rail independent",railOffset,controls.scrollY)
+        // Live column -> stack -> column remeasurement reparents only the same
+        // tab row. Field identity, draft and selection must survive both changes.
+        repeat(3) {
+            measureAt((480*density+.5f).toInt())
+            assertSame(editor.parent,tabs.parent)
+            measureAt((480*density+.5f).toInt())
+            assertSame(editor.parent,tabs.parent)
+            measureAt(width)
+            assertSame(body,tabs.parent)
+            measureAt(width)
+            assertSame(body,tabs.parent)
+            assertSame(field,root.findViewWithTag<EditText>("colour_hex"))
+            assertEquals("#13579B",field.text.toString())
+            assertEquals(2,field.selectionStart);assertEquals(5,field.selectionEnd)
+        }
+        complete(dialog.getButton(AlertDialog.BUTTON_NEGATIVE))
       }
     }
 

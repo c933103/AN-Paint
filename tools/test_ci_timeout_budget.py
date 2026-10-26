@@ -210,9 +210,9 @@ class TimeoutBudgetTest(unittest.TestCase):
             self.assertNotIn(stale, canonical)
         self.assertIn('## Historical composed cancellation budgets', docs)
         dialog = docs.split('## Localized dialog evidence and separate phase', 1)[1]
-        for text in ('Twelve installed dialog method/class pairs', 'every SDK-eligible app identity',
+        for text in ('Fourteen installed dialog method/class pairs', 'every SDK-eligible app identity',
                      '`app-dialog` report', '300-second cancellation cap', '45-second interaction limit',
-                     'Twelve individual maxima exceed that aggregate cap', 'timeout remains a failure',
+                     'Fourteen individual maxima exceed that aggregate cap', 'timeout remains a failure',
                      '2× cases cover English/Hungarian caption and preview-rail reachability', 'C05 large-font ancestor visibility is still open'):
             self.assertIn(text, dialog)
 

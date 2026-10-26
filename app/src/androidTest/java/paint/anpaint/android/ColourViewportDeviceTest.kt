@@ -382,6 +382,231 @@ class ColourViewportDeviceTest {
         } finally {onMain {dialog.dismiss()}}
     }
 
+    @Test fun largeEnglishColourImeBackAndFooterLifecycle()=largeColourImeLifecycle("en-US")
+    @Test fun largeHungarianColourImeBackAndFooterLifecycle()=largeColourImeLifecycle("hu")
+
+    /** Reproduction-only expansion of the 2x gap, not simultaneous IME/footer acceptance. */
+    private fun largeColourImeLifecycle(tag: String)=fixture(tag,2f) {scenario ->
+        orient(true,scenario)
+        var commits=0;var closes=0;var selected=android.graphics.Color.RED;var preview=selected
+        fun open(): Pair<AdvancedColourDialog,AlertDialog> = onMain {
+            val picker=AdvancedColourDialog(activity,android.graphics.Color.RED,false,
+                preview={preview=it},closed={closes++},initialMode=1) {selected=it;commits++}
+            picker to picker.show()
+        }
+        var (picker,dialog)=open()
+        try {
+            await("large colour lifecycle ready") {dialog.window!!.decorView.hasWindowFocus() &&
+                dialog.window!!.decorView.findViewWithTag<View>("colour_editor_scroll").height>0}
+            val root=onMain {dialog.window!!.decorView}
+            val field=onMain {root.findViewWithTag<EditText>("colour_hex")}
+            val firstDialog=dialog;val firstPicker=picker
+            val cancel=onMain {dialog.getButton(AlertDialog.BUTTON_NEGATIVE)}
+            val use=onMain {dialog.getButton(AlertDialog.BUTTON_POSITIVE)}
+            fun state()=onMain {
+                backWindowState(root).put("dialog_showing",dialog.isShowing)
+                    .put("dialog_id",System.identityHashCode(dialog)).put("root_id",System.identityHashCode(root))
+                    .put("field_id",System.identityHashCode(field)).put("picker_id",System.identityHashCode(picker))
+                    .put("same_dialog",dialog===firstDialog).put("same_picker",picker===firstPicker)
+                    .put("same_root",dialog.window!!.decorView===root)
+                    .put("same_field",root.findViewWithTag<View>("colour_hex")===field)
+                    .put("value",field.text.toString()).put("selection_start",field.selectionStart).put("selection_end",field.selectionEnd)
+                    .put("picker_colour",picker.value.colour).put("commit_callbacks",commits).put("closed_callbacks",closes)
+                    .put("native_ime_present",nativeImePresent())
+            }
+            onMain {
+                assertEquals(640,activity.window.decorView.width);assertEquals(320,activity.window.decorView.height)
+                assertEquals(1f,activity.resources.displayMetrics.density,0f)
+                assertEquals(2f,activity.resources.configuration.fontScale,0f)
+                // Synthetic value/selection setup, not keyboard transcription acceptance.
+                field.setText("#13579B");field.setSelection(2,5)
+                evidence.observe(JSONObject().put("kind","colour-2x-initial")
+                    .put("setup","synthetic hex #13579B selection [2,5]; synthetic focus/IME activation; native Back and footer input")
+                    .put("initial_native_field_activation","not-tested").put("initial_full_hex_visibility","not-accepted")
+                    .put("locale",tag).put("density",activity.resources.displayMetrics.density)
+                    .put("font_scale",activity.resources.configuration.fontScale)
+                    .put("display",geometry(activity.window.decorView)).put("state",state())
+                    .put("simultaneous_ime_field_footer_fit","not-accepted"))
+            }
+            evidence.capture("colour-2x-initial")
+            onMain {
+                // Fixture activation, not a claim of native initial field reachability.
+                // The original failed full-line tap cohort is preserved separately.
+                val focused=field.requestFocus()
+                field.setSelection(2,5)
+                val requested=activity.getSystemService(InputMethodManager::class.java)
+                    .showSoftInput(field,InputMethodManager.SHOW_IMPLICIT)
+                evidence.observe(JSONObject().put("kind","colour-2x-synthetic-ime-activation")
+                    .put("strategy","View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)")
+                    .put("focus_request_returned",focused).put("field_focused",field.hasFocus())
+                    .put("ime_request_returned",requested).put("state",state())
+                    .put("initial_native_field_activation","not-tested").put("initial_full_hex_visibility","not-accepted"))
+                assertTrue("Synthetic fixture hex focus established",focused && field.hasFocus())
+            }
+            val ime=awaitNativeImeWindow(true,root,field,"colour-2x-ime-open")
+            onMain {
+                val windows=(0 until ime.length()).map {ime.getJSONObject(it)}
+                evidence.observe(JSONObject().put("kind","colour-2x-ime-occlusion")
+                    .put("state",state()).put("simultaneous_ime_field_footer_fit","not-accepted")
+                    .put("controls",JSONArray(listOf("hex" to field,"cancel" to cancel,"use" to use).map {(key,view) ->
+                        val bounds=rawBounds(view)
+                        JSONObject().put("key",key).put("geometry",geometry(view))
+                            .put("parent_id",System.identityHashCode(view.parent)).put("ancestors",ancestors(view))
+                            .put("ime_overlaps",JSONArray(windows.map {window ->
+                                val a=window.getJSONArray("bounds");val b=Rect(a.getInt(0),a.getInt(1),a.getInt(2),a.getInt(3))
+                                JSONObject().put("window_id",window.getInt("id")).put("overlaps",!bounds.isEmpty && !b.isEmpty && Rect.intersects(bounds,b))
+                            }))
+                    })))
+            }
+            nativeBack("hide 2x colour IME",{state()}) {
+                !nativeImePresent() && dialog===firstDialog && picker===firstPicker && dialog.isShowing &&
+                    root.isAttachedToWindow && root.hasWindowFocus() && dialog.window!!.decorView===root &&
+                    root.findViewWithTag<View>("colour_hex")===field && field.text.toString()=="#13579B" &&
+                    field.selectionStart==2 && field.selectionEnd==5 && picker.value.colour==0xff13579b.toInt() && commits==0 && closes==0
+            }
+            awaitNativeImeWindow(false,root,field,"colour-2x-ime-hidden")
+            settle(root)
+            evidence.observe(JSONObject().put("kind","colour-2x-hidden-retained").put("state",state()))
+            // Each native layout line must fit intrinsically and be revealed through
+            // its complete ancestor chain, sequentially; no simultaneous fit claim.
+            for(key in listOf("colour_mode_0","colour_mode_3","colour_advanced_tab","colour_mode_1","colour_mode_2",
+                    "add_custom_colour","selected_colour_caption","custom_colour_selection","colour_hex")) {
+                largeLifecycleCaption(onMain {root.findViewWithTag(key)},key)
+            }
+            largeLifecycleCaption(cancel,"cancel")
+            evidence.capture("colour-2x-cancel-reached")
+            tap("2x Cancel",cancel)
+            await("2x Cancel restores original") {!dialog.isShowing && !root.isAttachedToWindow &&
+                activity.window.decorView.hasWindowFocus() && commits==0 && closes==1 &&
+                selected==android.graphics.Color.RED && preview==android.graphics.Color.RED}
+            evidence.observe(JSONObject().put("kind","colour-2x-cancelled").put("commit_callbacks",commits)
+                .put("closed_callbacks",closes).put("selected_colour",selected).put("preview_colour",preview)
+                .put("dialog_showing",onMain {dialog.isShowing}).put("root_attached",onMain {root.isAttachedToWindow}))
+            val reopened=open();picker=reopened.first;dialog=reopened.second
+            await("2x reopened ready") {dialog.window!!.decorView.hasWindowFocus()}
+            val reopenedRoot=onMain {dialog.window!!.decorView}
+            onMain {
+                assertNotSame(root,reopenedRoot);assertNotSame(firstDialog,dialog)
+                assertEquals("#FF0000",reopenedRoot.findViewWithTag<EditText>("colour_hex").text.toString())
+                evidence.observe(JSONObject().put("kind","colour-2x-reopened").put("root_id",System.identityHashCode(reopenedRoot))
+                    .put("dialog_id",System.identityHashCode(dialog)).put("value","#FF0000"))
+            }
+            evidence.capture("colour-2x-reopened")
+            nativeBack("close 2x reopened colour",{
+                backWindowState(reopenedRoot).put("dialog_showing",dialog.isShowing)
+                    .put("root_id",System.identityHashCode(reopenedRoot)).put("dialog_id",System.identityHashCode(dialog))
+                    .put("same_root",dialog.window!!.decorView===reopenedRoot)
+                    .put("commit_callbacks",commits).put("closed_callbacks",closes)
+                    .put("selected_colour",selected).put("preview_colour",preview)
+            }) {
+                !dialog.isShowing && !reopenedRoot.isAttachedToWindow && activity.window.decorView.hasWindowFocus() &&
+                    commits==0 && closes==2 && selected==android.graphics.Color.RED && preview==android.graphics.Color.RED
+            }
+            val third=open();picker=third.first;dialog=third.second
+            await("2x validation instance ready") {dialog.window!!.decorView.hasWindowFocus()}
+            val finalRoot=onMain {dialog.window!!.decorView}
+            val finalField=onMain {finalRoot.findViewWithTag<EditText>("colour_hex")}
+            val finalUse=onMain {dialog.getButton(AlertDialog.BUTTON_POSITIVE)}
+            onMain {assertNotSame(root,finalRoot);assertNotSame(reopenedRoot,finalRoot);finalField.setText("#broken")}
+            largeLifecycleCaption(finalUse,"use")
+            evidence.capture("colour-2x-use-reached")
+            tap("2x invalid rejected",finalUse)
+            onMain {
+                assertTrue(dialog.isShowing);assertEquals(0,commits);assertEquals(2,closes);assertNotNull(finalField.error)
+                evidence.observe(JSONObject().put("kind","colour-2x-invalid-rejected")
+                    .put("root_id",System.identityHashCode(finalRoot)).put("dialog_id",System.identityHashCode(dialog))
+                    .put("dialog_showing",dialog.isShowing).put("error_present",finalField.error!=null)
+                    .put("value",finalField.text.toString()).put("commit_callbacks",commits).put("closed_callbacks",closes))
+                finalField.setText("#2468AC")
+            }
+            tap("2x valid committed",finalUse)
+            await("2x valid closes exactly once") {!dialog.isShowing && !finalRoot.isAttachedToWindow &&
+                activity.window.decorView.hasWindowFocus() && commits==1 && closes==3 && selected==0xff2468ac.toInt()}
+            checkDeadline()
+            evidence.observe(JSONObject().put("kind","colour-2x-complete").put("commit_callbacks",commits)
+                .put("initial_native_field_activation","not-tested").put("initial_full_hex_visibility","not-accepted")
+                .put("closed_callbacks",closes).put("selected_colour",selected)
+                .put("dialog_showing",onMain {dialog.isShowing}).put("root_attached",onMain {finalRoot.isAttachedToWindow})
+                .put("simultaneous_ime_field_footer_fit","not-accepted"))
+        } catch(failure: Throwable) {
+            // Preserve the actual failed window before dismiss/fixture restoration.
+            try {evidence.capture("colour-2x-failed-before-dismiss")} catch(capture: Throwable) {failure.addSuppressed(capture)}
+            throw failure
+        } finally {onMain {dialog.dismiss()}}
+    }
+
+    private fun ancestors(view: View): JSONArray {
+        val result=JSONArray();var parent=view.parent as? View
+        while(parent!=null) {
+            result.put(geometry(parent).put("id",System.identityHashCode(parent))
+                .put("parent_id",(parent.parent as? View)?.let {System.identityHashCode(it)} ?: 0)
+                .put("is_root",parent===view.rootView))
+            parent=parent.parent as? View
+        }
+        return result
+    }
+
+    private fun largeLifecycleCaption(view: TextView,key: String) {
+        settle(view)
+        onMain {
+            intrinsic(view)
+            val node=view.createAccessibilityNodeInfo()
+            try {
+                val rawText=view.text.toString()
+                val transformation=view.transformationMethod
+                val transformed=transformation?.getTransformation(view.text,view)?.toString() ?: rawText
+                val sourceResource=when(key) {"cancel" -> R.string.ui_cancel;"use" -> R.string.ui_use_colour;else -> 0}
+                val expectedText=if(sourceResource==0) rawText else view.resources.getString(sourceResource)
+                // TextView accessibility exposes mTransformed, not necessarily the raw resource text.
+                // Keep both exact strings; do not case-fold, truncate or replace the platform method.
+                evidence.observe(JSONObject().put("kind","colour-2x-caption").put("key",key).put("tag",view.tag ?: "About-row")
+                    .put("text",rawText).put("raw_text_length",rawText.length).put("expected_text",expectedText)
+                    .put("source_resource",if(sourceResource==0) "view-text" else view.resources.getResourceEntryName(sourceResource))
+                    .put("view_id",view.id).put("transformation_method",transformation?.javaClass?.name ?: "none")
+                    .put("transformed_text",transformed).put("accessible_text",node.text?.toString())
+                    .put("lines",view.layout.lineCount).put("caption_length",transformed.length)
+                    .put("layout_text",view.layout.text.toString())
+                    .put("line_ranges",JSONArray((0 until view.layout.lineCount).map {line ->
+                        JSONArray().put(view.layout.getLineStart(line)).put(view.layout.getLineEnd(line))}))
+                    .put("root_id",System.identityHashCode(view.rootView)))
+                assertEquals("Exact source caption retained",expectedText,rawText)
+                if(sourceResource!=0) {
+                    assertEquals("Actual native footer action id",if(key=="cancel") android.R.id.button2 else android.R.id.button1,view.id)
+                    assertEquals("Actual platform footer transformation","android.text.method.AllCapsTransformationMethod",transformation?.javaClass?.name)
+                }
+                assertEquals("Complete transformed layout caption",transformed,view.layout.text.toString())
+                assertEquals("Complete accessible caption",transformed,node.text?.toString())
+            } finally {node.recycle()}
+        }
+        for(line in 0 until onMain {view.layout.lineCount}) {
+            fun lineBounds(): Rect {val raw=rawBounds(view);return Rect(raw.left+view.totalPaddingLeft,
+                raw.top+view.totalPaddingTop+view.layout.getLineTop(line),raw.right-view.totalPaddingRight,
+                raw.top+view.totalPaddingTop+view.layout.getLineBottom(line))}
+            reveal(view) {lineBounds()}
+            onMain {
+                val chain=ancestors(view);assertTrue("Ancestor path reaches the dialog root",chain.length()>0 &&
+                    chain.getJSONObject(chain.length()-1).getBoolean("is_root"))
+                val target=lineBounds()
+                for(index in 0 until chain.length()) {
+                    val bounds=chain.getJSONObject(index).getJSONArray("visible")
+                    assertTrue("Complete caption line survives ancestor clipping",
+                        Rect(bounds.getInt(0),bounds.getInt(1),bounds.getInt(2),bounds.getInt(3)).contains(target))
+                }
+                evidence.observe(JSONObject().put("kind","colour-2x-caption-line").put("key",key).put("line",line)
+                    .put("line_rect",rect(target)).put("geometry",geometry(view))
+                    .put("parent_id",System.identityHashCode(view.parent)).put("ancestors",chain))
+            }
+        }
+    }
+
+    private fun nativeImePresent(): Boolean = instrumentation.uiAutomation.windows.any {window ->
+        if(window.type!=AccessibilityWindowInfo.TYPE_INPUT_METHOD) false else {
+            val bounds=Rect();window.getBoundsInScreen(bounds)
+            val node=window.root;val rootBounds=Rect();node?.getBoundsInScreen(rootBounds)
+            node?.isVisibleToUser==true && !bounds.isEmpty && !rootBounds.isEmpty
+        }
+    }
+
     private fun backWindowState(root: View): JSONObject {
         val focused=WindowInspector.getGlobalWindowViews().lastOrNull {it.hasWindowFocus()}
         val targetInsets=root.rootWindowInsets
@@ -734,7 +959,7 @@ class ColourViewportDeviceTest {
         evidence.capture("colour-pre-assert-allocation")
     }
 
-    private fun awaitNativeImeWindow(showing: Boolean,root: View,field: EditText) {
+    private fun awaitNativeImeWindow(showing: Boolean,root: View,field: EditText,captureLabel: String?=null): JSONArray {
         // AOSP InputMethodService leaves the app unchanged behind a fullscreen
         // extract editor; its dialog inset can be zero while the keyboard shows.
         // UiAutomator 2.2.0 already requests interactive-window retrieval. Observe
@@ -770,15 +995,17 @@ class ColourViewportDeviceTest {
         } finally {
             evidence.observe(onMain {JSONObject().put("kind","colour-native-ime-window")
                 .put("requested_visible",showing).put("condition_passed",reached).put("windows",last)
+                .put("root_id",System.identityHashCode(root)).put("field_id",System.identityHashCode(field))
                 .put("stable_window_ms",SystemClock.uptimeMillis()-stableSince)
                 .put("ime_visible",root.rootWindowInsets?.isVisible(WindowInsets.Type.ime()) ?: JSONObject.NULL)
                 .put("ime_inset_bottom",root.rootWindowInsets?.getInsets(WindowInsets.Type.ime())?.bottom ?: JSONObject.NULL)
                 .put("fullscreen_ime",activity.getSystemService(InputMethodManager::class.java).isFullscreenMode)
                 .put("dialog",geometry(root)).put("field",geometry(field)).put("value",field.text.toString())
                 .put("note","Native window observation; inspect actual PNG; no simultaneous field/footer fit acceptance")})
-            evidence.capture(if(reached) "colour-ime-${if(showing) "visible" else "hidden"}"
+            evidence.capture(if(reached) captureLabel ?: "colour-ime-${if(showing) "visible" else "hidden"}"
                 else "colour-ime-wait-failed-before-dismiss")
         }
+        return last
     }
     private fun recordEditorStartup(stage: String) {
         // Read-only diagnosis of the unchanged compound startup gate. Capture
