@@ -39,7 +39,9 @@ def wording_fixture(name):
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no'}
+TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro'}
+# Explicit runtime parent inheritance, not an additional reviewed catalogue.
+TAGGED_COLOUR_INHERITED_CATALOGUES = {'ca-ES-valencia': 'ca'}
 
 
 def tagged_colour_expectations(data):
@@ -66,17 +68,29 @@ def tagged_colour_expectations(data):
         reviewed = fixture('danish_norwegian_p0_wording.json')['values'][TAGGED_COLOUR_KEY][tag][1:-1]
         if data[tag] != reviewed:
             raise ValueError('Tagged-colour expectation differs from reviewed DA/NO value: ' + tag)
+    for tag in ('ca', 'ro'):
+        reviewed = fixture('catalan_romanian_import_wording.json')['values'][TAGGED_COLOUR_KEY][tag][1:-1]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour expectation differs from reviewed CA/RO value: ' + tag)
     return data
 
 
 def require_tagged_colour_resolution(data, strings, offered, english):
-    """Model exact family expectations; Android resource routing is tested separately."""
+    """Model direct values and the one explicit parent fallback, checked by Android too."""
     data = tagged_colour_expectations(data)
+    if not (set(TAGGED_COLOUR_INHERITED_CATALOGUES) |
+            set(TAGGED_COLOUR_INHERITED_CATALOGUES.values())) <= set(offered):
+        raise ValueError('Tagged-colour inheritance uses an unoffered catalogue')
     for tag in offered:
-        expected = data[tag] if tag in data else english
+        parent = TAGGED_COLOUR_INHERITED_CATALOGUES.get(tag)
+        if parent is not None and (tag in data or parent not in data or
+                                   TAGGED_COLOUR_KEY in strings[tag]):
+            raise ValueError('Explicit tagged-colour parent inheritance differs: ' + tag)
+        catalogue = parent or tag
+        expected = data[catalogue] if catalogue in data else english
         # Catalogue values retain Android apostrophe escapes; this family uses no other escapes.
-        actual = strings[tag].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
-        if tag in ('am', 'nn', 'da', 'no') and actual.startswith('"') and actual.endswith('"'):
+        actual = strings[catalogue].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
+        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro') and actual.startswith('"') and actual.endswith('"'):
             actual = actual[1:-1]  # Android removes the reviewed outer quoting.
         if actual != expected:
             raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
@@ -133,8 +147,10 @@ class CurrentLocalizationContracts(unittest.TestCase):
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(68, len(data))
-        self.assertEqual(103, len(offered - set(data)))
+        self.assertEqual(70, len(data))
+        self.assertEqual(101, len(offered - set(data)))  # Missing direct values, not all English at runtime.
+        self.assertEqual({'ca-ES-valencia': 'ca'}, TAGGED_COLOUR_INHERITED_CATALOGUES)
+        self.assertEqual(100, len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:
@@ -159,7 +175,7 @@ class CurrentLocalizationContracts(unittest.TestCase):
                 else: changed_data[tag] = 'arbitrary default'
                 with self.subTest(tag=tag, mutation=mutation), self.assertRaises(ValueError):
                     require_tagged_colour_resolution(changed_data, changed_strings, offered, english)
-        fallback = sorted(offered - set(data))[0]
+        fallback = sorted(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES))[0]
         changed_strings = dict(strings)
         changed_strings[fallback] = dict(strings[fallback])
         changed_strings[fallback][TAGGED_COLOUR_KEY] = english
@@ -167,6 +183,28 @@ class CurrentLocalizationContracts(unittest.TestCase):
         changed_strings[fallback][TAGGED_COLOUR_KEY] = 'arbitrary default'
         with self.assertRaises(ValueError):
             require_tagged_colour_resolution(data, changed_strings, offered, english)
+
+    def test_tagged_colour_parent_inheritance_stays_separate_and_rejects_overrides(self):
+        data = json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
+        strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
+        offered = set(catalogues.offered_tags())
+        english = strings['default'][TAGGED_COLOUR_KEY]
+        child, parent = 'ca-ES-valencia', 'ca'
+        self.assertNotIn(child, data)
+        self.assertNotIn(TAGGED_COLOUR_KEY, strings[child])
+        self.assertEqual(data[parent], fixture('catalan_romanian_import_wording.json')['values'][TAGGED_COLOUR_KEY][parent][1:-1])
+        require_tagged_colour_resolution(data, strings, offered, english)
+        for value in (english, 'arbitrary override', strings[parent][TAGGED_COLOUR_KEY]):
+            changed = dict(strings)
+            changed[child] = dict(strings[child], **{TAGGED_COLOUR_KEY: value})
+            with self.subTest(override=value), self.assertRaises(ValueError):
+                require_tagged_colour_resolution(data, changed, offered, english)
+        for missing in (child, parent):
+            with self.subTest(unoffered=missing), self.assertRaises(ValueError):
+                require_tagged_colour_resolution(data, strings, offered - {missing}, english)
+        changed_data = dict(data, **{child: data[parent]})
+        with self.assertRaises(ValueError):
+            require_tagged_colour_resolution(changed_data, strings, offered, english)
 
     def test_explicit_scope_and_open_fallbacks_match_current_picker(self):
         scope = fixture('locale_contract_scope.json')

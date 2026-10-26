@@ -82,7 +82,7 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(137, len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
+            self.assertEqual(150, len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('Image format', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertEqual('Save changes?', self.roots['ca'].find("./string[@name='ui_save_your_changes']").text)
         self.assertEqual('Salvaţi modificările?', self.roots['ro'].find("./string[@name='ui_save_your_changes']").text)

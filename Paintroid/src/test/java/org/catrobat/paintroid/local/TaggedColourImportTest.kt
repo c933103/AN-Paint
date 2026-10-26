@@ -119,15 +119,20 @@ class TaggedColourImportTest {
     }
 
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
-        // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian values.
-        // Global localization scope is unchanged; every other offered tag must use English.
+        // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian values.
+        // Global review scope is unchanged. The Valencian option inherits the ca resource;
+        // this is routing evidence, not an independently reviewed Valencian value.
         val expected = javaClass.getResourceAsStream("/tagged-colour/expected.json")!!
             .bufferedReader().use { JSONObject(it.readText()) }
-        assertEquals(68, expected.length())
+        assertEquals(70, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
+        assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
         assertTrue(expected.has("am")); assertTrue(expected.has("cs")); assertTrue(expected.has("pl")); assertTrue(expected.has("sv"))
         assertEquals(171, AppLanguage.tags(context).size)
+        val inheritedCatalogues = mapOf("ca-ES-valencia" to "ca")
+        assertTrue(inheritedCatalogues.keys.none { expected.has(it) })
+        var inherited = 0
         var fallbacks = 0
         assertTrue(AppLanguage.tags(context).containsAll(expected.keys().asSequence().toList()))
         for (tag in AppLanguage.tags(context)) {
@@ -139,11 +144,16 @@ class TaggedColourImportTest {
             assertFalse(tag, message.contains("GIF"))
             assertTrue(tag, message.contains("sRGB"))
             assertTrue(tag, message.contains("PNG"))
-            val expectedMessage = if (expected.has(tag)) expected.getString(tag)
-                else neutral.also { fallbacks++ }
-            assertEquals("Family message or explicit English fallback for $tag",
+            val parent = inheritedCatalogues[tag]
+            val expectedMessage = when {
+                expected.has(tag) -> expected.getString(tag)
+                parent != null -> expected.getString(parent).also { inherited++ }
+                else -> neutral.also { fallbacks++ }
+            }
+            assertEquals("Direct, parent-inherited or explicit English family value for $tag",
                 expectedMessage, message)
         }
-        assertEquals(103, fallbacks)
+        assertEquals(1, inherited)
+        assertEquals(100, fallbacks)
     }
 }
