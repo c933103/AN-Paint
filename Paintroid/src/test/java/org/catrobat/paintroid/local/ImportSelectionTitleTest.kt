@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.os.Looper
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -175,6 +176,34 @@ class ImportSelectionTitleTest {
         assertFalse(dialog.isShowing)
         selection!!.dispose()
         assertTrue("Confirmed import transfers ownership rather than deleting the original staged file", file.exists())
+    }
+
+    @Test fun danishAndNorwegianAnimationWarningsUseReviewedBodiesAndKeepRealDecisionSemantics() {
+        val values = JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText())
+            .getJSONObject("values")
+        for (tag in listOf("da", "no")) {
+            language(tag)
+            fun expected(key: String) = values.getJSONObject(key).getString(tag).removeSurrounding("\"")
+            fun formatted(key: String, vararg arguments: Any) = String.format(Locale.forLanguageTag(tag), expected(key), *arguments)
+            val open = expected("formats22_open_still")
+            val animated = expected("formats22_animation_title")
+            var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
+            cancel(warning(open, formatted("formats22_animation_unknown", "GIF"), open), file)
+            assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
+            file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
+            cancel(warning(animated, formatted("formats22_animation_message", "GIF", "at least 2") +
+                "\n\n" + expected("formats22_animation_still"), open), file)
+            file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
+            val dialog = warning(animated, formatted("formats22_animation_message", "APNG", "3") +
+                "\n\n" + expected("formats22_animation_poster"), open)
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            worker.drain(); worker.drain()
+            assertEquals(1, selectedCalls); assertEquals(0, selected!!.pageIndex)
+            assertEquals(file, selected!!.file); assertEquals(0, cancelled); assertNull(failure)
+            assertFalse(dialog.isShowing)
+            selection!!.dispose()
+            assertTrue("Confirmed import transfers ownership of the staged file", file.exists())
+        }
     }
 
     @Test fun incompleteWelshCatalogueRetainsDefaultEnglishFallback() {

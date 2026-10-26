@@ -39,7 +39,7 @@ def wording_fixture(name):
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn'}
+TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no'}
 
 
 def tagged_colour_expectations(data):
@@ -62,6 +62,10 @@ def tagged_colour_expectations(data):
     reviewed_nn = fixture('nynorsk_p0_remaining_wording.json')['values'][TAGGED_COLOUR_KEY]['nn'][1:-1]
     if data['nn'] != reviewed_nn:
         raise ValueError('Tagged-colour expectation differs from reviewed Nynorsk value')
+    for tag in ('da', 'no'):
+        reviewed = fixture('danish_norwegian_p0_wording.json')['values'][TAGGED_COLOUR_KEY][tag][1:-1]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour expectation differs from reviewed DA/NO value: ' + tag)
     return data
 
 
@@ -72,7 +76,7 @@ def require_tagged_colour_resolution(data, strings, offered, english):
         expected = data[tag] if tag in data else english
         # Catalogue values retain Android apostrophe escapes; this family uses no other escapes.
         actual = strings[tag].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
-        if tag in ('am', 'nn') and actual.startswith('"') and actual.endswith('"'):
+        if tag in ('am', 'nn', 'da', 'no') and actual.startswith('"') and actual.endswith('"'):
             actual = actual[1:-1]  # Android removes the reviewed outer quoting.
         if actual != expected:
             raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
@@ -129,8 +133,8 @@ class CurrentLocalizationContracts(unittest.TestCase):
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(66, len(data))
-        self.assertEqual(105, len(offered - set(data)))
+        self.assertEqual(68, len(data))
+        self.assertEqual(103, len(offered - set(data)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:
