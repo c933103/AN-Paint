@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "reviewer": "/root/review_large_font_ime",
+  "reviewed_at_utc": "2026-10-26T20:55:49Z",
+  "review_kind": "independent native static successor review and host synthetic mutation probes",
+  "combined_source_tree": "89459b32b72121f93e373d85cdb355670086ae37",
+  "setup_revision_diff_sha256": "d61e22c5218764b50db6139d4fc9fe576167bae8f820a5b46de3105b48538401",
+  "integration_baseline_tree": "291d474e9b54fbbb789cc07cba11f9e403838aea",
+  "parent_verified_upstream_commit": "3160b02e939cd732536f4f3c896e082b19325eee",
+  "parent_verified_upstream_tree": "385bd19a6cd68c7b8ce9644f157e4acb4e4cf93e",
+  "upstream_verification_limit": "The exact six-file setup revision and local integrated tree were independently compared. Authentication of remote3160 and its16-file Serbian overlay is the parent/owner-provided verified baseline, not a fresh remote verification by this reviewer.",
+  "conclusion": "No concrete findings in the scoped successor delta. Static and synthetic test results are not Android compilation, installed execution, viewport repair, or whole2x usability acceptance.",
+  "changed_files": [
+    {
+      "path": "CI.md",
+      "sha256": "4b8c2e41136ab5a82e580f63ad0f823ece6aaa196191f2ce764a53a4e59af79a",
+      "git_blob": "dd82b7195f438c98fed75870a157ec17a7461a46"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/ColourViewportDeviceTest.kt",
+      "sha256": "4d34180928708a2ffe7cccb6f889087943259117fe359ddf228c21fffbe5381a",
+      "git_blob": "4ed0d4b4312cc5a20bc147f7b68d164cff304a4c"
+    },
+    {
+      "path": "tools/dialog_evidence_transport.py",
+      "sha256": "c4b1e144ac0a713a940f9f42104f80e28131a5f1d380b477a8340d2ee8a8310e",
+      "git_blob": "bac87190b52836592c6b74bc101816cadd248dd3"
+    },
+    {
+      "path": "tools/synthetic_colour_receipts.py",
+      "sha256": "99ceb461e54eb001430b16a5ed48c7cd000f8d79d5d85129d21ddf71f819b5d1",
+      "git_blob": "34e44329bf6fed9990b834830d66a2e1a608d938"
+    },
+    {
+      "path": "tools/test_colour_viewport_contract.py",
+      "sha256": "0ab5c92cc06d4f296a4c985ade97ddc7d473823739aa4a746ad6190546c08db2",
+      "git_blob": "637f7731ab3c10e44f6dae806e887a6e471208ee"
+    },
+    {
+      "path": "tools/test_dialog_evidence_transport.py",
+      "sha256": "5958bb9726d70f14198de89cfaf18385c6846122fcd957dd9ea32d39266cb42d",
+      "git_blob": "20934b2b68ed1dadcef8326fdbd690da1ca6b67e"
+    }
+  ],
+  "checks": [
+    {
+      "check": "Working tree matches frozen combined tree; staged diff hash; git diff --cached --check",
+      "result": "passed"
+    },
+    {
+      "check": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools python3 -m unittest test_dialog_evidence_transport test_colour_viewport_contract -v",
+      "result": "58 passed",
+      "elapsed_seconds": 0.663
+    },
+    {
+      "check": "Fourteen additional negative probes per locale",
+      "result": "all28 rejected",
+      "mutations": [
+        "synthetic activation before initial",
+        "synthetic activation after actual-IME observation",
+        "request returned true but no actual IME",
+        "request returned true but wrong configured IME",
+        "request returned true but unstable actual IME",
+        "activation with stale picker",
+        "activation with changed close count",
+        "missing not-tested scope flag",
+        "missing not-accepted visibility flag",
+        "caption lines moved after dismissal",
+        "extra first Back injection",
+        "stale field during injected Back",
+        "impossible reopened Back close count",
+        "extra valid commit"
+      ]
+    },
+    {
+      "check": "Both showSoftInput return values with valid actual-IME evidence",
+      "result": "both accepted for each locale; neither request result substitutes for actual window proof"
+    },
+    {
+      "check": "Entire Kotlin file outside largeColourImeLifecycle compared byte-for-byte with integration baseline",
+      "result": "unchanged; old cases, imports and shared helpers preserved"
+    },
+    {
+      "check": "Transport functions compared by AST",
+      "result": "only verify_large_colour_ime and extract changed"
+    },
+    {
+      "check": "Complete method-to-screenshot inventory compared with baseline",
+      "result": "all14 methods/51 PNG mappings unchanged; six PNGs per new lifecycle"
+    },
+    {
+      "check": "Kotlin compile-facing API/import/visibility and lifecycle logic static scan",
+      "result": "no concrete issue found; compilation was not run"
+    }
+  ],
+  "preserved_requirements": [
+    "Configured TYPE_INPUT_METHOD package/root/bounds stability remains the real IME oracle, including zero app inset/fullscreen extract.",
+    "Only initial field entry is explicitly synthetic requestFocus/showSoftInput; initial native field activation remains not-tested and initial full hex visibility not-accepted at initial/activation/completion/export.",
+    "The native pointer inventory for each new case is Cancel, invalid Use, valid Use; no invented native initial field tap.",
+    "Exact root/field/value/selection and callback preservation across one native Back remains required.",
+    "Full post-hide caption/ancestor/footer reachability remains strict and sequentially native; no assertion was weakened to pass the observed28/23pixel viewport.",
+    "Native Cancel restoration, reopen/Back, invalid rejection, single valid commit remain required.",
+    "No production/workflow changes in this six-file revision, no font/minimum/input-mode changes, no deadline or evidence-bound changes."
+  ],
+  "original_trial_context": "Parent reports old12 passed and both new cases failed in the initial full-line tap helper before IME/Back, with failed captures preserved separately. This successor labels synthetic setup honestly; that prior failure does not prove impossible native entry or glyph-ink clipping, and this source change does not repair the viewport.",
+  "limits": [
+    "Android SDK and kotlinc absent from established local toolchain; this successor was not compiled by the reviewer.",
+    "No installed execution or actual successor PNG inspection performed; native IME/lifecycle passage remains unestablished.",
+    "Full ordinary/optimized host reruns and combined device runtime remain owner gates.",
+    "Parent reviewed original failed images; this review did not independently re-inspect them."
+  ],
+  "writes": "No source or external state was changed by the reviewer. This JSON is a temporary evidence handoff outside the source tree for authorized preservation."
+}

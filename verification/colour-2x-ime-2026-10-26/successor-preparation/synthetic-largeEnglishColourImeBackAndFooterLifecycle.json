@@ -1,0 +1,2853 @@
+{
+  "record_kind": "authored host-only fixture; never installed evidence",
+  "receipt": {
+    "schema": 1,
+    "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+    "test_method": "largeEnglishColourImeBackAndFooterLifecycle",
+    "device_sdk": 35,
+    "package": "paint.anpaint.android",
+    "outcome": "passed",
+    "source_tests_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "source_binding": "runner-supplied-needs-host-comparison",
+    "screenshots": [
+      "0-colour-2x-initial.png",
+      "1-colour-2x-ime-open.png",
+      "2-colour-2x-ime-hidden.png",
+      "3-colour-2x-cancel-reached.png",
+      "4-colour-2x-reopened.png",
+      "5-colour-2x-use-reached.png"
+    ],
+    "observations": [
+      {
+        "kind": "fixture",
+        "locale": "en-US",
+        "font_scale": 2
+      },
+      {
+        "kind": "orientation",
+        "landscape": false,
+        "font_scale": 2,
+        "root": {
+          "tag": null,
+          "raw": [
+            0,
+            0,
+            320,
+            640
+          ],
+          "visible": [
+            0,
+            0,
+            320,
+            640
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 320,
+          "height": 640,
+          "measured_width": 320,
+          "measured_height": 640
+        }
+      },
+      {
+        "kind": "orientation",
+        "landscape": true,
+        "font_scale": 2,
+        "root": {
+          "tag": null,
+          "raw": [
+            0,
+            0,
+            640,
+            320
+          ],
+          "visible": [
+            0,
+            0,
+            640,
+            320
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 640,
+          "height": 320,
+          "measured_width": 640,
+          "measured_height": 320
+        }
+      },
+      {
+        "kind": "initial-editor-state",
+        "stage": "before-wait",
+        "locale": "en-US",
+        "font_scale": 2,
+        "startup_ready": true,
+        "window_focus": true,
+        "root_attached": true,
+        "busy": false,
+        "activity_destroyed": false,
+        "activity_finishing": false,
+        "io_error_present": false,
+        "autosave_error_present": false,
+        "startup_view_present": false,
+        "canvas": {
+          "tag": "paint_canvas",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "initial-editor-state",
+        "stage": "passed",
+        "locale": "en-US",
+        "font_scale": 2,
+        "startup_ready": true,
+        "window_focus": true,
+        "root_attached": true,
+        "busy": false,
+        "activity_destroyed": false,
+        "activity_finishing": false,
+        "io_error_present": false,
+        "autosave_error_present": false,
+        "startup_view_present": false,
+        "canvas": {
+          "tag": "paint_canvas",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-initial",
+        "locale": "en-US",
+        "density": 1,
+        "font_scale": 2,
+        "setup": "synthetic hex #13579B selection [2,5]; synthetic focus/IME activation; native Back and footer input",
+        "initial_native_field_activation": "not-tested",
+        "initial_full_hex_visibility": "not-accepted",
+        "display": {
+          "tag": null,
+          "raw": [
+            0,
+            0,
+            640,
+            320
+          ],
+          "visible": [
+            0,
+            0,
+            640,
+            320
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 640,
+          "height": 320,
+          "measured_width": 640,
+          "measured_height": 320
+        },
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": false,
+          "dialog_id": 102,
+          "root_id": 101,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "simultaneous_ime_field_footer_fit": "not-accepted"
+      },
+      {
+        "kind": "colour-2x-synthetic-ime-activation",
+        "strategy": "View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)",
+        "focus_request_returned": true,
+        "field_focused": true,
+        "ime_request_returned": false,
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": false,
+          "dialog_id": 102,
+          "root_id": 101,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "initial_native_field_activation": "not-tested",
+        "initial_full_hex_visibility": "not-accepted"
+      },
+      {
+        "kind": "colour-native-ime-window",
+        "requested_visible": true,
+        "condition_passed": true,
+        "stable_window_ms": 250,
+        "ime_visible": false,
+        "ime_inset_bottom": 0,
+        "fullscreen_ime": true,
+        "root_id": 101,
+        "field_id": 103,
+        "value": "#13579B",
+        "dialog": {
+          "tag": null,
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "field": {
+          "tag": "colour_hex",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "windows": [
+          {
+            "id": 5,
+            "type": 2,
+            "package": "synthetic.ime",
+            "configured_ime": true,
+            "root_visible": true,
+            "root_children": 1,
+            "bounds": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "root_bounds": [
+              0,
+              0,
+              640,
+              320
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "colour-2x-ime-occlusion",
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": true,
+          "dialog_id": 102,
+          "root_id": 101,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "simultaneous_ime_field_footer_fit": "not-accepted",
+        "controls": [
+          {
+            "key": "hex",
+            "geometry": {
+              "tag": null,
+              "raw": [
+                10,
+                20,
+                110,
+                60
+              ],
+              "visible": [
+                10,
+                20,
+                110,
+                60
+              ],
+              "shown": true,
+              "scroll_x": 0,
+              "scroll_y": 0,
+              "width": 100,
+              "height": 40,
+              "measured_width": 100,
+              "measured_height": 40
+            },
+            "parent_id": 7,
+            "ancestors": [
+              {
+                "tag": null,
+                "raw": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "visible": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "shown": true,
+                "scroll_x": 0,
+                "scroll_y": 0,
+                "width": 640,
+                "height": 320,
+                "measured_width": 640,
+                "measured_height": 320,
+                "id": 7,
+                "parent_id": 101,
+                "is_root": false
+              },
+              {
+                "tag": null,
+                "raw": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "visible": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "shown": true,
+                "scroll_x": 0,
+                "scroll_y": 0,
+                "width": 640,
+                "height": 320,
+                "measured_width": 640,
+                "measured_height": 320,
+                "id": 101,
+                "parent_id": 0,
+                "is_root": true
+              }
+            ],
+            "ime_overlaps": [
+              {
+                "window_id": 5,
+                "overlaps": true
+              }
+            ]
+          },
+          {
+            "key": "cancel",
+            "geometry": {
+              "tag": null,
+              "raw": [
+                10,
+                20,
+                110,
+                60
+              ],
+              "visible": [
+                10,
+                20,
+                110,
+                60
+              ],
+              "shown": true,
+              "scroll_x": 0,
+              "scroll_y": 0,
+              "width": 100,
+              "height": 40,
+              "measured_width": 100,
+              "measured_height": 40
+            },
+            "parent_id": 7,
+            "ancestors": [
+              {
+                "tag": null,
+                "raw": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "visible": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "shown": true,
+                "scroll_x": 0,
+                "scroll_y": 0,
+                "width": 640,
+                "height": 320,
+                "measured_width": 640,
+                "measured_height": 320,
+                "id": 7,
+                "parent_id": 101,
+                "is_root": false
+              },
+              {
+                "tag": null,
+                "raw": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "visible": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "shown": true,
+                "scroll_x": 0,
+                "scroll_y": 0,
+                "width": 640,
+                "height": 320,
+                "measured_width": 640,
+                "measured_height": 320,
+                "id": 101,
+                "parent_id": 0,
+                "is_root": true
+              }
+            ],
+            "ime_overlaps": [
+              {
+                "window_id": 5,
+                "overlaps": true
+              }
+            ]
+          },
+          {
+            "key": "use",
+            "geometry": {
+              "tag": null,
+              "raw": [
+                10,
+                20,
+                110,
+                60
+              ],
+              "visible": [
+                10,
+                20,
+                110,
+                60
+              ],
+              "shown": true,
+              "scroll_x": 0,
+              "scroll_y": 0,
+              "width": 100,
+              "height": 40,
+              "measured_width": 100,
+              "measured_height": 40
+            },
+            "parent_id": 7,
+            "ancestors": [
+              {
+                "tag": null,
+                "raw": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "visible": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "shown": true,
+                "scroll_x": 0,
+                "scroll_y": 0,
+                "width": 640,
+                "height": 320,
+                "measured_width": 640,
+                "measured_height": 320,
+                "id": 7,
+                "parent_id": 101,
+                "is_root": false
+              },
+              {
+                "tag": null,
+                "raw": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "visible": [
+                  0,
+                  0,
+                  640,
+                  320
+                ],
+                "shown": true,
+                "scroll_x": 0,
+                "scroll_y": 0,
+                "width": 640,
+                "height": 320,
+                "measured_width": 640,
+                "measured_height": 320,
+                "id": 101,
+                "parent_id": 0,
+                "is_root": true
+              }
+            ],
+            "ime_overlaps": [
+              {
+                "window_id": 5,
+                "overlaps": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "native-back-before",
+        "label": "hide 2x colour IME",
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": true,
+          "dialog_id": 102,
+          "root_id": 101,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "postcondition_met": false
+      },
+      {
+        "kind": "native-back-injected",
+        "label": "hide 2x colour IME",
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": false,
+          "dialog_id": 102,
+          "root_id": 101,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+        "keycode": 4,
+        "injection_count": 1,
+        "injected": true
+      },
+      {
+        "kind": "native-back-after",
+        "label": "hide 2x colour IME",
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": false,
+          "dialog_id": 102,
+          "root_id": 101,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "injected": true,
+        "completed": true,
+        "postcondition_met": true
+      },
+      {
+        "kind": "colour-native-ime-window",
+        "requested_visible": false,
+        "condition_passed": true,
+        "stable_window_ms": 250,
+        "ime_visible": false,
+        "ime_inset_bottom": 0,
+        "fullscreen_ime": true,
+        "root_id": 101,
+        "field_id": 103,
+        "value": "#13579B",
+        "dialog": {
+          "tag": null,
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "field": {
+          "tag": "colour_hex",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "windows": []
+      },
+      {
+        "kind": "colour-2x-hidden-retained",
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 0,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": false,
+          "dialog_id": 102,
+          "root_id": 101,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        }
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "colour_mode_0",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "colour_mode_0",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "colour_mode_0",
+        "tag": "colour_mode_0",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "colour_mode_0",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "colour_mode_0",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "colour_mode_3",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "colour_mode_3",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "colour_mode_3",
+        "tag": "colour_mode_3",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "colour_mode_3",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "colour_mode_3",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "colour_advanced_tab",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "colour_advanced_tab",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "colour_advanced_tab",
+        "tag": "colour_advanced_tab",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "colour_advanced_tab",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "colour_advanced_tab",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "colour_mode_1",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "colour_mode_1",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "colour_mode_1",
+        "tag": "colour_mode_1",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "colour_mode_1",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "colour_mode_1",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "colour_mode_2",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "colour_mode_2",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "colour_mode_2",
+        "tag": "colour_mode_2",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "colour_mode_2",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "colour_mode_2",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "add_custom_colour",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "add_custom_colour",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "add_custom_colour",
+        "tag": "add_custom_colour",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "add_custom_colour",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "add_custom_colour",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "selected_colour_caption",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "selected_colour_caption",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "selected_colour_caption",
+        "tag": "selected_colour_caption",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "selected_colour_caption",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "selected_colour_caption",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "custom_colour_selection",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "custom_colour_selection",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "custom_colour_selection",
+        "tag": "custom_colour_selection",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "custom_colour_selection",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "custom_colour_selection",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "colour_hex",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 7,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 7,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "colour_hex",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "colour_hex",
+        "tag": "colour_hex",
+        "text": "#13579B",
+        "accessible_text": "#13579B",
+        "layout_text": "#13579B",
+        "lines": 1,
+        "caption_length": 7,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "colour_hex",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": "colour_hex",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "About-row",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "cancel",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "cancel",
+        "tag": "About-row",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 101,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "cancel",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": null,
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 101,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 101,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "2x Cancel",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "2x Cancel",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "caption-line-reached",
+        "tag": "2x Cancel",
+        "line": 0,
+        "geometry": {
+          "tag": "2x Cancel",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ]
+      },
+      {
+        "kind": "pointer-before",
+        "label": "2x Cancel",
+        "tap": [
+          50,
+          40
+        ],
+        "geometry": {
+          "tag": null,
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "pointer-injected",
+        "label": "2x Cancel"
+      },
+      {
+        "kind": "colour-2x-cancelled",
+        "commit_callbacks": 0,
+        "closed_callbacks": 1,
+        "selected_colour": -65536,
+        "preview_colour": -65536,
+        "dialog_showing": false,
+        "root_attached": false
+      },
+      {
+        "kind": "colour-2x-reopened",
+        "root_id": 201,
+        "dialog_id": 202,
+        "value": "#FF0000"
+      },
+      {
+        "kind": "native-back-before",
+        "label": "close 2x reopened colour",
+        "state": {
+          "target_attached": true,
+          "target_showing": true,
+          "target_focused": true,
+          "target_insets_available": true,
+          "target_ime_visible": false,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": true,
+          "focused_app_window_is_editor": false,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": true,
+          "commit_callbacks": 0,
+          "closed_callbacks": 1,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": false,
+          "dialog_id": 202,
+          "root_id": 201,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "postcondition_met": false
+      },
+      {
+        "kind": "native-back-injected",
+        "label": "close 2x reopened colour",
+        "state": {
+          "target_attached": false,
+          "target_showing": false,
+          "target_focused": false,
+          "target_insets_available": false,
+          "target_ime_visible": null,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": false,
+          "focused_app_window_is_editor": true,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": false,
+          "commit_callbacks": 0,
+          "closed_callbacks": 2,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": false,
+          "dialog_id": 202,
+          "root_id": 201,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "route": "UiDevice.pressKeyCode(KEYCODE_BACK)",
+        "keycode": 4,
+        "injection_count": 1,
+        "injected": true
+      },
+      {
+        "kind": "native-back-after",
+        "label": "close 2x reopened colour",
+        "state": {
+          "target_attached": false,
+          "target_showing": false,
+          "target_focused": false,
+          "target_insets_available": false,
+          "target_ime_visible": null,
+          "focused_insets_available": true,
+          "focused_app_window_present": true,
+          "focused_app_window_is_target": false,
+          "focused_app_window_is_editor": true,
+          "focused_app_window_ime_visible": false,
+          "dialog_showing": false,
+          "commit_callbacks": 0,
+          "closed_callbacks": 2,
+          "value": "#13579B",
+          "selected_colour": -65536,
+          "preview_colour": -65536,
+          "selection_start": 2,
+          "selection_end": 5,
+          "picker_colour": -15509605,
+          "native_ime_present": false,
+          "dialog_id": 202,
+          "root_id": 201,
+          "field_id": 103,
+          "picker_id": 104,
+          "same_dialog": true,
+          "same_picker": true,
+          "same_root": true,
+          "same_field": true
+        },
+        "injected": true,
+        "completed": true,
+        "postcondition_met": true
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "About-row",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "use",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "colour-2x-caption",
+        "key": "use",
+        "tag": "About-row",
+        "text": "Synthetic caption",
+        "accessible_text": "Synthetic caption",
+        "layout_text": "Synthetic caption",
+        "lines": 1,
+        "caption_length": 17,
+        "root_id": 301,
+        "line_ranges": [
+          [
+            0,
+            17
+          ]
+        ]
+      },
+      {
+        "kind": "colour-2x-caption-line",
+        "key": "use",
+        "line": 0,
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ],
+        "geometry": {
+          "tag": null,
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "parent_id": 7,
+        "ancestors": [
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 7,
+            "parent_id": 301,
+            "is_root": false
+          },
+          {
+            "tag": null,
+            "raw": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "visible": [
+              0,
+              0,
+              640,
+              320
+            ],
+            "shown": true,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "width": 640,
+            "height": 320,
+            "measured_width": 640,
+            "measured_height": 320,
+            "id": 301,
+            "parent_id": 0,
+            "is_root": true
+          }
+        ]
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "2x invalid rejected",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "2x invalid rejected",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "caption-line-reached",
+        "tag": "2x invalid rejected",
+        "line": 0,
+        "geometry": {
+          "tag": "2x invalid rejected",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ]
+      },
+      {
+        "kind": "pointer-before",
+        "label": "2x invalid rejected",
+        "tap": [
+          50,
+          40
+        ],
+        "geometry": {
+          "tag": null,
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "pointer-injected",
+        "label": "2x invalid rejected"
+      },
+      {
+        "kind": "colour-2x-invalid-rejected",
+        "root_id": 301,
+        "dialog_id": 302,
+        "value": "#broken",
+        "dialog_showing": true,
+        "error_present": true,
+        "commit_callbacks": 0,
+        "closed_callbacks": 2
+      },
+      {
+        "kind": "intrinsic-caption",
+        "tag": "2x valid committed",
+        "lines": 1,
+        "layout_height": 20,
+        "available_text_height": 30,
+        "caption_length": 17,
+        "layout_width": 100,
+        "line_metrics": [
+          {
+            "end": 17,
+            "ellipsis": 0,
+            "left": 0,
+            "right": 99
+          }
+        ],
+        "geometry": {
+          "tag": "2x valid committed",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "caption-line-reached",
+        "tag": "2x valid committed",
+        "line": 0,
+        "geometry": {
+          "tag": "2x valid committed",
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        },
+        "line_rect": [
+          11,
+          21,
+          100,
+          40
+        ]
+      },
+      {
+        "kind": "pointer-before",
+        "label": "2x valid committed",
+        "tap": [
+          50,
+          40
+        ],
+        "geometry": {
+          "tag": null,
+          "raw": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "visible": [
+            10,
+            20,
+            110,
+            60
+          ],
+          "shown": true,
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "width": 100,
+          "height": 40,
+          "measured_width": 100,
+          "measured_height": 40
+        }
+      },
+      {
+        "kind": "pointer-injected",
+        "label": "2x valid committed"
+      },
+      {
+        "kind": "colour-2x-complete",
+        "commit_callbacks": 1,
+        "closed_callbacks": 3,
+        "initial_native_field_activation": "not-tested",
+        "initial_full_hex_visibility": "not-accepted",
+        "selected_colour": -14391124,
+        "dialog_showing": false,
+        "root_attached": false,
+        "simultaneous_ime_field_footer_fit": "not-accepted"
+      }
+    ],
+    "fixture_started_uptime_ms": 1000,
+    "fixture_ended_uptime_ms": 6000,
+    "fixture_elapsed_ms": 5000,
+    "fixture_elapsed_scope": "setup+interaction+teardown; excludes export"
+  }
+}
