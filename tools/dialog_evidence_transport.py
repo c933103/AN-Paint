@@ -586,12 +586,30 @@ def verify_large_colour_ime(method, observations):
         require(caption.get('tag') == expected_tag, 'Wrong caption control identity')
         expected_root = invalid['root_id'] if key == 'use' else identity['root_id']
         text = caption.get('text')
-        length = len(text.encode('utf-16-le')) // 2 if isinstance(text, str) else 0
-        require(length > 0 and caption.get('accessible_text') == text and caption.get('caption_length') == length
+        raw_length = len(text.encode('utf-16-le')) // 2 if isinstance(text, str) else 0
+        transformed = caption.get('transformed_text')
+        length = len(transformed.encode('utf-16-le')) // 2 if isinstance(transformed, str) else 0
+        require(raw_length > 0 and caption.get('raw_text_length') == raw_length and caption.get('expected_text') == text
+                and isinstance(caption.get('transformation_method'), str) and caption['transformation_method']
+                and type(caption.get('view_id')) is int, 'Missing exact raw/source caption or platform transformation')
+        if key in ('cancel', 'use'):
+            # Bounded en-US/hu fixture resources and actual API35 framework Button transform.
+            # This is exact text equality, not a case-insensitive acceptance shortcut.
+            expected = {'en-US': {'cancel': ('Cancel', 'CANCEL'), 'use': ('Use color', 'USE COLOR')},
+                        'hu': {'cancel': ('Mégse', 'MÉGSE'), 'use': ('Szín használata', 'SZÍN HASZNÁLATA')}}
+            require((text, transformed) == expected[LARGE_COLOUR_IME_METHODS[method]][key]
+                    and caption.get('source_resource') == ('ui_cancel' if key == 'cancel' else 'ui_use_colour')
+                    and caption['view_id'] == (16908314 if key == 'cancel' else 16908313)
+                    and caption['transformation_method'] == 'android.text.method.AllCapsTransformationMethod',
+                    'Wrong native footer source text, action identity or actual transformation')
+        else:
+            require(caption.get('source_resource') == 'view-text' and transformed == text,
+                    'Unexpected non-footer caption transformation')
+        require(length > 0 and caption.get('accessible_text') == transformed and caption.get('caption_length') == length
                 and caption.get('root_id') == expected_root and type(caption.get('lines')) is int and caption['lines'] > 0,
                 'Incomplete accessible 2x caption or wrong root')
         layout_text = caption.get('layout_text')
-        require(isinstance(layout_text, str) and layout_text and len(layout_text.encode('utf-16-le')) // 2 == length,
+        require(layout_text == transformed,
                 'Incomplete transformed layout text')
         ranges = caption.get('line_ranges')
         require(isinstance(ranges, list) and len(ranges) == caption['lines'], 'Incomplete layout ranges')

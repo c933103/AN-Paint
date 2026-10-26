@@ -147,6 +147,47 @@ def write_archive(root, method, *, change_receipt=None, change_manifest=None, ex
 class LargeColourImeLifecycleContractTest(unittest.TestCase):
     METHODS = ('largeEnglishColourImeBackAndFooterLifecycle', 'largeHungarianColourImeBackAndFooterLifecycle')
 
+    def test_native_footer_uses_exact_platform_transformed_text_not_raw_or_casefold(self):
+        for method in self.METHODS:
+            data = receipt(method)
+            captions = [o for o in data['observations'] if o.get('kind') == 'colour-2x-caption']
+            for caption in captions:
+                self.assertEqual(caption['text'], caption['expected_text'])
+                self.assertEqual(caption['transformed_text'], caption['layout_text'])
+                self.assertEqual(caption['transformed_text'], caption['accessible_text'])
+                if caption['key'] in ('cancel', 'use'):
+                    self.assertNotEqual(caption['text'], caption['transformed_text'])
+                    self.assertEqual(caption['transformation_method'], 'android.text.method.AllCapsTransformationMethod')
+            verify_receipt(data, method, DIGEST)
+
+    def test_footer_raw_source_transformation_layout_and_accessibility_must_all_bind(self):
+        mutations = [
+            lambda c: c.pop('transformation_method'),
+            lambda c: c.update(transformation_method='none'),
+            lambda c: c.update(transformation_method='synthetic.uppercase'),
+            lambda c: c.update(source_resource='wrong_resource'),
+            lambda c: c.update(view_id=999),
+            lambda c: c.update(text=c['transformed_text']),
+            lambda c: c.update(expected_text='wrong source'),
+            lambda c: c.update(raw_text_length=1),
+            lambda c: c.update(transformed_text=c['text']),
+            lambda c: c.update(accessible_text=c['text']),
+            lambda c: c.update(layout_text=c['text']),
+            lambda c: c.update(accessible_text=c['transformed_text'][:-1]),
+            lambda c: c.update(transformed_text=c['transformed_text'].lower(),
+                               layout_text=c['transformed_text'].lower(), accessible_text=c['transformed_text'].lower()),
+            lambda c: c.update(transformed_text='X' * len(c['transformed_text']),
+                               layout_text='X' * len(c['transformed_text']), accessible_text='X' * len(c['transformed_text'])),
+        ]
+        for method in self.METHODS:
+            for key in ('cancel', 'use'):
+                for mutate in mutations:
+                    data = receipt(method)
+                    caption = next(o for o in data['observations'] if o.get('kind') == 'colour-2x-caption' and o.get('key') == key)
+                    mutate(caption)
+                    with self.subTest(method=method, key=key, mutate=mutate), self.assertRaises(ValueError):
+                        verify_receipt(data, method, DIGEST)
+
     def test_synthetic_activation_is_explicit_and_cannot_claim_native_entry(self):
         for method in self.METHODS:
             data = receipt(method)

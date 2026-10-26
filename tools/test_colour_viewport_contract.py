@@ -131,6 +131,17 @@ class ColourViewportContractTest(unittest.TestCase):
         for required in ('intrinsic(view)', 'node.text?.toString()', 'getLineStart(line)', 'getLineEnd(line)',
                          'reveal(view) {lineBounds()}', 'ancestors(view)', 'contains(target)', '"parent_id"'):
             self.assertIn(required, helper)
+        for required in ('transformation?.getTransformation(view.text,view)', 'view.resources.getString(sourceResource)',
+                         '"text",rawText', '"raw_text_length",rawText.length', '"expected_text",expectedText',
+                         '"transformation_method",transformation?.javaClass?.name', '"transformed_text",transformed',
+                         '"caption_length",transformed.length', '"Exact source caption retained",expectedText,rawText',
+                         '"Actual native footer action id"', 'android.R.id.button2', 'android.R.id.button1',
+                         '"android.text.method.AllCapsTransformationMethod"',
+                         '"Complete transformed layout caption",transformed,view.layout.text.toString()',
+                         '"Complete accessible caption",transformed,node.text?.toString()'):
+            self.assertIn(required, helper)
+        for forbidden in ('uppercase(', 'lowercase(', 'ignoreCase', 'setAllCaps(', 'transformationMethod='):
+            self.assertNotIn(forbidden, helper)
         for forbidden in ('performClick(', 'requestRectangleOnScreen(', 'setTextSize(', 'setSoftInputMode(', 'imeOptions='):
             self.assertNotIn(forbidden, body + helper)
 

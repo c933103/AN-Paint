@@ -156,7 +156,10 @@ hex visibility are untested/unaccepted. They require the configured native IME
 window stable for 250 ms (including fullscreen
 extract with zero app inset), one Back retaining the exact draft/selection/dialog,
 sequential full-caption/footer reachability, native Cancel, reopened Back and
-invalid/valid commit outcomes. IME-open raw field/footer bounds, ancestor clipping
+invalid/valid commit outcomes. Footer caption receipts retain the raw resource text,
+actual framework transformation method/output, Layout text and accessibility text;
+the transformed strings must match exactly, not by case-insensitive comparison.
+IME-open raw field/footer bounds, ancestor clipping
 and actual IME overlap are observations, not a simultaneous-fit acceptance gate.
 The complete success inventory is 14 dialog methods/51 PNGs and 47 API35 app methods;
 API30 eligibility is unchanged. New source is not installed evidence until exact-source

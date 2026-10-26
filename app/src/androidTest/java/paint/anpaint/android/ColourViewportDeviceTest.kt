@@ -552,14 +552,30 @@ class ColourViewportDeviceTest {
             intrinsic(view)
             val node=view.createAccessibilityNodeInfo()
             try {
-                assertEquals("Complete accessible caption",view.text.toString(),node.text?.toString())
+                val rawText=view.text.toString()
+                val transformation=view.transformationMethod
+                val transformed=transformation?.getTransformation(view.text,view)?.toString() ?: rawText
+                val sourceResource=when(key) {"cancel" -> R.string.ui_cancel;"use" -> R.string.ui_use_colour;else -> 0}
+                val expectedText=if(sourceResource==0) rawText else view.resources.getString(sourceResource)
+                // TextView accessibility exposes mTransformed, not necessarily the raw resource text.
+                // Keep both exact strings; do not case-fold, truncate or replace the platform method.
                 evidence.observe(JSONObject().put("kind","colour-2x-caption").put("key",key).put("tag",view.tag ?: "About-row")
-                    .put("text",view.text.toString()).put("accessible_text",node.text?.toString())
-                    .put("lines",view.layout.lineCount).put("caption_length",view.text.length)
+                    .put("text",rawText).put("raw_text_length",rawText.length).put("expected_text",expectedText)
+                    .put("source_resource",if(sourceResource==0) "view-text" else view.resources.getResourceEntryName(sourceResource))
+                    .put("view_id",view.id).put("transformation_method",transformation?.javaClass?.name ?: "none")
+                    .put("transformed_text",transformed).put("accessible_text",node.text?.toString())
+                    .put("lines",view.layout.lineCount).put("caption_length",transformed.length)
                     .put("layout_text",view.layout.text.toString())
                     .put("line_ranges",JSONArray((0 until view.layout.lineCount).map {line ->
                         JSONArray().put(view.layout.getLineStart(line)).put(view.layout.getLineEnd(line))}))
                     .put("root_id",System.identityHashCode(view.rootView)))
+                assertEquals("Exact source caption retained",expectedText,rawText)
+                if(sourceResource!=0) {
+                    assertEquals("Actual native footer action id",if(key=="cancel") android.R.id.button2 else android.R.id.button1,view.id)
+                    assertEquals("Actual platform footer transformation","android.text.method.AllCapsTransformationMethod",transformation?.javaClass?.name)
+                }
+                assertEquals("Complete transformed layout caption",transformed,view.layout.text.toString())
+                assertEquals("Complete accessible caption",transformed,node.text?.toString())
             } finally {node.recycle()}
         }
         for(line in 0 until onMain {view.layout.lineCount}) {

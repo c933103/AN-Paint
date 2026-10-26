@@ -52,13 +52,24 @@ def synthetic_colour_ime_observations(method):
         tag = 'About-row' if key in ('cancel', 'use') else key
         geometry_tag = None if key in ('cancel', 'use') else key
         text = '#13579B' if key == 'colour_hex' else 'Synthetic caption'
+        transformed = text
+        source_resource, view_id, transformation = 'view-text', -1, 'none'
+        if key in ('cancel', 'use'):
+            texts = {'en-US': {'cancel': ('Cancel', 'CANCEL'), 'use': ('Use color', 'USE COLOR')},
+                     'hu': {'cancel': ('Mégse', 'MÉGSE'), 'use': ('Szín használata', 'SZÍN HASZNÁLATA')}}
+            text, transformed = texts[LARGE_COLOUR_IME_METHODS[method]][key]
+            source_resource = 'ui_cancel' if key == 'cancel' else 'ui_use_colour'
+            view_id = 16908314 if key == 'cancel' else 16908313
+            transformation = 'android.text.method.AllCapsTransformationMethod'
         observations.append(dict(kind='intrinsic-caption', tag=tag, lines=1, layout_height=20,
-                                 available_text_height=30, caption_length=len(text), layout_width=100,
-                                 line_metrics=[dict(end=len(text), ellipsis=0, left=0, right=99)], geometry=geometry(key)))
+                                 available_text_height=30, caption_length=len(transformed), layout_width=100,
+                                 line_metrics=[dict(end=len(transformed), ellipsis=0, left=0, right=99)], geometry=geometry(key)))
         if lifecycle:
-            observations.append(dict(kind='colour-2x-caption', key=key, tag=tag, text=text, accessible_text=text,
-                                     layout_text=text, lines=1, caption_length=len(text), root_id=root,
-                                     line_ranges=[[0, len(text)]]))
+            observations.append(dict(kind='colour-2x-caption', key=key, tag=tag, text=text, raw_text_length=len(text),
+                                     expected_text=text, source_resource=source_resource, view_id=view_id,
+                                     transformation_method=transformation, transformed_text=transformed,
+                                     accessible_text=transformed, layout_text=transformed, lines=1,
+                                     caption_length=len(transformed), root_id=root, line_ranges=[[0, len(transformed)]]))
             observations.append(dict(kind='colour-2x-caption-line', key=key, line=0,
                                      line_rect=[11, 21, 100, 40], geometry=geometry(geometry_tag), parent_id=7, ancestors=chain(root)))
         else:
