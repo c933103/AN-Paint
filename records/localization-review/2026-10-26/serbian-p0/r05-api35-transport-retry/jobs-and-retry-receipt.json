@@ -1,0 +1,1224 @@
+{
+  "observed_at_utc": "2026-10-26T18:36:19Z",
+  "run_id": 40374982075,
+  "head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+  "attempts": [
+    {
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 121756231458,
+          "name": "Regression tests and lint",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-26T18:09:18Z",
+          "completed_at": "2026-10-26T18:32:16Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121756231458",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:09:19Z",
+              "completed_at": "2026-10-26T18:09:20Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:09:20Z",
+              "completed_at": "2026-10-26T18:09:22Z"
+            },
+            {
+              "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:09:22Z",
+              "completed_at": "2026-10-26T18:09:29Z"
+            },
+            {
+              "name": "Set native compiler cache directory",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:09:29Z",
+              "completed_at": "2026-10-26T18:09:29Z"
+            },
+            {
+              "name": "Restore content-checked native compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:09:29Z",
+              "completed_at": "2026-10-26T18:09:34Z"
+            },
+            {
+              "name": "Install pinned compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:09:34Z",
+              "completed_at": "2026-10-26T18:09:41Z"
+            },
+            {
+              "name": "Prepare build tools and notices",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-26T18:09:41Z",
+              "completed_at": "2026-10-26T18:10:37Z"
+            },
+            {
+              "name": "Run Python contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-26T18:10:37Z",
+              "completed_at": "2026-10-26T18:14:56Z"
+            },
+            {
+              "name": "Run JVM regression tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-26T18:14:56Z",
+              "completed_at": "2026-10-26T18:28:33Z"
+            },
+            {
+              "name": "Prepare lint native dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-10-26T18:28:33Z",
+              "completed_at": "2026-10-26T18:29:50Z"
+            },
+            {
+              "name": "Run Android lint",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-26T18:29:50Z",
+              "completed_at": "2026-10-26T18:32:04Z"
+            },
+            {
+              "name": "Report native compiler cache statistics",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-10-26T18:32:04Z",
+              "completed_at": "2026-10-26T18:32:04Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-26T18:32:04Z",
+              "completed_at": "2026-10-26T18:32:10Z"
+            },
+            {
+              "name": "Post Restore content-checked native compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-10-26T18:32:10Z",
+              "completed_at": "2026-10-26T18:32:11Z"
+            },
+            {
+              "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-10-26T18:32:11Z",
+              "completed_at": "2026-10-26T18:32:14Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-10-26T18:32:14Z",
+              "completed_at": "2026-10-26T18:32:14Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-10-26T18:32:14Z",
+              "completed_at": "2026-10-26T18:32:14Z"
+            }
+          ]
+        },
+        {
+          "id": 121756231727,
+          "name": "Exact-script resource generation",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-26T18:09:18Z",
+          "completed_at": "2026-10-26T18:12:45Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121756231727",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:09:19Z",
+              "completed_at": "2026-10-26T18:09:19Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:09:19Z",
+              "completed_at": "2026-10-26T18:09:22Z"
+            },
+            {
+              "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:09:22Z",
+              "completed_at": "2026-10-26T18:09:26Z"
+            },
+            {
+              "name": "Prepare build tools and notices",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:09:26Z",
+              "completed_at": "2026-10-26T18:10:22Z"
+            },
+            {
+              "name": "Check clean and incremental resource graph in a disposable worktree",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:10:22Z",
+              "completed_at": "2026-10-26T18:12:42Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:12:42Z",
+              "completed_at": "2026-10-26T18:12:43Z"
+            },
+            {
+              "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-26T18:12:43Z",
+              "completed_at": "2026-10-26T18:12:43Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-10-26T18:12:43Z",
+              "completed_at": "2026-10-26T18:12:44Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-26T18:12:44Z",
+              "completed_at": "2026-10-26T18:12:44Z"
+            }
+          ]
+        },
+        {
+          "id": 121756232545,
+          "name": "Build APK and corresponding source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-26T18:09:19Z",
+          "completed_at": "2026-10-26T18:18:55Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121756232545",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:09:20Z",
+              "completed_at": "2026-10-26T18:09:21Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:09:21Z",
+              "completed_at": "2026-10-26T18:09:23Z"
+            },
+            {
+              "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:09:23Z",
+              "completed_at": "2026-10-26T18:09:29Z"
+            },
+            {
+              "name": "Set native compiler cache directory",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:09:29Z",
+              "completed_at": "2026-10-26T18:09:29Z"
+            },
+            {
+              "name": "Restore content-checked native compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:09:29Z",
+              "completed_at": "2026-10-26T18:09:36Z"
+            },
+            {
+              "name": "Install pinned compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:09:36Z",
+              "completed_at": "2026-10-26T18:09:43Z"
+            },
+            {
+              "name": "Prepare build tools and notices",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-26T18:09:43Z",
+              "completed_at": "2026-10-26T18:10:51Z"
+            },
+            {
+              "name": "Build universal APK",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-26T18:10:51Z",
+              "completed_at": "2026-10-26T18:16:50Z"
+            },
+            {
+              "name": "Report native compiler cache statistics",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-26T18:16:50Z",
+              "completed_at": "2026-10-26T18:16:50Z"
+            },
+            {
+              "name": "Upload build diagnostics even on failure",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-10-26T18:16:50Z",
+              "completed_at": "2026-10-26T18:16:51Z"
+            },
+            {
+              "name": "Record build identity and extract matching source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-26T18:16:51Z",
+              "completed_at": "2026-10-26T18:16:52Z"
+            },
+            {
+              "name": "Upload APK immediately, before device tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-10-26T18:16:52Z",
+              "completed_at": "2026-10-26T18:17:00Z"
+            },
+            {
+              "name": "Compile test APKs once for all emulator jobs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-26T18:17:00Z",
+              "completed_at": "2026-10-26T18:18:44Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-10-26T18:18:44Z",
+              "completed_at": "2026-10-26T18:18:49Z"
+            },
+            {
+              "name": "Post Restore content-checked native compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-10-26T18:18:49Z",
+              "completed_at": "2026-10-26T18:18:49Z"
+            },
+            {
+              "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-10-26T18:18:49Z",
+              "completed_at": "2026-10-26T18:18:53Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28,
+              "started_at": "2026-10-26T18:18:53Z",
+              "completed_at": "2026-10-26T18:18:53Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29,
+              "started_at": "2026-10-26T18:18:53Z",
+              "completed_at": "2026-10-26T18:18:53Z"
+            }
+          ]
+        },
+        {
+          "id": 121761358988,
+          "name": "Position dialog API 35",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-26T18:18:57Z",
+          "completed_at": "2026-10-26T18:24:31Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121761358988",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:18:58Z",
+              "completed_at": "2026-10-26T18:19:00Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:19:00Z",
+              "completed_at": "2026-10-26T18:19:02Z"
+            },
+            {
+              "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:19:02Z",
+              "completed_at": "2026-10-26T18:19:11Z"
+            },
+            {
+              "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:19:11Z",
+              "completed_at": "2026-10-26T18:19:19Z"
+            },
+            {
+              "name": "Bind prebuilt artifacts to this checkout and run",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:19:19Z",
+              "completed_at": "2026-10-26T18:19:19Z"
+            },
+            {
+              "name": "Install emulator image",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:19:19Z",
+              "completed_at": "2026-10-26T18:20:10Z"
+            },
+            {
+              "name": "Run prebuilt tests with deadlines and live logs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-26T18:20:10Z",
+              "completed_at": "2026-10-26T18:24:26Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-26T18:24:26Z",
+              "completed_at": "2026-10-26T18:24:28Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-10-26T18:24:28Z",
+              "completed_at": "2026-10-26T18:24:28Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-10-26T18:24:29Z",
+              "completed_at": "2026-10-26T18:24:29Z"
+            }
+          ]
+        },
+        {
+          "id": 121761359022,
+          "name": "Core emulator API 35",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-10-26T18:18:58Z",
+          "completed_at": "2026-10-26T18:33:14Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121761359022",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:18:58Z",
+              "completed_at": "2026-10-26T18:19:01Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:19:01Z",
+              "completed_at": "2026-10-26T18:19:04Z"
+            },
+            {
+              "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:19:04Z",
+              "completed_at": "2026-10-26T18:19:32Z"
+            },
+            {
+              "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:19:32Z",
+              "completed_at": "2026-10-26T18:19:50Z"
+            },
+            {
+              "name": "Bind prebuilt artifacts to this checkout and run",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:19:50Z",
+              "completed_at": "2026-10-26T18:19:50Z"
+            },
+            {
+              "name": "Install emulator image",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:19:50Z",
+              "completed_at": "2026-10-26T18:21:26Z"
+            },
+            {
+              "name": "Run prebuilt tests with deadlines and live logs",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 7,
+              "started_at": "2026-10-26T18:21:26Z",
+              "completed_at": "2026-10-26T18:33:10Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-26T18:33:10Z",
+              "completed_at": "2026-10-26T18:33:12Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-10-26T18:33:12Z",
+              "completed_at": "2026-10-26T18:33:12Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-10-26T18:33:12Z",
+              "completed_at": "2026-10-26T18:33:12Z"
+            }
+          ]
+        },
+        {
+          "id": 121768893570,
+          "name": "Emulator API 35",
+          "status": "completed",
+          "conclusion": "failure",
+          "started_at": "2026-10-26T18:33:16Z",
+          "completed_at": "2026-10-26T18:33:19Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121768893570",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:33:17Z",
+              "completed_at": "2026-10-26T18:33:18Z"
+            },
+            {
+              "name": "Require both complete emulator jobs",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 2,
+              "started_at": "2026-10-26T18:33:18Z",
+              "completed_at": "2026-10-26T18:33:18Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 3,
+              "started_at": "2026-10-26T18:33:18Z",
+              "completed_at": "2026-10-26T18:33:18Z"
+            },
+            {
+              "name": "Select artifacts from successful job intervals",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 4,
+              "started_at": "2026-10-26T18:33:18Z",
+              "completed_at": "2026-10-26T18:33:18Z"
+            },
+            {
+              "name": "Download and verify the selected artifact IDs",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 5,
+              "started_at": "2026-10-26T18:33:18Z",
+              "completed_at": "2026-10-26T18:33:18Z"
+            },
+            {
+              "name": "Require exact disjoint app union and matching prebuilt identity",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 6,
+              "started_at": "2026-10-26T18:33:18Z",
+              "completed_at": "2026-10-26T18:33:18Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7,
+              "started_at": "2026-10-26T18:33:18Z",
+              "completed_at": "2026-10-26T18:33:18Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-26T18:33:18Z",
+              "completed_at": "2026-10-26T18:33:18Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "jobs": [
+        {
+          "id": 121770201766,
+          "name": "Core emulator API 35",
+          "status": "in_progress",
+          "conclusion": null,
+          "started_at": "2026-10-26T18:35:46Z",
+          "completed_at": null,
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121770201766",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:35:47Z",
+              "completed_at": "2026-10-26T18:35:48Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:35:48Z",
+              "completed_at": "2026-10-26T18:35:50Z"
+            },
+            {
+              "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:35:50Z",
+              "completed_at": "2026-10-26T18:35:53Z"
+            },
+            {
+              "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:35:53Z",
+              "completed_at": "2026-10-26T18:35:54Z"
+            },
+            {
+              "name": "Bind prebuilt artifacts to this checkout and run",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:35:54Z",
+              "completed_at": "2026-10-26T18:35:55Z"
+            },
+            {
+              "name": "Install emulator image",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 6,
+              "started_at": "2026-10-26T18:35:55Z",
+              "completed_at": null
+            },
+            {
+              "name": "Run prebuilt tests with deadlines and live logs",
+              "status": "pending",
+              "conclusion": null,
+              "number": 7,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "pending",
+              "conclusion": null,
+              "number": 8,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16,
+              "started_at": null,
+              "completed_at": null
+            }
+          ]
+        },
+        {
+          "id": 121770202995,
+          "name": "Build APK and corresponding source",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-26T18:09:19Z",
+          "completed_at": "2026-10-26T18:18:55Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121770202995",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:09:20Z",
+              "completed_at": "2026-10-26T18:09:21Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:09:21Z",
+              "completed_at": "2026-10-26T18:09:23Z"
+            },
+            {
+              "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:09:23Z",
+              "completed_at": "2026-10-26T18:09:29Z"
+            },
+            {
+              "name": "Set native compiler cache directory",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:09:29Z",
+              "completed_at": "2026-10-26T18:09:29Z"
+            },
+            {
+              "name": "Restore content-checked native compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:09:29Z",
+              "completed_at": "2026-10-26T18:09:36Z"
+            },
+            {
+              "name": "Install pinned compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:09:36Z",
+              "completed_at": "2026-10-26T18:09:43Z"
+            },
+            {
+              "name": "Prepare build tools and notices",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-26T18:09:43Z",
+              "completed_at": "2026-10-26T18:10:51Z"
+            },
+            {
+              "name": "Build universal APK",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-26T18:10:51Z",
+              "completed_at": "2026-10-26T18:16:50Z"
+            },
+            {
+              "name": "Report native compiler cache statistics",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-26T18:16:50Z",
+              "completed_at": "2026-10-26T18:16:50Z"
+            },
+            {
+              "name": "Upload build diagnostics even on failure",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-10-26T18:16:50Z",
+              "completed_at": "2026-10-26T18:16:51Z"
+            },
+            {
+              "name": "Record build identity and extract matching source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-26T18:16:51Z",
+              "completed_at": "2026-10-26T18:16:52Z"
+            },
+            {
+              "name": "Upload APK immediately, before device tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-10-26T18:16:52Z",
+              "completed_at": "2026-10-26T18:17:00Z"
+            },
+            {
+              "name": "Compile test APKs once for all emulator jobs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-26T18:17:00Z",
+              "completed_at": "2026-10-26T18:18:44Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-10-26T18:18:44Z",
+              "completed_at": "2026-10-26T18:18:49Z"
+            },
+            {
+              "name": "Post Restore content-checked native compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-10-26T18:18:49Z",
+              "completed_at": "2026-10-26T18:18:49Z"
+            },
+            {
+              "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-10-26T18:18:49Z",
+              "completed_at": "2026-10-26T18:18:53Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28,
+              "started_at": "2026-10-26T18:18:53Z",
+              "completed_at": "2026-10-26T18:18:53Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29,
+              "started_at": "2026-10-26T18:18:53Z",
+              "completed_at": "2026-10-26T18:18:53Z"
+            }
+          ]
+        },
+        {
+          "id": 121770204119,
+          "name": "Position dialog API 35",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-26T18:18:57Z",
+          "completed_at": "2026-10-26T18:24:31Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121770204119",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:18:58Z",
+              "completed_at": "2026-10-26T18:19:00Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:19:00Z",
+              "completed_at": "2026-10-26T18:19:02Z"
+            },
+            {
+              "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:19:02Z",
+              "completed_at": "2026-10-26T18:19:11Z"
+            },
+            {
+              "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:19:11Z",
+              "completed_at": "2026-10-26T18:19:19Z"
+            },
+            {
+              "name": "Bind prebuilt artifacts to this checkout and run",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:19:19Z",
+              "completed_at": "2026-10-26T18:19:19Z"
+            },
+            {
+              "name": "Install emulator image",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:19:19Z",
+              "completed_at": "2026-10-26T18:20:10Z"
+            },
+            {
+              "name": "Run prebuilt tests with deadlines and live logs",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-26T18:20:10Z",
+              "completed_at": "2026-10-26T18:24:26Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-26T18:24:26Z",
+              "completed_at": "2026-10-26T18:24:28Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-10-26T18:24:28Z",
+              "completed_at": "2026-10-26T18:24:28Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-10-26T18:24:29Z",
+              "completed_at": "2026-10-26T18:24:29Z"
+            }
+          ]
+        },
+        {
+          "id": 121770251340,
+          "name": "Exact-script resource generation",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-26T18:09:18Z",
+          "completed_at": "2026-10-26T18:12:45Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121770251340",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:09:19Z",
+              "completed_at": "2026-10-26T18:09:19Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:09:19Z",
+              "completed_at": "2026-10-26T18:09:22Z"
+            },
+            {
+              "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:09:22Z",
+              "completed_at": "2026-10-26T18:09:26Z"
+            },
+            {
+              "name": "Prepare build tools and notices",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:09:26Z",
+              "completed_at": "2026-10-26T18:10:22Z"
+            },
+            {
+              "name": "Check clean and incremental resource graph in a disposable worktree",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:10:22Z",
+              "completed_at": "2026-10-26T18:12:42Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:12:42Z",
+              "completed_at": "2026-10-26T18:12:43Z"
+            },
+            {
+              "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-26T18:12:43Z",
+              "completed_at": "2026-10-26T18:12:43Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-10-26T18:12:43Z",
+              "completed_at": "2026-10-26T18:12:44Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-26T18:12:44Z",
+              "completed_at": "2026-10-26T18:12:44Z"
+            }
+          ]
+        },
+        {
+          "id": 121770274727,
+          "name": "Regression tests and lint",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-26T18:09:18Z",
+          "completed_at": "2026-10-26T18:32:16Z",
+          "html_url": "https://github.com/c933103/AN-Paint/actions/runs/40374982075/job/121770274727",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-10-26T18:09:19Z",
+              "completed_at": "2026-10-26T18:09:20Z"
+            },
+            {
+              "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-10-26T18:09:20Z",
+              "completed_at": "2026-10-26T18:09:22Z"
+            },
+            {
+              "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-10-26T18:09:22Z",
+              "completed_at": "2026-10-26T18:09:29Z"
+            },
+            {
+              "name": "Set native compiler cache directory",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-10-26T18:09:29Z",
+              "completed_at": "2026-10-26T18:09:29Z"
+            },
+            {
+              "name": "Restore content-checked native compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-10-26T18:09:29Z",
+              "completed_at": "2026-10-26T18:09:34Z"
+            },
+            {
+              "name": "Install pinned compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-10-26T18:09:34Z",
+              "completed_at": "2026-10-26T18:09:41Z"
+            },
+            {
+              "name": "Prepare build tools and notices",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-10-26T18:09:41Z",
+              "completed_at": "2026-10-26T18:10:37Z"
+            },
+            {
+              "name": "Run Python contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-10-26T18:10:37Z",
+              "completed_at": "2026-10-26T18:14:56Z"
+            },
+            {
+              "name": "Run JVM regression tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-10-26T18:14:56Z",
+              "completed_at": "2026-10-26T18:28:33Z"
+            },
+            {
+              "name": "Prepare lint native dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-10-26T18:28:33Z",
+              "completed_at": "2026-10-26T18:29:50Z"
+            },
+            {
+              "name": "Run Android lint",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-10-26T18:29:50Z",
+              "completed_at": "2026-10-26T18:32:04Z"
+            },
+            {
+              "name": "Report native compiler cache statistics",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-10-26T18:32:04Z",
+              "completed_at": "2026-10-26T18:32:04Z"
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-10-26T18:32:04Z",
+              "completed_at": "2026-10-26T18:32:10Z"
+            },
+            {
+              "name": "Post Restore content-checked native compiler cache",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-10-26T18:32:10Z",
+              "completed_at": "2026-10-26T18:32:11Z"
+            },
+            {
+              "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-10-26T18:32:11Z",
+              "completed_at": "2026-10-26T18:32:14Z"
+            },
+            {
+              "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-10-26T18:32:14Z",
+              "completed_at": "2026-10-26T18:32:14Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-10-26T18:32:14Z",
+              "completed_at": "2026-10-26T18:32:14Z"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "retry_request": {
+    "at_utc": "2026-10-26T18:35:22Z",
+    "job_id": 121761359022,
+    "result": "success reported by parent; resulting attempt independently observed",
+    "additional_request_by_publisher": false
+  }
+}
