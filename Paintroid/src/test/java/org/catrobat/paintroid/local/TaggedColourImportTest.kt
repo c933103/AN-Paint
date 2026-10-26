@@ -119,16 +119,17 @@ class TaggedColourImportTest {
     }
 
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
-        // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian values.
+        // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
         // this is routing evidence, not an independently reviewed Valencian value.
         val expected = javaClass.getResourceAsStream("/tagged-colour/expected.json")!!
             .bufferedReader().use { JSONObject(it.readText()) }
-        assertEquals(72, expected.length())
+        assertEquals(74, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
         assertTrue(expected.has("sk")); assertTrue(expected.has("sl"))
+        assertTrue(expected.has("sr-Cyrl")); assertTrue(expected.has("sr-Latn"))
         assertTrue(expected.has("am")); assertTrue(expected.has("cs")); assertTrue(expected.has("pl")); assertTrue(expected.has("sv"))
         assertEquals(171, AppLanguage.tags(context).size)
         val inheritedCatalogues = mapOf("ca-ES-valencia" to "ca")
@@ -155,6 +156,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(98, fallbacks)
+        assertEquals(96, fallbacks)
     }
 }
