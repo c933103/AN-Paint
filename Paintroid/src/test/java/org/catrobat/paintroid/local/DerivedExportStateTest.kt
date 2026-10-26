@@ -112,6 +112,8 @@ class DerivedExportStateTest {
         val original = IntArray(bitmap.width * bitmap.height)
         bitmap.getPixels(original, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
         val originalTitle = title()
+        val saveTarget = ClassicPaintActivity::class.java.getDeclaredField("savedTarget").apply { isAccessible = true }
+        val originalTarget = saveTarget.get(activity)
         assertTrue(activity.document.dirty)
         val exporting=options(format)
         exporting.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
@@ -141,6 +143,7 @@ class DerivedExportStateTest {
             bitmap.getPixels(actual, 0, 320, 0, 0, 320, 160)
             assertArrayEquals(original, actual)
             assertEquals(originalTitle, title())
+            assertSame("Export must not change which file ordinary Save writes to", originalTarget, saveTarget.get(activity))
             val pending = ClassicPaintActivity::class.java.getDeclaredField("afterSave").apply { isAccessible = true }
             assertNull("The blocked replacement must not run during a later save", pending.get(activity))
         } finally { file.delete() }
@@ -159,6 +162,23 @@ class DerivedExportStateTest {
             activity.onConfigurationChanged(Configuration(activity.resources.configuration))
             idle()
             derivedExportKeepsDrawing(ImageFormat.ASCII_ART) { name -> "$name er lagra" }
+        } finally {
+            AppLanguage.select(activity, previous)
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            idle()
+        }
+    }
+
+    @Test fun danishAndNorwegianExportStatusNamesTheWrittenCopyAndKeepsTheDrawingUnsaved() {
+        val previous = AppLanguage.selectedTag(activity)
+        try {
+            for ((tag, saved) in listOf("da" to "Gemt", "no" to "Lagret")) {
+                AppLanguage.select(activity, tag)
+                // Invoke the production resource refresh AND workspace rebuild; do not patch captions.
+                activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+                idle()
+                derivedExportKeepsDrawing(ImageFormat.ASCII_ART) { name -> "$saved $name" }
+            }
         } finally {
             AppLanguage.select(activity, previous)
             activity.onConfigurationChanged(Configuration(activity.resources.configuration))
