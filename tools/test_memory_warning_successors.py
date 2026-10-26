@@ -111,7 +111,7 @@ class MemoryWarningSuccessors(unittest.TestCase):
                 if tag == 'en-001': counts['canonical'] += 1
                 elif term['value'] is None: counts['missing'] += 1
                 else: counts['held'] += 1
-        self.assertEqual({'held': 4, 'missing': 207, 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 5}, counts)
+        self.assertEqual({'held': 4, 'missing': 205, 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 7}, counts)
 
     def test_compact_behavior_oracle_corruption_is_rejected(self):
         original_read = Path.read_bytes
