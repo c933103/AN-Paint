@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
@@ -154,11 +155,14 @@ class DerivedExportStateTest {
         val previous = AppLanguage.selectedTag(activity)
         try {
             AppLanguage.select(activity, "nn")
-            AppLanguage.refresh(activity)
+            // Resource refresh alone leaves the already-built command captions stale.
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            idle()
             derivedExportKeepsDrawing(ImageFormat.ASCII_ART) { name -> "$name er lagra" }
         } finally {
             AppLanguage.select(activity, previous)
-            AppLanguage.refresh(activity)
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            idle()
         }
     }
 
