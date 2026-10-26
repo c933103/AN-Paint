@@ -222,7 +222,9 @@ class DialogEvidenceExportRule(private val instrumentation: Instrumentation): Te
             "retainedColourStateSurvivesRotationImeCancelAndReopen" to "paint.anpaint.android.ColourViewportDeviceTest",
             "hungarianColourCaptionsFitPortraitAndLandscape" to "paint.anpaint.android.ColourViewportDeviceTest",
             "largeEnglishColourCaptionsAndPreviewRemainReachable" to "paint.anpaint.android.ColourViewportDeviceTest",
-            "largeHungarianColourCaptionsAndPreviewRemainReachable" to "paint.anpaint.android.ColourViewportDeviceTest")
+            "largeHungarianColourCaptionsAndPreviewRemainReachable" to "paint.anpaint.android.ColourViewportDeviceTest",
+            "largeEnglishColourImeBackAndFooterLifecycle" to "paint.anpaint.android.ColourViewportDeviceTest",
+            "largeHungarianColourImeBackAndFooterLifecycle" to "paint.anpaint.android.ColourViewportDeviceTest")
         val METHODS=METHOD_CLASSES.keys
     }
 }

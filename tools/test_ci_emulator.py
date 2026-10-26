@@ -333,12 +333,12 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
                 result,events,boundary,status,coverage=self.run_boundary(future_sdk_bound=bound)
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr+boundary)
                 self.assertEqual(coverage['device_sdk'],35)
-                self.assertEqual(coverage['declared_tests'],30)
-                self.assertEqual(coverage['sdk_eligible_tests'],29)
-                self.assertEqual(coverage['completed_tests'],29)
+                self.assertEqual(coverage['declared_tests'],32)
+                self.assertEqual(coverage['sdk_eligible_tests'],31)
+                self.assertEqual(coverage['completed_tests'],31)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
-                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':3, 'dialog':12, **{phase:2 for phase in VERTICAL_SHARDS}, **{phase:len(part) for phase,part in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})
+                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':3, 'dialog':14, **{phase:2 for phase in VERTICAL_SHARDS}, **{phase:len(part) for phase,part in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()
@@ -348,7 +348,7 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('Complete successful seed report verified; PID=123',boundary)
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
-        self.assertEqual(coverage['completed_tests'],30)
+        self.assertEqual(coverage['completed_tests'],32)
 
     def test_failed_seed_or_dead_changed_process_never_reaches_external_stop(self):
         for failure in ('truncated','died','changed','transport','timeout','gallery_closed','die_after_gallery'):
@@ -417,8 +417,8 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
         self.assertTrue(coverage['success'])
-        self.assertEqual(coverage['declared_tests'],30)
-        self.assertEqual(coverage['completed_tests'],30)
+        self.assertEqual(coverage['declared_tests'],32)
+        self.assertEqual(coverage['completed_tests'],32)
         self.assertEqual({tuple(identity) for identity in coverage['completed']},{
             ('paint.anpaint.android.EditorDeviceTest','ordinary'),
             ('paint.anpaint.android.FutureTest','future'),

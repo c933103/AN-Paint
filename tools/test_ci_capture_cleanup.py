@@ -131,7 +131,7 @@ exit "$CLEANUP_INCOMING"
         for name in ('dialog-evidence.json', 'vertical-locale-export.json',
                      'vertical-locale-screenshots.json', 'vertical-control-reachability.json'):
             self.assertIs(json.loads((report / name).read_text())['success'], True)
-        self.assertEqual(len(list((report / 'app/dialog-evidence').rglob('*.png'))), 39)
+        self.assertEqual(len(list((report / 'app/dialog-evidence').rglob('*.png'))), 51)
         self.assertEqual(len(list((report / 'app/vertical-locale-evidence').rglob('*.png'))), 96)
 
     def test_real_validators_accept_complete_exports_before_logcat_and_shutdown(self):
