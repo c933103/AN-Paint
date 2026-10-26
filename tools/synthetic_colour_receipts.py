@@ -2,7 +2,7 @@
 import copy
 
 from dialog_evidence_transport import (COLOUR_CAPTIONS, COLOUR_CLASS, COLOUR_POINTERS,
-                                       COLOUR_SCREENS, LARGE_COLOUR_METHODS, LARGE_COLOUR_CAPTIONS, OWNER)
+                                       COLOUR_SCREENS, LARGE_COLOUR_METHODS, LARGE_COLOUR_CAPTIONS, LARGE_COLOUR_IME_METHODS, OWNER)
 
 
 def geometry(tag=None, bounds=(10, 20, 110, 60), **changes):
@@ -29,13 +29,95 @@ def synthetic_colour_endpoint(reached):
                  sample=copy.deepcopy(reached['sample']), editor=copy.deepcopy(reached['editor']))]
 
 
+def synthetic_colour_ime_observations(method):
+    """Authored bounded positive/negative oracle input, never installed evidence."""
+    from dialog_evidence_transport import LARGE_COLOUR_IME_METHODS, LARGE_COLOUR_IME_CAPTIONS
+    observations = []
+    root_id = 101
+    def state(ime=False, showing=True, closes=0, reopened=False):
+        return dict(target_attached=showing, target_showing=showing, target_focused=showing,
+                    target_insets_available=showing, target_ime_visible=False if showing else None,
+                    focused_insets_available=True, focused_app_window_present=True,
+                    focused_app_window_is_target=showing, focused_app_window_is_editor=not showing,
+                    focused_app_window_ime_visible=False, dialog_showing=showing,
+                    commit_callbacks=0, closed_callbacks=closes, value='#13579B',
+                    selected_colour=-65536, preview_colour=-65536, selection_start=2, selection_end=5,
+                    picker_colour=-15509605, native_ime_present=ime, dialog_id=202 if reopened else 102,
+                    root_id=201 if reopened else 101, field_id=103, picker_id=104,
+                    same_dialog=True, same_picker=True, same_root=True, same_field=True)
+    def chain(root=101):
+        return [geometry(bounds=(0, 0, 640, 320), id=7, parent_id=root, is_root=False),
+                geometry(bounds=(0, 0, 640, 320), id=root, parent_id=0, is_root=True)]
+    def caption(key, root=101, lifecycle=True):
+        tag = 'About-row' if key in ('cancel', 'use') else key
+        geometry_tag = None if key in ('cancel', 'use') else key
+        text = '#13579B' if key == 'colour_hex' else 'Synthetic caption'
+        observations.append(dict(kind='intrinsic-caption', tag=tag, lines=1, layout_height=20,
+                                 available_text_height=30, caption_length=len(text), layout_width=100,
+                                 line_metrics=[dict(end=len(text), ellipsis=0, left=0, right=99)], geometry=geometry(key)))
+        if lifecycle:
+            observations.append(dict(kind='colour-2x-caption', key=key, tag=tag, text=text, accessible_text=text,
+                                     layout_text=text, lines=1, caption_length=len(text), root_id=root,
+                                     line_ranges=[[0, len(text)]]))
+            observations.append(dict(kind='colour-2x-caption-line', key=key, line=0,
+                                     line_rect=[11, 21, 100, 40], geometry=geometry(geometry_tag), parent_id=7, ancestors=chain(root)))
+        else:
+            observations.append(dict(kind='caption-line-reached', tag=key, line=0,
+                                     geometry=geometry(key), line_rect=[11, 21, 100, 40]))
+    def pointer(label):
+        caption(label, lifecycle=False)
+        observations.extend([dict(kind='pointer-before', label=label, tap=[50, 40], geometry=geometry()),
+                             dict(kind='pointer-injected', label=label)])
+    windows = [dict(id=5, type=2, package='synthetic.ime', configured_ime=True, root_visible=True,
+                    root_children=1, bounds=[0, 0, 640, 320], root_bounds=[0, 0, 640, 320])]
+    def ime(showing):
+        observations.append(dict(kind='colour-native-ime-window', requested_visible=showing,
+                                 condition_passed=True, stable_window_ms=250, ime_visible=False, ime_inset_bottom=0,
+                                 fullscreen_ime=True, root_id=101, field_id=103, value='#13579B',
+                                 dialog=geometry(), field=geometry('colour_hex'), windows=copy.deepcopy(windows) if showing else []))
+    def back(label, before, after):
+        observations.extend([
+            dict(kind='native-back-before', label=label, state=before, postcondition_met=False),
+            dict(kind='native-back-injected', label=label, state=copy.deepcopy(after),
+                 route='UiDevice.pressKeyCode(KEYCODE_BACK)', keycode=4, injection_count=1, injected=True),
+            dict(kind='native-back-after', label=label, state=after, injected=True, completed=True, postcondition_met=True)])
+    observations.append(dict(kind='colour-2x-initial', locale=LARGE_COLOUR_IME_METHODS[method], density=1, font_scale=2,
+                             setup='synthetic hex #13579B selection [2,5]; native IME and footer input',
+                             display=geometry(bounds=(0, 0, 640, 320)), state=state(), simultaneous_ime_field_footer_fit='not-accepted'))
+    pointer('2x hex field'); ime(True)
+    observations.append(dict(kind='colour-2x-ime-occlusion', state=state(ime=True),
+                             simultaneous_ime_field_footer_fit='not-accepted',
+                             controls=[dict(key=key, geometry=geometry(), parent_id=7, ancestors=chain(),
+                                            ime_overlaps=[dict(window_id=5, overlaps=True)]) for key in ('hex', 'cancel', 'use')]))
+    back('hide 2x colour IME', state(ime=True), state())
+    ime(False)
+    observations.append(dict(kind='colour-2x-hidden-retained', state=state()))
+    for key in LARGE_COLOUR_IME_CAPTIONS[:-1]:
+        caption(key)
+    pointer('2x Cancel')
+    observations.append(dict(kind='colour-2x-cancelled', commit_callbacks=0, closed_callbacks=1,
+                             selected_colour=-65536, preview_colour=-65536, dialog_showing=False, root_attached=False))
+    observations.append(dict(kind='colour-2x-reopened', root_id=201, dialog_id=202, value='#FF0000'))
+    back('close 2x reopened colour', state(closes=1, reopened=True), state(showing=False, closes=2, reopened=True))
+    caption('use', root=301)
+    pointer('2x invalid rejected')
+    observations.append(dict(kind='colour-2x-invalid-rejected', root_id=301, dialog_id=302, value='#broken',
+                             dialog_showing=True, error_present=True, commit_callbacks=0, closed_callbacks=2))
+    pointer('2x valid committed')
+    observations.append(dict(kind='colour-2x-complete', commit_callbacks=1, closed_callbacks=3,
+                             selected_colour=-14391124, dialog_showing=False, root_attached=False,
+                             simultaneous_ime_field_footer_fit='not-accepted'))
+    return observations
+
+
 def synthetic_colour_receipt(method, digest):
     """Deliberately invented dimensions/times for validating accepted/rejected schemas."""
     retained = method.startswith('retained')
     normal = method.startswith('normal')
-    large = method in LARGE_COLOUR_METHODS
+    lifecycle = method in LARGE_COLOUR_IME_METHODS
+    large = method in LARGE_COLOUR_METHODS or lifecycle
     scale = 2 if large else 1
-    locale = LARGE_COLOUR_METHODS[method] if large else ('hu' if method.startswith('hungarian') else 'en-US')
+    locale = LARGE_COLOUR_IME_METHODS[method] if lifecycle else LARGE_COLOUR_METHODS[method] if large else ('hu' if method.startswith('hungarian') else 'en-US')
     observations = [dict(kind='fixture', locale=locale, font_scale=scale)]
     orientations = [False, True] if normal or large else [False, True, False, True] if retained else [False, True, False]
     for landscape in orientations:
@@ -56,14 +138,16 @@ def synthetic_colour_receipt(method, digest):
                  line_metrics=[dict(end=5, ellipsis=0, left=0, right=99)], geometry=geometry(tag)),
             dict(kind='caption-line-reached', tag=tag, line=0, geometry=geometry(tag), line_rect=[11, 21, 100, 40])])
 
-    for tag in (LARGE_COLOUR_CAPTIONS if large else ['cancel'] if normal else COLOUR_CAPTIONS * (3 if retained else 2)):
+    for tag in ([] if lifecycle else LARGE_COLOUR_CAPTIONS if large else ['cancel'] if normal else COLOUR_CAPTIONS * (3 if retained else 2)):
         caption(tag)
 
     def pointer(label):
         observations.extend([dict(kind='pointer-before', label=label, tap=[50, 40], geometry=geometry()),
                              dict(kind='pointer-injected', label=label)])
 
-    if large:
+    if lifecycle:
+        observations.extend(synthetic_colour_ime_observations(method))
+    elif large:
         observations.extend([
             dict(kind='colour-large-rail-reached', display=geometry(bounds=(0, 0, 640, 320)),
                  density=1, font_scale=2, text_size=24, expected_text_size=24, overflow=True,

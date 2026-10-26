@@ -132,19 +132,30 @@ before retrying; use the affected scope, not a repeated full matrix by default.
 
 ## Localized dialog evidence and separate phase
 
-Twelve installed dialog method/class pairs run in the `app-dialog` report: four
-current notice/credit cases, three Korean attribution/crop consumer cases, three normal-font colour cases and two 2× short-landscape preview-rail cases. Source discovery
+Fourteen installed dialog method/class pairs run in the `app-dialog` report: four
+current notice/credit cases, three Korean attribution/crop consumer cases, three normal-font colour cases, two 2× short-landscape preview-rail cases and two separate 2× IME/Back/footer lifecycle cases (en-US/hu, 640×320, density 1). Source discovery
 still requires every SDK-eligible app identity, without duplication or omission.
 The colour cases replace the old zero-height limitation characterization; its
 original failed positive and measured negative results remain historical evidence,
 not claims about the repaired source. See [PR51's accepted bounded baseline](https://github.com/c933103/AN-Paint/pull/51).
 
 The dialog 300-second cancellation cap and each 45-second interaction limit stay
-unchanged. Twelve individual maxima exceed that aggregate cap; fresh actual combined
+unchanged. Fourteen individual maxima exceed that aggregate cap; fresh actual combined
 execution must fit, and a timeout remains a failure. Neither historical timings
-nor synthetic transport fixtures prove the combined runtime. The new 2× cases cover English/Hungarian caption and preview-rail reachability
-only. Large-font IME/footer, physical-device and TalkBack coverage remain separate
-limits; C05 large-font ancestor visibility is still open.
+nor synthetic transport fixtures prove the combined runtime. The existing
+2× cases cover English/Hungarian caption and preview-rail reachability only.
+The separate 2× lifecycle
+cases require the configured native IME window stable for 250 ms (including fullscreen
+extract with zero app inset), one Back retaining the exact draft/selection/dialog,
+sequential full-caption/footer reachability, native Cancel, reopened Back and
+invalid/valid commit outcomes. IME-open raw field/footer bounds, ancestor clipping
+and actual IME overlap are observations, not a simultaneous-fit acceptance gate.
+The complete success inventory is 14 dialog methods/51 PNGs and 47 API35 app methods;
+API30 eligibility is unchanged. New source is not installed evidence until exact-source
+CI and all six PNGs per lifecycle case are inspected. Failed/partial captures never
+count as successful inventory. Simultaneous IME/field/footer fit, physical-device,
+TalkBack and universal 2× acceptance remain unaccepted;
+C05 large-font ancestor visibility is still open.
 
 The three Korean cases select `ko-KP`, `ko-KR` and `ko-Kore-KR` through the real
 picker and require their public/platform/resource identities. They open the
@@ -279,8 +290,8 @@ main/test APK and corresponding-source hashes, and the exact disjoint source-bou
 app report union. Exact-identity groups from earlier attempts of the same run may
 be reused; both positive attempt numbers are recorded and cannot be in the future.
 Missing/failed/duplicate methods, wrong selectors/deadlines,
-stale artifacts and SDK mismatches fail closed. All 45 declared methods remain
-required according to their existing SDK rules (30 selected on API30; 45 on API35).
+stale artifacts and SDK mismatches fail closed. All 47 declared methods remain
+required according to their existing SDK rules (30 selected on API30; 47 on API35).
 Count/selector contracts and synthetic receipts do not prove Android execution
 or runtime. These
 checks cover native layout boxes and input, not pixel-level glyph clipping,

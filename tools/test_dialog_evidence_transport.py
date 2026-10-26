@@ -24,7 +24,7 @@ DIGEST = 'a' * 64
 
 def summary():
     return dict(success=True, device_sdk=35, timed_out=False, returncode=0,
-                source_tests_sha256=DIGEST, expected_tests=12, completed_tests=12, missing=[], unexpected=[], errors=[],
+                source_tests_sha256=DIGEST, expected_tests=14, completed_tests=14, missing=[], unexpected=[], errors=[],
                 included_tests=sorted(owner + '#' + name for name, owner in METHOD_CLASSES.items()),
                 cases=[dict(classname=owner, name=m, status='passed') for m, owner in METHOD_CLASSES.items()])
 
@@ -144,6 +144,134 @@ def write_archive(root, method, *, change_receipt=None, change_manifest=None, ex
             zipped.writestr(*extra)
 
 
+class LargeColourImeLifecycleContractTest(unittest.TestCase):
+    METHODS = ('largeEnglishColourImeBackAndFooterLifecycle', 'largeHungarianColourImeBackAndFooterLifecycle')
+
+    def test_separate_lifecycle_profile_has_exact_six_pngs_and_no_extra_acceptance(self):
+        for method in self.METHODS:
+            data = receipt(method)
+            self.assertEqual(METHOD_SCREENS[method], [
+                '0-colour-2x-initial.png', '1-colour-2x-ime-open.png', '2-colour-2x-ime-hidden.png',
+                '3-colour-2x-cancel-reached.png', '4-colour-2x-reopened.png', '5-colour-2x-use-reached.png'])
+            self.assertLessEqual(len(data['observations']), 512)
+            self.assertLessEqual(len(data['screenshots']), 20)
+            verify_receipt(data, method, DIGEST)
+            self.assertEqual(observation(data, 'colour-2x-complete')['simultaneous_ime_field_footer_fit'], 'not-accepted')
+
+    def test_fullscreen_zero_inset_and_observed_occlusion_are_not_failures(self):
+        for method in self.METHODS:
+            data = receipt(method)
+            event = observation(data, 'colour-native-ime-window')
+            self.assertEqual(event['ime_inset_bottom'], 0)
+            self.assertIs(event['ime_visible'], False)
+            occlusion = observation(data, 'colour-2x-ime-occlusion')
+            for item in occlusion['controls']:
+                self.assertTrue(item['ime_overlaps'][0]['overlaps'])
+                item['geometry']['visible'] = [0, 0, 0, 0]
+                for ancestor in item['ancestors']:
+                    ancestor['visible'] = [0, 0, 0, 0]
+            # Native IME presence + raw observations, not app inset or simultaneous fit.
+            verify_receipt(data, method, DIGEST)
+            for item in occlusion['controls']:
+                item['geometry']['raw'] = [20, 20, 120, 20]
+                item['ime_overlaps'][0]['overlaps'] = False
+                for ancestor in item['ancestors']:
+                    ancestor['raw'] = [0, 0, 640, 0]
+            verify_receipt(data, method, DIGEST)
+            event['windows'][0].update(bounds=[0, 200, 640, 320], root_bounds=[0, 200, 640, 320])
+            for item in occlusion['controls']:
+                item['ime_overlaps'][0]['overlaps'] = False
+            verify_receipt(data, method, DIGEST)
+
+    def test_missing_native_ime_stale_root_and_back_outcomes_fail(self):
+        mutations = [
+            lambda r: observation(r, 'colour-native-ime-window').update(windows=[]),
+            lambda r: observation(r, 'colour-native-ime-window').update(stable_window_ms=249),
+            lambda r: observation(r, 'colour-native-ime-window').update(root_id=999),
+            lambda r: observation(r, 'colour-native-ime-window').update(field_id=999),
+            lambda r: observation(r, 'colour-native-ime-window')['windows'][0].update(configured_ime=False),
+            lambda r: observation(r, 'colour-native-ime-window')['windows'][0].update(root_children=0),
+            lambda r: observation(r, 'colour-native-ime-window')['windows'][0].update(root_visible=False),
+            lambda r: observation(r, 'colour-native-ime-window')['windows'][0].update(type=1),
+            lambda r: observation(r, 'colour-native-ime-window')['windows'][0].update(root_bounds=[0, 0, 0, 0]),
+            lambda r: observation(r, 'colour-2x-hidden-retained')['state'].update(root_id=999),
+            lambda r: observation(r, 'colour-2x-hidden-retained')['state'].update(same_dialog=False),
+            lambda r: observation(r, 'colour-2x-hidden-retained')['state'].update(selection_end=6),
+            lambda r: observation(r, 'colour-2x-hidden-retained')['state'].update(target_focused=False),
+            lambda r: observation(r, 'colour-2x-hidden-retained')['state'].update(native_ime_present=True),
+            lambda r: r['observations'].remove(observation(r, 'native-back-after')),
+            lambda r: observation(r, 'native-back-injected').update(injection_count=2),
+            lambda r: observation(r, 'native-back-after').update(completed=False),
+            lambda r: observation(r, 'native-back-after').update(postcondition_met=False),
+            lambda r: observation(r, 'native-back-after')['state'].update(closed_callbacks=1),
+            lambda r: observation(r, 'native-back-injected')['state'].update(commit_callbacks=1),
+            lambda r: observation(r, 'native-back-injected')['state'].update(field_id=999),
+            lambda r: observation(r, 'colour-2x-cancelled').update(preview_colour=0),
+            lambda r: observation(r, 'colour-2x-reopened').update(root_id=101),
+            lambda r: next(o for o in r['observations'] if o.get('kind') == 'native-back-injected'
+                           and o.get('label') == 'close 2x reopened colour')['state'].update(closed_callbacks=0),
+            lambda r: next(o for o in r['observations'] if o.get('kind') == 'native-back-injected'
+                           and o.get('label') == 'close 2x reopened colour')['state'].update(closed_callbacks=99),
+            lambda r: observation(r, 'colour-2x-invalid-rejected').update(root_id=201),
+            lambda r: observation(r, 'colour-2x-invalid-rejected').update(error_present=False),
+            lambda r: observation(r, 'colour-2x-invalid-rejected').update(commit_callbacks=1),
+            lambda r: observation(r, 'colour-2x-complete').update(commit_callbacks=2),
+            lambda r: observation(r, 'colour-2x-complete').update(closed_callbacks=2),
+            lambda r: observation(r, 'colour-2x-complete').update(simultaneous_ime_field_footer_fit='accepted'),
+        ]
+        for method in self.METHODS:
+            for mutate in mutations:
+                data = receipt(method); mutate(data)
+                with self.subTest(method=method, mutate=mutate), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
+
+    def test_incomplete_text_and_ancestor_chain_fail_after_ime_hidden(self):
+        def late_lines(r):
+            lines = [o for o in r['observations'] if o['kind'] == 'colour-2x-caption-line']
+            r['observations'] = [o for o in r['observations'] if o not in lines] + lines
+        def wrong_intrinsic(r):
+            index = r['observations'].index(observation(r, 'colour-2x-caption'))
+            r['observations'][index - 1]['tag'] = 'wrong-control'
+        mutations = [
+            late_lines, wrong_intrinsic,
+            lambda r: observation(r, 'colour-2x-caption').update(accessible_text='partial'),
+            lambda r: observation(r, 'colour-2x-caption').update(caption_length=1),
+            lambda r: observation(r, 'colour-2x-caption').update(line_ranges=[[1, 17]]),
+            lambda r: observation(r, 'colour-2x-caption').update(layout_text='partial'),
+            lambda r: observation(r, 'colour-2x-caption').update(root_id=999),
+            lambda r: r['observations'].remove(observation(r, 'colour-2x-caption-line')),
+            lambda r: observation(r, 'colour-2x-caption-line').update(ancestors=[]),
+            lambda r: observation(r, 'colour-2x-caption-line')['ancestors'].pop(0),
+            lambda r: observation(r, 'colour-2x-caption-line')['ancestors'].pop(),
+            lambda r: observation(r, 'colour-2x-caption-line')['ancestors'][0].update(visible=[0, 0, 5, 5]),
+            lambda r: observation(r, 'colour-2x-caption-line').update(parent_id=999),
+            lambda r: observation(r, 'colour-2x-caption-line')['ancestors'][-1].update(is_root=False),
+            lambda r: observation(r, 'colour-2x-ime-occlusion').update(controls=[]),
+            lambda r: observation(r, 'colour-2x-ime-occlusion')['controls'][0]['ancestors'].pop(0),
+            lambda r: observation(r, 'colour-2x-ime-occlusion')['controls'][0]['ancestors'][0].update(parent_id=999),
+            lambda r: observation(r, 'colour-2x-ime-occlusion')['controls'][0].update(ime_overlaps=[]),
+            lambda r: observation(r, 'colour-2x-ime-occlusion')['controls'][0]['ime_overlaps'][0].update(overlaps=False),
+        ]
+        for method in self.METHODS:
+            for mutate in mutations:
+                data = receipt(method); mutate(data)
+                with self.subTest(method=method, mutate=mutate), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
+
+    def test_new_case_missing_duplicate_png_and_source_mismatch_are_never_successful(self):
+        for method in self.METHODS:
+            for mutate in (
+                lambda r: r['screenshots'].pop(),
+                lambda r: r['screenshots'].append(r['screenshots'][0]),
+                lambda r: r.update(source_tests_sha256='b' * 64),
+                lambda r: r.update(outcome='failed'),
+                lambda r: r.update(observations=r['observations'] + [dict(kind='extra')] * 513),
+            ):
+                data = copy.deepcopy(receipt(method)); mutate(data)
+                with self.subTest(method=method, mutate=mutate), self.assertRaises(ValueError):
+                    verify_receipt(data, method, DIGEST)
+
+
 class DialogEvidenceTransportTest(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -158,14 +286,14 @@ class DialogEvidenceTransportTest(unittest.TestCase):
             write_archive(self.exports, method)
         self.method = next(iter(METHOD_SCREENS))
 
-    def test_exact_source_bound_twelve_case_export_and_atomic_extraction(self):
+    def test_exact_source_bound_fourteen_case_export_and_atomic_extraction(self):
         result = extract(self.exports, self.output, self.summary)
         self.assertTrue(result['success'])
         self.assertEqual(result['source_tests_sha256'], DIGEST)
-        self.assertEqual(len(result['cases']), 12)
-        self.assertEqual(len(list(self.output.rglob('*.png'))), 39)
-        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 12)
-        self.assertEqual(len(list(self.output.rglob('manifest.json'))), 12)
+        self.assertEqual(len(result['cases']), 14)
+        self.assertEqual(len(list(self.output.rglob('*.png'))), 51)
+        self.assertEqual(len(list(self.output.rglob('receipt.json'))), 14)
+        self.assertEqual(len(list(self.output.rglob('manifest.json'))), 14)
         self.assertEqual(result['large_text_short_landscape_advanced_colour'], 'not-accepted')
         self.assertIs(result['universal_colour_acceptance'], False)
         self.assertIs(result['normal_font_colour_source_bound_pass'], True)
@@ -287,7 +415,7 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
         cls.flow = cls.source.split('private fun noticeFlow(index: Int)', 1)[1].split(
             '@Test fun retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation()', 1)[0]
 
-    def test_exact_three_notice_bindings_and_twelve_two_class_sdk35_methods(self):
+    def test_exact_three_notice_bindings_and_fourteen_two_class_sdk35_methods(self):
         expected = {
             'aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow': 0,
             'aboutArtworkNoticeCompletesNativeFooterFlow': 1,
@@ -334,15 +462,15 @@ class NoticeFlowPartitionContractTest(unittest.TestCase):
                          'assertEquals("Actual menu callback loaded the bundled notice",expected,'):
             self.assertIn(required, normalized)
 
-    def test_exact_thirty_nine_pngs_preserve_profiles_and_capture_indices(self):
+    def test_exact_fifty_one_pngs_preserve_profiles_and_capture_indices(self):
         self.assertEqual([METHOD_SCREENS[name] for name in NOTICE_METHODS], [
             ['0-about-portrait.png', '1-about-landscape.png', '2-notice-0-initial.png', '3-notice-0-portrait.png'],
             ['0-notice-1-initial.png'], ['0-notice-2-initial.png']])
-        self.assertEqual(len(METHOD_SCREENS), 12)
-        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 39)
+        self.assertEqual(len(METHOD_SCREENS), 14)
+        self.assertEqual(sum(map(len, METHOD_SCREENS.values())), 51)
         self.assertEqual(len(METHOD_SCREENS['retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation']), 2)
         self.assertNotIn('unchangedAdvancedColourReportsShortLandscapeLimitation', METHOD_SCREENS)
-        self.assertEqual(sum(map(len, COLOUR_SCREENS.values())), 19)
+        self.assertEqual(sum(map(len, COLOUR_SCREENS.values())), 31)
 
     def test_each_notice_requires_its_own_copy_nested_back_done_reopen_and_close_back(self):
         for method, index in NOTICE_METHODS.items():

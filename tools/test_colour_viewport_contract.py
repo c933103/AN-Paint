@@ -95,7 +95,37 @@ class ColourViewportContractTest(unittest.TestCase):
             'hungarianColourCaptionsFitPortraitAndLandscape',
             'largeEnglishColourCaptionsAndPreviewRemainReachable',
             'largeHungarianColourCaptionsAndPreviewRemainReachable',
+            'largeEnglishColourImeBackAndFooterLifecycle',
+            'largeHungarianColourImeBackAndFooterLifecycle',
         ])
+
+    def test_large_ime_lifecycle_keeps_native_oracles_exact_state_and_six_captures(self):
+        source = INSTALLED.read_text()
+        body = source.split('private fun largeColourImeLifecycle(', 1)[1].split('private fun ancestors(', 1)[0]
+        for required in ('fixture(tag,2f)', 'orient(true,scenario)', 'AdvancedColourDialog(',
+                         'assertEquals(640,activity.window.decorView.width)',
+                         'assertEquals(320,activity.window.decorView.height)',
+                         'field.setText("#13579B");field.setSelection(2,5)',
+                         'awaitNativeImeWindow(true,root,field,"colour-2x-ime-open")',
+                         'awaitNativeImeWindow(false,root,field,"colour-2x-ime-hidden")',
+                         'nativeBack("hide 2x colour IME"', '!nativeImePresent()',
+                         'dialog===firstDialog && picker===firstPicker', 'dialog.window!!.decorView===root',
+                         'root.findViewWithTag<View>("colour_hex")===field', 'field.selectionStart==2 && field.selectionEnd==5',
+                         'nativeBack("close 2x reopened colour"', 'tap("2x Cancel",cancel)',
+                         'tap("2x invalid rejected",finalUse)', 'tap("2x valid committed",finalUse)',
+                         'assertNotNull(finalField.error)', 'commits==1 && closes==3',
+                         'preview==android.graphics.Color.RED', '"simultaneous_ime_field_footer_fit","not-accepted"'):
+            self.assertIn(required, body)
+        self.assertNotIn('rootWindowInsets', body)
+        self.assertEqual(re.findall(r'evidence.capture\("([^"]+)"\)', body), [
+            'colour-2x-initial', 'colour-2x-cancel-reached', 'colour-2x-reopened', 'colour-2x-use-reached',
+            'colour-2x-failed-before-dismiss'])
+        helper = source.split('private fun largeLifecycleCaption(', 1)[1].split('private fun nativeImePresent(', 1)[0]
+        for required in ('intrinsic(view)', 'node.text?.toString()', 'getLineStart(line)', 'getLineEnd(line)',
+                         'reveal(view) {lineBounds()}', 'ancestors(view)', 'contains(target)', '"parent_id"'):
+            self.assertIn(required, helper)
+        for forbidden in ('performClick(', 'requestRectangleOnScreen(', 'setTextSize(', 'setSoftInputMode(', 'imeOptions='):
+            self.assertNotIn(forbidden, body + helper)
 
     def test_validation_and_callbacks_are_not_replaced_by_layout_changes(self):
         source = PRODUCTION.read_text()

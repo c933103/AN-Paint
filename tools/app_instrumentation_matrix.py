@@ -40,6 +40,9 @@ COLOUR_METHODS = {
     'hungarianColourCaptionsFitPortraitAndLandscape',
     'largeEnglishColourCaptionsAndPreviewRemainReachable',
     'largeHungarianColourCaptionsAndPreviewRemainReachable',
+    'largeEnglishColourImeBackAndFooterLifecycle',
+    'largeHungarianColourImeBackAndFooterLifecycle',
+
 
 }
 DIALOG_METHODS = {
@@ -141,7 +144,8 @@ def verify_app_reports(expected: set[Identity], sdk: int, reports: dict[str, dic
                 timeout_seconds_by_phase={phase: PHASE_TIMEOUTS[phase] for phase in parts},
                 dialog_timeout_seconds=300 if sdk == 35 else 0,
                 colour_scope=('source-bound-positive-normal-font; API35 en-US/hu 2x 640x320 mdpi '
-                              'preview-rail reachability and Cancel only; whole-dialog and universal 2x not accepted'
+                              'preview-rail reachability and Cancel only; separate native IME/Back/footer lifecycle; '
+                              'simultaneous IME/field/footer fit, whole-dialog and universal 2x not accepted'
                               if sdk == 35 else 'installed colour not selected on this SDK; model coverage is separate'),
                 ordinary_and_gallery_total_timeout_seconds=sum(PHASE_TIMEOUTS[phase] for phase in parts
                                                                if phase in ('ordinary', 'gallery-draft')),

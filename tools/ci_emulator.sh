@@ -224,7 +224,9 @@ run_dialog_regression() {
     --include-test "$colour_class#retainedColourStateSurvivesRotationImeCancelAndReopen" \
     --include-test "$colour_class#hungarianColourCaptionsFitPortraitAndLandscape" \
     --include-test "$colour_class#largeEnglishColourCaptionsAndPreviewRemainReachable" \
-    --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable"
+    --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable" \
+    --include-test "$colour_class#largeEnglishColourImeBackAndFooterLifecycle" \
+    --include-test "$colour_class#largeHungarianColourImeBackAndFooterLifecycle"
 }
 
 cleanup() {
