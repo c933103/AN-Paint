@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.catrobat.paintroid.local.NumericDisplayLocaleTest" tests="6" skipped="0" failures="1" errors="0" timestamp="2026-10-26T18:05:02.121Z" hostname="runnervmwhx2h" time="6.618">
+  <properties/>
+  <testcase name="newResizeAndCanvasBudgetCaptionsFollowSelectedLocale" classname="org.catrobat.paintroid.local.NumericDisplayLocaleTest" time="2.157"/>
+  <testcase name="zoomLabelAndItsStatusAndAccessibilityConsumersUseSelectedLocale" classname="org.catrobat.paintroid.local.NumericDisplayLocaleTest" time="0.643"/>
+  <testcase name="selectionCaptionUsesLocalizedRotationAndPreservesGeometry" classname="org.catrobat.paintroid.local.NumericDisplayLocaleTest" time="1.599"/>
+  <testcase name="recentColourIndicesLocalizeWhileHexAndStoredValuesStayInvariant" classname="org.catrobat.paintroid.local.NumericDisplayLocaleTest" time="1.042"/>
+  <testcase name="oversizeWarningUsesResourceDigitsAndDecimalsWithoutChangingAdmission" classname="org.catrobat.paintroid.local.NumericDisplayLocaleTest" time="0.402"/>
+  <testcase name="resizeBudgetRefreshUsesResourceLocaleAndCancelPreservesInputs" classname="org.catrobat.paintroid.local.NumericDisplayLocaleTest" time="0.774">
+    <failure message="java.util.NoSuchElementException: Key sr-Cyrl is missing in the map." type="java.util.NoSuchElementException">java.util.NoSuchElementException: Key sr-Cyrl is missing in the map.
+	at kotlin.collections.MapsKt__MapWithDefaultKt.getOrImplicitDefaultNullable(MapWithDefault.kt:24)
+	at kotlin.collections.MapsKt__MapsKt.getValue(Maps.kt:360)
+	at org.catrobat.paintroid.local.NumericDisplayLocaleTest.resizeBudgetRefreshUsesResourceLocaleAndCancelPreservesInputs(NumericDisplayLocaleTest.kt:142)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)
+	at org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)
+	at org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: org.robolectric.android.internal.AndroidTestEnvironment$UnExecutedRunnablesException: Main looper has queued unexecuted runnables. This might be the cause of the test failure. You might need a shadowOf(Looper.getMainLooper()).idle() call.
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
