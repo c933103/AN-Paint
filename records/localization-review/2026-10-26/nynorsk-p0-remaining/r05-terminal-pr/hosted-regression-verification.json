@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "run_id": 40279026132,
+  "artifact_id": 12632410261,
+  "artifact_sha256": "2b6401185ba096d41029d9396172d3b3f1ec4637c7fd3674cdc0c372de263983",
+  "reviewed_head": "3c8123707106dfc991221517e443276f857797db",
+  "tested_commit": "ccf60becbb36d17849b907c49bad7d23c17f02cf",
+  "junit_files": 144,
+  "junit_totals": {
+    "tests": 1349,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "unique_junit_identities": 1349,
+  "focused_suites": [
+    {
+      "class": "DerivedExportStateTest",
+      "source_test_methods": 5,
+      "artifact_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.DerivedExportStateTest.xml",
+      "xml_sha256": "251604e387dd211f673c2361075cb9cb5551a969ab4d1812c1461621baee1744",
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "base64ExportKeepsOriginalDrawingAndWritesRecoverableImage",
+          "seconds": "0.632",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "nynorskExportStatusNamesTheWrittenFileWithoutClaimingTheDrawingIsSaved",
+          "seconds": "1.048",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "icoExportKeepsFullResolutionDrawingAndBlocksPendingClose",
+          "seconds": "0.594",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "asciiExportKeepsOriginalDrawingAndBlocksPendingClose",
+          "seconds": "0.574",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.DerivedExportStateTest",
+          "name": "savedAsciiOptionsDriveRealExportAfterActivityRecreationAndIconSizeRemainsAvailable",
+          "seconds": "1.022",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "class": "ImportSelectionTitleTest",
+      "source_test_methods": 10,
+      "artifact_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImportSelectionTitleTest.xml",
+      "xml_sha256": "de0203d89ecddc9f3275705132053c31e9ce5f48da8746720a1ee7c617d37e96",
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "exactGifAndWebpKeepTheConfirmedTitleAndOpenFirstImageExactlyOnce",
+          "seconds": "0.064",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "provenLowerBoundKeepsConfirmedTitleAndAtLeastCount",
+          "seconds": "0.699",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "uncertainOpenStillTransfersTheFirstImageExactlyOnce",
+          "seconds": "1.318",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "disposalAfterUncertainApprovalSuppressesQueuedSelection",
+          "seconds": "0.618",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "nynorskAnimationWarningsRetainUncertainAndMixedCountSemanticsInRealDialogs",
+          "seconds": "1.175",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "bothApngDefaultImageOutcomesKeepConfirmedTitleAndTheirOwnBody",
+          "seconds": "0.062",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "zeroAndOneProvenFramesUseNeutralTitleAndOnlyTheUncertainBody",
+          "seconds": "3.47",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "ordinarySingleFrameInputsStillBypassTheWarning",
+          "seconds": "0.033",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "incompleteWelshCatalogueRetainsDefaultEnglishFallback",
+          "seconds": "2.252",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+          "name": "brazilianPortugueseUsesTheExistingNeutralAndConfirmedTitles",
+          "seconds": "0.604",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "class": "NynorskRemainingP0Test",
+      "source_test_methods": 4,
+      "artifact_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.NynorskRemainingP0Test.xml",
+      "xml_sha256": "97707ab4fcf6f878149d74ea1a459f5d448a7401ccc8196cb7da9b9a9636069b",
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.local.NynorskRemainingP0Test",
+          "name": "all72WholeCompiledValuesMatchTheIndependentFixtureAndHeldFallbackStaysEnglish",
+          "seconds": "0.029",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.NynorskRemainingP0Test",
+          "name": "realMemoryAdmissionFailureRetainsAllFourArgumentsAndNoAutomaticResizeClaim",
+          "seconds": "0.017",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.NynorskRemainingP0Test",
+          "name": "unreadableDraftProducesTheReviewedNoticeOnlyAfterPreservingItsExactBytes",
+          "seconds": "0.02",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.NynorskRemainingP0Test",
+          "name": "recoveredDraftKeepsUnsavedStatePixelsAndItsOneOptionalFloatingSelection",
+          "seconds": "0.02",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "class": "NynorskSaveWordingTest",
+      "source_test_methods": 2,
+      "artifact_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.NynorskSaveWordingTest.xml",
+      "xml_sha256": "ea375f09de32bc1de18b129e0723bd2a1316b980f9957d912ce603ce50487ae3",
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.local.NynorskSaveWordingTest",
+          "name": "actualSaveExportAndSharePanelsShowDistinctWholeMessagesAndCancelWithoutSaving",
+          "seconds": "0.693",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.NynorskSaveWordingTest",
+          "name": "allEightCompleteCompiledValuesPreserveTheFilenameArgumentAndActionNames",
+          "seconds": "0.025",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "class": "TaggedColourImportTest",
+      "source_test_methods": 5,
+      "artifact_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.TaggedColourImportTest.xml",
+      "xml_sha256": "5c9a1584ce23f08f9ce3add8ce7ec3146dee567ec6d2a99f7d56b3beb7669f8e",
+      "cases": [
+        {
+          "classname": "org.catrobat.paintroid.local.TaggedColourImportTest",
+          "name": "everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback",
+          "seconds": "0.14",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.TaggedColourImportTest",
+          "name": "failedSelectionNeverOffersTaggedDibOrIcoToTheDocumentAndDeletesStagedFile",
+          "seconds": "0.055",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.TaggedColourImportTest",
+          "name": "americanEnglishImportsUseTheAmericanResource",
+          "seconds": "0.019",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.TaggedColourImportTest",
+          "name": "packedDibAndIcoRejectUnsupportedProfilesThroughSharedImportAndKeepSources",
+          "seconds": "0.02",
+          "passed": true
+        },
+        {
+          "classname": "org.catrobat.paintroid.local.TaggedColourImportTest",
+          "name": "explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection",
+          "seconds": "0.018",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "hosted_python": {
+    "run": 1364,
+    "passed": 1362,
+    "skipped": 2,
+    "seconds": 257.035,
+    "raw_log_sha256": "a4137f3af898cea0ca6c45c0bccd972abeedfd9726a0a6a3bd8602e829517fbb",
+    "skipped_identities": "Not named in non-verbose hosted terminal summary; not guessed from source or local results."
+  },
+  "lint_issues": 0,
+  "lint_severities": [],
+  "phase_receipts": {
+    "python": {
+      "exit_code": 0,
+      "receipt_sha256": "601cf0f85e59000828d5e36c2c1434da1c5647610c9a70e848f828d0b6211a50"
+    },
+    "jvm": {
+      "exit_code": 0,
+      "receipt_sha256": "6fa7d8917acae380e8094c133f6fe65c56c5e98d2633d8dc27ecae9c724d33a6"
+    },
+    "native": {
+      "exit_code": 0,
+      "receipt_sha256": "090b92bda8a1294eda47dc665f345a69395be986233218c2653b7ac46ad8d829"
+    },
+    "lint": {
+      "exit_code": 0,
+      "receipt_sha256": "e24879eb0c1ac1dd25f3b1e0dc9881793a251da05c0d1bebae601ee847011373"
+    }
+  },
+  "limits": "Hosted JVM/resources/lint results; not native-human, physical-device, whole-language or release acceptance. API35 is a separate artifact."
+}
