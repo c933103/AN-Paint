@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "head": "3c8123707106dfc991221517e443276f857797db",
+  "tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "full_host_checks": [
+    {
+      "mode": "ordinary",
+      "command": "python -m unittest discover -s tools -p 'test_*.py' -v",
+      "tests": 1364,
+      "seconds": 171.931,
+      "exit_code": 0,
+      "skipped": 0,
+      "raw_log_sha256": "7c5e32f63cdec68767a73f9f724509179eb01d6f62bb394dfff28ad3d6ab5d4d",
+      "source_binding": "Final uploaded Python/resources/fixtures. Ordinary run preceded a final explicit nn membership assertion/comment in the unexecuted JVM tagged-colour test; optimized run used the final complete source tree.",
+      "raw_log_published": false
+    },
+    {
+      "mode": "optimized",
+      "command": "python -O -m unittest discover -s tools -p 'test_*.py'",
+      "tests": 1364,
+      "seconds": 171.858,
+      "exit_code": 0,
+      "skipped": 0,
+      "raw_log_sha256": "dcdb0120b542ac6321bc0cbcedecf4a9986de9fb1717b42b3f7ab664acd60e36",
+      "source_binding": "Final uploaded Python/resources/fixtures. Ordinary run preceded a final explicit nn membership assertion/comment in the unexecuted JVM tagged-colour test; optimized run used the final complete source tree.",
+      "raw_log_published": false
+    }
+  ],
+  "focused": {
+    "ordinary": {
+      "nynorsk": 12,
+      "memory_warning": 18,
+      "current_contract": 14,
+      "result": "pass"
+    },
+    "optimized": {
+      "nynorsk": 12,
+      "memory_warning": 18,
+      "current_contract": 14,
+      "result": "pass"
+    }
+  },
+  "initial_failure": {
+    "result": "failed; retained, not counted as passed",
+    "tests": 1364,
+    "seconds": 174.857,
+    "errors": 2,
+    "raw_log_sha256": "057f0fdf63994ab65d52b767098bbc5e29ce26d603d95e434fbf7f4cc47eefb3",
+    "state": "Initial local NN72 patch, before three tagged-colour test/fixture integration changes; no PR head or CI run existed yet.",
+    "errors_preserved": [
+      {
+        "test": "test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks",
+        "exception": "ValueError",
+        "message": "Tagged-colour message or explicit English fallback differs: nn"
+      },
+      {
+        "test": "test_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults",
+        "exception": "ValueError",
+        "message": "Tagged-colour message or explicit English fallback differs: nn"
+      }
+    ],
+    "cause": "Per-message tagged-colour oracle still counted NN as an English fallback after the reviewed translation was added.",
+    "repair": "Bind exactly the reviewed NN value into that family, preserve corruption tests and update family-only count to 66/105; keep global 59/112 unchanged.",
+    "successful_rerun": "full ordinary 1364 tests, 171.931 s; full optimized separately 1364 tests, 171.858 s"
+  },
+  "independent_patch_audit": {
+    "scope": "Separate AI static inspection of source/consumer/tests and independent DOM/source comparisons",
+    "result": "No concrete defect found; 72 additions,118 preserved,five holds/P1 absent,paired oracle/frozen queue unchanged",
+    "limits": "No Android compilation or JVM/device execution was available locally."
+  },
+  "Android_compile_JVM_lint_API35": "pending hosted CI; no local pass claimed",
+  "CI_run_url": "https://github.com/c933103/AN-Paint/actions/runs/40279026132",
+  "not_claimed": [
+    "native-human fluency",
+    "whole-locale completion",
+    "physical-device/layout acceptance",
+    "release or upgrade signing"
+  ]
+}
