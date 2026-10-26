@@ -1,0 +1,956 @@
+{
+  "schema_version": 1,
+  "record_kind": "independent_complete_value_review",
+  "repository": "c933103/AN-Paint",
+  "locale": "ca",
+  "group": 3,
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "candidate_packet": "ca-group-03-assembly-memory-candidates.json",
+  "candidate_packet_sha256": "f29d4c8c604a8b5c8c3c9a382470d88142bae1d15156797d033eba26990787e3",
+  "input_bindings": {
+    "scope-and-source-context.json": "8dd3dd99b633bbec8254639797ddc81000ce4d8bfa9c037503663123587399d5",
+    "terminology-foundations.json": "bc6217e58573463929f8f0ba84815db06b41da809af8365c96bb1b824a11829b",
+    "source-context-correction.json": "dde96f00968bc1009582f541524c8645b3e744dbb3c7076f2b29898be3a61225"
+  },
+  "input_verification": {
+    "file": "input-verification.json",
+    "sha256": "fc323c7908d357959501a3abc2c086c2dd9797b5568e887f980e1ac543b154bb"
+  },
+  "review_method": "Independent reviewer read every full source/candidate pair and its exact current consumer windows, checked relevant surrounding control flow and composed instructions. No DA/NO acceptance was transferred.",
+  "review_counts": {
+    "total": 16,
+    "accept": 16,
+    "revise": 0,
+    "hold": 0
+  },
+  "source_bindings": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "bytes": 27060,
+      "sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8",
+      "git_blob_sha1": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+      "bytes": 9198,
+      "sha256": "db643208844218829b59c5a741ff83b4d8755499b21527fe7a0a8e585b647c9a",
+      "git_blob_sha1": "3fdd7aff659a3a2cdf2b78ed16472b5850225567",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+      "bytes": 1348,
+      "sha256": "815a994c4826f6e4c121feef5dbee3f9fc3356edebd3498b0ab200123d956a82",
+      "git_blob_sha1": "84059375f4005c22790ceb6d836817f3367fae3a",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt",
+      "bytes": 738,
+      "sha256": "7d2d4a94b8082f27dfa58d3a8f2a3ad31dd867df1516b85c4e630a5e925ab235",
+      "git_blob_sha1": "5e76c84c80a42326ac74073fd44fdea2cbf6006d",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "bytes": 115623,
+      "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+      "git_blob_sha1": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+      "bytes": 2122,
+      "sha256": "e9f2870a1f1f70783df7004b32a1d57325dc9ef90491273ce3f8a11c57323250",
+      "git_blob_sha1": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+      "bytes": 5907,
+      "sha256": "f6781d9a04961ed7b2b4a8cc52a8164001da9be8155d1ae7967905c84ef8326a",
+      "git_blob_sha1": "b8a97637df61f8e50694e4a9d65b924b3e0af4f5",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+      "bytes": 9279,
+      "sha256": "7d258390d8c1eb72d7f6fed1af7dd5ffe3ae812c7ea22c39510bc9a21be0f2f3",
+      "git_blob_sha1": "7c01b3fe57630349e954aee8449342f88033bb96",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt",
+      "bytes": 4645,
+      "sha256": "79231137d133a6e645b5576840c05bbbc0fe8e25bdb6035194444afd7443da4a",
+      "git_blob_sha1": "34648cb4cf1cf0f9dbf3e31b7366c6e03ca8b1da",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+      "bytes": 5576,
+      "sha256": "a1ad195fd2e76115181e56d2b541ebde58de1a07687319ec65bd1994c63e74a3",
+      "git_blob_sha1": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+      "bytes": 18243,
+      "sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231",
+      "git_blob_sha1": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+      "bytes": 1782,
+      "sha256": "b246e44e8aaf1e2d10455c737dfc9afc129ed9ae71b23a1468e17c7d98d19ee3",
+      "git_blob_sha1": "a092dfb769e9e7117955f6bcd532f90ec7d7ae06",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+      "bytes": 2961,
+      "sha256": "72b511c8142b256a7d2806badc0c88608b966dcedf79252f8ffa682cc559aa10",
+      "git_blob_sha1": "b77fec3a44bbb5703e2b5c446b937f12ddef26f7",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+      "bytes": 4381,
+      "sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+      "git_blob_sha1": "15723c1171cac09c7bd67881175827b5f3f330dd",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+      "bytes": 8731,
+      "sha256": "b15f3d1dc8f813cb6cb4d9657ff30a86786bc2bee41594297293e0a818abd01a",
+      "git_blob_sha1": "62218dd1a72f4f69aa19cd1ea20b5bd42b6e1574",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+      "bytes": 32125,
+      "sha256": "8df17566502bcee5868bf9fa260857e59b2670e1c4037cef561cec4eab29a49b",
+      "git_blob_sha1": "3cc9b6af28dbf897d85d91d6e3f1b2a40c12cf4e",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+      "bytes": 5529,
+      "sha256": "c4a2807d5a278a377697bfc912f92526b4e45ab7e0daa79d8e35950e024b1a85",
+      "git_blob_sha1": "ad69e51d04f7342927f3040929332eb3bcaa7d34",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+      "bytes": 3106,
+      "sha256": "c9091570ccf406dd20e44bef486cfa8e8e6b4db6685aa818d3df8c5b34797b31",
+      "git_blob_sha1": "e22eb041a72c398f04aa21a9aeb89e2fb43cbcae",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-ca/strings.xml",
+      "bytes": 10933,
+      "sha256": "83e82b1788bbbb474510a0c8611c57d4420de4830d0c17790dc3a486a40b8876",
+      "git_blob_sha1": "6853117430740b0fda5458e33bd1bab0b053cf9d",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/res/values-ca/strings.xml"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-ro/strings.xml",
+      "bytes": 11025,
+      "sha256": "993277a2a573ca775a6265482e67c3738d22bdbd8b43f01e4380b3f19c9c1016",
+      "git_blob_sha1": "501c013c1ecab90525fe05c162a9a46c1608defc",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/res/values-ro/strings.xml"
+    },
+    {
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "bytes": 80549,
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "git_blob_sha1": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/res/values/strings.xml"
+    },
+    {
+      "path": "translations/string-importance.json",
+      "bytes": 32088,
+      "sha256": "9b5bfb6d25f2ad034158816d943b94feed8296ad4117c2176f09a95dad506879",
+      "git_blob_sha1": "e76a3a440a8b169d31f5ab5d163a2695b0db93b1",
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/translations/string-importance.json"
+    }
+  ],
+  "entries": [
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "priority": "P0",
+      "source": "An assembly source image is missing.",
+      "source_value_sha256_utf8": "03cf15a2a8c5dc8bef80963ac8b5b4ba7cafb00edab05c3d7862d5d02a33723f",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "candidate_display_text": "Falta una imatge d’origen del muntatge.",
+      "candidate_value_sha256_utf8": "68820ddc4a4d56a55ec89d413b967bf740615ada2569bd95fba5da3533953873",
+      "candidate_xml_text": "\"Falta una imatge d’origen del muntatge.\"",
+      "candidate_xml_text_sha256_utf8": "09f359121049d6eaf633b54534ccc60536dd53e41051b982fe2d074553bb5613",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Falta una imatge d’origen del muntatge.",
+      "final_value_sha256_utf8": "68820ddc4a4d56a55ec89d413b967bf740615ada2569bd95fba5da3533953873",
+      "final_xml_text": "\"Falta una imatge d’origen del muntatge.\"",
+      "final_xml_text_sha256_utf8": "09f359121049d6eaf633b54534ccc60536dd53e41051b982fe2d074553bb5613",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:262"
+      ],
+      "rationale": "Falta una imatge d’origen del muntatge accurately denotes a missing stored input image, not the assembly output. It retains the source-level generic error for the canonical-path/file-presence check without inventing a deletion cause.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Source image file in saved assembly metadata missing, not necessarily the rendered output image."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Source image file in saved assembly metadata missing, not necessarily the rendered output image.",
+        "ImageAssembly.read checks retained source-image files; wording does not redefine the missing item as the rendered output."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "priority": "P0",
+      "source": "Assembly saved",
+      "source_value_sha256_utf8": "766dc3e6dbd1b817e2d2c2615c6a53a9b8c306e768f44a5931525c836ec27d37",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "candidate_display_text": "Muntatge desat",
+      "candidate_value_sha256_utf8": "fe88560e0736aa7044be0a667408cbb6bf4caa958a1e6c605bf1468ca4e186ec",
+      "candidate_xml_text": "\"Muntatge desat\"",
+      "candidate_xml_text_sha256_utf8": "1692632f0f56be2e4dbf5fc445c8d45484a8951d53fdd40f7f876ebe1c6c8f38",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Muntatge desat",
+      "final_value_sha256_utf8": "fe88560e0736aa7044be0a667408cbb6bf4caa958a1e6c605bf1468ca4e186ec",
+      "final_xml_text": "\"Muntatge desat\"",
+      "final_xml_text_sha256_utf8": "1692632f0f56be2e4dbf5fc445c8d45484a8951d53fdd40f7f876ebe1c6c8f38",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:342"
+      ],
+      "rationale": "Natural compact success status; muntatge is consistent throughout this group. The accepted claim is limited to copying the rendered PNG output to the selected URI, not saving an editable assembly exchange format or updating the drawing Save destination.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "After assembled PNG bytes are written to chosen URI. Do not infer an editable assembly interchange format or a Save-target update for the separate drawing editor."
+      ],
+      "retained_author_semantic_qualifications": [
+        "After assembled PNG bytes are written to chosen URI. Do not infer an editable assembly interchange format or a Save-target update for the separate drawing editor.",
+        "PNG output write succeeded; no claim of editable interchange-format save or drawing-editor Save target change."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "priority": "P0",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "source_value_sha256_utf8": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "candidate_display_text": "S’estima que aquest muntatge supera el límit actual de memòria de treball, fins i tot amb la mida de sortida més petita. Amb els límits actuals, no n’hi ha prou de reduir només les dimensions del muntatge. Tanca altres documents o prepara una imatge d’origen més petita abans de tornar-ho a provar. El muntatge no s’ha modificat.",
+      "candidate_value_sha256_utf8": "497dd6a734e0b8059628a669a622e87c36a2d5df8b0fd907f508d158fe8425b7",
+      "candidate_xml_text": "\"S’estima que aquest muntatge supera el límit actual de memòria de treball, fins i tot amb la mida de sortida més petita. Amb els límits actuals, no n’hi ha prou de reduir només les dimensions del muntatge. Tanca altres documents o prepara una imatge d’origen més petita abans de tornar-ho a provar. El muntatge no s’ha modificat.\"",
+      "candidate_xml_text_sha256_utf8": "545305ac7c52af7e964bce1d0538d764816e447f43ce7ad2a07541a89bb5db22",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "S’estima que aquest muntatge supera el límit actual de memòria de treball, fins i tot amb la mida de sortida més petita. Amb els límits actuals, no n’hi ha prou de reduir només les dimensions del muntatge. Tanca altres documents o prepara una imatge d’origen més petita abans de tornar-ho a provar. El muntatge no s’ha modificat.",
+      "final_value_sha256_utf8": "497dd6a734e0b8059628a669a622e87c36a2d5df8b0fd907f508d158fe8425b7",
+      "final_xml_text": "\"S’estima que aquest muntatge supera el límit actual de memòria de treball, fins i tot amb la mida de sortida més petita. Amb els límits actuals, no n’hi ha prou de reduir només les dimensions del muntatge. Tanca altres documents o prepara una imatge d’origen més petita abans de tornar-ho a provar. El muntatge no s’ha modificat.\"",
+      "final_xml_text_sha256_utf8": "545305ac7c52af7e964bce1d0538d764816e447f43ce7ad2a07541a89bb5db22",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:300"
+      ],
+      "rationale": "The complete value preserves estimation, current working-memory limits, smallest output, insufficiency of dimensions alone, both suggestions, and unchanged assembly. AssemblyRenderer.suggested rejects when even 1×1 fails its combined output/resident/source estimate, so the wording correctly avoids claiming only a source-decoder limit or a proven leak. No P1 counterpart acceptance is implied.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Corrected canonical semantics: estimated combined assembly peak, current working-memory limits, even smallest output, dimensions alone insufficient, alternatives close other documents or prepare smaller source, assembly unchanged. Not a decoder-only or universal impossibility claim.",
+        "Implementation dependency: existing memory-warning-successor tests account for paired P0/P1 locale scopes. This packet proposes only this P0 whole value; the P1 ui_no_resize_fits_decoder_memory remains absent and unreviewed. Do not silently expand to P1, rewrite the frozen historical queue, or claim both warnings accepted. A narrow test/receipt design must preserve that distinction before implementation."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Corrected canonical semantics: estimated combined assembly peak, current working-memory limits, even smallest output, dimensions alone insufficient, alternatives close other documents or prepare smaller source, assembly unchanged. Not a decoder-only or universal impossibility claim.",
+        "Implementation dependency: existing memory-warning-successor tests account for paired P0/P1 locale scopes. This packet proposes only this P0 whole value; the P1 ui_no_resize_fits_decoder_memory remains absent and unreviewed. Do not silently expand to P1, rewrite the frozen historical queue, or claim both warnings accepted. A narrow test/receipt design must preserve that distinction before implementation.",
+        "límit actual de memòria de treball represents the current working-memory admission budget, not a universal physical impossibility. Estimated combined assembly peak, smallest output, dimensions alone insufficient, both alternatives and unchanged assembly are all retained.",
+        "Only this complete P0 warning is proposed; paired P1 ui_no_resize_fits_decoder_memory remains absent/unreviewed, and the frozen paired oracle must not be expanded to ca/ro."
+      ],
+      "retained_author_uncertainties": [
+        "Independent reviewer should assess límit as the whole-value rendering of working-memory budget and retain its conditional/estimated scope."
+      ],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "priority": "P0",
+      "source": "Clear all",
+      "source_value_sha256_utf8": "29a390f9237e3c84e5641785eca25199620e53f7b6f4b9d843b23dcb5c12904f",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "candidate_display_text": "Esborra-ho tot",
+      "candidate_value_sha256_utf8": "964f984a64573f5ff73630a19e30073507fe38b209b3ff21414b58a69d33b0b5",
+      "candidate_xml_text": "\"Esborra-ho tot\"",
+      "candidate_xml_text_sha256_utf8": "4380eb844f79674ce47fce4b87a3a70f71c0f5afccbea929a87b117b272e2ac3",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Esborra-ho tot",
+      "final_value_sha256_utf8": "964f984a64573f5ff73630a19e30073507fe38b209b3ff21414b58a69d33b0b5",
+      "final_xml_text": "\"Esborra-ho tot\"",
+      "final_xml_text_sha256_utf8": "4380eb844f79674ce47fce4b87a3a70f71c0f5afccbea929a87b117b272e2ac3",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:101"
+      ],
+      "rationale": "Esborra-ho tot is a natural complete action for assembly.clear(), distinguished from removing only one selected image. It is not a statement about deleting external original files.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Assembly toolbar calls assembly.clear(); this is not clearing one selected image."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Assembly toolbar calls assembly.clear(); this is not clearing one selected image.",
+        "Assembly-wide clear action; does not mean clearing only the selected image."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_clear_image",
+      "priority": "P0",
+      "source": "Clear image",
+      "source_value_sha256_utf8": "20231a4032390f0886c87b9f301481ac336659f40d9ab50981fa1039663b6afc",
+      "attributes": {
+        "name": "ui_clear_image"
+      },
+      "candidate_display_text": "Esborra el contingut de la imatge",
+      "candidate_value_sha256_utf8": "39ee469e5d8de8a0ff86d2ee7d563c04bbbd742f0c89e2fdf1b19f900cb27328",
+      "candidate_xml_text": "\"Esborra el contingut de la imatge\"",
+      "candidate_xml_text_sha256_utf8": "3d3c2f5c1d8ec803a23705f43e5aa1ff5764743f3ed490775e5790df624e8316",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Esborra el contingut de la imatge",
+      "final_value_sha256_utf8": "39ee469e5d8de8a0ff86d2ee7d563c04bbbd742f0c89e2fdf1b19f900cb27328",
+      "final_xml_text": "\"Esborra el contingut de la imatge\"",
+      "final_xml_text_sha256_utf8": "3d3c2f5c1d8ec803a23705f43e5aa1ff5764743f3ed490775e5790df624e8316",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:859"
+      ],
+      "rationale": "Explicit el contingut de la imatge disambiguates clearing the drawing from deleting an image file. PaintDocument.clear fills the bitmap background and clears committed credits after an undo checkpoint.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Drawing Edit action applies pending edits then document.clear(). Do not conflate with assembly Clear all."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Drawing Edit action applies pending edits then document.clear(). Do not conflate with assembly Clear all.",
+        "Clear-content wording follows PaintDocument.clear, which checkpoints and erases the existing bitmap to its background; it does not claim deletion of an external image file. Existing assembly-wide Clear all remains a separate proposed label."
+      ],
+      "retained_author_uncertainties": [
+        "The candidate makes image content explicit to avoid implying external-file deletion; reviewer may prefer a shorter equivalent without changing the action."
+      ],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "priority": "P0",
+      "source": "Could not save the assembly: %1$s",
+      "source_value_sha256_utf8": "d23570f6a13edc7bc9f443628c6fe0a00f889d71e6d24135122cd5dc4ad6614a",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "candidate_display_text": "No s’ha pogut desar el muntatge: %1$s",
+      "candidate_value_sha256_utf8": "80c15c208e5082e17551d3073ebb2f4bb9faa9733b9eaab10a98ee74825b6366",
+      "candidate_xml_text": "\"No s’ha pogut desar el muntatge: %1$s\"",
+      "candidate_xml_text_sha256_utf8": "bd03e6343caaabfddd845a9cdb7cb77d41fd67309e06572bef24484d6035ed1d",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "No s’ha pogut desar el muntatge: %1$s",
+      "final_value_sha256_utf8": "80c15c208e5082e17551d3073ebb2f4bb9faa9733b9eaab10a98ee74825b6366",
+      "final_xml_text": "\"No s’ha pogut desar el muntatge: %1$s\"",
+      "final_xml_text_sha256_utf8": "bd03e6343caaabfddd845a9cdb7cb77d41fd67309e06572bef24484d6035ed1d",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:343"
+      ],
+      "rationale": "Complete save-output failure preserves the colon and indexed exception detail. The placeholder may contain a translated selected-location error or provider text, so only the wrapper is accepted here, not arbitrary exception content.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Output URI save failure; %1$s is the original exception message, potentially untranslated."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Output URI save failure; %1$s is the original exception message, potentially untranslated.",
+        "Original potentially untranslated error detail remains %1$s after the colon."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "priority": "P0",
+      "source": "Could not store the assembly.",
+      "source_value_sha256_utf8": "8896816c5ab28f698bf634e2b040419b89f9771e16f482d9684c3170e688d859",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "candidate_display_text": "No s’ha pogut emmagatzemar el muntatge.",
+      "candidate_value_sha256_utf8": "0662856eb35ad863e74947944946c1f4ec73a390db7db004a4001f8788b16258",
+      "candidate_xml_text": "\"No s’ha pogut emmagatzemar el muntatge.\"",
+      "candidate_xml_text_sha256_utf8": "434caa8e521f9d8129f5ff9a15d9cecaeefd146fff9c28b35bbdb803acfc984d",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "No s’ha pogut emmagatzemar el muntatge.",
+      "final_value_sha256_utf8": "0662856eb35ad863e74947944946c1f4ec73a390db7db004a4001f8788b16258",
+      "final_xml_text": "\"No s’ha pogut emmagatzemar el muntatge.\"",
+      "final_xml_text_sha256_utf8": "434caa8e521f9d8129f5ff9a15d9cecaeefd146fff9c28b35bbdb803acfc984d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:229"
+      ],
+      "rationale": "Emmagatzemar correctly covers storing the assembly model during import, distinct from the PNG Save action. The generic fallback does not invent a specific failure cause.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [],
+      "retained_author_semantic_qualifications": [
+        "Internal assembly persistence/admission failure, not a successful output save."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "priority": "P0",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "source_value_sha256_utf8": "dcdd3aa9015cb728f6695ffac6100c85790b70563ddea87c0d568f1afc15b6b3",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "candidate_display_text": "Una imatge de %1$d × %2$d píxels (%3$.2f MP) supera el límit actual d’edició segura de %4$.2f MP. AN Paint manté tota la imatge a la memòria i reserva espai per a transformacions i seleccions. La memòria disponible determina aquest límit. L’operació s’ha aturat abans d’assignar memòria per al mapa de bits massa gran. No s’ha aplicat cap ajust automàtic de mida.",
+      "candidate_value_sha256_utf8": "0c9082f870270ef9988f461400c565ab363ee72dbfefe09c05bf1f4de32553a4",
+      "candidate_xml_text": "\"Una imatge de %1$d × %2$d píxels (%3$.2f MP) supera el límit actual d’edició segura de %4$.2f MP. AN Paint manté tota la imatge a la memòria i reserva espai per a transformacions i seleccions. La memòria disponible determina aquest límit. L’operació s’ha aturat abans d’assignar memòria per al mapa de bits massa gran. No s’ha aplicat cap ajust automàtic de mida.\"",
+      "candidate_xml_text_sha256_utf8": "3cd4623f2c9aef702774258ff306ede298eb8ba3bdf3b87013efcf81b0b7066c",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Una imatge de %1$d × %2$d píxels (%3$.2f MP) supera el límit actual d’edició segura de %4$.2f MP. AN Paint manté tota la imatge a la memòria i reserva espai per a transformacions i seleccions. La memòria disponible determina aquest límit. L’operació s’ha aturat abans d’assignar memòria per al mapa de bits massa gran. No s’ha aplicat cap ajust automàtic de mida.",
+      "final_value_sha256_utf8": "0c9082f870270ef9988f461400c565ab363ee72dbfefe09c05bf1f4de32553a4",
+      "final_xml_text": "\"Una imatge de %1$d × %2$d píxels (%3$.2f MP) supera el límit actual d’edició segura de %4$.2f MP. AN Paint manté tota la imatge a la memòria i reserva espai per a transformacions i seleccions. La memòria disponible determina aquest límit. L’operació s’ha aturat abans d’assignar memòria per al mapa de bits massa gran. No s’ha aplicat cap ajust automàtic de mida.\"",
+      "final_xml_text_sha256_utf8": "3cd4623f2c9aef702774258ff306ede298eb8ba3bdf3b87013efcf81b0b7066c",
+      "placeholder_tokens": [
+        "%1$d",
+        "%2$d",
+        "%3$.2f",
+        "%4$.2f"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt:46"
+      ],
+      "rationale": "All clauses and four indexed numeric tokens, including both .2f precisions, are preserved. The explicit noun phrase Una imatge de avoids subject/verb awkwardness in the dimensions sentence. The estimate/admission message distinguishes working memory, transform/selection reserves, stopping before the oversized bitmap allocation and no automatic resizing; it is not a universal guarantee against later allocation failure.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "ImageMemoryPolicy uses width, height, image megapixels and permitted megapixels in exactly that token order. Preserve × and both %.2f precisions.",
+        "Admission budget depends on available memory; original operation stopped before allocating oversized bitmap; no automatic resize. Not a guarantee against every later allocation failure."
+      ],
+      "retained_author_semantic_qualifications": [
+        "ImageMemoryPolicy uses width, height, image megapixels and permitted megapixels in exactly that token order. Preserve × and both %.2f precisions.",
+        "Admission budget depends on available memory; original operation stopped before allocating oversized bitmap; no automatic resize. Not a guarantee against every later allocation failure.",
+        "All four numbered tokens and both .2f precisions remain in source order; ×, MP and AN Paint are preserved.",
+        "Describes current memory-based admission limit, reservation for transforms/selections, stop before oversized bitmap allocation and no automatic resize. This is not a guarantee against every later allocation failure."
+      ],
+      "retained_author_uncertainties": [
+        "Independent reviewer should judge the full technical admission message, including mapa de bits and the límit rendering of budget."
+      ],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "priority": "P0",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "source_value_sha256_utf8": "4d6da1792a4751708d0bb36eda8365c72b66b1a2b2db70c77cdc4c48486634dc",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "candidate_display_text": "Manté els píxels a la part superior esquerra. Si redueixes les dimensions del llenç, es descarten els píxels que queden més enllà de la vora dreta o inferior; «Desfés» els restaura.",
+      "candidate_value_sha256_utf8": "485217d7cbc4d3feb60042be238af57783522c13078919c0f370778ea4597118",
+      "candidate_xml_text": "\"Manté els píxels a la part superior esquerra. Si redueixes les dimensions del llenç, es descarten els píxels que queden més enllà de la vora dreta o inferior; «Desfés» els restaura.\"",
+      "candidate_xml_text_sha256_utf8": "48687cc8113bd84f288fb863a41f39544e63f324d0dd3ae1683bc2e455fdaecd",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Manté els píxels a la part superior esquerra. Si redueixes les dimensions del llenç, es descarten els píxels que queden més enllà de la vora dreta o inferior; «Desfés» els restaura.",
+      "final_value_sha256_utf8": "485217d7cbc4d3feb60042be238af57783522c13078919c0f370778ea4597118",
+      "final_xml_text": "\"Manté els píxels a la part superior esquerra. Si redueixes les dimensions del llenç, es descarten els píxels que queden més enllà de la vora dreta o inferior; «Desfés» els restaura.\"",
+      "final_xml_text_sha256_utf8": "48687cc8113bd84f288fb863a41f39544e63f324d0dd3ae1683bc2e455fdaecd",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1016"
+      ],
+      "rationale": "Top-left anchoring, right/bottom clipping and Undo restoration are all retained. The actual inherited label Desfés is used. This is canvas-size behavior, not stretch/rescale behavior, consistent with the !stretch branch and PaintDocument.resize drawing at 0,0.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Use existing Undo action label: Catalan Desfés; Romanian Anulează. Canvas dimensions, not image scaling; no neighboring label change."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Use existing Undo action label: Catalan Desfés; Romanian Anulează. Canvas dimensions, not image scaling; no neighboring label change.",
+        "Uses actual Catalan Desfés rather than reused DA/NO label examples. Describes canvas-dimension cropping, not scaling."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "priority": "P0",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "source_value_sha256_utf8": "cba5063c6a726597187fc64fc75c20c2f858db585fd5f89d691420f5eaa55534",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "candidate_display_text": "No hi ha prou memòria per a aquesta operació. S’han conservat els fitxers d’origen del muntatge.",
+      "candidate_value_sha256_utf8": "b309715837c65741ba97b527acd1bae8a2aef39c80f3e956a4b1acf0d95dc157",
+      "candidate_xml_text": "\"No hi ha prou memòria per a aquesta operació. S’han conservat els fitxers d’origen del muntatge.\"",
+      "candidate_xml_text_sha256_utf8": "16cfc69ddcbf1ddc77a99b107616c65498c6cd4c04dbdbb159872fdf76198612",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "No hi ha prou memòria per a aquesta operació. S’han conservat els fitxers d’origen del muntatge.",
+      "final_value_sha256_utf8": "b309715837c65741ba97b527acd1bae8a2aef39c80f3e956a4b1acf0d95dc157",
+      "final_xml_text": "\"No hi ha prou memòria per a aquesta operació. S’han conservat els fitxers d’origen del muntatge.\"",
+      "final_xml_text_sha256_utf8": "16cfc69ddcbf1ddc77a99b107616c65498c6cd4c04dbdbb159872fdf76198612",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:117",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:294"
+      ],
+      "rationale": "Both insufficient-memory and retained assembly-source-file clauses are faithful. The wording does not say the requested render succeeded or that all transient work was preserved.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Assembly OutOfMemoryError branch retains source files; do not claim the operation succeeded or output was saved."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Assembly OutOfMemoryError branch retains source files; do not claim the operation succeeded or output was saved.",
+        "OOM operation failed while source files remain retained; no output-success claim."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "priority": "P0",
+      "source": "Resize large image?",
+      "source_value_sha256_utf8": "f037d36a47f4f0df7ac2da56fe4351da145993413a10d3518211e6bcac613a83",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "candidate_display_text": "Vols ajustar la mida de la imatge gran?",
+      "candidate_value_sha256_utf8": "752faf4d5e12dcc21f793f8531cc0681bd03152acb983892dae75298d386a5a8",
+      "candidate_xml_text": "\"Vols ajustar la mida de la imatge gran?\"",
+      "candidate_xml_text_sha256_utf8": "c4a9f28fcade51a2f7fec7ead92e36787b5d8d19b234ae64e0676cddac91dae0",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Vols ajustar la mida de la imatge gran?",
+      "final_value_sha256_utf8": "752faf4d5e12dcc21f793f8531cc0681bd03152acb983892dae75298d386a5a8",
+      "final_xml_text": "\"Vols ajustar la mida de la imatge gran?\"",
+      "final_xml_text_sha256_utf8": "c4a9f28fcade51a2f7fec7ead92e36787b5d8d19b234ae64e0676cddac91dae0",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:36"
+      ],
+      "rationale": "Natural interrogative using the established ajustar la mida terminology. It asks about resizing the large image rather than silently claiming a resize already happened.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Use existing image-resize action terminology: Catalan Ajusta la mida de la imatge… / Ajusta la mida de la imatge; Romanian Scalează imaginea… / Scalează imaginea. Preserve actual action terminology without changing neighboring resources."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Use existing image-resize action terminology: Catalan Ajusta la mida de la imatge… / Ajusta la mida de la imatge; Romanian Scalează imaginea… / Scalează imaginea. Preserve actual action terminology without changing neighboring resources.",
+        "Matches existing Ajusta la mida de la imatge… terminology; neighboring Resize and load fallback is untouched."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "priority": "P0",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "source_value_sha256_utf8": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "candidate_display_text": "Les estimacions inclouen el llenç i el porta-retalls actuals, la descodificació a resolució reduïda i les memòries intermèdies d’edició. L’ús real de memòria varia. Una còpia més petita perd detall. El fitxer original no es modifica.",
+      "candidate_value_sha256_utf8": "f01b8c300edd7122046796d4e0d13ccbc9c507f8f6d181dd180519bdc76c0b5d",
+      "candidate_xml_text": "\"Les estimacions inclouen el llenç i el porta-retalls actuals, la descodificació a resolució reduïda i les memòries intermèdies d’edició. L’ús real de memòria varia. Una còpia més petita perd detall. El fitxer original no es modifica.\"",
+      "candidate_xml_text_sha256_utf8": "0c97ea06baa87bbd75567f89f0300cb20a2f580fb4b45e680354ced820e0b20a",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Les estimacions inclouen el llenç i el porta-retalls actuals, la descodificació a resolució reduïda i les memòries intermèdies d’edició. L’ús real de memòria varia. Una còpia més petita perd detall. El fitxer original no es modifica.",
+      "final_value_sha256_utf8": "f01b8c300edd7122046796d4e0d13ccbc9c507f8f6d181dd180519bdc76c0b5d",
+      "final_xml_text": "\"Les estimacions inclouen el llenç i el porta-retalls actuals, la descodificació a resolució reduïda i les memòries intermèdies d’edició. L’ús real de memòria varia. Una còpia més petita perd detall. El fitxer original no es modifica.\"",
+      "final_xml_text_sha256_utf8": "0c97ea06baa87bbd75567f89f0300cb20a2f580fb4b45e680354ced820e0b20a",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:34"
+      ],
+      "rationale": "Complete qualified explanation includes current canvas and clipboard, reduced-resolution decoding and editing buffers, variable actual use, detail loss and original-file preservation. Descodificació a resolució reduïda is accessible and accurate for the sampled decoding branch; the distinct native-codec/P1 warning is not translated or accepted here.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Used only when memoryRequirements.hasNativeWork is false. Other codec/native-memory explanation is untouched English fallback.",
+        "Sampled decoding is proposed as decoding at reduced resolution. Reviewer must judge this full technical description rather than importing acceptance from a dictionary term."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Used only when memoryRequirements.hasNativeWork is false. Other codec/native-memory explanation is untouched English fallback.",
+        "Sampled decoding is proposed as decoding at reduced resolution. Reviewer must judge this full technical description rather than importing acceptance from a dictionary term.",
+        "This explanation is selected only without native codec work; the other codec/native-memory warning remains untouched. Reduced-resolution decoding is the proposed whole-value explanation of sampled decoding."
+      ],
+      "retained_author_uncertainties": [
+        "Independent reviewer should assess descodificació a resolució reduïda and memòries intermèdies in the complete technical statement."
+      ],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_save_png",
+      "priority": "P0",
+      "source": "Save PNG",
+      "source_value_sha256_utf8": "f38f79763d122bfa76922a03b3f04d653847e220238e71704c9a245c59e21e7c",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "candidate_display_text": "Desa en PNG",
+      "candidate_value_sha256_utf8": "0b7959042cd592aeacf9d3010012c17cd7c4a5525e44704dbc63bb6e4f5f07f8",
+      "candidate_xml_text": "\"Desa en PNG\"",
+      "candidate_xml_text_sha256_utf8": "e32b978d156f2b6ddf72041110458555fdfb8a9b10b25c59761d2c6ab3a10b81",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Desa en PNG",
+      "final_value_sha256_utf8": "0b7959042cd592aeacf9d3010012c17cd7c4a5525e44704dbc63bb6e4f5f07f8",
+      "final_xml_text": "\"Desa en PNG\"",
+      "final_xml_text_sha256_utf8": "e32b978d156f2b6ddf72041110458555fdfb8a9b10b25c59761d2c6ab3a10b81",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:88"
+      ],
+      "rationale": "Desa en PNG accurately names format-specific rendered-output saving without implying that it changes the normal drawing Save destination.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Assembly output button writes PNG; it does not alter the drawing editor’s Save destination."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Assembly output button writes PNG; it does not alter the drawing editor’s Save destination.",
+        "PNG output button only; does not change the separate drawing editor’s Save destination."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "priority": "P0",
+      "source": "The saved assembly could not be opened: %1$s",
+      "source_value_sha256_utf8": "2a936511bfc752ebf7f24e635feaa6de5f2e041c23ae4ab6c0b4237966628113",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "candidate_display_text": "No s’ha pogut obrir el muntatge desat: %1$s",
+      "candidate_value_sha256_utf8": "6f48a71efe1e8c18810409cd4b63eff7b0f9aa382379542c8098de0b30c931da",
+      "candidate_xml_text": "\"No s’ha pogut obrir el muntatge desat: %1$s\"",
+      "candidate_xml_text_sha256_utf8": "08f22b9bd7cf2d770ab1613670f1564b18925453d8b21fa0699dbaabb425a35c",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "No s’ha pogut obrir el muntatge desat: %1$s",
+      "final_value_sha256_utf8": "6f48a71efe1e8c18810409cd4b63eff7b0f9aa382379542c8098de0b30c931da",
+      "final_xml_text": "\"No s’ha pogut obrir el muntatge desat: %1$s\"",
+      "final_xml_text_sha256_utf8": "08f22b9bd7cf2d770ab1613670f1564b18925453d8b21fa0699dbaabb425a35c",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:60"
+      ],
+      "rationale": "Faithful complete failure to open persisted assembly state; indexed detail and colon are retained. Saved assembly here is not narrowed to an already-exported PNG.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Restoring internally saved assembly metadata failed; %1$s is exception detail."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Restoring internally saved assembly metadata failed; %1$s is exception detail.",
+        "Opening internal saved assembly metadata failed; exact exception placeholder %1$s preserved."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "priority": "P0",
+      "source": "The trim would remove the entire image.",
+      "source_value_sha256_utf8": "21b8edd92e5c183515dcb267c2cddceebc4eb5b02e1d053d952cec2d818ad4ca",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "candidate_display_text": "Escapçar així eliminaria tota la imatge.",
+      "candidate_value_sha256_utf8": "f03b57cddcf9d7f964126988c2c7886d2ba712ee759a7dc7b9f5ca252134ee79",
+      "candidate_xml_text": "\"Escapçar així eliminaria tota la imatge.\"",
+      "candidate_xml_text_sha256_utf8": "ad6b65646f2aeb8f68a8640315972670b68d62245fdec26e50df6948a87c2ca2",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "Escapçar així eliminaria tota la imatge.",
+      "final_value_sha256_utf8": "f03b57cddcf9d7f964126988c2c7886d2ba712ee759a7dc7b9f5ca252134ee79",
+      "final_xml_text": "\"Escapçar així eliminaria tota la imatge.\"",
+      "final_xml_text_sha256_utf8": "ad6b65646f2aeb8f68a8640315972670b68d62245fdec26e50df6948a87c2ca2",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:49"
+      ],
+      "rationale": "Escapçar agrees with inherited crop terminology; the conditional eliminaria preserves the rejected hypothetical operation. It does not claim that any pixels have already been removed.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Precondition rejects crop bounds with zero width or height; hypothetical destructive result, not already removed."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Precondition rejects crop bounds with zero width or height; hypothetical destructive result, not already removed.",
+        "Hypothetical rejected crop with zero width/height, not an image already removed; follows existing Escapça terminology."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "priority": "P0",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "source_value_sha256_utf8": "f481ea6d7fb74a1dcf1f376c05c084d9283ccb7e0860c392cd1294bfcb0e1520",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "candidate_display_text": "No hi ha prou memòria per fer aquesta operació a la resolució original. No s’ha aplicat cap ajust automàtic de mida.",
+      "candidate_value_sha256_utf8": "f55d645323b8aff79fa8abed5cd61ab242380b1d6f63882852240b9800e03cfc",
+      "candidate_xml_text": "\"No hi ha prou memòria per fer aquesta operació a la resolució original. No s’ha aplicat cap ajust automàtic de mida.\"",
+      "candidate_xml_text_sha256_utf8": "1d9704e3f3912a13f60f8c562158eafb6247c521300612f00e23d7078e8cb69c",
+      "verdict": "accept",
+      "accepted_scope": "whole complete final value, bounded linguistic and source-static, with retained qualifications",
+      "final_display_text": "No hi ha prou memòria per fer aquesta operació a la resolució original. No s’ha aplicat cap ajust automàtic de mida.",
+      "final_value_sha256_utf8": "f55d645323b8aff79fa8abed5cd61ab242380b1d6f63882852240b9800e03cfc",
+      "final_xml_text": "\"No hi ha prou memòria per fer aquesta operació a la resolució original. No s’ha aplicat cap ajust automàtic de mida.\"",
+      "final_xml_text_sha256_utf8": "1d9704e3f3912a13f60f8c562158eafb6247c521300612f00e23d7078e8cb69c",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:938"
+      ],
+      "rationale": "Both original-resolution insufficiency and absence of automatic resizing remain explicit. It does not promise that a manually smaller operation will succeed.",
+      "confidence": "medium-high",
+      "retained_source_semantic_notes": [
+        "Drawing edit OOM fallback at original resolution, explicitly no automatic resize."
+      ],
+      "retained_author_semantic_qualifications": [
+        "Drawing edit OOM fallback at original resolution, explicitly no automatic resize.",
+        "Original-resolution drawing edit OOM; explicitly no automatic resizing applied."
+      ],
+      "retained_author_uncertainties": [],
+      "independent_qualifications": [
+        "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+        "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+        "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+        "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+        "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+        "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+      ],
+      "runtime_or_native_acceptance": false
+    }
+  ],
+  "static_composition_examples": [
+    {
+      "description": "Memory-budget message with concrete dimensions and decimal-comma amounts",
+      "method": "Static substitution preserving all four indexed tokens; illustrative decimal formatting, not Android execution",
+      "value": "Una imatge de 6000 × 4000 píxels (24,00 MP) supera el límit actual d’edició segura de 12,00 MP. AN Paint manté tota la imatge a la memòria i reserva espai per a transformacions i seleccions. La memòria disponible determina aquest límit. L’operació s’ha aturat abans d’assignar memòria per al mapa de bits massa gran. No s’ha aplicat cap ajust automàtic de mida.",
+      "qualification": "The values are examples, not a measured device memory budget or locale runtime receipt."
+    },
+    {
+      "description": "Assembly save failure with same-batch selected-location detail",
+      "method": "Static substitution of group04 candidate into the indexed source wrapper",
+      "value": "No s’ha pogut desar el muntatge: No es pot escriure a la ubicació seleccionada.",
+      "qualification": "Group04 detail remains subject to its own final receipt; no actual provider failure was executed."
+    },
+    {
+      "description": "Canvas dimensions and inherited Undo label",
+      "method": "Full value checked against !stretch consumer and unchanged Desfés action",
+      "value": "Manté els píxels a la part superior esquerra. Si redueixes les dimensions del llenç, es descarten els píxels que queden més enllà de la vora dreta o inferior; «Desfés» els restaura.",
+      "qualification": "Restoration is source-level behavior subject to runtime/storage success, not a device-certified claim."
+    },
+    {
+      "description": "Combined assembly memory floor rejection",
+      "method": "Full value checked against estimatedBytes and suggested(1×1) rejection",
+      "value": "S’estima que aquest muntatge supera el límit actual de memòria de treball, fins i tot amb la mida de sortida més petita. Amb els límits actuals, no n’hi ha prou de reduir només les dimensions del muntatge. Tanca altres documents o prepara una imatge d’origen més petita abans de tornar-ho a provar. El muntatge no s’ha modificat.",
+      "qualification": "P0 only, qualified current-limit estimate; does not accept the absent P1 paired warning or rewrite frozen evidence."
+    }
+  ],
+  "cross_group_dependencies": [
+    "Desfés and existing ajustar la mida/Escapça terminology remain unchanged.",
+    "The assembly-selected-location detail is a group04 value; only the group03 wrapper is accepted by this receipt."
+  ],
+  "limitations": [
+    "Independent AI complete-value linguistic/source-static review; not native-human acceptance.",
+    "No device, UI layout, accessibility, Android resource compilation or runtime certification by this review.",
+    "150 inherited Catalan values are identity-preserved, not newly accepted by this review; intentional English labels and mixed-language composition remain qualified.",
+    "No separate Valencian review: ca-ES-valencia inheritance remains routing, not additional directly reviewed entries.",
+    "Five no-current-consumer holds remain absent; paired P1 memory warning, frozen history, #56/#113/#159, Help callback/archive and release holds remain outside scope.",
+    "Dynamic exception text and previously existing caller resources may remain English; full-value acceptance does not certify every composed dynamic message."
+  ],
+  "source_mutation": false,
+  "external_publication": false,
+  "supplemental_source_bindings": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt",
+      "bytes": 10499,
+      "sha256": "05486ace79d99162c6f5da50707009d9ef692598441cf14b89c5d57b975f28a3",
+      "git_blob_sha1": "3714ed88f9ddb393601e5370e9ad263245f17d6c",
+      "reviewed_line_ranges": [
+        [
+          12,
+          49
+        ]
+      ],
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyRenderer.kt"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "bytes": 26862,
+      "sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+      "git_blob_sha1": "3f996b19a97f4869009c9e19243b7b9949608320",
+      "reviewed_line_ranges": [
+        [
+          198,
+          208
+        ],
+        [
+          423,
+          432
+        ],
+        [
+          478,
+          478
+        ]
+      ],
+      "url": "https://github.com/c933103/AN-Paint/blob/ce796879f4568a27b9d905a8e8db639dd0a93a30/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt"
+    }
+  ]
+}

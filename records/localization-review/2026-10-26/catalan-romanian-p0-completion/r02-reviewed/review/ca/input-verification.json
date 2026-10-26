@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "record_kind": "independent_review_input_verification",
+  "locale": "ca",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "input_sha256": {
+    "ca-group-02-recovery-candidates.json": "91f0869cdf93e47bb28d21db3a03902829e56e398430051a60d7ee0064c2dcb8",
+    "ca-group-03-assembly-memory-candidates.json": "f29d4c8c604a8b5c8c3c9a382470d88142bae1d15156797d033eba26990787e3",
+    "ca-group-04-credit-destination-encoding-candidates.json": "b2c066da50e97b20e372b29a31fb0827a4c09ec762f845d11e145de20a6543cb",
+    "scope-and-source-context.json": "8dd3dd99b633bbec8254639797ddc81000ce4d8bfa9c037503663123587399d5",
+    "terminology-foundations.json": "bc6217e58573463929f8f0ba84815db06b41da809af8365c96bb1b824a11829b",
+    "source-context-correction.json": "dde96f00968bc1009582f541524c8645b3e744dbb3c7076f2b29898be3a61225"
+  },
+  "checks": {
+    "full_tree_tracked_git_blobs": 1376,
+    "source_bindings": 22,
+    "exact_context_windows": 98,
+    "distinct_selected_values": 55,
+    "inherited_values_matched": 150,
+    "missing_only": true,
+    "held_no_direct_references_and_absent": 5,
+    "P1_companion_absent": true,
+    "tokens_and_xml_fragments": "passed including unindexed-token and malformed-token negative controls",
+    "runtime_execution": false
+  },
+  "limitations": [
+    "Full source identity checked against supplied pinned tree, not a new remote attestation.",
+    "XML fragment and token checks are static; Android resource compilation and runtime UI are not executed by this review.",
+    "No native-human certification or new Valencian value judgment."
+  ]
+}

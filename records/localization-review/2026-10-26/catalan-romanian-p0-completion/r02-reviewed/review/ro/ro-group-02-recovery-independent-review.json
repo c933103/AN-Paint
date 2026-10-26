@@ -1,0 +1,1213 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent complete-value Romanian P0 completion linguistic and source-static review",
+  "review_date_utc": "2026-10-26",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "locale": "ro",
+  "target_path": "Paintroid/src/main/res/values-ro/strings.xml",
+  "group": 2,
+  "group_name": "recovery",
+  "candidate_packet": {
+    "file": "ro-group-02-recovery-candidates.json",
+    "sha256": "4f22a0db8f456b09e0fef545af6d6a8c12c1ad165010b4069401d7e54e56a37f"
+  },
+  "input_bindings": [
+    {
+      "file": "ro-group-02-recovery-candidates.json",
+      "bytes": 61752,
+      "sha256": "4f22a0db8f456b09e0fef545af6d6a8c12c1ad165010b4069401d7e54e56a37f"
+    },
+    {
+      "file": "scope-and-source-context.json",
+      "bytes": 251637,
+      "sha256": "8dd3dd99b633bbec8254639797ddc81000ce4d8bfa9c037503663123587399d5"
+    },
+    {
+      "file": "terminology-foundations.json",
+      "bytes": 90520,
+      "sha256": "bc6217e58573463929f8f0ba84815db06b41da809af8365c96bb1b824a11829b"
+    },
+    {
+      "file": "source-context-correction.json",
+      "bytes": 4651,
+      "sha256": "dde96f00968bc1009582f541524c8645b3e744dbb3c7076f2b29898be3a61225"
+    }
+  ],
+  "source_input_verification": {
+    "file": "source-input-verification.json",
+    "sha256": "32883195f216422cc924bf80f42cec7cc877c7925e766458dcb97ccc16cd47a9"
+  },
+  "outcome": {
+    "reviewed_complete_values": 28,
+    "accepted_unchanged": 27,
+    "revised": 1,
+    "new_holds": 0,
+    "native_human_review": false
+  },
+  "independent_checks": {
+    "source_git_blobs": 1376,
+    "selected_bound_files": 22,
+    "consumer_windows": 98,
+    "prior_Romanian_values_unchanged": 150,
+    "full_tokens_attributes_and_Android_XML_checked": true,
+    "new_candidate_acceptance_not_inherited_from_author_or_other_locale": true
+  },
+  "global_qualifications": [
+    "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+    "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review.",
+    "All 150 existing Romanian values/attributes and intentional fallback labels remain unchanged; absence is not automatically a defect.",
+    "Five explicit no-current-consumer holds, paired P1/frozen history, global59/112, inherited Valencian routing and #56/#113/#159/Help/archive/release pauses remain unchanged.",
+    "Canonical current source context is authoritative; DA/NO author/context history does not transfer linguistic acceptance."
+  ],
+  "verdicts": [
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "source_value_sha256_utf8": "579fea23054e5ac24d9dad1aee8a1dd13af1d810fbed9f92e059cce26f6ed0a0",
+      "candidate_display_text": "%1$s A fost păstrată o copie separată pentru recuperare. Folosește «Fișier > Exportă copia de recuperare…» pentru a salva arhiva sa ZIP. Extrage canvas.png din arhivă și încarcă acea imagine pentru a folosi opțiunile obișnuite de scalare, dacă este necesar.",
+      "candidate_value_sha256_utf8": "3c5d45f07a8abd3f14db335f235de1def29c8e0d0a77585ebb7e64c9775fd939",
+      "final_display_text": "%1$s A fost păstrată o copie separată pentru recuperare. Folosește «Fișier > Exportă copia de recuperare…» pentru a salva arhiva sa ZIP. Extrage canvas.png din arhivă și încarcă acea imagine pentru a folosi opțiunile obișnuite de scalare, dacă este necesar.",
+      "final_value_sha256_utf8": "3c5d45f07a8abd3f14db335f235de1def29c8e0d0a77585ebb7e64c9775fd939",
+      "final_display_sha256_utf8": "3c5d45f07a8abd3f14db335f235de1def29c8e0d0a77585ebb7e64c9775fd939",
+      "final_xml_text": "\"%1$s A fost păstrată o copie separată pentru recuperare. Folosește «Fișier > Exportă copia de recuperare…» pentru a salva arhiva sa ZIP. Extrage canvas.png din arhivă și încarcă acea imagine pentru a folosi opțiunile obișnuite de scalare, dacă este necesar.\"",
+      "final_xml_text_sha256_utf8": "c5068959caa11bccca082efe43068bf7592e6a744002f4fd68e4af0cb9fb25e9",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "final_attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "confidence": "high",
+      "rationale": "The full instruction is grammatical and distinguishes a retained separate copy from export of its ZIP. The leading reason, literal canvas.png and exact File/action composition survive; scalare agrees with the inherited resize terminology.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ],
+      "qualifications": [
+        "%1$s is an already-rendered failure reason; preserve prefix token and separation. A separate draft copy has actually been preserved before this branch.",
+        "Use the existing File menu label (Catalan Fitxer; Romanian Fișier) plus the same-group proposed recovery action. canvas.png and ZIP remain literal.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "The leading %1$s remains an already-rendered, possibly untranslated failure reason followed by a space. The separate recovery copy already exists in this branch.",
+        "Menu composition uses actual Fișier and the proposed same-group Exportă copia de recuperare…; canvas.png and ZIP remain literal. Scalare matches the existing Scalează imaginea… action terminology.",
+        "The reused source-context note mentions the prior DA/NO packet. Its locale labels are not applied to Romanian; use the actual Romanian/fallback labels stated here.",
+        "The %1$s reason may itself be untranslated; this review does not certify every dynamically composed reason as Romanian. The action name must remain identical to ui_export_recovery_copy if that proposed action is later revised.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Autosave failed · use Save",
+      "source_value_sha256_utf8": "9fab2239be3a11b6843125b73bedddcef714c0188d682cb0f145f6a7fdd1457a",
+      "candidate_display_text": "Salvarea automată a eșuat · folosește «Salvează»",
+      "candidate_value_sha256_utf8": "2f2f881ebc403b5f164f5df7098536bcd92edfc48d486159a233e744b178443f",
+      "final_display_text": "Salvarea automată a eșuat · folosește «Salvează»",
+      "final_value_sha256_utf8": "2f2f881ebc403b5f164f5df7098536bcd92edfc48d486159a233e744b178443f",
+      "final_display_sha256_utf8": "2f2f881ebc403b5f164f5df7098536bcd92edfc48d486159a233e744b178443f",
+      "final_xml_text": "\"Salvarea automată a eșuat · folosește «Salvează»\"",
+      "final_xml_text_sha256_utf8": "a0fa7f2b31b5fc9e7ad3cf17935afaa19ad7e3661102d94f96e078163931ad7b",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "final_attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Preserves the failed autosave status and directs the user to the actual Salvează action, without calling that explicit Save already successful.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Autosave image encoding failed.",
+      "source_value_sha256_utf8": "f83897890596e2776edb9f66dca76dce2e53f64fb26f43c2462116d978d64201",
+      "candidate_display_text": "Codificarea imaginii pentru salvarea automată a eșuat.",
+      "candidate_value_sha256_utf8": "4ba69c2c58918e9e39cb3fc97ed6c3116f3acde67e3ef70b8fef256acc3bd1cb",
+      "final_display_text": "Codificarea imaginii pentru salvarea automată a eșuat.",
+      "final_value_sha256_utf8": "4ba69c2c58918e9e39cb3fc97ed6c3116f3acde67e3ef70b8fef256acc3bd1cb",
+      "final_display_sha256_utf8": "4ba69c2c58918e9e39cb3fc97ed6c3116f3acde67e3ef70b8fef256acc3bd1cb",
+      "final_xml_text": "\"Codificarea imaginii pentru salvarea automată a eșuat.\"",
+      "final_xml_text_sha256_utf8": "eee3b3eb32e1f698adedebd8ebfb9ba646060419be3e20b94a24694a9d2b0f93",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "final_attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Names encoding of the image for autosave, matching Bitmap.compress failure; it does not imply a provider write or generic selection failure.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "source_value_sha256_utf8": "45af3acf76284540e468a05d80591e36743472a7625da0c6b7153a8173e007a7",
+      "candidate_display_text": "%1$s Salvarea automată este suspendată pentru a proteja acea ciornă. Folosește «Fișier → Exportă copia de recuperare…» pentru a o păstra și «Fișier → Salvează ca…» (Image format: PNG / JPEG) pentru a salva lucrarea curentă.",
+      "candidate_value_sha256_utf8": "b49e882e299d33e79894127d0ec24bd78f80d16dc57b7172034229f825f7bfab",
+      "final_display_text": "%1$s Salvarea automată este suspendată pentru a proteja acea ciornă. Folosește «Fișier → Exportă copia de recuperare…» pentru a o păstra și «Fișier → Salvează ca…» (Image format: PNG / JPEG) pentru a salva lucrarea curentă.",
+      "final_value_sha256_utf8": "b49e882e299d33e79894127d0ec24bd78f80d16dc57b7172034229f825f7bfab",
+      "final_display_sha256_utf8": "b49e882e299d33e79894127d0ec24bd78f80d16dc57b7172034229f825f7bfab",
+      "final_xml_text": "\"%1$s Salvarea automată este suspendată pentru a proteja acea ciornă. Folosește «Fișier → Exportă copia de recuperare…» pentru a o păstra și «Fișier → Salvează ca…» (Image format: PNG / JPEG) pentru a salva lucrarea curentă.\"",
+      "final_xml_text_sha256_utf8": "c4832b768bf7476b8f243a1aebd86e32ca4d0ed7071362246b73b49f78010bb1",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "final_attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "confidence": "high",
+      "rationale": "Preserves the reason, protective pause, recovery-copy action and separate current-work Save-as action. Ciornă consistently names the autosave draft, and the visible Image format label stays intentionally English.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ],
+      "qualifications": [
+        "%1$s is an already-rendered failure reason. This branch cannot preserve a separate copy, so autosave remains blocked to protect the existing draft. Do not claim that current work is already saved.",
+        "Use current existing labels: Catalan Fitxer / Anomena i desa…; Romanian Fișier / Salvează ca…. Both save20_file_format labels are exactly Image format, not a translated label. New recovery action is a within-group proposed dependency; retain PNG / JPEG.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "This branch keeps autosave blocked because a separate copy could not be preserved; it does not claim the current work has been saved.",
+        "The proposed recovery action must match the same-group value. Actual Fișier, Salvează ca… and the untouched English Image format label are quoted; PNG / JPEG remain literal.",
+        "The reused source-context note mentions the prior DA/NO packet. Its locale labels are not applied to Romanian; use the actual Romanian/fallback labels stated here.",
+        "Image format is the actual inherited English label; the complete displayed instruction is intentionally mixed-language. The %1$s reason may be untranslated.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Autosave metadata is missing.",
+      "source_value_sha256_utf8": "1115f993a7d75ef4a554c7ef1cf900d88970a5c05144cf1c9038ab0d86965de4",
+      "candidate_display_text": "Lipsesc metadatele salvării automate.",
+      "candidate_value_sha256_utf8": "2fb07d40b6a322ae74fd93159716202efe589799a7b5867296830305ba26b3bf",
+      "final_display_text": "Lipsesc metadatele salvării automate.",
+      "final_value_sha256_utf8": "2fb07d40b6a322ae74fd93159716202efe589799a7b5867296830305ba26b3bf",
+      "final_display_sha256_utf8": "2fb07d40b6a322ae74fd93159716202efe589799a7b5867296830305ba26b3bf",
+      "final_xml_text": "\"Lipsesc metadatele salvării automate.\"",
+      "final_xml_text_sha256_utf8": "a5292626f381b4ca4b11dd120c8f870f21eaa320ccc71461160289ff7724a06e",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "final_attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The plural Romanian subject and agreement clearly describe the missing autosave metadata entry.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Autosave paused · use Save",
+      "source_value_sha256_utf8": "3dfab3c54ba3d7700fc9d12ae3d767eda448501ba5df52284905edd71c7f30bd",
+      "candidate_display_text": "Salvare automată suspendată · folosește «Salvează»",
+      "candidate_value_sha256_utf8": "38215388084434feaf9d0bd78bcfe98cb7d43cd4fef04daedf5e2d882343765b",
+      "final_display_text": "Salvare automată suspendată · folosește «Salvează»",
+      "final_value_sha256_utf8": "38215388084434feaf9d0bd78bcfe98cb7d43cd4fef04daedf5e2d882343765b",
+      "final_display_sha256_utf8": "38215388084434feaf9d0bd78bcfe98cb7d43cd4fef04daedf5e2d882343765b",
+      "final_xml_text": "\"Salvare automată suspendată · folosește «Salvează»\"",
+      "final_xml_text_sha256_utf8": "a553de7262e6b2cd512d2089c34e839629a4d6ae4f4e22096450b70c83902e90",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "final_attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The compact status and imperative are idiomatic and retain the distinction between paused autosave and explicit Salvează.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Autosave pixels are missing.",
+      "source_value_sha256_utf8": "4af9f86e590fa90219121ad8f4cbbe372eaeeca8fb1927e01917a7fdd881de31",
+      "candidate_display_text": "Lipsesc datele pixelilor din salvarea automată.",
+      "candidate_value_sha256_utf8": "072b4da68b247e31c85a5628a25cc8c65a0dec9a5a6e03bca59ddb7c2e3c4d26",
+      "final_display_text": "Lipsesc datele pixelilor din salvarea automată.",
+      "final_value_sha256_utf8": "072b4da68b247e31c85a5628a25cc8c65a0dec9a5a6e03bca59ddb7c2e3c4d26",
+      "final_display_sha256_utf8": "072b4da68b247e31c85a5628a25cc8c65a0dec9a5a6e03bca59ddb7c2e3c4d26",
+      "final_xml_text": "\"Lipsesc datele pixelilor din salvarea automată.\"",
+      "final_xml_text_sha256_utf8": "4938b2ee26799444a1f79a8d00963fef14b491cd53c86476650dc01b8241e850",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "final_attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Datele pixelilor makes the missing stored pixel payload explicit and fits the absent ZIP-entry branch, rather than claiming visible pixels were erased.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "The missing item is stored pixel data in an autosave ZIP entry, not missing screen pixels.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Autosave pixels could not be read.",
+      "source_value_sha256_utf8": "b6c10f2c0238abb6190525baa6d50140fc4e8c33de2cfab12b99930e833ba2f3",
+      "candidate_display_text": "Datele pixelilor din salvarea automată nu au putut fi citite.",
+      "candidate_value_sha256_utf8": "ca09e3fda5d595b30b5c0acf27e7895fdac5f586a4c344fbf21c2cf5a05b5d95",
+      "final_display_text": "Datele pixelilor din salvarea automată nu au putut fi citite.",
+      "final_value_sha256_utf8": "ca09e3fda5d595b30b5c0acf27e7895fdac5f586a4c344fbf21c2cf5a05b5d95",
+      "final_display_sha256_utf8": "ca09e3fda5d595b30b5c0acf27e7895fdac5f586a4c344fbf21c2cf5a05b5d95",
+      "final_xml_text": "\"Datele pixelilor din salvarea automată nu au putut fi citite.\"",
+      "final_xml_text_sha256_utf8": "459f18226cf72624499351e43667e87ae79d392f198a4f7e3014b852bbd40c67",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "final_attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Keeps the inability to read stored pixel data distinct from the separate missing-entry message.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Stored pixel data could not be decoded/read; no successful restoration is claimed.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Autosave selection encoding failed.",
+      "source_value_sha256_utf8": "4f03c5b20f4fee753afcccbbaddc08e6361f85e6ebd9a1275d69cfd5ffa906e0",
+      "candidate_display_text": "Codificarea selecției pentru salvarea automată a eșuat.",
+      "candidate_value_sha256_utf8": "22098cc9fb4963d43b6cac3f94b370773ed4a573d2d7f9b0da8cd90b7316b304",
+      "final_display_text": "Codificarea selecției pentru salvarea automată a eșuat.",
+      "final_value_sha256_utf8": "22098cc9fb4963d43b6cac3f94b370773ed4a573d2d7f9b0da8cd90b7316b304",
+      "final_display_sha256_utf8": "22098cc9fb4963d43b6cac3f94b370773ed4a573d2d7f9b0da8cd90b7316b304",
+      "final_xml_text": "\"Codificarea selecției pentru salvarea automată a eșuat.\"",
+      "final_xml_text_sha256_utf8": "a364ca65f6f81013d45b0f908e29b6165a10574e23a06dd1041f7b6ec35bf22d",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "final_attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Keeps the selection-encoding object and autosave purpose, matching the optional floating.png compression branch.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "source_value_sha256_utf8": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "candidate_display_text": "Nu se poate crea cache-ul istoricului de anulare. Eliberează spațiu de stocare pe dispozitiv și încearcă din nou.",
+      "candidate_value_sha256_utf8": "dab72d16241584cd9cf190784048c47b989305c7eddec470f75efd3ff4407575",
+      "final_display_text": "Nu se poate crea cache-ul istoricului de anulare. Eliberează spațiu de stocare pe dispozitiv și încearcă din nou.",
+      "final_value_sha256_utf8": "dab72d16241584cd9cf190784048c47b989305c7eddec470f75efd3ff4407575",
+      "final_display_sha256_utf8": "dab72d16241584cd9cf190784048c47b989305c7eddec470f75efd3ff4407575",
+      "final_xml_text": "\"Nu se poate crea cache-ul istoricului de anulare. Eliberează spațiu de stocare pe dispozitiv și încearcă din nou.\"",
+      "final_xml_text_sha256_utf8": "cba52ea0c4aaf2f2f47eb14c324fd1200d9cfd8a73ab97a825e4ef1ec774b895",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "final_attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "The complete technical phrase cache-ul istoricului de anulare is intelligible and consistent across the cache family. Spațiu de stocare clearly asks for disk storage, not additional RAM.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ],
+      "qualifications": [
+        "This is device storage for on-disk undo snapshots, not RAM budget.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "The cache is stored on device storage. The suggested remedy says spațiu de stocare, not RAM or editing-memory budget.",
+        "Cache denotes compressed on-disk undo snapshots here; the wording is accepted as a bounded technical phrase, not a glossary-wide or native-human certification.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer should judge cache-ul istoricului de anulare as the complete technical expression; cache refers to disk-backed snapshots, not necessarily RAM."
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Could not export the recovery copy",
+      "source_value_sha256_utf8": "66c703a27ccf6fd0c8400514fd0417449b780e644313ed3b5565bd8060be1815",
+      "candidate_display_text": "Copia de recuperare nu a putut fi exportată",
+      "candidate_value_sha256_utf8": "ef383b0e56346284867a687fdd23011979e172f00d123454fde1d74924260af1",
+      "final_display_text": "Copia de recuperare nu a putut fi exportată",
+      "final_value_sha256_utf8": "ef383b0e56346284867a687fdd23011979e172f00d123454fde1d74924260af1",
+      "final_display_sha256_utf8": "ef383b0e56346284867a687fdd23011979e172f00d123454fde1d74924260af1",
+      "final_xml_text": "\"Copia de recuperare nu a putut fi exportată\"",
+      "final_xml_text_sha256_utf8": "4877554474a8bac96772945e6849c7972eec8f4c8dfded1e550fea5479c9e125",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "final_attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Natural passive failure prefix with no terminal punctuation, allowing ioFailed to append its own period and reason.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ],
+      "qualifications": [
+        "Prefix passed to ioFailed; caller attaches error details. Keep no added terminal punctuation.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "ioFailed adds its own separator and exception detail; no terminal punctuation was added to this prefix.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Draft not saved yet",
+      "source_value_sha256_utf8": "47bfd1dafcd6d9d6d49ae9f60f5b5c60d0180661684733aaa73e559734f7d447",
+      "candidate_display_text": "Ciorna nu a fost încă salvată",
+      "candidate_value_sha256_utf8": "5260ca85f315c337173967bdb66f7e205a262ac492da3fe9da267c3874b5e209",
+      "final_display_text": "Ciorna nu a fost încă salvată",
+      "final_value_sha256_utf8": "5260ca85f315c337173967bdb66f7e205a262ac492da3fe9da267c3874b5e209",
+      "final_display_sha256_utf8": "5260ca85f315c337173967bdb66f7e205a262ac492da3fe9da267c3874b5e209",
+      "final_xml_text": "\"Ciorna nu a fost încă salvată\"",
+      "final_xml_text_sha256_utf8": "90133209008c3c95f7991ea87ec29b3606f7c65200c973ce6ba08e0d4adc70c5",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "final_attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "A clear negative status meaning not yet saved; it makes no claim about the explicit image destination.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Draft restored",
+      "source_value_sha256_utf8": "b22e11b3de90d4a130e7c63753a46f3b853fc949ca2fe95dd156138a384b5dcb",
+      "candidate_display_text": "Ciornă restaurată",
+      "candidate_value_sha256_utf8": "31d30227dc9c6c6f19e136d7ff9967a272aba21436d8dd8cc49cc0069fb2f98b",
+      "final_display_text": "Ciornă restaurată",
+      "final_value_sha256_utf8": "31d30227dc9c6c6f19e136d7ff9967a272aba21436d8dd8cc49cc0069fb2f98b",
+      "final_display_sha256_utf8": "31d30227dc9c6c6f19e136d7ff9967a272aba21436d8dd8cc49cc0069fb2f98b",
+      "final_xml_text": "\"Ciornă restaurată\"",
+      "final_xml_text_sha256_utf8": "6f11b12eeb506a1ebddcd5eecb6e34538009b05667c18a4e35731afd09dad0a0",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "final_attributes": {
+        "name": "ui_draft_restored"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Idiomatic concise restoration status; ciornă remains consistent with all recovery branches.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ],
+      "qualifications": [
+        "Startup recovery status only; not a claim that all undo history was recovered.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Recovery status only; unreadable undo history can still have been reported separately.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Draft saved",
+      "source_value_sha256_utf8": "5ccb8caacdc5383597f882b5c366969ee1cdd1a32b1d122a42b0280a51f9a5a6",
+      "candidate_display_text": "Ciornă salvată",
+      "candidate_value_sha256_utf8": "0363bbbad282e4dc9c22824cdb3e4c921864c2d87b4ae163e07eea75cab514ac",
+      "final_display_text": "Ciornă salvată",
+      "final_value_sha256_utf8": "0363bbbad282e4dc9c22824cdb3e4c921864c2d87b4ae163e07eea75cab514ac",
+      "final_display_sha256_utf8": "0363bbbad282e4dc9c22824cdb3e4c921864c2d87b4ae163e07eea75cab514ac",
+      "final_xml_text": "\"Ciornă salvată\"",
+      "final_xml_text_sha256_utf8": "87fefc26e92f6bd2dd1671e4b931a58e49396fd83990430dc89f01780e35019c",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "final_attributes": {
+        "name": "ui_draft_saved"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Idiomatic concise autosave status; it does not change the meaning into explicit Save-target success.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ],
+      "qualifications": [
+        "Autosave draft status only. Must not imply explicit Save target updated or unsaved drawing state cleared.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Autosave draft status only; it does not imply the explicit Save destination changed or dirty state cleared.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Export recovery copy…",
+      "source_value_sha256_utf8": "d642d7ea56f8deaece6e022241000cf5ef28239a5d066391c1e1e4bd5fe7a197",
+      "candidate_display_text": "Exportă copia de recuperare…",
+      "candidate_value_sha256_utf8": "de536b2493f2b17c6af33b72da2f733ace5e4fdcd033a813c82c0dd72be594fa",
+      "final_display_text": "Exportă copia de recuperare…",
+      "final_value_sha256_utf8": "de536b2493f2b17c6af33b72da2f733ace5e4fdcd033a813c82c0dd72be594fa",
+      "final_display_sha256_utf8": "de536b2493f2b17c6af33b72da2f733ace5e4fdcd033a813c82c0dd72be594fa",
+      "final_xml_text": "\"Exportă copia de recuperare…\"",
+      "final_xml_text_sha256_utf8": "2ca8b8400649b85459ece6fad3fa8646e4c2eabdfc6dfd1033be5a8c67798a20",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "final_attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The imperative action and ellipsis naturally identify the pending export flow; its wording matches the quoted recovery-action references.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:846"
+      ],
+      "qualifications": [
+        "Conditional File-menu action appears only when autosave is blocked or recovery copies exist. Ellipsis retained.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Ellipsis retained in the conditional File-menu action.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Export recovery copy",
+      "source_value_sha256_utf8": "144b8a2d9ee28d7aaa90dbbd22a6e1f487e99fd78a9c5f4d4131e48c0c3a0644",
+      "candidate_display_text": "Exportă copia de recuperare",
+      "candidate_value_sha256_utf8": "13c2f1aa357fb838e0a0331006339d32f83e1cc9ccd77b8be9a7d9564258e636",
+      "final_display_text": "Exportă copia de recuperare",
+      "final_value_sha256_utf8": "13c2f1aa357fb838e0a0331006339d32f83e1cc9ccd77b8be9a7d9564258e636",
+      "final_display_sha256_utf8": "13c2f1aa357fb838e0a0331006339d32f83e1cc9ccd77b8be9a7d9564258e636",
+      "final_xml_text": "\"Exportă copia de recuperare\"",
+      "final_xml_text_sha256_utf8": "532062f85ba0765bdbedaf19d470caf3146baaf119fb81abff2f14367ef2c090",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "final_attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The same action wording without ellipsis is suitable as the recovery-copy chooser title.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ],
+      "qualifications": [
+        "Dialog title for choosing one of several recovery copies; no ellipsis in canonical title.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "The copy-selection dialog title has no ellipsis, matching the canonical source.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "source_value_sha256_utf8": "445a2a9744ed258c1815920072f46042e9bb4aeb519a2c2d2d34eac8a95a589e",
+      "candidate_display_text": "Canavaua a fost restaurată, dar istoricul de anulare nu a putut fi citit. Ciorna originală a fost păstrată ca o copie de recuperare.",
+      "candidate_value_sha256_utf8": "f9ceb97eb87ba68a2bb3c59dbb2da5d2e6815137013033ba7a7d59d98c183831",
+      "final_display_text": "Canavaua a fost restaurată, dar istoricul de anulare nu a putut fi citit. Ciorna originală a fost păstrată ca o copie de recuperare.",
+      "final_value_sha256_utf8": "f9ceb97eb87ba68a2bb3c59dbb2da5d2e6815137013033ba7a7d59d98c183831",
+      "final_display_sha256_utf8": "f9ceb97eb87ba68a2bb3c59dbb2da5d2e6815137013033ba7a7d59d98c183831",
+      "final_xml_text": "\"Canavaua a fost restaurată, dar istoricul de anulare nu a putut fi citit. Ciorna originală a fost păstrată ca o copie de recuperare.\"",
+      "final_xml_text_sha256_utf8": "3d4b092926e224924468a27c65e793eb33dec04017322c6b23f2261d42eafc23",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "final_attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "All three outcomes remain distinct: restored canvas, unreadable undo history, original draft preserved as recovery copy. Canavaua and istoricul de anulare are internally consistent, and formatted=false remains unchanged.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ],
+      "qualifications": [
+        "formatted=false must remain. Canvas restored, undo history unreadable, original retained separately. These three clauses have different outcomes.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "The source formatted=false attribute is preserved. Canvas restoration, unreadable undo history and separate original-copy retention are three different outcomes.",
+        "Canava follows existing Dimensiune de canava terminology; no promise that undo history or every draft component was restored.",
+        "The existing Undo and Cancel labels are both Anulează. The explanatory phrase identifies undo history without changing either inherited label.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer should assess ciornă / canava / istoricul de anulare terminology together, without confusing Cancel and Undo despite their identical existing Anulează labels."
+      ]
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Invalid autosave metadata.",
+      "source_value_sha256_utf8": "4a62b9a9531a09d3f34b967194d530070ddf65a66811f5ce52f39c332de3e2eb",
+      "candidate_display_text": "Metadatele salvării automate sunt nevalide.",
+      "candidate_value_sha256_utf8": "5beba6df81d0ab13844815fe5a1fd1321de87043db7dc0266f25a552b168a136",
+      "final_display_text": "Metadatele salvării automate sunt nevalide.",
+      "final_value_sha256_utf8": "5beba6df81d0ab13844815fe5a1fd1321de87043db7dc0266f25a552b168a136",
+      "final_display_sha256_utf8": "5beba6df81d0ab13844815fe5a1fd1321de87043db7dc0266f25a552b168a136",
+      "final_xml_text": "\"Metadatele salvării automate sunt nevalide.\"",
+      "final_xml_text_sha256_utf8": "35e83d850a1cccd5cbc10c2ae31172a394c91e53cd9470b2706286fbc3d50bd6",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "final_attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Grammatical agreement and nevalide preserve invalid metadata without narrowing the condition to a missing field only.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Previous draft kept for recovery",
+      "source_value_sha256_utf8": "f31aee8ae34783790412c745919799d37484bf8e70be9dc2865ec4defc829ff8",
+      "candidate_display_text": "Ciorna anterioară a fost păstrată pentru recuperare",
+      "candidate_value_sha256_utf8": "834433dff0c4d7bbe75b9f56d0677d0e51f520b3c955ccecb8d3933be7ef50b0",
+      "final_display_text": "Ciorna anterioară a fost păstrată pentru recuperare",
+      "final_value_sha256_utf8": "834433dff0c4d7bbe75b9f56d0677d0e51f520b3c955ccecb8d3933be7ef50b0",
+      "final_display_sha256_utf8": "834433dff0c4d7bbe75b9f56d0677d0e51f520b3c955ccecb8d3933be7ef50b0",
+      "final_xml_text": "\"Ciorna anterioară a fost păstrată pentru recuperare\"",
+      "final_xml_text_sha256_utf8": "ee186c24f5bc5840f191f18d99ce2023524b483927e1e118298fcfacd7defa4f",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "final_attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Clearly says the previous draft was retained for recovery, not that it was restored or newly saved.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Recovered image",
+      "source_value_sha256_utf8": "f31f8410df9ce45c66f3c7e7af9c7bf126ee2481a825f0e31cfae2a4881a43a8",
+      "candidate_display_text": "Imagine recuperată",
+      "candidate_value_sha256_utf8": "a55e8806aff7fda8c66cd0f77b8c1294419caeb7131fbb980541ed7f3e61a4b5",
+      "final_display_text": "Imagine recuperată",
+      "final_value_sha256_utf8": "a55e8806aff7fda8c66cd0f77b8c1294419caeb7131fbb980541ed7f3e61a4b5",
+      "final_display_sha256_utf8": "a55e8806aff7fda8c66cd0f77b8c1294419caeb7131fbb980541ed7f3e61a4b5",
+      "final_xml_text": "\"Imagine recuperată\"",
+      "final_xml_text_sha256_utf8": "fe0806fb97e32d58f67887a2654aa53f255a7f2a1be7e9f8746ded683ab59543",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "final_attributes": {
+        "name": "ui_recovered_image"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Natural recovered-image filename/title fallback with no new runtime-success inference.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ],
+      "qualifications": [
+        "Fallback filename/title, not a new success claim or format name.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Fallback filename/title only, not a new success guarantee.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "source_value_sha256_utf8": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "candidate_display_text": "Copia de recuperare a fost exportată. Extrage canvas.png din arhiva ZIP și deschide-l folosind «Fișier > Load image…». Arhiva ZIP conține și setările ciornei și o eventuală selecție flotantă.",
+      "candidate_value_sha256_utf8": "96715d6e5ba13bd0e6f5e40153b8adbeb9156f2eaab0ceca2b56a5d190cf099f",
+      "final_display_text": "Copia de recuperare a fost exportată. Extrage canvas.png din arhiva ZIP și deschide-l folosind «Fișier > Load image…». Arhiva ZIP conține și setările ciornei și o eventuală selecție flotantă.",
+      "final_value_sha256_utf8": "96715d6e5ba13bd0e6f5e40153b8adbeb9156f2eaab0ceca2b56a5d190cf099f",
+      "final_display_sha256_utf8": "96715d6e5ba13bd0e6f5e40153b8adbeb9156f2eaab0ceca2b56a5d190cf099f",
+      "final_xml_text": "\"Copia de recuperare a fost exportată. Extrage canvas.png din arhiva ZIP și deschide-l folosind «Fișier > Load image…». Arhiva ZIP conține și setările ciornei și o eventuală selecție flotantă.\"",
+      "final_xml_text_sha256_utf8": "d0013462be895f9ad97f2ecac23ff075666eab49ddfc2c944d124f178c820b89",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "final_attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "The full instruction preserves the completed export, literal canvas.png and ZIP, actual mixed-language menu route, draft settings and singular optional floating selection. The masculine pronoun deschide-l can refer to the named file.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ],
+      "qualifications": [
+        "canvas.png and ZIP are literal identities; this is the draft recovery archive, not the paused Help callback/archive-identity work.",
+        "Both locales have absent ui_load_image, so the actual command is unchanged English Load image…. Quote that fallback with actual File menu label (Catalan Fitxer; Romanian Fișier). The model permits one optional floating selection, so use singular optional wording. No Help/archive identity work.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Actual menu composition is Fișier > Load image… because ui_load_image remains absent. This mixed-language command is deliberate, not full composed localization.",
+        "canvas.png and ZIP retain their exact identities; o eventuală selecție flotantă means one optional selection, not several. This is autosave recovery, not the paused Help archive identity work.",
+        "The reused source-context note mentions the prior DA/NO packet. Its locale labels are not applied to Romanian; use the actual Romanian/fallback labels stated here.",
+        "Load image… remains an intentional English fallback. This exact mixed-label full value is accepted; a fully Romanian workflow is not claimed. Selecție is not pluralized: exactly one optional floating selection is represented by the source model.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer should judge selecție flotantă and the pronoun referring to the literal canvas.png filename in the complete mixed-label instruction."
+      ]
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The draft is saving. Try again shortly.",
+      "source_value_sha256_utf8": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+      "candidate_display_text": "Ciorna este în curs de salvare. Încearcă din nou peste puțin timp.",
+      "candidate_value_sha256_utf8": "fc22a5175eff6b499b0c86cf6b2750859a519b63a145f8cd7938c04cb15a7616",
+      "final_display_text": "Ciorna este în curs de salvare. Încearcă din nou peste puțin timp.",
+      "final_value_sha256_utf8": "fc22a5175eff6b499b0c86cf6b2750859a519b63a145f8cd7938c04cb15a7616",
+      "final_display_sha256_utf8": "fc22a5175eff6b499b0c86cf6b2750859a519b63a145f8cd7938c04cb15a7616",
+      "final_xml_text": "\"Ciorna este în curs de salvare. Încearcă din nou peste puțin timp.\"",
+      "final_xml_text_sha256_utf8": "1afc896b0a0b4ca4475c420cf6e393079453d361f5b81a40a1682c7d131de3c5",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "final_attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Natural in-progress status and retry-later instruction, not an instruction to invoke Save again.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ],
+      "qualifications": [
+        "In-progress autosave prevents edits temporarily; not an instruction to Save again.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "revise",
+      "candidate_unchanged": false,
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "source_value_sha256_utf8": "58a948005b3938c7d8ca4ea368db1b4b390a98d9f517f4851c5b98f8b57e71e5",
+      "candidate_display_text": "Ciorna anterioară nu a putut fi mutată într-o copie de recuperare.",
+      "candidate_value_sha256_utf8": "a8890810fb5148218aed22214d1d86cde04842fecf33c18fc3b57bcb0baf26df",
+      "final_display_text": "Ciorna anterioară nu a putut fi mutată într-un fișier de recuperare.",
+      "final_value_sha256_utf8": "6d304cdd570b1ed5bf62a74d996d7583ae516f4a6120d1da2a9bdee8bd8eafff",
+      "final_display_sha256_utf8": "6d304cdd570b1ed5bf62a74d996d7583ae516f4a6120d1da2a9bdee8bd8eafff",
+      "final_xml_text": "\"Ciorna anterioară nu a putut fi mutată într-un fișier de recuperare.\"",
+      "final_xml_text_sha256_utf8": "98706ec734a869e3242f94c373a7adcfa8ba56bb93f6e60e24b015dc1117a576",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "final_attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "The replacement names a recovery file as the move destination instead of the calqued container-like într-o copie. AutosaveStore constructs a distinct ZIP target and uses this message when the source is absent or rename fails; the negative wording does not promise that a recovery file was created.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ],
+      "qualifications": [
+        "Used if the prior draft source is missing or rename to a separate recovery file fails. Retain source wording without promising a copy exists.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "This is a wording clarity revision, not an application fix. Source-missing and rename-failure branches share the message; neither a successful move nor an existing usable recovery copy is asserted.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The previous draft could not be preserved separately.",
+      "source_value_sha256_utf8": "0231e19f5f7e376d0872735d1e3f8f9698fbd43564ea52240f454efc21d3c8ec",
+      "candidate_display_text": "Ciorna anterioară nu a putut fi păstrată separat.",
+      "candidate_value_sha256_utf8": "b4f4c370e23a9e78bd6bc51dc40d765068d64197f7463a7fa105d2e08b1a11f0",
+      "final_display_text": "Ciorna anterioară nu a putut fi păstrată separat.",
+      "final_value_sha256_utf8": "b4f4c370e23a9e78bd6bc51dc40d765068d64197f7463a7fa105d2e08b1a11f0",
+      "final_display_sha256_utf8": "b4f4c370e23a9e78bd6bc51dc40d765068d64197f7463a7fa105d2e08b1a11f0",
+      "final_xml_text": "\"Ciorna anterioară nu a putut fi păstrată separat.\"",
+      "final_xml_text_sha256_utf8": "b3596b913ec7cd3863daf2871f6a9d2f779b24201068b2a67db979aed15d7719",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "final_attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Natural complete failure sentence retaining the separate-preservation distinction.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The previous draft could not be restored.",
+      "source_value_sha256_utf8": "1cc58fbbe1b76be657fc2eafbf8250b6231f06484eda3fbf7758e1b5cf88ea13",
+      "candidate_display_text": "Ciorna anterioară nu a putut fi restaurată.",
+      "candidate_value_sha256_utf8": "63599878e903e4be417646a819c30df4226ac2b15e05a1bdb04c8032e229ab69",
+      "final_display_text": "Ciorna anterioară nu a putut fi restaurată.",
+      "final_value_sha256_utf8": "63599878e903e4be417646a819c30df4226ac2b15e05a1bdb04c8032e229ab69",
+      "final_display_sha256_utf8": "63599878e903e4be417646a819c30df4226ac2b15e05a1bdb04c8032e229ab69",
+      "final_xml_text": "\"Ciorna anterioară nu a putut fi restaurată.\"",
+      "final_xml_text_sha256_utf8": "d6ccc34265e397fce357721e38e9d173c78ce2a801f63178774c00c67e29d646",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "final_attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Natural complete restoration-failure sentence; it does not say that the previous file was deleted.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The previous draft needs more memory to reopen.",
+      "source_value_sha256_utf8": "cf655bbea013a29738b4f078166b9dde719f694052a7f1755e2bd0a40c1b9170",
+      "candidate_display_text": "Este nevoie de mai multă memorie pentru a redeschide ciorna anterioară.",
+      "candidate_value_sha256_utf8": "9692a3f88fe078f185a61134b2db973e595b473f610e8d22a3b1875014245f39",
+      "final_display_text": "Este nevoie de mai multă memorie pentru a redeschide ciorna anterioară.",
+      "final_value_sha256_utf8": "9692a3f88fe078f185a61134b2db973e595b473f610e8d22a3b1875014245f39",
+      "final_display_sha256_utf8": "9692a3f88fe078f185a61134b2db973e595b473f610e8d22a3b1875014245f39",
+      "final_xml_text": "\"Este nevoie de mai multă memorie pentru a redeschide ciorna anterioară.\"",
+      "final_xml_text_sha256_utf8": "34f71ff09b7805debf0466b9592a1fc6aff910dcf7be183c845184666949b519",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "final_attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The full Romanian sentence accurately expresses additional memory needed for reopening the previous draft, not device-storage shortage.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The undo cache is damaged.",
+      "source_value_sha256_utf8": "19e62ed88ca1118a10f0062c76f9f7b3629b34cceed02628aefe5ca3bbb44cef",
+      "candidate_display_text": "Cache-ul istoricului de anulare este deteriorat.",
+      "candidate_value_sha256_utf8": "ac5dd512f3c8cbd179249f83333989a679f65302469dba2dd6d31d8d246339be",
+      "final_display_text": "Cache-ul istoricului de anulare este deteriorat.",
+      "final_value_sha256_utf8": "ac5dd512f3c8cbd179249f83333989a679f65302469dba2dd6d31d8d246339be",
+      "final_display_sha256_utf8": "ac5dd512f3c8cbd179249f83333989a679f65302469dba2dd6d31d8d246339be",
+      "final_xml_text": "\"Cache-ul istoricului de anulare este deteriorat.\"",
+      "final_xml_text_sha256_utf8": "2783ef82effc4e28d7203fc5849c6beb17ed12406007991d3ccd59f896539938",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "final_attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "The consistent technical cache phrase and deteriorat accurately cover integrity/header failure without implying that all drawing data are necessarily lost.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer should assess consistency of cache-ul istoricului de anulare with the actual Anulează action; no inherited label is changed."
+      ]
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Unexpected data in the undo cache.",
+      "source_value_sha256_utf8": "9005bd155636cba50a7b1139426614c2878b1b6651e86c0acb7d1ca0de8b0b22",
+      "candidate_display_text": "Date neașteptate în cache-ul istoricului de anulare.",
+      "candidate_value_sha256_utf8": "ca55d86d49f1ac5f347bec032a112eadd74467d90956288b11a61685718f118f",
+      "final_display_text": "Date neașteptate în cache-ul istoricului de anulare.",
+      "final_value_sha256_utf8": "ca55d86d49f1ac5f347bec032a112eadd74467d90956288b11a61685718f118f",
+      "final_display_sha256_utf8": "ca55d86d49f1ac5f347bec032a112eadd74467d90956288b11a61685718f118f",
+      "final_xml_text": "\"Date neașteptate în cache-ul istoricului de anulare.\"",
+      "final_xml_text_sha256_utf8": "7a8a4e7b6587decec359652d94e898e42c42d4d331c8f4a88e9f81cb732cdfae",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "final_attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "The concise complete diagnostic preserves unexpected extra data in the undo cache and stays consistent with the other two cache messages.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ],
+      "qualifications": [
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer should assess the same technical cache/undo terminology as the other two cache messages."
+      ]
+    }
+  ],
+  "static_composition_examples": [
+    {
+      "kind": "static successful retained-copy notice with separate failure reason",
+      "display": "Ciorna anterioară nu a putut fi restaurată. A fost păstrată o copie separată pentru recuperare. Folosește «Fișier > Exportă copia de recuperare…» pentru a salva arhiva sa ZIP. Extrage canvas.png din arhivă și încarcă acea imagine pentru a folosi opțiunile obișnuite de scalare, dacă este necesar.",
+      "qualification": "Synthetic substitution only; no recovery operation executed."
+    },
+    {
+      "kind": "static recovery action/title pairing",
+      "menu": "Fișier",
+      "action": "Exportă copia de recuperare…",
+      "chooser_title": "Exportă copia de recuperare",
+      "cancel_existing": "Anulează",
+      "qualification": "Existing label and two reviewed candidate forms; no layout/runtime claim."
+    },
+    {
+      "kind": "static ioFailed punctuation",
+      "prefix": "Copia de recuperare nu a putut fi exportată",
+      "reason": "Nu se poate scrie în această locație.",
+      "composed": "Copia de recuperare nu a putut fi exportată. Nu se poate scrie în această locație.",
+      "qualification": "ioFailed adds period plus space. The reason is the separately reviewed group04 proposal, not yet an implementation result."
+    },
+    {
+      "kind": "static status distinction",
+      "autosave_success": "Ciornă salvată",
+      "autosave_failure": "Salvarea automată a eșuat · folosește «Salvează»",
+      "qualification": "Neither status independently certifies that the explicit Save destination changed or dirty state cleared."
+    },
+    {
+      "kind": "static restored-history exception",
+      "display": "Canavaua a fost restaurată, dar istoricul de anulare nu a putut fi citit. Ciorna originală a fost păstrată ca o copie de recuperare.",
+      "qualification": "Whole-value formatted=false wording; not proof of restored undo history."
+    }
+  ],
+  "effects": {
+    "application_edits": false,
+    "external_publication": false,
+    "linguistic_scope": "Only exact full values identified by this receipt; no other locale or inherited value newly accepted",
+    "runtime_acceptance": false
+  }
+}
