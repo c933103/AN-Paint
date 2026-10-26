@@ -37,7 +37,7 @@ class NumericDisplayLocaleTest {
     private lateinit var activity: ClassicPaintActivity
     private lateinit var oldLocale: Locale
     private lateinit var oldTag: String
-    private val tags=listOf("pt-BR", "de", "en-001", "ar", "ro")
+    private val tags=listOf("pt-BR", "de", "en-001", "ar", "ro", "sk", "sl")
 
     @Before fun start() {
         val context=RuntimeEnvironment.getApplication() as Context
@@ -102,6 +102,9 @@ class NumericDisplayLocaleTest {
                 assertTrue(failure.message!!.startsWith("Dimensiunea de 1500 × 2000 pixeli (3,00 MP)"))
                 assertTrue(failure.message!!.contains("2,25 MP"))
             }
+            // Independently reviewed complete literals: resource decimals, not the US process locale.
+            if(tag=="sk") assertEquals("1500 × 2000 pixelov (3,00 MP) prekračuje aktuálny bezpečný limit na úpravy 2,25 MP. AN Paint uchováva celý obrázok v pamäti a vyhradzuje priestor na transformácie a výbery. Tento limit závisí od dostupnej pamäte. Operácia bola zastavená pred pridelením pamäte pre príliš veľkú bitmapu. Nebola použitá automatická zmena mierky.", failure.message)
+            if(tag=="sl") assertEquals("Slika velikosti 1500 × 2000 slikovnih točk (3,00 MP) presega trenutno varno omejitev za urejanje, ki znaša 2,25 MP. AN Paint hrani celotno sliko v pomnilniku in rezervira prostor za preoblikovanja in izbore. To omejitev določa razpoložljivi pomnilnik. Postopek je bil ustavljen pred dodelitvijo pomnilnika za preveliko bitno sliko. Samodejno spreminjanje velikosti ni bilo izvedeno.", failure.message)
             assertEquals(2_249_999L,limit.maxPixels(3))
             assertThrows(ImageSizeException::class.java) {limit.check(1500,1500,3)}
             assertThrows(IllegalArgumentException::class.java) {limit.check(0,1)}
@@ -122,6 +125,10 @@ class NumericDisplayLocaleTest {
             "ar" to ("حد التحرير الآمن الحالي: ٢٥٫٧ MiB · حتى ٢٫٢٥ ميغابكسل قبل الحمل الإضافي لفك الترميز" to
                 "حد التحرير الآمن الحالي: ١٧٫٢ MiB · حتى ١٫٥٠ ميغابكسل قبل الحمل الإضافي لفك الترميز"),
             "ro" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
+                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "sk" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
+                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "sl" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead")
         )
         for(tag in tags) {
@@ -228,7 +235,7 @@ class NumericDisplayLocaleTest {
         activity.paintCanvas.layout(0,0,120,120)
         for(tag in tags) {
             select(tag)
-            for((zoom,wanted) in listOf(.025f to if(tag=="ar") "٢٫٥٠%" else if(tag in listOf("pt-BR","de","ro")) "2,50%" else "2.50%",
+            for((zoom,wanted) in listOf(.025f to if(tag=="ar") "٢٫٥٠%" else if(tag in listOf("pt-BR","de","ro","sk","sl")) "2,50%" else "2.50%",
                 .1f to if(tag=="ar") "١٠%" else "10%",1.234f to if(tag=="ar") "١٢٣%" else "123%")) {
                 activity.paintCanvas.zoomAt(zoom)
                 assertEquals("$tag clamp",zoom,activity.paintCanvas.zoom,0f)
