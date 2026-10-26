@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "reviewer": "/root/review_large_font_ime",
+  "review_kind": "independent read-only installed failure and image review",
+  "reviewed_at_utc": "2026-10-26T21:33:31Z",
+  "run_id": 40401252157,
+  "reviewed_head": "16d902da52c701cdd45419ea3c9aa9b9a2e56a59",
+  "tested_commit": "53dfc1a76d9216adad303df26e77c8f03d1b3e4e",
+  "source_tree": "89459b32b72121f93e373d85cdb355670086ae37",
+  "source_tests_sha256": "a72527573d094d16746a19a19f066923a5bad9869b92fa46ae896913447d59ec",
+  "source_binding_check": "Both receipts, app-dialog summary, core device identity and locally recalculated Android-test source digest agree. Existing artifact-source-binding record ties same run/commit/APK/source to tree89459b32. This reviewer did not independently re-extract all APK/source bytes.",
+  "cases": [
+    {
+      "locale": "en-US",
+      "method": "largeEnglishColourImeBackAndFooterLifecycle",
+      "receipt_sha256": "99d1d1429f914dd56869f8f2aeb938d966b3ca91a2aae18df67195c10b6b7c38",
+      "observations": 64,
+      "outcome": "failed",
+      "failure": "java.lang.AssertionError: Caption not reached within native gesture bound",
+      "fixture_elapsed_ms": 16075,
+      "ime_show_stable_ms": 269,
+      "ime_hide_stable_ms": 254,
+      "ime_package": "com.google.android.inputmethod.latin",
+      "fullscreen_ime": true,
+      "ime_inset_bottom": 0,
+      "one_native_back_verified": true,
+      "exact_retained_identity_value_selection_callbacks_verified": true,
+      "completed_caption_lines_with_valid_ancestor_paths": 6,
+      "viewport": [
+        28,
+        184,
+        326,
+        212
+      ],
+      "line_height": 33,
+      "successful_native_gutter_swipes": 12,
+      "last_pre_swipe_line_rect": [
+        40,
+        54,
+        146,
+        87
+      ],
+      "reached_native_footer_actions": false,
+      "visually_inspected_pngs": [
+        {
+          "file": "1-colour-2x-ime-open.png",
+          "sha256": "55aacc61809eb2bb4d51785b4a67c97e9de9aa54d5db1bdb04dd8073000124dc"
+        },
+        {
+          "file": "2-colour-2x-ime-hidden.png",
+          "sha256": "37e6fa17282784d526beec8b9bb14ca8760fa0b7f672f46bcd710fd047a3820d"
+        },
+        {
+          "file": "3-colour-2x-failed-before-dismiss.png",
+          "sha256": "c2d1bdba24dea7cec7d2523c2835aee0263f4de2d25d4bce98c7866f181bf0e7"
+        }
+      ]
+    },
+    {
+      "locale": "hu",
+      "method": "largeHungarianColourImeBackAndFooterLifecycle",
+      "receipt_sha256": "1e7b78aa69da4df08f62e5ecd2572883cde5269cb8598658c420a3a76cec8247",
+      "observations": 64,
+      "outcome": "failed",
+      "failure": "java.lang.AssertionError: Caption not reached within native gesture bound",
+      "fixture_elapsed_ms": 16428,
+      "ime_show_stable_ms": 271,
+      "ime_hide_stable_ms": 257,
+      "ime_package": "com.google.android.inputmethod.latin",
+      "fullscreen_ime": true,
+      "ime_inset_bottom": 0,
+      "one_native_back_verified": true,
+      "exact_retained_identity_value_selection_callbacks_verified": true,
+      "completed_caption_lines_with_valid_ancestor_paths": 6,
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "line_height": 33,
+      "successful_native_gutter_swipes": 12,
+      "last_pre_swipe_line_rect": [
+        40,
+        -16,
+        146,
+        17
+      ],
+      "reached_native_footer_actions": false,
+      "visually_inspected_pngs": [
+        {
+          "file": "1-colour-2x-ime-open.png",
+          "sha256": "ef54a49edb212e52293b4a2562f9fe446eb61f9bddce5d0bdfc4a14d5a997e94"
+        },
+        {
+          "file": "2-colour-2x-ime-hidden.png",
+          "sha256": "acb8719ff30b21cef3a5651ddb033a36b68fffaf1284b34e8eb8d3d6bde0ec0d"
+        },
+        {
+          "file": "3-colour-2x-failed-before-dismiss.png",
+          "sha256": "ab70581ea96f171507baf53d590c8020c31c06365ffb4fcd39feb1a65fa70a76"
+        }
+      ]
+    }
+  ],
+  "aggregate": "All14 selected methods completed without phase timeout; original12 passed, both new lifecycle cases failed. Zero ADB returncode and failure PNG inventory are not complete14/51 acceptance.",
+  "classification": "Terminal assertion is bounded gesture-helper exhaustion while Spectrum/Spektrum remains offscreen, not a completed final clipping or tap trial. Independently, its33pixel native Layout line is taller than the stable28/23pixel scroll viewport, so scrolling alone cannot satisfy the same full-line criterion at that allocation. This is a bounded allocation acceptance gap, not proof of universally impossible tapping or glyph-ink clipping.",
+  "proved_prefix": [
+    "Explicit synthetic activation followed by actual configured visible fullscreen IME; not just positive showSoftInput return.",
+    "One injected native Back hides IME and retains exact dialog/root/field/picker, #13579B, selection[2,5], zero commit/close callbacks.",
+    "Stable hidden-window observation and first three top-tab captions with six full-line/ancestor observations.",
+    "All six requested IME-open/hidden/failure PNGs visually inspected and consistent with receipts."
+  ],
+  "unproved": [
+    "Initial native field entry and keyboard transcription remain untested.",
+    "Full post-hide Spectrum/Spektrum and remaining editor captions, hex field and complete footer reachability were not established.",
+    "No native footer taps, Cancel restoration, reopen/Back, invalid rejection or valid commit were reached; cleanup dismissal is not those outcomes.",
+    "No whole2x, simultaneous IME/field/footer fit, physical-device, TalkBack, pixel-glyph or later-develop0ebd acceptance."
+  ],
+  "test_correction": "No correctness-driven guard weakening or longer-gesture-only acceptance rerun warranted. Optional fail-fast diagnostics could explain the measured line-versus-viewport mismatch without changing pass criteria.",
+  "production_proposal_only": "For compact enlarged-font columns, put the existing top mode-tab row inside the editor scroll content instead of consuming81pixels outside its viewport. Preserve instances, fonts/touch minima, field state, preview rail/footer and gutter/surface ownership. This was a proposal, not an implemented or verified repair at the time of installed review.",
+  "writes": "No source changes or external state changes by reviewer; this temporary local receipt is a requested evidence handoff."
+}

@@ -1,0 +1,102 @@
+{
+  "generated_receipt_checks": {
+    "mirrors_bound_to_source": 2,
+    "source_fallback_output_hashes": {
+      "values/source_text.xml": "6f89b2e6f55a511da1c5ed10fd2bb3355524978e46b7283ace7443ca0b53325f",
+      "values/source_text_contracts.xml": "5c9eb7fb23e5bff43dc9247dabb0ca255bb673ee0009d0e20e8e4b9309c49a9d"
+    },
+    "task_order_and_up_to_date_checked": true,
+    "generated_bytes_present_in_artifact": false,
+    "limit": "Generated mirror hashes independently derived from exact source; fallback bytes are not in artifact, so its source-bound producer semantic validation and restored-output hash equality are checked, not a separate byte readback."
+  },
+  "schema_version": 1,
+  "artifact_id": 12688109131,
+  "archive_sha256": "884e195acf25eb9061c512d942bba2ea64a7d9f4270d774ac3822795f4e221b0",
+  "run_id": 40401252157,
+  "reviewed_pr_head": "16d902da52c701cdd45419ea3c9aa9b9a2e56a59",
+  "source_commit": "53dfc1a76d9216adad303df26e77c8f03d1b3e4e",
+  "tree": "89459b32b72121f93e373d85cdb355670086ae37",
+  "probe_count": 13,
+  "all_log_hashes_and_expected_exits_verified": true,
+  "probes": [
+    {
+      "name": "01-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "c3f85c8ae24ab5ff3425f88117493e0d26099399db47ee08deb8ff05d273cc66"
+    },
+    {
+      "name": "02-clean-debug-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "b8c7dfb426ec9804d1762217f36d6e28cddd84462481dd829e5755ac485b46a7"
+    },
+    {
+      "name": "03-unchanged",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "32a45bfe523bafdd5498f86f11f3264e5306da99403f0b8d8ae74a0fd0985f6f"
+    },
+    {
+      "name": "04-1-input-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "aeab57b6ba570b05458f5f69c5f480de7cf1417f5a05f23ddcc04d5ffcc66fa7"
+    },
+    {
+      "name": "05-1-restored-input-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "d487d60c7dd0b0b0997938b765298bb30f6bc8f555c2e70dcccab922dd97ddaf"
+    },
+    {
+      "name": "04-2-input-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "aeab57b6ba570b05458f5f69c5f480de7cf1417f5a05f23ddcc04d5ffcc66fa7"
+    },
+    {
+      "name": "05-2-restored-input-release",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "d487d60c7dd0b0b0997938b765298bb30f6bc8f555c2e70dcccab922dd97ddaf"
+    },
+    {
+      "name": "05-source-change-and-stale-output",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "246ed21115569613408ddda74db7db6b2315a1398ba45ed16242e0a4aae558d5"
+    },
+    {
+      "name": "05-source-companion-added",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "90b1de7d8311d1a0f210bc9e9164f80adf51e17dcd7dd27843724d94602e8951"
+    },
+    {
+      "name": "05-source-companion-removed",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "c49db092fe65c3ddc312d8e035f0ff2a8a24c9213b73c537910499cc31f44f41"
+    },
+    {
+      "name": "06-reserved-app-variant-rejected",
+      "exit_code": 1,
+      "expected_success": false,
+      "log_sha256": "e9b51a1789618817fc77f3979c0f2e7414312c41b7e42c29ed29ec1eb5973564"
+    },
+    {
+      "name": "06-second-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "e61776e531e8ecb502c2cad4393472b83263971839fb0297a5045f108b642190"
+    },
+    {
+      "name": "07-release-first-after-clean",
+      "exit_code": 0,
+      "expected_success": true,
+      "log_sha256": "e8d21b4ee4b9f18da353a871c7ecb34904310d3f1d04e6e037f1ac231fffa23b"
+    }
+  ],
+  "limits": "Exact-script resource generation only; deliberate reserved-variant rejection is expected. Not language/layout/native-human or release acceptance."
+}

@@ -1,0 +1,99 @@
+{
+  "scope": "Exact failed diagnostic cohort, not repair acceptance",
+  "run_id": 40401252157,
+  "attempt": 1,
+  "head": "16d902da52c701cdd45419ea3c9aa9b9a2e56a59",
+  "tested_merge": "53dfc1a76d9216adad303df26e77c8f03d1b3e4e",
+  "tree": "89459b32b72121f93e373d85cdb355670086ae37",
+  "baseline": "3160b02e939cd732536f4f3c896e082b19325eee",
+  "later_develop_not_covered": "0ebd41d4d9b665213c776f5a0479a29ecabdd243",
+  "core_artifact": {
+    "id": 12691525448,
+    "bytes": 10526427,
+    "sha256": "8b97acb272b34bdf9e9a3e385fa8db4be52e046a7cd4f447bd095d116d8213d7",
+    "preservation": "Original ZIP retained locally and as Actions artifact; this record publishes an inspected selected subset, not the entire raw ZIP."
+  },
+  "installed": {
+    "native": {
+      "passed": 74,
+      "expected": 74
+    },
+    "ordinary_app": {
+      "passed": 17,
+      "expected": 17
+    },
+    "gallery": {
+      "passed": 3,
+      "expected": 3
+    },
+    "dialog": {
+      "passed": 12,
+      "failed": 2,
+      "completed": 14,
+      "seconds": 214.801748034,
+      "cap_seconds": 300,
+      "timed_out": false
+    },
+    "vertical": {
+      "passed": 4,
+      "expected": 4
+    },
+    "position": {
+      "passed": 7,
+      "expected": 7
+    },
+    "restart": {
+      "run": 0,
+      "expected": 2,
+      "reason": "Correctly withheld after dialog failure"
+    },
+    "app_union": {
+      "expected": 47,
+      "completed": 45,
+      "passed": 43,
+      "failed": 2,
+      "unrun": 2,
+      "accepted": false
+    }
+  },
+  "observed_prefix": "Both configured fullscreen Gboard windows rendered with visible nonempty roots, stable 269/271 ms and zero app inset. One native Back per locale hid the window (absence stable 254/257 ms), preserving exact picker/dialog/root/field, #13579B, selection [2,5], zero commit/close callbacks and restored dialog focus.",
+  "terminal_failure": "The unchanged full-line reveal helper exhausts its 12-gesture bound for Spectrum/Spektrum while the caption is still offscreen. This is not an observed final clipping or native tap failure.",
+  "constraint": "Independently, the native Layout line is 33 px high while the editor scroll viewport is only 28 px (English) / 23 px (Hungarian). Extra scrolling alone cannot fit that full line at the same allocation. The fixed top mode tabs consume 81 px outside the scroll body.",
+  "classification": "Reproduced bounded post-hide full-Layout-line acceptance gap; not glyph-ink clipping proof or universal untappability.",
+  "inventory": {
+    "original_successful_methods": 12,
+    "original_successful_pngs": 39,
+    "new_successful_methods": 0,
+    "new_successful_pngs": 0,
+    "new_failed_partial_pngs": 12,
+    "warning": "The raw count 39 + 12 = 51 does not satisfy the 14-method/51-successful-PNG inventory. New methods have failure filenames and outcome FAILED."
+  },
+  "not_reached": [
+    "native footer taps",
+    "Cancel restoration",
+    "reopened Back",
+    "invalid rejection",
+    "valid single commit"
+  ],
+  "not_accepted": [
+    "initial native field activation",
+    "initial full hex visibility",
+    "simultaneous IME/field/footer fit",
+    "whole 2x usability",
+    "C05",
+    "physical devices",
+    "TalkBack",
+    "linguistic fluency"
+  ],
+  "repair_proposal": "In enlarged-text horizontal landscape columns, let the existing top mode-tab row scroll with the editor body, restoring its fixed parent outside that mode. Preserve view identity, font and control minima, footer, independent preview rail, validation/callbacks and gutter drag ownership. Validate current-develop combined source with fresh model, installed lifecycle, old-case and exact-source checks; no pass is inferred from the proposal.",
+  "repair_authority": {
+    "url": "https://github.com/c933103/AN-Paint/pull/39#issuecomment-6135876967",
+    "exact_relevant_request": "reproduce the remaining 2× caption/preview geometry on current develop, repair the specific constraint without reducing text size/minimum controls or weakening the normal-font assertions, then add current-source positive large-font tests and inspect actual native captures"
+  },
+  "preserved_prior_cohorts": [
+    "994c1300cbdbf64ead6924d9065e410af118323f original diagnostic source",
+    "40391027049 attempt 1 transport failure",
+    "40391027049 attempt 2 failed initial field-reveal helper"
+  ],
+  "next": "Covered minimal production-layout candidate is being prepared separately on exact current develop; this failed diagnostic source remains immutable. No unchanged rerun, weakened caption gate, ready/Codex/merge or release claim."
+}
