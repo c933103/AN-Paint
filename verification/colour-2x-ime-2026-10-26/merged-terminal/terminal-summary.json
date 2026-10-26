@@ -1,0 +1,76 @@
+{
+  "run_id": 40417452902,
+  "event": "push",
+  "workflow_head": "c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+  "tested_commit": "c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+  "reviewed_pr_head": "73c21b75fa27fc9dab36c508b8f6120804897124",
+  "tree": "08550405b070ef263d1511226f8295519ea2ab65",
+  "classification": "Actual post-merge develop push passed bounded installed API35 en-US/hu 2x lifecycle; not whole-2x acceptance",
+  "app_methods": 47,
+  "native_methods": 74,
+  "dialog_methods": 14,
+  "successful_pngs": 51,
+  "original_methods_preserved": 12,
+  "original_pngs_preserved": 39,
+  "new_methods": 2,
+  "new_successful_pngs": 12,
+  "dialog_phase_seconds": 220.06342815999994,
+  "dialog_phase_cap_seconds": 300,
+  "source_enforced_method_deadline_seconds": 45,
+  "new_method_timings": [
+    {
+      "method": "largeEnglishColourImeBackAndFooterLifecycle",
+      "fixture_elapsed_ms": 20201,
+      "fixture_elapsed_scope": "setup+interaction+teardown; excludes export",
+      "actual_ime_stable_ms": 264,
+      "actual_ime_absent_stable_ms": 256
+    },
+    {
+      "method": "largeHungarianColourImeBackAndFooterLifecycle",
+      "fixture_elapsed_ms": 23578,
+      "fixture_elapsed_scope": "setup+interaction+teardown; excludes export",
+      "actual_ime_stable_ms": 256,
+      "actual_ime_absent_stable_ms": 253
+    }
+  ],
+  "caption_coverage_per_locale": {
+    "captions": 11,
+    "complete_Layout_line_and_ancestor_paths": 16
+  },
+  "jvm_cases": 1398,
+  "jvm_suites": 151,
+  "jvm_failures_errors_skips": 0,
+  "viewport_model_variants": 18,
+  "lint_issues": 0,
+  "hosted_python": {
+    "run": 1446,
+    "passed": 1444,
+    "skipped": 2,
+    "seconds": 269.285,
+    "raw_log_sha256": "22e9c63f7a67557315f95ff238caad42db938c6fb266018e8a6a9b85b3dc4b0b",
+    "skipped_identities": "Not named in non-verbose hosted terminal summary; not guessed from source or local results."
+  },
+  "artifact_reverification_modes": [
+    "ordinary",
+    "optimized"
+  ],
+  "actual_receipt_negative_mutations_rejected_per_mode": 18,
+  "pixel_review": "All 12 new post-merge PNGs directly inspected on 2026-10-26 at 23:36-23:37 UTC. Actual fullscreen IME, retained #13579B and selection after Back, and full native uppercase footer captions match ordered receipts. Partial editor/preview-rail content in initial/reopened/Use snapshots is sequential-reveal evidence only.",
+  "native_actions": "Exact retained root/dialog/field/value/selection/focus and zero callbacks across first native Back; actual Cancel restores original red, reopened one Back closes, invalid hex rejected, valid #2468AC commits exactly once; final close count three.",
+  "initial_native_field_activation": "not-tested",
+  "initial_full_hex_visibility": "not-accepted",
+  "simultaneous_ime_field_footer_fit": "not-accepted",
+  "exclusions": [
+    "whole-2x usability",
+    "glyph-ink proof from Layout bounds",
+    "C05 credit/notices",
+    "physical-device",
+    "TalkBack",
+    "fluency",
+    "private upgrade signing",
+    "release"
+  ],
+  "preservation": "Original failed diagnostic, synthetic activation and initial repaired-oracle cohorts remain immutable. Prior successful PR cohort 40414094733 remains distinct; this receipt proves the actual natural push, not reuse of PR execution.",
+  "publication_scope": "All verifier records, all-51 PNG/receipt hashes, source summary and the 12 new successful PNGs with their two manifests and receipts. Original 39 post-merge PNG pixels not republished here; original 39 from the separately reviewed PR cohort are preserved in caption-terminal. Raw downloaded archives remain local immutable and source-bound GitHub artifacts.",
+  "monitoring": "Terminal outcome established; no further CI polling required."
+}

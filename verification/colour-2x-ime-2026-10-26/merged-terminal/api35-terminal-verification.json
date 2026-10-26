@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "workflow_head": "c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+  "reviewed_pr_head": "73c21b75fa27fc9dab36c508b8f6120804897124",
+  "tested_commit": "c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+  "source_tree": "08550405b070ef263d1511226f8295519ea2ab65",
+  "run_id": 40417452902,
+  "artifact_id": 12697077253,
+  "artifact_sha256": "116601f171aca35e034d915db42a42ec6e08f92077902df4958592fc3d43d017",
+  "instrumentation_apks_archive_sha256": "d33dab4628916a83dab922b43aa92fd3c7985c3de99bffa7ad77089e07e3fe66",
+  "composed_device_identity": {
+    "commit": "c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+    "run_id": "40417452902",
+    "build_variant": "debug",
+    "source_tests_sha256": "c94aa440f38cb4418b321b6095595223523f71315dd69d335f3c37f15e174f63",
+    "device_sdk": 35,
+    "apk_sha256": "732822fa80d931af9a85ca32300853c750c58d9aa06747328dbb805b02622488",
+    "source_sha256": "4228d78413c0056111c165ecdffdded22dc34c20e3e996112d1e44d15e367755",
+    "test_apk_sha256": "7f41261fbdac646499d4e94c10b7a935eb13dffc55bfa550d829900c73021ecc",
+    "group_run_attempts": {
+      "core": 1,
+      "position": 1
+    },
+    "composed_in_run_attempt": 1
+  },
+  "app_source_bound_selected": 47,
+  "app_source_bound_completed": 47,
+  "app_phases": {
+    "ordinary": 17,
+    "gallery-draft": 3,
+    "vertical-english-manchu": 2,
+    "vertical-literary-chinese-emoji": 2,
+    "position-ainu-manchu": 3,
+    "position-tibetan-jeju-nom": 4,
+    "dialog": 14,
+    "seed": 1,
+    "verify": 1
+  },
+  "app_composed_validator_matches_original_except_separately_verified_identity": true,
+  "native_source_bound_selected": 74,
+  "native_source_bound_completed": 74,
+  "native_source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827",
+  "native_all_unique_case_identities_exact_match": true,
+  "native_missing_unexpected_errors": [],
+  "native_return_code": 0,
+  "native_timed_out": false,
+  "artifact_selection": {
+    "run_id": 40417452902,
+    "current_attempt": 1,
+    "checkout": "c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+    "workflow_head": "c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+    "device_sdk": 35,
+    "selected": {
+      "core": {
+        "artifact_id": 12696807453,
+        "name": "emulator-core-api-35-c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+        "digest": "sha256:784c77f67625d581bf707a694981c962b2ac696c9e9e73e28b66dffad2630058",
+        "created_at": "2026-10-26T23:29:33Z",
+        "updated_at": "2026-10-26T23:29:33Z",
+        "job_id": 121906344883,
+        "job_record_run_attempt": 1,
+        "job_started_at": "2026-10-26T23:14:43Z",
+        "job_completed_at": "2026-10-26T23:29:36Z"
+      },
+      "position": {
+        "artifact_id": 12697255717,
+        "name": "emulator-position-api-35-c63cd44815ef84f498d1e2fbe46c354416b81cdc",
+        "digest": "sha256:d5f1d09ae6e4d389c78471140d954a09afa2c5266561825bfa2ae9d84f8a8ebf",
+        "created_at": "2026-10-26T23:19:16Z",
+        "updated_at": "2026-10-26T23:19:16Z",
+        "job_id": 121906344878,
+        "job_record_run_attempt": 1,
+        "job_started_at": "2026-10-26T23:14:43Z",
+        "job_completed_at": "2026-10-26T23:19:18Z"
+      }
+    }
+  },
+  "expected_selection_sha256": "bc31f49511364feb8f6ce16d8497468618ec5c02b009d26d69808c82a21b31e4",
+  "expected_selection_exact_match": true,
+  "attempt_contract": {
+    "core": 1,
+    "position": 1,
+    "composed": 1
+  },
+  "limits": "Exact API35 emulator source/binary/phase binding only. Native new-case PNGs and receipts require separate review. Not simultaneous IME/field/footer fit, physical-device, TalkBack, universal 2x, C05 or language acceptance."
+}
