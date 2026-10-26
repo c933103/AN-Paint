@@ -159,6 +159,30 @@ class ColourViewportContractTest(unittest.TestCase):
                          'caption(view);complete(view)', 'controls.isSmoothScrollingEnabled=false'):
             self.assertIn(required, model)
 
+    def test_large_compact_tabs_share_editor_scroll_without_changing_normal_layout(self):
+        source = PRODUCTION.read_text()
+        for required in ('val scrollTabs=columns && activity.resources.configuration.fontScale>1f',
+                         'if(scrollTabs != (tabs.parent===body))',
+                         '(tabs.parent as? ViewGroup)?.removeView(tabs)',
+                         '(if(scrollTabs) body else editorPanel).addView(tabs,0,',
+                         'LinearLayout.LayoutParams(-1,-2)',
+                         'minHeight=dp(44);minimumHeight=dp(44)',
+                         'minHeight=dp(48);minimumHeight=dp(48)'):
+            self.assertIn(required, source)
+        self.assertLess(source.index('val scrollTabs=columns'),
+                        source.index('super.onMeasure(widthMeasureSpec,heightMeasureSpec)'))
+        model = MODEL.read_text()
+        for required in ('largeShortEditorScrollsTabsAndEveryFullCaptionLineWithoutShrinking',
+                         'modestlyEnlargedEditorRetainsCaptionsAndIdentityAcrossRepeatedReparenting',
+                         '@Config(fontScale=1.3f,qualifiers="w640dp-h320dp-land-mdpi")',
+                         'repeat(3)',
+                         'val panelHeight=if(tag=="en-US") 109 else 104',
+                         'assertSame(body,tabs.parent)', 'assertSame(editor.parent,tabs.parent)',
+                         'visible.contains(local)', 'editor.offsetDescendantRectToMyCoords(view,target)',
+                         'assertEquals(2,field.selectionStart);assertEquals(5,field.selectionEnd)',
+                         'assertSame(field,root.findViewWithTag<EditText>("colour_hex"))'):
+            self.assertIn(required, model)
+
 
 if __name__ == '__main__':
     unittest.main()

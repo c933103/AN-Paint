@@ -1,6 +1,7 @@
-"""148 bounded Serbian P0 whole values; not native, complete-locale or runtime acceptance."""
+"""149 current reviewed Serbian values; not native, complete-locale or runtime acceptance."""
 from collections import Counter
 from copy import deepcopy
+import hashlib
 import json
 import re
 import unittest
@@ -51,6 +52,25 @@ KEYS = frozenset({
 TAGS = {'default', 'sr-Cyrl', 'sr-Latn'}
 HOLDS = {'formats22_derived_exported', 'ui_save_as', 'ui_save_as_jpeg',
          'ui_save_as_jpeg_xl', 'ui_save_as_png'}
+FORMAT_KEY = 'save20_file_format'
+PAUSED_KEY = 'ui_autosave_is_paused_to_protect_that_draft_use'
+SUCCESSOR_LOCALE = 'sr-Cyrl'
+# This is a compact, two-value current contract, not a whole-source hash or a
+# reconstruction of historical snapshots. The separate immutable receipt binds
+# the newly reviewed label and replacement warning atomically. The replaced
+# warning remains one unique current value, not an additional accepted value.
+FORMAT_LABEL_REVIEW = {
+    'review_commit': '747437e11d94a88aeacc826cc8f2f7f227bc9a14',
+    'review_path': 'records/localization-review/2026-10-26/serbian-p0/r04-format-label-review/review.json',
+    'review_sha256': 'a2e91394fd6fcbbeaefafe4ee879df23fd4791a33dba565b0a31bfbc2f78b164',
+    'locale': SUCCESSOR_LOCALE,
+    'superseded_warning': PAUSED_KEY,
+    'newly_reviewed_label': FORMAT_KEY,
+    'unchanged_inherited_values': 337,
+    'unchanged_prior_reviewed_values': 147,
+    'current_unique_reviewed_values': 149,
+    'accepted_pair_sha256': 'c84e7335b4bea3a9d2dc4d7857f8fdb9ea662d63d1c7368373dc7505df892511',
+}
 
 
 # Keep this stricter parser local to the reviewed family. Generic catalogue
@@ -79,6 +99,50 @@ def require_reviewed_string(xml, key, expected, constraints, source):
     if full_format_tokens(value) != full_format_tokens(source):
         raise ValueError(key + ': complete format-token inventory differs')
     return value
+
+
+def require_format_label_successor(data, xml):
+    """Validate both complete current values against one immutable pair receipt."""
+    require_wording_shape(data, KEYS, TAGS)
+    if data.get('review_successors') != FORMAT_LABEL_REVIEW:
+        raise ValueError('Format-label review binding or accounting differs')
+    label = data.get('format_label_successor')
+    if (not isinstance(label, dict) or
+            set(label) != {'locale', 'key', 'value', 'attributes'} or
+            label['locale'] != SUCCESSOR_LOCALE or label['key'] != FORMAT_KEY or
+            not isinstance(label['value'], str) or not label['value'] or
+            label['attributes'] != {'name': FORMAT_KEY}):
+        raise ValueError('Format-label successor scope or attributes differ')
+    warning_by_tag = data['constraints'][PAUSED_KEY]
+    if not isinstance(warning_by_tag, dict) or set(warning_by_tag) != TAGS:
+        raise ValueError('Recovery successor constraint locale inventory differs')
+    warning_constraints = warning_by_tag[SUCCESSOR_LOCALE]
+    if warning_constraints != {
+            'attributes': {'name': PAUSED_KEY}, 'placeholders': {'%1$s': 1},
+            'child_elements': 0, 'formatted': True, 'escaped_newline_count': 0}:
+        raise ValueError('Recovery successor constraints differ')
+    pair = {
+        FORMAT_KEY: {'value': label['value'], 'attributes': label['attributes']},
+        PAUSED_KEY: {'value': data['values'][PAUSED_KEY][SUCCESSOR_LOCALE],
+                     'attributes': warning_constraints['attributes']},
+    }
+    encoded = json.dumps(pair, ensure_ascii=False, sort_keys=True,
+                         separators=(',', ':')).encode('utf-8')
+    if hashlib.sha256(encoded).hexdigest() != FORMAT_LABEL_REVIEW['accepted_pair_sha256']:
+        raise ValueError('Complete format-label/recovery pair differs from reviewed receipt')
+    # Token expectations are independent of any refreshed fixture expectation.
+    if (full_format_tokens(label['value']) != Counter() or
+            full_format_tokens(pair[PAUSED_KEY]['value']) != Counter({'%1$s': 1})):
+        raise ValueError('Atomic pair format-token inventory differs')
+    label_constraints = {'attributes': {'name': FORMAT_KEY}, 'placeholders': {},
+                         'child_elements': 0, 'formatted': True, 'escaped_newline_count': 0}
+    require_reviewed_string(xml['default'], FORMAT_KEY, 'File format',
+                            label_constraints, 'File format')
+    require_reviewed_string(xml[SUCCESSOR_LOCALE], FORMAT_KEY, label['value'],
+                            label_constraints, 'File format')
+    require_reviewed_string(xml[SUCCESSOR_LOCALE], PAUSED_KEY, pair[PAUSED_KEY]['value'],
+                            warning_constraints, data['values'][PAUSED_KEY]['default'])
+    return pair
 
 
 class SerbianP0Tests(unittest.TestCase):
@@ -168,21 +232,140 @@ class SerbianP0Tests(unittest.TestCase):
                         require_reviewed_string(ET.tostring(root, encoding='unicode'),
                             key, changed, constraints, source)
 
-    def test_all_338_prior_values_and_catalogue_identity_stay_unchanged(self):
+    def test_all_337_other_prior_values_and_catalogue_identity_stay_unchanged(self):
         self.assertEqual({'sr-Cyrl', 'sr-Latn'}, set(self.data['preserved_values']))
+        self.assertEqual(337, sum(len(values) for values in self.data['preserved_values'].values()))
         from test_translations import SCOPED_TAGS
-        for tag, count in [('sr-Cyrl', 170), ('sr-Latn', 168)]:
+        for tag, count, total in [('sr-Cyrl', 169, 244), ('sr-Latn', 168, 242)]:
             preserved = self.data['preserved_values'][tag]
             self.assertEqual(count, len(preserved));self.assertFalse(set(preserved) & KEYS)
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(count + 74, len(self.roots[tag]))
+            self.assertEqual(total, len(self.roots[tag]))
+            self.assertEqual(total, count + 74 + (tag == SUCCESSOR_LOCALE))
             self.assertNotIn(tag, SCOPED_TAGS)
-            self.assertEqual('Име слике' if tag == 'sr-Cyrl' else 'Format slike', self.roots[tag].find("./string[@name='save20_file_format']").text)
+            self.assertEqual('"Формат датотеке"' if tag == SUCCESSOR_LOCALE else 'Format slike',
+                             self.roots[tag].find(f"./string[@name='{FORMAT_KEY}']").text)
+            self.assertEqual(tag != SUCCESSOR_LOCALE, FORMAT_KEY in preserved)
         self.assertTrue({'sr-Cyrl', 'sr-Latn'} <= set(catalogues.offered_tags()))
         self.assertEqual(59, len(SCOPED_TAGS))
         self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
+
+    def test_atomic_format_label_pair_binds_full_values_attributes_tokens_and_unique_scope(self):
+        pair = require_format_label_successor(self.data, self.xml)
+        self.assertEqual({FORMAT_KEY, PAUSED_KEY}, set(pair))
+        family = {(tag, key) for tag in ('sr-Cyrl', 'sr-Latn') for key in KEYS}
+        unchanged = family - {(SUCCESSOR_LOCALE, PAUSED_KEY)}
+        replacement = {(SUCCESSOR_LOCALE, key) for key in pair}
+        self.assertEqual(148, len(family))
+        self.assertEqual(147, len(unchanged))
+        self.assertEqual(2, len(replacement))
+        self.assertFalse(unchanged & replacement)
+        current = unchanged | replacement
+        self.assertEqual(family | {(SUCCESSOR_LOCALE, FORMAT_KEY)}, current)
+        self.assertEqual(149, len(current))
+        self.assertEqual(self.data['review_successors']['unchanged_prior_reviewed_values'], len(unchanged))
+        self.assertEqual(self.data['review_successors']['current_unique_reviewed_values'], len(current))
+        # The existing filename fields are distinct, unchanged full values, not
+        # alternatives that may be used to label the format selection control.
+        for tag in ('sr-Cyrl', 'sr-Latn'):
+            filename = self.data['preserved_values'][tag]['save20_file_name']
+            actual = require_string(self.xml[tag], 'save20_file_name', filename['value'],
+                                    {'attributes': filename['attributes']})
+            self.assertNotEqual(display_value(actual), display_value(
+                self.roots[tag].find(f"./string[@name='{FORMAT_KEY}']").text))
+        self.assertEqual('Format slike', self.data['preserved_values']['sr-Latn'][FORMAT_KEY]['value'])
+
+    def test_atomic_pair_rejects_half_updates_and_xml_corruption(self):
+        for key in (FORMAT_KEY, PAUSED_KEY):
+            for mutation in ('missing', 'duplicate', 'empty', 'truncate', 'markup',
+                             'attribute', 'wrong-type', 'placeholder', 'old-label',
+                             'filename', 'newline', 'unquoted'):
+                root = deepcopy(self.roots[SUCCESSOR_LOCALE])
+                node = root.find(f"./string[@name='{key}']")
+                if mutation == 'missing':root.remove(node)
+                elif mutation == 'duplicate':root.append(deepcopy(node))
+                elif mutation == 'empty':node.text = ''
+                elif mutation == 'truncate':node.text = node.text[:-1]
+                elif mutation == 'markup':ET.SubElement(node, 'b').text, node.text = node.text, None
+                elif mutation == 'attribute':node.set('formatted', 'false')
+                elif mutation == 'wrong-type':node.tag = 'plurals'
+                elif mutation == 'placeholder':node.text += ' %2$s'
+                elif mutation == 'old-label':node.text = node.text.replace('Формат датотеке', 'Име слике')
+                elif mutation == 'filename':node.text = node.text.replace('Формат датотеке', 'Назив датотеке')
+                elif mutation == 'newline':node.text += '\\n'
+                else:node.text = display_value(node.text)
+                changed = dict(self.xml);changed[SUCCESSOR_LOCALE] = ET.tostring(root, encoding='unicode')
+                # Only one resource is changed in each case: neither the label
+                # alone nor the warning alone may leave the accepted pair.
+                with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
+                    require_format_label_successor(self.data, changed)
+
+    def test_matching_fixture_and_xml_edits_cannot_refresh_atomic_pair_acceptance(self):
+        for key in (FORMAT_KEY, PAUSED_KEY):
+            for mutation in ('wording', 'old-label', 'filename', 'placeholder', 'attribute', 'polarity'):
+                data = deepcopy(self.data);root = deepcopy(self.roots[SUCCESSOR_LOCALE])
+                node = root.find(f"./string[@name='{key}']")
+                if mutation == 'wording':node.text += ' changed'
+                elif mutation == 'old-label':node.text = node.text.replace('Формат датотеке', 'Име слике')
+                elif mutation == 'filename':node.text = node.text.replace('Формат датотеке', 'Назив датотеке')
+                elif mutation == 'placeholder':node.text += ' %9$s'
+                elif mutation == 'attribute':node.set('translatable', 'false')
+                elif key == PAUSED_KEY:node.text = node.text.replace('је паузирано', 'није паузирано')
+                else:node.text = '"Није формат датотеке"'
+                if key == FORMAT_KEY:
+                    data['format_label_successor']['value'] = node.text
+                    data['format_label_successor']['attributes'] = dict(node.attrib)
+                else:
+                    data['values'][key][SUCCESSOR_LOCALE] = node.text
+                    data['constraints'][key][SUCCESSOR_LOCALE]['attributes'] = dict(node.attrib)
+                changed = dict(self.xml);changed[SUCCESSOR_LOCALE] = ET.tostring(root, encoding='unicode')
+                with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
+                    require_format_label_successor(data, changed)
+        # Updating the expected digest as well cannot manufacture a new review.
+        data = deepcopy(self.data);data['format_label_successor']['value'] += ' changed'
+        pair = {FORMAT_KEY: {'value': data['format_label_successor']['value'],
+                             'attributes': data['format_label_successor']['attributes']},
+                PAUSED_KEY: {'value': data['values'][PAUSED_KEY][SUCCESSOR_LOCALE],
+                             'attributes': data['constraints'][PAUSED_KEY][SUCCESSOR_LOCALE]['attributes']}}
+        data['review_successors']['accepted_pair_sha256'] = hashlib.sha256(json.dumps(
+            pair, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8')).hexdigest()
+        root = deepcopy(self.roots[SUCCESSOR_LOCALE])
+        root.find(f"./string[@name='{FORMAT_KEY}']").text = data['format_label_successor']['value']
+        changed = dict(self.xml);changed[SUCCESSOR_LOCALE] = ET.tostring(root, encoding='unicode')
+        with self.assertRaises(ValueError):require_format_label_successor(data, changed)
+
+    def test_atomic_pair_rejects_scope_receipt_accounting_and_constraint_corruption(self):
+        for field, expected in FORMAT_LABEL_REVIEW.items():
+            for mutation in ('missing', 'changed'):
+                data = deepcopy(self.data)
+                if mutation == 'missing':data['review_successors'].pop(field)
+                else:data['review_successors'][field] = expected + 1 if type(expected) is int else expected + ' changed'
+                with self.subTest(field=field, mutation=mutation), self.assertRaises(ValueError):
+                    require_format_label_successor(data, self.xml)
+        for field in ('locale', 'key', 'value', 'attributes'):
+            data = deepcopy(self.data);data['format_label_successor'].pop(field)
+            with self.subTest(missing=field), self.assertRaises(ValueError):
+                require_format_label_successor(data, self.xml)
+        for field, value in [('locale', 'sr-Latn'), ('key', 'save20_file_name'),
+                             ('value', ''), ('attributes', {'name': FORMAT_KEY, 'formatted': 'false'})]:
+            data = deepcopy(self.data);data['format_label_successor'][field] = value
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                require_format_label_successor(data, self.xml)
+        for field in self.data['constraints'][PAUSED_KEY][SUCCESSOR_LOCALE]:
+            data = deepcopy(self.data);data['constraints'][PAUSED_KEY][SUCCESSOR_LOCALE].pop(field)
+            with self.subTest(constraint=field), self.assertRaises(ValueError):
+                require_format_label_successor(data, self.xml)
+        for mutation in ('extra-receipt-field', 'extra-label-field', 'missing-constraint-locale',
+                         'extra-constraint-locale'):
+            data = deepcopy(self.data)
+            if mutation == 'extra-receipt-field':data['review_successors']['extra'] = 'unreviewed'
+            elif mutation == 'extra-label-field':data['format_label_successor']['extra'] = 'unreviewed'
+            elif mutation == 'missing-constraint-locale':data['constraints'][PAUSED_KEY].pop(SUCCESSOR_LOCALE)
+            else:data['constraints'][PAUSED_KEY]['unreviewed'] = data['constraints'][PAUSED_KEY][SUCCESSOR_LOCALE]
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                require_format_label_successor(data, self.xml)
 
     def test_five_holds_each_and_unreviewed_neighbor_fallbacks_remain_absent(self):
         self.assertEqual(HOLDS, set(self.data['held_absent']))
@@ -202,7 +385,9 @@ class SerbianP0Tests(unittest.TestCase):
             for literal in (prior('ui_menu_file'), prior('ui_load_image'), 'canvas.png', 'ZIP'):
                 self.assertIn(literal, recovery)
             paused = value('ui_autosave_is_paused_to_protect_that_draft_use')
-            for literal in (prior('ui_menu_file'), prior('ui_export_recovery_copy'), prior('save20_title'), prior('save20_file_format'), 'PNG', 'JPEG'):
+            format_label = (display_value(self.data['format_label_successor']['value'])
+                            if tag == SUCCESSOR_LOCALE else prior(FORMAT_KEY))
+            for literal in (prior('ui_menu_file'), prior('ui_export_recovery_copy'), prior('save20_title'), format_label, 'PNG', 'JPEG'):
                 self.assertIn(literal, paused)
             kept = value('ui_a_separate_recovery_copy_has_been_kept_use')
             for literal in (prior('ui_menu_file'), prior('ui_export_recovery_copy'), 'canvas.png', 'ZIP'):

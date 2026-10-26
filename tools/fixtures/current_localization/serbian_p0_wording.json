@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "Exactly74 independently reviewed missing live-consumer P0 values each in sr-Cyrl/sr-Latn. Per-value independent decisions recorded in approved-manifest. Bounded independent AI full-value/source-static review, not whole-language/native-human/runtime/layout certification. All338 inherited values unchanged.",
+  "note": "Current 74-key Serbian P0 family: 147 prior reviewed values unchanged, one Cyrillic recovery warning superseded by the separately reviewed atomic format-label correction. The format label is one newly reviewed value:149 unique current reviewed values, not150. 337 other inherited values unchanged. Immutable PR180 acceptance records remain preserved. Bounded independent AI review, not whole-language/native-human/runtime/layout certification.",
   "values": {
     "formats22_animation_message": {
       "default": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
@@ -119,7 +119,7 @@
     },
     "ui_autosave_is_paused_to_protect_that_draft_use": {
       "default": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
-      "sr-Cyrl": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и изаберите формат PNG / JPEG (поље је означено „Име слике“).\"",
+      "sr-Cyrl": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и у пољу „Формат датотеке“ изаберите PNG / JPEG.\"",
       "sr-Latn": "\"%1$s Automatsko čuvanje je pauzirano radi zaštite te radne verzije. Da biste je zadržali, koristite „Datoteka → Izvezi kopiju za oporavak…“. Da biste sačuvali trenutni rad, koristite „Datoteka → Sačuvaj kao…“ (Format slike: PNG / JPEG).\""
     },
     "ui_autosave_metadata_is_missing": {
@@ -2833,12 +2833,6 @@
           "name": "save20_file_name"
         }
       },
-      "save20_file_format": {
-        "value": "Име слике",
-        "attributes": {
-          "name": "save20_file_format"
-        }
-      },
       "gallery_use_image": {
         "value": "Користи слику",
         "attributes": {
@@ -4799,5 +4793,25 @@
     "key": "ui_assembly_source_memory_floor",
     "historical_value": null,
     "unreviewed_companion": "ui_no_resize_fits_decoder_memory"
+  },
+  "format_label_successor": {
+    "locale": "sr-Cyrl",
+    "key": "save20_file_format",
+    "value": "\"Формат датотеке\"",
+    "attributes": {
+      "name": "save20_file_format"
+    }
+  },
+  "review_successors": {
+    "review_commit": "747437e11d94a88aeacc826cc8f2f7f227bc9a14",
+    "review_path": "records/localization-review/2026-10-26/serbian-p0/r04-format-label-review/review.json",
+    "review_sha256": "a2e91394fd6fcbbeaefafe4ee879df23fd4791a33dba565b0a31bfbc2f78b164",
+    "locale": "sr-Cyrl",
+    "superseded_warning": "ui_autosave_is_paused_to_protect_that_draft_use",
+    "newly_reviewed_label": "save20_file_format",
+    "unchanged_inherited_values": 337,
+    "unchanged_prior_reviewed_values": 147,
+    "current_unique_reviewed_values": 149,
+    "accepted_pair_sha256": "c84e7335b4bea3a9d2dc4d7857f8fdb9ea662d63d1c7368373dc7505df892511"
   }
 }

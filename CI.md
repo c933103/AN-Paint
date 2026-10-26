@@ -144,6 +144,12 @@ unchanged. Fourteen individual maxima exceed that aggregate cap; fresh actual co
 execution must fit, and a timeout remains a failure. Neither historical timings
 nor synthetic transport fixtures prove the combined runtime. The existing
 2× cases cover English/Hungarian caption and preview-rail reachability only.
+In horizontal landscape columns, enlarged text (`fontScale > 1`) places the
+existing top tab row inside the editor scroll body; normal-font, stacked and
+vertical-script layouts retain their existing tab placement. API30/35 model
+checks cover 1.3× and 2× full caption lines at the measured short allocations and
+repeated column/stack remeasurement without replacing field or tab identities.
+Those model checks do not establish installed gesture, rotation or IME outcomes.
 The separate 2× lifecycle cases use explicitly labelled synthetic field focus and
 `showSoftInput` fixture activation; initial native field activation and initial full
 hex visibility are untested/unaccepted. They require the configured native IME
