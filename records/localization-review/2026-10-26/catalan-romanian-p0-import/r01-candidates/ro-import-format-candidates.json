@@ -1,0 +1,477 @@
+{
+  "schema_version": 1,
+  "record_kind": "author Romanian complete-value candidates; independent review pending",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "6a42948a3ac7bad241d502f3b6c18ebf1c0327d8",
+  "source_tree": "65afa7b96a83c08e0ae08365166dec0520694356",
+  "locale": "ro",
+  "target_path": "Paintroid/src/main/res/values-ro/strings.xml",
+  "candidate_count": 13,
+  "shared_source_context": {
+    "file": "shared-source-context.json",
+    "sha256": "494c237ac946fcfdcb336dabb44c3b0c85892b594fc0cf440461ab1cbed5ea15"
+  },
+  "terminology_foundation": {
+    "current_catalogue_values": 137,
+    "current_catalogue_sha256": "39607210800dfbf50d4497d800860385a9f8dc8eb57e9bece7b8c13852ae7c2d",
+    "prior_independent_review_file": "ro-independent-review.json",
+    "prior_independent_review_sha256": "c13f44c483042ca15066706501a4015e64b807ea80af45ae41b9a955cbdd880a",
+    "prior_ten_values_match_current_catalogue": true,
+    "all_existing_values_remain_unchanged": true,
+    "inherited_labels": {
+      "Image format": "unchanged",
+      "Nume fișier": "unchanged",
+      "Salvează": "unchanged",
+      "Salvează ca…": "unchanged",
+      "Dithering": "unchanged",
+      "Monospace": "unchanged",
+      "Quality": "unchanged",
+      "Lossless %1$s": "canonical fallback, not added or translated"
+    },
+    "register": "Singular imperative proposals align existing action labels and the prior bounded reviewed ten; inherited Salvaţi modificările? is not normalized or newly accepted."
+  },
+  "author_source_checks": {
+    "scope_file_exact": true,
+    "source_binding_files_verified": 9,
+    "consumer_windows_verified": 16,
+    "unique_missing_P0_identities": 13,
+    "all137_existing_values_read_for_terminology": true,
+    "source_and_target_hashes_tokens_attributes_verified": true,
+    "held_absences_verified": [
+      "string/formats22_derived_exported",
+      "string/ui_save_as",
+      "string/ui_save_as_jpeg",
+      "string/ui_save_as_jpeg_xl",
+      "string/ui_save_as_png"
+    ],
+    "additional_read_only_source_bindings": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+        "bytes": 3106,
+        "sha256": "c9091570ccf406dd20e44bef486cfa8e8e6b4db6685aa818d3df8c5b34797b31",
+        "git_blob_sha1": "e22eb041a72c398f04aa21a9aeb89e2fb43cbcae",
+        "purpose": "Additional static check of ASCII plain-text export; not a new translated scope."
+      }
+    ]
+  },
+  "global_qualifications": [
+    "Author proposals only. Independent whole-value Romanian review remains pending; no native-human, runtime, device, layout or whole-locale acceptance.",
+    "The English at-least count, Image format, Monospace, Quality, Lossless and other inherited/fallback labels remain unchanged; mixed-language composition is not certified as wholly Romanian.",
+    "The inherited Dithering checkbox label is named literally in its new explanation; no new claim of a localized technical label is made.",
+    "All137 inherited Romanian values, including the prior independently reviewed ten, remain unchanged; these candidate drafts do not modify source.",
+    "Five held absences, paired P1/frozen history, PR56 never-merge, PR113/159 and Help/archive/release holds remain unchanged."
+  ],
+  "candidates": [
+    {
+      "identity": "string/formats22_animation_message",
+      "priority": "P0",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "source_value_sha256_utf8": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Această imagine %1$s conține %2$s cadre. AN Paint editează imagini statice și nu păstrează animația.",
+      "candidate_value_sha256_utf8": "0aaf2c78ef9c75b2295a738d6ac4abd96d70d5899fd964033d94aae1e1657c58",
+      "candidate_xml_text": "\"Această imagine %1$s conține %2$s cadre. AN Paint editează imagini statice și nu păstrează animația.\"",
+      "candidate_xml_text_sha256_utf8": "ed25ccf4921b24f74acbee92c72e89bfd7658bd4102abe95044e7ae879ab111a",
+      "placeholder_tokens": [
+        "%1$s",
+        "%2$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:92"
+      ],
+      "source_semantic_notes": [
+        "%1$s is a format label. %2$s is a string: exact count or untouched English formats22_at_least_frames (at least %1$d). The mixed-language count remains explicitly out of scope; do not claim the composed message fully localized.",
+        "No singular/plural conversion: consumer only chooses this branch when frameCount >= 2."
+      ],
+      "author_semantic_qualifications": [
+        "%1$s is a format label. %2$s is a string: exact count or untouched English formats22_at_least_frames (at least %1$d). The mixed-language count remains explicitly out of scope; do not claim the composed message fully localized.",
+        "No singular/plural conversion: consumer only chooses this branch when frameCount >= 2.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "The inexact %2$s replacement remains English (for example at least 2); the complete composed UI is intentionally mixed and cannot be accepted as wholly Romanian. Verify cadre as the animation-frame term throughout this bounded family."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "priority": "P0",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "source_value_sha256_utf8": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Acest PNG are o imagine implicită separată. Acea imagine va fi importată în locul cadrelor animate. La salvare se creează o imagine statică.",
+      "candidate_value_sha256_utf8": "da44d91e3ced0c6b91ba9400338f4821263554949fc54d2eaf150a559ebcc646",
+      "candidate_xml_text": "\"Acest PNG are o imagine implicită separată. Acea imagine va fi importată în locul cadrelor animate. La salvare se creează o imagine statică.\"",
+      "candidate_xml_text_sha256_utf8": "930f3d074094007a94171d501916a69575be9fc3f3be58a544752b299534b14c",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "source_semantic_notes": [
+        "APNG separate default image, not its animated frames, is imported; preserve that distinction."
+      ],
+      "author_semantic_qualifications": [
+        "APNG separate default image, not its animated frames, is imported; preserve that distinction.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "Implicită denotes the separate default PNG image, not a thumbnail, a selected preview or the first animated frame; reviewer should reject if that distinction is unclear."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "priority": "P0",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "source_value_sha256_utf8": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Va fi importat doar primul cadru. La salvare se creează o imagine statică.",
+      "candidate_value_sha256_utf8": "16281ccb32ae5742b9e608e18070234104ba8b1c3f6fe4feff1e38ebdcd1584f",
+      "candidate_xml_text": "\"Va fi importat doar primul cadru. La salvare se creează o imagine statică.\"",
+      "candidate_xml_text_sha256_utf8": "fe28b6e280fa67db9b5c08cabf0b1ed1bfb547248257ad865515513cd427caea",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "No new claim about editing or retaining animation is added; verify the distinction between imported first frame and the still image created on saving."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "priority": "P0",
+      "source": "Animated image",
+      "source_value_sha256_utf8": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Imagine animată",
+      "candidate_value_sha256_utf8": "1b773efba99d09f1e88605b89b144c8ba32a30c197bb444bb07d126f5b1b5514",
+      "candidate_xml_text": "\"Imagine animată\"",
+      "candidate_xml_text_sha256_utf8": "6bd4c2f28793b7d97b9848e80241fda1f5470aaae0fe6439ae9a6d8cf95a2632",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "Title is proposed only for the animated-image branch; unknown-frame inspection uses the separate Open still image title."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "priority": "P0",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "source_value_sha256_utf8": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Această imagine %1$s este prea complexă pentru a se putea confirma dacă are mai multe cadre. AN Paint va deschide doar o imagine statică și nu va păstra nicio animație.",
+      "candidate_value_sha256_utf8": "51e5765066f805933b0bc4750a33a65e3cd95d0258ffe6afb4fb6d0a133d0bb7",
+      "candidate_xml_text": "\"Această imagine %1$s este prea complexă pentru a se putea confirma dacă are mai multe cadre. AN Paint va deschide doar o imagine statică și nu va păstra nicio animație.\"",
+      "candidate_xml_text_sha256_utf8": "d7530efadc4edc948a23e17259f13891ccf555bac420fbf887c8866f535a8311",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:91"
+      ],
+      "source_semantic_notes": [
+        "frameCount < 2 means animation inspection uncertainty, not confirmed one-frame or absence of animation."
+      ],
+      "author_semantic_qualifications": [
+        "frameCount < 2 means animation inspection uncertainty, not confirmed one-frame or absence of animation.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "The full sentence preserves inability to confirm multiple frames; it must not imply a confirmed single-frame image or confirmed absence of animation."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "priority": "P0",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "source_value_sha256_utf8": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Scrie text simplu folosind caractere pentru tonuri deschise și închise. Vizualizează-l cu un font monospațiat. Este o reprezentare vizuală; nu poate fi redeschisă ca imagine originală.",
+      "candidate_value_sha256_utf8": "34f96b7ff131777b62b74cc495a2c13406d9114fe0a3bf96e9b93bc3413be6f7",
+      "candidate_xml_text": "\"Scrie text simplu folosind caractere pentru tonuri deschise și închise. Vizualizează-l cu un font monospațiat. Este o reprezentare vizuală; nu poate fi redeschisă ca imagine originală.\"",
+      "candidate_xml_text_sha256_utf8": "316a1d90ed183b6a0151a0cea09b1dddcb78d1c68e129627a5282f1bb406e56a",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:101"
+      ],
+      "source_semantic_notes": [
+        "Visual text rendition cannot be reopened as the original image; not a reversible source or normal full-image Save."
+      ],
+      "author_semantic_qualifications": [
+        "Visual text rendition cannot be reopened as the original image; not a reversible source or normal full-image Save.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "Tonuri deschise și închise describes the visual tonal effect of ASCII characters, not coloured glyph output. Review this explanatory wording and monospațiat against the existing inherited Monospace label, which is not changed."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "priority": "P0",
+      "source": "Open still image",
+      "source_value_sha256_utf8": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Deschide o imagine statică",
+      "candidate_value_sha256_utf8": "d02a78770d90542fb8bfb6bc4194812f478f9d1fa495ece3202b809211231de3",
+      "candidate_xml_text": "\"Deschide o imagine statică\"",
+      "candidate_xml_text_sha256_utf8": "c8dddd55adff18408cfc860994bd7500f1d32aa192ea6bf675a7eb2d11978951",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:95"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "The added indefinite article o is idiomatic Romanian for this action; reviewer should check title/button consistency without inferring a new file chooser or an animation-preserving action."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "priority": "P0",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "source_value_sha256_utf8": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Paginile PDF sunt rasterizate la 144 dpi. Textul și obiectele vectoriale devin pixeli.",
+      "candidate_value_sha256_utf8": "54102067fcbcb067ca135ddceb13c1ff05f8650dbab9a5abd1d33892b9faf105",
+      "candidate_xml_text": "\"Paginile PDF sunt rasterizate la 144 dpi. Textul și obiectele vectoriale devin pixeli.\"",
+      "candidate_xml_text_sha256_utf8": "5c2a42133ecbae9aa34701b8ac985903b728aafceb9f66471ebabe11e48b9b49",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:102"
+      ],
+      "source_semantic_notes": [
+        "144 dpi is a fixed product claim; preserve rasterization of vector/text to pixels."
+      ],
+      "author_semantic_qualifications": [
+        "144 dpi is a fixed product claim; preserve rasterization of vector/text to pixels.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "Rasterizate is proposed for page rendering into pixels; the fixed 144 dpi product value is retained. This is not a native-human terminology certification."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "priority": "P0",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "source_value_sha256_utf8": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Imagine statică, cu până la 256 de culori. Opțiunea «Dithering» face mai line tranzițiile dintre culori. Din GIF-urile animate se deschide doar primul cadru.",
+      "candidate_value_sha256_utf8": "3dd039d8b7b7f5927334985429d73bc703e64f94f0be2d1a3035878b6352587d",
+      "candidate_xml_text": "\"Imagine statică, cu până la 256 de culori. Opțiunea «Dithering» face mai line tranzițiile dintre culori. Din GIF-urile animate se deschide doar primul cadru.\"",
+      "candidate_xml_text_sha256_utf8": "6a30f9defaffc7dbcb41a5cd90a7ed810cddc11817c84de30be07a4b95e3b42e",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:95"
+      ],
+      "source_semantic_notes": [
+        "Dithering is a new technical term here if no localized save20_dither exists. Preserve the existing mode label/fallback; first-frame import does not preserve animation."
+      ],
+      "author_semantic_qualifications": [
+        "Dithering is a new technical term here if no localized save20_dither exists. Preserve the existing mode label/fallback; first-frame import does not preserve animation.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "The existing exact checkbox label is Dithering, not translated here. The candidate names that unchanged option and explains smoother colour transitions rather than inventing a new localized technical label. Review the phrase face mai line for clarity."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "priority": "P0",
+      "source": "Enter a file name without slashes or control characters.",
+      "source_value_sha256_utf8": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Introdu un nume de fișier fără bare oblice sau caractere de control.",
+      "candidate_value_sha256_utf8": "3d4165e7f0ca787aa2b60f02817ce69acef59b248bafb23da3d01019fe64148e",
+      "candidate_xml_text": "\"Introdu un nume de fișier fără bare oblice sau caractere de control.\"",
+      "candidate_xml_text_sha256_utf8": "3010e1c2d367206c0053872820d2247ea5ea0ebd47cca49446298bfe749a13c8",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:194"
+      ],
+      "source_semantic_notes": [
+        "Reject slash/control characters; not an assertion that all other names are accepted. Consumer retains ExportNames.valid logic."
+      ],
+      "author_semantic_qualifications": [
+        "Reject slash/control characters; not an assertion that all other names are accepted. Consumer retains ExportNames.valid logic.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "Bare oblice is intended to cover the slash/backslash characters rejected by ExportNames.valid. The real validator also rejects blank/dot stems, so this message is not an exhaustive statement that every other name is accepted."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "priority": "P0",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "source_value_sha256_utf8": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "O calitate mai ridicată păstrează mai multe detalii și, de obicei, produce un fișier mai mare.",
+      "candidate_value_sha256_utf8": "c643eb8d678ca0d792d5058971e9e3b452efb426a01a48d32b27a96bbb1d2461",
+      "candidate_xml_text": "\"O calitate mai ridicată păstrează mai multe detalii și, de obicei, produce un fișier mai mare.\"",
+      "candidate_xml_text_sha256_utf8": "a06933a3377e21ce88e6ca56740fa73daf86ce7b2f5cdaf079006c306517dd8b",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:102"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "Usually remains qualified by de obicei; no guarantee of a larger output for every input is introduced."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "priority": "P0",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "source_value_sha256_utf8": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Această imagine folosește un profil de culoare pe care AN Paint nu îl poate converti încă. Înainte de import, convertește imaginea într-un fișier PNG sRGB folosind un editor cu gestionarea culorilor.",
+      "candidate_value_sha256_utf8": "9542583fab11c435ee198957f3a469c26c8c587defc62a34869244a30e0cda3e",
+      "candidate_xml_text": "\"Această imagine folosește un profil de culoare pe care AN Paint nu îl poate converti încă. Înainte de import, convertește imaginea într-un fișier PNG sRGB folosind un editor cu gestionarea culorilor.\"",
+      "candidate_xml_text_sha256_utf8": "04f0d4dfe6bbbe3972cb9bdd8d0a69fd66261df6cf8745313a0474630e346834",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:16",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:23",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt:115"
+      ],
+      "source_semantic_notes": [
+        "Cannot convert yet; recommend color-managed conversion to sRGB PNG. Do not imply relabelling or automatic AN Paint conversion."
+      ],
+      "author_semantic_qualifications": [
+        "Cannot convert yet; recommend color-managed conversion to sRGB PNG. Do not imply relabelling or automatic AN Paint conversion.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "The proposed editor cu gestionarea culorilor must mean an editor performing colour-managed conversion, not merely changing a profile label. The image, not only its filename, is converted to sRGB PNG before import."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "priority": "P0",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "source_value_sha256_utf8": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "O calitate mai ridicată produce de obicei un fișier mai mare. Compresia fără pierderi păstrează fiecare valoare de culoare.",
+      "candidate_value_sha256_utf8": "91e8fbfb784572322de23be3232df7c3c10b0bdb13056127305fcc7eb31a5de4",
+      "candidate_xml_text": "\"O calitate mai ridicată produce de obicei un fișier mai mare. Compresia fără pierderi păstrează fiecare valoare de culoare.\"",
+      "candidate_xml_text_sha256_utf8": "b1b34b466919ea5b304f4bd45e3c2d6ef292cd7896f3a54be16208af7a6ce387",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:103"
+      ],
+      "source_semantic_notes": [
+        "Lossless is a compression mode and retains every color value. Existing mode labels can remain English fallback; candidate is explanation only."
+      ],
+      "author_semantic_qualifications": [
+        "Lossless is a compression mode and retains every color value. Existing mode labels can remain English fallback; candidate is explanation only.",
+        "Candidate only, not independently accepted; inherited neighbouring labels remain unchanged."
+      ],
+      "author_uncertainties": [
+        "The unchanged visible mode label can remain Lossless plus the format name; this candidate explains compression without losses but does not translate that label or certify the whole composed dialog."
+      ],
+      "author_confidence": "medium-high for bounded Romanian/source meaning; independent review pending",
+      "independent_review_status": "pending"
+    }
+  ],
+  "existing_terminology": {
+    "file": "terminology-foundations.json",
+    "sha256": "b50e919fb0003adaa8e0180e5ca71339b21ce1b1acf3a42398fa874dad5169c3"
+  },
+  "author_original_artifact": {
+    "file": "ro-author-proposal.json",
+    "sha256": "b43efe32fed54ab2b7634856374039997f38c822b18caed349bde31f8ddb7297",
+    "normalization": "Candidate entry values/attributes/qualifications unchanged; canonical shared source and terminology file bindings added."
+  },
+  "independent_review_status": "pending"
+}

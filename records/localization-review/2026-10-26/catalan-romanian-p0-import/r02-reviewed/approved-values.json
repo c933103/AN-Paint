@@ -1,0 +1,637 @@
+{
+  "schema_version": 1,
+  "source_commit": "6a42948a3ac7bad241d502f3b6c18ebf1c0327d8",
+  "source_tree": "65afa7b96a83c08e0ae08365166dec0520694356",
+  "locales": {
+    "ca": [
+      {
+        "identity": "string/formats22_animation_message",
+        "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+        "source_sha256": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+        "display": "Aquesta imatge %1$s conté %2$s fotogrames. AN Paint edita imatges estàtiques i no conserva l’animació.",
+        "xml_text": "\"Aquesta imatge %1$s conté %2$s fotogrames. AN Paint edita imatges estàtiques i no conserva l’animació.\"",
+        "attributes": {
+          "name": "formats22_animation_message"
+        },
+        "display_sha256": "ab7e28b2d4efc4d48ad43537724c61b017ff27f50a2671fc2746c74d86408a8f",
+        "xml_text_sha256": "ef5eac1727302d6e1e3816cbdf5acc64563c6811e80353fef153c528f43fab60",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Aquesta imatge %1$s conté %2$s fotogrames. AN Paint edita imatges estàtiques i no conserva l’animació.",
+        "original_candidate_display_sha256": "ab7e28b2d4efc4d48ad43537724c61b017ff27f50a2671fc2746c74d86408a8f",
+        "rationale": "Complete natural Catalan statement. The added imatge gives every format-label insertion a stable grammatical head; fotogrames correctly means animation frames. Editing only static images and not preserving animation are both explicit.",
+        "qualifications": [
+          "The consumer chooses this confirmed-count branch only for frameCount >= 2. %1$s remains a format label and %2$s remains a string, not an integer/plural rewrite.",
+          "A lower-bound count is still the English formats22_at_least_frames value (for example at least 2); the resulting mixed-language composition is not accepted as fully localized."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/formats22_animation_poster",
+        "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+        "source_sha256": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+        "display": "Aquest PNG té una imatge predeterminada separada. S’importarà aquesta imatge en lloc dels fotogrames animats. Quan es desa, es crea una imatge estàtica.",
+        "xml_text": "\"Aquest PNG té una imatge predeterminada separada. S’importarà aquesta imatge en lloc dels fotogrames animats. Quan es desa, es crea una imatge estàtica.\"",
+        "attributes": {
+          "name": "formats22_animation_poster"
+        },
+        "display_sha256": "981fe2315c1eeb40ad8f730d530ddf81c6bd59228ae050af47e766e516d731a0",
+        "xml_text_sha256": "ceb0c7691fd73785c7ef17826501731c063ddf584a1430058111d56cb324d563",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Aquest PNG té una imatge predeterminada separada. S’importarà aquesta imatge en lloc dels fotogrames animats. Quan es desa, es crea una imatge estàtica.",
+        "original_candidate_display_sha256": "981fe2315c1eeb40ad8f730d530ddf81c6bd59228ae050af47e766e516d731a0",
+        "rationale": "Preserves the separate PNG default/poster image rather than importing animated frames. The impersonal Quan es desa clause is acceptable in this explanatory sequence and makes the static result of later saving explicit.",
+        "qualifications": [
+          "The separate default image is the APNG poster/default-image case, not the first animated frame. The preceding animation message and this full value are composed with two newlines."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/formats22_animation_still",
+        "source": "Only the first frame will be imported. Saving creates a still image.",
+        "source_sha256": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+        "display": "Només s’importarà el primer fotograma. Quan es desa, es crea una imatge estàtica.",
+        "xml_text": "\"Només s’importarà el primer fotograma. Quan es desa, es crea una imatge estàtica.\"",
+        "attributes": {
+          "name": "formats22_animation_still"
+        },
+        "display_sha256": "db5b2c0da771f09d812f4adba061d04b839691910ddcbdd3e115a81cd61c7b36",
+        "xml_text_sha256": "79ad2920693e08d9bcff523c5214a7a4ee29c543cbdec820848b985a50548eb3",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Només s’importarà el primer fotograma. Quan es desa, es crea una imatge estàtica.",
+        "original_candidate_display_sha256": "db5b2c0da771f09d812f4adba061d04b839691910ddcbdd3e115a81cd61c7b36",
+        "rationale": "Natural complete first-frame restriction, with the same static-image/save terminology as the poster explanation. No animation-preserving save is promised.",
+        "qualifications": [
+          "This is the first-frame branch rather than the separate APNG default-image branch. Static review does not execute either decoder or saving."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/formats22_animation_title",
+        "source": "Animated image",
+        "source_sha256": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+        "display": "Imatge animada",
+        "xml_text": "\"Imatge animada\"",
+        "attributes": {
+          "name": "formats22_animation_title"
+        },
+        "display_sha256": "bc133a79a0c5451b6e1833a4a8837ca2c3a809e66213e3dc40f78dea6d46f855",
+        "xml_text_sha256": "64df766dbb53917edeb3e896edda778f359020736c612ded4a9541b7976cd31a",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Imatge animada",
+        "original_candidate_display_sha256": "bc133a79a0c5451b6e1833a4a8837ca2c3a809e66213e3dc40f78dea6d46f855",
+        "rationale": "Accurate idiomatic short title. It describes the detected image without promising playback or retained animation.",
+        "qualifications": [
+          "Used only for confirmed frameCount >= 2; the uncertain branch uses the neutral open-still title."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/formats22_animation_unknown",
+        "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+        "source_sha256": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+        "display": "Aquesta imatge %1$s és tan complexa que no es pot confirmar si conté diversos fotogrames. AN Paint només obrirà una imatge estàtica i no conservarà cap animació.",
+        "xml_text": "\"Aquesta imatge %1$s és tan complexa que no es pot confirmar si conté diversos fotogrames. AN Paint només obrirà una imatge estàtica i no conservarà cap animació.\"",
+        "attributes": {
+          "name": "formats22_animation_unknown"
+        },
+        "display_sha256": "c0efaa4bf5a032070c26e206a223f0a6f1f863e057d4add3365e58e2ebf49b7d",
+        "xml_text_sha256": "f30bc243c7e75925a703c403e8af49d5b0f3e97922c02f9e9cb3e49584d0916d",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Aquesta imatge %1$s és tan complexa que no es pot confirmar si conté diversos fotogrames. AN Paint només obrirà una imatge estàtica i no conservarà cap animació.",
+        "original_candidate_display_sha256": "c0efaa4bf5a032070c26e206a223f0a6f1f863e057d4add3365e58e2ebf49b7d",
+        "rationale": "The impersonal no es pot confirmar preserves inspection uncertainty rather than asserting that only one frame exists. The later single-static-image opening and no-animation consequence are explicit.",
+        "qualifications": [
+          "frameCount < 2 is the scanner uncertainty branch, not proof that animation is absent. The same format argument and no-animation consequence are preserved."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/formats22_ascii_description",
+        "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+        "source_sha256": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+        "display": "Escriu text pla amb caràcters que representen tons clars i foscos. Visualitza’l amb un tipus de lletra d’amplada fixa. És una representació visual; no es pot tornar a obrir com a imatge original.",
+        "xml_text": "\"Escriu text pla amb caràcters que representen tons clars i foscos. Visualitza’l amb un tipus de lletra d’amplada fixa. És una representació visual; no es pot tornar a obrir com a imatge original.\"",
+        "attributes": {
+          "name": "formats22_ascii_description"
+        },
+        "display_sha256": "20ff017a839787e26d36d682a2ece6126e8fd1a53193a9b4763a8baa21ba2266",
+        "xml_text_sha256": "0e2290b342ce56c4e3cbc621a336198244e9c64bf55792482b077c4f11e341c6",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted exact independently reviewed replacement",
+        "original_candidate_display": "Escriu text pla amb caràcters clars i foscos. Visualitza’l amb un tipus de lletra monoespaiat. És una representació visual; no es pot tornar a obrir com a imatge original.",
+        "original_candidate_display_sha256": "8505c5a3e09f39b43db84f91caefdde1487e845eeef9f9ad35dd3f514dce38c8",
+        "rationale": "Revise for technical clarity and accessible wording: characters represent light/dark tones rather than necessarily carrying different ink colours, matching the brightness-to-character ramp in TextImageData. D’amplada fixa states the equal-width font requirement directly. The original monoespaiat is not being declared ungrammatical. Plain text, visual rendition and inability to reopen it as the original image all remain.",
+        "qualifications": [
+          "This text describes a derived plain-text rendition, not a reversible full-image save. The underlying ramp maps brightness to character density; font/background choices remain outside this wording review.",
+          "The inherited Art ASCII and Monospace labels are not changed or newly accepted. The unchanged phrase com a imatge original refers to reopening as the original image, not merely displaying the exported text."
+        ],
+        "confidence": "medium-high for bounded Catalan linguistic and source-static meaning"
+      },
+      {
+        "identity": "string/formats22_open_still",
+        "source": "Open still image",
+        "source_sha256": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+        "display": "Obre una imatge estàtica",
+        "xml_text": "\"Obre una imatge estàtica\"",
+        "attributes": {
+          "name": "formats22_open_still"
+        },
+        "display_sha256": "1e757317afa82101939a450ebcdb7f15f8901de24af710d967d8ea489f9d0869",
+        "xml_text_sha256": "c947d72247208775595fc87757e4e6246727b5dcbc132fc760b66a360c3ae8b4",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Obre una imatge estàtica",
+        "original_candidate_display_sha256": "1e757317afa82101939a450ebcdb7f15f8901de24af710d967d8ea489f9d0869",
+        "rationale": "Natural second-person-singular action label matching existing command register, and usable as the neutral uncertainty-dialog title. It does not claim animation has been confirmed.",
+        "qualifications": [
+          "The same value is used as an action button and the uncertain-dialog title. No layout or physical-device fit was checked."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/formats22_pdf_raster_hint",
+        "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+        "source_sha256": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+        "display": "Les pàgines PDF es renderitzen a 144 dpi. El text i els objectes vectorials es converteixen en píxels.",
+        "xml_text": "\"Les pàgines PDF es renderitzen a 144 dpi. El text i els objectes vectorials es converteixen en píxels.\"",
+        "attributes": {
+          "name": "formats22_pdf_raster_hint"
+        },
+        "display_sha256": "75c19766ee9ec299ae905c0c5bcc93f8731e99b7170de360190b8aaa2b479937",
+        "xml_text_sha256": "43e55d4b16471364d08ecc9b194cb4642b12494efd619d10495c75a4857e6189",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Les pàgines PDF es renderitzen a 144 dpi. El text i els objectes vectorials es converteixen en píxels.",
+        "original_candidate_display_sha256": "75c19766ee9ec299ae905c0c5bcc93f8731e99b7170de360190b8aaa2b479937",
+        "rationale": "Renderitzen is intelligible technical Catalan here, and the second clause states rasterization plainly. The exact 144 dpi product quantity, PDF and conversion of both text and vector objects into pixels are retained.",
+        "qualifications": [
+          "144 dpi is a fixed source product claim, also consistent with PdfCodec’s two-pixels-per-PDF-point definition. This review does not run PDF rendering.",
+          "The surrounding page-selection labels and provider-supplied filename are outside this acceptance; the complete screen is not certified as localized."
+        ],
+        "confidence": "medium-high for bounded Catalan linguistic and source-static meaning"
+      },
+      {
+        "identity": "string/save20_gif_description",
+        "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+        "source_sha256": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+        "display": "Imatge estàtica de fins a 256 colors. El tramatge suavitza els degradats de color. Dels GIF animats, només s’obre el primer fotograma.",
+        "xml_text": "\"Imatge estàtica de fins a 256 colors. El tramatge suavitza els degradats de color. Dels GIF animats, només s’obre el primer fotograma.\"",
+        "attributes": {
+          "name": "save20_gif_description"
+        },
+        "display_sha256": "afe6aca55bb6faa113d928f1626565cd8fee3aa71e154ce05e3f4201b7d380f5",
+        "xml_text_sha256": "37bbc17d345bc7b748005045ce1503db05f8ff1da4e208455a21b1cd16d38ecb",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Imatge estàtica de fins a 256 colors. El tramatge suavitza els degradats de color. Dels GIF animats, només s’obre el primer fotograma.",
+        "original_candidate_display_sha256": "afe6aca55bb6faa113d928f1626565cd8fee3aa71e154ce05e3f4201b7d380f5",
+        "rationale": "Preserves a still image with an upper bound of 256 colours. Tramatge matches the existing option label. The fronted partitive Dels GIF animats construction is acceptable and makes first-frame-only opening explicit.",
+        "qualifications": [
+          "The 256-colour limit is an upper bound, not a promise to preserve every original colour. Dithering smooths gradients but does not restore lost colours or animation.",
+          "Existing Tramatge and Image format labels remain untouched; mixed or fallback labels are not automatically defects."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/save20_invalid_name",
+        "source": "Enter a file name without slashes or control characters.",
+        "source_sha256": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+        "display": "Introdueix un nom de fitxer sense barres ni caràcters de control.",
+        "xml_text": "\"Introdueix un nom de fitxer sense barres ni caràcters de control.\"",
+        "attributes": {
+          "name": "save20_invalid_name"
+        },
+        "display_sha256": "67ef76f4d3c5d1319793f3d1506c986f68c99da21df48168e602186c9bf13732",
+        "xml_text_sha256": "d7b1b522f70c2685e5f7931f05f4d3237ac376a4c0d53802faa8d3c5f1c1b197",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Introdueix un nom de fitxer sense barres ni caràcters de control.",
+        "original_candidate_display_sha256": "67ef76f4d3c5d1319793f3d1506c986f68c99da21df48168e602186c9bf13732",
+        "rationale": "Natural direct instruction; nom de fitxer is consistent with inherited Nom del fitxer. Barres covers the slash category without claiming that the message exhaustively lists every rule in ExportNames.valid.",
+        "qualifications": [
+          "The actual guard rejects forward slash, backslash and ISO control characters, and also rejects blank/dot stems. This wording does not promise that every other filename will be accepted."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/save20_lossy_quality_description",
+        "source": "Higher quality preserves more detail and usually makes a larger file.",
+        "source_sha256": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+        "display": "Una qualitat més alta conserva més detalls i normalment genera un fitxer més gran.",
+        "xml_text": "\"Una qualitat més alta conserva més detalls i normalment genera un fitxer més gran.\"",
+        "attributes": {
+          "name": "save20_lossy_quality_description"
+        },
+        "display_sha256": "d4fac962849fd45f6f0a33a244b2298ee4141d0d44f58177ac874e111788b2c9",
+        "xml_text_sha256": "54139977f4ec25846069e0c7cd94293d1e1646a426a32203849595d43f191751",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Una qualitat més alta conserva més detalls i normalment genera un fitxer més gran.",
+        "original_candidate_display_sha256": "d4fac962849fd45f6f0a33a244b2298ee4141d0d44f58177ac874e111788b2c9",
+        "rationale": "Accurate complete sentence. More detail and normally larger file size are retained, without turning the usual relationship into a guarantee.",
+        "qualifications": [
+          "Used for JPEG/HEIC description selection; actual codec quality, output size and fidelity are not certified by a static wording review."
+        ],
+        "confidence": "high for bounded Catalan grammar and source-static meaning"
+      },
+      {
+        "identity": "string/save20_unsupported_image_colour",
+        "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+        "source_sha256": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+        "display": "Aquesta imatge fa servir un perfil de color que AN Paint encara no pot convertir. Converteix-la a PNG sRGB en un editor amb gestió del color abans d’importar-la.",
+        "xml_text": "\"Aquesta imatge fa servir un perfil de color que AN Paint encara no pot convertir. Converteix-la a PNG sRGB en un editor amb gestió del color abans d’importar-la.\"",
+        "attributes": {
+          "name": "save20_unsupported_image_colour"
+        },
+        "display_sha256": "b6bc5e5abdd9a492b5ae8d349c1a090567fa0fc2ca34a5873277edb244906c1a",
+        "xml_text_sha256": "aa3823419d6f9828ab4c73b8dd69edd59d5c135646ca0fcf93d67b6b23e6b22c",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Aquesta imatge fa servir un perfil de color que AN Paint encara no pot convertir. Converteix-la a PNG sRGB en un editor amb gestió del color abans d’importar-la.",
+        "original_candidate_display_sha256": "b6bc5e5abdd9a492b5ae8d349c1a090567fa0fc2ca34a5873277edb244906c1a",
+        "rationale": "Preserves a current not-yet-supported colour-profile conversion, rather than a claim that every profile is unsupported. The instruction requires conversion to PNG sRGB in a colour-managed editor before import; it is not mere profile relabelling.",
+        "qualifications": [
+          "The source raises this value for UnsupportedColour boundaries, separately from storage/provider errors and invalid metadata. No claim of automatic in-app conversion or preservation of arbitrary original metadata is added."
+        ],
+        "confidence": "medium-high for bounded Catalan linguistic and source-static meaning"
+      },
+      {
+        "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+        "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+        "source_sha256": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+        "display": "Una qualitat més alta normalment genera un fitxer més gran. La compressió sense pèrdua conserva tots els valors de color.",
+        "xml_text": "\"Una qualitat més alta normalment genera un fitxer més gran. La compressió sense pèrdua conserva tots els valors de color.\"",
+        "attributes": {
+          "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+        },
+        "display_sha256": "f28104834ed09d952e07202fb1fcd4066c68e1bb4c5888817b826edc5e079932",
+        "xml_text_sha256": "46fffdd6ddf2843785f2fbea403fa6808990f79757eee258456aacdbeca6fb32",
+        "review_file": "ca-independent-review.json",
+        "review_sha256": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Una qualitat més alta normalment genera un fitxer més gran. La compressió sense pèrdua conserva tots els valors de color.",
+        "original_candidate_display_sha256": "f28104834ed09d952e07202fb1fcd4066c68e1bb4c5888817b826edc5e079932",
+        "rationale": "Accurate explanatory contrast. Normalment retains the usual size relationship; compressió sense pèrdua names the compression mode and preserves every colour value. It does not newly translate the inherited lossless control label.",
+        "qualifications": [
+          "Explains a lossless mode rather than declaring every available format lossless. The actual format and lossless control determine behavior.",
+          "Every colour value refers to the source product’s colour-value claim, not complete preservation of all metadata, original vectors or arbitrary high-depth/colour-profile inputs."
+        ],
+        "confidence": "medium-high for bounded Catalan linguistic and source-static meaning"
+      }
+    ],
+    "ro": [
+      {
+        "identity": "string/formats22_animation_message",
+        "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+        "source_sha256": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+        "display": "Această imagine %1$s conține %2$s cadre. AN Paint editează imagini statice și nu păstrează animația.",
+        "xml_text": "\"Această imagine %1$s conține %2$s cadre. AN Paint editează imagini statice și nu păstrează animația.\"",
+        "attributes": {
+          "name": "formats22_animation_message"
+        },
+        "display_sha256": "0aaf2c78ef9c75b2295a738d6ac4abd96d70d5899fd964033d94aae1e1657c58",
+        "xml_text_sha256": "ed25ccf4921b24f74acbee92c72e89bfd7658bd4102abe95044e7ae879ab111a",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Această imagine %1$s conține %2$s cadre. AN Paint editează imagini statice și nu păstrează animația.",
+        "original_candidate_display_sha256": "0aaf2c78ef9c75b2295a738d6ac4abd96d70d5899fd964033d94aae1e1657c58",
+        "rationale": "The complete Romanian sentence is grammatical and uses cadre consistently for animation frames. It preserves the two ordered substitutions and distinguishes static-image editing from animation preservation.",
+        "qualifications": [
+          "The exact-count composition is Romanian; an inexact count deliberately inserts unchanged English at least plus a number. That composed sentence is mixed-language, not certified wholly Romanian.",
+          "The consumer selects this message only when frameCount is at least two; no singular-frame inflection or new plural resource is introduced.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/formats22_animation_poster",
+        "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+        "source_sha256": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+        "display": "Acest PNG are o imagine implicită separată. Acea imagine va fi importată în locul cadrelor animate. La salvare se creează o imagine statică.",
+        "xml_text": "\"Acest PNG are o imagine implicită separată. Acea imagine va fi importată în locul cadrelor animate. La salvare se creează o imagine statică.\"",
+        "attributes": {
+          "name": "formats22_animation_poster"
+        },
+        "display_sha256": "da44d91e3ced0c6b91ba9400338f4821263554949fc54d2eaf150a559ebcc646",
+        "xml_text_sha256": "930f3d074094007a94171d501916a69575be9fc3f3be58a544752b299534b14c",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Acest PNG are o imagine implicită separată. Acea imagine va fi importată în locul cadrelor animate. La salvare se creează o imagine statică.",
+        "original_candidate_display_sha256": "da44d91e3ced0c6b91ba9400338f4821263554949fc54d2eaf150a559ebcc646",
+        "rationale": "Imagine implicită separată is a suitable description of the separate default PNG image; the explicit Acea imagine antecedent and în locul cadrelor animate preserve the APNG poster-versus-animation distinction. La salvare se creează describes creation of a static result rather than saving animation.",
+        "qualifications": [
+          "This is the separate-default-image branch, not a claim that every PNG has such an image or that the first animated frame is chosen.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/formats22_animation_still",
+        "source": "Only the first frame will be imported. Saving creates a still image.",
+        "source_sha256": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+        "display": "Va fi importat doar primul cadru. La salvare se creează o imagine statică.",
+        "xml_text": "\"Va fi importat doar primul cadru. La salvare se creează o imagine statică.\"",
+        "attributes": {
+          "name": "formats22_animation_still"
+        },
+        "display_sha256": "16281ccb32ae5742b9e608e18070234104ba8b1c3f6fe4feff1e38ebdcd1584f",
+        "xml_text_sha256": "fe28b6e280fa67db9b5c08cabf0b1ed1bfb547248257ad865515513cd427caea",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Va fi importat doar primul cadru. La salvare se creează o imagine statică.",
+        "original_candidate_display_sha256": "16281ccb32ae5742b9e608e18070234104ba8b1c3f6fe4feff1e38ebdcd1584f",
+        "rationale": "Va fi importat doar primul cadru is clear and idiomatic; La salvare se creează o imagine statică preserves the separate import and output statements without implying animation is retained.",
+        "qualifications": [
+          "First-frame import and later static-image saving remain distinct actions.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/formats22_animation_title",
+        "source": "Animated image",
+        "source_sha256": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+        "display": "Imagine animată",
+        "xml_text": "\"Imagine animată\"",
+        "attributes": {
+          "name": "formats22_animation_title"
+        },
+        "display_sha256": "1b773efba99d09f1e88605b89b144c8ba32a30c197bb444bb07d126f5b1b5514",
+        "xml_text_sha256": "6bd4c2f28793b7d97b9848e80241fda1f5470aaae0fe6439ae9a6d8cf95a2632",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Imagine animată",
+        "original_candidate_display_sha256": "1b773efba99d09f1e88605b89b144c8ba32a30c197bb444bb07d126f5b1b5514",
+        "rationale": "Imagine animată is the standard concise noun/adjective construction and fits the confirmed-animation warning title.",
+        "qualifications": [
+          "This title belongs to the frameCount-at-least-two branch; the uncertain branch uses the separately reviewed open-still label.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/formats22_animation_unknown",
+        "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+        "source_sha256": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+        "display": "Această imagine %1$s este prea complexă pentru a se putea confirma dacă are mai multe cadre. AN Paint va deschide doar o imagine statică și nu va păstra nicio animație.",
+        "xml_text": "\"Această imagine %1$s este prea complexă pentru a se putea confirma dacă are mai multe cadre. AN Paint va deschide doar o imagine statică și nu va păstra nicio animație.\"",
+        "attributes": {
+          "name": "formats22_animation_unknown"
+        },
+        "display_sha256": "51e5765066f805933b0bc4750a33a65e3cd95d0258ffe6afb4fb6d0a133d0bb7",
+        "xml_text_sha256": "d7530efadc4edc948a23e17259f13891ccf555bac420fbf887c8866f535a8311",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Această imagine %1$s este prea complexă pentru a se putea confirma dacă are mai multe cadre. AN Paint va deschide doar o imagine statică și nu va păstra nicio animație.",
+        "original_candidate_display_sha256": "51e5765066f805933b0bc4750a33a65e3cd95d0258ffe6afb4fb6d0a133d0bb7",
+        "rationale": "The passive pentru a se putea confirma conveys inability to establish whether multiple frames exist, not a finding that animation is absent. The following future-tense sentence accurately states that AN Paint opens only a static image and retains no animation.",
+        "qualifications": [
+          "The low proven frame count represents inspection uncertainty; the wording is not accepted as a confirmed single-frame diagnosis.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/formats22_ascii_description",
+        "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+        "source_sha256": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+        "display": "Scrie text simplu folosind caractere pentru tonuri deschise și închise. Vizualizează-l cu un font monospațiat. Este o reprezentare vizuală; nu poate fi redeschisă ca imagine originală.",
+        "xml_text": "\"Scrie text simplu folosind caractere pentru tonuri deschise și închise. Vizualizează-l cu un font monospațiat. Este o reprezentare vizuală; nu poate fi redeschisă ca imagine originală.\"",
+        "attributes": {
+          "name": "formats22_ascii_description"
+        },
+        "display_sha256": "34f96b7ff131777b62b74cc495a2c13406d9114fe0a3bf96e9b93bc3413be6f7",
+        "xml_text_sha256": "316a1d90ed183b6a0151a0cea09b1dddcb78d1c68e129627a5282f1bb406e56a",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Scrie text simplu folosind caractere pentru tonuri deschise și închise. Vizualizează-l cu un font monospațiat. Este o reprezentare vizuală; nu poate fi redeschisă ca imagine originală.",
+        "original_candidate_display_sha256": "34f96b7ff131777b62b74cc495a2c13406d9114fe0a3bf96e9b93bc3413be6f7",
+        "rationale": "Text simplu, font monospațiat and reprezentare vizuală are idiomatic technical Romanian. Caractere pentru tonuri deschise și închise describes the tonal effect of different character densities without asserting that the exporter writes coloured glyphs. The final clause retains non-recoverability as the original image.",
+        "qualifications": [
+          "The result is a visual plain-text rendition, not a reversible image container; this is not the Base64 path.",
+          "Existing Monospace and Artă ASCII labels remain unchanged; accepting this explanation does not newly accept those labels or an entire composed screen.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "medium-high"
+      },
+      {
+        "identity": "string/formats22_open_still",
+        "source": "Open still image",
+        "source_sha256": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+        "display": "Deschide o imagine statică",
+        "xml_text": "\"Deschide o imagine statică\"",
+        "attributes": {
+          "name": "formats22_open_still"
+        },
+        "display_sha256": "d02a78770d90542fb8bfb6bc4194812f478f9d1fa495ece3202b809211231de3",
+        "xml_text_sha256": "c8dddd55adff18408cfc860994bd7500f1d32aa192ea6bf675a7eb2d11978951",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Deschide o imagine statică",
+        "original_candidate_display_sha256": "d02a78770d90542fb8bfb6bc4194812f478f9d1fa495ece3202b809211231de3",
+        "rationale": "Deschide o imagine statică is a natural singular imperative and aligns the inherited action register. The indefinite article is appropriate for both the neutral dialog title and positive action.",
+        "qualifications": [
+          "The same exact resource is used as title and button; it does not open an animation-preserving mode or a new file picker.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/formats22_pdf_raster_hint",
+        "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+        "source_sha256": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+        "display": "Paginile PDF sunt rasterizate la 144 dpi. Textul și obiectele vectoriale devin pixeli.",
+        "xml_text": "\"Paginile PDF sunt rasterizate la 144 dpi. Textul și obiectele vectoriale devin pixeli.\"",
+        "attributes": {
+          "name": "formats22_pdf_raster_hint"
+        },
+        "display_sha256": "54102067fcbcb067ca135ddceb13c1ff05f8650dbab9a5abd1d33892b9faf105",
+        "xml_text_sha256": "5c2a42133ecbae9aa34701b8ac985903b728aafceb9f66471ebabe11e48b9b49",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Paginile PDF sunt rasterizate la 144 dpi. Textul și obiectele vectoriale devin pixeli.",
+        "original_candidate_display_sha256": "54102067fcbcb067ca135ddceb13c1ff05f8650dbab9a5abd1d33892b9faf105",
+        "rationale": "Rasterizate accurately expresses conversion of rendered PDF pages into pixels. The second sentence is concise and preserves both text and vector objects, with the fixed 144 dpi value unchanged.",
+        "qualifications": [
+          "The current PDF code uses two source pixels per PDF point, a nominal 144-dpi source coordinate/rendering basis; memory-driven sampled output can have different output dimensions. The translation preserves the canonical hint, not a new guarantee about every output file DPI tag.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/save20_gif_description",
+        "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+        "source_sha256": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+        "display": "Imagine statică, cu până la 256 de culori. Opțiunea «Dithering» face mai line tranzițiile dintre culori. Din GIF-urile animate se deschide doar primul cadru.",
+        "xml_text": "\"Imagine statică, cu până la 256 de culori. Opțiunea «Dithering» face mai line tranzițiile dintre culori. Din GIF-urile animate se deschide doar primul cadru.\"",
+        "attributes": {
+          "name": "save20_gif_description"
+        },
+        "display_sha256": "3dd039d8b7b7f5927334985429d73bc703e64f94f0be2d1a3035878b6352587d",
+        "xml_text_sha256": "6a30f9defaffc7dbcb41a5cd90a7ed810cddc11817c84de30be07a4b95e3b42e",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Imagine statică, cu până la 256 de culori. Opțiunea «Dithering» face mai line tranzițiile dintre culori. Din GIF-urile animate se deschide doar primul cadru.",
+        "original_candidate_display_sha256": "3dd039d8b7b7f5927334985429d73bc703e64f94f0be2d1a3035878b6352587d",
+        "rationale": "Imagine statică, cu până la 256 de culori is grammatical and bounded. Naming the actual inherited Dithering option prevents a mismatched new checkbox term; face mai line tranzițiile dintre culori naturally explains the smoothing effect. The final partitive construction correctly selects only the first frame of animated GIFs.",
+        "qualifications": [
+          "Dithering is the existing exact visible option label; it is intentionally not newly translated.",
+          "This explanation combines GIF static-output restrictions and first-frame import semantics. It does not promise preservation of animation.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/save20_invalid_name",
+        "source": "Enter a file name without slashes or control characters.",
+        "source_sha256": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+        "display": "Introdu un nume de fișier fără bare oblice sau caractere de control.",
+        "xml_text": "\"Introdu un nume de fișier fără bare oblice sau caractere de control.\"",
+        "attributes": {
+          "name": "save20_invalid_name"
+        },
+        "display_sha256": "3d4165e7f0ca787aa2b60f02817ce69acef59b248bafb23da3d01019fe64148e",
+        "xml_text_sha256": "3010e1c2d367206c0053872820d2247ea5ea0ebd47cca49446298bfe749a13c8",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Introdu un nume de fișier fără bare oblice sau caractere de control.",
+        "original_candidate_display_sha256": "3d4165e7f0ca787aa2b60f02817ce69acef59b248bafb23da3d01019fe64148e",
+        "rationale": "Introdu un nume de fișier fără bare oblice sau caractere de control is a natural direct instruction and faithfully preserves the canonical slash/control-character categories. The inherited singular-action register is maintained.",
+        "qualifications": [
+          "Bare oblice is the generic slash category in this compact message; the unchanged ExportNames.valid check rejects both forward slash and backslash.",
+          "The message is not an exhaustive filename policy: blank stems and dot/double-dot stems are also rejected. No claim is made that every name lacking the named characters is accepted.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "medium-high"
+      },
+      {
+        "identity": "string/save20_lossy_quality_description",
+        "source": "Higher quality preserves more detail and usually makes a larger file.",
+        "source_sha256": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+        "display": "O calitate mai ridicată păstrează mai multe detalii și, de obicei, produce un fișier mai mare.",
+        "xml_text": "\"O calitate mai ridicată păstrează mai multe detalii și, de obicei, produce un fișier mai mare.\"",
+        "attributes": {
+          "name": "save20_lossy_quality_description"
+        },
+        "display_sha256": "c643eb8d678ca0d792d5058971e9e3b452efb426a01a48d32b27a96bbb1d2461",
+        "xml_text_sha256": "a06933a3377e21ce88e6ca56740fa73daf86ce7b2f5cdaf079006c306517dd8b",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "O calitate mai ridicată păstrează mai multe detalii și, de obicei, produce un fișier mai mare.",
+        "original_candidate_display_sha256": "c643eb8d678ca0d792d5058971e9e3b452efb426a01a48d32b27a96bbb1d2461",
+        "rationale": "Mai ridicată, păstrează mai multe detalii and produce un fișier mai mare are idiomatic in a quality setting. The parenthetical de obicei retains the important usually qualification rather than making an absolute size guarantee.",
+        "qualifications": [
+          "This is the current JPEG/HEIC quality explanation; accepted wording does not independently certify encoder behaviour for all inputs.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/save20_unsupported_image_colour",
+        "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+        "source_sha256": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+        "display": "Această imagine folosește un profil de culoare pe care AN Paint nu îl poate converti încă. Înainte de import, convertește imaginea într-un fișier PNG sRGB folosind un editor cu gestionarea culorilor.",
+        "xml_text": "\"Această imagine folosește un profil de culoare pe care AN Paint nu îl poate converti încă. Înainte de import, convertește imaginea într-un fișier PNG sRGB folosind un editor cu gestionarea culorilor.\"",
+        "attributes": {
+          "name": "save20_unsupported_image_colour"
+        },
+        "display_sha256": "9542583fab11c435ee198957f3a469c26c8c587defc62a34869244a30e0cda3e",
+        "xml_text_sha256": "04f0d4dfe6bbbe3972cb9bdd8d0a69fd66261df6cf8745313a0474630e346834",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "Această imagine folosește un profil de culoare pe care AN Paint nu îl poate converti încă. Înainte de import, convertește imaginea într-un fișier PNG sRGB folosind un editor cu gestionarea culorilor.",
+        "original_candidate_display_sha256": "9542583fab11c435ee198957f3a469c26c8c587defc62a34869244a30e0cda3e",
+        "rationale": "The relative clause and încă preserve the current inability to convert a colour profile, rather than blaming an unreadable file generally. The explicit instruction converts the image to a PNG sRGB file with a colour-managed editor before import, not merely renaming the extension or relabelling the profile.",
+        "qualifications": [
+          "The full message is used at unsupported-colour boundaries; distinct provider/storage/invalid-metadata failures remain distinct.",
+          "Colour-managed conversion is a user action outside AN Paint, not an automatic conversion promise.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      },
+      {
+        "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+        "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+        "source_sha256": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+        "display": "O calitate mai ridicată produce de obicei un fișier mai mare. Compresia fără pierderi păstrează fiecare valoare de culoare.",
+        "xml_text": "\"O calitate mai ridicată produce de obicei un fișier mai mare. Compresia fără pierderi păstrează fiecare valoare de culoare.\"",
+        "attributes": {
+          "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+        },
+        "display_sha256": "91e8fbfb784572322de23be3232df7c3c10b0bdb13056127305fcc7eb31a5de4",
+        "xml_text_sha256": "b1b34b466919ea5b304f4bd45e3c2d6ef292cd7896f3a54be16208af7a6ce387",
+        "review_file": "ro-independent-review.json",
+        "review_sha256": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d",
+        "verdict": "accepted unchanged",
+        "original_candidate_display": "O calitate mai ridicată produce de obicei un fișier mai mare. Compresia fără pierderi păstrează fiecare valoare de culoare.",
+        "original_candidate_display_sha256": "91e8fbfb784572322de23be3232df7c3c10b0bdb13056127305fcc7eb31a5de4",
+        "rationale": "Both sentences are natural technical Romanian. De obicei preserves qualified size behaviour; compresia fără pierderi unambiguously names the mode and fiecare valoare de culoare retains the whole colour-value claim.",
+        "qualifications": [
+          "Existing Quality and Lossless-format labels can remain English; this is acceptance of the explanatory value only, not full-dialog localization.",
+          "This exact whole-value decision is bounded to the supplied source context; not native-human, Android runtime, device, layout or whole-locale certification."
+        ],
+        "confidence": "high"
+      }
+    ]
+  },
+  "decisions": {
+    "ca": {
+      "accept": 12,
+      "revise": 1
+    },
+    "ro": {
+      "accept": 13,
+      "revise": 0
+    }
+  },
+  "global_qualifications": {
+    "ca": [
+      "All13 decisions cover complete final values, not clause-only fragments; the one revision is accepted only as its exact replacement full value.",
+      "No acceptance is transferred from candidate authors or prior Danish/Norwegian reviews. This is independent bounded AI linguistic/source-static review, not a native-human verdict.",
+      "All137 inherited Catalan values and their attributes remain unchanged and are not newly accepted by this review; prior10 full-value qualifications remain intact.",
+      "English at-least count insertion, Image format, Monospace and other mixed/fallback labels remain unchanged, not automatically defects; complete screens and mixed compositions are not certified as fully localized.",
+      "Five held absent identities remain absent; no-direct-reference findings are bounded to the pinned322 production-file inventory, not future or dynamic use.",
+      "No Android compilation, runtime, device, physical-device, layout, accessibility rendering, release or whole-language certification is asserted by this review. Static examples are synthetic.",
+      "P1/paired-warning/frozen/global59/112 boundaries and PR56 never-merge, PR159 freeze, PR113 hold/retarget, Help callback/archive identity, interrupted-archive and release holds remain unchanged.",
+      "No source mutation, external publication or Work task performed."
+    ],
+    "ro": [
+      "Bounded independent AI whole-value Romanian linguistic and source-static review only; not native-human, Android execution, physical-device, layout, release or whole-locale certification.",
+      "All137 inherited Romanian values/attributes, including the prior10 exact accepted values and all their original qualifications, remain unchanged. Existing formal/plural Salvaţi modificările? is not normalized or newly accepted.",
+      "English at-least counts, Image format, Monospace, Quality, Lossless and other inherited/fallback labels remain unchanged. Mixed-language full compositions are explicitly qualified rather than certified wholly Romanian.",
+      "Actual inherited Dithering is named literally in the explanation; no independent acceptance of that historical label or new localized label is inferred.",
+      "Generic filename wording is not an exhaustive predicate; current code also rejects blank and dot stems, and both slash variants. The current PDF hint retains the nominal144-dpi source basis, not a guarantee about every sampled output.",
+      "All five no-current-consumer holds remain absent; prior clause-only/qualified/historical/unmatched/synthetic scopes are neither revoked nor promoted. P1/paired-warning/frozen/global59/112 boundaries and PR56/PR113/PR159/Help callback/archive identity/interrupted-archive/release pauses remain unchanged."
+    ]
+  },
+  "scope": "26 independent AI whole-value linguistic/source-static decisions;25 unchanged and1 exact reviewed CA ASCII clarity replacement; no native-human/runtime/whole-language acceptance; all historical scopes retained."
+}

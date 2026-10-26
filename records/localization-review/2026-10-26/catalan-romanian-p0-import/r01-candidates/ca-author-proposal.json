@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "record_kind": "Author Catalan candidates for bounded missing-only P0 import/format review; not acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "6a42948a3ac7bad241d502f3b6c18ebf1c0327d8",
+  "source_tree": "65afa7b96a83c08e0ae08365166dec0520694356",
+  "locale": "ca",
+  "target_path": "Paintroid/src/main/res/values-ca/strings.xml",
+  "candidate_count": 13,
+  "scope_and_source_context": {
+    "file": "scope-and-source-context.json",
+    "sha256": "9edb77995bf225493bb6dde7de0e1206de202c2589d318bf6098f57c298be04a"
+  },
+  "terminology_context": {
+    "catalogue_values_preserved": 137,
+    "prior_independent_review_file": "ca-independent-review.json",
+    "prior_review_sha256": "897469420007d15173f4a8b58cc8cd3ed53cea3738037bfb23b02216047a6e7d",
+    "prior_review_public_url": "https://github.com/c933103/AN-Paint/blob/137b2917329a1dcf85bbc78b2d9581101cbcb649/records/localization-review/2026-10-26/catalan-romanian-p0-save/r02-reviewed/ca-independent-review.json",
+    "prior_accepted_values_exactly_matched": 10,
+    "untouched_labels": {
+      "ui_save": "\"Desa\"",
+      "save20_title": "\"Anomena i desa…\"",
+      "save20_file_name": "\"Nom del fitxer\"",
+      "save20_file_format": "Image format",
+      "save20_dither": "\"Tramatge\"",
+      "formats22_ascii_label": "\"Art ASCII\"",
+      "ui_cancel": "\"Cancel·la\"",
+      "ui_quality": "\"Qualitat (%)\"",
+      "ui_monospace": "Monospace",
+      "ui_save_your_changes": "Save changes?"
+    }
+  },
+  "source_verification": {
+    "file_hash_bindings_verified": 9,
+    "consumer_windows_exact": 16,
+    "existing_values_and_attributes_not_modified": 137,
+    "missing_selected_identities": 13,
+    "holds_preserved_absent": 5,
+    "exact_format_inventories_matched": 13,
+    "source_identity_limit": "Supplied pinned Git/tree bindings and exact local bytes verified; no independent remote graph or signature query in this drafting step."
+  },
+  "instructions_to_reviewer": [
+    "Review each whole source/target value and its consumer composition independently; revise or hold unsupported wording.",
+    "Check technical monoespaiat, renderitzen, tramatge and sense pèrdua choices against the actual source and retained labels, without presuming author confidence is acceptance.",
+    "The English at least frame-count insertion, Image format, Monospace and other existing fallback labels remain unchanged. Never certify the complete mixed-language screen from these13 candidates.",
+    "Do not widen scope to the five no-current-consumer holds, existing137 values, paused Help/archive/#113/#159 work, P1/frozen warning boundaries or release."
+  ],
+  "global_author_qualifications": [
+    "Candidate authorship only; independent complete-value review is pending.",
+    "No native-human, runtime, physical-device, layout, release or whole-language acceptance.",
+    "No source or external mutation performed. Existing values remain context rather than newly accepted translations."
+  ],
+  "candidates": [
+    {
+      "identity": "string/formats22_animation_message",
+      "priority": "P0",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "source_value_sha256_utf8": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Aquesta imatge %1$s conté %2$s fotogrames. AN Paint edita imatges estàtiques i no conserva l’animació.",
+      "candidate_value_sha256_utf8": "ab7e28b2d4efc4d48ad43537724c61b017ff27f50a2671fc2746c74d86408a8f",
+      "candidate_xml_text": "\"Aquesta imatge %1$s conté %2$s fotogrames. AN Paint edita imatges estàtiques i no conserva l’animació.\"",
+      "candidate_xml_text_sha256_utf8": "ef5eac1727302d6e1e3816cbdf5acc64563c6811e80353fef153c528f43fab60",
+      "placeholder_tokens": [
+        "%1$s",
+        "%2$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:92"
+      ],
+      "source_semantic_notes": [
+        "%1$s is a format label. %2$s is a string: exact count or untouched English formats22_at_least_frames (at least %1$d). The mixed-language count remains explicitly out of scope; do not claim the composed message fully localized.",
+        "No singular/plural conversion: consumer only chooses this branch when frameCount >= 2."
+      ],
+      "author_semantic_qualifications": [
+        "%1$s is a format label. %2$s is a string: exact count or untouched English formats22_at_least_frames (at least %1$d). The mixed-language count remains explicitly out of scope; do not claim the composed message fully localized.",
+        "No singular/plural conversion: consumer only chooses this branch when frameCount >= 2.",
+        "The added noun imatge makes the format-label substitution grammatically independent of format-name gender. Fotogrames consistently means animation frames, not image borders. The consumer enters this branch only for frameCount >= 2."
+      ],
+      "author_uncertainties": [
+        "Independent review should check the complete message with exact counts and English at least count strings; the latter remain intentionally mixed-language."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "priority": "P0",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "source_value_sha256_utf8": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Aquest PNG té una imatge predeterminada separada. S’importarà aquesta imatge en lloc dels fotogrames animats. Quan es desa, es crea una imatge estàtica.",
+      "candidate_value_sha256_utf8": "981fe2315c1eeb40ad8f730d530ddf81c6bd59228ae050af47e766e516d731a0",
+      "candidate_xml_text": "\"Aquest PNG té una imatge predeterminada separada. S’importarà aquesta imatge en lloc dels fotogrames animats. Quan es desa, es crea una imatge estàtica.\"",
+      "candidate_xml_text_sha256_utf8": "ceb0c7691fd73785c7ef17826501731c063ddf584a1430058111d56cb324d563",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "source_semantic_notes": [
+        "APNG separate default image, not its animated frames, is imported; preserve that distinction."
+      ],
+      "author_semantic_qualifications": [
+        "APNG separate default image, not its animated frames, is imported; preserve that distinction.",
+        "Imatge predeterminada separada names the APNG default/poster image, not an animated frame. Quan es desa refers to saving the imported image; no animation-preserving Save is implied."
+      ],
+      "author_uncertainties": [
+        "Independent review should confirm the APNG-specific predeterminada separada wording and its full composition with the preceding animation message."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "priority": "P0",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "source_value_sha256_utf8": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Només s’importarà el primer fotograma. Quan es desa, es crea una imatge estàtica.",
+      "candidate_value_sha256_utf8": "db5b2c0da771f09d812f4adba061d04b839691910ddcbdd3e115a81cd61c7b36",
+      "candidate_xml_text": "\"Només s’importarà el primer fotograma. Quan es desa, es crea una imatge estàtica.\"",
+      "candidate_xml_text_sha256_utf8": "79ad2920693e08d9bcff523c5214a7a4ee29c543cbdec820848b985a50548eb3",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Only the first frame is imported; subsequent saving produces a static image. Same still-image and save terminology as the poster explanation."
+      ],
+      "author_uncertainties": [
+        "Independent review should assess the naturalness of Quan es desa in this explanatory context, not assume a native verdict."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "priority": "P0",
+      "source": "Animated image",
+      "source_value_sha256_utf8": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Imatge animada",
+      "candidate_value_sha256_utf8": "bc133a79a0c5451b6e1833a4a8837ca2c3a809e66213e3dc40f78dea6d46f855",
+      "candidate_xml_text": "\"Imatge animada\"",
+      "candidate_xml_text_sha256_utf8": "64df766dbb53917edeb3e896edda778f359020736c612ded4a9541b7976cd31a",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Short dialog title; no claim about animation playback or preservation."
+      ],
+      "author_uncertainties": [
+        "Independent full-value linguistic judgment remains pending."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "priority": "P0",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "source_value_sha256_utf8": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Aquesta imatge %1$s és tan complexa que no es pot confirmar si conté diversos fotogrames. AN Paint només obrirà una imatge estàtica i no conservarà cap animació.",
+      "candidate_value_sha256_utf8": "c0efaa4bf5a032070c26e206a223f0a6f1f863e057d4add3365e58e2ebf49b7d",
+      "candidate_xml_text": "\"Aquesta imatge %1$s és tan complexa que no es pot confirmar si conté diversos fotogrames. AN Paint només obrirà una imatge estàtica i no conservarà cap animació.\"",
+      "candidate_xml_text_sha256_utf8": "f30bc243c7e75925a703c403e8af49d5b0f3e97922c02f9e9cb3e49584d0916d",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:91"
+      ],
+      "source_semantic_notes": [
+        "frameCount < 2 means animation inspection uncertainty, not confirmed one-frame or absence of animation."
+      ],
+      "author_semantic_qualifications": [
+        "frameCount < 2 means animation inspection uncertainty, not confirmed one-frame or absence of animation.",
+        "Explicit impersonal no es pot confirmar preserves inspection uncertainty and does not assert that the file has only one frame."
+      ],
+      "author_uncertainties": [
+        "Independent review should verify the complete uncertainty clause and absence of an unintended one-frame assertion."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "priority": "P0",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "source_value_sha256_utf8": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Escriu text pla amb caràcters clars i foscos. Visualitza’l amb un tipus de lletra monoespaiat. És una representació visual; no es pot tornar a obrir com a imatge original.",
+      "candidate_value_sha256_utf8": "8505c5a3e09f39b43db84f91caefdde1487e845eeef9f9ad35dd3f514dce38c8",
+      "candidate_xml_text": "\"Escriu text pla amb caràcters clars i foscos. Visualitza’l amb un tipus de lletra monoespaiat. És una representació visual; no es pot tornar a obrir com a imatge original.\"",
+      "candidate_xml_text_sha256_utf8": "e66a4e17dfa5f5d39ec6218d7a1f88f224ce561e141e236d763611f6cffb2397",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:101"
+      ],
+      "source_semantic_notes": [
+        "Visual text rendition cannot be reopened as the original image; not a reversible source or normal full-image Save."
+      ],
+      "author_semantic_qualifications": [
+        "Visual text rendition cannot be reopened as the original image; not a reversible source or normal full-image Save.",
+        "Plain-text visual rendition is distinct from original-image reopening. The monospaced-font instruction is explanatory prose, not a replacement for the existing Monospace label."
+      ],
+      "author_uncertainties": [
+        "Independent review should assess the technical term monoespaiat and the naturalness/precision of com a imatge original; no native-human preference is asserted."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "priority": "P0",
+      "source": "Open still image",
+      "source_value_sha256_utf8": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Obre una imatge estàtica",
+      "candidate_value_sha256_utf8": "1e757317afa82101939a450ebcdb7f15f8901de24af710d967d8ea489f9d0869",
+      "candidate_xml_text": "\"Obre una imatge estàtica\"",
+      "candidate_xml_text_sha256_utf8": "c947d72247208775595fc87757e4e6246727b5dcbc132fc760b66a360c3ae8b4",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:95"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Second-person-singular Obre matches the existing command register; the same text can label the positive button and uncertainty-dialog title."
+      ],
+      "author_uncertainties": [
+        "Independent review should confirm naturalness in both button and title contexts; layout is untested."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "priority": "P0",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "source_value_sha256_utf8": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Les pàgines PDF es renderitzen a 144 dpi. El text i els objectes vectorials es converteixen en píxels.",
+      "candidate_value_sha256_utf8": "75c19766ee9ec299ae905c0c5bcc93f8731e99b7170de360190b8aaa2b479937",
+      "candidate_xml_text": "\"Les pàgines PDF es renderitzen a 144 dpi. El text i els objectes vectorials es converteixen en píxels.\"",
+      "candidate_xml_text_sha256_utf8": "43e55d4b16471364d08ecc9b194cb4642b12494efd619d10495c75a4857e6189",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:102"
+      ],
+      "source_semantic_notes": [
+        "144 dpi is a fixed product claim; preserve rasterization of vector/text to pixels."
+      ],
+      "author_semantic_qualifications": [
+        "144 dpi is a fixed product claim; preserve rasterization of vector/text to pixels.",
+        "PDF and the exact product quantity 144 dpi are retained. Text and vector objects becoming pixels is explicit."
+      ],
+      "author_uncertainties": [
+        "Independent review should assess renderitzen as Catalan technical wording; dpi is deliberately preserved rather than a new localized unit choice."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "priority": "P0",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "source_value_sha256_utf8": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Imatge estàtica de fins a 256 colors. El tramatge suavitza els degradats de color. Dels GIF animats, només s’obre el primer fotograma.",
+      "candidate_value_sha256_utf8": "afe6aca55bb6faa113d928f1626565cd8fee3aa71e154ce05e3f4201b7d380f5",
+      "candidate_xml_text": "\"Imatge estàtica de fins a 256 colors. El tramatge suavitza els degradats de color. Dels GIF animats, només s’obre el primer fotograma.\"",
+      "candidate_xml_text_sha256_utf8": "37bbc17d345bc7b748005045ce1503db05f8ff1da4e208455a21b1cd16d38ecb",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:95"
+      ],
+      "source_semantic_notes": [
+        "Dithering is a new technical term here if no localized save20_dither exists. Preserve the existing mode label/fallback; first-frame import does not preserve animation."
+      ],
+      "author_semantic_qualifications": [
+        "Dithering is a new technical term here if no localized save20_dither exists. Preserve the existing mode label/fallback; first-frame import does not preserve animation.",
+        "Tramatge matches the existing save20_dither label exactly. Fins a preserves the 256-colour upper bound. Only the first frame is opened, so no animation is preserved."
+      ],
+      "author_uncertainties": [
+        "Independent review should assess the partitive Dels GIF animats construction and terminology consistency with the animation family."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "priority": "P0",
+      "source": "Enter a file name without slashes or control characters.",
+      "source_value_sha256_utf8": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Introdueix un nom de fitxer sense barres ni caràcters de control.",
+      "candidate_value_sha256_utf8": "67ef76f4d3c5d1319793f3d1506c986f68c99da21df48168e602186c9bf13732",
+      "candidate_xml_text": "\"Introdueix un nom de fitxer sense barres ni caràcters de control.\"",
+      "candidate_xml_text_sha256_utf8": "d7b1b522f70c2685e5f7931f05f4d3237ac376a4c0d53802faa8d3c5f1c1b197",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:194"
+      ],
+      "source_semantic_notes": [
+        "Reject slash/control characters; not an assertion that all other names are accepted. Consumer retains ExportNames.valid logic."
+      ],
+      "author_semantic_qualifications": [
+        "Reject slash/control characters; not an assertion that all other names are accepted. Consumer retains ExportNames.valid logic.",
+        "Nom de fitxer matches inherited Nom del fitxer; barres retains the source slash category without claiming that all other names are valid."
+      ],
+      "author_uncertainties": [
+        "Independent review should confirm barres correctly communicates the source slash restriction; exact filename policy remains in ExportNames.valid."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "priority": "P0",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "source_value_sha256_utf8": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Una qualitat més alta conserva més detalls i normalment genera un fitxer més gran.",
+      "candidate_value_sha256_utf8": "d4fac962849fd45f6f0a33a244b2298ee4141d0d44f58177ac874e111788b2c9",
+      "candidate_xml_text": "\"Una qualitat més alta conserva més detalls i normalment genera un fitxer més gran.\"",
+      "candidate_xml_text_sha256_utf8": "54139977f4ec25846069e0c7cd94293d1e1646a426a32203849595d43f191751",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:102"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Normalment retains the non-absolute file-size relationship; more detail is explicitly preserved."
+      ],
+      "author_uncertainties": [
+        "Independent complete-value review remains pending; the usually qualification must not become a guarantee."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "priority": "P0",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "source_value_sha256_utf8": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Aquesta imatge fa servir un perfil de color que AN Paint encara no pot convertir. Converteix-la a PNG sRGB en un editor amb gestió del color abans d’importar-la.",
+      "candidate_value_sha256_utf8": "b6bc5e5abdd9a492b5ae8d349c1a090567fa0fc2ca34a5873277edb244906c1a",
+      "candidate_xml_text": "\"Aquesta imatge fa servir un perfil de color que AN Paint encara no pot convertir. Converteix-la a PNG sRGB en un editor amb gestió del color abans d’importar-la.\"",
+      "candidate_xml_text_sha256_utf8": "aa3823419d6f9828ab4c73b8dd69edd59d5c135646ca0fcf93d67b6b23e6b22c",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:16",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:23",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt:115"
+      ],
+      "source_semantic_notes": [
+        "Cannot convert yet; recommend color-managed conversion to sRGB PNG. Do not imply relabelling or automatic AN Paint conversion."
+      ],
+      "author_semantic_qualifications": [
+        "Cannot convert yet; recommend color-managed conversion to sRGB PNG. Do not imply relabelling or automatic AN Paint conversion.",
+        "Encara no preserves current unsupported conversion, not an eternal limitation. Converteix-la a PNG sRGB requires conversion before import, not merely attaching or relabelling a colour profile."
+      ],
+      "author_uncertainties": [
+        "Independent review should assess the PNG sRGB phrase and verify that it is read as actual colour-space conversion, not profile relabelling."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "priority": "P0",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "source_value_sha256_utf8": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Una qualitat més alta normalment genera un fitxer més gran. La compressió sense pèrdua conserva tots els valors de color.",
+      "candidate_value_sha256_utf8": "f28104834ed09d952e07202fb1fcd4066c68e1bb4c5888817b826edc5e079932",
+      "candidate_xml_text": "\"Una qualitat més alta normalment genera un fitxer més gran. La compressió sense pèrdua conserva tots els valors de color.\"",
+      "candidate_xml_text_sha256_utf8": "46fffdd6ddf2843785f2fbea403fa6808990f79757eee258456aacdbeca6fb32",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:103"
+      ],
+      "source_semantic_notes": [
+        "Lossless is a compression mode and retains every color value. Existing mode labels can remain English fallback; candidate is explanation only."
+      ],
+      "author_semantic_qualifications": [
+        "Lossless is a compression mode and retains every color value. Existing mode labels can remain English fallback; candidate is explanation only.",
+        "The explanation refers to lossless compression as a mode; it does not replace the existing English Lossless fallback label. Every colour value remains explicit."
+      ],
+      "author_uncertainties": [
+        "Independent review should assess compressió sense pèrdua terminology; the untranslated mode label and exact-value preservation remain separate."
+      ],
+      "author_confidence": "medium-high for a bounded proposal; independent complete-value review pending",
+      "independent_review_status": "pending"
+    }
+  ]
+}

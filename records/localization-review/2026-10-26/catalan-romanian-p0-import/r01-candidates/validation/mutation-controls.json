@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "positive_packet": "passed",
+  "negative_controls": [
+    {
+      "case": "ca refreshed-hash format ' %s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %d'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %.2f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %1$s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %%'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %n'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %q'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %1$'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %3$.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %3$.f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca refreshed-hash format ' %t'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca missing candidate",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca duplicate candidate",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca wrong source pin",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered attribute",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca falsely accepted proposal",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered candidate priority",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca fabricated candidate context",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca empty uncertainty",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca false missing-only claim",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca unsafe referenced input",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca malformed JSON",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca duplicate JSON key",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca missing file",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered product formats22_animation_message",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered product formats22_animation_poster",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered product formats22_animation_unknown",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered product formats22_pdf_raster_hint",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered product save20_gif_description",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca altered product save20_unsupported_image_colour",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %d'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %.2f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %1$s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %%'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %n'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %q'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %1$'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %3$.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %3$.f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro refreshed-hash format ' %t'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro missing candidate",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro duplicate candidate",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro wrong source pin",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered attribute",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro falsely accepted proposal",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered candidate priority",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro fabricated candidate context",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro empty uncertainty",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro false missing-only claim",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro unsafe referenced input",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro malformed JSON",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro duplicate JSON key",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro missing file",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered product formats22_animation_message",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered product formats22_animation_poster",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered product formats22_animation_unknown",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered product formats22_pdf_raster_hint",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered product save20_gif_description",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro altered product save20_unsupported_image_colour",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca lost source semantic note",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ca lost nonempty full-value qualification",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro lost source semantic note",
+      "outcome": "rejected"
+    },
+    {
+      "case": "ro lost nonempty full-value qualification",
+      "outcome": "rejected"
+    },
+    {
+      "case": "forged source and candidate context chain with refreshed hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "wrong source context count",
+      "outcome": "rejected"
+    },
+    {
+      "case": "missing source context IDs",
+      "outcome": "rejected"
+    },
+    {
+      "case": "consumer window with refreshed hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "context key with refreshed hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "context path with refreshed hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "context URL with refreshed hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "context line with refreshed hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "context negative range with refreshed hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "context bool line with refreshed hashes",
+      "outcome": "rejected"
+    },
+    {
+      "case": "context ID forged across source and candidates",
+      "outcome": "rejected"
+    },
+    {
+      "case": "corrupt source binding",
+      "outcome": "rejected"
+    },
+    {
+      "case": "substituted source binding membership",
+      "outcome": "rejected"
+    },
+    {
+      "case": "duplicate source binding",
+      "outcome": "rejected"
+    },
+    {
+      "case": "corrupt inherited count",
+      "outcome": "rejected"
+    },
+    {
+      "case": "cleared holds",
+      "outcome": "rejected"
+    },
+    {
+      "case": "lost inherited term",
+      "outcome": "rejected"
+    },
+    {
+      "case": "altered inherited value",
+      "outcome": "rejected"
+    },
+    {
+      "case": "removed paused scope",
+      "outcome": "rejected"
+    },
+    {
+      "case": "invented equality defect inference",
+      "outcome": "rejected"
+    },
+    {
+      "case": "forged source semantic qualification",
+      "outcome": "rejected"
+    },
+    {
+      "case": "unselected missingness silently held",
+      "outcome": "rejected"
+    }
+  ],
+  "negative_controls_rejected": 90,
+  "synthetic_formatted_false_positive": "passed",
+  "synthetic_formatted_false_negative_controls": [
+    {
+      "case": "synthetic formatted=false ' %s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %d'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %.2f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %1$s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %%'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %n'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %q'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %1$'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %3$.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %3$.f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %t'",
+      "outcome": "rejected"
+    }
+  ],
+  "synthetic_formatted_false_negative_controls_rejected": 13,
+  "total_rejected_controls": 103,
+  "actual_selected_formatted_false_values": 0,
+  "source_mutations_performed": false,
+  "limits": "Packet mutations and labelled synthetic format helper checks only; not linguistic or Android/runtime acceptance."
+}
