@@ -1,0 +1,11 @@
+# Separate atomic correction after PR180 merges
+
+Do not append this change to frozen PR180. Re-read the merged production source before creating the next branch and rebind the two-value review if actual label/consumer/value bytes changed.
+
+Production scope: only sr-Cyrl `save20_file_format` and `ui_autosave_is_paused_to_protect_that_draft_use`, using the independently accepted complete values in review.json. No Latin changes, P1 companion additions or held-entry additions. The label identifies the format Spinner, its accessibility label and vertical form field, not the distinct filename EditText.
+
+Current-fixture transition must be explicit. Keep immutable PR180 r01/r02/r03 records and original review snapshots untouched. Update the compact current Serbian fixture for the one dependent-copy successor and one formerly preserved label, explicitly qualify that 337 other inherited values and 147 other reviewed values remain unchanged, and bind both current successors to the separate two-value receipt. Do not silently relabel all 338 inherited values as unchanged or recount the replaced dependent-copy scope as an additional unique accepted value. A focused successor fixture/test may bind both exact full values and attributes without reconstructing historical source snapshots in ordinary CI.
+
+Tests: check the corrected selected-script label and contentDescription against the distinct filename field; preserve Latin exactly; update the explicit old-label expectation in test_serbian_p0_wording.py. Exercise actual Save/Export/Share dialog cancellation and, where feasible using existing test controls, the preserve-failed-draft branch that sets autosaveBlocked and presents this complete recovery notice. Confirm %1$s, exact action labels, old-draft/current-work polarity and unchanged saved bytes. Keep original P0/P1/held boundaries. Run focused and full ordinary/optimized host tests, exact-head review and required hosted checks; actual postmerge verification remains separate.
+
+Coverage presence totals do not change: this replaces two existing values. Current review accounting must supersede the prior dependent-copy review rather than double-count it, while adding the newly reviewed label scope. No whole-language, native-human, physical-device or release claim follows from this correction.
