@@ -1,7 +1,7 @@
 # PARTIAL: 171-option current-source reconciliation — text records
 
 Catalogue source: `393f2804b5f3fabb935aa773758a9a8f6f464b31`.
-**PR #56 remains never-merge.** No application change, test run, release, or whole-language certification is supplied by this report. PR #159 frozen, PR #113 retarget and all specific holds remain. The pending Amharic 252-change source patch is excluded and its separate approval is untouched.
+**PR #56 remains never-merge.** No application change, test run, release, or whole-language certification is supplied by this report. PR #159 frozen, PR #113 retarget and all specific holds remain. The Amharic 252-change source patch is excluded from this pinned `393f2804` catalogue snapshot; see [PR #171](https://github.com/c933103/AN-Paint/pull/171) for its separate integration status.
 
 ## Definitions and continuity
 
