@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+"""Revalidate exact API35 app/native case sets and prebuilt byte identity."""
+import argparse,hashlib,json,sys,zipfile,re
+from datetime import datetime
+from pathlib import Path
+p=argparse.ArgumentParser();p.add_argument('--directory',type=Path,required=True);p.add_argument('--source-root',type=Path,required=True);p.add_argument('--head',required=True);p.add_argument('--reviewed-pr-head');p.add_argument('--tested-commit',required=True);p.add_argument('--tree',required=True);p.add_argument('--run-id',type=int,required=True);p.add_argument('--artifact-id',type=int,required=True);p.add_argument('--sha256',required=True);p.add_argument('--test-apks-sha256',required=True);p.add_argument('--core-attempt',type=int,default=1);p.add_argument('--position-attempt',type=int,default=1);p.add_argument('--composed-attempt',type=int,default=1);p.add_argument('--artifact-file',default='api35-composed.zip');p.add_argument('--expected-selection',type=Path,required=True);a=p.parse_args()
+def need(ok,msg):
+ if not ok:raise ValueError(msg)
+def h(b):return hashlib.sha256(b).hexdigest()
+def read(p):return json.loads(p.read_text())
+need(all(x>0 for x in (a.core_attempt,a.position_attempt,a.composed_attempt)) and max(a.core_attempt,a.position_attempt)<=a.composed_attempt,'invalid requested attempts')
+need(Path(a.artifact_file).name==a.artifact_file,'artifact filename must be a basename')
+r=a.directory;z=zipfile.ZipFile(r/a.artifact_file);need(h((r/a.artifact_file).read_bytes())==a.sha256,'API35 artifact digest');names=z.namelist();need(len(names)==len(set(names)) and all(not Path(n).is_absolute() and '..' not in Path(n).parts for n in names),'unsafe or duplicate ZIP');root=r/'api35-revalidated';need(not root.exists(),'refusing stale API35 extraction; use a fresh verification directory');z.extractall(root)
+sys.path.insert(0,str(a.source_root/'tools'));from app_instrumentation_matrix import verify_reports
+from run_android_instrumentation import declared_tests,source_tests_sha256
+original=read(root/'app/coverage.json');identity=read(root/'composed-device-identity.json');need(original.pop('device_identity')==identity,'coverage/composed identity');revalidated=verify_reports(a.source_root/'app/src/androidTest',root,35);need(json.loads(json.dumps(revalidated))==original,'app validator receipt differs')
+for k,v in {'commit':a.tested_commit,'run_id':str(a.run_id),'build_variant':'debug','device_sdk':35,'source_tests_sha256':source_tests_sha256(a.source_root/'app/src/androidTest'),'apk_sha256':h((r/'app-debug.apk').read_bytes()),'source_sha256':h((r/'AN-Paint-source.zip').read_bytes()),'group_run_attempts':{'core':a.core_attempt,'position':a.position_attempt},'composed_in_run_attempt':a.composed_attempt}.items():need(identity[k]==v,'identity '+k)
+testbytes=(r/'instrumentation-apks.zip').read_bytes();need(h(testbytes)==a.test_apks_sha256,'test APK archive digest');tz=zipfile.ZipFile(r/'instrumentation-apks.zip');testname='app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk';need(len(tz.namelist())==len(set(tz.namelist())),'duplicate test APK archive member');need(h(tz.read(testname))==identity['test_apk_sha256'],'executed test APK hash');selection=read(root/'artifact-selection.json');expected_selection=read(a.expected_selection)
+need(selection==expected_selection,'artifact selection differs from independently verified expected receipt')
+for k,v in {'run_id':a.run_id,'current_attempt':a.composed_attempt,'checkout':a.tested_commit,'workflow_head':a.head,'device_sdk':35}.items():need(selection[k]==v,'selection '+k)
+need(set(selection['selected'])=={'core','position'},'selection group inventory')
+for group,original_attempt in [('core',a.core_attempt),('position',a.position_attempt)]:
+ producer=selection['selected'][group]
+ need(producer['name']==f'emulator-{group}-api-35-{a.tested_commit}','selection producer source name')
+ need(all(type(producer[k]) is int and producer[k]>0 for k in ('artifact_id','job_id','job_record_run_attempt')),'selection producer integer identity')
+ # GitHub may replay successful old jobs as current-attempt records. Original
+ # group execution attempt is independently bound by composed-device-identity.
+ need(original_attempt<=producer['job_record_run_attempt']<=a.composed_attempt,'selection producer attempt bounds')
+ need(re.fullmatch(r'sha256:[0-9a-f]{64}',producer['digest']) is not None,'selection producer digest')
+ times=[datetime.fromisoformat(producer[k].replace('Z','+00:00')) for k in ('job_started_at','created_at','updated_at','job_completed_at')]
+ need(all(t.tzinfo is not None for t in times) and times==sorted(times),'selection producer timestamp interval')
+need(len({x['artifact_id'] for x in selection['selected'].values()})==2 and len({x['job_id'] for x in selection['selected'].values()})==2,'selection duplicate producer identity')
+native=read(root/'Paintroid/androidTest-results/summary.json');source=a.source_root/'Paintroid/src/androidTest';declared=declared_tests(source,sdk_level=35);cases=native['cases'];actual={(t['classname'],t['name']) for t in cases};need(len(actual)==len(cases)==native['expected_tests']==native['completed_tests']==len(declared) and actual==declared,'native case identity');need(native['source_tests_sha256']==source_tests_sha256(source),'native source hash');need(native['success'] and native['returncode']==0 and native['timed_out'] is False and native['device_sdk']==35 and all(t['status']=='passed' for t in cases) and not any(native[k] for k in ('missing','unexpected','errors')),'native result')
+out={'schema_version':1,'workflow_head':a.head,'reviewed_pr_head':a.reviewed_pr_head or a.head,'tested_commit':a.tested_commit,'source_tree':a.tree,'run_id':a.run_id,'artifact_id':a.artifact_id,'artifact_sha256':a.sha256,'instrumentation_apks_archive_sha256':a.test_apks_sha256,'composed_device_identity':identity,'app_source_bound_selected':original['selected_tests'],'app_source_bound_completed':original['completed_tests'],'app_phases':original['phases'],'app_composed_validator_matches_original_except_separately_verified_identity':True,'native_source_bound_selected':len(declared),'native_source_bound_completed':len(actual),'native_source_tests_sha256':native['source_tests_sha256'],'native_all_unique_case_identities_exact_match':True,'native_missing_unexpected_errors':[],'native_return_code':0,'native_timed_out':False,'artifact_selection':selection,'expected_selection_sha256':h(a.expected_selection.read_bytes()),'expected_selection_exact_match':True,'attempt_contract':{'core':a.core_attempt,'position':a.position_attempt,'composed':a.composed_attempt},'limits':'Existing API35 emulator regression coverage; not Serbian Cyrillic/Latin, Slovak, Slovenian, Catalan, Romanian, Danish, Norwegian or Nynorsk physical-device/layout/native-human or whole-language certification.'}
+(r/'api35-terminal-verification.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps({'app':len(original['completed']),'native':len(actual),'prebuilt_identity_verified':True,'source_case_sets_verified':True},indent=2))

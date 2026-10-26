@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "record_kind": "Frozen Croatian/Bosnian exact-source artifact verifier preparation; no actual artifact execution",
+  "source_head": "b97ba1e0b4abe31f9758242a82e8ff58f356ffe4",
+  "source_tree": "d41defc26ef6870aa35393c2f3fb909c5e803747",
+  "source_binding_status": "Published isolated source branch verified by parent; no PR or hosted CI at preparation",
+  "positive_controls": 5,
+  "negative_controls_rejected": 125,
+  "ordinary_optimized_receipt_sha256": "9fc69869c178909a9610c3d22bf0cab2cccfe4c5b37b921b4f51ec7538ec58c8",
+  "compiled_scope": {
+    "new_hr_bs_reviewed": 156,
+    "prior_Serbian_current_reviewed": 149,
+    "other_prior_reviewed": 548,
+    "prior_reviewed_total": 697,
+    "reviewed_total": 853,
+    "preservation_only": 806,
+    "total": 1659
+  },
+  "source_expectations": {
+    "tracked": 1388,
+    "packaged": 1385,
+    "focused_classes": 14,
+    "focused_methods": 81,
+    "numeric_caption_locales": 11,
+    "API35_app": 45,
+    "API35_native": 74
+  },
+  "parent_read_only_adapter_review": "No blocking finding; immutable156pair binding and1659partition checked",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3637,
+      "sha256": "eb3c29f4496d633df814911aca65d6a8207d0fd57118850f78745bbaace13893",
+      "git_blob_sha1": "0db2a4d60138aed7bc3afbc786ad88f9ceed200b"
+    },
+    {
+      "path": "exact_generation_contract.py",
+      "bytes": 4066,
+      "sha256": "c594871da7dc70882d7791b3f4f43e282ef15db0bba4e3c56b4f5bf5fe52fc5b",
+      "git_blob_sha1": "b572131be26e9e87810b8ba1f0596520f19eb8dc"
+    },
+    {
+      "path": "optimized.log",
+      "bytes": 884,
+      "sha256": "4ff35311c4cab0f8c0bed0b67fc6db62bf4784c2e339a71aeddd0cead6f1e7b4",
+      "git_blob_sha1": "f9e4266e15111f753a3fe142e741f0b9861ee7c9"
+    },
+    {
+      "path": "optimized/artifact-verifier-sanity.json",
+      "bytes": 32471,
+      "sha256": "9fc69869c178909a9610c3d22bf0cab2cccfe4c5b37b921b4f51ec7538ec58c8",
+      "git_blob_sha1": "89e2efc71a1e6986d760236a55469b08713fbb2c"
+    },
+    {
+      "path": "ordinary.log",
+      "bytes": 884,
+      "sha256": "4ff35311c4cab0f8c0bed0b67fc6db62bf4784c2e339a71aeddd0cead6f1e7b4",
+      "git_blob_sha1": "f9e4266e15111f753a3fe142e741f0b9861ee7c9"
+    },
+    {
+      "path": "ordinary/artifact-verifier-sanity.json",
+      "bytes": 32471,
+      "sha256": "9fc69869c178909a9610c3d22bf0cab2cccfe4c5b37b921b4f51ec7538ec58c8",
+      "git_blob_sha1": "89e2efc71a1e6986d760236a55469b08713fbb2c"
+    },
+    {
+      "path": "preparation-status.json",
+      "bytes": 1071,
+      "sha256": "778f97bba4b6e8daf340239f2bbc18716c455bad9e5a2ae46a8ee96376c51926",
+      "git_blob_sha1": "7215d34c297dee675706db330760af46ad55b163"
+    },
+    {
+      "path": "preparation.log",
+      "bytes": 617,
+      "sha256": "1341b5cf0b02af1b765323a4d44a601782aa5ba7f5bef2d150534eaec01ec6c4",
+      "git_blob_sha1": "0979ecb51435bd64895557816dc14ef176568c6e"
+    },
+    {
+      "path": "preparation/source-expectations.json",
+      "bytes": 32874,
+      "sha256": "bdcdab4bc0852d3f97e1689d9d92114fb12716aa0a93bf645a5448172c82f764",
+      "git_blob_sha1": "8bb2dac1325fcc43aab60a0674f0b205128f037a"
+    },
+    {
+      "path": "prepare_source_expectations.py",
+      "bytes": 6372,
+      "sha256": "e28ba14872521b6d7d35eb230ba71d039f8681dff92a71c5393a0374e09c828f",
+      "git_blob_sha1": "032435cccf9310478f5d6145e0e413538759940c"
+    },
+    {
+      "path": "test_artifact_verifiers.py",
+      "bytes": 38092,
+      "sha256": "4890e59153c798b6f056fcc4e818f2c29c4eafe8031f3b1961c194289b9a48d4",
+      "git_blob_sha1": "3136a032cb181fc954c38b54ee2179e2fa3325c0"
+    },
+    {
+      "path": "verify_api35_artifact.py",
+      "bytes": 7068,
+      "sha256": "ceb985c3d040c6ad57b38383736979229c4de8ba8d69bcf87dd62ec7ec8ac620",
+      "git_blob_sha1": "bcfc4239d9112beb7ee5c70e596661d2cc75638d"
+    },
+    {
+      "path": "verify_apk_artifact.py",
+      "bytes": 16962,
+      "sha256": "d7a8aca0f4efd251200e56b1cf07a674b0ffa3a1f77779655bb28c2e792c1f74",
+      "git_blob_sha1": "c3c4f4ba730f4ceabaa1a195a95d5c6195a95369"
+    },
+    {
+      "path": "verify_exact_script_artifact.py",
+      "bytes": 2724,
+      "sha256": "feab491325a9026cb573f44110678b8053e3abd1a95729a0d5c29a1a187bde03",
+      "git_blob_sha1": "5cfdc85fb4933d57132145c6ee65b78d83806c59"
+    },
+    {
+      "path": "verify_regression_artifact.py",
+      "bytes": 5130,
+      "sha256": "cc606d2071da6ad4a9b747a4a6bbb1a0ecc73c0d45a1a172de3eeb1fcceb955c",
+      "git_blob_sha1": "e2f1c43bf83b0c44ced593673fec92f81fad695c"
+    }
+  ]
+}

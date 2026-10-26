@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "reviewer_role": "Independent AI implementation/test reviewer, not implementation author; no native-human linguistic rereview",
+  "reviewed_at_utc": "2026-10-26T22:06:09Z",
+  "base_commit": "0ebd41d4d9b665213c776f5a0479a29ecabdd243",
+  "base_tree": "bc5e10affc54ba2e0788c749b4b78968379596ba",
+  "decision": "accept in bounded static/host-test scope; no blocking findings",
+  "reviewed_delta": {
+    "changed_files": 18,
+    "new_files": 3,
+    "removed_files": 0,
+    "base_blob_contents_and_modes_independently_verified": 1385,
+    "context_source_bindings_independently_verified": 323,
+    "consumer_context_rows_verified_against_base_and_current_source": 140,
+    "distinct_context_ids": 124,
+    "inventory_sha256": "a40b17f127f6e16446c95274a7bdc6589e8639f64b3a8dadff258521f1dd88fc",
+    "files": [
+      {
+        "path": "Paintroid/src/main/res/values-bs/strings.xml",
+        "sha256": "65155516035c2a4e33301f35a39d3ad8467dbf9323ee9a4bf24788a914415ddd",
+        "git_blob": "c282c2a0ad40e8c0d4991ab17d384d8fcf85f956",
+        "base_git_blob": "1a462088758f96d0a0c1ba00b290bcb32608644e",
+        "mode": "100644"
+      },
+      {
+        "path": "Paintroid/src/main/res/values-hr/strings.xml",
+        "sha256": "bd34989ddb1f600c530c188abb4ac2275d153c51c9630e2c8bf3d5a2cb764158",
+        "git_blob": "98a03e2e6d50e30890864eec038192473259bbc5",
+        "base_git_blob": "13619104ace5ba8c021db85d8c5184948126bc0c",
+        "mode": "100644"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CroatianBosnianP0WordingTest.kt",
+        "sha256": "9d421d883894d2b323e5719321c780e3958f37e8e8c2a8a6d96930ecc5008915",
+        "git_blob": "21b7485d9fb4b7ac194fc0bb6e1ab0982da2de04",
+        "base_git_blob": null,
+        "mode": "100644"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt",
+        "sha256": "3705c45811e5c7f935279d06f519c650e930c1d0e44da414b8deea3c75202d1b",
+        "git_blob": "4587317570af1a575de89b5c271358bb920ef072",
+        "base_git_blob": "64f7e75ba306c966a1f6412b3e8bd38931e0eadb",
+        "mode": "100644"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ProtectedDraftWarningTest.kt",
+        "sha256": "7282c4c7bb0818814396ed9e3434183e960d0cb1dd2ece82f29ad6db42f4affb",
+        "git_blob": "c4c735ff5e3739fed1eff6488b149e14c9e32ac8",
+        "base_git_blob": "87d527b392c1061ba8e5120c55d45c9bd2b75b2d",
+        "mode": "100644"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+        "sha256": "3332b6ddda6dfd71dfddc00a7d84788f92bd0ed1f1c8afc71748176d34628e5e",
+        "git_blob": "156f1042cab0b9ce154f1a92daa40a3581463ee5",
+        "base_git_blob": "f94bd5922d794a4521a8f8c254fcf96596c73c67",
+        "mode": "100644"
+      },
+      {
+        "path": "Paintroid/src/test/resources/tagged-colour/expected.json",
+        "sha256": "a57ee92d502107bd9fee845d1cd9c4dc92d19e5d4eb3418ff02c860230b02721",
+        "git_blob": "288169c3de40cb305d86e080ed21df906f267657",
+        "base_git_blob": "2c7571f13b64333e99fab61c08bbb81a6356dcb4",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/fixtures/current_localization/croatian_bosnian_p0_wording.json",
+        "sha256": "325c1f86caa5a3981ef02774ca59c29fc73d1e3aada2f9b196a13e42bf57eb7e",
+        "git_blob": "6fae9a153594179bf156976df28563a1756ccae6",
+        "base_git_blob": null,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/memory_warning_source_review.py",
+        "sha256": "89a604e887759d54c6d1d6f1360367c785d6abf534aa6731fadd247599b78545",
+        "git_blob": "6d2be9ff248ff114a7330882a64b2b96865b234b",
+        "base_git_blob": "e2439a284c0e1d0f4b9cacbcea85edb61e85aad8",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_catalan_romanian_completion_wording.py",
+        "sha256": "1c1d3b22452652daad083b0a8a8de820b951ef74870a96a97d80d5f5b812905a",
+        "git_blob": "43d781dbbd8195904de06525116c04895ee778a6",
+        "base_git_blob": "f63f5b39d97e8afa5153a73dfb05287d37bb23e8",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_croatian_bosnian_p0_wording.py",
+        "sha256": "69bee6126133bd737710846863cdb5ece850c43300989030717f4f66f8b8248b",
+        "git_blob": "fc930df45cd2755aabdb8689132b3066f2a2408f",
+        "base_git_blob": null,
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_current_localization_contracts.py",
+        "sha256": "f60704fee85842f6a89e4fef94c235668f5790cee09990a67cfcf8a78524f9ec",
+        "git_blob": "eaf97dc66e27b42f4a1afb156df6895b8acf2e5d",
+        "base_git_blob": "56316003e94b4c8eb23efe416338dd66dd188014",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_danish_norwegian_p0_wording.py",
+        "sha256": "6061b69b7a1c06cc69f6ecdc94be005e98b47d3075ed7fe88bfd5e72b5fa065a",
+        "git_blob": "5edde4c2ca2e30a209c756d7c338f24e5e39bcc5",
+        "base_git_blob": "20fd00f98d195030a1e936fd7e09b4bb7e905926",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_memory_warning_source_review.py",
+        "sha256": "d0d232d1cdebdee34a98ae4230307e0ef3c5e5f98b1fc29f5cd68f896afd28a5",
+        "git_blob": "e412f312354d1a5bbe20472f82a8037d523208fd",
+        "base_git_blob": "42cea5e0f80ef3ac1749299bfd725134b4b035e5",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_memory_warning_successors.py",
+        "sha256": "fe3c5145a27c11da591b141300062b1403db653d2b7c0779bbb4b5f617ee7ead",
+        "git_blob": "1f33e9897a17c716a1ca998f6d893f7996769e14",
+        "base_git_blob": "be08d752f125dd62c4d11fd21d98fa7567071240",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_nynorsk_remaining_p0_wording.py",
+        "sha256": "3ad1f6e33e6f28b39041f3c714e393ba85082a57b3aedf0bf2802e00b18e7070",
+        "git_blob": "e56ff47ed725b8ca146d8a8681b4ac288dd95e73",
+        "base_git_blob": "04836919a0459b99099f12053a648327b29231a3",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_serbian_p0_wording.py",
+        "sha256": "47d43513b404b06bca11194d566caa0033bb021ef8457ad8e47f9aaf74be54f8",
+        "git_blob": "2522e4b0eed4dfaaccbc412b082a32a66b30cab4",
+        "base_git_blob": "89f7e7ceca48b39dd33f73c4e368b6edbbc29e87",
+        "mode": "100644"
+      },
+      {
+        "path": "tools/test_slovak_slovenian_p0_wording.py",
+        "sha256": "ddd8cf987d814ff3f5d7056841638ff293ca10986925d588ce60dfa3786a5971",
+        "git_blob": "170a4bd782d2a95b096f6275f0f4fef4f7913953",
+        "base_git_blob": "49a0352fe7571ade7a403766fc91e3436c3492f8",
+        "mode": "100644"
+      }
+    ]
+  },
+  "receipt_bindings": {
+    "approved_manifest_sha256": "9c63fdda5531fe5d00ae0cb7dd876786c6a00dce8515cc7861311e3f54e5fdfb",
+    "fixture_sha256": "325c1f86caa5a3981ef02774ca59c29fc73d1e3aada2f9b196a13e42bf57eb7e",
+    "hr_review_sha256": "54b7f5e94e4201b1e81d41be6b2d0b5b1ab485b343e6e260ba839a670af0f476",
+    "bs_review_sha256": "dbe73d5912a4105d94d93a283526ad5453e59d5ff0d7afeb7b118b01fb65371f",
+    "source_context_sha256": "7cac9a398d7ef1fe51cfa26c2ccb9d2243d152c4b341846c77bc929bbc09101e",
+    "accepted_pairs_digest_independently_recomputed": "ecf526badf05941ed1a11be43af7e6192fda51828861fce34b385c991e2011dc"
+  },
+  "checks": {
+    "production_scope": "Exactly 78 previously absent P0 strings added to each hr and bs catalogue. All 98 Croatian + 117 Bosnian inherited full texts and attributes remain unchanged. Only these two production resource files change; no app code, default source, held entry, P1 companion or unrelated locale mutation.",
+    "receipt_application": "All 156 values and attributes match the independent accepted receipts, approved manifest, fixture and XML. Candidate/review hashes, accepted-value hashes and English source-value hashes verify. Croatian 77 accepts plus the revised GIF description are applied exactly; Bosnian 78 accepts are applied exactly. This verifies application, not new linguistic acceptance.",
+    "counts_and_fallbacks": "Catalogue totals are hr 176 and bs 195. Five held keys each and unreviewed neighbors/P1 remain absent. Croatian save20_title correctly remains the actual Save as… English fallback; Bosnian retains Snimi kao…. Existing format and filename labels remain Format slike and Naziv datoteke.",
+    "host_full_text_tokens_and_negative_guards": "Complete values, exact attributes, markup/type/duplicate/missing/empty/truncated strings and full placeholder inventory are guarded. Indexed/unindexed, malformed, precision/type/flag, %n and %% mutations are rejected, including formatted=false cases. All 156 coordinated XML+fixture text changes fail pinned independent review acceptance, and refreshing the fixture digest still fails. Explicit exceptions/unittest checks survive -O.",
+    "compact_review_binding": "The fixed code-level digest independently matches the receipt-derived list of 156 complete locale/key/source/value/attribute tuples. No permanent whole-source hash oracle, remote historical fetch or recursive snapshot reconstruction was introduced.",
+    "history_and_oracle_updates": "memory_warning_source_review adds only hr/bs single-P0 routing. Existing historical queue, paired-warning fixtures and 120/60 successor inventory remain unchanged. Dependent tests expand current single-key inventory by two, without inventing historical translations or paired P1 acceptance.",
+    "tagged_colour_inventory": "Exactly hr/bs are added to the runtime expected catalogue and reviewed-value linkage. Counts agree: 76 direct expectations + 1 explicit Valencian inherited resolution + 94 English fallbacks = 171 offered options. All previous tagged-colour values remain unchanged.",
+    "numeric_inventory": "Runtime loop and literal caption map contain the same 11 unique tags: pt-BR,de,en-001,ar,ro,sk,sl,sr-Cyrl,sr-Latn,hr,bs. HR/BS captions retain actual English fallback text and resource-locale comma decimals 25,7/17,2 MiB and 2,25/1,50 MP. The 2,50% zoom case and 3,00/2,25 MP admission assertions include both new locales; budget calculations are unchanged.",
+    "new_jvm_family": "Eight concrete methods retain the corrected Serbian-family structure:all 78 compiled values per locale, true memory admission, successful separate preservation/unblocked state, valid recovery pixels/selection, injected encoding failures plus successful PNG control, exact labels/accessibility, repeated invalid-name handling and Save/Export/Share cancellation. Locale selection now checks language, and Croatian/Bosnian inherited/fallback accesses match actual availability. No apparent Kotlin compilation trap.",
+    "accessibility_synchronization": "Explicit Activity focus and bounded actual dialog/control attachment, shown and layout conditions are retained before creating native accessibility nodes. Exact description assertions remain; no fake node population, manual fabricated attachment or property-only fallback. The three-second loop pumps the main looper and ends in an assertion; no apparent circular wait.",
+    "blocked_preservation_path": "Two new ProtectedDraftWarningTest methods reuse the existing narrowly targeted AtomicFile failure shadow and real activity startup. They retain complete fixture-backed formatted warning, failure reason, paused-autosave, old bytes, distinct recovery ZIP/current-artwork PNG-JPEG picker routes, repeated cancellation and lifecycle assertions. Successful preservation/unblocked behavior is separately tested in the new family."
+  },
+  "independent_host_execution": {
+    "scope": "test_croatian_bosnian_p0_wording only; PYTHONDONTWRITEBYTECODE=1 and -B",
+    "ordinary": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    },
+    "optimized": {
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    }
+  },
+  "new_jvm_methods": [
+    "all78CompiledValuesPerLocaleMatchWhileHeldAndP1FallbacksRemainEnglish",
+    "realMemoryAdmissionFailureFormatsAllFourArgumentsBeforeAllocation",
+    "failedDraftRecoveryReportsPreservationOnlyAfterKeepingItsExactBytes",
+    "recoveredDraftRetainsUnsavedPixelsAndOneFloatingSelectionWithoutSaveAssociation",
+    "realEncodingFailuresKeepSourcePixelsAndAtomicDerivedDestinations",
+    "realFormatPanelUpdatesDescriptionsRejectsInvalidNamesAndCancelsRepeatedly",
+    "actualSaveExportSharePanelsKeepDistinctMessagesAndRepeatedCancel",
+    "realSubstitutionsKeepMixedFrameCountsAndFailureReasonsLiteral"
+  ],
+  "limits": [
+    "The independently rerun focused host tests do not establish the currently running aggregate suite results.",
+    "No Kotlin compilation, JVM test execution, Android/native build, APK/device run or accessibility-service verification performed; exact-head hosted results remain required.",
+    "Caption presence and attachment checks are not full clipping/layout certification.",
+    "Pinned acceptance constants are a code-review trust boundary: deliberate edits to validators/constants themselves still require independent review.",
+    "No inherited-language, whole-language, native-human, production, merged-source or release certification."
+  ],
+  "blocking_findings": [],
+  "source_edits_performed": false,
+  "publication_performed": false
+}
