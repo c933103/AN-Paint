@@ -1,0 +1,200 @@
+diff --git a/CI.md b/CI.md
+index f78d605..79e56f3 100644
+--- a/CI.md
++++ b/CI.md
+@@ -156,7 +156,10 @@ hex visibility are untested/unaccepted. They require the configured native IME
+ window stable for 250 ms (including fullscreen
+ extract with zero app inset), one Back retaining the exact draft/selection/dialog,
+ sequential full-caption/footer reachability, native Cancel, reopened Back and
+-invalid/valid commit outcomes. IME-open raw field/footer bounds, ancestor clipping
++invalid/valid commit outcomes. Footer caption receipts retain the raw resource text,
++actual framework transformation method/output, Layout text and accessibility text;
++the transformed strings must match exactly, not by case-insensitive comparison.
++IME-open raw field/footer bounds, ancestor clipping
+ and actual IME overlap are observations, not a simultaneous-fit acceptance gate.
+ The complete success inventory is 14 dialog methods/51 PNGs and 47 API35 app methods;
+ API30 eligibility is unchanged. New source is not installed evidence until exact-source
+diff --git a/app/src/androidTest/java/paint/anpaint/android/ColourViewportDeviceTest.kt b/app/src/androidTest/java/paint/anpaint/android/ColourViewportDeviceTest.kt
+index 4ed0d4b..e369ff3 100644
+--- a/app/src/androidTest/java/paint/anpaint/android/ColourViewportDeviceTest.kt
++++ b/app/src/androidTest/java/paint/anpaint/android/ColourViewportDeviceTest.kt
+@@ -552,14 +552,30 @@ class ColourViewportDeviceTest {
+             intrinsic(view)
+             val node=view.createAccessibilityNodeInfo()
+             try {
+-                assertEquals("Complete accessible caption",view.text.toString(),node.text?.toString())
++                val rawText=view.text.toString()
++                val transformation=view.transformationMethod
++                val transformed=transformation?.getTransformation(view.text,view)?.toString() ?: rawText
++                val sourceResource=when(key) {"cancel" -> R.string.ui_cancel;"use" -> R.string.ui_use_colour;else -> 0}
++                val expectedText=if(sourceResource==0) rawText else view.resources.getString(sourceResource)
++                // TextView accessibility exposes mTransformed, not necessarily the raw resource text.
++                // Keep both exact strings; do not case-fold, truncate or replace the platform method.
+                 evidence.observe(JSONObject().put("kind","colour-2x-caption").put("key",key).put("tag",view.tag ?: "About-row")
+-                    .put("text",view.text.toString()).put("accessible_text",node.text?.toString())
+-                    .put("lines",view.layout.lineCount).put("caption_length",view.text.length)
++                    .put("text",rawText).put("raw_text_length",rawText.length).put("expected_text",expectedText)
++                    .put("source_resource",if(sourceResource==0) "view-text" else view.resources.getResourceEntryName(sourceResource))
++                    .put("view_id",view.id).put("transformation_method",transformation?.javaClass?.name ?: "none")
++                    .put("transformed_text",transformed).put("accessible_text",node.text?.toString())
++                    .put("lines",view.layout.lineCount).put("caption_length",transformed.length)
+                     .put("layout_text",view.layout.text.toString())
+                     .put("line_ranges",JSONArray((0 until view.layout.lineCount).map {line ->
+                         JSONArray().put(view.layout.getLineStart(line)).put(view.layout.getLineEnd(line))}))
+                     .put("root_id",System.identityHashCode(view.rootView)))
++                assertEquals("Exact source caption retained",expectedText,rawText)
++                if(sourceResource!=0) {
++                    assertEquals("Actual native footer action id",if(key=="cancel") android.R.id.button2 else android.R.id.button1,view.id)
++                    assertEquals("Actual platform footer transformation","android.text.method.AllCapsTransformationMethod",transformation?.javaClass?.name)
++                }
++                assertEquals("Complete transformed layout caption",transformed,view.layout.text.toString())
++                assertEquals("Complete accessible caption",transformed,node.text?.toString())
+             } finally {node.recycle()}
+         }
+         for(line in 0 until onMain {view.layout.lineCount}) {
+diff --git a/tools/dialog_evidence_transport.py b/tools/dialog_evidence_transport.py
+index bac8719..f11d6e0 100644
+--- a/tools/dialog_evidence_transport.py
++++ b/tools/dialog_evidence_transport.py
+@@ -586,12 +586,30 @@ def verify_large_colour_ime(method, observations):
+         require(caption.get('tag') == expected_tag, 'Wrong caption control identity')
+         expected_root = invalid['root_id'] if key == 'use' else identity['root_id']
+         text = caption.get('text')
+-        length = len(text.encode('utf-16-le')) // 2 if isinstance(text, str) else 0
+-        require(length > 0 and caption.get('accessible_text') == text and caption.get('caption_length') == length
++        raw_length = len(text.encode('utf-16-le')) // 2 if isinstance(text, str) else 0
++        transformed = caption.get('transformed_text')
++        length = len(transformed.encode('utf-16-le')) // 2 if isinstance(transformed, str) else 0
++        require(raw_length > 0 and caption.get('raw_text_length') == raw_length and caption.get('expected_text') == text
++                and isinstance(caption.get('transformation_method'), str) and caption['transformation_method']
++                and type(caption.get('view_id')) is int, 'Missing exact raw/source caption or platform transformation')
++        if key in ('cancel', 'use'):
++            # Bounded en-US/hu fixture resources and actual API35 framework Button transform.
++            # This is exact text equality, not a case-insensitive acceptance shortcut.
++            expected = {'en-US': {'cancel': ('Cancel', 'CANCEL'), 'use': ('Use color', 'USE COLOR')},
++                        'hu': {'cancel': ('Mégse', 'MÉGSE'), 'use': ('Szín használata', 'SZÍN HASZNÁLATA')}}
++            require((text, transformed) == expected[LARGE_COLOUR_IME_METHODS[method]][key]
++                    and caption.get('source_resource') == ('ui_cancel' if key == 'cancel' else 'ui_use_colour')
++                    and caption['view_id'] == (16908314 if key == 'cancel' else 16908313)
++                    and caption['transformation_method'] == 'android.text.method.AllCapsTransformationMethod',
++                    'Wrong native footer source text, action identity or actual transformation')
++        else:
++            require(caption.get('source_resource') == 'view-text' and transformed == text,
++                    'Unexpected non-footer caption transformation')
++        require(length > 0 and caption.get('accessible_text') == transformed and caption.get('caption_length') == length
+                 and caption.get('root_id') == expected_root and type(caption.get('lines')) is int and caption['lines'] > 0,
+                 'Incomplete accessible 2x caption or wrong root')
+         layout_text = caption.get('layout_text')
+-        require(isinstance(layout_text, str) and layout_text and len(layout_text.encode('utf-16-le')) // 2 == length,
++        require(layout_text == transformed,
+                 'Incomplete transformed layout text')
+         ranges = caption.get('line_ranges')
+         require(isinstance(ranges, list) and len(ranges) == caption['lines'], 'Incomplete layout ranges')
+diff --git a/tools/synthetic_colour_receipts.py b/tools/synthetic_colour_receipts.py
+index 34e4432..0699029 100644
+--- a/tools/synthetic_colour_receipts.py
++++ b/tools/synthetic_colour_receipts.py
+@@ -52,13 +52,24 @@ def synthetic_colour_ime_observations(method):
+         tag = 'About-row' if key in ('cancel', 'use') else key
+         geometry_tag = None if key in ('cancel', 'use') else key
+         text = '#13579B' if key == 'colour_hex' else 'Synthetic caption'
++        transformed = text
++        source_resource, view_id, transformation = 'view-text', -1, 'none'
++        if key in ('cancel', 'use'):
++            texts = {'en-US': {'cancel': ('Cancel', 'CANCEL'), 'use': ('Use color', 'USE COLOR')},
++                     'hu': {'cancel': ('Mégse', 'MÉGSE'), 'use': ('Szín használata', 'SZÍN HASZNÁLATA')}}
++            text, transformed = texts[LARGE_COLOUR_IME_METHODS[method]][key]
++            source_resource = 'ui_cancel' if key == 'cancel' else 'ui_use_colour'
++            view_id = 16908314 if key == 'cancel' else 16908313
++            transformation = 'android.text.method.AllCapsTransformationMethod'
+         observations.append(dict(kind='intrinsic-caption', tag=tag, lines=1, layout_height=20,
+-                                 available_text_height=30, caption_length=len(text), layout_width=100,
+-                                 line_metrics=[dict(end=len(text), ellipsis=0, left=0, right=99)], geometry=geometry(key)))
++                                 available_text_height=30, caption_length=len(transformed), layout_width=100,
++                                 line_metrics=[dict(end=len(transformed), ellipsis=0, left=0, right=99)], geometry=geometry(key)))
+         if lifecycle:
+-            observations.append(dict(kind='colour-2x-caption', key=key, tag=tag, text=text, accessible_text=text,
+-                                     layout_text=text, lines=1, caption_length=len(text), root_id=root,
+-                                     line_ranges=[[0, len(text)]]))
++            observations.append(dict(kind='colour-2x-caption', key=key, tag=tag, text=text, raw_text_length=len(text),
++                                     expected_text=text, source_resource=source_resource, view_id=view_id,
++                                     transformation_method=transformation, transformed_text=transformed,
++                                     accessible_text=transformed, layout_text=transformed, lines=1,
++                                     caption_length=len(transformed), root_id=root, line_ranges=[[0, len(transformed)]]))
+             observations.append(dict(kind='colour-2x-caption-line', key=key, line=0,
+                                      line_rect=[11, 21, 100, 40], geometry=geometry(geometry_tag), parent_id=7, ancestors=chain(root)))
+         else:
+diff --git a/tools/test_colour_viewport_contract.py b/tools/test_colour_viewport_contract.py
+index a4cebdb..f2416a3 100644
+--- a/tools/test_colour_viewport_contract.py
++++ b/tools/test_colour_viewport_contract.py
+@@ -131,6 +131,17 @@ class ColourViewportContractTest(unittest.TestCase):
+         for required in ('intrinsic(view)', 'node.text?.toString()', 'getLineStart(line)', 'getLineEnd(line)',
+                          'reveal(view) {lineBounds()}', 'ancestors(view)', 'contains(target)', '"parent_id"'):
+             self.assertIn(required, helper)
++        for required in ('transformation?.getTransformation(view.text,view)', 'view.resources.getString(sourceResource)',
++                         '"text",rawText', '"raw_text_length",rawText.length', '"expected_text",expectedText',
++                         '"transformation_method",transformation?.javaClass?.name', '"transformed_text",transformed',
++                         '"caption_length",transformed.length', '"Exact source caption retained",expectedText,rawText',
++                         '"Actual native footer action id"', 'android.R.id.button2', 'android.R.id.button1',
++                         '"android.text.method.AllCapsTransformationMethod"',
++                         '"Complete transformed layout caption",transformed,view.layout.text.toString()',
++                         '"Complete accessible caption",transformed,node.text?.toString()'):
++            self.assertIn(required, helper)
++        for forbidden in ('uppercase(', 'lowercase(', 'ignoreCase', 'setAllCaps(', 'transformationMethod='):
++            self.assertNotIn(forbidden, helper)
+         for forbidden in ('performClick(', 'requestRectangleOnScreen(', 'setTextSize(', 'setSoftInputMode(', 'imeOptions='):
+             self.assertNotIn(forbidden, body + helper)
+ 
+diff --git a/tools/test_dialog_evidence_transport.py b/tools/test_dialog_evidence_transport.py
+index 20934b2..7765d4e 100644
+--- a/tools/test_dialog_evidence_transport.py
++++ b/tools/test_dialog_evidence_transport.py
+@@ -147,6 +147,47 @@ def write_archive(root, method, *, change_receipt=None, change_manifest=None, ex
+ class LargeColourImeLifecycleContractTest(unittest.TestCase):
+     METHODS = ('largeEnglishColourImeBackAndFooterLifecycle', 'largeHungarianColourImeBackAndFooterLifecycle')
+ 
++    def test_native_footer_uses_exact_platform_transformed_text_not_raw_or_casefold(self):
++        for method in self.METHODS:
++            data = receipt(method)
++            captions = [o for o in data['observations'] if o.get('kind') == 'colour-2x-caption']
++            for caption in captions:
++                self.assertEqual(caption['text'], caption['expected_text'])
++                self.assertEqual(caption['transformed_text'], caption['layout_text'])
++                self.assertEqual(caption['transformed_text'], caption['accessible_text'])
++                if caption['key'] in ('cancel', 'use'):
++                    self.assertNotEqual(caption['text'], caption['transformed_text'])
++                    self.assertEqual(caption['transformation_method'], 'android.text.method.AllCapsTransformationMethod')
++            verify_receipt(data, method, DIGEST)
++
++    def test_footer_raw_source_transformation_layout_and_accessibility_must_all_bind(self):
++        mutations = [
++            lambda c: c.pop('transformation_method'),
++            lambda c: c.update(transformation_method='none'),
++            lambda c: c.update(transformation_method='synthetic.uppercase'),
++            lambda c: c.update(source_resource='wrong_resource'),
++            lambda c: c.update(view_id=999),
++            lambda c: c.update(text=c['transformed_text']),
++            lambda c: c.update(expected_text='wrong source'),
++            lambda c: c.update(raw_text_length=1),
++            lambda c: c.update(transformed_text=c['text']),
++            lambda c: c.update(accessible_text=c['text']),
++            lambda c: c.update(layout_text=c['text']),
++            lambda c: c.update(accessible_text=c['transformed_text'][:-1]),
++            lambda c: c.update(transformed_text=c['transformed_text'].lower(),
++                               layout_text=c['transformed_text'].lower(), accessible_text=c['transformed_text'].lower()),
++            lambda c: c.update(transformed_text='X' * len(c['transformed_text']),
++                               layout_text='X' * len(c['transformed_text']), accessible_text='X' * len(c['transformed_text'])),
++        ]
++        for method in self.METHODS:
++            for key in ('cancel', 'use'):
++                for mutate in mutations:
++                    data = receipt(method)
++                    caption = next(o for o in data['observations'] if o.get('kind') == 'colour-2x-caption' and o.get('key') == key)
++                    mutate(caption)
++                    with self.subTest(method=method, key=key, mutate=mutate), self.assertRaises(ValueError):
++                        verify_receipt(data, method, DIGEST)
++
+     def test_synthetic_activation_is_explicit_and_cannot_claim_native_entry(self):
+         for method in self.METHODS:
+             data = receipt(method)

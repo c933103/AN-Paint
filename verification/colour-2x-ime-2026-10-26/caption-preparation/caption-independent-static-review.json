@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "reviewer": "/root/review_large_font_ime",
+  "review_kind": "independent native static/footer-oracle review, failed-image inspection and host negative probes",
+  "reviewed_at_utc": "2026-10-26T22:36:11Z",
+  "reviewed_tree": "08550405b070ef263d1511226f8295519ea2ab65",
+  "six_file_delta_sha256": "c9280f3e838e81f1601dd7d7718445d7d8e547ac6ce21394c12c54efa0ad9a2c",
+  "integrated_baseline_tree": "427ab89ca26f5a08d19584e0255287f585b37db3",
+  "current_develop_commit": "33472a55aee482bbdc7c0bebd93356ef2b1a1ae3",
+  "current_develop_tree": "d41defc26ef6870aa35393c2f3fb909c5e803747",
+  "prior_nonintegrated_review_tree": "9dd7cb43f562319c34e4d06bed0cb64da130f530",
+  "prior_failed_repair_tree": "a15d294db00490e737d23c5db3fc17a91f4ccde8",
+  "conclusion": "No concrete findings in the scoped six-file test-only footer-oracle correction. Exact transformed-output equality replaces an incorrect raw-versus-accessibility equality; no case-insensitive acceptance or production change is introduced. Installed footer actions remain unverified by the failed cohort.",
+  "files": [
+    {
+      "path": "CI.md",
+      "mode": "100644",
+      "git_blob": "79e56f3925d536da5835ebcfe3f3bbb7a298d99c",
+      "sha256": "b7fa07f10dd5b3411cc3583c9e8419571e3c93959890a83c85652c6afcf62ce0"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/ColourViewportDeviceTest.kt",
+      "mode": "100644",
+      "git_blob": "e369ff3320487617ecda6aecb695c811040223d1",
+      "sha256": "30f2e24247d9686354132d272634a0afc0f5961db1e7af68d9bb5bb4dfb53c9e"
+    },
+    {
+      "path": "tools/dialog_evidence_transport.py",
+      "mode": "100644",
+      "git_blob": "f11d6e07f989b8adf23b121d30fb02014c7e9968",
+      "sha256": "90c09d83bbafd93e99169bca65e897c87c58c94515bf7d578933b43700568a25"
+    },
+    {
+      "path": "tools/synthetic_colour_receipts.py",
+      "mode": "100644",
+      "git_blob": "0699029b9f6dcd30cb67ac44b7ea722602002ff8",
+      "sha256": "258f9c9c34cbc211a9b4088503db223ab82e6e5c6fe8b96c22b338d1548244a1"
+    },
+    {
+      "path": "tools/test_colour_viewport_contract.py",
+      "mode": "100644",
+      "git_blob": "f2416a37a845f76fa6c63079275475f01fbe94a2",
+      "sha256": "cc977ccfb77bb6186ba3bc78bebfce33af1cfd9d9a71dac04623be87fcdb0de6"
+    },
+    {
+      "path": "tools/test_dialog_evidence_transport.py",
+      "mode": "100644",
+      "git_blob": "7765d4e96376ca80720366e457c22aa37dd0ad79",
+      "sha256": "3c2a1bb23a85ca8d44b71dd61e416cc8ee2448e5821c70f375f4222f30528c1c"
+    }
+  ],
+  "platform_contract": {
+    "textview": "AOSP Android15 TextView sets node text through getTextForAccessibility, which returns mTransformed for nonempty text. The correction compares the actual view transformation output to both Layout and accessibility text.",
+    "textview_source": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android15-release/core/java/android/widget/TextView.java",
+    "textview_lines": "13129-13133 and13883-13900",
+    "allcaps": "The framework transformation uses the TextView rendering locale. The test invokes the installed TransformationMethod interface; it neither sets a replacement nor manually uppercases strings. Exact framework class and native Button action ids are required for these bounded API35 footers.",
+    "allcaps_source": "https://android.googlesource.com/platform/frameworks/base/+/refs/heads/master/core/java/android/text/method/AllCapsTransformationMethod.java"
+  },
+  "resource_check": {
+    "en-US": {
+      "source": "Paintroid/src/main/res/values-en-rUS/strings.xml",
+      "cancel": [
+        "Cancel",
+        "CANCEL"
+      ],
+      "use": [
+        "Use color",
+        "USE COLOR"
+      ]
+    },
+    "hu": {
+      "source": "Paintroid/src/main/res/values-hu/strings.xml",
+      "cancel": [
+        "Mégse",
+        "MÉGSE"
+      ],
+      "use": [
+        "Szín használata",
+        "SZÍN HASZNÁLATA"
+      ]
+    },
+    "review": "Raw pairs independently checked against source resource XML. Runtime helper uses view.resources, retains expected/raw text and resource name, and validates button2/button1 ids. Transport checks exact bounded pairs independently of the recorded expected text."
+  },
+  "failed_cohort_evidence": [
+    {
+      "method": "largeEnglishColourImeBackAndFooterLifecycle",
+      "receipt_sha256": "e74ebe8c33826d83cb47cd2ccfbc97eec912fd4c6f09dfeda25c8cb7b681333f",
+      "failure": "org.junit.ComparisonFailure: Complete accessible caption expected:<C[ancel]> but was:<C[ANCEL]>",
+      "visually_inspected_png": "3-colour-2x-failed-before-dismiss.png",
+      "png_sha256": "1ddcfc427c526f89030d8e291bfffcdfa4cda5c20bde7e9ed35927c8a4714a5f",
+      "completed_non_footer_caption_keys": 9,
+      "validated_full_line_ancestor_records": 14,
+      "native_footer_taps_reached": false
+    },
+    {
+      "method": "largeHungarianColourImeBackAndFooterLifecycle",
+      "receipt_sha256": "84f2129c43b94ef29257bd102f29005464d521c096da3373a530910de037c726",
+      "failure": "org.junit.ComparisonFailure: Complete accessible caption expected:<M[égse]> but was:<M[ÉGSE]>",
+      "visually_inspected_png": "3-colour-2x-failed-before-dismiss.png",
+      "png_sha256": "ee29c10ee4d2834edddf8853b3b82e443366acc7d6e4778b9f0ac77e90661208",
+      "completed_non_footer_caption_keys": 9,
+      "validated_full_line_ancestor_records": 14,
+      "native_footer_taps_reached": false
+    }
+  ],
+  "independent_checks": [
+    {
+      "check": "Ordinary focused colour/transport suite on final integrated tree",
+      "result": "61 passed",
+      "elapsed_seconds": 0.593
+    },
+    {
+      "check": "Optimized focused colour/transport suite on final integrated tree",
+      "result": "61 passed",
+      "elapsed_seconds": 0.57
+    },
+    {
+      "check": "Built-in footer negative matrix",
+      "result": "56 mutations covered by passing focused suite"
+    },
+    {
+      "check": "Additional coordinated/missing/action-id probes on the byte-identical six-file delta",
+      "result": "32 rejected",
+      "mutations": "Missing raw length/expected source; swapped native id; coherently transformed raw text; coherently wrong action label; padded transformation class; newline accessibility; same-length wrong Layout text."
+    },
+    {
+      "check": "Entire installed Kotlin file excluding largeLifecycleCaption",
+      "result": "byte-identical to integrated baseline, including old12 methods and all lifecycle input/Back/callback paths"
+    },
+    {
+      "check": "Existing validator function ASTs and14/51 screenshot inventory",
+      "result": "Only verify_large_colour_ime changed; complete screenshot map unchanged"
+    },
+    {
+      "check": "Integration overlay and manifest",
+      "result": "All18 upstream HR/BS overlay paths, Git blobs, SHA256s and modes match supplied remote evidence; no overlap with six-file correction. Full1388-leaf path/mode/blob inventory has exactly18 intended PR-delta files, with no missing/extra paths."
+    },
+    {
+      "check": "Production repair preservation",
+      "result": "AdvancedColourDialog exactly matches previously reviewed a15d repair. No production file is changed by this footer correction; upstream HR/BS resource changes are the separately verified overlay."
+    },
+    {
+      "check": "Frozen tree equality, staged diff SHA256, diff whitespace check",
+      "result": "passed"
+    },
+    {
+      "check": "Kotlin public APIs/imports/visibility and view-resource context",
+      "result": "No concrete compile-facing issue found; this is static review, not compilation."
+    }
+  ],
+  "preserved_requirements": [
+    "Actual configured native IME window/stability and single-Back identity/value/selection/callback checks unchanged.",
+    "Strict transformed UTF16 full-line coverage and complete ancestor clipping checks remain; raw resource text is retained separately.",
+    "Native Cancel/reopen/Back/invalid rejection/valid single commit assertions remain unchanged.",
+    "Initial native field entry/full initial hex visibility remains not-tested/not-accepted.",
+    "No font/control shrinking, input-mode change, deadline increase or observation/capture-bound change.",
+    "Existing12 cases and14-method/51-PNG expected success inventory preserved."
+  ],
+  "limits": [
+    "Corrected installed Kotlin has not been compiled or executed by this reviewer. Prior repair JVM success reported by owner is not acceptance of the new instrumented helper.",
+    "Failed repair cohort reached no native footer tap; visible footer screenshots do not prove Cancel/reopen/commit outcomes.",
+    "Final integrated ordinary/optimized full host suites and exact-source hosted compilation/device lifecycle are owner gates, pending at receipt time.",
+    "No whole2x, simultaneous IME/field/footer fit, physical-device, TalkBack or glyph-ink acceptance."
+  ],
+  "writes": "No source or external-state changes by reviewer. This temporary JSON is an authorized evidence handoff outside source."
+}
