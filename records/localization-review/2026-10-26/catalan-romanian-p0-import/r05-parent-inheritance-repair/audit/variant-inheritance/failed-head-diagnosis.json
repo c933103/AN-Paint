@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent failed-head tagged-colour inheritance diagnosis",
+  "reviewed_head": "06a2e4078efa1fe8ef8ea37b186ece0431633f08",
+  "artifact_sha256": "2e1207c531964eb4ec4bb254fff94224559b4c77823cd5eef57a1d425d081602",
+  "JUnit_XML_files": 147,
+  "JUnit_totals": {
+    "tests": 1361,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0
+  },
+  "unique_case_identities": 1361,
+  "failure": {
+    "class": "org.catrobat.paintroid.local.TaggedColourImportTest",
+    "method": "everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback",
+    "message": "org.junit.ComparisonFailure: Family message or explicit English fallback for ca-ES-valencia expected:<[This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing].> but was:<[Aquesta imatge fa servir un perfil de color que AN Paint encara no pot convertir. Converteix-la a PNG sRGB en un editor amb gestió del color abans d’importar-la].>",
+    "xml_sha256": "3d147c6c9336d9bdacf7f80f83ebab142b6da0b9072058a7560577b1e363cb61",
+    "artifact_member": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.TaggedColourImportTest.xml"
+  },
+  "passed_relevant_suites": [
+    {
+      "class": "org.catrobat.paintroid.local.CatalanRomanianImportWordingTest",
+      "cases": 2,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "xml_sha256": "4cd8dda72a34a3eeca8e8d6ab227bbab62a2b60c0948f5ca9a21a6fce67dbbc0"
+    },
+    {
+      "class": "org.catrobat.paintroid.local.CatalanRomanianSaveWordingTest",
+      "cases": 2,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "xml_sha256": "20e59f8505f9f0b0ecb7cf3d6814952d6e821ea42b0704a622a3168f36013c3d"
+    },
+    {
+      "class": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+      "cases": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "xml_sha256": "46906610b2af259f9ec5239ad12e935347e0a89e1c0c1b2b6f986b46d31a41ce"
+    }
+  ],
+  "resource_key": "save20_unsupported_image_colour",
+  "variant": "ca-ES-valencia",
+  "parent": "ca",
+  "variant_catalogue_entries": 95,
+  "variant_key_absent": true,
+  "parent_display_sha256": "b6bc5e5abdd9a492b5ae8d349c1a090567fa0fc2ca34a5873277edb244906c1a",
+  "actual_runtime_text_exactly_equals_reviewed_parent": true,
+  "proposed_repair_scope": {
+    "direct_reviewed_expectations": 70,
+    "structurally_missing_direct_entries": 101,
+    "explicit_parent_inherited_runtime_values": 1,
+    "remaining_runtime_English_fallbacks": 100,
+    "global_scoped": 59,
+    "global_remaining": 112
+  },
+  "required_guards": [
+    "Keep expected.json exactly 70 direct values; do not add a Valencian review entry.",
+    "Explicit inheritance map contains only ca-ES-valencia to ca.",
+    "Assert variant key absent, including rejection of an explicit override identical to the parent.",
+    "Require offered variant and direct parent plus exact reviewed Catalan parent value; reject missing/changed parent.",
+    "Use real Android resource resolution in the runtime oracle, not manually set labels."
+  ],
+  "limits": "Actual failed JVM artifact diagnostic, not a successful rerun or whole-language/native/physical/layout claim. Parent inheritance is not new Valencian linguistic acceptance. No source/external mutation by this auditor."
+}

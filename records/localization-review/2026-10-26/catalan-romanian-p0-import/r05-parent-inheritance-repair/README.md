@@ -1,0 +1,9 @@
+# PR177 bounded parent-inheritance oracle repair
+
+Corrected source head `10acbff912812b938bf2626be1e8a9e84e7aa7bc`, tree `f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c`, changes exactly two test files from the original head. All 1,374 other tracked blobs, all production strings and all linguistic review values remain unchanged. Remote tree, changed bytes, parent and branch lease were verified exactly.
+
+The runtime test now distinguishes 70 direct reviewed catalogue values, one `ca-ES-valencia` inheritance from `ca`, and 100 English fallbacks. Structural direct absence is still101, and global59/112 is unchanged. The host test asserts the variant key remains absent, validates the offered parent/child relationship and rejects any override—even one identical to the parent. This is not a Valencian translation or independent linguistic acceptance.
+
+Both final local full host suites pass1,389 tests with zero skips: ordinary196.175s, optimized195.006s. Both29-test focused runs pass. Independent repair review verifies only two test changes and independently passes29 focused tests plus12 targeted negatives in both modes. Local logs contain deliberate synthetic failure receipts printed by negative tests; these are not actual device execution. Path-prefix omissions are separately hash-ledgered; no other output transformation.
+
+[Original terminal failure](https://github.com/c933103/AN-Paint/tree/fe8f255de677c1a1a843f70a4c7800f40916cc5a/records/localization-review/2026-10-26/catalan-romanian-p0-import/r04-original-head-failure) is preserved, not relabelled. [New exact-head Codex request](https://github.com/c933103/AN-Paint/pull/177#issuecomment-6416178611) and [fresh run40323966400](https://github.com/c933103/AN-Paint/actions/runs/40323966400) are separate and pending at this record. No local Android/JVM execution or new-head hosted success is inferred. All named holds, mixed-language qualifications and no-release boundary remain intact.

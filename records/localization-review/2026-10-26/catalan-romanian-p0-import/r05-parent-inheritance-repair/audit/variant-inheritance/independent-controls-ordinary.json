@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent bounded parent-inheritance repair controls",
+  "failed_head": "06a2e4078efa1fe8ef8ea37b186ece0431633f08",
+  "failed_tree": "949f87f736d4d12de2a92a1834ad35332ab01a1a",
+  "final_test_sha256": {
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt": "0b8b108cac343b858de01222f9a4b359143f5021ede8566d42f0f9074b8d46e0",
+    "tools/test_current_localization_contracts.py": "25b1f1311fb7892e3f84099ad20778a115a3caee2a043c9044243516cd8aa56d"
+  },
+  "tracked_source_files_compared": 1376,
+  "only_two_test_files_changed": true,
+  "unchanged_tracked_files": 1374,
+  "direct_review_oracle_entries": 70,
+  "structurally_missing_direct_entries": 101,
+  "explicit_runtime_parent_inherited": 1,
+  "runtime_English_fallbacks": 100,
+  "global_scoped": 59,
+  "global_remaining": 112,
+  "variant_key_absent": true,
+  "variant_direct_review_absent": true,
+  "parent_exact_reviewed_display_sha256": "b6bc5e5abdd9a492b5ae8d349c1a090567fa0fc2ca34a5873277edb244906c1a",
+  "positive_model": "passed",
+  "negative_controls": [
+    {
+      "case": "variant override English",
+      "outcome": "rejected"
+    },
+    {
+      "case": "variant override arbitrary",
+      "outcome": "rejected"
+    },
+    {
+      "case": "variant override identical reviewed parent",
+      "outcome": "rejected"
+    },
+    {
+      "case": "missing parent resource",
+      "outcome": "rejected"
+    },
+    {
+      "case": "parent resource English",
+      "outcome": "rejected"
+    },
+    {
+      "case": "parent resource arbitrary",
+      "outcome": "rejected"
+    },
+    {
+      "case": "missing parent oracle",
+      "outcome": "rejected"
+    },
+    {
+      "case": "parent oracle English",
+      "outcome": "rejected"
+    },
+    {
+      "case": "parent oracle arbitrary",
+      "outcome": "rejected"
+    },
+    {
+      "case": "added variant direct review oracle entry",
+      "outcome": "rejected"
+    },
+    {
+      "case": "unoffered ca-ES-valencia",
+      "outcome": "rejected"
+    },
+    {
+      "case": "unoffered ca",
+      "outcome": "rejected"
+    }
+  ],
+  "negative_rejected": 12,
+  "limits": "Independent source joins and synthetic host-oracle controls. Runtime test implementation is static-reviewed; no successful Android rerun or new Valencian acceptance."
+}

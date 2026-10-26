@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent bounded tagged-colour parent-inheritance test repair review",
+  "assessment": "Repair supported by actual failed-head runtime evidence; no concrete unresolved defect in the checked source/host/static-test scope. Successful exact-head Android rerun remains required.",
+  "failed_reviewed_head": "06a2e4078efa1fe8ef8ea37b186ece0431633f08",
+  "failed_source_tree": "949f87f736d4d12de2a92a1834ad35332ab01a1a",
+  "failed_artifact_sha256": "2e1207c531964eb4ec4bb254fff94224559b4c77823cd5eef57a1d425d081602",
+  "failure_diagnosis_receipt_sha256": "afae1b77b770db0d2e04bbff3123beae42be135381efa0e974082814ae5a5839",
+  "actual_failed_JUnit": {
+    "tests": 1361,
+    "failures": 1,
+    "errors": 0,
+    "skipped": 0,
+    "XML_files": 147,
+    "relevant_new_import_methods_passed": 2,
+    "prior_CA_RO_save_methods_passed": 2,
+    "import_selection_methods_passed": 12,
+    "failure": "TaggedColourImportTest expected English for ca-ES-valencia, but actual Android resources inherited the exact reviewed Catalan parent value."
+  },
+  "final_files": [
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "bytes": 8517,
+      "sha256": "0b8b108cac343b858de01222f9a4b359143f5021ede8566d42f0f9074b8d46e0",
+      "git_blob_sha1": "c764571fb5b572ade04f15f3e9915da88730dac3"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "bytes": 20085,
+      "sha256": "25b1f1311fb7892e3f84099ad20778a115a3caee2a043c9044243516cd8aa56d",
+      "git_blob_sha1": "09b6a6ff20e7bc9b605104b7a4e08e0ebcd5d5a2"
+    }
+  ],
+  "preparation_only_superseded_host_sha256": "6a844417fb4926c638ef59ae833f97c7ed33cd873dea6cc5173a54541698d24f",
+  "all_1376_failed_head_source_paths_compared": true,
+  "unchanged_source_paths": 1374,
+  "only_changed_paths_are_the_two_test_files": true,
+  "resources_production_code_candidates_reviews_unchanged": true,
+  "direct_expected_json_entries_unchanged": 70,
+  "structural_missing_direct_entries": 101,
+  "explicit_runtime_inheritance": {
+    "ca-ES-valencia": "ca"
+  },
+  "runtime_counts": {
+    "direct": 70,
+    "parent_inherited": 1,
+    "English_fallback": 100
+  },
+  "global_scope": {
+    "scoped": 59,
+    "remaining": 112
+  },
+  "reviewed_parent_and_variant_checks": {
+    "variant_catalogue_entries": 95,
+    "variant_resource_key_absent": true,
+    "variant_review_entry_absent": true,
+    "parent_complete_value_exact_review_join": true,
+    "parent_display_sha256": "b6bc5e5abdd9a492b5ae8d349c1a090567fa0fc2ca34a5873277edb244906c1a"
+  },
+  "independent_host_negative_controls": {
+    "ordinary": 12,
+    "optimized": 12,
+    "receipts_byte_identical": true,
+    "receipt_sha256": "415a4fcc6c2eecc77dc4e92f5ff2c38ac07266d237546d0565fcfefdc4206ce7",
+    "cases": [
+      "variant override English",
+      "variant override arbitrary",
+      "variant override identical reviewed parent",
+      "missing parent resource",
+      "parent resource English",
+      "parent resource arbitrary",
+      "missing parent oracle",
+      "parent oracle English",
+      "parent oracle arbitrary",
+      "added variant direct review oracle entry",
+      "unoffered ca-ES-valencia",
+      "unoffered ca"
+    ]
+  },
+  "focused_host_runs": [
+    {
+      "mode": "ordinary",
+      "tests": 29,
+      "seconds": 3.972,
+      "result": "OK",
+      "skips": 0,
+      "log_sha256": "c197714acb39c716e1feb37a4d038a0f653943cfe016ca4166733d9cb465f653"
+    },
+    {
+      "mode": "optimized",
+      "tests": 29,
+      "seconds": 4.098,
+      "result": "OK",
+      "skips": 0,
+      "log_sha256": "9628514b37abc2ce124ebb140a72b6873db9a1fd553b7462d89a005ce3649b23"
+    }
+  ],
+  "runtime_test_static_review": [
+    "Uses real locale Configuration plus AppLanguage.resourceLocale and context.getString for every offered option, not manually set text.",
+    "Keeps 70 direct entries, separately maps ca-ES-valencia to ca, and asserts one inherited value and 100 English fallbacks.",
+    "The explicit inherited tag is absent from the direct review oracle; the source host test requires its resource key absent even if an override would equal the parent.",
+    "Offered child and parent, direct parent membership, exact parent review fixture and separate global scopes are checked.",
+    "All five existing TaggedColourImportTest methods remain; only the resource-resolution oracle was changed."
+  ],
+  "privacy": "Public-safe authorized project evidence only; no credentials, private links, absolute local paths or internal routing. Raw failed artifact and earlier test identities are preserved separately, not relabelled passed.",
+  "limits": [
+    "Parent fallback is Android resource routing evidence, not independent Valencian linguistic acceptance or a new translated catalogue value.",
+    "No new compiled-value scope: 282 directly reviewed compiled values remains separate from this inherited runtime observation.",
+    "The actual old-head failure is preserved. No successful new-head JVM/CI/artifact result is claimed here.",
+    "No source edits, external writes, CI polling, native-human/device/layout/whole-language or release acceptance by this audit."
+  ],
+  "implementation_manifest_sha256": "7f42e6646d03651dea1db5365ef269d47b8bbcbbc6e0bb24af2ba3229d1b9dd3",
+  "all_ten_final_manifest_entries_byte_verified": true
+}
