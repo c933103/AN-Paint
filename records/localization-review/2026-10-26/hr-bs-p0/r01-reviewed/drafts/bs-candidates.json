@@ -1,0 +1,1199 @@
+{
+  "schema_version": 1,
+  "locale": "bs",
+  "source_commit": "0ebd41d4d9b665213c776f5a0479a29ecabdd243",
+  "source_tree": "bc5e10affc54ba2e0788c749b4b78968379596ba",
+  "author_role": "AI candidate author, not independent reviewer or native-human certifier",
+  "source_context_sha256": "7cac9a398d7ef1fe51cfa26c2ccb9d2243d152c4b341846c77bc929bbc09101e",
+  "candidates": [
+    {
+      "identity": "string/formats22_animation_message",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "proposed_xml_text": "\"Broj kadrova u ovoj slici formata %1$s: %2$s. AN Paint uređuje statične slike i ne čuva animaciju.\"",
+      "semantic_rationale": "Introduces the frame count as a value instead of inflecting a noun after an arbitrary count string. Preserves format, count, still-image editing and lack of animation preservation. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:92"
+      ],
+      "uncertainties": [
+        "formats22_at_least_frames remains English fallback (at least %1$d); count-introducing wording accommodates it grammatically but does not make lower-bound compositions fully localized."
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "proposed_xml_text": "\"Ova PNG slika ima zasebnu podrazumijevanu sliku. Ta slika će se uvesti umjesto kadrova animacije. Snimanjem nastaje statična slika.\"",
+      "semantic_rationale": "The separate PNG default image, not animation frames, is imported; saving creates a still image. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "proposed_xml_text": "\"Uvest će se samo prvi kadar. Snimanjem nastaje statična slika.\"",
+      "semantic_rationale": "Only the first frame is imported and saving produces a still image, not an animation. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "source": "Animated image",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "proposed_xml_text": "\"Animirana slika\"",
+      "semantic_rationale": "Dialog title identifies animated input; no promise of animation editing or preservation. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "proposed_xml_text": "\"Ova slika formata %1$s previše je složena da bi se moglo potvrditi sadrži li više kadrova. AN Paint će otvoriti samo statičnu sliku i neće sačuvati nikakvu animaciju.\"",
+      "semantic_rationale": "Retains uncertainty about multiple frames instead of asserting a single frame; opening is limited to a still image and preserves no animation. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:91"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "proposed_xml_text": "\"Zapisuje običan tekst pomoću svijetlih i tamnih znakova. Prikažite ga fontom u kojem su svi znakovi iste širine. Ovo je vizuelni prikaz; ne može se ponovo otvoriti kao izvorna slika.\"",
+      "semantic_rationale": "Plain text uses light/dark characters and requires monospaced display. Visual rendition cannot be reopened as the original image; not a reversible image export. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:101"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "source": "Open still image",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "proposed_xml_text": "\"Otvori statičnu sliku\"",
+      "semantic_rationale": "Imperative opens a still image only; does not imply animation preservation. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:95"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "proposed_xml_text": "\"PDF stranice iscrtavaju se u rezoluciji od 144 dpi. Tekst i vektorski objekti pretvaraju se u piksele.\"",
+      "semantic_rationale": "Preserves the fixed 144 dpi rendering and rasterization of text/vector objects into pixels. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:102"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "proposed_xml_text": "\"Statična slika s najviše 256 boja. Opcija „Miješanje boja“ ublažava prijelaze između boja. Animirane GIF slike otvaraju se kao prvi kadar animacije.\"",
+      "semantic_rationale": "Retains the still-image/256-colour limit, gradient smoothing and first-frame GIF import. Identifies the inherited option label rather than inventing a new control caption. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:95"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "source": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "proposed_xml_text": "\"Unesite naziv datoteke bez kosih crta i kontrolnih znakova.\"",
+      "semantic_rationale": "Rejects slashes and control characters without claiming all other names are accepted; filename terminology matches the existing field. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:194"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "proposed_xml_text": "\"Viši kvalitet čuva više detalja i obično stvara veću datoteku.\"",
+      "semantic_rationale": "Higher quality retains detail and usually, not invariably, increases file size. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:102"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "proposed_xml_text": "\"Ova slika koristi profil boja koji AN Paint još ne može pretvoriti. Prije uvoza pretvorite je u PNG sliku s profilom sRGB u uređivaču koji podržava upravljanje bojama.\"",
+      "semantic_rationale": "Current inability to convert a colour profile; recommends actual colour-managed conversion to sRGB PNG before import, not relabelling or automatic app conversion. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:16",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:23",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt:115"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "proposed_xml_text": "\"Viši kvalitet obično stvara veću datoteku. Kompresija bez gubitaka (Lossless) čuva svaku vrijednost boje.\"",
+      "semantic_rationale": "Explains lossless retention of every colour value and identifies the unchanged Lossless mode label; larger output remains a usual outcome rather than a guarantee. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:103"
+      ],
+      "uncertainties": [
+        "Lossless remains the unchanged English mode-label component; the explanation localizes the concept without adding the out-of-scope mode-label resource."
+      ]
+    },
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "proposed_xml_text": "\"%1$s Zasebna kopija za oporavak je sačuvana. Koristite „Datoteka > Izvezi kopiju za oporavak…“ da snimite njenu ZIP arhivu. Izdvojite canvas.png iz arhive i učitajte tu sliku da biste po potrebi koristili uobičajene opcije za promjenu veličine.\"",
+      "semantic_rationale": "Prefixed failure detail is followed by successful separate-copy retention. Uses existing File label plus same-family proposed recovery-export action; ZIP/canvas.png and optional ordinary resize workflow retained. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ],
+      "uncertainties": [
+        "Recovery-export instructions depend on applying the same-family proposed ui_export_recovery_copy value together with these additions; prior English caption is not silently presumed translated outside this family."
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "source": "Autosave failed · use Save",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "proposed_xml_text": "\"Automatsko snimanje nije uspjelo · koristite „Snimi“\"",
+      "semantic_rationale": "Failed autosave status directs to the exact existing Save command; does not claim a manual save succeeded. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "source": "Autosave image encoding failed.",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "proposed_xml_text": "\"Kodiranje slike za automatsko snimanje nije uspjelo.\"",
+      "semantic_rationale": "The autosave image encoding step failed; no statement about a successful image write. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "proposed_xml_text": "\"%1$s Automatsko snimanje je pauzirano radi zaštite te radne verzije. Da biste je sačuvali, koristite „Datoteka → Izvezi kopiju za oporavak…“. Da biste snimili trenutni rad, koristite „Datoteka → Snimi kao…“ i u polju „Format slike“ izaberite PNG / JPEG.\"",
+      "semantic_rationale": "Failure detail remains first. Paused autosave protects the old draft; recovery export preserves it, while Save as writes current work. Exact displayed File, Save as and format labels, plus same-family recovery-export label, are retained. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ],
+      "uncertainties": [
+        "Recovery-export instructions depend on applying the same-family proposed ui_export_recovery_copy value together with these additions; prior English caption is not silently presumed translated outside this family."
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "source": "Autosave metadata is missing.",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "proposed_xml_text": "\"Nedostaju metapodaci automatski snimljene radne verzije.\"",
+      "semantic_rationale": "Missing metadata of the autosaved working draft, not the explicit image save destination. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "source": "Autosave paused · use Save",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "proposed_xml_text": "\"Automatsko snimanje je pauzirano · koristite „Snimi“\"",
+      "semantic_rationale": "Autosave is paused, not completed; exact current Save action is recommended. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "source": "Autosave pixels are missing.",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "proposed_xml_text": "\"Nedostaju pikseli automatski snimljene radne verzije.\"",
+      "semantic_rationale": "Pixel data are missing from the autosaved draft, distinct from invalid metadata or an existing unreadable entry. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "source": "Autosave pixels could not be read.",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "proposed_xml_text": "\"Nije moguće pročitati piksele automatski snimljene radne verzije.\"",
+      "semantic_rationale": "Unreadable autosave pixels without assuming absence, successful recovery or deletion. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "source": "Autosave selection encoding failed.",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "proposed_xml_text": "\"Kodiranje izbora za automatsko snimanje nije uspjelo.\"",
+      "semantic_rationale": "Selection encoding failed rather than canvas encoding; uses the existing selection vocabulary independently in each locale. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "proposed_xml_text": "\"Nije moguće napraviti keš za poništavanje. Oslobodite prostor za pohranu na uređaju i pokušajte ponovo.\"",
+      "semantic_rationale": "Disk-backed undo cache cannot be created. Explicit device storage remedy, not an instruction to increase RAM, followed by retry. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "source": "Could not export the recovery copy",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "proposed_xml_text": "\"Izvoz kopije za oporavak nije uspio\"",
+      "semantic_rationale": "Recovery-copy export failure prefix; no final punctuation because ioFailed appends its separator and error detail. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "source": "Draft not saved yet",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "proposed_xml_text": "\"Radna verzija još nije snimljena\"",
+      "semantic_rationale": "Draft not saved yet; does not claim manual Save failed or imply saving is impossible. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "source": "Draft restored",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "proposed_xml_text": "\"Radna verzija je vraćena\"",
+      "semantic_rationale": "Draft restoration status only; does not promise recovery of all undo history. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "source": "Draft saved",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "proposed_xml_text": "\"Radna verzija je snimljena\"",
+      "semantic_rationale": "Explicitly an autosave working-draft status, not confirmation of updating the manual Save target or clearing unsaved edits. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "source": "Export recovery copy…",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "proposed_xml_text": "\"Izvezi kopiju za oporavak…\"",
+      "semantic_rationale": "Conditional File-menu recovery-export action. Ellipsis retained and vocabulary matches the companion dialog title and recovery instructions. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:846"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "source": "Export recovery copy",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "proposed_xml_text": "\"Izvezi kopiju za oporavak\"",
+      "semantic_rationale": "Recovery-copy picker title exactly matches the proposed menu action without its ellipsis. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "proposed_xml_text": "\"Platno je vraćeno, ali njegovu historiju poništavanja nije moguće pročitati. Izvorna radna verzija sačuvana je kao kopija za oporavak.\"",
+      "semantic_rationale": "Three distinct outcomes: canvas restored, undo history unreadable, original draft retained separately. Preserves formatted=false. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "source": "Invalid autosave metadata.",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "proposed_xml_text": "\"Metapodaci automatski snimljene radne verzije nisu ispravni.\"",
+      "semantic_rationale": "Invalid autosave metadata, not missing metadata and not an automatic repair claim. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "source": "Previous draft kept for recovery",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "proposed_xml_text": "\"Prethodna radna verzija sačuvana je za oporavak\"",
+      "semantic_rationale": "Previous draft retained for recovery; does not claim it was restored or that current work was saved. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "source": "Recovered image",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "proposed_xml_text": "\"Oporavljena slika\"",
+      "semantic_rationale": "Fallback recovered-image filename/title, not a format name or additional history-recovery guarantee. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "proposed_xml_text": "\"Kopija za oporavak je izvezena. Izdvojite canvas.png iz ZIP arhive i otvorite ga pomoću „Datoteka > Load image…“. ZIP arhiva sadrži i postavke radne verzije te plutajući izbor, ako postoji.\"",
+      "semantic_rationale": "Successful recovery-archive export; literal canvas.png and ZIP retained. Quotes actual untranslated Load image menu label, and includes draft settings plus any floating selection. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ],
+      "uncertainties": [
+        "ui_load_image remains English Load image… in this locale; the candidate quotes the actual menu caption. Not a claim that this navigation is fully localized."
+      ]
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "source": "The draft is saving. Try again shortly.",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "proposed_xml_text": "\"Snimanje radne verzije je u toku. Pokušajte ponovo uskoro.\"",
+      "semantic_rationale": "In-progress autosave temporarily blocks the attempted operation; retry after a short delay, not another Save instruction. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "proposed_xml_text": "\"Prethodnu radnu verziju nije bilo moguće premjestiti u kopiju za oporavak.\"",
+      "semantic_rationale": "Moving the previous draft to a recovery copy failed; does not promise a copy exists. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "source": "The previous draft could not be preserved separately.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "proposed_xml_text": "\"Prethodnu radnu verziju nije bilo moguće sačuvati zasebno.\"",
+      "semantic_rationale": "Separate preservation of the old draft failed, distinct from successful separate retention and from saving current work. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "source": "The previous draft could not be restored.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "proposed_xml_text": "\"Prethodnu radnu verziju nije bilo moguće vratiti.\"",
+      "semantic_rationale": "Failed restoration of the prior draft; does not assert deletion or impossibility of every recovery method. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "source": "The previous draft needs more memory to reopen.",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "proposed_xml_text": "\"Za ponovno otvaranje prethodne radne verzije potrebno je više memorije.\"",
+      "semantic_rationale": "Additional working memory needed to reopen the previous draft; not a device-storage or corruption diagnosis. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "source": "The undo cache is damaged.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "proposed_xml_text": "\"Keš za poništavanje je oštećen.\"",
+      "semantic_rationale": "Undo-cache corruption, not a repaired cache or a claim that the whole image is corrupt. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "source": "Unexpected data in the undo cache.",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "proposed_xml_text": "\"Neočekivani podaci u kešu za poništavanje.\"",
+      "semantic_rationale": "Unexpected data specifically in the undo cache, without expanding the failure to every pixel. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "source": "An assembly source image is missing.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "proposed_xml_text": "\"Nedostaje jedna izvorna slika za kompoziciju.\"",
+      "semantic_rationale": "Missing source image for the assembled layout, not necessarily its rendered output. Composition is an object term, not an invented translation of the unchanged Image assembly menu caption. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:262"
+      ],
+      "uncertainties": [
+        "Kompozicija denotes the assembled layout/output, not an invented action caption; ui_image_assembly remains English Image assembly… outside this family."
+      ]
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "source": "Assembly saved",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "proposed_xml_text": "\"Kompozicija je snimljena\"",
+      "semantic_rationale": "Assembly-output write success only; not an editable interchange-format promise or a main-editor Save-target change. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:342"
+      ],
+      "uncertainties": [
+        "Kompozicija denotes the assembled layout/output, not an invented action caption; ui_image_assembly remains English Image assembly… outside this family."
+      ]
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "proposed_xml_text": "\"Procjenjuje se da ova kompozicija premašuje trenutno ograničenje radne memorije čak i pri najmanjoj veličini izlazne slike. Samo smanjenje dimenzija kompozicije nije dovoljno pri trenutnim ograničenjima. Zatvorite druge dokumente ili pripremite manju izvornu sliku prije nego što pokušate ponovo. Vaša kompozicija ostaje nepromijenjena.\"",
+      "semantic_rationale": "Estimated combined assembly memory exceeds current limits even at smallest output. Dimension reduction alone is insufficient; both alternatives and unchanged assembly are explicit. No decoder-only or universal-impossibility claim. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "medium",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:300"
+      ],
+      "uncertainties": [
+        "Only the complete P0 warning is proposed; P1 ui_no_resize_fits_decoder_memory stays absent/unreviewed, and historical paired-warning records must not be rewritten."
+      ]
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "source": "Clear all",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "proposed_xml_text": "\"Očisti sve\"",
+      "semantic_rationale": "Imperative clears the entire assembly, not merely a selected source image. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:101"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_clear_image",
+      "source": "Clear image",
+      "attributes": {
+        "name": "ui_clear_image"
+      },
+      "proposed_xml_text": "\"Očisti sliku\"",
+      "semantic_rationale": "Imperative clears the drawing image after pending edits are applied; distinct from clearing every assembly item. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:859"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "source": "Could not save the assembly: %1$s",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "proposed_xml_text": "\"Snimanje kompozicije nije uspjelo: %1$s\"",
+      "semantic_rationale": "Assembly output save failed; retains exact indexed string placeholder for original exception detail. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:343"
+      ],
+      "uncertainties": [
+        "Kompozicija denotes the assembled layout/output, not an invented action caption; ui_image_assembly remains English Image assembly… outside this family."
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "source": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "proposed_xml_text": "\"Pohranjivanje kompozicije nije uspjelo.\"",
+      "semantic_rationale": "Failure to persist assembly data internally, not a claim about successfully exporting the assembled PNG. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:229"
+      ],
+      "uncertainties": [
+        "Kompozicija denotes the assembled layout/output, not an invented action caption; ui_image_assembly remains English Image assembly… outside this family."
+      ]
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "proposed_xml_text": "\"Slika dimenzija %1$d × %2$d piksela (%3$.2f MP) premašuje trenutno ograničenje za sigurno uređivanje od %4$.2f MP. AN Paint drži cijelu sliku u memoriji i rezervira prostor za transformacije i izbore. Ovo ograničenje zavisi od raspoložive memorije. Operacija je zaustavljena prije dodjele memorije za preveliku rastersku sliku. Veličina nije automatski promijenjena.\"",
+      "semantic_rationale": "Exact width/height/image-MP/budget-MP token order, types and precision, plus multiplication sign. Full-image memory and editing reserves, available-memory dependency, stop before oversized allocation and no automatic resize retained. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt:46"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "proposed_xml_text": "\"Zadržava piksele u gornjem lijevom uglu. Manje dimenzije platna odbacuju piksele izvan desnog i donjeg ruba; naredba „Poništi“ ih vraća.\"",
+      "semantic_rationale": "Top-left anchoring; right/bottom overflow pixels are discarded and restored by each locale’s actual existing Undo command. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1016"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "proposed_xml_text": "\"Nema dovoljno memorije za ovu operaciju. Izvorne datoteke kompozicije su sačuvane.\"",
+      "semantic_rationale": "Assembly operation lacks memory but source files remain; no claim of completed operation or saved output. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:117",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:294"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "source": "Resize large image?",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "proposed_xml_text": "\"Promijeniti veličinu velike slike?\"",
+      "semantic_rationale": "Question proposes resizing a large image; does not claim any automatic resize already occurred or invent a quoted action caption. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:36"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "proposed_xml_text": "\"Procjene obuhvataju trenutno platno i sadržaj međuspremnika, dekodiranje u smanjenoj rezoluciji i bafere za uređivanje. Stvarna potrošnja memorije varira. Manja kopija gubi detalje. Izvorna datoteka ostaje nepromijenjena.\"",
+      "semantic_rationale": "Estimates include resident canvas/clipboard, sampled reduced-resolution decoding and editing buffers; actual use varies. Smaller copy loses detail, original file unchanged. Non-native-work branch only. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "medium",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:34"
+      ],
+      "uncertainties": [
+        "Reduced-resolution decoding describes sampled decoding only in the non-native-work branch. Independent review should assess the full technical message, including clipboard versus editing-buffer terminology."
+      ]
+    },
+    {
+      "identity": "string/ui_save_png",
+      "source": "Save PNG",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "proposed_xml_text": "\"Snimi PNG\"",
+      "semantic_rationale": "Assembly PNG-output button uses each locale’s current Save vocabulary; does not change the drawing-editor Save destination. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:88"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "source": "The saved assembly could not be opened: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "proposed_xml_text": "\"Snimljenu kompoziciju nije moguće otvoriti: %1$s\"",
+      "semantic_rationale": "Stored assembly metadata cannot be reopened; exact exception-detail placeholder retained. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:60"
+      ],
+      "uncertainties": [
+        "Kompozicija denotes the assembled layout/output, not an invented action caption; ui_image_assembly remains English Image assembly… outside this family."
+      ]
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "source": "The trim would remove the entire image.",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "proposed_xml_text": "\"Ovim obrezivanjem bi se uklonila cijela slika.\"",
+      "semantic_rationale": "Hypothetical destructive outcome of a rejected trim; does not say the image has already been removed. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:49"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "proposed_xml_text": "\"Nema dovoljno memorije za ovu operaciju u izvornoj rezoluciji. Veličina nije automatski promijenjena.\"",
+      "semantic_rationale": "Insufficient memory at the original resolution; explicitly no automatic resizing applied. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:938"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "proposed_xml_text": "\"Podatke o autorima i izvorima slika nije moguće snimiti ili vratiti. Postojeći snimljeni podaci su sačuvani. Pokušajte ponovo.\"",
+      "semantic_rationale": "Attribution/source information, not monetary credits or only author names. Retains save/restore failure, existing stored-data protection and retry. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:238",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:908",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1194",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1197",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1203",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1207",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1478",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1488",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1495",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:113",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:243",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:415"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "proposed_xml_text": "\"Zbog ovih podataka o autorima i izvorima slika, količina podataka u crtežu bila bi prevelika za vraćanje. Vaš prethodni crtež i podaci o autorima i izvorima slika su sačuvani.\"",
+      "semantic_rationale": "Excess metadata would prevent drawing restoration; refers to data volume rather than pixel dimensions. Prior drawing and credits retained, not attempted current edit saved. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1218",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1453",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:111"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "proposed_xml_text": "\"Neke snimljene podatke o autorima i izvorima slika nije moguće pročitati. Njihove pohranjene kopije su sačuvane.\"",
+      "semantic_rationale": "Some stored attribution information cannot be read; stored copies remain, without guaranteeing that unreadable copies are usable. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt:93"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "source": "The completed image could not replace its destination.",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "proposed_xml_text": "\"Odredišnu datoteku nije bilo moguće zamijeniti dovršenom slikom.\"",
+      "semantic_rationale": "Completed image encoding is distinct from failed destination-file replacement; no completed provider-write claim. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:19",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:40",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:103",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:62"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "proposed_xml_text": "\"Slika i baferi za kodiranje premašuju ograničenje memorije za izvoz.\"",
+      "semantic_rationale": "Combined image and encoder buffers exceed export working-memory budget, not disk size or image footprint alone. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:24",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:43",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:56"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "source": "Could not open image",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "proposed_xml_text": "\"Otvaranje slike nije uspjelo\"",
+      "semantic_rationale": "Image-opening failure prefix without terminal punctuation; the caller appends its error detail. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1288",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1293",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1337",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1350"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "source": "Could not save image",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "proposed_xml_text": "\"Snimanje slike nije uspjelo\"",
+      "semantic_rationale": "Image-save failure prefix without punctuation or an added placeholder; caller supplies separator and details. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "proposed_xml_text": "\"Izvezena datoteka je napravljena. Prije nego što nastavite, koristite „Snimi“ ili „Snimi kao…“ da snimite trenutnu sliku.\"",
+      "semantic_rationale": "Export file was successfully created but did not satisfy save-before-replacement. Exact current Save/Save as commands are still required to save the current image before continuing. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "proposed_xml_text": "\"Izvezite ikonu, Base64 tekst ili ASCII crtež. Izvoz ne mijenja trenutnu sliku niti njeno odredište za naredbu „Snimi“.\"",
+      "semantic_rationale": "All three derived exports retained; neither current image nor Save destination changes. Does not deny creation of a separate output file or claim unsaved changes cleared. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "proposed_xml_text": "\"Nema dovoljno memorije za snimanje u ovom formatu. Pokušajte s formatom PNG\"",
+      "semantic_rationale": "Insufficient memory in this format; PNG is a suggestion without a success guarantee. No final period because caller appends error details. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1376"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "source": "PNG encoding failed.",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "proposed_xml_text": "\"PNG kodiranje nije uspjelo.\"",
+      "semantic_rationale": "PNG encoding failure, not successful output or unsupported decoding. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:324"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "source": "Save and share…",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "proposed_xml_text": "\"Snimi i podijeli…\"",
+      "semantic_rationale": "Menu action saves a separate copy then launches sharing. Ellipsis matches a following dialog; does not imply changing the current document Save target. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:842"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "source": "Save and share",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "proposed_xml_text": "\"Snimi i podijeli\"",
+      "semantic_rationale": "Companion dialog title matches the same-family menu label with only the ellipsis removed. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:187"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "proposed_xml_text": "\"Izaberite format slike i postavke kompresije. Naredba „Snimi“ ponovo će koristiti ovaj naziv datoteke, lokaciju, format i postavke.\"",
+      "semantic_rationale": "Image-format/compression choice; subsequent Save reuses all four items: filename, location, format and settings. Does not equate Save with Export or always-lossy compression. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_saved",
+      "source": "Saved %1$s",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "proposed_xml_text": "\"Snimljeno: %1$s\"",
+      "semantic_rationale": "Only the named output was written. Suitable for Save, Export and Share without claiming all current document edits are saved; one indexed string token retained. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_share_explanation34",
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "proposed_xml_text": "\"Snimite kopiju na izabranu lokaciju, a zatim izaberite aplikaciju za dijeljenje. Trenutno odredište naredbe „Snimi“ ostaje nepromijenjeno.\"",
+      "semantic_rationale": "Writes a copy before choosing the sharing app; existing Save destination stays unchanged. Does not say sharing already succeeded. formatted=false retained. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "source": "The encoder did not finish.",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "proposed_xml_text": "\"Kodiranje nije završeno.\"",
+      "semantic_rationale": "Encoding process did not finish; no ambiguous human coder and no success claim. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:100",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt:25",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:33"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "proposed_xml_text": "\"Slika je snimljena, ali Android nije mogao pokrenuti dijeljenje: %1$s\"",
+      "semantic_rationale": "Successful copy write is separate from failed Android sharing launch; exact appended exception token preserved without a Save-target change claim. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1389"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "source": "The selected location is not writable.",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "proposed_xml_text": "\"Nije moguće upisivati na izabranu lokaciju.\"",
+      "semantic_rationale": "Selected location cannot accept writes; cause is not narrowed to permissions or write protection. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:341",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1366"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "source": "This location is not writable.",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "proposed_xml_text": "\"Nije moguće upisivati na ovu lokaciju.\"",
+      "semantic_rationale": "Generic unwritable location suitable for recovery and source-code exports; no narrower cause or unrelated archive-identity change. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1396",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1407"
+      ],
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "source": "Your current image has unsaved changes.",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "proposed_xml_text": "\"Vaša trenutna slika ima nesnimljene izmjene.\"",
+      "semantic_rationale": "Current working image has unsaved changes; preserves negation/current-document scope instead of referring to a previous draft. Bosnian spelling and syntax; snimanje/Snimi, izbor, rezolucija and historija where relevant.",
+      "author_confidence": "high",
+      "consumer_context_ids": [
+        "dirty-document-replacement-guard"
+      ],
+      "uncertainties": []
+    }
+  ],
+  "limits": [
+    "Exactly 78 absent live-consumer P0 identities per language; candidate stage only, no linguistic acceptance.",
+    "All 98 Croatian and 117 Bosnian inherited values/attributes remain untouched.",
+    "Five no-current-consumer holds, the P1 memory companion, Help/source implementation and Croatian save20_title are excluded.",
+    "English lower-bound frame counts, Load image…, Lossless mode labels and other out-of-scope UI remain fallback; no fully localized composition or whole-language claim.",
+    "Full messages independently considered for Croatian and Bosnian; shared forms reflect language overlap, not transliteration or transferred acceptance.",
+    "Author self-review is not independent review or native-human certification."
+  ],
+  "terminology_sha256": "628817df81ac96fbab0a74b18ebac621e0a248ba349f04e37b18da3def4eedf1"
+}
