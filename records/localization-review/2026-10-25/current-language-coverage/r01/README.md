@@ -1,6 +1,6 @@
-# PARTIAL: 171-option current-source reconciliation — text records
+# 171-option current-source reconciliation — read-only records
 
-Catalogue source: `393f2804b5f3fabb935aa773758a9a8f6f464b31`.
+Pinned pre-batch catalogue source: `393f2804b5f3fabb935aa773758a9a8f6f464b31`.
 **PR #56 remains never-merge.** No application change, test run, release, or whole-language certification is supplied by this report. PR #159 frozen, PR #113 retarget and all specific holds remain. The Amharic 252-change source patch is excluded from this pinned `393f2804` catalogue snapshot; see [PR #171](https://github.com/c933103/AN-Paint/pull/171) for its separate integration status.
 
 ## Definitions and continuity
@@ -15,12 +15,17 @@ These evidence categories do not replace the programme's acceptance denominator.
 
 The 963 historical-only rows preserve accepted, comparison-only, proposal, partial, source/context-held and unresolved-provenance statuses individually. They are not 963 blanket re-review holds. Known conflicts between old compiled full-value labels and later change-only/proposal classifications remain visible. Original confidence, dormant/wording-only, synthetic and context limits remain. Exact source/target equality is not current-consumer recertification. Partial PR #169 and PR #170 warning/estimate clauses do not become complete Help acceptance.
 
-## Partial publication boundary
+## Files
 
-This directory publishes only the text summary, complete 171-option CSV/JSON status table, source/provenance link index and fresh Japanese review receipt. The later docs-only `fc935` revision does not change these pinned catalogue values. This is **not the complete 29-file evidence bundle**. The archive publication is incomplete; no archive contents have been substituted into another format here. The unavailable archive publication creates no new translation holds and revokes no previously accepted scopes.
+- `per-locale-final.csv` and JSON: all 171 options; exact P0/P1/all presence and bounded evidence categories.
+- `summary.json`: aggregate scope definitions and counts.
+- `historical-9465-continuity.json.gz`: every historical identity and exact old/current hashes; JSON-scalar historical versus raw UTF-8 current hash schemes remain as in the original source records.
+- `current-evidence-union-{historical,additional}.json.gz`: disjoint semantic partitions of the new deduplicated report; together 13,898 rows including fresh Japanese.
+- `evidence-objects-[0-f].json.gz`: content-addressed compact provenance, hashes, decisions and scope definitions referenced by union rows. Bucket is first hex digit of SHA-256 over compact sorted Unicode JSON. Already-published source trees and full review histories are not copied; original immutable URLs and receipt selectors remain.
+- `remaining-provenance.json.gz`: 963 preserved legacy rows with exact evidence references and latest categories.
+- `source-index.json`: immutable current source/review URLs, Git/SHA-256 identities; durable issue-comment locators distinguished from immutable commit-pinned files.
+- `ja-trim-percent-fresh-review.json`: new exact Japanese value/current static-callsite review; no runtime/device claim.
+- `recompute_report.py`: local bookkeeping only, re-joins references and recomputes continuity, union and per-locale totals; no application-source execution or tests.
+- `manifest.json`: byte lengths, SHA-256 and Git-blob SHA-1; gzip payloads also give uncompressed byte lengths/hashes. All binary payloads are below 1 MiB. Gzip uses mtime = 0. This report records the pinned pre-batch catalogue; later integration changes are outside its counts.
 
-Present files are enumerated with exact byte counts and hashes in `manifest.json` (the manifest itself is excluded from its own hash list). `source-index.json` retains source/review URLs and distinguishes commit-pinned records from issue-comment locators. Published summary counts describe the underlying reconciled evidence, not an assertion that all supporting evidence has been copied into this partial directory. Full union/continuity recomputation from this directory alone is not possible.
-
-Not published in this directory: `historical-9465-continuity.json.gz`, `current-evidence-union-historical.json.gz`, `current-evidence-union-additional.json.gz`, all sixteen `evidence-objects-[0-f].json.gz` buckets, `remaining-provenance.json.gz`, and the full-package `recompute_report.py`, `PR56-comment.md` and original manifest. The archive limitation is a publication limitation, not a new linguistic review finding.
-
-No builds, application tests, runtime validation or whole-language acceptance are claimed. No application source, main branch, release, PR status or acceptance hold is changed by these records.
+The report's evidence does not certify every locale or all current consumer contexts. No new translations are credited from presence, CI, merge, clause fragments, or another locale/script. Next work should target concrete missing P0/P1 coverage and named provenance/context conflicts without re-reviewing already accepted wording unnecessarily.
