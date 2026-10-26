@@ -1,0 +1,699 @@
+{
+  "schema": "nynorsk-p0-save-candidates-v1",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+  "locale": "nn",
+  "target_path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+  "status": "Eight author candidates only; no independent, native, runtime or whole-locale acceptance.",
+  "selection": {
+    "current_P0_present": 7,
+    "current_P0_missing": 85,
+    "current_all_present": 110,
+    "reason": "Bounded highest-risk save/export/replace workflow among real P0 gaps, with existing local terminology. Not a global ranking of languages by popularity.",
+    "all_eight_missing": true
+  },
+  "method": "Source-first static consumer reading; exact source/target/priority binding; author linguistic proposals. Data-only preparation, no app edits or application execution.",
+  "candidates": [
+    {
+      "index": 0,
+      "identity": "string/ui_save_your_changes",
+      "priority": "P0",
+      "source": "Save your changes?",
+      "source_attributes": {
+        "name": "ui_save_your_changes"
+      },
+      "source_sha256": "56dd16e7b1fdfa54fece443cdc52f4a13ad74d87836c189abc726dfaf4993642",
+      "current_target": null,
+      "work": "add-missing-candidate-only",
+      "candidate_display_text": "Vil du lagra endringane?",
+      "candidate_xml_text": "\"Vil du lagra endringane?\"",
+      "candidate_xml_text_sha256": "20bfbb633c55cf6d09a9adb32b9f1cda5024fe449b34c74544e7747b378a86cb",
+      "candidate_attributes": {
+        "name": "ui_save_your_changes"
+      },
+      "placeholder_tokens": [],
+      "context_ids": [
+        "dirty-document-replacement-guard"
+      ],
+      "semantic_contract": [
+        "Ask whether to save the changes before a replacement action; do not say changes are already saved."
+      ],
+      "author_uncertainties": [
+        "Question-form expansion uses an explicit subject; reviewer may prefer a shorter title, without changing the choice."
+      ],
+      "author_confidence": "medium; independent whole-value review required",
+      "independent_review_status": "pending",
+      "peer_review_references": [
+        {
+          "locale": "bg",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bg.reviewed_identities[74]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Replaces English with Bulgarian save-changes question, not a success claim. Static consumer: ClassicPaintActivity.kt:1077.",
+          "source_sha256": "56dd16e7b1fdfa54fece443cdc52f4a13ad74d87836c189abc726dfaf4993642",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "bn",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bn.reviewed_identities[74]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Question rather than instruction; asks whether to save changes.",
+          "source_sha256": "56dd16e7b1fdfa54fece443cdc52f4a13ad74d87836c189abc726dfaf4993642",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "am",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/f0df28ca2e449c2cdc946e6136f9c96dd866fd0f/records/localization-review/2026-10-25/amharic-priority/r01/independent-review.json",
+          "selector": "entries[66]",
+          "review_status": "accepted",
+          "independent_semantic_note": "Save-changes confirmation remains question.",
+          "source_sha256": "56dd16e7b1fdfa54fece443cdc52f4a13ad74d87836c189abc726dfaf4993642",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "priority": "P0",
+      "source": "Your current image has unsaved changes.",
+      "source_attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "source_sha256": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "current_target": null,
+      "work": "add-missing-candidate-only",
+      "candidate_display_text": "Biletet du arbeider med, har endringar som ikkje er lagra.",
+      "candidate_xml_text": "\"Biletet du arbeider med, har endringar som ikkje er lagra.\"",
+      "candidate_xml_text_sha256": "cb28ac03fe3c4da7e666b26ff68932928b99d38706eabac27d2f2a16c9c5d3ea",
+      "candidate_attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "placeholder_tokens": [],
+      "context_ids": [
+        "dirty-document-replacement-guard"
+      ],
+      "semantic_contract": [
+        "The current working image has unsaved changes. Keep negation and refer to the current document, not a previous draft."
+      ],
+      "author_uncertainties": [
+        "Review the relative-clause punctuation and naturalness of biletet du arbeider med; it is intended to mean the current image, not any image."
+      ],
+      "author_confidence": "medium; independent whole-value review required",
+      "independent_review_status": "pending",
+      "peer_review_references": [
+        {
+          "locale": "bg",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bg.reviewed_identities[91]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Current image has unsaved changes; no confusion with old recovery draft. Static consumer: ClassicPaintActivity.kt:1077.",
+          "source_sha256": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "bn",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bn.reviewed_identities[91]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Current image has unsaved changes, not only exported copy.",
+          "source_sha256": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "am",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/f0df28ca2e449c2cdc946e6136f9c96dd866fd0f/records/localization-review/2026-10-25/amharic-priority/r01/independent-review.json",
+          "selector": "entries[83]",
+          "review_status": "accepted",
+          "independent_semantic_note": "Current image has unsaved changes, not original file lost.",
+          "source_sha256": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "identity": "string/ui_export_did_not_save23",
+      "priority": "P0",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "source_attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "source_sha256": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "current_target": null,
+      "work": "add-missing-candidate-only",
+      "candidate_display_text": "Eksporten er oppretta. Bruk «Lagra» eller «Lagra som…» til å lagra biletet du arbeider med, før du held fram.",
+      "candidate_xml_text": "\"Eksporten er oppretta. Bruk «Lagra» eller «Lagra som…» til å lagra biletet du arbeider med, før du held fram.\"",
+      "candidate_xml_text_sha256": "16549bfc429c3ca83bae5e7a91a2820cb178a47b5f3cee9c5826073e5eb731e5",
+      "candidate_attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "placeholder_tokens": [],
+      "context_ids": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ],
+      "semantic_contract": [
+        "Export succeeded, but it did not satisfy the pending save-before-replacement action. Require Save or Save as before continuing.",
+        "Do not translate this as export failure, automatically saved current document, or a general inability to save."
+      ],
+      "author_uncertainties": [
+        "Review Eksporten er oppretta as a completed output artifact rather than creation of an export setting.",
+        "The quoted action labels follow existing local Lagra and Lagra som…; the ellipsis is copied from the untouched title.",
+        "Review relative-clause punctuation before før; wording may be recast without losing the current-document or before-continuing distinction."
+      ],
+      "author_confidence": "medium; independent whole-value review required",
+      "independent_review_status": "pending",
+      "peer_review_references": [
+        {
+          "locale": "bg",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bg.reviewed_identities[47]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Export completion explicitly does not remove requirement to Save current image before proceeding. Static consumer: ClassicPaintActivity.kt:1373.",
+          "source_sha256": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "bn",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bn.reviewed_identities[47]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Export success still requires saving current image before continuation.",
+          "source_sha256": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "am",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/f0df28ca2e449c2cdc946e6136f9c96dd866fd0f/records/localization-review/2026-10-25/amharic-priority/r01/independent-review.json",
+          "selector": "entries[42]",
+          "review_status": "accepted",
+          "independent_semantic_note": "Export was created but current image still needs Save/Save as; frozen label alignment corrected.",
+          "source_sha256": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "identity": "string/ui_could_not_save_image",
+      "priority": "P0",
+      "source": "Could not save image",
+      "source_attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "source_sha256": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "current_target": null,
+      "work": "add-missing-candidate-only",
+      "candidate_display_text": "Kunne ikkje lagra biletet",
+      "candidate_xml_text": "\"Kunne ikkje lagra biletet\"",
+      "candidate_xml_text_sha256": "6ae3b9eaa3da64d58651a3968cd5df90beed844f15767e35c2989b674b2ba439",
+      "candidate_attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "placeholder_tokens": [],
+      "context_ids": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ],
+      "semantic_contract": [
+        "Save/write failure prefix. Caller appends a full stop, a space, and an exception message or fallback, so do not append punctuation or a placeholder."
+      ],
+      "author_uncertainties": [
+        "The error can arise while writing an export/share copy as well as an ordinary save; this prefix must not assert that a destination or original image was deleted."
+      ],
+      "author_confidence": "medium; independent whole-value review required",
+      "independent_review_status": "pending",
+      "peer_review_references": [
+        {
+          "locale": "bg",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bg.reviewed_identities[38]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Bulgarian wording preserves the action, object or status for “Could not save image”; no additional promise, loss of negation, or changed operation identified. Static consumer: ClassicPaintActivity.kt:1375.",
+          "source_sha256": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "bn",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bn.reviewed_identities[38]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Reviewed this source meaning against the complete Bengali wording; label/action, grammatical role and any numeric/argument details are appropriate in the bounded context.",
+          "source_sha256": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "am",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/f0df28ca2e449c2cdc946e6136f9c96dd866fd0f/records/localization-review/2026-10-25/amharic-priority/r01/independent-review.json",
+          "selector": "entries[34]",
+          "review_status": "accepted",
+          "independent_semantic_note": "Image saving failure retained.",
+          "source_sha256": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "identity": "string/ui_saved",
+      "priority": "P0",
+      "source": "Saved %1$s",
+      "source_attributes": {
+        "name": "ui_saved"
+      },
+      "source_sha256": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "current_target": null,
+      "work": "add-missing-candidate-only",
+      "candidate_display_text": "%1$s er lagra",
+      "candidate_xml_text": "\"%1$s er lagra\"",
+      "candidate_xml_text_sha256": "283f3e1cb1b270c2ca35ddbf24a051c652afa9428ecdc5097d9d6aa6f0d78385",
+      "candidate_attributes": {
+        "name": "ui_saved"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "context_ids": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "semantic_contract": [
+        "The named output file was written. The same toast is used for Save, Export and Share writes.",
+        "Do not claim that all current document changes are saved: exporting leaves the dirty state and Save target untouched.",
+        "Preserve exactly one indexed string placeholder %1$s; it is the display name returned for the written URI."
+      ],
+      "author_uncertainties": [
+        "The filename-first passive is intended as a completed file-write status, not an instruction. Reviewer should verify that no wider document-saved implication is added."
+      ],
+      "author_confidence": "medium; independent whole-value review required",
+      "independent_review_status": "pending",
+      "peer_review_references": [
+        {
+          "locale": "bg",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bg.reviewed_identities[75]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Neutral saved-file status avoids gender agreement assumptions about filename placeholder. Static consumer: ClassicPaintActivity.kt:1370.",
+          "source_sha256": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "bn",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bn.reviewed_identities[75]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Saved filename argument; not an unconditional claim about editor state.",
+          "source_sha256": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "am",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/f0df28ca2e449c2cdc946e6136f9c96dd866fd0f/records/localization-review/2026-10-25/amharic-priority/r01/independent-review.json",
+          "selector": "entries[67]",
+          "review_status": "accepted",
+          "independent_semantic_note": "Saved filename placeholder follows natural Amharic word order.",
+          "source_sha256": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "identity": "string/ui_export_explanation23",
+      "priority": "P0",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "source_attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "source_sha256": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "current_target": null,
+      "work": "add-missing-candidate-only",
+      "candidate_display_text": "Eksporter eit ikon, Base64-tekst eller ASCII-kunst. Eksportering endrar korkje biletet du arbeider med, eller lagringsmålet for «Lagra».",
+      "candidate_xml_text": "\"Eksporter eit ikon, Base64-tekst eller ASCII-kunst. Eksportering endrar korkje biletet du arbeider med, eller lagringsmålet for «Lagra».\"",
+      "candidate_xml_text_sha256": "218538b315b62fb39a1e5ba9d1ef63f18fe804b28ce0f01ed033caee80173e09",
+      "candidate_attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "placeholder_tokens": [],
+      "context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "semantic_contract": [
+        "Three derived outputs: icon, Base64 text, ASCII art. Export keeps current document and Save destination unchanged.",
+        "No implication that exporting to a file clears unsaved changes; preserve neither/nor scope over both image and Save target."
+      ],
+      "author_uncertainties": [
+        "Lagringsmålet is an authored candidate for the saved-target concept; existing local terminology does not settle that compound. Independent reviewer may replace it with a clearer complete-file/destination expression.",
+        "Review relative-clause punctuation before eller and the idiomatic neither/nor construction."
+      ],
+      "author_confidence": "medium; independent whole-value review required",
+      "independent_review_status": "pending",
+      "peer_review_references": [
+        {
+          "locale": "bg",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bg.reviewed_identities[48]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Derived icon/Base64/ASCII export preserves current image and normal Save destination. Static consumer: SaveOptionsDialog.kt:52.",
+          "source_sha256": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "bn",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bn.reviewed_identities[48]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Icon/Base64/ASCII export leaves current image and Save destination unchanged.",
+          "source_sha256": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "am",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/f0df28ca2e449c2cdc946e6136f9c96dd866fd0f/records/localization-review/2026-10-25/amharic-priority/r01/independent-review.json",
+          "selector": "entries[43]",
+          "review_status": "accepted",
+          "independent_semantic_note": "Icon/Base64/ASCII export retains current image and existing Save destination.",
+          "source_sha256": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "identity": "string/ui_save_explanation23",
+      "priority": "P0",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "source_attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "source_sha256": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "current_target": null,
+      "work": "add-missing-candidate-only",
+      "candidate_display_text": "Vel eit biletformat og innstillingane for komprimering. «Lagra» vil bruka dette filnamnet, denne plasseringa, formatet og innstillingane om att.",
+      "candidate_xml_text": "\"Vel eit biletformat og innstillingane for komprimering. «Lagra» vil bruka dette filnamnet, denne plasseringa, formatet og innstillingane om att.\"",
+      "candidate_xml_text_sha256": "069dd2b305cbb3f42a46f34893bee16d98c9319405f7f14108f603f736466a79",
+      "candidate_attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "placeholder_tokens": [],
+      "context_ids": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "semantic_contract": [
+        "Choose an image format and compression settings. Later Save reuses filename, location, format and settings.",
+        "Keep all four reused items; do not confuse ordinary Save with export or claim compression is always lossy."
+      ],
+      "author_uncertainties": [
+        "Reviewer should confirm that plasseringa denotes the selected storage location here, not image position.",
+        "Uses a-infinitives bruka/lagra for consistency with inherited Lagra; no whole-catalogue orthographic normalization is proposed."
+      ],
+      "author_confidence": "medium; independent whole-value review required",
+      "independent_review_status": "pending",
+      "peer_review_references": [
+        {
+          "locale": "bg",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bg.reviewed_identities[72]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Manual Save reuses all four filename/location/format/settings choices, not merely format. Static consumer: SaveOptionsDialog.kt:52.",
+          "source_sha256": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "bn",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bn.reviewed_identities[72]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Save reuses filename/location/format/settings; quoted action label avoids conflicting imperatives.",
+          "source_sha256": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "am",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/f0df28ca2e449c2cdc946e6136f9c96dd866fd0f/records/localization-review/2026-10-25/amharic-priority/r01/independent-review.json",
+          "selector": "entries[64]",
+          "review_status": "accepted",
+          "independent_semantic_note": "Choose format/compression; later Save reuses name/location/format/settings, all retained.",
+          "source_sha256": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "identity": "string/ui_share_explanation34",
+      "priority": "P0",
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "source_attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "source_sha256": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+      "current_target": null,
+      "work": "add-missing-candidate-only",
+      "candidate_display_text": "Lagra ein kopi på staden du vel, og vel deretter ein app til å dela kopien. Lagringsmålet for «Lagra» er uendra.",
+      "candidate_xml_text": "\"Lagra ein kopi på staden du vel, og vel deretter ein app til å dela kopien. Lagringsmålet for «Lagra» er uendra.\"",
+      "candidate_xml_text_sha256": "21b98ff47e04745fb510cc879981c84db723947c9e9eec571fb93ee210331f86",
+      "candidate_attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "placeholder_tokens": [],
+      "context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "semantic_contract": [
+        "Save a copy to the selected location first, then pick a sharing app. The existing Save destination remains unchanged.",
+        "The menu calls share=true and export=true, so writeImage does not set savedTarget or markSaved; sharing is invoked after the file write.",
+        "Do not say the copy is already shared or that picking a sharing app changes the current Save destination."
+      ],
+      "author_uncertainties": [
+        "Lagringsmålet carries the same unresolved terminology preference as the export explanation.",
+        "Reviewer should verify the share-app construction app til å dela kopien and the chosen-location wording."
+      ],
+      "author_confidence": "medium; independent whole-value review required",
+      "independent_review_status": "pending",
+      "peer_review_references": [
+        {
+          "locale": "bg",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bg.reviewed_identities[76]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Share first saves a copy, then opens app chooser; normal Save destination stays unchanged. Static consumer: SaveOptionsDialog.kt:52.",
+          "source_sha256": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "bn",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/d6f6640ae3d36d53c1986d0b1ceccf1f58be80a8/verification/translations/bg-bn-crop-20261026/reviewed-wording.json",
+          "selector": "priority.bn.reviewed_identities[76]",
+          "context_class": "direct-static-consumer",
+          "independent_semantic_note": "Share saves a separate copy; current Save destination unchanged.",
+          "source_sha256": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        },
+        {
+          "locale": "am",
+          "receipt": "https://github.com/c933103/AN-Paint/blob/f0df28ca2e449c2cdc946e6136f9c96dd866fd0f/records/localization-review/2026-10-25/amharic-priority/r01/independent-review.json",
+          "selector": "entries[68]",
+          "review_status": "accepted",
+          "independent_semantic_note": "Copy saved to chosen location then shared; current Save destination unchanged.",
+          "source_sha256": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+          "scope": "Prior peer-locale review context only. No Nynorsk acceptance transferred."
+        }
+      ]
+    }
+  ],
+  "untouched_neighbouring_labels": [
+    {
+      "identity": "string/ui_save",
+      "english": "Save",
+      "target": {
+        "attributes": {
+          "name": "ui_save"
+        },
+        "xml_text": "\"Lagra\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_save_a5d0d9",
+      "english": "Save…",
+      "target": {
+        "attributes": {
+          "name": "ui_save_a5d0d9"
+        },
+        "xml_text": "@string/ui_save"
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/save20_title",
+      "english": "Save as…",
+      "target": {
+        "attributes": {
+          "name": "save20_title"
+        },
+        "xml_text": "\"Lagra som…\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_export_as23",
+      "english": "Export as…",
+      "target": {
+        "attributes": {
+          "name": "ui_export_as23"
+        },
+        "xml_text": "\"Eksporter som…\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_discard",
+      "english": "Discard",
+      "target": {
+        "attributes": {
+          "name": "ui_discard"
+        },
+        "xml_text": "\"Forkast\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_discard_changes23",
+      "english": "Discard changes",
+      "target": {
+        "attributes": {
+          "name": "ui_discard_changes23"
+        },
+        "xml_text": "\"Avslutt utan lagring\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_keep_editing23",
+      "english": "Keep editing",
+      "target": {
+        "attributes": {
+          "name": "ui_keep_editing23"
+        },
+        "xml_text": "\"Avbryt\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_cancel",
+      "english": "Cancel",
+      "target": {
+        "attributes": {
+          "name": "ui_cancel"
+        },
+        "xml_text": "\"Avbryt\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_menu_file",
+      "english": "File",
+      "target": {
+        "attributes": {
+          "name": "ui_menu_file"
+        },
+        "xml_text": "\"Fil\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_image",
+      "english": "Image",
+      "target": {
+        "attributes": {
+          "name": "ui_image"
+        },
+        "xml_text": "\"Bilete\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "english": "Save and share…",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "english": "Save and share",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    },
+    {
+      "identity": "string/ui_choose_location",
+      "english": "Choose location…",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    },
+    {
+      "identity": "string/save20_file_format",
+      "english": "File format",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    },
+    {
+      "identity": "string/save20_file_name",
+      "english": "File name",
+      "target": {
+        "attributes": {
+          "name": "save20_file_name"
+        },
+        "xml_text": "\"Filnamn\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_try_a_different_file_or_location",
+      "english": "Please try a different file or location.",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    }
+  ],
+  "limits": [
+    "No application implementation or current coverage increment is credited.",
+    "Prior accepted values, inherited neighbouring labels and intentional fallbacks remain untouched.",
+    "Global 59 scoped / 112 outside-scope fixture distinction is not silently changed.",
+    "Prior peer-locale judgments support context discovery only; they are not evidence of Nynorsk linguistic acceptance.",
+    "No whole-locale, native-human, runtime, physical-device, layout, accessibility or release claim.",
+    "PR56 never-merge; PR159 frozen; PR113 retarget/held-warning; Help callback/archive identity and release pauses excluded."
+  ]
+}

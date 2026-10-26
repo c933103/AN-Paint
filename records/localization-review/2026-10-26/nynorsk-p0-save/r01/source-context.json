@@ -1,0 +1,98 @@
+{
+  "source_commit": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+  "contexts": [
+    {
+      "id": "file-menu-and-operation-kind",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "start_line": 835,
+      "end_line": 846,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L846",
+      "text": "    private fun menuActions(name: String): List<PanelCommand> = when(name) {\n        \"File\"->(listOf<Pair<String,()->Unit>>(\n            ui(R.string.ui_new) to {confirmReplacement {dimensionsDialog(false,true)}},\n            ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},\n            ui(R.string.ui_save) to {requestSave(false)},\n            ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},\n            ui(R.string.ui_export_as23) to {showSaveOptions(exportOptions.format,export=true)},\n            ui(R.string.ui_save_and_share) to {showSaveOptions(exportOptions.format,true,export=true)},\n            ui(R.string.ui_image_assembly) to {openAssembly()},\n            ui(R.string.ui_how_to_use) to {showHelp()},\n            ui(R.string.ui_about_credits23) to {showAboutOptions()}\n        ) + if(autosaveBlocked || autosave.recoveryCopies().isNotEmpty()) listOf(ui(R.string.ui_export_recovery_copy) to {requestRecoveryExport()}) else emptyList()).map {PanelCommand(it.first,it.second)}"
+    },
+    {
+      "id": "dirty-document-replacement-guard",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "start_line": 1074,
+      "end_line": 1079,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1079",
+      "text": "    private fun confirmReplacement(action: () -> Unit) {\n        paintCanvas.applyPending()\n        if (!document.dirty) { action(); return }\n        EditorDialogBuilder(this).setTitle(ui(R.string.ui_save_your_changes)).setMessage(ui(R.string.ui_your_current_image_has_unsaved_changes))\n            .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }\n            .setNeutralButton(ui(R.string.ui_discard_changes23)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_keep_editing23), null).show()"
+    },
+    {
+      "id": "save-options-and-picker",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "start_line": 1104,
+      "end_line": 1128,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1104-L1128",
+      "text": "    private fun requestSave(jpeg: Boolean) {\n        if(jpeg) {showSaveOptions(ImageFormat.JPEG);return}\n        val target=savedTarget\n        if(target==null) showSaveOptions(ImageFormat.PNG)\n        else {exportOptions=target.options;isExporting=false;shareAfterSave=false;writeImage(target.uri)}\n    }\n    private fun showSaveOptions(format: ImageFormat,share: Boolean=false,export: Boolean=false) {\n        val prefs=getSharedPreferences(\"export\",MODE_PRIVATE)\n        val remembered=savedTarget?.options?.takeIf {!export && it.format==format}\n        SaveOptionsDialog(this,remembered ?: ExportOptions(format,prefs.getInt(\"quality\",95),prefs.getBoolean(\"lossless\",true),prefs.getBoolean(\"dither\",true),prefs.getBoolean(\"tiff_compressed\",true),prefs.getInt(\"ico_size\",256),prefs.getInt(\"ascii_columns\",100),prefs.getBoolean(\"ascii_invert\",false)),share,\n            confirm={request ->\n                exportOptions=request.options;shareAfterSave=share;isExporting=export\n                val savedPrefs=prefs.edit().putInt(\"quality\",exportOptions.quality).putBoolean(\"dither\",exportOptions.dither).putBoolean(\"tiff_compressed\",exportOptions.tiffCompressed).putInt(\"ico_size\",exportOptions.icoSize).putInt(\"ascii_columns\",exportOptions.asciiColumns).putBoolean(\"ascii_invert\",exportOptions.asciiInvert)\n                if(exportOptions.format.supportsLossless) savedPrefs.putBoolean(\"lossless\",exportOptions.lossless)\n                savedPrefs.apply()\n                chooseSaveLocation(request.fileName)\n            },cancel={afterSave=null;shareAfterSave=false},initialFilename=filename,export=export,imageCredits=ImageCredit.text(document.imageCredits),\n            legacyCredits=if(ImageCreditArchive.hasRecords(this)) ::showLegacyImageCredits else null).show()\n    }\n    private fun chooseSaveLocation(proposedName: String=filename) {\n        launchPicker(Intent(Intent.ACTION_CREATE_DOCUMENT).apply {\n            addCategory(Intent.CATEGORY_OPENABLE);type=exportOptions.format.mime\n            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)\n            putExtra(Intent.EXTRA_TITLE,ExportNames.withExtension(proposedName.ifBlank {ui(R.string.ui_untitled)},exportOptions.format))\n        },SAVE_IMAGE)"
+    },
+    {
+      "id": "write-success-and-dirty-state",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "start_line": 1354,
+      "end_line": 1379,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1379",
+      "text": "    private fun writeImage(uri: Uri) {\n        paintCanvas.applyPending()\n        beginIo()\n        val snapshot=document.bitmap\n        val options=exportOptions;val exporting=isExporting;val sharing=shareAfterSave;shareAfterSave=false\n        worker.execute {\n            var encoded: File?=null\n            try {\n                val directory=File(cacheDir,\"images\").apply {mkdirs()}\n                val file=File.createTempFile(\"AN-Paint-\",options.format.extension,directory);encoded=file\n                ImageExporter.encode(snapshot,file,options,ImageMemoryPolicy.forDevice(this).workingBytes)\n                contentResolver.openOutputStream(uri,\"wt\")?.use {output -> file.inputStream().use {it.copyTo(output)}}\n                    ?: throw IOException(ui(R.string.ui_the_selected_location_is_not_writable))\n                val name=displayName(uri)\n                if(sharing) encoded=null\n                runOnUiThread {if(!isDestroyed) {\n                    if(!exporting) {filename=name;savedTarget=SavedTarget(uri,name,options);document.markSaved();scheduleAutosave()};endIo();LocaleTypography.showMessage(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT)\n                    if(sharing) shareSavedImage(file,options.format)\n                    val action=afterSave;afterSave=null\n                    if(exporting && action!=null) message(ui(R.string.ui_export_did_not_save23)) else action?.invoke()\n                }}\n            } catch(error: Exception) {ioFailed(ui(R.string.ui_could_not_save_image),error)}\n              catch(error: OutOfMemoryError) {ioFailed(ui(R.string.ui_not_enough_memory_to_save_in_this_format),error)}\n            finally {encoded?.delete()}\n        }\n    }"
+    },
+    {
+      "id": "share-after-write",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "start_line": 1380,
+      "end_line": 1389,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1380-L1389",
+      "text": "    private fun shareSavedImage(file: File,format: ImageFormat) {\n        try {\n            val uri=androidx.core.content.FileProvider.getUriForFile(this,\"$packageName.fileprovider\",file)\n            val send=Intent(Intent.ACTION_SEND).apply {\n                type=format.mime;putExtra(Intent.EXTRA_STREAM,uri)\n                clipData=android.content.ClipData.newRawUri(ui(R.string.ui_an_paint_image),uri)\n                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)\n            }\n            startActivity(Intent.createChooser(send,ui(R.string.ui_share_saved_image)))\n        } catch(error: Exception) {message(ui(R.string.ui_the_image_was_saved_but_android_could_not, error.message))}"
+    },
+    {
+      "id": "failure-prefix-composition",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "start_line": 1420,
+      "end_line": 1424,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1420-L1424",
+      "text": "    private fun beginIo() { operationsInFlight++; busy = true; lastIoError = null; paintCanvas.isEnabled = false; updateStatus() }\n    private fun endIo() { operationsInFlight = (operationsInFlight - 1).coerceAtLeast(0); busy = operationsInFlight > 0; paintCanvas.isEnabled = !busy; updateStatus(); if (!busy && autosaveReady && draftGeneration != savedDraftGeneration && draftGeneration != failedDraftGeneration) { autosaveHandler.removeCallbacks(saveDraft); autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500) }; if(!busy) deliverPendingInputs() }\n    private fun ioFailed(prefix: String, e: Throwable) {\n        runOnUiThread { if (!isDestroyed) { afterSave = null; endIo(); lastIoError = \"$prefix. ${e.message ?: ui(R.string.ui_try_a_different_file_or_location)}\"; message(lastIoError!!) } }\n    }"
+    },
+    {
+      "id": "save-options-prose-and-formats",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "git_blob": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+      "start_line": 11,
+      "end_line": 24,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L11-L24",
+      "text": "enum class ImageFormat(private val displayLabel: String,val mime: String,val extension: String,val supportsLossless: Boolean=false) {\n    // Append values to retain the saved-state ordinals used by earlier builds.\n    PNG(\"PNG\", \"image/png\", \".png\"), JPEG(\"JPEG\", \"image/jpeg\", \".jpg\"),\n    JPEG_XL(\"JPEG XL\", \"image/jxl\", \".jxl\",true), WEBP(\"WebP\",\"image/webp\",\".webp\",true),\n    HEIC(\"HEIC\",\"image/heic\",\".heic\"), AVIF(\"AVIF\",\"image/avif\",\".avif\",true),\n    BMP(\"BMP\",\"image/bmp\",\".bmp\"), GIF(\"GIF\",\"image/gif\",\".gif\"),\n    DIB(\"DIB\",\"image/x-dib\",\".dib\"), TIFF(\"TIFF\",\"image/tiff\",\".tif\"),\n    ICO(\"ICO\",\"image/vnd.microsoft.icon\",\".ico\"), BASE64(\"Base64 text\",\"text/plain\",\".txt\"),\n    ASCII_ART(\"ASCII art\",\"text/plain\",\".txt\");\n    val label: String get()=when(this) {BASE64->ui(R.string.formats22_base64_label);ASCII_ART->ui(R.string.formats22_ascii_label);else->displayLabel}\n    val supportsQuality: Boolean get() = this in listOf(JPEG,JPEG_XL,WEBP,HEIC,AVIF)\n    val canSaveLosslessly: Boolean get() = this in listOf(PNG,JPEG_XL,WEBP,AVIF,BMP,DIB,TIFF,BASE64)\n    val isDerivedExport: Boolean get() = this in listOf(ICO,BASE64,ASCII_ART)\n}"
+    },
+    {
+      "id": "dialog-prose-horizontal",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "git_blob": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+      "start_line": 42,
+      "end_line": 63,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L42-L63",
+      "text": "/** One options panel precedes Android's destination picker for every Save as format. */\nclass SaveOptionsDialog(private val activity: Activity,private val initial: ExportOptions,\n    private val share: Boolean=false,private val confirm: (SaveRequest)->Unit,private val cancel: ()->Unit,\n    private val initialFilename: String=\"\", private val export: Boolean=false, private val imageCredits: String=\"\",\n    private val legacyCredits: (()->Unit)?=null) {\n    fun show(): AlertDialog {\n        lateinit var dialog: AlertDialog\n        val formats=ImageFormat.values().filter {share || it.isDerivedExport==export}\n        var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality.coerceIn(1,100);var lossless=initial.lossless\n        val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}\n        body.addView(TextView(activity).apply {text=ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})})\n        body.addView(TextView(activity).apply {text=ui(R.string.save20_file_name)})\n        val filename=EditText(activity).apply {\n            tag=\"export_filename\";setSingleLine(true)\n            inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES\n            setText(ExportNames.withExtension(initialFilename.ifBlank {ui(R.string.ui_untitled)},format))\n            contentDescription=ui(R.string.save20_file_name)\n            selectAll()\n        }\n        body.addView(filename,LinearLayout.LayoutParams(-1,-2))\n        body.addView(TextView(activity).apply {text=ui(R.string.save20_file_format)})\n        val losslessBox=CheckBox(activity).apply {tag=\"export_lossless\";isChecked=lossless}"
+    },
+    {
+      "id": "dialog-prose-vertical-and-actions",
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "git_blob": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+      "start_line": 179,
+      "end_line": 200,
+      "url": "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L179-L200",
+      "text": "            // Credits contain original names and URLs. Keep selectable native text in a bounded\n            // scrolling column even when the surrounding interface uses vertical text.\n            creditsPanel?.let {form.addView(ScrollView(activity).apply {addView(VerticalUi.detach(it))},LinearLayout.LayoutParams((264*d).toInt(),(tall*d).toInt()))}\n            legacyButton?.let {VerticalUi.caption(it,tall);form.addView(VerticalUi.detach(it))}\n            form.addView(prose(ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})))\n            form.layoutDirection=if(VerticalText.uiDirection(activity)==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR\n            form\n        } else ScrollView(activity).apply {addView(body)}\n        dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))\n            .setView(content)\n            .setPositiveButton(ui(R.string.ui_choose_location),null)\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()\n        dialog.setOnShowListener {\n            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n                val name=filename.text.toString()\n                if(!ExportNames.valid(name,format)) filename.error=ui(R.string.save20_invalid_name)\n                else {\n                    confirm(SaveRequest(ExportOptions(format,quality,format.supportsLossless && lossless,ditherBox.isChecked,tiffCompressionBox.isChecked,icoSize,asciiColumns,asciiInvert.isChecked),ExportNames.withExtension(name,format)))\n                    dialog.dismiss()\n                }\n            }\n        }"
+    }
+  ],
+  "important_trace": [
+    "confirmReplacement checks document.dirty after applying pending edits; save schedules afterSave, discard calls replacement, keep-editing dismisses.",
+    "File-menu Share passes share=true AND export=true.",
+    "writeImage updates savedTarget and document.markSaved only when exporting is false.",
+    "The ui_saved toast occurs after every successful write, including export/share.",
+    "If exporting with pending afterSave, the continuation does not run; ui_export_did_not_save23 is displayed.",
+    "ioFailed composes prefix + period + message, clears afterSave and reports the failure."
+  ],
+  "context_limits": [
+    "Static complete local method windows and direct caller chain inspected, not runtime observation.",
+    "The SaveOptionsDialog vertical branch is included as a consumer only; no layout certification."
+  ]
+}
