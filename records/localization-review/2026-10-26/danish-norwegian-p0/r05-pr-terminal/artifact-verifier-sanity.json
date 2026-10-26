@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "record_kind": "Synthetic offline artifact-verifier sanity checks; NOT hosted artifact results",
+  "source_head": "f6b3e71fd1261935c4d97b20cbbbdcc79ed398ed",
+  "source_tree": "16ff3d877650ad4ad3198ce19007e8606fcd080a",
+  "checks": [
+    {
+      "script": "verify_apk_artifact.py",
+      "control": "missing compiled da",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_apk_artifact.py",
+      "control": "missing compiled no",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_apk_artifact.py",
+      "control": "missing compiled nn",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_apk_artifact.py",
+      "control": "duplicate compiled locale/key",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_apk_artifact.py",
+      "control": "synthetic positive",
+      "outcome": "passed"
+    },
+    {
+      "script": "verify_apk_artifact.py",
+      "control": "tree binding",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_regression_artifact.py",
+      "control": "synthetic positive",
+      "outcome": "passed"
+    },
+    {
+      "script": "verify_regression_artifact.py",
+      "control": "JUnit declared/status mismatch",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_regression_artifact.py",
+      "control": "missing focused suite",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_regression_artifact.py",
+      "control": "phase failure/ambiguous receipt",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_exact_script_artifact.py",
+      "control": "synthetic positive",
+      "outcome": "passed"
+    },
+    {
+      "script": "verify_exact_script_artifact.py",
+      "control": "probe inventory",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_exact_script_artifact.py",
+      "control": "probe log hash",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_api35_artifact.py",
+      "control": "unsafe or duplicate ZIP",
+      "outcome": "rejected"
+    },
+    {
+      "script": "verify_apk_artifact.py",
+      "control": "CLI --help",
+      "outcome": "passed"
+    },
+    {
+      "script": "verify_regression_artifact.py",
+      "control": "CLI --help",
+      "outcome": "passed"
+    },
+    {
+      "script": "verify_api35_artifact.py",
+      "control": "CLI --help",
+      "outcome": "passed"
+    },
+    {
+      "script": "verify_exact_script_artifact.py",
+      "control": "CLI --help",
+      "outcome": "passed"
+    }
+  ],
+  "synthetic_focused_method_counts": {
+    "DanishNorwegianP0Test": 4,
+    "NynorskRemainingP0Test": 4,
+    "NynorskSaveWordingTest": 2,
+    "DerivedExportStateTest": 6,
+    "ImportSelectionTitleTest": 11,
+    "TaggedColourImportTest": 5
+  },
+  "source_fixture_counts": {
+    "da": 78,
+    "no": 78,
+    "nn": 80
+  },
+  "scripts": {
+    "verify_apk_artifact.py": "2f6d780b58470dce7b9abdcb3879323b6942bf13aa66479c7020178d36bf427f",
+    "verify_regression_artifact.py": "335fae71e2b7ef4edd3020d9be15b3eec2027e6ee494f9923bab928abb29d453",
+    "verify_api35_artifact.py": "c92e16699a5ae8addefa9f45bba8ac4a21b545b7e998b222d83a9861d6db69c7",
+    "verify_exact_script_artifact.py": "32750c5aa50176bd5af58b2f84537350ecf49e602e39bec2c3a9248575040048"
+  },
+  "limitations": [
+    "No current CI APK or regression artifact was downloaded or validated.",
+    "APK positive control uses a synthetic ZIP with exact current tracked source bytes; AAPT and signature tool outputs are mocked. No actual APK compilation, executable validation or signing claim.",
+    "API35 sanity covers unsafe-archive rejection and CLI only; positive app/native coverage verification awaits the actual artifact.",
+    "Synthetic Python counts and skips test receipt parsing only, not actual current hosted outcomes.",
+    "No source edits or external writes."
+  ]
+}
