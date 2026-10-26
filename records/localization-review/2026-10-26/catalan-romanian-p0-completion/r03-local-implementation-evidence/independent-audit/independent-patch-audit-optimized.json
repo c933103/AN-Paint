@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent read-only implementation and evidence audit",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "result": "pass: no concrete source, test-contract, review-join or privacy defect identified",
+  "verified_baseline_blobs": 1376,
+  "unchanged_tracked_blobs": 1367,
+  "changed_tracked_files": [
+    "Paintroid/src/main/res/values-ca/strings.xml",
+    "Paintroid/src/main/res/values-ro/strings.xml",
+    "tools/memory_warning_source_review.py",
+    "tools/test_catalan_romanian_import_wording.py",
+    "tools/test_catalan_romanian_save_wording.py",
+    "tools/test_danish_norwegian_p0_wording.py",
+    "tools/test_memory_warning_source_review.py",
+    "tools/test_memory_warning_successors.py",
+    "tools/test_nynorsk_remaining_p0_wording.py"
+  ],
+  "new_files": [
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianCompletionWordingTest.kt",
+    "tools/fixtures/current_localization/catalan_romanian_completion_wording.json",
+    "tools/test_catalan_romanian_completion_wording.py"
+  ],
+  "locales": {
+    "ca": {
+      "new_complete_values": 55,
+      "inherited_pairs": 150,
+      "containers": 205,
+      "P0_present": 87,
+      "P0_missing_held": 5,
+      "verdicts": {
+        "accept": 53,
+        "revise": 2
+      }
+    },
+    "ro": {
+      "new_complete_values": 55,
+      "inherited_pairs": 150,
+      "containers": 205,
+      "P0_present": 87,
+      "P0_missing_held": 5,
+      "verdicts": {
+        "accept": 54,
+        "revise": 1
+      }
+    }
+  },
+  "revisions": [
+    {
+      "locale": "ca",
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "final_display_text": "No s’ha pogut moure l’esborrany anterior per conservar-lo com a còpia de recuperació."
+    },
+    {
+      "locale": "ca",
+      "identity": "string/save20_destination_error",
+      "final_display_text": "No s’ha pogut substituir el fitxer de destinació pel fitxer resultant."
+    },
+    {
+      "locale": "ro",
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "final_display_text": "Ciorna anterioară nu a putut fi mutată într-un fișier de recuperare."
+    }
+  ],
+  "review_manifests": {
+    "ca": "27105ba12a3b5424b52ac0cd2abd251b79d364779ac8e51b2b0057e111d17bec",
+    "ro": "67e57079828e04a3c166b8d5c7e6ae78831134675af8b97cad4a7597a9970cde"
+  },
+  "review_files": [
+    {
+      "path": "review/ca/ca-group-02-recovery-independent-review.json",
+      "sha256": "b5cff4341c577ed52d8381dbaac08ef1be61c7e5270ae571e77c2e7b8564278f"
+    },
+    {
+      "path": "review/ca/ca-group-03-assembly-memory-independent-review.json",
+      "sha256": "d830f73cd0aeb14798451ae25d048bff89ede385a3037a0222b1c3c496618576"
+    },
+    {
+      "path": "review/ca/ca-group-04-credit-destination-encoding-independent-review.json",
+      "sha256": "0c524b1d4d5c770912f79936b1cb79cce061b7c020e71e411ecfb499b845f3ce"
+    },
+    {
+      "path": "review/ro/ro-group-02-recovery-independent-review.json",
+      "sha256": "ea32e7e24c946274b7452117c7179beba57761ab165b052787b7dcf023d82bbf"
+    },
+    {
+      "path": "review/ro/ro-group-03-assembly-memory-independent-review.json",
+      "sha256": "51938c9f1565a009fbde4a95323f78bdc6cd962a062bd56ea1da53ebfa1d79b0"
+    },
+    {
+      "path": "review/ro/ro-group-04-credit-destination-encoding-independent-review.json",
+      "sha256": "47bc2b4d3b9bfc8bf4bf6f5f76351328967a12e145ed608b2a6cf8fba0746c46"
+    }
+  ],
+  "implementation_file_hashes": [
+    {
+      "path": "Paintroid/src/main/res/values-ca/strings.xml",
+      "sha256": "31cbe90a07c286ebbe7552ab50f6e11bbf4113820b5c990a991579490462a6bc",
+      "git_blob_sha1": "cdfc10a774ec7037e64f77caeb15cda2160c07e4"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-ro/strings.xml",
+      "sha256": "9f19e3c09feacc974b8fd4f0b17501f42fd0dd6fd630f57b5f5218e9676252e3",
+      "git_blob_sha1": "3f81555a1d70a7056d0bc0b6a4237aff4c077a13"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianCompletionWordingTest.kt",
+      "sha256": "ff43a11e0b5ab2f5d18bc633d34ee13514ddf8b5311ef5189defd776878a1249",
+      "git_blob_sha1": "2e5e3d1e1ca13c718236462e93c9e51fe6a3be79"
+    },
+    {
+      "path": "tools/fixtures/current_localization/catalan_romanian_completion_wording.json",
+      "sha256": "80f327119c21dc4700442285a6f8be5515b1a3d332deff49c767ec141f86bd34",
+      "git_blob_sha1": "4aba43c873c67201b93683ba133728f267afa96b"
+    },
+    {
+      "path": "tools/memory_warning_source_review.py",
+      "sha256": "ccd9516990c26e36db46fb15f7b82dc18c0382253f4db41ecbac6ceb8f620484",
+      "git_blob_sha1": "465f13493d9d2cc9e9b7216ea46afdc178ddee80"
+    },
+    {
+      "path": "tools/test_catalan_romanian_completion_wording.py",
+      "sha256": "f5856975d0541c44d378bf86d91f04ff53cd8baa060f3e7eed76ecd5c1078616",
+      "git_blob_sha1": "81687d1fe63dec6264d8dae9853331bb7b0d6865"
+    },
+    {
+      "path": "tools/test_catalan_romanian_import_wording.py",
+      "sha256": "d959cc2769b727fed0db06522bc75d90ea9f32b0bc747e7b39092aad4de091fe",
+      "git_blob_sha1": "aebdd6367c0d87e271117bfa518995d2b6967dc3"
+    },
+    {
+      "path": "tools/test_catalan_romanian_save_wording.py",
+      "sha256": "5457469aa87ab173133fe13253e1baf026b44bf542cce4096d141068f93a35c3",
+      "git_blob_sha1": "8429ac283fbd4c360e4b0b18153f00e53d91d416"
+    },
+    {
+      "path": "tools/test_danish_norwegian_p0_wording.py",
+      "sha256": "6d00f0f0d7a284faaf35d0ba2cd57d6dadd02d7cecf8d6dd1efe1ad505104e36",
+      "git_blob_sha1": "28f5a3b2c2d929c0c650ec430188609b82a7e691"
+    },
+    {
+      "path": "tools/test_memory_warning_source_review.py",
+      "sha256": "ea1f011231078a68e7d90b6e7db4ad138f9fa999878861a1d1762c3a76ab76e5",
+      "git_blob_sha1": "46491eb7906c7e22dade08fd37ba1d7ffc7a3875"
+    },
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "sha256": "fd09aa65bc8423b97ea74d3cd0be122eebb70ce97f3f56f93d575acfeebcb436",
+      "git_blob_sha1": "95b4a19cc06677a30f99868fc709e96e0fed5d9d"
+    },
+    {
+      "path": "tools/test_nynorsk_remaining_p0_wording.py",
+      "sha256": "beafdd5514c223dcfc884806a347a1aecf4499777565cb72642cb785d13aa750",
+      "git_blob_sha1": "4253f7916a1791922cbb6787d9c066bfbf81f4eb"
+    }
+  ],
+  "public_packages": [
+    {
+      "directory": "candidate-public",
+      "files": 36,
+      "manifest_sha256": "2da49a5be900b63b4cbb0a99f258f539f724d8a3895559a7f1a09e8c7e497f2e"
+    },
+    {
+      "directory": "review-public",
+      "files": 15,
+      "manifest_sha256": "02d0388fe373d636197f9507c3fdcaf0e2b77568f7473cf5f393396e415f97e1"
+    }
+  ],
+  "method": "Independent standard-library XML/JSON/hash/token and set joins; no implementation/validator helper imports. Source semantics and JVM test consumers separately traced.",
+  "limits": [
+    "No new linguistic judgment, native-human, runtime/device, layout or whole-locale certification.",
+    "JVM compilation/execution and hosted CI not performed by this audit.",
+    "Five holds each, P1 absence, paired/frozen/global59/112 and Valencian inheritance distinctions remain separate."
+  ]
+}

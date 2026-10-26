@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent bounded implementation audit summary",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "result": "No concrete defect identified in the audited payload.",
+  "implementation_audit_sha256": "1ae93e22d79bd2f9454f5b3153ee70ef9d79b9a4d39e2a9621140ce66ff365c5",
+  "optimized_audit_sha256": "1ae93e22d79bd2f9454f5b3153ee70ef9d79b9a4d39e2a9621140ce66ff365c5",
+  "ordinary_optimized_audit_bytes_equal": true,
+  "reconciler_replay": {
+    "result": "exact",
+    "outputs": [
+      "Paintroid/src/main/res/values-ca/strings.xml",
+      "Paintroid/src/main/res/values-ro/strings.xml",
+      "tools/fixtures/current_localization/catalan_romanian_completion_wording.json",
+      "approved-manifest.json"
+    ],
+    "method": "Invoked reconciler against the clean pinned source and frozen review packet into isolated scratch; each output byte-compared to staged implementation/approval."
+  },
+  "independent_host_tests": {
+    "module": "test_catalan_romanian_completion_wording",
+    "ordinary": {
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0,
+      "log_sha256": "a774ecd87e9b10937ee7a41cc8a7c08d662ab7bfb06725fa6ef28d2ddc5d553d"
+    },
+    "optimized": {
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0,
+      "log_sha256": "664e831d4230af73b3ecfdfcdcc787830bfcb9ad1ba2c2b759ba75e9a9c5502b"
+    },
+    "preparation_note": "An initial shell log-redirection target did not exist, so neither test process started. The corrected invocation above ran both modes successfully; this was not a test failure."
+  },
+  "source_semantic_reconciliation": [
+    "CA and RO recovery-move revisions agree with AutosaveStore.preserveForRecovery: missing source or failed rename raises the error; distinct ZIP target is an intended destination, not a successful-preservation promise.",
+    "Catalan destination-error revision uses resulting file, consistent with TextImageCodec.replace being shared by decodeToFile, Base64 encoding and ASCII encoding. It also remains suitable for ICO replacement."
+  ],
+  "JVM_static_audit": {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianCompletionWordingTest.kt",
+    "sha256": "ff43a11e0b5ab2f5d18bc633d34ee13514ddf8b5311ef5189defd776878a1249",
+    "methods": 5,
+    "compiled_or_executed_here": false,
+    "findings": [
+      "Resource selection uses production AppLanguage.select and refresh; exact compiled strings are compared without manually overriding widget labels.",
+      "Zero-memory ImageMemoryPolicy.check invokes real four-argument localized exception formatting.",
+      "Corrupt-draft recovery checks preserved original and recovery-copy bytes before accepting the success notice.",
+      "Restored draft checks dirty state, pixels, floating selection and null Save association.",
+      "Encoding tests drive real ImageExporter PNG/Base64/ICO paths. Armed zero-budget PNG fault detects erroneous compression-before-budget ordering; failure paths verify source pixels, derived destination preservation and temporary cleanup. Direct PNG is explicitly not claimed atomic.",
+      "Fault removal retains an actual PNG-success path and source-pixel check.",
+      "Simple quote decoding is restricted to these exact 110 reviewed values; inherited values are preserved by separate complete XML contracts."
+    ],
+    "coverage_limit": "Not every selected consumer or assembly workflow is executed by this class. Exact compiled assembly-floor wording is separate from paired-warning/P1 acceptance."
+  },
+  "scope_preservation": [
+    "All 300 inherited complete values/attributes are unchanged; only 110 absent reviewed identities are added.",
+    "Five no-current-consumer holds per locale and P1 companion remain absent.",
+    "The paired warning oracle and frozen source/fixtures are byte-unchanged; current resolver adds only explicit CA/RO single-P0 expectations.",
+    "Language routing and tagged-colour behavior files are byte-unchanged; Valencian inheritance is not direct review.",
+    "Global 59/112 membership and PR56/113/159/Help/archive/release boundaries remain unchanged."
+  ],
+  "privacy": "Decoded text/JSON, source bindings and URLs were inspected across the 36 candidate and 15 review-package files; only authorized project evidence/public GitHub links were found. No credentials, private links, execution-local paths or unrelated private data.",
+  "limits": [
+    "No new linguistic judgment or native-human/physical-device/layout/whole-locale certification.",
+    "No Android/JVM compilation, hosted CI, PR review, merge or release performed by this auditor."
+  ]
+}

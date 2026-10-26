@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "result": "static review/fixture/XML/API binding passed; JVM not executed",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "test_path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianCompletionWordingTest.kt",
+  "test_sha256": "ff43a11e0b5ab2f5d18bc633d34ee13514ddf8b5311ef5189defd776878a1249",
+  "draft_sha256": "a3eb99d1164fa226285e14dba32f418622d0926ed15d8cbec9680d8ea552a902",
+  "fixture_sha256": "80f327119c21dc4700442285a6f8be5515b1a3d332deff49c767ec141f86bd34",
+  "approved_manifest_sha256": "1bf0f80cc79a82e52b8fd40d8ec8d9fd045a64162d9ec98e16a8ba31c5fe8cbb",
+  "review_receipts": {
+    "review/ca/ca-group-02-recovery-independent-review.json": "b5cff4341c577ed52d8381dbaac08ef1be61c7e5270ae571e77c2e7b8564278f",
+    "review/ca/ca-group-03-assembly-memory-independent-review.json": "d830f73cd0aeb14798451ae25d048bff89ede385a3037a0222b1c3c496618576",
+    "review/ca/ca-group-04-credit-destination-encoding-independent-review.json": "0c524b1d4d5c770912f79936b1cb79cce061b7c020e71e411ecfb499b845f3ce",
+    "review/ro/ro-group-02-recovery-independent-review.json": "ea32e7e24c946274b7452117c7179beba57761ab165b052787b7dcf023d82bbf",
+    "review/ro/ro-group-03-assembly-memory-independent-review.json": "51938c9f1565a009fbde4a95323f78bdc6cd962a062bd56ea1da53ebfa1d79b0",
+    "review/ro/ro-group-04-credit-destination-encoding-independent-review.json": "47bc2b4d3b9bfc8bf4bf6f5f76351328967a12e145ed608b2a6cf8fba0746c46"
+  },
+  "selected_final_values": 110,
+  "preserved_complete_values_and_attributes": 300,
+  "held_absences": 10,
+  "methods": [
+    "all55CompiledValuesPerLocaleMatchWhileHeldAndP1FallbacksRemainEnglish",
+    "realMemoryAdmissionFailureFormatsAllFourArgumentsBeforeAllocation",
+    "failedDraftRecoveryReportsPreservationOnlyAfterKeepingItsExactBytes",
+    "recoveredDraftRetainsUnsavedPixelsAndOneFloatingSelectionWithoutSaveAssociation",
+    "realEncodingFailuresKeepSourcePixelsAndAtomicDerivedDestinations"
+  ],
+  "source_api_dependencies_checked": {
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt": "225844396d57c3ddf25a482da3e6e6d28a21261644fd871cd1faab95f735e417",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt": "3976dfe5147077465fecc7117fde830d5773656efb7bd07ed4f4e64247e802e4",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt": "72b511c8142b256a7d2806badc0c88608b966dcedf79252f8ffa682cc559aa10",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt": "db643208844218829b59c5a741ff83b4d8755499b21527fe7a0a8e585b647c9a",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt": "f6781d9a04961ed7b2b4a8cc52a8164001da9be8155d1ae7967905c84ef8326a",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt": "b246e44e8aaf1e2d10455c737dfc9afc129ed9ae71b23a1468e17c7d98d19ee3",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt": "c9091570ccf406dd20e44bef486cfa8e8e6b4db6685aa818d3df8c5b34797b31",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt": "a1ad195fd2e76115181e56d2b541ebde58de1a07687319ec65bd1994c63e74a3",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsImportFailureFixtures.kt": "2d25a4f8b4a2b04e4bca801cdab0b3f0f47c0af154e22e61f5fd065c073c9e39",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/DanishNorwegianP0Test.kt": "35581effd5b0f94f290df5b8c7dc072a7188d8ad8d2e8d1e94b5f7d40b8eeff5",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/NynorskRemainingP0Test.kt": "df7189ed9caa845f3bbf61be1da812570705977962ea2184daad94d27af2bb86",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/AfrikaansPriorityWordingTest.kt": "df31fd91e8d3722c23baa48e4c994aa777a36626f4c870ca321dc1471c3abf4c"
+  },
+  "binding_negative_controls": [
+    {
+      "case": "missing selected fixture key",
+      "rejected_by": "fixture key set"
+    },
+    {
+      "case": "wrong target text",
+      "rejected_by": "reviewed target mismatch"
+    },
+    {
+      "case": "wrong canonical source text",
+      "rejected_by": "default source mismatch"
+    },
+    {
+      "case": "changed inherited XML",
+      "rejected_by": "inherited XML changed"
+    },
+    {
+      "case": "held identity inserted",
+      "rejected_by": "current count"
+    },
+    {
+      "case": "P1 companion inserted",
+      "rejected_by": "current count"
+    }
+  ],
+  "checker_development_corrections": [
+    "First binding attempt used repository-relative receipt path instead of its review-root-relative manifest path and raised KeyError; corrected locally.",
+    "Second attempt rejected the legitimate default plurals container while collecting scalar strings; corrected to explicitly allow that canonical container and still reject unexpected types. Neither setup error was an application or JVM failure."
+  ],
+  "draft_delta": "One line arms the controlled PNG failure before zero-budget admission; an attempted compression then records rejectedBitmap and throws encoder error, so ordering regression cannot hide behind an unarmed shadow. No runtime mutation experiment executed.",
+  "limits": [
+    "Kotlin compilation and JVM execution not performed",
+    "Controlled failure injections are planned JVM evidence, not native/device success",
+    "Credit dialogs and assembly-floor workflow have compiled/static coverage only in this class",
+    "150 inherited values per locale not decoded via quote stripping; prior23 compiled tests and current source contracts remain separate",
+    "No P1 companion/paired oracle/held/Valencian acceptance or frozen-history change"
+  ]
+}

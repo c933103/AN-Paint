@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "record_kind": "Actual local full host unittest discovery, ordinary and optimized modes",
+  "started_utc": "2026-10-26T14:21:25Z",
+  "input_source_file_count": 1379,
+  "input_inventory_file": "full-host-input-inventory.json",
+  "input_inventory_sha256": "adc7aec02e94d35380c3fa4a9b0f79e9345a1b67d39cd6c6c798253ca9299164",
+  "runs": [
+    {
+      "mode": "ordinary",
+      "command_argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 211.152,
+      "tests": 1398,
+      "unittest_seconds": 210.406,
+      "outcome": "success",
+      "log": "full-ordinary-r01.log",
+      "log_bytes": 257240,
+      "log_sha256": "4b5265a26a1725650d8cf0d3ae04d7ce6635ffbc7fafab2e6e337aa1542498c9",
+      "unittest_summary": "Ran 1398 tests in 210.406s\n\nOK",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "trailing_synthetic_fixture_output_lines": [
+        "    \"Accepted-credit seed requires exactly one already-running target PID\",",
+        "    \"adb exited with status None\",",
+        "    \"Missing or unsuccessful final instrumentation result: []\",",
+        "    \"No tests completed\",",
+        "    \"Runner test counts [] do not match 1 declared methods\",",
+        "    \"1 declared test method(s) did not complete\"",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "mode": "optimized",
+      "command_argv": [
+        "python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 205.537,
+      "tests": 1398,
+      "unittest_seconds": 204.379,
+      "outcome": "success",
+      "log": "full-optimized-r01.log",
+      "log_bytes": 4876,
+      "log_sha256": "7e3a76cca4717a6cd52f4d085af53294fda1ef13d611fde029c6426e5cab4482",
+      "unittest_summary": "Ran 1398 tests in 204.379s\n\nOK",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "trailing_synthetic_fixture_output_lines": [
+        "    \"Accepted-credit seed requires exactly one already-running target PID\",",
+        "    \"adb exited with status None\",",
+        "    \"Missing or unsuccessful final instrumentation result: []\",",
+        "    \"No tests completed\",",
+        "    \"Runner test counts [] do not match 1 declared methods\",",
+        "    \"1 declared test method(s) did not complete\"",
+        "  ]",
+        "}"
+      ]
+    }
+  ],
+  "limits": [
+    "Host Python tests only. Android/JVM compilation and device execution are not performed or implied.",
+    "Full ordinary and optimized runs are separate actual executions, not a rerun of a failed lane.",
+    "Raw logs include deliberate positive/negative instrumentation-metadata fixture JSON after unittest OK. These are synthetic host controls, not actual emulator execution or failures."
+  ],
+  "source_inventory_unchanged_after_runs": true,
+  "verified_terminal_utc": "2026-10-26T14:29:12Z"
+}

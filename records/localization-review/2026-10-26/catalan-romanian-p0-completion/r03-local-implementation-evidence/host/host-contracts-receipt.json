@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "scope": "Host-test and explicit single-P0 resolver changes only; no source XML, fixture or JVM edits by this helper.",
+  "baseline_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "files": [
+    {
+      "path": "tools/memory_warning_source_review.py",
+      "bytes": 3260,
+      "sha256": "ccd9516990c26e36db46fb15f7b82dc18c0382253f4db41ecbac6ceb8f620484",
+      "git_blob_sha1": "465f13493d9d2cc9e9b7216ea46afdc178ddee80",
+      "mode": "100644",
+      "new_file": false
+    },
+    {
+      "path": "tools/test_catalan_romanian_completion_wording.py",
+      "bytes": 14708,
+      "sha256": "f5856975d0541c44d378bf86d91f04ff53cd8baa060f3e7eed76ecd5c1078616",
+      "git_blob_sha1": "81687d1fe63dec6264d8dae9853331bb7b0d6865",
+      "mode": "100644",
+      "new_file": true
+    },
+    {
+      "path": "tools/test_catalan_romanian_save_wording.py",
+      "bytes": 8862,
+      "sha256": "5457469aa87ab173133fe13253e1baf026b44bf542cce4096d141068f93a35c3",
+      "git_blob_sha1": "8429ac283fbd4c360e4b0b18153f00e53d91d416",
+      "mode": "100644",
+      "new_file": false
+    },
+    {
+      "path": "tools/test_catalan_romanian_import_wording.py",
+      "bytes": 8903,
+      "sha256": "d959cc2769b727fed0db06522bc75d90ea9f32b0bc747e7b39092aad4de091fe",
+      "git_blob_sha1": "aebdd6367c0d87e271117bfa518995d2b6967dc3",
+      "mode": "100644",
+      "new_file": false
+    },
+    {
+      "path": "tools/test_danish_norwegian_p0_wording.py",
+      "bytes": 17953,
+      "sha256": "6d00f0f0d7a284faaf35d0ba2cd57d6dadd02d7cecf8d6dd1efe1ad505104e36",
+      "git_blob_sha1": "28f5a3b2c2d929c0c650ec430188609b82a7e691",
+      "mode": "100644",
+      "new_file": false
+    },
+    {
+      "path": "tools/test_nynorsk_remaining_p0_wording.py",
+      "bytes": 9659,
+      "sha256": "beafdd5514c223dcfc884806a347a1aecf4499777565cb72642cb785d13aa750",
+      "git_blob_sha1": "4253f7916a1791922cbb6787d9c066bfbf81f4eb",
+      "mode": "100644",
+      "new_file": false
+    },
+    {
+      "path": "tools/test_memory_warning_source_review.py",
+      "bytes": 7183,
+      "sha256": "ea1f011231078a68e7d90b6e7db4ad138f9fa999878861a1d1762c3a76ab76e5",
+      "git_blob_sha1": "46491eb7906c7e22dade08fd37ba1d7ffc7a3875",
+      "mode": "100644",
+      "new_file": false
+    },
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "bytes": 10168,
+      "sha256": "fd09aa65bc8423b97ea74d3cd0be122eebb70ce97f3f56f93d575acfeebcb436",
+      "git_blob_sha1": "95b4a19cc06677a30f99868fc709e96e0fed5d9d",
+      "mode": "100644",
+      "new_file": false
+    }
+  ],
+  "protected_files": [
+    {
+      "path": "tools/memory_warning_successors.py",
+      "sha256": "b52625c6aeb96e6786cbc39563382a4c8bf5daebe1b2b66d417b246d60daa2eb",
+      "exact_baseline_bytes_unchanged": true
+    },
+    {
+      "path": "translations/source-review/memory-warnings-20261021.json",
+      "sha256": "7c27a21663dd970382ee481c09b79ea5db7a036299a6c9d32cabd3f8b6e8f12a",
+      "exact_baseline_bytes_unchanged": true
+    },
+    {
+      "path": "tools/fixtures/current_localization/catalan_romanian_save_wording.json",
+      "sha256": "8228afe6ad30857782ed6e126f840afcdf3554c9c076963521c3fb7e569e1c1f",
+      "exact_baseline_bytes_unchanged": true
+    },
+    {
+      "path": "tools/fixtures/current_localization/catalan_romanian_import_wording.json",
+      "sha256": "28bb92b7312687e6bd78411cccbdcd291922be3fe50e5fb1cd9a18e585e50d0b",
+      "exact_baseline_bytes_unchanged": true
+    },
+    {
+      "path": "translations/source-review/memory-warning-successors-amharic-20261025.json",
+      "sha256": "b4f76a6f9a9ae98b3a012e1a0769004f999d76c7fab51e733c76943ba96ae3a7",
+      "exact_baseline_bytes_unchanged": true
+    },
+    {
+      "path": "tools/fixtures/current_localization/nynorsk_p0_remaining_wording.json",
+      "sha256": "a9579d33873f0c7c79717a88e8d4017080641fa55ccc30e18bca70015602ebaa",
+      "exact_baseline_bytes_unchanged": true
+    },
+    {
+      "path": "tools/fixtures/current_localization/danish_norwegian_p0_wording.json",
+      "sha256": "7a58276861bc3c91a339441a1ae83a7cb49762709332f059208eb5caa6de5e6d",
+      "exact_baseline_bytes_unchanged": true
+    }
+  ],
+  "local_tests": [
+    {
+      "mode": "ordinary",
+      "command": "python -m unittest -v test_catalan_romanian_completion_wording test_catalan_romanian_save_wording test_catalan_romanian_import_wording test_nynorsk_remaining_p0_wording test_danish_norwegian_p0_wording test_memory_warning_source_review test_memory_warning_successors",
+      "tests": 58,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "seconds": 3.667,
+      "log": "focused-ordinary-r01.log",
+      "log_sha256": "6cc2982d76ab92196cc8e1f895c2f84805c4acdfd11e98edc9b199fd9d60635a"
+    },
+    {
+      "mode": "optimized",
+      "command": "python -O -m unittest -v test_catalan_romanian_completion_wording test_catalan_romanian_save_wording test_catalan_romanian_import_wording test_nynorsk_remaining_p0_wording test_danish_norwegian_p0_wording test_memory_warning_source_review test_memory_warning_successors",
+      "tests": 58,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "seconds": 4.023,
+      "log": "focused-optimized-r01.log",
+      "log_sha256": "4391a8fd4bc1ebdd27a6a38d917ef31a421b7d47093d244e6d51930d0bdbd314"
+    }
+  ],
+  "limits": [
+    "Host Python only; no Android compilation/JVM or runtime execution.",
+    "No new linguistic judgments, native-human review or whole-language certification.",
+    "Paired warning oracle remains separate from exact-key P0 CA/RO acceptance; P1 and all old fixtures unchanged."
+  ],
+  "sealed_oracle": {
+    "sha256": "b4f76a6f9a9ae98b3a012e1a0769004f999d76c7fab51e733c76943ba96ae3a7",
+    "entries": 120,
+    "tags": 60,
+    "scope": "Unchanged paired oracle, separate from five single-key P0 expectations."
+  }
+}
