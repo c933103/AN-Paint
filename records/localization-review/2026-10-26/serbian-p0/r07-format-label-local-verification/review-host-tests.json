@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "reviewer_role": "Independent AI host-test reviewer; not host-test author",
+  "reviewed_at_utc": "2026-10-26T19:07:54Z",
+  "base_head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+  "base_tree": "385bd19a6cd68c7b8ce9644f157e4acb4e4cf93e",
+  "result": "accept: no blocking findings in the frozen successor host-test changes",
+  "reviewed_file": {
+    "path": "tools/test_serbian_p0_wording.py",
+    "sha256": "9c48c8b26e983049a08023d7d40a178a74ca87845986bb11e75b17fc72dae4dc",
+    "base_sha256": "cfdd9e550f83342b2ef3f90889d849542fed2262b9d8654ab6d08ab64b789268"
+  },
+  "context_files": [
+    {
+      "path": "tools/fixtures/current_localization/serbian_p0_wording.json",
+      "sha256": "4d3bf545717429fd35cdb316c737bb3d5f4db2108c7412ecb6a5075ea961f707"
+    },
+    {
+      "path": "tools/current_localization_contracts.py",
+      "sha256": "96667286818b968c74ddf63243a284328b338129f51807bf3f1d6d67f6eabf38"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-b+sr+Cyrl/strings.xml",
+      "sha256": "9d8fa65fd140faeb311f6427e420985cf692c06a52ac98f1d0e204c60698ccd4"
+    }
+  ],
+  "prior_review": {
+    "path": "checks/independent-implementation-review.json",
+    "sha256": "8a34a35bc2487076a3119170f30b9f28a08a01f5fd7506c2a523eb7178c16776",
+    "preserved_unchanged": true
+  },
+  "accepted_pair_sha256_independently_recomputed_from_review": "c84e7335b4bea3a9d2dc4d7857f8fdb9ea662d63d1c7368373dc7505df892511",
+  "findings": {
+    "full_pair_binding": "The two complete XML text values and exact attributes are serialized canonically and checked against a fixed independent code constant. The digest independently matches the previously accepted review receipt, not merely the mutable current fixture.",
+    "blind_fixture_refresh": "Matching XML+fixture mutations fail. Refreshing the digest inside fixture review_successors also fails because its complete metadata must equal the pinned code-level receipt. No fixture-only or XML+fixture acceptance bypass found.",
+    "negative_controls": "Both keys are mutated independently for missing, duplicate, empty, truncated, markup, attribute, wrong-type, placeholder, obsolete label, filename substitution, newline and unquoted values. Coordinated fixture/XML edits additionally test wording and recovery-polarity reversal. Receipt/label schema, locale, accounting and constraints are tested for missing/changed/extra entries. Mutations checked in this review are non-noop.",
+    "count_accounting": "Set-based accounting yields 148 original reviewed locale/key identities, removes the superseded warning identity, then adds the replacement warning and newly reviewed label: 149 current unique identities. Unchanged prior-reviewed count is 147; preserved inherited count is 169+168=337. Catalogue totals remain 244 and 242.",
+    "scope_and_composition": "Latin label stays Format slike, filename is distinct in both scripts, menu/caption composition checks use the new Cyrillic label and unchanged Latin label, and held/P1-neighbor absence checks remain intact.",
+    "anti_snapshot_pattern": "New CI guards read current local XML/compact current fixtures only and hash exactly two reviewed values with attributes. They neither recursively hash the source tree nor fetch/reconstruct historical snapshots. Commit/path/review hash constants are provenance metadata, not a whole-source oracle.",
+    "optimization": "Critical checks use explicit ValueError and unittest assertions rather than Python assert statements removed by -O."
+  },
+  "independent_execution": {
+    "scope": "Seven focused host methods only; no source writes, PYTHONDONTWRITEBYTECODE=1 and python3 -B used",
+    "test_class": "test_serbian_p0_wording.SerbianP0Tests",
+    "methods": [
+      "test_atomic_format_label_pair_binds_full_values_attributes_tokens_and_unique_scope",
+      "test_atomic_pair_rejects_half_updates_and_xml_corruption",
+      "test_matching_fixture_and_xml_edits_cannot_refresh_atomic_pair_acceptance",
+      "test_atomic_pair_rejects_scope_receipt_accounting_and_constraint_corruption",
+      "test_all_337_other_prior_values_and_catalogue_identity_stay_unchanged",
+      "test_recovery_compositions_retain_actual_labels_and_literal_filenames",
+      "test_five_holds_each_and_unreviewed_neighbor_fallbacks_remain_absent"
+    ],
+    "ordinary": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    },
+    "optimized": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    }
+  },
+  "limitations": [
+    "This receipt does not establish the concurrently running full ordinary/optimized suite result.",
+    "No Kotlin/JVM compilation or execution, Android build, device verification, publication, merge or release claim.",
+    "Pinned acceptance constants are a code-review trust boundary, not tamper-proof proof if someone deliberately edits validator code and its constants together. Future wording changes require a new independent review, not blind digest replacement."
+  ],
+  "blocking_findings": [],
+  "source_edits_performed": false,
+  "publication_performed": false
+}

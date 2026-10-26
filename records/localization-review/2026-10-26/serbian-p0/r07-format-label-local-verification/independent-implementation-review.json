@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "reviewer_role": "Independent AI static implementation reviewer; not implementation author",
+  "reviewed_at_utc": "2026-10-26T19:05:20Z",
+  "base_head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+  "base_tree": "385bd19a6cd68c7b8ce9644f157e4acb4e4cf93e",
+  "source_status": "Isolated successor implementation against corrected PR180 snapshot; no successor publication or merge reviewed. Rebind after PR180 merge/rebase before publication.",
+  "accepted_wording_review_sha256": "a2e91394fd6fcbbeaefafe4ee879df23fd4791a33dba565b0a31bfbc2f78b164",
+  "result": "No blocking findings in exactly the reviewed static scope.",
+  "files": [
+    {
+      "path": "Paintroid/src/main/res/values-b+sr+Cyrl/strings.xml",
+      "reviewed_sha256": "9d8fa65fd140faeb311f6427e420985cf692c06a52ac98f1d0e204c60698ccd4",
+      "base_sha256": "30f8cfabe6ebbd79ba785c8e351ce6e7edfc6671e49fdad461cd884045b0f74b"
+    },
+    {
+      "path": "tools/fixtures/current_localization/serbian_p0_wording.json",
+      "reviewed_sha256": "4d3bf545717429fd35cdb316c737bb3d5f4db2108c7412ecb6a5075ea961f707",
+      "base_sha256": "a36d8933d24612deb33e6c4ac055ccdd1ccbc5797b47a38deaa265041cc0e4f7"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt",
+      "reviewed_sha256": "912128b1d245e4b6067927988beca4254bd98aefeb2726c74023971e5e87b0f0",
+      "base_sha256": "1e5e93ab250652cdfeea5d350dc5bc7d76493a792d689ba19b0b60f96b228d0c"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ProtectedDraftWarningTest.kt",
+      "reviewed_sha256": "e32adc49182cea9dc440ab27e1c80a259fe06a331a16f0707a3f859a3dfee4ea",
+      "base_sha256": "073724530e205ea846dbe543d7f7c65912e361bcad01cf92302e21346753c744"
+    }
+  ],
+  "values": [
+    {
+      "identity": "string/save20_file_format",
+      "xml_text": "\"Формат датотеке\"",
+      "attributes": {
+        "name": "save20_file_format"
+      },
+      "xml_text_sha256": "7105d9fb412546ecd02388597f4e5b7526a0be4881f1093d2fd5d206e9f20047",
+      "decision": "accept"
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "xml_text": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и у пољу „Формат датотеке“ изаберите PNG / JPEG.\"",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "xml_text_sha256": "2808218e284f76783b534e59906c1107b3c8ca18b0df0a41383d5b5248237245",
+      "decision": "accept"
+    }
+  ],
+  "checks": {
+    "atomic_pair": "Both complete production values exactly match independent accepted wording, with exact unchanged attributes. The pair is required together.",
+    "scope": "Only the Cyrillic strings.xml differs among production source files; exactly the two intended P0 entries change. Latin catalogue, held entries and P1 companion remain unchanged.",
+    "fixture_successor_accounting": "147 prior reviewed values remain unchanged; the replacement warning plus newly reviewed label yield 149 unique current reviewed values, not 150. Preserved inherited counts are 169 Cyrillic + 168 Latin = 337. Other inherited values, constraints and held_absent are unchanged.",
+    "fixture_lineage": "Review SHA256 and review_commit agree with the local immutable wording receipt and publication-state metadata. No new remote verification performed.",
+    "consumer_binding": "Unchanged source labels the export_format Spinner, its contentDescription and vertical field; the distinct export_filename EditText retains the filename label.",
+    "blocked_path_realism": "The existing targeted AtomicFile.startWrite shadow throws only for classic-draft-recovery-* files. Added Serbian methods use real activity startup, verify attempted failed preservation, autosaveBlocked, full formatted warning, original bytes, distinct recovery ZIP/current-image PNG/JPEG picker routes and cancellation/lifecycle protection.",
+    "unblocked_path_realism": "Existing Serbian failedDraftRecoveryReportsPreservationOnlyAfterKeepingItsExactBytes independently exercises successful separate preservation, explicitly asserts autosaveBlocked false, and checks both exact original and copied bytes. It remains unchanged.",
+    "captions_and_accessibility": "New assertions distinguish exact Cyrillic/Latin format captions from filename captions and verify control contentDescription; SerbianP0WordingTest also inspects accessibility-node contentDescription.",
+    "kotlin_static_review": "No apparent compilation traps in new imports, helpers, typed recursive local functions, JUnit assertions or Android calls."
+  },
+  "nonblocking_limits": [
+    "Host-test source excluded because a separate writer was still editing it; neither the partial file nor its eventual result is accepted by this review.",
+    "No Kotlin compilation, JVM test execution, full Android build or device run performed; static approval is not a runtime pass.",
+    "Serbian locale tests exercise horizontal UI; vertical-label binding is source-verified only.",
+    "Caption assertions test view-tree text presence, not clipping or actual visibility; no physical accessibility-service certification.",
+    "Recovery/export picker cancellation is exercised; this review does not claim successful external-provider writes.",
+    "No native-human, complete-locale, merged-source, production or release certification."
+  ],
+  "source_edits_performed": false,
+  "publication_performed": false,
+  "blocking_findings": []
+}

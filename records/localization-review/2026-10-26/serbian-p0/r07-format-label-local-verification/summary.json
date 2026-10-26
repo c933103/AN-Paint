@@ -1,0 +1,61 @@
+{
+  "record": "Local successor implementation evidence only; no source PR",
+  "base_head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+  "base_tree": "385bd19a6cd68c7b8ce9644f157e4acb4e4cf93e",
+  "verified_frozen_files": 1385,
+  "exact_changed_files": 5,
+  "production_changes": {
+    "locale": "sr-Cyrl",
+    "keys": [
+      "save20_file_format",
+      "ui_autosave_is_paused_to_protect_that_draft_use"
+    ],
+    "accepted_review": "https://github.com/c933103/AN-Paint/tree/747437e11d94a88aeacc826cc8f2f7f227bc9a14/records/localization-review/2026-10-26/serbian-p0/r04-format-label-review/"
+  },
+  "host_tests": {
+    "ordinary": {
+      "run": 1423,
+      "seconds": 198.991,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    "optimized": {
+      "run": 1423,
+      "seconds": 196.504,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    "focused_writer": {
+      "tests_each_mode": 15,
+      "source": "parent report; full suite logs include focused methods"
+    },
+    "independent_subset": {
+      "tests_each_mode": 7,
+      "receipt": "review-host-tests.json"
+    },
+    "log_note": "Expected synthetic negative-control diagnostics appear after unittest OK due output buffering; both explicit FULL_SUITE_EXIT values are zero."
+  },
+  "accounting": {
+    "unchanged_prior_reviewed": 147,
+    "unchanged_inherited": 337,
+    "current_unique_reviewed": 149,
+    "Latin_unchanged": true,
+    "holds_and_presence_unchanged": true
+  },
+  "snapshot_status": {
+    "observed_at_utc": "2026-10-26T19:12:33Z",
+    "PR180_head": "6b7cbfceefe66f7a78a46e792f57b49455384e18",
+    "PR180_merged": false,
+    "successor_source_PR": "not published"
+  },
+  "next_action": "After actual PR180 merge, re-read/rebase/rebind to merged source before publishing successor source PR under existing authorization. Evidence publication is not an implementation approval gate.",
+  "limits": [
+    "No source patch or source files published in this record.",
+    "No Kotlin/JVM compilation/execution, Android build, hosted successor CI or device verification claim.",
+    "Static independent review plus local host tests only.",
+    "No merge-ready, native-human, whole-language or release claim.",
+    "Original PR180 remains frozen and its exact-head review is independent."
+  ]
+}
