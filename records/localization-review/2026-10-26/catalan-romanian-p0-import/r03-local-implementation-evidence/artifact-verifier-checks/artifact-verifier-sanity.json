@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "record_kind": "Synthetic artifact-verifier sanity controls; not hosted result evidence",
+  "source_head": "06a2e4078efa1fe8ef8ea37b186ece0431633f08",
+  "source_tree": "949f87f736d4d12de2a92a1834ad35332ab01a1a",
+  "actual_source_blob_identities_verified": 1376,
+  "expected_packaged_tracked_count": 1373,
+  "packager_exclusions": [
+    ".gitignore",
+    ".idea/codeStyles/Project.xml",
+    "colorpicker/.gitignore"
+  ],
+  "compiled_review_scope_by_locale": {
+    "ca": 23,
+    "ro": 23,
+    "da": 78,
+    "no": 78,
+    "nn": 80
+  },
+  "new_reviewed_scope": {
+    "ca": 13,
+    "ro": 13
+  },
+  "prior_reviewed_scope": {
+    "ca": 10,
+    "ro": 10,
+    "da": 78,
+    "no": 78,
+    "nn": 80
+  },
+  "CA_RO_new_prior_keys_disjoint": true,
+  "total_compiled_review_scope": 282,
+  "source_derived_focused_method_counts": {
+    "CatalanRomanianImportWordingTest": 2,
+    "CatalanRomanianSaveWordingTest": 2,
+    "DanishNorwegianP0Test": 4,
+    "NynorskRemainingP0Test": 4,
+    "NynorskSaveWordingTest": 2,
+    "DerivedExportStateTest": 7,
+    "ImportSelectionTitleTest": 12,
+    "TaggedColourImportTest": 5
+  },
+  "scripts_sha256": {
+    "verify_apk_artifact.py": "bab7d3c50eb2fb1fdc03e9f54a41edde40328346676f6d29712c676ffb8ea182",
+    "verify_regression_artifact.py": "6a7ce571f8255822afc166a5690aaff4c32ea5f5ae707278b04583cf88fced1a",
+    "verify_api35_artifact.py": "513e2cdbddbdef2116efd2072ceb146dcef01c8b518b88351f5fca92d0931cf7",
+    "verify_exact_script_artifact.py": "32750c5aa50176bd5af58b2f84537350ecf49e602e39bec2c3a9248575040048",
+    "test_artifact_verifiers.py": "f892aa6d968312f69f2418022c502904c09fda146e6dbf2629d4f654d5091e20"
+  },
+  "positive_controls": 4,
+  "negative_controls_rejected": 33,
+  "controls": [
+    {
+      "suite": "apk",
+      "case": "282 exact reviewed displays and 1373 packaged synthetic files",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "apk",
+      "case": "ca compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch ca/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "ro compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch ro/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "da compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch da/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "no compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch no/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "nn compiled value mismatch",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch nn/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "missing Catalan compiled value",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "compiled reviewed text mismatch ca/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong archive digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact digest"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong source tree",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "tree binding"
+    },
+    {
+      "suite": "apk",
+      "case": "wrong tracked count",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "tracked source inventory"
+    },
+    {
+      "suite": "apk",
+      "case": "missing tracked source file",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "unexpected packager exclusions"
+    },
+    {
+      "suite": "apk",
+      "case": "changed packaged bytes",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "packaged source mismatch Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianImportWordingTest.kt"
+    },
+    {
+      "suite": "apk",
+      "case": "duplicate compiled locale value",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "duplicate compiled value ca/formats22_animation_message"
+    },
+    {
+      "suite": "apk",
+      "case": "missing v2 signature",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "signature schemes"
+    },
+    {
+      "suite": "apk",
+      "case": "overlapping CA/RO import and prior Save keys",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "overlapping CA/RO import and Save review scopes"
+    },
+    {
+      "suite": "regression",
+      "case": "source-derived focused suites and explicit hosted Python skips",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "regression",
+      "case": "wrong digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact digest"
+    },
+    {
+      "suite": "regression",
+      "case": "missing new suite",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "missing focused suite"
+    },
+    {
+      "suite": "regression",
+      "case": "failed method",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused skipped/failed method CatalanRomanianImportWordingTest"
+    },
+    {
+      "suite": "regression",
+      "case": "skipped method",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused skipped/failed method CatalanRomanianImportWordingTest"
+    },
+    {
+      "suite": "regression",
+      "case": "failed phase",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "phase failure/ambiguous receipt jvm"
+    },
+    {
+      "suite": "regression",
+      "case": "ambiguous Python summary",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "ambiguous/missing Python terminal success"
+    },
+    {
+      "suite": "regression",
+      "case": "method not declared in source",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "focused source/method inventory differs CatalanRomanianImportWordingTest"
+    },
+    {
+      "suite": "exact-script",
+      "case": "13 synthetic probes including expected rejection",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "exact-script",
+      "case": "wrong digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "archive digest"
+    },
+    {
+      "suite": "exact-script",
+      "case": "wrong commit",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "source identity/result"
+    },
+    {
+      "suite": "exact-script",
+      "case": "missing probe",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "probe inventory"
+    },
+    {
+      "suite": "exact-script",
+      "case": "unexpected exit",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "unexpected exit"
+    },
+    {
+      "suite": "exact-script",
+      "case": "corrupt log",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "probe log hash"
+    },
+    {
+      "suite": "api35",
+      "case": "synthetic identity/case plumbing with stub coverage validators",
+      "expected": "accept synthetic fixture",
+      "outcome": "accepted synthetic fixture"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong digest",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "API35 artifact digest"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong app APK hash",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "identity apk_sha256"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong tested commit",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "identity commit"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong workflow head",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "artifact workflow head"
+    },
+    {
+      "suite": "api35",
+      "case": "unexpected native case",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "native case identity"
+    },
+    {
+      "suite": "api35",
+      "case": "failed native case",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "native result"
+    },
+    {
+      "suite": "api35",
+      "case": "wrong test APK archive",
+      "expected": "reject",
+      "outcome": "rejected",
+      "reason": "test APK archive digest"
+    }
+  ],
+  "limits": [
+    "All archive contents, run/artifact IDs, APK/signature output and execution outcomes in these controls are synthetic.",
+    "API35 source-validator calls are stubbed here only to test artifact identity/case plumbing; actual artifact verification must call the real exact-head source validators.",
+    "No Android compilation, JVM/emulator execution, APK authenticity, hosted success or release acceptance is established by synthetic controls.",
+    "Hosted Python skip counts are carried explicitly, not promoted to passed or inferred from local tests.",
+    "No new linguistic acceptance or whole-locale/native-human/device/layout certification."
+  ]
+}

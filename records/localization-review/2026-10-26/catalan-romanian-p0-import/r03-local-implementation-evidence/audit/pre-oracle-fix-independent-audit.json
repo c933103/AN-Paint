@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent bounded Catalan/Romanian import-format implementation and evidence audit",
+  "assessment": "No unresolved defect identified in the checked static, data, focused-host and public-payload scope. This is not full-suite or merge eligibility.",
+  "source_commit": "6a42948a3ac7bad241d502f3b6c18ebf1c0327d8",
+  "source_tree": "65afa7b96a83c08e0ae08365166dec0520694356",
+  "implementation_manifest_sha256": "abce80ae44ddbbd81710b8a55dce0f3d12c286cd79e234342dccb02633d4f6ed",
+  "implementation_files": [
+    {
+      "path": "Paintroid/src/main/res/values-ca/strings.xml",
+      "bytes": 10933,
+      "sha256": "83e82b1788bbbb474510a0c8611c57d4420de4830d0c17790dc3a486a40b8876",
+      "git_blob_sha1": "6853117430740b0fda5458e33bd1bab0b053cf9d",
+      "old_git_blob_sha1": "b59c2fa4524dd03a3c13555b9a787bacc2dd656d",
+      "mode": "100644"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-ro/strings.xml",
+      "bytes": 11025,
+      "sha256": "993277a2a573ca775a6265482e67c3738d22bdbd8b43f01e4380b3f19c9c1016",
+      "git_blob_sha1": "501c013c1ecab90525fe05c162a9a46c1608defc",
+      "old_git_blob_sha1": "c30d9cf042ffd84ad4bfd9623af5c2e7e97cdeac",
+      "mode": "100644"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianImportWordingTest.kt",
+      "bytes": 9373,
+      "sha256": "bcc09d631a1aafbbf1e11fb77252ea9aaeae8772068f6f980265cf52047daf76",
+      "git_blob_sha1": "5a474f4a89bbbe80b1fc0003b35e15d64a3bf9f7",
+      "old_git_blob_sha1": null,
+      "mode": "100644"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionTitleTest.kt",
+      "bytes": 19147,
+      "sha256": "09bec0b842992366e06ebccc98c24949bda7203ad48503c58697f4e154942c9c",
+      "git_blob_sha1": "886214cc8bba61b4ede33169e9c51dcaad2c893e",
+      "old_git_blob_sha1": "ea26f8deddc6199e783f48da85c578d4f97db8f6",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/fixtures/current_localization/catalan_romanian_import_wording.json",
+      "bytes": 51825,
+      "sha256": "28bb92b7312687e6bd78411cccbdcd291922be3fe50e5fb1cd9a18e585e50d0b",
+      "git_blob_sha1": "8ce2119cf0c7bbf6c612c7cb9cbb38a9a7c1ee70",
+      "old_git_blob_sha1": null,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/test_catalan_romanian_import_wording.py",
+      "bytes": 8614,
+      "sha256": "32475927f3b2e7ba264fa35ec4e569c1159f20fbba219127825c4c0fb5e3df1e",
+      "git_blob_sha1": "03cd4f71e9e99ecd4d7d90b57e7e17afa4d3bfb8",
+      "old_git_blob_sha1": null,
+      "mode": "100644"
+    },
+    {
+      "path": "tools/test_catalan_romanian_save_wording.py",
+      "bytes": 8573,
+      "sha256": "0ae673954eb5c35f3bbb46cfa0b7003910f854f8872645311e86e6509ce4107c",
+      "git_blob_sha1": "870578cb64121e281c0236f174aadb1b12166cdb",
+      "old_git_blob_sha1": "df0ce3a58d189b1b1c9842a7ba711ec881178497",
+      "mode": "100644"
+    }
+  ],
+  "approved_values_sha256": "0234033168c0b947805928f1bd64362c784b027f1cf58d9a35d32348d4fa1232",
+  "independent_review_sha256": {
+    "ca": "bc246f0db6a4adfaf55a0f900759587c7a8e2b4766b1a6ad7154b9f7ef38bf0f",
+    "ro": "27974f24343259f1f04cf666035e0e7738161a43a81f812a95048045f914d09d"
+  },
+  "independent_data_results": {
+    "source_commit": "6a42948a3ac7bad241d502f3b6c18ebf1c0327d8",
+    "source_tree": "65afa7b96a83c08e0ae08365166dec0520694356",
+    "baseline_blobs_verified": 1373,
+    "existing_changed_paths": [
+      "Paintroid/src/main/res/values-ca/strings.xml",
+      "Paintroid/src/main/res/values-ro/strings.xml",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionTitleTest.kt",
+      "tools/test_catalan_romanian_save_wording.py"
+    ],
+    "new_paths": [
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianImportWordingTest.kt",
+      "tools/fixtures/current_localization/catalan_romanian_import_wording.json",
+      "tools/test_catalan_romanian_import_wording.py"
+    ],
+    "implementation_manifest_sha256": "abce80ae44ddbbd81710b8a55dce0f3d12c286cd79e234342dccb02633d4f6ed",
+    "locales": {
+      "ca": {
+        "exact_new_values": 13,
+        "inherited_unchanged": 137,
+        "total_after": 150,
+        "P0_before": 19,
+        "P0_after": 32,
+        "P0_denominator": 92,
+        "P0_missing_after": 60,
+        "holds": 5,
+        "other_unselected_missing": 55
+      },
+      "ro": {
+        "exact_new_values": 13,
+        "inherited_unchanged": 137,
+        "total_after": 150,
+        "P0_before": 19,
+        "P0_after": 32,
+        "P0_denominator": 92,
+        "P0_missing_after": 60,
+        "holds": 5,
+        "other_unselected_missing": 55
+      }
+    },
+    "exact_review_revisions_applied": [
+      "ca/string/formats22_ascii_description"
+    ],
+    "other_catalogues_unchanged": 172,
+    "prior_fixtures_unchanged": 75,
+    "source_bindings_verified": 323,
+    "consumer_windows_verified": 16,
+    "prior_save_test_change": "Current catalogue total only, 137 to 150; all assertions otherwise identical.",
+    "no_linguistic_or_runtime_acceptance_created": true
+  },
+  "scope_notes": [
+    "All 26 complete final values and exact attributes/source/format hashes join to existing independent receipts; Catalan has 12 unchanged plus the exact ASCII revision, Romanian has 13 unchanged.",
+    "All 274 inherited values/attributes, prior ten Save values per locale and existing terminology are unchanged; old review scopes are not newly accepted or revoked.",
+    "Per locale P0 presence is 32/92; the remaining 60 are five holds plus 55 unselected nonheld identities, not 60 known defects.",
+    "The full indexed/unindexed/nonargument token inventory is preserved; zero selected source values have formatted=false.",
+    "All 323 file bindings, 16 exact reference windows and 1373 baseline Git blobs were independently checked. Reuse from the earlier source is 321 identical bindings and two freshly bound locale catalogues.",
+    "All 172 other catalogues and 75 prior fixture files remain byte-identical; paired P1, frozen history and global 59/112 boundaries remain unchanged."
+  ],
+  "host_tests": {
+    "modules": [
+      "test_catalan_romanian_import_wording",
+      "test_catalan_romanian_save_wording"
+    ],
+    "runs": [
+      {
+        "mode": "ordinary",
+        "tests": 14,
+        "seconds": 0.143,
+        "result": "OK",
+        "skips": 0,
+        "log_sha256": "77d46210f960aec68e8d967773a42d7a6f49cac58339d8c47c73220e0b2d65be"
+      },
+      {
+        "mode": "optimized",
+        "tests": 14,
+        "seconds": 0.177,
+        "result": "OK",
+        "skips": 0,
+        "log_sha256": "13e9e2ac3ebaf71c6e973d57fa680a7da1d6b1ea8587ce33fb757aaaa8776fed"
+      }
+    ],
+    "new_module_tests": 7,
+    "prior_save_module_tests": 7,
+    "full_host_suite": "Not run or certified by this audit. Owning workflow reported two nonterminal error markers awaiting exact traceback; no failure cause or terminal outcome inferred."
+  },
+  "packet_verifier": {
+    "verify_candidates_sha256": "e477293a84d00692a468e9c9177756992326b2b8a87969823ddd9c52a6075055",
+    "test_verifier_sha256": "d6b80b148c89a45892731be214dbce184a77dc5d5756d40ba114d921b66a8eb5",
+    "independently_reproduced_controls": [
+      {
+        "mode": "ordinary",
+        "positive_packet": "passed",
+        "packet_negatives_rejected": 90,
+        "synthetic_formatted_false_negatives_rejected": 13,
+        "synthetic_formatted_false_positive": "passed",
+        "actual_formatted_false_values": 0,
+        "receipt_sha256": "41e895d59351edf3b2c3903d19b78a79e2a39bfe1f06ebe27a8cb13a43ad74ee"
+      },
+      {
+        "mode": "optimized",
+        "positive_packet": "passed",
+        "packet_negatives_rejected": 90,
+        "synthetic_formatted_false_negatives_rejected": 13,
+        "synthetic_formatted_false_positive": "passed",
+        "actual_formatted_false_values": 0,
+        "receipt_sha256": "41e895d59351edf3b2c3903d19b78a79e2a39bfe1f06ebe27a8cb13a43ad74ee"
+      }
+    ],
+    "ordinary_optimized_and_staged_receipts_identical": true
+  },
+  "Kotlin_static_audit": {
+    "new_compiled_and_options_test_methods": 2,
+    "prior_import_test_methods_preserved": 11,
+    "new_import_decision_test_methods": 1,
+    "application_production_code_changed": false,
+    "resource_setup": "Tests call production AppLanguage.select and refresh before constructing localized dialogs; no test forces successful labels or text.",
+    "meaningful_paths": [
+      "Actual SaveOptionsDialog format selection changes GIF/JPEG/WebP/ASCII descriptions and visibility.",
+      "Actual lossless checkbox toggles quality visibility.",
+      "Invalid slash-containing filename is rejected twice without confirm/cancel, with exact localized error and dialog retained.",
+      "Button cancellation and system-style cancellation each fire once without confirmation.",
+      "Production AnimationInfo scanner proves uncertain and lower-bound GIF states plus the APNG separate-default-image case.",
+      "Production ImportSelection warning body/title/count composition and open/cancel decisions are exercised by the test code.",
+      "Cancel deletes the staged file; confirmed selection occurs once, selects page zero, and transfers file ownership across disposal."
+    ],
+    "compiled_static_only": [
+      "formats22_pdf_raster_hint: no PDF picker/render branch execution in these new tests.",
+      "save20_unsupported_image_colour: no unsupported-colour failure branch execution in these new tests."
+    ],
+    "execution_limit": "Kotlin reviewed statically only; no local Android compilation/JVM/emulator/device execution claimed."
+  },
+  "public_payloads": [
+    {
+      "folder": "candidate-public",
+      "files_including_manifest": 17,
+      "manifest_sha256": "6a34df33a6e383583a3437ce5097c9828ea73ccacdf6533f9ba96ac61ce93e82",
+      "all_sizes_SHA256_and_Git_identities_exact": true
+    },
+    {
+      "folder": "review-public",
+      "files_including_manifest": 5,
+      "manifest_sha256": "e8a1c044318b53614c7a40c22805339d6b68b45e3fcd582de50f1a32bbb6d298",
+      "all_sizes_SHA256_and_Git_identities_exact": true
+    }
+  ],
+  "total_public_files_audited": 22,
+  "public_privacy": "Decoded JSON, Markdown and Python contain authorized project proposals, source context, full review qualifications and test evidence only. No credentials, private links, actual local/control paths, internal routing or unrelated private data identified. Preparation/review-writer helpers and bytecode caches are excluded. Original candidates, reviews and approved-value bytes match staging.",
+  "finding": {
+    "kind": "Public README receipt-location wording",
+    "status": "closed before publication",
+    "original_readme_sha256": "8462b359d22623bd0c3a3246969de99834d1fa9d0e82774de512a775b3fd4a88",
+    "detail": "Earlier wording implied the narrower preparation run was retained inside the staged validation package, which held only final receipts. The final README accurately says the earlier run was superseded during preparation. No source, translation or review verdict changed.",
+    "corrected_readme_sha256": "a495a8baff526b07b2d6ed82741dca18e642af785c7b4a71177ee44f32ac0941"
+  },
+  "concrete_unresolved_defects_in_checked_scope": 0,
+  "limits": [
+    "No new linguistic judgment; existing bounded AI complete-value qualifications are preserved, including mixed English count/labels, nominal PDF 144 dpi, filename-predicate limits and inherited dithering terminology.",
+    "No whole-language, native-human, physical-device, layout, accessibility rendering or release certification.",
+    "No source or external-state writes by this auditor. No remote publication/readback or commit-signature authentication performed here.",
+    "Full host/hosted exact-head CI and artifact gates are separate and not certified here.",
+    "PR56 never-merge, PR113 hold/retarget, PR159 freeze, Help callback/archive identity, interrupted-archive and release pauses are unchanged."
+  ]
+}
