@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "locale": "hr",
+  "status": "Independent AI review accepted as a separate atomic two-value successor preparation; not applied to PR183 or production",
+  "input_file": "context-and-candidates.json",
+  "input_sha256": "1b94a69da278fc3a63dfdecd766efcccc1d2f7d4f512841ee0b22795788de42f",
+  "source_head": "b97ba1e0b4abe31f9758242a82e8ff58f356ffe4",
+  "source_tree": "d41defc26ef6870aa35393c2f3fb909c5e803747",
+  "source_binding": {
+    "provenance": "Head/tree are the packet-declared source binding; the complete included consumer contents were independently hash-verified. No new remote-head verification is claimed.",
+    "consumer_files": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+        "sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+        "included_content_sha256_verified": true
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+        "sha256": "b246e44e8aaf1e2d10455c737dfc9afc129ed9ae71b23a1468e17c7d98d19ee3",
+        "included_content_sha256_verified": true
+      }
+    ]
+  },
+  "entries": [
+    {
+      "identity": "string/save20_dither",
+      "attributes": {
+        "name": "save20_dither"
+      },
+      "source": "Dither colours",
+      "current_xml_text": "\"Zamućivanje\"",
+      "original_xml_text": "\"Dithering boja\"",
+      "decision": "accept",
+      "accepted_xml_text": "\"Dithering boja\"",
+      "reason": "Accept the complete checkbox label „Dithering boja“ as a concise technical borrowing qualified by Croatian genitive plural boja. It names colour dithering instead of blurring and is suitable as a noun-phrase option label. It does not imply applying blur, animation, transparency or a different algorithm. The paired explanation supplies its purpose. No better fully localized technical label is established by the available evidence, so none is invented.",
+      "confidence": {
+        "level": "moderate",
+        "scope": "Croatian technical UI wording and source-static semantics; intelligible borrowing, not certification of preferred native terminology"
+      },
+      "qualifications": [
+        "Dithering remains an English technical loanword. This acceptance does not claim it is the uniquely standard Croatian term or that every novice will recognize it without the adjacent explanation.",
+        "The initial checked state comes from initial.dither, whose type default is true; it is not unconditionally enabled. Changing the label does not change the option state or encoder behavior."
+      ],
+      "source_value_sha256_utf8": "b53584067630f8ea1d0e89a16b4949fdde5ddedbdabe664c0a814d8da98bffe0",
+      "current_value_sha256_utf8": "351e371d2b8a53073a446b1a5172151f49a07e97cf27249a7215a59665f0f013",
+      "original_value_sha256_utf8": "86e7caeebc60fd3fc9430b9b29d5e8225a9e7b9f904380114c859a948e9a1df8",
+      "accepted_value_sha256_utf8": "86e7caeebc60fd3fc9430b9b29d5e8225a9e7b9f904380114c859a948e9a1df8"
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "current_xml_text": "\"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja (opcija je označena „Zamućivanje“). Animirane GIF slike otvaraju se kao prvi kadar animacije.\"",
+      "original_xml_text": "\"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja. Animirane GIF slike otvaraju se kao prvi kadar animacije.\"",
+      "decision": "accept",
+      "accepted_xml_text": "\"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja. Animirane GIF slike otvaraju se kao prvi kadar animacije.\"",
+      "reason": "Accept the entire GIF explanation: a static image, at most 256 colours, dithering softening colour transitions, and animated GIF import as the first frame are all retained. „ublažava prijelaze između boja“ describes the visual effect rather than a blur operation. Removing only the obsolete Zamućivanje-label parenthetical is correct once the checkbox label changes atomically; it removes misleading legacy guidance without weakening the format or animation-loss statements.",
+      "confidence": {
+        "level": "high",
+        "scope": "Whole-value Croatian meaning and exact source/option context; not human or installed-layout certification"
+      },
+      "qualifications": [
+        "The technical loanword Dithering is retained consistently with the accepted checkbox label.",
+        "This description remains visible for GIF independently of the checkbox checked state; it explains what dithering does, not that dithering is necessarily enabled.",
+        "The source statement concerns first-frame import and static output; it does not promise preservation of GIF animation."
+      ],
+      "source_value_sha256_utf8": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "current_value_sha256_utf8": "b0b581206db4e61e2738df11329f8025b1e32cbcecbf1ccd5eb01b367ffb94b6",
+      "original_value_sha256_utf8": "a05cf6504afeafbf237fab819e247f8fb6021b0b42545570410e980cd9717c64",
+      "accepted_value_sha256_utf8": "a05cf6504afeafbf237fab819e247f8fb6021b0b42545570410e980cd9717c64"
+    }
+  ],
+  "accepted_pair_sha256_utf8": "664335172ab32ab385869a99507d51f3278f30c9525c5e080d000a6b76010e19",
+  "accepted_pair_hash_definition": "SHA-256 of UTF-8 JSON array sorted by identity; each object contains identity, attributes and accepted_xml_text; JSON ensure_ascii=False, sort_keys=True, separators=(comma,colon), with no trailing newline.",
+  "accepted_pair_canonical_json": "[{\"accepted_xml_text\":\"\\\"Dithering boja\\\"\",\"attributes\":{\"name\":\"save20_dither\"},\"identity\":\"string/save20_dither\"},{\"accepted_xml_text\":\"\\\"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja. Animirane GIF slike otvaraju se kao prvi kadar animacije.\\\"\",\"attributes\":{\"name\":\"save20_gif_description\"},\"identity\":\"string/save20_gif_description\"}]",
+  "consumer_verification": [
+    {
+      "file": "SaveOptionsDialog.kt",
+      "lines": [
+        25,
+        64
+      ],
+      "finding": "ExportOptions defaults dither to true, but the checkbox is initialized from initial.dither; caller-supplied false remains false."
+    },
+    {
+      "file": "SaveOptionsDialog.kt",
+      "lines": [
+        90,
+        95,
+        105
+      ],
+      "finding": "ditherBox is VISIBLE only for GIF and GONE otherwise. GIF selects save20_gif_description; the explanation is not conditional on ditherBox.isChecked."
+    },
+    {
+      "file": "SaveOptionsDialog.kt",
+      "lines": [
+        86,
+        90,
+        94,
+        95,
+        105,
+        106,
+        114,
+        115,
+        116,
+        117
+      ],
+      "finding": "Format changes call update(), which changes visibility and explanatory text but does not reset the existing checkbox state."
+    },
+    {
+      "file": "SaveOptionsDialog.kt",
+      "lines": [
+        196
+      ],
+      "finding": "Confirmation passes the actual ditherBox.isChecked Boolean into ExportOptions. The label is presentation text, not a mode identifier or implementation flag."
+    },
+    {
+      "file": "ImageExporter.kt",
+      "lines": [
+        17
+      ],
+      "finding": "The BMP/GIF dispatch forwards options.dither and a separate GIF Boolean to BitmapFileCodec. This verifies option forwarding, not the codec implementation; no downstream algorithm behavior beyond the included source is certified."
+    }
+  ],
+  "terminology_evidence": {
+    "decision_basis": "Independent bounded Croatian reading plus exact application source context. No native-human citation or authority is claimed.",
+    "supplemental_primary_source": {
+      "url": "https://docs.krita.org/en/general_concepts/colors/color_managed_workflow.html?highlight=export",
+      "use": "Supports only the technical distinction that dithering can make gradients appear smoother; English documentation does not establish Croatian wording."
+    },
+    "croatian_external_lookup": "No fetched primary source was sufficient to establish a preferred Croatian UI term. A GNOME Croatian translation archive result could not be fetched, so it was not used as evidence."
+  },
+  "atomicity_conditions": [
+    "Apply both accepted values together in a separate successor; the old Zamućivanje parenthetical becomes obsolete only with the label correction.",
+    "Do not alter PR183 or its frozen 156-value acceptance record as part of this review.",
+    "If the target branch changes, rebind current full values, consumer source hashes and affected tests before publication."
+  ],
+  "limits": [
+    "AI technical-linguistic/source-static review, not native-human, whole-language, runtime, screenshot/layout, physical-device or release certification.",
+    "No new algorithm, checkbox default, saved preference, encoder-state or other-locale change is authorized by this review.",
+    "Only review.json is written; source files, candidates and prior acceptance records remain unchanged."
+  ]
+}
