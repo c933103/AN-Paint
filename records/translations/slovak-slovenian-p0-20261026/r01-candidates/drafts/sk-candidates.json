@@ -1,0 +1,805 @@
+{
+  "locale": "sk",
+  "source_commit": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+  "source_tree": "806d9577409c4044212d1c12e6e38da46417bae6",
+  "author_role": "AI candidate author, not independent reviewer or native-human certifier",
+  "source_context_sha256": "ab50576189d1daf12d0c16cba38a0a885bcb7822e0e05d572ac2d3527745cad4",
+  "candidates": [
+    {
+      "identity": "string/formats22_animation_message",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "proposed_xml_text": "\"Tento obrázok vo formáte %1$s má nasledujúci počet snímok: %2$s. AN Paint upravuje statické obrázky a nezachováva animáciu.\"",
+      "semantic_rationale": "Uses a count-introducing phrase to avoid Slovak plural inflection around arbitrary %2$s (including the unchanged English at least count). Retains no animation preservation.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "proposed_xml_text": "\"Tento obrázok PNG má samostatný predvolený obrázok. Namiesto animovaných snímok sa importuje tento obrázok. Uložením sa vytvorí statický obrázok.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; APNG separate default image, not its animated frames, is imported; preserve that distinction.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "proposed_xml_text": "\"Importuje sa iba prvá snímka. Uložením sa vytvorí statický obrázok.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "source": "Animated image",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "proposed_xml_text": "\"Animovaný obrázok\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "proposed_xml_text": "\"Tento obrázok vo formáte %1$s je príliš zložitý na overenie, či obsahuje viacero snímok. AN Paint otvorí iba statický obrázok a nezachová žiadnu animáciu.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; frameCount < 2 means animation inspection uncertainty, not confirmed one-frame or absence of animation.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "proposed_xml_text": "\"Zapíše obyčajný text pomocou svetlých a tmavých znakov. Zobrazte ho písmom s pevnou šírkou znakov. Ide o vizuálne stvárnenie; nemožno ho znova otvoriť ako pôvodný obrázok.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Visual text rendition cannot be reopened as the original image; not a reversible source or normal full-image Save.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "source": "Open still image",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "proposed_xml_text": "\"Otvoriť statický obrázok\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "proposed_xml_text": "\"Strany PDF sa vykresľujú s rozlíšením 144 dpi. Text a vektorové objekty sa zmenia na pixely.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; 144 dpi is a fixed product claim; preserve rasterization of vector/text to pixels.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "proposed_xml_text": "\"Statický obrázok s najviac 256 farbami. Rozptyľovanie vyhladzuje farebné prechody. Animované obrázky GIF sa otvoria ako ich prvá snímka.\"",
+      "semantic_rationale": "Uses inherited Rozptyľovanie for dithering, max256 colours, static output and first-frame GIF import.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "source": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "proposed_xml_text": "\"Zadajte názov súboru bez lomiek a riadiacich znakov.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Reject slash/control characters; not an assertion that all other names are accepted. Consumer retains ExportNames.valid logic.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "proposed_xml_text": "\"Vyššia kvalita zachová viac detailov a zvyčajne vytvorí väčší súbor.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "proposed_xml_text": "\"Tento obrázok používa farebný profil, ktorý AN Paint zatiaľ nedokáže previesť. Pred importom ho preveďte na PNG v priestore sRGB v editore so správou farieb.\"",
+      "semantic_rationale": "Requires actual conversion to sRGB PNG in a colour-managed editor; no automatic conversion or retagging promise.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "proposed_xml_text": "\"Vyššia kvalita zvyčajne vytvorí väčší súbor. Bezstratová kompresia zachová každú farebnú hodnotu.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Lossless is a compression mode and retains every color value. Existing mode labels can remain English fallback; candidate is explanation only.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "proposed_xml_text": "\"%1$s Bola zachovaná samostatná kópia na obnovu. Pomocou Súbor > Exportovať kópiu na obnovu… uložte jej archív ZIP. Extrahujte z neho canvas.png a načítajte tento obrázok, aby ste v prípade potreby mohli použiť bežné možnosti zmeny mierky.\"",
+      "semantic_rationale": "Rendered failure prefix then actual retained separate copy; same-group recovery export label and literal ZIP/canvas.png; ordinary resize options not automatic scaling.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "source": "Autosave failed · use Save",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "proposed_xml_text": "\"Automatické ukladanie zlyhalo · použite Uložiť\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "source": "Autosave image encoding failed.",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "proposed_xml_text": "\"Kódovanie obrázka pri automatickom ukladaní zlyhalo.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "proposed_xml_text": "\"%1$s Automatické ukladanie je pozastavené, aby sa ochránila táto rozpracovaná kresba. Pomocou „Súbor → Exportovať kópiu na obnovu…“ ju zachovajte a pomocou „Súbor → Uložiť ako…“ (Image format: PNG / JPEG) uložte svoju aktuálnu prácu.\"",
+      "semantic_rationale": "Paused autosave protects old draft; same-group recovery action preserves it while inherited Save-as and Image format labels save current work. Does not claim separate copy already retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "source": "Autosave metadata is missing.",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "proposed_xml_text": "\"Chýbajú metadáta automatického uloženia.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "source": "Autosave paused · use Save",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "proposed_xml_text": "\"Automatické ukladanie je pozastavené · použite Uložiť\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "source": "Autosave pixels are missing.",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "proposed_xml_text": "\"Chýbajú pixely automatického uloženia.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "source": "Autosave pixels could not be read.",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "proposed_xml_text": "\"Pixely automatického uloženia sa nepodarilo prečítať.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "source": "Autosave selection encoding failed.",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "proposed_xml_text": "\"Kódovanie výberu pri automatickom ukladaní zlyhalo.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "proposed_xml_text": "\"Nemožno vytvoriť vyrovnávaciu pamäť na vrátenie zmien. Uvoľnite miesto v úložisku zariadenia a skúste to znova.\"",
+      "semantic_rationale": "Undo cache uses a cache term but the remedy explicitly frees device storage, not RAM.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "source": "Could not export the recovery copy",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "proposed_xml_text": "\"Kópiu na obnovu sa nepodarilo exportovať\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Prefix passed to ioFailed; caller attaches error details. Keep no added terminal punctuation.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "source": "Draft not saved yet",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "proposed_xml_text": "\"Rozpracovaná kresba ešte nie je uložená\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "source": "Draft restored",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "proposed_xml_text": "\"Rozpracovaná kresba bola obnovená\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Startup recovery status only; not a claim that all undo history was recovered.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "source": "Draft saved",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "proposed_xml_text": "\"Rozpracovaná kresba bola uložená\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Autosave draft status only. Must not imply explicit Save target updated or unsaved drawing state cleared.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "source": "Export recovery copy…",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "proposed_xml_text": "\"Exportovať kópiu na obnovu…\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Conditional File-menu action appears only when autosave is blocked or recovery copies exist. Ellipsis retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "source": "Export recovery copy",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "proposed_xml_text": "\"Exportovať kópiu na obnovu\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Dialog title for choosing one of several recovery copies; no ellipsis in canonical title.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "proposed_xml_text": "\"Plátno bolo obnovené, ale jeho históriu vrátenia zmien sa nepodarilo prečítať. Pôvodná rozpracovaná kresba bola zachovaná ako kópia na obnovu.\"",
+      "semantic_rationale": "Separately states restored canvas, unreadable undo history, and preserved original draft; formatted=false retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "source": "Invalid autosave metadata.",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "proposed_xml_text": "\"Neplatné metadáta automatického uloženia.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "source": "Previous draft kept for recovery",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "proposed_xml_text": "\"Predchádzajúca rozpracovaná kresba bola zachovaná na obnovu\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "source": "Recovered image",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "proposed_xml_text": "\"Obnovený obrázok\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Fallback filename/title, not a new success claim or format name.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "proposed_xml_text": "\"Kópia na obnovu bola exportovaná. Extrahujte canvas.png z archívu ZIP a otvorte ho pomocou „Súbor > Load image…“. Archív ZIP obsahuje aj nastavenia rozpracovanej kresby a prípadný plávajúci výber.\"",
+      "semantic_rationale": "Successful ZIP export, literal canvas.png, actual fallback Load image… label, draft settings and one optional floating selection retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "source": "The draft is saving. Try again shortly.",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "proposed_xml_text": "\"Rozpracovaná kresba sa ukladá. Skúste to znova o chvíľu.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; In-progress autosave prevents edits temporarily; not an instruction to Save again.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "proposed_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo presunúť do kópie na obnovu.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Used if the prior draft source is missing or rename to a separate recovery file fails. Retain source wording without promising a copy exists.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "source": "The previous draft could not be preserved separately.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "proposed_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo zachovať samostatne.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "source": "The previous draft could not be restored.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "proposed_xml_text": "\"Predchádzajúcu rozpracovanú kresbu sa nepodarilo obnoviť.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "source": "The previous draft needs more memory to reopen.",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "proposed_xml_text": "\"Na opätovné otvorenie predchádzajúcej rozpracovanej kresby je potrebná väčšia pamäť.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "source": "The undo cache is damaged.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "proposed_xml_text": "\"Vyrovnávacia pamäť na vrátenie zmien je poškodená.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "source": "Unexpected data in the undo cache.",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "proposed_xml_text": "\"Neočakávané údaje vo vyrovnávacej pamäti na vrátenie zmien.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "source": "An assembly source image is missing.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "proposed_xml_text": "\"Chýba zdrojový obrázok zostavy.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Source image file in saved assembly metadata missing, not necessarily the rendered output image.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "source": "Assembly saved",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "proposed_xml_text": "\"Zostava bola uložená\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; After assembled PNG bytes are written to chosen URI. Do not infer an editable assembly interchange format or a Save-target update for the separate drawing editor.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "proposed_xml_text": "\"Odhaduje sa, že táto zostava prekročí aktuálny limit pracovnej pamäte aj pri najmenšej veľkosti výstupu. Pri súčasných obmedzeniach samotné zmenšenie rozmerov zostavy nestačí. Pred ďalším pokusom zatvorte iné dokumenty alebo pripravte menší zdrojový obrázok. Vaša zostava zostáva nezmenená.\"",
+      "semantic_rationale": "Complete estimated combined assembly working-memory failure even at smallest output; dimensions alone insufficient, both alternatives retained, assembly unchanged. P0 only.",
+      "uncertainties": [
+        "Independent reviewer should assess zostava and limit pracovnej pamäte within the full warning; no native-human certification."
+      ]
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "source": "Clear all",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "proposed_xml_text": "\"Vymazať všetko\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Assembly toolbar calls assembly.clear(); this is not clearing one selected image.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_clear_image",
+      "source": "Clear image",
+      "attributes": {
+        "name": "ui_clear_image"
+      },
+      "proposed_xml_text": "\"Vymazať obrázok\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Drawing Edit action applies pending edits then document.clear(). Do not conflate with assembly Clear all.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "source": "Could not save the assembly: %1$s",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "proposed_xml_text": "\"Zostavu sa nepodarilo uložiť: %1$s\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Output URI save failure; %1$s is the original exception message, potentially untranslated.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "source": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "proposed_xml_text": "\"Zostavu sa nepodarilo uložiť.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; same action/status and polarity, with no added success or recovery claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "proposed_xml_text": "\"%1$d × %2$d pixelov (%3$.2f MP) prekračuje aktuálny bezpečný limit na úpravy %4$.2f MP. AN Paint uchováva celý obrázok v pamäti a vyhradzuje priestor na transformácie a výbery. Tento limit závisí od dostupnej pamäte. Operácia bola zastavená pred pridelením pamäte pre príliš veľkú bitmapu. Nebola použitá automatická zmena mierky.\"",
+      "semantic_rationale": "Exact width/height/image-MP/budget-MP order and two-decimal tokens; full image memory, reserved transforms/selections, available-memory budget, preallocation stop and no autoresize retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "proposed_xml_text": "\"Zachová pixely vľavo hore. Menšie rozmery plátna odstránia pixely za pravým a dolným okrajom; príkaz Vrátiť späť ich obnoví.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Use exact current sk/sl composition_labels in terminology-foundations.json; preserve inherited labels including mixed English. Recovery action is a same-group candidate, not accepted yet. Keep canvas.png/ZIP literal, singular optional floating selection, and distinguish canvas cropping from image rescaling.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "proposed_xml_text": "\"Na túto operáciu nie je dostatok pamäte. Zdrojové súbory zostavy zostávajú zachované.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Assembly OutOfMemoryError branch retains source files; do not claim the operation succeeded or output was saved.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "source": "Resize large image?",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "proposed_xml_text": "\"Zmeniť mierku veľkého obrázka?\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Use exact current sk/sl composition_labels in terminology-foundations.json; preserve inherited labels including mixed English. Recovery action is a same-group candidate, not accepted yet. Keep canvas.png/ZIP literal, singular optional floating selection, and distinguish canvas cropping from image rescaling.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "proposed_xml_text": "\"Odhady zahŕňajú aktuálne plátno a schránku, dekódovanie so zníženým rozlíšením a vyrovnávacie pamäte na úpravy. Skutočná spotreba pamäte sa líši. Menšia kópia stráca detaily. Pôvodný súbor zostáva nezmenený.\"",
+      "semantic_rationale": "Decoding at reduced resolution, current canvas/clipboard and edit buffers included; estimate variation/detail loss/original unchanged retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_png",
+      "source": "Save PNG",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "proposed_xml_text": "\"Uložiť PNG\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Assembly output button writes PNG; it does not alter the drawing editor’s Save destination.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "source": "The saved assembly could not be opened: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "proposed_xml_text": "\"Uloženú zostavu sa nepodarilo otvoriť: %1$s\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Restoring internally saved assembly metadata failed; %1$s is exception detail.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "source": "The trim would remove the entire image.",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "proposed_xml_text": "\"Orezanie by odstránilo celý obrázok.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Precondition rejects crop bounds with zero width or height; hypothetical destructive result, not already removed.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "proposed_xml_text": "\"Na túto operáciu pri pôvodnom rozlíšení nie je dostatok pamäte. Nebola použitá automatická zmena mierky.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Drawing edit OOM fallback at original resolution, explicitly no automatic resize.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "proposed_xml_text": "\"Údaje o pôvode obrázka sa nepodarilo uložiť alebo obnoviť. Existujúce uložené údaje boli zachované. Skúste to znova.\"",
+      "semantic_rationale": "Uses údaje o pôvode for editable attribution data, not money or only author names; preserves each failure/retained-data distinction.",
+      "uncertainties": [
+        "Independent reviewer should judge údaje o pôvode as the complete attribution-data term, including source/licence text."
+      ]
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "proposed_xml_text": "\"Tieto údaje o pôvode obrázka by spôsobili, že kresba bude príliš veľká na obnovenie. Vaša predchádzajúca kresba a údaje o pôvode boli zachované.\"",
+      "semantic_rationale": "Uses údaje o pôvode for editable attribution data, not money or only author names; preserves each failure/retained-data distinction.",
+      "uncertainties": [
+        "Independent reviewer should judge údaje o pôvode as the complete attribution-data term, including source/licence text."
+      ]
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "proposed_xml_text": "\"Niektoré uložené údaje o pôvode sa nepodarilo prečítať. Ich uložené kópie boli zachované.\"",
+      "semantic_rationale": "Uses údaje o pôvode for editable attribution data, not money or only author names; preserves each failure/retained-data distinction.",
+      "uncertainties": [
+        "Independent reviewer should judge údaje o pôvode as the complete attribution-data term, including source/licence text."
+      ]
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "source": "The completed image could not replace its destination.",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "proposed_xml_text": "\"Dokončeným obrázkom sa nepodarilo nahradiť cieľový súbor.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; File-based temporary-output rename failed. A destination-file term is semantically supportable; do not claim completed provider write.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "proposed_xml_text": "\"Obrázok a vyrovnávacie pamäte na kódovanie prekračujú pamäťový limit pre export.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Image plus encoder buffers exceed a budget; not merely disk size and not solely the canvas footprint.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "source": "Could not open image",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "proposed_xml_text": "\"Obrázok sa nepodarilo otvoriť\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Failure prefix passed to ioFailed; exception detail appended by caller. No added final punctuation.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "source": "Could not save image",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "proposed_xml_text": "\"Obrázok sa nepodarilo uložiť\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Save/write failure prefix. Caller appends a full stop, a space, and an exception message or fallback, so do not append punctuation or a placeholder.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "proposed_xml_text": "\"Export bol vytvorený. Pred pokračovaním uložte aktuálny obrázok pomocou príkazu „Uložiť“ alebo „Uložiť ako…“.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Export succeeded, but it did not satisfy the pending save-before-replacement action. Require Save or Save as before continuing. Do not translate this as export failure, automatically saved current document, or a general inability to save. Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "proposed_xml_text": "\"Exportujte ikonu, text Base64 alebo ASCII art. Export ponechá aktuálny obrázok aj jeho cieľ pre príkaz Uložiť nezmenené.\"",
+      "semantic_rationale": "All three derived outputs retained; current image and ordinary Save destination both remain unchanged.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "proposed_xml_text": "\"Na uloženie v tomto formáte nie je dostatok pamäte. Skúste PNG\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; OOM failure prefix recommends PNG but does not guarantee PNG will fit. Caller attaches error detail; preserve no terminal period.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "source": "PNG encoding failed.",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "proposed_xml_text": "\"Kódovanie PNG zlyhalo.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Actual Bitmap.compress false branch, not a successful PNG save.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "source": "Save and share…",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "proposed_xml_text": "\"Uložiť a zdieľať…\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Existing share flow saves a copy then opens sharing; export=true means it does not update current Save target or clear unsaved drawing state. Ellipsis menu form.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "source": "Save and share",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "proposed_xml_text": "\"Uložiť a zdieľať\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Keep consistent with the same-group proposed share explanation and ellipsis menu form; neither is accepted before independent review.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "proposed_xml_text": "\"Vyberte formát obrázka a nastavenia kompresie. Príkaz Uložiť znova použije tento názov súboru, umiestnenie, formát a nastavenia.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Choose an image format and compression settings. Later Save reuses filename, location, format and settings. Keep all four reused items; do not confuse ordinary Save with export or claim compression is always lossy. Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_saved",
+      "source": "Saved %1$s",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "proposed_xml_text": "\"Uložené: %1$s\"",
+      "semantic_rationale": "Neutral completed-output toast with filename; does not assert that current document dirty state is cleared.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_share_explanation34",
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "proposed_xml_text": "\"Uložte kópiu na vybrané miesto a potom vyberte aplikáciu na jej zdieľanie. Váš aktuálny cieľ pre príkaz Uložiť zostane nezmenený.\"",
+      "semantic_rationale": "Copy write precedes app choice, ordinary Save destination remains unchanged, no completed-share assertion.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "source": "The encoder did not finish.",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "proposed_xml_text": "\"Kódovanie sa nedokončilo.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Image encoding did not finish; candidate names the process rather than ambiguously a human coder. No output-success claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "proposed_xml_text": "\"Obrázok bol uložený, ale Android nedokázal otvoriť zdieľanie: %1$s\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Copy was written successfully; Android sharing launch then failed. Preserve the successful write, failed sharing and appended %1$s exception detail separately. This does not mean the drawing Save target changed.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "source": "The selected location is not writable.",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "proposed_xml_text": "\"Na vybrané miesto nemožno zapisovať.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; openOutputStream returns null; do not narrow unspecified cause to write protection or permissions alone.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "source": "This location is not writable.",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "proposed_xml_text": "\"Na toto miesto nemožno zapisovať.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; Shared by recovery ZIP export and source-code export, generic write failure. No Help callback/archive identity or exported-source implementation change.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "source": "Your current image has unsaved changes.",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "proposed_xml_text": "\"Váš aktuálny obrázok obsahuje neuložené zmeny.\"",
+      "semantic_rationale": "Complete source meaning retained in Slovak; The current working image has unsaved changes. Keep negation and refer to the current document, not a previous draft.",
+      "uncertainties": []
+    }
+  ],
+  "limits": [
+    "Missing-only78 values; all127 inherited values/attributes remain immutable.",
+    "Five no-consumer holds and missing P1 memory companion excluded.",
+    "Unchanged English frame counts, Load image…, Image format and Save changes? make some compositions mixed-language.",
+    "Awaiting independent complete-value review; not accepted for implementation yet."
+  ]
+}
