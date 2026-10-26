@@ -1,0 +1,584 @@
+{
+  "schema": "nynorsk-p0-save-independent-review-v1",
+  "reviewer": "Independent AI linguistic/static reviewer; not native-human certification",
+  "reviewed_on": "2026-10-26",
+  "repository": "c933103/AN-Paint",
+  "locale": "nn",
+  "target_path": "Paintroid/src/main/res/values-b+nn/strings.xml",
+  "source_commit": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+  "input_candidates_sha256": "deb1f64fdcba57228004ace4f402cffd5ae3269494e7a71ba1eeb7acc03903c2",
+  "summary": {
+    "entries_reviewed": 8,
+    "accept_as_is": 5,
+    "revise": 3,
+    "reject_without_replacement": 0,
+    "approved_replacements_for_bounded_linguistic_static_scope": 8,
+    "application_implementation": false,
+    "current_coverage_increment": 0
+  },
+  "scope": "Independent whole-value linguistic and static consumer review of exactly eight missing nn P0 resources, including full source/target sentences, save/export/share semantics, failure composition, placeholders, newlines and resource attributes. No prior peer-locale acceptance was transferred.",
+  "evidence_checks": {
+    "packet_hash_matches_requested": true,
+    "all_8_local_source_files_match_packet_sha256_and_git_blob": true,
+    "all_9_consumer_windows_match_exact_local_source_lines": true,
+    "independent_live_GitHub_fetch_performed": false,
+    "source_pin_is_the_provided_immutable_commit_not_a_new_live_HEAD_claim": true
+  },
+  "primary_linguistic_references": [
+    {
+      "url": "https://sprakradet.no/godt-og-korrekt-sprak/rettskriving-og-grammatikk/kommaregler/",
+      "observation": "Official rule text available through search result.",
+      "support": "Required closing comma after an embedded restrictive relative, including a relative with omitted som. Supports the relative-clause punctuation analysis; it does not certify these complete UI sentences."
+    },
+    {
+      "url": "https://ordbokene.no/nno/nn/140281",
+      "observation": "Official dictionary entry returned in search; direct open later returned cache miss.",
+      "support": "The Nynorsk korkje … eller construction excludes both alternatives. No full-sentence approval inferred."
+    },
+    {
+      "url": "https://ordbokene.no/nn/lagre",
+      "observation": "Direct official dictionary page read.",
+      "support": "Lagre/lagra forms and the store/preserve sense; supports inherited Lagra and a-infinitives, not app-specific behavior."
+    },
+    {
+      "url": "https://ordbokene.no/nn/plassering",
+      "observation": "Direct official dictionary page read.",
+      "support": "Noun is feminine and can denote a place where something is or will be. Storage sense here is inferred from the filename/location consumer context."
+    },
+    {
+      "url": "https://ordbokene.no/nn/54929",
+      "observation": "Direct official dictionary entry and inflection table read after generic word URL was inaccessible.",
+      "support": "Oppretta is an allowed participle. Preference for Eksportfila is a contextual clarity judgment, not a claim that the original verb form is wrong."
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "identity": "string/ui_save_your_changes",
+      "source": "Save your changes?",
+      "source_sha256": "56dd16e7b1fdfa54fece443cdc52f4a13ad74d87836c189abc726dfaf4993642",
+      "original_candidate_display_text": "Vil du lagra endringane?",
+      "original_candidate_xml_text_sha256": "20bfbb633c55cf6d09a9adb32b9f1cda5024fe449b34c74544e7747b378a86cb",
+      "verdict": "accept-as-is",
+      "reason": "The full question asks whether to save changes, rather than commanding a save or claiming success. The explicit subject is idiomatic and fits the dirty-document replacement guard.",
+      "linguistic_details": "Vil du + a-infinitive lagra is sound Nynorsk; endringane is definite plural. No reason to shorten the question solely to mimic English word count.",
+      "semantic_details": "The title does not alter Save / Discard / Keep-editing behavior and does not promise the replacement has happened.",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_display_text": "Vil du lagra endringane?",
+      "approved_xml_text": "\"Vil du lagra endringane?\"",
+      "approved_xml_text_sha256": "20bfbb633c55cf6d09a9adb32b9f1cda5024fe449b34c74544e7747b378a86cb",
+      "approved_attributes": {
+        "name": "ui_save_your_changes"
+      },
+      "context_ids": [
+        "dirty-document-replacement-guard"
+      ],
+      "source_consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1079"
+      ],
+      "checks": {
+        "source_hash_matches": true,
+        "original_candidate_hash_matches": true,
+        "xml_round_trip": true,
+        "placeholder_tokens": [],
+        "placeholder_tokens_preserved": true,
+        "source_newlines": 0,
+        "target_newlines": 0,
+        "attributes_preserved": true,
+        "formatted_false_preserved": null
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "index": 1,
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "source": "Your current image has unsaved changes.",
+      "source_sha256": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "original_candidate_display_text": "Biletet du arbeider med, har endringar som ikkje er lagra.",
+      "original_candidate_xml_text_sha256": "cb28ac03fe3c4da7e666b26ff68932928b99d38706eabac27d2f2a16c9c5d3ea",
+      "verdict": "accept-as-is",
+      "reason": "The complete warning identifies the image currently being worked on and retains the explicit unsaved condition. It neither describes an older recovery copy nor asserts image loss.",
+      "linguistic_details": "The omitted-som relative clause du arbeider med identifies biletet. Its closing comma before har is correct; deleting that comma would not be an improvement. Biletet and ikkje er lagra are appropriate forms.",
+      "semantic_details": "The consumer has applied pending edits and tested document.dirty, matching the present-tense description.",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_display_text": "Biletet du arbeider med, har endringar som ikkje er lagra.",
+      "approved_xml_text": "\"Biletet du arbeider med, har endringar som ikkje er lagra.\"",
+      "approved_xml_text_sha256": "cb28ac03fe3c4da7e666b26ff68932928b99d38706eabac27d2f2a16c9c5d3ea",
+      "approved_attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "context_ids": [
+        "dirty-document-replacement-guard"
+      ],
+      "source_consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1079"
+      ],
+      "checks": {
+        "source_hash_matches": true,
+        "original_candidate_hash_matches": true,
+        "xml_round_trip": true,
+        "placeholder_tokens": [],
+        "placeholder_tokens_preserved": true,
+        "source_newlines": 0,
+        "target_newlines": 0,
+        "attributes_preserved": true,
+        "formatted_false_preserved": null
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "index": 2,
+      "identity": "string/ui_export_did_not_save23",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "source_sha256": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "original_candidate_display_text": "Eksporten er oppretta. Bruk «Lagra» eller «Lagra som…» til å lagra biletet du arbeider med, før du held fram.",
+      "original_candidate_xml_text_sha256": "16549bfc429c3ca83bae5e7a91a2820cb178a47b5f3cee9c5826073e5eb731e5",
+      "verdict": "revise",
+      "reason": "Replace the abstract subject Eksporten with Eksportfila so the first sentence unmistakably describes the output artifact. The original is understandable, but is less explicit about what has been created. This is a clarity revision, not a claim that oppretta is ungrammatical.",
+      "linguistic_details": "Oppretta is an allowed Nynorsk participle. The rest of the complete sentence is retained: the relative-clause closing comma before før distinguishes the working-image description from the before-continuing condition. Quoted Lagra and Lagra som… exactly follow untouched local labels.",
+      "semantic_details": "A file has just been written successfully, but exporting did not satisfy afterSave. The replacement says neither export failure nor that the current document is saved. The required subsequent Save or Save as remains explicit.",
+      "confidence": "medium-high for the replacement as bounded linguistic/static review",
+      "approved_display_text": "Eksportfila er oppretta. Bruk «Lagra» eller «Lagra som…» til å lagra biletet du arbeider med, før du held fram.",
+      "approved_xml_text": "\"Eksportfila er oppretta. Bruk «Lagra» eller «Lagra som…» til å lagra biletet du arbeider med, før du held fram.\"",
+      "approved_xml_text_sha256": "27b0df85451b14f9bb9e185468365675c253e00c54a65df75b02c17830b2deab",
+      "approved_attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "context_ids": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ],
+      "source_consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L846",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1079",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1379"
+      ],
+      "checks": {
+        "source_hash_matches": true,
+        "original_candidate_hash_matches": true,
+        "xml_round_trip": true,
+        "placeholder_tokens": [],
+        "placeholder_tokens_preserved": true,
+        "source_newlines": 0,
+        "target_newlines": 0,
+        "attributes_preserved": true,
+        "formatted_false_preserved": null
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "index": 3,
+      "identity": "string/ui_could_not_save_image",
+      "source": "Could not save image",
+      "source_sha256": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "original_candidate_display_text": "Kunne ikkje lagra biletet",
+      "original_candidate_xml_text_sha256": "6ae3b9eaa3da64d58651a3968cd5df90beed844f15767e35c2989b674b2ba439",
+      "verdict": "accept-as-is",
+      "reason": "Kunne ikkje lagra biletet is a natural failure statement preserving the source negation and object. It does not assert deletion or loss of the original.",
+      "linguistic_details": "No trailing full stop is included: ioFailed itself adds a full stop and space before the exception or fallback. No placeholder is introduced.",
+      "semantic_details": "The same write failure path can serve Save, Export or Share, so it properly remains a generic image-write/save failure rather than claiming a particular Save destination was lost.",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_display_text": "Kunne ikkje lagra biletet",
+      "approved_xml_text": "\"Kunne ikkje lagra biletet\"",
+      "approved_xml_text_sha256": "6ae3b9eaa3da64d58651a3968cd5df90beed844f15767e35c2989b674b2ba439",
+      "approved_attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "context_ids": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ],
+      "source_consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1379",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1420-L1424"
+      ],
+      "checks": {
+        "source_hash_matches": true,
+        "original_candidate_hash_matches": true,
+        "xml_round_trip": true,
+        "placeholder_tokens": [],
+        "placeholder_tokens_preserved": true,
+        "source_newlines": 0,
+        "target_newlines": 0,
+        "attributes_preserved": true,
+        "formatted_false_preserved": null
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "index": 4,
+      "identity": "string/ui_saved",
+      "source": "Saved %1$s",
+      "source_sha256": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "original_candidate_display_text": "%1$s er lagra",
+      "original_candidate_xml_text_sha256": "283f3e1cb1b270c2ca35ddbf24a051c652afa9428ecdc5097d9d6aa6f0d78385",
+      "verdict": "accept-as-is",
+      "reason": "The filename-first passive is a completed-output status, not an imperative. Its grammatical subject is the exact filename argument, not all document edits.",
+      "linguistic_details": "Exactly one indexed %1$s string placeholder remains. The form lagra does not introduce filename-dependent gender or number inflection. Reordering the indexed argument is safe at the resource-text level.",
+      "semantic_details": "The toast follows every successful write, including export/share. Naming the output file does not claim document.markSaved occurred. The source itself uses Saved for all writes; this translation does not broaden that claim.",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_display_text": "%1$s er lagra",
+      "approved_xml_text": "\"%1$s er lagra\"",
+      "approved_xml_text_sha256": "283f3e1cb1b270c2ca35ddbf24a051c652afa9428ecdc5097d9d6aa6f0d78385",
+      "approved_attributes": {
+        "name": "ui_saved"
+      },
+      "context_ids": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "source_consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1379",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1380-L1389"
+      ],
+      "checks": {
+        "source_hash_matches": true,
+        "original_candidate_hash_matches": true,
+        "xml_round_trip": true,
+        "placeholder_tokens": [
+          "%1$s"
+        ],
+        "placeholder_tokens_preserved": true,
+        "source_newlines": 0,
+        "target_newlines": 0,
+        "attributes_preserved": true,
+        "formatted_false_preserved": null
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "index": 5,
+      "identity": "string/ui_export_explanation23",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "source_sha256": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "original_candidate_display_text": "Eksporter eit ikon, Base64-tekst eller ASCII-kunst. Eksportering endrar korkje biletet du arbeider med, eller lagringsmålet for «Lagra».",
+      "original_candidate_xml_text_sha256": "218538b315b62fb39a1e5ba9d1ef63f18fe804b28ce0f01ed033caee80173e09",
+      "verdict": "revise",
+      "reason": "Replace lagringsmålet for «Lagra» with the explicit clause kva fil «Lagra» lagrar til. The compound is morphologically plausible and is not declared invalid Nynorsk; the revision removes an unnecessary reader inference about goal, folder, or full file target in this high-risk explanation.",
+      "linguistic_details": "The complete value retains the three outputs and korkje … eller over both unchanged items. The comma after du arbeider med closes the embedded relative clause, rather than being an English-style list comma. Kva fil … is an indirect-question clause, not a new question to the user.",
+      "semantic_details": "The replacement refers to which file Save writes to, not to that file remaining byte-for-byte unchanged, and not merely to its containing folder. It does not assert a destination must already exist; export leaves the target selection unchanged, including when not yet set.",
+      "confidence": "medium-high for the replacement as bounded linguistic/static review; the full wording is a reviewer judgment, not an official prescribed software term",
+      "approved_display_text": "Eksporter eit ikon, Base64-tekst eller ASCII-kunst. Eksportering endrar korkje biletet du arbeider med, eller kva fil «Lagra» lagrar til.",
+      "approved_xml_text": "\"Eksporter eit ikon, Base64-tekst eller ASCII-kunst. Eksportering endrar korkje biletet du arbeider med, eller kva fil «Lagra» lagrar til.\"",
+      "approved_xml_text_sha256": "cb7fa81a9b3019c65f21c1efa611fd4578fb1b0efced78c3557cb288784feb9a",
+      "approved_attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "source_consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L846",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1379",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L11-L24",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L42-L63",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L179-L200"
+      ],
+      "checks": {
+        "source_hash_matches": true,
+        "original_candidate_hash_matches": true,
+        "xml_round_trip": true,
+        "placeholder_tokens": [],
+        "placeholder_tokens_preserved": true,
+        "source_newlines": 0,
+        "target_newlines": 0,
+        "attributes_preserved": true,
+        "formatted_false_preserved": null
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "index": 6,
+      "identity": "string/ui_save_explanation23",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "source_sha256": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "original_candidate_display_text": "Vel eit biletformat og innstillingane for komprimering. «Lagra» vil bruka dette filnamnet, denne plasseringa, formatet og innstillingane om att.",
+      "original_candidate_xml_text_sha256": "069dd2b305cbb3f42a46f34893bee16d98c9319405f7f14108f603f736466a79",
+      "verdict": "accept-as-is",
+      "reason": "The full two-sentence instruction is idiomatic and retains all four reused choices: filename, location, format and settings. It distinguishes choosing format/compression now from later reuse by Save.",
+      "linguistic_details": "Vel is an imperative. Bruka and om att form a clear reuse expression. Plasseringa, in a coordinated list with filnamnet, unambiguously concerns storage location here rather than image position. The feminine agreement denne plasseringa is sound.",
+      "semantic_details": "requestSave reuses the remembered URI and options; the text does not reassign this behavior to Export or Share, require lossy compression, or promise a successful write.",
+      "confidence": "high for bounded linguistic/static review",
+      "approved_display_text": "Vel eit biletformat og innstillingane for komprimering. «Lagra» vil bruka dette filnamnet, denne plasseringa, formatet og innstillingane om att.",
+      "approved_xml_text": "\"Vel eit biletformat og innstillingane for komprimering. «Lagra» vil bruka dette filnamnet, denne plasseringa, formatet og innstillingane om att.\"",
+      "approved_xml_text_sha256": "069dd2b305cbb3f42a46f34893bee16d98c9319405f7f14108f603f736466a79",
+      "approved_attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "context_ids": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "source_consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1104-L1128",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1379",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L42-L63",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L179-L200"
+      ],
+      "checks": {
+        "source_hash_matches": true,
+        "original_candidate_hash_matches": true,
+        "xml_round_trip": true,
+        "placeholder_tokens": [],
+        "placeholder_tokens_preserved": true,
+        "source_newlines": 0,
+        "target_newlines": 0,
+        "attributes_preserved": true,
+        "formatted_false_preserved": null
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    },
+    {
+      "index": 7,
+      "identity": "string/ui_share_explanation34",
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "source_sha256": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+      "original_candidate_display_text": "Lagra ein kopi på staden du vel, og vel deretter ein app til å dela kopien. Lagringsmålet for «Lagra» er uendra.",
+      "original_candidate_xml_text_sha256": "21b98ff47e04745fb510cc879981c84db723947c9e9eec571fb93ee210331f86",
+      "verdict": "revise",
+      "reason": "Replace the final sentence with Dette endrar ikkje kva fil «Lagra» lagrar til. This makes the unchanged normal-Save file target explicit and aligns terminology with the revised export explanation. The copy-location and sharing-app instruction is retained.",
+      "linguistic_details": "Lagra ein kopi … og vel deretter … preserves an ordered instruction. Ein app til å dela kopien is an acceptable purpose construction. The comma after du vel closes the embedded relative clause. The new final sentence uses an indirect-question object, not a question to the user.",
+      "semantic_details": "Share is called with share=true and export=true: the copy is written to the chosen location before launching the app chooser; normal savedTarget/dirty state is not changed. The text does not say the copy has already been shared, or equate the selected sharing app with the Save destination.",
+      "confidence": "medium-high for the replacement as bounded linguistic/static review",
+      "approved_display_text": "Lagra ein kopi på staden du vel, og vel deretter ein app til å dela kopien. Dette endrar ikkje kva fil «Lagra» lagrar til.",
+      "approved_xml_text": "\"Lagra ein kopi på staden du vel, og vel deretter ein app til å dela kopien. Dette endrar ikkje kva fil «Lagra» lagrar til.\"",
+      "approved_xml_text_sha256": "ccb5443e81d408f42574c25f77eab61acdb04ed4176260d634485c7e5340bb98",
+      "approved_attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "source_consumer_urls": [
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L846",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1104-L1128",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1379",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1380-L1389",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L42-L63",
+        "https://github.com/c933103/AN-Paint/blob/d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L179-L200"
+      ],
+      "checks": {
+        "source_hash_matches": true,
+        "original_candidate_hash_matches": true,
+        "xml_round_trip": true,
+        "placeholder_tokens": [],
+        "placeholder_tokens_preserved": true,
+        "source_newlines": 0,
+        "target_newlines": 0,
+        "attributes_preserved": true,
+        "formatted_false_preserved": true
+      },
+      "native_human_acceptance": false,
+      "runtime_or_device_acceptance": false
+    }
+  ],
+  "untouched_neighbouring_labels": [
+    {
+      "identity": "string/ui_save",
+      "english": "Save",
+      "target": {
+        "attributes": {
+          "name": "ui_save"
+        },
+        "xml_text": "\"Lagra\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_save_a5d0d9",
+      "english": "Save…",
+      "target": {
+        "attributes": {
+          "name": "ui_save_a5d0d9"
+        },
+        "xml_text": "@string/ui_save"
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/save20_title",
+      "english": "Save as…",
+      "target": {
+        "attributes": {
+          "name": "save20_title"
+        },
+        "xml_text": "\"Lagra som…\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_export_as23",
+      "english": "Export as…",
+      "target": {
+        "attributes": {
+          "name": "ui_export_as23"
+        },
+        "xml_text": "\"Eksporter som…\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_discard",
+      "english": "Discard",
+      "target": {
+        "attributes": {
+          "name": "ui_discard"
+        },
+        "xml_text": "\"Forkast\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_discard_changes23",
+      "english": "Discard changes",
+      "target": {
+        "attributes": {
+          "name": "ui_discard_changes23"
+        },
+        "xml_text": "\"Avslutt utan lagring\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_keep_editing23",
+      "english": "Keep editing",
+      "target": {
+        "attributes": {
+          "name": "ui_keep_editing23"
+        },
+        "xml_text": "\"Avbryt\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_cancel",
+      "english": "Cancel",
+      "target": {
+        "attributes": {
+          "name": "ui_cancel"
+        },
+        "xml_text": "\"Avbryt\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_menu_file",
+      "english": "File",
+      "target": {
+        "attributes": {
+          "name": "ui_menu_file"
+        },
+        "xml_text": "\"Fil\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_image",
+      "english": "Image",
+      "target": {
+        "attributes": {
+          "name": "ui_image"
+        },
+        "xml_text": "\"Bilete\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "english": "Save and share…",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "english": "Save and share",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    },
+    {
+      "identity": "string/ui_choose_location",
+      "english": "Choose location…",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    },
+    {
+      "identity": "string/save20_file_format",
+      "english": "File format",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    },
+    {
+      "identity": "string/save20_file_name",
+      "english": "File name",
+      "target": {
+        "attributes": {
+          "name": "save20_file_name"
+        },
+        "xml_text": "\"Filnamn\""
+      },
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": false
+    },
+    {
+      "identity": "string/ui_try_a_different_file_or_location",
+      "english": "Please try a different file or location.",
+      "target": null,
+      "disposition": "unchanged; no new acceptance or modification",
+      "fallback": true
+    }
+  ],
+  "preservation_requirements": [
+    "Do not modify or newly certify inherited Save/Discard/Keep-editing wording or aliases.",
+    "All existing intentional fallbacks stay unchanged, including neighboring share/choose-location/file-format/failure-detail labels.",
+    "Preserve formatted=\"false\" on ui_share_explanation34, the single %1$s in ui_saved, zero newlines in all eight, and absence of terminal punctuation in the failure prefix.",
+    "Global 59 scoped / 112 outside-scope fixture distinction remains unchanged.",
+    "PR56 never-merge; PR159 frozen; PR113 retarget/held-warning; Help callback/archive identity and release pauses remain excluded."
+  ],
+  "limits": [
+    "No app source mutation, GitHub publication, application execution, Android compilation, or test run was performed.",
+    "XML parsing and token matching are static structural checks only, not Android resource compiler or UI acceptance.",
+    "No native-human, physical-device, runtime, layout, accessibility-output, whole-locale or release acceptance.",
+    "Present coverage remains 7 P0 present / 85 missing as supplied; eight reviewed values are not implemented coverage.",
+    "Dictionary/rule checks give narrow lexical and punctuation support. Full-sentence approvals and revisions are the independent reviewer judgments stated per entry."
+  ],
+  "source_review_artifact_sha256": "be1052a927a182c28abccc205af4c4cc94fd794c1d78c38d8dd114757b0d319b",
+  "publication_note": "Public export removes only the internal reviewer identifier and operational blocker bookkeeping; all eight decisions, exact source/target hashes, qualifications and limits are preserved.",
+  "implementation_owner_semantic_check": {
+    "status": "Exact final values consistent with inspected source behavior",
+    "detail": "A written export artifact exists before the message. Export/share preserve savedTarget and dirty state; kva fil Lagra lagrar til refers to the full saved file target, not only a directory and not a claim that the file bytes never change. No new language-wide or runtime acceptance."
+  }
+}
