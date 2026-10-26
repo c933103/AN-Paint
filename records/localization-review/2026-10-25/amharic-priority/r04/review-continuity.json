@@ -1,0 +1,49 @@
+{
+  "schema": "codex-review-continuity-v1",
+  "repository": "c933103/AN-Paint",
+  "pull_request": 171,
+  "head": "c66cf3ffc93fb50006c6b69b02772fe02e856cf0",
+  "attribution": "Continuity-based attribution, not a SHA-bearing terminal receipt.",
+  "prior_review": {
+    "comment": 6406484749,
+    "url": "https://github.com/c933103/AN-Paint/pull/171#issuecomment-6406484749",
+    "created_at": "2026-10-26T01:54:03Z",
+    "explicit_reviewed_commit": "1404e56c7f",
+    "result": "No major issues; already terminal before the new request."
+  },
+  "request": {
+    "comment": 6406805351,
+    "url": "https://github.com/c933103/AN-Paint/pull/171#issuecomment-6406805351",
+    "created_at": "2026-10-26T02:21:54Z",
+    "explicit_head": "c66cf3ffc93fb50006c6b69b02772fe02e856cf0"
+  },
+  "running_snapshot": {
+    "source": "https://api.github.com/repos/c933103/AN-Paint/issues/171/comments",
+    "summary_comment": 6406156574,
+    "observed_at_utc": "2026-10-26T02:27:20Z",
+    "preservation": "Exact relevant metadata excerpt captured from the live tool response; not the full original response.",
+    "metadata_excerpt": "<!-- codex-review-state:v1 {\"code_review\":{\"commit_sha\":\"c66cf3ffc93fb50006c6b69b02772fe02e856cf0\",\"has_any_findings\":null,\"has_unresolved_findings\":null,\"status\":\"running\"},\"security_review\":{\"commit_sha\":\"c089ada7a562bb2aec37c11f4970d98212fa4a79\",\"has_any_findings\":false,\"has_unresolved_findings\":false,\"status\":\"completed\"}} -->",
+    "running_since": "2026-10-26T02:22:04.985193Z"
+  },
+  "completion": {
+    "comment": 6406903675,
+    "url": "https://github.com/c933103/AN-Paint/pull/171#issuecomment-6406903675",
+    "created_at": "2026-10-26T02:30:31Z",
+    "result": "Codex Review: Didn't find any major issues. You're on a roll.",
+    "explicit_commit": null,
+    "summary_status": "completed",
+    "summary_commit_sha": null
+  },
+  "continuity": {
+    "head_unchanged_since_request": true,
+    "prior_code_review_already_terminal": true,
+    "no_overlapping_older_code_review_observed": true,
+    "formal_reviews": [],
+    "inline_review_comments": []
+  },
+  "limitations": [
+    "Terminal receipt omits the reviewed SHA; causal chain supplies attribution, not terminal metadata.",
+    "Prior security review references older c089ada and is not current-head evidence; no separate required security gate was found.",
+    "CI must independently pass at the current head."
+  ]
+}
