@@ -1,0 +1,764 @@
+{
+  "locale": "sr-Cyrl",
+  "source_commit": "e1e5433e63d45f5b76d39ce1a31ffc11fd7cd79d",
+  "source_tree": "98b89d126533df3c0dbaeb729c74e4bcb44a3a8a",
+  "author_role": "AI candidate author, not independent reviewer or native-human certifier",
+  "source_context_sha256": "e99bba815c15b52f0949765f6a031cecb7b053b5f805200b851c3c2e597a432d",
+  "candidates": [
+    {
+      "identity": "string/formats22_animation_message",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "proposed_xml_text": "\"Број кадрова у овој слици формата %1$s: %2$s. AN Paint уређује статичне слике и не чува анимацију.\"",
+      "semantic_rationale": "Count-introducing wording avoids agreement with arbitrary exact or lower-bound count strings. %1$s remains the format; %2$s remains the complete count string. Still-image editing and loss of animation are explicit.",
+      "uncertainties": [
+        "The out-of-scope formats22_at_least_frames remains English fallback (at least %1$d); composed lower-bound-count messages are therefore mixed-language and are not claimed fully localized."
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "proposed_xml_text": "\"Ова PNG слика има засебну подразумевану слику. Она ће бити увезена уместо кадрова анимације. Чувањем се добија статична слика.\"",
+      "semantic_rationale": "The separate PNG default image, not the animation frames, is imported; subsequent saving creates a still image.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "proposed_xml_text": "\"Биће увезен само први кадар. Чувањем се добија статична слика.\"",
+      "semantic_rationale": "Only the first frame is imported; saving creates a still image, not a retained animation.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "source": "Animated image",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "proposed_xml_text": "\"Анимирана слика\"",
+      "semantic_rationale": "Names an animated image for the inspection dialog; not an instruction to animate or a promise to preserve animation.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "proposed_xml_text": "\"Ова слика формата %1$s је превише сложена да би се потврдило да ли садржи више кадрова. AN Paint ће отворити само статичну слику и неће сачувати никакву анимацију.\"",
+      "semantic_rationale": "Inspection cannot establish whether multiple frames exist. Does not infer a single frame; only still-image opening and no animation preservation are promised.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "proposed_xml_text": "\"Записује обичан текст помоћу светлих и тамних знакова. Прикажите га фонтом у којем су сви знакови исте ширине. То је визуелни приказ; не може се поново отворити као изворна слика.\"",
+      "semantic_rationale": "Plain-text visual rendition uses light/dark characters and a monospaced font; explicitly not reopenable as the original image.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "source": "Open still image",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "proposed_xml_text": "\"Отвори статичну слику\"",
+      "semantic_rationale": "Imperative action follows existing Open vocabulary and limits the opened result to a still image.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "proposed_xml_text": "\"PDF странице се приказују у резолуцији од 144 dpi. Текст и векторски објекти претварају се у пикселе.\"",
+      "semantic_rationale": "Retains fixed 144 dpi rendering and conversion of text and vector objects into pixels.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "proposed_xml_text": "\"Статична слика са највише 256 боја. Дидеринг ублажава прелазе између боја. Анимиране GIF слике отварају се као први кадар анимације.\"",
+      "semantic_rationale": "Uses the inherited Dithering label vocabulary; preserves the 256-colour limit, gradient smoothing and first-frame-only GIF import.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "source": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "proposed_xml_text": "\"Унесите назив датотеке без косих црта и контролних знакова.\"",
+      "semantic_rationale": "Rejects slash and control characters without asserting that every other filename is accepted.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "proposed_xml_text": "\"Виши квалитет чува више детаља и обично ствара већу датотеку.\"",
+      "semantic_rationale": "Higher quality preserves more detail; a larger file is usual, not guaranteed.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "proposed_xml_text": "\"Ова слика користи профил боја који AN Paint још не може да конвертује. Пре увоза је претворите у PNG слику са профилом sRGB у уређивачу који подржава управљање бојама.\"",
+      "semantic_rationale": "AN Paint cannot yet convert the profile. Instructs actual conversion to sRGB PNG in a colour-managed editor before import, not relabelling.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "proposed_xml_text": "\"Виши квалитет обично ствара већу датотеку. Компресија без губитака (Lossless) чува сваку вредност боје.\"",
+      "semantic_rationale": "Explains lossless compression while retaining the untouched English mode label Lossless for identification. Every colour value is retained; file-size increase remains usual, not certain.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "proposed_xml_text": "\"%1$s Засебна копија за опоравак је сачувана. Користите „Датотека > Извези копију за опоравак…“ да сачувате њену ZIP архиву. Издвојите canvas.png из ње и отворите ту слику да бисте по потреби користили уобичајене опције за промену величине.\"",
+      "semantic_rationale": "Preserves prefixed failure detail plus distinct success of retaining a separate recovery copy. Exact current File and recovery-export labels; literal ZIP/canvas.png and optional ordinary resize workflow retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "source": "Autosave failed · use Save",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "proposed_xml_text": "\"Аутоматско чување није успело · користите „Сачувај“\"",
+      "semantic_rationale": "Failed autosave status directs to the exact current Save action; not a successful manual save.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "source": "Autosave image encoding failed.",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "proposed_xml_text": "\"Кодирање слике за аутоматско чување није успело.\"",
+      "semantic_rationale": "Encoding of the autosave image failed; no implication that a different save step failed or succeeded.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "proposed_xml_text": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и изаберите формат PNG / JPEG (поље је означено „Име слике“).\"",
+      "semantic_rationale": "Failure detail is preserved at the start. Autosave is paused to protect the prior draft; recovery export retains that draft, whereas Save as saves current work in PNG/JPEG. Current action labels remain verbatim. Cyrillic explicitly identifies its inherited, semantically incorrect field label rather than presenting that label as a translation of format.",
+      "uncertainties": [
+        "Inherited save20_file_format is Име слике (image name), not a correct format label. The candidate explicitly calls PNG/JPEG a format and identifies the field by its actual displayed label. Assess full-message navigation clarity independently; inherited label repair is outside these 74 additions."
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "source": "Autosave metadata is missing.",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "proposed_xml_text": "\"Недостају метаподаци аутоматски сачуване радне верзије.\"",
+      "semantic_rationale": "Missing metadata belongs to the autosaved draft, not to the explicit image destination.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "source": "Autosave paused · use Save",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "proposed_xml_text": "\"Аутоматско чување је паузирано · користите „Сачувај“\"",
+      "semantic_rationale": "Paused, not failed or completed, autosave directs to the exact current Save label.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "source": "Autosave pixels are missing.",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "proposed_xml_text": "\"Недостају пиксели аутоматски сачуване радне верзије.\"",
+      "semantic_rationale": "Missing pixel data in the autosaved draft is distinct from metadata absence and unreadable existing pixels.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "source": "Autosave pixels could not be read.",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "proposed_xml_text": "\"Није могуће прочитати пикселе аутоматски сачуване радне верзије.\"",
+      "semantic_rationale": "Reports unreadable autosave pixels without asserting they are absent or recoverable.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "source": "Autosave selection encoding failed.",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "proposed_xml_text": "\"Кодирање избора за аутоматско чување није успело.\"",
+      "semantic_rationale": "Autosave selection encoding, rather than the canvas image encoding, failed; selection vocabulary follows existing UI.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "proposed_xml_text": "\"Није могуће направити кеш за опозив. Ослободите простор за складиштење на уређају и покушајте поново.\"",
+      "semantic_rationale": "Cannot create the disk-backed undo cache; explicitly asks for device storage space, not additional RAM, and retries.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "source": "Could not export the recovery copy",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "proposed_xml_text": "\"Извоз копије за опоравак није успео\"",
+      "semantic_rationale": "Failure prefix for ioFailed retains recovery-copy export meaning and has no added terminal punctuation.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "source": "Draft not saved yet",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "proposed_xml_text": "\"Радна верзија још није сачувана\"",
+      "semantic_rationale": "Draft status says not saved yet; does not claim manual Save failed or that the draft can never be saved.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "source": "Draft restored",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "proposed_xml_text": "\"Радна верзија је враћена\"",
+      "semantic_rationale": "Reports restoration of the draft only; no assertion that all undo history was recovered.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "source": "Draft saved",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "proposed_xml_text": "\"Радна верзија је сачувана\"",
+      "semantic_rationale": "Autosave draft status, explicitly a working draft rather than the manually saved image or a cleared dirty state.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "source": "Export recovery copy",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "proposed_xml_text": "\"Извези копију за опоравак\"",
+      "semantic_rationale": "Exactly the inherited recovery-export action vocabulary, with only its ellipsis removed for the canonical dialog title.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "proposed_xml_text": "\"Платно је враћено, али његову историју опозива није могуће прочитати. Изворна радна верзија је сачувана као копија за опоравак.\"",
+      "semantic_rationale": "Separates successful canvas restoration, unreadable undo history and retention of the original draft as a recovery copy. formatted=false retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "source": "Invalid autosave metadata.",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "proposed_xml_text": "\"Метаподаци аутоматски сачуване радне верзије нису исправни.\"",
+      "semantic_rationale": "Invalid metadata in the autosaved draft; does not substitute missing metadata or imply a repair occurred.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "source": "Previous draft kept for recovery",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "proposed_xml_text": "\"Претходна радна верзија је задржана за опоравак\"",
+      "semantic_rationale": "Prior draft retained for recovery, not restored and not a statement that current work was saved.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "source": "Recovered image",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "proposed_xml_text": "\"Опорављена слика\"",
+      "semantic_rationale": "Generic recovered-image filename/title; not a new format name or a guarantee about restored history.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "proposed_xml_text": "\"Копија за опоравак је извезена. Издвојите canvas.png из ZIP архиве и отворите га помоћу „Датотека > Отвори слику…“. ZIP архива садржи и подешавања радне верзије и плутајући избор, ако постоји.\"",
+      "semantic_rationale": "Export success precedes ZIP extraction of literal canvas.png. Uses actual existing Open image label rather than literal English Load image; archive also has draft settings and any floating selection.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "source": "The draft is saving. Try again shortly.",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "proposed_xml_text": "\"Чување радне верзије је у току. Покушајте поново ускоро.\"",
+      "semantic_rationale": "Draft save is in progress and temporarily blocks the attempted operation; asks for a short wait/retry, not another Save action.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "proposed_xml_text": "\"Претходну радну верзију није могуће преместити у копију за опоравак.\"",
+      "semantic_rationale": "Move of the prior draft to a recovery copy failed; no claim that a recovery copy exists.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "source": "The previous draft could not be preserved separately.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "proposed_xml_text": "\"Претходну радну верзију није могуће сачувати засебно.\"",
+      "semantic_rationale": "Separate preservation of the prior draft failed, distinct from successful separate retention and from current-image saving.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "source": "The previous draft could not be restored.",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "proposed_xml_text": "\"Претходну радну верзију није могуће вратити.\"",
+      "semantic_rationale": "Prior draft restoration failed; no claim that it was deleted or that all recovery is impossible.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "source": "The previous draft needs more memory to reopen.",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "proposed_xml_text": "\"За поновно отварање претходне радне верзије потребно је више меморије.\"",
+      "semantic_rationale": "More working memory is needed to reopen the previous draft; does not request disk space or claim corruption.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "source": "The undo cache is damaged.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "proposed_xml_text": "\"Кеш за опозив је оштећен.\"",
+      "semantic_rationale": "Undo cache corruption, not a successful cache repair or generic image corruption.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "source": "Unexpected data in the undo cache.",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "proposed_xml_text": "\"Неочекивани подаци у кешу за опозив.\"",
+      "semantic_rationale": "Unexpected data specifically in the undo cache; no implied loss of all canvas pixels.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "source": "An assembly source image is missing.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "proposed_xml_text": "\"Недостаје једна изворна слика за композицију.\"",
+      "semantic_rationale": "A source image of the assembly layout is missing; the candidate does not say the rendered output is missing. Composition denotes the assembled layout, not a renamed action label.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "source": "Assembly saved",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "proposed_xml_text": "\"Композиција је сачувана\"",
+      "semantic_rationale": "Assembly output save success only; does not assert an editable interchange format or an updated main-editor Save target.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "proposed_xml_text": "\"Процењује се да је за ову композицију потребно више радне меморије него што тренутно ограничење дозвољава, чак и при најмањој величини излазне слике. Само смањење димензија композиције није довољно при тренутним ограничењима. Затворите друге документе или припремите мању изворну слику пре него што покушате поново. Ваша композиција је непромењена.\"",
+      "semantic_rationale": "Preserves estimated combined assembly memory, current limits, smallest output still exceeding them, insufficient dimension reduction alone, both alternatives and unchanged assembly. Not a universal impossibility or decoder-only statement.",
+      "uncertainties": [
+        "The related P1 ui_no_resize_fits_decoder_memory remains absent and unreviewed. This P0 candidate does not confer acceptance on the paired P1 warning; implementation/test receipts must keep the scopes separate."
+      ]
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "source": "Clear all",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "proposed_xml_text": "\"Очисти све\"",
+      "semantic_rationale": "Matches inherited Clear vocabulary; applies to all assembly contents, not only one selected image.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "source": "Could not save the assembly: %1$s",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "proposed_xml_text": "\"Чување композиције није успело: %1$s\"",
+      "semantic_rationale": "Assembly output write failed; exact string placeholder carries the original exception detail.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "source": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "proposed_xml_text": "\"Складиштење композиције није успело.\"",
+      "semantic_rationale": "Failure to persist internal assembly data is distinguished from writing an exported PNG output.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "proposed_xml_text": "\"Слика димензија %1$d × %2$d пиксела (%3$.2f MP) премашује тренутно ограничење за безбедно уређивање од %4$.2f MP. AN Paint држи целу слику у меморији и резервише простор за трансформације и изборе. Ово ограничење зависи од расположиве меморије. Операција је заустављена пре доделе меморије за превелику битмапу. Величина није аутоматски промењена.\"",
+      "semantic_rationale": "Width, height, image megapixels and permitted megapixels retain exact order/types/precision and multiplication sign. Full image plus editing reserves, available-memory dependency, stop before oversized allocation and no automatic resize retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "proposed_xml_text": "\"Задржава пикселе у горњем левом углу. Мање димензије платна одбацују пикселе изван десне и доње ивице; опција „Опозови“ их враћа.\"",
+      "semantic_rationale": "Canvas resize anchors retained pixels top-left; right/bottom out-of-bounds pixels are discarded and the exact current Undo action restores them.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "proposed_xml_text": "\"Нема довољно меморије за ову операцију. Изворне датотеке композиције су задржане.\"",
+      "semantic_rationale": "Assembly operation lacks memory but source files are retained; no claim of successful operation or saved output.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "source": "Resize large image?",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "proposed_xml_text": "\"Променити величину велике слике?\"",
+      "semantic_rationale": "Question about resizing a large image; follows inherited image-size vocabulary without suggesting automatic resizing already occurred.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "proposed_xml_text": "\"Процене обухватају тренутно платно и садржај оставе, декодирање у смањеној резолуцији и бафере за уређивање. Стварна потрошња меморије варира. Мања копија губи детаље. Изворна датотека остаје непромењена.\"",
+      "semantic_rationale": "Memory estimate includes current canvas, clipboard, reduced-resolution sampled decode and editing buffers; actual use varies, smaller copy loses detail, original file unchanged. Applies only to non-native-work branch.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_png",
+      "source": "Save PNG",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "proposed_xml_text": "\"Сачувај PNG\"",
+      "semantic_rationale": "Assembly PNG output action uses current Save vocabulary; does not change the separate drawing editor destination.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "source": "The saved assembly could not be opened: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "proposed_xml_text": "\"Сачувану композицију није могуће отворити: %1$s\"",
+      "semantic_rationale": "Failure to reopen stored assembly metadata, with exact exception-detail placeholder and no claim that rendering succeeded.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "source": "The trim would remove the entire image.",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "proposed_xml_text": "\"Овим обрезивањем би се уклонила цела слика.\"",
+      "semantic_rationale": "Conditional destructive consequence of the rejected trim; the image has not already been removed.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "proposed_xml_text": "\"Нема довољно меморије за ову операцију у изворној резолуцији. Величина није аутоматски промењена.\"",
+      "semantic_rationale": "Operation lacks memory at original resolution, explicitly with no automatic resizing applied.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "proposed_xml_text": "\"Податке о ауторима и изворима слика није могуће сачувати или вратити. Постојећи сачувани подаци су задржани. Покушајте поново.\"",
+      "semantic_rationale": "Credits are attribution/source information, not money or only author names. Save/restore failure, retained existing stored credits and retry are all explicit.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "proposed_xml_text": "\"Због ових података о ауторима и изворима слика, количина података у цртежу била би превелика за враћање. Ваш претходни цртеж и подаци о ауторима и изворима слика су задржани.\"",
+      "semantic_rationale": "Too much attribution metadata would make the drawing unrestorable; explicitly refers to data volume, not pixel dimensions, and retains prior drawing plus prior credits.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "proposed_xml_text": "\"Неке сачуване податке о ауторима и изворима слика није могуће прочитати. Њихове сачуване копије су задржане.\"",
+      "semantic_rationale": "Some stored attribution data are unreadable, but their stored copies remain; does not assert that all credits restored or unreadable copies are usable.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "source": "The completed image could not replace its destination.",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "proposed_xml_text": "\"Одредишну датотеку није било могуће заменити готовом сликом.\"",
+      "semantic_rationale": "Encoded image completion is distinct from failed destination-file replacement/rename; not a completed provider write.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "proposed_xml_text": "\"Слика и бафери за кодирање премашују ограничење меморије за извоз.\"",
+      "semantic_rationale": "Combined image plus encoding buffers exceed the export working-memory budget; neither disk-file size nor canvas footprint alone.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "source": "Could not open image",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "proposed_xml_text": "\"Отварање слике није успело\"",
+      "semantic_rationale": "Image-opening failure prefix without final punctuation; caller appends exception/fallback details.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "source": "Could not save image",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "proposed_xml_text": "\"Чување слике није успело\"",
+      "semantic_rationale": "Image-save failure prefix without final punctuation or invented placeholder; caller supplies separator and error detail.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "proposed_xml_text": "\"Извезена датотека је направљена. Пре него што наставите, користите „Сачувај“ или „Сачувај као…“ да сачувате тренутну слику.\"",
+      "semantic_rationale": "Export output was created successfully but does not satisfy save-before-replacement. Both exact current Save actions must still save the current image before continuing.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "proposed_xml_text": "\"Извезите икону, Base64 текст или ASCII цртеж. Извоз не мења тренутну слику нити њено одредиште за опцију „Сачувај“.\"",
+      "semantic_rationale": "All three derived export types retained; neither the working image nor its Save target changes. Does not deny that a separate export file is written.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "proposed_xml_text": "\"Нема довољно меморије за чување у овом формату. Покушајте са PNG форматом\"",
+      "semantic_rationale": "Insufficient memory in selected format; PNG is a suggestion, not a guaranteed remedy. No terminal period because caller appends details.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "source": "PNG encoding failed.",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "proposed_xml_text": "\"PNG кодирање није успело.\"",
+      "semantic_rationale": "PNG encoding failure only; not a successful save or a false report about decoder support.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "source": "Save and share",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "proposed_xml_text": "\"Сачувај и подели\"",
+      "semantic_rationale": "Exactly the inherited Save and share action vocabulary with only the ellipsis removed; existing explanation remains untouched.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "proposed_xml_text": "\"Изаберите формат слике и подешавања компресије. Опција „Сачувај“ ће поново користити овај назив датотеке, локацију, формат и подешавања.\"",
+      "semantic_rationale": "Choose image format/compression; later exact Save action reuses all four items: filename, location, format and settings. No claim that compression is always lossy.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_saved",
+      "source": "Saved %1$s",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "proposed_xml_text": "\"Сачувано: %1$s\"",
+      "semantic_rationale": "Named output file was saved; same neutral toast can describe Save, Export or Share writes without asserting all document changes are saved. Exactly one indexed string token retained.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "source": "The encoder did not finish.",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "proposed_xml_text": "\"Кодирање није довршено.\"",
+      "semantic_rationale": "The image encoding process did not finish; avoids an ambiguous human coder and makes no output-success claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "proposed_xml_text": "\"Слика је сачувана, али Android није могао да покрене дељење: %1$s\"",
+      "semantic_rationale": "Successful image-copy write and failed Android sharing launch remain separate; exception placeholder retained, with no Save-target change claim.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "source": "The selected location is not writable.",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "proposed_xml_text": "\"Није могуће уписивати на изабрану локацију.\"",
+      "semantic_rationale": "Chosen location cannot accept writes; does not invent permissions-only or write-protection cause.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "source": "This location is not writable.",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "proposed_xml_text": "\"Није могуће уписивати на ову локацију.\"",
+      "semantic_rationale": "Generic unwritable location applicable to recovery/source-code export; no narrower cause or unrelated archive-identity change.",
+      "uncertainties": []
+    },
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "source": "Your current image has unsaved changes.",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "proposed_xml_text": "\"Ваша тренутна слика има несачуване измене.\"",
+      "semantic_rationale": "Current working image has unsaved changes; negation and current-document scope retained rather than referring to a prior draft.",
+      "uncertainties": []
+    }
+  ],
+  "limits": [
+    "Missing-only74 values in this script; all338 inherited values/attributes across the Serbian script pair remain immutable.",
+    "Five no-current-consumer holds and missing P1 memory companion excluded.",
+    "Unchanged English lower-bound frame counts and Lossless mode label remain outside scope; these compositions are not claimed fully localized.",
+    "Inherited save20_file_format says Име слике rather than format; the recovery guidance names the actual displayed label explicitly, and the inherited defect remains separate from these additions.",
+    "Both full script-specific candidate sets received author self-review, not independent linguistic acceptance or native-human certification.",
+    "Awaiting independent complete-value review; not accepted for implementation yet."
+  ]
+}

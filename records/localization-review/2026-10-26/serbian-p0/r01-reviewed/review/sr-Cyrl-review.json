@@ -1,0 +1,1488 @@
+{
+  "schema_version": 1,
+  "locale": "sr-Cyrl",
+  "source_commit": "e1e5433e63d45f5b76d39ce1a31ffc11fd7cd79d",
+  "source_tree": "98b89d126533df3c0dbaeb729c74e4bcb44a3a8a",
+  "review_role": "Independent complete-value AI linguistic/source-static reviewer; distinct from candidate author; each full Cyrillic and Latin value read, not mechanical transliteration acceptance",
+  "candidate_sha256": "c7ad9074f7e813519543643425a53563994c926f9057bfe847a49acfe8ab9b4a",
+  "source_context_sha256": "e99bba815c15b52f0949765f6a031cecb7b053b5f805200b851c3c2e597a432d",
+  "terminology_sha256": "7d6169aed94f3d03a1d685db4b39493e1d3fc5a6ffe7f7e2f5b3b273bc12946f",
+  "source_tree_sha256": "ce60be231c0c99f8b18bfb2d0fc78798f0d282fa19412b5498f4602a8bd1a6ec",
+  "verification": {
+    "source_blobs_and_modes_verified": 1382,
+    "canonical_values_attributes_and_full_tokens_verified": 74,
+    "current_consumer_windows_verified": 131,
+    "unique_consumer_windows_verified": 121,
+    "preserved_values_and_attributes_verified": 170,
+    "source_catalogue_git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+    "candidate_identity_scope": "Exact 74 selected missing P0 identities, all absent in this script at the source commit; no inherited replacement",
+    "complete_value_decisions": {
+      "accept": 74
+    },
+    "five_no_consumer_holds_untouched": [
+      "formats22_derived_exported",
+      "ui_save_as",
+      "ui_save_as_jpeg",
+      "ui_save_as_jpeg_xl",
+      "ui_save_as_png"
+    ],
+    "expected_structural_endpoint_if_exact_values_applied": {
+      "containers": 244,
+      "P0_present": 87,
+      "P0_total": 92
+    },
+    "immutable_control_labels": {
+      "save": "Сачувај",
+      "save_as": "Сачувај као…",
+      "discard": "Одбаци измене",
+      "keep_editing": "Откажи",
+      "format": "Име слике",
+      "load_image": "Отвори слику…",
+      "save_question": "Сачувати промене?",
+      "recovery_export": "Извези копију за опоравак…",
+      "save_and_share": "Сачувај и подели…"
+    },
+    "scope_limits": [
+      "AI complete-value linguistic and source-static review only; not native-human, whole-language, layout, runtime, Android resource-compiler or physical-device certification.",
+      "All 338 inherited values/attributes across the pair are preserved as context, not newly accepted. The four already-present 78-family identities per script are not added or replaced.",
+      "Each script was read as complete text against the English source and precise consumer, including script-specific labels; matching transliteration did not supply acceptance.",
+      "Outer Android string quotes, exact attributes, full printf tokens, Unicode scripts and XML round-trip structure checked. Resource compilation and behavioral tests remain separate implementation checks.",
+      "The five no-current-consumer holds per script and all out-of-scope keys remain untouched. P0-only assembly warning acceptance does not accept the absent P1 warning.",
+      "Cyrillic inherited save20_file_format is mislabeled image name, unlike Latin Format slike; preserved and separately flagged, not endorsed by navigation guidance."
+    ]
+  },
+  "entries": [
+    {
+      "identity": "string/formats22_animation_message",
+      "decision": "accept",
+      "original_xml_text": "\"Број кадрова у овој слици формата %1$s: %2$s. AN Paint уређује статичне слике и не чува анимацију.\"",
+      "accepted_xml_text": "\"Број кадрова у овој слици формата %1$s: %2$s. AN Paint уређује статичне слике и не чува анимацију.\"",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "reason": "The complete sentence introduces the count as a value after a colon, so both an exact number and the inherited lower-bound string fit without an incorrect numeral-dependent noun ending. Format and count remain separate indexed strings; editing still images and not preserving animation are explicit.",
+      "qualifications": [
+        "The untouched formats22_at_least_frames fallback can insert English “at least 2”; this is not certification of a wholly localized composed message."
+      ],
+      "source_value_sha256_utf8": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+      "original_value_sha256_utf8": "94dd911707aed7d162d8ed7b98b1079f89ae54bce9b4cf0da8f4c29a07f93fe9",
+      "accepted_value_sha256_utf8": "94dd911707aed7d162d8ed7b98b1079f89ae54bce9b4cf0da8f4c29a07f93fe9",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:92"
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "decision": "accept",
+      "original_xml_text": "\"Ова PNG слика има засебну подразумевану слику. Она ће бити увезена уместо кадрова анимације. Чувањем се добија статична слика.\"",
+      "accepted_xml_text": "\"Ова PNG слика има засебну подразумевану слику. Она ће бити увезена уместо кадрова анимације. Чувањем се добија статична слика.\"",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "reason": "The separate default PNG image is the antecedent of the image to be imported instead of the animation frames. The final sentence says saving produces a static image; it does not preserve or import those frames.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+      "original_value_sha256_utf8": "4e9badbd90eff0a68090c9fee968f9d757dcfbb9b847d4a00532d4006e9114d6",
+      "accepted_value_sha256_utf8": "4e9badbd90eff0a68090c9fee968f9d757dcfbb9b847d4a00532d4006e9114d6",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "decision": "accept",
+      "original_xml_text": "\"Биће увезен само први кадар. Чувањем се добија статична слика.\"",
+      "accepted_xml_text": "\"Биће увезен само први кадар. Чувањем се добија статична слика.\"",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "reason": "The restrictive word for only applies to the first frame. Saving is explicitly described as producing a static image, matching the non-poster import branch.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+      "original_value_sha256_utf8": "4acdfc5b35a9acbe952b6a3efc1f07571c51c71ecf978bd22eebd23a8d1241e3",
+      "accepted_value_sha256_utf8": "4acdfc5b35a9acbe952b6a3efc1f07571c51c71ecf978bd22eebd23a8d1241e3",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "decision": "accept",
+      "original_xml_text": "\"Анимирана слика\"",
+      "accepted_xml_text": "\"Анимирана слика\"",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "reason": "The adjective identifies an animated image as the dialog subject without promising animation editing or retention.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+      "original_value_sha256_utf8": "89068616d1bf83c1941bce3c3518df605f42a519f4ca14b02b73aa85c96114b1",
+      "accepted_value_sha256_utf8": "89068616d1bf83c1941bce3c3518df605f42a519f4ca14b02b73aa85c96114b1",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94"
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "decision": "accept",
+      "original_xml_text": "\"Ова слика формата %1$s је превише сложена да би се потврдило да ли садржи више кадрова. AN Paint ће отворити само статичну слику и неће сачувати никакву анимацију.\"",
+      "accepted_xml_text": "\"Ова слика формата %1$s је превише сложена да би се потврдило да ли садржи више кадрова. AN Paint ће отворити само статичну слику и неће сачувати никакву анимацију.\"",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "reason": "The full conditional construction retains uncertainty about whether multiple frames exist. It separately states that only a static image will open and that no animation will be preserved, rather than asserting a one-frame image.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+      "original_value_sha256_utf8": "db6606c18fb0ca7c4aa56043ce9d94ea22fd00d25e1c853889bcf9187754d744",
+      "accepted_value_sha256_utf8": "db6606c18fb0ca7c4aa56043ce9d94ea22fd00d25e1c853889bcf9187754d744",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:91"
+      ]
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "decision": "accept",
+      "original_xml_text": "\"Записује обичан текст помоћу светлих и тамних знакова. Прикажите га фонтом у којем су сви знакови исте ширине. То је визуелни приказ; не може се поново отворити као изворна слика.\"",
+      "accepted_xml_text": "\"Записује обичан текст помоћу светлих и тамних знакова. Прикажите га фонтом у којем су сви знакови исте ширине. То је визуелни приказ; не може се поново отворити као изворна слика.\"",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "reason": "Plain text, light/dark characters and equal-width glyphs all remain present. The final clause denies reopening the rendition as the original image; it does not misdescribe the output as a reversible image encoding.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+      "original_value_sha256_utf8": "55f9f602ae88c17ecb38d1dd2e2ac88beab147e26b1b6db36ec683c18f6b39b2",
+      "accepted_value_sha256_utf8": "55f9f602ae88c17ecb38d1dd2e2ac88beab147e26b1b6db36ec683c18f6b39b2",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:101"
+      ]
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "decision": "accept",
+      "original_xml_text": "\"Отвори статичну слику\"",
+      "accepted_xml_text": "\"Отвори статичну слику\"",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "reason": "The imperative offers opening a static image, suitable for both the positive action and the uncertain-inspection dialog title.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+      "original_value_sha256_utf8": "ca88906d367ceb59a2c752199ee26ba22f07a1919e63916eb5ad6aa94f090f89",
+      "accepted_value_sha256_utf8": "ca88906d367ceb59a2c752199ee26ba22f07a1919e63916eb5ad6aa94f090f89",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:95"
+      ]
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "decision": "accept",
+      "original_xml_text": "\"PDF странице се приказују у резолуцији од 144 dpi. Текст и векторски објекти претварају се у пикселе.\"",
+      "accepted_xml_text": "\"PDF странице се приказују у резолуцији од 144 dpi. Текст и векторски објекти претварају се у пикселе.\"",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "reason": "The fixed 144 dpi value is unchanged and the following sentence explicitly converts text and vector objects into pixels. This describes rasterized page import rather than editable vector retention.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+      "original_value_sha256_utf8": "f9a4fb1be17b60c17e6d0f3be3c18bac846d930c80959e1e58a8fa01486efe11",
+      "accepted_value_sha256_utf8": "f9a4fb1be17b60c17e6d0f3be3c18bac846d930c80959e1e58a8fa01486efe11",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:102"
+      ]
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "decision": "accept",
+      "original_xml_text": "\"Статична слика са највише 256 боја. Дидеринг ублажава прелазе између боја. Анимиране GIF слике отварају се као први кадар анимације.\"",
+      "accepted_xml_text": "\"Статична слика са највише 256 боја. Дидеринг ублажава прелазе између боја. Анимиране GIF слике отварају се као први кадар анимације.\"",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "reason": "The whole explanation retains a static image, the maximum of 256 colours, smoothing of colour transitions and opening only the first animation frame. Its dithering noun matches the inherited checkbox vocabulary.",
+      "qualifications": [
+        "The inherited dithering label is preserved as a control reference, not newly accepted or corrected."
+      ],
+      "source_value_sha256_utf8": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "original_value_sha256_utf8": "28658f83e09889bc50fb148e568769c456c1da6462e4e0e32fb21858b3d1c0a1",
+      "accepted_value_sha256_utf8": "28658f83e09889bc50fb148e568769c456c1da6462e4e0e32fb21858b3d1c0a1",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:95"
+      ]
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "decision": "accept",
+      "original_xml_text": "\"Унесите назив датотеке без косих црта и контролних знакова.\"",
+      "accepted_xml_text": "\"Унесите назив датотеке без косих црта и контролних знакова.\"",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "reason": "The instruction excludes slashes and control characters together; it neither broadens the ban to ordinary punctuation nor promises that every other name is valid.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+      "original_value_sha256_utf8": "423f25224bec79473ba85008a6ba4484c9b05bc54bee101a8f576b73ad8476cc",
+      "accepted_value_sha256_utf8": "423f25224bec79473ba85008a6ba4484c9b05bc54bee101a8f576b73ad8476cc",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:194"
+      ]
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "decision": "accept",
+      "original_xml_text": "\"Виши квалитет чува више детаља и обично ствара већу датотеку.\"",
+      "accepted_xml_text": "\"Виши квалитет чува више детаља и обично ствара већу датотеку.\"",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "reason": "Higher quality preserves more detail, while the larger-file effect remains qualified as usual rather than certain. The comparative wording suits the JPEG/HEIC quality explanation.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+      "original_value_sha256_utf8": "58fcf6267bfbcbce5a855474b8481ce454077bcb13fd7c2c520ee4ff00033c40",
+      "accepted_value_sha256_utf8": "58fcf6267bfbcbce5a855474b8481ce454077bcb13fd7c2c520ee4ff00033c40",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:102"
+      ]
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "decision": "accept",
+      "original_xml_text": "\"Ова слика користи профил боја који AN Paint још не може да конвертује. Пре увоза је претворите у PNG слику са профилом sRGB у уређивачу који подржава управљање бојама.\"",
+      "accepted_xml_text": "\"Ова слика користи профил боја који AN Paint још не може да конвертује. Пре увоза је претворите у PNG слику са профилом sRGB у уређивачу који подржава управљање бојама.\"",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "reason": "The current inability to convert the colour profile remains qualified by yet. The requested action is conversion of the image to an sRGB PNG in a colour-managed editor before import, not simply renaming or retagging the file.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+      "original_value_sha256_utf8": "bdba519c9a3c2e443c5594ba43dbf40b1b60a50915e9a676204f24119af0a913",
+      "accepted_value_sha256_utf8": "bdba519c9a3c2e443c5594ba43dbf40b1b60a50915e9a676204f24119af0a913",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:16",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:23",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt:115"
+      ]
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "decision": "accept",
+      "original_xml_text": "\"Виши квалитет обично ствара већу датотеку. Компресија без губитака (Lossless) чува сваку вредност боје.\"",
+      "accepted_xml_text": "\"Виши квалитет обично ствара већу датотеку. Компресија без губитака (Lossless) чува сваку вредност боје.\"",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "reason": "The larger-file claim is explicitly usual, and lossless is identified as compression preserving every colour value. The parenthetical English mode word helps identify the untouched control without changing its semantics.",
+      "qualifications": [
+        "The unchanged ui_lossless_format control remains the English “Lossless %1$s” fallback."
+      ],
+      "source_value_sha256_utf8": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+      "original_value_sha256_utf8": "1a21dba649e003475eb35775b1a386b6dd165d942a53e9af658668beb5dcf5ca",
+      "accepted_value_sha256_utf8": "1a21dba649e003475eb35775b1a386b6dd165d942a53e9af658668beb5dcf5ca",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:103"
+      ]
+    },
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "decision": "accept",
+      "original_xml_text": "\"%1$s Засебна копија за опоравак је сачувана. Користите „Датотека > Извези копију за опоравак…“ да сачувате њену ZIP архиву. Издвојите canvas.png из ње и отворите ту слику да бисте по потреби користили уобичајене опције за промену величине.\"",
+      "accepted_xml_text": "\"%1$s Засебна копија за опоравак је сачувана. Користите „Датотека > Извези копију за опоравак…“ да сачувате њену ZIP архиву. Издвојите canvas.png из ње и отворите ту слику да бисте по потреби користили уобичајене опције за промену величине.\"",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "reason": "The prefixed failure reason is followed by an already-retained separate recovery copy. The exact inherited File and recovery-export commands lead to exporting its ZIP, extracting literal canvas.png and then opening that image for optional normal resizing. It does not confuse this retained draft with the current unsaved work.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "579fea23054e5ac24d9dad1aee8a1dd13af1d810fbed9f92e059cce26f6ed0a0",
+      "original_value_sha256_utf8": "cbcfe5c99fd7da1e299d3f740724d24b5fd6ecbdffdedf44e4591471f0b94763",
+      "accepted_value_sha256_utf8": "cbcfe5c99fd7da1e299d3f740724d24b5fd6ecbdffdedf44e4591471f0b94763",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "decision": "accept",
+      "original_xml_text": "\"Аутоматско чување није успело · користите „Сачувај“\"",
+      "accepted_xml_text": "\"Аутоматско чување није успело · користите „Сачувај“\"",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "reason": "The status reports failed automatic saving and explicitly directs the user to the inherited Save action, without claiming that explicit Save already occurred.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "9fab2239be3a11b6843125b73bedddcef714c0188d682cb0f145f6a7fdd1457a",
+      "original_value_sha256_utf8": "8169770d348eaf51add77c27f0e922712c3070a79ed9e7e1283e34b9b951b623",
+      "accepted_value_sha256_utf8": "8169770d348eaf51add77c27f0e922712c3070a79ed9e7e1283e34b9b951b623",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "decision": "accept",
+      "original_xml_text": "\"Кодирање слике за аутоматско чување није успело.\"",
+      "accepted_xml_text": "\"Кодирање слике за аутоматско чување није успело.\"",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "reason": "Encoding failure belongs to the image in the automatic-save transaction, distinct from the floating-selection encoder and from successful persistence.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f83897890596e2776edb9f66dca76dce2e53f64fb26f43c2462116d978d64201",
+      "original_value_sha256_utf8": "fef9c6eff485f78be916b78dc0b45068e4d43fac22e391666d14e8f096bc7698",
+      "accepted_value_sha256_utf8": "fef9c6eff485f78be916b78dc0b45068e4d43fac22e391666d14e8f096bc7698",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "decision": "accept",
+      "original_xml_text": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и изаберите формат PNG / JPEG (поље је означено „Име слике“).\"",
+      "accepted_xml_text": "\"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и изаберите формат PNG / JPEG (поље је означено „Име слике“).\"",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "reason": "The old draft protected by paused autosaving is distinguished from current work still needing explicit Save as. The export route preserves that old draft and the Save as route selects PNG/JPEG for the current image; the prefixed reason remains intact. The Cyrillic addition explicitly says to choose the PNG/JPEG format and identifies the displayed field as labelled „Име слике“; it does not translate format as image name.",
+      "qualifications": [
+        "Inherited defect, not accepted: save20_file_format displays „Име слике“ (image name) on the format selector. This new instruction references that actual label only for navigation. The inherited value/attributes remain untouched; separate defect recorded in AN Paint issue #56 comment 6422939364."
+      ],
+      "source_value_sha256_utf8": "45af3acf76284540e468a05d80591e36743472a7625da0c6b7153a8173e007a7",
+      "original_value_sha256_utf8": "456cd5a4941e04395b8ee94c6ce348dc459e9b04486079e881e360315d0bee9a",
+      "accepted_value_sha256_utf8": "456cd5a4941e04395b8ee94c6ce348dc459e9b04486079e881e360315d0bee9a",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "decision": "accept",
+      "original_xml_text": "\"Недостају метаподаци аутоматски сачуване радне верзије.\"",
+      "accepted_xml_text": "\"Недостају метаподаци аутоматски сачуване радне верзије.\"",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "reason": "The missing object is the automatically saved draft metadata, not pixels or the entire image; the wording fits the absent draft.json entry.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "1115f993a7d75ef4a554c7ef1cf900d88970a5c05144cf1c9038ab0d86965de4",
+      "original_value_sha256_utf8": "15cea93e3abe0e42e6dddf1d235f356f21c914279d629b6d3f68e7c68e51c7d7",
+      "accepted_value_sha256_utf8": "15cea93e3abe0e42e6dddf1d235f356f21c914279d629b6d3f68e7c68e51c7d7",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "decision": "accept",
+      "original_xml_text": "\"Аутоматско чување је паузирано · користите „Сачувај“\"",
+      "accepted_xml_text": "\"Аутоматско чување је паузирано · користите „Сачувај“\"",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "reason": "Automatic saving is paused, not completed or permanently unavailable, and the user is directed to the visible Save command.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "3dfab3c54ba3d7700fc9d12ae3d767eda448501ba5df52284905edd71c7f30bd",
+      "original_value_sha256_utf8": "f9da2b80906f8b7d021fc676c9c1a55af3ac3c594abc2b974050431031810ed6",
+      "accepted_value_sha256_utf8": "f9da2b80906f8b7d021fc676c9c1a55af3ac3c594abc2b974050431031810ed6",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "decision": "accept",
+      "original_xml_text": "\"Недостају пиксели аутоматски сачуване радне верзије.\"",
+      "accepted_xml_text": "\"Недостају пиксели аутоматски сачуване радне верзије.\"",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "reason": "The absent object is pixel data of the automatic draft. This preserves the distinction between a missing archive image entry and a decoding failure for an entry that exists.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4af9f86e590fa90219121ad8f4cbbe372eaeeca8fb1927e01917a7fdd881de31",
+      "original_value_sha256_utf8": "7857590645fe79890cb2d4d6c001a36059c99bff69ff7d0240b953fa83929d23",
+      "accepted_value_sha256_utf8": "7857590645fe79890cb2d4d6c001a36059c99bff69ff7d0240b953fa83929d23",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "decision": "accept",
+      "original_xml_text": "\"Није могуће прочитати пикселе аутоматски сачуване радне верзије.\"",
+      "accepted_xml_text": "\"Није могуће прочитати пикселе аутоматски сачуване радне верзије.\"",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "reason": "The failure is inability to read the automatic draft pixels, not absence of metadata or successful recovery. The wording works for both canvas and floating-image decoding.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "b6c10f2c0238abb6190525baa6d50140fc4e8c33de2cfab12b99930e833ba2f3",
+      "original_value_sha256_utf8": "ef8232a6efd24e622ae2a4fb8c8079b480d2901c6ea1df9ec3883ecd32022235",
+      "accepted_value_sha256_utf8": "ef8232a6efd24e622ae2a4fb8c8079b480d2901c6ea1df9ec3883ecd32022235",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "decision": "accept",
+      "original_xml_text": "\"Кодирање избора за аутоматско чување није успело.\"",
+      "accepted_xml_text": "\"Кодирање избора за аутоматско чување није успело.\"",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "reason": "The full value names the selection encoder in the automatic-save transaction, rather than the main canvas encoder or an already-saved selection.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4f03c5b20f4fee753afcccbbaddc08e6361f85e6ebd9a1275d69cfd5ffa906e0",
+      "original_value_sha256_utf8": "eadd8f533393f2964f5fd46c0837d55db7f1dd01e1e6adb975c22b64b30fe672",
+      "accepted_value_sha256_utf8": "eadd8f533393f2964f5fd46c0837d55db7f1dd01e1e6adb975c22b64b30fe672",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ]
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "decision": "accept",
+      "original_xml_text": "\"Није могуће направити кеш за опозив. Ослободите простор за складиштење на уређају и покушајте поново.\"",
+      "accepted_xml_text": "\"Није могуће направити кеш за опозив. Ослободите простор за складиштење на уређају и покушајте поново.\"",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "reason": "Failure to create the undo cache is followed by freeing device storage and retrying. The storage wording prevents confusing on-disk undo snapshots with the RAM budget used by separate memory warnings.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "original_value_sha256_utf8": "86b632640ee1d5c3ce7b56df0347c904eea1cbc82d2c0f811087b1c557ce587b",
+      "accepted_value_sha256_utf8": "86b632640ee1d5c3ce7b56df0347c904eea1cbc82d2c0f811087b1c557ce587b",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "decision": "accept",
+      "original_xml_text": "\"Извоз копије за опоравак није успео\"",
+      "accepted_xml_text": "\"Извоз копије за опоравак није успео\"",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "reason": "This is a recovery-copy export failure prefix, with no added terminal punctuation or token; ioFailed supplies its period and exception detail.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "66c703a27ccf6fd0c8400514fd0417449b780e644313ed3b5565bd8060be1815",
+      "original_value_sha256_utf8": "15df339def9d98205cb8a926dfadf2dc6b64fbc721f481bc0cf190205fd334d1",
+      "accepted_value_sha256_utf8": "15df339def9d98205cb8a926dfadf2dc6b64fbc721f481bc0cf190205fd334d1",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "decision": "accept",
+      "original_xml_text": "\"Радна верзија још није сачувана\"",
+      "accepted_xml_text": "\"Радна верзија још није сачувана\"",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "reason": "The not-yet negation is intact and refers only to the working draft, matching startup status rather than the explicit drawing Save target.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "47bfd1dafcd6d9d6d49ae9f60f5b5c60d0180661684733aaa73e559734f7d447",
+      "original_value_sha256_utf8": "240ab8732c7ccf3e1ffe9a1ddbb24ee4ffa54c7cd1116d37cd4d032881d33a8c",
+      "accepted_value_sha256_utf8": "240ab8732c7ccf3e1ffe9a1ddbb24ee4ffa54c7cd1116d37cd4d032881d33a8c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "decision": "accept",
+      "original_xml_text": "\"Радна верзија је враћена\"",
+      "accepted_xml_text": "\"Радна верзија је враћена\"",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "reason": "The status reports restoration of the working draft. It does not assert recovery of every undo entry or imply that dirty changes were explicitly saved.",
+      "qualifications": [
+        "Canvas/draft recovery is not certification that all undo history was restored."
+      ],
+      "source_value_sha256_utf8": "b22e11b3de90d4a130e7c63753a46f3b853fc949ca2fe95dd156138a384b5dcb",
+      "original_value_sha256_utf8": "9a8bcf57e6064c7120c3b2a19e08739fb376a31913196ac85f60c5ae329f66d8",
+      "accepted_value_sha256_utf8": "9a8bcf57e6064c7120c3b2a19e08739fb376a31913196ac85f60c5ae329f66d8",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ]
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "decision": "accept",
+      "original_xml_text": "\"Радна верзија је сачувана\"",
+      "accepted_xml_text": "\"Радна верзија је сачувана\"",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "reason": "The saved object is explicitly the working draft, appropriate for the successful autosave callback and not a promise that the drawing Save target was updated.",
+      "qualifications": [
+        "Successful automatic draft saving does not call document.markSaved or update the ordinary Save target."
+      ],
+      "source_value_sha256_utf8": "5ccb8caacdc5383597f882b5c366969ee1cdd1a32b1d122a42b0280a51f9a5a6",
+      "original_value_sha256_utf8": "03338eaf39bb168b6e7e36a73c515b0cd1475456ea561cb673b0227ddd12caba",
+      "accepted_value_sha256_utf8": "03338eaf39bb168b6e7e36a73c515b0cd1475456ea561cb673b0227ddd12caba",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ]
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "decision": "accept",
+      "original_xml_text": "\"Извези копију за опоравак\"",
+      "accepted_xml_text": "\"Извези копију за опоравак\"",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "reason": "The recovery chooser title matches the inherited recovery-export command exactly except for its intentionally absent ellipsis.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "144b8a2d9ee28d7aaa90dbbd22a6e1f487e99fd78a9c5f4d4131e48c0c3a0644",
+      "original_value_sha256_utf8": "8fbd5574c4cca016a7fbeec0eef055e8b91c42fe9e427c2089dce3edb0e7c875",
+      "accepted_value_sha256_utf8": "8fbd5574c4cca016a7fbeec0eef055e8b91c42fe9e427c2089dce3edb0e7c875",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ]
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "decision": "accept",
+      "original_xml_text": "\"Платно је враћено, али његову историју опозива није могуће прочитати. Изворна радна верзија је сачувана као копија за опоравак.\"",
+      "accepted_xml_text": "\"Платно је враћено, али његову историју опозива није могуће прочитати. Изворна радна верзија је сачувана као копија за опоравак.\"",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "reason": "All three outcomes remain distinct: the canvas was restored, undo history could not be read, and the original draft was retained as a recovery copy. No complete-history restoration is implied.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "445a2a9744ed258c1815920072f46042e9bb4aeb519a2c2d2d34eac8a95a589e",
+      "original_value_sha256_utf8": "d180bf358fae0b6d32af48d99d7257a79938f93091286c1850350f8c5a350941",
+      "accepted_value_sha256_utf8": "d180bf358fae0b6d32af48d99d7257a79938f93091286c1850350f8c5a350941",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ]
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "decision": "accept",
+      "original_xml_text": "\"Метаподаци аутоматски сачуване радне верзије нису исправни.\"",
+      "accepted_xml_text": "\"Метаподаци аутоматски сачуване радне верзије нису исправни.\"",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "reason": "Invalid automatic-draft metadata is stated without narrowing the cause to one JSON field or asserting corruption of the image pixels. This fits validation, size and shared metadata-read failures.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4a62b9a9531a09d3f34b967194d530070ddf65a66811f5ce52f39c332de3e2eb",
+      "original_value_sha256_utf8": "369d4be0f62853df60a64cb8102d98e6b1673093ffe26a6e8faebcfc6d83f2b5",
+      "accepted_value_sha256_utf8": "369d4be0f62853df60a64cb8102d98e6b1673093ffe26a6e8faebcfc6d83f2b5",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ]
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "decision": "accept",
+      "original_xml_text": "\"Претходна радна верзија је задржана за опоравак\"",
+      "accepted_xml_text": "\"Претходна радна верзија је задржана за опоравак\"",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "reason": "The previous working draft is retained for recovery; the value neither labels it as the current image nor claims it has already been restored.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f31aee8ae34783790412c745919799d37484bf8e70be9dc2865ec4defc829ff8",
+      "original_value_sha256_utf8": "cba851df81684f1e1ee897e011f52ca9e018b62af063874b0a1fec22ad913d30",
+      "accepted_value_sha256_utf8": "cba851df81684f1e1ee897e011f52ca9e018b62af063874b0a1fec22ad913d30",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ]
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "decision": "accept",
+      "original_xml_text": "\"Опорављена слика\"",
+      "accepted_xml_text": "\"Опорављена слика\"",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "reason": "The adjective and noun form a usable recovered-image filename/title fallback rather than a new promise that every part of recovery succeeded.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f31f8410df9ce45c66f3c7e7af9c7bf126ee2481a825f0e31cfae2a4881a43a8",
+      "original_value_sha256_utf8": "8ba4d7de52fbe082a513fe25f7a06cfb39ab36b6e95794488db2293ae2c4f47e",
+      "accepted_value_sha256_utf8": "8ba4d7de52fbe082a513fe25f7a06cfb39ab36b6e95794488db2293ae2c4f47e",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ]
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "decision": "accept",
+      "original_xml_text": "\"Копија за опоравак је извезена. Издвојите canvas.png из ZIP архиве и отворите га помоћу „Датотека > Отвори слику…“. ZIP архива садржи и подешавања радне верзије и плутајући избор, ако постоји.\"",
+      "accepted_xml_text": "\"Копија за опоравак је извезена. Издвојите canvas.png из ZIP архиве и отворите га помоћу „Датотека > Отвори слику…“. ZIP архива садржи и подешавања радне верзије и плутајући избор, ако постоји.\"",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "reason": "The completed recovery export, exact canvas.png filename, ZIP extraction and inherited Open image menu route are all present. Draft settings are included and a floating selection is explicitly conditional on its existence.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "original_value_sha256_utf8": "6aa7694c1534cc616a78e3a35dfa28cf3bd09a9b8cb0e8bb52d39ca21a88a431",
+      "accepted_value_sha256_utf8": "6aa7694c1534cc616a78e3a35dfa28cf3bd09a9b8cb0e8bb52d39ca21a88a431",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ]
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "decision": "accept",
+      "original_xml_text": "\"Чување радне верзије је у току. Покушајте поново ускоро.\"",
+      "accepted_xml_text": "\"Чување радне верзије је у току. Покушајте поново ускоро.\"",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "reason": "Saving of the draft is in progress and the interrupted edit should be retried shortly. It does not ask for another Save or report completion.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+      "original_value_sha256_utf8": "14dd5fa841ab269c53d4150ce28f9f269fe0f472f8ed67595dc19484af0acc36",
+      "accepted_value_sha256_utf8": "14dd5fa841ab269c53d4150ce28f9f269fe0f472f8ed67595dc19484af0acc36",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "decision": "accept",
+      "original_xml_text": "\"Претходну радну верзију није могуће преместити у копију за опоравак.\"",
+      "accepted_xml_text": "\"Претходну радну верзију није могуће преместити у копију за опоравак.\"",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "reason": "Failure to move the previous draft into a recovery copy remains a failure. It makes no unsupported assertion that the destination copy exists, including the missing-source branch.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "58a948005b3938c7d8ca4ea368db1b4b390a98d9f517f4851c5b98f8b57e71e5",
+      "original_value_sha256_utf8": "389192f85b70251a5c4e0a80fde33276a50caffc175b078ba54660c2306fb950",
+      "accepted_value_sha256_utf8": "389192f85b70251a5c4e0a80fde33276a50caffc175b078ba54660c2306fb950",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "decision": "accept",
+      "original_xml_text": "\"Претходну радну верзију није могуће сачувати засебно.\"",
+      "accepted_xml_text": "\"Претходну радну верзију није могуће сачувати засебно.\"",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "reason": "The value states inability to preserve the previous draft separately, consistent with blocking autosave to protect the original. It does not assert loss or successful copying.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "0231e19f5f7e376d0872735d1e3f8f9698fbd43564ea52240f454efc21d3c8ec",
+      "original_value_sha256_utf8": "61e7f36fd7d3a616836007ff0a932f8bd4dde9f0384fdbddf9659d742f1c779e",
+      "accepted_value_sha256_utf8": "61e7f36fd7d3a616836007ff0a932f8bd4dde9f0384fdbddf9659d742f1c779e",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "decision": "accept",
+      "original_xml_text": "\"Претходну радну верзију није могуће вратити.\"",
+      "accepted_xml_text": "\"Претходну радну верзију није могуће вратити.\"",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "reason": "The negative restoration result applies to the previous working draft, and its terminal period makes it usable as the prefixed reason in either subsequent recovery notice.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "1cc58fbbe1b76be657fc2eafbf8250b6231f06484eda3fbf7758e1b5cf88ea13",
+      "original_value_sha256_utf8": "32d944c6de377362c105e9b46f3b27dd1d0c112f45daa4f3af14df7e26c6e48c",
+      "accepted_value_sha256_utf8": "32d944c6de377362c105e9b46f3b27dd1d0c112f45daa4f3af14df7e26c6e48c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ]
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "decision": "accept",
+      "original_xml_text": "\"За поновно отварање претходне радне верзије потребно је више меморије.\"",
+      "accepted_xml_text": "\"За поновно отварање претходне радне верзије потребно је више меморије.\"",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "reason": "More memory is required to reopen the previous draft. The wording does not blame device storage, declare the draft damaged or promise that it has been reopened.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "cf655bbea013a29738b4f078166b9dde719f694052a7f1755e2bd0a40c1b9170",
+      "original_value_sha256_utf8": "a6280800841da4a577a1a2c65c3a89611f4ad122b278df5cedeef3b4df4ed1be",
+      "accepted_value_sha256_utf8": "a6280800841da4a577a1a2c65c3a89611f4ad122b278df5cedeef3b4df4ed1be",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ]
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "decision": "accept",
+      "original_xml_text": "\"Кеш за опозив је оштећен.\"",
+      "accepted_xml_text": "\"Кеш за опозив је оштећен.\"",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "reason": "The damaged object is the undo cache, matching checksum/header validation and not claiming damage to the restored canvas itself.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "19e62ed88ca1118a10f0062c76f9f7b3629b34cceed02628aefe5ca3bbb44cef",
+      "original_value_sha256_utf8": "1b36fc0f88598bb89617e516b1c8b72a1f11a0a71d836cac6441f99557feb931",
+      "accepted_value_sha256_utf8": "1b36fc0f88598bb89617e516b1c8b72a1f11a0a71d836cac6441f99557feb931",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ]
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "decision": "accept",
+      "original_xml_text": "\"Неочекивани подаци у кешу за опозив.\"",
+      "accepted_xml_text": "\"Неочекивани подаци у кешу за опозив.\"",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "reason": "Unexpected data are localized to the undo cache, appropriate to trailing data after the expected raster payload rather than a generic successful read.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "9005bd155636cba50a7b1139426614c2878b1b6651e86c0acb7d1ca0de8b0b22",
+      "original_value_sha256_utf8": "477c4190613a2208b60a18db607b3b709e390c1f69c0ae9e5e912e801d5bd999",
+      "accepted_value_sha256_utf8": "477c4190613a2208b60a18db607b3b709e390c1f69c0ae9e5e912e801d5bd999",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ]
+    },
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "decision": "accept",
+      "original_xml_text": "\"Недостаје једна изворна слика за композицију.\"",
+      "accepted_xml_text": "\"Недостаје једна изворна слика за композицију.\"",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "reason": "A constituent source image for the composition is missing. The indefinite one identifies a missing member and does not claim exactly one failure or that the rendered output is absent.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "03cf15a2a8c5dc8bef80963ac8b5b4ba7cafb00edab05c3d7862d5d02a33723f",
+      "original_value_sha256_utf8": "ea11fc1fb4cd79e84edb285612092050078ce0ad4c2a09c2435fd60a98824e9c",
+      "accepted_value_sha256_utf8": "ea11fc1fb4cd79e84edb285612092050078ce0ad4c2a09c2435fd60a98824e9c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:262"
+      ]
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "decision": "accept",
+      "original_xml_text": "\"Композиција је сачувана\"",
+      "accepted_xml_text": "\"Композиција је сачувана\"",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "reason": "The composition is reported saved only as the successful assembled-output toast. The short result does not promise an editable exchange format or a change to the separate drawing Save target.",
+      "qualifications": [
+        "The consumer confirms writing assembled PNG bytes; no editable assembly-interchange or separate editor Save-target guarantee is inferred."
+      ],
+      "source_value_sha256_utf8": "766dc3e6dbd1b817e2d2c2615c6a53a9b8c306e768f44a5931525c836ec27d37",
+      "original_value_sha256_utf8": "f37e8d5f2b26aa969ebcaa96b744a97f37a405b994ed4fe1a8ac31f61a14c74e",
+      "accepted_value_sha256_utf8": "f37e8d5f2b26aa969ebcaa96b744a97f37a405b994ed4fe1a8ac31f61a14c74e",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:342"
+      ]
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "decision": "accept",
+      "original_xml_text": "\"Процењује се да је за ову композицију потребно више радне меморије него што тренутно ограничење дозвољава, чак и при најмањој величини излазне слике. Само смањење димензија композиције није довољно при тренутним ограничењима. Затворите друге документе или припремите мању изворну слику пре него што покушате поново. Ваша композиција је непромењена.\"",
+      "accepted_xml_text": "\"Процењује се да је за ову композицију потребно више радне меморије него што тренутно ограничење дозвољава, чак и при најмањој величини излазне слике. Само смањење димензија композиције није довољно при тренутним ограничењима. Затворите друге документе или припремите мању изворну слику пре него што покушате поново. Ваша композиција је непромењена.\"",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "reason": "Every corrected clause is retained: estimated working-memory demand over current limits, failure even at the smallest output, dimensions alone insufficient, closing other documents or preparing a smaller source before retry, and the composition remaining unchanged. It avoids a decoder-only or timeless-impossibility claim.",
+      "qualifications": [
+        "Only this P0 value is reviewed. The distinct P1 ui_no_resize_fits_decoder_memory remains absent and unreviewed; paired-warning tests must not invent its acceptance."
+      ],
+      "source_value_sha256_utf8": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+      "original_value_sha256_utf8": "e84df169a7f3e4702da73fb539633c78b0ce0c69d0b565ab73ecb665ad6faad2",
+      "accepted_value_sha256_utf8": "e84df169a7f3e4702da73fb539633c78b0ce0c69d0b565ab73ecb665ad6faad2",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:300"
+      ]
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "decision": "accept",
+      "original_xml_text": "\"Очисти све\"",
+      "accepted_xml_text": "\"Очисти све\"",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "reason": "The imperative clears all, consistent with assembly.clear() rather than removing only the selected item or clearing the drawing canvas.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "29a390f9237e3c84e5641785eca25199620e53f7b6f4b9d843b23dcb5c12904f",
+      "original_value_sha256_utf8": "74c2123dfcf727da742e99421e3bac286d700cef54235ea70ea252b512de7db7",
+      "accepted_value_sha256_utf8": "74c2123dfcf727da742e99421e3bac286d700cef54235ea70ea252b512de7db7",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:101"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "decision": "accept",
+      "original_xml_text": "\"Чување композиције није успело: %1$s\"",
+      "accepted_xml_text": "\"Чување композиције није успело: %1$s\"",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "reason": "The composition save failed and the single indexed string carries exception detail after a colon. No completed-save or source-file-deletion claim is introduced.",
+      "qualifications": [
+        "The %1$s exception text may remain untranslated and may itself contain punctuation or percent signs."
+      ],
+      "source_value_sha256_utf8": "d23570f6a13edc7bc9f443628c6fe0a00f889d71e6d24135122cd5dc4ad6614a",
+      "original_value_sha256_utf8": "3f24fbb5038b1a320a8afeefeae4b48f4d5dc659ae6e839b96df012de9ac9816",
+      "accepted_value_sha256_utf8": "3f24fbb5038b1a320a8afeefeae4b48f4d5dc659ae6e839b96df012de9ac9816",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:343"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "decision": "accept",
+      "original_xml_text": "\"Складиштење композиције није успело.\"",
+      "accepted_xml_text": "\"Складиштење композиције није успело.\"",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "reason": "The full sentence reports failure to store the composition during internal assembly addition, kept distinct from the separate output-URI Save error.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "8896816c5ab28f698bf634e2b040419b89f9771e16f482d9684c3170e688d859",
+      "original_value_sha256_utf8": "a0ba8c300d41c8bdb477ba0e7e30d4e84639ed8d000f5f253f5568bf3d1f12d8",
+      "accepted_value_sha256_utf8": "a0ba8c300d41c8bdb477ba0e7e30d4e84639ed8d000f5f253f5568bf3d1f12d8",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:229"
+      ]
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "decision": "accept",
+      "original_xml_text": "\"Слика димензија %1$d × %2$d пиксела (%3$.2f MP) премашује тренутно ограничење за безбедно уређивање од %4$.2f MP. AN Paint држи целу слику у меморији и резервише простор за трансформације и изборе. Ово ограничење зависи од расположиве меморије. Операција је заустављена пре доделе меморије за превелику битмапу. Величина није аутоматски промењена.\"",
+      "accepted_xml_text": "\"Слика димензија %1$d × %2$d пиксела (%3$.2f MP) премашује тренутно ограничење за безбедно уређивање од %4$.2f MP. AN Paint држи целу слику у меморији и резервише простор за трансформације и изборе. Ово ограничење зависи од расположиве меморије. Операција је заустављена пре доделе меморије за превелику битмапу. Величина није аутоматски промењена.\"",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "reason": "Width, height, image MP and permitted MP retain their indexed order and both two-decimal precisions. The memory-dependent editing limit, complete image plus reserved transformation/selection space, stop before oversized allocation and absence of automatic resizing all survive in full.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "dcdd3aa9015cb728f6695ffac6100c85790b70563ddea87c0d568f1afc15b6b3",
+      "original_value_sha256_utf8": "dd1df9a385608363865fd675b04e1d2ce33be5c4dbdf0569f0583df704fb2725",
+      "accepted_value_sha256_utf8": "dd1df9a385608363865fd675b04e1d2ce33be5c4dbdf0569f0583df704fb2725",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt:46"
+      ]
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "decision": "accept",
+      "original_xml_text": "\"Задржава пикселе у горњем левом углу. Мање димензије платна одбацују пикселе изван десне и доње ивице; опција „Опозови“ их враћа.\"",
+      "accepted_xml_text": "\"Задржава пикселе у горњем левом углу. Мање димензије платна одбацују пикселе изван десне и доње ивице; опција „Опозови“ их враћа.\"",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "reason": "Top-left pixel anchoring is retained. Shrinking discards pixels beyond right/bottom edges, and the exact inherited Undo label is explicitly said to restore them; the passage does not describe image resampling.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "4d6da1792a4751708d0bb36eda8365c72b66b1a2b2db70c77cdc4c48486634dc",
+      "original_value_sha256_utf8": "b857f8794992a334bac0c3cf38ebdd1ad9edbf5bc776b7c2865a52b99a32c35f",
+      "accepted_value_sha256_utf8": "b857f8794992a334bac0c3cf38ebdd1ad9edbf5bc776b7c2865a52b99a32c35f",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1016"
+      ]
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "decision": "accept",
+      "original_xml_text": "\"Нема довољно меморије за ову операцију. Изворне датотеке композиције су задржане.\"",
+      "accepted_xml_text": "\"Нема довољно меморије за ову операцију. Изворне датотеке композиције су задржане.\"",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "reason": "The operation lacks memory while the composition source files are retained. Retention is not converted into a claim that rendering or output saving succeeded.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "cba5063c6a726597187fc64fc75c20c2f858db585fd5f89d691420f5eaa55534",
+      "original_value_sha256_utf8": "8d43ea482a0e1fa69f739c6ed05441364d23e119c6dd5ae19ed45a565f1fec15",
+      "accepted_value_sha256_utf8": "8d43ea482a0e1fa69f739c6ed05441364d23e119c6dd5ae19ed45a565f1fec15",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:117",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:294"
+      ]
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "decision": "accept",
+      "original_xml_text": "\"Променити величину велике слике?\"",
+      "accepted_xml_text": "\"Променити величину велике слике?\"",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "reason": "The question asks whether to resize a large image, fitting a choice dialog rather than announcing an automatic size change.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f037d36a47f4f0df7ac2da56fe4351da145993413a10d3518211e6bcac613a83",
+      "original_value_sha256_utf8": "7fd55febe31063166bb17970da2ee5670faf4699c4e9e9a99f5c3292070ac6e6",
+      "accepted_value_sha256_utf8": "7fd55febe31063166bb17970da2ee5670faf4699c4e9e9a99f5c3292070ac6e6",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:36"
+      ]
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "decision": "accept",
+      "original_xml_text": "\"Процене обухватају тренутно платно и садржај оставе, декодирање у смањеној резолуцији и бафере за уређивање. Стварна потрошња меморије варира. Мања копија губи детаље. Изворна датотека остаје непромењена.\"",
+      "accepted_xml_text": "\"Процене обухватају тренутно платно и садржај оставе, декодирање у смањеној резолуцији и бафере за уређивање. Стварна потрошња меморије варира. Мања копија губи детаље. Изворна датотека остаје непромењена.\"",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "reason": "The estimate includes the current canvas, clipboard contents, decoding at reduced resolution and editing buffers. Actual use varies; the smaller copy loses detail but the original file stays unchanged. The description is appropriate only to the non-native-work sampled-decoding branch.",
+      "qualifications": [
+        "The native/codec-memory explanation in the alternate branch is untouched and outside this acceptance."
+      ],
+      "source_value_sha256_utf8": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+      "original_value_sha256_utf8": "5206c1a3cfa3553954a0c76d546b09b85ee5d5a767a0b44b624061d3ce89b506",
+      "accepted_value_sha256_utf8": "5206c1a3cfa3553954a0c76d546b09b85ee5d5a767a0b44b624061d3ce89b506",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:34"
+      ]
+    },
+    {
+      "identity": "string/ui_save_png",
+      "decision": "accept",
+      "original_xml_text": "\"Сачувај PNG\"",
+      "accepted_xml_text": "\"Сачувај PNG\"",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "reason": "The action saves PNG from the assembly workspace; the format acronym is retained and no drawing-editor Save-target promise is added.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f38f79763d122bfa76922a03b3f04d653847e220238e71704c9a245c59e21e7c",
+      "original_value_sha256_utf8": "01fbf4e6f0895460b189350b76bfda9120c5fa488e78c7b8eeb6dd2e83cdc0dc",
+      "accepted_value_sha256_utf8": "01fbf4e6f0895460b189350b76bfda9120c5fa488e78c7b8eeb6dd2e83cdc0dc",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:88"
+      ]
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "decision": "accept",
+      "original_xml_text": "\"Сачувану композицију није могуће отворити: %1$s\"",
+      "accepted_xml_text": "\"Сачувану композицију није могуће отворити: %1$s\"",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "reason": "Opening a previously saved composition failed; the original exception remains a single indexed string. This fits internal assembly restoration, not successful output creation.",
+      "qualifications": [
+        "The %1$s exception text may remain untranslated and may itself contain punctuation or percent signs."
+      ],
+      "source_value_sha256_utf8": "2a936511bfc752ebf7f24e635feaa6de5f2e041c23ae4ab6c0b4237966628113",
+      "original_value_sha256_utf8": "f221fb5d7e9a5a3ac7031371716b05170871bd70d636917066bc83d435a55ad4",
+      "accepted_value_sha256_utf8": "f221fb5d7e9a5a3ac7031371716b05170871bd70d636917066bc83d435a55ad4",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:60"
+      ]
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "decision": "accept",
+      "original_xml_text": "\"Овим обрезивањем би се уклонила цела слика.\"",
+      "accepted_xml_text": "\"Овим обрезивањем би се уклонила цела слика.\"",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "reason": "The conditional would-remove construction describes the rejected crop effect, not an image that has already been removed.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "21b8edd92e5c183515dcb267c2cddceebc4eb5b02e1d053d952cec2d818ad4ca",
+      "original_value_sha256_utf8": "a4a4edbfe1f9f0e112a9cc36c2e2fa7e9f2eb8868bd0cf681b8941b590275990",
+      "accepted_value_sha256_utf8": "a4a4edbfe1f9f0e112a9cc36c2e2fa7e9f2eb8868bd0cf681b8941b590275990",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:49"
+      ]
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "decision": "accept",
+      "original_xml_text": "\"Нема довољно меморије за ову операцију у изворној резолуцији. Величина није аутоматски промењена.\"",
+      "accepted_xml_text": "\"Нема довољно меморије за ову операцију у изворној резолуцији. Величина није аутоматски промењена.\"",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "reason": "Insufficient memory is explicitly tied to the operation at original resolution, and the separate sentence denies automatic resizing. It does not guarantee that a smaller attempt will succeed.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f481ea6d7fb74a1dcf1f376c05c084d9283ccb7e0860c392cd1294bfcb0e1520",
+      "original_value_sha256_utf8": "939c5cafb585a7d9440591ca5bc32367b9c1ec8530c389e5237924171ea766e4",
+      "accepted_value_sha256_utf8": "939c5cafb585a7d9440591ca5bc32367b9c1ec8530c389e5237924171ea766e4",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:938"
+      ]
+    },
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "decision": "accept",
+      "original_xml_text": "\"Податке о ауторима и изворима слика није могуће сачувати или вратити. Постојећи сачувани подаци су задржани. Покушајте поново.\"",
+      "accepted_xml_text": "\"Податке о ауторима и изворима слика није могуће сачувати или вратити. Постојећи сачувани подаци су задржани. Покушајте поново.\"",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "reason": "The full notice concerns author/source attribution data, not money or only a list of names. Both save and restore failures are covered; existing saved data were retained and retry is requested.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "d669638ab30435fe654a24b1c18e73208959c1cc873975ab190e629e7c2ed6af",
+      "original_value_sha256_utf8": "bfae0c63d728ece9dea9c902c512091318b219cfab2b2ec3a459e6d025e308ae",
+      "accepted_value_sha256_utf8": "bfae0c63d728ece9dea9c902c512091318b219cfab2b2ec3a459e6d025e308ae",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:238",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:908",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1194",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1197",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1203",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1207",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1478",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1488",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1495",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:113",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:243",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:415"
+      ]
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "decision": "accept",
+      "original_xml_text": "\"Због ових података о ауторима и изворима слика, количина података у цртежу била би превелика за враћање. Ваш претходни цртеж и подаци о ауторима и изворима слика су задржани.\"",
+      "accepted_xml_text": "\"Због ових података о ауторима и изворима слика, количина података у цртежу била би превелика за враћање. Ваш претходни цртеж и подаци о ауторима и изворима слика су задржани.\"",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "reason": "The conditional explanation ties excessive size to attribution data in the drawing rather than pixel dimensions. It explicitly preserves the previous drawing and attribution data, not the attempted new edit.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "0cc17cfda89358526b83adbc36b90440ef773ed2f945768e3e9f32bb90b35dd5",
+      "original_value_sha256_utf8": "679fd7fc4ad08c96cb45e886e5ae8fee62d56fb373da5e177e02de18c5ea632c",
+      "accepted_value_sha256_utf8": "679fd7fc4ad08c96cb45e886e5ae8fee62d56fb373da5e177e02de18c5ea632c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1218",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1453",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:111"
+      ]
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "decision": "accept",
+      "original_xml_text": "\"Неке сачуване податке о ауторима и изворима слика није могуће прочитати. Њихове сачуване копије су задржане.\"",
+      "accepted_xml_text": "\"Неке сачуване податке о ауторима и изворима слика није могуће прочитати. Њихове сачуване копије су задржане.\"",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "reason": "Only some saved attribution records are unreadable, and their stored copies remain retained. This neither asserts that all records were lost nor that the unreadable copies are usable.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "764c1dfa02ddd35964d108f4cc4ccc6dbcc59f5520513ac2528f32bacdb73f5b",
+      "original_value_sha256_utf8": "7aa11ce75496950017de1ad66b03c5836929bb93366b85a796b5d8b56ab1d0a5",
+      "accepted_value_sha256_utf8": "7aa11ce75496950017de1ad66b03c5836929bb93366b85a796b5d8b56ab1d0a5",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt:93"
+      ]
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "decision": "accept",
+      "original_xml_text": "\"Одредишну датотеку није било могуће заменити готовом сликом.\"",
+      "accepted_xml_text": "\"Одредишну датотеку није било могуће заменити готовом сликом.\"",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "reason": "The completed image could not replace the destination file. This matches temporary-output rename failure and does not falsely claim a successful provider write.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "de68e5576968021c8471674791a609c056d1049abe53f1c1e4dc77e00679e001",
+      "original_value_sha256_utf8": "1704a6b8a00c4d2a2cd5bb9f27d98a8919897766fb74309a5e320d3e4668ead5",
+      "accepted_value_sha256_utf8": "1704a6b8a00c4d2a2cd5bb9f27d98a8919897766fb74309a5e320d3e4668ead5",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:19",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:40",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:103",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:62"
+      ]
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "decision": "accept",
+      "original_xml_text": "\"Слика и бафери за кодирање премашују ограничење меморије за извоз.\"",
+      "accepted_xml_text": "\"Слика и бафери за кодирање премашују ограничење меморије за извоз.\"",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "reason": "The image together with encoding buffers exceeds the export memory limit. The complete value neither reduces the demand to the image alone nor confuses it with disk space.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "ee437ea8cac1ec7af3db9e48064cf9e0a2e49c3c4f89706eb34887bc52d6b75e",
+      "original_value_sha256_utf8": "6dfdf07d0127c62dc1fe3cd1ac985dc31f0243291357a4f657fd4881d367b872",
+      "accepted_value_sha256_utf8": "6dfdf07d0127c62dc1fe3cd1ac985dc31f0243291357a4f657fd4881d367b872",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:24",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:43",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:56"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "decision": "accept",
+      "original_xml_text": "\"Отварање слике није успело\"",
+      "accepted_xml_text": "\"Отварање слике није успело\"",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "reason": "Opening the image failed. The unpunctuated prefix is ready for the caller-provided period, space and exception detail, without inventing a format token.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "6143ae23db90cc7e75e0a79869b2e047e20878b9478ac9e07dcebe064c5b25ef",
+      "original_value_sha256_utf8": "5b0540ae889b569261a243e50110b6711b74c63cacc24f4e9ed8f3b92d4960ed",
+      "accepted_value_sha256_utf8": "5b0540ae889b569261a243e50110b6711b74c63cacc24f4e9ed8f3b92d4960ed",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1288",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1293",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1337",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1350"
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "decision": "accept",
+      "original_xml_text": "\"Чување слике није успело\"",
+      "accepted_xml_text": "\"Чување слике није успело\"",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "reason": "Saving the image failed. The value intentionally has no final punctuation or new placeholder because ioFailed appends its own sentence separator and error detail.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "original_value_sha256_utf8": "956c839de486acf26ee216ef89f81afb4c793f1f2c8d885eeac0031dcdd30f9a",
+      "accepted_value_sha256_utf8": "956c839de486acf26ee216ef89f81afb4c793f1f2c8d885eeac0031dcdd30f9a",
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ]
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "decision": "accept",
+      "original_xml_text": "\"Извезена датотека је направљена. Пре него што наставите, користите „Сачувај“ или „Сачувај као…“ да сачувате тренутну слику.\"",
+      "accepted_xml_text": "\"Извезена датотека је направљена. Пре него што наставите, користите „Сачувај“ или „Сачувај као…“ да сачувате тренутну слику.\"",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "reason": "The export file was successfully created, but explicit Save or Save as is still required for the current image before continuing. Both inherited action labels are recognizable and export success is not confused with clearing dirty state.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "original_value_sha256_utf8": "5b7ccb4dc9f6071f2747898a64341b77ebba8fa43075df5e2c64ff2f0b646fea",
+      "accepted_value_sha256_utf8": "5b7ccb4dc9f6071f2747898a64341b77ebba8fa43075df5e2c64ff2f0b646fea",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ]
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "decision": "accept",
+      "original_xml_text": "\"Извезите икону, Base64 текст или ASCII цртеж. Извоз не мења тренутну слику нити њено одредиште за опцију „Сачувај“.\"",
+      "accepted_xml_text": "\"Извезите икону, Base64 текст или ASCII цртеж. Извоз не мења тренутну слику нити њено одредиште за опцију „Сачувај“.\"",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "reason": "The explanation offers the three derived outputs and uses a neither/nor construction to leave both current image and its Save destination unchanged. It describes ASCII art as a drawing and does not claim that exporting writes no output file or saves pending drawing changes.",
+      "qualifications": [
+        "The inherited ASCII option label remains „ASCII сличица“; „ASCII цртеж“ describes the same textual visual rendition in this explanation. The existing option label is not changed or reaccepted."
+      ],
+      "source_value_sha256_utf8": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "original_value_sha256_utf8": "adadd9f8959ae4d743ed990a8f367ff6ba4f15d46f8ddcceaef199cd669c2cb2",
+      "accepted_value_sha256_utf8": "adadd9f8959ae4d743ed990a8f367ff6ba4f15d46f8ddcceaef199cd669c2cb2",
+      "consumer_context_ids": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ]
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "decision": "accept",
+      "original_xml_text": "\"Нема довољно меморије за чување у овом формату. Покушајте са PNG форматом\"",
+      "accepted_xml_text": "\"Нема довољно меморије за чување у овом формату. Покушајте са PNG форматом\"",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "reason": "The selected-format save lacks memory and PNG is suggested as a retry, not guaranteed to fit. No terminal period is added before caller-supplied failure details.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "f85d438ebb3c8e8c55be242b5b0938f6e33144d8789553e32711449d9e67e66b",
+      "original_value_sha256_utf8": "fba813fdfe4d1f0bd55fd2359e8d45872db045fab6fd0568e428f66180e633b4",
+      "accepted_value_sha256_utf8": "fba813fdfe4d1f0bd55fd2359e8d45872db045fab6fd0568e428f66180e633b4",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1376"
+      ]
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "decision": "accept",
+      "original_xml_text": "\"PNG кодирање није успело.\"",
+      "accepted_xml_text": "\"PNG кодирање није успело.\"",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "reason": "PNG encoding failed, matching the false compress-result branch. The sentence does not report saving or completion.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "121e3e5c5523ca65104b683c53c625d9f76c600cb5ac2d41924dc5fa2659ba3e",
+      "original_value_sha256_utf8": "eeccb6f9479b358ea8017c3e3ef198f51765dbeecc2b7c68807afb9015fe64ba",
+      "accepted_value_sha256_utf8": "eeccb6f9479b358ea8017c3e3ef198f51765dbeecc2b7c68807afb9015fe64ba",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:324"
+      ]
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "decision": "accept",
+      "original_xml_text": "\"Сачувај и подели\"",
+      "accepted_xml_text": "\"Сачувај и подели\"",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "reason": "The dialog title matches the inherited Save and share menu action without its ellipsis. It is an action label, not a claim that sharing or explicit drawing Save has already succeeded.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "41edb42591bb2694c768ea901a5a82cbaebb0d2110321c5f2c309afd1262a7f4",
+      "original_value_sha256_utf8": "54b317dd09da94ad96a78802de1a8bb7301487b86c5401c6dd80daa6dbbb9644",
+      "accepted_value_sha256_utf8": "54b317dd09da94ad96a78802de1a8bb7301487b86c5401c6dd80daa6dbbb9644",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:187"
+      ]
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "decision": "accept",
+      "original_xml_text": "\"Изаберите формат слике и подешавања компресије. Опција „Сачувај“ ће поново користити овај назив датотеке, локацију, формат и подешавања.\"",
+      "accepted_xml_text": "\"Изаберите формат слике и подешавања компресије. Опција „Сачувај“ ће поново користити овај назив датотеке, локацију, формат и подешавања.\"",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "reason": "The user chooses image format and compression settings; later Save reuses all four required items: filename, location, format and settings. The inherited Save command is quoted and there is no claim that compression must be lossy.",
+      "qualifications": [
+        "The underlying inherited format-field label is outside this missing-P0 patch; it is not newly accepted by this prose review."
+      ],
+      "source_value_sha256_utf8": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "original_value_sha256_utf8": "9a3f2b0d0d22fa23c58ea01fde7d8722bdc8b7d6dce1094b673dcb05702440ad",
+      "accepted_value_sha256_utf8": "9a3f2b0d0d22fa23c58ea01fde7d8722bdc8b7d6dce1094b673dcb05702440ad",
+      "consumer_context_ids": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ]
+    },
+    {
+      "identity": "string/ui_saved",
+      "decision": "accept",
+      "original_xml_text": "\"Сачувано: %1$s\"",
+      "accepted_xml_text": "\"Сачувано: %1$s\"",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "reason": "The neutral saved-status word followed by a colon and filename reports the named output only. This remains true for Save, Export and Share writes without claiming that all current document changes are saved.",
+      "qualifications": [
+        "This toast is also used after Export and Share writes; those do not clear the drawing dirty state or alter its ordinary Save target."
+      ],
+      "source_value_sha256_utf8": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "original_value_sha256_utf8": "bf8dc634960399e6b80cd3611917a0d2af4fbfa118dabb2985875a1958831cec",
+      "accepted_value_sha256_utf8": "bf8dc634960399e6b80cd3611917a0d2af4fbfa118dabb2985875a1958831cec",
+      "consumer_context_ids": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ]
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "decision": "accept",
+      "original_xml_text": "\"Кодирање није довршено.\"",
+      "accepted_xml_text": "\"Кодирање није довршено.\"",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "reason": "The incomplete operation is encoding itself, avoiding ambiguity with a human programmer. The negative completion result matches each encoder-failure consumer.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "original_value_sha256_utf8": "06cc5cbdaa603dd2064740d2230c445b6ca4d478e4b48e8c56d0dc614454c73e",
+      "accepted_value_sha256_utf8": "06cc5cbdaa603dd2064740d2230c445b6ca4d478e4b48e8c56d0dc614454c73e",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:100",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt:25",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:33"
+      ]
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "decision": "accept",
+      "original_xml_text": "\"Слика је сачувана, али Android није могао да покрене дељење: %1$s\"",
+      "accepted_xml_text": "\"Слика је сачувана, али Android није могао да покрене дељење: %1$s\"",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "reason": "A successful image write is contrasted with Android failing to launch sharing. The exception-detail token remains separate; the sentence does not erase the successful write or imply the drawing Save target changed.",
+      "qualifications": [
+        "The %1$s exception text may remain untranslated and may itself contain punctuation or percent signs."
+      ],
+      "source_value_sha256_utf8": "290a2340c93b4dfc627bf2d73d85ab3841e3300933d1f2212ba33a3e04c4f903",
+      "original_value_sha256_utf8": "e14faf2b438c8f2d0aaaf3a4cfaa10d5a1c03321194470e35801bead171b351f",
+      "accepted_value_sha256_utf8": "e14faf2b438c8f2d0aaaf3a4cfaa10d5a1c03321194470e35801bead171b351f",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1389"
+      ]
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "decision": "accept",
+      "original_xml_text": "\"Није могуће уписивати на изабрану локацију.\"",
+      "accepted_xml_text": "\"Није могуће уписивати на изабрану локацију.\"",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "reason": "Writing is not possible at the selected location, without guessing permissions, write protection or a specific provider cause.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "bd5906312d80fa9c5c6f855faf23030f089b50f54d0f82a39a8bcdb60328581d",
+      "original_value_sha256_utf8": "9c4711aa9be4a88514a4a9c19980768cc4e4ac00f54f155d7e0dcdbd0a8dbccd",
+      "accepted_value_sha256_utf8": "9c4711aa9be4a88514a4a9c19980768cc4e4ac00f54f155d7e0dcdbd0a8dbccd",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:341",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1366"
+      ]
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "decision": "accept",
+      "original_xml_text": "\"Није могуће уписивати на ову локацију.\"",
+      "accepted_xml_text": "\"Није могуће уписивати на ову локацију.\"",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "reason": "Writing is not possible at this location. The generic wording fits both recovery-ZIP and source-archive export without changing their identities or blaming a narrower cause.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "aeeaa3653ff0cebc035c0010f47d2e6fef2ba1abd8d6c77df663010f13a4a13e",
+      "original_value_sha256_utf8": "ad7968b5a27c6017878b19738cc957b63cb3b539a8ebf7b44f6e55b7a8e4882c",
+      "accepted_value_sha256_utf8": "ad7968b5a27c6017878b19738cc957b63cb3b539a8ebf7b44f6e55b7a8e4882c",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1396",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1407"
+      ]
+    },
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "decision": "accept",
+      "original_xml_text": "\"Ваша тренутна слика има несачуване измене.\"",
+      "accepted_xml_text": "\"Ваша тренутна слика има несачуване измене.\"",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "reason": "The current image explicitly has unsaved changes. The negation remains attached to saved state, appropriate to the replacement guard rather than the previous-draft recovery flow.",
+      "qualifications": [],
+      "source_value_sha256_utf8": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "original_value_sha256_utf8": "8cd14a6173f4eee2d62aa6febb51a1e5ebee83410a14d80522f9eddc5d7faf2d",
+      "accepted_value_sha256_utf8": "8cd14a6173f4eee2d62aa6febb51a1e5ebee83410a14d80522f9eddc5d7faf2d",
+      "consumer_context_ids": [
+        "dirty-document-replacement-guard"
+      ]
+    }
+  ],
+  "composition_examples": [
+    {
+      "case": "Exact two-frame count",
+      "identity": "string/formats22_animation_message",
+      "composed_display": "Број кадрова у овој слици формата GIF: 2. AN Paint уређује статичне слике и не чува анимацију.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Inherited lower-bound English count",
+      "identity": "string/formats22_animation_message",
+      "composed_display": "Број кадрова у овој слици формата GIF: at least 2. AN Paint уређује статичне слике и не чува анимацију.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Inspection uncertainty",
+      "identity": "string/formats22_animation_unknown",
+      "composed_display": "Ова слика формата GIF је превише сложена да би се потврдило да ли садржи више кадрова. AN Paint ће отворити само статичну слику и неће сачувати никакву анимацију.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Retained-copy recovery branch",
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "composed_display": "Претходну радну верзију није могуће вратити. Засебна копија за опоравак је сачувана. Користите „Датотека > Извези копију за опоравак…“ да сачувате њену ZIP архиву. Издвојите canvas.png из ње и отворите ту слику да бисте по потреби користили уобичајене опције за промену величине.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Blocked-autosave branch distinguishes old draft and current work",
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "composed_display": "Претходну радну верзију није могуће вратити. Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и изаберите формат PNG / JPEG (поље је означено „Име слике“).",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "ZIP extraction and optional floating selection",
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "composed_display": "Копија за опоравак је извезена. Издвојите canvas.png из ZIP архиве и отворите га помоћу „Датотека > Отвори слику…“. ZIP архива садржи и подешавања радне верзије и плутајући избор, ако постоји.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Comma-decimal image and budget warning",
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "composed_display": "Слика димензија 1500 × 2000 пиксела (3,00 MP) премашује тренутно ограничење за безбедно уређивање од 2,25 MP. AN Paint држи целу слику у меморији и резервише простор за трансформације и изборе. Ово ограничење зависи од расположиве меморије. Операција је заустављена пре доделе меморије за превелику битмапу. Величина није аутоматски промењена.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Export preserves image and ordinary Save destination",
+      "identity": "string/ui_export_explanation23",
+      "composed_display": "Извезите икону, Base64 текст или ASCII цртеж. Извоз не мења тренутну слику нити њено одредиште за опцију „Сачувај“.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Save reuses filename, location, format and settings",
+      "identity": "string/ui_save_explanation23",
+      "composed_display": "Изаберите формат слике и подешавања компресије. Опција „Сачувај“ ће поново користити овај назив датотеке, локацију, формат и подешавања.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Export success does not satisfy pending save-before-replacement",
+      "identity": "string/ui_export_did_not_save23",
+      "composed_display": "Извезена датотека је направљена. Пре него што наставите, користите „Сачувај“ или „Сачувај као…“ да сачувате тренутну слику.",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Named-output success with percent in filename",
+      "identity": "string/ui_saved",
+      "composed_display": "Сачувано: drawing 100%.png",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Sharing failed after successful write",
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "composed_display": "Слика је сачувана, али Android није могао да покрене дељење: provider 50% unavailable",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Open-error prefix receives caller punctuation",
+      "identity": "string/ui_could_not_open_image",
+      "composed_display": "Отварање слике није успело. provider 100% unavailable",
+      "kind": "static review example; not runtime execution"
+    },
+    {
+      "case": "Autosave-draft success can coexist with unsaved current image",
+      "identity": "string/ui_draft_saved + string/ui_your_current_image_has_unsaved_changes",
+      "composed_display": "Радна верзија је сачувана | Ваша тренутна слика има несачуване измене.",
+      "kind": "static review example; not runtime execution"
+    }
+  ]
+}
