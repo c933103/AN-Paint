@@ -1,0 +1,37 @@
+{
+  "verified": 1379,
+  "changed": 15,
+  "locales": {
+    "sk": {
+      "added": 78,
+      "inherited_preserved": 127,
+      "total": 205,
+      "P0_present": 87,
+      "P0_total": 92,
+      "review_decisions": {
+        "accept": 73,
+        "revise": 5
+      }
+    },
+    "sl": {
+      "added": 78,
+      "inherited_preserved": 127,
+      "total": 205,
+      "P0_present": 87,
+      "P0_total": 92,
+      "review_decisions": {
+        "accept": 75,
+        "revise": 3
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "numeric-zoom-comma",
+      "severity": "test oracle bug",
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt",
+      "detail": "Expanded tag loop includes sk/sl, but low-zoom literal selector omitted both from comma-decimal locales. Add both to listOf(pt-BR,de,ro) in zoom test, preserving exact2,50% expected value.",
+      "status": "corrected by implementation owner before Android execution; auditor verified final selector contains pt-BR,de,ro,sk,sl"
+    }
+  ]
+}
