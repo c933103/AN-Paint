@@ -1,0 +1,178 @@
+{
+  "schema": 1,
+  "review_kind": "independent native static source review plus host synthetic probes; not Work delegation",
+  "reviewer": "/root/review_large_font_ime",
+  "reviewed_at_utc": "2026-10-26T19:48:50Z",
+  "baseline": {
+    "local_snapshot_commit": "53ab0cf4ffae1ffe27be69767181115a40e78da2",
+    "tree": "98b89d126533df3c0dbaeb729c74e4bcb44a3a8a",
+    "parent_verified_upstream_commit": "e1e5433e63d45f5b76d39ce1a31ffc11fd7cd79d"
+  },
+  "reviewed_tree": "aed79c74b440388723c96f6f90ae815c5910679f",
+  "staged_diff_sha256": "7dd92725df44e101e8222e9e1dc2a6c8cf6a0b1927abe593c43c288e3d5f5d97",
+  "working_tree_matches_reviewed_tree": true,
+  "conclusion": "No remaining concrete finding within the bounded reviewed test/tool/CI.md delta. This is not Kotlin compilation, installed acceptance, or aggregate runtime acceptance.",
+  "reviewed_files": [
+    {
+      "path": "CI.md",
+      "sha256": "9f0abf83139a0708750dca4c6b21d740d17cbeef6f510c24335ea16db45e6ba4",
+      "git_blob": "246daac837250ecff50fc3dedcb8cfe4137c6c77"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/ColourViewportDeviceTest.kt",
+      "sha256": "8231ba532335c43a260a1e4f5eba1baa5be22298e5b0729e829d8caccf715f03",
+      "git_blob": "85dae2d160738a9e030b68a2e7a48f7b04bdbeb9"
+    },
+    {
+      "path": "app/src/androidTest/java/paint/anpaint/android/DialogEvidenceExportRule.kt",
+      "sha256": "df4efc755d572bbc897ab64921511f4702a2be62193c3305221aa3ebc706bdff",
+      "git_blob": "6585590306f686a6e2e49cd069bdb5a149cc1ad4"
+    },
+    {
+      "path": "tools/app_instrumentation_matrix.py",
+      "sha256": "ab88ca35b9a0d691e3928d282c278d07818bcf4683f6487b948db29de2ccf6ab",
+      "git_blob": "7655b3f5499552cd26a75c668ab7c967e4eb5d3e"
+    },
+    {
+      "path": "tools/ci_emulator.sh",
+      "sha256": "9f9f728f2b320ef333033db4bc781b312c1b001b4c9e453297acafbf0c02823e",
+      "git_blob": "7ee15da80c9559725b9c4196bd087cf75b5e6be1"
+    },
+    {
+      "path": "tools/dialog_evidence_transport.py",
+      "sha256": "1e77d570b8d9734189f21410db671386e23f6cf76ee2141a913707d44767b39c",
+      "git_blob": "fd4ccd77b5851941d3d35d8c40000ce735d0968b"
+    },
+    {
+      "path": "tools/synthetic_colour_receipts.py",
+      "sha256": "a0b1e27ff82701fdf1bf0ae5e741da562fda002474b17205a65dc1d518d72190",
+      "git_blob": "eac0e83ef9c16aadd9c0e7c76cbdb7625c33e1dd"
+    },
+    {
+      "path": "tools/test_app_instrumentation_matrix.py",
+      "sha256": "ddf5f402d8ac0823d5d76e0338469a4e591b66ffeb94d3bcabf1b879843c8597",
+      "git_blob": "709be29ae02a520c934aba748ef67716f4972898"
+    },
+    {
+      "path": "tools/test_ci_capture_cleanup.py",
+      "sha256": "0e152d2689465fbff2608e6637a729dbe7f2568f590e7eeb6c4543f3b3427e88",
+      "git_blob": "f76fb9838d243b05e6eb00acb4d5bbb8977eeacb"
+    },
+    {
+      "path": "tools/test_ci_emulator.py",
+      "sha256": "04718ae43782f63edc94bb7e13b419d282f5c7762a65f9a524ab51e5fc4fb2ab",
+      "git_blob": "9d14d4822938defefe62332841527653c3068db2"
+    },
+    {
+      "path": "tools/test_ci_timeout_budget.py",
+      "sha256": "2db0deeaebeab388cc60595c2e83b5f1e6707ef91379f44b7c7c2a9122fb75d0",
+      "git_blob": "a19bc2de235a0d2f0f161014d69670f94ca19a02"
+    },
+    {
+      "path": "tools/test_colour_viewport_contract.py",
+      "sha256": "65141f580f864df46dd2c30bf0f4ad5859fa7bdcb53f35d94a7fda6d92f0ce25",
+      "git_blob": "40b310e190613508bc4d0d8461cfbc0cf18cb173"
+    },
+    {
+      "path": "tools/test_dialog_evidence_transport.py",
+      "sha256": "39275a04af1085a71d24a9d01ce51cfc6176df0151f5e8477942231bf08647aa",
+      "git_blob": "d24b66076f4df56e494bf2683126a2cbdb6b9a3b"
+    },
+    {
+      "path": "tools/test_legacy_compatibility.py",
+      "sha256": "27f4b4283b27c1c2ae6529f12e0161906c698d07d45a0772d73fe74464d70e49",
+      "git_blob": "17f8be90f06de62be5d701678f16694af87d2bcb"
+    },
+    {
+      "path": "tools/test_position_composition.py",
+      "sha256": "f3a89c91ee5d375e68ebd9d3840e83bc1351afe545c78714891c1ff8ab20ea0c",
+      "git_blob": "630568b26d5b63e557cf87babf52f2d7b81f44c3"
+    },
+    {
+      "path": "tools/test_vertical_locale_matrix.py",
+      "sha256": "ca3d7bcc417e5d01f4d5ed2055374b2625ce9a67812a2b30fa4cac57eb6896c8",
+      "git_blob": "9f55f737819600d0d33a4492b394c35bdb6877f4"
+    }
+  ],
+  "found_and_repaired_transport_gaps": [
+    {
+      "finding": "Caption-line reachability could occur after final completion/dismissal yet validate.",
+      "repair": "Per-caption line positions now precede the next measurement and relevant native Cancel/Use action; late-line negative control rejects."
+    },
+    {
+      "finding": "First Back injected state could contain changed commit count or stale field identity while before/after stayed retained.",
+      "repair": "Injected state now enforces retained identity, value, selection and callbacks; only IME-presence transition is allowed."
+    },
+    {
+      "finding": "IME-open middle ancestors could be omitted or have broken parent links while terminal root remained valid.",
+      "repair": "Control parent identity exported and full ancestor linkage/uniqueness/terminal root validated, without requiring simultaneous visibility."
+    },
+    {
+      "finding": "A lifecycle caption could be paired with an intrinsic measurement for a different tagged control.",
+      "repair": "Caption, intrinsic and line geometry tags now bound to the expected control."
+    },
+    {
+      "finding": "Reopened-close Back injected state accepted impossible closed callback counts (0 or99) between before1 and after2.",
+      "repair": "Reopened Back records now restrict close count to1or2; negative controls reject0and99."
+    }
+  ],
+  "observation_boundary_correction": "IME-open raw control/ancestor geometry may have zero area; it is measured rather than rejected as simultaneous-fit failure. Native and host overlap checks exclude empty rectangles. Post-dismissal caption/ancestor reachability remains strict.",
+  "independent_checks": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools python3 -m unittest test_dialog_evidence_transport test_colour_viewport_contract -v",
+      "result": "passed",
+      "tests": 56,
+      "elapsed_seconds": 0.574
+    },
+    {
+      "check": "Eight custom invalid mutations for each of en-US and hu: missing ancestor, broken ancestry, first injected commit, first injected stale field, post-completion caption lines, wrong intrinsic tag, reopened injected close count0, reopened injected close count99.",
+      "result": "all16 rejected"
+    },
+    {
+      "check": "Zero-height IME-open ancestor with empty visible bounds for each locale.",
+      "result": "both accepted as observation-only"
+    },
+    {
+      "check": "Every original Kotlin case before backWindowState, including both preview-rail cases, compared byte-for-byte with baseline.",
+      "result": "unchanged"
+    },
+    {
+      "check": "Original method-to-PNG mappings and export size limits compared with baseline.",
+      "result": "all original12 methods/39 PNG mappings unchanged; final14 methods/51 PNGs; export limits unchanged"
+    },
+    {
+      "check": "Source-discovered synthetic composed inventory.",
+      "result": "API30 selected30 unchanged,15 SDK suppressions plus2 explicit exclusions; API35 selected47 including14 dialog methods"
+    },
+    {
+      "check": "Original PNG/receipt/preview-rail/retained-state/endpoint/timing validator function ASTs compared with baseline.",
+      "result": "unchanged"
+    },
+    {
+      "check": "git diff HEAD --check and git diff reviewed_tree --exit-code.",
+      "result": "passed"
+    },
+    {
+      "check": "Static API/import/visibility and production callback contract review.",
+      "result": "No concrete compile-facing issue found; no compiler was run."
+    }
+  ],
+  "preserved_constraints": [
+    "Only16 test/tool/CI.md files changed; no production or workflow YAML edits.",
+    "No text/control shrinking.",
+    "45-second interaction and300-second dialog phase caps unchanged.",
+    "512-observation and20-capture bounds unchanged.",
+    "IME oracle identifies configured package and actual TYPE_INPUT_METHOD visible rooted window, not positive inset alone.",
+    "Each added lifecycle expects six PNGs.",
+    "Native Back injected once for each outcome; Cancel restoration, reopened Back, invalid rejection and single valid commit remain asserted.",
+    "Full-caption/ancestor/footer reachability applies after verified IME dismissal, with sequential native reveal accepted.",
+    "C05, physical-device, TalkBack, simultaneous IME/field/footer fit and universal2x acceptance remain open/unaccepted."
+  ],
+  "limits": [
+    "No Android SDK or kotlinc established locally; Kotlin/Android compilation not run.",
+    "No installed Android/device/native capture execution or image inspection performed.",
+    "Combined14-method runtime within300seconds unrun.",
+    "Final full ordinary and optimized host reruns are owned by /root/test_large_font_ime and pending at this receipt; focused tests are not full-suite acceptance."
+  ],
+  "writes": "This review changed no source files or external state; this local JSON receipt is the sole durable handoff artifact produced by the reviewer."
+}
