@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "record_kind": "Frozen PR177 artifact verification scripts and synthetic sanity controls",
+  "source_head": "10acbff912812b938bf2626be1e8a9e84e7aa7bc",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "implementation_manifest_sha256": "7f42e6646d03651dea1db5365ef269d47b8bbcbbc6e0bb24af2ba3229d1b9dd3",
+  "files": [
+    {
+      "path": "verify_apk_artifact.py",
+      "bytes": 9196,
+      "sha256": "bab7d3c50eb2fb1fdc03e9f54a41edde40328346676f6d29712c676ffb8ea182",
+      "git_blob_sha1": "c63d1d5233b5dd038e40e82fb3f572d9c9201617"
+    },
+    {
+      "path": "verify_regression_artifact.py",
+      "bytes": 4951,
+      "sha256": "6a7ce571f8255822afc166a5690aaff4c32ea5f5ae707278b04583cf88fced1a",
+      "git_blob_sha1": "243940af5108076dd5299dd78233b24cef826193"
+    },
+    {
+      "path": "verify_api35_artifact.py",
+      "bytes": 4664,
+      "sha256": "513e2cdbddbdef2116efd2072ceb146dcef01c8b518b88351f5fca92d0931cf7",
+      "git_blob_sha1": "0c3c08d61c7221a267b54647421656e8f845f9b0"
+    },
+    {
+      "path": "verify_exact_script_artifact.py",
+      "bytes": 2473,
+      "sha256": "32750c5aa50176bd5af58b2f84537350ecf49e602e39bec2c3a9248575040048",
+      "git_blob_sha1": "d56dab0b5167a8ea516a3c488bc203051a3781aa"
+    },
+    {
+      "path": "test_artifact_verifiers.py",
+      "bytes": 19275,
+      "sha256": "8f525984829473652ce85ef1cc795ba88e7af401574bf9058efd0d9eb73aeef3",
+      "git_blob_sha1": "dc19905c0d63b28bb7c7d03aa58d61531b850041"
+    },
+    {
+      "path": "artifact-verifier-checks/artifact-verifier-sanity.json",
+      "bytes": 9499,
+      "sha256": "d7b01ed16d46c380bf3b08fd801d8c32a31449170d608bde98b53dcc63e41b30",
+      "git_blob_sha1": "45cd23cd6bbe1bb4a415832b1444116551e827f7"
+    },
+    {
+      "path": "artifact-verifier-checks-optimized/artifact-verifier-sanity.json",
+      "bytes": 9499,
+      "sha256": "d7b01ed16d46c380bf3b08fd801d8c32a31449170d608bde98b53dcc63e41b30",
+      "git_blob_sha1": "45cd23cd6bbe1bb4a415832b1444116551e827f7"
+    }
+  ],
+  "reused_script_predecessors_sha256": {
+    "verify_apk_artifact.py": "df3952e449ee8c75e0014e22431d3e7ca31aefcfac936beb0c7c24d8037235a4",
+    "verify_regression_artifact.py": "00333614feeafa30d66a97c174de6a39a516f20d683e389439d436efc6df89b5",
+    "verify_api35_artifact.py": "513e2cdbddbdef2116efd2072ceb146dcef01c8b518b88351f5fca92d0931cf7",
+    "verify_exact_script_artifact.py": "32750c5aa50176bd5af58b2f84537350ecf49e602e39bec2c3a9248575040048"
+  },
+  "ordinary_and_optimized_sanity_receipts_byte_identical": true,
+  "positive_controls_per_mode": 4,
+  "negative_controls_rejected_per_mode": 33,
+  "additional_negative": "Overlapping CA/RO import and prior Save keys are explicitly rejected; all prior 32 controls retained.",
+  "actual_source_blob_identities_verified": 1376,
+  "expected_packaged_tracked_source_files": 1373,
+  "same_three_dotfile_exclusions": true,
+  "compiled_values_by_locale": {
+    "ca": 23,
+    "ro": 23,
+    "da": 78,
+    "no": 78,
+    "nn": 80
+  },
+  "new_reviewed_entries": 26,
+  "prior_reviewed_entries": 256,
+  "CA_RO_new_prior_keys_disjoint": true,
+  "focused_source_method_counts": {
+    "CatalanRomanianImportWordingTest": 2,
+    "CatalanRomanianSaveWordingTest": 2,
+    "DanishNorwegianP0Test": 4,
+    "NynorskRemainingP0Test": 4,
+    "NynorskSaveWordingTest": 2,
+    "DerivedExportStateTest": 7,
+    "ImportSelectionTitleTest": 12,
+    "TaggedColourImportTest": 5
+  },
+  "api35_verifier_byte_unchanged": true,
+  "exact_script_verifier_byte_unchanged": true,
+  "privacy": "Authorized project verifier source and synthetic evidence only; no credentials, private links, actual local execution paths or internal routing. Generic forbidden-path patterns are validation code, not disclosed execution paths.",
+  "limits": [
+    "No actual hosted artifact or runtime success is certified by these controls.",
+    "Synthetic source validators and APK tools are explicitly mocked only in the sanity harness, never in production verification scripts.",
+    "All source/APK/embedded archive, signature and compiled-scope verification remains enabled in the real scripts.",
+    "Real aggregate JUnit/Python counts and Python skips remain artifact-driven; no aggregate passed count is guessed from these focused source methods.",
+    "No implementation edits, external calls or CI polling by this adaptation."
+  ],
+  "corrected_head_rebinding": {
+    "prior_failed_head": "06a2e4078efa1fe8ef8ea37b186ece0431633f08",
+    "prior_manifest_sha256": "6be45de867ab839aa84a4c50af19a089ec08d165243e2dce985ca7a4dcd42ee3",
+    "prior_harness_sha256": "f892aa6d968312f69f2418022c502904c09fda146e6dbf2629d4f654d5091e20",
+    "prior_sanity_sha256": "ff326dd343187d955d7dbed5db418107fcc6c8a525650a8f154bb6ddd82d217a",
+    "original_harness_manifest_and_mode_receipts_preserved": true,
+    "all_four_argument_driven_verifiers_byte_unchanged": true,
+    "only_harness_PIN_and_TREE_changed": true,
+    "current_sanity_sha256": "d7b01ed16d46c380bf3b08fd801d8c32a31449170d608bde98b53dcc63e41b30"
+  }
+}
