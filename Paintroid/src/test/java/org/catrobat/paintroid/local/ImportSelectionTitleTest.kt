@@ -160,6 +160,23 @@ class ImportSelectionTitleTest {
         cancel(warning("Imagem animada", confirmedMessage("APNG", "3", true), "Abrir imagem estática"), file)
     }
 
+    @Test fun nynorskAnimationWarningsRetainUncertainAndMixedCountSemanticsInRealDialogs() {
+        language("nn")
+        var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
+        cancel(warning("Opna stillbilete", "Dette GIF-biletet er for komplekst til å stadfesta om det har fleire biletruter. AN Paint opnar berre eit stillbilete og tek ikkje vare på nokon animasjon.", "Opna stillbilete"), file)
+        file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
+        cancel(warning("Animert bilete", "Dette GIF-biletet har at least 2 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nBerre den første biletruta vert importert. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete"), file)
+        file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
+        val dialog = warning("Animert bilete", "Dette APNG-biletet har 3 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nDette PNG-biletet har eit eige standardbilete. Det vert importert i staden for dei animerte biletrutene. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete")
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        worker.drain(); worker.drain()
+        assertEquals(1, selectedCalls); assertEquals(0, selected!!.pageIndex)
+        assertEquals(file, selected!!.file); assertEquals(0, cancelled); assertNull(failure)
+        assertFalse(dialog.isShowing)
+        selection!!.dispose()
+        assertTrue("Confirmed import transfers ownership rather than deleting the original staged file", file.exists())
+    }
+
     @Test fun incompleteWelshCatalogueRetainsDefaultEnglishFallback() {
         // cy is offered but has no animation-warning keys at this candidate's base.
         language("cy")
