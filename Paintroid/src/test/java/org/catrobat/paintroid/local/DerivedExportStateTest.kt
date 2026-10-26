@@ -186,6 +186,55 @@ class DerivedExportStateTest {
         }
     }
 
+    @Test fun catalanAndRomanianExportKeepsTheDirtyDrawingAndExistingOrdinarySaveDestination() {
+        val previous = AppLanguage.selectedTag(activity)
+        try {
+            for ((tag, saved) in listOf("ca" to "S’ha desat", "ro" to "S-a salvat")) {
+                AppLanguage.select(activity, tag)
+                // Exercise the real lifecycle resource update AND command-caption rebuild.
+                activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+                idle()
+                activity.onBackPressed(); idle()
+                val unsaved = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
+                assertEquals(if (tag == "ca") "Save changes?" else "Salvaţi modificările?", shadowOf(unsaved).title.toString())
+                assertEquals(if (tag == "ca") "La imatge actual té canvis sense desar."
+                    else "Imaginea curentă are modificări nesalvate.", shadowOf(unsaved).message.toString())
+                unsaved.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
+                assertFalse(activity.isFinishing)
+                assertTrue(activity.document.dirty)
+                menu(activity.getString(R.string.ui_save_and_share))
+                val share = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
+                assertEquals(if (tag == "ca") "Desa i comparteix" else "Salvează și partajează", shadowOf(share).title.toString())
+                share.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
+                assertTrue(activity.document.dirty)
+
+                // Establish a non-null Save association through a real ordinary PNG write.
+                // Unlike the fresh-document cases above, this proves retention of an existing target.
+                val destination = File.createTempFile("retained-save-100%-", ".png", activity.cacheDir)
+                try {
+                    val ordinarySave = options(ImageFormat.PNG)
+                    ordinarySave.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+                    writePickerResult(destination)
+                    assertFalse(activity.document.dirty)
+                    val saveTarget = ClassicPaintActivity::class.java.getDeclaredField("savedTarget").apply { isAccessible = true }
+                    val retainedTarget = saveTarget.get(activity)
+                    assertNotNull(retainedTarget)
+                    val savedBytes = destination.readBytes()
+                    activity.document.bitmap.setPixel(0, 0, Color.CYAN)
+                    activity.document.edited(); idle()
+                    derivedExportKeepsDrawing(ImageFormat.ASCII_ART) { name -> "$saved $name" }
+                    assertSame("Export options and writing must retain the original non-null Save association",
+                        retainedTarget, saveTarget.get(activity))
+                    assertArrayEquals("Export must not overwrite the ordinary Save destination", savedBytes, destination.readBytes())
+                } finally { destination.delete() }
+            }
+        } finally {
+            AppLanguage.select(activity, previous)
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            idle()
+        }
+    }
+
     @Test fun savedAsciiOptionsDriveRealExportAfterActivityRecreationAndIconSizeRemainsAvailable() {
         val dialog = options(ImageFormat.ICO)
         dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size").setSelection(3); idle()
