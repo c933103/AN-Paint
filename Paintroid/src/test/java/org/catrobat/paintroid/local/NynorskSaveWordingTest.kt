@@ -62,8 +62,9 @@ class NynorskSaveWordingTest {
         assertEquals("Lagra", ui(R.string.ui_save_a5d0d9))
         assertEquals("Lagra som…", ui(R.string.save20_title))
         assertEquals("Eksporter som…", ui(R.string.ui_export_as23))
-        // Unreviewed neighbours retain their intentional canonical fallback.
-        assertEquals("Save and share", ui(R.string.ui_save_and_share_41edb4))
+        // This neighbor now has its own bounded P0 review; unrelated fallback stays explicit.
+        assertEquals("Lagra og del", ui(R.string.ui_save_and_share_41edb4))
+        assertEquals("Choose location…", ui(R.string.ui_choose_location))
     }
 
     @Test fun actualSaveExportAndSharePanelsShowDistinctWholeMessagesAndCancelWithoutSaving() {

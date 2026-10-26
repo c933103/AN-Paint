@@ -71,8 +71,11 @@ class NynorskSaveWordingTests(unittest.TestCase):
                     'ui_keep_editing23': '"Avbryt"', 'ui_cancel': '"Avbryt"'}
         for key, value in expected.items():
             require_string(self.xml['nn'], key, value, {'attributes': {'name': key}})
-        for key in ('ui_save_and_share', 'ui_save_and_share_41edb4', 'ui_choose_location',
-                    'save20_file_format', 'ui_try_a_different_file_or_location'):
+        # Newly reviewed neighbors have exact separate expectations, not removed guards.
+        remaining = fixture('nynorsk_p0_remaining_wording.json')
+        for key in ('ui_save_and_share', 'ui_save_and_share_41edb4', 'save20_file_format'):
+            require_string(self.xml['nn'], key, remaining['values'][key]['nn'], remaining['constraints'][key]['nn'])
+        for key in ('ui_choose_location', 'ui_try_a_different_file_or_location'):
             self.assertIsNone(self.roots['nn'].find(f"./string[@name='{key}']"))
         from test_translations import SCOPED_TAGS
         self.assertNotIn('nn', SCOPED_TAGS)
@@ -81,7 +84,9 @@ class NynorskSaveWordingTests(unittest.TestCase):
         self.assertEqual([], catalogues.validate_catalogue('nn', require_complete=False))
         names = [(node.tag, node.get('name')) for node in self.roots['nn']]
         self.assertEqual(len(names), len(set(names)))
-        self.assertIsNone(self.roots['nn'].find("./string[@name='ui_draft_restored']"))
+        remaining = fixture('nynorsk_p0_remaining_wording.json')
+        require_string(self.xml['nn'], 'ui_draft_restored', remaining['values']['ui_draft_restored']['nn'],
+                       remaining['constraints']['ui_draft_restored']['nn'])
 
 
 if __name__ == '__main__':

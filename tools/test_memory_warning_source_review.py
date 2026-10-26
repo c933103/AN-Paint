@@ -90,8 +90,10 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
         for key in KEYS:
             self.assertEqual(62, counts[(key, 'present')])
             self.assertEqual(109, counts[(key, 'missing')])
-            self.assertEqual(65, current_counts[(key, 'present')])
-            self.assertEqual(106, current_counts[(key, 'missing')])
+            # Only the separately reviewed NN P0 warning is added; P1 is unchanged.
+            added = 1 if key == 'ui_assembly_source_memory_floor' else 0
+            self.assertEqual(65 + added, current_counts[(key, 'present')])
+            self.assertEqual(106 - added, current_counts[(key, 'missing')])
 
     def test_initial_queue_grants_no_renewed_acceptance_or_language_credit(self):
         self.assertEqual(0, self.data['scope']['reviewed_against_corrected_source'])

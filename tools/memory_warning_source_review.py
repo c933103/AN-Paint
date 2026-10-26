@@ -11,6 +11,7 @@ from pathlib import Path
 RECORD = Path(__file__).resolve().parents[1] / 'translations/source-review/memory-warnings-20261021.json'
 KEYS = {'ui_no_resize_fits_decoder_memory', 'ui_assembly_source_memory_floor'}
 PRIORITY_TAGS = frozenset({'bg', 'bn'})
+SINGLE_KEY_EXPECTATIONS = frozenset({('nn', 'ui_assembly_source_memory_floor')})
 
 
 def review_record():
@@ -26,6 +27,17 @@ generator, review result or reconstruction of an old source snapshot.
 """
     if key not in KEYS:
         return historical_value
+    if (tag, key) in SINGLE_KEY_EXPECTATIONS:
+        # One newly reviewed P0 value only. The paired oracle and missing P1
+        # companion retain their separate scope and frozen historical absence.
+        queue = review_record()
+        old = next(o for o in queue['options'] if o['tag'] == tag)['terms'][key]['value']
+        if historical_value is not None or old is not None:
+            raise ValueError('Historical single-key warning was absent: ' + tag + '/' + key)
+        data = fixture('nynorsk_p0_remaining_wording.json')
+        if data['values'][key]['default'] != queue['keys'][key]['corrected_english']:
+            raise ValueError('Single-key warning source differs: ' + key)
+        return data['values'][key][tag]
     if tag in PRIORITY_TAGS:
         # These four newly translated values have qualified priority review,
         # not entries in the separately accepted-warning inventory. Keep the
