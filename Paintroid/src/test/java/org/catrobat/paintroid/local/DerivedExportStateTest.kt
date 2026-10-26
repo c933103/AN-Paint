@@ -15,6 +15,7 @@ import android.widget.CheckBox
 import android.widget.Spinner
 import android.widget.TextView
 import org.catrobat.paintroid.R
+import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.IcoCodec
 import org.catrobat.paintroid.classic.ImageFormat
@@ -33,6 +34,7 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
+import org.robolectric.shadows.ShadowToast
 import java.io.File
 
 /** Real encoders and picker results exercise the unsaved-work guard through Back > Save. */
@@ -97,7 +99,7 @@ class DerivedExportStateTest {
     }
     private fun title() = activity.window.decorView.findViewWithTag<TextView>("document_title").text.toString()
 
-    private fun derivedExportKeepsDrawing(format: ImageFormat) {
+    private fun derivedExportKeepsDrawing(format: ImageFormat, expectedStatus: ((String) -> String)? = null) {
         val dialog = options(format)
         if (format == ImageFormat.ICO) {
             dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size").setSelection(2); idle()
@@ -115,6 +117,7 @@ class DerivedExportStateTest {
         val file = File.createTempFile("derived-state-", format.extension, activity.cacheDir)
         try {
             writePickerResult(file)
+            expectedStatus?.let { assertEquals(it(file.name), ShadowToast.getTextOfLatestToast()) }
             if (format == ImageFormat.ICO) {
                 assertTrue(IcoCodec.isIco(file)); assertEquals(32, IcoCodec.dimensions(file).width)
             } else if(format==ImageFormat.BASE64) {
@@ -146,6 +149,18 @@ class DerivedExportStateTest {
     @Test fun asciiExportKeepsOriginalDrawingAndBlocksPendingClose() = derivedExportKeepsDrawing(ImageFormat.ASCII_ART)
 
     @Test fun base64ExportKeepsOriginalDrawingAndWritesRecoverableImage() = derivedExportKeepsDrawing(ImageFormat.BASE64)
+
+    @Test fun nynorskExportStatusNamesTheWrittenFileWithoutClaimingTheDrawingIsSaved() {
+        val previous = AppLanguage.selectedTag(activity)
+        try {
+            AppLanguage.select(activity, "nn")
+            AppLanguage.refresh(activity)
+            derivedExportKeepsDrawing(ImageFormat.ASCII_ART) { name -> "$name er lagra" }
+        } finally {
+            AppLanguage.select(activity, previous)
+            AppLanguage.refresh(activity)
+        }
+    }
 
     @Test fun savedAsciiOptionsDriveRealExportAfterActivityRecreationAndIconSizeRemainsAvailable() {
         val dialog = options(ImageFormat.ICO)
