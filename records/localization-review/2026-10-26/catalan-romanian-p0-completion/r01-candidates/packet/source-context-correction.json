@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "record_kind": "Source-context preparation correction; no target source/value or linguistic verdict changed",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "original_scope_sha256": "bd78a32332f1ebc00a6488a07a1bf4ab693cff78a85f9c68aed25fd4508af80f",
+  "corrected_scope_sha256": "8dd3dd99b633bbec8254639797ddc81000ce4d8bfa9c037503663123587399d5",
+  "corrected_entries": [
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "prior_locale_notes_historical": [
+        "%1$s is an already-rendered failure reason; preserve prefix token and separation. A separate draft copy has actually been preserved before this branch.",
+        "Use actual Danish Filer / Norwegian Fil menu plus the proposed same-group recovery action; canvas.png and ZIP remain literal."
+      ],
+      "current_scope_notes": [
+        "%1$s is an already-rendered failure reason; preserve prefix token and separation. A separate draft copy has actually been preserved before this branch.",
+        "Use the existing File menu label (Catalan Fitxer; Romanian Fișier) plus the same-group proposed recovery action. canvas.png and ZIP remain literal."
+      ]
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "prior_locale_notes_historical": [
+        "%1$s is an already-rendered failure reason. This branch cannot preserve a separate copy, so autosave remains blocked to protect the existing draft. Do not claim that current work is already saved.",
+        "Use actual existing menu labels: Danish Filer / Gem som…; Norwegian Fil / Lagre som…. Both existing save20_file_format labels are exactly Image format, not a translated label. New recovery action is a within-group proposed dependency; retain PNG / JPEG."
+      ],
+      "current_scope_notes": [
+        "%1$s is an already-rendered failure reason. This branch cannot preserve a separate copy, so autosave remains blocked to protect the existing draft. Do not claim that current work is already saved.",
+        "Use current existing labels: Catalan Fitxer / Anomena i desa…; Romanian Fișier / Salvează ca…. Both save20_file_format labels are exactly Image format, not a translated label. New recovery action is a within-group proposed dependency; retain PNG / JPEG."
+      ]
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "prior_locale_notes_historical": [
+        "Use existing undo label Fortryd for Danish / Angre for Norwegian. Canvas dimensions, not image scaling."
+      ],
+      "current_scope_notes": [
+        "Use existing Undo action label: Catalan Desfés; Romanian Anulează. Canvas dimensions, not image scaling; no neighboring label change."
+      ]
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "prior_locale_notes_historical": [
+        "canvas.png and ZIP are literal identities; this is the draft recovery archive, not the paused Help callback/archive-identity work.",
+        "Both locales have absent ui_load_image: actual command is Load image…. Quote that unchanged fallback, with actual Filer/Fil. The model permits one optional floating selection, so use singular optional wording. No Help archive identity work."
+      ],
+      "current_scope_notes": [
+        "canvas.png and ZIP are literal identities; this is the draft recovery archive, not the paused Help callback/archive-identity work.",
+        "Both locales have absent ui_load_image, so the actual command is unchanged English Load image…. Quote that fallback with actual File menu label (Catalan Fitxer; Romanian Fișier). The model permits one optional floating selection, so use singular optional wording. No Help/archive identity work."
+      ]
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "prior_locale_notes_historical": [
+        "Existing Danish image resize label must be checked in foundation; Norwegian uses Skaler bilde…. Preserve action terminology without changing neighboring resources."
+      ],
+      "current_scope_notes": [
+        "Use existing image-resize action terminology: Catalan Ajusta la mida de la imatge… / Ajusta la mida de la imatge; Romanian Scalează imaginea… / Scalează imaginea. Preserve actual action terminology without changing neighboring resources."
+      ]
+    }
+  ],
+  "production_source_values_windows_and_bindings_unchanged": true,
+  "qualifications": "Old locale-specific notes retained as historical provenance only. Current CA/RO context uses exact inherited labels; no label replacement or acceptance expansion."
+}

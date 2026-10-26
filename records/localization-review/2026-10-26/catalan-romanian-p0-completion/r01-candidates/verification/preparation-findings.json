@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "record_kind": "Validator adaptation history, not candidate rejection or linguistic findings",
+  "changes": [
+    {
+      "issue": "A predecessor assumption required nonempty author uncertainty lists.",
+      "evidence": "85 actual rows explicitly contain an empty list.",
+      "resolution": "Require the field and a list, permit explicit empty lists, and preserve the exact frozen original author list. Nonempty caveat deletion and arbitrary replacement are rejected."
+    },
+    {
+      "issue": "A predecessor assumption required duplicated inherited-count and reviewer-instruction metadata in every author group.",
+      "evidence": "Romanian groups do not contain these optional duplicated fields.",
+      "resolution": "Keep mandatory source/foundation count 150; preserve reviewer instructions exactly when present, including their absence when absent. No candidate metadata was manufactured."
+    },
+    {
+      "issue": "A draft negative-control mutation attempted list deletion on the correction-ledger qualifications field.",
+      "evidence": "The actual field is a string; the draft test raised AttributeError before validation.",
+      "resolution": "Mutate the actual string field and verify the frozen-ledger guard rejects it. No candidate or ledger bytes were changed."
+    },
+    {
+      "issue": "Qualification carry needed an exact normalized list rather than subset-only containment.",
+      "evidence": "All 110 actual rows use de-duplicated source notes followed by original author qualifications.",
+      "resolution": "Require that exact normalized list. Twelve additional actual-packet controls reject added unsupported or duplicated qualifications."
+    }
+  ],
+  "current_result": "All 110 frozen candidates pass; final ordinary and optimized controls pass identically. No production bytes changed and no linguistic verdict inferred."
+}

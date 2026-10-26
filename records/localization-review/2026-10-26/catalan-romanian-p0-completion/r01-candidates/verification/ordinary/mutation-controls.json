@@ -1,0 +1,2333 @@
+{
+  "schema_version": 1,
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "positive_complete_packet": "passed",
+  "candidate_values": 110,
+  "packet_controls_rejected": 368,
+  "packet_controls": [
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %d'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %.2f'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %1$s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %%'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %n'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %q'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %1$'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %3$.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %3$.f'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 actual formatted=false refreshed-hash token ' %t'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 missing value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 duplicate value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 wrong locale",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 wrong source pin",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 wrong tree",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 wrong group",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 wrong target",
+      "outcome": "rejected",
+      "guard": "target identity",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 false record acceptance",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 changed reviewer instruction",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 wrong preserved count",
+      "outcome": "rejected",
+      "guard": "candidate inherited count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 unsafe input ref",
+      "outcome": "rejected",
+      "guard": "candidate input binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 unsafe original proposal ref",
+      "outcome": "rejected",
+      "guard": "author proposal binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 false missing-only",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 absence implies defect",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 altered attribute",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 false priority",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 fabricated context",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 lost source notes",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 empty qualifications",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 added unsupported qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 duplicate qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 false accepted status",
+      "outcome": "rejected",
+      "guard": "proposal/qualification boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 deleted uncertainty field",
+      "outcome": "rejected",
+      "guard": "'author_uncertainties'",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 altered uncertainty",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 altered confidence",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 bad display hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 bad XML hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 wrong source hash",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 lost XML quote wrapper",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 empty target",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 markup",
+      "outcome": "rejected",
+      "guard": "candidate XML markup boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 control character",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 Android escape",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 ASCII quote",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 malformed JSON",
+      "outcome": "rejected",
+      "guard": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 duplicate JSON key",
+      "outcome": "rejected",
+      "guard": "duplicate JSON key",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 missing file",
+      "outcome": "rejected",
+      "guard": "candidate file inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %d'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %.2f'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %1$s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %%'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %n'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %q'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %1$'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %3$.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %3$.f'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 actual refreshed-hash token ' %t'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 missing value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 duplicate value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 wrong locale",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 wrong source pin",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 wrong tree",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 wrong group",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 wrong target",
+      "outcome": "rejected",
+      "guard": "target identity",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 false record acceptance",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 changed reviewer instruction",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 wrong preserved count",
+      "outcome": "rejected",
+      "guard": "candidate inherited count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 unsafe input ref",
+      "outcome": "rejected",
+      "guard": "candidate input binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 unsafe original proposal ref",
+      "outcome": "rejected",
+      "guard": "author proposal binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 false missing-only",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 absence implies defect",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 altered attribute",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 false priority",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 fabricated context",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 lost source notes",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 empty qualifications",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 added unsupported qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 duplicate qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 false accepted status",
+      "outcome": "rejected",
+      "guard": "proposal/qualification boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 deleted uncertainty field",
+      "outcome": "rejected",
+      "guard": "'author_uncertainties'",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 altered uncertainty",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 altered confidence",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 bad display hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 bad XML hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 wrong source hash",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 lost XML quote wrapper",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 empty target",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 markup",
+      "outcome": "rejected",
+      "guard": "candidate XML markup boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 control character",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 Android escape",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 ASCII quote",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 malformed JSON",
+      "outcome": "rejected",
+      "guard": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 duplicate JSON key",
+      "outcome": "rejected",
+      "guard": "duplicate JSON key",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 missing file",
+      "outcome": "rejected",
+      "guard": "candidate file inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %d'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %.2f'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %1$s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %%'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %n'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %q'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %1$'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %3$.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %3$.f'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 actual refreshed-hash token ' %t'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 missing value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 duplicate value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 wrong locale",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 wrong source pin",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 wrong tree",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 wrong group",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 wrong target",
+      "outcome": "rejected",
+      "guard": "target identity",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 false record acceptance",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 changed reviewer instruction",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 wrong preserved count",
+      "outcome": "rejected",
+      "guard": "candidate inherited count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 unsafe input ref",
+      "outcome": "rejected",
+      "guard": "candidate input binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 unsafe original proposal ref",
+      "outcome": "rejected",
+      "guard": "author proposal binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 false missing-only",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 absence implies defect",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 altered attribute",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 false priority",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 fabricated context",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 lost source notes",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 empty qualifications",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 added unsupported qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 duplicate qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 false accepted status",
+      "outcome": "rejected",
+      "guard": "proposal/qualification boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 deleted uncertainty field",
+      "outcome": "rejected",
+      "guard": "'author_uncertainties'",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 altered uncertainty",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 altered confidence",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 bad display hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 bad XML hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 wrong source hash",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 lost XML quote wrapper",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 empty target",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 markup",
+      "outcome": "rejected",
+      "guard": "candidate XML markup boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 control character",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 Android escape",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 ASCII quote",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 malformed JSON",
+      "outcome": "rejected",
+      "guard": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 duplicate JSON key",
+      "outcome": "rejected",
+      "guard": "duplicate JSON key",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 missing file",
+      "outcome": "rejected",
+      "guard": "candidate file inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca literal ui_a_separate_recovery_copy_has_been_kept_use/canvas.png",
+      "outcome": "rejected",
+      "guard": "product/unit syntax canvas.png",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca literal ui_autosave_is_paused_to_protect_that_draft_use/PNG",
+      "outcome": "rejected",
+      "guard": "product/unit syntax PNG",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca literal ui_recovery_copy_exported_extract_canvas_png_from_the/canvas.png",
+      "outcome": "rejected",
+      "guard": "product/unit syntax canvas.png",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group2 deleted actual nonempty caveat",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca literal ui_d_d_pixels_2f_mp_exceeds_the_current/AN Paint",
+      "outcome": "rejected",
+      "guard": "product/unit syntax AN Paint",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca literal ui_save_png/PNG",
+      "outcome": "rejected",
+      "guard": "product/unit syntax PNG",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group3 deleted actual nonempty caveat",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca literal ui_not_enough_memory_to_save_in_this_format/PNG",
+      "outcome": "rejected",
+      "guard": "product/unit syntax PNG",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca literal ui_png_encoding_failed/PNG",
+      "outcome": "rejected",
+      "guard": "product/unit syntax PNG",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca group4 deleted actual nonempty caveat",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca indexed memory token %1$d",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca indexed memory token %2$d",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca indexed memory token %3$.2f",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca indexed memory token %4$.2f",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %d'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %.2f'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %1$s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %%'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %n'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %q'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %1$'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %3$.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %3$.f'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 actual formatted=false refreshed-hash token ' %t'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 missing value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 duplicate value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 wrong locale",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 wrong source pin",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 wrong tree",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 wrong group",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 wrong target",
+      "outcome": "rejected",
+      "guard": "target identity",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 false record acceptance",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 changed reviewer instruction",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 wrong preserved count",
+      "outcome": "rejected",
+      "guard": "candidate inherited count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 unsafe input ref",
+      "outcome": "rejected",
+      "guard": "candidate input binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 unsafe original proposal ref",
+      "outcome": "rejected",
+      "guard": "author proposal binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 false missing-only",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 absence implies defect",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 altered attribute",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 false priority",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 fabricated context",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 lost source notes",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 empty qualifications",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 added unsupported qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 duplicate qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 false accepted status",
+      "outcome": "rejected",
+      "guard": "proposal/qualification boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 deleted uncertainty field",
+      "outcome": "rejected",
+      "guard": "'author_uncertainties'",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 altered uncertainty",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 altered confidence",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 bad display hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 bad XML hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 wrong source hash",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 lost XML quote wrapper",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 empty target",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 markup",
+      "outcome": "rejected",
+      "guard": "candidate XML markup boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 control character",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 Android escape",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 ASCII quote",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 malformed JSON",
+      "outcome": "rejected",
+      "guard": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 duplicate JSON key",
+      "outcome": "rejected",
+      "guard": "duplicate JSON key",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 missing file",
+      "outcome": "rejected",
+      "guard": "candidate file inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %d'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %.2f'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %1$s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %%'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %n'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %q'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %1$'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %3$.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %3$.f'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 actual refreshed-hash token ' %t'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 missing value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 duplicate value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 wrong locale",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 wrong source pin",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 wrong tree",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 wrong group",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 wrong target",
+      "outcome": "rejected",
+      "guard": "target identity",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 false record acceptance",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 changed reviewer instruction",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 wrong preserved count",
+      "outcome": "rejected",
+      "guard": "candidate inherited count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 unsafe input ref",
+      "outcome": "rejected",
+      "guard": "candidate input binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 unsafe original proposal ref",
+      "outcome": "rejected",
+      "guard": "author proposal binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 false missing-only",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 absence implies defect",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 altered attribute",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 false priority",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 fabricated context",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 lost source notes",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 empty qualifications",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 added unsupported qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 duplicate qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 false accepted status",
+      "outcome": "rejected",
+      "guard": "proposal/qualification boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 deleted uncertainty field",
+      "outcome": "rejected",
+      "guard": "'author_uncertainties'",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 altered uncertainty",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 altered confidence",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 bad display hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 bad XML hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 wrong source hash",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 lost XML quote wrapper",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 empty target",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 markup",
+      "outcome": "rejected",
+      "guard": "candidate XML markup boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 control character",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 Android escape",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 ASCII quote",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 malformed JSON",
+      "outcome": "rejected",
+      "guard": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 duplicate JSON key",
+      "outcome": "rejected",
+      "guard": "duplicate JSON key",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 missing file",
+      "outcome": "rejected",
+      "guard": "candidate file inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %d'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %.2f'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %1$s'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %%'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %n'",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %q'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %1$'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %3$.'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %3$.f'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 actual refreshed-hash token ' %t'",
+      "outcome": "rejected",
+      "guard": "malformed format token",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 missing value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 duplicate value",
+      "outcome": "rejected",
+      "guard": "candidate identity grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 wrong locale",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 wrong source pin",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 wrong tree",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 wrong group",
+      "outcome": "rejected",
+      "guard": "candidate pin/group/count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 wrong target",
+      "outcome": "rejected",
+      "guard": "target identity",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 false record acceptance",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 changed reviewer instruction",
+      "outcome": "rejected",
+      "guard": "author review instructions/record kind/group preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 wrong preserved count",
+      "outcome": "rejected",
+      "guard": "candidate inherited count",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 unsafe input ref",
+      "outcome": "rejected",
+      "guard": "candidate input binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 unsafe original proposal ref",
+      "outcome": "rejected",
+      "guard": "author proposal binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 false missing-only",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 absence implies defect",
+      "outcome": "rejected",
+      "guard": "missing-only boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 altered attribute",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 false priority",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 fabricated context",
+      "outcome": "rejected",
+      "guard": "candidate priority/context",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 lost source notes",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 empty qualifications",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 added unsupported qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 duplicate qualification",
+      "outcome": "rejected",
+      "guard": "complete semantic qualification carry",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 false accepted status",
+      "outcome": "rejected",
+      "guard": "proposal/qualification boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 deleted uncertainty field",
+      "outcome": "rejected",
+      "guard": "'author_uncertainties'",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 altered uncertainty",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 altered confidence",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 bad display hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 bad XML hash",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 wrong source hash",
+      "outcome": "rejected",
+      "guard": "candidate source binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 lost XML quote wrapper",
+      "outcome": "rejected",
+      "guard": "candidate XML/display hashes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 empty target",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 markup",
+      "outcome": "rejected",
+      "guard": "candidate XML markup boundary",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 control character",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 Android escape",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 ASCII quote",
+      "outcome": "rejected",
+      "guard": "Android display encoding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 malformed JSON",
+      "outcome": "rejected",
+      "guard": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 duplicate JSON key",
+      "outcome": "rejected",
+      "guard": "duplicate JSON key",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 missing file",
+      "outcome": "rejected",
+      "guard": "candidate file inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro literal ui_a_separate_recovery_copy_has_been_kept_use/canvas.png",
+      "outcome": "rejected",
+      "guard": "product/unit syntax canvas.png",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro literal ui_autosave_is_paused_to_protect_that_draft_use/PNG",
+      "outcome": "rejected",
+      "guard": "product/unit syntax PNG",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro literal ui_recovery_copy_exported_extract_canvas_png_from_the/canvas.png",
+      "outcome": "rejected",
+      "guard": "product/unit syntax canvas.png",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group2 deleted actual nonempty caveat",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro literal ui_d_d_pixels_2f_mp_exceeds_the_current/AN Paint",
+      "outcome": "rejected",
+      "guard": "product/unit syntax AN Paint",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro literal ui_save_png/PNG",
+      "outcome": "rejected",
+      "guard": "product/unit syntax PNG",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group3 deleted actual nonempty caveat",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro literal ui_not_enough_memory_to_save_in_this_format/PNG",
+      "outcome": "rejected",
+      "guard": "product/unit syntax PNG",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro literal ui_png_encoding_failed/PNG",
+      "outcome": "rejected",
+      "guard": "product/unit syntax PNG",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro group4 deleted actual nonempty caveat",
+      "outcome": "rejected",
+      "guard": "complete author target/attributes/confidence/uncertainty preserved",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro indexed memory token %1$d",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro indexed memory token %2$d",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro indexed memory token %3$.2f",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro indexed memory token %4$.2f",
+      "outcome": "rejected",
+      "guard": "complete format inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "rebound context key",
+      "outcome": "rejected",
+      "guard": "context path/key",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound context path",
+      "outcome": "rejected",
+      "guard": "context path/key",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound context text",
+      "outcome": "rejected",
+      "guard": "consumer window",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound context URL",
+      "outcome": "rejected",
+      "guard": "consumer URL pin",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound context negative line",
+      "outcome": "rejected",
+      "guard": "context line/range",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound context boolean range",
+      "outcome": "rejected",
+      "guard": "context line/range",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound context count",
+      "outcome": "rejected",
+      "guard": "source context identity/count",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound context IDs",
+      "outcome": "rejected",
+      "guard": "source context identity/count",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound source binding digest",
+      "outcome": "rejected",
+      "guard": "source byte/Git binding",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound source binding substitute",
+      "outcome": "rejected",
+      "guard": "source binding membership/window inventory",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound source binding duplicate",
+      "outcome": "rejected",
+      "guard": "source binding grain",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound source value",
+      "outcome": "rejected",
+      "guard": "source complete value/attributes",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound source attr",
+      "outcome": "rejected",
+      "guard": "source complete value/attributes",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound source group",
+      "outcome": "rejected",
+      "guard": "source semantic group",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound source token metadata",
+      "outcome": "rejected",
+      "guard": "source token metadata",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound false source acceptance",
+      "outcome": "rejected",
+      "guard": "scope is not acceptance",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound direct consumer missing",
+      "outcome": "rejected",
+      "guard": "full direct-reference inventory",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound held entry cleared",
+      "outcome": "rejected",
+      "guard": "held ledger",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "rebound bad locale count",
+      "outcome": "rejected",
+      "guard": "current structural partition",
+      "refreshed_scope_bindings_for_structural_probe": true
+    },
+    {
+      "case": "frozen paused scope lost",
+      "outcome": "rejected",
+      "guard": "frozen corrected scope binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "frozen native qualification removed",
+      "outcome": "rejected",
+      "guard": "frozen corrected scope binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "frozen forged semantic source note",
+      "outcome": "rejected",
+      "guard": "frozen corrected scope binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca foundation lost inherited value",
+      "outcome": "rejected",
+      "guard": "foundation grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca foundation changed inherited value",
+      "outcome": "rejected",
+      "guard": "inherited complete value/attributes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca foundation changed inherited attrs",
+      "outcome": "rejected",
+      "guard": "inherited complete value/attributes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca foundation wrong foundation count",
+      "outcome": "rejected",
+      "guard": "foundation source identity",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca foundation wrong label display",
+      "outcome": "rejected",
+      "guard": "actual inherited/fallback composition label",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca foundation false inherited fallback",
+      "outcome": "rejected",
+      "guard": "actual inherited/fallback composition label",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ca foundation missing mixed label",
+      "outcome": "rejected",
+      "guard": "composition label inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro foundation lost inherited value",
+      "outcome": "rejected",
+      "guard": "foundation grain",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro foundation changed inherited value",
+      "outcome": "rejected",
+      "guard": "inherited complete value/attributes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro foundation changed inherited attrs",
+      "outcome": "rejected",
+      "guard": "inherited complete value/attributes",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro foundation wrong foundation count",
+      "outcome": "rejected",
+      "guard": "foundation source identity",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro foundation wrong label display",
+      "outcome": "rejected",
+      "guard": "actual inherited/fallback composition label",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro foundation false inherited fallback",
+      "outcome": "rejected",
+      "guard": "actual inherited/fallback composition label",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "ro foundation missing mixed label",
+      "outcome": "rejected",
+      "guard": "composition label inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "extra locale candidate file",
+      "outcome": "rejected",
+      "guard": "candidate file inventory",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "missing correction ledger",
+      "outcome": "rejected",
+      "guard": "FileNotFoundError during required packet input read",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "correction ledger silently altered",
+      "outcome": "rejected",
+      "guard": "frozen correction ledger",
+      "refreshed_scope_bindings_for_structural_probe": false
+    },
+    {
+      "case": "corrupted frozen author proposal",
+      "outcome": "rejected",
+      "guard": "author proposal binding",
+      "refreshed_scope_bindings_for_structural_probe": false
+    }
+  ],
+  "actual_formatted_false_locale_values": 2,
+  "actual_formatted_false_refreshed_hash_negatives": 26,
+  "synthetic_format_helper_positive": "passed",
+  "synthetic_format_helper_controls_rejected": 13,
+  "synthetic_format_helper_controls": [
+    {
+      "case": "synthetic formatted=false ' %s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %d'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %.2f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %1$s'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %%'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %n'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %q'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %1$'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %3$.'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %3$.f'",
+      "outcome": "rejected"
+    },
+    {
+      "case": "synthetic formatted=false ' %t'",
+      "outcome": "rejected"
+    }
+  ],
+  "synthetic_tree_and_source_controls_rejected": 9,
+  "synthetic_tree_and_source_controls": [
+    {
+      "case": "advertised wrong root",
+      "outcome": "rejected",
+      "guard": "source tree pin"
+    },
+    {
+      "case": "truncated tree",
+      "outcome": "rejected",
+      "guard": "source tree pin"
+    },
+    {
+      "case": "missing tree member",
+      "outcome": "rejected",
+      "guard": "Git child tree identity"
+    },
+    {
+      "case": "duplicate tree member",
+      "outcome": "rejected",
+      "guard": "duplicate Git path"
+    },
+    {
+      "case": "forged leaf with unchanged root",
+      "outcome": "rejected",
+      "guard": "Git child tree identity"
+    },
+    {
+      "case": "forged tree descendant",
+      "outcome": "rejected",
+      "guard": "Git child tree identity"
+    },
+    {
+      "case": "unsafe Git path",
+      "outcome": "rejected",
+      "guard": "unsafe relative path"
+    },
+    {
+      "case": "unsupported mode",
+      "outcome": "rejected",
+      "guard": "unsupported Git entry"
+    },
+    {
+      "case": "synthetic source read corruption, no file changed",
+      "outcome": "rejected",
+      "guard": "raw tracked source identity"
+    }
+  ],
+  "explicit_empty_author_uncertainty_rows_preserved": 85,
+  "source_files_mutated": false,
+  "limits": [
+    "This is source/data integrity, not linguistic acceptance or Android/runtime execution.",
+    "Actual candidate format mutations use complete frozen source pairs and refreshed target hashes, including two real formatted=false locale values.",
+    "For explicitly labelled rebound structural scope probes, only expected metadata hashes are patched in the test process so actual source/context guards are exercised; no production verification flag bypass exists.",
+    "Synthetic formatted=false helper and tree/source-read corruption probes are separate from real candidate controls.",
+    "All original qualifications, explicit empty/nonempty author uncertainty lists and prior source/context correction lineage remain preserved."
+  ]
+}

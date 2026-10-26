@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "record_kind": "Candidate integrity verification only; not source implementation or linguistic acceptance",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "result": "Ready within checked source/data integrity scope",
+  "ordinary_and_optimized_receipts_byte_identical": true,
+  "candidate_values": 110,
+  "unique_identities": 55,
+  "per_locale_groups": [
+    28,
+    16,
+    11
+  ],
+  "source_raw_blobs_verified": 1376,
+  "production_files_verified": 322,
+  "source_bindings_verified": 22,
+  "consumer_windows_verified": 98,
+  "existing_values_preserved_per_locale": 150,
+  "explicit_no_consumer_holds_per_locale": 5,
+  "actual_formatted_false_locale_values": 2,
+  "actual_formatted_false_refreshed_hash_negative_controls": 26,
+  "actual_packet_mutations_rejected": 368,
+  "separate_synthetic_format_controls_rejected": 13,
+  "separate_synthetic_tree_source_controls_rejected": 9,
+  "synthetic_format_helper_positive": "passed",
+  "explicit_empty_author_uncertainty_rows_preserved": 85,
+  "independent_crosscheck": "Read-only git hash-object and ElementTree: 1376 blob identities, 110 candidate pairs, 300 inherited values, 22 hashes and 98 windows verified without importing validation helpers.",
+  "scripts_sha256": {
+    "verify_candidates.py": "275616f2f003a7e7fa20de331e28d81bb3787f859dc6b78302ccb04dd6c694a8",
+    "test_verifier.py": "0ac1101dc0f03de74ec38adb5a291cb71882661cbc10ffeca02cd4b9f9d39472",
+    "independent_crosscheck.py": "e20ae62ea7059454823350768a668b9a36ab7825ab4724baaef4a76a936529c9"
+  },
+  "receipts_sha256": {
+    "verification.json": "dc722a35e17632925ebab1791c4fd130260b0596f7fe2cc55f39e1ddaf612a39",
+    "mutation-controls.json": "2fae5c61cb68abc2f28883265679fd176e22799c6bbb23a8eb73e9fdce384eea",
+    "independent-crosscheck.json": "74b71c5cd85a0b526aca681924fb2ff70930eb4fa5cc045276bd65b2d52020ad"
+  },
+  "qualifications": [
+    "Source integrity is pinned to the stated commit, not a claim that develop has not moved.",
+    "Five no-current-consumer holds per locale remain absent. All 150 inherited values per locale are exact; absence is not automatically a defect.",
+    "Mixed English composition labels and all original author/source qualifications are preserved. Valencian parent inheritance is not direct reviewed coverage.",
+    "Actual formatted=false rows and their mutation tests are distinct from synthetic formatted=false helper probes.",
+    "No native-human, device, runtime, layout, whole-locale, release or source acceptance. Separate full-value reviews and source implementation gates remain outside this validator.",
+    "Global 59/112 and paired P1/frozen evidence, #56/#113/#159 and Help/archive/release boundaries remain unchanged."
+  ]
+}

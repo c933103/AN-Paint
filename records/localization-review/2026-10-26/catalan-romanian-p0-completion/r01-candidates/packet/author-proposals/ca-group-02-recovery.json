@@ -1,0 +1,809 @@
+{
+  "schema_version": 1,
+  "record_kind": "Catalan missing-only author candidates; not acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "locale": "ca",
+  "target_path": "Paintroid/src/main/res/values-ca/strings.xml",
+  "group": 2,
+  "group_name": "recovery",
+  "candidate_count": 28,
+  "source_context_file": "scope-and-source-context.json",
+  "source_context_sha256": "bd78a32332f1ebc00a6488a07a1bf4ab693cff78a85f9c68aed25fd4508af80f",
+  "existing_values_preserved": 150,
+  "instructions_to_reviewer": [
+    "Judge each complete source/target pair and consumer context independently; revise or hold unsupported wording.",
+    "Prior Danish/Norwegian source notes are semantic context only; their action labels are superseded by the explicit Catalan composition qualifications.",
+    "No native-human, physical-device, layout or whole-locale acceptance; formatted=false is preserved for ui_history_unavailable34."
+  ],
+  "candidates": [
+    {
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "priority": "P0",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "source_value_sha256_utf8": "579fea23054e5ac24d9dad1aee8a1dd13af1d810fbed9f92e059cce26f6ed0a0",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "%1$s S’ha conservat una còpia de recuperació separada. Fes servir «Fitxer > Exporta una còpia de recuperació…» per desar-ne el ZIP. Extreu-ne canvas.png i carrega aquesta imatge per fer servir les opcions habituals d’ajust de mida, si cal.",
+      "candidate_value_sha256_utf8": "c00aa550de19f28f4eabfdc9cdb91501152f649b0930e54162706cbbd5103e74",
+      "candidate_xml_text": "\"%1$s S’ha conservat una còpia de recuperació separada. Fes servir «Fitxer > Exporta una còpia de recuperació…» per desar-ne el ZIP. Extreu-ne canvas.png i carrega aquesta imatge per fer servir les opcions habituals d’ajust de mida, si cal.\"",
+      "candidate_xml_text_sha256_utf8": "a33c7399fbe415fc2550bcea04f2d9c12705538d4cc3f9f144435fc30578e0d4",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:39"
+      ],
+      "source_semantic_notes": [
+        "%1$s is an already-rendered failure reason; preserve prefix token and separation. A separate draft copy has actually been preserved before this branch.",
+        "Use actual Danish Filer / Norwegian Fil menu plus the proposed same-group recovery action; canvas.png and ZIP remain literal."
+      ],
+      "author_semantic_qualifications": [
+        "Uses actual Catalan menu Fitxer and same-group proposed recovery action; source reused DA/NO menu examples are not applied.",
+        "The first %1$s remains an already-rendered reason; a separate recovery copy is actually retained in this branch. ZIP and canvas.png remain literal."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_failed_use_save",
+      "priority": "P0",
+      "source": "Autosave failed · use Save",
+      "source_value_sha256_utf8": "9fab2239be3a11b6843125b73bedddcef714c0188d682cb0f145f6a7fdd1457a",
+      "attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Ha fallat el desament automàtic · fes servir «Desa»",
+      "candidate_value_sha256_utf8": "482bf176307ebdc163bdfc4aaf7cf22a309fd3f0e0844f5b5b32dcf6d67a7550",
+      "candidate_xml_text": "\"Ha fallat el desament automàtic · fes servir «Desa»\"",
+      "candidate_xml_text_sha256_utf8": "098c1be26fc4faaa0322d14bc4cf05185d5bb754c6c44306b604cb9b1fbfebce",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1627"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_image_encoding_failed",
+      "priority": "P0",
+      "source": "Autosave image encoding failed.",
+      "source_value_sha256_utf8": "f83897890596e2776edb9f66dca76dce2e53f64fb26f43c2462116d978d64201",
+      "attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Ha fallat la codificació de la imatge per al desament automàtic.",
+      "candidate_value_sha256_utf8": "83b4858a612e166390ee6ebb8babbafb60472a020fb8ef22de5c12965b4819c5",
+      "candidate_xml_text": "\"Ha fallat la codificació de la imatge per al desament automàtic.\"",
+      "candidate_xml_text_sha256_utf8": "2a2f61342b023be58c87fc5155b603fed7f10aa42fffa7a5f9421b68a204153a",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:132"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_is_paused_to_protect_that_draft_use",
+      "priority": "P0",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "source_value_sha256_utf8": "45af3acf76284540e468a05d80591e36743472a7625da0c6b7153a8173e007a7",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "%1$s El desament automàtic està en pausa per protegir aquest esborrany. Fes servir «Fitxer → Exporta una còpia de recuperació…» per conservar-lo, i «Fitxer → Anomena i desa…» (Image format: PNG / JPEG) per desar la feina actual.",
+      "candidate_value_sha256_utf8": "81ba1021e361d7885bb55d947b76763b73c840b5852db4cfbf604b329dae363f",
+      "candidate_xml_text": "\"%1$s El desament automàtic està en pausa per protegir aquest esborrany. Fes servir «Fitxer → Exporta una còpia de recuperació…» per conservar-lo, i «Fitxer → Anomena i desa…» (Image format: PNG / JPEG) per desar la feina actual.\"",
+      "candidate_xml_text_sha256_utf8": "5d8fe3b10cdf31d0e4df8599036dbfe6612b8c91def8eb293a4b5bf97275f1bf",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:45"
+      ],
+      "source_semantic_notes": [
+        "%1$s is an already-rendered failure reason. This branch cannot preserve a separate copy, so autosave remains blocked to protect the existing draft. Do not claim that current work is already saved.",
+        "Use actual existing menu labels: Danish Filer / Gem som…; Norwegian Fil / Lagre som…. Both existing save20_file_format labels are exactly Image format, not a translated label. New recovery action is a within-group proposed dependency; retain PNG / JPEG."
+      ],
+      "author_semantic_qualifications": [
+        "Uses actual inherited Fitxer and Anomena i desa… labels, same-group proposed recovery action, and exact untouched Image format label. Mixed English label is intentional, so this composed message is not claimed wholly Catalan.",
+        "The source branch blocks autosave after separate preservation failed; this does not claim a separate recovery copy or a saved current drawing already exists."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_metadata_is_missing",
+      "priority": "P0",
+      "source": "Autosave metadata is missing.",
+      "source_value_sha256_utf8": "1115f993a7d75ef4a554c7ef1cf900d88970a5c05144cf1c9038ab0d86965de4",
+      "attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Falten les metadades del desament automàtic.",
+      "candidate_value_sha256_utf8": "132dbbb6f24eba3812ebb4b1d298ef909af1cfb4c5a8a125fbd88c629c2ead6b",
+      "candidate_xml_text": "\"Falten les metadades del desament automàtic.\"",
+      "candidate_xml_text_sha256_utf8": "8540674597d80ec06bf493b6c3f51d0b72166cae9beaa84c7eb86d226e723ea6",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:147"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_paused_use_save",
+      "priority": "P0",
+      "source": "Autosave paused · use Save",
+      "source_value_sha256_utf8": "3dfab3c54ba3d7700fc9d12ae3d767eda448501ba5df52284905edd71c7f30bd",
+      "attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Desament automàtic en pausa · fes servir «Desa»",
+      "candidate_value_sha256_utf8": "dfc458171821d29151a1149e3cc0005e3682b22592c4813110aed1c0085c568e",
+      "candidate_xml_text": "\"Desament automàtic en pausa · fes servir «Desa»\"",
+      "candidate_xml_text_sha256_utf8": "6984cef6211c91e6774ba090bba1a5aac3b5b93090398368cfc71099a34c47bc",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:44"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "priority": "P0",
+      "source": "Autosave pixels are missing.",
+      "source_value_sha256_utf8": "4af9f86e590fa90219121ad8f4cbbe372eaeeca8fb1927e01917a7fdd881de31",
+      "attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Falten les dades de píxels del desament automàtic.",
+      "candidate_value_sha256_utf8": "f6a230c275a228c84ef05dd0c65432fdabc70eeb6071462f63a9bd5c177d6123",
+      "candidate_xml_text": "\"Falten les dades de píxels del desament automàtic.\"",
+      "candidate_xml_text_sha256_utf8": "096a21ec4ceac6f2c1d1032b2e1ec89ee3f21d31a4ffad7cd2cdc012f93008d6",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:152"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Pixel-data wording refers to a missing canvas.png or floating.png ZIP entry, not individual lost visual pixels."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_pixels_could_not_be_read",
+      "priority": "P0",
+      "source": "Autosave pixels could not be read.",
+      "source_value_sha256_utf8": "b6c10f2c0238abb6190525baa6d50140fc4e8c33de2cfab12b99930e833ba2f3",
+      "attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’han pogut llegir les dades de píxels del desament automàtic.",
+      "candidate_value_sha256_utf8": "602d85d470b46177caf6980894d32b57ac7e8567fd252a7b40109c8f33969fca",
+      "candidate_xml_text": "\"No s’han pogut llegir les dades de píxels del desament automàtic.\"",
+      "candidate_xml_text_sha256_utf8": "75b97c65cffe24dad3b1257682b05abb54ab7c17d9410f0e579644de109eb8c8",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:158"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Pixel data may be the canvas or optional floating selection; this does not claim metadata or history restoration."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_autosave_selection_encoding_failed",
+      "priority": "P0",
+      "source": "Autosave selection encoding failed.",
+      "source_value_sha256_utf8": "4f03c5b20f4fee753afcccbbaddc08e6361f85e6ebd9a1275d69cfd5ffa906e0",
+      "attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Ha fallat la codificació de la selecció per al desament automàtic.",
+      "candidate_value_sha256_utf8": "2b1627ea47e6b0d7155955cd5a1b629f49c26ff854e5888d9f0edaff4649dc07",
+      "candidate_xml_text": "\"Ha fallat la codificació de la selecció per al desament automàtic.\"",
+      "candidate_xml_text_sha256_utf8": "32948dbf1ec79ee3b54a557955451bfb29d9a410b722635c582f990f7bdd8900",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:134"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_cannot_create_the_undo_cache_free_some_device",
+      "priority": "P0",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "source_value_sha256_utf8": "cd0b4dfc7b1791c0ed036dd1eea4b36e46f6640286a2a3561a5358230ff82803",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No es pot crear la memòria cau de desfer. Allibera espai d’emmagatzematge al dispositiu i torna-ho a provar.",
+      "candidate_value_sha256_utf8": "885bfc39aa725036003fb5ba2bd291e1aca70ddf0e111eb98d6e0c69e7b2773f",
+      "candidate_xml_text": "\"No es pot crear la memòria cau de desfer. Allibera espai d’emmagatzematge al dispositiu i torna-ho a provar.\"",
+      "candidate_xml_text_sha256_utf8": "02bf1a5f8526310a9b430f371f647908dc9c05451af2881d14f7c961d88a0430",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:22",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:51"
+      ],
+      "source_semantic_notes": [
+        "This is device storage for on-disk undo snapshots, not RAM budget."
+      ],
+      "author_semantic_qualifications": [
+        "Explicit emmagatzematge refers to on-disk storage, not RAM. memòria cau de desfer is a technical draft term for independent review."
+      ],
+      "author_uncertainties": [
+        "Independent reviewer should judge the technical compound memòria cau de desfer, not infer native terminology acceptance."
+      ],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_export_the_recovery_copy",
+      "priority": "P0",
+      "source": "Could not export the recovery copy",
+      "source_value_sha256_utf8": "66c703a27ccf6fd0c8400514fd0417449b780e644313ed3b5565bd8060be1815",
+      "attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’ha pogut exportar la còpia de recuperació",
+      "candidate_value_sha256_utf8": "8667b8e43747fca8c28951f3ad5ea261255f6a5a17fd135f8dcae49f3e3df9f2",
+      "candidate_xml_text": "\"No s’ha pogut exportar la còpia de recuperació\"",
+      "candidate_xml_text_sha256_utf8": "1e44a153be49c8ef417a79a6ccc6593b769b37ce49c8cd433480fb7e4971e047",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1409"
+      ],
+      "source_semantic_notes": [
+        "Prefix passed to ioFailed; caller attaches error details. Keep no added terminal punctuation."
+      ],
+      "author_semantic_qualifications": [
+        "Prefix deliberately has no added terminal punctuation; ioFailed appends the error detail."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_not_saved_yet",
+      "priority": "P0",
+      "source": "Draft not saved yet",
+      "source_value_sha256_utf8": "47bfd1dafcd6d9d6d49ae9f60f5b5c60d0180661684733aaa73e559734f7d447",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "L’esborrany encara no s’ha desat",
+      "candidate_value_sha256_utf8": "71134e854507aa2c48c90e7b557d104d3f53086188c177ec1b4cd81dec5ba0a3",
+      "candidate_xml_text": "\"L’esborrany encara no s’ha desat\"",
+      "candidate_xml_text_sha256_utf8": "a9e5c7875470c01386ec555a75e66d5cd6e34345c7b679d4ffefbda39f1113da",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:131",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:32"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_restored",
+      "priority": "P0",
+      "source": "Draft restored",
+      "source_value_sha256_utf8": "b22e11b3de90d4a130e7c63753a46f3b853fc949ca2fe95dd156138a384b5dcb",
+      "attributes": {
+        "name": "ui_draft_restored"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Esborrany restaurat",
+      "candidate_value_sha256_utf8": "5deb017398c6a8e754104adcce20acbbe1899973df0cd034ba990dfe7385a3cc",
+      "candidate_xml_text": "\"Esborrany restaurat\"",
+      "candidate_xml_text_sha256_utf8": "c10601cec34cfa519f15ef22126e2e3e6dd8311e8d41480cb23afd8bd9d0ff98",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:82",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:95"
+      ],
+      "source_semantic_notes": [
+        "Startup recovery status only; not a claim that all undo history was recovered."
+      ],
+      "author_semantic_qualifications": [
+        "Autosave recovery status only; not acceptance that all undo history or credits were recovered."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_draft_saved",
+      "priority": "P0",
+      "source": "Draft saved",
+      "source_value_sha256_utf8": "5ccb8caacdc5383597f882b5c366969ee1cdd1a32b1d122a42b0280a51f9a5a6",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Esborrany desat",
+      "candidate_value_sha256_utf8": "cf11a89fb6832ebc999ea5f9b988b6a2bcec306a6e678f4c011b503400a18182",
+      "candidate_xml_text": "\"Esborrany desat\"",
+      "candidate_xml_text_sha256_utf8": "2a0c084d33c1cd8270f1beb0838995f7b92b82c9f64168e7c2c81cedb5ee5f07",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1626"
+      ],
+      "source_semantic_notes": [
+        "Autosave draft status only. Must not imply explicit Save target updated or unsaved drawing state cleared."
+      ],
+      "author_semantic_qualifications": [
+        "Autosave draft status only; does not claim explicit Save destination update or clearing unsaved state."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy",
+      "priority": "P0",
+      "source": "Export recovery copy…",
+      "source_value_sha256_utf8": "d642d7ea56f8deaece6e022241000cf5ef28239a5d066391c1e1e4bd5fe7a197",
+      "attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Exporta una còpia de recuperació…",
+      "candidate_value_sha256_utf8": "2f732ba39a7f1db25521691d0e03ccf2a8d326e80acf64df850b6b313c14ce42",
+      "candidate_xml_text": "\"Exporta una còpia de recuperació…\"",
+      "candidate_xml_text_sha256_utf8": "d14e8bd0acda53732f4aecd541f2ea7abfaec00f3a5c51cafff8d611101733ac",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:846"
+      ],
+      "source_semantic_notes": [
+        "Conditional File-menu action appears only when autosave is blocked or recovery copies exist. Ellipsis retained."
+      ],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_export_recovery_copy_144b8a",
+      "priority": "P0",
+      "source": "Export recovery copy",
+      "source_value_sha256_utf8": "144b8a2d9ee28d7aaa90dbbd22a6e1f487e99fd78a9c5f4d4131e48c0c3a0644",
+      "attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Exporta una còpia de recuperació",
+      "candidate_value_sha256_utf8": "1cdafadede3b65605dcf68740b0e3b4983f7a4a2c30262426e14f69beb42977b",
+      "candidate_xml_text": "\"Exporta una còpia de recuperació\"",
+      "candidate_xml_text_sha256_utf8": "00fa1a8425e16553a7f6aecd614d8704393539166a12b33bc3c87e94e156df29",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1161"
+      ],
+      "source_semantic_notes": [
+        "Dialog title for choosing one of several recovery copies; no ellipsis in canonical title."
+      ],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_history_unavailable34",
+      "priority": "P0",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "source_value_sha256_utf8": "445a2a9744ed258c1815920072f46042e9bb4aeb519a2c2d2d34eac8a95a589e",
+      "attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "S’ha restaurat el llenç, però no s’ha pogut llegir el seu historial de desfer. L’esborrany original s’ha conservat com a còpia de recuperació.",
+      "candidate_value_sha256_utf8": "8128cdbe4f7be16bb1558d0df0f4cecdc81536fc74ceb7b11f32686790767ffe",
+      "candidate_xml_text": "\"S’ha restaurat el llenç, però no s’ha pogut llegir el seu historial de desfer. L’esborrany original s’ha conservat com a còpia de recuperació.\"",
+      "candidate_xml_text_sha256_utf8": "ae96d2ac0259d74b2d9c5aa673de4c98f6474f9a6a299e55e8157157ee0a5d4d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:64"
+      ],
+      "source_semantic_notes": [
+        "formatted=false must remain. Canvas restored, undo history unreadable, original retained separately. These three clauses have different outcomes."
+      ],
+      "author_semantic_qualifications": [
+        "Preserves formatted=false and three distinct results: canvas restored, undo history unreadable, original draft separately retained."
+      ],
+      "author_uncertainties": [
+        "Independent reviewer should check the technical term historial de desfer in this full recovery statement."
+      ],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_invalid_autosave_metadata",
+      "priority": "P0",
+      "source": "Invalid autosave metadata.",
+      "source_value_sha256_utf8": "4a62b9a9531a09d3f34b967194d530070ddf65a66811f5ce52f39c332de3e2eb",
+      "attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Les metadades del desament automàtic no són vàlides.",
+      "candidate_value_sha256_utf8": "c171138a67da382929ce78ff987d8c03bd2fd26b620bfe3182bd08fae89016ba",
+      "candidate_xml_text": "\"Les metadades del desament automàtic no són vàlides.\"",
+      "candidate_xml_text_sha256_utf8": "33c6ed4062e613e5ef19d5a27ddfaf23c7b6a19aba6b0b1911c054c4c934217a",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:38",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:39",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:148",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt:15",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1219",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:20",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt:33"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_previous_draft_kept_for_recovery",
+      "priority": "P0",
+      "source": "Previous draft kept for recovery",
+      "source_value_sha256_utf8": "f31aee8ae34783790412c745919799d37484bf8e70be9dc2865ec4defc829ff8",
+      "attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "S’ha conservat l’esborrany anterior per recuperar-lo",
+      "candidate_value_sha256_utf8": "67b2a54cceec29b04cce901030abbc367e6091e924de6220316e2c3de15486ee",
+      "candidate_xml_text": "\"S’ha conservat l’esborrany anterior per recuperar-lo\"",
+      "candidate_xml_text_sha256_utf8": "81c2cd563f337a755527fb514fbe44f0985c64025803c50c8e2faac17cce1960",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:40"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_recovered_image",
+      "priority": "P0",
+      "source": "Recovered image",
+      "source_value_sha256_utf8": "f31f8410df9ce45c66f3c7e7af9c7bf126ee2481a825f0e31cfae2a4881a43a8",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Imatge recuperada",
+      "candidate_value_sha256_utf8": "59773e1e7f0cd389d1fb891800d44cc481b37319812b836ed6032bfce616b5ca",
+      "candidate_xml_text": "\"Imatge recuperada\"",
+      "candidate_xml_text_sha256_utf8": "be343dc6c86dcd151eadfd8a92195879206464e6129137548a76919a44ffdaff",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:71",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:93"
+      ],
+      "source_semantic_notes": [
+        "Fallback filename/title, not a new success claim or format name."
+      ],
+      "author_semantic_qualifications": [
+        "Fallback filename/title, not an extra success notification."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "priority": "P0",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "source_value_sha256_utf8": "1c334a74a1f68e7c14e7c6f1d040169c0093991601198bad50281f3a32b34c03",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "S’ha exportat la còpia de recuperació. Extreu canvas.png del ZIP i obre’l amb «Fitxer > Load image…». El ZIP també conté els paràmetres de l’esborrany i la selecció flotant, si n’hi ha cap.",
+      "candidate_value_sha256_utf8": "86da55b90424c8a48e76b31b0462e25b15a7cd84d27a0cd5945710bd4785a099",
+      "candidate_xml_text": "\"S’ha exportat la còpia de recuperació. Extreu canvas.png del ZIP i obre’l amb «Fitxer > Load image…». El ZIP també conté els paràmetres de l’esborrany i la selecció flotant, si n’hi ha cap.\"",
+      "candidate_xml_text_sha256_utf8": "2274b871110cb3d72f4e4d8398eda6163c8eb0798e446b6e851cbcdaafdaf99d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1408"
+      ],
+      "source_semantic_notes": [
+        "canvas.png and ZIP are literal identities; this is the draft recovery archive, not the paused Help callback/archive-identity work.",
+        "Both locales have absent ui_load_image: actual command is Load image…. Quote that unchanged fallback, with actual Filer/Fil. The model permits one optional floating selection, so use singular optional wording. No Help archive identity work."
+      ],
+      "author_semantic_qualifications": [
+        "Uses actual inherited Fitxer plus untouched English Load image… command, so the composed instruction is intentionally mixed-language.",
+        "ZIP and canvas.png remain literal; a single optional floating selection is described. This is draft recovery, not paused Help archive identity work."
+      ],
+      "author_uncertainties": [
+        "Reviewer should check singular optional-selection wording and mixed command composition; English Load image… is intentionally not translated."
+      ],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+      "priority": "P0",
+      "source": "The draft is saving. Try again shortly.",
+      "source_value_sha256_utf8": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "S’està desant l’esborrany. Torna-ho a provar d’aquí a poc.",
+      "candidate_value_sha256_utf8": "525adccce2010b3a365607636efb639569ddc262ca4d4837514ca0c79669d451",
+      "candidate_xml_text": "\"S’està desant l’esborrany. Torna-ho a provar d’aquí a poc.\"",
+      "candidate_xml_text_sha256_utf8": "d0b61fdf4dd2adc67207803a1a0d30c0d6aa10920ecb20aa6f9de1fc938d640f",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:925",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1443"
+      ],
+      "source_semantic_notes": [
+        "In-progress autosave prevents edits temporarily; not an instruction to Save again."
+      ],
+      "author_semantic_qualifications": [
+        "In-progress autosave temporarily prevents edit/credit operations; the imperative asks to retry the blocked operation, not to issue Save again."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_moved_to",
+      "priority": "P0",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "source_value_sha256_utf8": "58a948005b3938c7d8ca4ea368db1b4b390a98d9f517f4851c5b98f8b57e71e5",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’ha pogut moure l’esborrany anterior a una còpia de recuperació.",
+      "candidate_value_sha256_utf8": "4cfa52fed1c3a2f21442c7c9369ca4eccdfbf33ce672065bea86f318c8e1bd52",
+      "candidate_xml_text": "\"No s’ha pogut moure l’esborrany anterior a una còpia de recuperació.\"",
+      "candidate_xml_text_sha256_utf8": "b558b7c7a7a491cb72a709727625b2716e9010bd4e1f97eb0e50bf3a3b7ab689",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:104",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt:112"
+      ],
+      "source_semantic_notes": [
+        "Used if the prior draft source is missing or rename to a separate recovery file fails. Retain source wording without promising a copy exists."
+      ],
+      "author_semantic_qualifications": [
+        "Preserves the unsuccessful move outcome; does not promise that a recovery copy exists. Can be raised for missing prior source or failed rename."
+      ],
+      "author_uncertainties": [
+        "Direct moure … a una còpia wording follows the source; reviewer may prefer a clearer full-value equivalent without promising a copy."
+      ],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_preserved_separately",
+      "priority": "P0",
+      "source": "The previous draft could not be preserved separately.",
+      "source_value_sha256_utf8": "0231e19f5f7e376d0872735d1e3f8f9698fbd43564ea52240f454efc21d3c8ec",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’ha pogut conservar l’esborrany anterior per separat.",
+      "candidate_value_sha256_utf8": "dad6c5d72d4a6b4c09b308d32c60c727bf9b15cf4b9ac04b2cb3c40cdc605286",
+      "candidate_xml_text": "\"No s’ha pogut conservar l’esborrany anterior per separat.\"",
+      "candidate_xml_text_sha256_utf8": "9735d8ca8babe52943d659985730bb17b7681fbe1f14cd3fd2b5362ef2429f4d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:43"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_could_not_be_restored",
+      "priority": "P0",
+      "source": "The previous draft could not be restored.",
+      "source_value_sha256_utf8": "1cc58fbbe1b76be657fc2eafbf8250b6231f06484eda3fbf7758e1b5cf88ea13",
+      "attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’ha pogut restaurar l’esborrany anterior.",
+      "candidate_value_sha256_utf8": "40227ddfa6aad1659db606dd0982fc5f1d4cc14312b88580203fcca8daaeae52",
+      "candidate_xml_text": "\"No s’ha pogut restaurar l’esborrany anterior.\"",
+      "candidate_xml_text_sha256_utf8": "9312a5f400915ec2a03b4a3927a97722ae953805e45ef0ef14413d9fa5cc05bf",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:83"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_previous_draft_needs_more_memory_to_reopen",
+      "priority": "P0",
+      "source": "The previous draft needs more memory to reopen.",
+      "source_value_sha256_utf8": "cf655bbea013a29738b4f078166b9dde719f694052a7f1755e2bd0a40c1b9170",
+      "attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Cal més memòria per tornar a obrir l’esborrany anterior.",
+      "candidate_value_sha256_utf8": "40f39a7221a51b8637ea92ec71a2332f9630746a64710de28184da099ce8986a",
+      "candidate_xml_text": "\"Cal més memòria per tornar a obrir l’esborrany anterior.\"",
+      "candidate_xml_text_sha256_utf8": "cb1c02d592646407c298de9984977337fe64c4e441247ef429a85f45a31d2354",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt:84"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_undo_cache_is_damaged",
+      "priority": "P0",
+      "source": "The undo cache is damaged.",
+      "source_value_sha256_utf8": "19e62ed88ca1118a10f0062c76f9f7b3629b34cceed02628aefe5ca3bbb44cef",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "La memòria cau de desfer està malmesa.",
+      "candidate_value_sha256_utf8": "4b28035408108e870125e4a9c987f73ac72c7cb6974db0460fbfc46d09b84243",
+      "candidate_xml_text": "\"La memòria cau de desfer està malmesa.\"",
+      "candidate_xml_text_sha256_utf8": "bd02f67d2391b1ae5ddcd084cceacbf11397811a870d129186b58a5b6eb4e80b",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:60",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:81"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_unexpected_data_in_the_undo_cache",
+      "priority": "P0",
+      "source": "Unexpected data in the undo cache.",
+      "source_value_sha256_utf8": "9005bd155636cba50a7b1139426614c2878b1b6651e86c0acb7d1ca0de8b0b22",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Hi ha dades inesperades a la memòria cau de desfer.",
+      "candidate_value_sha256_utf8": "dd7985170b4c7f64c2daa7b895554d518ec473e8994efafc9045c9dd819e6375",
+      "candidate_xml_text": "\"Hi ha dades inesperades a la memòria cau de desfer.\"",
+      "candidate_xml_text_sha256_utf8": "77da54c5e10c5febd5372d88fa9d72894b0333dbf3627f888cc59a3846b1d5e8",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt:97"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [
+        "Complete source meaning retained; current source/consumer binding and independent review are required."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    }
+  ]
+}

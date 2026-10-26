@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "record_kind": "Catalan missing-only author candidates; not acceptance",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "locale": "ca",
+  "target_path": "Paintroid/src/main/res/values-ca/strings.xml",
+  "group": 4,
+  "group_name": "credit-destination-encoding",
+  "candidate_count": 11,
+  "source_context_file": "scope-and-source-context.json",
+  "source_context_sha256": "8dd3dd99b633bbec8254639797ddc81000ce4d8bfa9c037503663123587399d5",
+  "existing_values_preserved": 150,
+  "instructions_to_reviewer": [
+    "Judge every full value against current consumer behavior; revise or hold unsupported technical wording.",
+    "Credit data mean attribution/source text; preserve existing retained-data outcomes without asserting that an attempted edit succeeded.",
+    "No native-human, device, layout or whole-locale acceptance; existing values and paused scopes remain unchanged."
+  ],
+  "candidates": [
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "priority": "P0",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "source_value_sha256_utf8": "d669638ab30435fe654a24b1c18e73208959c1cc873975ab190e629e7c2ed6af",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’han pogut desar o restaurar els crèdits de la imatge. S’han conservat els crèdits desats anteriorment. Torna-ho a provar.",
+      "candidate_value_sha256_utf8": "6322f445a3967a1410f9f2b7bfc6c3bc35436781cac913700be8c9c7b6c1713c",
+      "candidate_xml_text": "\"No s’han pogut desar o restaurar els crèdits de la imatge. S’han conservat els crèdits desats anteriorment. Torna-ho a provar.\"",
+      "candidate_xml_text_sha256_utf8": "6e1cea63b657f8d1f2c0b56aef05b41ad850befdbf6e496ed3338f14cab1314d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:238",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:908",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1194",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1197",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1203",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1207",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1478",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1488",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1495",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:113",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:243",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:415"
+      ],
+      "source_semantic_notes": [
+        "Credit data are user-editable source attribution text, not monetary credits or only author names. Preserve both save/restore failure and protection of existing stored data."
+      ],
+      "author_semantic_qualifications": [
+        "Crèdits refers to editable attribution/source text, not money or only author names. Both save/restore failure and retention of previously saved credits are retained."
+      ],
+      "author_uncertainties": [
+        "Reviewer should judge the negative save-or-restore wording against all consumers without narrowing it to only one operation."
+      ],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "priority": "P0",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "source_value_sha256_utf8": "0cc17cfda89358526b83adbc36b90440ef773ed2f945768e3e9f32bb90b35dd5",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Aquests crèdits de la imatge farien que les dades del dibuix fossin massa grans per poder-les restaurar. S’han conservat el dibuix i els crèdits anteriors.",
+      "candidate_value_sha256_utf8": "a724f8b069555608f55ee11483d7ac1d58729bafcdda413f6f06ac62525f914a",
+      "candidate_xml_text": "\"Aquests crèdits de la imatge farien que les dades del dibuix fossin massa grans per poder-les restaurar. S’han conservat el dibuix i els crèdits anteriors.\"",
+      "candidate_xml_text_sha256_utf8": "1760fc2a2c45a91662972ec0fbcf076dae7d2c381ec23d374704b710aa6b3da5",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1218",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1453",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:111"
+      ],
+      "source_semantic_notes": [
+        "Metadata admission failure, not image pixel dimensions. Previous drawing and credits retained; do not claim current attempted credit edit saved."
+      ],
+      "author_semantic_qualifications": [
+        "Les dades del dibuix makes the metadata-size admission issue explicit; it is not a claim of excessive pixel dimensions. The attempted edit is not described as saved; previous drawing and credits are retained."
+      ],
+      "author_uncertainties": [
+        "Reviewer should judge the full les dades del dibuix clarification against metadata admission semantics; it must not imply disk exhaustion or pixel enlargement."
+      ],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "priority": "P0",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "source_value_sha256_utf8": "764c1dfa02ddd35964d108f4cc4ccc6dbcc59f5520513ac2528f32bacdb73f5b",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Alguns crèdits desats no s’han pogut llegir. Se n’han conservat les còpies emmagatzemades.",
+      "candidate_value_sha256_utf8": "87c408aae8a2ec36ed6cfaf10fc5dd89c65d6285cbb2501ba391505ea3a3cb87",
+      "candidate_xml_text": "\"Alguns crèdits desats no s’han pogut llegir. Se n’han conservat les còpies emmagatzemades.\"",
+      "candidate_xml_text_sha256_utf8": "74fe847bd7cf3a100c654e49df595971b5e184bc54aa208e1f046b839ecdf606",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt:93"
+      ],
+      "source_semantic_notes": [
+        "Some stored snapshots unreadable, copies retained. No claim that all credits were restored or that unreadable copies are usable."
+      ],
+      "author_semantic_qualifications": [
+        "Only some saved credit snapshots could not be read; preserved stored copies are not claimed restored, readable or usable."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "priority": "P0",
+      "source": "The completed image could not replace its destination.",
+      "source_value_sha256_utf8": "de68e5576968021c8471674791a609c056d1049abe53f1c1e4dc77e00679e001",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’ha pogut substituir el fitxer de destinació per la imatge completada.",
+      "candidate_value_sha256_utf8": "dbfc6d9de48172450b1b443e69e6a2cba398866d672f6fa98185ed7fe132d88d",
+      "candidate_xml_text": "\"No s’ha pogut substituir el fitxer de destinació per la imatge completada.\"",
+      "candidate_xml_text_sha256_utf8": "18da0a2fafdc8b58a941cd68d096d8d2aafbc6e71971366a09cf34d3745a43ac",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:19",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:40",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:103",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:62"
+      ],
+      "source_semantic_notes": [
+        "File-based temporary-output rename failed. A destination-file term is semantically supportable; do not claim completed provider write."
+      ],
+      "author_semantic_qualifications": [
+        "Fitxer de destinació is supported by failed File.renameTo after temporary encoding; no completed provider write or replacement success is claimed."
+      ],
+      "author_uncertainties": [
+        "Reviewer should assess imatge completada as the completed encoded output, not a claim that editing is finished or the target was saved."
+      ],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "priority": "P0",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "source_value_sha256_utf8": "ee437ea8cac1ec7af3db9e48064cf9e0a2e49c3c4f89706eb34887bc52d6b75e",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "La imatge i les memòries intermèdies de codificació superen el límit de memòria per a l’exportació.",
+      "candidate_value_sha256_utf8": "31fb3747c2a75d74db3c7091e3b920c65045cfcd67b4f8131857592c58f1f2b6",
+      "candidate_xml_text": "\"La imatge i les memòries intermèdies de codificació superen el límit de memòria per a l’exportació.\"",
+      "candidate_xml_text_sha256_utf8": "c6de620df8d2bf2eb931904900acdbcc8411033c4fd5e10483fd345a5b7771f6",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:24",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:43",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:56"
+      ],
+      "source_semantic_notes": [
+        "Image plus encoder buffers exceed a budget; not merely disk size and not solely the canvas footprint."
+      ],
+      "author_semantic_qualifications": [
+        "Both image and encoding buffers count toward the export working-memory budget, not disk size alone. Límit is consistent with the proposed assembly/memory group."
+      ],
+      "author_uncertainties": [
+        "Reviewer should judge the full technical phrase memòries intermèdies de codificació and the policy-limit rendering of budget."
+      ],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "priority": "P0",
+      "source": "Could not open image",
+      "source_value_sha256_utf8": "6143ae23db90cc7e75e0a79869b2e047e20878b9478ac9e07dcebe064c5b25ef",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No s’ha pogut obrir la imatge",
+      "candidate_value_sha256_utf8": "16efdbacc7b7c75370703e0b6920e6f6194e58b57df09169558859b42522a7f0",
+      "candidate_xml_text": "\"No s’ha pogut obrir la imatge\"",
+      "candidate_xml_text_sha256_utf8": "8711a0a20e55b2cc23250ceada142897ee893f9d663ccd96de789f371b9eab21",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1288",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1293",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1337",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1350"
+      ],
+      "source_semantic_notes": [
+        "Failure prefix passed to ioFailed; exception detail appended by caller. No added final punctuation."
+      ],
+      "author_semantic_qualifications": [
+        "No added terminal punctuation: ioFailed composes this prefix with a full stop, space and error detail."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "priority": "P0",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "source_value_sha256_utf8": "f85d438ebb3c8e8c55be242b5b0938f6e33144d8789553e32711449d9e67e66b",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No hi ha prou memòria per desar en aquest format. Prova-ho amb PNG",
+      "candidate_value_sha256_utf8": "0e7fb328611fc6d35ae00c09eb1fb3e8924c588d74a9019109b8645abccc8ffc",
+      "candidate_xml_text": "\"No hi ha prou memòria per desar en aquest format. Prova-ho amb PNG\"",
+      "candidate_xml_text_sha256_utf8": "cb2c0955ad41473f867876473289835520b737f38504bf75cb36143726095f90",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1376"
+      ],
+      "source_semantic_notes": [
+        "OOM failure prefix recommends PNG but does not guarantee PNG will fit. Caller attaches error detail; preserve no terminal period."
+      ],
+      "author_semantic_qualifications": [
+        "PNG is a recommendation, not a guarantee that it fits. No added final period, because ioFailed attaches the error detail."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "priority": "P0",
+      "source": "PNG encoding failed.",
+      "source_value_sha256_utf8": "121e3e5c5523ca65104b683c53c625d9f76c600cb5ac2d41924dc5fa2659ba3e",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Ha fallat la codificació en PNG.",
+      "candidate_value_sha256_utf8": "3784bf6c9fbf88bf8fca9434f73aad45e2baff2ef16b816c60d8c48649ec0d6b",
+      "candidate_xml_text": "\"Ha fallat la codificació en PNG.\"",
+      "candidate_xml_text_sha256_utf8": "0bd6dfd15922436e036ba0d358884106edf6605f0d39a9253c074e0da3c1738d",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:324"
+      ],
+      "source_semantic_notes": [
+        "Actual Bitmap.compress false branch, not a successful PNG save."
+      ],
+      "author_semantic_qualifications": [
+        "Bitmap.compress returned false in assembly output; no successful PNG-save claim."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "priority": "P0",
+      "source": "The encoder did not finish.",
+      "source_value_sha256_utf8": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "El procés de codificació no ha finalitzat.",
+      "candidate_value_sha256_utf8": "83e9eb71d6059a6b274c66cf92e3911d4e73fd4ae46fe48cc3cc6a483ff4a443",
+      "candidate_xml_text": "\"El procés de codificació no ha finalitzat.\"",
+      "candidate_xml_text_sha256_utf8": "3e3673e98d8037beb8028a4fa433bfb882719b29904123b4c3df68fe0db7ac4e",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:100",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt:25",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:33"
+      ],
+      "source_semantic_notes": [
+        "Image encoding did not finish; candidate names the process rather than ambiguously a human coder. No output-success claim."
+      ],
+      "author_semantic_qualifications": [
+        "Names the encoding process rather than a person; failure occurs on the actual PNG/JPEG/ICO/Base64 image compression branches."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "priority": "P0",
+      "source": "The selected location is not writable.",
+      "source_value_sha256_utf8": "bd5906312d80fa9c5c6f855faf23030f089b50f54d0f82a39a8bcdb60328581d",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No es pot escriure a la ubicació seleccionada.",
+      "candidate_value_sha256_utf8": "3becac7fa5fe3fcb9b704fc99fcbd49d66e72261d87b9167fe8b640465e6257e",
+      "candidate_xml_text": "\"No es pot escriure a la ubicació seleccionada.\"",
+      "candidate_xml_text_sha256_utf8": "7b19b1dfc497b55a49c22584c3a38cef076fde3ccd1ed8d9af709eaf57a0e731",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:341",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1366"
+      ],
+      "source_semantic_notes": [
+        "openOutputStream returns null; do not narrow unspecified cause to write protection or permissions alone."
+      ],
+      "author_semantic_qualifications": [
+        "Generic inability to write after openOutputStream returned null; does not invent a permission-only or write-protection-only cause."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "priority": "P0",
+      "source": "This location is not writable.",
+      "source_value_sha256_utf8": "aeeaa3653ff0cebc035c0010f47d2e6fef2ba1abd8d6c77df663010f13a4a13e",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "No es pot escriure en aquesta ubicació.",
+      "candidate_value_sha256_utf8": "26b308ed702edd8c8c7693f77e3c78d8811793ef7db4785f3e25ed30656a8a68",
+      "candidate_xml_text": "\"No es pot escriure en aquesta ubicació.\"",
+      "candidate_xml_text_sha256_utf8": "42d8c4b41a18a5ac191b21b0780f62ed090182ea81bb1677b58fa989892f0ced",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1396",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1407"
+      ],
+      "source_semantic_notes": [
+        "Shared by recovery ZIP export and source-code export, generic write failure. No Help callback/archive identity or exported-source implementation change."
+      ],
+      "author_semantic_qualifications": [
+        "Generic write failure shared by recovery ZIP and source-code export; no Help callback/archive-identity behavior change or acceptance."
+      ],
+      "author_uncertainties": [],
+      "author_confidence": "medium-high; author-only AI judgment, not native acceptance",
+      "independent_review_status": "pending"
+    }
+  ]
+}
