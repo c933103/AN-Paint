@@ -1,0 +1,163 @@
+{
+  "base": "393f2804b5f3fabb935aa773758a9a8f6f464b31",
+  "structural_catalogue_validation": "passed across all materialized current values XML files and offered catalogues",
+  "focused_tests": {
+    "normal": {
+      "count": 161,
+      "result": "passed"
+    },
+    "optimized": {
+      "count": 161,
+      "result": "passed"
+    }
+  },
+  "full_completeness": {
+    "result": "failed: expected remaining catalogue gaps",
+    "baseline_diagnostic_count": 222,
+    "final_diagnostic_count": 222,
+    "changed_diagnostics_before": [
+      "bg: missing 589 strings: colour20_custom_selected_slot, colour20_empty_slot, colour20_replace_slot, colour20_save_slot, colour20_saved_slot, colour20_stored_slot, colour_converter_unavailable, colour_invalid_metadata, colour_truncated_metadata, colour_unsupported_icc_model, commons_blank_maps, commons_check_file_licence, commons_credit_copy_failed, commons_credit_copy_failed_reason, commons_credit_copy_out_of_memory, commons_download_original_mismatch, commons_import_raster_changes, commons_import_svg_changes, commons_metadata_ambiguous_file, commons_metadata_cache_failed",
+      "bn: missing 613 strings: colour20_custom_selected_slot, colour20_empty_slot, colour20_replace_slot, colour20_save_slot, colour20_saved_slot, colour20_stored_slot, colour_converter_unavailable, colour_invalid_metadata, colour_truncated_metadata, colour_unsupported_icc_model, commons_blank_maps, commons_check_file_licence, commons_credit_copy_failed, commons_credit_copy_failed_reason, commons_credit_copy_out_of_memory, commons_download_original_mismatch, commons_import_raster_changes, commons_import_svg_changes, commons_metadata_ambiguous_file, commons_metadata_cache_failed"
+    ],
+    "changed_diagnostics_after": [
+      "bg: missing 351 strings: colour20_custom_selected_slot, colour20_empty_slot, colour20_replace_slot, colour20_save_slot, colour20_saved_slot, colour20_stored_slot, commons_blank_maps, commons_check_file_licence, commons_credit_copy_failed, commons_credit_copy_failed_reason, commons_credit_copy_out_of_memory, commons_download_original_mismatch, commons_import_raster_changes, commons_import_svg_changes, commons_metadata_ambiguous_file, commons_metadata_cache_failed, commons_metadata_field_too_large, commons_metadata_http_error, commons_metadata_invalid_page, commons_metadata_not_file_page",
+      "bn: missing 357 strings: colour20_custom_selected_slot, colour20_empty_slot, colour20_replace_slot, colour20_save_slot, colour20_saved_slot, colour20_stored_slot, commons_blank_maps, commons_check_file_licence, commons_credit_copy_failed, commons_credit_copy_failed_reason, commons_credit_copy_out_of_memory, commons_download_original_mismatch, commons_import_raster_changes, commons_import_svg_changes, commons_metadata_ambiguous_file, commons_metadata_cache_failed, commons_metadata_field_too_large, commons_metadata_http_error, commons_metadata_invalid_page, commons_metadata_not_file_page"
+    ]
+  },
+  "unrun": [
+    "Full host aggregate",
+    "Android AAPT/resource compilation",
+    "Android JVM unit tests, including the amended SVG and tagged-colour cases",
+    "Android lint",
+    "APK/native builds",
+    "Installed-device, screenshot, font-shaping, layout and accessibility checks"
+  ],
+  "environment": "Verified connector materialization of relevant source/resources/tests, not a complete Android build checkout; Android SDK, adb and installed Gradle unavailable.",
+  "source_context_snapshots_verified": 104,
+  "priority_rows_verified_exact": {
+    "bg": 341,
+    "bn": 341
+  },
+  "crop_values_verified_exact": 3,
+  "app_and_test_blobs": [
+    {
+      "path": "Paintroid/src/main/res/values-b+hak+Hant+TW/strings.xml",
+      "mode": "100644",
+      "bytes": 80363,
+      "git_blob": "54acf39883457d1cc71fffdbedea9a034d4e11c8",
+      "sha256": "3fa93829fe5398f0d66678ab1845bf10d75fda3fa47297eb16b342aba779ec4a"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-b+hak+Latn+TW/strings.xml",
+      "mode": "100644",
+      "bytes": 99017,
+      "git_blob": "114252afa019e5ca3821fe269c1f4b7a52fbd3f1",
+      "sha256": "32927103dcf3d3d2dc4e17067f1410d75465d5e4e43337c24567039e54523d9e"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-b+wuu+Hans/strings.xml",
+      "mode": "100644",
+      "bytes": 80483,
+      "git_blob": "408e73f88fa156d9005751033448435357bda765",
+      "sha256": "b078ac8630fe62861b56e17e95380f26a59decbf7bc52094e53dd9f30b6bc9e9"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-bg/strings.xml",
+      "mode": "100644",
+      "bytes": 46844,
+      "git_blob": "b104f92075b3388680e3f1709e724510dabdd6a1",
+      "sha256": "8d55164066192fb3e32cf3485a43c5558ee5215b2363e269ceb76dbfdeb5085b"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-bn/strings.xml",
+      "mode": "100644",
+      "bytes": 52879,
+      "git_blob": "908222685885c2931a0871b63ca95c4ec6319166",
+      "sha256": "e1f37fa08e074ff3b3e2f4f089e749ea70956666b891e40cc70530bb642fc790"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsSvgErrorTranslationTest.kt",
+      "mode": "100644",
+      "bytes": 14611,
+      "git_blob": "de9d9f73ff247bd2f7990e1c8f98817088bdf5f1",
+      "sha256": "85692a8ee40bb41ade06291a180ec08c89014216cfb5eed05c78f312415d7942"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "mode": "100644",
+      "bytes": 7796,
+      "git_blob": "cd0f45b5b4f48cabbbe4beb7672ece3a808a0046",
+      "sha256": "855c8c2edbb0118434e2c32aa696272dc1059e54031ee91f345c77e6991cd30b"
+    },
+    {
+      "path": "Paintroid/src/test/resources/tagged-colour/expected.json",
+      "mode": "100644",
+      "bytes": 13029,
+      "git_blob": "57121c200d6c50bcdb92b831d6871d43df1cf1a6",
+      "sha256": "8df4d85072efde264ab55df8b54caf49d1ef38d252aa4a72e0198d7a33841bf0"
+    },
+    {
+      "path": "tools/fixtures/current_localization/bulgarian_bengali_priority_wording.json",
+      "mode": "100644",
+      "bytes": 38742,
+      "git_blob": "6e7fbf77415f36f0402783e0c380d5292b4a752e",
+      "sha256": "91d286098a6b94001beac6c00022dfe70f61f12f9693503f24a216b616a5f716"
+    },
+    {
+      "path": "tools/fixtures/current_localization/commons_svg_current_wording.json",
+      "mode": "100644",
+      "bytes": 21024,
+      "git_blob": "96a1c38c495b313bf193971e0d40a9c55e352632",
+      "sha256": "6d0ae6c2eefe28116833e1ed688b840e9ea83c96cf52d2c6d32fe78682bd8bf0"
+    },
+    {
+      "path": "tools/fixtures/current_localization/hakka_wu_crop_wording.json",
+      "mode": "100644",
+      "bytes": 1955,
+      "git_blob": "c9fa4079e9e8c4b11e6120427d5b66672cc78cc7",
+      "sha256": "460465c6df006acd4b06041b903df710125944443257d6f82cc79f695c6d995a"
+    },
+    {
+      "path": "tools/memory_warning_source_review.py",
+      "mode": "100644",
+      "bytes": 2128,
+      "git_blob": "c21d981d14257478605f504681b2731dceac2b83",
+      "sha256": "dd4916b6181d4c5c3c9cbdaa15776a5576d60b6469a074da0f6c274dbfe6b6ac"
+    },
+    {
+      "path": "tools/test_bulgarian_bengali_priority_wording.py",
+      "mode": "100644",
+      "bytes": 5558,
+      "git_blob": "a635b946aeaf121d1075708ea2073bb22bd22c65",
+      "sha256": "1b98dc63243c5cc1318c045795b2914388e8ea55b87d6af58db77ce161448753"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "mode": "100644",
+      "bytes": 16176,
+      "git_blob": "af3c2685c15e0954843dc821b06aead36aabed70",
+      "sha256": "94a3d7ce88b7957539911048eb8eb459dbc3603a3a278d4ea2fae1b572cf581c"
+    },
+    {
+      "path": "tools/test_hakka_wu_crop_wording.py",
+      "mode": "100644",
+      "bytes": 4879,
+      "git_blob": "3380a85707ca21a826da8e0c5b281631027131d7",
+      "sha256": "dac896f185a8cb4921727221cc9793ec1d054e88c4540e3b9c39c5b3af6741b0"
+    },
+    {
+      "path": "tools/test_memory_warning_source_review.py",
+      "mode": "100644",
+      "bytes": 6996,
+      "git_blob": "f248bbb97b2450b88370de486d8db784575569c0",
+      "sha256": "91079cafc8757f54bef04aedc44774e8276ca9fffed83ee7d0b96a5c98e56015"
+    },
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "mode": "100644",
+      "bytes": 8768,
+      "git_blob": "8c0c9c0db22ba083c5d45280e2376ad8a96cf3c7",
+      "sha256": "36f7bbe2fb16f95d339e5d6b4e294f05bf9d4db720b57ad45724e82f826f1264"
+    }
+  ]
+}
