@@ -37,7 +37,7 @@ class NumericDisplayLocaleTest {
     private lateinit var activity: ClassicPaintActivity
     private lateinit var oldLocale: Locale
     private lateinit var oldTag: String
-    private val tags=listOf("pt-BR", "de", "en-001", "ar", "ro", "sk", "sl", "sr-Cyrl", "sr-Latn")
+    private val tags=listOf("pt-BR", "de", "en-001", "ar", "ro", "sk", "sl", "sr-Cyrl", "sr-Latn", "hr", "bs")
 
     @Before fun start() {
         val context=RuntimeEnvironment.getApplication() as Context
@@ -111,6 +111,10 @@ class NumericDisplayLocaleTest {
                 assertTrue(failure.message!!.contains("2,25 MP"))
                 assertEquals(Locale.forLanguageTag(tag).script,activity.resources.configuration.locales[0].script)
             }
+            if(tag in listOf("hr", "bs")) {
+                assertTrue(failure.message!!.contains("1500 × 2000"))
+                assertTrue(failure.message!!.contains("3,00 MP")); assertTrue(failure.message!!.contains("2,25 MP"))
+            }
             assertEquals(2_249_999L,limit.maxPixels(3))
             assertThrows(ImageSizeException::class.java) {limit.check(1500,1500,3)}
             assertThrows(IllegalArgumentException::class.java) {limit.check(0,1)}
@@ -139,6 +143,10 @@ class NumericDisplayLocaleTest {
             "sr-Cyrl" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
             "sr-Latn" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
+                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "hr" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
+                "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead"),
+            "bs" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to
                 "Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead")
         )
         assertEquals(tags.toSet(), captions.keys)
@@ -246,7 +254,7 @@ class NumericDisplayLocaleTest {
         activity.paintCanvas.layout(0,0,120,120)
         for(tag in tags) {
             select(tag)
-            for((zoom,wanted) in listOf(.025f to if(tag=="ar") "٢٫٥٠%" else if(tag in listOf("pt-BR","de","ro","sk","sl","sr-Cyrl","sr-Latn")) "2,50%" else "2.50%",
+            for((zoom,wanted) in listOf(.025f to if(tag=="ar") "٢٫٥٠%" else if(tag in listOf("pt-BR","de","ro","sk","sl","sr-Cyrl","sr-Latn","hr","bs")) "2,50%" else "2.50%",
                 .1f to if(tag=="ar") "١٠%" else "10%",1.234f to if(tag=="ar") "١٢٣%" else "123%")) {
                 activity.paintCanvas.zoomAt(zoom)
                 assertEquals("$tag clamp",zoom,activity.paintCanvas.zoom,0f)

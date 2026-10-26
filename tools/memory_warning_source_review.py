@@ -21,6 +21,8 @@ SINGLE_KEY_FIXTURES = {
     'sl': 'slovak_slovenian_p0_wording.json',
     'sr-Cyrl': 'serbian_p0_wording.json',
     'sr-Latn': 'serbian_p0_wording.json',
+    'hr': 'croatian_bosnian_p0_wording.json',
+    'bs': 'croatian_bosnian_p0_wording.json',
 }
 SINGLE_KEY_EXPECTATIONS = frozenset(
     (tag, 'ui_assembly_source_memory_floor') for tag in SINGLE_KEY_FIXTURES)

@@ -55,6 +55,9 @@ class ProtectedDraftWarningTest {
     private val serbianFixture by lazy {
         JSONObject(File("../tools/fixtures/current_localization/serbian_p0_wording.json").readText())
     }
+    private val croatianBosnianFixture by lazy {
+        JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_p0_wording.json").readText())
+    }
     private val original="Unreadable previous draft that must not be replaced 作品".toByteArray(Charsets.UTF_8)
     private fun idle()=shadowOf(Looper.getMainLooper()).idle()
     private fun worker(activity: ClassicPaintActivity)=ReflectionHelpers.getField<ExecutorService>(activity,"worker")
@@ -74,6 +77,9 @@ class ProtectedDraftWarningTest {
 
     @Test fun serbianCyrillicWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("sr-Cyrl")
     @Test fun serbianLatinWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("sr-Latn")
+
+    @Test fun croatianWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("hr")
+    @Test fun bosnianWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("bs")
 
     private fun checkRoutes(tag: String) {
         val previous=AppLanguage.selectedTag(context)
@@ -107,6 +113,14 @@ class ProtectedDraftWarningTest {
                     assertTrue(warning.contains("Формат датотеке"))
                     assertFalse("Obsolete image-name workaround must not return", warning.contains("Име слике"))
                 }
+            }
+            if (tag in listOf("hr", "bs")) {
+                val reviewed = croatianBosnianFixture.getJSONObject("values")
+                    .getJSONObject("ui_autosave_is_paused_to_protect_that_draft_use")
+                    .getString(tag).removeSurrounding("\"")
+                assertEquals(String.format(Locale.forLanguageTag(tag), reviewed, reason), warning)
+                assertEquals(tag, activity.resources.configuration.locales[0].language)
+                assertTrue(warning.contains("Format slike"))
             }
             assertTrue("The triggering failure reason remains visible",warning.contains(reason))
             for(id in listOf(R.string.ui_menu_file,R.string.ui_export_recovery_copy,R.string.save20_title))
@@ -185,7 +199,7 @@ class ProtectedDraftWarningTest {
         assertEquals(activity.getString(R.string.save20_title),shadowOf(options).title.toString())
         assertNotNull(options.window!!.decorView.findViewWithTag<View>("export_format"))
         val tag = AppLanguage.selectedTag(activity)
-        if (tag in listOf("sr-Cyrl", "sr-Latn")) {
+        if (tag in listOf("sr-Cyrl", "sr-Latn", "hr", "bs")) {
             val root = options.window!!.decorView
             val format = root.findViewWithTag<Spinner>("export_format")
             val filename = root.findViewWithTag<EditText>("export_filename")
