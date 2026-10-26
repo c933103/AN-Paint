@@ -1,0 +1,84 @@
+{
+  "schema": "bounded-diagnostic-failure/1",
+  "run_id": 40391027049,
+  "attempt": 2,
+  "job_id": 121822857276,
+  "artifact_id": 12685179127,
+  "artifact_sha256": "342524a909c09e6c582ba043b033ac60e872c48078218e8cee5b83f4b92dc277",
+  "source_head": "994c1300cbdbf64ead6924d9065e410af118323f",
+  "tested_merge": "6e90d4b8b0ed17c8c8a77629a6043afee4728ff7",
+  "source_tree": "aed79c74b440388723c96f6f90ae815c5910679f",
+  "pinned_develop": "e1e5433e63d45f5b76d39ce1a31ffc11fd7cd79d",
+  "result": "Both new methods failed before initial native tap/IME/Back. Not lifecycle acceptance and not an automatic product-bug conclusion.",
+  "failure_location": "ColourViewportDeviceTest.kt431 tap hex -> revealText -> reveal line831 (12 native gesture bound)",
+  "phase_seconds": 206.42112824100002,
+  "phase_cap_seconds": 300,
+  "timed_out": false,
+  "observed_layout_geometry": {
+    "en-US": {
+      "editor_viewport": [
+        28,
+        184,
+        326,
+        212
+      ],
+      "height_px": 28,
+      "hex_layout_line_height_px": 34,
+      "initial_line_rect": [
+        32,
+        474,
+        284,
+        508
+      ],
+      "last_before_swipe_line_rect": [
+        32,
+        337,
+        284,
+        371
+      ]
+    },
+    "hu": {
+      "editor_viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "height_px": 23,
+      "hex_layout_line_height_px": 34,
+      "initial_line_rect": [
+        32,
+        507,
+        284,
+        541
+      ],
+      "last_before_swipe_line_rect": [
+        32,
+        415,
+        284,
+        449
+      ]
+    }
+  },
+  "measurement_limits": [
+    "Layout-line and text-padding rectangles are not pixel-level glyph-ink proof.",
+    "A valid unoccluded native tap target does not require a fully visible entire Layout line.",
+    "Twelve bounded swipes did not reach the field; this is not proof that every native scrolling/tapping strategy is impossible.",
+    "Initial full-line reveal is an extra setup requirement, not the original native IME/Back criterion.",
+    "No native IME or Back observations were reached; no post-hide/footer/callback conclusions are established."
+  ],
+  "successful_original_dialog_cases": 12,
+  "successful_original_dialog_pngs": 39,
+  "new_successful_methods": 0,
+  "new_successful_pngs": 0,
+  "failed_partial_new_pngs": 8,
+  "app_source_expected": 47,
+  "app_completed_across_core_and_position": 45,
+  "app_passed": 43,
+  "app_failed": 2,
+  "app_unrun_accepted_credit_restart": 2,
+  "native_import_passed": 74,
+  "simultaneous_ime_field_footer_fit": "not-accepted",
+  "production_edits": false,
+  "next_step_proposal": "Assess narrowly labelled synthetic field focus/IME setup to remove the extraneous initial full-line tap precondition, keeping all actual native IME, Back, post-hide caption/ancestor, footer taps and callback checks unchanged; integrate current develop before any source revision."
+}

@@ -1,0 +1,121 @@
+{
+  "success": false,
+  "expected_tests": 14,
+  "completed_tests": 14,
+  "missing": [],
+  "unexpected": [],
+  "errors": [],
+  "cases": [
+    {
+      "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+      "name": "retainedColourStateSurvivesRotationImeCancelAndReopen",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+      "name": "largeEnglishColourCaptionsAndPreviewRemainReachable",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+      "name": "largeHungarianColourCaptionsAndPreviewRemainReachable",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+      "name": "largeHungarianColourImeBackAndFooterLifecycle",
+      "status": "failure",
+      "message": "java.lang.AssertionError: Caption not reached within native gesture bound\n\tat paint.anpaint.android.ColourViewportDeviceTest.reveal(ColourViewportDeviceTest.kt:831)\n\tat paint.anpaint.android.ColourViewportDeviceTest.revealText(ColourViewportDeviceTest.kt:786)\n\tat paint.anpaint.android.ColourViewportDeviceTest.tap(ColourViewportDeviceTest.kt:797)\n\tat paint.anpaint.android.ColourViewportDeviceTest.access$tap(ColourViewportDeviceTest.kt:59)\n\tat paint.anpaint.android.ColourViewportDeviceTest$largeColourImeLifecycle$1.invoke(ColourViewportDeviceTest.kt:431)\n\tat paint.anpaint.android.ColourViewportDeviceTest$largeColourImeLifecycle$1.invoke(ColourViewportDeviceTest.kt:389)\n\tat paint.anpaint.android.ColourViewportDeviceTest.fixture(ColourViewportDeviceTest.kt:685)\n\tat paint.anpaint.android.ColourViewportDeviceTest.largeColourImeLifecycle(ColourViewportDeviceTest.kt:389)\n\tat paint.anpaint.android.ColourViewportDeviceTest.largeHungarianColourImeBackAndFooterLifecycle(ColourViewportDeviceTest.kt:386)"
+    },
+    {
+      "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+      "name": "largeEnglishColourImeBackAndFooterLifecycle",
+      "status": "failure",
+      "message": "java.lang.AssertionError: Caption not reached within native gesture bound\n\tat paint.anpaint.android.ColourViewportDeviceTest.reveal(ColourViewportDeviceTest.kt:831)\n\tat paint.anpaint.android.ColourViewportDeviceTest.revealText(ColourViewportDeviceTest.kt:786)\n\tat paint.anpaint.android.ColourViewportDeviceTest.tap(ColourViewportDeviceTest.kt:797)\n\tat paint.anpaint.android.ColourViewportDeviceTest.access$tap(ColourViewportDeviceTest.kt:59)\n\tat paint.anpaint.android.ColourViewportDeviceTest$largeColourImeLifecycle$1.invoke(ColourViewportDeviceTest.kt:431)\n\tat paint.anpaint.android.ColourViewportDeviceTest$largeColourImeLifecycle$1.invoke(ColourViewportDeviceTest.kt:389)\n\tat paint.anpaint.android.ColourViewportDeviceTest.fixture(ColourViewportDeviceTest.kt:685)\n\tat paint.anpaint.android.ColourViewportDeviceTest.largeColourImeLifecycle(ColourViewportDeviceTest.kt:389)\n\tat paint.anpaint.android.ColourViewportDeviceTest.largeEnglishColourImeBackAndFooterLifecycle(ColourViewportDeviceTest.kt:385)"
+    },
+    {
+      "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+      "name": "hungarianColourCaptionsFitPortraitAndLandscape",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.ColourViewportDeviceTest",
+      "name": "normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "name": "southKoreanAttributionAndConditionalCropUseRealConsumers",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "name": "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "name": "mixedKoreanAttributionAndConditionalCropUseRealConsumers",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "name": "aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "name": "aboutArtworkNoticeCompletesNativeFooterFlow",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "name": "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+      "status": "passed",
+      "message": "."
+    },
+    {
+      "classname": "paint.anpaint.android.LocalizedDialogDeviceTest",
+      "name": "northKoreanAttributionAndConditionalCropUseRealConsumers",
+      "status": "passed",
+      "message": "."
+    }
+  ],
+  "returncode": 0,
+  "timed_out": false,
+  "component": "paint.anpaint.android.test/androidx.test.runner.AndroidJUnitRunner",
+  "excluded_classes": [],
+  "included_tests": [
+    "paint.anpaint.android.ColourViewportDeviceTest#hungarianColourCaptionsFitPortraitAndLandscape",
+    "paint.anpaint.android.ColourViewportDeviceTest#largeEnglishColourCaptionsAndPreviewRemainReachable",
+    "paint.anpaint.android.ColourViewportDeviceTest#largeEnglishColourImeBackAndFooterLifecycle",
+    "paint.anpaint.android.ColourViewportDeviceTest#largeHungarianColourCaptionsAndPreviewRemainReachable",
+    "paint.anpaint.android.ColourViewportDeviceTest#largeHungarianColourImeBackAndFooterLifecycle",
+    "paint.anpaint.android.ColourViewportDeviceTest#normalAdvancedColourKeepsFiniteViewportAndFixedControls",
+    "paint.anpaint.android.ColourViewportDeviceTest#retainedColourStateSurvivesRotationImeCancelAndReopen",
+    "paint.anpaint.android.LocalizedDialogDeviceTest#aboutArtworkNoticeCompletesNativeFooterFlow",
+    "paint.anpaint.android.LocalizedDialogDeviceTest#aboutGimpTranslationNoticeCompletesNativeFooterFlow",
+    "paint.anpaint.android.LocalizedDialogDeviceTest#aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow",
+    "paint.anpaint.android.LocalizedDialogDeviceTest#mixedKoreanAttributionAndConditionalCropUseRealConsumers",
+    "paint.anpaint.android.LocalizedDialogDeviceTest#northKoreanAttributionAndConditionalCropUseRealConsumers",
+    "paint.anpaint.android.LocalizedDialogDeviceTest#retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation",
+    "paint.anpaint.android.LocalizedDialogDeviceTest#southKoreanAttributionAndConditionalCropUseRealConsumers"
+  ],
+  "source_tests_sha256": "bd315043a0ef2e70c60a5df99f674c09a4e8ab6fcc53725a3a8b89e90835760b",
+  "timeout_seconds": 300,
+  "device_sdk": 35,
+  "sdk_suppressed_tests": [],
+  "leave_target_running": false,
+  "target_pid_before_instrumentation": null,
+  "elapsed_seconds": 206.42112824100002
+}

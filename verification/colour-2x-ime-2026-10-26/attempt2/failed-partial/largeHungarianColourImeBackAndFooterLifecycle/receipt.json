@@ -1,0 +1,950 @@
+{
+  "schema": 1,
+  "test_class": "paint.anpaint.android.ColourViewportDeviceTest",
+  "test_method": "largeHungarianColourImeBackAndFooterLifecycle",
+  "device_sdk": 35,
+  "fingerprint": "google\/sdk_gphone64_x86_64\/emu64xa:15\/AE3A.240806.043\/12960925:userdebug\/dev-keys",
+  "package": "paint.anpaint.android",
+  "version_name": "0.0.41",
+  "version_code": 98,
+  "source_tests_sha256": "bd315043a0ef2e70c60a5df99f674c09a4e8ab6fcc53725a3a8b89e90835760b",
+  "source_binding": "runner-supplied-needs-host-comparison",
+  "observations": [
+    {
+      "kind": "initial-editor-state",
+      "stage": "before-wait",
+      "startup_ready": true,
+      "busy": false,
+      "canvas": {
+        "class": "org.catrobat.paintroid.classic.PaintCanvas",
+        "tag": "paint_canvas",
+        "raw": [
+          0,
+          191,
+          320,
+          526
+        ],
+        "visible": [
+          0,
+          191,
+          320,
+          526
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "activity_destroyed": false,
+      "activity_finishing": false,
+      "io_error_present": false,
+      "autosave_error_present": false,
+      "window_focus": true,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "visible": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "root_attached": true,
+      "descendant_count": 220,
+      "startup_view_present": false,
+      "font_scale": 2,
+      "locale": "hu",
+      "orientation": 1,
+      "screen_width_dp": 320,
+      "screen_height_dp": 640,
+      "global_windows": [
+        {
+          "class": "com.android.internal.policy.DecorView",
+          "tag": null,
+          "raw": [
+            0,
+            0,
+            320,
+            640
+          ],
+          "visible": [
+            0,
+            0,
+            320,
+            640
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "attached": true,
+          "window_focus": true
+        }
+      ]
+    },
+    {
+      "kind": "initial-editor-state",
+      "stage": "passed",
+      "startup_ready": true,
+      "busy": false,
+      "canvas": {
+        "class": "org.catrobat.paintroid.classic.PaintCanvas",
+        "tag": "paint_canvas",
+        "raw": [
+          0,
+          191,
+          320,
+          526
+        ],
+        "visible": [
+          0,
+          191,
+          320,
+          526
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "activity_destroyed": false,
+      "activity_finishing": false,
+      "io_error_present": false,
+      "autosave_error_present": false,
+      "window_focus": true,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "visible": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "root_attached": true,
+      "descendant_count": 220,
+      "startup_view_present": false,
+      "font_scale": 2,
+      "locale": "hu",
+      "orientation": 1,
+      "screen_width_dp": 320,
+      "screen_height_dp": 640,
+      "global_windows": [
+        {
+          "class": "com.android.internal.policy.DecorView",
+          "tag": null,
+          "raw": [
+            0,
+            0,
+            320,
+            640
+          ],
+          "visible": [
+            0,
+            0,
+            320,
+            640
+          ],
+          "scroll_x": 0,
+          "scroll_y": 0,
+          "shown": true,
+          "attached": true,
+          "window_focus": true
+        }
+      ]
+    },
+    {
+      "kind": "orientation",
+      "landscape": false,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "visible": [
+          0,
+          0,
+          320,
+          640
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 2
+    },
+    {
+      "kind": "fixture",
+      "locale": "hu",
+      "font_scale": 2,
+      "setup": "real installed dialogs; synthetic editor data; native pointer actions"
+    },
+    {
+      "kind": "orientation",
+      "landscape": true,
+      "root": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "visible": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "font_scale": 2
+    },
+    {
+      "kind": "colour-2x-initial",
+      "setup": "synthetic hex #13579B selection [2,5]; native IME and footer input",
+      "locale": "hu",
+      "density": 1,
+      "font_scale": 2,
+      "display": {
+        "class": "com.android.internal.policy.DecorView",
+        "tag": null,
+        "raw": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "visible": [
+          0,
+          0,
+          640,
+          320
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      },
+      "state": {
+        "target_attached": true,
+        "target_showing": true,
+        "target_focused": true,
+        "target_insets_available": true,
+        "target_ime_visible": false,
+        "focused_app_window_present": true,
+        "focused_app_window_is_target": true,
+        "focused_app_window_is_editor": false,
+        "focused_insets_available": true,
+        "focused_app_window_ime_visible": false,
+        "dialog_showing": true,
+        "dialog_id": 154752280,
+        "root_id": 105059955,
+        "field_id": 118750428,
+        "picker_id": 233225073,
+        "same_dialog": true,
+        "same_picker": true,
+        "same_root": true,
+        "same_field": true,
+        "value": "#13579B",
+        "selection_start": 2,
+        "selection_end": 5,
+        "picker_colour": -15509605,
+        "commit_callbacks": 0,
+        "closed_callbacks": 0,
+        "native_ime_present": false
+      },
+      "simultaneous_ime_field_footer_fit": "not-accepted"
+    },
+    {
+      "kind": "intrinsic-caption",
+      "tag": "colour_hex",
+      "lines": 1,
+      "layout_height": 34,
+      "available_text_height": 34,
+      "text_padding": [
+        4,
+        10,
+        4,
+        11
+      ],
+      "caption_length": 7,
+      "layout_width": 1048576,
+      "line_metrics": [
+        {
+          "end": 7,
+          "ellipsis": 0,
+          "left": 0,
+          "right": 101
+        }
+      ],
+      "measurement_scope": "native layout-line boxes and text padding; not pixel-level glyph proof",
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          497,
+          288,
+          552
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        507,
+        284,
+        541
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          497,
+          288,
+          552
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 329
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        498,
+        284,
+        532
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          488,
+          288,
+          543
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 320
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        491,
+        284,
+        525
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          481,
+          288,
+          536
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 313
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        481,
+        284,
+        515
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          471,
+          288,
+          526
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 303
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        473,
+        284,
+        507
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          463,
+          288,
+          518
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 295
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        466,
+        284,
+        500
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          456,
+          288,
+          511
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 288
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        458,
+        284,
+        492
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          448,
+          288,
+          503
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 280
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        449,
+        284,
+        483
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          439,
+          288,
+          494
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 271
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        440,
+        284,
+        474
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          430,
+          288,
+          485
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 262
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        432,
+        284,
+        466
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          422,
+          288,
+          477
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 254
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        424,
+        284,
+        458
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          414,
+          288,
+          469
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 246
+    },
+    {
+      "kind": "reveal-before",
+      "target": [
+        32,
+        415,
+        284,
+        449
+      ],
+      "geometry": {
+        "class": "android.widget.EditText",
+        "tag": "colour_hex",
+        "raw": [
+          28,
+          405,
+          288,
+          460
+        ],
+        "visible": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "scroll_x": 0,
+        "scroll_y": 0,
+        "shown": true
+      }
+    },
+    {
+      "kind": "colour-native-scroll-route",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "gutter_pixels": 38,
+      "x": 307,
+      "rtl": false
+    },
+    {
+      "kind": "native-scroll-injected",
+      "viewport": [
+        28,
+        189,
+        326,
+        212
+      ],
+      "direction": 1,
+      "hidden": 237
+    }
+  ],
+  "screenshots": [
+    "0-colour-2x-initial.png",
+    "1-colour-2x-failed-before-dismiss.png",
+    "2-failure-before-restoration.png",
+    "3-failure.png"
+  ],
+  "outcome": "failed",
+  "failure": "java.lang.AssertionError: Caption not reached within native gesture bound",
+  "fixture_started_uptime_ms": 374421,
+  "fixture_ended_uptime_ms": 388587,
+  "fixture_elapsed_ms": 14166,
+  "fixture_elapsed_scope": "setup+interaction+teardown; excludes export"
+}
