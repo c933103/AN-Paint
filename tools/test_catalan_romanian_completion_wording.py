@@ -178,7 +178,7 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
 
     def test_single_P0_warning_has_no_paired_acceptance_or_rewritten_history(self):
         key = 'ui_assembly_source_memory_floor';other = 'ui_no_resize_fits_decoder_memory'
-        self.assertEqual({(tag, key) for tag in ('nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn')}, warnings.SINGLE_KEY_EXPECTATIONS)
+        self.assertEqual({(tag, key) for tag in ('nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs')}, warnings.SINGLE_KEY_EXPECTATIONS)
         self.assertEqual(120, len(successors()));self.assertEqual(60, len({tag for tag, _ in successors()}))
         queue = warnings.review_record()
         for tag in ('ca', 'ro'):

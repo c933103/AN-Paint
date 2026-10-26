@@ -91,7 +91,7 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
             self.assertEqual(62, counts[(key, 'present')])
             self.assertEqual(109, counts[(key, 'missing')])
             # Only the separately reviewed NN/DA/NO/CA/RO/SK/SL/Serbian-script P0 warnings are added; P1 is unchanged.
-            added = 9 if key == 'ui_assembly_source_memory_floor' else 0
+            added = 11 if key == 'ui_assembly_source_memory_floor' else 0
             self.assertEqual(65 + added, current_counts[(key, 'present')])
             self.assertEqual(106 - added, current_counts[(key, 'missing')])
 
