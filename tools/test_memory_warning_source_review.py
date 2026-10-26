@@ -90,8 +90,8 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
         for key in KEYS:
             self.assertEqual(62, counts[(key, 'present')])
             self.assertEqual(109, counts[(key, 'missing')])
-            # Only the separately reviewed NN/DA/NO P0 warnings are added; P1 is unchanged.
-            added = 3 if key == 'ui_assembly_source_memory_floor' else 0
+            # Only the separately reviewed NN/DA/NO/CA/RO P0 warnings are added; P1 is unchanged.
+            added = 5 if key == 'ui_assembly_source_memory_floor' else 0
             self.assertEqual(65 + added, current_counts[(key, 'present')])
             self.assertEqual(106 - added, current_counts[(key, 'missing')])
 

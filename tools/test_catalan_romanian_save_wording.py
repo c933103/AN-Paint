@@ -82,7 +82,7 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(150, len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
+            self.assertEqual(205, len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('Image format', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertEqual('Save changes?', self.roots['ca'].find("./string[@name='ui_save_your_changes']").text)
         self.assertEqual('Salvaţi modificările?', self.roots['ro'].find("./string[@name='ui_save_your_changes']").text)
@@ -91,8 +91,12 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
 
     def test_five_holds_and_unreviewed_neighbors_remain_absent(self):
         self.assertEqual(HOLDS, set(self.data['held_absent']))
+        completion = fixture('catalan_romanian_completion_wording.json')
         for tag in ('ca', 'ro'):
-            for key in HOLDS | {'ui_choose_location', 'ui_share_saved_image', 'ui_assembly_source_memory_floor',
+            key = 'ui_assembly_source_memory_floor'
+            require_reviewed_string(self.xml[tag], key, completion['values'][key][tag],
+                                    completion['constraints'][key][tag], completion['values'][key]['default'])
+            for key in HOLDS | {'ui_choose_location', 'ui_share_saved_image',
                                 'ui_no_resize_fits_decoder_memory', 'ui_load_image'}:
                 self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
         self.assertEqual('Choose location…', self.roots['default'].find("./string[@name='ui_choose_location']").text)

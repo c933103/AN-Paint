@@ -96,7 +96,12 @@ class NumericDisplayLocaleTest {
             assertEquals(tag,expected(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,1500,2000,3.0,2.25),failure.message)
             if(tag=="pt-BR") {assertTrue(failure.message!!.contains("3,00 MP"));assertTrue(failure.message!!.contains("2,25 MP"))}
             if(tag=="ar") {assertTrue(failure.message!!.contains("١٥٠٠"));assertTrue(failure.message!!.contains("٢٫٢٥"))}
-            if(tag=="ro") assertTrue(failure.message!!.startsWith("1500 × 2000 pixels (3,00 MP)"))
+            // Romanian now has its own reviewed warning; keep literal decimal checks
+            // independent of the resource formatter and the deliberately US process locale.
+            if(tag=="ro") {
+                assertTrue(failure.message!!.startsWith("Dimensiunea de 1500 × 2000 pixeli (3,00 MP)"))
+                assertTrue(failure.message!!.contains("2,25 MP"))
+            }
             assertEquals(2_249_999L,limit.maxPixels(3))
             assertThrows(ImageSizeException::class.java) {limit.check(1500,1500,3)}
             assertThrows(IllegalArgumentException::class.java) {limit.check(0,1)}
