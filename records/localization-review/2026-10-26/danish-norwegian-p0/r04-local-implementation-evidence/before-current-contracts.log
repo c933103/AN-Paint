@@ -1,0 +1,25 @@
+..........EE..
+======================================================================
+ERROR: test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks (test_current_localization_contracts.CurrentLocalizationContracts.test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<source-root>/tools/test_current_localization_contracts.py", line 135, in test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks
+    require_tagged_colour_resolution(data, strings, offered, english)
+  File "<source-root>/tools/test_current_localization_contracts.py", line 78, in require_tagged_colour_resolution
+    raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
+ValueError: Tagged-colour message or explicit English fallback differs: da
+
+======================================================================
+ERROR: test_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults (test_current_localization_contracts.CurrentLocalizationContracts.test_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<source-root>/tools/test_current_localization_contracts.py", line 162, in test_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults
+    require_tagged_colour_resolution(data, changed_strings, offered, english)
+  File "<source-root>/tools/test_current_localization_contracts.py", line 78, in require_tagged_colour_resolution
+    raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
+ValueError: Tagged-colour message or explicit English fallback differs: da
+
+----------------------------------------------------------------------
+Ran 14 tests in 2.773s
+
+FAILED (errors=2)

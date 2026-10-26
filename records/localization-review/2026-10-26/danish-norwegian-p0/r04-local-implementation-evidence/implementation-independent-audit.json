@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent bounded source, fixture, test and review-reconciliation audit",
+  "reviewed_head": "f6b3e71fd1261935c4d97b20cbbbdcc79ed398ed",
+  "reviewed_tree": "16ff3d877650ad4ad3198ce19007e8606fcd080a",
+  "baseline_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_identity_limit": "Audit was performed against the frozen local implementation bytes; this auditor did not independently authenticate the remote PR ref.",
+  "implementation_manifest_sha256": "5d0382921cc0921641d6baae34d874533b7e2afb5c63e49dbc92f860d18ae03b",
+  "approved_values_sha256": "ecafd7485336b095c59c9c3103b93cabdf909f03da0da5526aa031367c2f657e",
+  "results": {
+    "concrete_unresolved_defects_found": 0,
+    "final_values": 156,
+    "accepted_proposals_unchanged": 149,
+    "exact_review_revisions": 7,
+    "existing_values_and_attributes_preserved": {
+      "da": 127,
+      "no": 115
+    },
+    "held_missing_identities_per_locale": 5,
+    "unreviewed_P1_companion_absent": true,
+    "existing_no_locale_identity_unchanged": true,
+    "original_public_review_verdict_and_qualification_arrays_equal": 8,
+    "full_format_and_Android_encoding_checks": 156,
+    "fixture_exact_values": 156,
+    "frozen_implementation_files_sha256_and_git_identity_checked": 14,
+    "frozen_files_unchanged_after_audit_tests": true,
+    "prior_fixture_files_byte_identical": 73,
+    "formatted_false_extra_unindexed_s_old_helper_bypasses_reproduced": 4,
+    "all_four_rejected_by_new_family_guard": true,
+    "refreshed_expectation_negative_controls_rejected": 52,
+    "negative_control_reasons": {
+      "complete_format_token_inventory_differs": 20,
+      "format_arguments_differ": 4,
+      "invalid_or_unescaped_format_token": 28
+    },
+    "single_key_warning_expectations": 3,
+    "paired_warning_entries": 120,
+    "paired_warning_tags": 60,
+    "frozen_warning_history_and_paired_oracle_unchanged": true,
+    "tagged_colour_explicit": 68,
+    "tagged_colour_fallback": 103,
+    "global_scoped_tags": 59,
+    "global_fallback_tags": 112
+  },
+  "independent_host_runs": [
+    {
+      "python_mode": "ordinary",
+      "tests": 49,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 6.311
+    },
+    {
+      "python_mode": "optimized_-O",
+      "tests": 49,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 5.866
+    }
+  ],
+  "test_modules": [
+    "tools/test_danish_norwegian_p0_wording.py",
+    "tools/test_memory_warning_source_review.py",
+    "tools/test_memory_warning_successors.py",
+    "tools/test_current_localization_contracts.py",
+    "tools/test_nynorsk_remaining_p0_wording.py"
+  ],
+  "kotlin_static_inspection": {
+    "paths": [
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/DanishNorwegianP0Test.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/DerivedExportStateTest.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionTitleTest.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt"
+    ],
+    "actual_fixture_entries_safe_for_simple_quote_removal": 398,
+    "configuration_callback_invokes_resource_refresh_and_workspace_rebuild": true,
+    "import_helper_resets_selection_and_callback_counts": true,
+    "saved_target_assertion_scope": "Retained null association after real export; not coverage of preservation of an already non-null ordinary Save destination.",
+    "compiled_or_executed_by_this_audit": false
+  },
+  "limits": [
+    "No new linguistic judgment or native-human acceptance.",
+    "No Android compilation, runtime, physical-device, layout or whole-language certification.",
+    "The 49-test runs are independent focused host checks, not the full hosted or local regression run.",
+    "No source edits, CI polling or external publication by this audit.",
+    "All prior holds and release pause remain unchanged."
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "source_head": "f6b3e71fd1261935c4d97b20cbbbdcc79ed398ed",
+  "source_tree": "16ff3d877650ad4ad3198ce19007e8606fcd080a",
+  "final_frozen_patch": {
+    "full-ordinary-final.log": {
+      "run": 1374,
+      "passed": 1374,
+      "skipped": 0,
+      "seconds": 177.343,
+      "exit_code": 0
+    },
+    "full-optimized-final.log": {
+      "run": 1374,
+      "passed": 1374,
+      "skipped": 0,
+      "seconds": 185.019,
+      "exit_code": 0
+    }
+  },
+  "focused_final": {
+    "ordinary": {
+      "run": 87,
+      "passed": 87,
+      "skipped": 0,
+      "seconds": 8.909
+    },
+    "optimized": {
+      "run": 87,
+      "passed": 87,
+      "skipped": 0,
+      "seconds": 8.539
+    }
+  },
+  "initial_diagnostics": {
+    "full_ordinary_pre_hardening": {
+      "run": 1373,
+      "passed": 1373,
+      "skipped": 0,
+      "seconds": 180.29,
+      "qualification": "Diagnostic only: started before final formatted=false guard hardening; not the final-head gate."
+    },
+    "stale_memory_guards": {
+      "run": 18,
+      "failures": 5,
+      "cause": "New da/no P0-only values invalidated older absence/membership assertions; paired P1/frozen scopes were not expanded."
+    },
+    "stale_current_contracts": {
+      "run": 14,
+      "errors": 2,
+      "cause": "Tagged-colour fixture still expected English fallback for now-translated da/no values."
+    },
+    "formatted_false_guard": {
+      "counterexamples_before": 4,
+      "rejected_after": 4,
+      "additional_explicit_negative_controls": 52,
+      "scope": "Checker defect, not a bad value among the actual 156 reviewed entries."
+    }
+  },
+  "log_bindings": {
+    "full-ordinary-final.log": {
+      "original_sha256": "85e3e9cdea85e955f50e9f2df605f66ddfbae792face4a82c5447136d72830dd",
+      "public_sha256": "66cb49662cee2074276bef2868e8eaa2020b40124f81fe89698c85f9cc50c5d9",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    },
+    "full-optimized-final.log": {
+      "original_sha256": "9b552d8a80cab9a62fa8eba2c76e720899e39ff1d9d03c9fff370953bb49f440",
+      "public_sha256": "c9c284c8aff020103bd78432a0de519d36b6590ce4efaa079f990fad6e61fddc",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    },
+    "full-ordinary-pre-hardening.log": {
+      "original_sha256": "5c24127f825a383c69a1e90df902eaf685fe44beea294d4db5b52e00bc8e4f95",
+      "public_sha256": "0f60e03360e45565e734312f3cb71bbd5abe9c26a4276c0db6a910932147b5f7",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    },
+    "before-current-contracts.log": {
+      "original_sha256": "68c5fb2c953df8c3edee65a22a5d86258e84d41c1e2f1567b2ef133c6975fc6c",
+      "public_sha256": "a632a8875d91a67ad02c4d0f97788c1bd0206d79aef0e42cf82cc7240663c53a",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    },
+    "before-memory-guards.log": {
+      "original_sha256": "cac18cf1dfc7a0f976ddc71d7b2033468fd79c58ee8f892aa5c024533ea7509a",
+      "public_sha256": "aaed89165d17e399ef1cdcd9cd878fb9230105adfb4a47fb66b9454f84032145",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    },
+    "before-formatted-false-guard.log": {
+      "original_sha256": "c643b0591c89323478ae99d9df514c1a798e71b1dce05af4ac8f50cda1467cbc",
+      "public_sha256": "c643b0591c89323478ae99d9df514c1a798e71b1dce05af4ac8f50cda1467cbc",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    },
+    "after-formatted-false-counterexample.log": {
+      "original_sha256": "8bf411225d01fd3eefd7ac4073454509231456a6fbb3a866ecc8457c6424853c",
+      "public_sha256": "8bf411225d01fd3eefd7ac4073454509231456a6fbb3a866ecc8457c6424853c",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    },
+    "focused-ordinary.log": {
+      "original_sha256": "56f867794c83347dc6f2d1fe077587abacb742cc338283dd8ad946f817806a50",
+      "public_sha256": "56f867794c83347dc6f2d1fe077587abacb742cc338283dd8ad946f817806a50",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    },
+    "focused-optimized.log": {
+      "original_sha256": "9f889125e5e56eaecb37a9e5831cacaadd05f3c8fa62bef62f918f60d1fa1439",
+      "public_sha256": "9f889125e5e56eaecb37a9e5831cacaadd05f3c8fa62bef62f918f60d1fa1439",
+      "sanitization": "Only temporary source/runtime absolute prefixes replaced with neutral placeholders; test outcomes unchanged."
+    }
+  },
+  "limits": [
+    "Local Python execution only; no local Android compilation, JVM execution, emulator or device claim.",
+    "Negative-control JSON output with success=false is expected test fixture output, not a terminal suite failure.",
+    "Hosted CI results and exact-head code review remain separate pending gates."
+  ]
+}

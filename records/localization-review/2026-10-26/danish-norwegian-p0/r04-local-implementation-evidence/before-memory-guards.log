@@ -1,0 +1,45 @@
+.....FFF........FF...
+======================================================================
+FAIL: test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='da', key='ui_assembly_source_memory_floor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<source-root>/tools/test_memory_warning_source_review.py", line 83, in test_values_absences_fallbacks_and_english_variants_are_explicit
+    self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
+AssertionError: '"Denne billedsammensætning vurderes at o[295 chars]et."' != None
+
+======================================================================
+FAIL: test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) (tag='no', key='ui_assembly_source_memory_floor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<source-root>/tools/test_memory_warning_source_review.py", line 83, in test_values_absences_fallbacks_and_english_variants_are_explicit
+    self.assertEqual(strings.get(key), current_source_expectation(key, tag, term['value']) if tag != 'en-001' else term['value'])
+AssertionError: '"Denne bildesammensetningen anslås å kre[301 chars]et."' != None
+
+======================================================================
+FAIL: test_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<source-root>/tools/test_memory_warning_source_review.py", line 92, in test_values_absences_fallbacks_and_english_variants_are_explicit
+    self.assertEqual(109, counts[(key, 'missing')])
+AssertionError: 109 != 107
+
+======================================================================
+FAIL: test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='da', key='ui_assembly_source_memory_floor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<source-root>/tools/test_memory_warning_successors.py", line 109, in test_held_missing_and_canonical_values_are_preserved_not_accepted
+    self.assertEqual(term['value'], actual.get(key))
+AssertionError: None != '"Denne billedsammensætning vurderes at o[295 chars]et."'
+
+======================================================================
+FAIL: test_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) (tag='no', key='ui_assembly_source_memory_floor')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<source-root>/tools/test_memory_warning_successors.py", line 109, in test_held_missing_and_canonical_values_are_preserved_not_accepted
+    self.assertEqual(term['value'], actual.get(key))
+AssertionError: None != '"Denne bildesammensetningen anslås å kre[301 chars]et."'
+
+----------------------------------------------------------------------
+Ran 18 tests in 2.030s
+
+FAILED (failures=5)
