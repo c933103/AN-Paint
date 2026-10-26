@@ -1,0 +1,902 @@
+{
+  "schema_version": 1,
+  "record_kind": "independent per-value Norwegian linguistic/source-static review",
+  "reviewer": "independent AI linguistic/source-static reviewer",
+  "locale": "no",
+  "locale_identity_policy": "Existing no catalogue remains Bokmål-worded and is not renamed or retagged.",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "group": 4,
+  "group_name": "save-share-credit",
+  "packet": "no-group-04-save-share-credit-candidates.json",
+  "packet_sha256": "2cfa1eae013165a0652faddea6674fa439b405fe232de5b0f17db48a357bf8ca",
+  "reviewed_count": 21,
+  "verdict_counts": {
+    "accept": 20,
+    "revise": 1,
+    "hold": 0
+  },
+  "source_verification": {
+    "shared_context_sha256": "2c486912d65af03dae2bb6976e17cacf0904d31a1132fa025e10edcb0b881baf",
+    "terminology_sha256": "965bd3ac55fe64b09a66749a7b022b2e6c0abc48f5f7438c8daf9f639b2e7bb5",
+    "all_323_source_bindings_sha256_git_blob_sha1_and_byte_size_verified": true,
+    "all_shared_consumer_excerpt_lines_match_local_files": true,
+    "pinned_no_catalogue_sha256": "80e1b2262471247c7990671c0a8f3a794c69962f1b13f9e5b830646c7b098326",
+    "all_115_prior_values_and_attributes_match_foundation": true,
+    "source_identity_limit": "Local snapshot has no .git; 323 supplied source-to-commit bindings were byte/hash verified, not independently resolved from a remote commit graph."
+  },
+  "scope_guards": {
+    "existing_values_unchanged": 115,
+    "source_or_external_mutations": false,
+    "held_missing_identities": [
+      "string/formats22_derived_exported",
+      "string/ui_save_as",
+      "string/ui_save_as_jpeg",
+      "string/ui_save_as_jpeg_xl",
+      "string/ui_save_as_png"
+    ],
+    "p1_companion_and_frozen_history_unchanged": true,
+    "inherited_labels_and_actual_fallbacks_unchanged": true,
+    "other_pauses_unchanged": [
+      "five Nynorsk absent identities",
+      "PR56 never-merge",
+      "PR159 freeze",
+      "PR113 hold/retarget",
+      "Help callback/archive identity",
+      "interrupted report archive",
+      "release pause"
+    ]
+  },
+  "primary_terminology_support": [
+    {
+      "title": "Sony Norwegian MHC-V73D Help Guide, page 37",
+      "url": "https://helpguide.sony.net/has/mhc-v73d/v1/no/print.pdf",
+      "support": "Norwegian primary vendor usage of bilderute for an individual video frame; supports terminology only, not AN Paint acceptance."
+    },
+    {
+      "title": "Bokmålsordboka: gjenopprette",
+      "url": "https://ordbokene.no/nno/bm/%C3%A5%20gjenopprette",
+      "support": "Official Bokmål dictionary meaning of returning something to its previous state, with document-restoration example; supports the root, not certification of every new compound."
+    },
+    {
+      "title": "Bokmålsordboka: mellomlager",
+      "url": "https://ordbokene.no/bm/126409",
+      "support": "Official dictionary search result defines computing cache and supplies neuter inflection. Direct open returned cache miss; indexed primary-source text was available."
+    },
+    {
+      "title": "Microsoft Support: File formats supported in PowerPoint (Norwegian)",
+      "url": "https://support.microsoft.com/nb-no/powerpoint/file-formats-that-are-supported-in-powerpoint",
+      "support": "Primary vendor Norwegian usage describes punktgrafikk as a pixel-row/column image representation in memory; terminology support only."
+    },
+    {
+      "title": "University of Oslo: Euclids første bilder",
+      "url": "https://www.mn.uio.no/astro/forskning/aktuelt/aktuelle-saker/2023/euclids-forste-bilder-den-glimrende-kanten-av-mork.html",
+      "support": "Primary institutional usage of Bildekreditering includes organizations, named processing contributors and a licence, supporting a non-financial attribution sense broader than author names."
+    },
+    {
+      "title": "Bokmålsordboka: kreditere",
+      "url": "https://ordbokene.no/bm/31995",
+      "support": "Official Bokmål dictionary independently recognizes the give-credit/recognition sense as distinct from accounting. Compound choice and complete UI wording remain reviewer judgment."
+    }
+  ],
+  "acceptance_boundary": "Accept means only the exact value and supplied static consumer composition pass this bounded independent AI review. It is not native-human, Android/device/runtime/layout, whole-locale, or release acceptance. No acceptance is imported from Danish or Nynorsk.",
+  "verdicts": [
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "source_value_sha256_utf8": "d669638ab30435fe654a24b1c18e73208959c1cc873975ab190e629e7c2ed6af",
+      "candidate_display_text": "Bildekrediteringene kunne ikke lagres eller gjenopprettes. Tidligere lagrede krediteringer er bevart. Prøv igjen.",
+      "candidate_value_sha256_utf8": "fb337cf78d65834fa70f122bce54ce90fc712f541a7f0d96e99d36bc875577c7",
+      "verdict": "accept",
+      "accepted_display_text": "Bildekrediteringene kunne ikke lagres eller gjenopprettes. Tidligere lagrede krediteringer er bevart. Prøv igjen.",
+      "accepted_value_sha256_utf8": "fb337cf78d65834fa70f122bce54ce90fc712f541a7f0d96e99d36bc875577c7",
+      "accepted_xml_text": "\"Bildekrediteringene kunne ikke lagres eller gjenopprettes. Tidligere lagrede krediteringer er bevart. Prøv igjen.\"",
+      "accepted_xml_text_sha256_utf8": "e0a6d94dffaaa20d5b2b7a25e43f91059c37b1df07f411b6f760ee7d20a3a2e7",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Bildekrediteringene clearly identifies image-attribution data rather than financial credits; the noun can include source, author, URL, licence and edited text without narrowing the data to only author names. Both save and restore failure, protection of previously saved records, and retry instruction remain.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:238",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:908",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1194",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1197",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1203",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1207",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1478",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1488",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1495",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:113",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:243",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:415"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Credit data are user-editable source attribution text, not monetary credits or only author names. Preserve both save/restore failure and protection of existing stored data."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "source_value_sha256_utf8": "0cc17cfda89358526b83adbc36b90440ef773ed2f945768e3e9f32bb90b35dd5",
+      "candidate_display_text": "Disse bildekrediteringene ville gjøre tegningen for stor til å gjenopprettes. Den forrige tegningen og krediteringene dine er bevart.",
+      "candidate_value_sha256_utf8": "0581031adaf8fb53832d05b46a29b27f9c9443b3030803b673446c0f762aea9f",
+      "verdict": "accept",
+      "accepted_display_text": "Disse bildekrediteringene ville gjøre tegningen for stor til å gjenopprettes. Den forrige tegningen og krediteringene dine er bevart.",
+      "accepted_value_sha256_utf8": "0581031adaf8fb53832d05b46a29b27f9c9443b3030803b673446c0f762aea9f",
+      "accepted_xml_text": "\"Disse bildekrediteringene ville gjøre tegningen for stor til å gjenopprettes. Den forrige tegningen og krediteringene dine er bevart.\"",
+      "accepted_xml_text_sha256_utf8": "499b61779e12606bc425437a112f0b0dc98b26646de69464217ef7354370c01b",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "The conditional ville gjøre preserves an admission failure rather than a completed oversized save; the source does not specify pixel dimensions and neither does this target. Both previous drawing and credits are explicitly retained, not the attempted edit.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1218",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1453",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:111"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Metadata admission failure, not image pixel dimensions. Previous drawing and credits retained; do not claim current attempted credit edit saved."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "source_value_sha256_utf8": "764c1dfa02ddd35964d108f4cc4ccc6dbcc59f5520513ac2528f32bacdb73f5b",
+      "candidate_display_text": "Noen lagrede krediteringer kunne ikke leses. De lagrede kopiene av dem er bevart.",
+      "candidate_value_sha256_utf8": "9a79b447aec4078dff48ef83c2342c5056b78e9ec8256494c5ee87299cf698f0",
+      "verdict": "accept",
+      "accepted_display_text": "Noen lagrede krediteringer kunne ikke leses. De lagrede kopiene av dem er bevart.",
+      "accepted_value_sha256_utf8": "9a79b447aec4078dff48ef83c2342c5056b78e9ec8256494c5ee87299cf698f0",
+      "accepted_xml_text": "\"Noen lagrede krediteringer kunne ikke leses. De lagrede kopiene av dem er bevart.\"",
+      "accepted_xml_text_sha256_utf8": "c614a8538884f89f48a148201478ce49b02d5b896685ef00c5311629c7f9d3da",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Noen retains partial unreadability. De lagrede kopiene av dem explicitly points back to those credit records and does not imply they were decoded, restored or made usable.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt:93"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Some stored snapshots unreadable, copies retained. No claim that all credits were restored or that unreadable copies are usable."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "source": "The completed image could not replace its destination.",
+      "source_value_sha256_utf8": "de68e5576968021c8471674791a609c056d1049abe53f1c1e4dc77e00679e001",
+      "candidate_display_text": "Det ferdige bildet kunne ikke erstatte målfilen.",
+      "candidate_value_sha256_utf8": "3d4b6d0d2619c1a532de5df509fe2ee2ab9ffa408874aaef240b05d5be94478e",
+      "verdict": "accept",
+      "accepted_display_text": "Det ferdige bildet kunne ikke erstatte målfilen.",
+      "accepted_value_sha256_utf8": "3d4b6d0d2619c1a532de5df509fe2ee2ab9ffa408874aaef240b05d5be94478e",
+      "accepted_xml_text": "\"Det ferdige bildet kunne ikke erstatte målfilen.\"",
+      "accepted_xml_text_sha256_utf8": "dca5f1b1d860c40cf8407d63a225cebb8249edb7c959d2343d7c5118fe247078",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Det ferdige bildet retains completed encoding, while kunne ikke erstatte målfilen correctly describes file-based replacement failure shared by all four rename consumers. It does not claim provider writing succeeded.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:19",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:40",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:103",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:62"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "File-based temporary-output rename failed. A destination-file term is semantically supportable; do not claim completed provider write."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "source_value_sha256_utf8": "ee437ea8cac1ec7af3db9e48064cf9e0a2e49c3c4f89706eb34887bc52d6b75e",
+      "candidate_display_text": "Bildet og bufferne for koding overskrider minnegrensen for eksport.",
+      "candidate_value_sha256_utf8": "e643bee767667232acaf356d8b63fd8e9addbd6ff96f986e511596226796f880",
+      "verdict": "accept",
+      "accepted_display_text": "Bildet og bufferne for koding overskrider minnegrensen for eksport.",
+      "accepted_value_sha256_utf8": "e643bee767667232acaf356d8b63fd8e9addbd6ff96f986e511596226796f880",
+      "accepted_xml_text": "\"Bildet og bufferne for koding overskrider minnegrensen for eksport.\"",
+      "accepted_xml_text_sha256_utf8": "56d36095f408c14d7be6edd907e8795364c934c8b434efeba0ff4b7867a4128d",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Both the image and encoding buffers contribute to the exceeded memory limit; minnegrensen for eksport keeps this separate from disk capacity or only the image footprint.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:24",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:43",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:56"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Image plus encoder buffers exceed a budget; not merely disk size and not solely the canvas footprint."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "source": "Could not open image",
+      "source_value_sha256_utf8": "6143ae23db90cc7e75e0a79869b2e047e20878b9478ac9e07dcebe064c5b25ef",
+      "candidate_display_text": "Kunne ikke åpne bildet",
+      "candidate_value_sha256_utf8": "a460786dec707901844a0960cbc4b2b96986fb7a7e88609cdbf0a313f354485b",
+      "verdict": "accept",
+      "accepted_display_text": "Kunne ikke åpne bildet",
+      "accepted_value_sha256_utf8": "a460786dec707901844a0960cbc4b2b96986fb7a7e88609cdbf0a313f354485b",
+      "accepted_xml_text": "\"Kunne ikke åpne bildet\"",
+      "accepted_xml_text_sha256_utf8": "4bdeda0476266e80d2cdf7fb6e9b0191a4d53c997b8d8e22105be0118881bf25",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Natural Bokmål opening-failure prefix. No terminal punctuation or extra placeholder interferes with ioFailed composition.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1288",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1293",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1337",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1350"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Failure prefix passed to ioFailed; exception detail appended by caller. No added final punctuation."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_save_image",
+      "source": "Could not save image",
+      "source_value_sha256_utf8": "95fe37e1204f47df2165d63ddaab386ac393bb76929dcad71bbbfae8ba1ffa4c",
+      "candidate_display_text": "Kunne ikke lagre bildet",
+      "candidate_value_sha256_utf8": "a221dfe6750c04dba78fddabaf1ffdf0597733e3fe1e98abb7532862c62fff92",
+      "verdict": "accept",
+      "accepted_display_text": "Kunne ikke lagre bildet",
+      "accepted_value_sha256_utf8": "a221dfe6750c04dba78fddabaf1ffdf0597733e3fe1e98abb7532862c62fff92",
+      "accepted_xml_text": "\"Kunne ikke lagre bildet\"",
+      "accepted_xml_text_sha256_utf8": "d742404c134a2931a74191c2ebda020960bc2f3f85e235c310c697168ea8ba55",
+      "attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Natural Bokmål saving-failure prefix; the trailing punctuation and error detail remain the callers responsibility, including export/share writes using the same path.",
+      "consumer_context_ids_reviewed": [
+        "write-success-and-dirty-state",
+        "failure-prefix-composition"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Save/write failure prefix. Caller appends a full stop, a space, and an exception message or fallback, so do not append punctuation or a placeholder."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_export_did_not_save23",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "source_value_sha256_utf8": "d0531311ff9ddac5ec839e2a6fe6b269196547c367402b73ed62eaceaf6f0b0d",
+      "candidate_display_text": "Eksportfilen er opprettet. Bruk «Lagre» eller «Lagre som…» for å lagre det gjeldende bildet før du fortsetter.",
+      "candidate_value_sha256_utf8": "92dd373db6d100bed2aaf2012e809164fef6439381c908df08514bbe185df950",
+      "verdict": "accept",
+      "accepted_display_text": "Eksportfilen er opprettet. Bruk «Lagre» eller «Lagre som…» for å lagre det gjeldende bildet før du fortsetter.",
+      "accepted_value_sha256_utf8": "92dd373db6d100bed2aaf2012e809164fef6439381c908df08514bbe185df950",
+      "accepted_xml_text": "\"Eksportfilen er opprettet. Bruk «Lagre» eller «Lagre som…» for å lagre det gjeldende bildet før du fortsetter.\"",
+      "accepted_xml_text_sha256_utf8": "a2351dda131bab4eca77ddce8634adca857b31874c09cc4513bd8e7041fd68f1",
+      "attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Explicit successful export-file creation is followed by the still-required ordinary Lagre or exact Lagre som… before continuation. It neither treats export as failed nor falsely clears the current image dirty state.",
+      "consumer_context_ids_reviewed": [
+        "file-menu-and-operation-kind",
+        "dirty-document-replacement-guard",
+        "write-success-and-dirty-state"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Export succeeded, but it did not satisfy the pending save-before-replacement action. Require Save or Save as before continuing.",
+        "Do not translate this as export failure, automatically saved current document, or a general inability to save.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_export_explanation23",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "source_value_sha256_utf8": "40c9721fbe50956b74eb3443701bacf5e64f818feadea6dd56cbf5300de92d6d",
+      "candidate_display_text": "Eksporter et ikon, Base64-tekst eller ASCII-kunst. Eksportering endrer verken det gjeldende bildet eller hvilken fil «Lagre» lagrer til.",
+      "candidate_value_sha256_utf8": "8f704543d96f322448b1393b66746a935958be0804bff124d40f31daa81e103e",
+      "verdict": "accept",
+      "accepted_display_text": "Eksporter et ikon, Base64-tekst eller ASCII-kunst. Eksportering endrer verken det gjeldende bildet eller hvilken fil «Lagre» lagrer til.",
+      "accepted_value_sha256_utf8": "8f704543d96f322448b1393b66746a935958be0804bff124d40f31daa81e103e",
+      "accepted_xml_text": "\"Eksporter et ikon, Base64-tekst eller ASCII-kunst. Eksportering endrer verken det gjeldende bildet eller hvilken fil «Lagre» lagrer til.\"",
+      "accepted_xml_text_sha256_utf8": "9f45e3e26626000b1da943ed93a5c8f488b686826c22ec92bb18bb71474974ca",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "All three derived output kinds remain. Verken ... eller scopes unchanged behavior over both current image and the file used by the Lagre command; this makes the Save-target meaning explicit without claiming no export file was written.",
+      "consumer_context_ids_reviewed": [
+        "file-menu-and-operation-kind",
+        "save-options-prose-and-formats",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Three derived outputs: icon, Base64 text, ASCII art. Export keeps current document and Save destination unchanged.",
+        "No implication that exporting to a file clears unsaved changes; preserve neither/nor scope over both image and Save target.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "source_value_sha256_utf8": "f85d438ebb3c8e8c55be242b5b0938f6e33144d8789553e32711449d9e67e66b",
+      "candidate_display_text": "Det er ikke nok minne til å lagre i dette formatet. Prøv PNG",
+      "candidate_value_sha256_utf8": "511f53bf0db2b481736f4828c26d667715ec253f2e92bcc80a982d7aba96ba02",
+      "verdict": "accept",
+      "accepted_display_text": "Det er ikke nok minne til å lagre i dette formatet. Prøv PNG",
+      "accepted_value_sha256_utf8": "511f53bf0db2b481736f4828c26d667715ec253f2e92bcc80a982d7aba96ba02",
+      "accepted_xml_text": "\"Det er ikke nok minne til å lagre i dette formatet. Prøv PNG\"",
+      "accepted_xml_text_sha256_utf8": "beb06afc519f7273a65023b30dfe31000e0750672ec7f521c52d7486aea88643",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Memory insufficiency is format-specific and Prøv PNG is a recommendation, not a guarantee. No terminal period is added because ioFailed appends detail.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1376"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "OOM failure prefix recommends PNG but does not guarantee PNG will fit. Caller attaches error detail; preserve no terminal period."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "source": "PNG encoding failed.",
+      "source_value_sha256_utf8": "121e3e5c5523ca65104b683c53c625d9f76c600cb5ac2d41924dc5fa2659ba3e",
+      "candidate_display_text": "PNG-koding mislyktes.",
+      "candidate_value_sha256_utf8": "69908a01fa50076eb5f37ba983ba78b306d8008b7042b96c8b088efc207102cc",
+      "verdict": "accept",
+      "accepted_display_text": "PNG-koding mislyktes.",
+      "accepted_value_sha256_utf8": "69908a01fa50076eb5f37ba983ba78b306d8008b7042b96c8b088efc207102cc",
+      "accepted_xml_text": "\"PNG-koding mislyktes.\"",
+      "accepted_xml_text_sha256_utf8": "99c0ef74286f8b3dfe3aeaf28870938644deee168c0edd9dfe6371b91e9e9146",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Direct PNG-encoding failure, correctly retaining the prefix compound hyphen and terminal period; no successful-save claim.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:324"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Actual Bitmap.compress false branch, not a successful PNG save."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_save_and_share",
+      "source": "Save and share…",
+      "source_value_sha256_utf8": "af8c25f4421cf91f4eedcbac21b3ef0e7f5286ba29dec7b6359a7dac6ff625fd",
+      "candidate_display_text": "Lagre og del…",
+      "candidate_value_sha256_utf8": "43f8601fac2ad3e386cbd35a31de19701069ef0bfdcca049732244e7cdd03795",
+      "verdict": "accept",
+      "accepted_display_text": "Lagre og del…",
+      "accepted_value_sha256_utf8": "43f8601fac2ad3e386cbd35a31de19701069ef0bfdcca049732244e7cdd03795",
+      "accepted_xml_text": "\"Lagre og del…\"",
+      "accepted_xml_text_sha256_utf8": "4381984b4f69669afbcb9461db0c6f95f21def67e73c7821a64d13b95cc1d0c6",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Natural paired commands with inherited Lagre and an ellipsis for the menu. Acceptance is read with the same-group explanation: it saves a copy and then opens sharing, not ordinary dirty-state clearing.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:842"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Existing share flow saves a copy then opens sharing; export=true means it does not update current Save target or clear unsaved drawing state. Ellipsis menu form."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_save_and_share_41edb4",
+      "source": "Save and share",
+      "source_value_sha256_utf8": "41edb42591bb2694c768ea901a5a82cbaebb0d2110321c5f2c309afd1262a7f4",
+      "candidate_display_text": "Lagre og del",
+      "candidate_value_sha256_utf8": "8d3ae9bf9b8d4a2014e6c47c96da9ceb8501ec8303ce33246e55ee31e9affbe1",
+      "verdict": "accept",
+      "accepted_display_text": "Lagre og del",
+      "accepted_value_sha256_utf8": "8d3ae9bf9b8d4a2014e6c47c96da9ceb8501ec8303ce33246e55ee31e9affbe1",
+      "accepted_xml_text": "\"Lagre og del\"",
+      "accepted_xml_text_sha256_utf8": "8ee268887ef2bf114ef12a70871c77d03008eee748bcabb8ea29c5cda1b98cff",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Same actions as the menu without its ellipsis, appropriate for the dialog title and consistent with the copy/share explanation.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:187"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Keep consistent with the same-group proposed share explanation and ellipsis menu form; neither is accepted before independent review."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_save_explanation23",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "source_value_sha256_utf8": "4195f6a986d7cc60e70a8263ca0dc2565f08ed58b607e88a9576810999d69639",
+      "candidate_display_text": "Velg et bildeformat og innstillingene for komprimering. «Lagre» bruker dette filnavnet, denne plasseringen, dette formatet og disse innstillingene på nytt.",
+      "candidate_value_sha256_utf8": "e0e4517856582b146575c904afc59001925085e5da742cfadd9ae64369539bec",
+      "verdict": "accept",
+      "accepted_display_text": "Velg et bildeformat og innstillingene for komprimering. «Lagre» bruker dette filnavnet, denne plasseringen, dette formatet og disse innstillingene på nytt.",
+      "accepted_value_sha256_utf8": "e0e4517856582b146575c904afc59001925085e5da742cfadd9ae64369539bec",
+      "accepted_xml_text": "\"Velg et bildeformat og innstillingene for komprimering. «Lagre» bruker dette filnavnet, denne plasseringen, dette formatet og disse innstillingene på nytt.\"",
+      "accepted_xml_text_sha256_utf8": "985985c3b8050afa7f88d1e34e26b5f44428fb8d263aa598d7c52ef537a21b10",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "The complete choice instruction and all four reused items—filename, location, format, settings—remain. «Lagre» references the actual command, and compression is not narrowed to lossy compression.",
+      "consumer_context_ids_reviewed": [
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Choose an image format and compression settings. Later Save reuses filename, location, format and settings.",
+        "Keep all four reused items; do not confuse ordinary Save with export or claim compression is always lossy.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_saved",
+      "source": "Saved %1$s",
+      "source_value_sha256_utf8": "15469c043a0e825ee64116cdcedb68d529638e1cb46b0d7eb2c74b8a5a16f464",
+      "candidate_display_text": "Lagret %1$s",
+      "candidate_value_sha256_utf8": "625eae19d46b018d6e565cb5169b525abf9944b9fa52fc315fb6ba8fbe5e2bb9",
+      "verdict": "accept",
+      "accepted_display_text": "Lagret %1$s",
+      "accepted_value_sha256_utf8": "625eae19d46b018d6e565cb5169b525abf9944b9fa52fc315fb6ba8fbe5e2bb9",
+      "accepted_xml_text": "\"Lagret %1$s\"",
+      "accepted_xml_text_sha256_utf8": "e27c82fa79262ee0c2ae5ac91f79c690b23b987309848a3620b62db8c1daf726",
+      "attributes": {
+        "name": "ui_saved"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "reviewer_rationale": "Lagret %1$s correctly reports the named output written in all three Save/Export/Share paths. It does not claim the whole current document has no unsaved changes; exactly one indexed string token is retained.",
+      "consumer_context_ids_reviewed": [
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "The named output file was written. The same toast is used for Save, Export and Share writes.",
+        "Do not claim that all current document changes are saved: exporting leaves the dirty state and Save target untouched.",
+        "Preserve exactly one indexed string placeholder %1$s; it is the display name returned for the written URI."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_share_explanation34",
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "source_value_sha256_utf8": "938ae9b97a3d7ed6efc76b77b3b7149a5a3876592ed6e89c009f86802cee7ceb",
+      "candidate_display_text": "Lagre en kopi på den valgte plasseringen, og velg deretter en app for å dele den. Dette endrer ikke hvilken fil «Lagre» lagrer til.",
+      "candidate_value_sha256_utf8": "7f157c1a55f0e9af4e21878efb29c8a2dfe8a23e997fcce0233dcaebf6d8a246",
+      "verdict": "accept",
+      "accepted_display_text": "Lagre en kopi på den valgte plasseringen, og velg deretter en app for å dele den. Dette endrer ikke hvilken fil «Lagre» lagrer til.",
+      "accepted_value_sha256_utf8": "7f157c1a55f0e9af4e21878efb29c8a2dfe8a23e997fcce0233dcaebf6d8a246",
+      "accepted_xml_text": "\"Lagre en kopi på den valgte plasseringen, og velg deretter en app for å dele den. Dette endrer ikke hvilken fil «Lagre» lagrer til.\"",
+      "accepted_xml_text_sha256_utf8": "e784e5b1957615309052035ee522e1eeb20859b0af87895be12ee204af78021f",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Ordering remains save a copy to the chosen location, then select an app for sharing. The second sentence explicitly retains the file used by ordinary Lagre. It promises neither completed sharing nor an updated original Save target. formatted=false is retained.",
+      "consumer_context_ids_reviewed": [
+        "file-menu-and-operation-kind",
+        "save-options-and-picker",
+        "dialog-prose-horizontal",
+        "dialog-prose-vertical-and-actions",
+        "write-success-and-dirty-state",
+        "share-after-write"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Save a copy to the selected location first, then pick a sharing app. The existing Save destination remains unchanged.",
+        "The menu calls share=true and export=true, so writeImage does not set savedTarget or markSaved; sharing is invoked after the file write.",
+        "Do not say the copy is already shared or that picking a sharing app changes the current Save destination.",
+        "Save-target means which file Save writes to. Export may successfully write its own file while leaving current document dirty and its Save target unchanged. This is not a claim that no file was created."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "source": "The encoder did not finish.",
+      "source_value_sha256_utf8": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "candidate_display_text": "Bildekodingen ble ikke fullført.",
+      "candidate_value_sha256_utf8": "28a8c03928a478b97d5386142e4b12c0cf0ecad85c08edb13889056e772ebd89",
+      "verdict": "accept",
+      "accepted_display_text": "Bildekodingen ble ikke fullført.",
+      "accepted_value_sha256_utf8": "28a8c03928a478b97d5386142e4b12c0cf0ecad85c08edb13889056e772ebd89",
+      "accepted_xml_text": "\"Bildekodingen ble ikke fullført.\"",
+      "accepted_xml_text_sha256_utf8": "b0397b4e7045db9648103f54c60d9709405c3ed23d09ff633b53bd6df0b58d1a",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Bildekodingen names the process, avoiding an ambiguous human coder; ble ikke fullført preserves encoding noncompletion across all three image-encoding consumers.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:100",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt:25",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:33"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Image encoding did not finish; candidate names the process rather than ambiguously a human coder. No output-success claim."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "source_value_sha256_utf8": "290a2340c93b4dfc627bf2d73d85ab3841e3300933d1f2212ba33a3e04c4f903",
+      "candidate_display_text": "Bildet ble lagret, men Android kunne ikke åpne deling: %1$s",
+      "candidate_value_sha256_utf8": "19f36ab41467ab8274fcf719920444173204654861d811d9fc567a9ddbcc2004",
+      "verdict": "revise",
+      "accepted_display_text": "Bildet ble lagret, men Android kunne ikke åpne delingsdialogen: %1$s",
+      "accepted_value_sha256_utf8": "f4e11bab77419af1aa85555eadd3830c28626bd4e824e5de7e5ee56d2810e3f0",
+      "accepted_xml_text": "\"Bildet ble lagret, men Android kunne ikke åpne delingsdialogen: %1$s\"",
+      "accepted_xml_text_sha256_utf8": "52ea7c7489d9e88f4d73700cba9c320dd9509cbe524372dc5482b31d2b2d50c3",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "reviewer_rationale": "Revise the calqued åpne deling to idiomatic åpne delingsdialogen. The pinned consumer calls startActivity(Intent.createChooser(...)); naming that dialog accurately expresses the failed sharing-launch outcome without implying attempted recipient delivery. Successful image writing, Android failure and the original %1$s exception detail all remain.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1389"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Copy was written successfully; Android sharing launch then failed. Preserve the successful write, failed sharing and appended %1$s exception detail separately. This does not mean the drawing Save target changed."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "source": "The selected location is not writable.",
+      "source_value_sha256_utf8": "bd5906312d80fa9c5c6f855faf23030f089b50f54d0f82a39a8bcdb60328581d",
+      "candidate_display_text": "Det er ikke mulig å skrive til den valgte plasseringen.",
+      "candidate_value_sha256_utf8": "6b3da20e3fae38dbf785a604505dca804a748c3bc90784940bbef6f0fd4871d4",
+      "verdict": "accept",
+      "accepted_display_text": "Det er ikke mulig å skrive til den valgte plasseringen.",
+      "accepted_value_sha256_utf8": "6b3da20e3fae38dbf785a604505dca804a748c3bc90784940bbef6f0fd4871d4",
+      "accepted_xml_text": "\"Det er ikke mulig å skrive til den valgte plasseringen.\"",
+      "accepted_xml_text_sha256_utf8": "f8e5db92daf406d2492f6ed47f9a2785af5af0a0bd136bb3651e2427dd34092d",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Natural cannot-write-to wording keeps the selected destination referent and avoids inventing a cause such as missing permission or read-only protection.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:341",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1366"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "openOutputStream returns null; do not narrow unspecified cause to write protection or permissions alone."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "source": "This location is not writable.",
+      "source_value_sha256_utf8": "aeeaa3653ff0cebc035c0010f47d2e6fef2ba1abd8d6c77df663010f13a4a13e",
+      "candidate_display_text": "Det er ikke mulig å skrive til denne plasseringen.",
+      "candidate_value_sha256_utf8": "bee3de6d9a057bc136ddcb6988efdee156c3f673f79acbdcab90db1f82d0618c",
+      "verdict": "accept",
+      "accepted_display_text": "Det er ikke mulig å skrive til denne plasseringen.",
+      "accepted_value_sha256_utf8": "bee3de6d9a057bc136ddcb6988efdee156c3f673f79acbdcab90db1f82d0618c",
+      "accepted_xml_text": "\"Det er ikke mulig å skrive til denne plasseringen.\"",
+      "accepted_xml_text_sha256_utf8": "958ea9111a9574cfbeb24195daaccdba85aee299171e7c8240ebaaef756ca414",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "This-location referent is preserved in a generic inability-to-write statement valid for both ZIP recovery export and source export. No unrelated Help callback/archive work is undertaken.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1396",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1407"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Shared by recovery ZIP export and source-code export, generic write failure. No Help callback/archive identity or exported-source implementation change."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_your_current_image_has_unsaved_changes",
+      "source": "Your current image has unsaved changes.",
+      "source_value_sha256_utf8": "a0a1eb1e2aad13934b98a43da9bd4b8c47ac39384e135489870bd77185674b17",
+      "candidate_display_text": "Det gjeldende bildet har ulagrede endringer.",
+      "candidate_value_sha256_utf8": "7d6f23fe218d705d221612e9006e2c18df6d898addd155a29b430be3cdd52e02",
+      "verdict": "accept",
+      "accepted_display_text": "Det gjeldende bildet har ulagrede endringer.",
+      "accepted_value_sha256_utf8": "7d6f23fe218d705d221612e9006e2c18df6d898addd155a29b430be3cdd52e02",
+      "accepted_xml_text": "\"Det gjeldende bildet har ulagrede endringer.\"",
+      "accepted_xml_text_sha256_utf8": "448b4104eca69d590521ff25f06ee6ba3f27790a50709afcea2e3c28252a3986",
+      "attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Gjeldende identifies the current working image and ulagrede retains unsaved state. The inherited Lagre/Avbryt/discard controls and existing confirmation title are not modified.",
+      "consumer_context_ids_reviewed": [
+        "dirty-document-replacement-guard"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "The current working image has unsaved changes. Keep negation and refer to the current document, not a previous draft."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    }
+  ]
+}

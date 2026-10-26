@@ -1,0 +1,57 @@
+{
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "revisions": [
+    {
+      "locale": "da",
+      "identity": "string/formats22_animation_unknown",
+      "original_candidate": "Dette %1$s-billede er for komplekst til at afgøre, om det indeholder flere enkeltbilleder. AN Paint åbner kun et stillbillede og bevarer ingen animation.",
+      "final_value": "Dette %1$s-billede er så komplekst, at det ikke kan afgøres, om det indeholder flere enkeltbilleder. AN Paint åbner kun et stillbillede og bevarer ingen animation.",
+      "rationale": "Revise the dangling active infinitive er for komplekst til at afgøre: the image cannot itself decide. New passive clause explicitly retains inability to determine multiplicity due to complexity. Keeps uncertainty, %1$s, still-only opening and loss of all animation; does not turn unknown into confirmed single-frame."
+    },
+    {
+      "locale": "da",
+      "identity": "string/ui_a_separate_recovery_copy_has_been_kept_use",
+      "original_candidate": "%1$s En separat gendannelseskopi er bevaret. Brug »Filer > Eksportér gendannelseskopi…« til at gemme dens ZIP-fil. Pak canvas.png ud fra den, og indlæs billedet for at bruge de normale skaleringsindstillinger, hvis det er nødvendigt.",
+      "final_value": "%1$s En separat gendannelseskopi er bevaret. Brug »Filer > Eksportér gendannelseskopi…« til at gemme dens ZIP-fil. Pak canvas.png ud af ZIP-filen, og indlæs billedet for at bruge de normale skaleringsindstillinger, hvis det er nødvendigt.",
+      "rationale": "All clauses preserve already-rendered reason prefix, actual separate-copy preservation, actionable export menu, literal canvas.png and optional normal resizing. Revise ud fra den to ud af ZIP-filen: extraction is from inside an archive, not based on it; explicit archive referent also removes den ambiguity. Filer and same-group Eksportér gendannelseskopi… retained."
+    },
+    {
+      "locale": "da",
+      "identity": "string/ui_autosave_pixels_are_missing",
+      "original_candidate": "Pixeldata til automatisk lagring mangler.",
+      "final_value": "Pixeldata fra den automatiske lagring mangler.",
+      "rationale": "Revise til automatisk lagring to fra den automatiske lagring: consumer is reading an existing ZIP and lacks its canvas.png or floating.png entry, not asking for input pixels for a future save. Matches adjacent decoding-error wording and keeps missing distinct from unreadable."
+    },
+    {
+      "locale": "da",
+      "identity": "string/ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "original_candidate": "Gendannelseskopi eksporteret. Pak canvas.png ud fra ZIP-filen, og åbn billedet via »Filer > Load image…«. ZIP-filen indeholder også kladdens indstillinger og en eventuel flydende markering.",
+      "final_value": "Gendannelseskopi eksporteret. Pak canvas.png ud af ZIP-filen, og åbn billedet via »Filer > Load image…«. ZIP-filen indeholder også kladdens indstillinger og en eventuel flydende markering.",
+      "rationale": "Export success, canvas.png extraction, actual Filer > Load image… command and ZIP contents all retained. Revise ud fra ZIP-filen to idiomatic ud af ZIP-filen. Singular eventuel flydende markering fits one optional floating selection; no settings/selection automatically restored claim."
+    },
+    {
+      "locale": "da",
+      "identity": "string/gallery_credit_too_large",
+      "original_candidate": "Disse billedkrediteringer ville gøre tegningen for stor til at kunne gendannes. Din forrige tegning og krediteringerne er bevaret.",
+      "final_value": "Disse billedkrediteringer ville gøre tegningen for stor til at kunne gendannes. Din forrige tegning og de tidligere krediteringer er bevaret.",
+      "rationale": "First clause correctly uses hypothetical ville and restore-size limitation, not image dimensions. Revise krediteringerne in second clause to de tidligere krediteringer: definite pronoun otherwise can refer back to the attempted credits in Disse billedkrediteringer and wrongly imply those new edits were retained. Final wording explicitly protects previous drawing and previous credits."
+    },
+    {
+      "locale": "da",
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "original_candidate": "Billedet blev gemt, men Android kunne ikke åbne deling: %1$s",
+      "final_value": "Billedet blev gemt, men Android kunne ikke åbne delingsmenuen: %1$s",
+      "rationale": "Revise calqued åbne deling to idiomatic åbne delingsmenuen, the actual Android chooser launch. Prior image write remains successful, subsequent launch failed, and colon plus %1$s retains exception detail. Does not assert share delivery or changed drawing Save destination."
+    },
+    {
+      "locale": "no",
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "original_candidate": "Bildet ble lagret, men Android kunne ikke åpne deling: %1$s",
+      "final_value": "Bildet ble lagret, men Android kunne ikke åpne delingsdialogen: %1$s",
+      "rationale": "Revise the calqued åpne deling to idiomatic åpne delingsdialogen. The pinned consumer calls startActivity(Intent.createChooser(...)); naming that dialog accurately expresses the failed sharing-launch outcome without implying attempted recipient delivery. Successful image writing, Android failure and the original %1$s exception detail all remain."
+    }
+  ],
+  "cross_group_actual_labels_verified": true,
+  "analysis": "Seven revisions preserve current consumer semantics: uncertainty remains unconfirmed animation; ZIP extraction names the actual file; missing pixel data refers to stored canvas data; prior credit snapshots remain protected; Intent.createChooser supports the sharing dialog/menu wording. Full values and unchanged numbered parameters bound above. No new acceptance beyond independent receipts.",
+  "source_modified": false
+}

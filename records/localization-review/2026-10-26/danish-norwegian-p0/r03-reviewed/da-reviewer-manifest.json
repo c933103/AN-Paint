@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "record_kind": "Danish independent-review deliverable manifest",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "total_entries": 78,
+  "counts": {
+    "accept": 72,
+    "revise": 6,
+    "hold_in_candidates": 0,
+    "unchanged_missing_holds": 5
+  },
+  "groups": [
+    {
+      "file": "da-group-01-import-format-independent-review.json",
+      "counts": {
+        "accept": 12,
+        "revise": 1,
+        "hold": 0,
+        "total": 13
+      },
+      "original_review_sha256": "ea1661188ad2da5510f25ef984e6e901d544a0a3c1c5f193daff3dc9ce7fef1c"
+    },
+    {
+      "file": "da-group-02-recovery-independent-review.json",
+      "counts": {
+        "accept": 25,
+        "revise": 3,
+        "hold": 0,
+        "total": 28
+      },
+      "original_review_sha256": "0482d05fb377cf692700543774083e8ba58d67be7e789ad1119ef0f23bfce8b7"
+    },
+    {
+      "file": "da-group-03-assembly-memory-independent-review.json",
+      "counts": {
+        "accept": 16,
+        "revise": 0,
+        "hold": 0,
+        "total": 16
+      },
+      "original_review_sha256": "747f8394d0883920a8ae793f0dc9ff44704785b8d126d5daaee0641a98454f90"
+    },
+    {
+      "file": "da-group-04-save-share-credit-independent-review.json",
+      "counts": {
+        "accept": 19,
+        "revise": 2,
+        "hold": 0,
+        "total": 21
+      },
+      "original_review_sha256": "ea3bb1a7574d04aec96ca58018a22025964a75323b50e590ef33ef0cd90e93dc"
+    }
+  ],
+  "composition_review": {
+    "file": "da-static-composition-review.json",
+    "sha256": "231f6bba9e6cfa833f4e277c3149e2b436cb9a051f952a32c013aad90b6cbab2",
+    "static_synthetic_examples": 15
+  },
+  "final_validation": {
+    "source_bindings_sha256_git_blob_sha1_size_checked": 323,
+    "source_binding_errors": 0,
+    "all_78_source_attributes_and_values_checked": true,
+    "all_78_candidates_absent_from_existing_da": true,
+    "all_78_final_value_and_xml_hashes_checked": true,
+    "all_78_placeholder_sequences_unchanged": true,
+    "reviewed_consumer_windows_including_repeats": 140,
+    "existing_danish_values_exactly_preserved": 127,
+    "P1_companion_absent_and_unreviewed": true,
+    "source_edits": 0,
+    "external_mutations": 0,
+    "runtime_checks": 0
+  },
+  "unchanged_holds": [
+    "string/formats22_derived_exported",
+    "string/ui_save_as",
+    "string/ui_save_as_jpeg",
+    "string/ui_save_as_jpeg_xl",
+    "string/ui_save_as_png"
+  ],
+  "limits": [
+    "Model linguistic/static review, not native-human acceptance.",
+    "Provided commit/tree source provenance verified against all 323 locally materialized input bindings; no independent remote Git retrieval/tree reconstruction.",
+    "Full-language, UI/device, layout and runtime acceptance not claimed.",
+    "Source input packet and unchanged foundation retained; exact revisions appear in each per-entry review."
+  ],
+  "hash_scope_note": "Group hashes identify original reviewer receipts; public export byte identities and unchanged verdict proof are in review-receipt-bindings.json."
+}

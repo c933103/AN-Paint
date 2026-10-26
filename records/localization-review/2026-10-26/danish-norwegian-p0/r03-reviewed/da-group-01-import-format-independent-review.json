@@ -1,0 +1,636 @@
+{
+  "schema_version": 1,
+  "record_kind": "independent full-value Danish linguistic and static consumer review; exact revisions are acceptable replacement text, not evidence of implementation",
+  "repository": "c933103/AN-Paint",
+  "locale": "da",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "group": 1,
+  "group_name": "import-format",
+  "candidate_packet": {
+    "file": "da-group-01-import-format-candidates.json",
+    "sha256": "6bfc0d77fc4b92c4f94fc69a164f016659e33834c08a0b12add019fe5c85c749"
+  },
+  "shared_source_context": {
+    "file": "shared-source-context.json",
+    "sha256": "2c486912d65af03dae2bb6976e17cacf0904d31a1132fa025e10edcb0b881baf"
+  },
+  "terminology_foundations": {
+    "file": "terminology-foundations.json",
+    "sha256": "965bd3ac55fe64b09a66749a7b022b2e6c0abc48f5f7438c8daf9f639b2e7bb5"
+  },
+  "validation": {
+    "input_bindings_checked": 323,
+    "input_binding_sha256_git_blob_sha1_and_length_errors": 0,
+    "canonical_source_values_and_attributes_checked": 13,
+    "candidate_hash_errors": 0,
+    "candidate_missing_identities_verified": 13,
+    "consumer_windows_checked": 16,
+    "consumer_window_errors": 0,
+    "existing_danish_values_compared_exactly": 127,
+    "existing_values_changed": 0,
+    "source_files_changed": 0,
+    "runtime_or_device_checks_run": false,
+    "remote_source_commit_retrieved_independently": false,
+    "pin_limit": "323 local input bytes matched provided immutable source bindings. Commit/tree pin is the packet provenance; this review did not contact GitHub or independently reconstruct the full Git tree."
+  },
+  "summary": {
+    "accept": 12,
+    "revise": 1,
+    "hold": 0,
+    "total": 13
+  },
+  "unreviewed_missing_holds": [
+    "string/formats22_derived_exported",
+    "string/ui_save_as",
+    "string/ui_save_as_jpeg",
+    "string/ui_save_as_jpeg_xl",
+    "string/ui_save_as_png"
+  ],
+  "boundaries": [
+    "No P1 companion added, reviewed or accepted.",
+    "No frozen-history, paired-oracle, source-code, external-state or existing-catalogue changes.",
+    "No Nynorsk or Norwegian linguistic acceptance transferred.",
+    "Inherited English labels/count fragments remain as specified; not a fully localized-screen claim."
+  ],
+  "language_references": [
+    {
+      "url": "https://files.canon-europe.com/files/soft32634/Manual/FS10_11_100_IB_DAN.pdf",
+      "basis": "Official Danish Canon manual uses enkeltbilleder for video frames; lexical support only."
+    },
+    {
+      "url": "https://helpx.adobe.com/dk/photoshop/using/photoshop-and-illustrator.html",
+      "basis": "Official Danish Adobe documentation uses rasteriseres for pixel conversion; reference is terminology support, not AN Paint behavior evidence."
+    }
+  ],
+  "verdicts": [
+    {
+      "identity": "string/formats22_animation_message",
+      "priority": "P0",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "source_value_sha256_utf8": "8dfc998920d44075d5cff2dd7d3d3047edaea70748794a8c3e17dfba0f1eddf0",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Dette %1$s-billede indeholder %2$s enkeltbilleder. AN Paint redigerer stillbilleder og bevarer ikke animation.",
+      "candidate_value_sha256_utf8": "227820616c8085f557e46d5fe6228a221a2e219f1cf84fe43ecf81490f52ff53",
+      "candidate_xml_text": "\"Dette %1$s-billede indeholder %2$s enkeltbilleder. AN Paint redigerer stillbilleder og bevarer ikke animation.\"",
+      "candidate_xml_text_sha256_utf8": "f4f2385ac760bd1545d067c41e4e3bc7001496278d208c7471179e3c89f78852",
+      "placeholder_tokens": [
+        "%1$s",
+        "%2$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:92"
+      ],
+      "source_semantic_notes": [
+        "%1$s is a format label. %2$s is a string: exact count or untouched English formats22_at_least_frames (at least %1$d). The mixed-language count remains explicitly out of scope; do not claim the composed message fully localized.",
+        "No singular/plural conversion: consumer only chooses this branch when frameCount >= 2."
+      ],
+      "author_semantic_qualifications": [
+        "%1$s is a format label. %2$s is a string: exact count or untouched English formats22_at_least_frames (at least %1$d). The mixed-language count remains explicitly out of scope; do not claim the composed message fully localized.",
+        "No singular/plural conversion: consumer only chooses this branch when frameCount >= 2."
+      ],
+      "author_uncertainties": [
+        "Enkeltbilleder is proposed for animation frames; review consistency across the animation family. A non-exact count may still contain English at least and must remain explicitly qualified."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Dette %1$s-billede indeholder %2$s enkeltbilleder. AN Paint redigerer stillbilleder og bevarer ikke animation.",
+      "accepted_value_sha256_utf8": "227820616c8085f557e46d5fe6228a221a2e219f1cf84fe43ecf81490f52ff53",
+      "accepted_xml_text": "\"Dette %1$s-billede indeholder %2$s enkeltbilleder. AN Paint redigerer stillbilleder og bevarer ikke animation.\"",
+      "accepted_xml_text_sha256_utf8": "f4f2385ac760bd1545d067c41e4e3bc7001496278d208c7471179e3c89f78852",
+      "review_rationale": "Exact-count and lower-bound paths both preserve %1$s format and %2$s string. Enkeltbilleder distinguishes constituent frames from stillbilleder; AN Paint name and no-animation-preservation claim intact. Plural is valid only because this branch requires frameCount >= 2. Non-exact count retains English fallback by scope, so the complete rendered sentence is not fully Danish.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_poster",
+      "priority": "P0",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "source_value_sha256_utf8": "dacb8564c81b1c76e410ac2d81d5dadfc90c4e80423f4ce7319de0c282328d23",
+      "attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Dette PNG-billede har et separat standardbillede. Det importeres i stedet for de animerede enkeltbilleder. Når du gemmer, oprettes et stillbillede.",
+      "candidate_value_sha256_utf8": "cf81ffada34b00cbf78df953759e7abdc999e69c55f098fa85af87e5740d0a7a",
+      "candidate_xml_text": "\"Dette PNG-billede har et separat standardbillede. Det importeres i stedet for de animerede enkeltbilleder. Når du gemmer, oprettes et stillbillede.\"",
+      "candidate_xml_text_sha256_utf8": "50102a54a2897660020bd4c428d2a35bf757fdd1b556f338b3ca500d18a63400",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "source_semantic_notes": [
+        "APNG separate default image, not its animated frames, is imported; preserve that distinction."
+      ],
+      "author_semantic_qualifications": [
+        "APNG separate default image, not its animated frames, is imported; preserve that distinction."
+      ],
+      "author_uncertainties": [
+        "Standardbillede is proposed for the APNG separate default image; independent review should preserve its distinction from animated frames."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Dette PNG-billede har et separat standardbillede. Det importeres i stedet for de animerede enkeltbilleder. Når du gemmer, oprettes et stillbillede.",
+      "accepted_value_sha256_utf8": "cf81ffada34b00cbf78df953759e7abdc999e69c55f098fa85af87e5740d0a7a",
+      "accepted_xml_text": "\"Dette PNG-billede har et separat standardbillede. Det importeres i stedet for de animerede enkeltbilleder. Når du gemmer, oprettes et stillbillede.\"",
+      "accepted_xml_text_sha256_utf8": "50102a54a2897660020bd4c428d2a35bf757fdd1b556f338b3ca500d18a63400",
+      "review_rationale": "Separate APNG default image remains the antecedent of Det; import replaces animated frames, not vice versa. Final clause unambiguously says saving produces a still image, not an animation.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_still",
+      "priority": "P0",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "source_value_sha256_utf8": "82b49f16aa05b8564537e62c8319497416cbc741f1852b15f3e12f7e8cfacaf6",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Kun det første enkeltbillede importeres. Når du gemmer, oprettes et stillbillede.",
+      "candidate_value_sha256_utf8": "253528a5dc4476be8007459c486f2cddcdbd2174f8d9151f3d8b9aa34b019a49",
+      "candidate_xml_text": "\"Kun det første enkeltbillede importeres. Når du gemmer, oprettes et stillbillede.\"",
+      "candidate_xml_text_sha256_utf8": "9d94c7e7862a0aa9594fc4dd40b06c92040521404861130bacd991543b73f5d1",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:93"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Kun det første enkeltbillede importeres. Når du gemmer, oprettes et stillbillede.",
+      "accepted_value_sha256_utf8": "253528a5dc4476be8007459c486f2cddcdbd2174f8d9151f3d8b9aa34b019a49",
+      "accepted_xml_text": "\"Kun det første enkeltbillede importeres. Når du gemmer, oprettes et stillbillede.\"",
+      "accepted_xml_text_sha256_utf8": "9d94c7e7862a0aa9594fc4dd40b06c92040521404861130bacd991543b73f5d1",
+      "review_rationale": "Kun scopes the first frame; no later frames or animation preservation promised. Saving still-image result is retained.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_title",
+      "priority": "P0",
+      "source": "Animated image",
+      "source_value_sha256_utf8": "d817a74fca0b0fadab77122937916c4853bb3f5b462de17f4a35866a7c2f9204",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Animeret billede",
+      "candidate_value_sha256_utf8": "ab2487f9752be50a10c2b2b719063060ab510366cbbdb36850459416556a62c1",
+      "candidate_xml_text": "\"Animeret billede\"",
+      "candidate_xml_text_sha256_utf8": "8752b3d669959d1277d12b67e927da750bb6e145c5398c94ec112b7e115bf322",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Animeret billede",
+      "accepted_value_sha256_utf8": "ab2487f9752be50a10c2b2b719063060ab510366cbbdb36850459416556a62c1",
+      "accepted_xml_text": "\"Animeret billede\"",
+      "accepted_xml_text_sha256_utf8": "8752b3d669959d1277d12b67e927da750bb6e145c5398c94ec112b7e115bf322",
+      "review_rationale": "Natural concise Danish noun phrase for the animated-image dialog; no assertion of preserved output animation.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/formats22_animation_unknown",
+      "priority": "P0",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "source_value_sha256_utf8": "1f660daeffe61e6dc0850e007472be0aeb29845e93bf89738e88169902ad6e0c",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Dette %1$s-billede er for komplekst til at afgøre, om det indeholder flere enkeltbilleder. AN Paint åbner kun et stillbillede og bevarer ingen animation.",
+      "candidate_value_sha256_utf8": "50aca45eedfb1bdd6a2f30d69d136e421b1b38f5e86a6a5bfbf406bc01ed38da",
+      "candidate_xml_text": "\"Dette %1$s-billede er for komplekst til at afgøre, om det indeholder flere enkeltbilleder. AN Paint åbner kun et stillbillede og bevarer ingen animation.\"",
+      "candidate_xml_text_sha256_utf8": "ec738855491f38fedabf054d16547e105879935c017b5077704403177bc282fb",
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:91"
+      ],
+      "source_semantic_notes": [
+        "frameCount < 2 means animation inspection uncertainty, not confirmed one-frame or absence of animation."
+      ],
+      "author_semantic_qualifications": [
+        "frameCount < 2 means animation inspection uncertainty, not confirmed one-frame or absence of animation."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "revise",
+      "accepted_display_text": "Dette %1$s-billede er så komplekst, at det ikke kan afgøres, om det indeholder flere enkeltbilleder. AN Paint åbner kun et stillbillede og bevarer ingen animation.",
+      "accepted_value_sha256_utf8": "098c18b1f643e070c02359afad813a1c833c050b4d24228da0c808485ef6bc45",
+      "accepted_xml_text": "\"Dette %1$s-billede er så komplekst, at det ikke kan afgøres, om det indeholder flere enkeltbilleder. AN Paint åbner kun et stillbillede og bevarer ingen animation.\"",
+      "accepted_xml_text_sha256_utf8": "357139525a11a24953b61aad042840e6f6e4131bba394bf9d808149340dc51e8",
+      "review_rationale": "Revise the dangling active infinitive er for komplekst til at afgøre: the image cannot itself decide. New passive clause explicitly retains inability to determine multiplicity due to complexity. Keeps uncertainty, %1$s, still-only opening and loss of all animation; does not turn unknown into confirmed single-frame.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "medium-high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/formats22_ascii_description",
+      "priority": "P0",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "source_value_sha256_utf8": "44c5d5c2026793b40fd98542d1fe9971caf159ce9cb7e78c1a4ef68051903ef0",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Skriver ren tekst med lyse og mørke tegn. Vis teksten med en skrifttype med fast tegnbredde. Dette er en visuel gengivelse; den kan ikke genåbnes som det oprindelige billede.",
+      "candidate_value_sha256_utf8": "b8355e2c703c0eed45b4b0619eadba2388b05ad81978666a5075d6390f92807a",
+      "candidate_xml_text": "\"Skriver ren tekst med lyse og mørke tegn. Vis teksten med en skrifttype med fast tegnbredde. Dette er en visuel gengivelse; den kan ikke genåbnes som det oprindelige billede.\"",
+      "candidate_xml_text_sha256_utf8": "3f1b5488de36186d7c57209f23f6c84cf6d90e37faa9bc537ee97fd713d759d2",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:101"
+      ],
+      "source_semantic_notes": [
+        "Visual text rendition cannot be reopened as the original image; not a reversible source or normal full-image Save."
+      ],
+      "author_semantic_qualifications": [
+        "Visual text rendition cannot be reopened as the original image; not a reversible source or normal full-image Save."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Skriver ren tekst med lyse og mørke tegn. Vis teksten med en skrifttype med fast tegnbredde. Dette er en visuel gengivelse; den kan ikke genåbnes som det oprindelige billede.",
+      "accepted_value_sha256_utf8": "b8355e2c703c0eed45b4b0619eadba2388b05ad81978666a5075d6390f92807a",
+      "accepted_xml_text": "\"Skriver ren tekst med lyse og mørke tegn. Vis teksten med en skrifttype med fast tegnbredde. Dette er en visuel gengivelse; den kan ikke genåbnes som det oprindelige billede.\"",
+      "accepted_xml_text_sha256_utf8": "3f1b5488de36186d7c57209f23f6c84cf6d90e37faa9bc537ee97fd713d759d2",
+      "review_rationale": "Ren tekst, light/dark characters, monospaced viewing instruction, visual rendition and inability to reopen as original image all retained. Pronoun den refers to rendition; no reversible full-image save claim.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/formats22_open_still",
+      "priority": "P0",
+      "source": "Open still image",
+      "source_value_sha256_utf8": "9070696db91c27f0f6e692b8da8db15207620e0c9c8ddb9a71aab12a0b747348",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Åbn stillbillede",
+      "candidate_value_sha256_utf8": "0d9ed1219b96cc635565e6ffdcdecae1dc2d99d1b26b89af6235d71d06d1c4e3",
+      "candidate_xml_text": "\"Åbn stillbillede\"",
+      "candidate_xml_text_sha256_utf8": "8f3ec631e81238f8cff77322e88b02b428e69b9306b9bd422127ab1382dae5cc",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:94",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:95"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Åbn stillbillede",
+      "accepted_value_sha256_utf8": "0d9ed1219b96cc635565e6ffdcdecae1dc2d99d1b26b89af6235d71d06d1c4e3",
+      "accepted_xml_text": "\"Åbn stillbillede\"",
+      "accepted_xml_text_sha256_utf8": "8f3ec631e81238f8cff77322e88b02b428e69b9306b9bd422127ab1382dae5cc",
+      "review_rationale": "Natural imperative consistent with Danish Åbn. Labels the affirmative action/title, with still-image distinction retained.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 2,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/formats22_pdf_raster_hint",
+      "priority": "P0",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "source_value_sha256_utf8": "c5b71186d8362c0a1afd4aae47b6dd053c88b309947d8dbbe0905de9af463973",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "PDF-sider rasteriseres med 144 dpi. Tekst og vektorobjekter bliver til pixels.",
+      "candidate_value_sha256_utf8": "dcdd78b0550e3ca2a5970ccb7046dff233f8499a3dbbd4a352999b9b20f431a0",
+      "candidate_xml_text": "\"PDF-sider rasteriseres med 144 dpi. Tekst og vektorobjekter bliver til pixels.\"",
+      "candidate_xml_text_sha256_utf8": "cd3d0f3af94b702fc49825da726f8fb55506c5bc06c54d13c7ad9c669da1883e",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt:102"
+      ],
+      "source_semantic_notes": [
+        "144 dpi is a fixed product claim; preserve rasterization of vector/text to pixels."
+      ],
+      "author_semantic_qualifications": [
+        "144 dpi is a fixed product claim; preserve rasterization of vector/text to pixels."
+      ],
+      "author_uncertainties": [
+        "Rasteriseres is a technical Danish wording choice; review the whole sentence, not only a dictionary term."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "PDF-sider rasteriseres med 144 dpi. Tekst og vektorobjekter bliver til pixels.",
+      "accepted_value_sha256_utf8": "dcdd78b0550e3ca2a5970ccb7046dff233f8499a3dbbd4a352999b9b20f431a0",
+      "accepted_xml_text": "\"PDF-sider rasteriseres med 144 dpi. Tekst og vektorobjekter bliver til pixels.\"",
+      "accepted_xml_text_sha256_utf8": "cd3d0f3af94b702fc49825da726f8fb55506c5bc06c54d13c7ad9c669da1883e",
+      "review_rationale": "Rasteriseres accurately makes pixel conversion explicit. Fixed 144 dpi and both text/vector objects retained; pixels matches existing catalogue wording.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/save20_gif_description",
+      "priority": "P0",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "source_value_sha256_utf8": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Stillbillede med op til 256 farver. Rastersimulering udjævner farveovergange. Animerede GIF-billeder åbnes som deres første enkeltbillede.",
+      "candidate_value_sha256_utf8": "bd58ad03ac034b458d8f360678e01fe2e68dc95bdf5c970448fd9b4d2286982e",
+      "candidate_xml_text": "\"Stillbillede med op til 256 farver. Rastersimulering udjævner farveovergange. Animerede GIF-billeder åbnes som deres første enkeltbillede.\"",
+      "candidate_xml_text_sha256_utf8": "9408b1eff56d0cad66e511b4ee6a450426c3ddb6b61d56382d3b19bfd6f0dfed",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:95"
+      ],
+      "source_semantic_notes": [
+        "Dithering is a new technical term here if no localized save20_dither exists. Preserve the existing mode label/fallback; first-frame import does not preserve animation."
+      ],
+      "author_semantic_qualifications": [
+        "Dithering is a new technical term here if no localized save20_dither exists. Preserve the existing mode label/fallback; first-frame import does not preserve animation.",
+        "Uses the existing exact Danish dithering label Rastersimulering; no neighboring label is changed."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Stillbillede med op til 256 farver. Rastersimulering udjævner farveovergange. Animerede GIF-billeder åbnes som deres første enkeltbillede.",
+      "accepted_value_sha256_utf8": "bd58ad03ac034b458d8f360678e01fe2e68dc95bdf5c970448fd9b4d2286982e",
+      "accepted_xml_text": "\"Stillbillede med op til 256 farver. Rastersimulering udjævner farveovergange. Animerede GIF-billeder åbnes som deres første enkeltbillede.\"",
+      "accepted_xml_text_sha256_utf8": "9408b1eff56d0cad66e511b4ee6a450426c3ddb6b61d56382d3b19bfd6f0dfed",
+      "review_rationale": "Still output, upper bound 256, smoothing by existing exact Rastersimulering terminology, and first-frame-only GIF opening retained. No animation-preservation claim.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/save20_invalid_name",
+      "priority": "P0",
+      "source": "Enter a file name without slashes or control characters.",
+      "source_value_sha256_utf8": "49763c043340e46bf90b239975c232bf6f008a3131a6e4a522ce693e67333e55",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Angiv et filnavn uden skråstreger eller kontroltegn.",
+      "candidate_value_sha256_utf8": "b38a8b9cc5b1bf282e10b1e79680de49745046f44826d895909c92a90f781d71",
+      "candidate_xml_text": "\"Angiv et filnavn uden skråstreger eller kontroltegn.\"",
+      "candidate_xml_text_sha256_utf8": "b6946bdcd9e8531d00bc77120c65213e383a02ba610421a75f254f023eb52e50",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:194"
+      ],
+      "source_semantic_notes": [
+        "Reject slash/control characters; not an assertion that all other names are accepted. Consumer retains ExportNames.valid logic."
+      ],
+      "author_semantic_qualifications": [
+        "Reject slash/control characters; not an assertion that all other names are accepted. Consumer retains ExportNames.valid logic."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Angiv et filnavn uden skråstreger eller kontroltegn.",
+      "accepted_value_sha256_utf8": "b38a8b9cc5b1bf282e10b1e79680de49745046f44826d895909c92a90f781d71",
+      "accepted_xml_text": "\"Angiv et filnavn uden skråstreger eller kontroltegn.\"",
+      "accepted_xml_text_sha256_utf8": "b6946bdcd9e8531d00bc77120c65213e383a02ba610421a75f254f023eb52e50",
+      "review_rationale": "Natural imperative Angiv; filnavn, skråstreger and kontroltegn preserve the stated validation condition. Does not promise every other name will pass ExportNames.valid.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/save20_lossy_quality_description",
+      "priority": "P0",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "source_value_sha256_utf8": "b8f1878a9f8136d1527fa01a685769eb1835ac81fa9b494aea39301999cd7e62",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Højere kvalitet bevarer flere detaljer og giver som regel en større fil.",
+      "candidate_value_sha256_utf8": "b87ca3adda45f564595c2c939b57c86695f91d3183d0dc535ee80bc075d30504",
+      "candidate_xml_text": "\"Højere kvalitet bevarer flere detaljer og giver som regel en større fil.\"",
+      "candidate_xml_text_sha256_utf8": "5717566bbe5dc144757e575fb509bd3188b9bf82a05fafe8d6b3da115cae7edd",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:102"
+      ],
+      "source_semantic_notes": [],
+      "author_semantic_qualifications": [],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Højere kvalitet bevarer flere detaljer og giver som regel en større fil.",
+      "accepted_value_sha256_utf8": "b87ca3adda45f564595c2c939b57c86695f91d3183d0dc535ee80bc075d30504",
+      "accepted_xml_text": "\"Højere kvalitet bevarer flere detaljer og giver som regel en større fil.\"",
+      "accepted_xml_text_sha256_utf8": "5717566bbe5dc144757e575fb509bd3188b9bf82a05fafe8d6b3da115cae7edd",
+      "review_rationale": "Both greater retained detail and usually larger file are retained. Som regel correctly avoids an absolute size guarantee.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/save20_unsupported_image_colour",
+      "priority": "P0",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "source_value_sha256_utf8": "f25851a3fdec260e147598a3d575f5ff34db8027ae518b056547239ed6d8f7fd",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Dette billede bruger en farveprofil, som AN Paint endnu ikke kan konvertere. Konvertér det til sRGB PNG i et billedredigeringsprogram med farvestyring, før du importerer det.",
+      "candidate_value_sha256_utf8": "3289dc08c241ef50e8902d1627101b41e3b89e5995131eef8c4adbb192f7d93e",
+      "candidate_xml_text": "\"Dette billede bruger en farveprofil, som AN Paint endnu ikke kan konvertere. Konvertér det til sRGB PNG i et billedredigeringsprogram med farvestyring, før du importerer det.\"",
+      "candidate_xml_text_sha256_utf8": "7d44d271276777063275a4192783c6ea308566882f653c6bbf37a4b6f17f6c7b",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:16",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:23",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt:115"
+      ],
+      "source_semantic_notes": [
+        "Cannot convert yet; recommend color-managed conversion to sRGB PNG. Do not imply relabelling or automatic AN Paint conversion."
+      ],
+      "author_semantic_qualifications": [
+        "Cannot convert yet; recommend color-managed conversion to sRGB PNG. Do not imply relabelling or automatic AN Paint conversion."
+      ],
+      "author_uncertainties": [
+        "Independent whole-value linguistic and composition review remains required; no native-human or runtime judgment is claimed."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Dette billede bruger en farveprofil, som AN Paint endnu ikke kan konvertere. Konvertér det til sRGB PNG i et billedredigeringsprogram med farvestyring, før du importerer det.",
+      "accepted_value_sha256_utf8": "3289dc08c241ef50e8902d1627101b41e3b89e5995131eef8c4adbb192f7d93e",
+      "accepted_xml_text": "\"Dette billede bruger en farveprofil, som AN Paint endnu ikke kan konvertere. Konvertér det til sRGB PNG i et billedredigeringsprogram med farvestyring, før du importerer det.\"",
+      "accepted_xml_text_sha256_utf8": "7d44d271276777063275a4192783c6ea308566882f653c6bbf37a4b6f17f6c7b",
+      "review_rationale": "Current unsupported conversion is not permanent or universally impossible: endnu retained. User is told to convert image, not merely relabel profile, using color-managed external editor before import. sRGB PNG identity retained.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 3,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "priority": "P0",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "source_value_sha256_utf8": "f659489b67bd13547b4a971f84f2f47e96c4e3f0519fa081e049d43a7f752077",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "current_target": null,
+      "absence_is_defect": false,
+      "candidate_display_text": "Højere kvalitet giver som regel en større fil. Tabsfri komprimering bevarer alle farveværdier.",
+      "candidate_value_sha256_utf8": "8a87b77ec95f80a2214e33a0d3e1e91e981bd0948d5a57ab830a39b963dbab53",
+      "candidate_xml_text": "\"Højere kvalitet giver som regel en større fil. Tabsfri komprimering bevarer alle farveværdier.\"",
+      "candidate_xml_text_sha256_utf8": "962a886be75c6796c833b8d9e59c072637775705dc6e9719d2078bda7f6b6147",
+      "placeholder_tokens": [],
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt:103"
+      ],
+      "source_semantic_notes": [
+        "Lossless is a compression mode and retains every color value. Existing mode labels can remain English fallback; candidate is explanation only."
+      ],
+      "author_semantic_qualifications": [
+        "Lossless is a compression mode and retains every color value. Existing mode labels can remain English fallback; candidate is explanation only.",
+        "Tabsfri komprimering describes the mode, not a claim that an untouched mode control is now labelled in Danish."
+      ],
+      "author_uncertainties": [
+        "Review tabsfri komprimering against the existing untouched control label and the exact colour-value preservation claim."
+      ],
+      "author_confidence": "medium-high for bounded source meaning; independent review pending",
+      "independent_review_status": "reviewed",
+      "verdict": "accept",
+      "accepted_display_text": "Højere kvalitet giver som regel en større fil. Tabsfri komprimering bevarer alle farveværdier.",
+      "accepted_value_sha256_utf8": "8a87b77ec95f80a2214e33a0d3e1e91e981bd0948d5a57ab830a39b963dbab53",
+      "accepted_xml_text": "\"Højere kvalitet giver som regel en større fil. Tabsfri komprimering bevarer alle farveværdier.\"",
+      "accepted_xml_text_sha256_utf8": "962a886be75c6796c833b8d9e59c072637775705dc6e9719d2078bda7f6b6147",
+      "review_rationale": "Usually larger file remains qualified; tabsfri komprimering explains Lossless mode without modifying its actual inherited label. Alle farveværdier preserves every colour value, not only visual similarity.",
+      "attributes_preserved": true,
+      "placeholder_tokens_preserved": true,
+      "canonical_source_and_missing_target_verified": true,
+      "consumer_windows_byte_verified": 1,
+      "confidence": "high for bounded linguistic/static semantics",
+      "limits": [
+        "Independent model linguistic/static review only; not native-human, runtime, device, layout or whole-language acceptance."
+      ]
+    }
+  ]
+}

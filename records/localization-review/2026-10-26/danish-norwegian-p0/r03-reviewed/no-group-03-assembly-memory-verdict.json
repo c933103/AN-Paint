@@ -1,0 +1,673 @@
+{
+  "schema_version": 1,
+  "record_kind": "independent per-value Norwegian linguistic/source-static review",
+  "reviewer": "independent AI linguistic/source-static reviewer",
+  "locale": "no",
+  "locale_identity_policy": "Existing no catalogue remains Bokmål-worded and is not renamed or retagged.",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "group": 3,
+  "group_name": "assembly-memory",
+  "packet": "no-group-03-assembly-memory-candidates.json",
+  "packet_sha256": "a61cadd43455a4157e7e3ea973096f2f82f98dc39c510ca58aea8ae846ca1e6c",
+  "reviewed_count": 16,
+  "verdict_counts": {
+    "accept": 16,
+    "revise": 0,
+    "hold": 0
+  },
+  "source_verification": {
+    "shared_context_sha256": "2c486912d65af03dae2bb6976e17cacf0904d31a1132fa025e10edcb0b881baf",
+    "terminology_sha256": "965bd3ac55fe64b09a66749a7b022b2e6c0abc48f5f7438c8daf9f639b2e7bb5",
+    "all_323_source_bindings_sha256_git_blob_sha1_and_byte_size_verified": true,
+    "all_shared_consumer_excerpt_lines_match_local_files": true,
+    "pinned_no_catalogue_sha256": "80e1b2262471247c7990671c0a8f3a794c69962f1b13f9e5b830646c7b098326",
+    "all_115_prior_values_and_attributes_match_foundation": true,
+    "source_identity_limit": "Local snapshot has no .git; 323 supplied source-to-commit bindings were byte/hash verified, not independently resolved from a remote commit graph."
+  },
+  "scope_guards": {
+    "existing_values_unchanged": 115,
+    "source_or_external_mutations": false,
+    "held_missing_identities": [
+      "string/formats22_derived_exported",
+      "string/ui_save_as",
+      "string/ui_save_as_jpeg",
+      "string/ui_save_as_jpeg_xl",
+      "string/ui_save_as_png"
+    ],
+    "p1_companion_and_frozen_history_unchanged": true,
+    "inherited_labels_and_actual_fallbacks_unchanged": true,
+    "other_pauses_unchanged": [
+      "five Nynorsk absent identities",
+      "PR56 never-merge",
+      "PR159 freeze",
+      "PR113 hold/retarget",
+      "Help callback/archive identity",
+      "interrupted report archive",
+      "release pause"
+    ]
+  },
+  "primary_terminology_support": [
+    {
+      "title": "Sony Norwegian MHC-V73D Help Guide, page 37",
+      "url": "https://helpguide.sony.net/has/mhc-v73d/v1/no/print.pdf",
+      "support": "Norwegian primary vendor usage of bilderute for an individual video frame; supports terminology only, not AN Paint acceptance."
+    },
+    {
+      "title": "Bokmålsordboka: gjenopprette",
+      "url": "https://ordbokene.no/nno/bm/%C3%A5%20gjenopprette",
+      "support": "Official Bokmål dictionary meaning of returning something to its previous state, with document-restoration example; supports the root, not certification of every new compound."
+    },
+    {
+      "title": "Bokmålsordboka: mellomlager",
+      "url": "https://ordbokene.no/bm/126409",
+      "support": "Official dictionary search result defines computing cache and supplies neuter inflection. Direct open returned cache miss; indexed primary-source text was available."
+    },
+    {
+      "title": "Microsoft Support: File formats supported in PowerPoint (Norwegian)",
+      "url": "https://support.microsoft.com/nb-no/powerpoint/file-formats-that-are-supported-in-powerpoint",
+      "support": "Primary vendor Norwegian usage describes punktgrafikk as a pixel-row/column image representation in memory; terminology support only."
+    },
+    {
+      "title": "University of Oslo: Euclids første bilder",
+      "url": "https://www.mn.uio.no/astro/forskning/aktuelt/aktuelle-saker/2023/euclids-forste-bilder-den-glimrende-kanten-av-mork.html",
+      "support": "Primary institutional usage of Bildekreditering includes organizations, named processing contributors and a licence, supporting a non-financial attribution sense broader than author names."
+    },
+    {
+      "title": "Bokmålsordboka: kreditere",
+      "url": "https://ordbokene.no/bm/31995",
+      "support": "Official Bokmål dictionary independently recognizes the give-credit/recognition sense as distinct from accounting. Compound choice and complete UI wording remain reviewer judgment."
+    }
+  ],
+  "acceptance_boundary": "Accept means only the exact value and supplied static consumer composition pass this bounded independent AI review. It is not native-human, Android/device/runtime/layout, whole-locale, or release acceptance. No acceptance is imported from Danish or Nynorsk.",
+  "verdicts": [
+    {
+      "identity": "string/ui_an_assembly_source_image_is_missing",
+      "source": "An assembly source image is missing.",
+      "source_value_sha256_utf8": "03cf15a2a8c5dc8bef80963ac8b5b4ba7cafb00edab05c3d7862d5d02a33723f",
+      "candidate_display_text": "Et kildebilde i bildesammensetningen mangler.",
+      "candidate_value_sha256_utf8": "b3af9ade3c35e7796eb4567bdc39df2f4a0997f6f2a3f4f9c4c9032693a096fd",
+      "verdict": "accept",
+      "accepted_display_text": "Et kildebilde i bildesammensetningen mangler.",
+      "accepted_value_sha256_utf8": "b3af9ade3c35e7796eb4567bdc39df2f4a0997f6f2a3f4f9c4c9032693a096fd",
+      "accepted_xml_text": "\"Et kildebilde i bildesammensetningen mangler.\"",
+      "accepted_xml_text_sha256_utf8": "9e834fe222d2af524c6d073390695c796275714bd1e3ab69e3969ff0dc4dad33",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Kildebilde in the bildesammensetning names the missing saved input, not the composed output. New compound is idiomatic descriptive feature vocabulary and is consistent throughout this group.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:262"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Source image file in saved assembly metadata missing, not necessarily the rendered output image."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_assembly_saved",
+      "source": "Assembly saved",
+      "source_value_sha256_utf8": "766dc3e6dbd1b817e2d2c2615c6a53a9b8c306e768f44a5931525c836ec27d37",
+      "candidate_display_text": "Bildesammensetning lagret",
+      "candidate_value_sha256_utf8": "7f2ef78914b52020bde30fe7ff6bd6c75ddc5aa9209e3edaf007ce6f9d4d5dc6",
+      "verdict": "accept",
+      "accepted_display_text": "Bildesammensetning lagret",
+      "accepted_value_sha256_utf8": "7f2ef78914b52020bde30fe7ff6bd6c75ddc5aa9209e3edaf007ce6f9d4d5dc6",
+      "accepted_xml_text": "\"Bildesammensetning lagret\"",
+      "accepted_xml_text_sha256_utf8": "a57070ab009f2c9271216408bd3e1c71463e2cc8114711db221db49a6736dfc4",
+      "attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Brief output-save success status preserves the assembly object. In its consumer it follows successful PNG-byte copying, not a separate editor Save-target update or a new editable interchange format.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:342"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "After assembled PNG bytes are written to chosen URI. Do not infer an editable assembly interchange format or a Save-target update for the separate drawing editor."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_assembly_source_memory_floor",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "source_value_sha256_utf8": "8cc1742ca542a2f5fd7e926369c71a75d1d05686705727e80beaa504a995d5f4",
+      "candidate_display_text": "Denne bildesammensetningen anslås å kreve mer enn den gjeldende grensen for arbeidsminne tillater, selv med den minste utdatastørrelsen. Under gjeldende begrensninger er det ikke nok å redusere målene på bildesammensetningen alene. Lukk andre dokumenter eller klargjør et mindre kildebilde før du prøver igjen. Bildesammensetningen er uendret.",
+      "candidate_value_sha256_utf8": "91382b551f27751c67c934bbe7f62b71afafd7b827a71dc5f79d0ff3d3ac95af",
+      "verdict": "accept",
+      "accepted_display_text": "Denne bildesammensetningen anslås å kreve mer enn den gjeldende grensen for arbeidsminne tillater, selv med den minste utdatastørrelsen. Under gjeldende begrensninger er det ikke nok å redusere målene på bildesammensetningen alene. Lukk andre dokumenter eller klargjør et mindre kildebilde før du prøver igjen. Bildesammensetningen er uendret.",
+      "accepted_value_sha256_utf8": "91382b551f27751c67c934bbe7f62b71afafd7b827a71dc5f79d0ff3d3ac95af",
+      "accepted_xml_text": "\"Denne bildesammensetningen anslås å kreve mer enn den gjeldende grensen for arbeidsminne tillater, selv med den minste utdatastørrelsen. Under gjeldende begrensninger er det ikke nok å redusere målene på bildesammensetningen alene. Lukk andre dokumenter eller klargjør et mindre kildebilde før du prøver igjen. Bildesammensetningen er uendret.\"",
+      "accepted_xml_text_sha256_utf8": "c0d976ab449935d5f15c1c35be8b37652d7505f0bfd410279ad4e947db01bdb0",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Every clause was checked independently: anslås retains estimation; gjeldende arbeidsminne retains the current RAM-derived budget rather than storage; even smallest output remains; dimensions alone insufficient is explicitly scoped to current limits; both alternatives remain; unchanged assembly remains. No decoder-only or universal-impossibility claim is introduced. Long technical prose is grammatically coherent, but actual layout remains untested. P0-only review does not accept or translate the P1 companion.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:300"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Corrected canonical semantics: estimated combined assembly peak, current working-memory limits, even smallest output, dimensions alone insufficient, alternatives close other documents or prepare smaller source, assembly unchanged. Not a decoder-only or universal impossibility claim.",
+        "Implementation dependency: existing memory-warning-successor tests account for paired P0/P1 locale scopes. This packet proposes only this P0 whole value; the P1 ui_no_resize_fits_decoder_memory remains absent and unreviewed. Do not silently expand to P1, rewrite the frozen historical queue, or claim both warnings accepted. A narrow test/receipt design must preserve that distinction before implementation."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_clear_all",
+      "source": "Clear all",
+      "source_value_sha256_utf8": "29a390f9237e3c84e5641785eca25199620e53f7b6f4b9d843b23dcb5c12904f",
+      "candidate_display_text": "Tøm alt",
+      "candidate_value_sha256_utf8": "463a6e3e51a026b5a529bb783a5e0a1db7e775f890b9707d2292d317ec264269",
+      "verdict": "accept",
+      "accepted_display_text": "Tøm alt",
+      "accepted_value_sha256_utf8": "463a6e3e51a026b5a529bb783a5e0a1db7e775f890b9707d2292d317ec264269",
+      "accepted_xml_text": "\"Tøm alt\"",
+      "accepted_xml_text_sha256_utf8": "53018aa39864524a5fb452336b9119ad0f328263bcd953319273dfae80e43dfe",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Tøm alt denotes clearing the whole assembly collection, not one selected image; short action wording is suitable to the toolbar consumer.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:101"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Assembly toolbar calls assembly.clear(); this is not clearing one selected image."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_clear_image",
+      "source": "Clear image",
+      "source_value_sha256_utf8": "20231a4032390f0886c87b9f301481ac336659f40d9ab50981fa1039663b6afc",
+      "candidate_display_text": "Tøm bilde",
+      "candidate_value_sha256_utf8": "484db1ca26171b0bfb9ec5bba17acac8f84741f3b2d0741e8a45144218bc0e89",
+      "verdict": "accept",
+      "accepted_display_text": "Tøm bilde",
+      "accepted_value_sha256_utf8": "484db1ca26171b0bfb9ec5bba17acac8f84741f3b2d0741e8a45144218bc0e89",
+      "accepted_xml_text": "\"Tøm bilde\"",
+      "accepted_xml_text_sha256_utf8": "a84637e4c8966eaf575ef787bb8db5b085ef0aac6aa506bcea7e8cc08bd83f4c",
+      "attributes": {
+        "name": "ui_clear_image"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Tøm bilde denotes clearing the drawing image contents and stays distinct from assembly Tøm alt; it does not instruct deleting the source file.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:859"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Drawing Edit action applies pending edits then document.clear(). Do not conflate with assembly Clear all."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_save_the_assembly",
+      "source": "Could not save the assembly: %1$s",
+      "source_value_sha256_utf8": "d23570f6a13edc7bc9f443628c6fe0a00f889d71e6d24135122cd5dc4ad6614a",
+      "candidate_display_text": "Kunne ikke lagre bildesammensetningen: %1$s",
+      "candidate_value_sha256_utf8": "e549aa24cba1740c89fc9853c561a59baacd1f92dbc79c2af950e38d62477755",
+      "verdict": "accept",
+      "accepted_display_text": "Kunne ikke lagre bildesammensetningen: %1$s",
+      "accepted_value_sha256_utf8": "e549aa24cba1740c89fc9853c561a59baacd1f92dbc79c2af950e38d62477755",
+      "accepted_xml_text": "\"Kunne ikke lagre bildesammensetningen: %1$s\"",
+      "accepted_xml_text_sha256_utf8": "130ea3912e00b1d8d70b1ebc4ed7dede44390eb7557a31e96caaee19cddd7909",
+      "attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "reviewer_rationale": "Failure to save the composed output is retained, with colon and original string-valued error detail. Bildesammensetningen matches all other assembly messages.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:343"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Output URI save failure; %1$s is the original exception message, potentially untranslated."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_could_not_store_the_assembly",
+      "source": "Could not store the assembly.",
+      "source_value_sha256_utf8": "8896816c5ab28f698bf634e2b040419b89f9771e16f482d9684c3170e688d859",
+      "candidate_display_text": "Kunne ikke lagre bildesammensetningen.",
+      "candidate_value_sha256_utf8": "47d24f99570e43d44f54a034d89009a7bce7b290de2c23500f01cfda1a165e10",
+      "verdict": "accept",
+      "accepted_display_text": "Kunne ikke lagre bildesammensetningen.",
+      "accepted_value_sha256_utf8": "47d24f99570e43d44f54a034d89009a7bce7b290de2c23500f01cfda1a165e10",
+      "accepted_xml_text": "\"Kunne ikke lagre bildesammensetningen.\"",
+      "accepted_xml_text_sha256_utf8": "6b28144b59caebe1932f5899957f699da39453695049396db362e46d5d25534d",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "General failed-storage wording remains general for the internal assembly-add/storage failure. Norwegian lagre naturally covers both store and save without claiming the same consumer flow.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:229"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "source_value_sha256_utf8": "dcdd3aa9015cb728f6695ffac6100c85790b70563ddea87c0d568f1afc15b6b3",
+      "candidate_display_text": "%1$d × %2$d piksler (%3$.2f MP) overskrider den gjeldende grensen for trygg redigering på %4$.2f MP. AN Paint holder hele bildet i minnet og reserverer plass til transformasjoner og utvalg. Tilgjengelig minne avgjør denne grensen. Operasjonen ble stoppet før det ble tildelt minne til det for store punktgrafikkbildet. Ingen automatisk skalering ble utført.",
+      "candidate_value_sha256_utf8": "c8a6462bc5763d22155fb21063ca1d64296e24e24552a38ebd2ecb9ec00b2843",
+      "verdict": "accept",
+      "accepted_display_text": "%1$d × %2$d piksler (%3$.2f MP) overskrider den gjeldende grensen for trygg redigering på %4$.2f MP. AN Paint holder hele bildet i minnet og reserverer plass til transformasjoner og utvalg. Tilgjengelig minne avgjør denne grensen. Operasjonen ble stoppet før det ble tildelt minne til det for store punktgrafikkbildet. Ingen automatisk skalering ble utført.",
+      "accepted_value_sha256_utf8": "c8a6462bc5763d22155fb21063ca1d64296e24e24552a38ebd2ecb9ec00b2843",
+      "accepted_xml_text": "\"%1$d × %2$d piksler (%3$.2f MP) overskrider den gjeldende grensen for trygg redigering på %4$.2f MP. AN Paint holder hele bildet i minnet og reserverer plass til transformasjoner og utvalg. Tilgjengelig minne avgjør denne grensen. Operasjonen ble stoppet før det ble tildelt minne til det for store punktgrafikkbildet. Ingen automatisk skalering ble utført.\"",
+      "accepted_xml_text_sha256_utf8": "66300174535205f0c14a78f880f2a3d1d1c195a85bfbaf15c09859d3336dd74b",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "placeholder_tokens": [
+        "%1$d",
+        "%2$d",
+        "%3$.2f",
+        "%4$.2f"
+      ],
+      "reviewer_rationale": "All six propositions and four numeric tokens were checked: dimensions and image MP; current safe editing MP budget; whole image retained in memory; transforms and selection reserves; budget determined by available memory; oversized bitmap allocation prevented and no automatic resize. Punktgrafikkbildet denotes the in-memory bitmap rather than a disk-format conversion. No universal future memory guarantee is added.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt:46"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "ImageMemoryPolicy uses width, height, image megapixels and permitted megapixels in exactly that token order. Preserve × and both %.2f precisions.",
+        "Admission budget depends on available memory; original operation stopped before allocating oversized bitmap; no automatic resize. Not a guarantee against every later allocation failure."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "source_value_sha256_utf8": "4d6da1792a4751708d0bb36eda8365c72b66b1a2b2db70c77cdc4c48486634dc",
+      "candidate_display_text": "Beholder pikslene øverst til venstre. Mindre lerretsmål forkaster pikslene utenfor høyre og nedre kant; Angre gjenoppretter dem.",
+      "candidate_value_sha256_utf8": "e95b709e9c372a45a2e1e2dd12a777410e9f33b20b0921bf89b4cca956a558c6",
+      "verdict": "accept",
+      "accepted_display_text": "Beholder pikslene øverst til venstre. Mindre lerretsmål forkaster pikslene utenfor høyre og nedre kant; Angre gjenoppretter dem.",
+      "accepted_value_sha256_utf8": "e95b709e9c372a45a2e1e2dd12a777410e9f33b20b0921bf89b4cca956a558c6",
+      "accepted_xml_text": "\"Beholder pikslene øverst til venstre. Mindre lerretsmål forkaster pikslene utenfor høyre og nedre kant; Angre gjenoppretter dem.\"",
+      "accepted_xml_text_sha256_utf8": "d72c83544b225fe520f97460c319f840fef1ebdfa72dcc3efde45ac0930aef7d",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Top-left anchoring, loss beyond the right/bottom canvas boundaries on smaller dimensions, and restoration by the actual Angre command are retained. Lerretsmål is dimensional, not a scaled copy; coordinated right and lower edges describes the two clipping boundaries.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1016"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Use existing undo label Fortryd for Danish / Angre for Norwegian. Canvas dimensions, not image scaling."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_not_enough_memory_for_this_operation_the_assembly",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "source_value_sha256_utf8": "cba5063c6a726597187fc64fc75c20c2f858db585fd5f89d691420f5eaa55534",
+      "candidate_display_text": "Det er ikke nok minne til denne operasjonen. Kildefilene til bildesammensetningen er bevart.",
+      "candidate_value_sha256_utf8": "3d56cc800d066866b294312a8e58bdbf63b2886e7016ec2846f89918bcc84f06",
+      "verdict": "accept",
+      "accepted_display_text": "Det er ikke nok minne til denne operasjonen. Kildefilene til bildesammensetningen er bevart.",
+      "accepted_value_sha256_utf8": "3d56cc800d066866b294312a8e58bdbf63b2886e7016ec2846f89918bcc84f06",
+      "accepted_xml_text": "\"Det er ikke nok minne til denne operasjonen. Kildefilene til bildesammensetningen er bevart.\"",
+      "accepted_xml_text_sha256_utf8": "6373e8a34fb0456b79ea36b5f7d86aabc02bae066386129a3bddb466863203e0",
+      "attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "The operation lacks RAM while the assembly source files remain retained; no success, output-save, or claim of unchanged transient editing state is added.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:117",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:294"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Assembly OutOfMemoryError branch retains source files; do not claim the operation succeeded or output was saved."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_resize_large_image",
+      "source": "Resize large image?",
+      "source_value_sha256_utf8": "f037d36a47f4f0df7ac2da56fe4351da145993413a10d3518211e6bcac613a83",
+      "candidate_display_text": "Skaler stort bilde?",
+      "candidate_value_sha256_utf8": "ea91039733564cce6e0c46712a77743bf0c4c1b252a85b03ad566741846c0b70",
+      "verdict": "accept",
+      "accepted_display_text": "Skaler stort bilde?",
+      "accepted_value_sha256_utf8": "ea91039733564cce6e0c46712a77743bf0c4c1b252a85b03ad566741846c0b70",
+      "accepted_xml_text": "\"Skaler stort bilde?\"",
+      "accepted_xml_text_sha256_utf8": "c836ab65e9b9d7489ed94184e62d7fe5120de515ce358436c6dc240283e6a969",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Skaler matches the inherited Skaler bilde action vocabulary. Question form is retained for the opt-in resizing dialog.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:36"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Existing Danish image resize label must be checked in foundation; Norwegian uses Skaler bilde…. Preserve action terminology without changing neighboring resources."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_sampled_resize_memory_explanation",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "source_value_sha256_utf8": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+      "candidate_display_text": "Anslagene omfatter gjeldende lerret og utklippstavle, dekoding med redusert oppløsning og buffere for redigering. Faktisk minnebruk varierer. En mindre kopi mister detaljer. Originalfilen forblir uendret.",
+      "candidate_value_sha256_utf8": "0c37fe12f12719f5c883b794b2177bc33504fe98c2aa4802c13b43218a4e4d7c",
+      "verdict": "accept",
+      "accepted_display_text": "Anslagene omfatter gjeldende lerret og utklippstavle, dekoding med redusert oppløsning og buffere for redigering. Faktisk minnebruk varierer. En mindre kopi mister detaljer. Originalfilen forblir uendret.",
+      "accepted_value_sha256_utf8": "0c37fe12f12719f5c883b794b2177bc33504fe98c2aa4802c13b43218a4e4d7c",
+      "accepted_xml_text": "\"Anslagene omfatter gjeldende lerret og utklippstavle, dekoding med redusert oppløsning og buffere for redigering. Faktisk minnebruk varierer. En mindre kopi mister detaljer. Originalfilen forblir uendret.\"",
+      "accepted_xml_text_sha256_utf8": "1d4bf6f83ae7a782ca9c77f6afff8c598f9baf1b165436d71181df64859e7ae6",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Full estimate scope retains current canvas and clipboard, reduced-resolution decoding, and editing buffers. Actual-use variability, detail loss in a smaller copy, and unchanged original file are all explicit. Dekoding med redusert oppløsning is an intelligible description of sampled decode in this non-native-work branch; the other codec-specific fallback is not silently translated.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt:34"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Used only when memoryRequirements.hasNativeWork is false. Other codec/native-memory explanation is untouched English fallback.",
+        "Sampled decoding is proposed as decoding at reduced resolution. Reviewer must judge this full technical description rather than importing acceptance from a dictionary term."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_save_png",
+      "source": "Save PNG",
+      "source_value_sha256_utf8": "f38f79763d122bfa76922a03b3f04d653847e220238e71704c9a245c59e21e7c",
+      "candidate_display_text": "Lagre PNG",
+      "candidate_value_sha256_utf8": "dfdd56bd183c4f47a11f4554fffcad2b224c509ee467b25538718207f0d36b1e",
+      "verdict": "accept",
+      "accepted_display_text": "Lagre PNG",
+      "accepted_value_sha256_utf8": "dfdd56bd183c4f47a11f4554fffcad2b224c509ee467b25538718207f0d36b1e",
+      "accepted_xml_text": "\"Lagre PNG\"",
+      "accepted_xml_text_sha256_utf8": "e7ec61560779259966e3f8baa4a9b9694fa87f18528ea3499e6a2bbda92a68d1",
+      "attributes": {
+        "name": "ui_save_png"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Matches inherited Lagre and literal PNG and appropriately identifies the assembly PNG-output action, without redefining drawing Save.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:88"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Assembly output button writes PNG; it does not alter the drawing editor’s Save destination."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_the_saved_assembly_could_not_be_opened",
+      "source": "The saved assembly could not be opened: %1$s",
+      "source_value_sha256_utf8": "2a936511bfc752ebf7f24e635feaa6de5f2e041c23ae4ab6c0b4237966628113",
+      "candidate_display_text": "Den lagrede bildesammensetningen kunne ikke åpnes: %1$s",
+      "candidate_value_sha256_utf8": "400cd94f2a6e0c5b8f32a3d8f40369a870996d514dd6d21c601d30e7627004f0",
+      "verdict": "accept",
+      "accepted_display_text": "Den lagrede bildesammensetningen kunne ikke åpnes: %1$s",
+      "accepted_value_sha256_utf8": "400cd94f2a6e0c5b8f32a3d8f40369a870996d514dd6d21c601d30e7627004f0",
+      "accepted_xml_text": "\"Den lagrede bildesammensetningen kunne ikke åpnes: %1$s\"",
+      "accepted_xml_text_sha256_utf8": "4a2840540934934eb92aba9b198e45b2763df5c36f51365da726e39b98207cbb",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "placeholder_tokens": [
+        "%1$s"
+      ],
+      "reviewer_rationale": "Retains failure to reopen internally stored assembly state plus unmodified exception placeholder. Does not imply its rendered output file necessarily failed.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:60"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Restoring internally saved assembly metadata failed; %1$s is exception detail."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_the_trim_would_remove_the_entire_image",
+      "source": "The trim would remove the entire image.",
+      "source_value_sha256_utf8": "21b8edd92e5c183515dcb267c2cddceebc4eb5b02e1d053d952cec2d818ad4ca",
+      "candidate_display_text": "Beskjæringen ville fjerne hele bildet.",
+      "candidate_value_sha256_utf8": "705b30a03cd52f9979d02ad41f4cea6dc7211e43b0ada37b33f05188cba88010",
+      "verdict": "accept",
+      "accepted_display_text": "Beskjæringen ville fjerne hele bildet.",
+      "accepted_value_sha256_utf8": "705b30a03cd52f9979d02ad41f4cea6dc7211e43b0ada37b33f05188cba88010",
+      "accepted_xml_text": "\"Beskjæringen ville fjerne hele bildet.\"",
+      "accepted_xml_text_sha256_utf8": "785f31253a919c9e91a22fa057f72e6095cde136f6c9e96ea261cafce26fa44a",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "Beskjæringen follows inherited crop terminology; ville preserves the rejected hypothetical outcome, not an assertion the whole image has already been removed.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt:49"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Precondition rejects crop bounds with zero width or height; hypothetical destructive result, not already removed."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    },
+    {
+      "identity": "string/ui_there_is_not_enough_memory_for_this_operation",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "source_value_sha256_utf8": "f481ea6d7fb74a1dcf1f376c05c084d9283ccb7e0860c392cd1294bfcb0e1520",
+      "candidate_display_text": "Det er ikke nok minne til denne operasjonen med den opprinnelige oppløsningen. Ingen automatisk skalering ble utført.",
+      "candidate_value_sha256_utf8": "94eeb0c87eb4441cfd70b8172b8617d441570d4114a576a5ff274ae34ff72169",
+      "verdict": "accept",
+      "accepted_display_text": "Det er ikke nok minne til denne operasjonen med den opprinnelige oppløsningen. Ingen automatisk skalering ble utført.",
+      "accepted_value_sha256_utf8": "94eeb0c87eb4441cfd70b8172b8617d441570d4114a576a5ff274ae34ff72169",
+      "accepted_xml_text": "\"Det er ikke nok minne til denne operasjonen med den opprinnelige oppløsningen. Ingen automatisk skalering ble utført.\"",
+      "accepted_xml_text_sha256_utf8": "e5a8014ce93a153123ffaf887284ea62cb25e0b6b5b22ae7db8fec1ddaff70c6",
+      "attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "placeholder_tokens": [],
+      "reviewer_rationale": "RAM insufficiency is scoped to this operation at original resolution, followed by explicit denial of automatic scaling. No disk-storage diagnosis or automatic fallback is introduced.",
+      "consumer_context_ids_reviewed": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:938"
+      ],
+      "structural_checks": {
+        "canonical_source_and_attributes_match": true,
+        "candidate_and_source_hashes_match": true,
+        "missing_in_pinned_no_catalogue": true,
+        "placeholder_tokens_and_order_match": true,
+        "xml_parse_and_display_roundtrip": true,
+        "consumer_contexts_match_pinned_bytes": true
+      },
+      "semantic_qualifications": [
+        "Drawing edit OOM fallback at original resolution, explicitly no automatic resize."
+      ],
+      "confidence": "medium-high; independent AI linguistic and source-static judgment, not native-human or runtime acceptance",
+      "remaining_limits": [
+        "No native-human linguistic acceptance.",
+        "No Android execution, layout, accessibility, device or runtime acceptance."
+      ]
+    }
+  ]
+}

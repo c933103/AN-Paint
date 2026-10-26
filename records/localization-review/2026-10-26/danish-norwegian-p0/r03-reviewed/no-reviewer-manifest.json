@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "locale": "no",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "reviewed": 78,
+  "verdict_counts": {
+    "accept": 77,
+    "revise": 1,
+    "hold": 0
+  },
+  "groups": [
+    {
+      "group": 1,
+      "verdict_counts": {
+        "accept": 13,
+        "revise": 0,
+        "hold": 0
+      },
+      "file": "no-group-01-import-format-verdict.json",
+      "original_review_sha256": "046b793029734f96040a39bb7681c1904291afd3b9485f064f60c25f7dff0065"
+    },
+    {
+      "group": 2,
+      "verdict_counts": {
+        "accept": 28,
+        "revise": 0,
+        "hold": 0
+      },
+      "file": "no-group-02-recovery-verdict.json",
+      "original_review_sha256": "7c994d9ff7439f9169649d3b3bfbba5c6ed1bb912ad030fc7166879ea9c91025"
+    },
+    {
+      "group": 3,
+      "verdict_counts": {
+        "accept": 16,
+        "revise": 0,
+        "hold": 0
+      },
+      "file": "no-group-03-assembly-memory-verdict.json",
+      "original_review_sha256": "51605eb7472cc1755a46ff5fa62f5c3403d673958f296b642035b9cfa7ec1acc"
+    },
+    {
+      "group": 4,
+      "verdict_counts": {
+        "accept": 20,
+        "revise": 1,
+        "hold": 0
+      },
+      "file": "no-group-04-save-share-credit-verdict.json",
+      "original_review_sha256": "e6c283704921aae9baf2f0689477603f62005216b0f155b8429488c565623a58"
+    }
+  ],
+  "required_revisions": [
+    {
+      "identity": "string/ui_the_image_was_saved_but_android_could_not",
+      "author_candidate": "Bildet ble lagret, men Android kunne ikke åpne deling: %1$s",
+      "exact_reviewed_replacement": "Bildet ble lagret, men Android kunne ikke åpne delingsdialogen: %1$s",
+      "accepted_value_sha256_utf8": "f4e11bab77419af1aa85555eadd3830c28626bd4e824e5de7e5ee56d2810e3f0",
+      "attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "reason": "Revise the calqued åpne deling to idiomatic åpne delingsdialogen. The pinned consumer calls startActivity(Intent.createChooser(...)); naming that dialog accurately expresses the failed sharing-launch outcome without implying attempted recipient delivery. Successful image writing, Android failure and the original %1$s exception detail all remain."
+    }
+  ],
+  "final_cross_group_checks": {
+    "all_78_unique_shared_candidate_identities_covered_once": true,
+    "all_323_source_file_sha256_unchanged": true,
+    "all_prior_115_values_checked_against_foundation": true,
+    "p1_companion_remains_absent": true,
+    "actual_count_and_load_image_fallbacks_remain_absent_in_no": true,
+    "inherited_save_cancel_menu_and_format_labels_unchanged": true,
+    "held_identity_current_direct_R_string_or_XML_alias_hits": {
+      "string/formats22_derived_exported": [],
+      "string/ui_save_as": [],
+      "string/ui_save_as_jpeg": [],
+      "string/ui_save_as_jpeg_xl": [],
+      "string/ui_save_as_png": []
+    }
+  },
+  "acceptance_boundary": "Independent AI whole-value linguistic and source-static review only. Not native-human, device, Android/runtime, layout, accessibility, whole-locale or release acceptance. No external/source mutation performed. Exact source bindings are verified against supplied hashes; local snapshot has no .git for independent commit-graph proof.",
+  "hash_scope_note": "Group hashes identify original reviewer receipts; public export byte identities and unchanged verdict proof are in review-receipt-bindings.json."
+}

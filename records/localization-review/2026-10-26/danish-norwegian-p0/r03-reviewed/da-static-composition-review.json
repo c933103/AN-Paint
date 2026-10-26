@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "record_kind": "static synthetic composition checks, not runtime/device evidence",
+  "source_commit": "df9bc04b848ab5e99457bc67265d771bb839ec9d",
+  "source_tree": "8ca5fc4f3989cf8c9307432d5e5c28ceef698251",
+  "locale": "da",
+  "examples": [
+    {
+      "name": "Exact GIF frame count plus first-frame warning",
+      "identities": [
+        "string/formats22_animation_message",
+        "string/formats22_animation_still"
+      ],
+      "rendered_static_example": "Dette GIF-billede indeholder 2 enkeltbilleder. AN Paint redigerer stillbilleder og bevarer ikke animation.\n\nKun det første enkeltbillede importeres. Når du gemmer, oprettes et stillbillede.",
+      "reviewed_result": "Two-frame branch preserves plural, still-only import/save and no animation retention."
+    },
+    {
+      "name": "Inexact PNG frame count plus separate default image",
+      "identities": [
+        "string/formats22_animation_message",
+        "string/formats22_animation_poster"
+      ],
+      "rendered_static_example": "Dette PNG-billede indeholder at least 3 enkeltbilleder. AN Paint redigerer stillbilleder og bevarer ikke animation.\n\nDette PNG-billede har et separat standardbillede. Det importeres i stedet for de animerede enkeltbilleder. Når du gemmer, oprettes et stillbillede.",
+      "reviewed_result": "The unchanged English count fragment is deliberately visible, not falsely certified fully Danish. Separate default image replaces animated frames. Both tokens retained."
+    },
+    {
+      "name": "Unknown PNG inspection",
+      "identities": [
+        "string/formats22_animation_unknown"
+      ],
+      "rendered_static_example": "Dette PNG-billede er så komplekst, at det ikke kan afgøres, om det indeholder flere enkeltbilleder. AN Paint åbner kun et stillbillede og bevarer ingen animation.",
+      "reviewed_result": "Complexity prevents determination; no one-frame or animation-absence assertion. Still-only opening retained."
+    },
+    {
+      "name": "ui_a_separate_recovery_copy_has_been_kept_use with ui_the_previous_draft_could_not_be_restored",
+      "identities": [
+        "string/ui_a_separate_recovery_copy_has_been_kept_use",
+        "string/ui_the_previous_draft_could_not_be_restored"
+      ],
+      "rendered_static_example": "Den forrige kladde kunne ikke gendannes. En separat gendannelseskopi er bevaret. Brug »Filer > Eksportér gendannelseskopi…« til at gemme dens ZIP-fil. Pak canvas.png ud af ZIP-filen, og indlæs billedet for at bruge de normale skaleringsindstillinger, hvis det er nødvendigt.",
+      "reviewed_result": "Prefix full sentence separated by exactly one space. Copy-retained versus autosave-blocked outcomes remain distinct; actual quoted commands and inherited Image format unchanged."
+    },
+    {
+      "name": "ui_autosave_is_paused_to_protect_that_draft_use with ui_the_previous_draft_could_not_be_restored",
+      "identities": [
+        "string/ui_autosave_is_paused_to_protect_that_draft_use",
+        "string/ui_the_previous_draft_could_not_be_restored"
+      ],
+      "rendered_static_example": "Den forrige kladde kunne ikke gendannes. Automatisk lagring er sat på pause for at beskytte denne kladde. Brug »Filer → Eksportér gendannelseskopi…« til at bevare den og »Filer → Gem som…« (Image format: PNG / JPEG) til at gemme dit aktuelle arbejde.",
+      "reviewed_result": "Prefix full sentence separated by exactly one space. Copy-retained versus autosave-blocked outcomes remain distinct; actual quoted commands and inherited Image format unchanged."
+    },
+    {
+      "name": "ui_a_separate_recovery_copy_has_been_kept_use with ui_the_previous_draft_needs_more_memory_to_reopen",
+      "identities": [
+        "string/ui_a_separate_recovery_copy_has_been_kept_use",
+        "string/ui_the_previous_draft_needs_more_memory_to_reopen"
+      ],
+      "rendered_static_example": "Det kræver mere hukommelse at genåbne den forrige kladde. En separat gendannelseskopi er bevaret. Brug »Filer > Eksportér gendannelseskopi…« til at gemme dens ZIP-fil. Pak canvas.png ud af ZIP-filen, og indlæs billedet for at bruge de normale skaleringsindstillinger, hvis det er nødvendigt.",
+      "reviewed_result": "Prefix full sentence separated by exactly one space. Copy-retained versus autosave-blocked outcomes remain distinct; actual quoted commands and inherited Image format unchanged."
+    },
+    {
+      "name": "ui_autosave_is_paused_to_protect_that_draft_use with ui_the_previous_draft_needs_more_memory_to_reopen",
+      "identities": [
+        "string/ui_autosave_is_paused_to_protect_that_draft_use",
+        "string/ui_the_previous_draft_needs_more_memory_to_reopen"
+      ],
+      "rendered_static_example": "Det kræver mere hukommelse at genåbne den forrige kladde. Automatisk lagring er sat på pause for at beskytte denne kladde. Brug »Filer → Eksportér gendannelseskopi…« til at bevare den og »Filer → Gem som…« (Image format: PNG / JPEG) til at gemme dit aktuelle arbejde.",
+      "reviewed_result": "Prefix full sentence separated by exactly one space. Copy-retained versus autosave-blocked outcomes remain distinct; actual quoted commands and inherited Image format unchanged."
+    },
+    {
+      "name": "Recovery export failure plus destination detail",
+      "identities": [
+        "string/ui_could_not_export_the_recovery_copy",
+        "string/ui_this_location_is_not_writable"
+      ],
+      "rendered_static_example": "Gendannelseskopien kunne ikke eksporteres. Der kan ikke skrives til denne placering.",
+      "reviewed_result": "ioFailed uses period and space, not a colon. Neither duplicate punctuation nor missing details."
+    },
+    {
+      "name": "Image-open failure plus unsupported-colour detail",
+      "identities": [
+        "string/ui_could_not_open_image",
+        "string/save20_unsupported_image_colour"
+      ],
+      "rendered_static_example": "Billedet kunne ikke åbnes. Dette billede bruger en farveprofil, som AN Paint endnu ikke kan konvertere. Konvertér det til sRGB PNG i et billedredigeringsprogram med farvestyring, før du importerer det.",
+      "reviewed_result": "Unpunctuated prefix composes with detailed failure and actionable colour-managed conversion. No final-period duplication."
+    },
+    {
+      "name": "Image-save failure plus memory-budget detail",
+      "identities": [
+        "string/ui_could_not_save_image",
+        "string/save20_encoding_budget"
+      ],
+      "rendered_static_example": "Billedet kunne ikke gemmes. Billedet og kodningsbufferne overskrider hukommelsesbudgettet for eksport.",
+      "reviewed_result": "Generic write failure remains distinct from RAM budget cause; period-space composition correct."
+    },
+    {
+      "name": "OOM format failure plus synthetic external detail",
+      "identities": [
+        "string/ui_not_enough_memory_to_save_in_this_format"
+      ],
+      "rendered_static_example": "Der er ikke nok hukommelse til at gemme i dette format. Prøv PNG. [synthetic external exception detail]",
+      "reviewed_result": "No terminal period in prefix, so caller adds correct punctuation after PNG. PNG recommendation remains not a guarantee. Bracketed detail is illustrative and not a new translation."
+    },
+    {
+      "name": "Named successful output (synthetic filename)",
+      "identities": [
+        "string/ui_saved"
+      ],
+      "rendered_static_example": "Gemt eksempel.png",
+      "reviewed_result": "Filename-scoped toast only; no current-document clean or Save-target-update claim. Filename is synthetic."
+    },
+    {
+      "name": "Save-success share-launch-failure with synthetic exception",
+      "identities": [
+        "string/ui_the_image_was_saved_but_android_could_not"
+      ],
+      "rendered_static_example": "Billedet blev gemt, men Android kunne ikke åbne delingsmenuen: [synthetic external exception detail]",
+      "reviewed_result": "Successful file write and failed chooser launch remain separate; colon-space plus indexed placeholder retained. Detail is not translated."
+    },
+    {
+      "name": "Ordered sharing explanation and dialog title",
+      "identities": [
+        "string/ui_save_and_share",
+        "string/ui_save_and_share_41edb4",
+        "string/ui_share_explanation34"
+      ],
+      "rendered_static_example": "Gem og del…\nGem og del\nGem en kopi på den valgte placering, og vælg derefter en app til at dele den. Dette ændrer ikke, hvilken fil »Gem« gemmer til.",
+      "reviewed_result": "Menu ellipsis versus dialog title differentiation; save-copy first, then choose app; existing Save file association unchanged."
+    },
+    {
+      "name": "Export explanation and post-export save requirement",
+      "identities": [
+        "string/ui_export_explanation23",
+        "string/ui_export_did_not_save23"
+      ],
+      "rendered_static_example": "Eksportér et ikon, Base64-tekst eller ASCII-kunst. Eksport ændrer ikke det aktuelle billede. Det ændrer heller ikke, hvilken fil »Gem« gemmer til.\n\nEksportfilen er oprettet. Brug »Gem« eller »Gem som…« til at gemme det aktuelle billede, før du fortsætter.",
+      "reviewed_result": "Export may create a file without changing current document or its Save destination or satisfying save-before-replacement. Existing Gem/Gem som… labels retained."
+    }
+  ],
+  "limits": [
+    "All example expansions are manually reviewed static substitutions, not Android formatting or UI execution.",
+    "Raw exception strings can remain English or another language.",
+    "The English inexact-count fragment and actual Image format / Load image… labels remain unchanged.",
+    "No native-human, layout, truncation, accessibility, device or runtime acceptance."
+  ]
+}
