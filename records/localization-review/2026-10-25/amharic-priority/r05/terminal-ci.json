@@ -1,0 +1,107 @@
+{
+  "schema": "amharic-postmerge-ci-v1",
+  "repository": "c933103/AN-Paint",
+  "pull_request": 171,
+  "merge_commit": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+  "merge_tree": "31217f00ef95a1da9a54a18d02031ba710e836cb",
+  "reviewed_tree_equal": true,
+  "develop_readback": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+  "run": {
+    "id": 40261676133,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/40261676133",
+    "attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "event": "push",
+    "created_at": "2026-10-26T02:57:44Z",
+    "updated_at": "2026-10-26T03:17:51Z"
+  },
+  "jobs": [
+    {
+      "id": 121375195291,
+      "name": "Regression tests and lint",
+      "conclusion": "success",
+      "completed_at": "2026-10-26T03:17:40Z",
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/40261676133/job/121375195291"
+    },
+    {
+      "id": 121375195420,
+      "name": "Build APK and corresponding source",
+      "conclusion": "success",
+      "completed_at": "2026-10-26T03:05:49Z",
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/40261676133/job/121375195420"
+    },
+    {
+      "id": 121375195491,
+      "name": "Exact-script resource generation",
+      "conclusion": "success",
+      "completed_at": "2026-10-26T03:01:38Z",
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/40261676133/job/121375195491"
+    },
+    {
+      "id": 121377214399,
+      "name": "Position dialog API 35",
+      "conclusion": "success",
+      "completed_at": "2026-10-26T03:10:58Z",
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/40261676133/job/121377214399"
+    },
+    {
+      "id": 121377214411,
+      "name": "Core emulator API 35",
+      "conclusion": "success",
+      "completed_at": "2026-10-26T03:17:35Z",
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/40261676133/job/121377214411"
+    },
+    {
+      "id": 121380253676,
+      "name": "Emulator API 35",
+      "conclusion": "success",
+      "completed_at": "2026-10-26T03:17:51Z",
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/40261676133/job/121380253676"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Emulator API 35",
+      "head_sha": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Core emulator API 35",
+      "head_sha": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Position dialog API 35",
+      "head_sha": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Exact-script resource generation",
+      "head_sha": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Build APK and corresponding source",
+      "head_sha": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Regression tests and lint",
+      "head_sha": "d0e4a3868c376bb857be8ca9762e7ef5ed31cbd4",
+      "conclusion": "success"
+    }
+  ],
+  "python": {
+    "tests": 1352,
+    "skipped": 2,
+    "result": "OK"
+  },
+  "full_artifact_collection": "All eight ZIP artifacts downloaded; every SHA256/byte-size and ZIP CRC verified. Raw bulky archives remain in CI artifacts; compact durable verification is in artifact-collection.json.",
+  "limitations": [
+    "CI debug build, not an upgrade-signed release or installed delivery.",
+    "Current API35 coverage, not a full Android API release matrix.",
+    "Source/context translation qualifications and native-reader limits remain.",
+    "No extra release, Work task, signing or installation actions performed."
+  ]
+}
