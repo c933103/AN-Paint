@@ -395,7 +395,11 @@ class CroatianBosnianP0WordingTest {
                     assertEquals(expected(tag, "save20_gif_description"), explanation.text.toString())
                 }
                 gif(initial)
-                assertTrue(dither.performClick())
+                // CompoundButton toggles before View reports whether a click
+                // listener handled the event; that return value is not checked state.
+                dither.performClick()
+                shadowOf(Looper.getMainLooper()).idle()
+                assertEquals("$tag dither toggles from $initial through a real click", !initial, dither.isChecked)
                 gif(!initial)
                 repeat(2) {
                     spinner.setSelection(ImageFormat.values().indexOf(ImageFormat.JPEG))
