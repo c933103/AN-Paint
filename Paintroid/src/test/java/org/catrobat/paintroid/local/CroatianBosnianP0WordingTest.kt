@@ -48,12 +48,30 @@ class CroatianBosnianP0WordingTest {
     }
 
     // Only this batch's simply quote-wrapped reviewed values use this decoder.
-    // All 215 inherited values/attributes remain unchanged.
+    // 214 inherited values/attributes remain unchanged; one label has separate review.
     private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
         .getJSONObject(key).getString(tag).removeSurrounding("\"")
 
     private fun preserved(tag: String, key: String) = fixture.getJSONObject("preserved_values")
         .getJSONObject(tag).getJSONObject(key).getString("value").removeSurrounding("\"")
+
+    private fun ditherLabel(tag: String) = if (tag == "hr")
+        fixture.getJSONObject("dither_label_successor").getString("value").removeSurrounding("\"")
+        else preserved(tag, "save20_dither")
+
+    private fun assertDitherControl(box: CheckBox, tag: String, checked: Boolean) {
+        awaitUi("$tag GIF dither checkbox attached, shown and laid out") {
+            box.isAttachedToWindow && box.isShown && box.isLaidOut &&
+                box.width > 0 && box.height > 0 && !box.isLayoutRequested
+        }
+        assertEquals(ditherLabel(tag), box.text.toString())
+        assertEquals(checked, box.isChecked)
+        // CheckBox publishes its label as node.text, not contentDescription.
+        val node = checkNotNull(box.createAccessibilityNodeInfo()) { "$tag dither node missing" }
+        assertEquals(ditherLabel(tag), checkNotNull(node.text) { "$tag dither node text missing" }.toString())
+        assertTrue(node.isCheckable)
+        assertEquals(checked, node.isChecked)
+    }
 
     private fun formatLabel(tag: String) = preserved(tag, "save20_file_format")
 
@@ -150,7 +168,7 @@ class CroatianBosnianP0WordingTest {
         val values = fixture.getJSONObject("values")
         assertEquals(78, values.length())
         val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
-        assertEquals(if (tag == "hr") 98 else 117, inherited.length())
+        assertEquals(if (tag == "hr") 97 else 117, inherited.length())
         for (key in values.keys()) {
             assertFalse("The missing-only batch must not replace $tag/$key", inherited.has(key))
             val id = activity.resources.getIdentifier(key, "string", activity.packageName)
@@ -163,6 +181,7 @@ class CroatianBosnianP0WordingTest {
         assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
         assertEquals("Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
             ui(R.string.ui_no_resize_fits_decoder_memory))
+        assertEquals(ditherLabel(tag), ui(R.string.save20_dither))
         assertEquals(formatLabel(tag), ui(R.string.save20_file_format))
         assertEquals("Load image…", ui(R.string.ui_load_image))
         assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
@@ -354,6 +373,63 @@ class CroatianBosnianP0WordingTest {
             } finally { dialog.dismiss() }
         }
     }
+    @Test fun gifDitherLabelExplanationStateAndConfirmRemainAtomicAcrossRepeatedRoutes() = forEachLocale { tag, activity ->
+        for (initial in listOf(true, false)) for (route in listOf("confirm", "negative", "cancel")) {
+            val requests = mutableListOf<SaveRequest>()
+            var cancellations = 0
+            val dialog = SaveOptionsDialog(activity,
+                ExportOptions(format = ImageFormat.GIF, dither = initial), share = true,
+                confirm = { requests.add(it) }, cancel = { cancellations++ },
+                initialFilename = "drawing.png", export = true).show()
+            try {
+                val root = dialog.window!!.decorView
+                assertDistinctFormatAndFilenameControls(root, tag)
+                val spinner = checkNotNull(root.findViewWithTag<Spinner>("export_format"))
+                val dither = checkNotNull(root.findViewWithTag<CheckBox>("export_dither"))
+                val explanation = checkNotNull(root.findViewWithTag<FlowTextView>("export_description"))
+                fun gif(checked: Boolean) {
+                    spinner.setSelection(ImageFormat.values().indexOf(ImageFormat.GIF))
+                    shadowOf(Looper.getMainLooper()).idle()
+                    assertDitherControl(dither, tag, checked)
+                    assertEquals(View.VISIBLE, explanation.visibility)
+                    assertEquals(expected(tag, "save20_gif_description"), explanation.text.toString())
+                }
+                gif(initial)
+                // CompoundButton toggles before View reports whether a click
+                // listener handled the event; that return value is not checked state.
+                dither.performClick()
+                shadowOf(Looper.getMainLooper()).idle()
+                assertEquals("$tag dither toggles from $initial through a real click", !initial, dither.isChecked)
+                gif(!initial)
+                repeat(2) {
+                    spinner.setSelection(ImageFormat.values().indexOf(ImageFormat.JPEG))
+                    shadowOf(Looper.getMainLooper()).idle()
+                    assertEquals(View.GONE, dither.visibility)
+                    assertEquals(!initial, dither.isChecked)
+                    assertEquals(expected(tag, "save20_lossy_quality_description"), explanation.text.toString())
+                    gif(!initial)
+                }
+                when (route) {
+                    "confirm" -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+                    "negative" -> dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+                    else -> dialog.cancel()
+                }
+                shadowOf(Looper.getMainLooper()).idle()
+                assertFalse(dialog.isShowing)
+                if (route == "confirm") {
+                    assertEquals(1, requests.size)
+                    assertEquals(!initial, requests.single().options.dither)
+                    assertEquals(ImageFormat.GIF, requests.single().options.format)
+                    assertEquals("drawing.gif", requests.single().fileName)
+                    assertEquals(0, cancellations)
+                } else {
+                    assertTrue(requests.isEmpty())
+                    assertEquals(1, cancellations)
+                }
+            } finally { dialog.dismiss() }
+        }
+    }
+
     @Test fun actualSaveExportSharePanelsKeepDistinctMessagesAndRepeatedCancel() = forEachLocale { tag, activity ->
         fun texts(view: View): List<String> =
             (if (view is TextView) listOf(view.text.toString()) else emptyList()) +

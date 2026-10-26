@@ -1,4 +1,4 @@
-"""156 bounded Croatian/Bosnian P0 whole values; not native, complete-locale or runtime acceptance."""
+"""157 bounded Croatian/Bosnian current reviewed whole values; not native, complete-locale or runtime acceptance."""
 from collections import Counter
 from copy import deepcopy
 import json
@@ -89,6 +89,25 @@ REVIEW_BINDING = {
 }
 
 
+SUCCESSOR_REVIEW = {'review_commit': '71c32e5ec94613e3e3ba6e7b79e18526953a59e3',
+ 'review_path': 'records/localization-review/2026-10-26/hr-bs-p0/r03-dither-label-review/review.json',
+ 'review_sha256': '1e0e5ffbc24347724514e7119a94f5f4ed654c4bab5e10b6514668fd383063bd',
+ 'locale': 'hr',
+ 'superseded_gif': 'save20_gif_description',
+ 'newly_reviewed_label': 'save20_dither',
+ 'historical_gif_value': '"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između '
+                         'boja (opcija je označena „Zamućivanje“). Animirane GIF slike otvaraju se '
+                         'kao prvi kadar animacije."',
+ 'historical_dither_value': '"Zamućivanje"',
+ 'unchanged_inherited_values': 214,
+ 'unchanged_prior_reviewed_values': 155,
+ 'current_unique_reviewed_values': 157,
+ 'accepted_pair_sha256': '664335172ab32ab385869a99507d51f3278f30c9525c5e080d000a6b76010e19',
+ 'terminology_qualification': 'Moderate-confidence technical clarity for Dithering boja; not '
+                              'preferred native terminology certification.'}
+HISTORICAL_GIF = '"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja (opcija je označena „Zamućivanje“). Animirane GIF slike otvaraju se kao prvi kadar animacije."'
+
+
 def reviewed_pairs_digest(data):
     pairs = [{'locale': tag, 'key': key, 'source': data['values'][key]['default'],
               'value': data['values'][key][tag], 'attributes': data['constraints'][key][tag]['attributes']}
@@ -96,11 +115,48 @@ def reviewed_pairs_digest(data):
     return hashlib.sha256(json.dumps(pairs,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
 
 
+# Independently derived from the frozen original 215-value preservation record,
+# removing only the separately reviewed Croatian label.
+PRESERVED_214_SHA256 = 'e03d27a14f25aafb61d64d2b98ecb62fc87baff0f1d61ef70a27b390cc20e8f8'
+
+def successor_pair_digest(data):
+    label = data['dither_label_successor']
+    pairs = [
+        {'identity': 'string/save20_dither', 'attributes': label['constraints']['attributes'],
+         'accepted_xml_text': label['value']},
+        {'identity': 'string/save20_gif_description',
+         'attributes': data['constraints']['save20_gif_description']['hr']['attributes'],
+         'accepted_xml_text': data['values']['save20_gif_description']['hr']},
+    ]
+    return hashlib.sha256(json.dumps(pairs, ensure_ascii=False, sort_keys=True,
+                                    separators=(',', ':')).encode()).hexdigest()
+
+
 def require_review_binding(data):
     if data.get('review_binding') != REVIEW_BINDING:
-        raise ValueError('Independent review binding differs')
-    if reviewed_pairs_digest(data) != REVIEW_BINDING['accepted_pairs_sha256']:
-        raise ValueError('Complete 156 reviewed pairs differ')
+        raise ValueError('Independent original review binding differs')
+    if data.get('review_successors') != SUCCESSOR_REVIEW:
+        raise ValueError('Immutable atomic successor review metadata differs')
+    label = data.get('dither_label_successor', {})
+    if (label.get('locale'), label.get('key'), label.get('source')) != ('hr', 'save20_dither', 'Dither colours'):
+        raise ValueError('Successor label scope/source differs')
+    if label.get('constraints') != {'attributes': {'name': 'save20_dither'},
+        'placeholders': {}, 'child_elements': 0, 'formatted': True, 'escaped_newline_count': 0}:
+        raise ValueError('Successor complete label constraints differ')
+    if successor_pair_digest(data) != SUCCESSOR_REVIEW['accepted_pair_sha256']:
+        raise ValueError('Independently reviewed atomic pair differs')
+    preserved_digest = hashlib.sha256(json.dumps(data['preserved_values'], ensure_ascii=False,
+        sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    if preserved_digest != PRESERVED_214_SHA256:
+        raise ValueError('214 independently pinned inherited values/attributes differ')
+    historical = deepcopy(data)
+    # Reconstruct only the superseded old reviewed value from an independent
+    # literal; never trust editable fixture metadata to define its own history.
+    historical['values']['save20_gif_description']['hr'] = HISTORICAL_GIF
+    if reviewed_pairs_digest(historical) != REVIEW_BINDING['accepted_pairs_sha256']:
+        raise ValueError('Original 156-pair acceptance / 155 unchanged values differ')
+
+
 
 
 class CroatianBosnianP0Tests(unittest.TestCase):
@@ -191,21 +247,83 @@ class CroatianBosnianP0Tests(unittest.TestCase):
                         require_reviewed_string(ET.tostring(root, encoding='unicode'),
                             key, changed, constraints, source)
 
-    def test_all_215_prior_values_and_catalogue_identity_stay_unchanged(self):
+    def test_all_214_prior_values_and_catalogue_identity_stay_unchanged(self):
         self.assertEqual({'hr', 'bs'}, set(self.data['preserved_values']))
         from test_translations import SCOPED_TAGS
-        for tag, count in [('hr', 98), ('bs', 117)]:
+        for tag, count in [('hr', 97), ('bs', 117)]:
             preserved = self.data['preserved_values'][tag]
             self.assertEqual(count, len(preserved));self.assertFalse(set(preserved) & KEYS)
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(count + 78, len(self.roots[tag]))
+            self.assertEqual(count + 78 + (1 if tag == 'hr' else 0), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('Format slike', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertTrue({'hr', 'bs'} <= set(catalogues.offered_tags()))
         self.assertEqual(59, len(SCOPED_TAGS))
         self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
+
+    def test_atomic_successor_complete_label_and_gif_with_157_current_values(self):
+        label = self.data['dither_label_successor']
+        require_reviewed_string(self.xml['hr'], 'save20_dither', label['value'],
+                                label['constraints'], label['source'])
+        self.assertEqual(label['source'], self.roots['default'].find("./string[@name='save20_dither']").text)
+        self.assertNotIn('save20_dither', self.data['preserved_values']['hr'])
+        self.assertIn('save20_dither', self.data['preserved_values']['bs'])
+        self.assertEqual(157, len(KEYS) * 2 + 1)
+        self.assertEqual(214, sum(map(len, self.data['preserved_values'].values())))
+        self.assertNotIn('Zamućivanje', self.data['values']['save20_gif_description']['hr'])
+
+    def test_atomic_pair_rejects_half_updates_refreshed_metadata_and_every_label_mutation(self):
+        for key in ('save20_dither', 'save20_gif_description'):
+            data = deepcopy(self.data)
+            if key == 'save20_dither':
+                data['dither_label_successor']['value'] = SUCCESSOR_REVIEW['historical_dither_value']
+            else:
+                data['values'][key]['hr'] = HISTORICAL_GIF
+            with self.subTest(half=key), self.assertRaises(ValueError): require_review_binding(data)
+            data['review_successors']['accepted_pair_sha256'] = successor_pair_digest(data)
+            with self.assertRaises(ValueError): require_review_binding(data)
+        for field in SUCCESSOR_REVIEW:
+            data = deepcopy(self.data); data['review_successors'][field] = 'forged'
+            with self.subTest(metadata=field), self.assertRaises(ValueError): require_review_binding(data)
+        label = self.data['dither_label_successor']
+        original = self.roots['hr'].find("./string[@name='save20_dither']")
+        for mutation in ('missing', 'duplicate', 'empty', 'truncate', 'markup', 'attribute', 'wrong-type', 'placeholder'):
+            root = ET.Element('resources'); node = deepcopy(original)
+            if mutation != 'missing': root.append(node)
+            if mutation == 'duplicate': root.append(deepcopy(node))
+            elif mutation == 'empty': node.text = ''
+            elif mutation == 'truncate': node.text = node.text[:-1]
+            elif mutation == 'markup': ET.SubElement(node, 'b').text, node.text = node.text, None
+            elif mutation == 'attribute': node.set('translatable', 'false')
+            elif mutation == 'wrong-type': node.tag = 'plurals'
+            elif mutation == 'placeholder': node.text += ' %9$s'
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                require_reviewed_string(ET.tostring(root, encoding='unicode'), 'save20_dither',
+                                        label['value'], label['constraints'], label['source'])
+        for field in ('value', 'locale', 'key', 'source'):
+            data = deepcopy(self.data); data['dither_label_successor'][field] += ' changed'
+            with self.subTest(label_field=field), self.assertRaises(ValueError): require_review_binding(data)
+        data = deepcopy(self.data)
+        data['dither_label_successor']['constraints']['attributes']['formatted'] = 'false'
+        with self.assertRaises(ValueError): require_review_binding(data)
+
+    def test_all_preserved_value_and_attribute_mutations_are_rejected(self):
+        for tag in ('hr', 'bs'):
+            for key, record in self.data['preserved_values'][tag].items():
+                data = deepcopy(self.data)
+                data['preserved_values'][tag][key]['value'] += ' changed'
+                with self.subTest(refreshed_preservation=(tag, key)), self.assertRaises(ValueError):
+                    require_review_binding(data)
+                for attribute in (False, True):
+                    root = ET.Element('resources')
+                    node = ET.SubElement(root, 'string', record['attributes']); node.text = record['value']
+                    if attribute: node.set('translatable', 'false')
+                    else: node.text += ' changed'
+                    with self.subTest(tag=tag, key=key, attribute=attribute), self.assertRaises(ValueError):
+                        require_string(ET.tostring(root, encoding='unicode'), key, record['value'],
+                                       {'attributes': record['attributes']})
 
     def test_five_holds_each_and_unreviewed_neighbor_fallbacks_remain_absent(self):
         self.assertEqual(HOLDS, set(self.data['held_absent']))

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "Exactly78 independently reviewed missing live-consumer P0 values each in hr/bs. Per-value independent decisions recorded in approved-manifest. Bounded independent AI full-value/source-static review, not whole-language/native-human/runtime/layout certification. All215 inherited values unchanged.",
+  "note": "Original156-value missing-only review retained as historical identity. Current scope:155 unchanged reviewed values plus2 atomic Croatian dither-label/GIF successor values,157 unique current reviewed;214 other inherited values preserved. No structural additions or native-human/layout/whole-language certification.",
   "values": {
     "formats22_animation_message": {
       "default": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
@@ -69,7 +69,7 @@
     },
     "save20_gif_description": {
       "default": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
-      "hr": "\"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja (opcija je označena „Zamućivanje“). Animirane GIF slike otvaraju se kao prvi kadar animacije.\"",
+      "hr": "\"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja. Animirane GIF slike otvaraju se kao prvi kadar animacije.\"",
       "bs": "\"Statična slika s najviše 256 boja. Opcija „Miješanje boja“ ublažava prijelaze između boja. Animirane GIF slike otvaraju se kao prvi kadar animacije.\""
     },
     "save20_invalid_name": {
@@ -3271,12 +3271,6 @@
           "name": "ui_swap_foreground_background"
         }
       },
-      "save20_dither": {
-        "value": "\"Zamućivanje\"",
-        "attributes": {
-          "name": "save20_dither"
-        }
-      },
       "ui_keep_editing23": {
         "value": "\"Odustani\"",
         "attributes": {
@@ -4045,5 +4039,35 @@
     "source_commit": "0ebd41d4d9b665213c776f5a0479a29ecabdd243",
     "source_tree": "bc5e10affc54ba2e0788c749b4b78968379596ba",
     "accepted_pairs_sha256": "ecf526badf05941ed1a11be43af7e6192fda51828861fce34b385c991e2011dc"
+  },
+  "dither_label_successor": {
+    "locale": "hr",
+    "key": "save20_dither",
+    "source": "Dither colours",
+    "value": "\"Dithering boja\"",
+    "constraints": {
+      "attributes": {
+        "name": "save20_dither"
+      },
+      "placeholders": {},
+      "child_elements": 0,
+      "formatted": true,
+      "escaped_newline_count": 0
+    }
+  },
+  "review_successors": {
+    "review_commit": "71c32e5ec94613e3e3ba6e7b79e18526953a59e3",
+    "review_path": "records/localization-review/2026-10-26/hr-bs-p0/r03-dither-label-review/review.json",
+    "review_sha256": "1e0e5ffbc24347724514e7119a94f5f4ed654c4bab5e10b6514668fd383063bd",
+    "locale": "hr",
+    "superseded_gif": "save20_gif_description",
+    "newly_reviewed_label": "save20_dither",
+    "historical_gif_value": "\"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja (opcija je označena „Zamućivanje“). Animirane GIF slike otvaraju se kao prvi kadar animacije.\"",
+    "historical_dither_value": "\"Zamućivanje\"",
+    "unchanged_inherited_values": 214,
+    "unchanged_prior_reviewed_values": 155,
+    "current_unique_reviewed_values": 157,
+    "accepted_pair_sha256": "664335172ab32ab385869a99507d51f3278f30c9525c5e080d000a6b76010e19",
+    "terminology_qualification": "Moderate-confidence technical clarity for Dithering boja; not preferred native terminology certification."
   }
 }
