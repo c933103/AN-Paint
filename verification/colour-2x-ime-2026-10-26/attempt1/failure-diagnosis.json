@@ -1,0 +1,55 @@
+{
+  "outcome": "infrastructure transport failure before new dialog methods executed",
+  "native_phase": {
+    "success": true,
+    "completed": 74
+  },
+  "ordinary_app_phase": {
+    "individual_passes": 17,
+    "expected": 17,
+    "success": false,
+    "elapsed_seconds": 135.1649,
+    "returncode": 255,
+    "final_instrumentation_result": "absent"
+  },
+  "transport_evidence": [
+    "20:08:40.030 host adb emulator-5554 connection terminated: read failed",
+    "20:08:40.124 device adbd host-17 connection terminated: write failed; offline",
+    "later SDK probes failed; gallery/dialog completed zero methods"
+  ],
+  "timeout": false,
+  "new_methods_executed": 0,
+  "dialog_pngs": 0,
+  "product_failure_demonstrated": false,
+  "unknown": "Underlying reason for ADB socket failure is not established; no product-root-cause claim.",
+  "preservation": "Original failed artifact unmodified, plus full job log. No source change, cap change, or false pass.",
+  "independent_position_phase": [
+    {
+      "completed": 3,
+      "success": true
+    },
+    {
+      "completed": 4,
+      "success": true
+    }
+  ],
+  "next_action": "Verify actual retried execution and source-bound artifacts; original cohort is not evidence against advanced develop.",
+  "source_head": "994c1300cbdbf64ead6924d9065e410af118323f",
+  "tested_merge": "6e90d4b8b0ed17c8c8a77629a6043afee4728ff7",
+  "source_tree": "aed79c74b440388723c96f6f90ae815c5910679f",
+  "pinned_develop": "e1e5433e63d45f5b76d39ce1a31ffc11fd7cd79d",
+  "run_id": 40391027049,
+  "attempt": 1,
+  "job_id": 121816122688,
+  "original_artifact_url": "https://github.com/c933103/AN-Paint/actions/runs/40391027049/artifacts/12685905863",
+  "original_artifact_sha256": "0f0f4cae63f725936d156cbb57053c02dc2af9ceb570d17f27759ed33e8a68bd",
+  "original_artifact_retention_expires": "2026-11-09T20:08:43Z",
+  "archive_publication": "Original ZIP retained locally and in the existing Actions artifact; raw archive not mirrored to this evidence branch.",
+  "recovery": {
+    "action": "targeted unchanged core-job rerun",
+    "new_attempt": 2,
+    "new_job_id": 121822857276,
+    "status_at_request": "in_progress",
+    "source_or_threshold_change": false
+  }
+}
