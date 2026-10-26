@@ -1,0 +1,11 @@
+# PR176 frozen-source local verification
+
+Exact [PR176](https://github.com/c933103/AN-Paint/pull/176) head `a365f4b552448803c0bb48b3c44cdf508550eaf9`, tree `65afa7b96a83c08e0ae08365166dec0520694356`, contains the 20 independently accepted missing-only Catalan/Romanian P0 values, a compact current fixture and shared host/JVM tests. All 254 inherited values/attributes, ten held absences, other catalogues, prior fixtures and named pauses remain unchanged.
+
+Final frozen-patch execution passed **1,381 ordinary host tests** (182.879 s) and separately **1,381 optimized host tests** (180.343 s), both zero skips. Independent focused audit passed 64 tests in each mode; the new focused suite passed 7 in each mode. The corrected packet validator's 45 controls also reject in both modes.
+
+The two concrete audit findings were fixed and remain documented: priority/context metadata validation, and the preflight gap in the non-null Save-target retention assertion. The earlier successful full run is diagnostic only because that Kotlin assertion changed during execution. Final runs are separately bound to the final six-file manifest. Runtime paths in public logs were replaced with neutral placeholders; original and public hashes are retained. Negative-control JSON with success=false is expected fixture output, not a failing terminal suite result.
+
+Two new JVM methods cover exact compiled values and actual Save/Export/Share dialogs with repeated cancellation. The added real export test uses production configuration/resource/workspace refresh, ordinary PNG writing, and retention of the exact non-null Save association and original bytes while the edited document remains dirty. The export-without-saving notice and chooser-failure values have compiled/static checks; those branches are not claimed exercised by the new test. No local Android compilation or JVM execution occurred.
+
+All six source files and the complete 1,373-blob tree were read back exactly; source branch and ready PR body/head verified. Exact-head Code review is clean. Required hosted CI remained in progress at this snapshot; optional Security was running and is not a required merge gate. No duplicate review request or release. Final hosted gates/artifacts and actual postmerge evidence remain separate.

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "source_head": "a365f4b552448803c0bb48b3c44cdf508550eaf9",
+  "source_tree": "65afa7b96a83c08e0ae08365166dec0520694356",
+  "final_source_manifest_sha256": "e7be2d9de30175feef03f95c1763eb97342722baa4708d78edc500cc7a3ceaf5",
+  "test_summaries": {
+    "focused-ordinary.log": {
+      "tests": 7,
+      "passed": 7,
+      "skipped": 0,
+      "seconds": 0.075,
+      "exit_code": 0
+    },
+    "focused-optimized.log": {
+      "tests": 7,
+      "passed": 7,
+      "skipped": 0,
+      "seconds": 0.094,
+      "exit_code": 0
+    },
+    "full-ordinary-final.log": {
+      "tests": 1381,
+      "passed": 1381,
+      "skipped": 0,
+      "seconds": 182.879,
+      "exit_code": 0
+    },
+    "full-optimized-final.log": {
+      "tests": 1381,
+      "passed": 1381,
+      "skipped": 0,
+      "seconds": 180.343,
+      "exit_code": 0
+    },
+    "full-ordinary-before-target-assertion-finalized.log": {
+      "tests": 1381,
+      "passed": 1381,
+      "skipped": 0,
+      "seconds": 189.396,
+      "exit_code": 0
+    }
+  },
+  "log_bindings": {
+    "focused-ordinary.log": {
+      "original_sha256": "bee1deaeee8a500be7b285bf332ca87c31cd4a45337eff4bd8ff3032b84d90a2",
+      "public_sha256": "bee1deaeee8a500be7b285bf332ca87c31cd4a45337eff4bd8ff3032b84d90a2",
+      "sanitization": "Only temporary runtime/source absolute prefixes replaced with neutral placeholders."
+    },
+    "focused-optimized.log": {
+      "original_sha256": "0fba4cd18fb912f93bfa4e382d491f806d7cfe96cefb699f6d00c12e9c2001cb",
+      "public_sha256": "0fba4cd18fb912f93bfa4e382d491f806d7cfe96cefb699f6d00c12e9c2001cb",
+      "sanitization": "Only temporary runtime/source absolute prefixes replaced with neutral placeholders."
+    },
+    "full-ordinary-final.log": {
+      "original_sha256": "102556f8a455ecf082396035ce57add0124c606cd14dfe4b1e31400fdd8ac50e",
+      "public_sha256": "42fc3225e3deb9bebafa9ffb5583b1d65201d8ef314b3a4e287e0726c80d74c4",
+      "sanitization": "Only temporary runtime/source absolute prefixes replaced with neutral placeholders."
+    },
+    "full-optimized-final.log": {
+      "original_sha256": "d7725074a83818bde1651674e292d1e3a504758694d6c8212ef1b077705fa5c8",
+      "public_sha256": "f1d1cd48c65b20a65e31719880dffec2e5c25e406ed6adf8d56bbb3b9d285e5e",
+      "sanitization": "Only temporary runtime/source absolute prefixes replaced with neutral placeholders."
+    },
+    "full-ordinary-before-target-assertion-finalized.log": {
+      "original_sha256": "62a9f6570596cd1b79077d4fdb8b25eab473a62a82119fbdf91fdfd6a427183d",
+      "public_sha256": "b833ca5e71edf1ce9a1df3d09c8e471c1a7812a80d8f5bd5e7b257f8e92dacee",
+      "sanitization": "Only temporary runtime/source absolute prefixes replaced with neutral placeholders."
+    }
+  },
+  "diagnostic_boundary": "The first full ordinary1381-test run completed successfully but the Kotlin target-retention assertion was strengthened during it. Preserve it as diagnostic only; the two final frozen-patch full runs are separate.",
+  "audit_findings_preserved_and_closed": [
+    "Original packet validator did not reject altered candidate priority/context metadata. r03 binds P0 and complete source/candidate context ID/count chain;45 controls reject in both modes. Actual20 candidate values/metadata were correct throughout.",
+    "Initial export regression captured its target after options preflight. Final test retains the original non-null target captured immediately after ordinary Save through all preflight/write operations."
+  ],
+  "runtime_boundary": "Local host Python tests only. No local Android compilation/JVM execution claimed; hosted exact-head gates are separate. Export notice/chooser-failure values are compiled/static checks, not new exercised branches."
+}

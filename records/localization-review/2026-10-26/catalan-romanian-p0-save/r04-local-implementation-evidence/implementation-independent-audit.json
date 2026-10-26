@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent bounded implementation, verifier and public evidence audit",
+  "assessment": "Ready within the audited static and host-test scope; exact-head Android and hosted gates remain separate.",
+  "source_commit": "05607f0d60131cc9148461ce595155d820748e4e",
+  "source_tree": "16ff3d877650ad4ad3198ce19007e8606fcd080a",
+  "implementation_manifest_sha256": "e7be2d9de30175feef03f95c1763eb97342722baa4708d78edc500cc7a3ceaf5",
+  "implementation_files": [
+    {
+      "path": "Paintroid/src/main/res/values-ca/strings.xml",
+      "bytes": 8716,
+      "sha256": "06af936273a8cfa49260f17115aed9d21fb4f19ba719fcd4b2e12cfa8db259f6",
+      "git_blob_sha1": "b59c2fa4524dd03a3c13555b9a787bacc2dd656d",
+      "mode": "100644"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-ro/strings.xml",
+      "bytes": 8753,
+      "sha256": "39607210800dfbf50d4497d800860385a9f8dc8eb57e9bece7b8c13852ae7c2d",
+      "git_blob_sha1": "c30d9cf042ffd84ad4bfd9623af5c2e7e97cdeac",
+      "mode": "100644"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianSaveWordingTest.kt",
+      "bytes": 7230,
+      "sha256": "433666b4d888d165cc178b95bacd24f096681c5e66be2b5b5cb63de31025a4b5",
+      "git_blob_sha1": "741a26a6f4cf96598194b4bc40acd67df4aaad2c",
+      "mode": "100644"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/DerivedExportStateTest.kt",
+      "bytes": 14362,
+      "sha256": "03525f622b644af4fc65c8905955e8c6367839a0b78d6789972078d70225bba5",
+      "git_blob_sha1": "e635ccd70d492ee2053c858f91afaab8b7d94da2",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/fixtures/current_localization/catalan_romanian_save_wording.json",
+      "bytes": 43405,
+      "sha256": "8228afe6ad30857782ed6e126f840afcdf3554c9c076963521c3fb7e569e1c1f",
+      "git_blob_sha1": "f78c5241b288728fda82ed6c7da2e87fca99b9bd",
+      "mode": "100644"
+    },
+    {
+      "path": "tools/test_catalan_romanian_save_wording.py",
+      "bytes": 8573,
+      "sha256": "6c3fd73de390048ce18ffd4a1c0ad030c33c0acb50ed9746356185ff9f8e719a",
+      "git_blob_sha1": "df0ce3a58d189b1b1c9842a7ba711ec881178497",
+      "mode": "100644"
+    }
+  ],
+  "approved_manifest_sha256": "809faecd60cfb032f4a03497ae50b7c6851b7ff3f520333b6019d97213543c93",
+  "independent_linguistic_review_sha256": {
+    "ca": "897469420007d15173f4a8b58cc8cd3ed53cea3738037bfb23b02216047a6e7d",
+    "ro": "c13f44c483042ca15066706501a4015e64b807ea80af45ae41b9a955cbdd880a"
+  },
+  "data_source_checks": {
+    "missing_only_additions": 20,
+    "per_locale": {
+      "ca": {
+        "added": 10,
+        "inherited_unchanged": 127,
+        "total_after": 137,
+        "P0_before": 9,
+        "P0_after": 19,
+        "P0_denominator": 92,
+        "P0_missing_after": 73
+      },
+      "ro": {
+        "added": 10,
+        "inherited_unchanged": 127,
+        "total_after": 137,
+        "P0_before": 9,
+        "P0_after": 19,
+        "P0_denominator": 92,
+        "P0_missing_after": 73
+      }
+    },
+    "baseline_blob_Git_identities_checked": 1370,
+    "source_bindings_checked": 323,
+    "exact_consumer_windows_checked": 26,
+    "other_catalogues_unchanged": 172,
+    "prior_fixture_files_unchanged": 74,
+    "full_value_source_target_attributes_and_format_tokens_exact": true,
+    "all_per_value_and_global_review_qualifications_preserved": true,
+    "held_absences_per_locale": [
+      "formats22_derived_exported",
+      "ui_save_as",
+      "ui_save_as_jpeg",
+      "ui_save_as_jpeg_xl",
+      "ui_save_as_png"
+    ],
+    "paired_P1_and_frozen_history_unchanged": true
+  },
+  "findings": [
+    {
+      "id": "verifier-metadata",
+      "original_status": "Two independent synthetic metadata counterexamples were accepted: wrong candidate priority and nonexistent context ID. Actual 20 candidate values and bindings remained correct.",
+      "original_finding_receipt_sha256": "6067d77192701f9a169e6c0cf48bb8ffabd4cfe82ca9b143fb17791fc392d211",
+      "status": "closed",
+      "correction": "Requires P0, exact source/candidate context IDs, actual ordered context-record identity and count; rejects forged source/candidate chain with refreshed hashes.",
+      "corrected_verifier_sha256": "789c609307c7ddee3f2125fc74e3362d657aad2a49205fd8e19cef22808dcc79",
+      "historical_r01_preserved": true
+    },
+    {
+      "id": "non-null-save-target-oracle",
+      "original_status": "Helper captured its original target after export-options preflight, which could mask preflight clearing by comparing null to null.",
+      "status": "closed",
+      "correction": "Capture and assert non-null savedTarget immediately after ordinary PNG write, assert the identical object after the entire export helper, and verify the original PNG destination bytes remain unchanged.",
+      "corrected_test_sha256": "03525f622b644af4fc65c8905955e8c6367839a0b78d6789972078d70225bba5"
+    }
+  ],
+  "corrected_verifier_controls": [
+    {
+      "mode": "ordinary",
+      "positive_packet": "passed",
+      "negative_controls_rejected": 45,
+      "receipt_sha256": "16b0670e242d2d44b05b9d21e489e668450781ddc570cb454ca8ac4fe4e5eded"
+    },
+    {
+      "mode": "optimized",
+      "positive_packet": "passed",
+      "negative_controls_rejected": 45,
+      "receipt_sha256": "16b0670e242d2d44b05b9d21e489e668450781ddc570cb454ca8ac4fe4e5eded"
+    }
+  ],
+  "host_tests": {
+    "modules": [
+      "test_catalan_romanian_save_wording",
+      "test_danish_norwegian_p0_wording",
+      "test_translations",
+      "test_current_localization_contracts"
+    ],
+    "final_frozen_patch_runs": [
+      {
+        "mode": "ordinary",
+        "tests": 64,
+        "seconds": 6.41,
+        "result": "OK",
+        "skips": 0,
+        "log_sha256": "38ef3fdd0a1a766d2b0fd76c4ee0fe7ec1fca745a71621518fac6ba653faca7f"
+      },
+      {
+        "mode": "optimized",
+        "tests": 64,
+        "seconds": 6.274,
+        "result": "OK",
+        "skips": 0,
+        "log_sha256": "c8ae515e2e7a90570fca98e6c08db2839b76dabfa25c81b3ee19c60e2bac81c4"
+      }
+    ],
+    "new_host_module_tests": 7,
+    "optimized_execution_not_conflated_with_ordinary": true
+  },
+  "Kotlin_static_audit": {
+    "new_wording_test_methods": 2,
+    "DerivedExport_existing_test_methods_preserved": 6,
+    "DerivedExport_new_test_methods": 1,
+    "all_20_compiled_value_assertions_bound_to_fixture": true,
+    "production_configuration_change_refreshes_resources_and_rebuilds_workspace": true,
+    "real_consumer_paths_in_test": [
+      "SaveOptionsDialog save/export/share explanations and cancel paths",
+      "unsaved-change dialog through Back",
+      "share options dialog through menu",
+      "ordinary PNG write then dirty edit and actual derived export write",
+      "non-null Save association and original destination bytes retained"
+    ],
+    "compiled_or_static_only_not_triggered": [
+      "ui_export_did_not_save23 notice",
+      "Android chooser-failure branch"
+    ],
+    "no_local_Android_compile_or_execution_claim": true
+  },
+  "public_evidence": {
+    "packets": [
+      {
+        "version": "candidate-public",
+        "manifest_sha256": "d5e739dfa971c7ad745e16ed351202ce7b90a466c83b8d59969128db0e632160",
+        "files_including_manifest": 12,
+        "exact_size_SHA256_Git_identity": true
+      },
+      {
+        "version": "review-public",
+        "manifest_sha256": "bd6321374867368936d7eeb60563b2858b1b6675d32a9029db766030d15b0d4a",
+        "files_including_manifest": 5,
+        "exact_size_SHA256_Git_identity": true
+      },
+      {
+        "version": "validation-r03",
+        "manifest_sha256": "6961af3a4814932ca0514d7064ff765838865d96dd6657536a1afec73e10b762",
+        "files_including_manifest": 8,
+        "exact_size_SHA256_Git_identity": true
+      }
+    ],
+    "total_files_including_manifests": 25,
+    "semantic_privacy": "Decoded project source/context, candidates, reviews, verifier and counterexample evidence only. No credentials, private links, local execution paths, internal routing or unrelated private data identified. Local preparation/review-writer helpers and bytecode caches are excluded.",
+    "original_candidate_and_review_bytes_preserved": true
+  },
+  "concrete_unresolved_defects_identified_in_checked_scope": 0,
+  "limitations": [
+    "This audit reconciles existing bounded AI linguistic/source-static judgments; it creates no new linguistic acceptance.",
+    "No whole-language, native-human, physical-device or layout certification.",
+    "Android compilation/execution, exact-head hosted CI, artifact verification and remote publication/readback are not performed or certified by this auditor.",
+    "No source, application, release, network or external-state changes by this auditor; historical findings and original records are preserved.",
+    "All existing scope holds including #56, #113, #159, Help callback/archive identity, archive and release pauses remain unchanged."
+  ]
+}
