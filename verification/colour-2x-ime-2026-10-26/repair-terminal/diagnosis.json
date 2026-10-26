@@ -1,0 +1,62 @@
+{
+  "run_id": 40409092554,
+  "attempt": 1,
+  "reviewed_head": "89903960868ba93d9c3a04ae71d28bf8f6967f7a",
+  "tested_merge": "2f7ce0477f41848c1af2f92a1587c29c10b553df",
+  "tree": "a15d294db00490e737d23c5db3fc17a91f4ccde8",
+  "base": "0ebd41d4d9b665213c776f5a0479a29ecabdd243",
+  "classification": "failed, not mergeable; narrow test-oracle defect after repaired viewport prefix",
+  "failure": "Raw footer Button resource text compared to transformed native accessibility text: Cancel/CANCEL and Mégse/MÉGSE. Old helper did not record actual transformation class; new diagnostic must verify it.",
+  "prefix_receipt": "failed-repair-prefix-verification.json",
+  "reached": [
+    "synthetic focus/showSoftInput setup",
+    "configured actual fullscreen native IME stable >=250 ms",
+    "one native Back retains exact dialog/root/picker/field/draft/selection/zero callbacks and restored focus",
+    "all nine post-hide non-footer captions / 14 complete native Layout lines with ancestor coverage per locale",
+    "Cancel intrinsic layout measurement"
+  ],
+  "unreached": [
+    "Cancel full-line reachability receipt and native tap",
+    "Cancel callback/restoration",
+    "reopened one-Back dismissal",
+    "invalid rejection",
+    "valid exactly-once commit"
+  ],
+  "old_dialog_methods_passed": 12,
+  "old_successful_pngs": 39,
+  "new_dialog_methods_failed": 2,
+  "new_successful_pngs": 0,
+  "new_failed_partial_pngs": 12,
+  "dialog_phase_seconds": 194.02212034599995,
+  "dialog_cap_seconds": 300,
+  "method_cap_seconds": 45,
+  "other_core_passes": {
+    "Paintroid": 74,
+    "ordinary": 17,
+    "gallery_draft": 3,
+    "vertical": 4
+  },
+  "position_passes": 7,
+  "restart_methods_unrun": 2,
+  "jvm": {
+    "cases": 1388,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "focused_colour_variants": 18
+  },
+  "lint_issues": 0,
+  "hosted_python": {
+    "run": 1432,
+    "passed": 1430,
+    "skipped": 2,
+    "skip_identities": "not named in hosted terminal summary"
+  },
+  "limits": [
+    "not whole lifecycle acceptance",
+    "no initial native field activation/full initial hex visibility acceptance",
+    "IME-open simultaneous fit not accepted",
+    "no C05, physical-device, TalkBack, whole-2x, glyph-ink or release acceptance"
+  ],
+  "successor": "Test-only exact native transformed-caption oracle repair, integrated current develop 33472a55; old failed cohort remains unchanged."
+}
