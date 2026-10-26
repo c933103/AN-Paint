@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "original_head": "93f27ed172cc730c80ed7a2ffbcacc1b0c04383f",
+  "original_run": 40340230583,
+  "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt",
+  "before_sha256": "60f2eb1bc220abaa2a07b04a22a8c695b3fd519cf70a4d1b649d83176ee13df3",
+  "after_sha256": "042fe46517f049806541809741f54829e4844529d44ccc85697650be94fb37cf",
+  "failure": "Existing Romanian numeric-warning literal still assumed the English fallback. Exact reviewed Romanian prefix now differs.",
+  "change": "Use the reviewed Romanian prefix and explicitly require both comma-decimal numeric values; retain deliberate process/resource-locale mismatch, exact complete resource comparison, unchanged maxPixels/admission/resident-pixel/invalid-size checks, and untranslated P1 captions.",
+  "application_logic_changes": false,
+  "translation_changes": false,
+  "local_JVM_execution": false
+}

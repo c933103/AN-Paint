@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "record_kind": "Forward public-log hygiene correction; no history rewrite or result change",
+  "original_record_commit": "5b889905e4cf2c94e98682029da7b8cabf5b9796",
+  "original_manifest_sha256": "4041d5bb99a5f1d6595f9d9098bd9e27907d99d178bb2e61f64df56fa6bcc85e",
+  "finding": "Two display logs each retained one generic interpreter installation prefix in an expected duplicate-ZIP warning. No credentials, personal data or private URLs were involved. The original path-prefix scan missed this standard-library prefix.",
+  "fix": "Replace only that prefix with <PYTHON_STDLIB>, extend semantic scan, preserve original raw hashes and all test results. Original immutable commits are not rewritten. Current branch display copies and manifest are corrected explicitly.",
+  "logs": [
+    {
+      "path": "host/full-ordinary-r01.log",
+      "original_sha256": "4b5265a26a1725650d8cf0d3ae04d7ce6635ffbc7fafab2e6e337aa1542498c9",
+      "sanitized_sha256": "6acc8c0a1ea94f9deb501e2128effa693dbeba63cee1fbb5ce822d3fc976eac5",
+      "replacements": 1
+    },
+    {
+      "path": "host/full-optimized-r01.log",
+      "original_sha256": "7e3a76cca4717a6cd52f4d085af53294fda1ef13d611fde029c6426e5cab4482",
+      "sanitized_sha256": "84764ffb2036ff4e555aa00e9295854331c8aa29fdb3bc1f90c451d96233b8db",
+      "replacements": 1
+    }
+  ]
+}

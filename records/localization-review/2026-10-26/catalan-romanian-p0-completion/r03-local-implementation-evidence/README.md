@@ -18,3 +18,7 @@ Independent audit separately joined all 110 final values, checked all 300 inheri
 The actual PR workflow is [40340230583](https://github.com/c933103/AN-Paint/actions/runs/40340230583), initially running; exact-head Codex and hosted required checks remain pending in this record. Later terminal CI/artifact and actual postmerge evidence must remain separate, not inferred from local host results.
 
 This batch implements only the 110 reviewed missing values. Ten no-current-consumer holds, all prior values, paired 120/60 oracle, P1/frozen/global59/112, inherited Valencian routing and PR56/113/159/Help/archive/release boundaries remain unchanged. No native-human, whole-language, physical-device/layout certification or release.
+
+## Forward log-hygiene correction
+
+The two full-suite display logs replace a generic Python interpreter installation prefix in an expected duplicate-ZIP warning. Results and raw-log identities are unchanged. `log-hygiene-correction.json` records exact old/new hashes; raw hashes in host receipts identify the original logs, not these sanitized display copies. The original immutable record remains historical.

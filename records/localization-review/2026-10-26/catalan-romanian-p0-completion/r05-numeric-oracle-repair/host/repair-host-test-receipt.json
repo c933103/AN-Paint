@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "record_kind": "Actual repaired-source local focused and full host suites, ordinary and optimized modes",
+  "started_utc": "2026-10-26T14:58:16Z",
+  "source_commit_status": "Repaired working tree; new source head pending at test start",
+  "repair": {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt",
+    "sha256": "042fe46517f049806541809741f54829e4844529d44ccc85697650be94fb37cf",
+    "only_changed_file_against_original_1379_file_snapshot": true
+  },
+  "prior_evidence": "Original host evidence remains unchanged in its separate record; these are new executions against the one-file repaired source.",
+  "input_source_file_count": 1379,
+  "input_inventory_file": "full-host-input-inventory.json",
+  "input_inventory_sha256": "cb7ba373a1f37b76b6b0ebf2a755d9facbb9b80dfdef538dab0d8ed8b85503ab",
+  "runs": [
+    {
+      "mode": "focused-ordinary",
+      "command_argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "-v",
+        "test_catalan_romanian_completion_wording",
+        "test_catalan_romanian_save_wording",
+        "test_catalan_romanian_import_wording",
+        "test_nynorsk_remaining_p0_wording",
+        "test_danish_norwegian_p0_wording",
+        "test_memory_warning_source_review",
+        "test_memory_warning_successors"
+      ],
+      "exit_code": 1,
+      "wall_seconds": 0.061,
+      "tests": 7,
+      "unittest_seconds": 0.0,
+      "outcome": "failed",
+      "log": "focused-ordinary-r01.log",
+      "log_bytes": 5426,
+      "log_sha256": "c1c00cf945ff3e9ba543416925a206c35ef82f85e96af43c6d5553b8380a7dab",
+      "terminal_lines": [
+        "             ^^^^^^^^^^^^^^^^^^^^^^^",
+        "ModuleNotFoundError: No module named 'test_memory_warning_successors'",
+        "",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 7 tests in 0.000s",
+        "",
+        "FAILED (errors=7)"
+      ]
+    },
+    {
+      "mode": "focused-optimized",
+      "command_argv": [
+        "python3",
+        "-O",
+        "-m",
+        "unittest",
+        "-v",
+        "test_catalan_romanian_completion_wording",
+        "test_catalan_romanian_save_wording",
+        "test_catalan_romanian_import_wording",
+        "test_nynorsk_remaining_p0_wording",
+        "test_danish_norwegian_p0_wording",
+        "test_memory_warning_source_review",
+        "test_memory_warning_successors"
+      ],
+      "exit_code": 1,
+      "wall_seconds": 0.185,
+      "tests": 7,
+      "unittest_seconds": 0.001,
+      "outcome": "failed",
+      "log": "focused-optimized-r01.log",
+      "log_bytes": 5426,
+      "log_sha256": "9f78dc5a1d680734f4edd17f28889d72719b9a22f39880bcf24b9bdd974e9208",
+      "terminal_lines": [
+        "             ^^^^^^^^^^^^^^^^^^^^^^^",
+        "ModuleNotFoundError: No module named 'test_memory_warning_successors'",
+        "",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 7 tests in 0.001s",
+        "",
+        "FAILED (errors=7)"
+      ]
+    },
+    {
+      "mode": "full-ordinary",
+      "command_argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 191.596,
+      "tests": 1398,
+      "unittest_seconds": 191.198,
+      "outcome": "success",
+      "log": "full-ordinary-r01.log",
+      "log_bytes": 257240,
+      "log_sha256": "206bcac8c393b5f4a32fa13e60ef07d2ecfb0884ec21e3bd01859c52b21a755a",
+      "terminal_lines": [
+        "    \"Accepted-credit seed requires exactly one already-running target PID\",",
+        "    \"adb exited with status None\",",
+        "    \"Missing or unsuccessful final instrumentation result: []\",",
+        "    \"No tests completed\",",
+        "    \"Runner test counts [] do not match 1 declared methods\",",
+        "    \"1 declared test method(s) did not complete\"",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "mode": "full-optimized",
+      "command_argv": [
+        "python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 198.504,
+      "tests": 1398,
+      "unittest_seconds": 197.782,
+      "outcome": "success",
+      "log": "full-optimized-r01.log",
+      "log_bytes": 4876,
+      "log_sha256": "05cd023c54c70664cfe41e75b538d856995b5c642f70c887c811878cad428ba2",
+      "terminal_lines": [
+        "    \"Accepted-credit seed requires exactly one already-running target PID\",",
+        "    \"adb exited with status None\",",
+        "    \"Missing or unsuccessful final instrumentation result: []\",",
+        "    \"No tests completed\",",
+        "    \"Runner test counts [] do not match 1 declared methods\",",
+        "    \"1 declared test method(s) did not complete\"",
+        "  ]",
+        "}"
+      ]
+    }
+  ],
+  "limits": [
+    "Host Python tests only. Android/JVM compilation and device execution are not performed or implied.",
+    "Focused and full ordinary and optimized host runs are distinct actual executions against a source repair. They do not rerun or relabel the original hosted failure."
+  ],
+  "source_inventory_unchanged_after_runs": true
+}

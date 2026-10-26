@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "record_kind": "Test-only numeric oracle repair, independent changed-resource audit and actual local executions",
+  "source_head": "82995ec1f030d23cb4e2b1426b511abe802890eb",
+  "semantic_privacy": "Decoded authorized project evidence inspected, display logs sanitized with explicit raw/published hash mapping; no credentials, secrets, private URLs, actual execution-local paths or unrelated private data. Literal path-prefix regexes are rejection rules only.",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3486,
+      "sha256": "1f1efa5c368323b7d70d2ac06e21f354efe77a3a500da5ea2006733be94df3d1",
+      "git_blob_sha1": "c707114154cb2caa75b8f8664016497ac22ea012",
+      "mode": "100644"
+    },
+    {
+      "path": "bounded-assertion-scan/fixture-pair-joins.json",
+      "bytes": 28231,
+      "sha256": "794aaa88c2ed168dcafcd084608fb1da6aa91d266f39303233579fa31d12b1b0",
+      "git_blob_sha1": "f5311aa35032a6d9405d8ca6f95a786fe02d2ba2",
+      "mode": "100644"
+    },
+    {
+      "path": "bounded-assertion-scan/manifest.json",
+      "bytes": 1073,
+      "sha256": "e601a3afb61f6d3a5928100634d574ce70ffdddf988d658148a057b434a43e39",
+      "git_blob_sha1": "ed021a7c9545422ffa10bbfdf87e7777adae4684",
+      "mode": "100644"
+    },
+    {
+      "path": "bounded-assertion-scan/partial-literal-candidate-index.json",
+      "bytes": 47931,
+      "sha256": "546576ca41d3f9af7d037ff3427e88ed61449be2dd2088870917a63164725d86",
+      "git_blob_sha1": "f745bd269a80afb456be3285069c5ea6eec42fa8",
+      "mode": "100644"
+    },
+    {
+      "path": "bounded-assertion-scan/scan-file-inventory.json",
+      "bytes": 538467,
+      "sha256": "a800448433682416b51e2b9568560d28c9cb8ec9d964b98cc21f662a5f3e465c",
+      "git_blob_sha1": "a39a8a673b5daf8481ebc1b0c02d1740efc2bfe3",
+      "mode": "100644"
+    },
+    {
+      "path": "bounded-assertion-scan/scan-summary.json",
+      "bytes": 7913,
+      "sha256": "0b57dc7517f2b8239f36292996136466ff4279bd5f60e1b406e3c5cd0a48d81a",
+      "git_blob_sha1": "6a5b016d1b8a6f56f5de7da99e5fde5a97abb9fe",
+      "mode": "100644"
+    },
+    {
+      "path": "bounded-assertion-scan/selected-identity-reference-index.json",
+      "bytes": 277167,
+      "sha256": "687c909150ce1868171351b9c13a74221752e04ad1cf53bd93080f654a72977b",
+      "git_blob_sha1": "a29bb173cc14b219b391b3ebe2a1c219f3bfe708",
+      "mode": "100644"
+    },
+    {
+      "path": "host/focused-optimized-r01.log",
+      "bytes": 4999,
+      "sha256": "7a2262e15717494579005a391b4e4e857f565c90042e28dc3c8890fb04d2eca5",
+      "git_blob_sha1": "eddd6d8ef237b0272bf9531de4ac465f72a11146",
+      "mode": "100644"
+    },
+    {
+      "path": "host/focused-optimized-r02.log",
+      "bytes": 12354,
+      "sha256": "ceb5ae1115da3cb148c1d6e025deac4e4f91c86f306d5fe07af1c712bfb92dac",
+      "git_blob_sha1": "64bf1af733ddbd39837ee45f074bdf24c325def1",
+      "mode": "100644"
+    },
+    {
+      "path": "host/focused-ordinary-r01.log",
+      "bytes": 4999,
+      "sha256": "76da2f12097929aeca670961d967245237caafff9bcae7c9e0504c46fe772fdd",
+      "git_blob_sha1": "1036c36a61599acdfa05921a366c47ffa6b1988e",
+      "mode": "100644"
+    },
+    {
+      "path": "host/focused-ordinary-r02.log",
+      "bytes": 12354,
+      "sha256": "f3a5d598cbbf8716f55a0d0e09369aba8add73b31adeb75a97af16911f002149",
+      "git_blob_sha1": "0844e3308f8f189c05b6894ae0e9ea7dfb1e670b",
+      "mode": "100644"
+    },
+    {
+      "path": "host/focused-r02-receipt.json",
+      "bytes": 2137,
+      "sha256": "e4ff40c8644c6bf3927a85a1d0846c45496c9e5d5f72b11ddb4aa94473ea1974",
+      "git_blob_sha1": "becf6f67c8c709668d0ea59f48b3d51b09d2c7e0",
+      "mode": "100644"
+    },
+    {
+      "path": "host/full-host-input-inventory.json",
+      "bytes": 384778,
+      "sha256": "cb7ba373a1f37b76b6b0ebf2a755d9facbb9b80dfdef538dab0d8ed8b85503ab",
+      "git_blob_sha1": "e6987aeb95cd8f31ff319201b05f66139ae958df",
+      "mode": "100644"
+    },
+    {
+      "path": "host/full-optimized-r01.log",
+      "bytes": 4815,
+      "sha256": "90d9f7b4f05c2e3bbbca49742b59b7119e47b150488e77df692d3ba4fb7b450c",
+      "git_blob_sha1": "e3076de537fb4898d57fbeca38255257b1aabba1",
+      "mode": "100644"
+    },
+    {
+      "path": "host/full-ordinary-r01.log",
+      "bytes": 257179,
+      "sha256": "7fc5f5cd973949198ac7b6a3feff5a2773baa917e042f27b27d537592f9e0889",
+      "git_blob_sha1": "fe205c63978e60f8a0db268c002ad667fae7a762",
+      "mode": "100644"
+    },
+    {
+      "path": "host/log-redactions.json",
+      "bytes": 2384,
+      "sha256": "7d7a21d160b90ebe02f4b418f9aabdc3866ab93ab3871737770a3159e5bf25df",
+      "git_blob_sha1": "cf2890aa3e1d29e07158749dca9af77384d3060a",
+      "mode": "100644"
+    },
+    {
+      "path": "host/repair-host-test-receipt.json",
+      "bytes": 5368,
+      "sha256": "8528206324728bfcb8f2a1672839a59b3fccb9cefabffe0f39a5f68172b5a617",
+      "git_blob_sha1": "a80d1b18f19d1fdf33f2a468f2ad4830fad1f41b",
+      "mode": "100644"
+    },
+    {
+      "path": "host/repair-terminal-host-receipt.json",
+      "bytes": 10153,
+      "sha256": "54d01ec76acac5b3ff9471599f202bd8881a5c156c6ac08bcafb3c42a0849faf",
+      "git_blob_sha1": "4612955c99d4a854b212af5250bca932f7c7118f",
+      "mode": "100644"
+    },
+    {
+      "path": "independent-repair-audit/README.md",
+      "bytes": 1936,
+      "sha256": "28fbd3321fee179ed8a719d86ffa9fa122cdead275b61e244279db62aa03142f",
+      "git_blob_sha1": "c8dd9b5adf863c35c20c268803caf68c905397a6",
+      "mode": "100644"
+    },
+    {
+      "path": "independent-repair-audit/manifest.json",
+      "bytes": 1090,
+      "sha256": "a7eff3f687c6b76c22209d4baca4f4f4b7ab8377587dc5183de7b3d5d48eac90",
+      "git_blob_sha1": "e0e0972a9af0b690880536c9f280e2915f132e0f",
+      "mode": "100644"
+    },
+    {
+      "path": "independent-repair-audit/optimized/numeric-oracle-repair-audit.json",
+      "bytes": 4970,
+      "sha256": "390d3c7259bca17895137bbccd88b658f602392a2ec8f1f543a19acfc8653f9c",
+      "git_blob_sha1": "9599a8d78126050077104905f0d93cf7b61d79dc",
+      "mode": "100644"
+    },
+    {
+      "path": "independent-repair-audit/ordinary/numeric-oracle-repair-audit.json",
+      "bytes": 4970,
+      "sha256": "390d3c7259bca17895137bbccd88b658f602392a2ec8f1f543a19acfc8653f9c",
+      "git_blob_sha1": "9599a8d78126050077104905f0d93cf7b61d79dc",
+      "mode": "100644"
+    },
+    {
+      "path": "independent-repair-audit/verify_numeric_oracle_repair.py",
+      "bytes": 11233,
+      "sha256": "0bf189b258705bfb5bc7c669eded31c884a74b553154b5c35ec1f53743b90468",
+      "git_blob_sha1": "4015da3867e8c1e17a8075dabea7e2939ba2e2e1",
+      "mode": "100644"
+    },
+    {
+      "path": "oracle-change.json",
+      "bytes": 917,
+      "sha256": "a5a4254ad91341550907d341e6568cadbacee59a0897ba9dd7e2dbafc3ca15bb",
+      "git_blob_sha1": "a1ec2dd7f5de6082b950b2e0677883348b8bc943",
+      "mode": "100644"
+    },
+    {
+      "path": "prior-record-log-hygiene-correction.json",
+      "bytes": 1348,
+      "sha256": "37390aee8aba036548322323c06b1a5111bf89c6d79b16770bd686dc63569c6f",
+      "git_blob_sha1": "63f1d77dc2c7cfa2f623f0804d89705426d729f9",
+      "mode": "100644"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 773,
+      "sha256": "181fdef045fe0aa2f1b89fef682ad6b8778840b822ec5976d3b2a0d970e45184",
+      "git_blob_sha1": "e30d883f8f5e0b632c340a0460a323bb4e902a0b",
+      "mode": "100644"
+    },
+    {
+      "path": "source-file.json",
+      "bytes": 265,
+      "sha256": "3967ef00eb8022f0a864f22a77e1eaa7048ab672714065a86a1657bfe39bb83b",
+      "git_blob_sha1": "96f1304ff24b1dced42032204bf60c4bff48fa43",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/README.md",
+      "bytes": 6706,
+      "sha256": "7e0ab45326ae48b4c6a1695d64730a12ac13dbabbd781c00400c1aaccf0bb571",
+      "git_blob_sha1": "939a304ed2cbcca61cca69896d31eefe59877db9",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/manifest.json",
+      "bytes": 4073,
+      "sha256": "865699c6b6c0f591f6cbd6882c0e3f93a995eed82c63c5ff2b75d2ab5e1f33b5",
+      "git_blob_sha1": "ffa4e72d26b582ebf92453bd8d8f0d4a34799d9a",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/optimized/artifact-verifier-sanity.json",
+      "bytes": 10240,
+      "sha256": "0721272d1067cbad63b998d5a8423c269b5d58617d3d2adc0d632f5a0ed383d4",
+      "git_blob_sha1": "901575c26add6424ff7b9e418141079e5c3dc4cf",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/ordinary/artifact-verifier-sanity.json",
+      "bytes": 10240,
+      "sha256": "0721272d1067cbad63b998d5a8423c269b5d58617d3d2adc0d632f5a0ed383d4",
+      "git_blob_sha1": "901575c26add6424ff7b9e418141079e5c3dc4cf",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/preparation/source-expectations.json",
+      "bytes": 28685,
+      "sha256": "d22ec2abf0cdd8e72b4a57e9808938388a90904cfe57a5d0b20fac5db505a646",
+      "git_blob_sha1": "1c8c666cf844a86d1325ca226b024aab3360b45b",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/preparation/staged-source-tree.json",
+      "bytes": 330150,
+      "sha256": "6cd866a0ce14cb24bc0ce201e7020c8c07c082f6e805aefe07b0426bb2ac9ee9",
+      "git_blob_sha1": "83d293fd1d2b550bd6a30f723c0d5ccbe178dad3",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/prepare_source_expectations.py",
+      "bytes": 5153,
+      "sha256": "7188e845f6a31709b810ccb9f6c3b7c20882700865b2bbe4b12b9b8fcc0a78be",
+      "git_blob_sha1": "b9806f7dd5fad9a0b51acb6a37302d8f1cdf292c",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/test_artifact_verifiers.py",
+      "bytes": 20991,
+      "sha256": "e0892aa095ae4ff95327ab14a5fb70fbc8dcea4907ed8b562501bc07240cafa6",
+      "git_blob_sha1": "762d8235767f00841b323713b1d9d3986d57848b",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/verify_api35_artifact.py",
+      "bytes": 4664,
+      "sha256": "513e2cdbddbdef2116efd2072ceb146dcef01c8b518b88351f5fca92d0931cf7",
+      "git_blob_sha1": "0c3c08d61c7221a267b54647421656e8f845f9b0",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/verify_apk_artifact.py",
+      "bytes": 9554,
+      "sha256": "cb8bfa05f51af635abe060979aa2acfcf4ec2e94894d007e3e31de71d42c0287",
+      "git_blob_sha1": "3ea537331c13d1b392e82edb7bb7674b1f6a7bf2",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/verify_exact_script_artifact.py",
+      "bytes": 2473,
+      "sha256": "32750c5aa50176bd5af58b2f84537350ecf49e602e39bec2c3a9248575040048",
+      "git_blob_sha1": "d56dab0b5167a8ea516a3c488bc203051a3781aa",
+      "mode": "100644"
+    },
+    {
+      "path": "verifiers/verify_regression_artifact.py",
+      "bytes": 5017,
+      "sha256": "445ffe8ea7671db47ff80aa6fad0219eb1c311f52350546d29687c2285a8cda5",
+      "git_blob_sha1": "7aa266df6a48433c648443eaabea4285a36f9edf",
+      "mode": "100644"
+    }
+  ]
+}
