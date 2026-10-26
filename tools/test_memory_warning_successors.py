@@ -7,7 +7,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 from current_localization_contracts import require_string
-from memory_warning_source_review import current_source_expectation, review_record
+from memory_warning_source_review import PRIORITY_TAGS, current_source_expectation, review_record
 from memory_warning_successors import (RECORD, ROOT, KEYS, accepted_warning,
                                       successors, validated_successors)
 import translation_catalogues as catalogues
@@ -82,18 +82,27 @@ class MemoryWarningSuccessors(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError): validated_successors(data)
 
     def test_held_missing_and_canonical_values_are_preserved_not_accepted(self):
-        counts = {'held': 0, 'missing': 0, 'canonical': 0}
+        counts = {'held': 0, 'missing': 0, 'canonical': 0, 'qualified-priority': 0}
         for option in review_record()['options']:
             tag = option['tag']; actual = catalogues.read_strings(ROOT / option['catalogue'])
             for key, term in option['terms'].items():
                 if (tag, key) in self.index: continue
+                if tag in PRIORITY_TAGS:
+                    with self.subTest(tag=tag, key=key):
+                        self.assertIsNone(term['value'])
+                        expected = current_source_expectation(key, tag, None)
+                        self.assertEqual(expected, actual.get(key))
+                        with self.assertRaises(ValueError): accepted_warning(key, tag)
+                        with self.assertRaises(ValueError): current_source_expectation(key, tag, expected)
+                    counts['qualified-priority'] += 1
+                    continue
                 with self.subTest(tag=tag, key=key):
                     self.assertEqual(term['value'], actual.get(key))
                     with self.assertRaises(ValueError): accepted_warning(key, tag)
                 if tag == 'en-001': counts['canonical'] += 1
                 elif term['value'] is None: counts['missing'] += 1
                 else: counts['held'] += 1
-        self.assertEqual({'held': 4, 'missing': 218, 'canonical': 2}, counts)
+        self.assertEqual({'held': 4, 'missing': 214, 'canonical': 2, 'qualified-priority': 4}, counts)
 
     def test_compact_behavior_oracle_corruption_is_rejected(self):
         original_read = Path.read_bytes
