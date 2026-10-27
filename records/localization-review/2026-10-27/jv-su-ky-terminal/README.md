@@ -1,0 +1,7 @@
+# PR194 original CI verification
+
+Exact source c44e1118b78da5cde84f0e48a05726b99bd930ff, tree30e324237a54b14ba6de408d4ec8fc6c132e4252; tested merged6cd7e146090e9ebbeacc93ff54a01768a4fcc9a, run40555630025. All seven original artifacts checked by GitHub-provided SHA256 and ZIP integrity. 1432 included repository blobs exactly match the source tree; only three repository metadata files omitted. Embedded APK source exactly matches delivery source; APK signature verifies. 1510 JVM tests in163 suites pass, lint0,13 exact generation probes match expected outcomes. Hosted Python identities and explicit skipped optional checks are recorded separately. Both local ordinary/optimized1561 suites pass.
+
+All74 native and47 app API35 methods match actual source inventory and raw protocols. Original Core and Position groups independently recomposed identically to union; mandatory dialog/vertical transport, screenshots and reachability independently revalidated using exact source tools. Bounded originals, exact identities and reproducible verifiers are archived here; retained original large ZIPs are not duplicated.
+
+Exact-head Codex code and security reviews completed clean at c44e111 (summary6449683250). This is verified source/CI evidence, not a merge assertion. Subsequent stack merges remain root-owned. Existing release pause and all exact project holds remain. No native linguistic, universal layout, human accessibility or production release claim.
