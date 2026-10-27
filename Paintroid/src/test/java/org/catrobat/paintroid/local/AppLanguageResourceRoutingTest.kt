@@ -76,6 +76,45 @@ class AppLanguageResourceRoutingTest {
         assertEquals(original.currencySymbol,routed.currencySymbol)
     }
 
+    private fun reviewedUzbekScriptRow(row:JSONObject):JSONObject {
+        require(row.keys().asSequence().toSet()==setOf("requested_tag","resource_tag","expected"))
+        require(row.getString("requested_tag")=="uz-Latn" && row.getString("resource_tag")=="uz-Latn")
+        val old=row.getJSONObject("expected")
+        require(old.keys().asSequence().toSet()==setOf("ui_save","ui_menu_file","language20_device_default"))
+        require(old.getString("ui_save")=="Saqlash" && old.getString("ui_menu_file")=="Fayl")
+        require(old.getString("language20_device_default")=="Use device language")
+        // Independently reviewed addition; the historical routing fixture stays untouched.
+        return JSONObject(row.toString()).apply {
+            getJSONObject("expected").put("language20_device_default","Qurilma tilidan foydalanish")
+        }
+    }
+
+    @Test fun uzbekDeviceLabelSuccessorRejectsChangedHistoricalRows() {
+        val original=JSONObject("""{"requested_tag":"uz-Latn","resource_tag":"uz-Latn","expected":{"ui_save":"Saqlash","ui_menu_file":"Fayl","language20_device_default":"Use device language"}}""")
+        val snapshot=original.toString()
+        val current=reviewedUzbekScriptRow(original)
+        assertEquals("Qurilma tilidan foydalanish",current.getJSONObject("expected").getString("language20_device_default"))
+        assertEquals(snapshot,original.toString())
+        val invalid=mutableListOf<JSONObject>()
+        for(key in listOf("requested_tag","resource_tag","expected"))
+            invalid.add(JSONObject(snapshot).apply {remove(key)})
+        for(key in listOf("requested_tag","resource_tag"))
+            invalid.add(JSONObject(snapshot).apply {put(key,"uz")})
+        invalid.add(JSONObject(snapshot).apply {put("extra",true)})
+        for(key in listOf("ui_save","ui_menu_file","language20_device_default")) {
+            invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").remove(key)})
+            invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put(key,"forged")})
+        }
+        invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put("extra",true)})
+        invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put("language20_device_default","Qurilma tilidan foydalanish")})
+        assertEquals(14,invalid.size)
+        for(row in invalid) {
+            var rejected=false
+            try {reviewedUzbekScriptRow(row)} catch (_:Exception) {rejected=true}
+            assertTrue("Changed historical row must fail: $row",rejected)
+        }
+    }
+
     @Test fun everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue() {
         val expected=javaClass.getResourceAsStream("/exact-script-resources/expected.json")!!
             .bufferedReader().use {JSONArray(it.readText())}
@@ -84,7 +123,9 @@ class AppLanguageResourceRoutingTest {
             "language20_device_default" to R.string.language20_device_default)
         val observations=JSONArray();val failures=mutableListOf<String>()
         for(index in 0 until expected.length()) {
-            val row=expected.getJSONObject(index);val tag=row.getString("requested_tag")
+            val historical=expected.getJSONObject(index)
+            val row=if(historical.getString("requested_tag")=="uz-Latn") reviewedUzbekScriptRow(historical) else historical
+            val tag=row.getString("requested_tag")
             AppLanguage.select(context,tag)
             val wrapped=AppLanguage.wrap(context)
             assertEquals(tag,AppLanguage.selectedTag(context))

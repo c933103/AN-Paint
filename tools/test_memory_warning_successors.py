@@ -7,7 +7,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 from current_localization_contracts import require_string
-from memory_warning_source_review import YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, PRIORITY_TAGS, PRIORITY_ADDITIONS, SK_SL_CA_ADDITIONS, SINGLE_KEY_EXPECTATIONS, current_source_expectation, review_record
+from memory_warning_source_review import EU_FY_UZ_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, PRIORITY_TAGS, PRIORITY_ADDITIONS, SK_SL_CA_ADDITIONS, SINGLE_KEY_EXPECTATIONS, current_source_expectation, review_record
 from memory_warning_successors import (RECORD, ROOT, KEYS, accepted_warning,
                                       successors, validated_successors)
 import translation_catalogues as catalogues
@@ -96,7 +96,7 @@ class MemoryWarningSuccessors(unittest.TestCase):
                         with self.assertRaises(ValueError): current_source_expectation(key, tag, expected)
                     counts['qualified-single-key'] += 1
                     continue
-                if (tag, key) in PRIORITY_ADDITIONS | SK_SL_CA_ADDITIONS | MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS:
+                if (tag, key) in PRIORITY_ADDITIONS | SK_SL_CA_ADDITIONS | MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | EU_FY_UZ_ADDITIONS:
                     with self.subTest(tag=tag,key=key):
                         self.assertIsNone(term['value'])
                         expected=current_source_expectation(key,tag,None)
@@ -120,7 +120,7 @@ class MemoryWarningSuccessors(unittest.TestCase):
                 if tag == 'en-001': counts['canonical'] += 1
                 elif term['value'] is None: counts['missing'] += 1
                 else: counts['held'] += 1
-        self.assertEqual({'held': 4, 'missing': 195-len(MR_TA_TE_ADDITIONS)-len(KN_ML_ADDITIONS)-len(NE_PA_ADDITIONS)-len(YO_ZU_XH_ADDITIONS)-len(HA_IG_LN_ADDITIONS)-len(JV_SU_KY_ADDITIONS)-len(AS_KM_LO_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'qualified-new-priority': 6+len(MR_TA_TE_ADDITIONS)+len(KN_ML_ADDITIONS)+len(NE_PA_ADDITIONS)+len(YO_ZU_XH_ADDITIONS)+len(HA_IG_LN_ADDITIONS)+len(JV_SU_KY_ADDITIONS)+len(AS_KM_LO_ADDITIONS)}, counts)
+        self.assertEqual({'held': 4, 'missing': 195-len(MR_TA_TE_ADDITIONS)-len(KN_ML_ADDITIONS)-len(NE_PA_ADDITIONS)-len(YO_ZU_XH_ADDITIONS)-len(HA_IG_LN_ADDITIONS)-len(JV_SU_KY_ADDITIONS)-len(AS_KM_LO_ADDITIONS)-len(EU_FY_UZ_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'qualified-new-priority': 6+len(MR_TA_TE_ADDITIONS)+len(KN_ML_ADDITIONS)+len(NE_PA_ADDITIONS)+len(YO_ZU_XH_ADDITIONS)+len(HA_IG_LN_ADDITIONS)+len(JV_SU_KY_ADDITIONS)+len(AS_KM_LO_ADDITIONS)+len(EU_FY_UZ_ADDITIONS)}, counts)
 
     def test_compact_behavior_oracle_corruption_is_rejected(self):
         original_read = Path.read_bytes
