@@ -7,6 +7,7 @@ import json
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
+from assamese_khmer_lao_priority_expectations import MEMORY_ADDITIONS as AS_KM_LO_ADDITIONS, current_row as as_km_lo_row
 from nepali_punjabi_priority_expectations import MEMORY_ADDITIONS as NE_PA_ADDITIONS, current_row as ne_pa_row
 from kannada_malayalam_filipino_priority_expectations import MEMORY_ADDITIONS as KN_ML_ADDITIONS, current_row as kn_ml_row
 from marathi_tamil_telugu_priority_expectations import MEMORY_ADDITIONS as MR_TA_TE_ADDITIONS, current_row as mr_ta_te_row
@@ -56,6 +57,15 @@ old source snapshot.
             raise ValueError('Historical Kannada/Malayalam warning addition must be absent: '+tag+'/'+key)
         if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
             raise ValueError('Kannada/Malayalam warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in AS_KM_LO_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=as_km_lo_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Assamese/Khmer/Lao warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Assamese/Khmer/Lao warning source or attributes differ: '+tag+'/'+key)
         return row['target']
     if (tag,key) in NE_PA_ADDITIONS:
         queue=review_record()

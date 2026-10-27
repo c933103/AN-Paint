@@ -146,6 +146,12 @@ class TaggedColourImportTest {
             expected.put(tag,nePaPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
         }
         assertEquals(84, expected.length())
+        val asKmLoPriority=JSONObject(File("../tools/fixtures/current_localization/assamese_khmer_lao_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("as","km","lo")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,asKmLoPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(87, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -178,6 +184,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(86, fallbacks) // 171 offered - 84 exact current values - 1 inherited.
+        assertEquals(83, fallbacks) // 171 offered - 87 exact current values - 1 inherited.
     }
 }
