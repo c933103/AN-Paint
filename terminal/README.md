@@ -1,0 +1,13 @@
+# PR193 exact-head terminal evidence
+
+Verified source head `196016019fc2c937cadaa98d3810a0a6f3811363`, tree `005b1ea0c3874f9a439ea08f76fccf465fe13700`; run 40554136207 after the single targeted Core retry, attempt 2. Tested merge `f58d080905f0f9b976bf5c78df6b377659eacc7b` has exactly that tree and parents actual develop `e596389890e72262bf75fa10dafd8b29b5e21bd8` plus the source head. Source composition preserves the original 983 AS/KM/LO edits and existing assertions without a speculative runtime fix.
+
+All six hosted jobs and exact-head Codex Code review pass (receipt 6449515898, summary 6447385333). Independent verification: all seven original artifact digests and ZIP CRCs; 1,428 included source blobs and three expected repository-metadata omissions; original APK/source/test-APK identities; 1,495 JVM tests in 162 suites with zero failures/errors/skips; all 15 AS/KM/LO and seven integrated IT/EL/TR compiled methods; lint zero issues; 13 resource probes with exact intended outcomes; API35 74 Paintroid + 47 app cases; ten original instrumentation protocols independently reparsed; Core/Position recomposition, selected artifact IDs, exact current-source inventories and full union verified.
+
+Hosted Python: 1,549 pass and two optional independent-Pillow checks skipped out of 1,551 discovered methods. These skips are not passes. Local normal and optimized suites each passed all 1,551 methods.
+
+All mandatory dialog, vertical screenshot and native-control export validators pass independently using matching source scripts, and the original APK signature verifies. The two original hu/en first-open IME images were visually inspected: native fullscreen extract editor and keyboard are visible. This does not claim simultaneous whole-dialog/footer/IME fit, universal layout coverage or native-human linguistic acceptance.
+
+The earlier old-head IME assertion failure and this head's first-attempt mandatory export transport failure remain separately preserved in evidence commits eda15978fec4b55b1c0bc270a9c483882d1324d4 and f36ad02f1442916ea2e2ee3b9462b1d3febe4920. A later pass does not erase those failures or establish their ultimate cause. No deadline, assertion, inventory, activation or provider change was made. Attempt 2 was a single unchanged-head Core-only retry after observed adb transport termination/offline collection, not a rebuild or repeated blind retry.
+
+This package contains bounded original protocols/XML/logs and verifier outputs. Full APK/source/PNG archives remain the original identified GitHub workflow artifacts and are not duplicated here. This is a PR cohort, not postmerge verification or a release. Merge is separately coordinated; existing release pauses remain unchanged.
