@@ -91,7 +91,7 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
             self.assertEqual(62, counts[(key, 'present')])
             self.assertEqual(109, counts[(key, 'missing')])
             # Explicit separate priority additions; the frozen queue still retains every historical absence.
-            added = 12 if key == 'ui_assembly_source_memory_floor' else 5
+            added = 15 if key == 'ui_assembly_source_memory_floor' else 8
             self.assertEqual(65 + added, current_counts[(key, 'present')])
             self.assertEqual(106 - added, current_counts[(key, 'missing')])
 
