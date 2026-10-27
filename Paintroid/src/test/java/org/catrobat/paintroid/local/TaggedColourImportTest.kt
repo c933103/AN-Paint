@@ -166,6 +166,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(93, fallbacks)
+        assertEquals(90, fallbacks) // 171 offered - 80 exact current values - 1 inherited.
     }
 }
