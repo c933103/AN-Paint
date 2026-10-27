@@ -1,0 +1,7 @@
+# PR190 forward-head original CI verification
+
+Exact source db90376a5b76d80b128a7934c954561fa49e8df2, tree8810c3bd61d31f5f0e2ffde393bb5917fc7a607d; tested merge2a24aa5f4b1a26faa2ea1336fd7e88cfaa1cbdc7, run40553716042. All seven original artifacts checked by GitHub-provided SHA256 and ZIP integrity. 1412 included repository blobs exactly match the source tree; only three repository metadata files omitted. Embedded APK source exactly matches delivery source; APK signature verifies. 1445 JVM tests in158 suites pass, lint0,13 exact generation probes match expected outcomes. Hosted Python identities and explicit skipped optional checks are recorded separately. Both local ordinary/optimized1515 suites pass.
+
+All74 native and47 app API35 methods match actual source inventory and raw protocols. Original Core and Position groups independently recomposed identically to union; mandatory dialog/vertical transport, screenshots and reachability independently revalidated using exact source tools. Bounded originals, exact identities and reproducible verifiers are archived here; retained original large ZIPs are not duplicated.
+
+Exact-head Codex review was still running when this evidence was packaged. This is CI/source evidence, not a merge or review-completion assertion. Existing release pause and all exact project holds remain. No native linguistic, universal layout, human accessibility or production release claim.
