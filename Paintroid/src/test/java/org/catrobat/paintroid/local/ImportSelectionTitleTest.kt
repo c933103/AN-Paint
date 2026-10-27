@@ -212,15 +212,18 @@ class ImportSelectionTitleTest {
         for (tag in listOf("ca", "ro")) {
             language(tag)
             assertEquals(tag, AppLanguage.selectedTag(activity))
-            fun expected(key: String) = values.getJSONObject(key).getString(tag).removeSurrounding("\"")
+            fun expected(key: String) = PriorityWordingExpectations.current(
+                tag, key, values.getJSONObject(key).getString(tag)).removeSurrounding("\"")
             fun formatted(key: String, vararg arguments: Any) = String.format(Locale.forLanguageTag(tag), expected(key), *arguments)
             val open = expected("formats22_open_still")
             val animated = expected("formats22_animation_title")
             var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
             cancel(warning(open, formatted("formats22_animation_unknown", "GIF"), open), file)
-            assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
+            val countText = if (tag == "ca") "at least 2" else String.format(
+                Locale.forLanguageTag(tag), PriorityWordingExpectations.display(tag, "formats22_at_least_frames"), 2)
+            assertEquals(countText, ui(R.string.formats22_at_least_frames, 2))
             file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
-            cancel(warning(animated, formatted("formats22_animation_message", "GIF", "at least 2") +
+            cancel(warning(animated, formatted("formats22_animation_message", "GIF", countText) +
                 "\n\n" + expected("formats22_animation_still"), open), file, dismiss = true)
             file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
             val dialog = warning(animated, formatted("formats22_animation_message", "APNG", "3") +
