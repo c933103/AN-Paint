@@ -118,6 +118,58 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
+    private fun soWoHtExpectations() = JSONObject(File("../tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json").readText())
+
+    private fun addSoWoHt(expected: JSONObject,reviewed: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        val source=reviewed.getJSONObject("sources").getJSONObject(key)
+        assertEquals("string",source.getString("type"));assertEquals(neutral,source.getString("source"))
+        assertEquals(setOf("name"),source.getJSONObject("attributes").keys().asSequence().toSet())
+        assertEquals(key,source.getJSONObject("attributes").getString("name"))
+        val canonical=soWoHtExpectations().getJSONObject("locales")
+        for(tag in listOf("so","wo","ht")) {
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject("locales").getJSONObject(tag)
+            assertFalse("Historical resource must be absent $tag",row.getJSONObject("predecessors").has(key))
+            assertTrue("Explicit previous-target key required $tag",row.getJSONObject("previous_targets").has(key))
+            assertTrue("Explicit null predecessor required $tag",row.getJSONObject("previous_targets").isNull(key))
+            assertTrue("Must be an explicit changed value $tag",(0 until row.getJSONArray("changed").length()).any {
+                row.getJSONArray("changed").getString(it)==key })
+            assertFalse("Exact name-only target attributes $tag",row.getJSONObject("target_attribute_exceptions").has(key))
+            val raw=row.getJSONObject("accepted").getString(key)
+            assertTrue(raw.isNotEmpty());assertFalse(raw.startsWith("@"))
+            assertEquals("Exact complete raw target $tag",canonical.getJSONObject(tag).getJSONObject("accepted").getString(key),raw)
+            val display=Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
+                when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
+            }
+            expected.put(tag,display)
+        }
+    }
+
+    @Test fun finiteSoWoHtAdditionRejectsSourceAttributesHistoryAndTargetCorruption() {
+        val key="save20_unsupported_image_colour"
+        for(tag in listOf("so","wo","ht")) for(mutation in listOf("source","sourceAttributes","sourceType","previous","missingNull","nonNull","attributes","changed","empty","target","alias","alreadyPresent")) {
+            val data=soWoHtExpectations();val expected=JSONObject()
+            val source=data.getJSONObject("sources").getJSONObject(key)
+            val row=data.getJSONObject("locales").getJSONObject(tag)
+            when(mutation) {
+                "source" -> source.put("source","forged")
+                "sourceAttributes" -> source.getJSONObject("attributes").put("formatted","false")
+                "sourceType" -> source.put("type","plurals")
+                "previous" -> row.getJSONObject("predecessors").put(key,"forged")
+                "missingNull" -> row.getJSONObject("previous_targets").remove(key)
+                "nonNull" -> row.getJSONObject("previous_targets").put(key,"forged")
+                "attributes" -> row.getJSONObject("target_attribute_exceptions").put(key,JSONObject().put("name",key).put("formatted","false"))
+                "changed" -> row.put("changed",org.json.JSONArray())
+                "empty" -> row.getJSONObject("accepted").put(key,"")
+                "target" -> row.getJSONObject("accepted").put(key,"forged")
+                "alias" -> row.getJSONObject("accepted").put(key,"@string/ui_save")
+                "alreadyPresent" -> expected.put(tag,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) { addSoWoHt(expected,data) }
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -170,6 +222,8 @@ class TaggedColourImportTest {
             expected.put(tag,yoZuXhPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
         }
         assertEquals(96, expected.length())
+        addSoWoHt(expected,soWoHtExpectations())
+        assertEquals(99, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -202,6 +256,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(74, fallbacks) // 171 offered - 96 exact current values - 1 inherited.
+        assertEquals(71, fallbacks) // 171 offered - 99 exact current values - 1 inherited.
     }
 }

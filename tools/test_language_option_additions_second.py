@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 
 import translation_catalogues as catalogues
 from language_option_additions import require_untranslated_option
+from somali_wolof_haitian_creole_priority_expectations import SO_WO_HT_OPTION_TAGS, PRIORITY_OPTION_STATUS as SO_WO_HT_OPTION_STATUS, require_priority_option_successor as require_so_wo_ht_option_successor
 from assamese_khmer_lao_priority_expectations import ASSAMESE_OPTION_STATUS, require_assamese_option_successor
 from language_option_additions import ADDED_TAGS, FIRST_ADDED_TAGS, SECOND_ADDED_TAGS, SECOND_ADDITIONS_PATH
 
@@ -41,7 +42,7 @@ class FurtherLanguageOptionTests(unittest.TestCase):
             self.assertEqual(name, by_tag[tag])
             rows = [r for r in options if r['tag'] == tag]
             self.assertEqual(1, len(rows)); self.assertEqual(name, rows[0]['name'])
-            self.assertEqual(ASSAMESE_OPTION_STATUS if tag=='as' else 'not-started', rows[0]['translation_status'])
+            self.assertEqual(SO_WO_HT_OPTION_STATUS if tag in SO_WO_HT_OPTION_TAGS else ASSAMESE_OPTION_STATUS if tag=='as' else 'not-started', rows[0]['translation_status'])
             self.assertEqual('default-English', rows[0]['fallback'])
             self.assertEqual(catalogues.RES / f'values-b+{tag}/strings.xml', catalogues.catalogue_paths()[tag])
 
@@ -75,6 +76,14 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         self.assertLessEqual(strings, set(defaults)); self.assertLessEqual(plurals, set(default_plurals))
         for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']:
             path = ROOT / row['catalogue']
+            if row['tag'] in SO_WO_HT_OPTION_TAGS:
+                tag=row['tag'];root=require_so_wo_ht_option_successor(row,path.read_text())
+                self.assertEqual([],catalogues.validate_catalogue(tag))
+                missing_strings=strings-{n.get('name')for n in root if n.tag=='string'}
+                missing_plurals=plurals-{n.get('name')for n in root if n.tag=='plurals'}
+                self.assertTrue(missing_strings);self.assertFalse(missing_plurals)
+                self.assertEqual([f"{tag}: missing {len(missing_strings)} strings: {', '.join(sorted(missing_strings)[:20])}"],catalogues.validate_catalogue(tag,require_complete=True))
+                continue
             if row['tag']=='as':
                 root=require_assamese_option_successor(row,path.read_text())
                 self.assertEqual([],catalogues.validate_catalogue('as'))
@@ -125,6 +134,35 @@ class FurtherLanguageOptionTests(unittest.TestCase):
 
 
 
+
+    def test_only_exact_full_priority_values_supersede_three_existing_second_batch_options(self):
+        from copy import deepcopy
+        rows=json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']
+        for tag in sorted(SO_WO_HT_OPTION_TAGS):
+            old=next(r for r in rows if r['tag']==tag);xml=(ROOT/old['catalogue']).read_text()
+            require_so_wo_ht_option_successor(old,xml)
+            with self.assertRaises(ValueError):require_untranslated_option(old,xml)
+            for row in rows:
+                if row['tag']!=tag:
+                    with self.subTest(tag=tag,foreign=row['tag']),self.assertRaises(ValueError):require_so_wo_ht_option_successor(row,xml)
+            for field,value in [('translation_status','complete'),('linguistic_review','accepted'),('fallback','translated'),('source_strings_present',346),('source_plurals_present',1)]:
+                bad=deepcopy(old);bad[field]=value
+                with self.subTest(tag=tag,field=field),self.assertRaises(ValueError):require_so_wo_ht_option_successor(bad,xml)
+            original=ET.fromstring(xml)
+            for index,node in enumerate(original):
+                bad=deepcopy(original)
+                if node.tag=='string':bad[index].text=(node.text or '')+' altered'
+                else:bad[index][0].text=(node[0].text or '')+' altered'
+                with self.subTest(tag=tag,key=node.get('name')),self.assertRaises(ValueError):require_so_wo_ht_option_successor(old,ET.tostring(bad,encoding='unicode'))
+            for mode in ('missing','extra','attribute','tail','plural-text','plural-tail'):
+                bad=deepcopy(original)
+                if mode=='missing':bad.remove(bad[0])
+                elif mode=='extra':ET.SubElement(bad,'string',name='unreviewed').text='unreviewed'
+                elif mode=='tail':bad[0].tail='unreviewed text'
+                elif mode=='plural-text':bad.find('./plurals').text='unreviewed text'
+                elif mode=='plural-tail':bad.find('./plurals')[0].tail='unreviewed text'
+                else:bad[0].set('formatted','false')
+                with self.subTest(tag=tag,mode=mode),self.assertRaises(ValueError):require_so_wo_ht_option_successor(old,ET.tostring(bad,encoding='unicode'))
 
 if __name__ == '__main__':
     unittest.main()

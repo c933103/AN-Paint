@@ -126,11 +126,26 @@ class AppLanguageTest {
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
             if (tag == "as") {
-                // Exact reviewed priority successor; the other 20 options retain English fallback.
+                // Exact reviewed priority successor; the other 17 options retain English fallback.
                 assertEquals("ফাইল",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("ব্ৰাছ",wrapped.getString(R.string.ui_brush))
                 assertEquals("সংৰক্ষণ কৰক",wrapped.getString(R.string.ui_save))
                 assertEquals("এপৰ ভাষা\n\nAN Paint-ৰ ভাষাৰ সম্পদসমূহত অনুবাদসমূহ ৰক্ষণাবেক্ষণ কৰা হয়। নতুন বা অনুবাদ নকৰা পাঠ ইংৰাজীত দেখা যায়।",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "so") {
+                assertEquals("Faylka",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Burush",wrapped.getString(R.string.ui_brush))
+                assertEquals("Kaydi",wrapped.getString(R.string.ui_save))
+                assertEquals("Luqadda abka\n\nTarjumaadaha waxaa lagu hayaa agabka luqadaha AN Paint. Qoraal cusub ama aan la tarjumin waxa uu ku muuqdaa Ingiriisi.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "wo") {
+                assertEquals("Dencukaay",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Pënso",wrapped.getString(R.string.ui_brush))
+                assertEquals("Denc",wrapped.getString(R.string.ui_save))
+                assertEquals("Làkku aplikasiyoŋ bi\n\nTekki yi ñu ngi leen di toppatoo ci jumtukaayi làkk yu AN Paint. Mbind mu bees walla muñu tekkagul day feeñ ci àngale.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "ht") {
+                assertEquals("Fichye",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Penso",wrapped.getString(R.string.ui_brush))
+                assertEquals("Anrejistre",wrapped.getString(R.string.ui_save))
+                assertEquals("Lang aplikasyon an\n\nTradiksyon yo konsève nan resous lang AN Paint yo. Tèks ki nouvo oswa ki poko tradui parèt ann anglè.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))

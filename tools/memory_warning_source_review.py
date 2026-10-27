@@ -7,6 +7,7 @@ import json
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
+from somali_wolof_haitian_creole_priority_expectations import MEMORY_ADDITIONS as SO_WO_HT_ADDITIONS, current_row as so_wo_ht_row, require_addition as require_so_wo_ht_addition
 from yoruba_zulu_xhosa_priority_expectations import MEMORY_ADDITIONS as YO_ZU_XH_ADDITIONS, current_row as yo_zu_xh_row
 from hausa_igbo_lingala_priority_expectations import MEMORY_ADDITIONS as HA_IG_LN_ADDITIONS, current_row as ha_ig_ln_row
 from javanese_sundanese_kyrgyz_priority_expectations import MEMORY_ADDITIONS as JV_SU_KY_ADDITIONS, current_row as jv_su_ky_row
@@ -97,6 +98,12 @@ old source snapshot.
         if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
             raise ValueError('Yoruba/Zulu/Xhosa warning source or attributes differ: '+tag+'/'+key)
         return row['target']
+    if (tag,key) in SO_WO_HT_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=so_wo_ht_row(tag,key)
+        return require_so_wo_ht_addition(tag,key,queue['keys'][key]['corrected_english'],
+            historical_value=historical_value,already_present=old is not None,row=row)
     if (tag,key) in NE_PA_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
