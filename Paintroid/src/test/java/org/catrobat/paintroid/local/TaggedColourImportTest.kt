@@ -118,6 +118,42 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
+    private fun gaGdCyExpectations() = JSONObject(File(
+        "../tools/fixtures/current_localization/irish_gaelic_welsh_priority_wording.json").readText()).getJSONObject("locales")
+
+    private fun addGaGdCy(expected: JSONObject, reviewed: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        assertEquals(setOf("ga","gd","cy"),reviewed.keys().asSequence().toSet())
+        for(tag in listOf("ga","gd","cy")) {
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject(tag).getJSONObject("values").getJSONObject("string/$key")
+            assertEquals(neutral,row.getString("source"))
+            for(field in listOf("source_attributes","attributes")) {
+                assertEquals(setOf("name"),row.getJSONObject(field).keys().asSequence().toSet())
+                assertEquals(key,row.getJSONObject(field).getString("name"))
+            }
+            assertTrue(row.has("previous_target") && row.isNull("previous_target"))
+            assertTrue(row.has("previous_attributes") && row.isNull("previous_attributes"))
+            val target=row.getString("target").removeSurrounding("\"").replace("\\'","'").replace("\\\"","\"").replace("\\n","\n")
+            assertEquals(target,row.getString("display"))
+            expected.put(tag,row.getString("display"))
+        }
+    }
+
+    @Test fun finiteGaGdCyAdditionsRejectSourceAttributesAndPredecessorCorruption() {
+        for(tag in listOf("ga","gd","cy")) for(mutation in listOf("source","source_attributes","previous_target","previous_attributes","attributes","display","target","alreadyPresent","missing_previous_target","missing_previous_attributes")) {
+            val data=gaGdCyExpectations();val expected=JSONObject()
+            val row=data.getJSONObject(tag).getJSONObject("values").getJSONObject("string/save20_unsupported_image_colour")
+            when(mutation) {
+                "source_attributes","attributes" -> row.getJSONObject(mutation).put("formatted","false")
+                "alreadyPresent" -> expected.put(tag,"forged")
+                "missing_previous_target","missing_previous_attributes" -> row.remove(mutation.removePrefix("missing_"))
+                else -> row.put(mutation,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) {addGaGdCy(expected,data)}
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -128,6 +164,8 @@ class TaggedColourImportTest {
         assertFalse(expected.has("uk"))
         expected.put("uk", PriorityWordingExpectations.display("uk","save20_unsupported_image_colour"))
         assertEquals(77, expected.length())
+        addGaGdCy(expected,gaGdCyExpectations())
+        assertEquals(80,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -160,6 +198,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(93, fallbacks)
+        assertEquals(90, fallbacks)
     }
 }
