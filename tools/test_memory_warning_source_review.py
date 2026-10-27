@@ -5,7 +5,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from current_localization_contracts import require_string
-from memory_warning_source_review import KEYS, current_source_expectation, review_record
+from memory_warning_source_review import BR_AST_OC_ADDITIONS, KEYS, current_source_expectation, review_record
 import translation_catalogues as catalogues
 
 
@@ -91,7 +91,7 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
             self.assertEqual(62, counts[(key, 'present')])
             self.assertEqual(109, counts[(key, 'missing')])
             # Explicit separate priority additions; the frozen queue still retains every historical absence.
-            added = 12 if key == 'ui_assembly_source_memory_floor' else 5
+            added = (12 if key == 'ui_assembly_source_memory_floor' else 5)+sum(k==key for _,k in BR_AST_OC_ADDITIONS)
             self.assertEqual(65 + added, current_counts[(key, 'present')])
             self.assertEqual(106 - added, current_counts[(key, 'missing')])
 

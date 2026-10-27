@@ -118,6 +118,52 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
+    private fun brAstOcExpectations() = JSONObject(File(
+        "../tools/fixtures/current_localization/breton_asturian_occitan_priority_wording.json").readText())
+
+    private fun addBrAstOc(expected: JSONObject, reviewed: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        val source=reviewed.getJSONObject("sources").getJSONObject(key)
+        assertEquals("string",source.getString("type"))
+        assertEquals(neutral,source.getString("source"))
+        assertEquals(setOf("name"),source.getJSONObject("attributes").keys().asSequence().toSet())
+        assertEquals(key,source.getJSONObject("attributes").getString("name"))
+        for(tag in listOf("br","ast","oc")) {
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject("locales").getJSONObject(tag)
+            assertFalse("Historical resource must be absent $tag",row.getJSONObject("predecessors").has(key))
+            assertTrue("Must be an explicit changed value $tag",(0 until row.getJSONArray("changed").length()).any {
+                row.getJSONArray("changed").getString(it)==key })
+            assertFalse("Exact name-only target attributes $tag",row.getJSONObject("target_attribute_exceptions").has(key))
+            val raw=row.getJSONObject("accepted").getString(key)
+            assertTrue(raw.isNotEmpty());assertFalse(raw.startsWith("@"))
+            val display=Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
+                when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
+            }
+            expected.put(tag,display)
+        }
+    }
+
+    @Test fun finiteBrAstOcAdditionRejectsSourceAttributesAndPredecessorCorruption() {
+        val key="save20_unsupported_image_colour"
+        for(tag in listOf("br","ast","oc")) for(mutation in listOf("source","sourceAttributes","sourceType","previous","attributes","changed","empty","alreadyPresent")) {
+            val data=brAstOcExpectations();val expected=JSONObject()
+            val source=data.getJSONObject("sources").getJSONObject(key)
+            val row=data.getJSONObject("locales").getJSONObject(tag)
+            when(mutation) {
+                "source" -> source.put("source","forged")
+                "sourceAttributes" -> source.getJSONObject("attributes").put("formatted","false")
+                "sourceType" -> source.put("type","plurals")
+                "previous" -> row.getJSONObject("predecessors").put(key,"forged")
+                "attributes" -> row.getJSONObject("target_attribute_exceptions").put(key,JSONObject().put("name",key).put("formatted","false"))
+                "changed" -> row.put("changed",org.json.JSONArray())
+                "empty" -> row.getJSONObject("accepted").put(key,"")
+                "alreadyPresent" -> expected.put(tag,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) { addBrAstOc(expected,data) }
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -128,6 +174,8 @@ class TaggedColourImportTest {
         assertFalse(expected.has("uk"))
         expected.put("uk", PriorityWordingExpectations.display("uk","save20_unsupported_image_colour"))
         assertEquals(77, expected.length())
+        addBrAstOc(expected,brAstOcExpectations())
+        assertEquals(80, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -160,6 +208,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(93, fallbacks)
+        assertEquals(90, fallbacks) // 171 offered - 80 direct - 1 inherited.
     }
 }

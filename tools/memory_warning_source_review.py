@@ -7,6 +7,7 @@ import json
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
+from breton_asturian_occitan_priority_expectations import MEMORY_ADDITIONS as BR_AST_OC_ADDITIONS, require_addition as br_ast_oc_addition
 
 RECORD = Path(__file__).resolve().parents[1] / 'translations/source-review/memory-warnings-20261021.json'
 KEYS = {'ui_no_resize_fits_decoder_memory', 'ui_assembly_source_memory_floor'}
@@ -45,6 +46,11 @@ old source snapshot.
 """
     if key not in KEYS:
         return historical_value
+    if (tag,key) in BR_AST_OC_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        if old is not None:raise ValueError('Historical BR/AST/OC queue value must be absent')
+        return br_ast_oc_addition(tag,key,queue['keys'][key]['corrected_english'],historical_value)
     if (tag, key) in SK_SL_CA_ADDITIONS:
         queue = review_record()
         old = next(o for o in queue['options'] if o['tag'] == tag)['terms'][key]['value']
