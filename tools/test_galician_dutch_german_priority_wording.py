@@ -31,6 +31,7 @@ def checked(data):
     else:
      if row['target'] is None or row.get('display')!=display(row['target']):raise ValueError('Display differs')
      if group=='values':
+      if not {'previous_target','previous_attributes'} <= set(row):raise ValueError('Required predecessor field absent')
       if (row.get('previous_target'),row.get('previous_attributes'))!=PREVIOUS[tag][identity]:raise ValueError('Predecessor differs')
       if row['target']==row['previous_target'] and row['attributes']==row['previous_attributes']:raise ValueError('Not a change')
       if row['attributes']!=row['source_attributes']:raise ValueError('Changed attributes differ from source')
@@ -142,5 +143,26 @@ class GalicianDutchGermanPriorityWordingTest(unittest.TestCase):
     with self.subTest(tag=tag,key=key,field=field),patch.object(successors,'fixture',return_value=changed),self.assertRaises(ValueError):
      successors.wording_successor(tag,key,original['previous_target'])
   self.assertRaises(ValueError,successors.wording_successor,'gl','ui_swap_foreground_background','old')
+
+ def test_finite_additions_and_corrections_reject_missing_reviewed_fields(self):
+  from unittest.mock import patch
+  import galician_priority_expectations as successors
+  for tag,key in successors.ADDITIONS | successors.WORDING_CORRECTIONS:
+   original=self.data['locales'][tag]['values']['string/'+key]
+   for field in ['source','source_attributes','previous_target','previous_attributes','attributes','display','target']:
+    changed=deepcopy(self.data);changed['locales'][tag]['values']['string/'+key].pop(field)
+    with self.subTest(tag=tag,key=key,missing=field),patch.object(successors,'fixture',return_value=changed),self.assertRaises(ValueError):
+     if (tag,key) in successors.ADDITIONS:successors.current_row(tag,key)
+     else:successors.wording_successor(tag,key,original['previous_target'])
+
+ def test_all_changed_values_require_explicit_predecessor_fields_even_for_null(self):
+  checked_fields=0
+  for tag,loc in self.locales.items():
+   for identity in loc['values']:
+    for field in ['previous_target','previous_attributes']:
+     data=deepcopy(self.data);data['locales'][tag]['values'][identity].pop(field)
+     with self.subTest(tag=tag,identity=identity,missing=field),self.assertRaises(ValueError):checked(data)
+     checked_fields+=1
+  self.assertEqual(562,checked_fields)
 
 if __name__=='__main__':unittest.main()

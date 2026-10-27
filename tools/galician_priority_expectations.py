@@ -16,6 +16,7 @@ def current_row(tag,key):
     data=fixture(NAME)
     if set(data['locales'])!={'gl','nl','de'}:raise ValueError('Exact three-locale fixture scope differs')
     row=data['locales'][tag]['values']['string/'+key]
+    if not {'source','source_attributes','previous_target','previous_attributes','attributes','target','display'} <= set(row):raise ValueError('Required reviewed fields absent: '+tag+'/'+key)
     source=ET.parse(catalogues.RES/'values/strings.xml').getroot().find(f"./string[@name='{key}']")
     if source is None or row['source']!=source.text or row['source_attributes']!=source.attrib:
         raise ValueError('Complete reviewed English source differs: '+tag+'/'+key)
@@ -41,6 +42,7 @@ def wording_successor(tag,key,historical_value):
     data=fixture(NAME)
     if set(data['locales'])!={'gl','nl','de'}:raise ValueError('Correction locale scope differs')
     row=data['locales'][tag]['values']['string/'+key]
+    if not {'source','source_attributes','previous_target','previous_attributes','attributes','target','display'} <= set(row):raise ValueError('Required reviewed fields absent: '+tag+'/'+key)
     source=ET.parse(catalogues.RES/'values/strings.xml').getroot().find(f"./string[@name='{key}']")
     if source is None or row['source']!=source.text or row['source_attributes']!=source.attrib:raise ValueError('Correction source differs')
     if row['previous_target']!=historical_value or row['previous_attributes']!={'name':key} or row['attributes']!={'name':key}:raise ValueError('Correction predecessor/attributes differ')

@@ -118,6 +118,40 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
+    private fun glNlDeExpectations() = JSONObject(File(
+        "../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json").readText()).getJSONObject("locales")
+
+    private fun addGalician(expected: JSONObject, reviewed: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        assertEquals(setOf("gl","nl","de"),reviewed.keys().asSequence().toSet())
+        assertFalse("Exact prior absence for gl",expected.has("gl"))
+        val row=reviewed.getJSONObject("gl").getJSONObject("values").getJSONObject("string/$key")
+        assertEquals(neutral,row.getString("source"))
+        for(field in listOf("source_attributes","attributes")) {
+            assertEquals(setOf("name"),row.getJSONObject(field).keys().asSequence().toSet())
+            assertEquals(key,row.getJSONObject(field).getString("name"))
+        }
+        assertTrue(row.has("previous_target") && row.isNull("previous_target"))
+        assertTrue(row.has("previous_attributes") && row.isNull("previous_attributes"))
+        val target=row.getString("target").removeSurrounding("\"").replace("\\'","'").replace("\\\"","\"").replace("\\n","\n")
+        assertEquals(target,row.getString("display"))
+        expected.put("gl",row.getString("display"))
+    }
+
+    @Test fun finiteGalicianAdditionRejectsSourceAttributesMissingFieldsAndPredecessorCorruption() {
+        for(mutation in listOf("source","source_attributes","previous_target","previous_attributes","attributes","display","target","alreadyPresent","missing_previous_target","missing_previous_attributes")) {
+            val data=glNlDeExpectations();val expected=JSONObject()
+            val row=data.getJSONObject("gl").getJSONObject("values").getJSONObject("string/save20_unsupported_image_colour")
+            when(mutation) {
+                "source_attributes","attributes" -> row.getJSONObject(mutation).put("formatted","false")
+                "alreadyPresent" -> expected.put("gl","forged")
+                "missing_previous_target","missing_previous_attributes" -> row.remove(mutation.removePrefix("missing_"))
+                else -> row.put(mutation,"forged")
+            }
+            assertThrows("gl/$mutation",AssertionError::class.java) {addGalician(expected,data)}
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -128,17 +162,50 @@ class TaggedColourImportTest {
         assertFalse(expected.has("uk"))
         expected.put("uk", PriorityWordingExpectations.display("uk","save20_unsupported_image_colour"))
         assertEquals(77, expected.length())
-        val glNlDe=org.json.JSONObject(java.io.File("../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json").readText()).getJSONObject("locales")
-        assertEquals(setOf("gl","nl","de"),glNlDe.keys().asSequence().toSet())
-        for(tag in listOf("gl")) {
-            assertFalse("Exact prior absence for $tag",expected.has(tag))
-            val row=glNlDe.getJSONObject(tag).getJSONObject("values").getJSONObject("string/save20_unsupported_image_colour")
-            assertTrue(row.isNull("previous_target"));assertTrue(row.isNull("previous_attributes"))
-            assertEquals(setOf("name"),row.getJSONObject("attributes").keys().asSequence().toSet())
-            assertEquals("save20_unsupported_image_colour",row.getJSONObject("attributes").getString("name"))
-            expected.put(tag,row.getString("display"))
+        val indianPriority=JSONObject(File("../tools/fixtures/current_localization/marathi_tamil_telugu_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("mr","ta","te")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,indianPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
         }
-        assertEquals(78,expected.length())
+        assertEquals(80, expected.length())
+        val nextPriority=JSONObject(File("../tools/fixtures/current_localization/kannada_malayalam_filipino_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("kn","ml-IN")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,nextPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(82, expected.length())
+        val nePaPriority=JSONObject(File("../tools/fixtures/current_localization/nepali_punjabi_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("ne","pa-IN")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,nePaPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(84, expected.length())
+        val asKmLoPriority=JSONObject(File("../tools/fixtures/current_localization/assamese_khmer_lao_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("as","km","lo")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,asKmLoPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(87, expected.length())
+        val jvSuKyPriority=JSONObject(File("../tools/fixtures/current_localization/javanese_sundanese_kyrgyz_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("jv","su","ky")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,jvSuKyPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(90, expected.length())
+        val haIgLnPriority=JSONObject(File("../tools/fixtures/current_localization/hausa_igbo_lingala_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("ha","ig","ln")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,haIgLnPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(93, expected.length())
+        val yoZuXhPriority=JSONObject(File("../tools/fixtures/current_localization/yoruba_zulu_xhosa_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("yo","zu","xh")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,yoZuXhPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(96, expected.length())
+        addGalician(expected,glNlDeExpectations())
+        assertEquals(97,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -171,6 +238,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(92, fallbacks)
+        assertEquals(73, fallbacks) // 171 offered - 97 exact current values - 1 inherited.
     }
 }
