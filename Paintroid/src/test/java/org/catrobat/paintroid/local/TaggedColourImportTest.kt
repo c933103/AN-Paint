@@ -118,6 +118,43 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
+    private fun kaHyAzExpectations() = JSONObject(File(
+        "../tools/fixtures/current_localization/georgian_armenian_azerbaijani_priority_wording.json").readText())
+
+    private fun addKaHyAz(expected: JSONObject, reviewed: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        val source=reviewed.getJSONObject("sources").getJSONObject(key)
+        assertEquals(neutral,source.getString("value"))
+        assertEquals(setOf("name"),source.getJSONObject("attributes").keys().asSequence().toSet())
+        assertEquals(key,source.getJSONObject("attributes").getString("name"))
+        for(tag in listOf("ka","hy","az")) {
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject("locales").getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+            assertTrue("Historical resource must be absent $tag",row.has("previous") && row.isNull("previous"))
+            assertEquals(setOf("name"),row.getJSONObject("attributes").keys().asSequence().toSet())
+            assertEquals(key,row.getJSONObject("attributes").getString("name"))
+            assertEquals(row.getString("target"),row.getString("display"))
+            expected.put(tag,row.getString("display"))
+        }
+    }
+
+    @Test fun finiteKaHyAzAdditionRejectsSourceAttributesAndPredecessorCorruption() {
+        val key="save20_unsupported_image_colour"
+        for(tag in listOf("ka","hy","az")) for(mutation in listOf("source","sourceAttributes","previous","attributes","display","alreadyPresent")) {
+            val data=kaHyAzExpectations();val expected=JSONObject()
+            val row=data.getJSONObject("locales").getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+            when(mutation) {
+                "source" -> data.getJSONObject("sources").getJSONObject(key).put("value","forged")
+                "sourceAttributes" -> data.getJSONObject("sources").getJSONObject(key).getJSONObject("attributes").put("formatted","false")
+                "previous" -> row.put("previous","forged")
+                "attributes" -> row.getJSONObject("attributes").put("formatted","false")
+                "display" -> row.put("display","forged")
+                "alreadyPresent" -> expected.put(tag,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) { addKaHyAz(expected,data) }
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -128,6 +165,8 @@ class TaggedColourImportTest {
         assertFalse(expected.has("uk"))
         expected.put("uk", PriorityWordingExpectations.display("uk","save20_unsupported_image_colour"))
         assertEquals(77, expected.length())
+        addKaHyAz(expected,kaHyAzExpectations())
+        assertEquals(80, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -160,6 +199,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(93, fallbacks)
+        assertEquals(90, fallbacks)
     }
 }
