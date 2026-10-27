@@ -1,0 +1,186 @@
+{
+  "head": "5fec634bd8734cf6be20966cc1babfa1ea799087",
+  "tree": "c896b85477c55db34dd457add7ad2f60abbcf358",
+  "parents": [
+    "3f92fb5bbf454b9dc02474ae92c869d5ef35f1e3",
+    "7f6c54750de143e4f98d7fa441d5b6a8e42cffdf"
+  ],
+  "verified_leaves": 1454,
+  "ref_updated": true,
+  "pr_head_readback": "5fec634bd8734cf6be20966cc1babfa1ea799087",
+  "review_request": 6454686908,
+  "review_request_readback": true,
+  "fresh_run": 40591375787,
+  "local_modes": {
+    "normal": {
+      "tests": 1616,
+      "seconds": 317.151,
+      "exit": 0
+    },
+    "optimized": {
+      "tests": 1616,
+      "seconds": 294.096,
+      "exit": 0
+    },
+    "manifest_sha256": "1a3231635976eeead915dc5fd112a964d86ebaa7eb1a217320c270c0f781a557",
+    "independent_receipt_sha256": "e5bc48be336e69f4a5b283957005fff0f9fb8e5c2abcf14427b70ae98b1c3d80",
+    "publication": "Five new shared blobs, nine already existing exact blobs; parent3f92 plus7f6, non-force update only."
+  },
+  "independent_review": {
+    "base_commit": "7f6c54750de143e4f98d7fa441d5b6a8e42cffdf",
+    "base_tree": "41b52f3b0f26c61a7207ec3cabd53683876d3977",
+    "base_leaves": 1448,
+    "result_leaves": 1454,
+    "changed_paths": [
+      "Paintroid/src/main/res/values-b+ceb/strings.xml",
+      "Paintroid/src/main/res/values-b+csb/strings.xml",
+      "Paintroid/src/main/res/values-b+nds/strings.xml",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/CebuanoLowGermanKashubianPriorityWordingTest.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "tools/cebuano_low_german_kashubian_priority_expectations.py",
+      "tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/ceb.json",
+      "tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/csb.json",
+      "tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/nds.json",
+      "tools/memory_warning_source_review.py",
+      "tools/test_cebuano_low_german_kashubian_priority_wording.py",
+      "tools/test_current_localization_contracts.py",
+      "tools/test_memory_warning_source_review.py",
+      "tools/test_memory_warning_successors.py"
+    ],
+    "manifest_sha256": "1a3231635976eeead915dc5fd112a964d86ebaa7eb1a217320c270c0f781a557",
+    "unrelated_base_and_own_nonshared_exact": true,
+    "GA_and_own_JVM_helper_blocks_exact": true,
+    "reversing_only_own_JVM_addition_restores_GA_exactly": true,
+    "GA_intermediate99_assertion_restored": true,
+    "full_linguistic_credit": 0,
+    "scope": "Finite additive composition; source/fixture wording unchanged. No hosted JVM result inferred.",
+    "status": "accepted finite source composition",
+    "focused_tests": 50,
+    "focused_seconds": 42.107,
+    "focused_log_sha256": "d94720df2e7152785db1ad79b0966474d09046df34e92a52f4bc9c81d95fde10",
+    "shared_diff_review": "All five shared diffs read; ten NDS/CSB additions only, CEB prior shared receipts unchanged; GA source/target binding and strict own helpers preserved. 101 direct, 1 inherited, 69 English.",
+    "limits": "Host/source acceptance only; fresh author full modes and hosted exact-head CI/Codex remain separate."
+  },
+  "source_delta": {
+    "base_commit": "7f6c54750de143e4f98d7fa441d5b6a8e42cffdf",
+    "base_tree": "41b52f3b0f26c61a7207ec3cabd53683876d3977",
+    "prior_head": "3f92fb5bbf454b9dc02474ae92c869d5ef35f1e3",
+    "base_blobs": 1448,
+    "result_blobs": 1454,
+    "changed_paths": [
+      {
+        "path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1e1af4db746761a311133b3239c28d5a947dd458",
+        "bytes": 94484,
+        "sha256": "226eb44a4554740840ef9e4a330104e4577d96c4cd676802d3e9d4373fc45695"
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+csb/strings.xml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d08d76a154eb79bb67866a0535f602e45bd91977",
+        "bytes": 33276,
+        "sha256": "7393a904d7343e9e8ddc0dfa1bef2624accfb9ee1d1d4de781e358719fc77838"
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+nds/strings.xml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7a1db033c7ae3caf17087e2090315f4ee0f73b5f",
+        "bytes": 32623,
+        "sha256": "4fb79ab75158e22b942867b2a131755732b0551ec1212d1002096c60f853e591"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CebuanoLowGermanKashubianPriorityWordingTest.kt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4ee8c75de6d60297dafbba5ded63cbd355cb5d6b",
+        "bytes": 19922,
+        "sha256": "1302922ec17aad70d973264cd3a970b43c8c19a20f1cb99697cba6e589ea254f"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5504a31d592cece3fca588e0c3badd7fea9aa855",
+        "bytes": 20789,
+        "sha256": "a597ff0f9a0995e26cdecd213782e802cb28c541279eb78f8ac1f8e5a958bb48"
+      },
+      {
+        "path": "tools/cebuano_low_german_kashubian_priority_expectations.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "208d5768c56938a1f9f52cf706216837e89d1a5e",
+        "bytes": 5469,
+        "sha256": "b8b4ecddc6d1a668d745ace26b08ca28eaf6f76bc030153c622c5d5f5ca54e25"
+      },
+      {
+        "path": "tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/ceb.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "38fd0e2f8f4b217101e306273fda9f9e764eb200",
+        "bytes": 304074,
+        "sha256": "fd477cb2195d6616e5fb4c5e6e4b58767d1828663c6c6b14531a69bc920ae127"
+      },
+      {
+        "path": "tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/csb.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f1a6dd6c855fcf63e8133476391621d95bd96fd4",
+        "bytes": 216694,
+        "sha256": "7a650c37feacd8d94fb29be36fb092da15ab7e7a1a54453dc1701f0f649db629"
+      },
+      {
+        "path": "tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/nds.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "df8a1c72836d6013ca595d67b7322270586a33c8",
+        "bytes": 214902,
+        "sha256": "04089cc46e005b1bfa57bf0977190380a9bd8874dcb89ee90e18e6a3a7888899"
+      },
+      {
+        "path": "tools/memory_warning_source_review.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e2a39f4138c2e79152fa297c408317d90850eea2",
+        "bytes": 12176,
+        "sha256": "d24de77e3d72173af0bb113de6143c2645a68e268599c04a34cc50573077ec28"
+      },
+      {
+        "path": "tools/test_cebuano_low_german_kashubian_priority_wording.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4aaf30117d2cb67ed63363c77253b5cdcbae18f1",
+        "bytes": 17477,
+        "sha256": "0071f93a8df7c1db6dadfd29159a7eadef515a9bda3723368d0e4d1d9ca385fe"
+      },
+      {
+        "path": "tools/test_current_localization_contracts.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2a3c3a277ddcd6f749239963ee4841f6a9e1b6a1",
+        "bytes": 37830,
+        "sha256": "67ed0eaae343e33d748b253c3646a9889e296037e12be78f73119bdd5309044d"
+      },
+      {
+        "path": "tools/test_memory_warning_source_review.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "72e629ca69f877ce87df8de683b7fc60ea435f6d",
+        "bytes": 7583,
+        "sha256": "eabe07a507ddb87343525d83cb39bba36bd7b3a27d56e4cafe3164eef696fd3e"
+      },
+      {
+        "path": "tools/test_memory_warning_successors.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "fe3107fe04318baac707e2dd8bf177fbb82dbf99",
+        "bytes": 11660,
+        "sha256": "ce8fdeb631873073b7f9fedb7856d5e51b427b7eb6ea5c0c8116f3d72194f2d5"
+      }
+    ],
+    "removed_paths": []
+  }
+}
