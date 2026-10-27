@@ -32,7 +32,7 @@
     <string name="ui_ellipse">Elips</string>
     <string name="ui_star">Yıldız</string>
     <string name="ui_heart">Kalp</string>
-    <string name="ui_solid_fill">Doldur</string>
+    <string name="ui_solid_fill">Düz dolgu</string>
     <string name="ui_outline">Kontur</string>
     <string name="ui_flip_horizontal" formatted="false">Yatay çevir</string>
     <string name="ui_flip_vertical" formatted="false">Dikey çevir</string>
@@ -294,7 +294,7 @@
     <string name="ui_drag_to_erase_with_the_background_colour">Arka plan rengiyle silmek için sürükleyin.</string>
     <string name="ui_drag_to_pan_without_drawing_pinch_with_two">Çizmeden kaydırmak için sürükleyin. Yakınlaştırmak ve kaydırmak için iki parmakla sıkıştırın. İki parmakla gezinme çizim araçlarıyla da çalışır.</string>
     <string name="ui_draw_a_crisp_one_pixel_line">Net bir çizgi çizin. Genişliği 1 ile 100 piksel arasında ayarlayın.</string>
-    <string name="ui_draw_again">Yeniden çiz</string>
+    <string name="ui_draw_again">Çizime dön</string>
     <string name="ui_draw_around_an_area_drag_inside_to_move">Bir alanın çevresini çizin. Taşımak için içini, yeniden boyutlandırmak için kare köşe veya kenar tutamaçlarını, döndürmek için yuvarlak tutamacı sürükleyin. Seçimi uygula düzenlemeyi uygular.</string>
     <string name="ui_draw_soft_watercolor_strokes_strength_controls_how_strongly">Yumuşak suluboya fırça darbeleri çizin. Yoğunluk, rengin tuvale ne kadar güçlü karışacağını belirler.</string>
     <string name="ui_draw_with_the_selected_brush_tip_and_size">Seçili fırça ucu ve boyutuyla çizin.</string>
@@ -654,7 +654,7 @@
     <string name="save20_encoding_budget">Görüntü ve kodlama arabellekleri dışa aktarma bellek sınırını aşıyor.</string>
     <string name="save20_bmp_size_limit">Görüntü BMP dosya boyutu sınırını aşıyor.</string>
     <string name="save20_gif_size_limit">GIF boyutları her kenarda 65.535 pikseli aşamaz.</string>
-    <string name="save20_destination_error">Tamamlanan görüntü hedefinin yerini alamadı.</string>
+    <string name="save20_destination_error">Hedef dosya tamamlanan görüntüyle değiştirilemedi.</string>
     <string name="save20_unsupported_tagged_colour">Bu BMP veya GIF, AN Paint\'in henüz dönüştüremediği bir renk profili kullanıyor. İçe aktarmadan önce renk yönetimli bir düzenleyicide sRGB PNG\'ye dönüştürün.</string>
     <string name="save20_lossy_quality_description">Daha yüksek kalite daha fazla ayrıntıyı korur ve genellikle daha büyük dosya oluşturur.</string>
     <string name="ui_expand_tool_category">%1$s: %2$s seçili. Araçları ve seçenekleri genişlet</string>
@@ -676,8 +676,8 @@
     <string name="ui_irasutoya_credit34">Telif hakkı oluşturucuda saklıdır. Kullanım Irasutoya koşullarına tabidir; bu bir Creative Commons lisansı değildir.</string>
     <string name="ui_history_unavailable34">Tuval geri yüklendi ancak geri alma geçmişi okunamadı. Özgün taslak kurtarma kopyası olarak saklandı.</string>
     <plurals name="ui_crop_preview_images">
-        <item quantity="one">Önizleme: %1$d × %2$d px\n%3$d görüntüye uygulanır. Yerleştirilmiş bir görüntüyü kırpmak bağlı görüntüleri de yeniden konumlandırır.</item>
-        <item quantity="other">Önizleme: %1$d × %2$d px\n%3$d görüntüye uygulanır. Yerleştirilmiş bir görüntüyü kırpmak bağlı görüntüleri de yeniden konumlandırır.</item>
+        <item quantity="one">Önizleme: %1$d × %2$d px\n%3$d görüntüye uygulanır. Yerleştirilmiş görüntüleri kırpmak bunlara bağlı görüntülerin yerini değiştirebilir.</item>
+        <item quantity="other">Önizleme: %1$d × %2$d px\n%3$d görüntüye uygulanır. Yerleştirilmiş görüntüleri kırpmak bunlara bağlı görüntülerin yerini değiştirebilir.</item>
     </plurals>
 
     <string name="ui_normalize_width_intro">Tüm görüntülere aynı genişliği verin. Görüntü sayısı: %1$d. Her görüntü kendi en-boy oranını korur. Özgün dosyalar ve kırpma ayarları değişmez.</string>
