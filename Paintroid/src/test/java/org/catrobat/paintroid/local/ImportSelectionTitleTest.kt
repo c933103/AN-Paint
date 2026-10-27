@@ -238,9 +238,9 @@ class ImportSelectionTitleTest {
         }
     }
 
-    @Test fun incompleteWelshCatalogueRetainsDefaultEnglishFallback() {
-        // cy is offered but has no animation-warning keys at this candidate's base.
-        language("cy")
+    @Test fun incompleteOldEnglishCatalogueRetainsDefaultEnglishFallback() {
+        // ang is offered and has no animation-warning keys; Welsh is now translated.
+        language("ang")
         val file = begin(cappedPng(), AnimationInfo("PNG", 0, false, false))
         val message = "This PNG is too complex to confirm whether it contains multiple frames. " +
             "AN Paint will open only a still image and will not preserve any animation."

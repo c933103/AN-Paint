@@ -4,6 +4,7 @@ Historical paired-language fixtures stay unchanged. Default-English and explicit
 no historical fixture or receipt is rewritten.
 """
 import json
+from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
@@ -52,6 +53,15 @@ old source snapshot.
 """
     if key not in KEYS:
         return historical_value
+    if (tag,key) in GA_GD_CY_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=ga_gd_cy_row(tag,key)
+        if historical_value is not None or old is not None:
+            raise ValueError('Historical GA/GD/CY warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english']:
+            raise ValueError('GA/GD/CY warning source differs: '+tag+'/'+key)
+        return row['target']
     if (tag,key) in KN_ML_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
