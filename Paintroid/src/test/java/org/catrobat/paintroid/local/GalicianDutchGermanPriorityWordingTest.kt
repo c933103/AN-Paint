@@ -14,6 +14,7 @@ import android.os.Looper
 import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.SeekBar
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
@@ -291,7 +292,9 @@ class GalicianDutchGermanPriorityWordingTest {
                 activity.document.bitmap.setPixels(original,0,4,0,0,4,3)
                 if(tag=="gl") {
                 EditorTestNavigation.click(activity,"tool_WATERCOLOR")
-                val strength=activity.window.decorView.findViewWithTag<NumericSlider>("watercolor_strength")
+                val strengthSlider=activity.window.decorView.findViewWithTag<SeekBar>("watercolor_strength")
+                val strength=strengthSlider.parent as NumericSlider
+                assertSame(strengthSlider,strength.slider)
                 assertEquals(expected(tag,"ui_strength"),strength.name)
                 assertEquals(expected(tag,"ui_strength"),strength.slider.contentDescription.toString())
                 strength.slider.progress=37-strength.minimum;idle()
