@@ -8,6 +8,8 @@ import xml.etree.ElementTree as ET
 
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
+from memory_warning_source_review import current_source_expectation
+from galician_priority_expectations import wording_successor
 
 FIXTURE = 'dutch_editor_current_wording.json'
 MEMORY = 'ui_d_d_pixels_2f_mp_exceeds_the_current'
@@ -43,7 +45,7 @@ class DutchEditorWordingTests(unittest.TestCase):
                              Counter(constraints['placeholders']), key)
             for tag, expected in values.items():
                 with self.subTest(key=key, tag=tag):
-                    require_string(self.xml[tag], key, expected, constraints)
+                    require_string(self.xml[tag], key, current_source_expectation(key,tag,expected), constraints)
 
     def test_fixture_requires_all_seven_keys_locales_and_constraints(self):
         for key in KEYS:
@@ -62,7 +64,7 @@ class DutchEditorWordingTests(unittest.TestCase):
 
     def test_truncation_duplicates_missing_entries_attributes_and_markup_fail_closed(self):
         for key in KEYS:
-            expected = self.data['values'][key]['nl']
+            expected = current_source_expectation(key,'nl',self.data['values'][key]['nl'])
             constraints = self.data['constraints'][key]
             for mutation in ('truncate', 'duplicate', 'missing', 'format-flag', 'markup'):
                 root = ET.fromstring(self.xml['nl'])
@@ -83,7 +85,7 @@ class DutchEditorWordingTests(unittest.TestCase):
 
     def test_placeholder_loss_type_precision_and_apostrophe_mutations_are_rejected(self):
         for key in (MEMORY, COUNT):
-            expected = self.data['values'][key]['nl']
+            expected = current_source_expectation(key,'nl',self.data['values'][key]['nl'])
             constraints = self.data['constraints'][key]
             mutations = [expected.replace('%1$d', '%1$s'),
                          expected.replace('%1$d', ''), expected + " '"]
@@ -119,7 +121,10 @@ class DutchEditorWordingTests(unittest.TestCase):
             'De bewerking is gestopt voordat er geheugen voor de te grote bitmap werd toegewezen.',
             'Er is niet automatisch verkleind.',
         )
-        self.assertEqual(' '.join(clauses), value)
+        self.assertEqual(' '.join(clauses), self.data['values'][MEMORY]['nl'])
+        self.assertEqual(wording_successor('nl',MEMORY,' '.join(clauses)),value)
+        clauses=(clauses[0].replace('pixels','px',1),)+clauses[1:]
+        self.assertEqual(' '.join(clauses),value)
         for clause in clauses:
             root = ET.fromstring(self.xml['nl'])
             root.find(f"./string[@name='{MEMORY}']").text = value.replace(clause, '')
@@ -180,12 +185,12 @@ class DutchEditorWordingTests(unittest.TestCase):
             'Het werkelijke geheugengebruik varieert. Een kleinere kopie verliest detail. '
             'Het oorspronkelijke bestand blijft ongewijzigd.', strings['ui_sampled_resize_memory_explanation'])
 
-    def test_unresolved_palette_main_and_swap_wording_remain_unchanged(self):
+    def test_unresolved_palette_main_remain_unchanged_and_swap_has_exact_wording_only_successor(self):
         strings = self.strings['nl']
         self.assertEqual('Voorgrond %1$s, achtergrond %2$s. Kleurenpalet %3$s.',
                          strings['ui_foreground_background_colour_palette'])
         self.assertEqual('Start', strings['ui_main23'])
-        self.assertEqual('Kleuren wisselen', strings['ui_swap_foreground_background'])
+        self.assertEqual(wording_successor('nl','ui_swap_foreground_background','Kleuren wisselen'), strings['ui_swap_foreground_background'])
 
 
 if __name__ == '__main__':

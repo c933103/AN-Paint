@@ -37,10 +37,15 @@ class CommonsSvgErrorTranslationTest {
     private val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Size_test.svg"
     private val page="https://commons.wikimedia.org/wiki/File:Size_test.svg"
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val tags=listOf("bg","bn","en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am","ast")
+    private val tags=listOf("bg","bn","en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am","ast","gu")
 
     // Independent reviewed wording oracles for later exact catalogue additions; model review is not native certification.
     private val addedReasons=mapOf(
+        // AST now has independently reviewed exact values; GU retains the unchanged absent fallback.
+        "ast" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "El SVG nun declara un tamañu orixinal utilizable. Nun se sustituyó por un tamañu basáu nel llenzu.",
+            R.string.commons_svg_original_size_too_large to "El tamañu orixinal del SVG supera les dimensiones de mapa de bits d’Android. Nun se camudó’l tamañu."
+        ),
         "am" to mapOf(
             R.string.commons_svg_original_size_unavailable to "SVG ጥቅም ላይ ሊውል የሚችል ዋና መጠን አይገልጽም። በምትኩ በስዕል ሰሌዳው ላይ የተመሠረተ መጠን አልተተካም።",
             R.string.commons_svg_original_size_too_large to "የSVG ዋና መጠን ከAndroid የቢትማፕ ልኬቶች ገደብ ይበልጣል። መጠኑ አልተቀየረም።"
@@ -166,7 +171,7 @@ class CommonsSvgErrorTranslationTest {
     private fun checkSizeFailure(svg: String,key: Int,english: String) {
         for(tag in tags) withGallery(tag) {activity ->
             val reason=activity.getString(key)
-            if(tag in listOf("en-US","ast"))
+            if(tag in listOf("en-US","gu"))
                 assertEquals("Independent source oracle, including explicit incomplete-catalogue fallback",english,reason)
             else assertNotEquals("This representative exact catalogue must resolve its translation",english,reason)
             addedReasons[tag]?.get(key)?.let {
