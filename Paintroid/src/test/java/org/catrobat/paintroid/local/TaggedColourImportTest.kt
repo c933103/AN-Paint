@@ -118,6 +118,81 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
+    private fun cebNdsCsbBoundFixture(tag: String): JSONObject {
+        val expected=mapOf("nds" to "04089cc46e005b1bfa57bf0977190380a9bd8874dcb89ee90e18e6a3a7888899", "csb" to "7a650c37feacd8d94fb29be36fb092da15ab7e7a1a54453dc1701f0f649db629")
+        val bytes=File("../tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/$tag.json").readBytes()
+        val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
+        return JSONObject(String(bytes,Charsets.UTF_8))
+    }
+
+    private fun cebNdsCsbSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) cebNdsCsbSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) cebNdsCsbSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private fun cebNdsCsbExpectations()=JSONObject().apply {
+        for(tag in listOf("nds","csb")) put(tag,cebNdsCsbBoundFixture(tag))
+    }
+
+    private fun addCebNdsCsb(expected: JSONObject, reviewed: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        val canonical=cebNdsCsbExpectations()
+        for(tag in listOf("nds","csb")) {
+            cebNdsCsbSameJson(canonical.getJSONObject(tag),reviewed.getJSONObject(tag))
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+            assertTrue("Explicit absent predecessor $tag",row.has("previous_target") && row.isNull("previous_target"))
+            assertEquals("string",row.getString("type"))
+            val source=row.getJSONObject("source")
+            assertEquals(setOf("value","attributes"),source.keys().asSequence().toSet())
+            assertEquals(neutral,source.getString("value"))
+            for(attributes in listOf(source.getJSONObject("attributes"),row.getJSONObject("reviewed_attributes"))) {
+                assertEquals(setOf("name"),attributes.keys().asSequence().toSet())
+                assertEquals(key,attributes.getString("name"))
+            }
+            val raw=row.getString("reviewed_value")
+            val unquoted=if(raw.startsWith("\"") && raw.endsWith("\"")) raw.substring(1,raw.length-1) else Regex("\\s+").replace(raw," ").trim()
+            val decoded=Regex("""\\(.)""").replace(unquoted) { token ->
+                when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
+            }
+            assertEquals(decoded,row.getString("display"))
+            expected.put(tag,row.getString("display"))
+        }
+    }
+
+    @Test fun finiteCebNdsCsbAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption() {
+        val key="save20_unsupported_image_colour"
+        for(tag in listOf("nds","csb")) for(mutation in listOf("source","sourceAttributes","missingPrevious","previous","attributes","display","raw","alreadyPresent","type","coordinated")) {
+            val data=cebNdsCsbExpectations();val expected=JSONObject()
+            val row=data.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+            when(mutation) {
+                "type" -> row.put("type","plurals")
+                "coordinated" -> { row.put("reviewed_value","\"forged\"");row.put("display","forged") }
+                "source" -> row.getJSONObject("source").put("value","forged")
+                "sourceAttributes" -> row.getJSONObject("source").getJSONObject("attributes").put("formatted","false")
+                "missingPrevious" -> row.remove("previous_target")
+                "previous" -> row.put("previous_target","forged")
+                "attributes" -> row.getJSONObject("reviewed_attributes").put("formatted","false")
+                "display" -> row.put("display","forged")
+                "raw" -> row.put("reviewed_value","forged")
+                "alreadyPresent" -> expected.put(tag,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) { addCebNdsCsb(expected,data) }
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -170,6 +245,8 @@ class TaggedColourImportTest {
             expected.put(tag,yoZuXhPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
         }
         assertEquals(96, expected.length())
+        addCebNdsCsb(expected,cebNdsCsbExpectations())
+        assertEquals(98, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -202,6 +279,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(74, fallbacks) // 171 offered - 96 exact current values - 1 inherited.
+        assertEquals(72, fallbacks) // 171 offered - 98 exact current values - 1 inherited.
     }
 }
