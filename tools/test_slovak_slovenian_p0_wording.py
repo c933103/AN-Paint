@@ -11,6 +11,7 @@ from current_localization_contracts import fixture, require_string, require_word
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
+from sk_sl_ca_priority_successors import current_fixture, added_keys, catalogue_count, current_display
 
 KEYS = frozenset({
     'formats22_animation_message', 'formats22_animation_poster', 'formats22_animation_still',
@@ -84,7 +85,7 @@ def require_reviewed_string(xml, key, expected, constraints, source):
 class SlovakSlovenianP0Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = require_wording_shape(fixture('slovak_slovenian_p0_wording.json'), KEYS, TAGS)
+        cls.data = require_wording_shape(current_fixture('slovak_slovenian_p0_wording.json'), KEYS, TAGS)
         cls.xml = {tag: (catalogues.RES / folder / 'strings.xml').read_text(encoding='utf-8')
                    for tag, folder in [('default', 'values'), ('sk', 'values-sk'), ('sl', 'values-sl')]}
         cls.roots = {tag: ET.fromstring(xml) for tag, xml in cls.xml.items()}
@@ -177,9 +178,9 @@ class SlovakSlovenianP0Tests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(count + 78, len(self.roots[tag]))
+            self.assertEqual(catalogue_count(tag,count + 78), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
-            self.assertEqual('Image format', self.roots[tag].find("./string[@name='save20_file_format']").text)
+            self.assertEqual('"'+current_display(tag,'save20_file_format')+'"', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertTrue({'sk', 'sl'} <= set(catalogues.offered_tags()))
         self.assertEqual(59, len(SCOPED_TAGS))
         self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
@@ -190,7 +191,12 @@ class SlovakSlovenianP0Tests(unittest.TestCase):
                      'ui_load_image', 'ui_choose_location', 'ui_image_assembly'}
         for tag in ('sk', 'sl'):
             for key in HOLDS | neighbors:
-                self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+                if key in added_keys(tag):
+                    row = fixture('slovak_slovenian_catalan_priority_wording.json')['locales'][tag]['values'][key]
+                    self.assertIsNone(row['previous_target'])
+                    require_string(self.xml[tag],key,row['target'],{'attributes':row['attributes']})
+                else:
+                    self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
 
@@ -199,12 +205,12 @@ class SlovakSlovenianP0Tests(unittest.TestCase):
             value = lambda key: display_value(self.data['values'][key][tag])
             prior = self.data['preserved_values'][tag]
             recovery = value('ui_recovery_copy_exported_extract_canvas_png_from_the')
-            self.assertIn(menu + (' > ' if tag == 'sk' else ' → ') + 'Load image…', recovery)
+            self.assertIn(menu + (' > ' if tag == 'sk' else ' → ') + current_display(tag,'ui_load_image'), recovery)
             self.assertIn('canvas.png', recovery);self.assertIn('ZIP', recovery)
             paused = value('ui_autosave_is_paused_to_protect_that_draft_use')
             self.assertIn(menu + ' → ' + value('ui_export_recovery_copy'), paused)
             self.assertIn(menu + ' → ' + prior['save20_title']['value'][1:-1], paused)
-            self.assertIn(prior['save20_file_format']['value'] + ': PNG / JPEG', paused)
+            self.assertIn(display_value(prior['save20_file_format']['value']) + ': PNG / JPEG', paused)
             kept = value('ui_a_separate_recovery_copy_has_been_kept_use')
             self.assertIn(menu + (' > ' if tag == 'sk' else ' → ') + value('ui_export_recovery_copy'), kept)
             self.assertIn('canvas.png', kept);self.assertIn('ZIP', kept)
@@ -238,7 +244,10 @@ class SlovakSlovenianP0Tests(unittest.TestCase):
                 self.assertIsNone(old['terms'][term]['value'])
                 with self.assertRaises(ValueError):accepted_warning(term, tag)
             self.assertEqual(self.data['values'][key][tag], warnings.current_source_expectation(key, tag, None))
-            self.assertIsNone(warnings.current_source_expectation(other, tag, None))
+            row = fixture('slovak_slovenian_catalan_priority_wording.json')['locales'][tag]['values'][other]
+            self.assertIsNone(row['previous_target'])
+            self.assertEqual(row['target'],warnings.current_source_expectation(other, tag, None))
+            with self.assertRaises(ValueError):warnings.current_source_expectation(other,tag,row['target'])
             with self.assertRaises(ValueError):warnings.current_source_expectation(key, tag, 'invented history')
             changed = deepcopy(queue);next(row for row in changed['options'] if row['tag'] == tag)['terms'][key]['value'] = 'invented history'
             with patch.object(warnings, 'review_record', return_value=changed), self.assertRaises(ValueError):
