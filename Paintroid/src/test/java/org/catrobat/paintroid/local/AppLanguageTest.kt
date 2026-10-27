@@ -55,11 +55,19 @@ class AppLanguageTest {
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
-            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
-            assertEquals("Brush",wrapped.getString(R.string.ui_brush))
-            assertEquals("Save",wrapped.getString(R.string.ui_save))
-            assertTrue(wrapped.getString(R.string.language20_translation_note)
-                .contains("New or untranslated text appears in English."))
+            if (tag == "su") {
+                // Exact reviewed priority successor; the other five options keep English fallback.
+                assertEquals("Berkas",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Kuas",wrapped.getString(R.string.ui_brush))
+                assertEquals("Simpen",wrapped.getString(R.string.ui_save))
+                assertEquals("Basa aplikasi\n\nTarjamahan dirawat dina sumber daya basa AN Paint. Téks anyar atawa anu can ditarjamahkeun némbongan dina basa Inggris.",wrapped.getString(R.string.language20_translation_note))
+            } else {
+                assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+                assertEquals("Save",wrapped.getString(R.string.ui_save))
+                assertTrue(wrapped.getString(R.string.language20_translation_note)
+                    .contains("New or untranslated text appears in English."))
+            }
             if(android.os.Build.VERSION.SDK_INT>=33) {
                 val manager=context.getSystemService(LocaleManager::class.java)!!
                 assertEquals(tag,manager.applicationLocales[0].toLanguageTag())
