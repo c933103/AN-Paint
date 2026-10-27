@@ -266,7 +266,7 @@ class AfrikaansRetainedPriorityWordingTest {
         }
         for(stretch in listOf(true,false)) {
             val dialog=show(stretch)
-            assertTrue(texts(dialog.window!!.decorView).contains(expected("af",if(stretch)"ui_scales_the_image_unlock_the_ratio_to_stretch"else"ui_keeps_pixels_at_the_top_left_smaller_canvas")))
+            assertTrue(texts(dialog.window!!.decorView).contains(expected("af",if (stretch) "ui_scales_the_image_unlock_the_ratio_to_stretch" else "ui_keeps_pixels_at_the_top_left_smaller_canvas")))
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();assertEquals(24,activity.document.bitmap.width);assertEquals(16,activity.document.bitmap.height)
         }
         val before=activity.document.bitmap.copy(Bitmap.Config.ARGB_8888,false)
