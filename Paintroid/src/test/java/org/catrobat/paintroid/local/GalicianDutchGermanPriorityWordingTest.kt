@@ -44,9 +44,30 @@ class GalicianDutchGermanPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json").readText()).getJSONObject("locales")
+    private fun glNlDeBoundFixture(): JSONObject {
+        val bytes=File("../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json").readBytes()
+        val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete finite GL/NL/DE reviewed fixture", "b41b2203f862653c81c4b265a2ba502e5fc089df505ce592b4fdd6201accb9bd", actual)
+        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject("locales")
     }
+
+    private fun glNlDeSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) glNlDeSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) glNlDeSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private val fixture by lazy { glNlDeBoundFixture() }
     private fun row(tag: String,identity: String): JSONObject {
         val locale=fixture.getJSONObject(tag)
         return locale.getJSONObject("values").optJSONObject(identity) ?: locale.getJSONObject("context").getJSONObject(identity)

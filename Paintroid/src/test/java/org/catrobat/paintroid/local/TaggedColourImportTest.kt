@@ -118,10 +118,33 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
-    private fun glNlDeExpectations() = JSONObject(File(
-        "../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json").readText()).getJSONObject("locales")
+    private fun glNlDeBoundFixture(): JSONObject {
+        val bytes=File("../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json").readBytes()
+        val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete finite GL/NL/DE reviewed fixture", "b41b2203f862653c81c4b265a2ba502e5fc089df505ce592b4fdd6201accb9bd", actual)
+        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject("locales")
+    }
+
+    private fun glNlDeSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) glNlDeSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) glNlDeSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private fun glNlDeExpectations() = glNlDeBoundFixture()
 
     private fun addGalician(expected: JSONObject, reviewed: JSONObject) {
+        glNlDeSameJson(glNlDeBoundFixture(),reviewed)
         val key="save20_unsupported_image_colour"
         assertEquals(setOf("gl","nl","de"),reviewed.keys().asSequence().toSet())
         assertFalse("Exact prior absence for gl",expected.has("gl"))
@@ -139,10 +162,11 @@ class TaggedColourImportTest {
     }
 
     @Test fun finiteGalicianAdditionRejectsSourceAttributesMissingFieldsAndPredecessorCorruption() {
-        for(mutation in listOf("source","source_attributes","previous_target","previous_attributes","attributes","display","target","alreadyPresent","missing_previous_target","missing_previous_attributes")) {
+        for(mutation in listOf("source","source_attributes","previous_target","previous_attributes","attributes","display","target","alreadyPresent","missing_previous_target","missing_previous_attributes","coordinated_target_display")) {
             val data=glNlDeExpectations();val expected=JSONObject()
             val row=data.getJSONObject("gl").getJSONObject("values").getJSONObject("string/save20_unsupported_image_colour")
             when(mutation) {
+                "coordinated_target_display" -> {row.put("target","\"forged\"");row.put("display","forged")}
                 "source_attributes","attributes" -> row.getJSONObject(mutation).put("formatted","false")
                 "alreadyPresent" -> expected.put("gl","forged")
                 "missing_previous_target","missing_previous_attributes" -> row.remove(mutation.removePrefix("missing_"))
