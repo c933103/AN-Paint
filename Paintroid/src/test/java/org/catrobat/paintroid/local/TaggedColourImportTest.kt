@@ -178,6 +178,79 @@ class TaggedColourImportTest {
         }
     }
 
+    private fun euFyUzBoundFixture(tag: String): JSONObject {
+        val expected=mapOf("eu-ES" to "35e92a9d308dead05df3d598c691b5b6f46198c18187cc0ebb9bc9403598fa28", "fy" to "646c0baf4a6099f620999d51d1c6da4e67a172eb1b13d3fe37944d8541e36e8b", "uz-Latn" to "346a56385a885c7752399e35bcc195e7f699f569b802305298d4ef2929a3d1d6")
+        val bytes=File("../tools/fixtures/current_localization/basque_frisian_uzbek_priority_wording/$tag.json").readBytes()
+        val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
+        return JSONObject(String(bytes,Charsets.UTF_8))
+    }
+
+    private fun euFyUzSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) euFyUzSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) euFyUzSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private fun euFyUzExpectations()=JSONObject().apply {
+        for(tag in listOf("eu-ES","fy","uz-Latn")) put(tag,euFyUzBoundFixture(tag))
+    }
+
+    private fun addEuFyUz(expected: JSONObject, reviewed: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        val canonical=euFyUzExpectations()
+        for(tag in listOf("eu-ES","fy","uz-Latn")) {
+            euFyUzSameJson(canonical.getJSONObject(tag),reviewed.getJSONObject(tag))
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+            assertTrue("Explicit absent predecessor $tag",row.has("previous_target") && row.isNull("previous_target"))
+            assertEquals("string",row.getString("type"))
+            val source=row.getJSONObject("source")
+            assertEquals(setOf("value","attributes"),source.keys().asSequence().toSet())
+            assertEquals(neutral,source.getString("value"))
+            for(attributes in listOf(source.getJSONObject("attributes"),row.getJSONObject("reviewed_attributes"))) {
+                assertEquals(setOf("name"),attributes.keys().asSequence().toSet())
+                assertEquals(key,attributes.getString("name"))
+            }
+            val raw=row.getString("reviewed_value")
+            assertTrue(raw.startsWith("\"") && raw.endsWith("\""))
+            assertFalse(raw.substring(1,raw.length-1).contains('\\'))
+            assertEquals(raw.substring(1,raw.length-1),row.getString("display"))
+            expected.put(tag,row.getString("display"))
+        }
+    }
+
+    @Test fun finiteEuFyUzAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption() {
+        val key="save20_unsupported_image_colour"
+        for(tag in listOf("eu-ES","fy","uz-Latn")) for(mutation in listOf("source","sourceAttributes","missingPrevious","previous","attributes","display","raw","alreadyPresent","type","coordinated")) {
+            val data=euFyUzExpectations();val expected=JSONObject()
+            val row=data.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+            when(mutation) {
+                "type" -> row.put("type","plurals")
+                "coordinated" -> { row.put("reviewed_value","\"forged\"");row.put("display","forged") }
+                "source" -> row.getJSONObject("source").put("value","forged")
+                "sourceAttributes" -> row.getJSONObject("source").getJSONObject("attributes").put("formatted","false")
+                "missingPrevious" -> row.remove("previous_target")
+                "previous" -> row.put("previous_target","forged")
+                "attributes" -> row.getJSONObject("reviewed_attributes").put("formatted","false")
+                "display" -> row.put("display","forged")
+                "raw" -> row.put("reviewed_value","forged")
+                "alreadyPresent" -> expected.put(tag,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) { addEuFyUz(expected,data) }
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -232,6 +305,8 @@ class TaggedColourImportTest {
         assertEquals(96, expected.length())
         addGaGdCy(expected,gaGdCyExpectations())
         assertEquals(99,expected.length())
+        addEuFyUz(expected,euFyUzExpectations())
+        assertEquals(102,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -264,6 +339,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(71, fallbacks) // 171 offered - 99 exact current values - 1 inherited.
+        assertEquals(68, fallbacks) // 171 offered - 102 exact current values - 1 inherited.
     }
 }

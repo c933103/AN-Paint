@@ -5,6 +5,7 @@ import re
 import unittest
 
 import translation_catalogues as catalogues
+from basque_frisian_uzbek_priority_expectations import reviewed_uzbek_script_row
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt'
@@ -54,6 +55,7 @@ class ExactScriptResourceRoutingContracts(unittest.TestCase):
         self.assertEqual(28, len(rows))
         defaults = catalogues.default_resources()[0]
         for row in rows:
+            if row['requested_tag']=='uz-Latn':row=reviewed_uzbek_script_row(row)
             tag = row['requested_tag']
             strings = catalogues.read_strings(catalogues.catalogue_paths()[tag])
             expected = {'ko-Kore-KR': 'ko-Kore-KR-anpaint',
