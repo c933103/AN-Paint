@@ -44,9 +44,25 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val reviewFixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json").readText())
+    private fun boundSoWoHtFixture(bytes: ByteArray = File("../tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json").readBytes()): JSONObject {
+        val digest = java.security.MessageDigest.getInstance("SHA-256").digest(bytes)
+            .joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete canonical Somali/Wolof/Haitian Creole fixture", "601d60e5fb772bc7bdfebc6774492fb1b0a3f84454937c4f29711cb2080319eb", digest)
+        return JSONObject(String(bytes, Charsets.UTF_8))
     }
+
+    @Test fun canonicalFixtureRejectsCoordinatedTargetReplacement() {
+        val key = "save20_unsupported_image_colour"
+        for (tag in listOf("so", "wo", "ht")) {
+            val forged = boundSoWoHtFixture()
+            forged.getJSONObject("locales").getJSONObject(tag).getJSONObject("accepted").put(key, "forged complete target")
+            assertThrows("$tag coordinated fixture/target replacement", AssertionError::class.java) {
+                boundSoWoHtFixture(forged.toString().toByteArray(Charsets.UTF_8))
+            }
+        }
+    }
+
+    private val reviewFixture by lazy { boundSoWoHtFixture() }
     private val fixture get() = reviewFixture.getJSONObject("locales")
     private fun expected(tag: String, key: String): String {
         val raw=fixture.getJSONObject(tag).getJSONObject("accepted").getString(key)

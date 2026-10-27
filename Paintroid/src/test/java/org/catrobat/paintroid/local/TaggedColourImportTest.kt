@@ -118,9 +118,46 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
-    private fun soWoHtExpectations() = JSONObject(File("../tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json").readText())
+    private fun boundSoWoHtFixture(bytes: ByteArray = File("../tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json").readBytes()): JSONObject {
+        val digest = java.security.MessageDigest.getInstance("SHA-256").digest(bytes)
+            .joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete canonical Somali/Wolof/Haitian Creole fixture", "601d60e5fb772bc7bdfebc6774492fb1b0a3f84454937c4f29711cb2080319eb", digest)
+        return JSONObject(String(bytes, Charsets.UTF_8))
+    }
+
+    @Test fun canonicalFixtureRejectsCoordinatedTargetReplacement() {
+        val key = "save20_unsupported_image_colour"
+        for (tag in listOf("so", "wo", "ht")) {
+            val forged = boundSoWoHtFixture()
+            forged.getJSONObject("locales").getJSONObject(tag).getJSONObject("accepted").put(key, "forged complete target")
+            assertThrows("$tag coordinated fixture/target replacement", AssertionError::class.java) {
+                boundSoWoHtFixture(forged.toString().toByteArray(Charsets.UTF_8))
+            }
+        }
+    }
+
+    private fun soWoHtExpectations() = boundSoWoHtFixture()
+
+    private fun requireSameSoWoHtJson(expected: Any?, actual: Any?) {
+        when (expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject)
+                val other = actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(), other.keys().asSequence().toSet())
+                for (key in expected.keys()) requireSameSoWoHtJson(expected.get(key), other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray)
+                val other = actual as org.json.JSONArray
+                assertEquals(expected.length(), other.length())
+                for (index in 0 until expected.length()) requireSameSoWoHtJson(expected.get(index), other.get(index))
+            }
+            else -> assertEquals(expected, actual)
+        }
+    }
 
     private fun addSoWoHt(expected: JSONObject,reviewed: JSONObject) {
+        requireSameSoWoHtJson(soWoHtExpectations(), reviewed)
         val key="save20_unsupported_image_colour"
         val source=reviewed.getJSONObject("sources").getJSONObject(key)
         assertEquals("string",source.getString("type"));assertEquals(neutral,source.getString("source"))
