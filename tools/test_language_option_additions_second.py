@@ -88,6 +88,17 @@ class FurtherLanguageOptionTests(unittest.TestCase):
                     f"as: missing {len(missing_strings)} strings: {', '.join(sorted(missing_strings)[:20])}",
                 ],catalogues.validate_catalogue('as',require_complete=True))
                 continue
+            if row['tag'] in {'mi','sm'}:
+                from maori_samoan_kinyarwanda_priority_expectations import require_empty_option_successor
+                root=require_empty_option_successor(row,path.read_text())
+                self.assertEqual([],catalogues.validate_catalogue(row['tag']))
+                present_strings={n.get('name') for n in root if n.tag=='string'}
+                present_plurals={n.get('name') for n in root if n.tag=='plurals'}
+                missing_strings=strings-present_strings
+                self.assertTrue(missing_strings)
+                self.assertEqual(set(),plurals-present_plurals)
+                self.assertEqual([f"{row['tag']}: missing {len(missing_strings)} strings: {', '.join(sorted(missing_strings)[:20])}"],catalogues.validate_catalogue(row['tag'],require_complete=True))
+                continue
             require_untranslated_option(row, path.read_text())
             self.assertEqual('not-started', row['translation_status'])
             self.assertEqual('not-started', row['linguistic_review'])
@@ -124,6 +135,37 @@ class FurtherLanguageOptionTests(unittest.TestCase):
             with self.subTest(mode=mode),self.assertRaises(ValueError):require_assamese_option_successor(old,ET.tostring(root,encoding='unicode'))
 
 
+
+
+    def test_only_complete_reviewed_mi_sm_values_supersede_empty_options(self):
+        from copy import deepcopy
+        from maori_samoan_kinyarwanda_priority_expectations import require_empty_option_successor
+        rows=json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']
+        for tag in ('mi','sm'):
+            old=next(r for r in rows if r['tag']==tag);xml=(ROOT/old['catalogue']).read_text()
+            require_empty_option_successor(old,xml)
+            with self.assertRaises(ValueError):require_untranslated_option(old,xml)
+            for other in rows:
+                if other['tag']!=tag:
+                    with self.subTest(tag=tag,other=other['tag']),self.assertRaises(ValueError):require_empty_option_successor(other,xml)
+            for field in old:
+                bad=deepcopy(old);bad[field]='forged'
+                with self.subTest(tag=tag,field=field),self.assertRaises(ValueError):require_empty_option_successor(bad,xml)
+            for mode in ('missing','extra','duplicate','value','attribute','plural-child','plural-text','plural-tail','item-tail','root-text','root-attribute','string-child'):
+                root=ET.fromstring(xml);plural=root.find('./plurals')
+                if mode=='missing':root.remove(root[0])
+                elif mode=='extra':ET.SubElement(root,'string',name='unreviewed').text='unreviewed'
+                elif mode=='duplicate':root.append(deepcopy(root[0]))
+                elif mode=='value':root[0].text='not accepted'
+                elif mode=='attribute':root[0].set('formatted','false')
+                elif mode=='plural-child':plural[0].text='incomplete'
+                elif mode=='plural-text':plural.text='forged'
+                elif mode=='plural-tail':plural.tail='forged'
+                elif mode=='item-tail':plural[0].tail='forged'
+                elif mode=='root-text':root.text='forged'
+                elif mode=='root-attribute':root.set('forged','yes')
+                else:ET.SubElement(root[0],'b').text='forged'
+                with self.subTest(tag=tag,mode=mode),self.assertRaises(ValueError):require_empty_option_successor(old,ET.tostring(root,encoding='unicode'))
 
 
 if __name__ == '__main__':

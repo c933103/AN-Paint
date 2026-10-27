@@ -178,6 +178,66 @@ class TaggedColourImportTest {
         }
     }
 
+    private fun miSmRwBoundFixture(): JSONObject {
+        val bytes=File("../tools/fixtures/current_localization/maori_samoan_kinyarwanda_priority_wording.json").readBytes()
+        val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete finite MI/SM/RW reviewed fixture", "efaa8682d929a670acc3915e14941f9099513437df5874d2c16958e63182bc01", actual)
+        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject("locales")
+    }
+
+    private fun miSmRwSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) miSmRwSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) miSmRwSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private fun miSmRwExpectations() = miSmRwBoundFixture()
+
+    private fun addMiSmRw(expected: JSONObject, reviewed: JSONObject) {
+        miSmRwSameJson(miSmRwBoundFixture(),reviewed)
+        val key="save20_unsupported_image_colour"
+        assertEquals(setOf("mi","sm","rw"),reviewed.keys().asSequence().toSet())
+        for(tag in listOf("mi","sm","rw")) {
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject(tag).getJSONObject("values").getJSONObject("string/$key")
+            assertEquals(neutral,row.getString("source"))
+            for(field in listOf("source_attributes","attributes")) {
+                assertEquals(setOf("name"),row.getJSONObject(field).keys().asSequence().toSet())
+                assertEquals(key,row.getJSONObject(field).getString("name"))
+            }
+            assertTrue(row.has("previous_target") && row.isNull("previous_target"))
+            assertTrue(row.has("previous_attributes") && row.isNull("previous_attributes"))
+            val target=row.getString("target").removeSurrounding("\"").replace("\\'","'").replace("\\\"","\"").replace("\\n","\n")
+            assertEquals(target,row.getString("display"))
+            expected.put(tag,row.getString("display"))
+        }
+    }
+
+    @Test fun finiteMiSmRwAdditionsRejectSourceAttributesAndPredecessorCorruption() {
+        for(tag in listOf("mi","sm","rw")) for(mutation in listOf("source","source_attributes","previous_target","previous_attributes","attributes","display","target","alreadyPresent","missing_previous_target","missing_previous_attributes","coordinated_target_display")) {
+            val data=miSmRwExpectations();val expected=JSONObject()
+            val row=data.getJSONObject(tag).getJSONObject("values").getJSONObject("string/save20_unsupported_image_colour")
+            when(mutation) {
+                "coordinated_target_display" -> {row.put("target","\"forged\"");row.put("display","forged")}
+                "source_attributes","attributes" -> row.getJSONObject(mutation).put("formatted","false")
+                "alreadyPresent" -> expected.put(tag,"forged")
+                "missing_previous_target","missing_previous_attributes" -> row.remove(mutation.removePrefix("missing_"))
+                else -> row.put(mutation,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) {addMiSmRw(expected,data)}
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -232,6 +292,8 @@ class TaggedColourImportTest {
         assertEquals(96, expected.length())
         addGaGdCy(expected,gaGdCyExpectations())
         assertEquals(99,expected.length())
+        addMiSmRw(expected,miSmRwExpectations())
+        assertEquals(102,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -264,6 +326,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(71, fallbacks) // 171 offered - 99 exact current values - 1 inherited.
+        assertEquals(68, fallbacks) // 171 offered - 102 exact current values - 1 inherited.
     }
 }

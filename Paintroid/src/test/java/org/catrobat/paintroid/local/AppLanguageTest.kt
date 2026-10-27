@@ -126,11 +126,21 @@ class AppLanguageTest {
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
             if (tag == "as") {
-                // Exact reviewed priority successor; the other 20 options retain English fallback.
+                // Exact reviewed priority successor; MI/SM have separately reviewed successors below; the other 18 options retain English fallback.
                 assertEquals("ফাইল",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("ব্ৰাছ",wrapped.getString(R.string.ui_brush))
                 assertEquals("সংৰক্ষণ কৰক",wrapped.getString(R.string.ui_save))
                 assertEquals("এপৰ ভাষা\n\nAN Paint-ৰ ভাষাৰ সম্পদসমূহত অনুবাদসমূহ ৰক্ষণাবেক্ষণ কৰা হয়। নতুন বা অনুবাদ নকৰা পাঠ ইংৰাজীত দেখা যায়।",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "mi") {
+                assertEquals("Kōnae",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Paraihe",wrapped.getString(R.string.ui_brush))
+                assertEquals("Tiaki",wrapped.getString(R.string.ui_save))
+                assertEquals("Reo taupānga\n\nKei ngā rauemi reo o AN Paint ngā whakamāoritanga e tiakina ana. Ka puta te kuputuhi hou, kāore anō rānei kia whakamāoritia, ki te reo Ingarihi.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "sm") {
+                assertEquals("Faila",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Pulumu",wrapped.getString(R.string.ui_brush))
+                assertEquals("Sefe",wrapped.getString(R.string.ui_save))
+                assertEquals("Gagana o le polokalame\n\nE tausia faaliliuga i puna gagana o AN Paint. E faaalia tusitusiga fou po o tusitusiga e leʻi faaliliuina i le gagana Peretania.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
