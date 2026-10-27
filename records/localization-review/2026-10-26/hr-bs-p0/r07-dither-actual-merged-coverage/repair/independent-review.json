@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent exact repaired-source diff review; not executed JVM acceptance",
+  "reviewed_at_utc": "2026-10-26T23:01:45Z",
+  "verdict": "PASS: minimal test-only correction matches Android CompoundButton contract; no blocking finding",
+  "changed_file": "Paintroid/src/test/java/org/catrobat/paintroid/local/CroatianBosnianP0WordingTest.kt",
+  "changed_file_sha256": "70c7a39c2b1fd8921174cb0bb24819ce7498b832ea2775bf17736aa9ef0e794b",
+  "original_file_sha256": "947105dc5099281e02d56c1db77f8e3f65e537db2f21d8cbe82149e5fde3b309",
+  "tracked_files_compared": 1388,
+  "tracked_changed_files": [
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CroatianBosnianP0WordingTest.kt"
+  ],
+  "tracked_mode_changes": [],
+  "production_and_fixture_bytes_unchanged": true,
+  "failure_artifact_sha256": "6c97ddf80448d3e55278364a78c26d24c1535027a6876aedfdafbae43d5d59f3",
+  "failure_location": {
+    "class": "CroatianBosnianP0WordingTest",
+    "method": "gifDitherLabelExplanationStateAndConfirmRemainAtomicAcrossRepeatedRoutes",
+    "assertion_line_original": 398,
+    "outer_locale_wrapper_line": 155,
+    "cause": "Test incorrectly equated performClick listener-handled return with checkbox toggling success"
+  },
+  "official_contract_evidence": {
+    "url": "https://github.com/aosp-mirror/platform_frameworks_base/blob/android13-release/core/java/android/widget/CompoundButton.java",
+    "retrieved_source_url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android13-release/core/java/android/widget/CompoundButton.java",
+    "observed_implementation": "performClick calls toggle first; obtains handled from super.performClick; plays fallback click sound if not handled; returns handled. toggle calls setChecked with negated current checked state.",
+    "implication": "A false handled return is compatible with a successful checked-state toggle."
+  },
+  "consumer_evidence": {
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+    "initialization_line": 64,
+    "initialization": "Initial dither checkbox value/text set without a click listener",
+    "format_visibility_line": 90,
+    "confirmation_line": 196,
+    "confirmation": "SaveRequest options read current ditherBox.isChecked"
+  },
+  "repair": "Real performClick retained, then main-looper idle, then explicit asserted checked-state inversion; no direct checked-state assignment or production listener added",
+  "preserved_runtime_assertions": [
+    "Both hr and bs resource locales",
+    "Both initially checked and initially unchecked states",
+    "confirm, negative-button and dialog-cancel routes",
+    "Attached/shown/laid-out nonzero-size checkbox checks",
+    "Exact reviewed visible label and GIF explanation",
+    "Accessibility node text, checkable and checked-state equality",
+    "Two JPEG-to-GIF cycles with hidden checkbox state retention",
+    "Confirm emits exactly one request with toggled dither, GIF and drawing.gif",
+    "Cancel routes emit no request and exactly one cancellation"
+  ],
+  "JVM_test_method_count": 9,
+  "JVM_test_method_names": [
+    "all78CompiledValuesPerLocaleMatchWhileHeldAndP1FallbacksRemainEnglish",
+    "realMemoryAdmissionFailureFormatsAllFourArgumentsBeforeAllocation",
+    "failedDraftRecoveryReportsPreservationOnlyAfterKeepingItsExactBytes",
+    "recoveredDraftRetainsUnsavedPixelsAndOneFloatingSelectionWithoutSaveAssociation",
+    "realEncodingFailuresKeepSourcePixelsAndAtomicDerivedDestinations",
+    "realFormatPanelUpdatesDescriptionsRejectsInvalidNamesAndCancelsRepeatedly",
+    "gifDitherLabelExplanationStateAndConfirmRemainAtomicAcrossRepeatedRoutes",
+    "actualSaveExportSharePanelsKeepDistinctMessagesAndRepeatedCancel",
+    "realSubstitutionsKeepMixedFrameCountsAndFailureReasonsLiteral"
+  ],
+  "guard_decision": "No implementation-spelling Python guard requested; existing checked-state, node, repeated-route and callback assertions are the behavioral regression oracle. Full exact-head JVM rerun remains required.",
+  "limits": [
+    "Read-only source/artifact diagnosis and review only; reviewer did not execute repaired Android/JVM tests.",
+    "Parent reported focused host checks; these are not promoted to JVM success.",
+    "Full host suites, publication, independent exact-head review and actual CI are parent responsibilities.",
+    "No production, fixture, scope, held-area, release or previous-history changes."
+  ]
+}
