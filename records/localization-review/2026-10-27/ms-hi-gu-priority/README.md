@@ -20,7 +20,7 @@ The seven absent holds in Hindi and Gujarati are `formats22_derived_exported`, `
 
 [Complete author and independent review archive](complete-review.tar.xz), with a per-file SHA-256 manifest, original candidate versions, 19 complete reviewer-requested refinements, exact current bindings and integration readback. [Archive binding](archive-binding.json) records its byte count, SHA-256 and Git blob identity. The archive contains only authorized project evidence and relative regular-file members.
 
-The review is independent model linguistic/static-consumer judgment, **not native-human, installed-layout, whole-device or whole-language certification**. Local focused testing and implementation publication continue separately; this snapshot does not assert hosted CI or a release.
+The review is independent model linguistic/static-consumer judgment, **not native-human, installed-layout, whole-device or whole-language certification**. The later [final fixture-guard and integrated XML readback](integration-readback-final-guards.json) confirms all 617 edits, all 83 earlier fixtures, the exact edited/unchanged partition and the unchanged Malay Save alias with its resolved display. The new twelve-test host module passes independently. Broader local testing and implementation publication continue separately; this snapshot does not assert hosted CI or a release.
 
 ## Retained follow-through
 
