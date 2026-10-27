@@ -39,8 +39,8 @@ class CatalanRomanianCompletionWordingTest {
 
     // Only this batch's simply quote-wrapped reviewed values use this decoder.
     // All inherited values/attributes stay exact under the separate source contracts.
-    private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
-        .getJSONObject(key).getString(tag).removeSurrounding("\"")
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.current(tag,key,
+        fixture.getJSONObject("values").getJSONObject(key).getString(tag)).removeSurrounding("\"")
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources
@@ -78,7 +78,7 @@ class CatalanRomanianCompletionWordingTest {
         }
     }
 
-    @Test fun all55CompiledValuesPerLocaleMatchWhileHeldAndP1FallbacksRemainEnglish() = forEachLocale { tag, activity ->
+    @Test fun all55CompiledValuesPerLocaleMatchWithExactReviewedSuccessorsAndRetainedHolds() = forEachLocale { tag, activity ->
         val values = fixture.getJSONObject("values")
         assertEquals(55, values.length())
         val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
@@ -93,12 +93,12 @@ class CatalanRomanianCompletionWordingTest {
         // paired warning oracle and its P1 companion are not expanded by this test.
         assertEquals(expected(tag, "ui_assembly_source_memory_floor"), ui(R.string.ui_assembly_source_memory_floor))
         assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
-        assertEquals("Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+        assertEquals((if (tag == "ca") "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image." else PriorityWordingExpectations.display("ro","ui_no_resize_fits_decoder_memory")),
             ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals("Image format", ui(R.string.save20_file_format))
-        assertEquals("Load image…", ui(R.string.ui_load_image))
-        assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
-        assertEquals("Choose location…", ui(R.string.ui_choose_location))
+        assertEquals((if (tag == "ca") "Image format" else PriorityWordingExpectations.display("ro","save20_file_format")), ui(R.string.save20_file_format))
+        assertEquals((if (tag == "ca") "Load image…" else PriorityWordingExpectations.display("ro","ui_load_image")), ui(R.string.ui_load_image))
+        assertEquals((if (tag == "ca") "at least 2" else String.format(Locale.forLanguageTag(tag),PriorityWordingExpectations.display("ro","formats22_at_least_frames"),2)), ui(R.string.formats22_at_least_frames, 2))
+        assertEquals((if (tag == "ca") "Choose location…" else PriorityWordingExpectations.display("ro","ui_choose_location")), ui(R.string.ui_choose_location))
         assertEquals("PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
             ui(R.string.formats22_derived_exported, "PNG"))
         assertEquals("Save as PNG", ui(R.string.ui_save_as, "PNG"))

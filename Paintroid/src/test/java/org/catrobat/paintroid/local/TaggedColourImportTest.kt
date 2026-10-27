@@ -124,7 +124,10 @@ class TaggedColourImportTest {
         // this is routing evidence, not an independently reviewed Valencian value.
         val expected = javaClass.getResourceAsStream("/tagged-colour/expected.json")!!
             .bufferedReader().use { JSONObject(it.readText()) }
-        assertEquals(76, expected.length())
+        assertEquals(76, expected.length()) // Frozen predecessor remains unchanged.
+        assertFalse(expected.has("uk"))
+        expected.put("uk", PriorityWordingExpectations.display("uk","save20_unsupported_image_colour"))
+        assertEquals(77, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -157,6 +160,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(94, fallbacks)
+        assertEquals(93, fallbacks)
     }
 }

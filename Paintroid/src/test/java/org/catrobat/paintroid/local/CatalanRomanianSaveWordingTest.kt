@@ -38,8 +38,8 @@ class CatalanRomanianSaveWordingTest {
 
     // Only these ten newly reviewed strings are simple quote-wrapped values.
     // Inherited Catalan values can contain Android escapes and are not decoded this way.
-    private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
-        .getJSONObject(key).getString(tag).removeSurrounding("\"")
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.current(tag,key,
+        fixture.getJSONObject("values").getJSONObject(key).getString(tag)).removeSurrounding("\"")
 
     @Before fun rememberResources() {
         previousResources = PaintApplication.currentResources
@@ -89,9 +89,9 @@ class CatalanRomanianSaveWordingTest {
         assertEquals(if (tag == "ca") "Save changes?" else "Salvaţi modificările?", ui(R.string.ui_save_your_changes))
         assertEquals(expected(tag, "ui_save_and_share_41edb4") + "…", ui(R.string.ui_save_and_share))
         // Existing mixed-language/fallback values are context, not newly reviewed translations.
-        assertEquals("Image format", ui(R.string.save20_file_format))
-        assertEquals("Choose location…", ui(R.string.ui_choose_location))
-        assertEquals("Share saved image", ui(R.string.ui_share_saved_image))
+        assertEquals((if (tag == "ca") "Image format" else PriorityWordingExpectations.display("ro","save20_file_format")), ui(R.string.save20_file_format))
+        assertEquals((if (tag == "ca") "Choose location…" else PriorityWordingExpectations.display("ro","ui_choose_location")), ui(R.string.ui_choose_location))
+        assertEquals((if (tag == "ca") "Share saved image" else PriorityWordingExpectations.display("ro","ui_share_saved_image")), ui(R.string.ui_share_saved_image))
         assertEquals("Base64 text", ui(R.string.formats22_base64_label))
         assertEquals(if (tag == "ca") "Art ASCII" else "Artă ASCII", ui(R.string.formats22_ascii_label))
     }
@@ -121,8 +121,8 @@ class CatalanRomanianSaveWordingTest {
                 for (other in listOf(save, export, share).filter { it != message }) assertFalse(displayed.contains(other))
                 assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
                     else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(shown).title.toString())
-                assertTrue(displayed.contains("Image format"))
-                assertEquals("Choose location…", shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertTrue(displayed.contains((if (tag == "ca") "Image format" else PriorityWordingExpectations.display("ro","save20_file_format"))))
+                assertEquals((if (tag == "ca") "Choose location…" else PriorityWordingExpectations.display("ro","ui_choose_location")), shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(if (tag == "ca") "Cancel·la" else "Anulează", shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
                 shadowOf(Looper.getMainLooper()).idle()

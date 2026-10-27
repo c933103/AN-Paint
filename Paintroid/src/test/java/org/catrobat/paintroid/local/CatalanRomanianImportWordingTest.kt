@@ -38,8 +38,8 @@ class CatalanRomanianImportWordingTest {
 
     // The new reviewed values use simple Android quote wrapping. Inherited strings
     // can contain Android escapes and are preserved by separate source contracts.
-    private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
-        .getJSONObject(key).getString(tag).removeSurrounding("\"")
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.current(tag,key,
+        fixture.getJSONObject("values").getJSONObject(key).getString(tag)).removeSurrounding("\"")
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources
@@ -86,12 +86,12 @@ class CatalanRomanianImportWordingTest {
         val format = "GIF 100%"
         assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_unknown"), format),
             ui(R.string.formats22_animation_unknown, format))
-        assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format, "at least 2"),
-            ui(R.string.formats22_animation_message, format, "at least 2"))
-        // These inherited/mixed values are deliberately not translated by this batch.
-        assertEquals("Image format", ui(R.string.save20_file_format))
-        assertEquals("Choose location…", ui(R.string.ui_choose_location))
+        assertEquals((if (tag == "ca") "at least 2" else String.format(Locale.forLanguageTag(tag),PriorityWordingExpectations.display("ro","formats22_at_least_frames"),2)), ui(R.string.formats22_at_least_frames, 2))
+        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format, (if (tag == "ca") "at least 2" else String.format(Locale.forLanguageTag(tag),PriorityWordingExpectations.display("ro","formats22_at_least_frames"),2))),
+            ui(R.string.formats22_animation_message, format, (if (tag == "ca") "at least 2" else String.format(Locale.forLanguageTag(tag),PriorityWordingExpectations.display("ro","formats22_at_least_frames"),2))))
+        // Explicit Romanian priority successors; Catalan fallback expectations remain unchanged.
+        assertEquals((if (tag == "ca") "Image format" else PriorityWordingExpectations.display("ro","save20_file_format")), ui(R.string.save20_file_format))
+        assertEquals((if (tag == "ca") "Choose location…" else PriorityWordingExpectations.display("ro","ui_choose_location")), ui(R.string.ui_choose_location))
         assertEquals(if (tag == "ca") "Desa" else "Salvează", ui(R.string.ui_save))
         assertEquals(if (tag == "ca") "Anomena i desa…" else "Salvează ca…", ui(R.string.save20_title))
         assertEquals(if (tag == "ca") "Save changes?" else "Salvaţi modificările?", ui(R.string.ui_save_your_changes))
@@ -120,8 +120,8 @@ class CatalanRomanianImportWordingTest {
                 val lossless = checkNotNull(root.findViewWithTag<CheckBox>("export_lossless"))
                 val dither = checkNotNull(root.findViewWithTag<CheckBox>("export_dither"))
                 val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
-                assertEquals("Image format", spinner.contentDescription.toString())
-                assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals((if (tag == "ca") "Image format" else PriorityWordingExpectations.display("ro","save20_file_format")), spinner.contentDescription.toString())
+                assertEquals((if (tag == "ca") "Choose location…" else PriorityWordingExpectations.display("ro","ui_choose_location")), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(if (tag == "ca") "Cancel·la" else "Anulează",
                     dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 fun select(format: ImageFormat, key: String) {

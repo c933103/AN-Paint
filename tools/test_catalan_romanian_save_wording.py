@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape
 from test_danish_norwegian_p0_wording import full_format_tokens, require_reviewed_string
 import translation_catalogues as catalogues
+from priority_wording_successors import current_fixture, added_keys, catalogue_count, current_display
 
 KEYS = {'ui_your_current_image_has_unsaved_changes', 'ui_could_not_save_image', 'ui_saved',
         'ui_export_did_not_save23', 'ui_save_explanation23', 'ui_export_explanation23',
@@ -19,7 +20,7 @@ HOLDS = {'formats22_derived_exported', 'ui_save_as', 'ui_save_as_jpeg',
 class CatalanRomanianSaveWordingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = require_wording_shape(fixture('catalan_romanian_save_wording.json'), KEYS, TAGS)
+        cls.data = require_wording_shape(current_fixture('catalan_romanian_save_wording.json'), KEYS, TAGS)
         cls.xml = {tag: (catalogues.RES / folder / 'strings.xml').read_text(encoding='utf-8')
                    for tag, folder in [('default', 'values'), ('ca', 'values-ca'), ('ro', 'values-ro')]}
         cls.roots = {tag: ET.fromstring(xml) for tag, xml in cls.xml.items()}
@@ -73,7 +74,7 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
                     require_reviewed_string(ET.tostring(root, encoding='unicode'), key,
                                             changed, constraints, source)
 
-    def test_all_254_inherited_values_attributes_and_scoped_catalogue_membership_stay_unchanged(self):
+    def test_inherited_values_attributes_with_only_exact_reviewed_priority_successors(self):
         self.assertEqual({'ca', 'ro'}, set(self.data['preserved_values']))
         from test_translations import SCOPED_TAGS
         for tag in ('ca', 'ro'):
@@ -82,23 +83,28 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(205, len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
-            self.assertEqual('Image format', self.roots[tag].find("./string[@name='save20_file_format']").text)
+            self.assertEqual(catalogue_count(tag,205), len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
+            self.assertEqual('Image format' if tag == 'ca' else '"' + current_display('ro','save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertEqual('Save changes?', self.roots['ca'].find("./string[@name='ui_save_your_changes']").text)
         self.assertEqual('Salvaţi modificările?', self.roots['ro'].find("./string[@name='ui_save_your_changes']").text)
         self.assertEqual(59, len(SCOPED_TAGS))
         self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
 
-    def test_five_holds_and_unreviewed_neighbors_remain_absent(self):
+    def test_five_holds_remain_while_explicit_reviewed_neighbors_advance(self):
         self.assertEqual(HOLDS, set(self.data['held_absent']))
-        completion = fixture('catalan_romanian_completion_wording.json')
+        completion = current_fixture('catalan_romanian_completion_wording.json')
         for tag in ('ca', 'ro'):
             key = 'ui_assembly_source_memory_floor'
             require_reviewed_string(self.xml[tag], key, completion['values'][key][tag],
                                     completion['constraints'][key][tag], completion['values'][key]['default'])
             for key in HOLDS | {'ui_choose_location', 'ui_share_saved_image',
                                 'ui_no_resize_fits_decoder_memory', 'ui_load_image'}:
-                self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+                if tag == 'ro' and key not in HOLDS:
+                    successor = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['ro']['values'][key]
+                    self.assertIsNone(successor['previous_target'])
+                    require_string(self.xml[tag], key, successor['target'], {'attributes': successor['attributes']})
+                else:
+                    self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
         self.assertEqual('Choose location…', self.roots['default'].find("./string[@name='ui_choose_location']").text)
         self.assertEqual('Share saved image', self.roots['default'].find("./string[@name='ui_share_saved_image']").text)
 
