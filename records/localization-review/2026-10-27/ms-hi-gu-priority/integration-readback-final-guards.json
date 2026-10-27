@@ -1,0 +1,73 @@
+{
+  "source_commit": "651ab24b2c4dfd26d432daf0d8771fdb179ff013",
+  "source_tree": "d06833e6d8cd1ec700fd03f61858433290808ab7",
+  "locales": {
+    "hi": {
+      "original_git_blob_verified": "cbba93aec2bdeb3df8dd7449cff14a5e2bb51830",
+      "entire_catalogue_matches_exact_reviewed_delta": true,
+      "total_entries": 352,
+      "changed_values": 308,
+      "unchanged_values": 44,
+      "integrated_sha256": "dfbe0fd964d5ea2ef827a021c77c4332d8ca14b456e66b1889931e6d7d3a7745"
+    },
+    "gu": {
+      "original_git_blob_verified": "40b7a457cda69b440b983c21991f2e0a8f121d2c",
+      "entire_catalogue_matches_exact_reviewed_delta": true,
+      "total_entries": 354,
+      "changed_values": 309,
+      "unchanged_values": 45,
+      "integrated_sha256": "1994e38a87dfd307100cee239f23cbae03159942f44dd87f23ab1274d91534aa"
+    },
+    "ms": {
+      "original_git_blob_verified": "c8c3736f70032a585a42b1daacd38d7c949874c7",
+      "entire_catalogue_matches_exact_reviewed_delta": true,
+      "total_entries": 717,
+      "changed_values": 0,
+      "unchanged_values": 717,
+      "integrated_sha256": "061d851e4effaae006100f762b3b5872ec2d20ad420237ede07d55971796111a"
+    }
+  },
+  "existing_fixture_blobs_unchanged": 83,
+  "tracked_delta": [
+    {
+      "path": "Paintroid/src/main/res/values-gu/strings.xml",
+      "sha256": "1994e38a87dfd307100cee239f23cbae03159942f44dd87f23ab1274d91534aa"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-hi/strings.xml",
+      "sha256": "dfbe0fd964d5ea2ef827a021c77c4332d8ca14b456e66b1889931e6d7d3a7745"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "sha256": "725bf153fa94445d1ff521e96b0b95376a9361b4b1b8db02e9904c72e86077c2"
+    },
+    {
+      "path": "tools/memory_warning_source_review.py",
+      "sha256": "d01d10bacece0f07646375dc5910442fd540e6aeaf3c09348bf75f879e097838"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "sha256": "58431052de7648267e0314777e2e2d72d2bab998ac4d8bcfd649e29d0364cead"
+    },
+    {
+      "path": "tools/test_memory_warning_source_review.py",
+      "sha256": "e9c893e3dc4844ca86aa64bf26b15735417c61d4a5b2506dfb6d9b7d642e07a4"
+    },
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "sha256": "89b2c9c8c383a850458361a925165961e409b4a879b79fafc29f1f4455245dc4"
+    }
+  ],
+  "new_fixture_sha256": "6f23b79dc5b379345972dedd354c2072ed3b2dea3db42e10b1f50f135a7b06ca",
+  "encoding_check": "Each actual edit is exactly the reviewed resource text enclosed in Android wrapper double quotes; unchanged existing wrappers and aliases remain byte-for-byte.",
+  "limits": [
+    "Exact XML values/attributes and unchanged historical fixture readback; runtime/compiler proof requires author CI.",
+    "No whole-language/native-human certification."
+  ],
+  "final_guard_review": [
+    "Independent exact 308/309 edited-set complements verified; 15/27 raw predecessor value/attribute bindings match accepted maps.",
+    "Partition move, unchanged-as-edit, missing/forged predecessor mutations reject; exact Malay Save alias display Simpan verified without changing target or credit.",
+    "Final focused 12 tests pass."
+  ],
+  "final_guard_sha256": "c3e5c49636ff5b232374fbd5a44bae4e3319d52bdde224b1e6874a1226734cc0"
+}
