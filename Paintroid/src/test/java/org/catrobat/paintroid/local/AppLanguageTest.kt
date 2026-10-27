@@ -126,11 +126,17 @@ class AppLanguageTest {
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
             if (tag == "as") {
-                // Exact reviewed priority successor; the other 20 options retain English fallback.
+                // Exact reviewed Assam priority successor; Tajik has its own finite branch below.
                 assertEquals("ফাইল",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("ব্ৰাছ",wrapped.getString(R.string.ui_brush))
                 assertEquals("সংৰক্ষণ কৰক",wrapped.getString(R.string.ui_save))
                 assertEquals("এপৰ ভাষা\n\nAN Paint-ৰ ভাষাৰ সম্পদসমূহত অনুবাদসমূহ ৰক্ষণাবেক্ষণ কৰা হয়। নতুন বা অনুবাদ নকৰা পাঠ ইংৰাজীত দেখা যায়।",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "tg") {
+                // Only this exact reviewed Tajik option replaces its historical English fallback.
+                assertEquals("Файл",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Мӯқалам",wrapped.getString(R.string.ui_brush))
+                assertEquals("Захира",wrapped.getString(R.string.ui_save))
+                assertEquals("Забони барнома\n\nТарҷумаҳо дар захираҳои забонии AN Paint нигоҳ дошта мешаванд. Матни нав ё тарҷуманашуда ба забони англисӣ нишон дода мешавад.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
