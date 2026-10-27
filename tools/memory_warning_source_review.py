@@ -11,6 +11,8 @@ from pathlib import Path
 RECORD = Path(__file__).resolve().parents[1] / 'translations/source-review/memory-warnings-20261021.json'
 KEYS = {'ui_no_resize_fits_decoder_memory', 'ui_assembly_source_memory_floor'}
 PRIORITY_TAGS = frozenset({'bg', 'bn'})
+PRIORITY_ADDITIONS = frozenset({('uk','ui_assembly_source_memory_floor'),
+    ('uk','ui_no_resize_fits_decoder_memory'),('ro','ui_no_resize_fits_decoder_memory')})
 SINGLE_KEY_FIXTURES = {
     'nn': 'nynorsk_p0_remaining_wording.json',
     'da': 'danish_norwegian_p0_wording.json',
@@ -42,6 +44,15 @@ old source snapshot.
 """
     if key not in KEYS:
         return historical_value
+    if (tag, key) in PRIORITY_ADDITIONS:
+        queue = review_record()
+        old = next(o for o in queue['options'] if o['tag'] == tag)['terms'][key]['value']
+        row = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales'][tag]['values'][key]
+        if historical_value is not None or old is not None or row['previous_target'] is not None:
+            raise ValueError('Historical priority addition must be absent: '+tag+'/'+key)
+        if row['source'] != queue['keys'][key]['corrected_english'] or row['attributes'] != {'name':key}:
+            raise ValueError('Priority addition source or attributes differ: '+tag+'/'+key)
+        return row['target']
     if (tag, key) in SINGLE_KEY_EXPECTATIONS:
         # Explicit P0-only reviews. The paired oracle and missing P1
         # companion retain their separate scope and frozen historical absence.

@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape
 from test_danish_norwegian_p0_wording import full_format_tokens, require_reviewed_string
 import translation_catalogues as catalogues
+from priority_wording_successors import current_fixture, added_keys, catalogue_count, current_display
 
 KEYS = {'ui_your_current_image_has_unsaved_changes', 'ui_could_not_save_image', 'ui_saved',
         'ui_export_did_not_save23', 'ui_save_explanation23', 'ui_export_explanation23',
@@ -20,7 +21,7 @@ HOLDS = {'formats22_derived_exported', 'ui_save_as', 'ui_save_as_jpeg',
 class UkrainianSaveWordingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = require_wording_shape(fixture('ukrainian_save_wording.json'), KEYS, TAGS)
+        cls.data = require_wording_shape(current_fixture('ukrainian_save_wording.json'), KEYS, TAGS)
         cls.xml = {tag: (catalogues.RES / folder / 'strings.xml').read_text(encoding='utf-8')
                    for tag, folder in [('default', 'values'), ('uk', 'values-uk')]}
         cls.roots = {tag: ET.fromstring(xml) for tag, xml in cls.xml.items()}
@@ -85,25 +86,24 @@ class UkrainianSaveWordingTests(unittest.TestCase):
                 require_reviewed_string(ET.tostring(root, encoding='unicode'), key,
                                         changed, constraints, source)
 
-    def test_all_127_inherited_values_attributes_and_scoped_catalogue_membership_stay_unchanged(self):
+    def test_inherited_values_attributes_with_only_exact_reviewed_priority_successors(self):
         self.assertEqual({'uk'}, set(self.data['preserved_values']))
         preserved = self.data['preserved_values']['uk']
         self.assertEqual(127, len(preserved));self.assertFalse(set(preserved) & KEYS)
         for key, expected in preserved.items():
             with self.subTest(key=key):
                 require_string(self.xml['uk'], key, expected['value'], {'attributes': expected['attributes']})
-        self.assertEqual(137, len(self.roots['uk']))
-        self.assertEqual(set(preserved) | KEYS, {node.get('name') for node in self.roots['uk']})
+        self.assertEqual(catalogue_count('uk',137), len(self.roots['uk']))
+        self.assertEqual(set(preserved) | KEYS | added_keys('uk'), {node.get('name') for node in self.roots['uk']})
         from test_translations import SCOPED_TAGS
         self.assertNotIn('uk', SCOPED_TAGS)
         self.assertIn('uk', catalogues.offered_tags())
         self.assertEqual(59, len(SCOPED_TAGS))
         self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
 
-    def test_five_holds_and_unreviewed_neighbor_fallbacks_remain_absent(self):
+    def test_five_holds_remain_absent_while_reviewed_priority_neighbors_advance(self):
         self.assertEqual(HOLDS, set(self.data['held_absent']))
-        for key in HOLDS | {'ui_choose_location', 'ui_share_saved_image',
-                            'ui_no_resize_fits_decoder_memory', 'ui_load_image'}:
+        for key in HOLDS:
             self.assertIsNone(self.roots['uk'].find(f"./string[@name='{key}']"), key)
         self.assertEqual('Choose location…', self.roots['default'].find("./string[@name='ui_choose_location']").text)
         self.assertEqual('Share saved image', self.roots['default'].find("./string[@name='ui_share_saved_image']").text)
