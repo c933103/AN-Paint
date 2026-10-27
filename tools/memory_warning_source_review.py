@@ -4,6 +4,7 @@ Historical paired-language fixtures stay unchanged. Default-English and explicit
 no historical fixture or receipt is rewritten.
 """
 import json
+from galician_priority_expectations import MEMORY_ADDITIONS as GL_ADDITIONS, current_row as gl_row, MEMORY_CORRECTIONS as NL_DE_MEMORY_CORRECTIONS, wording_successor as nl_de_successor
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
@@ -43,8 +44,19 @@ fixture corruption. This selects explicitly bound paired and single-key
 expectations, not a catalogue generator, review result or reconstruction of an
 old source snapshot.
 """
+    if (tag,key) in NL_DE_MEMORY_CORRECTIONS:
+        return nl_de_successor(tag,key,historical_value)
     if key not in KEYS:
         return historical_value
+    if (tag,key) in GL_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=gl_row(tag,key)
+        if historical_value is not None or old is not None:
+            raise ValueError('Historical Galician warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english']:
+            raise ValueError('Galician warning source differs: '+tag+'/'+key)
+        return row['target']
     if (tag, key) in SK_SL_CA_ADDITIONS:
         queue = review_record()
         old = next(o for o in queue['options'] if o['tag'] == tag)['terms'][key]['value']

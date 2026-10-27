@@ -128,6 +128,17 @@ class TaggedColourImportTest {
         assertFalse(expected.has("uk"))
         expected.put("uk", PriorityWordingExpectations.display("uk","save20_unsupported_image_colour"))
         assertEquals(77, expected.length())
+        val glNlDe=org.json.JSONObject(java.io.File("../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json").readText()).getJSONObject("locales")
+        assertEquals(setOf("gl","nl","de"),glNlDe.keys().asSequence().toSet())
+        for(tag in listOf("gl")) {
+            assertFalse("Exact prior absence for $tag",expected.has(tag))
+            val row=glNlDe.getJSONObject(tag).getJSONObject("values").getJSONObject("string/save20_unsupported_image_colour")
+            assertTrue(row.isNull("previous_target"));assertTrue(row.isNull("previous_attributes"))
+            assertEquals(setOf("name"),row.getJSONObject("attributes").keys().asSequence().toSet())
+            assertEquals("save20_unsupported_image_colour",row.getJSONObject("attributes").getString("name"))
+            expected.put(tag,row.getString("display"))
+        }
+        assertEquals(78,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -160,6 +171,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(93, fallbacks)
+        assertEquals(92, fallbacks)
     }
 }

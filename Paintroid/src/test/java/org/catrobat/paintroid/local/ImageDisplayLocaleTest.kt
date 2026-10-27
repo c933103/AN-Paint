@@ -68,11 +68,11 @@ class ImageDisplayLocaleTest {
     }
 
     @Test fun englishFallbackStillUsesSelectedLocaleNumbers() {
-        // Albanian still lacks this summary; Romanian now has an explicitly reviewed value.
-        resources("sq", "en-US")
+        // Breton still lacks this summary; Albanian and Galician have independently reviewed additions.
+        resources("br", "en-US")
         assertEquals("%1\$d × %2\$d px · Pixel count: %3\$,d (%4\$.2f MP)",
             PaintApplication.currentResources.getString(R.string.ui_d_d_px_d_pixels_2f_mp))
-        val symbols = DecimalFormatSymbols(Locale.forLanguageTag("sq"))
+        val symbols = DecimalFormatSymbols(Locale.forLanguageTag("br"))
         assertEquals(',', symbols.decimalSeparator)
         val group = symbols.groupingSeparator
         assertEquals("1500 × 1500 px · Pixel count: 2${group}250${group}000 (2,25 MP)",
