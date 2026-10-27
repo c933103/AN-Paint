@@ -1,0 +1,39 @@
+{
+  "source_commit": "c404e7ea31ef0a22c3645d8c73e50b55d7ff959c",
+  "review_scope": "Independent model-based full-value Ukrainian linguistic and canonical-English/consumer-context review; no native-speaker, installed-layout or whole-locale acceptance.",
+  "source_authentication": "The implementation verified all 1,388 base blob bytes and modes against the fresh GitHub tree. The independent linguistic review consumed those source excerpts without separately authenticating the remote snapshot.",
+  "source_blobs": {
+    "Paintroid/src/main/res/values/strings.xml": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+    "Paintroid/src/main/res/values-uk/strings.xml": "67996157049ddd318a39ce4500716945e211155c",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea"
+  },
+  "review_outcome": {
+    "accepted_values": 10,
+    "retained_candidates": 6,
+    "refined_candidates": 4,
+    "held_candidates": 0,
+    "refined_keys": [
+      "ui_export_did_not_save23",
+      "ui_export_explanation23",
+      "ui_save_explanation23",
+      "ui_the_image_was_saved_but_android_could_not"
+    ],
+    "refinement_reason": "Ukrainian idiom and consistency with inherited file-name/ASCII labels; no safety meaning reversal identified."
+  },
+  "consumer_semantics": [
+    "Save retains name, destination, format and settings for the current drawing.",
+    "Derived export keeps current drawing and Save destination unchanged.",
+    "Share saves a separate copy first and does not replace the current Save destination.",
+    "A sharing-chooser failure follows successful writing and is distinct from write failure.",
+    "Dirty-image replacement warning is distinct from export completion."
+  ],
+  "unchanged_scope": [
+    "127 inherited Ukrainian resource values and attributes",
+    "All other catalogues",
+    "59 scoped catalogues and 112 explicit open fallback catalogues",
+    "Five no-current-consumer Save/export holds",
+    "Existing paired memory warnings and release settings"
+  ],
+  "local_jvm": "Not executed: wrapper bootstrap failed before Gradle started because services.gradle.org was unreachable. The local environment has no Android SDK/Gradle distribution cache. Hosted exact-source CI is required."
+}
