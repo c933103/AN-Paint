@@ -1,0 +1,739 @@
+{
+  "source_head": "0023c724e4e33bc43d0645673bfba9b6277f8768",
+  "tree": "b7258b58b6ff95f78dcb2a2a5509818fa5af2e44",
+  "checkout": "95e43868b75139b2f133a76abbe47ea2a4675954",
+  "run": {
+    "id": 40462722790,
+    "status": "completed",
+    "conclusion": "failure",
+    "attempt": 1,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/40462722790"
+  },
+  "jobs": [
+    {
+      "id": 122050852252,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40462722790,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Check clean and incremental resource graph in a disposable worktree",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 122050852540,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 40462722790,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run Python contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run JVM regression tests",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 9
+        },
+        {
+          "name": "Prepare lint native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run Android lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ]
+    },
+    {
+      "id": 122050852571,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40462722790,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build universal APK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Upload build diagnostics even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Record build identity and extract matching source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Upload APK immediately, before device tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Compile test APKs once for all emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    },
+    {
+      "id": 122054016292,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40462722790,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bind prebuilt artifacts to this checkout and run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 122054016431,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40462722790,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bind prebuilt artifacts to this checkout and run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 122058253780,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 40462722790,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Require both complete emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Select artifacts from successful job intervals",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Download and verify the selected artifact IDs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Require exact disjoint app union and matching prebuilt identity",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12716261706,
+      "name": "regression-and-lint-95e43868b75139b2f133a76abbe47ea2a4675954",
+      "size_in_bytes": 84553543,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12716261706",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12716261706/zip",
+      "expired": false,
+      "created_at": "2026-10-27T07:07:13Z",
+      "expires_at": "2026-11-10T07:07:08Z",
+      "updated_at": "2026-10-27T07:07:13Z",
+      "digest": "sha256:667e278dd48dc0199cf957d4d7f3c70c0d77096fd251ce0061be3dbfaa0b7783",
+      "workflow_run": {
+        "id": 40462722790,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "localization/uk-lt-ro-priority-20261027",
+        "head_sha": "0023c724e4e33bc43d0645673bfba9b6277f8768"
+      }
+    },
+    {
+      "id": 12716016821,
+      "name": "emulator-core-api-35-95e43868b75139b2f133a76abbe47ea2a4675954",
+      "size_in_bytes": 12082863,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12716016821",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12716016821/zip",
+      "expired": false,
+      "created_at": "2026-10-27T07:05:36Z",
+      "expires_at": "2026-11-10T07:05:35Z",
+      "updated_at": "2026-10-27T07:05:36Z",
+      "digest": "sha256:46c0f37de80629b9e69141d02204d3ad8934eeb85494fd4dbfdecdaf0db1e3b5",
+      "workflow_run": {
+        "id": 40462722790,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "localization/uk-lt-ro-priority-20261027",
+        "head_sha": "0023c724e4e33bc43d0645673bfba9b6277f8768"
+      }
+    },
+    {
+      "id": 12715975059,
+      "name": "instrumentation-apks-95e43868b75139b2f133a76abbe47ea2a4675954",
+      "size_in_bytes": 96607264,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715975059",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715975059/zip",
+      "expired": false,
+      "created_at": "2026-10-27T06:52:33Z",
+      "expires_at": "2026-11-10T06:52:29Z",
+      "updated_at": "2026-10-27T06:52:33Z",
+      "digest": "sha256:acd9d05d58e93c0dee6c390155b0956de05b356352a1ab063c35ffaacf9c51ac",
+      "workflow_run": {
+        "id": 40462722790,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "localization/uk-lt-ro-priority-20261027",
+        "head_sha": "0023c724e4e33bc43d0645673bfba9b6277f8768"
+      }
+    },
+    {
+      "id": 12715768133,
+      "name": "emulator-api-35-95e43868b75139b2f133a76abbe47ea2a4675954",
+      "size_in_bytes": 12095371,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715768133",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715768133/zip",
+      "expired": false,
+      "created_at": "2026-10-27T07:05:51Z",
+      "expires_at": "2026-11-10T07:05:49Z",
+      "updated_at": "2026-10-27T07:05:51Z",
+      "digest": "sha256:c2b78eb63d27cce844f9771ae8935b46f0997bc3794627664232fadacf1d7ccf",
+      "workflow_run": {
+        "id": 40462722790,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "localization/uk-lt-ro-priority-20261027",
+        "head_sha": "0023c724e4e33bc43d0645673bfba9b6277f8768"
+      }
+    },
+    {
+      "id": 12715502904,
+      "name": "emulator-position-api-35-95e43868b75139b2f133a76abbe47ea2a4675954",
+      "size_in_bytes": 1943570,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715502904",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715502904/zip",
+      "expired": false,
+      "created_at": "2026-10-27T06:57:54Z",
+      "expires_at": "2026-11-10T06:57:52Z",
+      "updated_at": "2026-10-27T06:57:54Z",
+      "digest": "sha256:b19d7106105c5b4d36dcf4281b1e835b7a72d17eea902f8a09ab0aeb5386ed03",
+      "workflow_run": {
+        "id": 40462722790,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "localization/uk-lt-ro-priority-20261027",
+        "head_sha": "0023c724e4e33bc43d0645673bfba9b6277f8768"
+      }
+    },
+    {
+      "id": 12715248578,
+      "name": "apk-and-source-95e43868b75139b2f133a76abbe47ea2a4675954",
+      "size_in_bytes": 142963403,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715248578",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715248578/zip",
+      "expired": false,
+      "created_at": "2026-10-27T06:50:38Z",
+      "expires_at": "2026-11-10T06:50:31Z",
+      "updated_at": "2026-10-27T06:50:38Z",
+      "digest": "sha256:88eb6d30db7d44f9db9fae1a340d20ef2d962ef0acc2a9c2cf78bd0c37a03366",
+      "workflow_run": {
+        "id": 40462722790,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "localization/uk-lt-ro-priority-20261027",
+        "head_sha": "0023c724e4e33bc43d0645673bfba9b6277f8768"
+      }
+    },
+    {
+      "id": 12715213926,
+      "name": "build-diagnostics-95e43868b75139b2f133a76abbe47ea2a4675954-1",
+      "size_in_bytes": 24160,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715213926",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12715213926/zip",
+      "expired": false,
+      "created_at": "2026-10-27T06:50:30Z",
+      "expires_at": "2026-11-10T06:50:29Z",
+      "updated_at": "2026-10-27T06:50:30Z",
+      "digest": "sha256:2608b3e4c4940b1c9148f92810d486b39cf147607b7856d8b28a60f00cf4e26f",
+      "workflow_run": {
+        "id": 40462722790,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "localization/uk-lt-ro-priority-20261027",
+        "head_sha": "0023c724e4e33bc43d0645673bfba9b6277f8768"
+      }
+    },
+    {
+      "id": 12714379593,
+      "name": "exact-script-generation-95e43868b75139b2f133a76abbe47ea2a4675954",
+      "size_in_bytes": 11495,
+      "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12714379593",
+      "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12714379593/zip",
+      "expired": false,
+      "created_at": "2026-10-27T06:46:50Z",
+      "expires_at": "2026-11-10T06:46:49Z",
+      "updated_at": "2026-10-27T06:46:50Z",
+      "digest": "sha256:38d6bfeccd49f8191d07a1262015a60b6f618f8ff7f9a1650803b3eb85286d48",
+      "workflow_run": {
+        "id": 40462722790,
+        "repository_id": 1362702425,
+        "head_repository_id": 1362702425,
+        "head_branch": "localization/uk-lt-ro-priority-20261027",
+        "head_sha": "0023c724e4e33bc43d0645673bfba9b6277f8768"
+      }
+    }
+  ],
+  "review_findings": [
+    {
+      "url": "https://api.github.com/repos/c933103/AN-Paint/pulls/comments/4385837105",
+      "pull_request_review_id": 5663213846,
+      "id": 4385837105,
+      "node_id": "PRRC_kwDOUTkwWc8AAAABBWqQMQ",
+      "diff_hunk": "@@ -209,4 +209,163 @@ Generated by tools/reuse_upstream_translations.py. See translations/README.md. -\n     <string name=\"ui_there_is_not_enough_memory_for_this_operation\">\"Nu exist\u0103 suficient\u0103 memorie pentru aceast\u0103 opera\u021bie la rezolu\u021bia original\u0103. Nu s-a aplicat nicio scalare automat\u0103.\"</string>\n     <string name=\"ui_this_location_is_not_writable\">\"Nu se poate scrie \u00een aceast\u0103 loca\u021bie.\"</string>\n     <string name=\"ui_unexpected_data_in_the_undo_cache\">\"Date nea\u0219teptate \u00een cache-ul istoricului de anulare.\"</string>\n+    <!-- Independently reviewed priority wording and required composition dependencies. -->\n+    <string name=\"colour_converter_unavailable\">\"Convertorul de culoare al imaginii nu a putut porni. Imaginea nu a fost importat\u0103.\"</string>\n+    <string name=\"colour_invalid_metadata\">\"Imaginea con\u021bine metadate de culoare nevalide sau neacceptate.\"</string>\n+    <string name=\"colour_truncated_metadata\">\"Fi\u0219ierul imaginii se termin\u0103 \u00een interiorul metadatelor de culoare.\"</string>\n+    <string name=\"colour_unsupported_icc_model\">\"Aceast\u0103 imagine folose\u0219te un model de culoare ICC pe care decodorul de imagini nu \u00eel poate converti. Export\u0103 mai \u00eent\u00e2i o copie RGB \u00eentr-o aplica\u021bie cu gestionarea culorilor.\"</string>\n+    <string name=\"commons_svg_original_size_too_large\">\"Dimensiunea original\u0103 a fi\u0219ierului SVG dep\u0103\u0219e\u0219te dimensiunile acceptate de Android pentru imaginile raster. Nu s-a aplicat nicio redimensionare.\"</string>\n+    <string name=\"commons_svg_original_size_unavailable\">\"Fi\u0219ierul SVG nu declar\u0103 o dimensiune original\u0103 utilizabil\u0103. Nu s-a folosit \u00een locul ei o dimensiune bazat\u0103 pe canava.\"</string>\n+    <string name=\"formats22_import_limit\">\"Acest fi\u0219ier dep\u0103\u0219e\u0219te limita de import de 512 MiB. Alege un fi\u0219ier mai mic.\"</string>\n+    <string name=\"language20_current\">\"Limba aplica\u021biei: %1$s\"</string>\n+    <string name=\"language20_translation_note\">\"Limba aplica\u021biei\\n\\nTraducerile sunt \u00eentre\u021binute \u00een resursele lingvistice AN Paint. Textele noi sau netraduse apar \u00een englez\u0103.\"</string>\n+    <string name=\"ui_0f_0f_px_1f\">\"%1$.0f \u00d7 %2$.0f px\\n%3$.1f\u00b0\"</string>\n+    <string name=\"ui_100\" formatted=\"false\">\"100%\"</string>\n+    <string name=\"ui_1_px\">\"1 px\"</string>\n+    <string name=\"ui_1f_s\">\"%1$.1f %2$s\"</string>\n+    <string name=\"ui_actual_size_100\" formatted=\"false\">\"Dimensiune real\u0103 (100%)\"</string>\n+    <string name=\"ui_add_colour26\">\"Adaug\u0103 o culoare\"</string>\n+    <string name=\"ui_add_text\">\"Adaug\u0103 text\"</string>\n+    <string name=\"ui_all\">\"Selecteaz\u0103 tot\"</string>\n+    <string name=\"ui_android_blocked_the_file_picker\">\"Android a blocat selectorul de fi\u0219iere: %1$s\"</string>\n+    <string name=\"ui_android_could_not_decode_this_image\">\"Android nu a putut decoda aceast\u0103 imagine.\"</string>\n+    <string name=\"ui_android_could_not_find_a_file_picker_enable\">\"Android nu a g\u0103sit un selector de fi\u0219iere. Activeaz\u0103 aplica\u021bia Fi\u0219iere sau Documente \u00een set\u0103rile Android, apoi \u00eencearc\u0103 din nou.\"</string>\n+    <string name=\"ui_apply_bounds\">\"Aplic\u0103 limitele\"</string>\n+    <string name=\"ui_apply_crop\">\"Aplic\u0103 decuparea\"</string>\n+    <string name=\"ui_autosaving_draft\">\"Se salveaz\u0103 automat ciorna\u2026\"</string>\n+    <string name=\"ui_background_edit_colour\">\"Fundal: %1$s. Editeaz\u0103 culoarea.\"</string>\n+    <string name=\"ui_basic_colours\">\"Culori de baz\u0103\"</string>\n+    <string name=\"ui_canvas_bounds\">\"Limitele canavalei\"</string>\n+    <string name=\"ui_canvas_zoom\">\"Zoom canava\"</string>\n+    <string name=\"ui_canvas_zoom_771f84\">\"Zoom canava: %1$s\"</string>\n+    <string name=\"ui_choose_a_smaller_output_copy_the_source_images\">\"Alege o copie de ie\u0219ire mai mic\u0103. Imaginile surs\u0103 \u0219i set\u0103rile de decupare r\u0103m\u00e2n la rezolu\u021bia original\u0103.\"</string>\n+    <string name=\"ui_choose_a_smaller_size\">\"Alege o dimensiune mai mic\u0103.\"</string>\n+    <string name=\"ui_choose_at_least_one_image\">\"Alege cel pu\u021bin o imagine.\"</string>\n+    <string name=\"ui_choose_dimensions_no_larger_than_the_original\">\"Alege dimensiuni care s\u0103 nu le dep\u0103\u0219easc\u0103 pe cele originale.\"</string>\n+    <string name=\"ui_choose_location\">\"Alege loca\u021bia\u2026\"</string>\n+    <string name=\"ui_codec_resize_memory_floor\">\"Acest format necesit\u0103 decodarea imaginii surs\u0103 sau a dalelor sale \u00eenainte de redimensionare. Chiar \u0219i un rezultat mai mic poate dep\u0103\u0219i memoria disponibil\u0103.\"</string>\n+    <string name=\"ui_collapse_colour_palette\">\"Restr\u00e2nge paleta de culori\"</string>\n+    <string name=\"ui_collapse_tool_category\">\"%1$s. Instrument selectat: %2$s. Restr\u00e2nge instrumentele \u0219i op\u021biunile\"</string>\n+    <string name=\"ui_collapse_toolbox\">\"Restr\u00e2nge caseta de instrumente\"</string>\n+    <string name=\"ui_colour\">\"Culoare %1$s\"</string>\n+    <string name=\"ui_colour_palette_tap_for_foreground_hold_for_background\">\"Palet\u0103 de culori. Atinge o culoare pentru prim-plan; \u021bine ap\u0103sat pentru fundal. Deruleaz\u0103 pentru mai multe culori.\"</string>\n+    <string name=\"ui_colour_tap_foreground_hold_background\">\"Culoare #%1$s. Atinge pentru prim-plan; \u021bine ap\u0103sat pentru fundal.\"</string>\n+    <string name=\"ui_commit_selection\">\"Fixeaz\u0103 selec\u021bia\"</string>\n+    <string name=\"ui_copy_all\">\"Copiaz\u0103 tot\"</string>\n+    <string name=\"ui_could_not_apply_the_crop\">\"Decuparea nu a putut fi aplicat\u0103.\"</string>\n+    <string name=\"ui_could_not_complete_the_edit\">\"Editarea nu a putut fi finalizat\u0103. %1$s\"</string>\n+    <string name=\"ui_could_not_complete_the_operation\">\"Opera\u021bia nu a putut fi finalizat\u0103.\"</string>\n+    <string name=\"ui_could_not_place_the_image\">\"Imaginea nu a putut fi plasat\u0103.\"</string>\n+    <string name=\"ui_could_not_prepare_the_image\">\"Imaginea nu a putut fi preg\u0103tit\u0103.\"</string>\n+    <string name=\"ui_crop\">\"Decupare: %1$s\"</string>\n+    <string name=\"ui_crop_must_stay_inside_the_canvas\">\"Decuparea trebuie s\u0103 r\u0103m\u00e2n\u0103 \u00een interiorul canavalei.\"</string>\n+    <string name=\"ui_crop_preview_drag_an_edge_or_corner_drag\">\"Previzualizarea decup\u0103rii. Trage de o margine sau de un col\u021b; trage \u00een interior pentru a deplasa zona de decupare.\"</string>\n+    <string name=\"ui_d_d_px_d_pixels_2f_mp\">\"%1$d \u00d7 %2$d px \u00b7 Num\u0103r de pixeli: %3$,d (%4$.2f MP)\"</string>\n+    <string name=\"ui_delete_selection\">\"\u0218terge selec\u021bia\"</string>\n+    <string name=\"ui_draft_pending\">\"Ciorna a\u0219teapt\u0103 salvarea\"</string>\n+    <string name=\"ui_draw_again\">\"Revino la desen\"</string>\n+    <string name=\"ui_drawing_canvas_pinch_and_move_two_fingers_to\">\"Canava de desen. Apropie sau dep\u0103rteaz\u0103 dou\u0103 degete pentru zoom \u0219i deplaseaz\u0103-le pentru a muta vederea. Modul \u00abNavigare\u00bb permite deplasarea vederii \u0219i cu un singur deget.\"</string>\n+    <string name=\"ui_drawing_settings\">\"Set\u0103ri de desen\u2026\"</string>\n+    <string name=\"ui_drawing_settings_d900c6\">\"Set\u0103ri de desen\"</string>\n+    <string name=\"ui_edit_canvas33\">\"Canava\"</string>\n+    <string name=\"ui_edit_transform33\">\"\u00centoarcere / rotire\"</string>\n+    <string name=\"ui_enter_a_number_from_to\">\"Introdu un num\u0103r de la %1$s la %2$s.\"</string>\n+    <string name=\"ui_enter_a_positive_size\">\"Introdu o dimensiune pozitiv\u0103.\"</string>\n+    <string name=\"ui_enter_a_trim_amount_for_every_edge\">\"Introdu o valoare de decupare pentru fiecare margine.\"</string>\n+    <string name=\"ui_enter_a_whole_number_from_to\">\"Introdu un num\u0103r \u00eentreg de la %1$s la %2$s.\"</string>\n+    <string name=\"ui_enter_all_four_trim_amounts\">\"Introdu toate cele patru valori de decupare.\"</string>\n+    <string name=\"ui_enter_positive_canvas_dimensions_within_android_s_coordinate\">\"Introdu dimensiuni pozitive pentru canava, \u00een intervalul de coordonate acceptat de Android.\"</string>\n+    <string name=\"ui_enter_positive_dimensions\">\"Introdu dimensiuni pozitive.\"</string>\n+    <string name=\"ui_enter_positive_dimensions_no_larger_than_the_original\">\"Introdu dimensiuni pozitive care s\u0103 nu le dep\u0103\u0219easc\u0103 pe cele originale.\"</string>\n+    <string name=\"ui_enter_positive_dimensions_that_resolve_to_at_least\">\"Introdu dimensiuni pozitive care s\u0103 corespund\u0103 unui num\u0103r de cel pu\u021bin 1 pixel.\"</string>\n+    <string name=\"ui_enter_positive_image_dimensions\">\"Introdu dimensiuni pozitive pentru imagine.\"</string>\n+    <string name=\"ui_enter_valid_dimensions\">\"Introdu dimensiuni valide.\"</string>\n+    <string name=\"ui_expand_colour_palette\">\"Extinde paleta de culori\"</string>\n+    <string name=\"ui_expand_tool_category\">\"%1$s. Instrument selectat: %2$s. Extinde instrumentele \u0219i op\u021biunile\"</string>\n+    <string name=\"ui_expand_toolbox\">\"Extinde caseta de instrumente\"</string>\n+    <string name=\"ui_fit_selection34\" formatted=\"false\">\"Potrive\u0219te imaginea \u00een canava\"</string>\n+    <string name=\"ui_font_family\">\"Familia de fonturi\"</string>\n+    <string name=\"ui_foreground_edit_colour\">\"Prim-plan: %1$s. Editeaz\u0103 culoarea.\"</string>\n+    <string name=\"ui_from_device34\" formatted=\"false\">\"De pe dispozitiv\u2026\"</string>\n+    <string name=\"ui_full_text_copied\">\"Textul complet a fost copiat\"</string>\n+    <string name=\"ui_height\">\"\u00cen\u0103l\u021bime (%1$s)\"</string>\n+    <string name=\"ui_height_in\">\"\u00cen\u0103l\u021bime \u00een %1$s\"</string>\n+    <string name=\"ui_heights\">\"\u00cen\u0103l\u021bimi\"</string>\n+    <string name=\"ui_hex_rrggbb\">\"Hexazecimal #RRGGBB\"</string>\n+    <string name=\"ui_hide_editor_controls\">\"Ascunde comenzile editorului\"</string>\n+    <string name=\"ui_insert_image_into_canvas\">\"Insereaz\u0103 o imagine \u00een canava\u2026\"</string>\n+    <string name=\"ui_invalid_colour\">\"Culoare nevalid\u0103\"</string>\n+    <string name=\"ui_invalid_selection_outline\">\"Contur de selec\u021bie nevalid.\"</string>\n+    <string name=\"ui_invert_colours\">\"Inverseaz\u0103 culorile\"</string>\n+    <string name=\"ui_left_arrow_collapse\">\"S\u0103geat\u0103 la st\u00e2nga: restr\u00e2nge\"</string>\n+    <string name=\"ui_line_spacing\" formatted=\"false\">\"Spa\u021biere \u00eentre r\u00e2nduri (%)\"</string>\n+    <string name=\"ui_load_image\">\"\u00cencarc\u0103 imaginea\u2026\"</string>\n+    <string name=\"ui_lock_aspect_ratio\">\"P\u0103streaz\u0103 raportul de aspect\"</string>\n+    <string name=\"ui_lock_proportions\">\"P\u0103streaz\u0103 propor\u021biile\"</string>\n+    <string name=\"ui_magnification\" formatted=\"false\">\"M\u0103rire (%)\"</string>\n+    <string name=\"ui_navigate\">\"Navigare\"</string>\n+    <string name=\"ui_new_colour\">\"Culoare nou\u0103\"</string>\n+    <string name=\"ui_no_readable_image_data\">\"Nu exist\u0103 date de imagine care pot fi citite.\"</string>\n+    <string name=\"ui_no_resize_fits_decoder_memory\">\"Chiar \u0219i la cea mai mic\u0103 dimensiune de ie\u0219ire, aceast\u0103 imagine nu poate fi \u00eenc\u0103rcat\u0103 pentru editare \u00een limitele de memorie actuale. Anuleaz\u0103 \u0219i folose\u0219te o imagine surs\u0103 mai mic\u0103.\"</string>\n+    <string name=\"ui_none\">\"Deselecteaz\u0103 tot\"</string>\n+    <string name=\"ui_not_enough_memory_to_finish_opening_this_image\">\"Memorie insuficient\u0103 pentru a termina deschiderea acestei imagini\"</string>\n+    <string name=\"ui_not_enough_memory_to_inspect_this_image\">\"Memorie insuficient\u0103 pentru a verifica aceast\u0103 imagine\"</string>\n+    <string name=\"ui_numeric_slider_value\">\"%1$s: %2$d\"</string>\n+    <string name=\"ui_original_size34\" formatted=\"false\">\"Dimensiune original\u0103\"</string>\n+    <string name=\"ui_other_images34\" formatted=\"false\">\"Alte imagini\"</string>\n+    <string name=\"ui_paste_hint34\" formatted=\"false\">\"Copiaz\u0103 o zon\u0103 sau folose\u0219te \u00abDesen \u2192 Insereaz\u0103 \u2192 Alte imagini\u00bb.\"</string>\n+    <string name=\"ui_pinch_and_pan_mode\">\"Mod de zoom cu dou\u0103 degete \u0219i deplasare\"</string>\n+    <string name=\"ui_place_text\">\"Plaseaz\u0103 textul\"</string>\n+    <string name=\"ui_please_try_again\">\"\u00cencearc\u0103 din nou.\"</string>\n+    <string name=\"ui_please_wait_for_the_current_operation\">\"A\u0219teapt\u0103 finalizarea opera\u021biei curente.\"</string>\n+    <string name=\"ui_px\">\"%1$s \u00b7 %2$s\\n%3$s \u00d7 %4$s px \u00b7 %5$s\"</string>\n+    <string name=\"ui_px_724eb3\">\"%1$s \u00d7 %2$s px\"</string>\n+    <string name=\"ui_reset_bw23\">\"Negru / alb\"</string>\n+    <string name=\"ui_reset_crop\">\"Reseteaz\u0103 decuparea\"</string>\n+    <string name=\"ui_reset_to_black_white\">\"Reseteaz\u0103 la negru / alb\"</string>\n+    <string name=\"ui_resize_and_load\">\"Redimensioneaz\u0103 \u0219i \u00eencarc\u0103\"</string>\n+    <string name=\"ui_resize_the_copy\">\"Redimensioneaz\u0103 copia\"</string>\n+    <string name=\"ui_scales_the_image_unlock_the_ratio_to_stretch\">\"Scaleaz\u0103 imaginea. Deblocheaz\u0103 propor\u021biile pentru a modifica independent l\u0103\u021bimea \u0219i \u00een\u0103l\u021bimea.\"</string>\n+    <string name=\"ui_select_an_area\">\"Selecteaz\u0103 o zon\u0103\"</string>\n+    <string name=\"ui_select_an_area_first\">\"Selecteaz\u0103 mai \u00eent\u00e2i o zon\u0103.\"</string>\n+    <string name=\"ui_selected_colour23\">\"Culoarea selectat\u0103\"</string>\n+    <string name=\"ui_selection_dimensions_are_too_large\">\"Dimensiunile selec\u021biei sunt prea mari.\"</string>\n+    <string name=\"ui_share_saved_image\">\"Distribuie imaginea salvat\u0103\"</string>\n+    <string name=\"ui_show_all\">\"Afi\u0219eaz\u0103 tot\"</string>\n+    <string name=\"ui_show_controls\">\"Afi\u0219eaz\u0103 comenzile\"</string>\n+    <string name=\"ui_show_editor_controls\">\"Afi\u0219eaz\u0103 comenzile editorului\"</string>\n+    <string name=\"ui_show_magnified_drawing_preview\">\"Afi\u0219eaz\u0103 previzualizarea m\u0103rit\u0103 a desenului\"</string>\n+    <string name=\"ui_size_pixels\">\"Dimensiune (pixeli)\"</string>\n+    <string name=\"ui_size_px\">\"Dimensiune (px)\"</string>\n+    <string name=\"ui_tap_an_image_first\">\"Atinge mai \u00eent\u00e2i o imagine.\"</string>\n+    <string name=\"ui_tap_canvas_to_type\">\"Atinge canavaua\\npentru a scrie\"</string>\n+    <string name=\"ui_tap_to_type_a_number\">\"%1$s: %2$s. Atinge pentru a introduce un num\u0103r.\"</string>\n+    <string name=\"ui_text_direction23\">\"Direc\u021bia textului\"</string>\n+    <string name=\"ui_the_crop_must_contain_at_least_one_pixel\">\"Zona decupat\u0103 trebuie s\u0103 con\u021bin\u0103 cel pu\u021bin un pixel.\"</string>\n+    <string name=\"ui_the_crop_must_stay_inside_the_image\">\"Decuparea trebuie s\u0103 r\u0103m\u00e2n\u0103 \u00een interiorul imaginii.\"</string>\n+    <string name=\"ui_the_decoder_and_editing_buffers_need_about_the\">\"Decodorul \u0219i bufferele de editare necesit\u0103 aproximativ %1$s; limita actual\u0103 sigur\u0103 pentru editare este %2$s. Alege o copie mai mic\u0103.\"</string>\n+    <string name=\"ui_the_full_image_and_working_buffers_exceed_the\">\"Imaginea complet\u0103 \u0219i bufferele de lucru dep\u0103\u0219esc limita actual\u0103 sigur\u0103 sau Android nu a putut aloca memoria necesar\u0103. Redimensioneaz\u0103 o copie pentru a o edita. Fi\u0219ierul original va r\u0103m\u00e2ne neschimbat.\"</string>\n+    <string name=\"ui_the_picker_returned_no_file_please_choose_the\">\"Selectorul nu a returnat niciun fi\u0219ier. Alege din nou fi\u0219ierul.\"</string>\n+    <string name=\"ui_the_picker_returned_no_files\">\"Selectorul nu a returnat niciun fi\u0219ier.\"</string>\n+    <string name=\"ui_the_selected_provider_did_not_return_any_image\">\"Furnizorul selectat nu a returnat date de imagine.\"</string>\n+    <string name=\"ui_this_file_is_not_a_supported_image_use\">\"Acest fi\u0219ier nu este o imagine \u00eentr-un format acceptat. Folose\u0219te PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF sau o imagine codificat\u0103 ca text Base64.\"</string>\n+    <string name=\"ui_tolerance\">\"Toleran\u021b\u0103\"</string>\n+    <string name=\"ui_too_large_for_the_current_budget_reduce_the\">\"Dimensiunea este prea mare pentru limita actual\u0103. Redu dimensiunile sau anuleaz\u0103 \u0219i elibereaz\u0103 memorie.\"</string>\n+    <string name=\"ui_tool_categories\">\"Categorii de instrumente. Deruleaz\u0103 pentru a vedea mai multe instrumente\"</string>\n+    <string name=\"ui_trim_amounts_must_be_zero_or_greater\">\"Valorile de decupare trebuie s\u0103 fie zero sau mai mari.\"</string>\n+    <string name=\"ui_trim_amounts_must_fit_inside_each_image_use\">\"Valorile de decupare trebuie s\u0103 se \u00eencadreze \u00een fiecare imagine; folose\u0219te pixeli \u00eentregi sau procente.\"</string>\n+    <string name=\"ui_trim_expand_canvas_by_touch\">\"Decupeaz\u0103 / extinde canavaua prin atingere\u2026\"</string>\n+    <string name=\"ui_try_a_different_file_or_location\">\"\u00cencearc\u0103 alt fi\u0219ier sau alt\u0103 loca\u021bie.\"</string>\n+    <string name=\"ui_type_text\">\"Scrie text\"</string>\n+    <string name=\"ui_use_1_1024_pixels\">\"Folose\u0219te 1\u20131024 de pixeli.\"</string>\n+    <string name=\"ui_use_50_300\" formatted=\"false\">\"Folose\u0219te 50\u2013300%.\"</string>\n+    <string name=\"ui_use_a_positive_target_dimension\">\"Folose\u0219te o dimensiune \u021bint\u0103 pozitiv\u0103.\"</string>\n+    <string name=\"ui_use_colour\">\"Folose\u0219te culoarea\"</string>\n+    <string name=\"ui_use_rrggbb\">\"Folose\u0219te #RRGGBB\"</string>\n+    <string name=\"ui_width\">\"L\u0103\u021bime (%1$s)\"</string>\n+    <string name=\"ui_working\">\"Se lucreaz\u0103\u2026\"</string>\n+    <string name=\"ui_width_in\">\"L\u0103\u021bime \u00een %1$s\"</string>\n+    <string name=\"formats22_at_least_frames\">\"cel pu\u021bin %1$d\"</string>",
+      "path": "Paintroid/src/main/res/values-ro/strings.xml",
+      "commit_id": "0023c724e4e33bc43d0645673bfba9b6277f8768",
+      "original_commit_id": "0023c724e4e33bc43d0645673bfba9b6277f8768",
+      "user": {
+        "login": "chatgpt-codex-connector[bot]",
+        "id": 199175422,
+        "node_id": "BOT_kgDOC98s_g",
+        "avatar_url": "https://avatars.githubusercontent.com/in/1144995?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D",
+        "html_url": "https://github.com/apps/chatgpt-codex-connector",
+        "followers_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/chatgpt-codex-connector%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "body": "**<sub><sub>![P1 Badge](https://img.shields.io/badge/P1-orange?style=flat)</sub></sub>  Update the remaining JVM expectations for Romanian successors**\n\nWhen the hosted JVM aggregate runs, two existing tests still assert the superseded Romanian behavior. `ImportSelectionTitleTest.catalanAndRomanianAnimationWarningsKeepMixedCountsAndRealImportDecisions` asserts `\"at least 2\"` at line 221 and reads the historical animation-message fixture directly, so both its count and subsequent message expectations conflict with these resources. Separately, `ImageDisplayLocaleTest.englishFallbackStillUsesSelectedLocaleNumbers` (lines 72\u201379) still expects English `Pixel count` text for Romanian, although this patch adds `Num\u0103r de pixeli`. The workflow's `:Paintroid:test${BUILD_VARIANT^}UnitTest` aggregate includes these tests, so the new eight tests do not prevent these existing runtime assertion failures. Apply the bounded successor expectations to these consumers too, preserving the historical fixtures and retaining an actually untranslated locale for the English-fallback check.\n\nUseful? React with \ud83d\udc4d\u00a0/ \ud83d\udc4e.\n\n<!-- codex-code-review-finding:v1 -->",
+      "created_at": "2026-10-27T06:46:05Z",
+      "updated_at": "2026-10-27T06:46:05Z",
+      "html_url": "https://github.com/c933103/AN-Paint/pull/186#discussion_r4385837105",
+      "pull_request_url": "https://api.github.com/repos/c933103/AN-Paint/pulls/186",
+      "_links": {
+        "self": {
+          "href": "https://api.github.com/repos/c933103/AN-Paint/pulls/comments/4385837105"
+        },
+        "html": {
+          "href": "https://github.com/c933103/AN-Paint/pull/186#discussion_r4385837105"
+        },
+        "pull_request": {
+          "href": "https://api.github.com/repos/c933103/AN-Paint/pulls/186"
+        }
+      },
+      "reactions": {
+        "url": "https://api.github.com/repos/c933103/AN-Paint/pulls/comments/4385837105/reactions",
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "hooray": 0,
+        "confused": 0,
+        "heart": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "start_line": null,
+      "original_start_line": null,
+      "start_side": null,
+      "line": 368,
+      "original_line": 368,
+      "side": "RIGHT",
+      "author_association": "NONE",
+      "original_position": 261,
+      "position": 261,
+      "subject_type": "line",
+      "is_copilot_code_review": false,
+      "copilot_code_review_sources": []
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "totals": {
+    "tests": 1410,
+    "failures": 3,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failures": [
+    {
+      "file": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImageDisplayLocaleTest.xml",
+      "method": "englishFallbackStillUsesSelectedLocaleNumbers",
+      "failure": [
+        "org.junit.ComparisonFailure: expected:<%1$d \u00d7 %2$d px \u00b7 [Pixel count]: %3$,d (%4$.2f MP)> but was:<%1$d \u00d7 %2$d px \u00b7 [Num\u0103r de pixeli]: %3$,d (%4$.2f MP)>\n\tat org.junit.Assert.assertEquals(Assert.java:117)\n\tat org.junit.Assert.assertEquals(Assert.java:146)\n\tat org.catrobat.paintroid.local.ImageDisplayLocaleTest.englishFallbackStillUsesSelectedLocaleNumbers(ImageDisplayLocaleTest.kt:72)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+      ]
+    },
+    {
+      "file": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ImportSelectionTitleTest.xml",
+      "method": "catalanAndRomanianAnimationWarningsKeepMixedCountsAndRealImportDecisions",
+      "failure": [
+        "org.junit.ComparisonFailure: expected:<[at least] 2> but was:<[cel pu\u021bin] 2>\n\tat org.junit.Assert.assertEquals(Assert.java:117)\n\tat org.junit.Assert.assertEquals(Assert.java:146)\n\tat org.catrobat.paintroid.local.ImportSelectionTitleTest.catalanAndRomanianAnimationWarningsKeepMixedCountsAndRealImportDecisions(ImportSelectionTitleTest.kt:221)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+      ]
+    },
+    {
+      "file": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest.xml",
+      "method": "everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+      "failure": [
+        "org.junit.ComparisonFailure: expected:<Foreground [%1$s, background %2$s. %3$s] colour palette.> but was:<Foreground [?, background ?. ?] colour palette.>\n\tat org.junit.Assert.assertEquals(Assert.java:117)\n\tat org.junit.Assert.assertEquals(Assert.java:146)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest$everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments$1.invoke(UkrainianLithuanianRomanianPriorityWordingTest.kt:104)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest$everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments$1.invoke(UkrainianLithuanianRomanianPriorityWordingTest.kt:86)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest.forEachLocale(UkrainianLithuanianRomanianPriorityWordingTest.kt:76)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest.forEachLocale$default(UkrainianLithuanianRomanianPriorityWordingTest.kt:67)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest.everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments(UkrainianLithuanianRomanianPriorityWordingTest.kt:86)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+      ]
+    }
+  ],
+  "new_suite": {
+    "name": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+    "tests": "8",
+    "skipped": "0",
+    "failures": "1",
+    "errors": "0",
+    "timestamp": "2026-10-27T07:02:18.189Z",
+    "hostname": "runnervmwhx2h",
+    "time": "3.238",
+    "methods": [
+      {
+        "name": "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+        "classname": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+        "time": "0.308",
+        "failures": []
+      },
+      {
+        "name": "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+        "classname": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+        "time": "1.851",
+        "failures": []
+      },
+      {
+        "name": "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+        "classname": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+        "time": "0.128",
+        "failures": []
+      },
+      {
+        "name": "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+        "classname": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+        "time": "0.611",
+        "failures": []
+      },
+      {
+        "name": "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+        "classname": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+        "time": "0.059",
+        "failures": []
+      },
+      {
+        "name": "failedUkrainianDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+        "classname": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+        "time": "0.047",
+        "failures": []
+      },
+      {
+        "name": "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+        "classname": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+        "time": "0.154",
+        "failures": []
+      },
+      {
+        "name": "everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+        "classname": "org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest",
+        "time": "0.078",
+        "failures": [
+          "org.junit.ComparisonFailure: expected:<Foreground [%1$s, background %2$s. %3$s] colour palette.> but was:<Foreground [?, background ?. ?] colour palette.>\n\tat org.junit.Assert.assertEquals(Assert.java:117)\n\tat org.junit.Assert.assertEquals(Assert.java:146)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest$everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments$1.invoke(UkrainianLithuanianRomanianPriorityWordingTest.kt:104)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest$everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments$1.invoke(UkrainianLithuanianRomanianPriorityWordingTest.kt:86)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest.forEachLocale(UkrainianLithuanianRomanianPriorityWordingTest.kt:76)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest.forEachLocale$default(UkrainianLithuanianRomanianPriorityWordingTest.kt:67)\n\tat org.catrobat.paintroid.local.UkrainianLithuanianRomanianPriorityWordingTest.everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments(UkrainianLithuanianRomanianPriorityWordingTest.kt:86)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n"
+        ]
+      }
+    ]
+  }
+}

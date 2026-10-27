@@ -1,0 +1,66 @@
+{
+  "review_date_utc": "2026-10-27T06:57:00Z",
+  "scope": "Independent implementation-only supplemental review for PR186 Codex finding, local two-file repair after published head 0023c724e4e33bc43d0645673bfba9b6277f8768. No linguistic values changed or newly accepted.",
+  "published_predecessor_head": "0023c724e4e33bc43d0645673bfba9b6277f8768",
+  "candidate_binding": "Local repair fingerprints below; no claim that the repair is already hosted or tested by Android/JVM.",
+  "catalogue_hashes_unchanged": {
+    "uk": "644dd82c46f83164c5c3cd6fca9dd3ee7e524458cddca192955f48061d960551",
+    "ro": "50b9394375c214cc8ce31dc110fef77872ea15636fbf58abaed76151fba45b25",
+    "lt": "01d3783fee75dab57dae66046e201900e0ea5413092708f6f7b5f212b9e37519"
+  },
+  "files_sha256": {
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/ImportSelectionTitleTest.kt": "86c15d3989b05057c79af4b66e38b2f6fd0a6976bb27ddca8c6123eb162a3860",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/ImageDisplayLocaleTest.kt": "38e045c06e52ec046f17a473e50e16840428e53af95d6ffd119b63b1191f9f30",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt": "3705c45811e5c7f935279d06f519c650e930c1d0e44da414b8deea3c75202d1b",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/PriorityWordingExpectations.kt": "6b26eec22db81e5c4f73f1f44ee69f82e5650d59f29a11f897f6aac40616cb2f",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianImportWordingTest.kt": "be1e3bbfdbcfad25cd7fadf958749ea2e5ac184291053a546ded4716d766a351",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/CatalanRomanianCompletionWordingTest.kt": "4448a4ec6626768a77860f790dda08ebf3f4c32a19f032656011d14aa13bbeb6",
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt": "d6b794f4ccdf6dcd9b4b97910c1123f72ca22613c95632358992fb51b28ae783",
+    "tools/fixtures/current_localization/ukrainian_lithuanian_romanian_priority_wording.json": "8a139cbe5986d2afa00e160ef0c67d3ad2ca7d95c611697a6df3ab943a6da580",
+    "Paintroid/src/main/res/values-sq/strings.xml": "05d6883534672379ba1eceec1b5a65063206c3a4bf6ea0ab1d9a6e036bfd538d"
+  },
+  "decisions": [
+    {
+      "file": "ImportSelectionTitleTest.kt",
+      "decision": "accept_static",
+      "details": "CA/RO frozen animation fixture now passes through existing finite current() successor helper. RO previous_target exactly matches historical complete value. CA retains at least 2 English fallback; RO uses reviewed cel puțin %1$d via locale formatting. Unknown-frame, lower-bound cancellation/dismissal and confirmed APNG import ownership branches remain intact."
+    },
+    {
+      "file": "ImageDisplayLocaleTest.kt",
+      "decision": "accept_static",
+      "details": "English summary fallback switches from newly translated RO to sq. Independently verified values-sq is the only Albanian resource directory and omits ui_d_d_px_d_pixels_2f_mp. Literal unqualified template check remains, numeric formatting uses selected sq decimal/group symbols with deliberately US process locale, and 1.5 KiB comma check remains. No production formatting adaptation."
+    },
+    {
+      "file": "NumericDisplayLocaleTest.kt",
+      "decision": "retain_unchanged",
+      "details": "Lines 137/167/188 English budget expectations remain valid: both ui_current_safe_budget_2f_mp and ui_current_safe_editing_budget_s_up_to_2f are absent RO P2 keys, not reviewed priority additions. Existing RO four-argument oversize text is unchanged. Do not translate expectations or app values merely to eliminate English."
+    }
+  ],
+  "search": {
+    "jvm_kotlin_java_files_scanned": 162,
+    "methods": [
+      "literal UK/LT/RO locale selection and qualifier search",
+      "changed-key/reference intersection",
+      "external JSON fixture references and exact changed locale-key intersections",
+      "all-offered-tag/fallback fixture consumer inspection"
+    ],
+    "remaining_changed_direct_fixture_pairs": {
+      "ImportSelectionTitleTest.kt": [
+        "ro/formats22_animation_message"
+      ],
+      "CatalanRomanianImportWordingTest.kt": [
+        "ro/formats22_animation_message"
+      ],
+      "CatalanRomanianCompletionWordingTest.kt": [
+        "ro/ui_autosave_is_paused_to_protect_that_draft_use",
+        "ro/ui_recovery_copy_exported_extract_canvas_png_from_the"
+      ]
+    },
+    "result": "All listed pairs use finite current() successor helper; UK TaggedColourImportTest explicit current addition already present. LT TIFF/plural and Commons assertions are unchanged values. No additional necessary existing JVM literal/fixture successor edits found."
+  },
+  "limits": [
+    "Static review and exact XML/fixture/hash checks only; no Android SDK/Gradle locally, so no compiled/JVM execution for this repair.",
+    "Broad search is not proof that every possible runtime failure is absent.",
+    "Author/root own exact new-head Codex and hosted CI follow-through; project holds unchanged."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "review_date_utc": "2026-10-27T07:11:00Z",
+  "scope": "PR186 third-file JVM test-only successor repair following initial hosted failure; no linguistic map/resource/production changes.",
+  "decision": "accept_static",
+  "file": "Paintroid/src/test/java/org/catrobat/paintroid/local/UkrainianLithuanianRomanianPriorityWordingTest.kt",
+  "lines": [
+    104,
+    107
+  ],
+  "reason": "The held UK/RO palette key stays absent and resolves the canonical English template. activity.getString(id) correctly tests the raw template with placeholders. ui(id, three explicit strings) correctly tests rendered display, including literal 100% within each argument. The prior ui(id) call intentionally yields question marks for missing arguments through LocaleText.resolve; expecting raw placeholders there was a test defect.",
+  "raw_expected": "Foreground %1$s, background %2$s. %3$s colour palette.",
+  "arguments": [
+    "foreground 100%",
+    "background 100%",
+    "palette 100%"
+  ],
+  "rendered_expected": "Foreground foreground 100%, background background 100%. palette 100% colour palette.",
+  "catalogue_hashes_unchanged": {
+    "uk": "644dd82c46f83164c5c3cd6fca9dd3ee7e524458cddca192955f48061d960551",
+    "ro": "50b9394375c214cc8ce31dc110fef77872ea15636fbf58abaed76151fba45b25",
+    "lt": "01d3783fee75dab57dae66046e201900e0ea5413092708f6f7b5f212b9e37519"
+  },
+  "files_sha256": {
+    "Paintroid/src/test/java/org/catrobat/paintroid/local/UkrainianLithuanianRomanianPriorityWordingTest.kt": "1fa9d1d1a07be86aca51ee68865f92418caa764f09ef115c6cd99e3a51788a55",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt": "3976dfe5147077465fecc7117fde830d5773656efb7bd07ed4f4e64247e802e4",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleText.kt": "1f70b6536b3339b7ad3548b44012d76248757d45fe356da65f459256841b5381",
+    "Paintroid/src/main/res/values/strings.xml": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261"
+  },
+  "limits": [
+    "Independently verified static semantics, XML absence and exact fingerprints only.",
+    "Initial hosted 1410-test/3-failure results and seven passing new consumer methods are author-reported here, not independently rerun.",
+    "Author/root own exact forward-head publication, Codex and hosted CI. No claim of local Android/JVM execution."
+  ]
+}
