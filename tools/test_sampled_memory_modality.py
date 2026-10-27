@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 
 from current_localization_contracts import require_string
 import translation_catalogues as catalogues
+from tibetan_dzongkha_valencian_priority_expectations import current_sampled_modality_value
 
 
 KEY = 'ui_sampled_resize_memory_explanation'
@@ -32,7 +33,7 @@ class SampledMemoryModalityTests(unittest.TestCase):
             with self.subTest(tag=tag):
                 self.assertEqual({'attributes': {'name': KEY}, 'formatted': True,
                                   'placeholders': {}}, data['constraints'][tag])
-                require_string(self.xml[tag], KEY, data['values'][tag], data['constraints'][tag])
+                require_string(self.xml[tag], KEY, current_sampled_modality_value(tag,data['values'][tag]), data['constraints'][tag])
                 self.assertEqual({}, catalogues.placeholders(data['values'][tag]))
                 # No plural/array replacement or shadow definition may impersonate this scalar.
                 matching = [node for node in ET.fromstring(self.xml[tag]) if node.get('name') == KEY]
@@ -58,7 +59,7 @@ class SampledMemoryModalityTests(unittest.TestCase):
                 else: node.text += " '"
                 with self.subTest(tag=tag, mutation=mutation), self.assertRaises(ValueError):
                     require_string(ET.tostring(root, encoding='unicode'), KEY,
-                                   self.fixture['values'][tag], self.fixture['constraints'][tag])
+                                   current_sampled_modality_value(tag,self.fixture['values'][tag]), self.fixture['constraints'][tag])
 
     def test_definite_detail_loss_preserves_variable_actual_usage_and_original(self):
         for tag, detail, variable, original, previous in (
@@ -76,7 +77,7 @@ class SampledMemoryModalityTests(unittest.TestCase):
             root = ET.fromstring(self.xml[tag])
             root.find(f"string[@name='{KEY}']").text = value.replace(detail, previous)
             with self.subTest(tag=tag), self.assertRaises(ValueError):
-                require_string(ET.tostring(root, encoding='unicode'), KEY, value,
+                require_string(ET.tostring(root, encoding='unicode'), KEY, current_sampled_modality_value(tag,value),
                                self.fixture['constraints'][tag])
 
     def test_affected_catalogues_remain_well_formed(self):

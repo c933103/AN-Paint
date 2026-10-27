@@ -27,8 +27,27 @@ import java.util.Locale
 @Config(sdk = [33], qualifiers = "w412dp-h900dp-port-xhdpi")
 class SampledMemoryModalityTest {
     private val context get() = RuntimeEnvironment.getApplication() as Context
-    private val expected = JSONObject(javaClass.getResourceAsStream("/memory-modality/expected.json")!!
+    private val historicalExpected = JSONObject(javaClass.getResourceAsStream("/memory-modality/expected.json")!!
         .bufferedReader(Charsets.UTF_8).use { it.readText() }).getJSONObject("values")
+    private fun tibetanWholeWarning(bytes: ByteArray = java.io.File("../tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/bo.json").readBytes()): String {
+        val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete canonical Tibetan whole-value successor", "681547afa8a7d5502b182a33897ce6a2b6fc5dd1e7fbe27be0b7c101a624a0b9", digest)
+        val row=JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject("values").getJSONObject("ui_sampled_resize_memory_explanation")
+        assertEquals(historicalExpected.getString("bo"),row.getJSONObject("previous_target").getString("value"))
+        assertEquals(historicalExpected.getString("default"),row.getJSONObject("source").getString("value"))
+        assertEquals("string",row.getString("type"))
+        assertEquals(setOf("name"),row.getJSONObject("reviewed_attributes").keys().asSequence().toSet())
+        assertEquals("ui_sampled_resize_memory_explanation",row.getJSONObject("reviewed_attributes").getString("name"))
+        return row.getString("display")
+    }
+    private val expected = JSONObject(historicalExpected.toString()).apply {put("bo",tibetanWholeWarning())}
+    @Test fun tibetanWholeSuccessorRejectsCoordinatedFixtureReplacement() {
+        val file=java.io.File("../tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/bo.json")
+        val forged=JSONObject(file.readText()).apply {
+            getJSONObject("values").getJSONObject("ui_sampled_resize_memory_explanation").put("reviewed_value","forged").put("display","forged")
+        }
+        assertThrows(AssertionError::class.java) {tibetanWholeWarning(forged.toString().toByteArray(Charsets.UTF_8))}
+    }
     private val mib = 1024L * 1024
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
     private fun policy() = ImageMemoryPolicy.calculate(4L * 1024 * mib, 0, (128 * mib + 32 * mib) * 3, 0, true)
