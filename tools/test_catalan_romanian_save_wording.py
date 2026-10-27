@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape
 from test_danish_norwegian_p0_wording import full_format_tokens, require_reviewed_string
 import translation_catalogues as catalogues
-from priority_wording_successors import current_fixture, added_keys, catalogue_count, current_display
+from sk_sl_ca_priority_successors import current_fixture, added_keys, catalogue_count, current_display
 
 KEYS = {'ui_your_current_image_has_unsaved_changes', 'ui_could_not_save_image', 'ui_saved',
         'ui_export_did_not_save23', 'ui_save_explanation23', 'ui_export_explanation23',
@@ -84,8 +84,8 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
                 with self.subTest(tag=tag, key=key):
                     require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
             self.assertEqual(catalogue_count(tag,205), len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
-            self.assertEqual('Image format' if tag == 'ca' else '"' + current_display('ro','save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
-        self.assertEqual('Save changes?', self.roots['ca'].find("./string[@name='ui_save_your_changes']").text)
+            self.assertEqual('"' + current_display(tag,'save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
+        self.assertEqual('"'+current_display('ca','ui_save_your_changes')+'"', self.roots['ca'].find("./string[@name='ui_save_your_changes']").text)
         self.assertEqual('Salvaţi modificările?', self.roots['ro'].find("./string[@name='ui_save_your_changes']").text)
         self.assertEqual(59, len(SCOPED_TAGS))
         self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
@@ -99,8 +99,8 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
                                     completion['constraints'][key][tag], completion['values'][key]['default'])
             for key in HOLDS | {'ui_choose_location', 'ui_share_saved_image',
                                 'ui_no_resize_fits_decoder_memory', 'ui_load_image'}:
-                if tag == 'ro' and key not in HOLDS:
-                    successor = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['ro']['values'][key]
+                if key not in HOLDS:
+                    successor = fixture('slovak_slovenian_catalan_priority_wording.json' if tag == 'ca' else 'ukrainian_lithuanian_romanian_priority_wording.json')['locales'][tag]['values'][key]
                     self.assertIsNone(successor['previous_target'])
                     require_string(self.xml[tag], key, successor['target'], {'attributes': successor['attributes']})
                 else:

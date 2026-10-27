@@ -10,7 +10,7 @@ from test_danish_norwegian_p0_wording import full_format_tokens, require_reviewe
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
-from priority_wording_successors import current_fixture, added_keys, catalogue_count, current_display
+from sk_sl_ca_priority_successors import current_fixture, added_keys, catalogue_count, current_display
 
 KEYS = frozenset({
     'gallery_credit_could_not_save', 'gallery_credit_too_large', 'legacy_credits_unreadable',
@@ -152,13 +152,13 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
         for tag in ('ca', 'ro'):
             for key in HOLDS | {'formats22_at_least_frames', 'ui_no_resize_fits_decoder_memory',
                                 'ui_load_image', 'ui_choose_location', 'ui_share_saved_image'}:
-                if tag == 'ro' and key not in HOLDS:
-                    successor = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['ro']['values'][key]
+                if key not in HOLDS:
+                    successor = fixture('slovak_slovenian_catalan_priority_wording.json' if tag == 'ca' else 'ukrainian_lithuanian_romanian_priority_wording.json')['locales'][tag]['values'][key]
                     self.assertIsNone(successor['previous_target'])
                     require_string(self.xml[tag], key, successor['target'], {'attributes': successor['attributes']})
                 else:
                     self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
-            self.assertEqual('Image format' if tag == 'ca' else '"' + current_display('ro','save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
+            self.assertEqual('"' + current_display(tag,'save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
 
@@ -169,11 +169,11 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
             paused = value('ui_autosave_is_paused_to_protect_that_draft_use')
             self.assertIn(menu, paused);self.assertIn(save_as, paused)
             self.assertIn(value('ui_export_recovery_copy'), paused)
-            self.assertIn(('Image format' if tag == 'ca' else current_display('ro','save20_file_format')) + ': PNG / JPEG', paused)
+            self.assertIn(current_display(tag,'save20_file_format') + ': PNG / JPEG', paused)
             for key in ('ui_autosave_failed_use_save', 'ui_autosave_paused_use_save'):
                 self.assertIn(save, value(key))
             recovery = value('ui_recovery_copy_exported_extract_canvas_png_from_the')
-            self.assertIn(menu + ' > ' + ('Load image…' if tag == 'ca' else current_display('ro','ui_load_image')), recovery)
+            self.assertIn(menu + ' > ' + current_display(tag,'ui_load_image'), recovery)
             self.assertIn('canvas.png', recovery);self.assertIn('ZIP', recovery)
             self.assertEqual(value('ui_export_recovery_copy_144b8a') + '…', value('ui_export_recovery_copy'))
             for key in ('ui_could_not_open_image', 'ui_could_not_export_the_recovery_copy',
@@ -194,13 +194,10 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
                 self.assertIsNone(old['terms'][term]['value'])
                 with self.assertRaises(ValueError):accepted_warning(term, tag)
             self.assertEqual(self.data['values'][key][tag], warnings.current_source_expectation(key, tag, None))
-            if tag == 'ca':
-                self.assertIsNone(warnings.current_source_expectation(other, tag, None))
-            else:
-                addition = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['ro']['values'][other]
-                self.assertIsNone(addition['previous_target'])
-                self.assertEqual(addition['target'], warnings.current_source_expectation(other, tag, None))
-                with self.assertRaises(ValueError):warnings.current_source_expectation(other, tag, addition['target'])
+            addition = fixture('slovak_slovenian_catalan_priority_wording.json' if tag == 'ca' else 'ukrainian_lithuanian_romanian_priority_wording.json')['locales'][tag]['values'][other]
+            self.assertIsNone(addition['previous_target'])
+            self.assertEqual(addition['target'], warnings.current_source_expectation(other, tag, None))
+            with self.assertRaises(ValueError):warnings.current_source_expectation(other, tag, addition['target'])
             with self.assertRaises(ValueError):warnings.current_source_expectation(key, tag, 'invented history')
             changed = deepcopy(queue);next(row for row in changed['options'] if row['tag'] == tag)['terms'][key]['value'] = 'invented history'
             with patch.object(warnings, 'review_record', return_value=changed), self.assertRaises(ValueError):

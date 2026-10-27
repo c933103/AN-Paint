@@ -27,7 +27,7 @@ EXPECTED_KEYS = {
 
 
 # Additions are message-family-specific. Czech and Swedish have independently reviewed metadata/copy-credit values.
-FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro'}}
+FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'}}
 
 
 def wording_tags(name):
@@ -42,6 +42,16 @@ def wording_fixture(name):
             for key in EXPECTED_KEYS[name]:
                 row=current[tag]['values'][key]
                 if row['previous_target'] is not None or row['source'] != data['values'][key]['default']:
+                    raise ValueError('SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        current=fixture('slovak_slovenian_catalan_priority_wording.json')['locales']
+        for tag in ('sk','sl','ca'):
+            for key in EXPECTED_KEYS[name]:
+                row=current[tag]['values'][key]
+                if (tag in data['values'][key] or row['previous_target'] is not None
+                        or row['source'] != data['values'][key]['default'] or row['attributes'] != {'name':key}):
                     raise ValueError('SVG addition precondition differs: '+tag+'/'+key)
                 data['values'][key][tag]=row['target']
             data['additional_reviewed_tags'].append(tag)
@@ -162,9 +172,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
     def test_each_message_family_has_only_its_explicitly_reviewed_additions(self):
         svg = wording_fixture(FAMILIES[2])
-        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro'}
+        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'}
         self.assertEqual({'cs', 'pl'}, set(svg['additional_draft_tags']))
-        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro'}, set(svg['additional_reviewed_tags']))
+        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'}, set(svg['additional_reviewed_tags']))
         self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))

@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape
 from test_danish_norwegian_p0_wording import full_format_tokens, require_reviewed_string
 import translation_catalogues as catalogues
-from priority_wording_successors import current_fixture, added_keys, catalogue_count, current_display
+from sk_sl_ca_priority_successors import current_fixture, added_keys, catalogue_count, current_display
 
 KEYS = {'formats22_animation_message', 'formats22_animation_poster', 'formats22_animation_still',
         'formats22_animation_title', 'formats22_animation_unknown', 'formats22_ascii_description',
@@ -95,13 +95,13 @@ class CatalanRomanianImportWordingTests(unittest.TestCase):
             require_reviewed_string(self.xml[tag], key, completion['values'][key][tag],
                                     completion['constraints'][key][tag], completion['values'][key]['default'])
             for key in HOLDS | {'formats22_at_least_frames', 'ui_no_resize_fits_decoder_memory'}:
-                if tag == 'ro' and key not in HOLDS:
-                    successor = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['ro']['values'][key]
+                if key not in HOLDS:
+                    successor = fixture('slovak_slovenian_catalan_priority_wording.json' if tag == 'ca' else 'ukrainian_lithuanian_romanian_priority_wording.json')['locales'][tag]['values'][key]
                     self.assertIsNone(successor['previous_target'])
                     require_string(self.xml[tag], key, successor['target'], {'attributes': successor['attributes']})
                 else:
                     self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
-            self.assertEqual('Image format' if tag == 'ca' else '"' + current_display('ro','save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
+            self.assertEqual('"' + current_display(tag,'save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
             self.assertEqual({'%1$s': 1, '%2$s': 1}, full_format_tokens(self.data['values']['formats22_animation_message'][tag]))
             self.assertEqual({'%1$s': 1}, full_format_tokens(self.data['values']['formats22_animation_unknown'][tag]))
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
