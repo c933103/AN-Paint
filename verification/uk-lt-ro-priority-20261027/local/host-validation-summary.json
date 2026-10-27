@@ -1,0 +1,31 @@
+{
+  "implementation_head": "0023c724e4e33bc43d0645673bfba9b6277f8768",
+  "command_ordinary": "python3 -m unittest discover -s tools -p 'test_*.py'",
+  "command_optimized": "python3 -O -m unittest discover -s tools -p 'test_*.py'",
+  "ordinary": {
+    "tests": 1469,
+    "seconds": 192.591,
+    "exit": 0,
+    "result": "OK"
+  },
+  "optimized": {
+    "tests": 1469,
+    "seconds": 194.883,
+    "exit": 0,
+    "result": "OK"
+  },
+  "earlier_cohorts": [
+    {
+      "tests": 1467,
+      "failures": 11,
+      "errors": 3,
+      "status": "failed; scoped forward expectations corrected"
+    },
+    {
+      "tests": 1469,
+      "failures": 1,
+      "status": "failed; stale Romanian no-resize absence guard corrected"
+    }
+  ],
+  "jvm_android_status": "not run locally; exact-head hosted CI pending"
+}
