@@ -1,0 +1,438 @@
+{
+  "reviewed_head": "728ddd062b4fef9e9440978959d85c199da6dccc",
+  "reviewed_tree": "0ad3a1d8e0fb752571027415d268ac65ab301dd9",
+  "actual_merge": {
+    "sha": "4c7c20059030067fa736a0b999e10a08905441a8",
+    "tree": "0ad3a1d8e0fb752571027415d268ac65ab301dd9",
+    "parents": [
+      "0c4f732e7c959bb0829bc537b8e1d34e474e4258",
+      "728ddd062b4fef9e9440978959d85c199da6dccc"
+    ]
+  },
+  "natural_push": {
+    "id": 40468929333,
+    "head": "4c7c20059030067fa736a0b999e10a08905441a8",
+    "status": "completed",
+    "conclusion": "cancelled",
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/40468929333",
+    "event": "push",
+    "attempt": 1
+  },
+  "jobs": [
+    {
+      "id": 122071023761,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_id": 40468929333,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build universal APK",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "number": 8
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Upload build diagnostics even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Record build identity and extract matching source",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "Upload APK immediately, before device tests",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 12
+        },
+        {
+          "name": "Compile test APKs once for all emulator jobs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 13
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 14
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 26
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 27
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    },
+    {
+      "id": 122071024045,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_id": 40468929333,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Check clean and incremental resource graph in a disposable worktree",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 122071024116,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_id": 40468929333,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "number": 7
+        },
+        {
+          "name": "Run Python contracts",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 8
+        },
+        {
+          "name": "Run JVM regression tests",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 9
+        },
+        {
+          "name": "Prepare lint native dependencies",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 10
+        },
+        {
+          "name": "Run Android lint",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ]
+    },
+    {
+      "id": 122071676713,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 40468929333,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Require both complete emulator jobs",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 3
+        },
+        {
+          "name": "Select artifacts from successful job intervals",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 4
+        },
+        {
+          "name": "Download and verify the selected artifact IDs",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 5
+        },
+        {
+          "name": "Require exact disjoint app union and matching prebuilt identity",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 6
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 7
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        }
+      ]
+    },
+    {
+      "id": 122071678241,
+      "name": "Position dialog API ${{ matrix.api }}",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_id": 40468929333,
+      "logs_url": null,
+      "steps": null
+    },
+    {
+      "id": 122071678325,
+      "name": "Core emulator API ${{ matrix.api }}",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_id": 40468929333,
+      "logs_url": null,
+      "steps": null
+    }
+  ],
+  "successor_merge": {
+    "sha": "651ab24b2c4dfd26d432daf0d8771fdb179ff013",
+    "tree": "d06833e6d8cd1ec700fd03f61858433290808ab7",
+    "parents": [
+      "4c7c20059030067fa736a0b999e10a08905441a8",
+      "941e4a15b1ebf0fd0242cae7765ab75e94922818"
+    ]
+  },
+  "successor_preserves_catalogues": [
+    {
+      "tag": "uk",
+      "path": "Paintroid/src/main/res/values-uk/strings.xml",
+      "sha": "5c125b28b184b4fcf6aa71854ec7ff5770d8d3b1",
+      "mode": "100644"
+    },
+    {
+      "tag": "lt",
+      "path": "Paintroid/src/main/res/values-lt/strings.xml",
+      "sha": "a9d2ccb8aad36aa0bdcd7ce3f04599b447b01813",
+      "mode": "100644"
+    },
+    {
+      "tag": "ro",
+      "path": "Paintroid/src/main/res/values-ro/strings.xml",
+      "sha": "9cef379d8dc174782891ec47dc090fa5de768cbf",
+      "mode": "100644"
+    }
+  ],
+  "successor_push": {
+    "id": 40469098669,
+    "status": "in_progress",
+    "conclusion": null,
+    "evidence_scope": "Final composed source for PR186 and PR187; terminal artifact validation pending."
+  },
+  "no_manual_rerun": true,
+  "no_release": true,
+  "cancelled_run_composition_guard": {
+    "job_id": 122071676713,
+    "job_conclusion": "failure",
+    "step": "Require both complete emulator jobs",
+    "CORE_RESULT": "cancelled",
+    "POSITION_RESULT": "cancelled",
+    "exit_code": 1,
+    "classification": "Deliberate prerequisite guard failure in a cancelled superseded run; no app test execution or source defect inferred."
+  }
+}
