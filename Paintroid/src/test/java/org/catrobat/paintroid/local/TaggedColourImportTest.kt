@@ -178,6 +178,77 @@ class TaggedColourImportTest {
         }
     }
 
+    private fun brAstOcBoundFixture(): JSONObject {
+        val bytes=File("../tools/fixtures/current_localization/breton_asturian_occitan_priority_wording.json").readBytes()
+        val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete finite BR/AST/OC reviewed fixture", "05b7c4a966c7203f28f5154d39e92b806fd123433da93dc780082dd18ed0504c", actual)
+        return JSONObject(String(bytes,Charsets.UTF_8))
+    }
+
+    private fun brAstOcSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) brAstOcSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) brAstOcSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private fun brAstOcExpectations() = brAstOcBoundFixture()
+
+    private fun addBrAstOc(expected: JSONObject, reviewed: JSONObject) {
+        brAstOcSameJson(brAstOcBoundFixture(),reviewed)
+        val key="save20_unsupported_image_colour"
+        val source=reviewed.getJSONObject("sources").getJSONObject(key)
+        assertEquals("string",source.getString("type"))
+        assertEquals(neutral,source.getString("source"))
+        assertEquals(setOf("name"),source.getJSONObject("attributes").keys().asSequence().toSet())
+        assertEquals(key,source.getJSONObject("attributes").getString("name"))
+        for(tag in listOf("br","ast","oc")) {
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject("locales").getJSONObject(tag)
+            assertFalse("Historical resource must be absent $tag",row.getJSONObject("predecessors").has(key))
+            assertTrue("Must be an explicit changed value $tag",(0 until row.getJSONArray("changed").length()).any {
+                row.getJSONArray("changed").getString(it)==key })
+            assertFalse("Exact name-only target attributes $tag",row.getJSONObject("target_attribute_exceptions").has(key))
+            val raw=row.getJSONObject("accepted").getString(key)
+            assertTrue(raw.isNotEmpty());assertFalse(raw.startsWith("@"))
+            val display=Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
+                when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
+            }
+            expected.put(tag,display)
+        }
+    }
+
+    @Test fun finiteBrAstOcAdditionRejectsSourceAttributesAndPredecessorCorruption() {
+        val key="save20_unsupported_image_colour"
+        for(tag in listOf("br","ast","oc")) for(mutation in listOf("source","sourceAttributes","sourceType","previous","attributes","changed","empty","nonemptyTarget","coordinatedSourceTarget","alreadyPresent")) {
+            val data=brAstOcExpectations();val expected=JSONObject()
+            val source=data.getJSONObject("sources").getJSONObject(key)
+            val row=data.getJSONObject("locales").getJSONObject(tag)
+            when(mutation) {
+                "source" -> source.put("source","forged")
+                "sourceAttributes" -> source.getJSONObject("attributes").put("formatted","false")
+                "sourceType" -> source.put("type","plurals")
+                "previous" -> row.getJSONObject("predecessors").put(key,"forged")
+                "attributes" -> row.getJSONObject("target_attribute_exceptions").put(key,JSONObject().put("name",key).put("formatted","false"))
+                "changed" -> row.put("changed",org.json.JSONArray())
+                "empty" -> row.getJSONObject("accepted").put(key,"")
+                "nonemptyTarget" -> row.getJSONObject("accepted").put(key,"forged target")
+                "coordinatedSourceTarget" -> {source.put("source","forged source");row.getJSONObject("accepted").put(key,"forged target")}
+                "alreadyPresent" -> expected.put(tag,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) { addBrAstOc(expected,data) }
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -232,6 +303,8 @@ class TaggedColourImportTest {
         assertEquals(96, expected.length())
         addGaGdCy(expected,gaGdCyExpectations())
         assertEquals(99,expected.length())
+        addBrAstOc(expected,brAstOcExpectations())
+        assertEquals(102, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -264,6 +337,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(71, fallbacks) // 171 offered - 99 exact current values - 1 inherited.
+        assertEquals(68, fallbacks) // 171 offered - 102 exact current values - 1 inherited.
     }
 }
