@@ -289,7 +289,14 @@ class AfrikaansRetainedPriorityWordingTest {
                 else assertEquals(Color.BLUE,activity.document.bitmap.getPixel(20,4))
                 ReflectionHelpers.callInstanceMethod<Void>(activity,"undoEdit");shadowOf(Looper.getMainLooper()).idle()
                 assertEquals(24,activity.document.bitmap.width);assertEquals(16,activity.document.bitmap.height)
-                assertTrue(before.sameAs(activity.document.bitmap))
+                assertEquals(before.config,activity.document.bitmap.config)
+                // Resize Undo restores every ARGB sample; a newly allocated bitmap can
+                // have different alpha-type metadata, which sameAs also compares.
+                val expectedPixels=IntArray(before.width*before.height)
+                val restoredPixels=IntArray(expectedPixels.size)
+                before.getPixels(expectedPixels,0,before.width,0,0,before.width,before.height)
+                activity.document.bitmap.getPixels(restoredPixels,0,before.width,0,0,before.width,before.height)
+                assertArrayEquals("Undo must restore every original ARGB pixel",expectedPixels,restoredPixels)
                 assertEquals(Color.BLUE,activity.document.bitmap.getPixel(20,4));assertEquals(Color.YELLOW,activity.document.bitmap.getPixel(4,12))
             }
         } finally {before.recycle()}
