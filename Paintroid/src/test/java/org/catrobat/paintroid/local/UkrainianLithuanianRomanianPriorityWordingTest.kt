@@ -101,7 +101,10 @@ class UkrainianLithuanianRomanianPriorityWordingTest {
             }
         }
         if(tag!="lt") {
-            assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",ui(R.string.ui_foreground_background_colour_palette))
+            assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+                activity.getString(R.string.ui_foreground_background_colour_palette))
+            assertEquals("Foreground foreground 100%, background background 100%. palette 100% colour palette.",
+                ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
             assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
         }
     }
