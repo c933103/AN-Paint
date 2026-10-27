@@ -176,6 +176,7 @@ class AfrikaansRetainedPriorityWordingTest {
         val mib=1024L*1024;val policy=ImageMemoryPolicy.calculate(256*mib,0,96*mib,0,false)
         var resized=false;var cancelled=0
         val dialog=ImageResizeDialog(activity,ImageDimensions(2000,1000),0,{policy},resize={resized=true},cancel={cancelled++}).show()
+        shadowOf(Looper.getMainLooper()).idle() // Deliver onShow before checking its refresh/listeners.
         try {
             val root=dialog.window!!.decorView
             assertEquals(expected(tag,"ui_sampled_resize_memory_explanation"),root.findViewWithTag<TextView>("resize_explanation").text.toString())
@@ -207,6 +208,7 @@ class AfrikaansRetainedPriorityWordingTest {
                 attempts++;if(oversized) throw IllegalArgumentException("test metadata bound") else throw IOException("test storage failure")
             })
             val dialog=session.dialog
+            shadowOf(Looper.getMainLooper()).idle() // Install the real Save handler before clicking it.
             try {
                 val field=dialog.window!!.decorView.findViewWithTag<EditText>("gallery_credit_text")
                 field.setText("edited attribution 100%")
@@ -262,7 +264,9 @@ class AfrikaansRetainedPriorityWordingTest {
         activity.document.bitmap.setPixel(20,4,Color.BLUE);activity.document.bitmap.setPixel(4,12,Color.YELLOW)
         fun show(stretch: Boolean): AlertDialog {
             ReflectionHelpers.callInstanceMethod<Void>(activity,"dimensionsDialog",ClassParameter.from(Boolean::class.javaPrimitiveType!!,stretch),ClassParameter.from(Boolean::class.javaPrimitiveType!!,false))
-            return checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
+            val dialog=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
+            shadowOf(Looper.getMainLooper()).idle() // Deliver the real Apply onShow handler.
+            return dialog
         }
         for(stretch in listOf(true,false)) {
             val dialog=show(stretch)
