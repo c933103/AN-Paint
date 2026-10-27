@@ -1,0 +1,383 @@
+{
+  "head": "33743a08688ae4b024c31c4b92817132b39bc46a",
+  "tree": "7c8436ed14f2e5b2bc477cebe4ab891e2153f048",
+  "parents": [
+    "4433e8b30bdf98951a6acc76220c7803bfc4b3e6",
+    "7f6c54750de143e4f98d7fa441d5b6a8e42cffdf"
+  ],
+  "remote_all_blobs_modes_verified": 1453,
+  "changed_paths": [
+    {
+      "path": "Paintroid/src/main/res/values-de/strings.xml",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "7870a5b74ae516f472ca798ad192e046cece46a8"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-gl/strings.xml",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "2d1d0beae23a378c1281ec91da2d88a3a72d7ecf"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-nl/strings.xml",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "ba3a5d14b9fc7de899dd5f660c6a3cc4c77c2248"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalicianDutchGermanPriorityWordingTest.kt",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "5e70a467c13a3260518300cd098892772f3f2d85"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ImageDisplayLocaleTest.kt",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "410a91d913e53940c67bf2f2f3578a73af6ba1ef"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "ac94234419a3651ef914717ed6c1da82f2c54599"
+    },
+    {
+      "path": "tools/fixtures/current_localization/galician_dutch_german_priority_wording.json",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "d2352a446dbccf327c4ef5218a11cfcea11518a4"
+    },
+    {
+      "path": "tools/galician_priority_expectations.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "f0cdb76ac5902f41b316c3df2bf588083708dd29"
+    },
+    {
+      "path": "tools/gl_nl_de_priority_scope.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "5c1b922e97b600c49734ee7af9b22c30e962800c"
+    },
+    {
+      "path": "tools/memory_warning_source_review.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "7218856e9405a6d3df4277ed136791b881fc9a51"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "b4ed4319074e2422aa24e5e13861b9380c274573"
+    },
+    {
+      "path": "tools/test_dutch_editor_wording.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "5a8bfb6d5f79f977d626cca7a6d233ab8fea264c"
+    },
+    {
+      "path": "tools/test_galician_dutch_german_priority_wording.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "fb388a7924716c4e4d9ace0b5784831e2547b195"
+    },
+    {
+      "path": "tools/test_memory_warning_source_review.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "93e7acf55e61bf5d26ccf70c89d9a2b29eba3994"
+    },
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "type": "blob",
+      "mode": "100644",
+      "sha": "cae874d7230f04069a0d371c018d47c4ee9de54a"
+    }
+  ],
+  "full_modes": {
+    "ordinary": {
+      "tests": 1612,
+      "seconds": 301.299,
+      "exit_code": 0,
+      "log_sha256": "f404768d0412dfbda94edc8c6ae860f08db919745ca7cc10e5ead04b1c1b510b"
+    },
+    "optimized": {
+      "tests": 1612,
+      "seconds": 311.706,
+      "exit_code": 0,
+      "log_sha256": "ce2a10e1e284921d89ce40919e6bd7e362a3b2a761092b39d9512aa9fbe8d08d"
+    }
+  },
+  "independent_source_review": {
+    "state": "accepted_independent_composition_source_review",
+    "base_commit": "7f6c54750de143e4f98d7fa441d5b6a8e42cffdf",
+    "base_tree": "41b52f3b0f26c61a7207ec3cabd53683876d3977",
+    "exact_tree": "7c8436ed14f2e5b2bc477cebe4ab891e2153f048",
+    "all_result_leaves_modes": 1453,
+    "changed_paths": 15,
+    "exact_disjoint_copies": 10,
+    "shared_files": [
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "tools/memory_warning_source_review.py",
+      "tools/test_current_localization_contracts.py",
+      "tools/test_memory_warning_source_review.py",
+      "tools/test_memory_warning_successors.py"
+    ],
+    "explicit_additive_conflicts_reviewed": 21,
+    "prior_assertions": {
+      "tools/test_current_localization_contracts.py": {
+        "actual202": {
+          "prior_lines": 52,
+          "finite_changed_lines": [
+            "self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GA_GD_CY_TAGS), set(svg['additional_reviewed_tags']))",
+            "self.assertEqual(77+len(GA_GD_CY_TAGS)+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS)+len(YO_ZU_XH_TAGS)+len(HA_IG_LN_TAGS)+len(JV_SU_KY_TAGS)+len(AS_KM_LO_TAGS), len(data))",
+            "self.assertEqual(94-len(GA_GD_CY_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.",
+            "self.assertEqual(93-len(GA_GD_CY_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))"
+          ]
+        },
+        "accepted196": {
+          "prior_lines": 52,
+          "finite_changed_lines": [
+            "self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GL_TAGS), set(svg['additional_reviewed_tags']))",
+            "self.assertEqual(77+len(GL_TAGS)+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS)+len(YO_ZU_XH_TAGS)+len(HA_IG_LN_TAGS)+len(JV_SU_KY_TAGS)+len(AS_KM_LO_TAGS), len(data))",
+            "self.assertEqual(94-len(GL_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.",
+            "self.assertEqual(93-len(GL_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))"
+          ]
+        }
+      },
+      "tools/memory_warning_source_review.py": {
+        "actual202": {
+          "prior_lines": 0,
+          "finite_changed_lines": []
+        },
+        "accepted196": {
+          "prior_lines": 0,
+          "finite_changed_lines": []
+        }
+      },
+      "tools/test_memory_warning_source_review.py": {
+        "actual202": {
+          "prior_lines": 29,
+          "finite_changed_lines": []
+        },
+        "accepted196": {
+          "prior_lines": 29,
+          "finite_changed_lines": []
+        }
+      },
+      "tools/test_memory_warning_successors.py": {
+        "actual202": {
+          "prior_lines": 35,
+          "finite_changed_lines": [
+            "self.assertEqual({'held': 4, 'missing': 195-len(GA_GD_CY_ADDITIONS)-len(MR_TA_TE_ADDITIONS)-len(KN_ML_ADDITIONS)-len(NE_PA_ADDITIONS)-len(YO_ZU_XH_ADDITIONS)-len(HA_IG_LN_ADDITIONS)-len(JV_SU_KY_ADDITIONS)-len(AS_KM_LO_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'qualified-new-priority': 6+len(GA_GD_CY_ADDITIONS)+len(MR_TA_TE_ADDITIONS)+len(KN_ML_ADDITIONS)+len(NE_PA_ADDITIONS)+len(YO_ZU_XH_ADDITIONS)+len(HA_IG_LN_ADDITIONS)+len(JV_SU_KY_ADDITIONS)+len(AS_KM_LO_ADDITIONS)}, counts)"
+          ]
+        },
+        "accepted196": {
+          "prior_lines": 35,
+          "finite_changed_lines": [
+            "self.assertEqual({'held': 4, 'missing': 195-len(GL_ADDITIONS)-len(MR_TA_TE_ADDITIONS)-len(KN_ML_ADDITIONS)-len(NE_PA_ADDITIONS)-len(YO_ZU_XH_ADDITIONS)-len(HA_IG_LN_ADDITIONS)-len(JV_SU_KY_ADDITIONS)-len(AS_KM_LO_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'qualified-new-priority': 6+len(GL_ADDITIONS)+len(MR_TA_TE_ADDITIONS)+len(KN_ML_ADDITIONS)+len(NE_PA_ADDITIONS)+len(YO_ZU_XH_ADDITIONS)+len(HA_IG_LN_ADDITIONS)+len(JV_SU_KY_ADDITIONS)+len(AS_KM_LO_ADDITIONS)}, counts)"
+          ]
+        }
+      },
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt": {
+        "actual202": {
+          "prior_lines": 67,
+          "finite_changed_lines": [
+            "assertEquals(71, fallbacks) // 171 offered - 99 exact current values - 1 inherited."
+          ]
+        },
+        "accepted196": {
+          "prior_lines": 67,
+          "finite_changed_lines": [
+            "assertEquals(97,expected.length())",
+            "assertEquals(73, fallbacks) // 171 offered - 97 exact current values - 1 inherited."
+          ]
+        }
+      }
+    },
+    "historical_fixtures_unchanged": 96,
+    "independent_shared_negatives": 132,
+    "focused_tests": 75,
+    "both_JVM_immutable_helpers_preserved_exactly": true,
+    "tagged_outcome": "100 direct,1 inherited,70 English of171; scope not language-completeness credit",
+    "limits": "Exact source composition/static JVM/host checks; unchanged language ledgers carry without new acceptance credit. No local JVM execution; fresh exact-head full aggregates and hosted gates required."
+  },
+  "independent_receipt_sha256": "5fa942d4b51fea1b0256f7bd56b80bc753ae89dadf9b4d0a488e276356a95922",
+  "explicit_resolutions": [
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "block": 0,
+      "ours": "from memory_warning_source_review import GL_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, PRIORITY_TAGS, PRIORITY_ADDITIONS, SK_SL_CA_ADDITIONS, SINGLE_KEY_EXPECTATIONS, current_source_expectation, review_record\n",
+      "base": "from memory_warning_source_review import YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, PRIORITY_TAGS, PRIORITY_ADDITIONS, SK_SL_CA_ADDITIONS, SINGLE_KEY_EXPECTATIONS, current_source_expectation, review_record\n",
+      "theirs": "from memory_warning_source_review import GA_GD_CY_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, PRIORITY_TAGS, PRIORITY_ADDITIONS, SK_SL_CA_ADDITIONS, SINGLE_KEY_EXPECTATIONS, current_source_expectation, review_record\n",
+      "resolved": "from memory_warning_source_review import GL_ADDITIONS, GA_GD_CY_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, PRIORITY_TAGS, PRIORITY_ADDITIONS, SK_SL_CA_ADDITIONS, SINGLE_KEY_EXPECTATIONS, current_source_expectation, review_record\n"
+    },
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "block": 1,
+      "ours": "                if (tag, key) in PRIORITY_ADDITIONS | SK_SL_CA_ADDITIONS | MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | GL_ADDITIONS:\n",
+      "base": "                if (tag, key) in PRIORITY_ADDITIONS | SK_SL_CA_ADDITIONS | MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS:\n",
+      "theirs": "                if (tag, key) in PRIORITY_ADDITIONS | SK_SL_CA_ADDITIONS | MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | GA_GD_CY_ADDITIONS:\n",
+      "resolved": "                if (tag, key) in PRIORITY_ADDITIONS | SK_SL_CA_ADDITIONS | MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | GL_ADDITIONS | GA_GD_CY_ADDITIONS:\n"
+    },
+    {
+      "path": "tools/test_memory_warning_successors.py",
+      "block": 2,
+      "ours": "        self.assertEqual({'held': 4, 'missing': 195-len(GL_ADDITIONS)-len(MR_TA_TE_ADDITIONS)-len(KN_ML_ADDITIONS)-len(NE_PA_ADDITIONS)-len(YO_ZU_XH_ADDITIONS)-len(HA_IG_LN_ADDITIONS)-len(JV_SU_KY_ADDITIONS)-len(AS_KM_LO_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'qualified-new-priority': 6+len(GL_ADDITIONS)+len(MR_TA_TE_ADDITIONS)+len(KN_ML_ADDITIONS)+len(NE_PA_ADDITIONS)+len(YO_ZU_XH_ADDITIONS)+len(HA_IG_LN_ADDITIONS)+len(JV_SU_KY_ADDITIONS)+len(AS_KM_LO_ADDITIONS)}, counts)\n",
+      "base": "        self.assertEqual({'held': 4, 'missing': 195-len(MR_TA_TE_ADDITIONS)-len(KN_ML_ADDITIONS)-len(NE_PA_ADDITIONS)-len(YO_ZU_XH_ADDITIONS)-len(HA_IG_LN_ADDITIONS)-len(JV_SU_KY_ADDITIONS)-len(AS_KM_LO_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'qualified-new-priority': 6+len(MR_TA_TE_ADDITIONS)+len(KN_ML_ADDITIONS)+len(NE_PA_ADDITIONS)+len(YO_ZU_XH_ADDITIONS)+len(HA_IG_LN_ADDITIONS)+len(JV_SU_KY_ADDITIONS)+len(AS_KM_LO_ADDITIONS)}, counts)\n",
+      "theirs": "        self.assertEqual({'held': 4, 'missing': 195-len(GA_GD_CY_ADDITIONS)-len(MR_TA_TE_ADDITIONS)-len(KN_ML_ADDITIONS)-len(NE_PA_ADDITIONS)-len(YO_ZU_XH_ADDITIONS)-len(HA_IG_LN_ADDITIONS)-len(JV_SU_KY_ADDITIONS)-len(AS_KM_LO_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'qualified-new-priority': 6+len(GA_GD_CY_ADDITIONS)+len(MR_TA_TE_ADDITIONS)+len(KN_ML_ADDITIONS)+len(NE_PA_ADDITIONS)+len(YO_ZU_XH_ADDITIONS)+len(HA_IG_LN_ADDITIONS)+len(JV_SU_KY_ADDITIONS)+len(AS_KM_LO_ADDITIONS)}, counts)\n",
+      "resolved": "        self.assertEqual({'held': 4, 'missing': 195-len(GL_ADDITIONS)-len(GA_GD_CY_ADDITIONS)-len(MR_TA_TE_ADDITIONS)-len(KN_ML_ADDITIONS)-len(NE_PA_ADDITIONS)-len(YO_ZU_XH_ADDITIONS)-len(HA_IG_LN_ADDITIONS)-len(JV_SU_KY_ADDITIONS)-len(AS_KM_LO_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'qualified-new-priority': 6+len(GL_ADDITIONS)+len(GA_GD_CY_ADDITIONS)+len(MR_TA_TE_ADDITIONS)+len(KN_ML_ADDITIONS)+len(NE_PA_ADDITIONS)+len(YO_ZU_XH_ADDITIONS)+len(HA_IG_LN_ADDITIONS)+len(JV_SU_KY_ADDITIONS)+len(AS_KM_LO_ADDITIONS)}, counts)\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 0,
+      "ours": "from galician_priority_expectations import TAGS as GL_TAGS, current_row as gl_row, display as gl_display\n",
+      "base": "",
+      "theirs": "from irish_gaelic_welsh_priority_expectations import TAGS as GA_GD_CY_TAGS, current_row as ga_gd_cy_row, display as ga_gd_cy_display\n",
+      "resolved": "from irish_gaelic_welsh_priority_expectations import TAGS as GA_GD_CY_TAGS, current_row as ga_gd_cy_row, display as ga_gd_cy_display\nfrom galician_priority_expectations import TAGS as GL_TAGS, current_row as gl_row, display as gl_display\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 1,
+      "ours": "FAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(GL_TAGS)\n\n",
+      "base": "",
+      "theirs": "FAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(GA_GD_CY_TAGS)\n\n",
+      "resolved": "FAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(GA_GD_CY_TAGS)\n\nFAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(GL_TAGS)\n\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 2,
+      "ours": "        for tag in sorted(GL_TAGS):\n            for key in EXPECTED_KEYS[name]:\n                row=gl_row(tag,key)\n                if tag in data['values'][key] or row['source']!=data['values'][key]['default']:\n                    raise ValueError('Galician SVG addition precondition differs: '+tag+'/'+key)\n                data['values'][key][tag]=row['target']\n            data['additional_reviewed_tags'].append(tag)\n            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'\n",
+      "base": "",
+      "theirs": "        for tag in sorted(GA_GD_CY_TAGS):\n            for key in EXPECTED_KEYS[name]:\n                row=ga_gd_cy_row(tag,key)\n                if tag in data['values'][key] or row['source']!=data['values'][key]['default']:\n                    raise ValueError('GA/GD/CY SVG addition precondition differs: '+tag+'/'+key)\n                data['values'][key][tag]=row['target']\n            data['additional_reviewed_tags'].append(tag)\n            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'\n",
+      "resolved": "        for tag in sorted(GA_GD_CY_TAGS):\n            for key in EXPECTED_KEYS[name]:\n                row=ga_gd_cy_row(tag,key)\n                if tag in data['values'][key] or row['source']!=data['values'][key]['default']:\n                    raise ValueError('GA/GD/CY SVG addition precondition differs: '+tag+'/'+key)\n                data['values'][key][tag]=row['target']\n            data['additional_reviewed_tags'].append(tag)\n            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'\n        for tag in sorted(GL_TAGS):\n            for key in EXPECTED_KEYS[name]:\n                row=gl_row(tag,key)\n                if tag in data['values'][key] or row['source']!=data['values'][key]['default']:\n                    raise ValueError('Galician SVG addition precondition differs: '+tag+'/'+key)\n                data['values'][key][tag]=row['target']\n            data['additional_reviewed_tags'].append(tag)\n            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 3,
+      "ours": "TAGGED_COLOUR_EXTRA_TAGS |= set(GL_TAGS)\n",
+      "base": "",
+      "theirs": "TAGGED_COLOUR_EXTRA_TAGS |= set(GA_GD_CY_TAGS)\n",
+      "resolved": "TAGGED_COLOUR_EXTRA_TAGS |= set(GA_GD_CY_TAGS)\nTAGGED_COLOUR_EXTRA_TAGS |= set(GL_TAGS)\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 4,
+      "ours": "    for tag in sorted(GL_TAGS):\n        if tag in data:raise ValueError('Galician tagged-colour addition must be absent: '+tag)\n        data[tag]=gl_display(tag,TAGGED_COLOUR_KEY)\n",
+      "base": "",
+      "theirs": "    for tag in sorted(GA_GD_CY_TAGS):\n        if tag in data:raise ValueError('GA/GD/CY tagged-colour addition must be absent: '+tag)\n        data[tag]=ga_gd_cy_display(tag,TAGGED_COLOUR_KEY)\n",
+      "resolved": "    for tag in sorted(GA_GD_CY_TAGS):\n        if tag in data:raise ValueError('GA/GD/CY tagged-colour addition must be absent: '+tag)\n        data[tag]=ga_gd_cy_display(tag,TAGGED_COLOUR_KEY)\n    for tag in sorted(GL_TAGS):\n        if tag in data:raise ValueError('Galician tagged-colour addition must be absent: '+tag)\n        data[tag]=gl_display(tag,TAGGED_COLOUR_KEY)\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 5,
+      "ours": "    for tag in GL_TAGS:\n        if data[tag]!=gl_display(tag,TAGGED_COLOUR_KEY):raise ValueError('Galician tagged-colour expectation differs: '+tag)\n",
+      "base": "",
+      "theirs": "    for tag in GA_GD_CY_TAGS:\n        if data[tag]!=ga_gd_cy_display(tag,TAGGED_COLOUR_KEY):raise ValueError('GA/GD/CY tagged-colour expectation differs: '+tag)\n",
+      "resolved": "    for tag in GA_GD_CY_TAGS:\n        if data[tag]!=ga_gd_cy_display(tag,TAGGED_COLOUR_KEY):raise ValueError('GA/GD/CY tagged-colour expectation differs: '+tag)\n    for tag in GL_TAGS:\n        if data[tag]!=gl_display(tag,TAGGED_COLOUR_KEY):raise ValueError('Galician tagged-colour expectation differs: '+tag)\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 6,
+      "ours": "        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk', 'gl') and actual.startswith('\"') and actual.endswith('\"'):\n",
+      "base": "        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk') and actual.startswith('\"') and actual.endswith('\"'):\n",
+      "theirs": "        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk', 'ga', 'gd', 'cy') and actual.startswith('\"') and actual.endswith('\"'):\n",
+      "resolved": "        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk', 'gl', 'ga', 'gd', 'cy') and actual.startswith('\"') and actual.endswith('\"'):\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 7,
+      "ours": "        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GL_TAGS)\n",
+      "base": "        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS\n",
+      "theirs": "        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GA_GD_CY_TAGS)\n",
+      "resolved": "        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GL_TAGS) | set(GA_GD_CY_TAGS)\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 8,
+      "ours": "        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GL_TAGS), set(svg['additional_reviewed_tags']))\n",
+      "base": "        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS, set(svg['additional_reviewed_tags']))\n",
+      "theirs": "        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GA_GD_CY_TAGS), set(svg['additional_reviewed_tags']))\n",
+      "resolved": "        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GL_TAGS) | set(GA_GD_CY_TAGS), set(svg['additional_reviewed_tags']))\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 9,
+      "ours": "        self.assertEqual(77+len(GL_TAGS)+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS)+len(YO_ZU_XH_TAGS)+len(HA_IG_LN_TAGS)+len(JV_SU_KY_TAGS)+len(AS_KM_LO_TAGS), len(data))\n        self.assertEqual(94-len(GL_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.\n",
+      "base": "        self.assertEqual(77+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS)+len(YO_ZU_XH_TAGS)+len(HA_IG_LN_TAGS)+len(JV_SU_KY_TAGS)+len(AS_KM_LO_TAGS), len(data))\n        self.assertEqual(94-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.\n",
+      "theirs": "        self.assertEqual(77+len(GA_GD_CY_TAGS)+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS)+len(YO_ZU_XH_TAGS)+len(HA_IG_LN_TAGS)+len(JV_SU_KY_TAGS)+len(AS_KM_LO_TAGS), len(data))\n        self.assertEqual(94-len(GA_GD_CY_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.\n",
+      "resolved": "        self.assertEqual(77+len(GL_TAGS)+len(GA_GD_CY_TAGS)+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS)+len(YO_ZU_XH_TAGS)+len(HA_IG_LN_TAGS)+len(JV_SU_KY_TAGS)+len(AS_KM_LO_TAGS), len(data))\n        self.assertEqual(94-len(GL_TAGS)-len(GA_GD_CY_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.\n"
+    },
+    {
+      "path": "tools/test_current_localization_contracts.py",
+      "block": 10,
+      "ours": "        self.assertEqual(93-len(GL_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))\n",
+      "base": "        self.assertEqual(93-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))\n",
+      "theirs": "        self.assertEqual(93-len(GA_GD_CY_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))\n",
+      "resolved": "        self.assertEqual(93-len(GL_TAGS)-len(GA_GD_CY_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))\n"
+    },
+    {
+      "path": "tools/test_memory_warning_source_review.py",
+      "block": 0,
+      "ours": "from memory_warning_source_review import GL_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, KEYS, current_source_expectation, review_record\n",
+      "base": "from memory_warning_source_review import YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, KEYS, current_source_expectation, review_record\n",
+      "theirs": "from memory_warning_source_review import GA_GD_CY_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, KEYS, current_source_expectation, review_record\n",
+      "resolved": "from memory_warning_source_review import GL_ADDITIONS, GA_GD_CY_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, MR_TA_TE_ADDITIONS, KEYS, current_source_expectation, review_record\n"
+    },
+    {
+      "path": "tools/test_memory_warning_source_review.py",
+      "block": 1,
+      "ours": "            added = (12 if key == 'ui_assembly_source_memory_floor' else 5) + sum(k==key for _,k in MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | GL_ADDITIONS)\n",
+      "base": "            added = (12 if key == 'ui_assembly_source_memory_floor' else 5) + sum(k==key for _,k in MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS)\n",
+      "theirs": "            added = (12 if key == 'ui_assembly_source_memory_floor' else 5) + sum(k==key for _,k in MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | GA_GD_CY_ADDITIONS)\n",
+      "resolved": "            added = (12 if key == 'ui_assembly_source_memory_floor' else 5) + sum(k==key for _,k in MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | GL_ADDITIONS | GA_GD_CY_ADDITIONS)\n"
+    },
+    {
+      "path": "tools/memory_warning_source_review.py",
+      "block": 0,
+      "ours": "from galician_priority_expectations import MEMORY_ADDITIONS as GL_ADDITIONS, current_row as gl_row, MEMORY_CORRECTIONS as NL_DE_MEMORY_CORRECTIONS, wording_successor as nl_de_successor\n",
+      "base": "",
+      "theirs": "from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row\n",
+      "resolved": "from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row\nfrom galician_priority_expectations import MEMORY_ADDITIONS as GL_ADDITIONS, current_row as gl_row, MEMORY_CORRECTIONS as NL_DE_MEMORY_CORRECTIONS, wording_successor as nl_de_successor\n"
+    },
+    {
+      "path": "tools/memory_warning_source_review.py",
+      "block": 1,
+      "ours": "    if (tag,key) in GL_ADDITIONS:\n        queue=review_record()\n        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']\n        row=gl_row(tag,key)\n        if historical_value is not None or old is not None:\n            raise ValueError('Historical Galician warning addition must be absent: '+tag+'/'+key)\n        if row['source']!=queue['keys'][key]['corrected_english']:\n            raise ValueError('Galician warning source differs: '+tag+'/'+key)\n        return row['target']\n",
+      "base": "",
+      "theirs": "    if (tag,key) in GA_GD_CY_ADDITIONS:\n        queue=review_record()\n        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']\n        row=ga_gd_cy_row(tag,key)\n        if historical_value is not None or old is not None:\n            raise ValueError('Historical GA/GD/CY warning addition must be absent: '+tag+'/'+key)\n        if row['source']!=queue['keys'][key]['corrected_english']:\n            raise ValueError('GA/GD/CY warning source differs: '+tag+'/'+key)\n        return row['target']\n",
+      "resolved": "    if (tag,key) in GA_GD_CY_ADDITIONS:\n        queue=review_record()\n        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']\n        row=ga_gd_cy_row(tag,key)\n        if historical_value is not None or old is not None:\n            raise ValueError('Historical GA/GD/CY warning addition must be absent: '+tag+'/'+key)\n        if row['source']!=queue['keys'][key]['corrected_english']:\n            raise ValueError('GA/GD/CY warning source differs: '+tag+'/'+key)\n        return row['target']\n    if (tag,key) in GL_ADDITIONS:\n        queue=review_record()\n        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']\n        row=gl_row(tag,key)\n        if historical_value is not None or old is not None:\n            raise ValueError('Historical Galician warning addition must be absent: '+tag+'/'+key)\n        if row['source']!=queue['keys'][key]['corrected_english']:\n            raise ValueError('Galician warning source differs: '+tag+'/'+key)\n        return row['target']\n"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "block": 0,
+      "ours": "    private fun glNlDeBoundFixture(): JSONObject {\n        val bytes=File(\"../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json\").readBytes()\n        val actual=java.security.MessageDigest.getInstance(\"SHA-256\").digest(bytes).joinToString(\"\") { \"%02x\".format(it.toInt() and 0xff) }\n        assertEquals(\"Complete finite GL/NL/DE reviewed fixture\", \"b41b2203f862653c81c4b265a2ba502e5fc089df505ce592b4fdd6201accb9bd\", actual)\n        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject(\"locales\")\n    }\n\n    private fun glNlDeSameJson(expected: Any?, actual: Any?) {\n        when(expected) {\n            is JSONObject -> {\n                assertTrue(actual is JSONObject);val other=actual as JSONObject\n                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())\n                for(key in expected.keys()) glNlDeSameJson(expected.get(key),other.get(key))\n            }\n            is org.json.JSONArray -> {\n                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray\n                assertEquals(expected.length(),other.length())\n                for(i in 0 until expected.length()) glNlDeSameJson(expected.get(i),other.get(i))\n            }\n            else -> assertEquals(expected,actual)\n        }\n    }\n\n    private fun glNlDeExpectations() = glNlDeBoundFixture()\n\n    private fun addGalician(expected: JSONObject, reviewed: JSONObject) {\n        glNlDeSameJson(glNlDeBoundFixture(),reviewed)\n        val key=\"save20_unsupported_image_colour\"\n        assertEquals(setOf(\"gl\",\"nl\",\"de\"),reviewed.keys().asSequence().toSet())\n        assertFalse(\"Exact prior absence for gl\",expected.has(\"gl\"))\n        val row=reviewed.getJSONObject(\"gl\").getJSONObject(\"values\").getJSONObject(\"string/$key\")\n        assertEquals(neutral,row.getString(\"source\"))\n        for(field in listOf(\"source_attributes\",\"attributes\")) {\n            assertEquals(setOf(\"name\"),row.getJSONObject(field).keys().asSequence().toSet())\n            assertEquals(key,row.getJSONObject(field).getString(\"name\"))\n        }\n        assertTrue(row.has(\"previous_target\") && row.isNull(\"previous_target\"))\n        assertTrue(row.has(\"previous_attributes\") && row.isNull(\"previous_attributes\"))\n        val target=row.getString(\"target\").removeSurrounding(\"\\\"\").replace(\"\\\\'\",\"'\").replace(\"\\\\\\\"\",\"\\\"\").replace(\"\\\\n\",\"\\n\")\n        assertEquals(target,row.getString(\"display\"))\n        expected.put(\"gl\",row.getString(\"display\"))\n    }\n\n    @Test fun finiteGalicianAdditionRejectsSourceAttributesMissingFieldsAndPredecessorCorruption() {\n        for(mutation in listOf(\"source\",\"source_attributes\",\"previous_target\",\"previous_attributes\",\"attributes\",\"display\",\"target\",\"alreadyPresent\",\"missing_previous_target\",\"missing_previous_attributes\",\"coordinated_target_display\")) {\n            val data=glNlDeExpectations();val expected=JSONObject()\n            val row=data.getJSONObject(\"gl\").getJSONObject(\"values\").getJSONObject(\"string/save20_unsupported_image_colour\")\n            when(mutation) {\n                \"coordinated_target_display\" -> {row.put(\"target\",\"\\\"forged\\\"\");row.put(\"display\",\"forged\")}\n                \"source_attributes\",\"attributes\" -> row.getJSONObject(mutation).put(\"formatted\",\"false\")\n                \"alreadyPresent\" -> expected.put(\"gl\",\"forged\")\n                \"missing_previous_target\",\"missing_previous_attributes\" -> row.remove(mutation.removePrefix(\"missing_\"))\n                else -> row.put(mutation,\"forged\")\n            }\n            assertThrows(\"gl/$mutation\",AssertionError::class.java) {addGalician(expected,data)}\n        }\n    }\n\n",
+      "base": "",
+      "theirs": "    private fun gaGdCyBoundFixture(): JSONObject {\n        val bytes=File(\"../tools/fixtures/current_localization/irish_gaelic_welsh_priority_wording.json\").readBytes()\n        val actual=java.security.MessageDigest.getInstance(\"SHA-256\").digest(bytes).joinToString(\"\") { \"%02x\".format(it.toInt() and 0xff) }\n        assertEquals(\"Complete finite GA/GD/CY reviewed fixture\", \"1aa3267e9234866e23d38350d56a3793b15942f6070e837caed0a9116005034c\", actual)\n        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject(\"locales\")\n    }\n\n    private fun gaGdCySameJson(expected: Any?, actual: Any?) {\n        when(expected) {\n            is JSONObject -> {\n                assertTrue(actual is JSONObject);val other=actual as JSONObject\n                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())\n                for(key in expected.keys()) gaGdCySameJson(expected.get(key),other.get(key))\n            }\n            is org.json.JSONArray -> {\n                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray\n                assertEquals(expected.length(),other.length())\n                for(i in 0 until expected.length()) gaGdCySameJson(expected.get(i),other.get(i))\n            }\n            else -> assertEquals(expected,actual)\n        }\n    }\n\n    private fun gaGdCyExpectations() = gaGdCyBoundFixture()\n\n    private fun addGaGdCy(expected: JSONObject, reviewed: JSONObject) {\n        gaGdCySameJson(gaGdCyBoundFixture(),reviewed)\n        val key=\"save20_unsupported_image_colour\"\n        assertEquals(setOf(\"ga\",\"gd\",\"cy\"),reviewed.keys().asSequence().toSet())\n        for(tag in listOf(\"ga\",\"gd\",\"cy\")) {\n            assertFalse(\"Already present predecessor $tag\",expected.has(tag))\n            val row=reviewed.getJSONObject(tag).getJSONObject(\"values\").getJSONObject(\"string/$key\")\n            assertEquals(neutral,row.getString(\"source\"))\n            for(field in listOf(\"source_attributes\",\"attributes\")) {\n                assertEquals(setOf(\"name\"),row.getJSONObject(field).keys().asSequence().toSet())\n                assertEquals(key,row.getJSONObject(field).getString(\"name\"))\n            }\n            assertTrue(row.has(\"previous_target\") && row.isNull(\"previous_target\"))\n            assertTrue(row.has(\"previous_attributes\") && row.isNull(\"previous_attributes\"))\n            val target=row.getString(\"target\").removeSurrounding(\"\\\"\").replace(\"\\\\'\",\"'\").replace(\"\\\\\\\"\",\"\\\"\").replace(\"\\\\n\",\"\\n\")\n            assertEquals(target,row.getString(\"display\"))\n            expected.put(tag,row.getString(\"display\"))\n        }\n    }\n\n    @Test fun finiteGaGdCyAdditionsRejectSourceAttributesAndPredecessorCorruption() {\n        for(tag in listOf(\"ga\",\"gd\",\"cy\")) for(mutation in listOf(\"source\",\"source_attributes\",\"previous_target\",\"previous_attributes\",\"attributes\",\"display\",\"target\",\"alreadyPresent\",\"missing_previous_target\",\"missing_previous_attributes\",\"coordinated_target_display\")) {\n            val data=gaGdCyExpectations();val expected=JSONObject()\n            val row=data.getJSONObject(tag).getJSONObject(\"values\").getJSONObject(\"string/save20_unsupported_image_colour\")\n            when(mutation) {\n                \"coordinated_target_display\" -> {row.put(\"target\",\"\\\"forged\\\"\");row.put(\"display\",\"forged\")}\n                \"source_attributes\",\"attributes\" -> row.getJSONObject(mutation).put(\"formatted\",\"false\")\n                \"alreadyPresent\" -> expected.put(tag,\"forged\")\n                \"missing_previous_target\",\"missing_previous_attributes\" -> row.remove(mutation.removePrefix(\"missing_\"))\n                else -> row.put(mutation,\"forged\")\n            }\n            assertThrows(\"$tag/$mutation\",AssertionError::class.java) {addGaGdCy(expected,data)}\n        }\n    }\n\n",
+      "resolved": "    private fun gaGdCyBoundFixture(): JSONObject {\n        val bytes=File(\"../tools/fixtures/current_localization/irish_gaelic_welsh_priority_wording.json\").readBytes()\n        val actual=java.security.MessageDigest.getInstance(\"SHA-256\").digest(bytes).joinToString(\"\") { \"%02x\".format(it.toInt() and 0xff) }\n        assertEquals(\"Complete finite GA/GD/CY reviewed fixture\", \"1aa3267e9234866e23d38350d56a3793b15942f6070e837caed0a9116005034c\", actual)\n        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject(\"locales\")\n    }\n\n    private fun gaGdCySameJson(expected: Any?, actual: Any?) {\n        when(expected) {\n            is JSONObject -> {\n                assertTrue(actual is JSONObject);val other=actual as JSONObject\n                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())\n                for(key in expected.keys()) gaGdCySameJson(expected.get(key),other.get(key))\n            }\n            is org.json.JSONArray -> {\n                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray\n                assertEquals(expected.length(),other.length())\n                for(i in 0 until expected.length()) gaGdCySameJson(expected.get(i),other.get(i))\n            }\n            else -> assertEquals(expected,actual)\n        }\n    }\n\n    private fun gaGdCyExpectations() = gaGdCyBoundFixture()\n\n    private fun addGaGdCy(expected: JSONObject, reviewed: JSONObject) {\n        gaGdCySameJson(gaGdCyBoundFixture(),reviewed)\n        val key=\"save20_unsupported_image_colour\"\n        assertEquals(setOf(\"ga\",\"gd\",\"cy\"),reviewed.keys().asSequence().toSet())\n        for(tag in listOf(\"ga\",\"gd\",\"cy\")) {\n            assertFalse(\"Already present predecessor $tag\",expected.has(tag))\n            val row=reviewed.getJSONObject(tag).getJSONObject(\"values\").getJSONObject(\"string/$key\")\n            assertEquals(neutral,row.getString(\"source\"))\n            for(field in listOf(\"source_attributes\",\"attributes\")) {\n                assertEquals(setOf(\"name\"),row.getJSONObject(field).keys().asSequence().toSet())\n                assertEquals(key,row.getJSONObject(field).getString(\"name\"))\n            }\n            assertTrue(row.has(\"previous_target\") && row.isNull(\"previous_target\"))\n            assertTrue(row.has(\"previous_attributes\") && row.isNull(\"previous_attributes\"))\n            val target=row.getString(\"target\").removeSurrounding(\"\\\"\").replace(\"\\\\'\",\"'\").replace(\"\\\\\\\"\",\"\\\"\").replace(\"\\\\n\",\"\\n\")\n            assertEquals(target,row.getString(\"display\"))\n            expected.put(tag,row.getString(\"display\"))\n        }\n    }\n\n    @Test fun finiteGaGdCyAdditionsRejectSourceAttributesAndPredecessorCorruption() {\n        for(tag in listOf(\"ga\",\"gd\",\"cy\")) for(mutation in listOf(\"source\",\"source_attributes\",\"previous_target\",\"previous_attributes\",\"attributes\",\"display\",\"target\",\"alreadyPresent\",\"missing_previous_target\",\"missing_previous_attributes\",\"coordinated_target_display\")) {\n            val data=gaGdCyExpectations();val expected=JSONObject()\n            val row=data.getJSONObject(tag).getJSONObject(\"values\").getJSONObject(\"string/save20_unsupported_image_colour\")\n            when(mutation) {\n                \"coordinated_target_display\" -> {row.put(\"target\",\"\\\"forged\\\"\");row.put(\"display\",\"forged\")}\n                \"source_attributes\",\"attributes\" -> row.getJSONObject(mutation).put(\"formatted\",\"false\")\n                \"alreadyPresent\" -> expected.put(tag,\"forged\")\n                \"missing_previous_target\",\"missing_previous_attributes\" -> row.remove(mutation.removePrefix(\"missing_\"))\n                else -> row.put(mutation,\"forged\")\n            }\n            assertThrows(\"$tag/$mutation\",AssertionError::class.java) {addGaGdCy(expected,data)}\n        }\n    }\n\n    private fun glNlDeBoundFixture(): JSONObject {\n        val bytes=File(\"../tools/fixtures/current_localization/galician_dutch_german_priority_wording.json\").readBytes()\n        val actual=java.security.MessageDigest.getInstance(\"SHA-256\").digest(bytes).joinToString(\"\") { \"%02x\".format(it.toInt() and 0xff) }\n        assertEquals(\"Complete finite GL/NL/DE reviewed fixture\", \"b41b2203f862653c81c4b265a2ba502e5fc089df505ce592b4fdd6201accb9bd\", actual)\n        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject(\"locales\")\n    }\n\n    private fun glNlDeSameJson(expected: Any?, actual: Any?) {\n        when(expected) {\n            is JSONObject -> {\n                assertTrue(actual is JSONObject);val other=actual as JSONObject\n                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())\n                for(key in expected.keys()) glNlDeSameJson(expected.get(key),other.get(key))\n            }\n            is org.json.JSONArray -> {\n                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray\n                assertEquals(expected.length(),other.length())\n                for(i in 0 until expected.length()) glNlDeSameJson(expected.get(i),other.get(i))\n            }\n            else -> assertEquals(expected,actual)\n        }\n    }\n\n    private fun glNlDeExpectations() = glNlDeBoundFixture()\n\n    private fun addGalician(expected: JSONObject, reviewed: JSONObject) {\n        glNlDeSameJson(glNlDeBoundFixture(),reviewed)\n        val key=\"save20_unsupported_image_colour\"\n        assertEquals(setOf(\"gl\",\"nl\",\"de\"),reviewed.keys().asSequence().toSet())\n        assertFalse(\"Exact prior absence for gl\",expected.has(\"gl\"))\n        val row=reviewed.getJSONObject(\"gl\").getJSONObject(\"values\").getJSONObject(\"string/$key\")\n        assertEquals(neutral,row.getString(\"source\"))\n        for(field in listOf(\"source_attributes\",\"attributes\")) {\n            assertEquals(setOf(\"name\"),row.getJSONObject(field).keys().asSequence().toSet())\n            assertEquals(key,row.getJSONObject(field).getString(\"name\"))\n        }\n        assertTrue(row.has(\"previous_target\") && row.isNull(\"previous_target\"))\n        assertTrue(row.has(\"previous_attributes\") && row.isNull(\"previous_attributes\"))\n        val target=row.getString(\"target\").removeSurrounding(\"\\\"\").replace(\"\\\\'\",\"'\").replace(\"\\\\\\\"\",\"\\\"\").replace(\"\\\\n\",\"\\n\")\n        assertEquals(target,row.getString(\"display\"))\n        expected.put(\"gl\",row.getString(\"display\"))\n    }\n\n    @Test fun finiteGalicianAdditionRejectsSourceAttributesMissingFieldsAndPredecessorCorruption() {\n        for(mutation in listOf(\"source\",\"source_attributes\",\"previous_target\",\"previous_attributes\",\"attributes\",\"display\",\"target\",\"alreadyPresent\",\"missing_previous_target\",\"missing_previous_attributes\",\"coordinated_target_display\")) {\n            val data=glNlDeExpectations();val expected=JSONObject()\n            val row=data.getJSONObject(\"gl\").getJSONObject(\"values\").getJSONObject(\"string/save20_unsupported_image_colour\")\n            when(mutation) {\n                \"coordinated_target_display\" -> {row.put(\"target\",\"\\\"forged\\\"\");row.put(\"display\",\"forged\")}\n                \"source_attributes\",\"attributes\" -> row.getJSONObject(mutation).put(\"formatted\",\"false\")\n                \"alreadyPresent\" -> expected.put(\"gl\",\"forged\")\n                \"missing_previous_target\",\"missing_previous_attributes\" -> row.remove(mutation.removePrefix(\"missing_\"))\n                else -> row.put(mutation,\"forged\")\n            }\n            assertThrows(\"gl/$mutation\",AssertionError::class.java) {addGalician(expected,data)}\n        }\n    }\n\n"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "block": 1,
+      "ours": "        addGalician(expected,glNlDeExpectations())\n        assertEquals(97,expected.length())\n",
+      "base": "",
+      "theirs": "        addGaGdCy(expected,gaGdCyExpectations())\n        assertEquals(99,expected.length())\n",
+      "resolved": "        addGaGdCy(expected,gaGdCyExpectations())\n        assertEquals(99,expected.length())\n        addGalician(expected,glNlDeExpectations())\n        assertEquals(100,expected.length())\n"
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "block": 2,
+      "ours": "        assertEquals(73, fallbacks) // 171 offered - 97 exact current values - 1 inherited.\n",
+      "base": "        assertEquals(74, fallbacks) // 171 offered - 96 exact current values - 1 inherited.\n",
+      "theirs": "        assertEquals(71, fallbacks) // 171 offered - 99 exact current values - 1 inherited.\n",
+      "resolved": "        assertEquals(70, fallbacks) // 171 offered - 100 exact current values - 1 inherited.\n"
+    }
+  ],
+  "codex_request_id": 6454560925,
+  "hosted_status": "fresh exact-head CI and Code pending; no previous-base gate reuse",
+  "release_holds": "unchanged"
+}
