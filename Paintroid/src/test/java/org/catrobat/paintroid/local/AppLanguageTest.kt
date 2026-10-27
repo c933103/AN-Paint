@@ -56,11 +56,26 @@ class AppLanguageTest {
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
             if (tag == "su") {
-                // Exact reviewed priority successor; the other five options keep English fallback.
+                // Exact reviewed priority successor; the other options retain their exact reviewed or English fallback contracts.
                 assertEquals("Berkas",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Kuas",wrapped.getString(R.string.ui_brush))
                 assertEquals("Simpen",wrapped.getString(R.string.ui_save))
                 assertEquals("Basa aplikasi\n\nTarjamahan dirawat dina sumber daya basa AN Paint. Téks anyar atawa anu can ditarjamahkeun némbongan dina basa Inggris.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "ha") {
+                assertEquals("Fayil",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Goga",wrapped.getString(R.string.ui_brush))
+                assertEquals("Ajiye",wrapped.getString(R.string.ui_save))
+                assertEquals("Harshen manhaja\n\nAna kula da fassarori a kayan harsunan AN Paint. Sabon rubutu ko wanda ba a fassara ba yana bayyana da Turanci.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "ig") {
+                assertEquals("Faịlụ",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Brọsh agba",wrapped.getString(R.string.ui_brush))
+                assertEquals("Chekwaa",wrapped.getString(R.string.ui_save))
+                assertEquals("Asụsụ ngwa\n\nA na-elekọta ntụgharị asụsụ n’ihe asụsụ AN Paint. Ederede ọhụrụ ma ọ bụ a na-atụgharịghị na-apụta na Bekee.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "ln") {
+                assertEquals("Fisyé",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Pɛnsɔ",wrapped.getString(R.string.ui_brush))
+                assertEquals("Bomba",wrapped.getString(R.string.ui_save))
+                assertEquals("Lokótá ya appli\n\nBabongolaka makomi na ba ressources ya minɔkɔ ya AN Paint. Makomi ya sika to oyo ebongolami naino te emonanaka na Lingɛlɛ́sa.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
