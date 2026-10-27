@@ -7,6 +7,7 @@ import json
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
+from marathi_tamil_telugu_priority_expectations import MEMORY_ADDITIONS as MR_TA_TE_ADDITIONS, current_row as mr_ta_te_row
 
 RECORD = Path(__file__).resolve().parents[1] / 'translations/source-review/memory-warnings-20261021.json'
 KEYS = {'ui_no_resize_fits_decoder_memory', 'ui_assembly_source_memory_floor'}
@@ -45,6 +46,15 @@ old source snapshot.
 """
     if key not in KEYS:
         return historical_value
+    if (tag,key) in MR_TA_TE_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=mr_ta_te_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Marathi/Tamil/Telugu warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Marathi/Tamil/Telugu warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
     if (tag, key) in SK_SL_CA_ADDITIONS:
         queue = review_record()
         old = next(o for o in queue['options'] if o['tag'] == tag)['terms'][key]['value']
