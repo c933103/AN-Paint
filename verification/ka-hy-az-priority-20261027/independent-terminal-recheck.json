@@ -1,0 +1,22 @@
+{
+  "result": "PASS-independent-local-original-recheck",
+  "head": "dc2cfdbe3279ad22ebe3b4f3881b443f52f702a0",
+  "run_id": 40562295915,
+  "review": "Both verifier implementations inspected, then rerun against the existing seven original artifact ZIPs. No downloads. Source bindings, compiled test inventory, original protocols, independent core/position recomposition and four export receipts pass. No new native-human/manual-visual certification.",
+  "commands": [
+    "python pr195-ci/verify_original_artifacts.py",
+    "python pr195-ci/verify_original_exports.py"
+  ],
+  "exit_codes": [
+    0,
+    0
+  ],
+  "files_sha256": {
+    "verify_original_artifacts.py": "95a3613dd5e1374212f2cedf38cb817279f9a0403ce98defd9709cd95593e43d",
+    "verify_original_exports.py": "a42d66d96e4d703c535f1489fa90d1df0629e088e0f2a3265b6470798a4ed1cb",
+    "terminal-verification.json": "94d1d39162be0c51e4411ac22f63f8f23bd04914f9bf5754d223fd9dce5518fd",
+    "export-verification.json": "2331a1fb053900c843429056da9c56d9c5ddb3b5cee19a560aa467be4f9da273",
+    "independent-originals-recheck.log": "32da04419e50accaa5daf257d25dad2eaf90399f7c3b3b84596f683392e57bca",
+    "independent-exports-recheck.log": "2331a1fb053900c843429056da9c56d9c5ddb3b5cee19a560aa467be4f9da273"
+  }
+}

@@ -1,0 +1,9 @@
+# Exact successor PR195 terminal evidence
+
+Head `dc2cfdbe3279ad22ebe3b4f3881b443f52f702a0`, tree `6b12206bd809ecb9bfb62e00e3147cddd3768b0e`. [Run 40562295915](https://github.com/c933103/AN-Paint/actions/runs/40562295915) succeeded in all six jobs on tested merge `32e85801f8a175a312b03b9a5b90c2db49954fe3`, whose tree matches the reviewed head. The original prior cohort and failed JVM run remain unchanged and historical.
+
+The bundle preserves complete compact original-artifact and export receipts, artifact metadata and digests, terminal jobs, exact-source verifier scripts, successful verifier logs and per-member SHA256 manifest. Reproduce by obtaining the seven identified original archives with their verified digests, putting them in `original-artifacts` under the verifier directory, and fetching the stated full Git tree into `published-tree-readback.json`; save the tested merge identity into `tested-merge-commit.json`. Original archives expire on 10 November; no temporary download URLs are saved.
+
+All 1408 included Git blobs verified; three repository metadata omissions explicitly listed. 1441 JVM tests / 157 suites, all ten new consumer methods, zero failures/errors/skips and zero lint issues. Hosted Python discovered 1508: 1506 passed and two optional Pillow checks skipped, not passes. Thirteen exact-script probes passed their expected outcomes. Complete API35 source inventory: 74 Paintroid + 47 app; ten raw protocols and independently recomposed original Core/Position union. Original exports reproduce all four receipts: fourteen dialog methods / 51 PNGs, four vertical archives / 104 files, eight reachability cases.
+
+No new manual visual, native-linguistic, TalkBack, physical-device, universal-layout or simultaneous whole-dialog/IME acceptance. The bundle explicitly retains these boundaries. No source changes, no release, no changes to project holds. Root owns merging.
