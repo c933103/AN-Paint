@@ -1,0 +1,15 @@
+# Javanese / Sundanese / Kyrgyz complete priority review
+
+Source `c44e1118b78da5cde84f0e48a05726b99bd930ff`, tree `30e324237a54b14ba6de408d4ec8fc6c132e4252`, parent `196016019fc2c937cadaa98d3810a0a6f3811363`.
+
+Every language accounts for all **92 P0 + 249 P1 identities**, plus fifteen atomic companion identities. Each has334 accepted priority values and 7 exact absent holds; 26 accepted priority identities per language retain wording-only or route-context limits. No prior mapped exact receipt carries were recovered; this is not a claim that no historical work exists.
+
+The coherent 15-path implementation has **1,010 typed edits**: Javanese 344, Sundanese 349, Kyrgyz 317. Of 965 priority edits,964 are additions and 1 is a correction; 45 P2 atomic companions are additions. Exact unchanged accepted and unrelated catalogued entries remain preserved. All full values, attributes, aliases, formatting arguments and applicable plural children are reviewed. Javanese/Sundanese use other-only integer plurals; Kyrgyz uses one for 1. Seven exact absent holds remain in each catalogue. Catalogue presence is not linguistic acceptance.
+
+The original review binds source `b05a39d4`; all 414 unique direct-consumer windows and complete English/old-target values remained unchanged at integration. Subsequent ancestry includes exact published repairs and merged Italian/Greek/Turkish content with zero new linguistic credit. Every one of 1,435 remote source leaves/modes and the ordered parent was checked; 15 uploaded changed blobs each have their own SHA receipt.
+
+Independent readback accepted all 1,010 edits and rejected 1,107 fixture mutations. Fifteen new JVM methods exercise actual editor resources, dimensions, crop, save/encoding controls, frame lower bounds, memory limits, cancellation, text, color swap and reversible Commit/Undo/Redo pixel behavior. Static review is not hosted execution. Both final full local aggregates pass **1,561 tests each**, ordinary and optimized.
+
+The bounded Sundanese successor changes only its current metadata from not-started to partial-priority-reviewed, validates all 349 exact reviewed typed values, and keeps historical zero-coverage evidence immutable. Independent 358 negative probes reject changed values, historical metadata and other locales. Existing API30/35 option tests use four exact Sundanese successors; the other five options retain their English assertions and all platform/identity checks remain. The catalogue remains incomplete with explicit English fallback. An initial 1,551-test diagnostic exposed this obsolete empty contract and two missing test imports; all three are preserved as failures, not waived. Final tests follow the accepted successor and corrected imports.
+
+Hosted compilation, exact corresponding APK/source, mandatory device evidence and exact-head Codex remain separate pending gates. Prior PR193 IME failure evidence remains a failure of its original cohort, not a language defect or a runtime pass for this unit. No merge, release, native-speaker, TalkBack or universal-layout certification is claimed.
