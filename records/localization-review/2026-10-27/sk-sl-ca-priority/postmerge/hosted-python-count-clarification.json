@@ -1,0 +1,25 @@
+{
+  "discovered_total": 1481,
+  "passed": 1479,
+  "skipped": 2,
+  "failed": 0,
+  "errored": 0,
+  "aggregate": "OK (skipped=2)",
+  "identities": [
+    {
+      "index": 742,
+      "test": "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder"
+    },
+    {
+      "index": 745,
+      "test": "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+    }
+  ],
+  "identification_method": "All 1,481 unittest status marks aligned with source discovery order; exact two skip positions map to the two listed optional Pillow cases.",
+  "reason_from_source": "Pillow optional image decode/scanline checks skip if Pillow is unavailable. Both tests ran and passed in the local full ordinary/optimized aggregates.",
+  "counting_note": "1,481 is the discovered aggregate count, not hosted test-pass count. Earlier prose saying 1,481 passed is corrected here; immutable raw logs already preserve the exact outcome.",
+  "applies_to_runs": [
+    40466523033,
+    40469098669
+  ]
+}
