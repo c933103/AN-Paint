@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 
 import translation_catalogues as catalogues
 from language_option_additions import require_untranslated_option
+from tajik_priority_option_successor import require_tajik_option_successor, TAJIK_OPTION_STATUS
 from language_option_additions import ADDED_TAGS, FIRST_ADDED_TAGS, SECOND_ADDED_TAGS, SECOND_ADDITIONS_PATH
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,6 +75,19 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         self.assertLessEqual(strings, set(defaults)); self.assertLessEqual(plurals, set(default_plurals))
         for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']:
             path = ROOT / row['catalogue']
+            if row['tag']=='tg':
+                root=require_tajik_option_successor(row,path.read_text())
+                self.assertIn('incomplete catalogue',TAJIK_OPTION_STATUS)
+                self.assertEqual([],catalogues.validate_catalogue('tg'))
+                present_strings={node.get('name') for node in root if node.tag=='string'}
+                present_plurals={node.get('name') for node in root if node.tag=='plurals'}
+                missing_strings=strings-present_strings;missing_plurals=plurals-present_plurals
+                self.assertTrue(missing_strings)
+                self.assertEqual(set(),missing_plurals)
+                self.assertEqual([
+                    f"tg: missing {len(missing_strings)} strings: {', '.join(sorted(missing_strings)[:20])}",
+                ],catalogues.validate_catalogue('tg',require_complete=True))
+                continue
             require_untranslated_option(row, path.read_text())
             self.assertEqual('not-started', row['translation_status'])
             self.assertEqual('not-started', row['linguistic_review'])
@@ -85,6 +99,45 @@ class FurtherLanguageOptionTests(unittest.TestCase):
                 f"{row['tag']}: missing {len(strings)} strings: {', '.join(sorted(strings)[:20])}",
                 f"{row['tag']}: missing plural resources: {', '.join(sorted(plurals))}",
             ], catalogues.validate_catalogue(row['tag'], require_complete=True))
+
+    def test_only_exact_reviewed_tajik_values_supersede_the_original_empty_option(self):
+        from copy import deepcopy
+        rows=json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']
+        old=next(row for row in rows if row['tag']=='tg')
+        xml=(ROOT/old['catalogue']).read_text()
+        require_tajik_option_successor(old,xml)
+        with self.assertRaises(ValueError):require_untranslated_option(old,xml)
+        for row in rows:
+            if row['tag']!='tg':
+                with self.subTest(tag=row['tag']),self.assertRaises(ValueError):require_tajik_option_successor(row,xml)
+        for field,value in [('translation_status','complete'),('linguistic_review','accepted'),('fallback','translated'),('source_strings_present',345),('source_plurals_present',1)]:
+            changed=deepcopy(old);changed[field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):require_tajik_option_successor(changed,xml)
+        for mode in ('missing','extra','duplicate','value','attribute','markup','plural-child','plural-quantity','plural-attribute','resource-tail','plural-parent','plural-tail'):
+            root=ET.fromstring(xml)
+            if mode=='missing':root.remove(root[0])
+            elif mode=='extra':ET.SubElement(root,'string',name='unreviewed').text='unreviewed'
+            elif mode=='duplicate':root.append(deepcopy(root[0]))
+            elif mode=='value':root[0].text='unreviewed'
+            elif mode=='attribute':root[0].set('formatted','false')
+            elif mode=='markup':ET.SubElement(root[0],'b').text='unreviewed'
+            elif mode=='plural-child':root.find('./plurals')[0].text='unreviewed'
+            elif mode=='plural-quantity':root.find('./plurals')[0].set('quantity','one')
+            elif mode=='plural-attribute':root.find('./plurals')[0].set('unreviewed','true')
+            elif mode=='resource-tail':root[0].tail='unreviewed'
+            elif mode=='plural-parent':root.find('./plurals').text='unreviewed'
+            else:root.find('./plurals')[0].tail='unreviewed'
+            with self.subTest(mode=mode),self.assertRaises(ValueError):require_tajik_option_successor(old,ET.tostring(root,encoding='unicode'))
+
+    def test_each_tajik_typed_resource_rejects_complete_text_corruption(self):
+        old=next(row for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages'] if row['tag']=='tg')
+        xml=(ROOT/old['catalogue']).read_text();original=ET.fromstring(xml)
+        self.assertEqual(346,len(original))
+        for index,node in enumerate(original):
+            root=ET.fromstring(xml);changed=root[index]
+            if changed.tag=='string':changed.text+=' unreviewed'
+            else:changed[0].text+=' unreviewed'
+            with self.subTest(identity=node.get('name')),self.assertRaises(ValueError):require_tajik_option_successor(old,ET.tostring(root,encoding='unicode'))
 
 
 
