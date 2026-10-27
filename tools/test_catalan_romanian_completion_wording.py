@@ -194,7 +194,13 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
                 self.assertIsNone(old['terms'][term]['value'])
                 with self.assertRaises(ValueError):accepted_warning(term, tag)
             self.assertEqual(self.data['values'][key][tag], warnings.current_source_expectation(key, tag, None))
-            self.assertIsNone(warnings.current_source_expectation(other, tag, None))
+            if tag == 'ca':
+                self.assertIsNone(warnings.current_source_expectation(other, tag, None))
+            else:
+                addition = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['ro']['values'][other]
+                self.assertIsNone(addition['previous_target'])
+                self.assertEqual(addition['target'], warnings.current_source_expectation(other, tag, None))
+                with self.assertRaises(ValueError):warnings.current_source_expectation(other, tag, addition['target'])
             with self.assertRaises(ValueError):warnings.current_source_expectation(key, tag, 'invented history')
             changed = deepcopy(queue);next(row for row in changed['options'] if row['tag'] == tag)['terms'][key]['value'] = 'invented history'
             with patch.object(warnings, 'review_record', return_value=changed), self.assertRaises(ValueError):
