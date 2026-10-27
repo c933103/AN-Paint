@@ -178,6 +178,81 @@ class TaggedColourImportTest {
         }
     }
 
+    private fun waSeSaBoundFixture(tag: String): JSONObject {
+        val expected=mapOf("wa" to "0adeaf807567246df6591a73d14f94a95f95a0415bac15524a745dbfa52e7974", "se" to "8dd76c550d6b13c527538a05b3672251544cae1d3f011fc66471f7b714da715b", "sa" to "cba05cbbbb8d3abf72a814949277f6dc708bfbcc4c3b2cbda6f136d0958795b7")
+        val bytes=File("../tools/fixtures/current_localization/walloon_northern_sami_sanskrit_priority_wording/$tag.json").readBytes()
+        val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
+        return JSONObject(String(bytes,Charsets.UTF_8))
+    }
+
+    private fun waSeSaSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) waSeSaSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) waSeSaSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private fun waSeSaExpectations()=JSONObject().apply {
+        for(tag in listOf("wa","se","sa")) put(tag,waSeSaBoundFixture(tag))
+    }
+
+    private fun addWaSeSa(expected: JSONObject, reviewed: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        val canonical=waSeSaExpectations()
+        for(tag in listOf("wa","se","sa")) {
+            waSeSaSameJson(canonical.getJSONObject(tag),reviewed.getJSONObject(tag))
+            assertFalse("Already present predecessor $tag",expected.has(tag))
+            val row=reviewed.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+            assertTrue("Explicit absent predecessor $tag",row.has("previous_target") && row.isNull("previous_target"))
+            assertEquals("string",row.getString("type"))
+            val source=row.getJSONObject("source")
+            assertEquals(setOf("value","attributes"),source.keys().asSequence().toSet())
+            assertEquals(neutral,source.getString("value"))
+            for(attributes in listOf(source.getJSONObject("attributes"),row.getJSONObject("reviewed_attributes"))) {
+                assertEquals(setOf("name"),attributes.keys().asSequence().toSet())
+                assertEquals(key,attributes.getString("name"))
+            }
+            val raw=row.getString("reviewed_value")
+            val unquoted=if(raw.startsWith("\"") && raw.endsWith("\"")) raw.substring(1,raw.length-1) else Regex("\\s+").replace(raw," ").trim()
+            val decoded=Regex("""\\(.)""").replace(unquoted) { token ->
+                when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
+            }
+            assertEquals(decoded,row.getString("display"))
+            expected.put(tag,row.getString("display"))
+        }
+    }
+
+    @Test fun finiteWaSeSaAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption() {
+        val key="save20_unsupported_image_colour"
+        for(tag in listOf("wa","se","sa")) for(mutation in listOf("source","sourceAttributes","missingPrevious","previous","attributes","display","raw","alreadyPresent","type","coordinated")) {
+            val data=waSeSaExpectations();val expected=JSONObject()
+            val row=data.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+            when(mutation) {
+                "type" -> row.put("type","plurals")
+                "coordinated" -> { row.put("reviewed_value","\"forged\"");row.put("display","forged") }
+                "source" -> row.getJSONObject("source").put("value","forged")
+                "sourceAttributes" -> row.getJSONObject("source").getJSONObject("attributes").put("formatted","false")
+                "missingPrevious" -> row.remove("previous_target")
+                "previous" -> row.put("previous_target","forged")
+                "attributes" -> row.getJSONObject("reviewed_attributes").put("formatted","false")
+                "display" -> row.put("display","forged")
+                "raw" -> row.put("reviewed_value","forged")
+                "alreadyPresent" -> expected.put(tag,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) { addWaSeSa(expected,data) }
+        }
+    }
+
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         // This family has 59 baseline catalogues plus reviewed Amharic/Czech/Polish/Swedish/Bulgarian/Bengali/Nynorsk/Danish/Norwegian/Catalan/Romanian/Slovak/Slovenian/Serbian Cyrillic/Serbian Latin values.
         // Global review scope is unchanged. The Valencian option inherits the ca resource;
@@ -232,6 +307,8 @@ class TaggedColourImportTest {
         assertEquals(96, expected.length())
         addGaGdCy(expected,gaGdCyExpectations())
         assertEquals(99,expected.length())
+        addWaSeSa(expected,waSeSaExpectations())
+        assertEquals(102,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -264,6 +341,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(71, fallbacks) // 171 offered - 99 exact current values - 1 inherited.
+        assertEquals(68, fallbacks) // 171 offered - 102 exact current values - 1 inherited.
     }
 }

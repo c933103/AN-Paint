@@ -6,6 +6,7 @@ no historical fixture or receipt is rewritten.
 import json
 from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row
 from current_localization_contracts import fixture
+from walloon_northern_sami_sanskrit_priority_expectations import require_shared_row
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
 from yoruba_zulu_xhosa_priority_expectations import MEMORY_ADDITIONS as YO_ZU_XH_ADDITIONS, current_row as yo_zu_xh_row
@@ -22,6 +23,7 @@ PRIORITY_TAGS = frozenset({'bg', 'bn'})
 PRIORITY_ADDITIONS = frozenset({('uk','ui_assembly_source_memory_floor'),
     ('uk','ui_no_resize_fits_decoder_memory'),('ro','ui_no_resize_fits_decoder_memory')})
 SK_SL_CA_ADDITIONS = frozenset((tag, 'ui_no_resize_fits_decoder_memory') for tag in ('sk','sl','ca'))
+WA_SE_SA_ADDITIONS = frozenset((tag,key) for tag in ('wa', 'se', 'sa') for key in KEYS)
 SINGLE_KEY_FIXTURES = {
     'nn': 'nynorsk_p0_remaining_wording.json',
     'da': 'danish_norwegian_p0_wording.json',
@@ -62,6 +64,15 @@ old source snapshot.
         if row['source']!=queue['keys'][key]['corrected_english']:
             raise ValueError('GA/GD/CY warning source differs: '+tag+'/'+key)
         return row['target']
+    if (tag,key) in WA_SE_SA_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=require_shared_row(tag,key,fixture('walloon_northern_sami_sanskrit_priority_wording/'+tag+'.json'),historical_value=historical_value)
+        if historical_value is not None or old is not None or 'previous_target' not in row or row['previous_target'] is not None:
+            raise ValueError('WA/SE/SA historical warning addition must be absent: '+tag+'/'+key)
+        if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+            raise ValueError('WA/SE/SA warning source or attributes differ: '+tag+'/'+key)
+        return row['reviewed_value']
     if (tag,key) in KN_ML_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']

@@ -126,11 +126,17 @@ class AppLanguageTest {
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
             if (tag == "as") {
-                // Exact reviewed priority successor; the other 20 options retain English fallback.
+                // Exact reviewed priority successor; Sanskrit has its own finite branch below; other options retain English fallback.
                 assertEquals("ফাইল",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("ব্ৰাছ",wrapped.getString(R.string.ui_brush))
                 assertEquals("সংৰক্ষণ কৰক",wrapped.getString(R.string.ui_save))
                 assertEquals("এপৰ ভাষা\n\nAN Paint-ৰ ভাষাৰ সম্পদসমূহত অনুবাদসমূহ ৰক্ষণাবেক্ষণ কৰা হয়। নতুন বা অনুবাদ নকৰা পাঠ ইংৰাজীত দেখা যায়।",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "sa") {
+                // Exact reviewed Sanskrit values; preserve other options and identity checks.
+                assertEquals("सञ्चिका",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("तूलिका",wrapped.getString(R.string.ui_brush))
+                assertEquals("रक्षतु",wrapped.getString(R.string.ui_save))
+                assertEquals("अनुप्रयोगभाषा\n\nअनुवादाः AN Paint इत्यस्य भाषासंसाधनेषु अनुरक्ष्यन्ते। नूतनः अथवा अननूदितः पाठः आङ्ग्लभाषायां दृश्यते।",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
@@ -313,8 +319,14 @@ class AppLanguageTest {
             assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
             assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
+            if (tag == "se") {
+                assertEquals("Vurke", wrapped.getString(R.string.ui_save))
+                assertEquals("Vurke…", wrapped.getString(R.string.ui_save_a5d0d9))
+                assertNotEquals(wrapped.getString(R.string.ui_save), wrapped.getString(R.string.ui_save_a5d0d9))
+            } else {
             assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
                 wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
+            }
         }
         assertFalse("The mistaken Tai collection choice is removed",tags.contains("tai"))
         assertEquals("ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ [tdd]",AppLanguage.name("tdd"))

@@ -5,6 +5,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 import translation_catalogues as catalogues
+from walloon_northern_sami_sanskrit_priority_expectations import SANSKRIT_OPTION_STATUS, require_sanskrit_option_successor
 from language_option_additions import require_untranslated_option
 from assamese_khmer_lao_priority_expectations import ASSAMESE_OPTION_STATUS, require_assamese_option_successor
 from language_option_additions import ADDED_TAGS, FIRST_ADDED_TAGS, SECOND_ADDED_TAGS, SECOND_ADDITIONS_PATH
@@ -41,7 +42,7 @@ class FurtherLanguageOptionTests(unittest.TestCase):
             self.assertEqual(name, by_tag[tag])
             rows = [r for r in options if r['tag'] == tag]
             self.assertEqual(1, len(rows)); self.assertEqual(name, rows[0]['name'])
-            self.assertEqual(ASSAMESE_OPTION_STATUS if tag=='as' else 'not-started', rows[0]['translation_status'])
+            self.assertEqual(SANSKRIT_OPTION_STATUS if tag=='sa' else ASSAMESE_OPTION_STATUS if tag=='as' else 'not-started', rows[0]['translation_status'])
             self.assertEqual('default-English', rows[0]['fallback'])
             self.assertEqual(catalogues.RES / f'values-b+{tag}/strings.xml', catalogues.catalogue_paths()[tag])
 
@@ -75,6 +76,14 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         self.assertLessEqual(strings, set(defaults)); self.assertLessEqual(plurals, set(default_plurals))
         for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']:
             path = ROOT / row['catalogue']
+            if row['tag']=='sa':
+                root=require_sanskrit_option_successor(row,path.read_text())
+                self.assertEqual([],catalogues.validate_catalogue('sa'))
+                missing_strings=strings-{n.get('name')for n in root if n.tag=='string'}
+                missing_plurals=plurals-{n.get('name')for n in root if n.tag=='plurals'}
+                self.assertTrue(missing_strings);self.assertFalse(missing_plurals)
+                self.assertEqual([f"sa: missing {len(missing_strings)} strings: {', '.join(sorted(missing_strings)[:20])}"],catalogues.validate_catalogue('sa',require_complete=True))
+                continue
             if row['tag']=='as':
                 root=require_assamese_option_successor(row,path.read_text())
                 self.assertEqual([],catalogues.validate_catalogue('as'))
@@ -122,6 +131,31 @@ class FurtherLanguageOptionTests(unittest.TestCase):
             elif mode=='attribute':root[0].set('formatted','false')
             else:root.find('./plurals')[0].text='incomplete child'
             with self.subTest(mode=mode),self.assertRaises(ValueError):require_assamese_option_successor(old,ET.tostring(root,encoding='unicode'))
+
+
+
+
+    def test_only_exact_reviewed_sanskrit_values_supersede_the_original_empty_option(self):
+        from copy import deepcopy
+        rows=json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']
+        old=next(r for r in rows if r['tag']=='sa')
+        xml=(ROOT/old['catalogue']).read_text()
+        require_sanskrit_option_successor(old,xml)
+        with self.assertRaises(ValueError):require_untranslated_option(old,xml)
+        for row in rows:
+            if row['tag']!='sa':
+                with self.subTest(tag=row['tag']),self.assertRaises(ValueError):require_sanskrit_option_successor(row,xml)
+        for field,value in [('translation_status','complete'),('linguistic_review','accepted'),('fallback','translated'),('source_strings_present',349)]:
+            bad=deepcopy(old);bad[field]=value
+            with self.subTest(field=field),self.assertRaises(ValueError):require_sanskrit_option_successor(bad,xml)
+        for mode in ('missing','extra','value','attribute','plural-child'):
+            root=ET.fromstring(xml)
+            if mode=='missing':root.remove(root[0])
+            elif mode=='extra':ET.SubElement(root,'string',name='unreviewed').text='unreviewed'
+            elif mode=='value':root[0].text='not the accepted value'
+            elif mode=='attribute':root[0].set('formatted','false')
+            else:root.find('./plurals')[0].text='incomplete child'
+            with self.subTest(mode=mode),self.assertRaises(ValueError):require_sanskrit_option_successor(old,ET.tostring(root,encoding='unicode'))
 
 
 
