@@ -4,10 +4,10 @@ Historical paired-language fixtures stay unchanged. Default-English and explicit
 no historical fixture or receipt is rewritten.
 """
 import json
-from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
+from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row
 from yoruba_zulu_xhosa_priority_expectations import MEMORY_ADDITIONS as YO_ZU_XH_ADDITIONS, current_row as yo_zu_xh_row
 from hausa_igbo_lingala_priority_expectations import MEMORY_ADDITIONS as HA_IG_LN_ADDITIONS, current_row as ha_ig_ln_row
 from javanese_sundanese_kyrgyz_priority_expectations import MEMORY_ADDITIONS as JV_SU_KY_ADDITIONS, current_row as jv_su_ky_row
@@ -22,6 +22,7 @@ PRIORITY_TAGS = frozenset({'bg', 'bn'})
 PRIORITY_ADDITIONS = frozenset({('uk','ui_assembly_source_memory_floor'),
     ('uk','ui_no_resize_fits_decoder_memory'),('ro','ui_no_resize_fits_decoder_memory')})
 SK_SL_CA_ADDITIONS = frozenset((tag, 'ui_no_resize_fits_decoder_memory') for tag in ('sk','sl','ca'))
+KA_HY_AZ_ADDITIONS = frozenset((tag,key) for tag in ('ka','hy','az') for key in KEYS)
 SINGLE_KEY_FIXTURES = {
     'nn': 'nynorsk_p0_remaining_wording.json',
     'da': 'danish_norwegian_p0_wording.json',
@@ -61,6 +62,16 @@ old source snapshot.
             raise ValueError('Historical GA/GD/CY warning addition must be absent: '+tag+'/'+key)
         if row['source']!=queue['keys'][key]['corrected_english']:
             raise ValueError('GA/GD/CY warning source differs: '+tag+'/'+key)
+        return row['target']
+    if (tag, key) in KA_HY_AZ_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        current=fixture('georgian_armenian_azerbaijani_priority_wording.json')
+        row=current['locales'][tag]['values'][key]
+        if historical_value is not None or old is not None or row['previous'] is not None:
+            raise ValueError('Historical KA/HY/AZ addition must be absent: '+tag+'/'+key)
+        if current['sources'][key]['value'] != queue['keys'][key]['corrected_english'] or row['attributes'] != {'name':key}:
+            raise ValueError('KA/HY/AZ source or attributes differ: '+tag+'/'+key)
         return row['target']
     if (tag,key) in KN_ML_ADDITIONS:
         queue=review_record()
