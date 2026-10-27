@@ -1,0 +1,532 @@
+{
+  "type": "append_only_accounting_correction",
+  "source_commit": "651ab24b2c4dfd26d432daf0d8771fdb179ff013",
+  "source_tree": "d06833e6d8cd1ec700fd03f61858433290808ab7",
+  "supersedes_only_accounting_for_listed_rows": true,
+  "original_ledgers_unchanged": {
+    "pt-PT": {
+      "path": "pt-PT-complete-review.json",
+      "sha256": "07ed3263a538a47e2aeb8d2784a008303cad8ee1e6edbe9a002cdb836d9caacd"
+    },
+    "es-ES": {
+      "path": "es-ES-complete-review.json",
+      "sha256": "74f2aba1cd798b520bcb00bb1cb89164a2d152288b43b587d5fa9122dd93c4ab"
+    }
+  },
+  "historical_claims_sha256": "31ebdb0d08dc89bd9bc1bf523ed33f3ea4fa30504b8d3f9202fc07f43100b32d",
+  "verified_historical_blobs": [
+    {
+      "path": "prior-review/pr109/en.xml",
+      "git_blob_sha1": "c78b39d39374f19cc628295516dae7a330343f19",
+      "sha256": "f16e2c90620e0fddd6e9a1d656f27c16fa8be23a073389a581d2409583a4f000"
+    },
+    {
+      "path": "prior-review/pr109/es.xml",
+      "git_blob_sha1": "41f08cfae62760b8192e4380858a834b0ca2e722",
+      "sha256": "e8814013b687016d66a16c6ef8ecf078bfd634fee0076f5531a759b3a364ffd3"
+    },
+    {
+      "path": "prior-review/pr110/en.xml",
+      "git_blob_sha1": "c78b39d39374f19cc628295516dae7a330343f19",
+      "sha256": "f16e2c90620e0fddd6e9a1d656f27c16fa8be23a073389a581d2409583a4f000"
+    },
+    {
+      "path": "prior-review/pr110/pt.xml",
+      "git_blob_sha1": "de982e5c4e4095779460e4ebffc6fe0e1a414495",
+      "sha256": "c7dfee30461c3b248d22f73fc0d5cb7416708803ca9e1bce7b4a45b7dd50299c"
+    }
+  ],
+  "rows": [
+    {
+      "locale": "es-ES",
+      "identity": "string/colour_truncated_metadata",
+      "previous_decision": "accept_current_bounded",
+      "decision": "carry_prior_reported_independent_acceptance",
+      "english": {
+        "attributes": {
+          "name": "colour_truncated_metadata"
+        },
+        "value": "The image ends inside its colour metadata."
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "colour_truncated_metadata"
+        },
+        "value": "El archivo de imagen está truncado en sus metadatos de color."
+      },
+      "reviewed_value": "El archivo de imagen está truncado en sus metadatos de color.",
+      "rationale": "PR109 explicitly reports eight independently accepted corrections; exact original full-review bytes remain unavailable. Exact source/target/attributes rebound to historical blobs; no fresh pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_all",
+      "previous_decision": "accept_current_bounded",
+      "decision": "carry_prior_reported_independent_acceptance",
+      "english": {
+        "attributes": {
+          "name": "ui_all"
+        },
+        "value": "All"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_all"
+        },
+        "value": "Todas"
+      },
+      "reviewed_value": "Todas",
+      "rationale": "PR109 explicitly reports eight independently accepted corrections; exact original full-review bytes remain unavailable. Exact source/target/attributes rebound to historical blobs; no fresh pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_collapse_tool_category",
+      "previous_decision": "accept_current_bounded",
+      "decision": "carry_prior_reported_independent_acceptance",
+      "english": {
+        "attributes": {
+          "name": "ui_collapse_tool_category"
+        },
+        "value": "%1$s: %2$s selected. Collapse tools and options"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_collapse_tool_category"
+        },
+        "value": "%1$s. Herramienta seleccionada: %2$s. Contraer herramientas y opciones"
+      },
+      "reviewed_value": "%1$s. Herramienta seleccionada: %2$s. Contraer herramientas y opciones",
+      "rationale": "PR109 explicitly reports eight independently accepted corrections; exact original full-review bytes remain unavailable. Exact source/target/attributes rebound to historical blobs; no fresh pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "previous_decision": "accept_new_successor",
+      "decision": "accept_narrow_successor_to_prior_reported_acceptance",
+      "english": {
+        "attributes": {
+          "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+        },
+        "value": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied."
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+        },
+        "value": "Una imagen de %1$d × %2$d píxeles (%3$.2f MP) supera el límite seguro de edición actual de %4$.2f MP. AN Paint mantiene la imagen completa en memoria y reserva espacio para transformaciones y selecciones. La memoria disponible determina este límite. La operación se detuvo antes de asignar el mapa de bits sobredimensionado. No se aplicó ningún cambio de tamaño automático."
+      },
+      "reviewed_value": "Una imagen de %1$d × %2$d px (%3$.2f MP) supera el límite seguro de edición actual de %4$.2f MP. AN Paint mantiene la imagen completa en memoria y reserva espacio para transformaciones y selecciones. La memoria disponible determina este límite. La operación se detuvo antes de asignar el mapa de bits sobredimensionado. No se aplicó ningún cambio de tamaño automático.",
+      "rationale": "PR109 explicitly reports eight independently accepted corrections; exact original full-review bytes remain unavailable. Only the demonstrated number-neutral px successor is newly accepted; prior full text is not new credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": true,
+      "prior_pr": 109
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "previous_decision": "accept_current_bounded",
+      "decision": "carry_prior_reported_independent_acceptance",
+      "english": {
+        "attributes": {
+          "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+        },
+        "value": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger."
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+        },
+        "value": "Lienzo de dibujo. Pellizca y mueve dos dedos para hacer zoom y desplazar. El modo Navegar también permite desplazar con un dedo."
+      },
+      "reviewed_value": "Lienzo de dibujo. Pellizca y mueve dos dedos para hacer zoom y desplazar. El modo Navegar también permite desplazar con un dedo.",
+      "rationale": "PR109 explicitly reports eight independently accepted corrections; exact original full-review bytes remain unavailable. Exact source/target/attributes rebound to historical blobs; no fresh pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_expand_tool_category",
+      "previous_decision": "accept_current_bounded",
+      "decision": "carry_prior_reported_independent_acceptance",
+      "english": {
+        "attributes": {
+          "name": "ui_expand_tool_category"
+        },
+        "value": "%1$s: %2$s selected. Expand tools and options"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_expand_tool_category"
+        },
+        "value": "%1$s. Herramienta seleccionada: %2$s. Expandir herramientas y opciones"
+      },
+      "reviewed_value": "%1$s. Herramienta seleccionada: %2$s. Expandir herramientas y opciones",
+      "rationale": "PR109 explicitly reports eight independently accepted corrections; exact original full-review bytes remain unavailable. Exact source/target/attributes rebound to historical blobs; no fresh pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_none",
+      "previous_decision": "accept_current_bounded",
+      "decision": "carry_prior_reported_independent_acceptance",
+      "english": {
+        "attributes": {
+          "name": "ui_none"
+        },
+        "value": "None"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_none"
+        },
+        "value": "Ninguna"
+      },
+      "reviewed_value": "Ninguna",
+      "rationale": "PR109 explicitly reports eight independently accepted corrections; exact original full-review bytes remain unavailable. Exact source/target/attributes rebound to historical blobs; no fresh pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_trim_expand_canvas_by_touch",
+      "previous_decision": "accept_current_wording_only",
+      "decision": "carry_prior_reported_independent_acceptance",
+      "english": {
+        "attributes": {
+          "name": "ui_trim_expand_canvas_by_touch"
+        },
+        "value": "Trim / expand canvas by touch…"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_trim_expand_canvas_by_touch"
+        },
+        "value": "Recortar / ampliar lienzo con gestos táctiles…"
+      },
+      "reviewed_value": "Recortar / ampliar lienzo con gestos táctiles…",
+      "rationale": "PR109 explicitly reports eight independently accepted corrections; exact original full-review bytes remain unavailable. Exact source/target/attributes rebound to historical blobs; no fresh pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/language20_translation_note",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "language20_translation_note"
+        },
+        "value": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English."
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "language20_translation_note"
+        },
+        "value": "Idioma da aplicação\\n\\nAs traduções são mantidas nos recursos de idioma do AN Paint. O texto novo ou não traduzido aparece em inglês."
+      },
+      "reviewed_value": "Idioma da aplicação\\n\\nAs traduções são mantidas nos recursos de idioma do AN Paint. O texto novo ou não traduzido aparece em inglês.",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_collapse_tool_category",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_collapse_tool_category"
+        },
+        "value": "%1$s: %2$s selected. Collapse tools and options"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_collapse_tool_category"
+        },
+        "value": "%1$s. Ferramenta selecionada: %2$s. Recolher ferramentas e opções"
+      },
+      "reviewed_value": "%1$s. Ferramenta selecionada: %2$s. Recolher ferramentas e opções",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+        },
+        "value": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger."
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+        },
+        "value": "Tela de desenho. Afaste ou junte dois dedos para ampliar ou reduzir e mova-os para deslocar. O modo Navegar também permite deslocar com um dedo."
+      },
+      "reviewed_value": "Tela de desenho. Afaste ou junte dois dedos para ampliar ou reduzir e mova-os para deslocar. O modo Navegar também permite deslocar com um dedo.",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_expand_tool_category",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_expand_tool_category"
+        },
+        "value": "%1$s: %2$s selected. Expand tools and options"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_expand_tool_category"
+        },
+        "value": "%1$s. Ferramenta selecionada: %2$s. Expandir ferramentas e opções"
+      },
+      "reviewed_value": "%1$s. Ferramenta selecionada: %2$s. Expandir ferramentas e opções",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_free_form_select",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_free_form_select"
+        },
+        "value": "Free-form select"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_free_form_select"
+        },
+        "value": "Seleção livre"
+      },
+      "reviewed_value": "Seleção livre",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+        },
+        "value": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them."
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+        },
+        "value": "Mantém os píxeis no canto superior esquerdo. Dimensões menores da tela eliminam os píxeis além da margem direita/inferior; «Desfazer» restaura-os."
+      },
+      "reviewed_value": "Mantém os píxeis no canto superior esquerdo. Dimensões menores da tela eliminam os píxeis além da margem direita/inferior; «Desfazer» restaura-os.",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_none",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_none"
+        },
+        "value": "None"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_none"
+        },
+        "value": "Nenhuma"
+      },
+      "reviewed_value": "Nenhuma",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_pixels",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_pixels"
+        },
+        "value": "Pixels"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_pixels"
+        },
+        "value": "Píxeis"
+      },
+      "reviewed_value": "Píxeis",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_pixels_6ec9c2",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_pixels_6ec9c2"
+        },
+        "value": "pixels"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_pixels_6ec9c2"
+        },
+        "value": "píxeis"
+      },
+      "reviewed_value": "píxeis",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "pt-PT",
+      "identity": "string/ui_rectangle_select",
+      "previous_decision": "accept_current_bounded",
+      "decision": "prior_reported_current_independent_rebound",
+      "english": {
+        "attributes": {
+          "name": "ui_rectangle_select"
+        },
+        "value": "Rectangle select"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_rectangle_select"
+        },
+        "value": "Seleção retangular"
+      },
+      "reviewed_value": "Seleção retangular",
+      "rationale": "PR110 reports this exact correction but explicitly names independent review only for Dutch. Current independent check remains valid; original Portuguese independence is not inferred; conservatively no novel pair credit.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 110
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_fg",
+      "previous_decision": "accept_current_bounded",
+      "decision": "hold_unchanged",
+      "english": {
+        "attributes": {
+          "name": "ui_fg"
+        },
+        "value": "FG"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_fg",
+          "formatted": "false"
+        },
+        "value": "FG"
+      },
+      "reviewed_value": "FG",
+      "rationale": "PR109 explicitly retains FG/BG uncertainty. No materially new terminology, caller, or usability evidence resolves unaided Spanish recognition; previous compact-convention author rationale is not independent acceptance. Preserve current text without claiming resolved wording.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    },
+    {
+      "locale": "es-ES",
+      "identity": "string/ui_bg",
+      "previous_decision": "accept_current_bounded",
+      "decision": "hold_unchanged",
+      "english": {
+        "attributes": {
+          "name": "ui_bg"
+        },
+        "value": "BG"
+      },
+      "previous_target": {
+        "attributes": {
+          "name": "ui_bg",
+          "formatted": "false"
+        },
+        "value": "BG"
+      },
+      "reviewed_value": "BG",
+      "rationale": "PR109 explicitly retains FG/BG uncertainty. No materially new terminology, caller, or usability evidence resolves unaided Spanish recognition; previous compact-convention author rationale is not independent acceptance. Preserve current text without claiming resolved wording.",
+      "novel_full_pair_credit": false,
+      "new_narrow_successor_credit": false,
+      "prior_pr": 109
+    }
+  ],
+  "corrected_complete_341_decision_counts": {
+    "pt-PT": {
+      "accept_current_bounded": 291,
+      "hold_unchanged": 7,
+      "prior_reported_current_independent_rebound": 10,
+      "accept_reviewed_successor": 8,
+      "accept_current_wording_only": 23,
+      "carry_prior_acceptance": 2
+    },
+    "es-ES": {
+      "accept_current_bounded": 293,
+      "carry_prior_reported_independent_acceptance": 7,
+      "hold_unchanged": 9,
+      "carry_accepted_unapplied_successor": 5,
+      "accept_current_wording_only": 22,
+      "carry_prior_acceptance": 2,
+      "accept_narrow_successor_to_prior_reported_acceptance": 1,
+      "accept_new_successor": 2
+    }
+  },
+  "integration_delta_unchanged": true,
+  "app_resource_changes": 0,
+  "limits": [
+    "No reconstruction of unavailable original full Spanish ledger.",
+    "Portuguese original independent receipt not recovered; do not assert it existed.",
+    "PR110 Dutch-adjacent palette/Main/colour-swap holds are not assigned wholesale to Portuguese without exact locale/key evidence.",
+    "All existing seven Portuguese and Hungarian context holds remain; Spanish now nine.",
+    "Previously published complete ledgers are preserved byte-for-byte; this addendum corrects accounting and holds, not application values."
+  ]
+}
