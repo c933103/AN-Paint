@@ -4,10 +4,11 @@ Historical paired-language fixtures stay unchanged. Default-English and explicit
 no historical fixture or receipt is rewritten.
 """
 import json
-from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
+from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row
+from kabyle_hmong_daw_maithili_priority_expectations import MEMORY_ADDITIONS as KAB_MWW_MAI_ADDITIONS, require_addition as kab_mww_mai_addition
 from yoruba_zulu_xhosa_priority_expectations import MEMORY_ADDITIONS as YO_ZU_XH_ADDITIONS, current_row as yo_zu_xh_row
 from hausa_igbo_lingala_priority_expectations import MEMORY_ADDITIONS as HA_IG_LN_ADDITIONS, current_row as ha_ig_ln_row
 from javanese_sundanese_kyrgyz_priority_expectations import MEMORY_ADDITIONS as JV_SU_KY_ADDITIONS, current_row as jv_su_ky_row
@@ -125,6 +126,11 @@ old source snapshot.
         if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
             raise ValueError('Marathi/Tamil/Telugu warning source or attributes differ: '+tag+'/'+key)
         return row['target']
+    if (tag,key) in KAB_MWW_MAI_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        if old is not None:raise ValueError('Historical KAB/MWW/MAI queue value must be absent')
+        return kab_mww_mai_addition(tag,key,queue['keys'][key]['corrected_english'],historical_value)
     if (tag, key) in SK_SL_CA_ADDITIONS:
         queue = review_record()
         old = next(o for o in queue['options'] if o['tag'] == tag)['terms'][key]['value']

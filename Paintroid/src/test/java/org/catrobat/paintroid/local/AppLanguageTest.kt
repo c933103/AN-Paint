@@ -313,8 +313,15 @@ class AppLanguageTest {
             assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
             assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
-            assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
-                wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
+            // Reviewed Save… controls retain their ellipsis rather than aliasing Save.
+            when(tag) {
+                "mww" -> {
+                    assertEquals("Khaws",wrapped.getString(R.string.ui_save))
+                    assertEquals("Khaws…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
+                else -> assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
+                    wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
+            }
         }
         assertFalse("The mistaken Tai collection choice is removed",tags.contains("tai"))
         assertEquals("ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ [tdd]",AppLanguage.name("tdd"))
