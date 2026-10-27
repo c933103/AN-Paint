@@ -76,6 +76,16 @@ class AppLanguageTest {
                 assertEquals("Pɛnsɔ",wrapped.getString(R.string.ui_brush))
                 assertEquals("Bomba",wrapped.getString(R.string.ui_save))
                 assertEquals("Lokótá ya appli\n\nBabongolaka makomi na ba ressources ya minɔkɔ ya AN Paint. Makomi ya sika to oyo ebongolami naino te emonanaka na Lingɛlɛ́sa.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "yo") {
+                assertEquals("Fáìlì",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Fẹ́lẹ́",wrapped.getString(R.string.ui_brush))
+                assertEquals("Fipamọ́",wrapped.getString(R.string.ui_save))
+                assertEquals("Èdè ápù\n\nA ń tọ́jú àwọn ìtumọ̀ nínú àwọn ohun àmúlò èdè AN Paint. Ọ̀rọ̀ tuntun tàbí tí a kò tíì túmọ̀ máa ń hàn ní Gẹ̀ẹ́sì.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "zu") {
+                assertEquals("Ifayela",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Ibhulashi",wrapped.getString(R.string.ui_brush))
+                assertEquals("Londoloza",wrapped.getString(R.string.ui_save))
+                assertEquals("Ulimi lwe-app\n\nUkuhumusha kugcinwa ezinsizeni zolimi ze-AN Paint. Umbhalo omusha noma ongakahunyushwa uvela ngesiNgisi.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
