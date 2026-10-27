@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "record_kind": "Repaired-source terminal host test reconciliation",
+  "verified_utc": "2026-10-26T15:05:35Z",
+  "source_commit_status": "Repaired working tree; new source head pending at test start",
+  "repair": {
+    "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt",
+    "sha256": "042fe46517f049806541809741f54829e4844529d44ccc85697650be94fb37cf",
+    "only_changed_file_against_original_1379_file_snapshot": true
+  },
+  "source_inventory_file": "full-host-input-inventory.json",
+  "source_inventory_sha256": "cb7ba373a1f37b76b6b0ebf2a755d9facbb9b80dfdef538dab0d8ed8b85503ab",
+  "source_file_count": 1379,
+  "source_inventory_unchanged_after_runs": true,
+  "successful_executions": [
+    {
+      "mode": "focused-ordinary",
+      "command_argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "-v",
+        "test_catalan_romanian_completion_wording",
+        "test_catalan_romanian_save_wording",
+        "test_catalan_romanian_import_wording",
+        "test_nynorsk_remaining_p0_wording",
+        "test_danish_norwegian_p0_wording",
+        "test_memory_warning_source_review",
+        "test_memory_warning_successors"
+      ],
+      "working_directory_relative_to_repository": "tools",
+      "exit_code": 0,
+      "wall_seconds": 3.132,
+      "tests": 58,
+      "unittest_seconds": 3.012,
+      "unittest_summary": "Ran 58 tests in 3.012s\n\nOK",
+      "log": "focused-ordinary-r02.log",
+      "log_sha256": "f3a5d598cbbf8716f55a0d0e09369aba8add73b31adeb75a97af16911f002149",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "mode": "focused-optimized",
+      "command_argv": [
+        "python3",
+        "-O",
+        "-m",
+        "unittest",
+        "-v",
+        "test_catalan_romanian_completion_wording",
+        "test_catalan_romanian_save_wording",
+        "test_catalan_romanian_import_wording",
+        "test_nynorsk_remaining_p0_wording",
+        "test_danish_norwegian_p0_wording",
+        "test_memory_warning_source_review",
+        "test_memory_warning_successors"
+      ],
+      "working_directory_relative_to_repository": "tools",
+      "exit_code": 0,
+      "wall_seconds": 3.511,
+      "tests": 58,
+      "unittest_seconds": 3.151,
+      "unittest_summary": "Ran 58 tests in 3.151s\n\nOK",
+      "log": "focused-optimized-r02.log",
+      "log_sha256": "ceb5ae1115da3cb148c1d6e025deac4e4f91c86f306d5fe07af1c712bfb92dac",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "mode": "full-ordinary",
+      "command_argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 191.596,
+      "tests": 1398,
+      "unittest_seconds": 191.198,
+      "outcome": "success",
+      "log": "full-ordinary-r01.log",
+      "log_bytes": 257240,
+      "log_sha256": "206bcac8c393b5f4a32fa13e60ef07d2ecfb0884ec21e3bd01859c52b21a755a",
+      "unittest_summary": "Ran 1398 tests in 191.198s\n\nOK",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "working_directory_relative_to_repository": "repository root",
+      "trailing_synthetic_fixture_output_lines": [
+        "    \"Accepted-credit seed requires exactly one already-running target PID\",",
+        "    \"adb exited with status None\",",
+        "    \"Missing or unsuccessful final instrumentation result: []\",",
+        "    \"No tests completed\",",
+        "    \"Runner test counts [] do not match 1 declared methods\",",
+        "    \"1 declared test method(s) did not complete\"",
+        "  ]",
+        "}"
+      ]
+    },
+    {
+      "mode": "full-optimized",
+      "command_argv": [
+        "python3",
+        "-O",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 198.504,
+      "tests": 1398,
+      "unittest_seconds": 197.782,
+      "outcome": "success",
+      "log": "full-optimized-r01.log",
+      "log_bytes": 4876,
+      "log_sha256": "05cd023c54c70664cfe41e75b538d856995b5c642f70c887c811878cad428ba2",
+      "unittest_summary": "Ran 1398 tests in 197.782s\n\nOK",
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "working_directory_relative_to_repository": "repository root",
+      "trailing_synthetic_fixture_output_lines": [
+        "    \"Accepted-credit seed requires exactly one already-running target PID\",",
+        "    \"adb exited with status None\",",
+        "    \"Missing or unsuccessful final instrumentation result: []\",",
+        "    \"No tests completed\",",
+        "    \"Runner test counts [] do not match 1 declared methods\",",
+        "    \"1 declared test method(s) did not complete\"",
+        "  ]",
+        "}"
+      ]
+    }
+  ],
+  "preserved_harness_failures": [
+    {
+      "mode": "focused-ordinary",
+      "command_argv": [
+        "python3",
+        "-m",
+        "unittest",
+        "-v",
+        "test_catalan_romanian_completion_wording",
+        "test_catalan_romanian_save_wording",
+        "test_catalan_romanian_import_wording",
+        "test_nynorsk_remaining_p0_wording",
+        "test_danish_norwegian_p0_wording",
+        "test_memory_warning_source_review",
+        "test_memory_warning_successors"
+      ],
+      "exit_code": 1,
+      "wall_seconds": 0.061,
+      "tests": 7,
+      "unittest_seconds": 0.0,
+      "outcome": "failed",
+      "log": "focused-ordinary-r01.log",
+      "log_bytes": 5426,
+      "log_sha256": "c1c00cf945ff3e9ba543416925a206c35ef82f85e96af43c6d5553b8380a7dab",
+      "terminal_lines": [
+        "             ^^^^^^^^^^^^^^^^^^^^^^^",
+        "ModuleNotFoundError: No module named 'test_memory_warning_successors'",
+        "",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 7 tests in 0.000s",
+        "",
+        "FAILED (errors=7)"
+      ],
+      "classification": "Execution-directory harness defect: seven unittest loader errors, zero actual focused tests executed.",
+      "correction": "Same command from tools succeeded in separately retained r02; no test/source edits."
+    },
+    {
+      "mode": "focused-optimized",
+      "command_argv": [
+        "python3",
+        "-O",
+        "-m",
+        "unittest",
+        "-v",
+        "test_catalan_romanian_completion_wording",
+        "test_catalan_romanian_save_wording",
+        "test_catalan_romanian_import_wording",
+        "test_nynorsk_remaining_p0_wording",
+        "test_danish_norwegian_p0_wording",
+        "test_memory_warning_source_review",
+        "test_memory_warning_successors"
+      ],
+      "exit_code": 1,
+      "wall_seconds": 0.185,
+      "tests": 7,
+      "unittest_seconds": 0.001,
+      "outcome": "failed",
+      "log": "focused-optimized-r01.log",
+      "log_bytes": 5426,
+      "log_sha256": "9f78dc5a1d680734f4edd17f28889d72719b9a22f39880bcf24b9bdd974e9208",
+      "terminal_lines": [
+        "             ^^^^^^^^^^^^^^^^^^^^^^^",
+        "ModuleNotFoundError: No module named 'test_memory_warning_successors'",
+        "",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 7 tests in 0.001s",
+        "",
+        "FAILED (errors=7)"
+      ],
+      "classification": "Execution-directory harness defect: seven unittest loader errors, zero actual focused tests executed.",
+      "correction": "Same command from tools succeeded in separately retained r02; no test/source edits."
+    }
+  ],
+  "aggregate_runner_exit_code": 1,
+  "aggregate_runner_exit_explanation": "The r01 coordinator intentionally retains failed initial focused-loader attempts. Both full suites individually exited 0; corrected focused r02 suites also exited 0. The coordinator exit is not a full-suite failure.",
+  "original_source_local_evidence": {
+    "file": "full-host-test-receipt.json",
+    "sha256": "9970ffe36f35eefaa78ea7b4aa3e484d233aaf5cdfb9d5c53e1fbb20204a9b33",
+    "status": "Separate original-source record, unchanged; not relabeled as repaired-source tests."
+  },
+  "files": [
+    {
+      "file": "focused-optimized-r01.log",
+      "bytes": 5426,
+      "sha256": "9f78dc5a1d680734f4edd17f28889d72719b9a22f39880bcf24b9bdd974e9208"
+    },
+    {
+      "file": "focused-optimized-r02.log",
+      "bytes": 12354,
+      "sha256": "ceb5ae1115da3cb148c1d6e025deac4e4f91c86f306d5fe07af1c712bfb92dac"
+    },
+    {
+      "file": "focused-ordinary-r01.log",
+      "bytes": 5426,
+      "sha256": "c1c00cf945ff3e9ba543416925a206c35ef82f85e96af43c6d5553b8380a7dab"
+    },
+    {
+      "file": "focused-ordinary-r02.log",
+      "bytes": 12354,
+      "sha256": "f3a5d598cbbf8716f55a0d0e09369aba8add73b31adeb75a97af16911f002149"
+    },
+    {
+      "file": "focused-r02-receipt.json",
+      "bytes": 2137,
+      "sha256": "e4ff40c8644c6bf3927a85a1d0846c45496c9e5d5f72b11ddb4aa94473ea1974"
+    },
+    {
+      "file": "full-host-input-inventory.json",
+      "bytes": 384778,
+      "sha256": "cb7ba373a1f37b76b6b0ebf2a755d9facbb9b80dfdef538dab0d8ed8b85503ab"
+    },
+    {
+      "file": "full-optimized-r01.log",
+      "bytes": 4876,
+      "sha256": "05cd023c54c70664cfe41e75b538d856995b5c642f70c887c811878cad428ba2"
+    },
+    {
+      "file": "full-ordinary-r01.log",
+      "bytes": 257240,
+      "sha256": "206bcac8c393b5f4a32fa13e60ef07d2ecfb0884ec21e3bd01859c52b21a755a"
+    },
+    {
+      "file": "repair-host-test-receipt.json",
+      "bytes": 5368,
+      "sha256": "8528206324728bfcb8f2a1672839a59b3fccb9cefabffe0f39a5f68172b5a617"
+    }
+  ],
+  "limitations": [
+    "Host Python only; no Android/JVM compilation or physical/emulated device execution by this task.",
+    "Both full modes executed exactly once against repaired source. Focused cwd correction followed diagnosed ModuleNotFoundError and preserved its original logs.",
+    "Raw full logs contain deliberate instrumentation-metadata positive/negative fixture JSON; this is not actual device evidence.",
+    "Local run_repair_host.py contains execution paths and is excluded from the publication file list."
+  ]
+}

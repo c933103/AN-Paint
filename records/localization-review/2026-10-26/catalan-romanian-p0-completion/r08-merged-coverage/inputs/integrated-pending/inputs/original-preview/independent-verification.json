@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source_commit": "93f27ed172cc730c80ed7a2ffbcacc1b0c04383f",
+  "source_tree": "571ec84860cb837ae8376f72d0becfb8fd2b7b6d",
+  "status": "PR178 preview independently verified; not integrated or current production",
+  "method": "Independent DOM parser, separately computed rows/totals and read-only Git hash-object CLI; no import from recompute_delta.py or its tests.",
+  "raw_tracked_Git_blobs_verified": 1379,
+  "offered_option_rows_recomputed": 171,
+  "CSV_and_JSON_agree": true,
+  "all_totals_and_deltas_agree": true,
+  "new_reviewed_complete_pairs_hash_matched": 110,
+  "new_verdicts": {
+    "accept": 107,
+    "revise": 3
+  },
+  "inherited_complete_values_preserved": 300,
+  "prior_reviewed_pairs_preserved_separately": 46,
+  "prior_reviewed_pairs_per_locale": 23,
+  "new_Valencian_direct_acceptance": 0,
+  "totals": {
+    "P0_present": 6838,
+    "P0_missing": 8894,
+    "P1_present": 20022,
+    "P1_missing": 22557,
+    "P2_present": 19636,
+    "P2_missing": 32519,
+    "P3_present": 4365,
+    "P3_missing": 7776,
+    "all_present": 50861,
+    "all_missing": 71746,
+    "leaves_present": 50895,
+    "leaves_missing": 71883,
+    "leaves_english_identical": 7051,
+    "leaves_source_different": 43844
+  },
+  "delta": {
+    "P0_present": 110,
+    "P0_missing": -110,
+    "P1_present": 0,
+    "P1_missing": 0,
+    "P2_present": 0,
+    "P2_missing": 0,
+    "P3_present": 0,
+    "P3_missing": 0,
+    "all_present": 110,
+    "all_missing": -110,
+    "leaves_present": 110,
+    "leaves_missing": -110,
+    "leaves_english_identical": 0,
+    "leaves_source_different": 110
+  },
+  "limits": [
+    "Structural/raw complete-value identity checks only; review qualifications are retained by exact source-bound original receipts.",
+    "No current PR or actual postmerge CI, merge, native-human, device, layout or release outcome inferred."
+  ]
+}

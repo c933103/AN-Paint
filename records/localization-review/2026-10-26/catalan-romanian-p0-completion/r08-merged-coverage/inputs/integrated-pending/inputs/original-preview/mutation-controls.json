@@ -1,0 +1,443 @@
+{
+  "source_commit": "93f27ed172cc730c80ed7a2ffbcacc1b0c04383f",
+  "source_tree": "571ec84860cb837ae8376f72d0becfb8fd2b7b6d",
+  "source_status": "PR178 source preview; not integrated or current production; no current PR/postmerge CI outcome inferred",
+  "positive_171_option_110_scope_preview": "passed",
+  "controls_rejected": 71,
+  "actual_formatted_false_refreshed_final_pair_controls": 26,
+  "actual_formatted_false_values": 2,
+  "cases": [
+    {
+      "case": "missing option",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "baseline option grain"
+    },
+    {
+      "case": "duplicate option",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "baseline option grain"
+    },
+    {
+      "case": "wrong picker order",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "171 picker inventory/order"
+    },
+    {
+      "case": "wrong inherited row number",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "unchanged other-option row"
+    },
+    {
+      "case": "wrong baseline total",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "baseline row/summary totals"
+    },
+    {
+      "case": "missing selected identity",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "selected missing-only identity grain"
+    },
+    {
+      "case": "duplicate selected identity",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "selected missing-only identity grain"
+    },
+    {
+      "case": "cleared five-hold inventory",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "approved count/holds"
+    },
+    {
+      "case": "missing approved value",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "approved count/holds"
+    },
+    {
+      "case": "duplicate approved value",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "disjoint new review join"
+    },
+    {
+      "case": "false approved locale",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "disjoint new review join"
+    },
+    {
+      "case": "false accepted verdict",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "accepted complete-value decision"
+    },
+    {
+      "case": "wrong review source hash",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "exact final independent verdict join"
+    },
+    {
+      "case": "wrong final XML value",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "exact final independent verdict join"
+    },
+    {
+      "case": "wrong independent receipt linkage",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "exact final independent verdict join"
+    },
+    {
+      "case": "prior save scope removed",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "prior scope inventory"
+    },
+    {
+      "case": "prior import scope removed",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "prior scope inventory"
+    },
+    {
+      "case": "prior accepted hash silently altered",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "prior reviewed full pair still current"
+    },
+    {
+      "case": "false duplicate prior pair",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "prior duplicate pair"
+    },
+    {
+      "case": "English source substitution",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "unchanged other-option row"
+    },
+    {
+      "case": "inherited target value changed",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "exact additions and all inherited values"
+    },
+    {
+      "case": "new current target missing",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "150 inherited /205 current catalogue"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %s'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %d'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %.2f'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %1$s'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %%'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %n'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %q'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %1$'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %.'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %3$.'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %3$.f'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ca actual formatted=false coherent refreshed final-token mutation ' %t'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %s'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %d'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %.2f'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %1$s'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %%'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %n'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "review full format inventory"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %q'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %1$'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %.'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %3$.'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %3$.f'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "ro actual formatted=false coherent refreshed final-token mutation ' %t'",
+      "scope": "in-memory mutated actual report model",
+      "result": "rejected",
+      "guard": "invalid/unescaped format token"
+    },
+    {
+      "case": "wrong preview head",
+      "scope": "synthetic read substitution over exact input file",
+      "result": "rejected",
+      "guard": "preview identity not integration"
+    },
+    {
+      "case": "invented merge claim",
+      "scope": "synthetic read substitution over exact input file",
+      "result": "rejected",
+      "guard": "preview identity not integration"
+    },
+    {
+      "case": "promoted linguistic scope",
+      "scope": "synthetic read substitution over exact input file",
+      "result": "rejected",
+      "guard": "approved-manifest identity"
+    },
+    {
+      "case": "invented prior global total",
+      "scope": "synthetic read substitution over exact input file",
+      "result": "rejected",
+      "guard": "prior save ledger identity"
+    },
+    {
+      "case": "removed inherited pause",
+      "scope": "synthetic read substitution over exact input file",
+      "result": "rejected",
+      "guard": "selected scope identity"
+    },
+    {
+      "case": "dropped whole-value qualification",
+      "scope": "synthetic read substitution over exact input file",
+      "result": "rejected",
+      "guard": "exact independent receipt identity"
+    },
+    {
+      "case": "dropped Romanian qualification",
+      "scope": "synthetic read substitution over exact input file",
+      "result": "rejected",
+      "guard": "exact independent receipt identity"
+    },
+    {
+      "case": "missing resource name",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "missing or duplicate resource name"
+    },
+    {
+      "case": "duplicate identity",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "missing or duplicate resource name"
+    },
+    {
+      "case": "duplicate XML attribute",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "duplicate attribute: line 1, column 28"
+    },
+    {
+      "case": "malformed XML",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "no element found: line 1, column 19"
+    },
+    {
+      "case": "empty value",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "empty string resource: string/x"
+    },
+    {
+      "case": "empty plurals",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "empty resource container"
+    },
+    {
+      "case": "duplicate plural item",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "missing or duplicate resource item"
+    },
+    {
+      "case": "unknown plural quantity",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "unknown plural quantity"
+    },
+    {
+      "case": "missing plural quantity",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "missing or duplicate resource item"
+    },
+    {
+      "case": "entity declaration",
+      "scope": "synthetic XML parser fixture",
+      "result": "rejected",
+      "guard": "XML entity boundary"
+    },
+    {
+      "case": "duplicate JSON metadata",
+      "scope": "synthetic JSON fixture",
+      "result": "rejected",
+      "guard": "duplicate JSON key: a"
+    },
+    {
+      "case": "truncated tree",
+      "scope": "synthetic tree metadata fixture",
+      "result": "rejected",
+      "guard": "wrong/truncated head tree"
+    },
+    {
+      "case": "duplicate tree path",
+      "scope": "synthetic tree metadata fixture",
+      "result": "rejected",
+      "guard": "duplicate tree path"
+    },
+    {
+      "case": "wrong root",
+      "scope": "synthetic tree metadata fixture",
+      "result": "rejected",
+      "guard": "wrong/truncated head tree"
+    },
+    {
+      "case": "forged leaf with unchanged root",
+      "scope": "synthetic tree metadata fixture",
+      "result": "rejected",
+      "guard": "recursive Git tree hash mismatch: .github"
+    },
+    {
+      "case": "unsafe tree path",
+      "scope": "synthetic tree metadata fixture",
+      "result": "rejected",
+      "guard": "unsafe tree path"
+    }
+  ],
+  "source_files_modified": false,
+  "limits": [
+    "All negative model, XML, tree and I/O substitutions are synthetic test mutations, not observed source defects.",
+    "The 26 refreshed final-pair probes start from two actual formatted=false locale values and are separately identified.",
+    "No acceptance, merge, CI, runtime or release gate is created by these data-integrity controls."
+  ]
+}

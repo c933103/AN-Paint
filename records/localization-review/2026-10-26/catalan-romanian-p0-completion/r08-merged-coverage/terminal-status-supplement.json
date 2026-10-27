@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "source_commit": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+  "source_tree": "806d9577409c4044212d1c12e6e38da46417bae6",
+  "status": "integrated actual merge; actual postmerge push run 40350966050 completed successfully at 2026-10-26T16:00:53Z",
+  "terminal_record_commit": "4e9897b8c030c0ab785a34a69f2c872d2d9505d9",
+  "terminal_record_url": "https://github.com/c933103/AN-Paint/tree/4e9897b8c030c0ab785a34a69f2c872d2d9505d9/records/localization-review/2026-10-26/catalan-romanian-p0-completion/r07-postmerge-terminal",
+  "terminal_evidence_manifest_sha256": "e0a961d4e4f2d6c280836e308adfaf192bea43f7b8a19e2c3686c854ace63b8b",
+  "historical_pending_manifest_sha256": "2d9942b85176f5a5536e33745677f723448fd48b5396ac96cab8ad964167588b",
+  "historical_pending_175_files_preserved": true,
+  "original_failed_PR_and_corrected_PR_evidence_preserved": true,
+  "terminal_join": {
+    "run": {
+      "id": 40350966050,
+      "url": "https://github.com/c933103/AN-Paint/actions/runs/40350966050",
+      "event": "push",
+      "head": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "created_at": "2026-10-26T15:36:24Z",
+      "updated_at": "2026-10-26T16:00:53Z"
+    },
+    "successful_checks": [
+      {
+        "id": 121682565432,
+        "name": "Emulator API 35",
+        "head": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 121674174712,
+        "name": "Core emulator API 35",
+        "head": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 121674174244,
+        "name": "Position dialog API 35",
+        "head": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 121670643345,
+        "name": "Regression tests and lint",
+        "head": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 121670643195,
+        "name": "Build APK and corresponding source",
+        "head": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 121670642749,
+        "name": "Exact-script resource generation",
+        "head": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "source_files": {
+      "tracked": 1379,
+      "packaged_exact": 1376,
+      "explicit_exclusions": [
+        ".gitignore",
+        ".idea/codeStyles/Project.xml",
+        "colorpicker/.gitignore"
+      ],
+      "additional_members_counted_not_Git_authenticated": 6258
+    },
+    "compiled_values": {
+      "total": 392,
+      "new_reviewed": 110,
+      "prior_reviewed": 282
+    },
+    "JVM": {
+      "tests": 1366,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "JVM_XML_files": 148,
+    "source_focused_suites": 10,
+    "hosted_Python": {
+      "run": 1398,
+      "passed": 1396,
+      "skipped": 2,
+      "seconds": 267.641,
+      "raw_log_sha256": "3c8aab821a148aeb4875c10a9123ed84eba54122ad4a471bfdd33526f84538ab",
+      "skipped_identities": "Not named in non-verbose hosted terminal summary; not guessed from source or local results."
+    },
+    "lint_issues": 0,
+    "API35": {
+      "app_selected_completed": 45,
+      "native_selected_completed": 74,
+      "scope": "Existing API35 emulator regression coverage; not Catalan, Romanian, Danish, Norwegian or Nynorsk physical-device/layout/native-human or whole-language certification."
+    },
+    "exact_script_probes": 13,
+    "APK_sha256": "da7cc54101b483efddb1c14c1ec73c3d1379c15115f552164189d48d6b3da751",
+    "source_ZIP_sha256": "97ecc89f2a6970330a0b35d199ad9b1b02c2ac505cfe9b2d4679adf2a8b3ce9b",
+    "fresh_artifact_ids": [
+      12663906573,
+      12664993428,
+      12664111534,
+      12663953202
+    ],
+    "GitHub_reported_signature": {
+      "verified": true,
+      "reason": "valid",
+      "verified_at": "2026-10-26T15:36:21Z",
+      "scope": "GitHub-reported verification, not independent PGP verification by this report"
+    },
+    "monitor_closed": true
+  },
+  "coverage_counts_unchanged": true,
+  "review_scopes_unchanged": true,
+  "new_linguistic_acceptances_due_to_CI": 0,
+  "new_native_human_layout_whole_language_or_release_certifications": 0,
+  "global_linguistic_accepted_count": null,
+  "new_Valencian_direct_acceptance": 0,
+  "limitations": [
+    "CI artifacts are fresh actual-merge artifacts; this wrapper joins already-verified receipts and recomputes current source coverage, not a new CI run.",
+    "Hosted Python skips are unnamed in the non-verbose summary; they are retained rather than guessed or treated as passes.",
+    "Existing API35 emulator coverage is not locale-specific physical-device, layout or native-human certification.",
+    "Debug APK signing is not private upgrade signing or a release. All existing scope/hold qualifications remain unchanged."
+  ]
+}

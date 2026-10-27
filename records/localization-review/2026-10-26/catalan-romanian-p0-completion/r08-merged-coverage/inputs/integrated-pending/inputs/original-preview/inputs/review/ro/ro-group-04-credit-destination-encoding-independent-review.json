@@ -1,0 +1,575 @@
+{
+  "schema_version": 1,
+  "record_kind": "Independent complete-value Romanian P0 completion linguistic and source-static review",
+  "review_date_utc": "2026-10-26",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "ce796879f4568a27b9d905a8e8db639dd0a93a30",
+  "source_tree": "f7c5f2fca54eb06b4a0c55df25a0b80b2ac4c12c",
+  "locale": "ro",
+  "target_path": "Paintroid/src/main/res/values-ro/strings.xml",
+  "group": 4,
+  "group_name": "credit-destination-encoding",
+  "candidate_packet": {
+    "file": "ro-group-04-credit-destination-encoding-candidates.json",
+    "sha256": "ef2d322eac4e03bdad91142a53400f347177a354219e23df0f4e3f847e6f88f6"
+  },
+  "input_bindings": [
+    {
+      "file": "ro-group-04-credit-destination-encoding-candidates.json",
+      "bytes": 29721,
+      "sha256": "ef2d322eac4e03bdad91142a53400f347177a354219e23df0f4e3f847e6f88f6"
+    },
+    {
+      "file": "scope-and-source-context.json",
+      "bytes": 251637,
+      "sha256": "8dd3dd99b633bbec8254639797ddc81000ce4d8bfa9c037503663123587399d5"
+    },
+    {
+      "file": "terminology-foundations.json",
+      "bytes": 90520,
+      "sha256": "bc6217e58573463929f8f0ba84815db06b41da809af8365c96bb1b824a11829b"
+    },
+    {
+      "file": "source-context-correction.json",
+      "bytes": 4651,
+      "sha256": "dde96f00968bc1009582f541524c8645b3e744dbb3c7076f2b29898be3a61225"
+    }
+  ],
+  "source_input_verification": {
+    "file": "source-input-verification.json",
+    "sha256": "32883195f216422cc924bf80f42cec7cc877c7925e766458dcb97ccc16cd47a9"
+  },
+  "outcome": {
+    "reviewed_complete_values": 11,
+    "accepted_unchanged": 11,
+    "revised": 0,
+    "new_holds": 0,
+    "native_human_review": false
+  },
+  "independent_checks": {
+    "source_git_blobs": 1376,
+    "selected_bound_files": 22,
+    "consumer_windows": 98,
+    "prior_Romanian_values_unchanged": 150,
+    "full_tokens_attributes_and_Android_XML_checked": true,
+    "new_candidate_acceptance_not_inherited_from_author_or_other_locale": true
+  },
+  "global_qualifications": [
+    "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+    "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review.",
+    "All 150 existing Romanian values/attributes and intentional fallback labels remain unchanged; absence is not automatically a defect.",
+    "Five explicit no-current-consumer holds, paired P1/frozen history, global59/112, inherited Valencian routing and #56/#113/#159/Help/archive/release pauses remain unchanged.",
+    "Canonical current source context is authoritative; DA/NO author/context history does not transfer linguistic acceptance."
+  ],
+  "verdicts": [
+    {
+      "identity": "string/gallery_credit_could_not_save",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "source_value_sha256_utf8": "d669638ab30435fe654a24b1c18e73208959c1cc873975ab190e629e7c2ed6af",
+      "candidate_display_text": "Mențiunile de atribuire ale imaginii nu au putut fi salvate sau restaurate. Cele salvate anterior au fost păstrate. Încearcă din nou.",
+      "candidate_value_sha256_utf8": "7dd565191f11400268739f334bc6e3055d78b60a742095dba87f6e8fd79c4563",
+      "final_display_text": "Mențiunile de atribuire ale imaginii nu au putut fi salvate sau restaurate. Cele salvate anterior au fost păstrate. Încearcă din nou.",
+      "final_value_sha256_utf8": "7dd565191f11400268739f334bc6e3055d78b60a742095dba87f6e8fd79c4563",
+      "final_display_sha256_utf8": "7dd565191f11400268739f334bc6e3055d78b60a742095dba87f6e8fd79c4563",
+      "final_xml_text": "\"Mențiunile de atribuire ale imaginii nu au putut fi salvate sau restaurate. Cele salvate anterior au fost păstrate. Încearcă din nou.\"",
+      "final_xml_text_sha256_utf8": "7fc3ac5f45470e51d04909bf03bbe3fc2e8be7e79273788af2dca5545444e13f",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "final_attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "Mențiunile de atribuire describes editable image-attribution text, not monetary credit or only an author name. Both save and restore failure remain, Cele salvate anterior clearly resumes that plural noun, and the final retry instruction does not assert that the attempted edit succeeded.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:238",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:908",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1194",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1197",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1203",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1207",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1478",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1488",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1495",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:113",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:62",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:243",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt:415"
+      ],
+      "qualifications": [
+        "Credit data are user-editable source attribution text, not monetary credits or only author names. Preserve both save/restore failure and protection of existing stored data.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Mențiuni de atribuire denotes user-editable image attribution text, not monetary credit, only authors, or only URLs.",
+        "Both save/restore failure alternatives remain. Cele salvate anterior refers to previously stored attribution text retained, not a successful new edit.",
+        "Attribution terminology is accepted for the complete bound value, not as a glossary-wide standard. The Image credits navigation remains intentional English fallback; no native-human or wholly Romanian workflow certification.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer should assess mențiuni de atribuire for complete editable attribution fields; the existing Image credits navigation remains an untouched English fallback."
+      ]
+    },
+    {
+      "identity": "string/gallery_credit_too_large",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "source_value_sha256_utf8": "0cc17cfda89358526b83adbc36b90440ef773ed2f945768e3e9f32bb90b35dd5",
+      "candidate_display_text": "Aceste mențiuni de atribuire ar face desenul prea mare pentru a putea fi restaurat. Desenul anterior și mențiunile de atribuire anterioare au fost păstrate.",
+      "candidate_value_sha256_utf8": "e2b884df763956c156d515d7957a0b9b5626b0d68a915efb7c488ca8f545ba2d",
+      "final_display_text": "Aceste mențiuni de atribuire ar face desenul prea mare pentru a putea fi restaurat. Desenul anterior și mențiunile de atribuire anterioare au fost păstrate.",
+      "final_value_sha256_utf8": "e2b884df763956c156d515d7957a0b9b5626b0d68a915efb7c488ca8f545ba2d",
+      "final_display_sha256_utf8": "e2b884df763956c156d515d7957a0b9b5626b0d68a915efb7c488ca8f545ba2d",
+      "final_xml_text": "\"Aceste mențiuni de atribuire ar face desenul prea mare pentru a putea fi restaurat. Desenul anterior și mențiunile de atribuire anterioare au fost păstrate.\"",
+      "final_xml_text_sha256_utf8": "a484fb46a569cbb9050c14dc37151945df3a2debfc52f53bdf6bfc44a3444a1c",
+      "attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "final_attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "The complete conditional sentence describes excessive saved drawing/metadata size rather than pixel dimensions. The second sentence explicitly retains both the prior drawing and prior attribution text, with correct feminine plural agreement and no new-edit success claim.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1218",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1453",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt:111"
+      ],
+      "qualifications": [
+        "Metadata admission failure, not image pixel dimensions. Previous drawing and credits retained; do not claim current attempted credit edit saved.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "This is metadata admission/restore size, not pixel dimensions. The conditional ar face does not claim the oversized credit edit was committed.",
+        "Prior drawing and prior attribution text are both retained; no new edit success is implied.",
+        "Size refers to the restorable drawing/metadata envelope, not a request to reduce image dimensions. Existing accepted/persisted text is retained; unaccepted proposed text is not declared saved.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer should assess the complete metadata-size/previous-state sentence and terminology; no inference from the unrelated monetary meaning of credits."
+      ]
+    },
+    {
+      "identity": "string/legacy_credits_unreadable",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "source_value_sha256_utf8": "764c1dfa02ddd35964d108f4cc4ccc6dbcc59f5520513ac2528f32bacdb73f5b",
+      "candidate_display_text": "Unele mențiuni de atribuire salvate nu au putut fi citite. Copiile lor stocate au fost păstrate.",
+      "candidate_value_sha256_utf8": "f7ccb72961340021390c6a6c60d39b0d2e2457a23c6b7e7d3eebb9dc4eb8cdc0",
+      "final_display_text": "Unele mențiuni de atribuire salvate nu au putut fi citite. Copiile lor stocate au fost păstrate.",
+      "final_value_sha256_utf8": "f7ccb72961340021390c6a6c60d39b0d2e2457a23c6b7e7d3eebb9dc4eb8cdc0",
+      "final_display_sha256_utf8": "f7ccb72961340021390c6a6c60d39b0d2e2457a23c6b7e7d3eebb9dc4eb8cdc0",
+      "final_xml_text": "\"Unele mențiuni de atribuire salvate nu au putut fi citite. Copiile lor stocate au fost păstrate.\"",
+      "final_xml_text_sha256_utf8": "3e32bec76bf4290451c238db5bfab47ff5df7fc2b9d6fbe64b53e9d5fd57d29e",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "final_attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "The complete value accurately distinguishes some unreadable attribution records from their retained stored copies. It does not claim that all records were restored or that the retained copies are readable.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt:93"
+      ],
+      "qualifications": [
+        "Some stored snapshots unreadable, copies retained. No claim that all credits were restored or that unreadable copies are usable.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Some saved attribution snapshots are unreadable; stored copies stay retained without claiming they are usable or restored.",
+        "Retained unreadable snapshots are not asserted usable. This translation review does not change archive identity, deletion or adoption behavior.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer should assess the same attribution terminology and retained-unreadable-copy distinction."
+      ]
+    },
+    {
+      "identity": "string/save20_destination_error",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The completed image could not replace its destination.",
+      "source_value_sha256_utf8": "de68e5576968021c8471674791a609c056d1049abe53f1c1e4dc77e00679e001",
+      "candidate_display_text": "Imaginea finalizată nu a putut înlocui fișierul de destinație.",
+      "candidate_value_sha256_utf8": "a5b04a221ddcd4ba7cab2b701be22d6ee2291238ebfab2e9ef02eef2e222fae7",
+      "final_display_text": "Imaginea finalizată nu a putut înlocui fișierul de destinație.",
+      "final_value_sha256_utf8": "a5b04a221ddcd4ba7cab2b701be22d6ee2291238ebfab2e9ef02eef2e222fae7",
+      "final_display_sha256_utf8": "a5b04a221ddcd4ba7cab2b701be22d6ee2291238ebfab2e9ef02eef2e222fae7",
+      "final_xml_text": "\"Imaginea finalizată nu a putut înlocui fișierul de destinație.\"",
+      "final_xml_text_sha256_utf8": "7344541857869f4a5f46a3b9f3376429388b34a752ce8042d99d49e91e97e5d3",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "final_attributes": {
+        "name": "save20_destination_error"
+      },
+      "placeholder_tokens": [],
+      "confidence": "medium-high",
+      "rationale": "Fișierul de destinație naturally identifies the file that the completed temporary image could not replace. All current consumers are file-based renameTo failures after encoding, not successful document-provider writes.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:19",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:40",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:103",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:62"
+      ],
+      "qualifications": [
+        "File-based temporary-output rename failed. A destination-file term is semantically supportable; do not claim completed provider write.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "File-based temporary-output rename failed after encoding; destination-file wording does not imply any provider write succeeded.",
+        "The bounded translation does not certify atomic replacement on every filesystem, or the state of a document-provider destination.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": [
+        "Independent reviewer may prefer a more natural complete Romanian formulation for the failed rename/replacement, but should retain completed output versus unchanged destination semantics."
+      ]
+    },
+    {
+      "identity": "string/save20_encoding_budget",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "source_value_sha256_utf8": "ee437ea8cac1ec7af3db9e48064cf9e0a2e49c3c4f89706eb34887bc52d6b75e",
+      "candidate_display_text": "Imaginea și memoriile tampon pentru codificare depășesc bugetul de memorie pentru export.",
+      "candidate_value_sha256_utf8": "5d4270b189b3cc0263833a5d120d253aaad06b4fc53c975b6db15e84293f9cdb",
+      "final_display_text": "Imaginea și memoriile tampon pentru codificare depășesc bugetul de memorie pentru export.",
+      "final_value_sha256_utf8": "5d4270b189b3cc0263833a5d120d253aaad06b4fc53c975b6db15e84293f9cdb",
+      "final_display_sha256_utf8": "5d4270b189b3cc0263833a5d120d253aaad06b4fc53c975b6db15e84293f9cdb",
+      "final_xml_text": "\"Imaginea și memoriile tampon pentru codificare depășesc bugetul de memorie pentru export.\"",
+      "final_xml_text_sha256_utf8": "a9ccb9bf9728e29585e4d41692c8b8a20a1c1de7f60bd82b987f315cbe35084d",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "final_attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The full sentence correctly combines image and encoding-buffer memory and uses the same memorie/memorii tampon terminology as the assembly/resize group. Buget de memorie does not mean disk space.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt:24",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt:43",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:79",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:56"
+      ],
+      "qualifications": [
+        "Image plus encoder buffers exceed a budget; not merely disk size and not solely the canvas footprint.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Image and encoding buffers together exceed a memory budget; not disk space or only the image footprint.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_could_not_open_image",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Could not open image",
+      "source_value_sha256_utf8": "6143ae23db90cc7e75e0a79869b2e047e20878b9478ac9e07dcebe064c5b25ef",
+      "candidate_display_text": "Imaginea nu a putut fi deschisă",
+      "candidate_value_sha256_utf8": "68621fb39375c79fe109a0d746ebd4a794fce7708e5cced77b944b3f37beb670",
+      "final_display_text": "Imaginea nu a putut fi deschisă",
+      "final_value_sha256_utf8": "68621fb39375c79fe109a0d746ebd4a794fce7708e5cced77b944b3f37beb670",
+      "final_display_sha256_utf8": "68621fb39375c79fe109a0d746ebd4a794fce7708e5cced77b944b3f37beb670",
+      "final_xml_text": "\"Imaginea nu a putut fi deschisă\"",
+      "final_xml_text_sha256_utf8": "0dece2c948ae2ba4754ebb10ab9c79ecd28628c1c95b15a7a57d4d00cea05501",
+      "attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "final_attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Natural failure prefix consistent with the inherited Imaginea nu a putut fi salvată structure. Terminal punctuation is intentionally absent because ioFailed appends its own period, space and reason.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1288",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1293",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1337",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1350"
+      ],
+      "qualifications": [
+        "Failure prefix passed to ioFailed; exception detail appended by caller. No added final punctuation.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Prefix passed to ioFailed with caller-owned separator and error detail; no final punctuation added. Matches the structure of previously reviewed Imaginea nu a putut fi salvată.",
+        "ioFailed owns period plus space, not a colon. Its arbitrary detail/fallback may be untranslated.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_not_enough_memory_to_save_in_this_format",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "Not enough memory to save in this format. Try PNG",
+      "source_value_sha256_utf8": "f85d438ebb3c8e8c55be242b5b0938f6e33144d8789553e32711449d9e67e66b",
+      "candidate_display_text": "Nu există suficientă memorie pentru salvarea în acest format. Încearcă PNG",
+      "candidate_value_sha256_utf8": "57b8424d4fd780f44b1443d811eb5d151590768c45e5a2d62017d575aa30bb65",
+      "final_display_text": "Nu există suficientă memorie pentru salvarea în acest format. Încearcă PNG",
+      "final_value_sha256_utf8": "57b8424d4fd780f44b1443d811eb5d151590768c45e5a2d62017d575aa30bb65",
+      "final_display_sha256_utf8": "57b8424d4fd780f44b1443d811eb5d151590768c45e5a2d62017d575aa30bb65",
+      "final_xml_text": "\"Nu există suficientă memorie pentru salvarea în acest format. Încearcă PNG\"",
+      "final_xml_text_sha256_utf8": "fd42e62dd123d7e45c109e329a6deaf3ed39a0d369272eacab76bf13f8eec47b",
+      "attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "final_attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The complete failure prefix clearly identifies insufficient memory for this format and recommends trying PNG without guaranteeing that it will fit. It intentionally lacks a final period for ioFailed composition.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1376"
+      ],
+      "qualifications": [
+        "OOM failure prefix recommends PNG but does not guarantee PNG will fit. Caller attaches error detail; preserve no terminal period.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "OOM failure prefix recommends PNG without promising it will fit. No final punctuation added because ioFailed attaches its own separator/details.",
+        "PNG is advice, not an allocation guarantee. ioFailed adds period plus space and exception detail; no runtime failure was induced for this review.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_png_encoding_failed",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "PNG encoding failed.",
+      "source_value_sha256_utf8": "121e3e5c5523ca65104b683c53c625d9f76c600cb5ac2d41924dc5fa2659ba3e",
+      "candidate_display_text": "Codificarea PNG a eșuat.",
+      "candidate_value_sha256_utf8": "1dc0705a555ba4492b74d7197bdafebbb9b52866fe6924c6c620839cfe7d7b52",
+      "final_display_text": "Codificarea PNG a eșuat.",
+      "final_value_sha256_utf8": "1dc0705a555ba4492b74d7197bdafebbb9b52866fe6924c6c620839cfe7d7b52",
+      "final_display_sha256_utf8": "1dc0705a555ba4492b74d7197bdafebbb9b52866fe6924c6c620839cfe7d7b52",
+      "final_xml_text": "\"Codificarea PNG a eșuat.\"",
+      "final_xml_text_sha256_utf8": "54384951c4f81a76c1b1924b5b94fb256e2b13608c5737fc15f6bedf2384943d",
+      "attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "final_attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Clear grammatical PNG compression-failure sentence, with PNG retained literally; it does not report a successful save.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:324"
+      ],
+      "qualifications": [
+        "Actual Bitmap.compress false branch, not a successful PNG save.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "The PNG compressor returned false; no saved output success is claimed.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_the_encoder_did_not_finish",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The encoder did not finish.",
+      "source_value_sha256_utf8": "2530b90af3a852e2d87716c1916d9b32eaee0d0e4fb173865d2766fda37abf96",
+      "candidate_display_text": "Codificarea nu s-a încheiat.",
+      "candidate_value_sha256_utf8": "8834aa5ebfd2622de32745f775c447907883a6719f78eda281a7c0e4eaec856a",
+      "final_display_text": "Codificarea nu s-a încheiat.",
+      "final_value_sha256_utf8": "8834aa5ebfd2622de32745f775c447907883a6719f78eda281a7c0e4eaec856a",
+      "final_display_sha256_utf8": "8834aa5ebfd2622de32745f775c447907883a6719f78eda281a7c0e4eaec856a",
+      "final_xml_text": "\"Codificarea nu s-a încheiat.\"",
+      "final_xml_text_sha256_utf8": "ef8d560aa9ebad9096c7c4aaa6eedda87ce5a9a475a6ea4cdcb15e69356814ac",
+      "attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "final_attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Naming the codificarea process is natural and unambiguous Romanian for the image encoder returning false. It does not introduce a human coder or assert that output completion succeeded.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt:100",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt:25",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt:33"
+      ],
+      "qualifications": [
+        "Image encoding did not finish; candidate names the process rather than ambiguously a human coder. No output-success claim.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Names the image-encoding process, not a human coder, and does not claim output completion.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_the_selected_location_is_not_writable",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "The selected location is not writable.",
+      "source_value_sha256_utf8": "bd5906312d80fa9c5c6f855faf23030f089b50f54d0f82a39a8bcdb60328581d",
+      "candidate_display_text": "Nu se poate scrie în locația selectată.",
+      "candidate_value_sha256_utf8": "6bd7ca70deedbfaf40a671f34c4c770a645ca8baa47668cbe5ceb32a9dc772d1",
+      "final_display_text": "Nu se poate scrie în locația selectată.",
+      "final_value_sha256_utf8": "6bd7ca70deedbfaf40a671f34c4c770a645ca8baa47668cbe5ceb32a9dc772d1",
+      "final_display_sha256_utf8": "6bd7ca70deedbfaf40a671f34c4c770a645ca8baa47668cbe5ceb32a9dc772d1",
+      "final_xml_text": "\"Nu se poate scrie în locația selectată.\"",
+      "final_xml_text_sha256_utf8": "6f57120b7e280710966cf1aa55ce79d7a3ee50b999940c7e627afb6db152bfae",
+      "attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "final_attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "Natural impersonal inability-to-write wording for the selected location. It does not narrow openOutputStream null to a specific permissions or write-protection cause.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt:341",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1366"
+      ],
+      "qualifications": [
+        "openOutputStream returns null; do not narrow unspecified cause to write protection or permissions alone.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Generic inability to write to the selected location; does not narrow the cause to permissions or write protection.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    },
+    {
+      "identity": "string/ui_this_location_is_not_writable",
+      "priority": "P0",
+      "scope": "complete exact resource value; independent AI Romanian linguistic and source-static review with qualifications",
+      "verdict": "accept",
+      "candidate_unchanged": true,
+      "source": "This location is not writable.",
+      "source_value_sha256_utf8": "aeeaa3653ff0cebc035c0010f47d2e6fef2ba1abd8d6c77df663010f13a4a13e",
+      "candidate_display_text": "Nu se poate scrie în această locație.",
+      "candidate_value_sha256_utf8": "2c6534a9406459e4daef78a7d587d847db1665d5182791869a05833f1bd459a8",
+      "final_display_text": "Nu se poate scrie în această locație.",
+      "final_value_sha256_utf8": "2c6534a9406459e4daef78a7d587d847db1665d5182791869a05833f1bd459a8",
+      "final_display_sha256_utf8": "2c6534a9406459e4daef78a7d587d847db1665d5182791869a05833f1bd459a8",
+      "final_xml_text": "\"Nu se poate scrie în această locație.\"",
+      "final_xml_text_sha256_utf8": "8e24122cfc9be6b4505e3cffacecfc16586d6aee8ceba2f0302865e124f08c22",
+      "attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "final_attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "placeholder_tokens": [],
+      "confidence": "high",
+      "rationale": "The corresponding deictic această locație naturally preserves the generic shared write failure. It remains suitable for both recovery ZIP and source-code export without altering either implementation.",
+      "consumer_context_ids": [
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1396",
+        "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt:1407"
+      ],
+      "qualifications": [
+        "Shared by recovery ZIP export and source-code export, generic write failure. No Help callback/archive identity or exported-source implementation change.",
+        "Author proposal only, pending independent complete-value Romanian review; not native-human, device, layout or whole-locale acceptance.",
+        "All 150 existing values and attributes stay unchanged, including old diacritics and intentional English fallbacks.",
+        "Five no-current-consumer holds, paired P1/frozen/global59/112 boundaries and all named pauses stay unchanged.",
+        "Current parent-inherited Valencian routing is outside this Romanian value scope and gains no new acceptance.",
+        "Generic write-failure resource shared by recovery ZIP and source-code export; no Help callback/archive-identity work or source-export implementation is changed.",
+        "Shared-resource wording only. No Help callback, source-archive identity or source-export behavior is newly accepted, changed or tested.",
+        "Independent AI complete-value Romanian linguistic and source-static review, not native-human review or a whole-locale certificate.",
+        "No Android compilation, JVM/emulator, physical-device, layout or runtime acceptance is established by this review."
+      ],
+      "original_author_uncertainties_preserved_as_context": []
+    }
+  ],
+  "static_composition_examples": [
+    {
+      "kind": "static Save failure with encoder reason",
+      "prefix": "Imaginea nu a putut fi salvată",
+      "reason": "Codificarea nu s-a încheiat.",
+      "composed": "Imaginea nu a putut fi salvată. Codificarea nu s-a încheiat.",
+      "qualification": "Existing reviewed Save prefix plus this reviewed reason; ioFailed adds period plus space, not colon. No failure executed and no new acceptance of inherited prefix."
+    },
+    {
+      "kind": "static Save failure with file-destination reason",
+      "prefix": "Imaginea nu a putut fi salvată",
+      "reason": "Imaginea finalizată nu a putut înlocui fișierul de destinație.",
+      "composed": "Imaginea nu a putut fi salvată. Imaginea finalizată nu a putut înlocui fișierul de destinație.",
+      "qualification": "File rename error can reach the existing Save prefix; does not assert that the provider destination was written."
+    },
+    {
+      "kind": "static recovery export failure with shared reason",
+      "prefix": "Copia de recuperare nu a putut fi exportată",
+      "reason": "Nu se poate scrie în această locație.",
+      "composed": "Copia de recuperare nu a putut fi exportată. Nu se poate scrie în această locație.",
+      "qualification": "Cross-group02/04 composition; no recovery export or Help/source-export operation performed."
+    },
+    {
+      "kind": "static PNG advice separator",
+      "prefix": "Nu există suficientă memorie pentru salvarea în acest format. Încearcă PNG",
+      "caller_separator": ". ",
+      "qualification": "Exception detail is appended after this separator. PNG remains a suggestion, not a guarantee, and the reason is not invented as an actual runtime result."
+    }
+  ],
+  "effects": {
+    "application_edits": false,
+    "external_publication": false,
+    "linguistic_scope": "Only exact full values identified by this receipt; no other locale or inherited value newly accepted",
+    "runtime_acceptance": false
+  }
+}

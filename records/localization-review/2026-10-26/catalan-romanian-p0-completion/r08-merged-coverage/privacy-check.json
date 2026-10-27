@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "result": "passed",
+  "scope": "Every generated/copied UTF-8 payload and decoded JSON, including complete preserved histories and fresh actual terminal evidence.",
+  "excluded": "Credentials, secret values, private/temporary links, actual execution-local paths including interpreter prefixes, control identifiers and unrelated private data.",
+  "safe_code_syntax_exceptions": [
+    {
+      "file": "inputs/integrated-pending/inputs/oracle-repair/independent-repair-audit/verify_numeric_oracle_repair.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/oracle-repair/verifiers/prepare_source_expectations.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/oracle-repair/verifiers/test_artifact_verifiers.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/oracle-repair/verifiers/test_artifact_verifiers.py",
+      "line": 170,
+      "reason": "literal rejection rules only"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/oracle-repair/verifiers/verify_api35_artifact.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/oracle-repair/verifiers/verify_apk_artifact.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/oracle-repair/verifiers/verify_exact_script_artifact.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/oracle-repair/verifiers/verify_regression_artifact.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/original-failure/verifiers/prepare_source_expectations.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/original-failure/verifiers/test_artifact_verifiers.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/original-failure/verifiers/test_artifact_verifiers.py",
+      "line": 169,
+      "reason": "literal rejection rules only"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/original-failure/verifiers/verify_api35_artifact.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/original-failure/verifiers/verify_apk_artifact.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/original-failure/verifiers/verify_exact_script_artifact.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    },
+    {
+      "file": "inputs/integrated-pending/inputs/original-failure/verifiers/verify_regression_artifact.py",
+      "line": 1,
+      "reason": "portable interpreter-selection shebang, not an observed execution-local path"
+    }
+  ],
+  "historical_log_provenance": "Forward-corrected sanitized repair display logs and raw/published hash mapping retained. Unsanitized historical r03 display logs not reintroduced.",
+  "opaque_archive_payloads": false,
+  "qualification": "Scoped semantic inspection and targeted checks, not a universal secret-detection guarantee.",
+  "external_publication_performed": false
+}

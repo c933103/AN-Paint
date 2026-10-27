@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "source_commit": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+  "source_tree": "806d9577409c4044212d1c12e6e38da46417bae6",
+  "source_status": "integrated actual merge source; actual postmerge push run 40350966050 pending in supplied identity receipt",
+  "positive_actual_source_recomputation": "passed",
+  "controls_rejected": 27,
+  "cases": [
+    {
+      "case": "wrong actual merge",
+      "result": "rejected",
+      "guard": "actual merge identity"
+    },
+    {
+      "case": "wrong actual tree",
+      "result": "rejected",
+      "guard": "actual merge identity"
+    },
+    {
+      "case": "reversed parents",
+      "result": "rejected",
+      "guard": "actual ordered parents/head/develop"
+    },
+    {
+      "case": "wrong reviewed head",
+      "result": "rejected",
+      "guard": "actual ordered parents/head/develop"
+    },
+    {
+      "case": "stale develop ref",
+      "result": "rejected",
+      "guard": "actual ordered parents/head/develop"
+    },
+    {
+      "case": "unverified merge",
+      "result": "rejected",
+      "guard": "actual ordered parents/head/develop"
+    },
+    {
+      "case": "wrong PR number",
+      "result": "rejected",
+      "guard": "actual merge identity"
+    },
+    {
+      "case": "wrong PR gate run",
+      "result": "rejected",
+      "guard": "actual merge/PR provenance"
+    },
+    {
+      "case": "relabeled PR event as postmerge",
+      "result": "rejected",
+      "guard": "actual pending push identity"
+    },
+    {
+      "case": "wrong pending push head",
+      "result": "rejected",
+      "guard": "actual pending push identity"
+    },
+    {
+      "case": "wrong pending push run",
+      "result": "rejected",
+      "guard": "actual pending push identity"
+    },
+    {
+      "case": "invented terminal success",
+      "result": "rejected",
+      "guard": "actual pending push identity"
+    },
+    {
+      "case": "missing pending push",
+      "result": "rejected",
+      "guard": "actual pending push identity"
+    },
+    {
+      "case": "duplicate pending push",
+      "result": "rejected",
+      "guard": "actual pending push identity"
+    },
+    {
+      "case": "invented successful status text",
+      "result": "rejected",
+      "guard": "pending boundary"
+    },
+    {
+      "case": "truncated actual tree",
+      "result": "rejected",
+      "guard": "wrong/truncated head tree"
+    },
+    {
+      "case": "forged actual root",
+      "result": "rejected",
+      "guard": "wrong/truncated head tree"
+    },
+    {
+      "case": "forged resource leaf",
+      "result": "rejected",
+      "guard": "recursive Git tree hash mismatch: Paintroid/src/main/res/values-ro"
+    },
+    {
+      "case": "forged numeric repair leaf",
+      "result": "rejected",
+      "guard": "recursive Git tree hash mismatch: Paintroid/src/test/java/org/catrobat/paintroid/local"
+    },
+    {
+      "case": "duplicate actual tree path",
+      "result": "rejected",
+      "guard": "duplicate tree path"
+    },
+    {
+      "case": "preview ledger corruption",
+      "result": "rejected",
+      "guard": "historical payload identity"
+    },
+    {
+      "case": "original failure removed",
+      "result": "rejected",
+      "guard": "historical payload identity"
+    },
+    {
+      "case": "repair provenance corrupted",
+      "result": "rejected",
+      "guard": "historical payload identity"
+    },
+    {
+      "case": "corrected PR falsely relabelled",
+      "result": "rejected",
+      "guard": "historical payload identity"
+    },
+    {
+      "case": "actual merge proof corrupted",
+      "result": "rejected",
+      "guard": "actual merge receipt bytes"
+    },
+    {
+      "case": "actual raw numeric source corrupted",
+      "result": "rejected",
+      "guard": "actual raw source Git binding"
+    },
+    {
+      "case": "actual raw locale source corrupted",
+      "result": "rejected",
+      "guard": "actual raw source Git binding"
+    }
+  ],
+  "historical_preview_71_controls_preserved": true,
+  "source_files_changed": false,
+  "limits": [
+    "All failures are labelled synthetic test mutations, not observed defects.",
+    "Historical preview source/data controls and all 84 preview files remain unchanged.",
+    "Pending postmerge identity is verified; no actual postmerge success is created or inferred."
+  ]
+}

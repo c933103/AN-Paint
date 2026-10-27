@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "result": "passed",
+  "scope": "All generated and copied UTF-8 files and decoded JSON, including historical failure/repair/terminal records and sanitized display logs.",
+  "excluded": "Credentials, secret values, private links, actual execution-local paths (including interpreter prefixes), internal control identifiers and unrelated private data.",
+  "safe_code_syntax_exceptions": [
+    {
+      "file": "inputs/oracle-repair/verifiers/prepare_source_expectations.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/oracle-repair/verifiers/verify_regression_artifact.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/oracle-repair/verifiers/verify_exact_script_artifact.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/oracle-repair/verifiers/verify_apk_artifact.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/oracle-repair/verifiers/test_artifact_verifiers.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/oracle-repair/verifiers/test_artifact_verifiers.py",
+      "line": 170,
+      "reason": "literal rejection-rule prefixes, not actual path data"
+    },
+    {
+      "file": "inputs/oracle-repair/verifiers/verify_api35_artifact.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/oracle-repair/independent-repair-audit/verify_numeric_oracle_repair.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/original-failure/verifiers/prepare_source_expectations.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/original-failure/verifiers/verify_regression_artifact.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/original-failure/verifiers/verify_exact_script_artifact.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/original-failure/verifiers/verify_apk_artifact.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/original-failure/verifiers/test_artifact_verifiers.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    },
+    {
+      "file": "inputs/original-failure/verifiers/test_artifact_verifiers.py",
+      "line": 169,
+      "reason": "literal rejection-rule prefixes, not actual path data"
+    },
+    {
+      "file": "inputs/original-failure/verifiers/verify_api35_artifact.py",
+      "line": 1,
+      "reason": "standard portable Python shebang; not an actual execution-local path"
+    }
+  ],
+  "sanitized_log_provenance": "The exact forward-corrected repair package retains raw/published hash mapping and prior-record-log-hygiene-correction.json; unsanitized r03 historical display logs were not copied.",
+  "opaque_compressed_payloads_included": false,
+  "qualification": "Scoped semantic inspection and targeted guards, not a universal secret-detection guarantee.",
+  "external_publication_performed": false
+}

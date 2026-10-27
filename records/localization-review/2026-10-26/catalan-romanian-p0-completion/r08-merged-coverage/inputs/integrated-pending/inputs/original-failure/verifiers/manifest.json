@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "record_kind": "PR178 argument-driven artifact verifiers and synthetic preparation controls",
+  "reviewed_head": "93f27ed172cc730c80ed7a2ffbcacc1b0c04383f",
+  "source_tree": "571ec84860cb837ae8376f72d0becfb8fd2b7b6d",
+  "files": [
+    {
+      "path": "verify_apk_artifact.py",
+      "bytes": 9554,
+      "sha256": "cb8bfa05f51af635abe060979aa2acfcf4ec2e94894d007e3e31de71d42c0287",
+      "git_blob_sha1": "3ea537331c13d1b392e82edb7bb7674b1f6a7bf2"
+    },
+    {
+      "path": "verify_regression_artifact.py",
+      "bytes": 4990,
+      "sha256": "4b8612479ae537d0906fa140cc811373b9db10ddb5b7eefe69d05e4d736a2b6f",
+      "git_blob_sha1": "1c649407cc6edd86db6de39fa5702e76768abd66"
+    },
+    {
+      "path": "verify_api35_artifact.py",
+      "bytes": 4664,
+      "sha256": "513e2cdbddbdef2116efd2072ceb146dcef01c8b518b88351f5fca92d0931cf7",
+      "git_blob_sha1": "0c3c08d61c7221a267b54647421656e8f845f9b0"
+    },
+    {
+      "path": "verify_exact_script_artifact.py",
+      "bytes": 2473,
+      "sha256": "32750c5aa50176bd5af58b2f84537350ecf49e602e39bec2c3a9248575040048",
+      "git_blob_sha1": "d56dab0b5167a8ea516a3c488bc203051a3781aa"
+    },
+    {
+      "path": "test_artifact_verifiers.py",
+      "bytes": 20708,
+      "sha256": "e8faa709a3ac9b41b383750e1f8086c87ba9fcaf0a554d16fad0683c2851bc48",
+      "git_blob_sha1": "c6bd735172125772aa8ebec7111c79c30eaa06dd"
+    },
+    {
+      "path": "prepare_source_expectations.py",
+      "bytes": 5126,
+      "sha256": "15fb1220d7d931b17e6333c55bbea0e5b727c89ddd70848256f8b1989458a96d",
+      "git_blob_sha1": "e0de0fe4f36cc6f5bcd401b030ca09df1b6f0253"
+    },
+    {
+      "path": "ordinary/artifact-verifier-sanity.json",
+      "bytes": 10028,
+      "sha256": "c7d76254c84a8cf6cd4ac660572e73077a353d652caa9e268f2c6d3bb72ae992",
+      "git_blob_sha1": "f88391da846037229780e2137a105031247ec70a"
+    },
+    {
+      "path": "optimized/artifact-verifier-sanity.json",
+      "bytes": 10028,
+      "sha256": "c7d76254c84a8cf6cd4ac660572e73077a353d652caa9e268f2c6d3bb72ae992",
+      "git_blob_sha1": "f88391da846037229780e2137a105031247ec70a"
+    },
+    {
+      "path": "preparation/source-expectations.json",
+      "bytes": 28020,
+      "sha256": "0eaff1f5bb634618d8f095e7d324f076f8430bb44cb4667913b85ffe211b093b",
+      "git_blob_sha1": "0810e42efc0c2ad5a31db5c88c53268051289485"
+    },
+    {
+      "path": "preparation/staged-source-tree.json",
+      "bytes": 330150,
+      "sha256": "5099d81d0d629bf982f2383918a8efed9354307491d94524779f65e48323fe05",
+      "git_blob_sha1": "08da52dc3b225ab3e32ee6ae8bd3a8d3fdc6f120"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6148,
+      "sha256": "8efedca1f5674c0cf66ca77a49c9bbeb185261301cabd1e9c455011c2f4073cd",
+      "git_blob_sha1": "2bf3a8f83da536145c3ca83528827feb91ab5e98"
+    }
+  ],
+  "prior_verifier_sha256": {
+    "verify_apk_artifact.py": "bab7d3c50eb2fb1fdc03e9f54a41edde40328346676f6d29712c676ffb8ea182",
+    "verify_regression_artifact.py": "6a7ce571f8255822afc166a5690aaff4c32ea5f5ae707278b04583cf88fced1a",
+    "verify_api35_artifact.py": "513e2cdbddbdef2116efd2072ceb146dcef01c8b518b88351f5fca92d0931cf7",
+    "verify_exact_script_artifact.py": "32750c5aa50176bd5af58b2f84537350ecf49e602e39bec2c3a9248575040048",
+    "test_artifact_verifiers.py": "8f525984829473652ce85ef1cc795ba88e7af401574bf9058efd0d9eb73aeef3"
+  },
+  "api35_and_exact_verifiers_unchanged": true,
+  "positive_synthetic_controls": 4,
+  "negative_synthetic_controls_rejected": 35,
+  "all_prior_33_negative_controls_retained": true,
+  "new_negative_controls": [
+    "CA/RO completion overlaps prior import key",
+    "missing completion JVM suite"
+  ],
+  "ordinary_optimized_receipts_byte_identical": true,
+  "actual_source_blob_identities_verified": 1379,
+  "expected_packaged_tracked_source_files": 1376,
+  "same_three_packager_exclusions": [
+    ".gitignore",
+    ".idea/codeStyles/Project.xml",
+    "colorpicker/.gitignore"
+  ],
+  "compiled_value_expectations_by_locale": {
+    "ca": 78,
+    "ro": 78,
+    "da": 78,
+    "no": 78,
+    "nn": 80
+  },
+  "new_values": 110,
+  "prior_values": 282,
+  "total_compiled_value_expectations": 392,
+  "focused_source_method_counts": {
+    "CatalanRomanianCompletionWordingTest": 5,
+    "CatalanRomanianImportWordingTest": 2,
+    "CatalanRomanianSaveWordingTest": 2,
+    "DanishNorwegianP0Test": 4,
+    "NynorskRemainingP0Test": 4,
+    "NynorskSaveWordingTest": 2,
+    "DerivedExportStateTest": 7,
+    "ImportSelectionTitleTest": 12,
+    "TaggedColourImportTest": 5
+  },
+  "API35_source_case_counts": {
+    "app": 45,
+    "native": 74
+  },
+  "full_JVM_count": "Must be derived from actual unique artifact case identities and XML totals; not guessed here.",
+  "actual_artifacts_available_or_verified": false,
+  "privacy": "Authorized project verifier source and synthetic/source-derived evidence only. No credentials, private links, execution-local paths or unrelated private data. Generic forbidden-path patterns are validation code, not disclosed execution paths.",
+  "limits": [
+    "No application/test edits or external calls by this preparation.",
+    "No actual hosted build, APK, JVM, emulator or release success certified.",
+    "Keep PR synthetic merge, reviewed head and actual postmerge identities distinct.",
+    "No new linguistic acceptance or scope elevation."
+  ]
+}

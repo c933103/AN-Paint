@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "record_kind": "Repaired staged-source artifact verifiers; original verifiers retained unchanged",
+  "original_head": "93f27ed172cc730c80ed7a2ffbcacc1b0c04383f",
+  "reviewed_head": null,
+  "source_tree": "806d9577409c4044212d1c12e6e38da46417bae6",
+  "head_binding_status": "New reviewed head pending; real runtime scripts remain argument-driven.",
+  "original_verifier_manifest_sha256": "1a0cece55a3066f86a15d11b1697c2bfba275392d08da9cad744c1a60cb007b6",
+  "files": [
+    {
+      "path": "verify_apk_artifact.py",
+      "bytes": 9554,
+      "sha256": "cb8bfa05f51af635abe060979aa2acfcf4ec2e94894d007e3e31de71d42c0287"
+    },
+    {
+      "path": "verify_regression_artifact.py",
+      "bytes": 5017,
+      "sha256": "445ffe8ea7671db47ff80aa6fad0219eb1c311f52350546d29687c2285a8cda5"
+    },
+    {
+      "path": "verify_api35_artifact.py",
+      "bytes": 4664,
+      "sha256": "513e2cdbddbdef2116efd2072ceb146dcef01c8b518b88351f5fca92d0931cf7"
+    },
+    {
+      "path": "verify_exact_script_artifact.py",
+      "bytes": 2473,
+      "sha256": "32750c5aa50176bd5af58b2f84537350ecf49e602e39bec2c3a9248575040048"
+    },
+    {
+      "path": "test_artifact_verifiers.py",
+      "bytes": 20991,
+      "sha256": "e0892aa095ae4ff95327ab14a5fb70fbc8dcea4907ed8b562501bc07240cafa6"
+    },
+    {
+      "path": "prepare_source_expectations.py",
+      "bytes": 5153,
+      "sha256": "7188e845f6a31709b810ccb9f6c3b7c20882700865b2bbe4b12b9b8fcc0a78be"
+    },
+    {
+      "path": "ordinary/artifact-verifier-sanity.json",
+      "bytes": 10240,
+      "sha256": "0721272d1067cbad63b998d5a8423c269b5d58617d3d2adc0d632f5a0ed383d4"
+    },
+    {
+      "path": "optimized/artifact-verifier-sanity.json",
+      "bytes": 10240,
+      "sha256": "0721272d1067cbad63b998d5a8423c269b5d58617d3d2adc0d632f5a0ed383d4"
+    },
+    {
+      "path": "preparation/source-expectations.json",
+      "bytes": 28685,
+      "sha256": "d22ec2abf0cdd8e72b4a57e9808938388a90904cfe57a5d0b20fac5db505a646"
+    },
+    {
+      "path": "preparation/staged-source-tree.json",
+      "bytes": 330150,
+      "sha256": "6cd866a0ce14cb24bc0ce201e7020c8c07c082f6e805aefe07b0426bb2ac9ee9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6706,
+      "sha256": "7e0ab45326ae48b4c6a1695d64730a12ac13dbabbd781c00400c1aaccf0bb571"
+    }
+  ],
+  "unchanged_real_verifiers": [
+    "verify_apk_artifact.py",
+    "verify_api35_artifact.py",
+    "verify_exact_script_artifact.py"
+  ],
+  "changed_real_verifier": "Regression now also requires the source-derived six-method NumericDisplayLocaleTest suite.",
+  "four_synthetic_positives": true,
+  "negative_synthetic_controls_rejected": 36,
+  "all_prior_35_controls_retained": true,
+  "added_negative": "missing numeric display suite",
+  "ordinary_and_optimized_receipts_byte_identical": true,
+  "tracked_files": 1379,
+  "expected_packaged_tracked_files": 1376,
+  "compiled_values": 392,
+  "new_compiled_values": 110,
+  "prior_compiled_values": 282,
+  "source_derived_focused_method_counts": {
+    "NumericDisplayLocaleTest": 6,
+    "CatalanRomanianCompletionWordingTest": 5,
+    "CatalanRomanianImportWordingTest": 2,
+    "CatalanRomanianSaveWordingTest": 2,
+    "DanishNorwegianP0Test": 4,
+    "NynorskRemainingP0Test": 4,
+    "NynorskSaveWordingTest": 2,
+    "DerivedExportStateTest": 7,
+    "ImportSelectionTitleTest": 12,
+    "TaggedColourImportTest": 5
+  },
+  "API35_source_expected_counts": {
+    "app": 45,
+    "native": 74
+  },
+  "full_JVM_total": "Derived only from actual artifact XML; original 1366 is historical, not a prediction of passing results.",
+  "privacy": "Authorized project verifier/source and explicitly synthetic preparation evidence only; no credentials, private links, execution-local paths or unrelated private data. Generic forbidden-path patterns are validation code.",
+  "limits": [
+    "No actual new-head hosted artifact success, JVM/emulator execution or release is certified.",
+    "Original failed run and original verifiers are retained unchanged.",
+    "No application/test edits or external calls by this preparation."
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "source_commit": "e5f2d4e2d07e678076f022aa7b3ef923e13c3721",
+  "source_tree": "806d9577409c4044212d1c12e6e38da46417bae6",
+  "run_id": 40350966050,
+  "positive_terminal_join": "passed",
+  "controls_rejected": 48,
+  "cases": [
+    {
+      "case": "wrong actual run",
+      "outcome": "rejected",
+      "guard": "actual terminal run/event/head/status"
+    },
+    {
+      "case": "PR event relabelled",
+      "outcome": "rejected",
+      "guard": "actual terminal run/event/head/status"
+    },
+    {
+      "case": "wrong workflow head",
+      "outcome": "rejected",
+      "guard": "actual terminal run/event/head/status"
+    },
+    {
+      "case": "wrong actual tree",
+      "outcome": "rejected",
+      "guard": "terminal merge/head/tree/parents/develop"
+    },
+    {
+      "case": "wrong ordered parents",
+      "outcome": "rejected",
+      "guard": "terminal merge/head/tree/parents/develop"
+    },
+    {
+      "case": "stale develop ref",
+      "outcome": "rejected",
+      "guard": "terminal merge/head/tree/parents/develop"
+    },
+    {
+      "case": "pending status not terminal",
+      "outcome": "rejected",
+      "guard": "actual terminal run/event/head/status"
+    },
+    {
+      "case": "failure conclusion",
+      "outcome": "rejected",
+      "guard": "actual terminal run/event/head/status"
+    },
+    {
+      "case": "wrong completion timestamp",
+      "outcome": "rejected",
+      "guard": "actual terminal run/event/head/status"
+    },
+    {
+      "case": "missing actual check",
+      "outcome": "rejected",
+      "guard": "six actual merge checks"
+    },
+    {
+      "case": "stale check head",
+      "outcome": "rejected",
+      "guard": "six actual merge checks"
+    },
+    {
+      "case": "failed check",
+      "outcome": "rejected",
+      "guard": "six actual merge checks"
+    },
+    {
+      "case": "missing actual job",
+      "outcome": "rejected",
+      "guard": "six actual terminal jobs"
+    },
+    {
+      "case": "duplicated artifact",
+      "outcome": "rejected",
+      "guard": "actual artifact inventory"
+    },
+    {
+      "case": "wrong source artifact ID",
+      "outcome": "rejected",
+      "guard": "artifact ID missing from actual run"
+    },
+    {
+      "case": "wrong source artifact digest",
+      "outcome": "rejected",
+      "guard": "actual artifact digest/name binding"
+    },
+    {
+      "case": "wrong compiled tree",
+      "outcome": "rejected",
+      "guard": "fresh exact/API tree identities"
+    },
+    {
+      "case": "wrong compiled tested commit",
+      "outcome": "rejected",
+      "guard": "fresh build/compiled/regression identity"
+    },
+    {
+      "case": "wrong regression run",
+      "outcome": "rejected",
+      "guard": "fresh build/compiled/regression identity"
+    },
+    {
+      "case": "wrong API tree",
+      "outcome": "rejected",
+      "guard": "fresh exact/API tree identities"
+    },
+    {
+      "case": "wrong exact-script source",
+      "outcome": "rejected",
+      "guard": "fresh exact/API tree identities"
+    },
+    {
+      "case": "wrong packaged source count",
+      "outcome": "rejected",
+      "guard": "actual packaged source counts/exclusions"
+    },
+    {
+      "case": "wrong source exclusions",
+      "outcome": "rejected",
+      "guard": "actual packaged source counts/exclusions"
+    },
+    {
+      "case": "wrong build APK hash",
+      "outcome": "rejected",
+      "guard": "compiled source/110+282 partition"
+    },
+    {
+      "case": "compiled wrong fixture hash",
+      "outcome": "rejected",
+      "guard": "compiled actual/prior source-bound fixture equality"
+    },
+    {
+      "case": "compiled duplicate pair",
+      "outcome": "rejected",
+      "guard": "compiled exact-pair grain"
+    },
+    {
+      "case": "compiled new versus prior inflated",
+      "outcome": "rejected",
+      "guard": "compiled source/110+282 partition"
+    },
+    {
+      "case": "JVM failure hidden",
+      "outcome": "rejected",
+      "guard": "fresh actual JVM inventory/result"
+    },
+    {
+      "case": "JVM skipped case",
+      "outcome": "rejected",
+      "guard": "fresh actual JVM inventory/result"
+    },
+    {
+      "case": "missing focused suite case",
+      "outcome": "rejected",
+      "guard": "ten actual source-focused suites"
+    },
+    {
+      "case": "failed focused case",
+      "outcome": "rejected",
+      "guard": "ten actual source-focused suites"
+    },
+    {
+      "case": "hosted skips promoted to pass",
+      "outcome": "rejected",
+      "guard": "hosted Python actual skips remain distinct"
+    },
+    {
+      "case": "hosted skip identities guessed",
+      "outcome": "rejected",
+      "guard": "hosted Python actual skips remain distinct"
+    },
+    {
+      "case": "hosted duration replaced by local duration",
+      "outcome": "rejected",
+      "guard": "hosted Python actual skips remain distinct"
+    },
+    {
+      "case": "lint failure hidden",
+      "outcome": "rejected",
+      "guard": "actual lint/phase receipts"
+    },
+    {
+      "case": "phase failed",
+      "outcome": "rejected",
+      "guard": "actual lint/phase receipts"
+    },
+    {
+      "case": "missing generation probe",
+      "outcome": "rejected",
+      "guard": "13 source generation probes including expected rejection"
+    },
+    {
+      "case": "expected rejection promoted to success",
+      "outcome": "rejected",
+      "guard": "13 source generation probes including expected rejection"
+    },
+    {
+      "case": "API35 wrong fixture",
+      "outcome": "rejected",
+      "guard": "source-bound API fixture identities unchanged"
+    },
+    {
+      "case": "native wrong fixture",
+      "outcome": "rejected",
+      "guard": "source-bound API fixture identities unchanged"
+    },
+    {
+      "case": "API35 wrong source ZIP",
+      "outcome": "rejected",
+      "guard": "actual composed device source/build identity"
+    },
+    {
+      "case": "API35 app completion short",
+      "outcome": "rejected",
+      "guard": "exact app API35 selection/phases"
+    },
+    {
+      "case": "API35 native completion short",
+      "outcome": "rejected",
+      "guard": "exact native API35 selection/outcome"
+    },
+    {
+      "case": "API35 native timed out",
+      "outcome": "rejected",
+      "guard": "exact native API35 selection/outcome"
+    },
+    {
+      "case": "API35 wrong selected artifact",
+      "outcome": "rejected",
+      "guard": "actual artifact digest/name binding"
+    },
+    {
+      "case": "API35 wrong attempt",
+      "outcome": "rejected",
+      "guard": "actual composed selection identity"
+    },
+    {
+      "case": "instrumentation APK digest drift",
+      "outcome": "rejected",
+      "guard": "instrumentation APK artifact join"
+    },
+    {
+      "case": "PR artifacts relabelled equal",
+      "outcome": "rejected",
+      "guard": "PR versus actual artifact separation"
+    }
+  ],
+  "synthetic_scope": "Only in-memory mutations of verified receipt structures; no actual defect asserted, source file changed or CI rerun.",
+  "historical_pending_and_preview_controls_retained": true
+}
