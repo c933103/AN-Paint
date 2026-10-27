@@ -44,10 +44,10 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
+    private val reviewFixture by lazy {
         JSONObject(File("../tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json").readText())
-            .getJSONObject("locales")
     }
+    private val fixture get() = reviewFixture.getJSONObject("locales")
     private fun expected(tag: String, key: String): String {
         val raw=fixture.getJSONObject(tag).getJSONObject("accepted").getString(key)
         require(!raw.startsWith("@string/")) { "No aliases in these exact additions" }
@@ -107,15 +107,15 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
                 assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
             }
         }
-        val english=activity.createConfigurationContext(android.content.res.Configuration(activity.resources.configuration).apply {
-            setLocale(Locale.US)
-        }).resources
+        // Absent catalogues resolve the default values/ source, not the en-US spelling override.
+        // The full source texts and held-absence sets are independently pinned by host tests.
+        val defaultEnglish = reviewFixture.getJSONObject("sources")
         val held=locale.getJSONArray("held_absent")
         assertEquals(mapOf("so" to 12,"wo" to 13,"ht" to 11).getValue(tag),held.length())
         for(index in 0 until held.length()) {
             val key=held.getString(index);val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag held/$key",0,id)
-            assertEquals("$tag held/$key",english.getString(id),activity.getString(id))
+            assertEquals("$tag held/$key",decoded(defaultEnglish.getJSONObject(key).getString("source")),activity.getString(id))
         }
         run {
             assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
@@ -124,6 +124,19 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
                 ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
             assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
         }
+    }
+
+    @Test fun absentHeldValuesUseDefaultEnglishRatherThanRegionalAmericanOverrides() = forEachLocale { tag,activity ->
+        val key = "ui_foreground_background_colour_palette"
+        val source = decoded(reviewFixture.getJSONObject("sources").getJSONObject(key).getString("source"))
+        val american = activity.createConfigurationContext(android.content.res.Configuration(activity.resources.configuration).apply {
+            setLocale(Locale.US)
+        }).resources.getString(R.string.ui_foreground_background_colour_palette)
+        assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.", source)
+        assertEquals("Foreground %1\$s, background %2\$s. %3\$s color palette.", american)
+        assertNotEquals("$tag regional English is not the default source oracle", american, source)
+        assertEquals("$tag exact default fallback", source,
+            activity.getString(R.string.ui_foreground_background_colour_palette))
     }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->
