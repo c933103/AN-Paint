@@ -7,6 +7,7 @@ import unicodedata
 import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape, require_locale_scope
 import translation_catalogues as catalogues
+from irish_gaelic_welsh_priority_expectations import TAGS as GA_GD_CY_TAGS, current_row as ga_gd_cy_row, display as ga_gd_cy_display
 from cebuano_low_german_kashubian_priority_expectations import require_shared_row, decode_android
 from test_translations import SCOPED_TAGS
 from language_option_additions import ADDED_TAGS
@@ -38,6 +39,8 @@ EXPECTED_KEYS = {
 CEB_NDS_CSB_TAGS = {'csb', 'nds'}
 FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | CEB_NDS_CSB_TAGS}
 
+FAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(GA_GD_CY_TAGS)
+
 
 def wording_tags(name):
     return {'hu'} if name == FAMILIES[3] else {'default'} | SCOPED_TAGS | FAMILY_EXTRA_TAGS.get(name, set())
@@ -62,6 +65,14 @@ def wording_fixture(name):
                 if (tag in data['values'][key] or row['previous_target'] is not None
                         or row['source'] != data['values'][key]['default'] or row['attributes'] != {'name':key}):
                     raise ValueError('SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(GA_GD_CY_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=ga_gd_cy_row(tag,key)
+                if tag in data['values'][key] or row['source']!=data['values'][key]['default']:
+                    raise ValueError('GA/GD/CY SVG addition precondition differs: '+tag+'/'+key)
                 data['values'][key][tag]=row['target']
             data['additional_reviewed_tags'].append(tag)
             data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
@@ -142,7 +153,8 @@ def wording_fixture(name):
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | CEB_NDS_CSB_TAGS
+TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS
+TAGGED_COLOUR_EXTRA_TAGS |= set(GA_GD_CY_TAGS) | CEB_NDS_CSB_TAGS
 # Explicit runtime parent inheritance, not an additional reviewed catalogue.
 TAGGED_COLOUR_INHERITED_CATALOGUES = {'ca-ES-valencia': 'ca'}
 
@@ -153,6 +165,9 @@ def current_tagged_colour_data():
     if 'uk' in data or row['previous_target'] is not None:
         raise ValueError('Ukrainian tagged-colour addition must be absent in prior fixture')
     data['uk']=row['display']
+    for tag in sorted(GA_GD_CY_TAGS):
+        if tag in data:raise ValueError('GA/GD/CY tagged-colour addition must be absent: '+tag)
+        data[tag]=ga_gd_cy_display(tag,TAGGED_COLOUR_KEY)
     for tag in sorted(MR_TA_TE_TAGS):
         row=mr_ta_te_row(tag,TAGGED_COLOUR_KEY)
         if tag in data or row['previous_target'] is not None or not row['changed']:
@@ -257,6 +272,8 @@ def tagged_colour_expectations(data):
             reviewed = reviewed[1:-1]
         if data[tag] != reviewed:
             raise ValueError('Tagged-colour differs from reviewed Croatian/Bosnian value: ' + tag)
+    for tag in GA_GD_CY_TAGS:
+        if data[tag]!=ga_gd_cy_display(tag,TAGGED_COLOUR_KEY):raise ValueError('GA/GD/CY tagged-colour expectation differs: '+tag)
     reviewed_uk = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['uk']['values'][TAGGED_COLOUR_KEY]['display']
     if data['uk'] != reviewed_uk:
         raise ValueError('Tagged-colour differs from reviewed Ukrainian value')
@@ -303,7 +320,7 @@ def require_tagged_colour_resolution(data, strings, offered, english):
         expected = data[catalogue] if catalogue in data else english
         # Catalogue values retain Android apostrophe escapes; this family uses no other escapes.
         actual = strings[catalogue].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
-        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk', 'nds', 'csb') and actual.startswith('"') and actual.endswith('"'):
+        if catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk', 'ga', 'gd', 'cy', 'nds', 'csb') and actual.startswith('"') and actual.endswith('"'):
             actual = actual[1:-1]  # Android removes the reviewed outer quoting.
         if actual != expected:
             raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
@@ -334,9 +351,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
     def test_each_message_family_has_only_its_explicitly_reviewed_additions(self):
         svg = wording_fixture(FAMILIES[2])
-        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | CEB_NDS_CSB_TAGS
+        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GA_GD_CY_TAGS) | CEB_NDS_CSB_TAGS
         self.assertEqual({'cs', 'pl'}, set(svg['additional_draft_tags']))
-        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | CEB_NDS_CSB_TAGS, set(svg['additional_reviewed_tags']))
+        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | set(GA_GD_CY_TAGS) | CEB_NDS_CSB_TAGS, set(svg['additional_reviewed_tags']))
         self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
@@ -360,10 +377,10 @@ class CurrentLocalizationContracts(unittest.TestCase):
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(77+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS)+len(YO_ZU_XH_TAGS)+len(HA_IG_LN_TAGS)+len(JV_SU_KY_TAGS)+len(AS_KM_LO_TAGS)+len(CEB_NDS_CSB_TAGS), len(data))
-        self.assertEqual(94-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS)-len(CEB_NDS_CSB_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.
+        self.assertEqual(77+len(CEB_NDS_CSB_TAGS)+len(GA_GD_CY_TAGS)+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS)+len(YO_ZU_XH_TAGS)+len(HA_IG_LN_TAGS)+len(JV_SU_KY_TAGS)+len(AS_KM_LO_TAGS), len(data))
+        self.assertEqual(94-len(CEB_NDS_CSB_TAGS)-len(GA_GD_CY_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.
         self.assertEqual({'ca-ES-valencia': 'ca'}, TAGGED_COLOUR_INHERITED_CATALOGUES)
-        self.assertEqual(93-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS)-len(CEB_NDS_CSB_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))
+        self.assertEqual(93-len(CEB_NDS_CSB_TAGS)-len(GA_GD_CY_TAGS)-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS)-len(YO_ZU_XH_TAGS)-len(HA_IG_LN_TAGS)-len(JV_SU_KY_TAGS)-len(AS_KM_LO_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:
