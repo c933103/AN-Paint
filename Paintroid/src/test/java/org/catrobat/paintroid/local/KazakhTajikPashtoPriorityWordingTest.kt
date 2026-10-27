@@ -42,10 +42,33 @@ class KazakhTajikPashtoPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
+    private fun kkTgPsBoundFixture(tag: String): JSONObject {
+        val expected=mapOf("kk" to "53eee9ab1e76ed7eab5c74cffce092a95426fa0cda62c5d28bcf7c63708c0578", "tg" to "8e751faa510cd5cc1e0b01ad7cd8938a1b8ec1be7741276ab8e2f11d3e9f05cd", "ps" to "23e7480ba0ad5942811b29ba870770167cab010fe9492a1c53d31871ab7cb30a")
+        val bytes=File("../tools/fixtures/current_localization/kazakh_tajik_pashto_priority_wording/$tag.json").readBytes()
+        val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
+        return JSONObject(String(bytes,Charsets.UTF_8))
+    }
+
+    private fun kkTgPsSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) kkTgPsSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) kkTgPsSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
     private val fixture by lazy {
         JSONObject().apply {
-            for(tag in listOf("kk","tg","ps")) put(tag,JSONObject(
-                File("../tools/fixtures/current_localization/kazakh_tajik_pashto_priority_wording/$tag.json").readText()))
+            for(tag in listOf("kk","tg","ps")) put(tag,kkTgPsBoundFixture(tag))
         }
     }
     private fun row(tag: String, key: String): JSONObject {
@@ -86,11 +109,13 @@ class KazakhTajikPashtoPriorityWordingTest {
         }
     }
 
-    @Test fun everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+    @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
         val values=fixture.getJSONObject(tag).getJSONObject("values")
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
-        for(key in values.keys()) {
-            if(values.getJSONObject(key).getString("type")!="string")continue
+        val context=fixture.getJSONObject(tag).getJSONObject("context")
+        val allKeys=(values.keys().asSequence()+context.keys().asSequence()).toSet()
+        for(key in allKeys) {
+            if(row(tag,key).getString("type")!="string")continue
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag/$key",0,id)
             val text=expected(tag,key)
@@ -103,6 +128,14 @@ class KazakhTajikPashtoPriorityWordingTest {
                 }
                 assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
             }
+        }
+        val held=fixture.getJSONObject(tag).getJSONObject("held_display")
+        for(key in held.keys()) {
+            val entry=held.getJSONObject(key)
+            assertEquals("string",entry.getString("type"))
+            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
+            assertNotEquals("Held $tag/$key",0,id)
+            assertEquals("Held current or English fallback $tag/$key",entry.getString("display"),activity.getString(id))
         }
         run {
             assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",

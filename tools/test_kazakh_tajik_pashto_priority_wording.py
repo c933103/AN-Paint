@@ -8,12 +8,13 @@ from unittest.mock import patch
 import xml.etree.ElementTree as E
 import translation_catalogues as c
 from current_localization_contracts import fixture
+from kazakh_tajik_pashto_priority_expectations import require_fixture_binding, require_edited_resource as bound_require_edited_resource
 from test_slovak_slovenian_catalan_priority_wording import token_contract
 
 ROOT=Path(__file__).resolve().parents[1]
 TAGS=('kk','tg','ps')
 DATA={tag:fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json') for tag in TAGS}
-REVIEW_METADATA_SHA256={'kk': '395d99d0493d3d0439b6c30875576c1ed12c77541c2ca362ea2c85ed4b62d33b', 'tg': '9ea992815f0ac7eab22218f4cf452e4e5139e63b67924cbde7e0176c4d3ccaf6', 'ps': '28041fb4935b7a990691d1e8f0a00ea417d5ca00f62b63d0ce514c0c0a5da39f'}
+REVIEW_METADATA_SHA256={'kk': 'a05aee725e328651f5c4b99ef914eac87cfce66164c86321670867f51192f88a', 'tg': '09c024a834247ba88b66b071d3da4ac2674292a51b34e1dd28dc55481278058b', 'ps': 'c145556500748c12377fc99248939c3021b21306b7ba2974f019f4225030dea4'}
 EDIT_COUNTS={'kk': 260, 'tg': 346, 'ps': 324}
 HOLD_COUNTS={'kk': 8, 'tg': 10, 'ps': 10}
 
@@ -23,17 +24,10 @@ def resource(e):
  return d
 
 def require_review_metadata(tag,data):
- # Complete compact review contract, including predecessor history and JVM display/context fields.
- actual=hashlib.sha256(json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
- if actual!=REVIEW_METADATA_SHA256[tag]:raise ValueError('Reviewed disposition/context differs: '+tag)
+ return require_fixture_binding(tag,data)
 
 def require_edited_resource(tag,key,element):
- row=DATA[tag]['values'][key]
- if element is None or element.tag!=row['type'] or element.attrib!=row['reviewed_attributes']:
-  raise ValueError('Reviewed resource type/attributes differ: '+tag+'/'+key)
- if resource(element)['value']!=row['reviewed_value']:raise ValueError('Complete reviewed text differs: '+tag+'/'+key)
- if element.tag=='plurals' and resource(element)['children_attributes']!=row['reviewed_children_attributes']:
-  raise ValueError('Reviewed plural quantities/attributes differ: '+tag+'/'+key)
+ return bound_require_edited_resource(tag,key,element,DATA[tag])
 
 class KazakhTajikPashtoPriorityWordingTest(unittest.TestCase):
  def setUp(self):
@@ -191,5 +185,91 @@ class KazakhTajikPashtoPriorityWordingTest(unittest.TestCase):
        with self.subTest(tag=tag,key=key,mutation=mutation),self.assertRaises(ValueError):
         if module is memory:memory.current_source_expectation(key,tag,None)
         else:current.wording_fixture(current.FAMILIES[2])
+
+ def test_actual_accessors_reject_coordinated_fixture_and_target_mutation(self):
+  from kazakh_tajik_pashto_priority_expectations import require_shared_row
+  for tag,data in DATA.items():
+   key=next(k for k,r in data['values'].items() if r['type']=='string')
+   changed=deepcopy(data);changed['values'][key]['reviewed_value']+=' forged'
+   element=deepcopy(self.local[tag][key]);element.text=changed['values'][key]['reviewed_value']
+   with patch.dict(DATA,{tag:changed}):
+    with self.subTest(tag=tag),self.assertRaises(ValueError):require_edited_resource(tag,key,element)
+   for key in ('ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory','commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'):
+    for mutation in ('type','value','coordinated','missingPrevious','previous','source','sourceAttributes','attributes'):
+     changed=deepcopy(data);row=changed['values'][key]
+     if mutation=='type':row['type']='plurals'
+     elif mutation=='value':row['reviewed_value']='forged'
+     elif mutation=='coordinated':row['reviewed_value']='"forged"';row['display']='forged'
+     elif mutation=='missingPrevious':del row['previous_target']
+     elif mutation=='previous':row['previous_target']='forged'
+     elif mutation=='source':row['source']['value']='forged'
+     elif mutation=='sourceAttributes':row['source']['attributes']['formatted']='false'
+     else:row['reviewed_attributes']['formatted']='false'
+     with self.subTest(tag=tag,key=key,mutation=mutation),self.assertRaises(ValueError):require_shared_row(tag,key,changed)
+    with self.assertRaises(ValueError):require_shared_row(tag,key,data,historical_value='forged')
+    with self.assertRaises(ValueError):require_shared_row(tag,key,data,already_present=True)
+   with self.assertRaises(ValueError):require_shared_row(tag,'ui_save',data)
+
+ def test_strict_resource_and_catalogue_shape_rejects_unreviewed_text_and_children(self):
+  from kazakh_tajik_pashto_priority_expectations import require_catalogue
+  for tag,data in DATA.items():
+   original=E.parse(ROOT/data['catalogue_path']).getroot();require_catalogue(tag,original,data)
+   string_key=next(k for k,r in data['values'].items() if r['type']=='string')
+   for mode in ('resource-tail','string-child','plural-parent','plural-tail','plural-child','plural-item-tag','plural-duplicate'):
+    key=string_key if mode in ('resource-tail','string-child') else 'ui_crop_preview_images'
+    element=deepcopy(self.local[tag][key])
+    if mode=='resource-tail':element.tail='unreviewed'
+    elif mode=='string-child':E.SubElement(element,'b').text='unreviewed'
+    elif mode=='plural-parent':element.text='unreviewed'
+    elif mode=='plural-tail':element[0].tail='unreviewed'
+    elif mode=='plural-child':E.SubElement(element[0],'b').text='unreviewed'
+    elif mode=='plural-item-tag':element[0].tag='string'
+    else:element.append(deepcopy(element[0]))
+    with self.subTest(tag=tag,mode=mode),self.assertRaises(ValueError):require_edited_resource(tag,key,element)
+   for mode in ('root-tag','root-attributes','root-text','root-tail','duplicate','extra','missing','resource-tail','nested-string','plural-parent','plural-tail'):
+    root=deepcopy(original)
+    if mode=='root-tag':root.tag='unreviewed'
+    elif mode=='root-attributes':root.set('unreviewed','true')
+    elif mode=='root-text':root.text='unreviewed'
+    elif mode=='root-tail':root.tail='unreviewed'
+    elif mode=='duplicate':root.append(deepcopy(root[0]))
+    elif mode=='extra':E.SubElement(root,'string',name='unreviewed').text='unreviewed'
+    elif mode=='missing':root.remove(root[0])
+    elif mode=='resource-tail':root[0].tail='unreviewed'
+    elif mode=='nested-string':E.SubElement(root.find('./string'),'b').text='unreviewed'
+    elif mode=='plural-parent':root.find('./plurals').text='unreviewed'
+    else:root.find('./plurals')[0].tail='unreviewed'
+    with self.subTest(tag=tag,mode=mode),self.assertRaises(ValueError):require_catalogue(tag,root,data)
+
+ def test_display_and_all_hold_oracles_are_derived_from_raw_reviewed_resources(self):
+  import re
+  def decode(raw,resources,seen=()):
+   if isinstance(raw,dict):return {q:decode(text,resources,seen) for q,text in raw.items()}
+   if raw.startswith('@string/'):
+    key=raw.split('/',1)[1]
+    if key in seen:raise ValueError('Alias cycle')
+    return decode(resources[key],resources,seen+(key,))
+   if raw.startswith('"') and raw.endswith('"'):raw=raw[1:-1]
+   else:raw=re.sub(r'\s+',' ',raw).strip()
+   return re.sub(r'\\(.)',lambda m:{'n':'\n','r':'\r','t':'\t'}.get(m[1],m[1]),raw)
+  english={key:resource(node)['value'] for key,node in self.en.items()}
+  for tag,data in DATA.items():
+   resources={key:row['value'] for key,row in data['original_catalogue'].items()}
+   resources.update({key:row['reviewed_value'] for key,row in data['values'].items()})
+   for key,row in {**data['context'],**data['values']}.items():
+    self.assertEqual(decode(resources[key],resources),row['display'],(tag,key))
+   self.assertEqual(set(data['holds']),{row['type']+'/'+key for key,row in data['held_display'].items()})
+   for key,row in data['held_display'].items():
+    prior=data['original_catalogue'].get(key)
+    self.assertEqual(decode(prior['value'],resources) if prior else decode(english[key],english),row['display'],(tag,key))
+
+ def test_downstream_tagged_projection_rejects_coordinated_fixture_and_expected_value(self):
+  import test_current_localization_contracts as current
+  for tag in TAGS:
+   data=current.current_tagged_colour_data();changed=deepcopy(DATA[tag]);key=current.TAGGED_COLOUR_KEY
+   changed['values'][key]['reviewed_value']='"forged"';changed['values'][key]['display']='forged';data[tag]='forged'
+   original=current.fixture;name='kazakh_tajik_pashto_priority_wording/'+tag+'.json'
+   with patch.object(current,'fixture',side_effect=lambda n:changed if n==name else original(n)):
+    with self.subTest(tag=tag),self.assertRaises(ValueError):current.tagged_colour_expectations(data)
 
 if __name__=='__main__':unittest.main()

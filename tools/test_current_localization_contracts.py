@@ -7,6 +7,7 @@ import unicodedata
 import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape, require_locale_scope
 import translation_catalogues as catalogues
+from kazakh_tajik_pashto_priority_expectations import require_shared_row
 from test_translations import SCOPED_TAGS
 from language_option_additions import ADDED_TAGS
 from yoruba_zulu_xhosa_priority_expectations import TAGS as YO_ZU_XH_TAGS, current_row as yo_zu_xh_row, display as yo_zu_xh_display
@@ -131,7 +132,7 @@ def wording_fixture(name):
         for tag in ('kk','tg','ps'):
             current=fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json')
             for key in EXPECTED_KEYS[name]:
-                row=current['values'][key]
+                row=require_shared_row(tag,key,current,already_present=tag in data['values'][key])
                 if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
                     raise ValueError('KK/TG/PS SVG addition precondition differs: '+tag+'/'+key)
                 data['values'][key][tag]=row['reviewed_value']
@@ -198,7 +199,7 @@ def add_kk_tg_ps_tagged_colour(data,reviewed):
     key=TAGGED_COLOUR_KEY
     english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
     for tag in ('kk','tg','ps'):
-        row=reviewed[tag]['values'][key]
+        row=require_shared_row(tag,key,reviewed[tag],already_present=tag in data)
         raw=row['reviewed_value']
         if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
                 or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
@@ -282,7 +283,7 @@ def tagged_colour_expectations(data):
         if data[tag]!=yo_zu_xh_display(tag,TAGGED_COLOUR_KEY):
             raise ValueError('Tagged-colour differs from complete Yoruba/Zulu/Xhosa value: '+tag)
     for tag in ('kk','tg','ps'):
-        reviewed=fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json')['values'][TAGGED_COLOUR_KEY]['display']
+        reviewed=require_shared_row(tag,TAGGED_COLOUR_KEY,fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json'))['display']
         if data[tag]!=reviewed:
             raise ValueError('Tagged-colour differs from reviewed KK/TG/PS value: '+tag)
     return data

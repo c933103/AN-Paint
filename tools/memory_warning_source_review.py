@@ -5,6 +5,7 @@ no historical fixture or receipt is rewritten.
 """
 import json
 from current_localization_contracts import fixture
+from kazakh_tajik_pashto_priority_expectations import require_shared_row
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
 from yoruba_zulu_xhosa_priority_expectations import MEMORY_ADDITIONS as YO_ZU_XH_ADDITIONS, current_row as yo_zu_xh_row
@@ -56,7 +57,7 @@ old source snapshot.
     if (tag,key) in KK_TG_PS_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
-        row=fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json')['values'][key]
+        row=require_shared_row(tag,key,fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json'),historical_value=historical_value)
         if historical_value is not None or old is not None or 'previous_target' not in row or row['previous_target'] is not None:
             raise ValueError('KK/TG/PS historical warning addition must be absent: '+tag+'/'+key)
         if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
