@@ -1,0 +1,2506 @@
+{
+  "source_commit": "651ab24b2c4dfd26d432daf0d8771fdb179ff013",
+  "source_tree": "d06833e6d8cd1ec700fd03f61858433290808ab7",
+  "locale": "is",
+  "scope": "All85 entries in complete Icelandic applicable P0 unit:80 missing active P0,2 inherited P0 corrections,2 P2 atomic dependencies and1 actual P1 command. Five absent P0 holds remain; not completion of remaining249 P1.",
+  "values": {
+    "formats22_animation_message": {
+      "tier": "P0",
+      "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "source_attributes": {
+        "name": "formats22_animation_message"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Fjöldi ramma í þessari %1$s-mynd: %2$s. AN Paint breytir kyrrmyndum og varðveitir ekki hreyfimyndir.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Fjöldi ramma í þessari %1$s-mynd: %2$s. AN Paint breytir kyrrmyndum og varðveitir ekki hreyfimyndir.\"",
+      "rationale": "Count-label construction supports exact and lower-bound arbitrary frame counts without Icelandic singular/plural disagreement; still-image editing and animation loss retained.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 92,
+          "start_line": 88,
+          "end_line": 96,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L88-L96"
+        }
+      ]
+    },
+    "formats22_animation_poster": {
+      "tier": "P0",
+      "source": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "source_attributes": {
+        "name": "formats22_animation_poster"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Þessi PNG-mynd hefur sérstaka sjálfgefna mynd. Sú mynd verður flutt inn í stað ramma hreyfimyndarinnar. Vistun býr til kyrrmynd.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Þessi PNG-mynd hefur sérstaka sjálfgefna mynd. Sú mynd verður flutt inn í stað ramma hreyfimyndarinnar. Vistun býr til kyrrmynd.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 93,
+          "start_line": 89,
+          "end_line": 97,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L89-L97"
+        }
+      ]
+    },
+    "formats22_animation_still": {
+      "tier": "P0",
+      "source": "Only the first frame will be imported. Saving creates a still image.",
+      "source_attributes": {
+        "name": "formats22_animation_still"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Aðeins fyrsti ramminn verður fluttur inn. Vistun býr til kyrrmynd.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Aðeins fyrsti ramminn verður fluttur inn. Vistun býr til kyrrmynd.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 93,
+          "start_line": 89,
+          "end_line": 97,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L89-L97"
+        }
+      ]
+    },
+    "formats22_animation_title": {
+      "tier": "P0",
+      "source": "Animated image",
+      "source_attributes": {
+        "name": "formats22_animation_title"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Hreyfimynd\"",
+      "decision": "accept",
+      "reviewed_value": "\"Hreyfimynd\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 94,
+          "start_line": 90,
+          "end_line": 98,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L90-L98"
+        }
+      ]
+    },
+    "formats22_animation_unknown": {
+      "tier": "P0",
+      "source": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "source_attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Þessi %1$s-mynd er of flókin til að staðfesta hvort hún inniheldur fleiri en einn ramma. AN Paint opnar aðeins kyrrmynd og varðveitir enga hreyfimynd.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Þessi %1$s-mynd er of flókin til að staðfesta hvort hún inniheldur fleiri en einn ramma. AN Paint opnar aðeins kyrrmynd og varðveitir enga hreyfimynd.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 91,
+          "start_line": 87,
+          "end_line": 95,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L87-L95"
+        }
+      ]
+    },
+    "formats22_ascii_description": {
+      "tier": "P0",
+      "source": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "source_attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Skrifar hreinan texta með ljósum og dökkum stöfum. Skoðaðu hann með jafn breiðu letri. Þetta er sjónræn framsetning; ekki er hægt að opna hana aftur sem upprunalegu myndina.\"",
+      "decision": "revise",
+      "reviewed_value": "\"Skrifar hreinan texta með ljósum og dökkum stöfum. Skoðaðu hann með jafnbreiðu letri. Þetta er sjónræn framsetning; ekki er hægt að opna hana aftur sem upprunalegu myndina.\"",
+      "rationale": "Use the established compound jafnbreitt for monospace/fixed-width font; the spaced comparative phrase is not the intended technical label.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 101,
+          "start_line": 97,
+          "end_line": 105,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L97-L105"
+        }
+      ]
+    },
+    "formats22_open_still": {
+      "tier": "P0",
+      "source": "Open still image",
+      "source_attributes": {
+        "name": "formats22_open_still"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Opna kyrrmynd\"",
+      "decision": "accept",
+      "reviewed_value": "\"Opna kyrrmynd\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 94,
+          "start_line": 90,
+          "end_line": 98,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L90-L98"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 95,
+          "start_line": 91,
+          "end_line": 99,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L91-L99"
+        }
+      ]
+    },
+    "formats22_pdf_raster_hint": {
+      "tier": "P0",
+      "source": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "source_attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"PDF-síður eru myndgerðar við 144 dpi. Texti og vigurhlutir verða að mynddílum.\"",
+      "decision": "accept",
+      "reviewed_value": "\"PDF-síður eru myndgerðar við 144 dpi. Texti og vigurhlutir verða að mynddílum.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 102,
+          "start_line": 98,
+          "end_line": 106,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L98-L106"
+        }
+      ]
+    },
+    "gallery_credit_could_not_save": {
+      "tier": "P0",
+      "source": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "source_attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að vista eða endurheimta upplýsingar um höfunda myndarinnar. Áður vistaðar upplýsingar hafa verið varðveittar. Reyndu aftur.\"",
+      "decision": "revise",
+      "reviewed_value": "\"Ekki tókst að vista eða endurheimta upplýsingar um höfunda, uppruna og leyfi mynda. Áður vistaðar upplýsingar hafa verið varðveittar. Reyndu aftur.\"",
+      "rationale": "Credits include source/publisher/licence text as well as authors in GalleryCredits.credit; author-only wording narrows the retained data.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 238,
+          "start_line": 234,
+          "end_line": 242,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L234-L242"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 908,
+          "start_line": 904,
+          "end_line": 912,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L904-L912"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1194,
+          "start_line": 1190,
+          "end_line": 1198,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1190-L1198"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1197,
+          "start_line": 1193,
+          "end_line": 1201,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1193-L1201"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1203,
+          "start_line": 1199,
+          "end_line": 1207,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1199-L1207"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1207,
+          "start_line": 1203,
+          "end_line": 1211,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1203-L1211"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1478,
+          "start_line": 1474,
+          "end_line": 1482,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1474-L1482"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1488,
+          "start_line": 1484,
+          "end_line": 1492,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1484-L1492"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1495,
+          "start_line": 1491,
+          "end_line": 1499,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1491-L1499"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "line": 62,
+          "start_line": 58,
+          "end_line": 66,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L58-L66"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "line": 243,
+          "start_line": 239,
+          "end_line": 247,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L239-L247"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "line": 415,
+          "start_line": 411,
+          "end_line": 419,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt#L411-L419"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+          "line": 79,
+          "start_line": 75,
+          "end_line": 83,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L75-L83"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+          "line": 113,
+          "start_line": 109,
+          "end_line": 117,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L109-L117"
+        }
+      ]
+    },
+    "gallery_credit_too_large": {
+      "tier": "P0",
+      "source": "These image credits would make the drawing too large to restore. Your previous drawing and credits have been kept.",
+      "source_attributes": {
+        "name": "gallery_credit_too_large"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Þessar upplýsingar um höfunda myndarinnar myndu gera teikninguna of stóra til að endurheimta. Fyrri teikningin og upplýsingar um höfunda hafa verið varðveittar.\"",
+      "decision": "revise",
+      "reviewed_value": "\"Þessar upplýsingar um höfunda, uppruna og leyfi mynda myndu gera teikninguna of stóra til að endurheimta. Fyrri teikningin og upplýsingarnar hafa verið varðveittar.\"",
+      "rationale": "Retain previous drawing plus complete attribution records, not just author names; preserve conditional restoration-size consequence.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1218,
+          "start_line": 1214,
+          "end_line": 1222,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1214-L1222"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1453,
+          "start_line": 1449,
+          "end_line": 1457,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1449-L1457"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+          "line": 111,
+          "start_line": 107,
+          "end_line": 115,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L107-L115"
+        }
+      ]
+    },
+    "legacy_credits_unreadable": {
+      "tier": "P0",
+      "source": "Some saved credits could not be read. Their stored copies have been kept.",
+      "source_attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að lesa sumar vistaðar upplýsingar um höfunda. Vistuð afrit þeirra hafa verið varðveitt.\"",
+      "decision": "revise",
+      "reviewed_value": "\"Ekki tókst að lesa sumar vistaðar upplýsingar um höfunda, uppruna og leyfi mynda. Vistuð afrit þeirra hafa verið varðveitt.\"",
+      "rationale": "Unreadable preserved legacy credit text is broader than authors; include attribution origins and licences.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 93,
+          "start_line": 89,
+          "end_line": 97,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L89-L97"
+        }
+      ]
+    },
+    "save20_destination_error": {
+      "tier": "P0",
+      "source": "The completed image could not replace its destination.",
+      "source_attributes": {
+        "name": "save20_destination_error"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að setja fullgerðu myndina í stað skrárinnar á áfangastaðnum.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að setja fullgerðu myndina í stað skrárinnar á áfangastaðnum.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 40,
+          "start_line": 36,
+          "end_line": 44,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt#L36-L44"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 103,
+          "start_line": 99,
+          "end_line": 106,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L99-L106"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 62,
+          "start_line": 58,
+          "end_line": 65,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt#L58-L65"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 19,
+          "start_line": 15,
+          "end_line": 23,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt#L15-L23"
+        }
+      ]
+    },
+    "save20_encoding_budget": {
+      "tier": "P0",
+      "source": "The image and encoding buffers exceed the export memory budget.",
+      "source_attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Myndin og biðminni fyrir kóðun fara yfir minnismörk útflutnings.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Myndin og biðminni fyrir kóðun fara yfir minnismörk útflutnings.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 43,
+          "start_line": 39,
+          "end_line": 46,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt#L39-L46"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 79,
+          "start_line": 75,
+          "end_line": 83,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L75-L83"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 56,
+          "start_line": 52,
+          "end_line": 60,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt#L52-L60"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 24,
+          "start_line": 20,
+          "end_line": 28,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt#L20-L28"
+        }
+      ]
+    },
+    "save20_file_format": {
+      "tier": "P0",
+      "source": "File format",
+      "source_attributes": {
+        "name": "save20_file_format"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Skráarsnið\"",
+      "decision": "accept",
+      "reviewed_value": "\"Skráarsnið\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 62,
+          "start_line": 58,
+          "end_line": 66,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L58-L66"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 109,
+          "start_line": 105,
+          "end_line": 113,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L105-L113"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 171,
+          "start_line": 167,
+          "end_line": 175,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L167-L175"
+        }
+      ]
+    },
+    "save20_file_name": {
+      "tier": "P0",
+      "source": "File name",
+      "source_attributes": {
+        "name": "save20_file_name"
+      },
+      "previous_target": {
+        "value": "\"Skáarheiti\"",
+        "attributes": {
+          "name": "save20_file_name"
+        }
+      },
+      "submitted_previous": {
+        "value": "\"Skáarheiti\"",
+        "attributes": {
+          "name": "save20_file_name"
+        }
+      },
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Skráarheiti\"",
+      "decision": "accept",
+      "reviewed_value": "\"Skráarheiti\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 53,
+          "start_line": 49,
+          "end_line": 57,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L49-L57"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 58,
+          "start_line": 54,
+          "end_line": 62,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L54-L62"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 170,
+          "start_line": 166,
+          "end_line": 174,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L166-L174"
+        }
+      ]
+    },
+    "save20_gif_description": {
+      "tier": "P0",
+      "source": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "source_attributes": {
+        "name": "save20_gif_description"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Kyrrmynd, allt að 256 litir. Litfléttun mýkir litstigla. GIF-hreyfimyndir opnast sem fyrsti ramminn.\"",
+      "decision": "revise",
+      "reviewed_value": "\"Kyrrmynd með allt að 256 litum. Litfléttun mýkir litstigla. Aðeins fyrsti rammi GIF-hreyfimynda er opnaður.\"",
+      "rationale": "Natural complete colour-count construction and explicit first-frame-only opening avoid awkward plural GIF images equated with singular first frame. Retain paired Litfléttun checkbox.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 95,
+          "start_line": 91,
+          "end_line": 99,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L91-L99"
+        }
+      ]
+    },
+    "save20_invalid_name": {
+      "tier": "P0",
+      "source": "Enter a file name without slashes or control characters.",
+      "source_attributes": {
+        "name": "save20_invalid_name"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Sláðu inn skráarheiti án skástrika eða stýristafa.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Sláðu inn skráarheiti án skástrika eða stýristafa.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 194,
+          "start_line": 190,
+          "end_line": 198,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L190-L198"
+        }
+      ]
+    },
+    "save20_lossy_quality_description": {
+      "tier": "P0",
+      "source": "Higher quality preserves more detail and usually makes a larger file.",
+      "source_attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Meiri gæði varðveita fleiri smáatriði og gera skrána yfirleitt stærri.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Meiri gæði varðveita fleiri smáatriði og gera skrána yfirleitt stærri.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 102,
+          "start_line": 98,
+          "end_line": 106,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L98-L106"
+        }
+      ]
+    },
+    "save20_unsupported_image_colour": {
+      "tier": "P0",
+      "source": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "source_attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Þessi mynd notar litasnið sem AN Paint getur ekki umbreytt enn. Umbreyttu henni í sRGB PNG í myndvinnsluforriti með litastýringu áður en hún er flutt inn.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Þessi mynd notar litasnið sem AN Paint getur ekki umbreytt enn. Umbreyttu henni í sRGB PNG í myndvinnsluforriti með litastýringu áður en hún er flutt inn.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 16,
+          "start_line": 12,
+          "end_line": 20,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt#L12-L20"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 23,
+          "start_line": 19,
+          "end_line": 27,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L19-L27"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+          "line": 115,
+          "start_line": 111,
+          "end_line": 119,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt#L111-L119"
+        }
+      ]
+    },
+    "ui_a_separate_recovery_copy_has_been_kept_use": {
+      "tier": "P0",
+      "source": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "source_attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"%1$s Sérstakt endurheimtarafrit hefur verið varðveitt. Notaðu Skrá > Flytja út endurheimtarafrit… til að vista ZIP-skrá þess. Dragðu canvas.png út úr henni og hladdu þeirri mynd til að nota venjulega stærðarbreytingu ef þörf krefur.\"",
+      "decision": "accept",
+      "reviewed_value": "\"%1$s Sérstakt endurheimtarafrit hefur verið varðveitt. Notaðu Skrá > Flytja út endurheimtarafrit… til að vista ZIP-skrá þess. Dragðu canvas.png út úr henni og hladdu þeirri mynd til að nota venjulega stærðarbreytingu ef þörf krefur.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 39,
+          "start_line": 35,
+          "end_line": 43,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L35-L43"
+        }
+      ]
+    },
+    "ui_an_assembly_source_image_is_missing": {
+      "tier": "P0",
+      "source": "An assembly source image is missing.",
+      "source_attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Upprunamynd vantar í samsetninguna.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Upprunamynd vantar í samsetninguna.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 262,
+          "start_line": 258,
+          "end_line": 266,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L258-L266"
+        }
+      ]
+    },
+    "ui_assembly_saved": {
+      "tier": "P0",
+      "source": "Assembly saved",
+      "source_attributes": {
+        "name": "ui_assembly_saved"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Samsetning vistuð\"",
+      "decision": "accept",
+      "reviewed_value": "\"Samsetning vistuð\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 342,
+          "start_line": 338,
+          "end_line": 346,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L338-L346"
+        }
+      ]
+    },
+    "ui_assembly_source_memory_floor": {
+      "tier": "P0",
+      "source": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "source_attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Áætlað er að þessi samsetning fari yfir núverandi vinnsluminnismörk, jafnvel með minnstu úttaksstærð. Það nægir ekki að minnka mál samsetningarinnar við núverandi mörk. Lokaðu öðrum skjölum eða útbúðu minni upprunamynd áður en þú reynir aftur. Samsetningin er óbreytt.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Áætlað er að þessi samsetning fari yfir núverandi vinnsluminnismörk, jafnvel með minnstu úttaksstærð. Það nægir ekki að minnka mál samsetningarinnar við núverandi mörk. Lokaðu öðrum skjölum eða útbúðu minni upprunamynd áður en þú reynir aftur. Samsetningin er óbreytt.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 300,
+          "start_line": 296,
+          "end_line": 304,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L296-L304"
+        }
+      ]
+    },
+    "ui_autosave_failed_use_save": {
+      "tier": "P0",
+      "source": "Autosave failed · use Save",
+      "source_attributes": {
+        "name": "ui_autosave_failed_use_save"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Sjálfvirk vistun mistókst · notaðu Vista\"",
+      "decision": "accept",
+      "reviewed_value": "\"Sjálfvirk vistun mistókst · notaðu Vista\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1627,
+          "start_line": 1623,
+          "end_line": 1631,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1623-L1631"
+        }
+      ]
+    },
+    "ui_autosave_image_encoding_failed": {
+      "tier": "P0",
+      "source": "Autosave image encoding failed.",
+      "source_attributes": {
+        "name": "ui_autosave_image_encoding_failed"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Kóðun myndar fyrir sjálfvirka vistun mistókst.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Kóðun myndar fyrir sjálfvirka vistun mistókst.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 132,
+          "start_line": 128,
+          "end_line": 136,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L128-L136"
+        }
+      ]
+    },
+    "ui_autosave_is_paused_to_protect_that_draft_use": {
+      "tier": "P0",
+      "source": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "source_attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"%1$s Sjálfvirk vistun er í bið til að vernda þessi drög. Notaðu „Skrá → Flytja út endurheimtarafrit…“ til að varðveita þau og „Skrá → Vista sem…“ (Skráarsnið: PNG / JPEG) til að vista núverandi verk.\"",
+      "decision": "accept",
+      "reviewed_value": "\"%1$s Sjálfvirk vistun er í bið til að vernda þessi drög. Notaðu „Skrá → Flytja út endurheimtarafrit…“ til að varðveita þau og „Skrá → Vista sem…“ (Skráarsnið: PNG / JPEG) til að vista núverandi verk.\"",
+      "rationale": "Previous draft protection and current-work save remain distinct; actual Skrá, export recovery, Vista sem and Skráarsnið command labels match.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 45,
+          "start_line": 41,
+          "end_line": 49,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L41-L49"
+        }
+      ]
+    },
+    "ui_autosave_metadata_is_missing": {
+      "tier": "P0",
+      "source": "Autosave metadata is missing.",
+      "source_attributes": {
+        "name": "ui_autosave_metadata_is_missing"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Lýsigögn sjálfvirkrar vistunar vantar.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Lýsigögn sjálfvirkrar vistunar vantar.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 147,
+          "start_line": 143,
+          "end_line": 151,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L143-L151"
+        }
+      ]
+    },
+    "ui_autosave_paused_use_save": {
+      "tier": "P0",
+      "source": "Autosave paused · use Save",
+      "source_attributes": {
+        "name": "ui_autosave_paused_use_save"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Sjálfvirk vistun í bið · notaðu Vista\"",
+      "decision": "accept",
+      "reviewed_value": "\"Sjálfvirk vistun í bið · notaðu Vista\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 44,
+          "start_line": 40,
+          "end_line": 48,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L40-L48"
+        }
+      ]
+    },
+    "ui_autosave_pixels_are_missing": {
+      "tier": "P0",
+      "source": "Autosave pixels are missing.",
+      "source_attributes": {
+        "name": "ui_autosave_pixels_are_missing"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Mynddíla sjálfvirkrar vistunar vantar.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Mynddíla sjálfvirkrar vistunar vantar.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 152,
+          "start_line": 148,
+          "end_line": 156,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L148-L156"
+        }
+      ]
+    },
+    "ui_autosave_pixels_could_not_be_read": {
+      "tier": "P0",
+      "source": "Autosave pixels could not be read.",
+      "source_attributes": {
+        "name": "ui_autosave_pixels_could_not_be_read"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að lesa mynddíla sjálfvirkrar vistunar.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að lesa mynddíla sjálfvirkrar vistunar.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 158,
+          "start_line": 154,
+          "end_line": 162,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L154-L162"
+        }
+      ]
+    },
+    "ui_autosave_selection_encoding_failed": {
+      "tier": "P0",
+      "source": "Autosave selection encoding failed.",
+      "source_attributes": {
+        "name": "ui_autosave_selection_encoding_failed"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Kóðun myndvals fyrir sjálfvirka vistun mistókst.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Kóðun myndvals fyrir sjálfvirka vistun mistókst.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 134,
+          "start_line": 130,
+          "end_line": 138,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L130-L138"
+        }
+      ]
+    },
+    "ui_cannot_create_the_undo_cache_free_some_device": {
+      "tier": "P0",
+      "source": "Cannot create the undo cache. Free some device storage and try again.",
+      "source_attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki er hægt að búa til skyndiminni fyrir afturköllun. Losaðu geymslupláss á tækinu og reyndu aftur.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki er hægt að búa til skyndiminni fyrir afturköllun. Losaðu geymslupláss á tækinu og reyndu aftur.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 22,
+          "start_line": 18,
+          "end_line": 26,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L18-L26"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 51,
+          "start_line": 47,
+          "end_line": 55,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L47-L55"
+        }
+      ]
+    },
+    "ui_clear_all": {
+      "tier": "P0",
+      "source": "Clear all",
+      "source_attributes": {
+        "name": "ui_clear_all"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Hreinsa allt\"",
+      "decision": "accept",
+      "reviewed_value": "\"Hreinsa allt\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 101,
+          "start_line": 97,
+          "end_line": 105,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L105"
+        }
+      ]
+    },
+    "ui_clear_image": {
+      "tier": "P0",
+      "source": "Clear image",
+      "source_attributes": {
+        "name": "ui_clear_image"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Hreinsa mynd\"",
+      "decision": "accept",
+      "reviewed_value": "\"Hreinsa mynd\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 859,
+          "start_line": 855,
+          "end_line": 863,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L855-L863"
+        }
+      ]
+    },
+    "ui_could_not_export_the_recovery_copy": {
+      "tier": "P0",
+      "source": "Could not export the recovery copy",
+      "source_attributes": {
+        "name": "ui_could_not_export_the_recovery_copy"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að flytja út endurheimtarafritið\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að flytja út endurheimtarafritið\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1409,
+          "start_line": 1405,
+          "end_line": 1413,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1405-L1413"
+        }
+      ]
+    },
+    "ui_could_not_open_image": {
+      "tier": "P0",
+      "source": "Could not open image",
+      "source_attributes": {
+        "name": "ui_could_not_open_image"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að opna mynd\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að opna mynd\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1288,
+          "start_line": 1284,
+          "end_line": 1292,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1284-L1292"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1293,
+          "start_line": 1289,
+          "end_line": 1297,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1289-L1297"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1337,
+          "start_line": 1333,
+          "end_line": 1341,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1333-L1341"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1350,
+          "start_line": 1346,
+          "end_line": 1354,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1346-L1354"
+        }
+      ]
+    },
+    "ui_could_not_save_image": {
+      "tier": "P0",
+      "source": "Could not save image",
+      "source_attributes": {
+        "name": "ui_could_not_save_image"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að vista mynd\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að vista mynd\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1375,
+          "start_line": 1371,
+          "end_line": 1379,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1371-L1379"
+        }
+      ]
+    },
+    "ui_could_not_save_the_assembly": {
+      "tier": "P0",
+      "source": "Could not save the assembly: %1$s",
+      "source_attributes": {
+        "name": "ui_could_not_save_the_assembly"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að vista samsetninguna: %1$s\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að vista samsetninguna: %1$s\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 343,
+          "start_line": 339,
+          "end_line": 347,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L339-L347"
+        }
+      ]
+    },
+    "ui_could_not_store_the_assembly": {
+      "tier": "P0",
+      "source": "Could not store the assembly.",
+      "source_attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að geyma samsetninguna.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að geyma samsetninguna.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 229,
+          "start_line": 225,
+          "end_line": 233,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L225-L233"
+        }
+      ]
+    },
+    "ui_d_d_pixels_2f_mp_exceeds_the_current": {
+      "tier": "P0",
+      "source": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "source_attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Myndin, %1$d × %2$d px (%3$.2f MP), fer yfir núverandi öryggismörk myndvinnslu, %4$.2f MP. AN Paint geymir alla myndina í minni og tekur frá pláss fyrir umbreytingar og myndval. Tiltækt minni ákvarðar þessi mörk. Aðgerðin var stöðvuð áður en minni var úthlutað fyrir of stóra bitamynd. Engin sjálfvirk stærðarbreyting var gerð.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Myndin, %1$d × %2$d px (%3$.2f MP), fer yfir núverandi öryggismörk myndvinnslu, %4$.2f MP. AN Paint geymir alla myndina í minni og tekur frá pláss fyrir umbreytingar og myndval. Tiltækt minni ákvarðar þessi mörk. Aðgerðin var stöðvuð áður en minni var úthlutað fyrir of stóra bitamynd. Engin sjálfvirk stærðarbreyting var gerð.\"",
+      "rationale": "Invariant px and explicit image subject avoid numeric inflection; four arguments, available-memory causality, reserves, preallocation stop and no-auto-resize all retained.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+          "line": 46,
+          "start_line": 42,
+          "end_line": 50,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt#L42-L50"
+        }
+      ]
+    },
+    "ui_draft_not_saved_yet": {
+      "tier": "P0",
+      "source": "Draft not saved yet",
+      "source_attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Drög ekki enn vistuð\"",
+      "decision": "accept",
+      "reviewed_value": "\"Drög ekki enn vistuð\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 32,
+          "start_line": 28,
+          "end_line": 36,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L28-L36"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 131,
+          "start_line": 127,
+          "end_line": 135,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L127-L135"
+        }
+      ]
+    },
+    "ui_draft_restored": {
+      "tier": "P0",
+      "source": "Draft restored",
+      "source_attributes": {
+        "name": "ui_draft_restored"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Drög endurheimt\"",
+      "decision": "accept",
+      "reviewed_value": "\"Drög endurheimt\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 82,
+          "start_line": 78,
+          "end_line": 86,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L78-L86"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 95,
+          "start_line": 91,
+          "end_line": 99,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L91-L99"
+        }
+      ]
+    },
+    "ui_draft_saved": {
+      "tier": "P0",
+      "source": "Draft saved",
+      "source_attributes": {
+        "name": "ui_draft_saved"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Drög vistuð\"",
+      "decision": "accept",
+      "reviewed_value": "\"Drög vistuð\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1626,
+          "start_line": 1622,
+          "end_line": 1630,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1622-L1630"
+        }
+      ]
+    },
+    "ui_export_did_not_save23": {
+      "tier": "P0",
+      "source": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "source_attributes": {
+        "name": "ui_export_did_not_save23"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Útflutningurinn var búinn til. Notaðu Vista eða Vista sem… til að vista núverandi mynd áður en þú heldur áfram.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Útflutningurinn var búinn til. Notaðu Vista eða Vista sem… til að vista núverandi mynd áður en þú heldur áfram.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1373,
+          "start_line": 1369,
+          "end_line": 1377,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1369-L1377"
+        }
+      ]
+    },
+    "ui_export_explanation23": {
+      "tier": "P0",
+      "source": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "source_attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Flyttu út táknmynd, Base64-texta eða ASCII-mynd. Útflutningur breytir hvorki núverandi mynd né vistunarstað hennar fyrir Vista.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Flyttu út táknmynd, Base64-texta eða ASCII-mynd. Útflutningur breytir hvorki núverandi mynd né vistunarstað hennar fyrir Vista.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 52,
+          "start_line": 48,
+          "end_line": 56,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L48-L56"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 183,
+          "start_line": 179,
+          "end_line": 187,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L179-L187"
+        }
+      ]
+    },
+    "ui_export_recovery_copy": {
+      "tier": "P0",
+      "source": "Export recovery copy…",
+      "source_attributes": {
+        "name": "ui_export_recovery_copy"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Flytja út endurheimtarafrit…\"",
+      "decision": "accept",
+      "reviewed_value": "\"Flytja út endurheimtarafrit…\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 846,
+          "start_line": 842,
+          "end_line": 850,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L842-L850"
+        }
+      ]
+    },
+    "ui_export_recovery_copy_144b8a": {
+      "tier": "P0",
+      "source": "Export recovery copy",
+      "source_attributes": {
+        "name": "ui_export_recovery_copy_144b8a"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Flytja út endurheimtarafrit\"",
+      "decision": "accept",
+      "reviewed_value": "\"Flytja út endurheimtarafrit\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1161,
+          "start_line": 1157,
+          "end_line": 1165,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1157-L1165"
+        }
+      ]
+    },
+    "ui_higher_quality_usually_makes_a_larger_file_lossless": {
+      "tier": "P0",
+      "source": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "source_attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Meiri gæði gera skrána yfirleitt stærri. Taplaus vistun varðveitir öll litgildi.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Meiri gæði gera skrána yfirleitt stærri. Taplaus vistun varðveitir öll litgildi.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 103,
+          "start_line": 99,
+          "end_line": 107,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L99-L107"
+        }
+      ]
+    },
+    "ui_history_unavailable34": {
+      "tier": "P0",
+      "source": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "source_attributes": {
+        "name": "ui_history_unavailable34",
+        "formatted": "false"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Myndflöturinn var endurheimtur en ekki tókst að lesa afturköllunarferil hans. Upprunalegu drögin hafa verið varðveitt sem endurheimtarafrit.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Myndflöturinn var endurheimtur en ekki tókst að lesa afturköllunarferil hans. Upprunalegu drögin hafa verið varðveitt sem endurheimtarafrit.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 64,
+          "start_line": 60,
+          "end_line": 68,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L60-L68"
+        }
+      ]
+    },
+    "ui_invalid_autosave_metadata": {
+      "tier": "P0",
+      "source": "Invalid autosave metadata.",
+      "source_attributes": {
+        "name": "ui_invalid_autosave_metadata"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ógild lýsigögn sjálfvirkrar vistunar.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ógild lýsigögn sjálfvirkrar vistunar.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1219,
+          "start_line": 1215,
+          "end_line": 1223,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1215-L1223"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt",
+          "line": 20,
+          "start_line": 16,
+          "end_line": 24,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt#L16-L24"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt",
+          "line": 33,
+          "start_line": 29,
+          "end_line": 37,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt#L29-L37"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 38,
+          "start_line": 34,
+          "end_line": 42,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L34-L42"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 39,
+          "start_line": 35,
+          "end_line": 43,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L35-L43"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 148,
+          "start_line": 144,
+          "end_line": 152,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L144-L152"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt",
+          "line": 15,
+          "start_line": 11,
+          "end_line": 19,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt#L11-L19"
+        }
+      ]
+    },
+    "ui_keep_editing23": {
+      "tier": "P0",
+      "source": "Keep editing",
+      "source_attributes": {
+        "name": "ui_keep_editing23"
+      },
+      "previous_target": {
+        "value": "\"Hætta við\"",
+        "attributes": {
+          "name": "ui_keep_editing23"
+        }
+      },
+      "submitted_previous": {
+        "value": "\"Hætta við\"",
+        "attributes": {
+          "name": "ui_keep_editing23"
+        }
+      },
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Halda áfram að breyta\"",
+      "decision": "accept",
+      "reviewed_value": "\"Halda áfram að breyta\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1079,
+          "start_line": 1075,
+          "end_line": 1083,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1075-L1083"
+        }
+      ]
+    },
+    "ui_keeps_pixels_at_the_top_left_smaller_canvas": {
+      "tier": "P0",
+      "source": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "source_attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Varðveitir mynddíla efst til vinstri. Minni myndflötur fjarlægir mynddíla utan hægri og neðri jaðra; Afturkalla endurheimtir þá.\"",
+      "decision": "revise",
+      "reviewed_value": "\"Varðveitir mynddíla efst til vinstri. Minni myndflötur fjarlægir mynddíla utan hægri eða neðri jaðars; Afturkalla endurheimtir þá.\"",
+      "rationale": "Pixel loss occurs beyond either right or bottom edge; preserve source alternatives instead of an and construction that can imply both boundaries.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1016,
+          "start_line": 1012,
+          "end_line": 1020,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1012-L1020"
+        }
+      ]
+    },
+    "ui_not_enough_memory_for_this_operation_the_assembly": {
+      "tier": "P0",
+      "source": "Not enough memory for this operation. The assembly source files are retained.",
+      "source_attributes": {
+        "name": "ui_not_enough_memory_for_this_operation_the_assembly"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki er nægt minni fyrir þessa aðgerð. Upprunaskrár samsetningarinnar eru varðveittar.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki er nægt minni fyrir þessa aðgerð. Upprunaskrár samsetningarinnar eru varðveittar.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 117,
+          "start_line": 113,
+          "end_line": 121,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L113-L121"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 294,
+          "start_line": 290,
+          "end_line": 298,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L290-L298"
+        }
+      ]
+    },
+    "ui_not_enough_memory_to_save_in_this_format": {
+      "tier": "P0",
+      "source": "Not enough memory to save in this format. Try PNG",
+      "source_attributes": {
+        "name": "ui_not_enough_memory_to_save_in_this_format"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki er nægt minni til að vista á þessu sniði. Prófaðu PNG\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki er nægt minni til að vista á þessu sniði. Prófaðu PNG\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1376,
+          "start_line": 1372,
+          "end_line": 1380,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1372-L1380"
+        }
+      ]
+    },
+    "ui_png_encoding_failed": {
+      "tier": "P0",
+      "source": "PNG encoding failed.",
+      "source_attributes": {
+        "name": "ui_png_encoding_failed"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"PNG-kóðun mistókst.\"",
+      "decision": "accept",
+      "reviewed_value": "\"PNG-kóðun mistókst.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 324,
+          "start_line": 320,
+          "end_line": 328,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L320-L328"
+        }
+      ]
+    },
+    "ui_previous_draft_kept_for_recovery": {
+      "tier": "P0",
+      "source": "Previous draft kept for recovery",
+      "source_attributes": {
+        "name": "ui_previous_draft_kept_for_recovery"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Fyrri drög varðveitt til endurheimtar\"",
+      "decision": "accept",
+      "reviewed_value": "\"Fyrri drög varðveitt til endurheimtar\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 40,
+          "start_line": 36,
+          "end_line": 44,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L36-L44"
+        }
+      ]
+    },
+    "ui_recovered_image": {
+      "tier": "P0",
+      "source": "Recovered image",
+      "source_attributes": {
+        "name": "ui_recovered_image"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Endurheimt mynd\"",
+      "decision": "accept",
+      "reviewed_value": "\"Endurheimt mynd\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 71,
+          "start_line": 67,
+          "end_line": 75,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L67-L75"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 93,
+          "start_line": 89,
+          "end_line": 97,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L89-L97"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 93,
+          "start_line": 89,
+          "end_line": 97,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L89-L97"
+        }
+      ]
+    },
+    "ui_recovery_copy_exported_extract_canvas_png_from_the": {
+      "tier": "P0",
+      "source": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "source_attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Endurheimtarafrit flutt út. Dragðu canvas.png út úr ZIP-skránni og opnaðu hana með Skrá > Hlaða mynd…. ZIP-skráin inniheldur einnig stillingar draganna og fljótandi myndval, ef það er til staðar.\"",
+      "decision": "revise",
+      "reviewed_value": "\"Endurheimtarafrit flutt út. Dragðu canvas.png út úr ZIP-skránni og opnaðu myndina með „Skrá > Opna mynd…“. ZIP-skráin inniheldur einnig stillingar draganna og fljótandi myndval, ef það er til staðar.\"",
+      "rationale": "Atomic actual load-command successor uses ordinary Open image wording and quoted menu path; removes accidental ellipsis-plus-period run. Settings and possible floating selection retained.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1408,
+          "start_line": 1404,
+          "end_line": 1412,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1404-L1412"
+        }
+      ]
+    },
+    "ui_resize_large_image": {
+      "tier": "P0",
+      "source": "Resize large image?",
+      "source_attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Breyta stærð stórrar myndar?\"",
+      "decision": "accept",
+      "reviewed_value": "\"Breyta stærð stórrar myndar?\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 36,
+          "start_line": 32,
+          "end_line": 40,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L32-L40"
+        }
+      ]
+    },
+    "ui_sampled_resize_memory_explanation": {
+      "tier": "P0",
+      "source": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "source_attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Áætlanir taka með núverandi myndflöt og klippispjald, afkóðun með sýnatöku og biðminni myndvinnslu. Raunveruleg minnisnotkun er breytileg. Minna afrit tapar smáatriðum. Upprunalega skráin helst óbreytt.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Áætlanir taka með núverandi myndflöt og klippispjald, afkóðun með sýnatöku og biðminni myndvinnslu. Raunveruleg minnisnotkun er breytileg. Minna afrit tapar smáatriðum. Upprunalega skráin helst óbreytt.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 34,
+          "start_line": 30,
+          "end_line": 38,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L30-L38"
+        }
+      ]
+    },
+    "ui_save_and_share": {
+      "tier": "P0",
+      "source": "Save and share…",
+      "source_attributes": {
+        "name": "ui_save_and_share"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Vista og deila…\"",
+      "decision": "accept",
+      "reviewed_value": "\"Vista og deila…\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 842,
+          "start_line": 838,
+          "end_line": 846,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L838-L846"
+        }
+      ]
+    },
+    "ui_save_and_share_41edb4": {
+      "tier": "P0",
+      "source": "Save and share",
+      "source_attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Vista og deila\"",
+      "decision": "accept",
+      "reviewed_value": "\"Vista og deila\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 187,
+          "start_line": 183,
+          "end_line": 191,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L183-L191"
+        }
+      ]
+    },
+    "ui_save_explanation23": {
+      "tier": "P0",
+      "source": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "source_attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Veldu myndsnið og þjöppunarstillingar þess. Vista notar aftur sama skráarheiti, staðsetningu, snið og stillingar.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Veldu myndsnið og þjöppunarstillingar þess. Vista notar aftur sama skráarheiti, staðsetningu, snið og stillingar.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 52,
+          "start_line": 48,
+          "end_line": 56,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L48-L56"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 183,
+          "start_line": 179,
+          "end_line": 187,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L179-L187"
+        }
+      ]
+    },
+    "ui_save_png": {
+      "tier": "P0",
+      "source": "Save PNG",
+      "source_attributes": {
+        "name": "ui_save_png"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Vista PNG\"",
+      "decision": "accept",
+      "reviewed_value": "\"Vista PNG\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 88,
+          "start_line": 84,
+          "end_line": 92,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L84-L92"
+        }
+      ]
+    },
+    "ui_save_your_changes": {
+      "tier": "P0",
+      "source": "Save your changes?",
+      "source_attributes": {
+        "name": "ui_save_your_changes"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Vista breytingarnar þínar?\"",
+      "decision": "accept",
+      "reviewed_value": "\"Vista breytingarnar þínar?\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1077,
+          "start_line": 1073,
+          "end_line": 1081,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1073-L1081"
+        }
+      ]
+    },
+    "ui_saved": {
+      "tier": "P0",
+      "source": "Saved %1$s",
+      "source_attributes": {
+        "name": "ui_saved"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Vistað: %1$s\"",
+      "decision": "accept",
+      "reviewed_value": "\"Vistað: %1$s\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1370,
+          "start_line": 1366,
+          "end_line": 1374,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1366-L1374"
+        }
+      ]
+    },
+    "ui_share_explanation34": {
+      "tier": "P0",
+      "source": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "source_attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Vistaðu afrit á völdum stað og veldu síðan forrit til að deila því. Núverandi vistunarstaður fyrir Vista helst óbreyttur.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Vistaðu afrit á völdum stað og veldu síðan forrit til að deila því. Núverandi vistunarstaður fyrir Vista helst óbreyttur.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 52,
+          "start_line": 48,
+          "end_line": 56,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L48-L56"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 183,
+          "start_line": 179,
+          "end_line": 187,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L179-L187"
+        }
+      ]
+    },
+    "ui_the_draft_is_saving_try_again_shortly": {
+      "tier": "P0",
+      "source": "The draft is saving. Try again shortly.",
+      "source_attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Verið er að vista drögin. Reyndu aftur eftir smástund.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Verið er að vista drögin. Reyndu aftur eftir smástund.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 925,
+          "start_line": 921,
+          "end_line": 929,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L921-L929"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1443,
+          "start_line": 1439,
+          "end_line": 1447,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1439-L1447"
+        }
+      ]
+    },
+    "ui_the_encoder_did_not_finish": {
+      "tier": "P0",
+      "source": "The encoder did not finish.",
+      "source_attributes": {
+        "name": "ui_the_encoder_did_not_finish"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Kóðarinn lauk ekki vinnslu.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Kóðarinn lauk ekki vinnslu.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+          "line": 25,
+          "start_line": 21,
+          "end_line": 29,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt#L21-L29"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 100,
+          "start_line": 96,
+          "end_line": 104,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L96-L104"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 33,
+          "start_line": 29,
+          "end_line": 37,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt#L29-L37"
+        }
+      ]
+    },
+    "ui_the_image_was_saved_but_android_could_not": {
+      "tier": "P0",
+      "source": "The image was saved, but Android could not open sharing: %1$s",
+      "source_attributes": {
+        "name": "ui_the_image_was_saved_but_android_could_not"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Myndin var vistuð en Android gat ekki opnað deilingu: %1$s\"",
+      "decision": "accept",
+      "reviewed_value": "\"Myndin var vistuð en Android gat ekki opnað deilingu: %1$s\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1389,
+          "start_line": 1385,
+          "end_line": 1393,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1385-L1393"
+        }
+      ]
+    },
+    "ui_the_previous_draft_could_not_be_moved_to": {
+      "tier": "P0",
+      "source": "The previous draft could not be moved to a recovery copy.",
+      "source_attributes": {
+        "name": "ui_the_previous_draft_could_not_be_moved_to"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að færa fyrri drög í endurheimtarafrit.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að færa fyrri drög í endurheimtarafrit.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 104,
+          "start_line": 100,
+          "end_line": 108,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L100-L108"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+          "line": 112,
+          "start_line": 108,
+          "end_line": 116,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt#L108-L116"
+        }
+      ]
+    },
+    "ui_the_previous_draft_could_not_be_preserved_separately": {
+      "tier": "P0",
+      "source": "The previous draft could not be preserved separately.",
+      "source_attributes": {
+        "name": "ui_the_previous_draft_could_not_be_preserved_separately"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að varðveita fyrri drög sérstaklega.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að varðveita fyrri drög sérstaklega.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 43,
+          "start_line": 39,
+          "end_line": 47,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L39-L47"
+        }
+      ]
+    },
+    "ui_the_previous_draft_could_not_be_restored": {
+      "tier": "P0",
+      "source": "The previous draft could not be restored.",
+      "source_attributes": {
+        "name": "ui_the_previous_draft_could_not_be_restored"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að endurheimta fyrri drög.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að endurheimta fyrri drög.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 83,
+          "start_line": 79,
+          "end_line": 87,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L79-L87"
+        }
+      ]
+    },
+    "ui_the_previous_draft_needs_more_memory_to_reopen": {
+      "tier": "P0",
+      "source": "The previous draft needs more memory to reopen.",
+      "source_attributes": {
+        "name": "ui_the_previous_draft_needs_more_memory_to_reopen"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Meira minni þarf til að opna fyrri drög aftur.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Meira minni þarf til að opna fyrri drög aftur.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 84,
+          "start_line": 80,
+          "end_line": 88,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L80-L88"
+        }
+      ]
+    },
+    "ui_the_saved_assembly_could_not_be_opened": {
+      "tier": "P0",
+      "source": "The saved assembly could not be opened: %1$s",
+      "source_attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki tókst að opna vistuðu samsetninguna: %1$s\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki tókst að opna vistuðu samsetninguna: %1$s\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 60,
+          "start_line": 56,
+          "end_line": 64,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L56-L64"
+        }
+      ]
+    },
+    "ui_the_selected_location_is_not_writable": {
+      "tier": "P0",
+      "source": "The selected location is not writable.",
+      "source_attributes": {
+        "name": "ui_the_selected_location_is_not_writable"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki er hægt að skrifa á valinn stað.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki er hægt að skrifa á valinn stað.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1366,
+          "start_line": 1362,
+          "end_line": 1370,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1362-L1370"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 341,
+          "start_line": 337,
+          "end_line": 345,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L337-L345"
+        }
+      ]
+    },
+    "ui_the_trim_would_remove_the_entire_image": {
+      "tier": "P0",
+      "source": "The trim would remove the entire image.",
+      "source_attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Afskurðurinn myndi fjarlægja alla myndina.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Afskurðurinn myndi fjarlægja alla myndina.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 49,
+          "start_line": 45,
+          "end_line": 53,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L45-L53"
+        }
+      ]
+    },
+    "ui_the_undo_cache_is_damaged": {
+      "tier": "P0",
+      "source": "The undo cache is damaged.",
+      "source_attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Skyndiminni afturköllunar er skemmt.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Skyndiminni afturköllunar er skemmt.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 60,
+          "start_line": 56,
+          "end_line": 64,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L56-L64"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 62,
+          "start_line": 58,
+          "end_line": 66,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L58-L66"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 81,
+          "start_line": 77,
+          "end_line": 85,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L77-L85"
+        }
+      ]
+    },
+    "ui_there_is_not_enough_memory_for_this_operation": {
+      "tier": "P0",
+      "source": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "source_attributes": {
+        "name": "ui_there_is_not_enough_memory_for_this_operation"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki er nægt minni fyrir þessa aðgerð í upprunalegri upplausn. Engin sjálfvirk stærðarbreyting var gerð.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki er nægt minni fyrir þessa aðgerð í upprunalegri upplausn. Engin sjálfvirk stærðarbreyting var gerð.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 938,
+          "start_line": 934,
+          "end_line": 942,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L934-L942"
+        }
+      ]
+    },
+    "ui_this_location_is_not_writable": {
+      "tier": "P0",
+      "source": "This location is not writable.",
+      "source_attributes": {
+        "name": "ui_this_location_is_not_writable"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Ekki er hægt að skrifa á þennan stað.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Ekki er hægt að skrifa á þennan stað.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1396,
+          "start_line": 1392,
+          "end_line": 1400,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1392-L1400"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1407,
+          "start_line": 1403,
+          "end_line": 1411,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1403-L1411"
+        }
+      ]
+    },
+    "ui_unexpected_data_in_the_undo_cache": {
+      "tier": "P0",
+      "source": "Unexpected data in the undo cache.",
+      "source_attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Óvænt gögn í skyndiminni afturköllunar.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Óvænt gögn í skyndiminni afturköllunar.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 97,
+          "start_line": 93,
+          "end_line": 101,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L93-L101"
+        }
+      ]
+    },
+    "ui_your_current_image_has_unsaved_changes": {
+      "tier": "P0",
+      "source": "Your current image has unsaved changes.",
+      "source_attributes": {
+        "name": "ui_your_current_image_has_unsaved_changes"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Núverandi mynd inniheldur óvistaðar breytingar.\"",
+      "decision": "accept",
+      "reviewed_value": "\"Núverandi mynd inniheldur óvistaðar breytingar.\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1077,
+          "start_line": 1073,
+          "end_line": 1081,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1073-L1081"
+        }
+      ]
+    },
+    "formats22_at_least_frames": {
+      "tier": "P2-atomic-dependency",
+      "source": "at least %1$d",
+      "source_attributes": {
+        "name": "formats22_at_least_frames"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"að minnsta kosti %1$d\"",
+      "decision": "accept",
+      "reviewed_value": "\"að minnsta kosti %1$d\"",
+      "rationale": "Complete source meaning, limits/qualifiers, placeholders and actual caller role preserved; current-source model judgment, not native certification.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 90
+        }
+      ]
+    },
+    "save20_dither": {
+      "tier": "P2-atomic-dependency",
+      "source": "Dither colours",
+      "source_attributes": {
+        "name": "save20_dither"
+      },
+      "previous_target": {
+        "value": "\"Punktdreifing\"",
+        "attributes": {
+          "name": "save20_dither"
+        }
+      },
+      "submitted_previous": null,
+      "binding_note": "Submitted null previous is wrong; existing P2 Punktdreifing must be exact replacement, not addition.",
+      "submitted_value": "\"Litfléttun\"",
+      "decision": "accept_value_revise_previous_binding",
+      "reviewed_value": "\"Litfléttun\"",
+      "rationale": "Paired checkbox Litfléttun matches GIF paragraph. Bounded technical-term evidence only; no claim of whole-string native approval.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 64
+        }
+      ]
+    },
+    "ui_load_image": {
+      "tier": "P1",
+      "source": "Load image…",
+      "source_attributes": {
+        "name": "ui_load_image"
+      },
+      "previous_target": null,
+      "submitted_previous": null,
+      "binding_note": "Exact current previous binding confirmed.",
+      "submitted_value": "\"Hlaða mynd…\"",
+      "decision": "revise",
+      "reviewed_value": "\"Opna mynd…\"",
+      "rationale": "Use idiomatic Open image as the file-opening command; avoid uncertain hlaða object inflection and match the complete recovery instruction atomically.",
+      "confidence": "medium model linguistic judgment; high source/format binding",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 838,
+          "start_line": 834,
+          "end_line": 842,
+          "url": "https://github.com/c933103/AN-Paint/blob/651ab24b2c4dfd26d432daf0d8771fdb179ff013/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L834-L842"
+        }
+      ]
+    }
+  },
+  "counts": {
+    "accept": 76,
+    "revise": 8,
+    "accept_value_revise_previous_binding": 1
+  },
+  "atomic_groups": [
+    [
+      "save20_gif_description",
+      "save20_dither"
+    ],
+    [
+      "formats22_animation_message",
+      "formats22_at_least_frames"
+    ],
+    [
+      "ui_load_image",
+      "ui_recovery_copy_exported_extract_canvas_png_from_the"
+    ]
+  ],
+  "verified_git_blobs": {
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt": "84059375f4005c22790ceb6d836817f3367fae3a",
+    "Paintroid/src/main/res/values/strings.xml": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/BoundedJson.kt": "5e76c84c80a42326ac74073fd44fdea2cbf6006d",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt": "15723c1171cac09c7bd67881175827b5f3f330dd",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt": "62218dd1a72f4f69aa19cd1ea20b5bd42b6e1574",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt": "e22eb041a72c398f04aa21a9aeb89e2fb43cbcae",
+    "Paintroid/src/main/res/values-b+is/strings.xml": "ce85842b806a071f030150f5f3f55da8eb8e9150",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt": "ad69e51d04f7342927f3040929332eb3bcaa7d34",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt": "7c01b3fe57630349e954aee8449342f88033bb96",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt": "3cc9b6af28dbf897d85d91d6e3f1b2a40c12cf4e",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt": "b8a97637df61f8e50694e4a9d65b924b3e0af4f5",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt": "029c2b242b6629de09fce5904f72255fb7455473",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt": "b77fec3a44bbb5703e2b5c446b937f12ddef26f7",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt": "3fdd7aff659a3a2cdf2b78ed16472b5850225567",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt": "a092dfb769e9e7117955f6bcd532f90ec7d7ae06",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/HistoryArchive.kt": "34648cb4cf1cf0f9dbf3e31b7366c6e03ca8b1da",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt": "281298d3f318572b70de9a1798133fdff2f4d1b5"
+  },
+  "external_term_evidence": [
+    {
+      "url": "https://help.libreoffice.org/latest/is/text/shared/optionen/01010700.html?DbPAR=CALC&System=UNIX",
+      "scope": "Official product help uses jafnbreitt letur for fixed-width font; inflected sentence remains reviewer judgment."
+    },
+    {
+      "url": "https://landupplysingar.is/gamla/wp-content/uploads/2019/10/LISA-EN-ISL-6utg-2015-1-14.pdf",
+      "scope": "Search-indexed LISA glossary maps dithering to litfléttun. Direct PDF retrieval unavailable, so no claim of full-document inspection."
+    }
+  ],
+  "limitations": [
+    "Author must adopt exact proposed revised values and return final map for independent readback; no source integration performed by reviewer.",
+    "Static caller/linguistic/placeholder checks only; Android compilation, installed layout and physical-device/TalkBack not established.",
+    "No native-human or whole-language acceptance. All project pauses and exact dormant holds unchanged."
+  ]
+}
