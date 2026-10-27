@@ -1,0 +1,216 @@
+{
+  "head": "6a0305f8fdf826f7d44a7c15270717da3cd111f1",
+  "tree": "3abd4dd7ec01d777f65895f2f6c9e24fd8f4f6e8",
+  "parents": [
+    "b339906ab28d0218a408b44c1024a803f938efb6",
+    "7f6c54750de143e4f98d7fa441d5b6a8e42cffdf"
+  ],
+  "verified_leaves": 1453,
+  "ref_updated": true,
+  "pr_head_readback": "6a0305f8fdf826f7d44a7c15270717da3cd111f1",
+  "review_request": 6454862619,
+  "review_request_readback": true,
+  "fresh_run": 40592699140,
+  "local_modes": {
+    "normal": {
+      "tests": 1616,
+      "seconds": 304.568,
+      "exit": 0
+    },
+    "optimized": {
+      "tests": 1616,
+      "seconds": 302.144,
+      "exit": 0
+    },
+    "manifest_sha256": "cf3019ab49c834bfdd004bc76d25e1de56e14863359596cc8bad2cb712da2381",
+    "independent_receipt_sha256": "481b68dd61b11ace1df7e3fd401d615fd1aa526782afc81071f234fb93ec297d"
+  },
+  "independent_review": {
+    "base_commit": "7f6c54750de143e4f98d7fa441d5b6a8e42cffdf",
+    "base_tree": "41b52f3b0f26c61a7207ec3cabd53683876d3977",
+    "base_leaves": 1448,
+    "result_leaves": 1453,
+    "changed_paths": [
+      "Paintroid/src/main/res/values-b+ht/strings.xml",
+      "Paintroid/src/main/res/values-b+so/strings.xml",
+      "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/SomaliWolofHaitianCreolePriorityWordingTest.kt",
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+      "tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json",
+      "tools/memory_warning_source_review.py",
+      "tools/somali_wolof_haitian_creole_priority_expectations.py",
+      "tools/test_current_localization_contracts.py",
+      "tools/test_language_option_additions_second.py",
+      "tools/test_memory_warning_source_review.py",
+      "tools/test_memory_warning_successors.py",
+      "tools/test_somali_wolof_haitian_creole_family_additions.py",
+      "tools/test_somali_wolof_haitian_creole_priority_wording.py",
+      "translations/language-options.json"
+    ],
+    "manifest_sha256": "cf3019ab49c834bfdd004bc76d25e1de56e14863359596cc8bad2cb712da2381",
+    "unrelated_base_and_own_nonshared_exact": true,
+    "GA_and_own_JVM_helper_blocks_exact": true,
+    "reversing_only_own_JVM_addition_restores_GA_exactly": true,
+    "GA_intermediate99_assertion_preserved": true,
+    "full_linguistic_credit": 0,
+    "scope": "Finite additive composition; source/fixture wording unchanged. No hosted JVM result inferred.",
+    "status": "accepted finite source composition",
+    "focused_tests": 54,
+    "focused_runs": [
+      {
+        "tests": 49,
+        "seconds": 39.669
+      },
+      {
+        "tests": 5,
+        "seconds": 6.581
+      }
+    ],
+    "focused_logs": {
+      "independent-focused.log": "ce341b20fe70e73203818635105cf24c8209669fac37566e088e695e34baea13",
+      "independent-option-focused.log": "fa806f14afbf2cfe6a2d11f05853553bac49d8eb383af3158790ee64904f1eb2"
+    },
+    "prior_strict_JVM_binding_receipt_hashes_reverified": true,
+    "shared_diff_review": "All five shared diffs read; exact GA and SO/WO/HT strict additions coexist, 102 direct/1 inherited/68 English. No source/history/target binding weakened; exact accepted main JVM default fallback and option guards preserved.",
+    "limits": "Host/source acceptance only; author full modes and hosted exact-head CI/Codex remain separate."
+  },
+  "source_delta": {
+    "base_commit": "7f6c54750de143e4f98d7fa441d5b6a8e42cffdf",
+    "base_tree": "41b52f3b0f26c61a7207ec3cabd53683876d3977",
+    "prior_head": "b339906ab28d0218a408b44c1024a803f938efb6",
+    "base_blobs": 1448,
+    "result_blobs": 1453,
+    "changed_paths": [
+      {
+        "path": "Paintroid/src/main/res/values-b+ht/strings.xml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6ca3121060f3bee132c27ac09208eb3384cd71f8",
+        "bytes": 31667,
+        "sha256": "d0910bbed1c22067d955ba74effeadf95519f851fc718abcf10b1346be2cdfad"
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+so/strings.xml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "70dddc56137e9c9daec2ed1a0b7722a42f21b458",
+        "bytes": 33776,
+        "sha256": "26be8a383a529cf10eb769e8653c49d8777d791d9a1ecec9f2b45b459b063178"
+      },
+      {
+        "path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7657dc459e33eeac9ac35bb8dc20eafa67656133",
+        "bytes": 32823,
+        "sha256": "870d0e2aacd83ec7201ba08fc27ae674fbae2eb1936fac55735845db93858306"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0a6bb6706c91b742cc6dbf3bbbd3745d87b725b7",
+        "bytes": 40352,
+        "sha256": "072a6a903179ccdd5c3f522acd5d1960ccd2d51a6c0cdda70c358f0c0c3e136a"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/SomaliWolofHaitianCreolePriorityWordingTest.kt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3a08a5a73561580b65820aa0a88c1f1b25d76c19",
+        "bytes": 30821,
+        "sha256": "3304b3c6be7236c0e1c9e391501e1f94401c1780df0528bea419cb7d6928d6a3"
+      },
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "918f606a9cda4f2f2d934a59bc635a7619ba6edd",
+        "bytes": 21819,
+        "sha256": "cc1e606f0b609e0bcd7427fed950c83cac1c8aedea5e1c05b59dd51aae6e48ff"
+      },
+      {
+        "path": "tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5df5ed285a927d6355da0f54ef6c880d2da612ce",
+        "bytes": 337724,
+        "sha256": "601d60e5fb772bc7bdfebc6774492fb1b0a3f84454937c4f29711cb2080319eb"
+      },
+      {
+        "path": "tools/memory_warning_source_review.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "84ea10d709f6544c809569743599711eef0b6751",
+        "bytes": 11739,
+        "sha256": "b8595cbb63ecfca4b1af25411399f6624c422af14639776a2790a9220bc6d0e9"
+      },
+      {
+        "path": "tools/somali_wolof_haitian_creole_priority_expectations.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "804f5193b30af7a7ac09da37c81d4470b3ff1f49",
+        "bytes": 7167,
+        "sha256": "44434cd5e4a012ad0a7dfc53a0540a967bbe1f07ce458325b9e7a891ec38d4a1"
+      },
+      {
+        "path": "tools/test_current_localization_contracts.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "51b06f0b55c2f81b793ef883f05b2a6c7647185d",
+        "bytes": 36848,
+        "sha256": "dde781756fe6aee051c9004d75a3fcd02c44747b00cf75cc99e8265ac3c4eb67"
+      },
+      {
+        "path": "tools/test_language_option_additions_second.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8d8f81fc2dbe20b9adb991d93e0c4edefdd207d1",
+        "bytes": 11852,
+        "sha256": "d078bcedbac85b65619b30a46d224f1d5c95f91216473e1a6f06162a87110a5e"
+      },
+      {
+        "path": "tools/test_memory_warning_source_review.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "780ce359b955a4f647cfd9f185b323e26fea527e",
+        "bytes": 7577,
+        "sha256": "8a0886e55de6b4006b04979f474b2ff7b8940d89732c8e0056b52e4eb937bae7"
+      },
+      {
+        "path": "tools/test_memory_warning_successors.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "32cace36efc1ee211ac0e363aff3241a6799f311",
+        "bytes": 11648,
+        "sha256": "561b84f443597fd06e5d9f90e9c0879a904643eefd5e46cf8310dfa63a8c4d0a"
+      },
+      {
+        "path": "tools/test_somali_wolof_haitian_creole_family_additions.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ad2a7474b9c51f8380f5dfd5f015903e615fc012",
+        "bytes": 6577,
+        "sha256": "3795a9f5850e6fafed4a62fc450295e371fd0d6e7e45152c8e9406ed410bb53c"
+      },
+      {
+        "path": "tools/test_somali_wolof_haitian_creole_priority_wording.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2e8c1dddddd41aaae77efe46d42e919cbf43f6c9",
+        "bytes": 80185,
+        "sha256": "ad2640707d3340cc09c643d4df95ff9af3799d03a2c6873c0c128e154c2a846c"
+      },
+      {
+        "path": "translations/language-options.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "378339701a0c036f883a1d60740e8c5ebc12f5e2",
+        "bytes": 21768,
+        "sha256": "310ff42c8e8dd7a718b63ae3c70d75a6d455c440710ac61c41c1a33f59910b08"
+      }
+    ],
+    "removed_paths": []
+  }
+}
