@@ -9,6 +9,7 @@ from current_localization_contracts import fixture, require_string, require_word
 import translation_catalogues as catalogues
 from test_translations import SCOPED_TAGS
 from language_option_additions import ADDED_TAGS
+from nepali_punjabi_priority_expectations import TAGS as NE_PA_TAGS, current_row as ne_pa_row, display as ne_pa_display
 from kannada_malayalam_filipino_priority_expectations import ADDITION_TAGS as KN_ML_TAGS, current_row as kn_ml_row, display as kn_ml_display
 from marathi_tamil_telugu_priority_expectations import TAGS as MR_TA_TE_TAGS, current_row as mr_ta_te_row, display as mr_ta_te_display
 
@@ -29,7 +30,7 @@ EXPECTED_KEYS = {
 
 
 # Additions are message-family-specific. Czech and Swedish have independently reviewed metadata/copy-credit values.
-FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS}
+FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS}
 
 
 def wording_tags(name):
@@ -76,11 +77,20 @@ def wording_fixture(name):
                 data['values'][key][tag]=row['target']
             data['additional_reviewed_tags'].append(tag)
             data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(NE_PA_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=ne_pa_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Nepali/Punjabi SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
     return require_wording_shape(data, EXPECTED_KEYS[name], wording_tags(name))
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk'} | MR_TA_TE_TAGS | KN_ML_TAGS
+TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS
 # Explicit runtime parent inheritance, not an additional reviewed catalogue.
 TAGGED_COLOUR_INHERITED_CATALOGUES = {'ca-ES-valencia': 'ca'}
 
@@ -101,6 +111,11 @@ def current_tagged_colour_data():
         if tag in data or row['previous_target'] is not None or not row['changed']:
             raise ValueError('Kannada/Malayalam tagged colour predecessor differs: '+tag)
         data[tag]=kn_ml_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(NE_PA_TAGS):
+        row=ne_pa_row(tag,TAGGED_COLOUR_KEY)
+        if tag in data or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Nepali/Punjabi tagged colour predecessor differs: '+tag)
+        data[tag]=ne_pa_display(tag,TAGGED_COLOUR_KEY)
     return data
 
 
@@ -159,6 +174,9 @@ def tagged_colour_expectations(data):
     for tag in KN_ML_TAGS:
         if data[tag]!=kn_ml_display(tag,TAGGED_COLOUR_KEY):
             raise ValueError('Tagged-colour differs from complete Kannada/Malayalam value: '+tag)
+    for tag in NE_PA_TAGS:
+        if data[tag]!=ne_pa_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Nepali/Punjabi value: '+tag)
     return data
 
 
@@ -208,9 +226,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
     def test_each_message_family_has_only_its_explicitly_reviewed_additions(self):
         svg = wording_fixture(FAMILIES[2])
-        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS
+        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS
         self.assertEqual({'cs', 'pl'}, set(svg['additional_draft_tags']))
-        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS, set(svg['additional_reviewed_tags']))
+        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS, set(svg['additional_reviewed_tags']))
         self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
@@ -234,10 +252,10 @@ class CurrentLocalizationContracts(unittest.TestCase):
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(77+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS), len(data))
-        self.assertEqual(94-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.
+        self.assertEqual(77+len(MR_TA_TE_TAGS)+len(KN_ML_TAGS)+len(NE_PA_TAGS), len(data))
+        self.assertEqual(94-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.
         self.assertEqual({'ca-ES-valencia': 'ca'}, TAGGED_COLOUR_INHERITED_CATALOGUES)
-        self.assertEqual(93-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))
+        self.assertEqual(93-len(MR_TA_TE_TAGS)-len(KN_ML_TAGS)-len(NE_PA_TAGS), len(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:

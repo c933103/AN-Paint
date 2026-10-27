@@ -31,7 +31,7 @@
     <string name="ui_ellipse">Ellips</string>
     <string name="ui_star">Ster</string>
     <string name="ui_heart">Hart</string>
-    <string name="ui_solid_fill">Soliede vul</string>
+    <string name="ui_solid_fill">Vul met een kleur</string>
     <string name="ui_outline">Omtrek</string>
     <string name="ui_flip_horizontal">Spieël horisontaal</string>
     <string name="ui_flip_vertical">Spieël vertikaal</string>
@@ -233,7 +233,7 @@
     <string name="ui_cursive">Lopende skrif</string>
     <string name="ui_custom_colour">Pasgemaakte kleur %1$s</string>
     <string name="ui_custom_colours_hold_a_swatch_to_replace_it">Pasgemaakte kleure · hou ’n kleurstaal in om dit te vervang</string>
-    <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">%1$d × %2$d piksels (%3$.2f MP) oorskry die huidige veilige redigeerlimiet van %4$.2f MP. AN Paint hou die volledige beeld in geheue en reserveer ruimte vir transformasies en keuses. Beskikbare geheue bepaal hierdie limiet. Die bewerking is gestop voordat die te groot bitmap toegewys is. Geen outomatiese grootteverandering is toegepas nie.</string>
+    <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">%1$d × %2$d px (%3$.2f MP) oorskry die huidige veilige redigeerlimiet van %4$.2f MP. AN Paint hou die volledige beeld in geheue en reserveer ruimte vir transformasies en keuses. Beskikbare geheue bepaal hierdie limiet. Die bewerking is gestop voordat die te groot bitmap toegewys is. Geen outomatiese grootteverandering is toegepas nie.</string>
     <string name="ui_d_d_px_d_pixels_2f_mp">%1$d × %2$d px · Aantal piksels: %3$,d (%4$.2f MP)</string>
     <string name="ui_delete_selection">Verwyder keuse</string>
     <string name="ui_disable_cursor_drawing">Deaktiveer teken met wyser</string>
@@ -255,7 +255,7 @@
     <string name="ui_drag_to_erase_with_the_background_colour">Sleep om met die agtergrondkleur uit te vee.</string>
     <string name="ui_drag_to_pan_without_drawing_pinch_with_two">Sleep om te skuif sonder om te teken. Knyp met twee vingers om te zoem en te skuif. Tweevingernavigasie werk ook met tekengereedskap.</string>
     <string name="ui_draw_a_crisp_one_pixel_line">Teken ’n skerp lyn. Stel Wydte van 1 tot 100 piksels.</string>
-    <string name="ui_draw_again">Teken weer</string>
+    <string name="ui_draw_again">Teken verder</string>
     <string name="ui_draw_around_an_area_drag_inside_to_move">Teken om ’n gebied. Sleep binne om te skuif, vierkantige hoek- of randhandvatsels om grootte te verander, of die ronde handvatsel om te draai. Pas keuse toe pas die redigering toe.</string>
     <string name="ui_draw_soft_watercolor_strokes_strength_controls_how_strongly">Teken sagte waterverfstrepe. Sterkte beheer hoe sterk die kleur in die doek meng.</string>
     <string name="ui_draw_with_the_selected_brush_tip_and_size">Teken met die gekose kwaspunt en grootte.</string>
@@ -280,7 +280,7 @@
     <string name="ui_enter_valid_dimensions">Voer geldige afmetings in.</string>
     <string name="ui_estimated_memory_current_working_budget">Geskatte geheue: %1$s\nHuidige werkgeheuelimiet: %2$s\n</string>
     <string name="ui_estimates_include_the_current_canvas_and_clipboard_sampled">Ramings sluit die huidige doek en knipbord, steekproefdekodering en redigeerbuffers in. Werklike geheuegebruik wissel. ’n Kleiner kopie verloor detail. Invoere gebruik die gekose ondeursigtige agtergrond; die oorspronklike lêer bly onveranderd.</string>
-    <string name="ui_sampled_resize_memory_explanation">Ramings sluit die huidige doek en knipbord, steekproefdekodering en redigeerbuffers in. Werklike geheuegebruik wissel. ’n Kleiner kopie verloor detail. Die oorspronklike lêer bly onveranderd.</string>
+    <string name="ui_sampled_resize_memory_explanation">Ramings sluit die huidige doek en knipbord, dekodering met verminderde resolusie en redigeerbuffers in. Werklike geheuegebruik wissel. ’n Kleiner kopie verloor detail. Die oorspronklike lêer bly onveranderd.</string>
     <string name="ui_expand_colour_palette">Vou kleurpalet oop</string>
     <string name="ui_expand_toolbox">Vou gereedskapkas oop</string>
     <string name="ui_export_recovery_copy">Voer herstelkopie uit…</string>
@@ -306,7 +306,7 @@
     <string name="ui_height">Hoogte (%1$s)</string>
     <string name="ui_height_in">Hoogte in %1$s</string>
     <string name="ui_heights">Hoogtes</string>
-    <string name="ui_hex_rrggbb">Heks #RRGGBB</string>
+    <string name="ui_hex_rrggbb">Heksadesimaal #RRGGBB</string>
     <string name="ui_hide_editor_controls">Versteek redigeerderkontroles</string>
     <string name="ui_hide_pixel_grid_800" formatted="false">Versteek pikselrooster (800%+)</string>
     <string name="ui_higher_quality_usually_makes_a_larger_file_lossless">Hoër kwaliteit lewer gewoonlik ’n groter lêer. Kompressie sonder verlies behou elke kleurwaarde.</string>
@@ -335,7 +335,7 @@
     <string name="ui_invalid_image_attachments">Ongeldige beeldaanhegtings.</string>
     <string name="ui_invalid_selection_outline">Ongeldige keuse-omtrek.</string>
     <string name="ui_invert_colours">Keer kleure om</string>
-    <string name="ui_keeps_pixels_at_the_top_left_smaller_canvas">Behou piksels links bo. Kleiner doekafmetings verwyder piksels buite die regter-/onderrand; Ontdoen herstel hulle.</string>
+    <string name="ui_keeps_pixels_at_the_top_left_smaller_canvas">Behou die pikselposisies relatief tot die boonste linkerhoek. Kleiner doekafmetings verwyder piksels buite die regter- of onderrand; Ontdoen herstel hulle.</string>
     <string name="ui_largest">Grootste</string>
     <string name="ui_left_arrow_collapse">Linkerpyl: vou in</string>
     <string name="ui_line_spacing" formatted="false">Lynspasiëring (%)</string>
@@ -406,7 +406,7 @@
     <string name="ui_save_as_png">Stoor as PNG…</string>
     <string name="ui_save_png">Stoor PNG</string>
     <string name="ui_saved">%1$s gestoor</string>
-    <string name="ui_scales_the_image_unlock_the_ratio_to_stretch">Skaal die beeld. Ontsluit die verhouding om breedte en hoogte onafhanklik te rek.</string>
+    <string name="ui_scales_the_image_unlock_the_ratio_to_stretch">Skaal die beeld. Ontsluit die verhouding om breedte en hoogte onafhanklik te verander.</string>
     <string name="ui_select_an_area">Kies ’n gebied</string>
     <string name="ui_select_an_area_first">Kies eers ’n gebied.</string>
     <string name="ui_selection_dimensions_are_too_large">Die keuse-afmetings is te groot.</string>
@@ -630,7 +630,7 @@
     <string name="save20_encoding_budget">Die beeld- en enkoderingsbuffers oorskry die uitvoergeheuelimiet.</string>
     <string name="save20_bmp_size_limit">Die beeld oorskry die BMP-lêergroottelimiet.</string>
     <string name="save20_gif_size_limit">GIF-afmetings mag nie 65 535 piksels per sy oorskry nie.</string>
-    <string name="save20_destination_error">Die voltooide beeld kon nie sy bestemming vervang nie.</string>
+    <string name="save20_destination_error">Die voltooide beeld kon nie die teikenlêer vervang nie.</string>
     <string name="save20_unsupported_tagged_colour">Hierdie BMP of GIF gebruik ’n kleurprofiel wat AN Paint nog nie kan omskakel nie. Skakel dit na sRGB PNG om in ’n kleurbeheerde redigeerder voordat jy dit invoer.</string>
     <string name="save20_lossy_quality_description">Hoër kwaliteit behou meer detail en lewer gewoonlik ’n groter lêer.</string>
     <string name="ui_expand_tool_category">%1$s: %2$s gekies. Vou gereedskap en opsies oop</string>
@@ -675,8 +675,8 @@
     <string name="ui_irasutoya_credit34">Kopiereg bly by die skepper. Gebruik is onderhewig aan Irasutoya se voorwaardes; dit is nie ’n Creative Commons-lisensie nie.</string>
     <string name="ui_history_unavailable34">Die doek is herstel, maar sy ontdoengeskiedenis kon nie gelees word nie. Die oorspronklike konsep is as herstelkopie behou.</string>
     <plurals name="ui_crop_preview_images">
-        <item quantity="one">Voorskou: %1$d × %2$d px\nPas toe op %3$d beeld. As ’n geplaasde beeld gesny word, word die posisie van sy aanhegtings ook aangepas.</item>
-        <item quantity="other">Voorskou: %1$d × %2$d px\nPas toe op %3$d beelde. As geplaasde beelde gesny word, word die posisie van hul aanhegtings ook aangepas.</item>
+        <item quantity="one">Voorskou: %1$d × %2$d px\nPas toe op %3$d beeld. Die sny van geplaasde beelde kan die posisies van beelde wat daaraan geheg is, verander.</item>
+        <item quantity="other">Voorskou: %1$d × %2$d px\nPas toe op %3$d beelde. Die sny van geplaasde beelde kan die posisies van beelde wat daaraan geheg is, verander.</item>
     </plurals>
 
     <string name="ui_normalize_width_intro">Gee alle beelde dieselfde wydte. Aantal beelde: %1$d. Elke beeld behou sy eie beeldverhouding. Oorspronklike lêers en snyinstellings bly onveranderd.</string>
@@ -691,9 +691,9 @@
     <string name="legacy_credits_save_text">Stoor die gekose krediet as teks</string>
     <string name="legacy_credits_existing">Hierdie beeld het reeds ’n krediet vir daardie bron. Die bestaande teks is behou.</string>
     <string name="legacy_credits_added">Krediet by hierdie beeld gevoeg.</string>
-    <string name="legacy_credits_unreadable">Sommige gestoorde krediete kon nie gelees word nie. Die gestoorde kopieë daarvan is behou.</string>
-    <string name="gallery_credit_too_large">Hierdie beeldkrediete sou die tekening te groot maak om te herstel. Jou vorige tekening en krediete is behou.</string>
-    <string name="gallery_credit_could_not_save">Die beeldkrediete kon nie gestoor of herstel word nie. Bestaande gestoorde krediete is behou. Probeer weer.</string>
+    <string name="legacy_credits_unreadable">Sommige gestoorde bron-, lisensie- en erkenningsinligting kon nie gelees word nie. Die gestoorde kopieë daarvan is behou.</string>
+    <string name="gallery_credit_too_large">Hierdie bron-, lisensie- en erkenningsinligting vir beelde sou die tekening te groot maak om te herstel. Jou vorige tekening en die bybehorende inligting is behou.</string>
+    <string name="gallery_credit_could_not_save">Die bron-, lisensie- en erkenningsinligting vir beelde kon nie gestoor of herstel word nie. Bestaande gestoorde inligting is behou. Probeer weer.</string>
     <string name="commons_svg_original_size_unavailable">Die SVG spesifiseer nie ’n bruikbare oorspronklike grootte nie. Geen doekgebaseerde grootte is in die plek daarvan gebruik nie.</string>
     <string name="commons_svg_original_size_too_large">Die oorspronklike SVG-grootte oorskry Android se limiete vir bitmapafmetings. Geen grootteverandering is toegepas nie.</string>
     <string name="commons_import_svg_changes">AN Paint: SVG → PNG; oorspronklike grootte; antiAlias=false; strokeDashArray=none; background=#FFFFFF.</string>

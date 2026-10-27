@@ -140,6 +140,12 @@ class TaggedColourImportTest {
             expected.put(tag,nextPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
         }
         assertEquals(82, expected.length())
+        val nePaPriority=JSONObject(File("../tools/fixtures/current_localization/nepali_punjabi_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("ne","pa-IN")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,nePaPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(84, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -172,6 +178,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(88, fallbacks) // 171 offered - 82 exact current values - 1 inherited.
+        assertEquals(86, fallbacks) // 171 offered - 84 exact current values - 1 inherited.
     }
 }
