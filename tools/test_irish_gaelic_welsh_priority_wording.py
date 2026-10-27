@@ -4,6 +4,7 @@ import json,re,unittest,xml.etree.ElementTree as E
 import translation_catalogues as c
 from current_localization_contracts import fixture,require_string
 from ga_gd_cy_priority_scope import SCOPE,PREVIOUS,HELD
+from irish_gaelic_welsh_priority_expectations import require_fixture_binding
 FIXTURE='irish_gaelic_welsh_priority_wording.json'
 CLASSIC=c.ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic'
 def display(v):
@@ -16,6 +17,7 @@ def shape(identity,v,quantities=frozenset({'one','other'})):
  if kind=='string':return isinstance(v,str) and bool(v)
  return kind=='plurals' and isinstance(v,dict) and set(v)==set(quantities) and all(isinstance(s,str) and s for s in v.values())
 def checked(data):
+ require_fixture_binding(data)
  if data.get('schema_version')!=1 or set(data.get('locales',{}))!=set(SCOPE):raise ValueError('Locale scope differs')
  for tag,groups in SCOPE.items():
   loc=data['locales'][tag]
@@ -46,6 +48,7 @@ def require_entry(xml,identity,row,field='target'):
  nodes=E.fromstring(xml).findall(f"./plurals[@name='{key}']")
  if len(nodes)!=1:raise ValueError('Plural count differs')
  n=nodes[0]
+ if (n.text or '').strip() or (n.tail or '').strip() or any((x.tail or '').strip() for x in n):raise ValueError('Non-whitespace plural container or tail')
  if n.attrib!=attrs or len(n)!=len(target) or {x.get('quantity') for x in n}!=set(target):raise ValueError('Plural scope differs')
  for child in n:
   q=child.get('quantity');value=child.text or ''
@@ -161,5 +164,31 @@ class IrishGaelicWelshPriorityWordingTest(unittest.TestCase):
     with self.subTest(tag=tag,removed=category),self.assertRaises(ValueError):checked(data)
    data=deepcopy(self.data);data['locales'][tag]['values']['plurals/ui_crop_preview_images']['target']['invalid']='forged'
    with self.assertRaises(ValueError):checked(data)
+
+ def test_plural_container_and_every_child_tail_reject_unreviewed_text(self):
+  for tag in SCOPE:
+   row=self.locales[tag]['values']['plurals/ui_crop_preview_images']
+   for mode in ['parent','resource-tail']+list(QUANTITIES[tag]):
+    root=E.fromstring(self.xml[tag]);n=root.find("./plurals[@name='ui_crop_preview_images']")
+    if mode=='parent':n.text='unreviewed'
+    elif mode=='resource-tail':n.tail='unreviewed'
+    else:n.find(f"./item[@quantity='{mode}']").tail='unreviewed'
+    with self.subTest(tag=tag,mode=mode),self.assertRaises(ValueError):require_entry(E.tostring(root,encoding='unicode'),'plurals/ui_crop_preview_images',row)
+ def test_coordinated_whole_fixture_and_finite_helper_mutation_are_rejected(self):
+  from unittest.mock import patch
+  import irish_gaelic_welsh_priority_expectations as successors
+  for tag,key in successors.ADDITIONS:
+   data=deepcopy(self.data);row=data['locales'][tag]['values']['string/'+key]
+   row['target']='"Unreviewed forged message"';row['display']='Unreviewed forged message'
+   with self.subTest(tag=tag,key=key),self.assertRaises(ValueError):checked(data)
+   with patch.object(successors,'fixture',return_value=data),self.assertRaises(ValueError):successors.current_row(tag,key)
+ def test_each_accepted_fixture_target_display_and_metadata_is_independently_bound(self):
+  for tag,loc in self.locales.items():
+   for group in ['values','context','held']:
+    for identity,original in loc[group].items():
+     data=deepcopy(self.data);row=data['locales'][tag][group][identity]
+     if group=='held':row['decision']='accept'
+     else:row['target']='"forged"';row['display']='forged'
+     with self.subTest(tag=tag,group=group,identity=identity),self.assertRaises(ValueError):checked(data)
 
 if __name__=='__main__':unittest.main()

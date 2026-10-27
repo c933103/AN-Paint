@@ -118,10 +118,33 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
-    private fun gaGdCyExpectations() = JSONObject(File(
-        "../tools/fixtures/current_localization/irish_gaelic_welsh_priority_wording.json").readText()).getJSONObject("locales")
+    private fun gaGdCyBoundFixture(): JSONObject {
+        val bytes=File("../tools/fixtures/current_localization/irish_gaelic_welsh_priority_wording.json").readBytes()
+        val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete finite GA/GD/CY reviewed fixture", "1aa3267e9234866e23d38350d56a3793b15942f6070e837caed0a9116005034c", actual)
+        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject("locales")
+    }
+
+    private fun gaGdCySameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) gaGdCySameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) gaGdCySameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private fun gaGdCyExpectations() = gaGdCyBoundFixture()
 
     private fun addGaGdCy(expected: JSONObject, reviewed: JSONObject) {
+        gaGdCySameJson(gaGdCyBoundFixture(),reviewed)
         val key="save20_unsupported_image_colour"
         assertEquals(setOf("ga","gd","cy"),reviewed.keys().asSequence().toSet())
         for(tag in listOf("ga","gd","cy")) {
@@ -141,10 +164,11 @@ class TaggedColourImportTest {
     }
 
     @Test fun finiteGaGdCyAdditionsRejectSourceAttributesAndPredecessorCorruption() {
-        for(tag in listOf("ga","gd","cy")) for(mutation in listOf("source","source_attributes","previous_target","previous_attributes","attributes","display","target","alreadyPresent","missing_previous_target","missing_previous_attributes")) {
+        for(tag in listOf("ga","gd","cy")) for(mutation in listOf("source","source_attributes","previous_target","previous_attributes","attributes","display","target","alreadyPresent","missing_previous_target","missing_previous_attributes","coordinated_target_display")) {
             val data=gaGdCyExpectations();val expected=JSONObject()
             val row=data.getJSONObject(tag).getJSONObject("values").getJSONObject("string/save20_unsupported_image_colour")
             when(mutation) {
+                "coordinated_target_display" -> {row.put("target","\"forged\"");row.put("display","forged")}
                 "source_attributes","attributes" -> row.getJSONObject(mutation).put("formatted","false")
                 "alreadyPresent" -> expected.put(tag,"forged")
                 "missing_previous_target","missing_previous_attributes" -> row.remove(mutation.removePrefix("missing_"))
@@ -164,8 +188,50 @@ class TaggedColourImportTest {
         assertFalse(expected.has("uk"))
         expected.put("uk", PriorityWordingExpectations.display("uk","save20_unsupported_image_colour"))
         assertEquals(77, expected.length())
+        val indianPriority=JSONObject(File("../tools/fixtures/current_localization/marathi_tamil_telugu_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("mr","ta","te")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,indianPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(80, expected.length())
+        val nextPriority=JSONObject(File("../tools/fixtures/current_localization/kannada_malayalam_filipino_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("kn","ml-IN")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,nextPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(82, expected.length())
+        val nePaPriority=JSONObject(File("../tools/fixtures/current_localization/nepali_punjabi_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("ne","pa-IN")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,nePaPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(84, expected.length())
+        val asKmLoPriority=JSONObject(File("../tools/fixtures/current_localization/assamese_khmer_lao_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("as","km","lo")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,asKmLoPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(87, expected.length())
+        val jvSuKyPriority=JSONObject(File("../tools/fixtures/current_localization/javanese_sundanese_kyrgyz_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("jv","su","ky")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,jvSuKyPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(90, expected.length())
+        val haIgLnPriority=JSONObject(File("../tools/fixtures/current_localization/hausa_igbo_lingala_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("ha","ig","ln")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,haIgLnPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(93, expected.length())
+        val yoZuXhPriority=JSONObject(File("../tools/fixtures/current_localization/yoruba_zulu_xhosa_priority_wording.json").readText()).getJSONObject("locales")
+        for(tag in listOf("yo","zu","xh")) {
+            assertFalse(expected.has(tag))
+            expected.put(tag,yoZuXhPriority.getJSONObject(tag).getJSONObject("accepted").getString("save20_unsupported_image_colour"))
+        }
+        assertEquals(96, expected.length())
         addGaGdCy(expected,gaGdCyExpectations())
-        assertEquals(80,expected.length())
+        assertEquals(99,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -198,6 +264,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(90, fallbacks)
+        assertEquals(71, fallbacks) // 171 offered - 99 exact current values - 1 inherited.
     }
 }

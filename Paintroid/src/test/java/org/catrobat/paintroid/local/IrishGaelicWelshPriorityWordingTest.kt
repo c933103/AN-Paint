@@ -44,9 +44,30 @@ class IrishGaelicWelshPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/irish_gaelic_welsh_priority_wording.json").readText()).getJSONObject("locales")
+    private fun gaGdCyBoundFixture(): JSONObject {
+        val bytes=File("../tools/fixtures/current_localization/irish_gaelic_welsh_priority_wording.json").readBytes()
+        val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        assertEquals("Complete finite GA/GD/CY reviewed fixture", "1aa3267e9234866e23d38350d56a3793b15942f6070e837caed0a9116005034c", actual)
+        return JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject("locales")
     }
+
+    private fun gaGdCySameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) gaGdCySameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) gaGdCySameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private val fixture by lazy { gaGdCyBoundFixture() }
     private fun row(tag: String,identity: String): JSONObject {
         val locale=fixture.getJSONObject(tag)
         return locale.getJSONObject("values").optJSONObject(identity) ?: locale.getJSONObject("context").getJSONObject(identity)

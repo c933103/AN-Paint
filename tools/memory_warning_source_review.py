@@ -8,6 +8,13 @@ from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_C
 from current_localization_contracts import fixture
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
+from yoruba_zulu_xhosa_priority_expectations import MEMORY_ADDITIONS as YO_ZU_XH_ADDITIONS, current_row as yo_zu_xh_row
+from hausa_igbo_lingala_priority_expectations import MEMORY_ADDITIONS as HA_IG_LN_ADDITIONS, current_row as ha_ig_ln_row
+from javanese_sundanese_kyrgyz_priority_expectations import MEMORY_ADDITIONS as JV_SU_KY_ADDITIONS, current_row as jv_su_ky_row
+from assamese_khmer_lao_priority_expectations import MEMORY_ADDITIONS as AS_KM_LO_ADDITIONS, current_row as as_km_lo_row
+from nepali_punjabi_priority_expectations import MEMORY_ADDITIONS as NE_PA_ADDITIONS, current_row as ne_pa_row
+from kannada_malayalam_filipino_priority_expectations import MEMORY_ADDITIONS as KN_ML_ADDITIONS, current_row as kn_ml_row
+from marathi_tamil_telugu_priority_expectations import MEMORY_ADDITIONS as MR_TA_TE_ADDITIONS, current_row as mr_ta_te_row
 
 RECORD = Path(__file__).resolve().parents[1] / 'translations/source-review/memory-warnings-20261021.json'
 KEYS = {'ui_no_resize_fits_decoder_memory', 'ui_assembly_source_memory_floor'}
@@ -54,6 +61,69 @@ old source snapshot.
             raise ValueError('Historical GA/GD/CY warning addition must be absent: '+tag+'/'+key)
         if row['source']!=queue['keys'][key]['corrected_english']:
             raise ValueError('GA/GD/CY warning source differs: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in KN_ML_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=kn_ml_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Kannada/Malayalam warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Kannada/Malayalam warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in AS_KM_LO_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=as_km_lo_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Assamese/Khmer/Lao warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Assamese/Khmer/Lao warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in JV_SU_KY_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=jv_su_ky_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Javanese/Sundanese/Kyrgyz warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Javanese/Sundanese/Kyrgyz warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in HA_IG_LN_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=ha_ig_ln_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Hausa/Igbo/Lingala warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Hausa/Igbo/Lingala warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in YO_ZU_XH_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=yo_zu_xh_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Yoruba/Zulu/Xhosa warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Yoruba/Zulu/Xhosa warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in NE_PA_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=ne_pa_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Nepali/Punjabi warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Nepali/Punjabi warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in MR_TA_TE_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=mr_ta_te_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Marathi/Tamil/Telugu warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Marathi/Tamil/Telugu warning source or attributes differ: '+tag+'/'+key)
         return row['target']
     if (tag, key) in SK_SL_CA_ADDITIONS:
         queue = review_record()
