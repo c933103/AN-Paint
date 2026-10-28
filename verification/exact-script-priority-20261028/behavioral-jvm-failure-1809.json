@@ -1,0 +1,609 @@
+{
+  "binding": {
+    "merge": {
+      "sha": "fd9e1f2e4b88aa361576a466871564ec904218f8",
+      "tree": "2cc5fb50cc6a7807f42a5cbabf0faf32782bd273",
+      "parents": [
+        "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+        "42f6b13729777c989ab914eef50e1c55eb0ccd61"
+      ]
+    },
+    "artifacts": {
+      "artifacts": [
+        {
+          "id": 12838717423,
+          "name": "regression-and-lint-fd9e1f2e4b88aa361576a466871564ec904218f8",
+          "size_in_bytes": 84675041,
+          "url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12838717423",
+          "archive_download_url": "https://api.github.com/repos/c933103/AN-Paint/actions/artifacts/12838717423/zip",
+          "expired": false,
+          "created_at": "2026-10-28T17:56:40Z",
+          "expires_at": "2026-11-11T17:56:36Z",
+          "updated_at": "2026-10-28T17:56:40Z",
+          "digest": "sha256:b11198228590334dd46fa6e7e2c5ab3b1fa2b65e658f8c20781ed07c09d0a853",
+          "workflow_run": {
+            "id": 40736446643,
+            "repository_id": 1362702425,
+            "head_repository_id": 1362702425,
+            "head_branch": "localization/exact-script-behavior-20261028-1726",
+            "head_sha": "42f6b13729777c989ab914eef50e1c55eb0ccd61"
+          }
+        }
+      ]
+    },
+    "archive_sha256": "b11198228590334dd46fa6e7e2c5ab3b1fa2b65e658f8c20781ed07c09d0a853",
+    "archive_size": 84675041
+  },
+  "junit_xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<testsuite name=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" tests=\"16\" skipped=\"0\" failures=\"1\" errors=\"0\" timestamp=\"2026-10-28T17:49:11.239Z\" hostname=\"runnervmcwoy2\" time=\"8.701\">\n  <properties/>\n  <testcase name=\"cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.277\"/>\n  <testcase name=\"realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.515\"/>\n  <testcase name=\"dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.163\"/>\n  <testcase name=\"imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.598\"/>\n  <testcase name=\"gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.209\"/>\n  <testcase name=\"compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.054\"/>\n  <testcase name=\"categoryAccessibilityTracksEveryActualToolAndExpansionState\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.381\">\n    <failure message=\"org.junit.ComparisonFailure: expected:&lt;[ᠵᠢᠷᠤᠬᠤ: ᠬᠠᠷᠠᠨᠳᠠᠭ᠎ᠠ ᠰᠣᠩᠭᠣᠭᠳᠠᠪᠠ᠃ ᠪᠠᠭᠠᠵᠢ ᠪᠠ ᠰᠣᠩᠭᠣᠯᠲᠠ ᠶᠢ ᠳᠡᠯᠭᠡᠬᠦ]&gt; but was:&lt;[null]&gt;\" type=\"org.junit.ComparisonFailure\">org.junit.ComparisonFailure: expected:&lt;[ᠵᠢᠷᠤᠬᠤ: ᠬᠠᠷᠠᠨᠳᠠᠭ᠎ᠠ ᠰᠣᠩᠭᠣᠭᠳᠠᠪᠠ᠃ ᠪᠠᠭᠠᠵᠢ ᠪᠠ ᠰᠣᠩᠭᠣᠯᠲᠠ ᠶᠢ ᠳᠡᠯᠭᠡᠬᠦ]&gt; but was:&lt;[null]&gt;\n\tat org.junit.Assert.assertEquals(Assert.java:117)\n\tat org.junit.Assert.assertEquals(Assert.java:146)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest$categoryAccessibilityTracksEveryActualToolAndExpansionState$1.invoke(ExactScriptPriorityWordingTest.kt:224)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest$categoryAccessibilityTracksEveryActualToolAndExpansionState$1.invoke(ExactScriptPriorityWordingTest.kt:216)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest.forEachLocale(ExactScriptPriorityWordingTest.kt:124)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest.forEachLocale$default(ExactScriptPriorityWordingTest.kt:115)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest.categoryAccessibilityTracksEveryActualToolAndExpansionState(ExactScriptPriorityWordingTest.kt:216)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n</failure>\n  </testcase>\n  <testcase name=\"memoryAdmissionStopsBeforeAllocationWithAllFourArguments\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.054\"/>\n  <testcase name=\"readersRejectCallerOwnedCoordinatedRawDisplayAndScopeMutants\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.049\"/>\n  <testcase name=\"unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"1.091\"/>\n  <testcase name=\"realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"1.093\"/>\n  <testcase name=\"nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.14\"/>\n  <testcase name=\"cachedRowMutationCannotChangeACompiledExpectation\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.025\"/>\n  <testcase name=\"canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"1.225\"/>\n  <testcase name=\"failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"0.063\"/>\n  <testcase name=\"everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments\" classname=\"org.catrobat.paintroid.local.ExactScriptPriorityWordingTest\" time=\"2.764\"/>\n  <system-out><![CDATA[]]></system-out>\n  <system-err><![CDATA[]]></system-err>\n</testsuite>\n",
+  "proposed_successor": {
+    "baseline_tree": "2cc5fb50cc6a7807f42a5cbabf0faf32782bd273",
+    "candidate_tree": "8e02de0612aa71eec1c8cc574b3c21bbf2bab876",
+    "expected_source_parent_commit": "42f6b13729777c989ab914eef50e1c55eb0ccd61",
+    "pr": 213,
+    "leaves": 1561,
+    "changed_paths": [
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ExactScriptPriorityWordingTest.kt",
+        "before": {
+          "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ExactScriptPriorityWordingTest.kt",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c2b6047f97530a5150144a3cff1d9c781521c6df"
+        },
+        "after": {
+          "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ExactScriptPriorityWordingTest.kt",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "46392e6603f08e6e8e9780353a53bf9b45858cf2"
+        },
+        "size": 34794,
+        "sha256": "c7dbf3c42c96852291f8c6425473ed5f0212225210947a116b393590ecf43912"
+      },
+      {
+        "path": "tools/exact_script_priority_expectations.py",
+        "before": {
+          "path": "tools/exact_script_priority_expectations.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1f49dab1c0728c59a9b02f277e1706a624c37ec6"
+        },
+        "after": {
+          "path": "tools/exact_script_priority_expectations.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f0bdf769fbaa3edeb80b6d2737b93b60cc99e6b6"
+        },
+        "size": 17803,
+        "sha256": "6080c415105ea45309e785a49449bf21f698e5cbd84211380839301dae870298"
+      },
+      {
+        "path": "tools/test_exact_script_priority_wording.py",
+        "before": {
+          "path": "tools/test_exact_script_priority_wording.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "fdb11dffb8273c407133bc13d16662881ed99ae4"
+        },
+        "after": {
+          "path": "tools/test_exact_script_priority_wording.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8cb769b5fc86d2fdebd5bb159908fdff52b21379"
+        },
+        "size": 18231,
+        "sha256": "122712d4ceb7a15032bfa457edbb2a120df6bb73a6e9cc331aab86a2d41974ae"
+      }
+    ],
+    "all_1558_other_files_bytes_modes_unchanged": true,
+    "all_fixtures_and_production_resources_unchanged": true,
+    "other13_existing_jvm_behavior_bodies_and_prior2_mutation_bodies_unchanged": true,
+    "failed_run_preserved": 40736446643,
+    "test_contract_diagnosis": "mn-Mong uses LocaleTooltip vertical binding/accessibility text and intentionally null native tooltip; the failed test assumed native-only tooltip. Successor checks exact caption/contentDescription/logical/accessibility text, explicit mn-Mong vertical ownership, absence of duplicate native tooltip and exact Latin native tooltip, with five independent channel-corruption controls per locale.",
+    "compiled_runtime_validation": "not yet run for successor",
+    "publication": "local only pending independent review"
+  },
+  "observed_utc": "2026-10-28T18:09Z",
+  "run": {
+    "id": 40736446643,
+    "head": "42f6b13729777c989ab914eef50e1c55eb0ccd61",
+    "status": "completed",
+    "conclusion": "failure",
+    "run_attempt": 1,
+    "url": "https://github.com/c933103/AN-Paint/actions/runs/40736446643"
+  },
+  "diagnosis": {
+    "failure": "ExactScriptPriorityWordingTest.categoryAccessibilityTracksEveryActualToolAndExpansionState at line224; complete Mongolian expected string versus native tooltipText=null",
+    "scope": "one failing JVM method out of1838; the class had16 methods,15passed/1failed",
+    "production_contract": "ToolCategoryButton.refresh delegates to LocaleTooltip.set. For vertical mn-Mong, LocaleTooltip keeps logical/accessibility text and deliberately clears the duplicate native tooltip. Existing LocaleTooltipTest/ControlsTest already distinguish these channels.",
+    "repair_status": "Narrow test-only correction prepared locally; independent review and new hosted execution pending. No production/resource/fixture change; failed run remains failed.",
+    "no_retry": true
+  },
+  "jobs": [
+    {
+      "id": 122986173638,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build universal APK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Upload build diagnostics even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Record build identity and extract matching source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Upload APK immediately, before device tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Compile test APKs once for all emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    },
+    {
+      "id": 122986174194,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Set native compiler cache directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install pinned compiler cache",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run Python contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run JVM regression tests",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 9
+        },
+        {
+          "name": "Prepare lint native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run Android lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Report native compiler cache statistics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Restore content-checked native compiler cache",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ]
+    },
+    {
+      "id": 122986174271,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Prepare build tools and notices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Check clean and incremental resource graph in a disposable worktree",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Post Run actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        }
+      ]
+    },
+    {
+      "id": 122991935506,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bind prebuilt artifacts to this checkout and run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 122991935630,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Bind prebuilt artifacts to this checkout and run",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Install emulator image",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run prebuilt tests with deadlines and live logs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        }
+      ]
+    },
+    {
+      "id": 122999971941,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Require both complete emulator jobs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Select artifacts from successful job intervals",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Download and verify the selected artifact IDs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Require exact disjoint app union and matching prebuilt identity",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ]
+}
