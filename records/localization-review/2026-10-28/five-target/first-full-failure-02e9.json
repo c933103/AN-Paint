@@ -1,0 +1,26 @@
+{
+  "head": "02e9a3629bae882cb76d51529f5ff17cdd1faedc",
+  "tree": "3ca52c64fbd542a1f2204d35ee91de72dbd48627",
+  "tests": 1921,
+  "seconds": 824.731,
+  "exit": 1,
+  "failures": 1,
+  "errors": 1,
+  "raw_sha256": "6f8582fb045ed7828f542e819774aa85eca0a1ce32c2b3f27c2a86e639a98850",
+  "original_failure_text": "ERROR: test_complete_values_name_attached_images_and_qualify_movement (test_chinese_crop_warning.ChineseCropWarningTest.test_complete_values_name_attached_images_and_qualify_movement) (folder='values-b+nan+Latn+TW')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/bbca2890f602/localization-five-target-20261028/source/tools/test_chinese_crop_warning.py\", line 36, in test_complete_values_name_attached_images_and_qualify_movement\n    require_warning(ET.parse(RES / folder / 'strings.xml').getroot(), expected)\n  File \"/workspace/scratch/bbca2890f602/localization-five-target-20261028/source/tools/test_chinese_crop_warning.py\", line 29, in require_warning\n    raise ValueError('Complete warning changed')\nValueError: Complete warning changed\n\n======================================================================\nFAIL: test_save_and_system_terms_remain_paired_in_every_occurrence (test_hakka_context.HakkaContextTests.test_save_and_system_terms_remain_paired_in_every_occurrence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/scratch/bbca2890f602/localization-five-target-20261028/source/tools/test_hakka_context.py\", line 65, in test_save_and_system_terms_remain_paired_in_every_occurrence\n    self.assertEqual(\"@string/ui_save\", self.latin[\"ui_save_a5d0d9\"])\nAssertionError: '@string/ui_save' != 'Pó-sùn…'\n- @string/ui_save\n+ Pó-sùn…\n\n\n----------------------------------------------------------------------\nRan 1921 tests in 824.731s\n\nFAILED (failures=1, errors=1)",
+  "source_binding": {
+    "mode": "ordinary",
+    "exit": 1,
+    "tests": 1921,
+    "seconds": 824.731,
+    "log_sha256": "6f8582fb045ed7828f542e819774aa85eca0a1ce32c2b3f27c2a86e639a98850",
+    "source_binding": {
+      "tree": "3ca52c64fbd542a1f2204d35ee91de72dbd48627",
+      "leaves": 1555,
+      "complete_identity_set_bytes_modes": true
+    }
+  },
+  "optimized": "not started after ordinary failure",
+  "diagnosis": "Two legacy expectations, plus read-only identified same stale JVM NAN template; accepted wording unchanged",
+  "repair_status": "C authoring finite three-test successor; pending independent gate"
+}
