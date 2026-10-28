@@ -1,0 +1,87 @@
+{
+  "record": "Independent whole-resource and caller preflight of QUY active Clear all command, corrected evidence successor",
+  "reviewer": "review_nine_translation_drafts",
+  "time_utc": "2026-10-28T18:05:00Z",
+  "input": {
+    "path": "zgh-chr-quy-recovery/quy-clear-all-p0-draft-1804.json",
+    "sha256": "cde376bfca9f8845cacb2db814749b6a14c0cb6fc05aec82b38dca5497a28e30",
+    "source_head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+    "prior_bounded_checkpoint_commit": "1bdef0a7ab50a087e5f6567de0208e64f69b2b57",
+    "prior_bounded_count": 121
+  },
+  "decision": "One bounded complete-resource preflight pass after evidence-only correction. Eligible addition quy1; no publication or integration performed by this review.",
+  "row": {
+    "locale": "quy",
+    "identity": "string/ui_clear_all",
+    "tier": "P0",
+    "source_value": "Clear all",
+    "source_value_json_sha256": "085d94913987744ca2925c59c230bb2d8c890f791030882aa60c4ac4c59f7989",
+    "proposed_value": "Llapan wischuy",
+    "proposed_attributes": {
+      "name": "ui_clear_all"
+    },
+    "target_utf8_sha256": "1561762181a074569bed68a5c425e29619fa19facc2f6f51a63584e30130ae21",
+    "decision": "bounded_complete_resource_preflight_pass",
+    "confidence": "moderate productive whole-command analogy; not native-preferred or exact upstream full-string certification"
+  },
+  "whole_value_reasoning": "The same Ayacucho-Chanka software guide directly attests the all-object imperative with llapan and the software Delete command wischuy. Removing the repeated Edit menu prefix and substituting the independently attested transitive discard command retains the complete all-object command structure. Soto independently supports intentional discard rather than accidental loss or vomiting. In this actual assembly list, discard/remove all is equivalent to Clear all: it concerns all active entries, not merely placement, selected entries, checkboxes, canvas pixels, or every external file. No final period or completion guarantee is added.",
+  "caller_semantics": {
+    "direct": "AssemblyActivity.kt101 invokes assembly.clear through the normal button busy guard and perform exception route.",
+    "active_list": "ImageAssembly.kt153 calls change(emptyList()), removing every active AssemblyImage entry, both placed and unplaced. This differs from unplace and single-entry remove.",
+    "transaction_and_history": "change validates and writes the new state before recording previous active state in bounded Undo history and clearing redo. Undo and Redo buttons actually invoke assembly.undo/redo at AssemblyActivity79–80. The command does not promise success if write/validation fails.",
+    "pruning_limit": "prune retains owned .image files reachable from active state, Undo or Redo and may delete unreachable owned cache files. Current prior entries remain reachable by Undo after clear, but old history may be dropped and redo cleared. This is neither a promise that every file remains forever nor a command to delete external originals. No retention guarantee is added to the translation."
+  },
+  "evidence_correction": {
+    "superseded_packet": "quy-clear-all-p0-draft-1800.json",
+    "superseded_sha256": "2c59a42feaa14827205c4f9294418a27c45a3375b47b8b8917bb441864c3a4ec",
+    "problem": "Original additional-caller caption claimed Undo/Redo wiring but quoted AssemblyActivity75–78 header/count setup. Also native lane wording was ambiguous despite explicit no-native limits.",
+    "resolution": "Author supplied immutable1804 successor. Correct wiring window79–80 independently read and checked exactly; lane is explicitly independent model-review. Diff confirms target and all other substantive source evidence unchanged. Original packet preserved.",
+    "remaining_corrections": []
+  },
+  "verification": {
+    "git_blob_checked_production_and_resource_files": 116,
+    "production_java_kotlin_files": 104,
+    "direct_occurrences": 1,
+    "all_direct_occurrences_reconciled": true,
+    "all_six_direct_and_additional_context_windows_exact_after_correction": true,
+    "caller_binding_git_blob_and_sha256_match": true,
+    "source_value_attributes_json_hash_match": true,
+    "target_utf8_hash_match": true,
+    "xml_round_trip": true,
+    "source_and_target_placeholder_count": 0,
+    "current_quy_target_absent": true,
+    "not_in_prior121": true,
+    "successor_sha256_verified": true,
+    "successor_diff_limited_to_corrected_evidence_metadata": true
+  },
+  "primary_sources": {
+    "software_guide": {
+      "url": "https://manuals.plus/m/11177cc64c717458906fd98b18467750c1008fe87f4eb1a7a2028ed69dd64c47",
+      "pages": [
+        7,
+        38
+      ],
+      "method": "Original-guide text independently read earlier in this review lane through public search-indexed extraction. Page7 establishes Ayacucho-Chanka normative basis; page38 gives the two complete menu/command examples. Rechecked author interpretation against that observed source.",
+      "short_command_bodies": [
+        "llapan akllay",
+        "wischuy"
+      ],
+      "limits": "Mirror-hosted original-document extraction, not tertiary commentary. Official/mirror PDF byte identity not freshly verified; hash-looking URL is not byte proof. No visual-page or native-preferred certification."
+    },
+    "dictionary": {
+      "url": "https://indigenasdelperu.wordpress.com/wp-content/uploads/2015/09/diccionario-quechua-inglc3a9s-castellano-chanka-clodoaldo-soto.pdf",
+      "author": "Clodoaldo Soto Ruiz",
+      "variety": "Ayacucho-Chanka",
+      "entry": "Wischuy120, printed209",
+      "method": "Previously independently read public primary text in this lane; intentional discard sense retained, other senses excluded. No new visual certification or complete-PDF download."
+    }
+  },
+  "limits": [
+    "Parent may reconcile121+1=122 bounded preflights after this corrected receipt is bound. No code/catalogue/runtime change occurs here.",
+    "Existing baseline ZGH Clear all is not a new candidate and receives no added credit.",
+    "No transfer to pixel-clearing ui_clear_image, dormant ui_discard, or Keep editing. Separate PUCP Keep-editing research lead is outside this one-row acceptance.",
+    "Original18 whole-warning gaps remain unchanged. No shortened memory/source-resolution/retention/no-auto-resize guarantee accepted.",
+    "No whole-language, native-speaker, compiled, installed, runtime, accessibility-rendering, integration or safe-release certification.",
+    "Only this local review receipt written; author packets unchanged. No publication, production/catalogue edit, Work task, authentication, private corpus access or complete primary-PDF download/save."
+  ]
+}
