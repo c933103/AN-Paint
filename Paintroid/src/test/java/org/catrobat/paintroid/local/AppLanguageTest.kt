@@ -401,6 +401,18 @@ class AppLanguageTest {
                     assertEquals("ساقلاش",wrapped.getString(R.string.ui_save))
                     assertEquals("ساقلاش…",wrapped.getString(R.string.ui_save_a5d0d9))
                 }
+                "yue-Latn" -> {
+                    assertEquals("Cyu5 cyun4",wrapped.getString(R.string.ui_save))
+                    assertEquals("Cyu5 cyun4…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
+                "hak-Latn-TW" -> {
+                    assertEquals("Pó-sùn",wrapped.getString(R.string.ui_save))
+                    assertEquals("Pó-sùn…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
+                "nan-Latn-TW" -> {
+                    assertEquals("Pó-chûn",wrapped.getString(R.string.ui_save))
+                    assertEquals("Pó-chûn…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
                 else -> assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
                     wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
             }

@@ -45,7 +45,7 @@
     <string name="ui_assembly_saved">Assembly saved</string>
     <string name="ui_autosave_failed_use_save">Autosave failed · use Save</string>
     <string name="ui_autosave_image_encoding_failed">Autosave image encoding failed.</string>
-    <string name="ui_autosave_is_paused_to_protect_that_draft_use">%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (Image format: PNG / JPEG) to save your current work.</string>
+    <string name="ui_autosave_is_paused_to_protect_that_draft_use">%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.</string>
     <string name="ui_autosave_metadata_is_missing">Autosave metadata is missing.</string>
     <string name="ui_autosave_paused_use_save">Autosave paused · use Save</string>
     <string name="ui_autosave_pixels_are_missing">Autosave pixels are missing.</string>
@@ -150,7 +150,7 @@
     <string name="ui_drag_to_erase_with_the_background_colour">Drag to erase with the background colour.</string>
     <string name="ui_drag_to_pan_without_drawing_pinch_with_two">Drag to pan without drawing. Pinch with two fingers to zoom and pan. Two-finger navigation also works with drawing tools.</string>
     <string name="ui_draw_a_crisp_one_pixel_line">Draw a crisp line. Adjust Width from 1 to 100 pixels.</string>
-    <string name="ui_draw_again">Draw again</string>
+    <string name="ui_draw_again">Resume drawing</string>
     <string name="ui_draw_around_an_area_drag_inside_to_move">Draw around an area. Drag inside to move, square corner or edge handles to resize, or the round handle to rotate. Commit selection applies the edit.</string>
     <string name="ui_draw_soft_watercolor_strokes_strength_controls_how_strongly">Draw soft watercolor strokes. Strength controls how strongly the colour blends into the canvas.</string>
     <string name="ui_draw_with_the_selected_brush_tip_and_size">Draw with the selected brush tip and size.</string>
@@ -290,8 +290,8 @@
     <string name="ui_paste">Paste</string>
     <string name="ui_pencil">Pencil</string>
     <string name="ui_pencil_keeps_crisp_one_pixel_strokes_cursor_drawing">Pencil keeps crisp edges at any selected width.</string>
-    <string name="ui_percent">Percent</string>
-    <string name="ui_percent_fd8671">percent</string>
+    <string name="ui_percent">Per cent</string>
+    <string name="ui_percent_fd8671">per cent</string>
     <string name="ui_percent_of_pixels">percent of %1$s pixels</string>
     <string name="ui_pinch_and_pan_mode">Pinch and pan mode</string>
     <string name="ui_pinch_to_zoom_drag_to_pan">Pinch to zoom. Drag to pan.</string>
@@ -308,7 +308,7 @@
     <string name="ui_px">%1$s · %2$s\n%3$s × %4$s px · %5$s</string>
     <string name="ui_px_724eb3">%1$s × %2$s px</string>
     <string name="ui_px_drag_an_image_to_move_hold_a">%1$s × %2$s px · drag an image to move; hold a thumbnail to add.</string>
-    <string name="ui_quality">Quality</string>
+    <string name="ui_quality" formatted="false">Quality (%)</string>
     <string name="ui_radius_px">Radius (px)</string>
     <string name="ui_ready">Ready</string>
     <string name="ui_recent_colour_d_06x_tap_foreground_hold_background">Recent colour %1$d: #%2$06X. Tap foreground, hold background.</string>
@@ -345,7 +345,7 @@
     <string name="ui_sans_serif">Sans Serif</string>
     <string name="ui_sans_thin">Sans thin</string>
     <string name="ui_save">Save</string>
-    <string name="ui_save_a5d0d9">Save</string>
+    <string name="ui_save_a5d0d9">Save…</string>
     <string name="ui_save_and_share">Save and share…</string>
     <string name="ui_save_and_share_41edb4">Save and share</string>
     <string name="ui_save_as">Save as %1$s</string>
@@ -460,7 +460,7 @@
     <string name="ui_use_a_positive_target_dimension">Use a positive target dimension.</string>
     <string name="ui_use_colour">Use colour</string>
     <string name="ui_use_rrggbb">Use #RRGGBB</string>
-    <string name="ui_watercolor">Watercolor</string>
+    <string name="ui_watercolor">Watercolour</string>
     <string name="ui_wheel">Wheel</string>
     <string name="ui_width">Width (%1$s)</string>
     <string name="ui_width_in">Width in %1$s</string>
@@ -483,7 +483,7 @@
     <string name="ui_try_a_different_file_or_location">Please try a different file or location.</string>
     <string name="ui_preview_memory_error">%1$s: not enough memory for its preview.</string>
     <string name="ui_png_encoding_failed">PNG encoding failed.</string>
-    <string name="ui_trim_in_percent">%1$s trim in percent</string>
+    <string name="ui_trim_in_percent">%1$s trim in per cent</string>
     <string name="ui_colour_component_range">0–%1$d</string>
     <string name="ui_colour_red_range">R · 0–255</string>
     <string name="ui_colour_green_range">G · 0–255</string>
@@ -496,8 +496,8 @@
     <string name="ui_colour_hsl_lightness_range" formatted="false">HSL L · 0–100%</string>
     <string name="ui_main23">Main</string>
     <string name="ui_drawing23">Drawing</string>
-    <string name="ui_colour_tab23">Color</string>
-    <string name="ui_swap23">Swap colors</string>
+    <string name="ui_colour_tab23">Colour</string>
+    <string name="ui_swap23">Swap colours</string>
     <string name="ui_reset_bw23">Black / white</string>
     <string name="ui_export_as23">Export as…</string>
     <string name="ui_about_credits23">About, licences &amp; credits</string>
@@ -505,7 +505,7 @@
     <string name="ui_save_explanation23">Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.</string>
     <string name="ui_export_explanation23">Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.</string>
     <string name="ui_export_did_not_save23">The export was created. Use Save or Save as to save the current image before continuing.</string>
-    <string name="ui_selected_colour23">Selected color</string>
+    <string name="ui_selected_colour23">Selected colour</string>
     <string name="ui_add_palette23">Add to palette</string>
     <string name="ui_saved_palette23">Saved palette</string>
     <string name="ui_added_palette23">Added to palette</string>
@@ -619,8 +619,8 @@
     <string name="language20_device_default">Use device language</string>
     <string name="language20_translation_note">App language\n\nRegional English wording is maintained directly in AN Paint. Text added after this catalogue was last updated may temporarily use the app\'s base English wording.</string>
     <string name="save20_title">Save as…</string>
-    <string name="save20_file_name">Image name</string>
-    <string name="save20_file_format">Image format</string>
+    <string name="save20_file_name">File name</string>
+    <string name="save20_file_format">File format</string>
     <string name="save20_dither">Dither colours</string>
     <string name="save20_gif_description">Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.</string>
     <string name="save20_bmp_description">Uncompressed 24-bit RGB; exact colours, larger files.</string>
