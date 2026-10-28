@@ -1,0 +1,463 @@
+{
+  "observed_utc": "2026-10-28T22:34:00Z",
+  "source_head": "0070c5816ad31911d227fab50ea193e2a39b13ab",
+  "source_tree": "ef689a16f5460f901b3b3db49c89dc171140a8e2",
+  "scope": "Independent root review of existing authored short labels; no Work-side assignment started, no production edits.",
+  "primary_source": {
+    "url": "https://download.microsoft.com/download/B/F/3/BF3CAB57-043E-42A9-B119-CA8A4FB835D8/que-per-StyleGuide.pdf",
+    "sha256": "11177cc64c717458906fd98b18467750c1008fe87f4eb1a7a2028ed69dd64c47",
+    "pages_checked": [
+      7,
+      19,
+      23,
+      31,
+      36,
+      38
+    ],
+    "visually_checked": [
+      36,
+      38
+    ],
+    "variety": "Guide explicitly lists Ayacucho Chanka normative references; no generic quz product-tag transfer.",
+    "redistribution": "Full copyrighted guide and page images excluded."
+  },
+  "rows": [
+    {
+      "identity": "string/ui_menu_file",
+      "english": "File",
+      "value": "Kipu",
+      "attributes": {
+        "name": "ui_menu_file"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 830,
+          "context": "    }\n\n    private fun menuTitle(name: String): String=ui(when(name) {\n        \"Draw\"->R.string.ui_draw26;\"File\"->R.string.ui_menu_file;\"Edit\"->R.string.ui_menu_edit\n        \"View\"->R.string.ui_menu_view;\"Color\"->R.string.ui_colour_tab23;else->R.string.ui_menu_help\n    })\n    private data class PanelCommand(val first: String,val second: () -> Unit,val icon: Int?=null)",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_menu_edit",
+      "english": "Edit",
+      "value": "Allichay",
+      "attributes": {
+        "name": "ui_menu_edit"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 830,
+          "context": "    }\n\n    private fun menuTitle(name: String): String=ui(when(name) {\n        \"Draw\"->R.string.ui_draw26;\"File\"->R.string.ui_menu_file;\"Edit\"->R.string.ui_menu_edit\n        \"View\"->R.string.ui_menu_view;\"Color\"->R.string.ui_colour_tab23;else->R.string.ui_menu_help\n    })\n    private data class PanelCommand(val first: String,val second: () -> Unit,val icon: Int?=null)",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_menu_help",
+      "english": "Help",
+      "value": "Yanapay",
+      "attributes": {
+        "name": "ui_menu_help"
+      },
+      "classification": "dormant_wording_only_exclude_from_active_batch",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 831,
+          "context": "\n    private fun menuTitle(name: String): String=ui(when(name) {\n        \"Draw\"->R.string.ui_draw26;\"File\"->R.string.ui_menu_file;\"Edit\"->R.string.ui_menu_edit\n        \"View\"->R.string.ui_menu_view;\"Color\"->R.string.ui_colour_tab23;else->R.string.ui_menu_help\n    })\n    private data class PanelCommand(val first: String,val second: () -> Unit,val icon: Int?=null)\n    private fun command(title: String,icon: Int,action: () -> Unit)=PanelCommand(title,action,icon)",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_save",
+      "english": "Save",
+      "value": "Waqaychay",
+      "attributes": {
+        "name": "ui_save"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+          "line": 134,
+          "context": "        val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_image_credits))\n            .setView(ScrollView(activity).apply {addView(body)})\n            .setNegativeButton(ui(R.string.gallery_copy_credit),null)\n            .setNeutralButton(ui(R.string.ui_save),null)\n            .setPositiveButton(ui(R.string.ui_done),null).create()\n        dialog.setOnShowListener {\n            fun action(which: Int,tagName: String,run: ()->Unit) {",
+          "file_sha256": "7d258390d8c1eb72d7f6fed1af7dd5ffe3ae812c7ea22c39510bc9a21be0f2f3"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 839,
+          "context": "        \"File\"->(listOf<Pair<String,()->Unit>>(\n            ui(R.string.ui_new) to {confirmReplacement {dimensionsDialog(false,true)}},\n            ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},\n            ui(R.string.ui_save) to {requestSave(false)},\n            ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},\n            ui(R.string.ui_export_as23) to {showSaveOptions(exportOptions.format,export=true)},\n            ui(R.string.ui_save_and_share) to {showSaveOptions(exportOptions.format,true,export=true)},",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "line": 315,
+          "context": "            form\n        } else holder\n        val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()\n        fun resizeHorizontalWindow() {\n            if(VerticalText.uiVertical(activity)) return\n            val frame=Rect();activity.window.decorView.getWindowVisibleDisplayFrame(frame)",
+          "file_sha256": "7f1519d261aa399bfef4066349028dafff84dc438411565e0519feca0cb37eab"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "context": "import android.view.View\nimport org.catrobat.paintroid.R\n\nenum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);\n    val label: String get() = ui(labelId)\n}\n",
+          "file_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_save_a5d0d9",
+      "english": "Save…",
+      "value": "Waqaychay…",
+      "attributes": {
+        "name": "ui_save_a5d0d9"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1078,
+          "context": "        paintCanvas.applyPending()\n        if (!document.dirty) { action(); return }\n        EditorDialogBuilder(this).setTitle(ui(R.string.ui_save_your_changes)).setMessage(ui(R.string.ui_your_current_image_has_unsaved_changes))\n            .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }\n            .setNeutralButton(ui(R.string.ui_discard_changes23)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_keep_editing23), null).show()\n    }\n",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/save20_title",
+      "english": "Save as…",
+      "value": "Huk hinata waqaychay…",
+      "attributes": {
+        "name": "save20_title"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 187,
+          "context": "            form.layoutDirection=if(VerticalText.uiDirection(activity)==TextDirection.VERTICAL_RL) View.LAYOUT_DIRECTION_RTL else View.LAYOUT_DIRECTION_LTR\n            form\n        } else ScrollView(activity).apply {addView(body)}\n        dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))\n            .setView(content)\n            .setPositiveButton(ui(R.string.ui_choose_location),null)\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()",
+          "file_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 840,
+          "context": "            ui(R.string.ui_new) to {confirmReplacement {dimensionsDialog(false,true)}},\n            ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},\n            ui(R.string.ui_save) to {requestSave(false)},\n            ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},\n            ui(R.string.ui_export_as23) to {showSaveOptions(exportOptions.format,export=true)},\n            ui(R.string.ui_save_and_share) to {showSaveOptions(exportOptions.format,true,export=true)},\n            ui(R.string.ui_image_assembly) to {openAssembly()},",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_copy",
+      "english": "Copy",
+      "value": "Mirachiy",
+      "attributes": {
+        "name": "ui_copy"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "context": "import android.view.View\nimport org.catrobat.paintroid.R\n\nenum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);\n    val label: String get() = ui(labelId)\n}\n",
+          "file_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_cut",
+      "english": "Cut",
+      "value": "Kuchuy",
+      "attributes": {
+        "name": "ui_cut"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "context": "import android.view.View\nimport org.catrobat.paintroid.R\n\nenum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);\n    val label: String get() = ui(labelId)\n}\n",
+          "file_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_paste",
+      "english": "Paste",
+      "value": "Churay",
+      "attributes": {
+        "name": "ui_paste"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "context": "import android.view.View\nimport org.catrobat.paintroid.R\n\nenum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);\n    val label: String get() = ui(labelId)\n}\n",
+          "file_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_undo",
+      "english": "Undo",
+      "value": "Kutichiy",
+      "attributes": {
+        "name": "ui_undo"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "context": "import android.view.View\nimport org.catrobat.paintroid.R\n\nenum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);\n    val label: String get() = ui(labelId)\n}\n",
+          "file_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_select_all",
+      "english": "Select all",
+      "value": "Llapan akllay",
+      "attributes": {
+        "name": "ui_select_all"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 848,
+          "context": "            ui(R.string.ui_about_credits23) to {showAboutOptions()}\n        ) + if(autosaveBlocked || autosave.recoveryCopies().isNotEmpty()) listOf(ui(R.string.ui_export_recovery_copy) to {requestRecoveryExport()}) else emptyList()).map {PanelCommand(it.first,it.second)}\n        \"Edit\"->listOf(\n            command(ui(R.string.ui_select_all),R.drawable.breeze_select_all) {selectAll();selectTab(\"Edit\")},\n            command(ui(R.string.ui_canvas_bounds),R.drawable.classic_bounds) {trimCanvas()},\n            command(ui(R.string.ui_delete_selection),R.drawable.classic_delete) {if(!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first))},\n            command(ui(R.string.ui_canvas_size),R.drawable.classic_canvas_size) {dimensionsDialog(false,false)},",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "context": "import android.view.View\nimport org.catrobat.paintroid.R\n\nenum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);\n    val label: String get() = ui(labelId)\n}\n",
+          "file_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_bold",
+      "english": "Bold",
+      "value": "Yanachasqa",
+      "attributes": {
+        "name": "ui_bold"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 49,
+          "context": "            sizes.addView(col,LinearLayout.LayoutParams(0,-2,1f))\n        };body.addView(sizes)\n        fun check(text: String,tagName: String,value: Boolean)=CheckBox(activity).apply { this.text=text;tag=tagName;isChecked=value }\n        val bold=check(ui(R.string.ui_bold),\"text_bold\",initial.bold);val italic=check(ui(R.string.ui_italic),\"text_italic\",initial.italic)\n        val underline=check(ui(R.string.ui_underline),\"text_underline\",initial.underline);val strike=check(ui(R.string.ui_strikethrough),\"text_strike\",initial.strike)\n        listOf(bold,italic,underline,strike).chunked(2).forEach { items ->\n            val row=LinearLayout(activity);items.forEach { row.addView(it,LinearLayout.LayoutParams(0,dp(48),1f)) };body.addView(row)",
+          "file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_italic",
+      "english": "Italic",
+      "value": "Kirasqa",
+      "attributes": {
+        "name": "ui_italic"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 49,
+          "context": "            sizes.addView(col,LinearLayout.LayoutParams(0,-2,1f))\n        };body.addView(sizes)\n        fun check(text: String,tagName: String,value: Boolean)=CheckBox(activity).apply { this.text=text;tag=tagName;isChecked=value }\n        val bold=check(ui(R.string.ui_bold),\"text_bold\",initial.bold);val italic=check(ui(R.string.ui_italic),\"text_italic\",initial.italic)\n        val underline=check(ui(R.string.ui_underline),\"text_underline\",initial.underline);val strike=check(ui(R.string.ui_strikethrough),\"text_strike\",initial.strike)\n        listOf(bold,italic,underline,strike).chunked(2).forEach { items ->\n            val row=LinearLayout(activity);items.forEach { row.addView(it,LinearLayout.LayoutParams(0,dp(48),1f)) };body.addView(row)",
+          "file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_underline",
+      "english": "Underline",
+      "value": "Chimpusqa",
+      "attributes": {
+        "name": "ui_underline"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 50,
+          "context": "        };body.addView(sizes)\n        fun check(text: String,tagName: String,value: Boolean)=CheckBox(activity).apply { this.text=text;tag=tagName;isChecked=value }\n        val bold=check(ui(R.string.ui_bold),\"text_bold\",initial.bold);val italic=check(ui(R.string.ui_italic),\"text_italic\",initial.italic)\n        val underline=check(ui(R.string.ui_underline),\"text_underline\",initial.underline);val strike=check(ui(R.string.ui_strikethrough),\"text_strike\",initial.strike)\n        listOf(bold,italic,underline,strike).chunked(2).forEach { items ->\n            val row=LinearLayout(activity);items.forEach { row.addView(it,LinearLayout.LayoutParams(0,dp(48),1f)) };body.addView(row)\n        }",
+          "file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    },
+    {
+      "identity": "string/ui_cancel",
+      "english": "Cancel",
+      "value": "Tukuchiy",
+      "attributes": {
+        "name": "ui_cancel"
+      },
+      "classification": "bounded_complete_short_label_preflight_not_family_or_integration_acceptance",
+      "consumer_refs": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 99,
+          "context": "            override fun onNothingSelected(parent: AdapterView<*>?)=Unit\n        };font.onItemSelectedListener=selected;align.onItemSelectedListener=selected;direction.onItemSelectedListener=selected;glyphs.onItemSelectedListener=selected\n        val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })\n            .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()\n        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n            val pixels=uiNumber(size.text.toString())?.toFloat();val percent=uiNumber(spacing.text.toString())?.toFloat()\n            when {",
+          "file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 190,
+          "context": "        dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))\n            .setView(content)\n            .setPositiveButton(ui(R.string.ui_choose_location),null)\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()\n        dialog.setOnShowListener {\n            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n                val name=filename.text.toString()",
+          "file_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt",
+          "line": 71,
+          "context": "                setText((slider.progress+minimum).toString());selectAll();gravity=Gravity.CENTER\n            }\n            val dialog=EditorDialogBuilder(context).setTitle(name).setMessage(ui(R.string.ui_enter_a_whole_number_from_to, minimum, maximum))\n                .setView(input).setPositiveButton(ui(R.string.ui_apply),null).setNegativeButton(ui(R.string.ui_cancel),null).create()\n            dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n                val n=input.text.toString().toIntOrNull()\n                if(n==null || n !in minimum..maximum) input.error=ui(R.string.ui_enter_a_number_from_to, minimum, maximum)",
+          "file_sha256": "6747cb4e72fc73908024be3afecd234b12195713bb3b88363b3f008748240125"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+          "line": 38,
+          "context": "            input.setText(if (percent) String.format(Locale.ROOT,\"%.4f\",pixels*100.0/largest).trimEnd('0').trimEnd('.') else pixels.toString())\n        }\n        val dialog=EditorDialogBuilder(activity).setTitle(ui(if (axis == NormalizeAxis.WIDTH) R.string.ui_same_width else R.string.ui_same_height))\n            .setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_to_all),null).create()\n        fun refresh() {\n            var valid=false\n            try {",
+          "file_sha256": "52b989adc54c58a005ae120f8015a698f2ba58bfe16bdd48d6efa16252d720f7"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+          "line": 120,
+          "context": "                    7 -> showAsset(activity,ui(R.string.ui_webp_codec_licences),\"legal/WEBP_NOTICES.txt\")\n                    else -> showAsset(activity,ui(R.string.ui_heic_avif_codec_licences),\"legal/HEIF_AVIF_NOTICES.txt\")\n                }\n            }.setNegativeButton(ui(R.string.ui_cancel),null).show()\n        }\n        action(ui(R.string.ui_done),\"terms_done\") { dialog.dismiss() }\n        val actionView=if(VerticalText.uiVertical(activity)) ResponsiveDialogColumns(activity).apply {addView(actions)} else actions",
+          "file_sha256": "fc9f51c4da1ddecba2340a2a79fdfe3d88495d10b209974de642241cff66619e"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 96,
+          "context": "                ui(if(info.pngDefaultImageSeparate) R.string.formats22_animation_poster else R.string.formats22_animation_still)\n        dialog=EditorDialogBuilder(activity).setTitle(ui(if(info.frameCount<2) R.string.formats22_open_still else R.string.formats22_animation_title)).setMessage(message)\n            .setPositiveButton(ui(R.string.formats22_open_still)) {_,_->finishSelection(0)}\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->cancel()}.setOnCancelListener {cancel()}.show()\n    }\n    private fun showPages(kind: String,count: Int) {\n        require(count>0)",
+          "file_sha256": "86169c732b8a5520b3f95b82f010ec6ef8d22ef1422cf86df3b5303822d6be69"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 116,
+          "context": "        val chooser=EditorDialogBuilder(activity).setTitle(ui(R.string.formats22_select_page))\n            .setView(ScrollView(activity).apply {addView(body)})\n            .setPositiveButton(ui(R.string.formats22_open_page),null)\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->cancel()}.setOnCancelListener {cancel()}.create()\n        dialog=chooser\n        fun page()=field.text.toString().toIntOrNull()?.takeIf {it in 1..count}\n        fun update() {",
+          "file_sha256": "86169c732b8a5520b3f95b82f010ec6ef8d22ef1422cf86df3b5303822d6be69"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 38,
+          "context": "        var accepted = false\n        val dialog = EditorDialogBuilder(activity).setTitle(ui(R.string.ui_resize_large_image))\n            .setView(ScrollView(activity).apply { addView(body) })\n            .setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_resize_and_load), null).create()\n        fun target(): ImageDimensions? = sizing.dimensions?.takeIf { it.width <= source.width && it.height <= source.height }\n        fun refresh(): Boolean {\n            val current = policy()",
+          "file_sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+          "line": 142,
+          "context": "        preview.changed = { rect -> displayValues(rect); refresh(false) }\n        displayValues(if (images.size == 1) reference.crop else Rect(0,0,reference.dimensions.width,reference.dimensions.height)); refresh()\n        val dialog = EditorDialogBuilder(activity).setTitle(if (images.size == 1) ui(R.string.ui_crop, reference.name) else ui(R.string.ui_batch_crop_images))\n            .setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_crop),null).create()\n        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n            try {\n                require(selected.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+          "file_sha256": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 824,
+          "context": "        choice.setOnClickListener {\n            EditorDialogBuilder(this).setTitle(ui(R.string.ui_tool_option)).setSingleChoiceItems(values.toTypedArray(), selected) { dialog, which ->\n                action(which); choice.text = values[which]; dialog.dismiss()\n            }.setNegativeButton(ui(R.string.ui_cancel), null).show()\n        }\n        options.addView(choice, LinearLayout.LayoutParams(-1, dp(48)))\n    }",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 909,
+          "context": "                    .putExtra(\"gallery_resident_pixels\",document.residentPixels)\n                    .putExtra(CreditEditSession.EXTRA_SESSION,session.token),GALLERY_IMAGE)\n            } catch(_: Exception) {message(ui(R.string.gallery_credit_could_not_save))}\n        }.setNegativeButton(ui(R.string.ui_cancel),null).show()\n    }\n\n    private fun selectAfterPaste() {",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 992,
+          "context": "            val entries=store.entries()\n            EditorDialogBuilder(this).setTitle(ui(R.string.ui_replace_palette23))\n                .setItems(entries.map {String.format(java.util.Locale.ROOT,\"#%06X\",it.second and 0xffffff)}.toTypedArray()) {_,which ->addColour(entries[which].first)}\n                .setNegativeButton(ui(R.string.ui_cancel),null).show()\n            return\n        }\n        colourPreviewOriginal=document.foreground to document.background",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1009,
+          "context": "        EditorDialogBuilder(this).setTitle(String.format(java.util.Locale.ROOT,\"#%06X\",store.colour(index) and 0xffffff))\n            .setItems(arrayOf(ui(R.string.ui_background_colour),ui(R.string.ui_edit_colour26),ui(R.string.ui_remove_palette23))) {_,action ->\n                when(action) {0->setColour(store.colour(index),true);1->addColour(index);2->{store.remove(index);refreshCustomPalette()}}\n            }.setNegativeButton(ui(R.string.ui_cancel),null).show()\n    }\n\n    private fun dimensionsDialog(stretch: Boolean, fresh: Boolean) {",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1018,
+          "context": "        column.addView(sizing)\n        if (!fresh) column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))\n        column.addView(label(ui(R.string.ui_current_safe_budget_2f_mp, ImageMemoryPolicy.forDevice(this).maxPixels(document.residentPixels) / 1_000_000.0), 12f))\n        val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()\n        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n            val size = sizing.dimensions\n            if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1054,
+          "context": "        editDetails.addView(label(\"\").apply {tag=\"trim_dimensions\"})\n        fun finish() {editDetails.visibility=View.GONE;editCommands.visibility=View.VISIBLE;syncPanels()}\n        editDetails.addView(button(ui(R.string.ui_apply_bounds),\"trim_apply\") {paintCanvas.applyTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))\n        editDetails.addView(button(ui(R.string.ui_cancel),\"trim_cancel\") {paintCanvas.cancelTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))\n        editDetails.addView(button(ui(R.string.ui_fit),\"trim_fit\") {paintCanvas.fit()},LinearLayout.LayoutParams(-1,dp(48)))\n        if(VerticalText.uiVertical(this@ClassicPaintActivity)) VerticalUi.panel(editDetails)\n        syncPanels();updateStatus()",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1162,
+          "context": "        }\n        if (copies.size==1) choose(copies.first()) else if (copies.isNotEmpty()) EditorDialogBuilder(this)\n            .setTitle(ui(R.string.ui_export_recovery_copy_144b8a)).setItems(copies.map { java.text.DateFormat.getDateTimeInstance().format(java.util.Date(it.lastModified())) }.toTypedArray()) { _,i -> choose(copies[i]) }\n            .setNegativeButton(ui(R.string.ui_cancel),null).show()\n    }\n\n    private fun openAssembly() {",
+          "file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+          "line": 70,
+          "context": "private fun placementDialog(activity: Activity, title: String, body: View): AlertDialog = EditorDialogBuilder(activity)\n    .setTitle(title)\n    .setView(ScrollView(activity).apply { isFillViewport = true; addView(body) })\n    .setNegativeButton(ui(R.string.ui_cancel), null)\n    .setPositiveButton(ui(R.string.ui_apply), null)\n    .create()",
+          "file_sha256": "ef1c5a09c1a1bfc7258539180a1b3b0f1f9f2d57694adf14da97afe3620a8726"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 308,
+          "context": "        body.addView(text(ui(R.string.ui_choose_a_smaller_output_copy_the_source_images)))\n        val sizing = DimensionControls(this,renderer.original,suggested,\"assembly_size\",true); body.addView(sizing)\n        val estimate = text(\"\"); body.addView(estimate)\n        val dialog = EditorDialogBuilder(this).setTitle(ui(R.string.ui_assembly_output_size)).setView(ScrollView(this).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_create_output),null).create()\n        fun refresh() {\n            val size = sizing.dimensions\n            estimate.text = if (size == null) ui(R.string.ui_enter_valid_dimensions) else ui(R.string.ui_estimated_memory_current_working_budget, memoryLabel(renderer.estimatedBytes(size)), memoryLabel(ImageMemoryPolicy.forDevice(this).workingBytes.toDouble())) + if (renderer.fits(size)) ui(R.string.ui_fits_the_current_budget) else ui(R.string.ui_choose_a_smaller_size)",
+          "file_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+          "line": 197,
+          "context": "                if (choices[which] != selectedTag(activity)) {\n                    select(activity, choices[which]); refresh(activity); changed()\n                }\n            }.setNegativeButton(ui(R.string.ui_cancel), null).show().also { dialog ->\n                val cancel=dialog.getButton(AlertDialog.BUTTON_NEGATIVE)\n                LocaleTypography.typeface(activity)?.let {cancel.typeface=it}\n                VerticalUi.caption(cancel,96)",
+          "file_sha256": "225844396d57c3ddf25a482da3e6e6d28a21261644fd871cd1faab95f735e417"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "line": 315,
+          "context": "            form\n        } else holder\n        val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()\n        fun resizeHorizontalWindow() {\n            if(VerticalText.uiVertical(activity)) return\n            val frame=Rect();activity.window.decorView.getWindowVisibleDisplayFrame(frame)",
+          "file_sha256": "7f1519d261aa399bfef4066349028dafff84dc438411565e0519feca0cb37eab"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "line": 355,
+          "context": "            val entries=paletteStore.entries()\n            EditorDialogBuilder(activity).setTitle(ui(R.string.ui_replace_palette23))\n                .setItems(entries.map {customLabel(it.first,it.second)}.toTypedArray()) {_,which ->paletteStore.replace(entries[which].first,value.colour);changed()}\n                .setNegativeButton(ui(R.string.ui_cancel),null).show()\n        }\n    }\n    private fun readFields(key: String) {",
+          "file_sha256": "7f1519d261aa399bfef4066349028dafff84dc438411565e0519feca0cb37eab"
+        }
+      ],
+      "basis": "Primary Microsoft guide PDF independently re-downloaded and SHA256 matched; exact short command/format terminology and current app semantic consumers checked. File/Edit menu prefixes omitted for standalone command labels, required ellipses retained."
+    }
+  ],
+  "dormant_help_finding": {
+    "applies_to": [
+      "chr",
+      "quy",
+      "zgh"
+    ],
+    "identity": "string/ui_menu_help",
+    "reason": "Only production reference is default arm of private menuTitle. Only call enumerates View/Draw/File/Edit/Color, all explicit branches. No active Help-tab route; help actions use ui_how_to_use instead. Do not count this label as active coverage.",
+    "source_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+  },
+  "remaining_limits": [
+    "Fourteen active complete short labels have bounded static preflight only, not native-human certification.",
+    "No whole destructive warning or route family accepted by short-label evidence. All 18 original whole-warning gaps remain open.",
+    "No compiled, installed, layout, TalkBack or integration acceptance. Empty production catalogues remain unchanged.",
+    "Remaining 326 QUY priority identities not certified by this packet.",
+    "Other-language Help values only reclassified dormant, not linguistically accepted."
+  ]
+}
