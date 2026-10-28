@@ -33,16 +33,16 @@
     <string name="ui_languages23">Хэл</string>
     <string name="language20_settings">Тохиргоо</string>
     <string name="language20_app_language">Аппын хэл</string>
-    <string name="language20_device_default">Төхөөрөмжийн хэл</string>
+    <string name="language20_device_default">Төхөөрөмжийн хэлийг ашиглах</string>
     <string name="language20_current">Аппын хэл: %1$s</string>
-    <string name="ui_new">Шинэ</string>
+    <string name="ui_new">Шинэ…</string>
     <string name="ui_new_image">Шинэ зураг</string>
-    <string name="ui_load_image">Зураг нээх</string>
+    <string name="ui_load_image">Зураг нээх…</string>
     <string name="ui_save">Хадгалах</string>
-    <string name="ui_save_a5d0d9">Хадгалах</string>
+    <string name="ui_save_a5d0d9">Хадгалах…</string>
     <string name="save20_title">Өөрөөр хадгалах…</string>
     <string name="ui_export_as23">Экспортлох…</string>
-    <string name="ui_choose_location">Байршил сонгох</string>
+    <string name="ui_choose_location">Байршил сонгох…</string>
     <string name="save20_file_name">Файлын нэр</string>
     <string name="save20_file_format">Файлын формат</string>
     <string name="ui_quality" formatted="false">Чанар (%)</string>
@@ -635,7 +635,7 @@
     <string name="save20_unsupported_tagged_colour">Энэ BMP эсвэл GIF нь AN Paint одоогоор хөрвүүлж чадахгүй өнгөний профайл ашиглаж байна. Импортлохоос өмнө өнгө удирддаг засварлагчаар sRGB PNG болгон хөрвүүлнэ үү.</string>
     <string name="save20_lossy_quality_description">Өндөр чанар илүү их нарийвчлал хадгалж, ихэвчлэн том файл үүсгэнэ.</string>
     <string name="ui_expand_tool_category">%1$s: %2$s сонгосон. Хэрэгсэл ба сонголтыг дэлгэх</string>
-    <string name="ui_collapse_tool_category">%1$s: %2$s сонгосон. Хэрэгсэл ба сонголтыг хумьж</string>
+    <string name="ui_collapse_tool_category">%1$s: %2$s сонгосон. Хэрэгсэл ба сонголтыг хураах</string>
     <string name="ui_tool_categories">Багажны ангиллууд. Бусад хэрэгслийг харахын тулд гүйлгэнэ</string>
     <string name="ui_pencil_crisp_adjustable_strokes">Харандаа сонгосон ямар ч өргөнд тод ирмэгийг хадгална.</string>
     <string name="ui_cursor_help29">@string/ui_cursor_help31</string>
@@ -676,7 +676,8 @@
     <string name="ui_irasutoya_credit34">Зохиогчийн эрх бүтээгчид хадгалагдана. Хэрэглээ Irasutoya-гийн нөхцөлд захирагдана; энэ нь Creative Commons лиценз биш.</string>
     <string name="ui_history_unavailable34">Зургийн талбарыг сэргээсэн боловч буцаах түүхийг уншиж чадсангүй. Анхны нооргийг сэргээх хуулбар болгон хадгалсан.</string>
     <plurals name="ui_crop_preview_images">
-        <item quantity="other">Урьдчилсан харагдац: %1$d × %2$d px\n%3$d зурагт хэрэглэнэ. Байрлуулсан зургийг тайрахад холбогдсон зургуудын байрлал мөн шинэчлэгдэнэ.</item>
+        <item quantity="one">Урьдчилсан харагдац: %1$d × %2$d px\n%3$d зурагт хэрэглэнэ. Байрлуулсан зургуудыг тайрахад тэдгээрт холбогдсон зургууд хөдөлж болзошгүй.</item>
+        <item quantity="other">Урьдчилсан харагдац: %1$d × %2$d px\n%3$d зурагт хэрэглэнэ. Байрлуулсан зургуудыг тайрахад тэдгээрт холбогдсон зургууд хөдөлж болзошгүй.</item>
     </plurals>
 
     <string name="ui_normalize_width_intro">Бүх зургийн өргөнийг ижил болгоно. Зургийн тоо: %1$d. Зураг бүр өөрийн өргөн ба өндрийн харьцааг хадгална. Эх файлууд болон тайралтын тохиргоо өөрчлөгдөхгүй.</string>
@@ -691,9 +692,9 @@
     <string name="legacy_credits_save_text">Сонгосон эх сурвалжийн мэдээллийг текст болгон хадгалах</string>
     <string name="legacy_credits_existing">Энэ зурагт тухайн эх сурвалжийн мэдээлэл аль хэдийн байна. Текстийг нь хэвээр үлдээлээ.</string>
     <string name="legacy_credits_added">Эх сурвалжийн мэдээллийг энэ зурагт нэмлээ.</string>
-    <string name="legacy_credits_unreadable">Хадгалсан эх сурвалжийн мэдээллийн заримыг уншиж чадсангүй. Хадгалсан хуулбаруудыг нь хэвээр үлдээлээ.</string>
-    <string name="gallery_credit_too_large">Эх сурвалжийн энэ мэдээлэл нь зургийг сэргээх боломжгүй болтол томруулна. Таны өмнөх зураг болон эх сурвалжийн мэдээллийг хэвээр үлдээлээ.</string>
-    <string name="gallery_credit_could_not_save">Зургийн эх сурвалжийн мэдээллийг хадгалж эсвэл сэргээж чадсангүй. Өмнө хадгалсан мэдээллийг хэвээр үлдээлээ. Дахин оролдоно уу.</string>
+    <string name="legacy_credits_unreadable">Хадгалсан зохиогч, эх сурвалж болон лицензийн мэдээллийн заримыг уншиж чадсангүй. Хадгалсан хуулбаруудыг нь хэвээр үлдээлээ.</string>
+    <string name="gallery_credit_too_large">Зургийн зохиогч, эх сурвалж болон лицензийн энэ мэдээлэл нь зургийг сэргээх боломжгүй болтол томруулна. Таны өмнөх зураг болон зохиогч, эх сурвалж, лицензийн мэдээллийг хэвээр үлдээлээ.</string>
+    <string name="gallery_credit_could_not_save">Зургийн зохиогч, эх сурвалж болон лицензийн мэдээллийг хадгалж эсвэл сэргээж чадсангүй. Өмнө хадгалсан мэдээллийг хэвээр үлдээлээ. Дахин оролдоно уу.</string>
     <string name="commons_svg_original_size_unavailable">SVG файлд ашиглаж болох анхны хэмжээг заагаагүй байна. Зургийн талбарт үндэслэсэн хэмжээг орлуулан ашиглаагүй.</string>
     <string name="commons_svg_original_size_too_large">SVG-ийн анхны хэмжээ Android-ийн bitmap-ийн хэмжээсийн хязгаараас давсан. Хэмжээг өөрчлөөгүй.</string>
     <string name="commons_import_svg_changes">AN Paint: SVG → PNG; анхны хэмжээ; antiAlias=false; strokeDashArray=none; background=#FFFFFF.</string>

@@ -63,7 +63,7 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 ## Deadlines and evidence
 
-- Regression job: 60 minutes; Python contracts: 12 minutes; JVM regression: 20 minutes;
+- Regression job: 79 minutes; Python contracts: 31 minutes (30-minute owned-process execution deadline); JVM regression: 20 minutes;
   build job: 45 minutes;
   universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
@@ -103,12 +103,31 @@ The expanded 1,774-test Python suite in [run 40604314909](https://github.com/c93
 completed with two optional-image skips and command exit zero in 493.350 seconds,
 but Actions explicitly timed out `Run Python contracts` after eight minutes.
 That workflow failure remains a failure; it is not converted into a pass by the
-command receipt. The current Python cap is 12 minutes, about 46% above that
+command receipt. The then-current Python cap was 12 minutes, about 46% above that
 observed command time. The other phase caps are unchanged: 2 + 8 + 12 + 20 + 6 + 6
 is 54 minutes total, within the 60-minute regression job cap with six minutes for
 checkout, cache and evidence overhead. JVM, build, device, installation and inner
 interaction deadlines are unchanged. This bounded host-suite allowance does not
 retry failures, omit tests or guarantee that every future run will finish.
+
+
+The second-train 1,877-test run completed 1,875 passes and two optional-image skips
+in 1251.472 seconds, but its 12-minute Actions step had already failed. The Python
+process continued into the JVM phase; its eventual zero exit does not clear the
+workflow failure. Current Python execution is bounded at 30 minutes (1800 seconds),
+about 44% above that measured duration. A signal-aware Linux process owner starts
+an isolated child session, preserves live and raw output and timing, and on a
+deadline or cancellation sends TERM, allows 15 seconds, then sends KILL with a five-second reap bound and a two-second output-pump bound.
+A strict atomic lifecycle receipt distinguishes verified cleanup from failure.
+If cleanup is not established, later phase wrappers fail before launching their
+commands; missing or malformed receipts also fail closed, never reporting omitted
+execution as a pass. Clean Python failures still allow the other required phases. Deadline exit124 and
+signal exits remain failures even if a child exits zero after cancellation.
+The Python outer step is 31 minutes for cleanup/reporting. The other phase caps
+are unchanged: 2 + 8 + 31 + 20 + 6 + 6 is 73 minutes total, within the 79-minute
+regression job with the same six-minute checkout/cache/evidence overhead.
+Device, installation and interaction deadlines are unchanged. This is measured
+headroom and explicit process ownership, not a universal liveness guarantee.
 
 All tests, assertions, failure propagation and existing device/interaction caps
 remain unchanged. A future timeout still fails; it must be diagnosed, not

@@ -3,6 +3,8 @@ import os
 from pathlib import Path
 import re
 import shutil
+import shlex
+import sys
 import subprocess
 import tempfile
 import unittest
@@ -17,7 +19,7 @@ STEPS = {
     if block.startswith('name: ')
 }
 PHASES = {
-    'Run Python contracts': ('python', 12),
+    'Run Python contracts': ('python', 31),
     'Run JVM regression tests': ('jvm', 20),
     'Prepare lint native dependencies': ('native', 6),
     'Run Android lint': ('lint', 6),
@@ -27,7 +29,7 @@ PHASES = {
 class CheckPhaseContracts(unittest.TestCase):
     def test_each_phase_required_and_bounded_with_explicit_outer_limit(self):
         # Expanded-suite measurements justify headroom, not omitted assertions.
-        self.assertIn('    timeout-minutes: 60\n', CHECKS)
+        self.assertIn('    timeout-minutes: 79\n', CHECKS)
         self.assertNotIn('continue-on-error', CHECKS)
         for name, (phase, minutes) in PHASES.items():
             with self.subTest(phase=phase):
@@ -86,7 +88,9 @@ class CheckPhaseContracts(unittest.TestCase):
                             root = Path(temporary)
                             (root / 'tools').mkdir()
                             shutil.copy(ROOT / 'tools/ci_run_timed.sh', root / 'tools')
+                            shutil.copy(ROOT / 'tools/ci_run_process_group.py', root / 'tools')
                             stub = '#!/bin/bash\nprintf "%s\\n" "$@"\nexit "$TEST_EXIT"\n'
+                            stub = stub.replace('#!/bin/bash\n', '#!/bin/bash\nif [[ \"$1\" == tools/ci_run_process_group.py ]]; then exec ' + shlex.quote(sys.executable) + ' \"$@\"; fi\n')
                             for command in ('python3', 'gradlew'):
                                 path = root / command
                                 path.write_text(stub)
