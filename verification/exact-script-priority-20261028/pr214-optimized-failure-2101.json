@@ -1,0 +1,22 @@
+{
+  "head": "a83264bcf2d36eca73b09572c13d6d2cbd0e6713",
+  "tree": "ef689a16f5460f901b3b3db49c89dc171140a8e2",
+  "source_leaves_unchanged": 1563,
+  "mode": "optimized",
+  "result": "failed",
+  "summary": [
+    "Ran 1956 tests in 1285.185s",
+    "FAILED (errors=1)"
+  ],
+  "log_sha256": "26dc2f2afdfd7beef08f9ecae40ba5b06ee717a7b4bed3b718bad1e1c617587f",
+  "receipts": {
+    "exit": "1\n",
+    "cleanup-verify.exit": "0\n",
+    "python.lifecycle": "launch_id=f7dd3bfb4cf2472eab3507779d1a66f9\nreason=completed\nforced_kill=false\nowned_children_remaining=0\ncleanup_complete=true\noutput_complete=true\n",
+    "python.time": "real_seconds=1287.758\nuser_seconds=1227.928\nsys_seconds=46.096\nexit_status=1\n",
+    "python.started-at": "2026-10-28T20:38:24Z\n",
+    "python.ended-at": "2026-10-28T20:59:51Z\n"
+  },
+  "failure_excerpt": "ERROR: test_both_clis_require_composed_reports_and_clear_all_receipts_in_optimized_modes (test_app_instrumentation_matrix.ComposedDriverTest.test_both_clis_require_composed_reports_and_clear_all_receipts_in_optimized_modes) (sdk=35, mode='flag', script='app_instrumentation_matrix.py')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/current-optimized-2018/214/source/tools/test_app_instrumentation_matrix.py\", line 259, in test_both_clis_require_composed_reports_and_clear_all_receipts_in_optimized_modes\n    run=subprocess.run(command,env=env,text=True,capture_output=True,timeout=10)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py\", line 550, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py\", line 1209, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py\", line 2116, in _communicate\n    self._check_timeout(endtime, orig_timeout, stdout, stderr)\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py\", line 1253, in _check_timeout\n    raise TimeoutExpired(\nsubprocess.TimeoutExpired: Command '['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3', '-O', '/tmp/current-optimized-2018/214/source/tools/app_instrumentation_matrix.py', '--source-tests', '/tmp/current-optimized-2018/214/source/app/src/androidTest', '--sdk', '35', '--root', '/tmp/tmp2zw28uha']' timed out after 10 seconds\n\n----------------------------------------------------------------------\n",
+  "scope": "Existing ten-second subprocess timeout in ComposedDriverTest, SDK35 flag mode app_instrumentation_matrix.py. Not relabeled as pass; root cause not established."
+}

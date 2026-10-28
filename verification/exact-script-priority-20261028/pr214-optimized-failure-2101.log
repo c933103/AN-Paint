@@ -1,0 +1,143 @@
+...........................................E................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................./opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/zipfile/__init__.py:1625: UserWarning: Duplicate name: 'receipt.json'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+.......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+======================================================================
+ERROR: test_both_clis_require_composed_reports_and_clear_all_receipts_in_optimized_modes (test_app_instrumentation_matrix.ComposedDriverTest.test_both_clis_require_composed_reports_and_clear_all_receipts_in_optimized_modes) (sdk=35, mode='flag', script='app_instrumentation_matrix.py')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/current-optimized-2018/214/source/tools/test_app_instrumentation_matrix.py", line 259, in test_both_clis_require_composed_reports_and_clear_all_receipts_in_optimized_modes
+    run=subprocess.run(command,env=env,text=True,capture_output=True,timeout=10)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 2116, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1253, in _check_timeout
+    raise TimeoutExpired(
+subprocess.TimeoutExpired: Command '['/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3', '-O', '/tmp/current-optimized-2018/214/source/tools/app_instrumentation_matrix.py', '--source-tests', '/tmp/current-optimized-2018/214/source/app/src/androidTest', '--sdk', '35', '--root', '/tmp/tmp2zw28uha']' timed out after 10 seconds
+
+----------------------------------------------------------------------
+Ran 1956 tests in 1285.185s
+
+FAILED (errors=1)
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "Device SDK query did not return a positive integer",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": true,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": []
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 1,
+  "errors": [
+    "Missing or unsuccessful final instrumentation result: []"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 3,
+  "completed_tests": 0,
+  "errors": [
+    "--leave-target-running is restricted to the one-method accepted-credit seed",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 3 declared methods",
+    "3 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Command '['adb', 'shell', 'pidof', 'paint.anpaint.android']' returned non-zero exit status 1.",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
+{
+  "success": false,
+  "expected_tests": 1,
+  "completed_tests": 0,
+  "errors": [
+    "Accepted-credit seed requires exactly one already-running target PID",
+    "adb exited with status None",
+    "Missing or unsuccessful final instrumentation result: []",
+    "No tests completed",
+    "Runner test counts [] do not match 1 declared methods",
+    "1 declared test method(s) did not complete"
+  ]
+}
