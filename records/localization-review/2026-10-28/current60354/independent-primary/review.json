@@ -1,0 +1,40 @@
+{
+  "status": "independent-classification-policy-and-streaming-output-audit-passed",
+  "script_sha256": "d2be294163760a103717565c609088c6945fdcfe6433b74919d7b37e5c2f3560",
+  "priority_rows_gzip_sha256": "1fb7361b1ed8fcd67244605030922846b5760972704706c22a3042a5111f0d05",
+  "validation_sha256": "e6de8dbfe692fec6e9274ec24fd2df441c9396728e53ea27b9729e7a7432ac00",
+  "rows": 58311,
+  "options": 171,
+  "evidence_files_hash_bound": 127,
+  "unique_evidence_row_pointers_resolved": 50005,
+  "accepted_evidence_records_rechecked": 35017,
+  "totals": {
+    "P0": {
+      "current_bounded_review": 9458,
+      "held_or_rereview": 239,
+      "present_unknown": 2923,
+      "missing": 3112
+    },
+    "P1": {
+      "current_bounded_review": 25532,
+      "held_or_rereview": 312,
+      "present_unknown": 8443,
+      "missing": 8292
+    }
+  },
+  "findings_resolved": [
+    "No inferred English attributes for new accepted targets; explicit or exact retained attributes required.",
+    "Document-level qualifications preserved separately from row scopes.",
+    "Six locale-less full ledgers admitted only through finite author-packet-bound mappings."
+  ],
+  "policy_observations": [
+    "Missing direct values remain M independently of holds; inherited fallback never counts as a translation.",
+    "Current explicit holds take precedence; historical source findings need explicit current resolution.",
+    "Unapplied or source/caller-unbound evidence cannot produce R; no new linguistic acceptance.",
+    "R is a bounded current static model-review lower bound, not native/runtime/whole-language certification; U is not proof no historical review occurred."
+  ],
+  "limitations": [
+    "This is a policy/schema/output audit, not a new full linguistic review or repeat full source binding.",
+    "Some real older review evidence remains U when unsupported raw serialization/caller provenance cannot be established without additional reconciliation."
+  ]
+}
