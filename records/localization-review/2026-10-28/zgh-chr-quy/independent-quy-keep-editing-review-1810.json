@@ -1,0 +1,130 @@
+{
+  "record": "Independent complete-resource and current-caller preflight of QUY Keep editing intent adaptation",
+  "reviewer": "review_nine_translation_drafts",
+  "time_utc": "2026-10-28T18:10:00Z",
+  "input": {
+    "path": "zgh-chr-quy-recovery/quy-keep-editing-p0-draft-1808.json",
+    "sha256": "d159b2d262df152f243c1d6ad0a2c4186f86ddbf06281b2ab13331cb31021c97",
+    "author_commit": "96b2b9d84bf1e878ff871f7a5f9ab5ec737a2d37",
+    "author_commit_status": "Author lane reports exact publication/readback; this review independently binds the supplied local packet SHA, not a fresh remote readback.",
+    "source_head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+    "prior_bounded_count": 122,
+    "prior_clear_all_review_commit": "5c00d0ea0ac6e50075bf97d5522518c03986b59f"
+  },
+  "decision": "One bounded complete-resource preflight pass; eligible quy1 after this receipt is bound. No target or evidence correction required.",
+  "row": {
+    "locale": "quy",
+    "identity": "string/ui_keep_editing23",
+    "tier": "P0",
+    "source_value": "Keep editing",
+    "source_value_json_sha256": "df57041b63788f92a3b25521fff2ffdbc0845d3041893ed61b0466daefa83ff3",
+    "proposed_value": "Allichayman kutiy",
+    "proposed_attributes": {
+      "name": "ui_keep_editing23"
+    },
+    "target_utf8_sha256": "f192ed4a8aa31d24c181c6e6f8268cb06151949e7cd94317fcdfd1e9c1515f2a",
+    "decision": "bounded_complete_resource_preflight_pass",
+    "confidence": "moderate productive intent adaptation, not an exact upstream full phrase or native-preferred certification"
+  },
+  "whole_value_reasoning": {
+    "composition": "The complete command means Return to editing: software allichay is treated as an action nominal with directional -man, followed by intransitive kuti- with singular command -y. Soto directly supplies a nonspatial action-nominal + -man + base kutiy construction, so this is not extrapolated solely from a physical route meaning. A separate work-return example corroborates continuation after interruption, without copying or stripping its person/purpose/inchoative morphology.",
+    "grammar": "Fresh official PUCP text identifies its variety as Ayacucho-Chanka and supports infinitival -y as a nominal form, nominal -man as directional, and imperative -y. The PUCP directional rule alone would not establish return-to-activity; Soto supplies that crucial usage. Nominal -y in allichayman and imperative -y in kutiy have distinct syntactic jobs despite identical form.",
+    "intent": "Return to the current editing activity preserves the actual Keep editing choice after an interrupting confirmation. It is an intent-preserving adaptation, not a literal proposed suffix for English keep. It does not instruct a new edit, restart the document, select the Edit tab, or repeat a stroke.",
+    "undo_distinction": "Intransitive kutiy is not causative kutichiy, which the software guide uses for Undo. No reversal, rollback, restoration of an earlier state, or undoing applyPending is expressed.",
+    "completeness": "Both activity destination and return command are present. No placeholder, period, protection guarantee, saved-state assertion, or unstated destructive action is introduced."
+  },
+  "caller_semantics": {
+    "direct": "Only ClassicPaintActivity.kt1079 directly consumes ui_keep_editing23. confirmReplacement applies pending gesture work first, proceeds immediately if clean, and otherwise presents three distinct choices.",
+    "negative_button": "Keep editing has a null negative-button listener. It neither sets afterSave nor calls requestSave nor invokes the passed replacement/exit action. The inherited AlertDialog.Builder action-button behavior dismisses the dialog; official Android documentation independently corroborates dismissal.",
+    "all_indirect_routes": [
+      "New at ClassicPaintActivity837 would open dimensionsDialog(false,true) only through the pending action; Keep editing does not execute it.",
+      "Load at838 would launchOpen(false) only through the pending action.",
+      "Incoming image at1143 would readImage(uri,false) only through the pending action.",
+      "Back/exit at1647 would finish() only through the pending action; this caption does not finish the activity."
+    ],
+    "builder": "Read full EditorDialogBuilder class, not just selected windows: it inherits setNegativeButton without override; create wraps presentation; vertical mount reparents the existing button objects and does not substitute action listeners. This is source-level control-flow evidence, not an executed UI/rendering test.",
+    "limits": "The source does not show a Save or Discard on this choice, but the translation adds no general data-retention or crash-safety promise. Existing edits remain available in the ongoing editor at this decision point; already-applied pending work is not rolled back."
+  },
+  "verification": {
+    "packet_sha256_verified": true,
+    "git_blob_checked_production_and_resource_files": 116,
+    "production_java_kotlin_files": 104,
+    "direct_occurrences": 1,
+    "all_direct_occurrences_reconciled": true,
+    "all_seven_direct_and_additional_windows_exact": true,
+    "all_confirmReplacement_routes_scanned": true,
+    "caller_binding_git_blob_and_sha256_match": true,
+    "source_value_attributes_json_hash_match": true,
+    "target_utf8_hash_match": true,
+    "xml_round_trip": true,
+    "source_and_target_placeholder_count": 0,
+    "current_quy_target_absent": true,
+    "prior_complete_scope_index_row_unproposed": true,
+    "not_in_prior122": true,
+    "author_packet_unchanged": true
+  },
+  "primary_sources": {
+    "dictionary": {
+      "url": "https://indigenasdelperu.wordpress.com/wp-content/uploads/2015/09/diccionario-quechua-inglc3a9s-castellano-chanka-clodoaldo-soto.pdf",
+      "author": "Clodoaldo Soto Ruiz",
+      "variety": "Ayacucho-Chanka",
+      "pages": [
+        82,
+        150,
+        215,
+        216
+      ],
+      "method": "Previously independently read Kutiy177; freshly reread public primary text for Rikchay/Rikchariy87 and Yarqay196 in this formal review.",
+      "short_evidence": [
+        "imapas rurayman kutiy",
+        "llamkayman kutirinanchikpaq"
+      ],
+      "limits": "Public reproduction of primary dictionary; no fresh visual-page certification, official publisher-host assertion, or whole-PDF download/save."
+    },
+    "grammar": {
+      "url": "https://textos.pucp.edu.pe/pdf/1707.pdf",
+      "title": "Qayna, kunan, paqarin. Una introduccion practica al quechua chanca",
+      "authors": [
+        "Roberto Zariquiey",
+        "Gavina Cordova"
+      ],
+      "publisher": "Pontificia Universidad Catolica del Peru",
+      "edition": "March 2008",
+      "pages": [
+        14,
+        82,
+        95,
+        168
+      ],
+      "method": "Fresh independent reading of official publisher-hosted primary text: variety, verbal noun, directional nominal case, singular command. No adapted Cusco narrative exercise used as variety evidence.",
+      "limits": "Grammar facts support a productive construction, not attestation of the whole UI phrase or native endorsement. No full PDF saved."
+    },
+    "software_guide": {
+      "url": "https://manuals.plus/m/11177cc64c717458906fd98b18467750c1008fe87f4eb1a7a2028ed69dd64c47",
+      "title": "Microsoft Quechua Style Guide, February 2011",
+      "pages": [
+        7,
+        30,
+        38
+      ],
+      "method": "Original-guide public search-indexed text independently read earlier in this lane: Ayacucho-Chanka normative basis, software Edit and Undo contrast, button punctuation convention.",
+      "short_forms": [
+        "Allichay",
+        "kutichiy"
+      ],
+      "limits": "Mirror-hosted original-document extraction; official-host and mirror-byte identity not freshly verified. URL hash is not byte proof. No whole proposed phrase is claimed attested."
+    },
+    "platform_semantics": {
+      "url": "https://developer.android.com/develop/ui/views/components/dialogs#DismissingADialog",
+      "section": "Dismiss a dialog",
+      "method": "Fresh independent official Android Developers text confirms Builder-created action buttons dismiss the dialog. Combined with exact local inherited-button and null-listener evidence; not runtime certification."
+    }
+  },
+  "limits": [
+    "Parent/author lane may reconcile122+1=123 bounded preflights after this exact receipt is bound. No code, catalogue, or runtime change occurs here.",
+    "Original18 whole-warning gaps remain unchanged; surrounding unsaved-changes title/message are not accepted by accepting this action caption.",
+    "No transfer to Draw again, Undo, generic Continue, other keep/still grammar, or any unrelated activity-return phrase.",
+    "No whole-language, native-speaker, compiled, installed, runtime, accessibility-rendering, integration, or safe-release acceptance.",
+    "Only this local review receipt written. Author packet unchanged. No publication, production/catalogue edit, Work task, authentication, private corpus access, or complete primary-PDF download/save."
+  ]
+}
