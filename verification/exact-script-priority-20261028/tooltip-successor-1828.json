@@ -1,0 +1,229 @@
+{
+  "source_head": "11c952d3a620cb82a569d524c26e28b044663627",
+  "tree": "8e02de0612aa71eec1c8cc574b3c21bbf2bab876",
+  "verified_remote_leaves": 1561,
+  "manifest": {
+    "baseline_tree": "2cc5fb50cc6a7807f42a5cbabf0faf32782bd273",
+    "candidate_tree": "8e02de0612aa71eec1c8cc574b3c21bbf2bab876",
+    "expected_source_parent_commit": "42f6b13729777c989ab914eef50e1c55eb0ccd61",
+    "pr": 213,
+    "leaves": 1561,
+    "changed_paths": [
+      {
+        "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ExactScriptPriorityWordingTest.kt",
+        "before": {
+          "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ExactScriptPriorityWordingTest.kt",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "c2b6047f97530a5150144a3cff1d9c781521c6df"
+        },
+        "after": {
+          "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ExactScriptPriorityWordingTest.kt",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "46392e6603f08e6e8e9780353a53bf9b45858cf2"
+        },
+        "size": 34794,
+        "sha256": "c7dbf3c42c96852291f8c6425473ed5f0212225210947a116b393590ecf43912"
+      },
+      {
+        "path": "tools/exact_script_priority_expectations.py",
+        "before": {
+          "path": "tools/exact_script_priority_expectations.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "1f49dab1c0728c59a9b02f277e1706a624c37ec6"
+        },
+        "after": {
+          "path": "tools/exact_script_priority_expectations.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "f0bdf769fbaa3edeb80b6d2737b93b60cc99e6b6"
+        },
+        "size": 17803,
+        "sha256": "6080c415105ea45309e785a49449bf21f698e5cbd84211380839301dae870298"
+      },
+      {
+        "path": "tools/test_exact_script_priority_wording.py",
+        "before": {
+          "path": "tools/test_exact_script_priority_wording.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "fdb11dffb8273c407133bc13d16662881ed99ae4"
+        },
+        "after": {
+          "path": "tools/test_exact_script_priority_wording.py",
+          "type": "blob",
+          "mode": "100644",
+          "sha": "8cb769b5fc86d2fdebd5bb159908fdff52b21379"
+        },
+        "size": 18231,
+        "sha256": "122712d4ceb7a15032bfa457edbb2a120df6bb73a6e9cc331aab86a2d41974ae"
+      }
+    ],
+    "all_1558_other_files_bytes_modes_unchanged": true,
+    "all_fixtures_and_production_resources_unchanged": true,
+    "other13_existing_jvm_behavior_bodies_and_prior2_mutation_bodies_unchanged": true,
+    "failed_run_preserved": 40736446643,
+    "test_contract_diagnosis": "mn-Mong uses LocaleTooltip vertical binding/accessibility text and intentionally null native tooltip; the failed test assumed native-only tooltip. Successor checks exact caption/contentDescription/logical/accessibility text, explicit mn-Mong vertical ownership, absence of duplicate native tooltip and exact Latin native tooltip, with five independent channel-corruption controls per locale.",
+    "compiled_runtime_validation": "not yet run for successor",
+    "publication": "local only pending independent review"
+  },
+  "independent_review": {
+    "status": "accepted_finite_tooltip_source_correction",
+    "candidate_tree": "8e02de0612aa71eec1c8cc574b3c21bbf2bab876",
+    "baseline_tree": "2cc5fb50cc6a7807f42a5cbabf0faf32782bd273",
+    "source_parent": "42f6b13729777c989ab914eef50e1c55eb0ccd61",
+    "changed_paths": [
+      "Paintroid/src/test/java/org/catrobat/paintroid/local/ExactScriptPriorityWordingTest.kt",
+      "tools/exact_script_priority_expectations.py",
+      "tools/test_exact_script_priority_wording.py"
+    ],
+    "all1561bytes_modes_single_links_bound": true,
+    "unchanged_other_files": 1558,
+    "production_and_fixture_bytes_unchanged": true,
+    "other13JVM_behavior_and2mutation_bodies_byte_exact": true,
+    "category_loop_and_full_description_construction_preserved": true,
+    "script_aware_channels": [
+      "caption",
+      "contentDescription",
+      "logicalText",
+      "native-null-only-mn-Mong",
+      "native-full-text-Latin",
+      "accessibility-contentDescription",
+      "accessibility-tooltipText"
+    ],
+    "JVM_new_corruption_cases_added": 15,
+    "JVM_new_corruption_cases_executed_locally": false,
+    "independent_source_wiring_negatives": 7,
+    "original_run": 40736446643,
+    "original_artifact": 12838717423,
+    "original_archive_sha256": "b11198228590334dd46fa6e7e2c5ab3b1fa2b65e658f8c20781ed07c09d0a853",
+    "original_JVM_totals": {
+      "tests": 1838,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "original_suites": 185,
+    "original_failure": {
+      "member": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.ExactScriptPriorityWordingTest.xml",
+      "test": "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+      "class": "org.catrobat.paintroid.local.ExactScriptPriorityWordingTest",
+      "message": "org.junit.ComparisonFailure: expected:<[ᠵᠢᠷᠤᠬᠤ: ᠬᠠᠷᠠᠨᠳᠠᠭ᠎ᠠ ᠰᠣᠩᠭᠣᠭᠳᠠᠪᠠ᠃ ᠪᠠᠭᠠᠵᠢ ᠪᠠ ᠰᠣᠩᠭᠣᠯᠲᠠ ᠶᠢ ᠳᠡᠯᠭᠡᠬᠦ]> but was:<[null]>",
+      "stack": "org.junit.ComparisonFailure: expected:<[ᠵᠢᠷᠤᠬᠤ: ᠬᠠᠷᠠᠨᠳᠠᠭ᠎ᠠ ᠰᠣᠩᠭᠣᠭᠳᠠᠪᠠ᠃ ᠪᠠᠭᠠᠵᠢ ᠪᠠ ᠰᠣᠩᠭᠣᠯᠲᠠ ᠶᠢ ᠳᠡᠯᠭᠡᠬᠦ]> but was:<[null]>\n\tat org.junit.Assert.assertEquals(Assert.java:117)\n\tat org.junit.Assert.assertEquals(Assert.java:146)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest$categoryAccessibilityTracksEveryActualToolAndExpansionState$1.invoke(ExactScriptPriorityWordingTest.kt:224)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest$categoryAccessibilityTracksEveryActualToolAndExpansionState$1.invoke(ExactScriptPriorityWordingTest.kt:216)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest.forEachLocale(ExactScriptPriorityWordingTest.kt:124)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest.forEachLocale$default(ExactScriptPriorityWordingTest.kt:115)\n\tat org.catrobat.paintroid.local.ExactScriptPriorityWordingTest.categoryAccessibilityTracksEveryActualToolAndExpansionState(ExactScriptPriorityWordingTest.kt:216)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n\tat org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)\n\tat org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)\n\tat org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)\n\tat org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)\n\tat org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)\n\tat org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)\n\tat org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)\n\tat org.robolectric.RobolectricTestRunner$HelperTestRunner$1.evaluate(RobolectricTestRunner.java:502)\n\tat org.robolectric.internal.SandboxTestRunner$2.lambda$evaluate$2(SandboxTestRunner.java:285)\n\tat org.robolectric.internal.bytecode.Sandbox.lambda$runOnMainThread$0(Sandbox.java:104)\n\tat java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)\n\tat java.base/java.lang.Thread.run(Thread.java:840)\n",
+      "xml_sha256": "ad6d0a2a4d4f38462db5919a572fdd9faa7e77b524ef9a8077d8f922debd698a"
+    },
+    "old_relevant_suites": {
+      "org.catrobat.paintroid.local.ExactScriptPriorityWordingTest": {
+        "name": "org.catrobat.paintroid.local.ExactScriptPriorityWordingTest",
+        "tests": "16",
+        "skipped": "0",
+        "failures": "1",
+        "errors": "0",
+        "timestamp": "2026-10-28T17:49:11.239Z",
+        "hostname": "runnervmcwoy2",
+        "time": "8.701"
+      },
+      "org.catrobat.paintroid.local.LocaleTooltipControlsTest": {
+        "name": "org.catrobat.paintroid.local.LocaleTooltipControlsTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-28T17:51:39.170Z",
+        "hostname": "runnervmcwoy2",
+        "time": "2.127"
+      },
+      "org.catrobat.paintroid.local.LocaleTooltipTest": {
+        "name": "org.catrobat.paintroid.local.LocaleTooltipTest",
+        "tests": "16",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-28T17:51:41.305Z",
+        "hostname": "runnervmcwoy2",
+        "time": "10.801"
+      }
+    },
+    "scope_limits": [
+      "Source-only Kotlin review and Python wiring probes; no successor compiled JVM/runtime pass claimed.",
+      "Old failed run remains failed; old passing tooltip suites establish diagnosis, not successor acceptance.",
+      "No production/resource/fixture changes, upload, blind rerun, merge or release."
+    ],
+    "independent_focused_python": {
+      "ordinary_tests": 1,
+      "optimized_tests": 1,
+      "both_exit": 0,
+      "scope": "One complete source-wiring test, including nine source-fragment mutation checks, each mode; not Kotlin execution"
+    },
+    "post_test_all_source_bytes_modes_rebound": true,
+    "time_utc": "2026-10-28T18:10:40.446981+00:00",
+    "evidence": {
+      "verify.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "source-review-8e02.json": "967c59114da6924c6a68e6d19f44f4d547061b5884b0d11ef3ae06a2e8d0a319",
+      "verify.py": "5bd58c6e82420961092b884fa36c99c29605ee0073d0b0d1210d53f5983590e3",
+      "focused-optimized.log": "d10ffbd9f0faa72cd6837063279524e199b59fbc3d035051302a1e8dbc4b36ad",
+      "focused-ordinary.log": "d10ffbd9f0faa72cd6837063279524e199b59fbc3d035051302a1e8dbc4b36ad",
+      "focused-ordinary.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "posttest-rebind.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "focused-optimized.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "verify.log": "4aba3bddcac887b41a62efb57b2dcd9c181635706742893f89a7487c15882058",
+      "posttest-rebind.log": "4aba3bddcac887b41a62efb57b2dcd9c181635706742893f89a7487c15882058"
+    }
+  },
+  "focused_pair": [
+    {
+      "mode": "ordinary",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "test_exact_script_priority_wording",
+        "test_memory_warning_source_review",
+        "test_memory_warning_successors",
+        "test_current_localization_contracts",
+        "test_exact_script_resource_routing",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/bbca2890f602/tt-ain-mnmong-p0-p1-20261028/behavioral-tooltip-successor/source",
+      "started_utc": "2026-10-28T18:07:56.510975+00:00",
+      "duration_seconds": 258.42391970600147,
+      "exit_code": 0,
+      "log": "focused-ordinary.log"
+    },
+    {
+      "mode": "optimized",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-O",
+        "-m",
+        "unittest",
+        "test_exact_script_priority_wording",
+        "test_memory_warning_source_review",
+        "test_memory_warning_successors",
+        "test_current_localization_contracts",
+        "test_exact_script_resource_routing",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/bbca2890f602/tt-ain-mnmong-p0-p1-20261028/behavioral-tooltip-successor/source",
+      "started_utc": "2026-10-28T18:12:14.939718+00:00",
+      "duration_seconds": 206.85826035300124,
+      "exit_code": 0,
+      "log": "focused-optimized.log"
+    }
+  ],
+  "focused_logs": {
+    "focused-optimized.log": "test_absent_holds_cannot_be_added_and_present_holds_cannot_disappear (test_exact_script_priority_wording.ExactScriptPriorityTests.test_absent_holds_cannot_be_added_and_present_holds_cannot_disappear) ... ok\ntest_complete_jvm_consumer_source_and_mutations (test_exact_script_priority_wording.ExactScriptPriorityTests.test_complete_jvm_consumer_source_and_mutations) ... ok\ntest_coordinated_format_corruptions_fail_semantics_without_a_second_oracle (test_exact_script_priority_wording.ExactScriptPriorityTests.test_coordinated_format_corruptions_fail_semantics_without_a_second_oracle) ... ok\ntest_cross_type_same_name_duplicate_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_cross_type_same_name_duplicate_rejected) ... ok\ntest_current_aliases_reject_missing_target_cycle_and_wrong_display (test_exact_script_priority_wording.ExactScriptPriorityTests.test_current_aliases_reject_missing_target_cycle_and_wrong_display) ... ok\ntest_display_transform_keeps_newlines_literal_backslashes_and_mongolian_spaces (test_exact_script_priority_wording.ExactScriptPriorityTests.test_display_transform_keeps_newlines_literal_backslashes_and_mongolian_spaces) ... ok\ntest_every_present_held_value_remains_exact (test_exact_script_priority_wording.ExactScriptPriorityTests.test_every_present_held_value_remains_exact) ... ok\ntest_every_standalone_reviewed_row_rejects_caller_owned_coordinate_mutant (test_exact_script_priority_wording.ExactScriptPriorityTests.test_every_standalone_reviewed_row_rejects_caller_owned_coordinate_mutant) ... ok\ntest_exact_counts_and_holds (test_exact_script_priority_wording.ExactScriptPriorityTests.test_exact_counts_and_holds) ... ok\ntest_exact_family_additions_reject_predecessor_source_and_coordinated_rows (test_exact_script_priority_wording.ExactScriptPriorityTests.test_exact_family_additions_reject_predecessor_source_and_coordinated_rows) ... ok\ntest_exact_tagged_jvm_boundaries_keep_prior_stage_and_reject_missing_consumers (test_exact_script_priority_wording.ExactScriptPriorityTests.test_exact_tagged_jvm_boundaries_keep_prior_stage_and_reject_missing_consumers) ... ok\ntest_exact_three_catalogues_and_full_source (test_exact_script_priority_wording.ExactScriptPriorityTests.test_exact_three_catalogues_and_full_source) ... ok\ntest_fixture_omitted_added_and_foreign_locale_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_fixture_omitted_added_and_foreign_locale_rejected) ... ok\ntest_fixtures_do_not_embed_historical_source_snapshots (test_exact_script_priority_wording.ExactScriptPriorityTests.test_fixtures_do_not_embed_historical_source_snapshots) ... ok\ntest_main_successor_exact_tatar_complete_branch_and_negatives (test_exact_script_priority_wording.ExactScriptPriorityTests.test_main_successor_exact_tatar_complete_branch_and_negatives) ... ok\ntest_mutating_returned_fixture_cannot_change_fresh_binding (test_exact_script_priority_wording.ExactScriptPriorityTests.test_mutating_returned_fixture_cannot_change_fresh_binding) ... ok\ntest_native_text_projection_and_alias_are_exact (test_exact_script_priority_wording.ExactScriptPriorityTests.test_native_text_projection_and_alias_are_exact) ... ok\ntest_nonbehavioral_scope_note_is_not_a_wording_fingerprint (test_exact_script_priority_wording.ExactScriptPriorityTests.test_nonbehavioral_scope_note_is_not_a_wording_fingerprint) ... ok\ntest_plural_shape_rejects_parent_item_tail_and_extra_forms (test_exact_script_priority_wording.ExactScriptPriorityTests.test_plural_shape_rejects_parent_item_tail_and_extra_forms) ... ok\ntest_readable_fixture_allows_formatting_and_reviewed_value_updates_without_fingerprints (test_exact_script_priority_wording.ExactScriptPriorityTests.test_readable_fixture_allows_formatting_and_reviewed_value_updates_without_fingerprints) ... ok\ntest_scalar_children_attributes_and_tail_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_scalar_children_attributes_and_tail_rejected) ... ok\ntest_schema_rejects_duplicate_json_members_before_parsing_can_hide_them (test_exact_script_priority_wording.ExactScriptPriorityTests.test_schema_rejects_duplicate_json_members_before_parsing_can_hide_them) ... ok\ntest_source_change_and_same_name_wrong_type_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_source_change_and_same_name_wrong_type_rejected) ... ok\ntest_structural_damage_is_rejected_without_a_fixture_fingerprint (test_exact_script_priority_wording.ExactScriptPriorityTests.test_structural_damage_is_rejected_without_a_fixture_fingerprint) ... ok\ntest_structural_xml_whitespace_is_ascii_not_mongolian_narrow_no_break_space (test_exact_script_priority_wording.ExactScriptPriorityTests.test_structural_xml_whitespace_is_ascii_not_mongolian_narrow_no_break_space) ... ok\ntest_supplied_fixture_cannot_coordinate_target_and_root (test_exact_script_priority_wording.ExactScriptPriorityTests.test_supplied_fixture_cannot_coordinate_target_and_root) ... ok\ntest_unrelated_valid_values_can_evolve_without_snapshot_reconstruction (test_exact_script_priority_wording.ExactScriptPriorityTests.test_unrelated_valid_values_can_evolve_without_snapshot_reconstruction) ... ok\ntest_wrong_parent_text_attributes_tail_and_identity_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_wrong_parent_text_attributes_tail_and_identity_rejected) ... ok\ntest_complete_english_source_and_scalar_contract (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_complete_english_source_and_scalar_contract) ... ok\ntest_default_source_binding_preserves_unknown_and_unrelated_pairs (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_default_source_binding_preserves_unknown_and_unrelated_pairs) ... ok\ntest_initial_queue_grants_no_renewed_acceptance_or_language_credit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_initial_queue_grants_no_renewed_acceptance_or_language_credit) ... ok\ntest_queue_covers_every_offered_option_in_sequential_order (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_queue_covers_every_offered_option_in_sequential_order) ... ok\ntest_source_rejects_old_diagnosis_and_corruptions (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_source_rejects_old_diagnosis_and_corruptions) ... ok\ntest_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) ... ok\ntest_all_current_values_have_positive_and_corruption_controls (test_memory_warning_successors.MemoryWarningSuccessors.test_all_current_values_have_positive_and_corruption_controls) ... ok\ntest_amharic_missing_history_cannot_be_rewritten (test_memory_warning_successors.MemoryWarningSuccessors.test_amharic_missing_history_cannot_be_rewritten) ... ok\ntest_canonical_old_source_drift_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_canonical_old_source_drift_rejected) ... ok\ntest_compact_behavior_oracle_corruption_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_compact_behavior_oracle_corruption_is_rejected) ... ok\ntest_every_successor_rejects_wrong_historical_target (test_memory_warning_successors.MemoryWarningSuccessors.test_every_successor_rejects_wrong_historical_target) ... ok\ntest_exact_inventory_and_every_complete_current_value (test_memory_warning_successors.MemoryWarningSuccessors.test_exact_inventory_and_every_complete_current_value) ... ok\ntest_expected_constant_and_source_corruption_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_expected_constant_and_source_corruption_is_rejected) ... ok\ntest_held_historical_target_drift_is_rejected_without_acceptance (test_memory_warning_successors.MemoryWarningSuccessors.test_held_historical_target_drift_is_rejected_without_acceptance) ... ok\ntest_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) ... ok\ntest_historical_source_drift_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_historical_source_drift_is_rejected) ... ok\ntest_missing_extra_held_and_unknown_candidates_are_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_missing_extra_held_and_unknown_candidates_are_rejected) ... ok\ntest_unmapped_keys_cannot_obtain_acceptance (test_memory_warning_successors.MemoryWarningSuccessors.test_unmapped_keys_cannot_obtain_acceptance) ... ok\ntest_all_current_values_attributes_placeholders_and_legal_literals (test_current_localization_contracts.CurrentLocalizationContracts.test_all_current_values_attributes_placeholders_and_legal_literals) ... ok\ntest_each_message_family_has_only_its_explicitly_reviewed_additions (test_current_localization_contracts.CurrentLocalizationContracts.test_each_message_family_has_only_its_explicitly_reviewed_additions) ... ok\ntest_explicit_scope_and_open_fallbacks_match_current_picker (test_current_localization_contracts.CurrentLocalizationContracts.test_explicit_scope_and_open_fallbacks_match_current_picker) ... ok\ntest_hungarian_instructions_reference_current_labels (test_current_localization_contracts.CurrentLocalizationContracts.test_hungarian_instructions_reference_current_labels) ... ok\ntest_independent_unrelated_resource_or_formatting_edits_are_allowed (test_current_localization_contracts.CurrentLocalizationContracts.test_independent_unrelated_resource_or_formatting_edits_are_allowed) ... ok\ntest_message_family_keys_and_nonempty_locale_contracts_are_required (test_current_localization_contracts.CurrentLocalizationContracts.test_message_family_keys_and_nonempty_locale_contracts_are_required) ... ok\ntest_metadata_english_identity_and_language_specific_normalization (test_current_localization_contracts.CurrentLocalizationContracts.test_metadata_english_identity_and_language_specific_normalization) ... ok\ntest_missing_duplicate_changed_and_wrong_format_resources_fail (test_current_localization_contracts.CurrentLocalizationContracts.test_missing_duplicate_changed_and_wrong_format_resources_fail) ... ok\ntest_missing_duplicate_overlapping_or_unknown_scope_tags_are_rejected (test_current_localization_contracts.CurrentLocalizationContracts.test_missing_duplicate_overlapping_or_unknown_scope_tags_are_rejected) ... ok\ntest_script_controls_and_variation_selectors_are_retained (test_current_localization_contracts.CurrentLocalizationContracts.test_script_controls_and_variation_selectors_are_retained) ... ok\ntest_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks (test_current_localization_contracts.CurrentLocalizationContracts.test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks) ... ok\ntest_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults (test_current_localization_contracts.CurrentLocalizationContracts.test_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults) ... ok\ntest_tagged_colour_parent_inheritance_stays_separate_and_rejects_overrides (test_current_localization_contracts.CurrentLocalizationContracts.test_tagged_colour_parent_inheritance_stays_separate_and_rejects_overrides) ... ok\ntest_unicode_control_removal_is_rejected (test_current_localization_contracts.CurrentLocalizationContracts.test_unicode_control_removal_is_rejected) ... ok\ntest_whole_message_families_have_exact_localized_scope_and_no_english_filled_fallbacks (test_current_localization_contracts.CurrentLocalizationContracts.test_whole_message_families_have_exact_localized_scope_and_no_english_filled_fallbacks) ... ok\ntest_all_explicit_script_choices_have_independent_general_ui_expectations (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_all_explicit_script_choices_have_independent_general_ui_expectations) ... ok\ntest_build_mirrors_all_xml_from_canonical_catalogue_before_prebuild (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_build_mirrors_all_xml_from_canonical_catalogue_before_prebuild) ... ok\ntest_current_scriptless_competitors_remain_bounded_and_visible (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_current_scriptless_competitors_remain_bounded_and_visible) ... ok\ntest_mongolian_successor_rejects_changed_history_or_reviewed_binding (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_mongolian_successor_rejects_changed_history_or_reviewed_binding) ... ok\ntest_only_two_internal_variants_and_public_tag_catalogues_are_unchanged (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_only_two_internal_variants_and_public_tag_catalogues_are_unchanged) ... ok\ntest_tatar_latin_successor_rejects_changed_history_and_coordinated_fixture (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_tatar_latin_successor_rejects_changed_history_and_coordinated_fixture) ... ok\ntest_wrap_refresh_and_device_label_apply_the_same_bounded_resource_mapping (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_wrap_refresh_and_device_label_apply_the_same_bounded_resource_mapping) ... ok\n\n----------------------------------------------------------------------\nRan 68 tests in 206.052s\n\nOK\n",
+    "focused-ordinary.log": "test_absent_holds_cannot_be_added_and_present_holds_cannot_disappear (test_exact_script_priority_wording.ExactScriptPriorityTests.test_absent_holds_cannot_be_added_and_present_holds_cannot_disappear) ... ok\ntest_complete_jvm_consumer_source_and_mutations (test_exact_script_priority_wording.ExactScriptPriorityTests.test_complete_jvm_consumer_source_and_mutations) ... ok\ntest_coordinated_format_corruptions_fail_semantics_without_a_second_oracle (test_exact_script_priority_wording.ExactScriptPriorityTests.test_coordinated_format_corruptions_fail_semantics_without_a_second_oracle) ... ok\ntest_cross_type_same_name_duplicate_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_cross_type_same_name_duplicate_rejected) ... ok\ntest_current_aliases_reject_missing_target_cycle_and_wrong_display (test_exact_script_priority_wording.ExactScriptPriorityTests.test_current_aliases_reject_missing_target_cycle_and_wrong_display) ... ok\ntest_display_transform_keeps_newlines_literal_backslashes_and_mongolian_spaces (test_exact_script_priority_wording.ExactScriptPriorityTests.test_display_transform_keeps_newlines_literal_backslashes_and_mongolian_spaces) ... ok\ntest_every_present_held_value_remains_exact (test_exact_script_priority_wording.ExactScriptPriorityTests.test_every_present_held_value_remains_exact) ... ok\ntest_every_standalone_reviewed_row_rejects_caller_owned_coordinate_mutant (test_exact_script_priority_wording.ExactScriptPriorityTests.test_every_standalone_reviewed_row_rejects_caller_owned_coordinate_mutant) ... ok\ntest_exact_counts_and_holds (test_exact_script_priority_wording.ExactScriptPriorityTests.test_exact_counts_and_holds) ... ok\ntest_exact_family_additions_reject_predecessor_source_and_coordinated_rows (test_exact_script_priority_wording.ExactScriptPriorityTests.test_exact_family_additions_reject_predecessor_source_and_coordinated_rows) ... ok\ntest_exact_tagged_jvm_boundaries_keep_prior_stage_and_reject_missing_consumers (test_exact_script_priority_wording.ExactScriptPriorityTests.test_exact_tagged_jvm_boundaries_keep_prior_stage_and_reject_missing_consumers) ... ok\ntest_exact_three_catalogues_and_full_source (test_exact_script_priority_wording.ExactScriptPriorityTests.test_exact_three_catalogues_and_full_source) ... ok\ntest_fixture_omitted_added_and_foreign_locale_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_fixture_omitted_added_and_foreign_locale_rejected) ... ok\ntest_fixtures_do_not_embed_historical_source_snapshots (test_exact_script_priority_wording.ExactScriptPriorityTests.test_fixtures_do_not_embed_historical_source_snapshots) ... ok\ntest_main_successor_exact_tatar_complete_branch_and_negatives (test_exact_script_priority_wording.ExactScriptPriorityTests.test_main_successor_exact_tatar_complete_branch_and_negatives) ... ok\ntest_mutating_returned_fixture_cannot_change_fresh_binding (test_exact_script_priority_wording.ExactScriptPriorityTests.test_mutating_returned_fixture_cannot_change_fresh_binding) ... ok\ntest_native_text_projection_and_alias_are_exact (test_exact_script_priority_wording.ExactScriptPriorityTests.test_native_text_projection_and_alias_are_exact) ... ok\ntest_nonbehavioral_scope_note_is_not_a_wording_fingerprint (test_exact_script_priority_wording.ExactScriptPriorityTests.test_nonbehavioral_scope_note_is_not_a_wording_fingerprint) ... ok\ntest_plural_shape_rejects_parent_item_tail_and_extra_forms (test_exact_script_priority_wording.ExactScriptPriorityTests.test_plural_shape_rejects_parent_item_tail_and_extra_forms) ... ok\ntest_readable_fixture_allows_formatting_and_reviewed_value_updates_without_fingerprints (test_exact_script_priority_wording.ExactScriptPriorityTests.test_readable_fixture_allows_formatting_and_reviewed_value_updates_without_fingerprints) ... ok\ntest_scalar_children_attributes_and_tail_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_scalar_children_attributes_and_tail_rejected) ... ok\ntest_schema_rejects_duplicate_json_members_before_parsing_can_hide_them (test_exact_script_priority_wording.ExactScriptPriorityTests.test_schema_rejects_duplicate_json_members_before_parsing_can_hide_them) ... ok\ntest_source_change_and_same_name_wrong_type_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_source_change_and_same_name_wrong_type_rejected) ... ok\ntest_structural_damage_is_rejected_without_a_fixture_fingerprint (test_exact_script_priority_wording.ExactScriptPriorityTests.test_structural_damage_is_rejected_without_a_fixture_fingerprint) ... ok\ntest_structural_xml_whitespace_is_ascii_not_mongolian_narrow_no_break_space (test_exact_script_priority_wording.ExactScriptPriorityTests.test_structural_xml_whitespace_is_ascii_not_mongolian_narrow_no_break_space) ... ok\ntest_supplied_fixture_cannot_coordinate_target_and_root (test_exact_script_priority_wording.ExactScriptPriorityTests.test_supplied_fixture_cannot_coordinate_target_and_root) ... ok\ntest_unrelated_valid_values_can_evolve_without_snapshot_reconstruction (test_exact_script_priority_wording.ExactScriptPriorityTests.test_unrelated_valid_values_can_evolve_without_snapshot_reconstruction) ... ok\ntest_wrong_parent_text_attributes_tail_and_identity_rejected (test_exact_script_priority_wording.ExactScriptPriorityTests.test_wrong_parent_text_attributes_tail_and_identity_rejected) ... ok\ntest_complete_english_source_and_scalar_contract (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_complete_english_source_and_scalar_contract) ... ok\ntest_default_source_binding_preserves_unknown_and_unrelated_pairs (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_default_source_binding_preserves_unknown_and_unrelated_pairs) ... ok\ntest_initial_queue_grants_no_renewed_acceptance_or_language_credit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_initial_queue_grants_no_renewed_acceptance_or_language_credit) ... ok\ntest_queue_covers_every_offered_option_in_sequential_order (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_queue_covers_every_offered_option_in_sequential_order) ... ok\ntest_source_rejects_old_diagnosis_and_corruptions (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_source_rejects_old_diagnosis_and_corruptions) ... ok\ntest_values_absences_fallbacks_and_english_variants_are_explicit (test_memory_warning_source_review.MemoryWarningSourceReviewTests.test_values_absences_fallbacks_and_english_variants_are_explicit) ... ok\ntest_all_current_values_have_positive_and_corruption_controls (test_memory_warning_successors.MemoryWarningSuccessors.test_all_current_values_have_positive_and_corruption_controls) ... ok\ntest_amharic_missing_history_cannot_be_rewritten (test_memory_warning_successors.MemoryWarningSuccessors.test_amharic_missing_history_cannot_be_rewritten) ... ok\ntest_canonical_old_source_drift_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_canonical_old_source_drift_rejected) ... ok\ntest_compact_behavior_oracle_corruption_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_compact_behavior_oracle_corruption_is_rejected) ... ok\ntest_every_successor_rejects_wrong_historical_target (test_memory_warning_successors.MemoryWarningSuccessors.test_every_successor_rejects_wrong_historical_target) ... ok\ntest_exact_inventory_and_every_complete_current_value (test_memory_warning_successors.MemoryWarningSuccessors.test_exact_inventory_and_every_complete_current_value) ... ok\ntest_expected_constant_and_source_corruption_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_expected_constant_and_source_corruption_is_rejected) ... ok\ntest_held_historical_target_drift_is_rejected_without_acceptance (test_memory_warning_successors.MemoryWarningSuccessors.test_held_historical_target_drift_is_rejected_without_acceptance) ... ok\ntest_held_missing_and_canonical_values_are_preserved_not_accepted (test_memory_warning_successors.MemoryWarningSuccessors.test_held_missing_and_canonical_values_are_preserved_not_accepted) ... ok\ntest_historical_source_drift_is_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_historical_source_drift_is_rejected) ... ok\ntest_missing_extra_held_and_unknown_candidates_are_rejected (test_memory_warning_successors.MemoryWarningSuccessors.test_missing_extra_held_and_unknown_candidates_are_rejected) ... ok\ntest_unmapped_keys_cannot_obtain_acceptance (test_memory_warning_successors.MemoryWarningSuccessors.test_unmapped_keys_cannot_obtain_acceptance) ... ok\ntest_all_current_values_attributes_placeholders_and_legal_literals (test_current_localization_contracts.CurrentLocalizationContracts.test_all_current_values_attributes_placeholders_and_legal_literals) ... ok\ntest_each_message_family_has_only_its_explicitly_reviewed_additions (test_current_localization_contracts.CurrentLocalizationContracts.test_each_message_family_has_only_its_explicitly_reviewed_additions) ... ok\ntest_explicit_scope_and_open_fallbacks_match_current_picker (test_current_localization_contracts.CurrentLocalizationContracts.test_explicit_scope_and_open_fallbacks_match_current_picker) ... ok\ntest_hungarian_instructions_reference_current_labels (test_current_localization_contracts.CurrentLocalizationContracts.test_hungarian_instructions_reference_current_labels) ... ok\ntest_independent_unrelated_resource_or_formatting_edits_are_allowed (test_current_localization_contracts.CurrentLocalizationContracts.test_independent_unrelated_resource_or_formatting_edits_are_allowed) ... ok\ntest_message_family_keys_and_nonempty_locale_contracts_are_required (test_current_localization_contracts.CurrentLocalizationContracts.test_message_family_keys_and_nonempty_locale_contracts_are_required) ... ok\ntest_metadata_english_identity_and_language_specific_normalization (test_current_localization_contracts.CurrentLocalizationContracts.test_metadata_english_identity_and_language_specific_normalization) ... ok\ntest_missing_duplicate_changed_and_wrong_format_resources_fail (test_current_localization_contracts.CurrentLocalizationContracts.test_missing_duplicate_changed_and_wrong_format_resources_fail) ... ok\ntest_missing_duplicate_overlapping_or_unknown_scope_tags_are_rejected (test_current_localization_contracts.CurrentLocalizationContracts.test_missing_duplicate_overlapping_or_unknown_scope_tags_are_rejected) ... ok\ntest_script_controls_and_variation_selectors_are_retained (test_current_localization_contracts.CurrentLocalizationContracts.test_script_controls_and_variation_selectors_are_retained) ... ok\ntest_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks (test_current_localization_contracts.CurrentLocalizationContracts.test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks) ... ok\ntest_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults (test_current_localization_contracts.CurrentLocalizationContracts.test_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults) ... ok\ntest_tagged_colour_parent_inheritance_stays_separate_and_rejects_overrides (test_current_localization_contracts.CurrentLocalizationContracts.test_tagged_colour_parent_inheritance_stays_separate_and_rejects_overrides) ... ok\ntest_unicode_control_removal_is_rejected (test_current_localization_contracts.CurrentLocalizationContracts.test_unicode_control_removal_is_rejected) ... ok\ntest_whole_message_families_have_exact_localized_scope_and_no_english_filled_fallbacks (test_current_localization_contracts.CurrentLocalizationContracts.test_whole_message_families_have_exact_localized_scope_and_no_english_filled_fallbacks) ... ok\ntest_all_explicit_script_choices_have_independent_general_ui_expectations (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_all_explicit_script_choices_have_independent_general_ui_expectations) ... ok\ntest_build_mirrors_all_xml_from_canonical_catalogue_before_prebuild (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_build_mirrors_all_xml_from_canonical_catalogue_before_prebuild) ... ok\ntest_current_scriptless_competitors_remain_bounded_and_visible (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_current_scriptless_competitors_remain_bounded_and_visible) ... ok\ntest_mongolian_successor_rejects_changed_history_or_reviewed_binding (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_mongolian_successor_rejects_changed_history_or_reviewed_binding) ... ok\ntest_only_two_internal_variants_and_public_tag_catalogues_are_unchanged (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_only_two_internal_variants_and_public_tag_catalogues_are_unchanged) ... ok\ntest_tatar_latin_successor_rejects_changed_history_and_coordinated_fixture (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_tatar_latin_successor_rejects_changed_history_and_coordinated_fixture) ... ok\ntest_wrap_refresh_and_device_label_apply_the_same_bounded_resource_mapping (test_exact_script_resource_routing.ExactScriptResourceRoutingContracts.test_wrap_refresh_and_device_label_apply_the_same_bounded_resource_mapping) ... ok\n\n----------------------------------------------------------------------\nRan 68 tests in 258.019s\n\nOK\n"
+  },
+  "interruption": {
+    "observed_utc": "2026-10-28T18:28:00Z",
+    "observation": "No Python test process visible in recovered executor, no terminal or exit receipt. Preserved partial evidence. Fresh standard discovery uses a separate output directory.",
+    "status": "incomplete_not_passed"
+  },
+  "fresh_full_status": "running in separate recovery output directory, not passed",
+  "hosted_run": 40745310243,
+  "review_request_comment": 6477232322,
+  "prior_failed_run": 40736446643
+}
