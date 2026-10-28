@@ -4,6 +4,9 @@ Historical paired-language fixtures stay unchanged. Default-English and explicit
 no historical fixture or receipt is rewritten.
 """
 import json
+from sindhi_nigerian_pidgin_tok_pisin_priority_expectations import require_shared_row as sd_pcm_tpi_shared_row
+from sorani_uyghur_tatar_priority_expectations import require_shared_row as ckb_ug_tt_shared_row
+from moroccan_arabic_mongolian_toki_pona_priority_expectations import MEMORY_ADDITIONS as ARY_MN_TOK_ADDITIONS, require_addition as ary_mn_tok_addition
 from kazakh_tajik_pashto_priority_expectations import require_shared_row as kk_tg_ps_shared_row
 from basque_frisian_uzbek_priority_expectations import require_shared_row
 from galician_priority_expectations import MEMORY_ADDITIONS as GL_ADDITIONS, current_row as gl_row, MEMORY_CORRECTIONS as NL_DE_MEMORY_CORRECTIONS, wording_successor as nl_de_successor
@@ -11,6 +14,8 @@ from maori_samoan_kinyarwanda_priority_expectations import MEMORY_ADDITIONS as M
 from current_localization_contracts import fixture
 from cebuano_low_german_kashubian_priority_expectations import require_shared_row as ceb_nds_csb_shared_row
 from walloon_northern_sami_sanskrit_priority_expectations import require_shared_row as wa_se_sa_shared_row
+from tibetan_dzongkha_valencian_priority_expectations import require_shared_row as bo_dz_val_shared_row
+from chhattisgarhi_yiddish_hong_kong_priority_expectations import require_shared_row as hne_yi_hk_shared_row
 from memory_warning_successors import current_warning_expectation
 from pathlib import Path
 from irish_gaelic_welsh_priority_expectations import MEMORY_ADDITIONS as GA_GD_CY_ADDITIONS, current_row as ga_gd_cy_row
@@ -37,6 +42,10 @@ EU_FY_UZ_ADDITIONS = frozenset((tag,key) for tag in ('eu-ES','fy','uz-Latn') for
 KK_TG_PS_ADDITIONS = frozenset((tag,key) for tag in ('kk','tg','ps') for key in KEYS)
 CEB_NDS_CSB_ADDITIONS = frozenset((tag,key) for tag in ('nds', 'csb') for key in KEYS)
 WA_SE_SA_ADDITIONS = frozenset((tag,key) for tag in ('wa', 'se', 'sa') for key in KEYS)
+SD_PCM_TPI_ADDITIONS = frozenset((tag,key) for tag in ('sd','pcm','tpi') for key in KEYS)
+CKB_UG_TT_ADDITIONS = frozenset((tag,key) for tag in ('ckb','ug','tt-Cyrl') for key in KEYS)
+BO_DZ_VAL_ADDITIONS = frozenset((tag,key) for tag in ('ca-ES-valencia',) for key in KEYS)
+HNE_YI_HK_ADDITIONS = frozenset((tag,key) for tag in ('hne', 'yi') for key in KEYS)
 SINGLE_KEY_FIXTURES = {
     'nn': 'nynorsk_p0_remaining_wording.json',
     'da': 'danish_norwegian_p0_wording.json',
@@ -87,6 +96,24 @@ old source snapshot.
             raise ValueError('KK/TG/PS historical warning addition must be absent: '+tag+'/'+key)
         if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
             raise ValueError('KK/TG/PS warning source or attributes differ: '+tag+'/'+key)
+        return row['reviewed_value']
+    if (tag,key) in SD_PCM_TPI_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=sd_pcm_tpi_shared_row(tag,key,fixture('sindhi_nigerian_pidgin_tok_pisin_priority_wording/'+tag+'.json'),historical_value=historical_value)
+        if historical_value is not None or old is not None or 'previous_target' not in row or row['previous_target'] is not None:
+            raise ValueError('SD/PCM/TPI historical warning addition must be absent: '+tag+'/'+key)
+        if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+            raise ValueError('SD/PCM/TPI warning source or attributes differ: '+tag+'/'+key)
+        return row['reviewed_value']
+    if (tag,key) in CKB_UG_TT_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=ckb_ug_tt_shared_row(tag,key,fixture('sorani_uyghur_tatar_priority_wording/'+tag+'.json'),historical_value=historical_value)
+        if historical_value is not None or old is not None or 'previous_target' not in row or row['previous_target'] is not None:
+            raise ValueError('CKB/UG/TT historical warning addition must be absent: '+tag+'/'+key)
+        if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+            raise ValueError('CKB/UG/TT warning source or attributes differ: '+tag+'/'+key)
         return row['reviewed_value']
     if (tag,key) in GA_GD_CY_ADDITIONS:
         queue=review_record()
@@ -142,6 +169,24 @@ old source snapshot.
             raise ValueError('WA/SE/SA historical warning addition must be absent: '+tag+'/'+key)
         if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
             raise ValueError('WA/SE/SA warning source or attributes differ: '+tag+'/'+key)
+        return row['reviewed_value']
+    if (tag,key) in BO_DZ_VAL_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=bo_dz_val_shared_row(tag,key,fixture('tibetan_dzongkha_valencian_priority_wording/'+tag+'.json'),historical_value=historical_value)
+        if historical_value is not None or old is not None or 'previous_target' not in row or row['previous_target'] is not None:
+            raise ValueError('BO/DZ/Valencian historical warning addition must be absent: '+tag+'/'+key)
+        if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+            raise ValueError('BO/DZ/Valencian warning source or attributes differ: '+tag+'/'+key)
+        return row['reviewed_value']
+    if (tag,key) in HNE_YI_HK_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=hne_yi_hk_shared_row(tag,key,fixture('chhattisgarhi_yiddish_hong_kong_priority_wording/'+tag+'.json'),historical_value=historical_value)
+        if historical_value is not None or old is not None or 'previous_target' not in row or row['previous_target'] is not None:
+            raise ValueError('HNE/YI/HK historical warning addition must be absent: '+tag+'/'+key)
+        if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+            raise ValueError('HNE/YI/HK warning source or attributes differ: '+tag+'/'+key)
         return row['reviewed_value']
     if (tag,key) in KN_ML_ADDITIONS:
         queue=review_record()
@@ -227,6 +272,11 @@ old source snapshot.
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
         if old is not None:raise ValueError('Historical KAB/MWW/MAI queue value must be absent')
         return kab_mww_mai_addition(tag,key,queue['keys'][key]['corrected_english'],historical_value)
+    if (tag,key) in ARY_MN_TOK_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        if old is not None:raise ValueError('Historical ARY/MN/TOK queue value must be absent')
+        return ary_mn_tok_addition(tag,key,queue['keys'][key]['corrected_english'],historical_value)
     if (tag, key) in SK_SL_CA_ADDITIONS:
         queue = review_record()
         old = next(o for o in queue['options'] if o['tag'] == tag)['terms'][key]['value']

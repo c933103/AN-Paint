@@ -115,6 +115,95 @@ class AppLanguageResourceRoutingTest {
         }
     }
 
+    private fun reviewedTatarScriptRow(row:JSONObject):JSONObject {
+        require(row.keys().asSequence().toSet()==setOf("requested_tag","resource_tag","expected"))
+        require(row.getString("requested_tag")=="tt-Cyrl" && row.getString("resource_tag")=="tt-Cyrl")
+        val old=row.getJSONObject("expected")
+        require(old.keys().asSequence().toSet()==setOf("ui_save","ui_menu_file","language20_device_default"))
+        require(old.getString("ui_save")=="Саклау" && old.getString("ui_menu_file")=="Файл")
+        require(old.getString("language20_device_default")=="Use device language")
+        // Independently reviewed addition; the historical routing fixture stays untouched.
+        return JSONObject(row.toString()).apply {
+            getJSONObject("expected").put("language20_device_default","Җайланма телен куллану")
+        }
+    }
+
+    @Test fun tatarDeviceLabelSuccessorRejectsChangedHistoricalRows() {
+        val original=JSONObject("""{"requested_tag":"tt-Cyrl","resource_tag":"tt-Cyrl","expected":{"ui_save":"Саклау","ui_menu_file":"Файл","language20_device_default":"Use device language"}}""")
+        val snapshot=original.toString()
+        val current=reviewedTatarScriptRow(original)
+        assertEquals("Җайланма телен куллану",current.getJSONObject("expected").getString("language20_device_default"))
+        assertEquals(snapshot,original.toString())
+        val invalid=mutableListOf<JSONObject>()
+        for(key in listOf("requested_tag","resource_tag","expected"))
+            invalid.add(JSONObject(snapshot).apply {remove(key)})
+        for(key in listOf("requested_tag","resource_tag"))
+            invalid.add(JSONObject(snapshot).apply {put(key,"tt")})
+        invalid.add(JSONObject(snapshot).apply {put("extra",true)})
+        for(key in listOf("ui_save","ui_menu_file","language20_device_default")) {
+            invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").remove(key)})
+            invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put(key,"forged")})
+        }
+        invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put("extra",true)})
+        invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put("language20_device_default","Җайланма телен куллану")})
+        assertEquals(14,invalid.size)
+        for(row in invalid) {
+            var rejected=false
+            try {reviewedTatarScriptRow(row)} catch (_:Exception) {rejected=true}
+            assertTrue("Changed historical row must fail: $row",rejected)
+        }
+    }
+
+    private fun reviewedMongolianScriptRow(row:JSONObject):JSONObject {
+        require(row.keys().asSequence().toSet()==setOf("requested_tag","resource_tag","expected"))
+        require(row.getString("requested_tag")=="mn-Cyrl-MN" && row.getString("resource_tag")=="mn-Cyrl-MN")
+        val old=row.getJSONObject("expected")
+        require(old.keys().asSequence().toSet()==setOf("ui_save","ui_menu_file","language20_device_default"))
+        require(old.getString("ui_save")=="Хадгалах" && old.getString("ui_menu_file")=="Файл")
+        require(old.getString("language20_device_default")=="Төхөөрөмжийн хэл")
+        // Bind the complete accepted fixture before this finite historical-row projection.
+        val bytes=File("../tools/fixtures/current_localization/moroccan_arabic_mongolian_toki_pona_priority_wording.json").readBytes()
+        val sha=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
+        require(sha=="02b4dcb288d76cc53c7d50e2e91375cd6aecffbf9a404a3d0a61987e86197f62")
+        val bound=JSONObject(String(bytes,Charsets.UTF_8))
+        val source=bound.getJSONObject("sources").getJSONObject("language20_device_default")
+        require(source.getString("type")=="string" && source.getString("source")=="Use device language")
+        require(source.getJSONObject("attributes").getString("name")=="language20_device_default")
+        val locale=bound.getJSONObject("locales").getJSONObject("mn-Cyrl-MN")
+        require(locale.getJSONObject("predecessors").getJSONObject("language20_device_default").getString("target")=="Төхөөрөмжийн хэл")
+        require(locale.getJSONObject("accepted").getString("language20_device_default")=="Төхөөрөмжийн хэлийг ашиглах")
+        // The historical routing fixture stays untouched; no catalogue rollback.
+        return JSONObject(row.toString()).apply {
+            getJSONObject("expected").put("language20_device_default","Төхөөрөмжийн хэлийг ашиглах")
+        }
+    }
+
+    @Test fun mongolianDeviceLabelSuccessorRejectsChangedHistoricalRows() {
+        val original=JSONObject("""{"requested_tag":"mn-Cyrl-MN","resource_tag":"mn-Cyrl-MN","expected":{"ui_save":"Хадгалах","ui_menu_file":"Файл","language20_device_default":"Төхөөрөмжийн хэл"}}""")
+        val snapshot=original.toString()
+        val current=reviewedMongolianScriptRow(original)
+        assertEquals("Төхөөрөмжийн хэлийг ашиглах",current.getJSONObject("expected").getString("language20_device_default"))
+        assertEquals(snapshot,original.toString())
+        val invalid=mutableListOf<JSONObject>()
+        for(key in listOf("requested_tag","resource_tag","expected"))
+            invalid.add(JSONObject(snapshot).apply {remove(key)})
+        for(key in listOf("requested_tag","resource_tag"))
+            invalid.add(JSONObject(snapshot).apply {put(key,"mn")})
+        invalid.add(JSONObject(snapshot).apply {put("extra",true)})
+        for(key in listOf("ui_save","ui_menu_file","language20_device_default")) {
+            invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").remove(key)})
+            invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put(key,"forged")})
+        }
+        invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put("extra",true)})
+        invalid.add(JSONObject(snapshot).apply {getJSONObject("expected").put("language20_device_default","Төхөөрөмжийн хэлийг ашиглах")})
+        assertEquals(14,invalid.size)
+        for(row in invalid) {
+            var rejected=false
+            try {reviewedMongolianScriptRow(row)} catch (_:Exception) {rejected=true}
+            assertTrue("Changed historical row must fail: $row",rejected)
+        }
+    }
+
     @Test fun everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue() {
         val expected=javaClass.getResourceAsStream("/exact-script-resources/expected.json")!!
             .bufferedReader().use {JSONArray(it.readText())}
@@ -124,7 +213,12 @@ class AppLanguageResourceRoutingTest {
         val observations=JSONArray();val failures=mutableListOf<String>()
         for(index in 0 until expected.length()) {
             val historical=expected.getJSONObject(index)
-            val row=if(historical.getString("requested_tag")=="uz-Latn") reviewedUzbekScriptRow(historical) else historical
+            val row=when(historical.getString("requested_tag")) {
+                "uz-Latn" -> reviewedUzbekScriptRow(historical)
+                "tt-Cyrl" -> reviewedTatarScriptRow(historical)
+                "mn-Cyrl-MN" -> reviewedMongolianScriptRow(historical)
+                else -> historical
+            }
             val tag=row.getString("requested_tag")
             AppLanguage.select(context,tag)
             val wrapped=AppLanguage.wrap(context)

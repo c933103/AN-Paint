@@ -24,14 +24,14 @@ class TajikOptionJvmSuccessorTest(unittest.TestCase):
             expected='assertEquals('+json.dumps(data['values'][key]['display'],ensure_ascii=False)+',wrapped.getString(R.string.'+key+'))'
             self.assertIn(expected,branch)
 
-    def test_exact_combined_successors_preserve_thirteen_remaining_fallbacks(self):
+    def test_exact_combined_successors_preserve_eleven_remaining_fallbacks(self):
         section=self.section()
-        successors=['as','so','wo','ht','tg','mi','sm','sa']
+        successors=['as','so','wo','ht','tg','mi','sm','sa','pcm','tpi']
         self.assertEqual(successors,re.findall(r'(?:if|else if) \(tag == "([^"]+)"\)',section))
         expected=section.split('val expectedNames=mapOf(')[1].split('assertEquals(171,')[0]
         tags=re.findall(r'"([a-z]+)" to ',expected)
         self.assertEqual(21,len(tags));self.assertEqual(21,len(set(tags)))
-        self.assertEqual(13,len(set(tags)-set(successors)))
+        self.assertEqual(11,len(set(tags)-set(successors)))
         branch=section.split('} else {')[1].split('if(android.os.Build')[0]
         for key,value in zip(KEYS[:3],('File','Brush','Save')):
             self.assertIn(f'assertEquals("{value}",wrapped.getString(R.string.{key}))',branch)

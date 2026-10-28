@@ -168,6 +168,18 @@ class AppLanguageTest {
                 assertEquals("तूलिका",wrapped.getString(R.string.ui_brush))
                 assertEquals("रक्षतु",wrapped.getString(R.string.ui_save))
                 assertEquals("अनुप्रयोगभाषा\n\nअनुवादाः AN Paint इत्यस्य भाषासंसाधनेषु अनुरक्ष्यन्ते। नूतनः अथवा अननूदितः पाठः आङ्ग्लभाषायां दृश्यते।",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "pcm") {
+                // Exact reviewed priority successor; no other option gains translation credit.
+                assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+                assertEquals("Save",wrapped.getString(R.string.ui_save))
+                assertEquals("App language\n\nNa AN Paint language resources dey hold di translations. New text or text wey never translate go show for English.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "tpi") {
+                // Exact reviewed priority successor; no other option gains translation credit.
+                assertEquals("Fail",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Bras",wrapped.getString(R.string.ui_brush))
+                assertEquals("Sevim",wrapped.getString(R.string.ui_save))
+                assertEquals("Tokples bilong app\n\nOl trenslesen i stap long ol tokples risos bilong AN Paint. Nupela teks o teks i no trenslet yet bai kamap long Inglis.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
@@ -201,11 +213,19 @@ class AppLanguageTest {
             assertEquals(tag,AppLanguage.selectedTag(wrapped))
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
-            assertEquals("File",wrapped.getString(R.string.ui_menu_file))
-            assertEquals("Brush",wrapped.getString(R.string.ui_brush))
-            assertEquals("Save",wrapped.getString(R.string.ui_save))
-            assertTrue(wrapped.getString(R.string.language20_translation_note)
-                .contains("New or untranslated text appears in English."))
+            if(tag=="ary") {
+                assertEquals("ملف",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("فرشاة",wrapped.getString(R.string.ui_brush))
+                assertEquals("حفظ",wrapped.getString(R.string.ui_save))
+                assertEquals("لغة التطبيق\n\nالترجمات كتتراجع وتتحدّث فموارد اللغات ديال AN Paint. النص الجديد ولا اللي ما تترجمش كيبان بالإنجليزية.",
+                    wrapped.getString(R.string.language20_translation_note))
+            } else {
+                assertEquals("File",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+                assertEquals("Save",wrapped.getString(R.string.ui_save))
+                assertTrue(wrapped.getString(R.string.language20_translation_note)
+                    .contains("New or untranslated text appears in English."))
+            }
             if(android.os.Build.VERSION.SDK_INT>=33)
                 assertEquals(tag,context.getSystemService(LocaleManager::class.java)!!
                     .applicationLocales[0].toLanguageTag())
@@ -350,7 +370,11 @@ class AppLanguageTest {
             assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
             assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
-            if (tag == "se") {
+            if (tag == "bo") {
+                assertEquals("ཉར་ཚགས།", wrapped.getString(R.string.ui_save))
+                assertEquals("ཉར་ཚགས…", wrapped.getString(R.string.ui_save_a5d0d9))
+                assertNotEquals(wrapped.getString(R.string.ui_save), wrapped.getString(R.string.ui_save_a5d0d9))
+            } else if (tag == "se") {
                 assertEquals("Vurke", wrapped.getString(R.string.ui_save))
                 assertEquals("Vurke…", wrapped.getString(R.string.ui_save_a5d0d9))
                 assertNotEquals(wrapped.getString(R.string.ui_save), wrapped.getString(R.string.ui_save_a5d0d9))
@@ -368,6 +392,14 @@ class AppLanguageTest {
                 "mww" -> {
                     assertEquals("Khaws",wrapped.getString(R.string.ui_save))
                     assertEquals("Khaws…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
+                "tt-Cyrl" -> {
+                    assertEquals("Саклау",wrapped.getString(R.string.ui_save))
+                    assertEquals("Саклау…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
+                "ug" -> {
+                    assertEquals("ساقلاش",wrapped.getString(R.string.ui_save))
+                    assertEquals("ساقلاش…",wrapped.getString(R.string.ui_save_a5d0d9))
                 }
                 else -> assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
                     wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
@@ -516,7 +548,7 @@ class AppLanguageTest {
         AppLanguage.select(context,"tt-Cyrl")
         var selected=AppLanguage.wrap(context)
         assertEquals("Саклау",selected.getString(R.string.ui_save))
-        assertEquals("Төзәтмәләрне кире кагу",selected.getString(R.string.ui_discard_changes23))
+        assertEquals("Үзгәртүләрне кире кагу",selected.getString(R.string.ui_discard_changes23))
         assertEquals("Үзгәртүне дәвам итү",selected.getString(R.string.ui_keep_editing23))
         AppLanguage.select(context,"tt-Latn")
         selected=AppLanguage.wrap(context)

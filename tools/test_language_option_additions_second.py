@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 import translation_catalogues as catalogues
 from walloon_northern_sami_sanskrit_priority_expectations import SANSKRIT_OPTION_STATUS, require_sanskrit_option_successor
 from language_option_additions import require_untranslated_option
+from pidgin_tok_pisin_option_successors import require_pidgin_option_successor
 from somali_wolof_haitian_creole_priority_expectations import SO_WO_HT_OPTION_TAGS, PRIORITY_OPTION_STATUS as SO_WO_HT_OPTION_STATUS, require_priority_option_successor as require_so_wo_ht_option_successor
 from tajik_priority_option_successor import require_tajik_option_successor, TAJIK_OPTION_STATUS
 from assamese_khmer_lao_priority_expectations import ASSAMESE_OPTION_STATUS, require_assamese_option_successor
@@ -129,6 +130,16 @@ class FurtherLanguageOptionTests(unittest.TestCase):
                 missing_strings=strings-present_strings
                 self.assertTrue(missing_strings)
                 self.assertEqual(set(),plurals-present_plurals)
+                self.assertEqual([f"{row['tag']}: missing {len(missing_strings)} strings: {', '.join(sorted(missing_strings)[:20])}"],catalogues.validate_catalogue(row['tag'],require_complete=True))
+                continue
+            if row['tag'] in ('pcm','tpi'):
+                root=require_pidgin_option_successor(row,path.read_text())
+                self.assertEqual([],catalogues.validate_catalogue(row['tag']))
+                present_strings={node.get('name') for node in root if node.tag=='string'}
+                present_plurals={node.get('name') for node in root if node.tag=='plurals'}
+                missing_strings=strings-present_strings;missing_plurals=plurals-present_plurals
+                self.assertTrue(missing_strings)
+                self.assertEqual(set(),missing_plurals)
                 self.assertEqual([f"{row['tag']}: missing {len(missing_strings)} strings: {', '.join(sorted(missing_strings)[:20])}"],catalogues.validate_catalogue(row['tag'],require_complete=True))
                 continue
             require_untranslated_option(row, path.read_text())
