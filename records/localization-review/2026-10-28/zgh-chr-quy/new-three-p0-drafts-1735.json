@@ -1,0 +1,314 @@
+{
+  "record": "Three new productive complete-resource P0 author drafts; active controls only",
+  "time_utc": "2026-10-28T17:35:00Z",
+  "source_head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+  "prior_bounded_checkpoint_commit": "f565ed8c5e125cd7fbd70d45a7b90d69bfc481d9",
+  "prior_bounded_count": 117,
+  "new_pending_count": 3,
+  "accepted_count_unchanged": 117,
+  "rows": [
+    {
+      "locale": "zgh",
+      "identity": "string/ui_save_png",
+      "tier": "P0",
+      "source": {
+        "value": "Save PNG",
+        "attributes": {
+          "name": "ui_save_png"
+        },
+        "value_json_sha256": "7fcfebefdd77015a0da4e42569df969a2533f31559b894949de5b1069a6bd2d4"
+      },
+      "current": null,
+      "source_file": "Paintroid/src/main/res/values/strings.xml",
+      "proposed_value": "ⵃⴹⵓ ⴰⴼⴰⵢⵍⵓ PNG",
+      "proposed_attributes": {
+        "name": "ui_save_png"
+      },
+      "target_utf8_sha256": "2746e03d30f90ba5d69dbf85a803508e50b8b8eab11f209fb41337d260139421",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 88,
+          "start_line": 84,
+          "end_line": 92,
+          "context": "            root.addView(HorizontalScrollView(this).apply { isHorizontalScrollBarEnabled = false; addView(row) }); return row\n        }\n        add = button(ui(R.string.ui_add_images),\"assembly_add\") { launchAdd() }\n        actionRow(add,button(ui(R.string.ui_assembly_exact_position),\"assembly_position\") { exactPosition() },\n            button(ui(R.string.ui_save_png),\"assembly_save\") { requestOutput(false) },button(ui(R.string.ui_edit_in_paint),\"assembly_edit\") { requestOutput(true) },button(ui(R.string.ui_how_to_use),\"assembly_help\") { showHelp() })\n        board = AssemblyCanvas(this,assembly) { previews[it] }.apply {\n            tag = \"assembly_canvas\"; onError = { message(it.message ?: ui(R.string.ui_could_not_place_the_image)) }\n            onSelect = { id -> selected = id; for (i in 0 until tray.childCount) tray.getChildAt(i).setBackgroundColor(if (tray.getChildAt(i).tag == \"assembly_item_$id\") EditorColours.primaryContainer else EditorColours.surfaceContainerHigh) }; onStatus = { if (!busy) info.text = it }\n        }",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L84-L92"
+        }
+      ],
+      "complete_value_rationale": "Productive complete command: exact Save file phrase plus exact noun-followed-by-format structure from SVG file; replace only opaque format identifier SVG with PNG. This is not an exact upstream whole string. Overt file head avoids unsupported bare-acronym object ellipsis.",
+      "status": "pending_independent_whole_value_and_caller_review"
+    },
+    {
+      "locale": "quy",
+      "identity": "string/ui_save_png",
+      "tier": "P0",
+      "source": {
+        "value": "Save PNG",
+        "attributes": {
+          "name": "ui_save_png"
+        },
+        "value_json_sha256": "7fcfebefdd77015a0da4e42569df969a2533f31559b894949de5b1069a6bd2d4"
+      },
+      "current": null,
+      "source_file": "Paintroid/src/main/res/values/strings.xml",
+      "proposed_value": "PNG kiputa waqaychay",
+      "proposed_attributes": {
+        "name": "ui_save_png"
+      },
+      "target_utf8_sha256": "c1df25155bc3535c6c57d1be80954356ed4d42cbc43b622ef66dfab08db8f5f2",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 88,
+          "start_line": 84,
+          "end_line": 92,
+          "context": "            root.addView(HorizontalScrollView(this).apply { isHorizontalScrollBarEnabled = false; addView(row) }); return row\n        }\n        add = button(ui(R.string.ui_add_images),\"assembly_add\") { launchAdd() }\n        actionRow(add,button(ui(R.string.ui_assembly_exact_position),\"assembly_position\") { exactPosition() },\n            button(ui(R.string.ui_save_png),\"assembly_save\") { requestOutput(false) },button(ui(R.string.ui_edit_in_paint),\"assembly_edit\") { requestOutput(true) },button(ui(R.string.ui_how_to_use),\"assembly_help\") { showHelp() })\n        board = AssemblyCanvas(this,assembly) { previews[it] }.apply {\n            tag = \"assembly_canvas\"; onError = { message(it.message ?: ui(R.string.ui_could_not_place_the_image)) }\n            onSelect = { id -> selected = id; for (i in 0 until tray.childCount) tray.getChildAt(i).setBackgroundColor(if (tray.getChildAt(i).tag == \"assembly_item_$id\") EditorColours.primaryContainer else EditorColours.surfaceContainerHigh) }; onStatus = { if (!busy) info.text = it }\n        }",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L84-L92"
+        }
+      ],
+      "complete_value_rationale": "Productive complete command meaning Save a PNG file: preserved technical acronym precedes software-file head kipu with direct-object -ta, followed by attested Save command. Same-variety guide P+F iqita qaway supports acronym-before-case-marked-head order. Not an exact upstream whole string or native-preferred certification.",
+      "status": "pending_independent_whole_value_and_caller_review"
+    },
+    {
+      "locale": "quy",
+      "identity": "string/ui_discard_changes23",
+      "tier": "P0",
+      "source": {
+        "value": "Discard changes",
+        "attributes": {
+          "name": "ui_discard_changes23"
+        },
+        "value_json_sha256": "07f6a6b7dd77ce8c127e16e1668f36ca0db95247d87fc2c0375c925d4be850ca"
+      },
+      "current": null,
+      "source_file": "Paintroid/src/main/res/values/strings.xml",
+      "proposed_value": "Allichasqaykita wischuy",
+      "proposed_attributes": {
+        "name": "ui_discard_changes23"
+      },
+      "target_utf8_sha256": "b4cf18627f4179a439ac04997e40f026ba55b4dce06d2903a2920135fb26fa1f",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1079,
+          "start_line": 1075,
+          "end_line": 1083,
+          "context": "        paintCanvas.applyPending()\n        if (!document.dirty) { action(); return }\n        EditorDialogBuilder(this).setTitle(ui(R.string.ui_save_your_changes)).setMessage(ui(R.string.ui_your_current_image_has_unsaved_changes))\n            .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }\n            .setNeutralButton(ui(R.string.ui_discard_changes23)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_keep_editing23), null).show()\n    }\n\n    fun launchOpen(import: Boolean) {\n        if (busy) return",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1075-L1083"
+        }
+      ],
+      "complete_value_rationale": "Productive complete command: retain exact changes-as-object allichasqaykita from the save-changes prompt, combine with same-variety discard verb independently attested for software Delete and dictionary discard sense. No final period; no accidental-loss or vomiting sense. Actual callback authorizes continuing requested replacement or exit without Save, not deleting previously saved files and not guaranteed immediate destruction of all changes.",
+      "status": "pending_independent_whole_value_and_caller_review"
+    }
+  ],
+  "primary_sources": {
+    "zgh": {
+      "repository": "wikimedia/mediawiki",
+      "commit": "af270122ceda18ec7570eafe567ac5471a6a0b43",
+      "zgh": {
+        "path": "languages/i18n/zgh.json",
+        "git_blob": "030040f759a05edabc6c8aa36a2854d57eb7a996"
+      },
+      "en": {
+        "path": "languages/i18n/en.json",
+        "git_blob": "873a7446dbc2501919b5d63cc20b8570f2a98654"
+      },
+      "short_pairs": [
+        {
+          "key": "savefile",
+          "en": "Save file",
+          "zgh": "ⵃⴹⵓ ⴰⴼⴰⵢⵍⵓ"
+        },
+        {
+          "key": "svg-long-desc",
+          "en": "SVG file",
+          "zgh": "ⴰⴼⴰⵢⵍⵓ SVG",
+          "extraction": "Only the complete initial file-kind noun phrase; following dimensions/file-size description is not transferred."
+        }
+      ],
+      "method": "Both whole public upstream JSON files freshly read at the same pinned commit. This record retains only needed short lexical constructions."
+    },
+    "quy_guide": {
+      "title": "Microsoft Quechua Style Guide",
+      "official_url": "https://download.microsoft.com/download/B/F/3/BF3CAB57-043E-42A9-B119-CA8A4FB835D8/que-per-StyleGuide.pdf",
+      "indexed_original_mirror": "https://manuals.plus/m/11177cc64c717458906fd98b18467750c1008fe87f4eb1a7a2028ed69dd64c47",
+      "last_updated": "February 2011",
+      "variety_basis": {
+        "printed_page": 7,
+        "short_quote": "Ayacucho Chanka, Guardia Dictionary"
+      },
+      "short_evidence": [
+        {
+          "printed_page": 18,
+          "quote": "Tikranapaq kiputa akllay.",
+          "supports": "Software-file noun with direct-object -ta in an imperative."
+        },
+        {
+          "printed_page": 26,
+          "quote": "P+F iqita qaway",
+          "supports": "Uninflected Latin acronym precedes an overt head carrying -ta. Productive syntax analogy, not exact PNG-file wording."
+        },
+        {
+          "printed_page": 33,
+          "quote": "allichasqaykita",
+          "supports": "Object in the save-your-changes prompt; used intact for changes-to-be-discarded."
+        },
+        {
+          "printed_page": 38,
+          "terms": {
+            "Save": "waqaychay",
+            "Delete": "wischuy"
+          },
+          "supports": "Actual software commands; table's File/Edit menu labels are not falsely treated as part of each verb."
+        }
+      ],
+      "method": "Public web search-indexed extraction of original guide, not a secondary summary.",
+      "limits": "Official bytes not freshly fetched; mirror open/find cache-missed; indexed extracted text supports bounded linguistic reasoning only. Filename hash is not freshly verified byte identity. No native-preferred or all-variety claim."
+    },
+    "quy_dictionary": {
+      "author": "Clodoaldo Soto Ruiz",
+      "title": "Quechua-Spanish-English functional dictionary, Ayacucho-Chanka",
+      "url": "https://indigenasdelperu.wordpress.com/wp-content/uploads/2015/09/diccionario-quechua-inglc3a9s-castellano-chanka-clodoaldo-soto.pdf",
+      "evidence": [
+        {
+          "printed_page": 209,
+          "pdf_zero_index": 208,
+          "entry": "Wischuy 120",
+          "short_gloss": "To throw out, discard.",
+          "sense_limit": "The entry has additional lose/vomit senses; those are not transferred. Software Delete use is independently corroborated by the guide."
+        },
+        {
+          "printed_pages": [
+            240,
+            241
+          ],
+          "topic": "Nominal -ta marks the direct object; no appended object case on the unchanged opaque acronym."
+        },
+        {
+          "printed_page": 242,
+          "topic": "Direct-command -y; guide p30 separately supports infinitive-form UI controls and source-matched punctuation."
+        }
+      ],
+      "method": "Fresh public primary-document text extraction; no new visual page certification, complete PDF not saved."
+    }
+  },
+  "caller_binding": {
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt": {
+      "git_blob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+      "sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+    },
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt": {
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+    }
+  },
+  "additional_callers": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "start_line": 283,
+      "end_line": 295,
+      "context": "    private fun requestOutput(toPaint: Boolean) {\n        if (assembly.size() == null) { message(ui(R.string.ui_place_at_least_one_image_in_the_workspace)); return }\n        setBusy(true)\n        worker.execute {\n            try {\n                val renderer=renderer()\n                runOnUiThread {if(!isDestroyed && !isFinishing) {\n                    setBusy(false)\n                    if(renderer.fits(renderer.original)) makeOutput(renderer,renderer.original,toPaint) else outputSizeDialog(renderer,toPaint)\n                }}\n            } catch(error: Exception) {runOnUiThread {if(!isDestroyed && !isFinishing) {setBusy(false);refresh();message(ui(R.string.ui_could_not_create_the_assembly,error.message))}}}\n            catch(_: OutOfMemoryError) {runOnUiThread {if(!isDestroyed && !isFinishing) {setBusy(false);refresh();message(ui(R.string.ui_not_enough_memory_for_this_operation_the_assembly))}}}\n        }",
+      "purpose": "Save PNG validates assembly and chooses direct render or output-sizing dialog. No completed-save claim.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L283-L295"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "start_line": 319,
+      "end_line": 346,
+      "context": "    private fun makeOutput(renderer: AssemblyRenderer,size: ImageDimensions,toPaint: Boolean) {\n        setBusy(true); val file = File(filesDir,\"assembly-output-${UUID.randomUUID()}.png\")\n        worker.execute {\n            try {\n                val image = renderer.render(size) { n,total -> runOnUiThread { if (!isDestroyed) info.text = ui(R.string.ui_rendering_images, n, total) } }\n                try { file.outputStream().use { if (!image.compress(Bitmap.CompressFormat.PNG,100,it)) throw IOException(ui(R.string.ui_png_encoding_failed)) } } finally { image.recycle() }\n                runOnUiThread {\n                    if (isDestroyed || isFinishing) file.delete()\n                    else {\n                        setBusy(false); refresh()\n                        if (toPaint) { setResult(RESULT_OK,Intent().putExtra(\"assembly_output\",file.name)); finish() }\n                        else { pendingOutput?.delete(); pendingOutput = file; launchPicker(Intent(Intent.ACTION_CREATE_DOCUMENT).apply { addCategory(Intent.CATEGORY_OPENABLE); type = \"image/png\"; putExtra(Intent.EXTRA_TITLE,ui(R.string.ui_an_paint_assembly_png)) },SAVE_ASSEMBLY) }\n                    }\n                }\n            } catch (_: OutOfMemoryError) { file.delete(); runOnUiThread { if (!isDestroyed) { setBusy(false); outputSizeDialog(renderer,toPaint,size) } } }\n            catch (_: ImageSizeException) { file.delete(); runOnUiThread { if (!isDestroyed) { setBusy(false); outputSizeDialog(renderer,toPaint,size) } } }\n            catch (error: Exception) { file.delete(); runOnUiThread { if (!isDestroyed) { setBusy(false); refresh(); message(ui(R.string.ui_could_not_create_the_assembly, error.message)) } } }\n        }\n    }\n    private fun saveOutput(file: File,uri: Uri) {\n        setBusy(true)\n        worker.execute {\n            try { contentResolver.openOutputStream(uri,\"wt\")?.use { output -> file.inputStream().use { it.copyTo(output,64*1024) } } ?: throw IOException(ui(R.string.ui_the_selected_location_is_not_writable))\n                runOnUiThread { if (!isDestroyed) { setBusy(false); refresh(); LocaleTypography.showMessage(this,ui(R.string.ui_assembly_saved),Toast.LENGTH_SHORT) } }\n            } catch (error: Exception) { runOnUiThread { if (!isDestroyed) { setBusy(false); refresh(); message(ui(R.string.ui_could_not_save_the_assembly, error.message)) } } }\n            finally { file.delete() }\n        }\n    }",
+      "purpose": "PNG compression, image/png create-document picker, then output URI write; distinct from toPaint=true and native assembly persistence.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L319-L346"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "start_line": 201,
+      "end_line": 205,
+      "context": "            if (uris.isEmpty()) message(ui(R.string.ui_the_picker_returned_no_files)) else importImages(uris.distinct())\n        } else if (requestCode == SAVE_ASSEMBLY) {\n            val file = pendingOutput; pendingOutput = null\n            if (resultCode == RESULT_OK && data?.data != null && file != null) saveOutput(file,data.data!!) else file?.delete()\n        }",
+      "purpose": "Picker result invokes saveOutput only with RESULT_OK and a destination URI.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L201-L205"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 835,
+      "end_line": 840,
+      "context": "    private fun menuActions(name: String): List<PanelCommand> = when(name) {\n        \"File\"->(listOf<Pair<String,()->Unit>>(\n            ui(R.string.ui_new) to {confirmReplacement {dimensionsDialog(false,true)}},\n            ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},\n            ui(R.string.ui_save) to {requestSave(false)},\n            ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},",
+      "purpose": "New and Load-image menu routes use confirmReplacement.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L840"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 1018,
+      "end_line": 1026,
+      "context": "        val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()\n        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n            val size = sizing.dimensions\n            if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)\n            else editAction {\n                checkImageSize(size.width,size.height); paintCanvas.applyPending()\n                if (fresh) { document.newImage(size.width,size.height);unrestoredCreditSessionToken=null; filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)\n                paintCanvas.fit(); updateStatus(); dialog.dismiss()\n            }",
+      "purpose": "New-image next dialog remains cancellable; discard-button callback need not immediately erase current pixels.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018-L1026"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 1074,
+      "end_line": 1080,
+      "context": "    private fun confirmReplacement(action: () -> Unit) {\n        paintCanvas.applyPending()\n        if (!document.dirty) { action(); return }\n        EditorDialogBuilder(this).setTitle(ui(R.string.ui_save_your_changes)).setMessage(ui(R.string.ui_your_current_image_has_unsaved_changes))\n            .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }\n            .setNeutralButton(ui(R.string.ui_discard_changes23)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_keep_editing23), null).show()\n    }",
+      "purpose": "Apply pending gesture, dirty guard, Save / Discard changes / Keep editing routing.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1080"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 1138,
+      "end_line": 1144,
+      "context": "        Intent.ACTION_VIEW,Intent.ACTION_EDIT -> incoming.data\n        else -> null\n    }\n    private fun handleExternalImage(incoming: Intent) {\n        val uri=externalImageUri(incoming) ?: return\n        confirmReplacement {readImage(uri,false)}\n    }",
+      "purpose": "Another image-input route invokes confirmReplacement before readImage.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1138-L1144"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 1647,
+      "end_line": 1647,
+      "context": "    override fun onBackPressed() { if(!startupReady) {finish();return}; if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }",
+      "purpose": "Back/exit also uses confirmReplacement; fullscreen/back startup exceptions excluded.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1647-L1647"
+    }
+  ],
+  "checks": {
+    "production_and_resource_files_git_blob_verified": 116,
+    "all_complete_source_values_attributes_match": true,
+    "all_direct_occurrences_reconciled": true,
+    "all_three_current_target_values_absent": true,
+    "all_three_not_in_prior_drafts": true,
+    "placeholder_count": 0,
+    "all_targets_xml_parse": true,
+    "production_or_catalogue_edits": false
+  },
+  "held_leads": [
+    {
+      "locale": "zgh",
+      "identity": "string/ui_keep_editing23",
+      "reason": "MediaWiki continue-editing key is actually English Go to editing area; key name alone cannot support Keep editing."
+    },
+    {
+      "locale": "zgh",
+      "identity": "string/ui_clear_image",
+      "reason": "Existing list-clearing evidence still does not independently establish pixel-clearing sense. No target authored in this packet."
+    },
+    {
+      "locale": "quy",
+      "identity": "string/ui_keep_editing23",
+      "reason": "Dictionary physical follow/continue-route or same-state examples not yet enough for continue-editing action."
+    },
+    {
+      "locale": "chr",
+      "identities": [
+        "string/ui_line",
+        "string/ui_brush"
+      ],
+      "reason": "Live lexicon headword alone still lacks geometric-line versus word-processing and paintbrush versus hairbrush sense distinctions."
+    }
+  ],
+  "limits": [
+    "Only three bounded research candidates; no target acceptance before independent receipt.",
+    "18 original complete-warning gaps remain. No source warning clause replaced with a noun or shortened safety claim.",
+    "No whole-language, native, compiled, installed, runtime, accessibility-rendering or integration credit.",
+    "Exact zgh and explicitly grounded Ayacucho-Chanka evidence only; no mixed-Amazigh or Cusco/quz TBX transfer.",
+    "Mirrored original guide text is not official-byte verification. Primary dictionary text has no new visual certification.",
+    "No source/catalogue/code changes, private corpora, whole copyrighted source PDFs, credentials or unrelated data."
+  ]
+}
