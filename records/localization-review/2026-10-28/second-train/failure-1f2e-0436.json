@@ -1,0 +1,105 @@
+{
+  "head": "1f2e2c08c4eec0bb4c1acb4ecbea7d75da2eeabe",
+  "run_id": 40628797117,
+  "status": "failed Python test-only portability assertions; all other hosted jobs passed",
+  "python": {
+    "tests": 1894,
+    "seconds": 1081.734,
+    "failures": 2,
+    "skipped": 2,
+    "test": "test_handler_only_records_and_main_forwards_exact_cancellation_signal",
+    "messages": [
+      "Signals.SIGTERM != 15",
+      "Signals.SIGINT != 2"
+    ],
+    "cause": "Expected signal.IntEnum string formatting differs by Python version; numeric signal actually delivered correctly",
+    "raw_log_sha256": "86a3c88c3301a68db26c06f43abd2da30c3f037e0278040a5f75d1aeecc4e616"
+  },
+  "lifecycle": {
+    "status": "original-cleanup-and-nonoverlap-verified",
+    "archive_sha256": "ad07e6e638485dd2a695629797654273e1ded9cb256145a21e86a38385384d9e",
+    "head": "1f2e2c08c4eec0bb4c1acb4ecbea7d75da2eeabe",
+    "lifecycle": {
+      "launch_id": "2531542b184b44a18b2c58e4444fa64a",
+      "reason": "completed",
+      "forced_kill": "false",
+      "owned_children_remaining": "0",
+      "cleanup_complete": "true",
+      "output_complete": "true"
+    },
+    "timing": {
+      "real_seconds": "1082.835",
+      "user_seconds": "1029.443",
+      "sys_seconds": "26.635",
+      "exit_status": "1"
+    },
+    "timestamps": {
+      "python.started-at": "2026-10-28 03:50:40+00:00",
+      "python.ended-at": "2026-10-28 04:08:43+00:00",
+      "jvm.started-at": "2026-10-28 04:08:43+00:00"
+    },
+    "member_sha256": {
+      "python.owner": "a989ec9a85b18085af79aaacbd843403d30190b048aeedb644d3b7d5489d8da9",
+      "python.lifecycle": "ff501c9d900315a07952680c6b5bdbe0847dcab8493f813348a7f5c074b23036",
+      "python.time": "20629a6b4372795ab34140bf84b45c6669788ca9cddf37ab2544a5f589dfeb57",
+      "python.started-at": "080a132c9b4fc92557f45cb40f5c28de7bcf912e40d331a8bb03cfa925353f84",
+      "python.ended-at": "b161440d918705b4ab2fd41d0575ab448d5c642aec100bc293ccac219f327f0b",
+      "jvm.started-at": "b161440d918705b4ab2fd41d0575ab448d5c642aec100bc293ccac219f327f0b"
+    },
+    "scope": "Cleanup and phase ordering only; Python suite/Actions success separately required."
+  },
+  "jvm": {
+    "tests": 1783,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "exact_required_jvm_classes": 21,
+  "lint_issues": 0,
+  "resource_probes": 13,
+  "all_seven_original_digests": [
+    {
+      "id": 12791071128,
+      "name": "apk-and-source-a76f3e6eb80abd163bf78900996370f983959b84",
+      "sha256": "1227ed6abbc05e5b12cd15f58c8e4d7520187ee78efdb02faee9afe40385646c",
+      "size_bytes": 149374253
+    },
+    {
+      "id": 12790613526,
+      "name": "instrumentation-apks-a76f3e6eb80abd163bf78900996370f983959b84",
+      "sha256": "088325bd585c78d833628d2f0325caef12679e38ad574a4ff3def274fb161f9c",
+      "size_bytes": 100080584
+    },
+    {
+      "id": 12791723955,
+      "name": "regression-and-lint-a76f3e6eb80abd163bf78900996370f983959b84",
+      "sha256": "ad07e6e638485dd2a695629797654273e1ded9cb256145a21e86a38385384d9e",
+      "size_bytes": 84660171
+    },
+    {
+      "id": 12791210036,
+      "name": "exact-script-generation-a76f3e6eb80abd163bf78900996370f983959b84",
+      "sha256": "c2ab09c9de16b82649a0a3ce1c194c8b9f83df59beae0c6282b23c9622926381",
+      "size_bytes": 11694
+    },
+    {
+      "id": 12792045064,
+      "name": "emulator-core-api-35-a76f3e6eb80abd163bf78900996370f983959b84",
+      "sha256": "d454cc4a10b089f2bc1727f0933039af3e54382467ca44b2a12451736710732c",
+      "size_bytes": 12040613
+    },
+    {
+      "id": 12791590326,
+      "name": "emulator-position-api-35-a76f3e6eb80abd163bf78900996370f983959b84",
+      "sha256": "5365b8dfcd4efa82bd2bb5db68a9a35a50122b3bc412f83af05b73f63ab4cdbf",
+      "size_bytes": 1907375
+    },
+    {
+      "id": 12790789833,
+      "name": "emulator-api-35-a76f3e6eb80abd163bf78900996370f983959b84",
+      "sha256": "242c9f68f4f8d89a2b59236b5d3f9174cc4de08548af3c6e168d0d916eaca9eb",
+      "size_bytes": 12053178
+    }
+  ],
+  "successor": "Separate one-line str(sig)\u2192str(int(sig)); runtime ownership/deadlines and genuine signal equality preserved; independent gate/full local/fresh hosted remain required."
+}
