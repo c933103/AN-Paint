@@ -112,7 +112,7 @@ class ExactScriptPriorityWordingTest {
         PaintApplication.currentResources = previousResources
         Locale.setDefault(previousLocale)
     }
-    private fun forEachLocale(tags: List<String> = listOf("tt-Latn","ain-Latn","mn-Mong"), check: (String,Activity)->Unit) {
+    private fun forEachLocale(tags: List<String> = listOf("tt-Latn","ain-Latn","mn-Mong"), visible: Boolean = false, check: (String,Activity)->Unit) {
         for(tag in tags) {
             val controller=Robolectric.buildActivity(Activity::class.java)
             val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
@@ -121,6 +121,7 @@ class ExactScriptPriorityWordingTest {
                 assertEquals(tag,AppLanguage.selectedTag(activity))
                 // ui() must format using the selected resource locale, not the process default.
                 Locale.setDefault(Locale.US)
+                if(visible) controller.visible().windowFocusChanged(true)
                 check(tag,activity)
             } finally {
                 ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
@@ -221,14 +222,16 @@ class ExactScriptPriorityWordingTest {
         assertEquals(description,LocaleTooltip.logicalText(button).toString())
         if(vertical) assertNull("No duplicate native tooltip $tag",button.tooltipText)
         else assertEquals(description,button.tooltipText.toString())
+        assertTrue("Category button attached $tag",button.isAttachedToWindow)
         val node=button.createAccessibilityNodeInfo()
         assertEquals(description,node.contentDescription.toString())
         assertEquals(description,node.tooltipText.toString())
     }
 
-    @Test fun categoryAccessibilityTracksEveryActualToolAndExpansionState() = forEachLocale { tag,activity ->
+    @Test fun categoryAccessibilityTracksEveryActualToolAndExpansionState() = forEachLocale(visible=true) { tag,activity ->
         for(down in listOf(false,true)) for(category in ToolCategory.values()) {
             val button=ToolCategoryButton(activity,category,category.tools.first(),down)
+            activity.setContentView(button);idle()
             for(tool in category.tools) for(expanded in listOf(false,true)) {
                 button.selectedTool=tool;button.expanded=expanded;button.refresh()
                 val description=formatted(tag,if(expanded) "ui_collapse_tool_category" else "ui_expand_tool_category",ui(category.labelId),tool.label)
@@ -237,14 +240,16 @@ class ExactScriptPriorityWordingTest {
         }
     }
 
-    @Test fun categoryTooltipChecksRejectCaptionLogicalNativeAndAccessibilityCorruption() = forEachLocale { tag,activity ->
+    @Test fun categoryTooltipChecksRejectCaptionLogicalNativeAndAccessibilityCorruption() = forEachLocale(visible=true) { tag,activity ->
         val category=ToolCategory.BRUSH
         val caption=ui(category.labelId)
         val description=formatted(tag,"ui_expand_tool_category",caption,PaintTool.PENCIL.label)
-        for(mutation in listOf("caption","description","logical","native","accessibility")) {
+        for(mutation in listOf("caption","description","logical","native","accessibility","detached")) {
             val button=ToolCategoryButton(activity,category,PaintTool.PENCIL,false)
+            activity.setContentView(button);idle()
             requireCategoryCaptionAndTooltip(tag,button,caption,description)
             when(mutation) {
+                "detached" -> (button.parent as android.view.ViewGroup).removeView(button)
                 "caption" -> button.text="forged"
                 "description" -> button.contentDescription="forged"
                 "logical" -> {
