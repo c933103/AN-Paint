@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 
 import current_localization_contracts as contracts
 import translation_catalogues as catalogues
+from north_korean_australian_priority_expectations import current_kp_attribution_entries
 from test_assembly_help_pr8 import code_locations, kotlin_block
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -98,7 +99,7 @@ class KoreanImageAttributionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.fixture = contracts.fixture('korean_image_attribution.json')
-        cls.entries = cls.fixture['entries']
+        cls.entries = current_kp_attribution_entries(cls.fixture['entries'])
         cls.xml = {d: (RES / d / 'strings.xml').read_text(encoding='utf-8') for d in DIRECTORIES}
         cls.kp = {node.get('name'): node.text or '' for node in ET.fromstring(cls.xml[KP])
                   if node.tag == 'string'}
@@ -252,7 +253,8 @@ class KoreanImageAttributionTests(unittest.TestCase):
             elif key == CROP:
                 stale = value.replace('조정될 수 있습니다.', '조정됩니다.', 1)
             else:
-                stale = value.replace('저작자·출처 정보', '감사의 말', 1)
+                attribution = ('저작자·출처·리용허가 정보' if entry['directory'] == KP and key in {'gallery_credit_could_not_save','gallery_credit_too_large','legacy_credits_unreadable'} else '저작자·출처 정보')
+                stale = value.replace(attribution, '감사의 말', 1)
             with self.subTest(directory=entry['directory'], key=key):
                 self.assertNotEqual(value, stale)
                 with self.assertRaisesRegex(ValueError, 'Complete accepted value differs'):
