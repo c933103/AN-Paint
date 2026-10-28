@@ -4,6 +4,7 @@ Historical paired-language fixtures stay unchanged. Default-English and explicit
 no historical fixture or receipt is rewritten.
 """
 import json
+from exact_script_priority_expectations import MEMORY_ADDITIONS as EXACT_SCRIPT_ADDITIONS, require_addition as exact_script_addition
 from sindhi_nigerian_pidgin_tok_pisin_priority_expectations import require_shared_row as sd_pcm_tpi_shared_row
 from sorani_uyghur_tatar_priority_expectations import require_shared_row as ckb_ug_tt_shared_row
 from moroccan_arabic_mongolian_toki_pona_priority_expectations import MEMORY_ADDITIONS as ARY_MN_TOK_ADDITIONS, require_addition as ary_mn_tok_addition
@@ -179,6 +180,11 @@ old source snapshot.
         if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
             raise ValueError('BO/DZ/Valencian warning source or attributes differ: '+tag+'/'+key)
         return row['reviewed_value']
+    if (tag,key) in EXACT_SCRIPT_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        if old is not None:raise ValueError('Tatar-Latin queue predecessor is not absent')
+        return exact_script_addition(tag,key,historical_value,queue['keys'][key]['corrected_english'])['reviewed_value']
     if (tag,key) in HNE_YI_HK_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
