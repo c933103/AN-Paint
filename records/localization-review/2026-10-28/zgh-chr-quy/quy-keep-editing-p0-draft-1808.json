@@ -1,0 +1,221 @@
+{
+  "record": "One productive QUY Keep editing control author draft, complete intent adaptation",
+  "time_utc": "2026-10-28T18:08:00Z",
+  "repository": "c933103/AN-Paint",
+  "source_head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+  "source_develop_freshly_rechecked": "2026-10-28T18:03:33Z",
+  "prior_ledger121_commit": "1bdef0a7ab50a087e5f6567de0208e64f69b2b57",
+  "prior_addition122": {
+    "author_commit": "b4a6f04a75adcba966bada218eee8afe4bc4bdef",
+    "author_file": "quy-clear-all-p0-draft-1804.json",
+    "review_commit": "5c00d0ea0ac6e50075bf97d5522518c03986b59f",
+    "review_file": "independent-quy-clear-all-review-1805.json"
+  },
+  "accepted_bounded_count_unchanged": 122,
+  "new_pending_count": 1,
+  "rows": [
+    {
+      "locale": "quy",
+      "identity": "string/ui_keep_editing23",
+      "tier": "P0",
+      "source": {
+        "value": "Keep editing",
+        "attributes": {
+          "name": "ui_keep_editing23"
+        },
+        "value_json_sha256": "df57041b63788f92a3b25521fff2ffdbc0845d3041893ed61b0466daefa83ff3"
+      },
+      "source_file": "Paintroid/src/main/res/values/strings.xml",
+      "current": null,
+      "proposed_value": "Allichayman kutiy",
+      "proposed_attributes": {
+        "name": "ui_keep_editing23"
+      },
+      "target_utf8_sha256": "f192ed4a8aa31d24c181c6e6f8268cb06151949e7cd94317fcdfd1e9c1515f2a",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1079,
+          "start_line": 1075,
+          "end_line": 1083,
+          "context": "        paintCanvas.applyPending()\n        if (!document.dirty) { action(); return }\n        EditorDialogBuilder(this).setTitle(ui(R.string.ui_save_your_changes)).setMessage(ui(R.string.ui_your_current_image_has_unsaved_changes))\n            .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }\n            .setNeutralButton(ui(R.string.ui_discard_changes23)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_keep_editing23), null).show()\n    }\n\n    fun launchOpen(import: Boolean) {\n        if (busy) return",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1075-L1083"
+        }
+      ],
+      "status": "pending_independent_whole_value_and_caller_review",
+      "complete_value_rationale": "Productive intent-preserving Return to editing command. Software editing is nominalized allichay, with goal -man, followed by intransitive return imperative kutiy. This is not an exact upstream UI phrase or literal suffix-for-keep substitution. The direct caller dismisses a replacement/exit confirmation without running Save or Discard; return to current editing is the user-visible choice.",
+      "semantic_obligations": [
+        "Preserve continued access to current editing rather than authorizing pending New/Load/read/exit. Do not imply Save occurred or edits were discarded.",
+        "Intransitive kutiy returns to activity; unlike causative kutichiy used for Undo, it does not mean rollback or reverse the edits.",
+        "Do not claim reopening the document, selecting the Edit panel, restarting a task from scratch, replaying a drawing stroke, or a data-protection guarantee.",
+        "The confirmation already applies any pending gesture before showing; this caption does not promise that selecting it undoes that application.",
+        "No final period or placeholder introduced. Surrounding unsaved-image warning remains unaccepted."
+      ]
+    }
+  ],
+  "primary_sources": [
+    {
+      "author": "Clodoaldo Soto Ruiz",
+      "title": "Ayacucho-Chanka functional dictionary",
+      "url": "https://indigenasdelperu.wordpress.com/wp-content/uploads/2015/09/diccionario-quechua-inglc3a9s-castellano-chanka-clodoaldo-soto.pdf",
+      "access": "Fresh public primary-text extraction; no newly downloaded PDF or visual certification.",
+      "bounded_evidence": [
+        {
+          "entry": "Rikchay / Rikchariy87",
+          "printed_page": 150,
+          "pdf_zero_index": 149,
+          "quote": "imapas rurayman kutiy",
+          "role": "Definition explicitly describes returning to activity after sleep. Supplies action-nominal + goal-man + base return verb, not merely physical navigation."
+        },
+        {
+          "entry": "Yarqay196",
+          "printed_pages": [
+            215,
+            216
+          ],
+          "pdf_zero_indices": [
+            214,
+            215
+          ],
+          "quote": "llamkayman kutirinanchikpaq",
+          "role": "Context glossed continue working after eating. Corroborates work/activity-return sense; its person/purpose/inchoative morphology is not copied into the imperative."
+        },
+        {
+          "entry": "Kutiy177",
+          "printed_page": 82,
+          "pdf_zero_index": 81,
+          "role": "Base intransitive return verb; noun/activity-return construction above provides the nonphysical applicability."
+        }
+      ]
+    },
+    {
+      "authors": [
+        "Roberto Zariquiey",
+        "Gavina Cordova"
+      ],
+      "title": "Qayna, kunan, paqarin. Una introduccion practica al quechua chanca",
+      "publisher": "Pontificia Universidad Catolica del Peru",
+      "edition": "March2008",
+      "official_url": "https://textos.pucp.edu.pe/pdf/1707.pdf",
+      "official_catalogue_url": "https://repositorio.pucp.edu.pe/items/ac6c0dbc-b6e7-4231-870a-87e286a77556",
+      "access": "Fresh readable official publisher-hosted primary text; no full PDF saved or redistributed.",
+      "variety": "Ayacucho-Chanka explicitly identified at printed14; not transferred from adapted Cusco narrative exercises.",
+      "sections": [
+        {
+          "printed_page": 82,
+          "role": "Infinitive-y creates a verbal noun that functions as an argument."
+        },
+        {
+          "printed_page": 95,
+          "role": "Nominal-man marks directional goal."
+        },
+        {
+          "printed_page": 168,
+          "role": "Singular command-y is formally identical to infinitive-y; base kuti+y is command form."
+        }
+      ],
+      "not_used": "Earlier -lla restrictive and -raq still/yet suffix facts are not enough by themselves and are not the basis of this candidate."
+    },
+    {
+      "title": "Microsoft Quechua Style Guide, February2011",
+      "mirror_url": "https://manuals.plus/m/11177cc64c717458906fd98b18467750c1008fe87f4eb1a7a2028ed69dd64c47",
+      "access": "Search-indexed original guide reproduction, not tertiary summary. Official-host and mirror-byte identity remain unverified; URL hash is not byte proof.",
+      "variety": "p7 normative reference explicitly Ayacucho Chanka, Guardia Dictionary.",
+      "bounded_pairs": [
+        {
+          "section": "Messages / main menus and status messages",
+          "source": "Edit menu",
+          "target": "Allichay"
+        },
+        {
+          "printed_page": 38,
+          "source": "Edit Undo",
+          "target": "Allichay kutichiy"
+        }
+      ],
+      "role": "Software editing head and contrasting Undo form; p30 button punctuation/infinitive convention. Does not by itself attest proposed whole phrase."
+    }
+  ],
+  "caller_binding": {
+    "Paintroid/src/main/res/values/strings.xml": {
+      "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261"
+    },
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt": {
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+    },
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt": {
+      "git_blob": "19bfc730ac08c2f2d18ec441a5e20b8de54d308a",
+      "sha256": "aca95429dbfa000850b52682f08c09c59a9717054646c474bee8329fd923d30d"
+    }
+  },
+  "additional_callers": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 1074,
+      "end_line": 1080,
+      "context": "    private fun confirmReplacement(action: () -> Unit) {\n        paintCanvas.applyPending()\n        if (!document.dirty) { action(); return }\n        EditorDialogBuilder(this).setTitle(ui(R.string.ui_save_your_changes)).setMessage(ui(R.string.ui_your_current_image_has_unsaved_changes))\n            .setPositiveButton(ui(R.string.ui_save_a5d0d9)) { _, _ -> afterSave = action; requestSave(false) }\n            .setNeutralButton(ui(R.string.ui_discard_changes23)) { _, _ -> action() }.setNegativeButton(ui(R.string.ui_keep_editing23), null).show()\n    }",
+      "purpose": "Confirmation applies pending gesture first; clean document proceeds directly. Dirty document has separate Save and Discard callbacks; Keep editing has null listener.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1074-L1080"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 835,
+      "end_line": 840,
+      "context": "    private fun menuActions(name: String): List<PanelCommand> = when(name) {\n        \"File\"->(listOf<Pair<String,()->Unit>>(\n            ui(R.string.ui_new) to {confirmReplacement {dimensionsDialog(false,true)}},\n            ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},\n            ui(R.string.ui_save) to {requestSave(false)},\n            ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},",
+      "purpose": "New/load replacement routes enter confirmation; Keep editing does not call the pending replacement.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L835-L840"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 1138,
+      "end_line": 1144,
+      "context": "        Intent.ACTION_VIEW,Intent.ACTION_EDIT -> incoming.data\n        else -> null\n    }\n    private fun handleExternalImage(incoming: Intent) {\n        val uri=externalImageUri(incoming) ?: return\n        confirmReplacement {readImage(uri,false)}\n    }",
+      "purpose": "Additional pending image-read replacement route.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1138-L1144"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "start_line": 1647,
+      "end_line": 1647,
+      "context": "    override fun onBackPressed() { if(!startupReady) {finish();return}; if(fullscreen) {fullscreen=false;syncFullscreen()} else if (!busy) confirmReplacement { finish() } }",
+      "purpose": "Exit/back route also enters confirmation; Keep editing does not finish the activity.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1647-L1647"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt",
+      "start_line": 118,
+      "end_line": 138,
+      "context": "/** Native horizontal dialogs; a separate column-based shell for vertical scripts.\n * Native fields, choice lists and button objects are retained, including validation and accessibility.\n */\ninternal class EditorDialogBuilder(context: Context): AlertDialog.Builder(context) {\n    private var heading: CharSequence?=null\n    private var prose: CharSequence?=null\n    private var content: View?=null\n    override fun setTitle(title: CharSequence?): AlertDialog.Builder {heading=title;return super.setTitle(title)}\n    override fun setTitle(titleId: Int): AlertDialog.Builder=setTitle(uiText(context.resources,titleId))\n    /** Opt-in for a localized heading that can exceed the native title's line cap.\n     * Keep AlertController's own body, chooser, buttons and window sizing intact. */\n    fun setScrollableTitle(title: CharSequence): EditorDialogBuilder {\n        setTitle(title)\n        if(!VerticalText.uiVertical(context)) setCustomTitle(ResponsiveDialogTitle(context,title))\n        return this\n    }\n    override fun setMessage(message: CharSequence?): AlertDialog.Builder {prose=message;return super.setMessage(message)}\n    override fun setMessage(messageId: Int): AlertDialog.Builder=setMessage(uiText(context.resources,messageId))\n    override fun setView(view: View?): AlertDialog.Builder {content=view;return super.setView(view)}\n    override fun create(): AlertDialog {\n        val dialog=super.create()",
+      "purpose": "Builder extends platform AlertDialog.Builder, with no setNegativeButton override; normal negative-button dismissal semantics retained.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt#L118-L138"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt",
+      "start_line": 189,
+      "end_line": 198,
+      "context": "        shell.addView(ColumnScrollView(context).apply {tag=\"vertical_dialog_columns\";addView(columns)},LinearLayout.LayoutParams(-1,-2))\n        val actions=LinearLayout(context).apply {isBaselineAligned=false;gravity=Gravity.END;tag=\"vertical_dialog_actions\"}\n        listOf(AlertDialog.BUTTON_NEUTRAL,AlertDialog.BUTTON_NEGATIVE,AlertDialog.BUTTON_POSITIVE).forEach {which ->\n            dialog.getButton(which)?.takeIf {it.visibility==View.VISIBLE}?.let {button ->\n                VerticalUi.detach(button);VerticalUi.caption(button,96)\n                actions.addView(button,LinearLayout.LayoutParams(-2,-2).apply {setMargins(dp(4),dp(8),dp(4),0)})\n            }\n        }\n        shell.addView(HorizontalScrollView(context).apply {isFillViewport=true;addView(actions)},LinearLayout.LayoutParams(-1,-2))\n        dialog.setContentView(LimitedScrollView(context,dp((context.resources.configuration.screenHeightDp*.85).toInt())).apply {addView(shell)})",
+      "purpose": "Vertical shell reparents native button objects without replacing button click listeners.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalUi.kt#L189-L198"
+    }
+  ],
+  "checks": {
+    "production_and_resource_files_git_blob_verified": 116,
+    "complete_source_value_hash_attributes_match": true,
+    "all_direct_occurrences_reconciled": true,
+    "direct_occurrences": 1,
+    "target_absent_from_current_catalogues": true,
+    "not_in_prior122": true,
+    "placeholder_count": 0,
+    "xml_round_trip": true,
+    "production_or_catalogue_edits": false
+  },
+  "prior_hold_reconciliation": "Earlier only physical following/same-state/suffix evidence was available. Newly read explicit action-return construction allows a bounded productive candidate, pending independent whole-value review; no blanket continuation-grammar rule inferred.",
+  "limits": [
+    "122 bounded drafts unchanged until exact independent review; all18 whole-warning gaps remain.",
+    "No native-speaker, full-language, compiled/runtime/accessibility-rendering/integration or release acceptance.",
+    "No transfer to Draw again, Undo, generic Continue, or surrounding unsaved-changes warning.",
+    "No private corpora, whole copyrighted primary documents, credentials, unrelated private data or production/catalogue edits."
+  ]
+}
