@@ -150,15 +150,21 @@ tasks.withType(Javadoc).configureEach { enabled = false }
 // AGP 8.13's JVM resource compiler truncates variants without an explicit
 // script (ResTableConfig.getBcp47Locale reads the script array for variant length).
 // Keep the canonical/public ca-ES-valencia catalogue unchanged. Stage all main
-// resources byte-for-byte, replacing only its build qualifier with explicit Latn.
+// resources byte-for-byte, replacing its build qualifier with explicit Latn.
+// Android ResourcesImpl maps public yi to the legacy native ji resource code.
+// Stage canonical Yiddish as ji too; public identity and accepted text stay yi.
 // Do not compile the malformed qualifier as well: it can collide with parent ca.
 def variantSafeResourceDirectory = layout.buildDirectory.dir('generated/variantSafeResources')
 def generateVariantSafeResources = tasks.register('generateVariantSafeResources', Sync) {
     from('src/main/res') {
         exclude 'values-b+ca+ES+valencia/**'
+        exclude 'values-b+yi/**'
     }
     from('src/main/res/values-b+ca+ES+valencia') {
         into 'values-b+ca+Latn+ES+valencia'
+    }
+    from('src/main/res/values-b+yi') {
+        into 'values-ji'
     }
     into variantSafeResourceDirectory
     doLast {
@@ -166,7 +172,8 @@ def generateVariantSafeResources = tasks.register('generateVariantSafeResources'
         fileTree('src/main/res').files.each { source ->
             def relative = file('src/main/res').toPath().relativize(source.toPath()).toString().replace('\\', '/')
             def target = relative.startsWith('values-b+ca+ES+valencia/') ?
-                relative.replaceFirst('values-b\\+ca\\+ES\\+valencia/', 'values-b+ca+Latn+ES+valencia/') : relative
+                relative.replaceFirst('values-b\\+ca\\+ES\\+valencia/', 'values-b+ca+Latn+ES+valencia/') :
+                relative.startsWith('values-b+yi/') ? relative.replaceFirst('values-b\\+yi/', 'values-ji/') : relative
             if (expected.put(target, source) != null) throw new GradleException("Duplicate staged resource: $target")
         }
         def directory = variantSafeResourceDirectory.get().asFile

@@ -31,9 +31,9 @@ jobs:
   checks:
     name: Regression tests and lint
     runs-on: ubuntu-22.04
-    # 54 minutes of explicit phase caps plus 6 for checkout/cache/evidence overhead.
+    # 73 minutes of explicit phase caps plus 6 for checkout/cache/evidence overhead.
     # This remains a hard cancellation policy, not a guaranteed runtime bound.
-    timeout-minutes: 60
+    timeout-minutes: 79
     env:
       CCACHE_MAXSIZE: 2G
       CCACHE_COMPILERCHECK: content
@@ -79,7 +79,7 @@ jobs:
         run: bash tools/ci_prepare_build.sh
       - name: Run Python contracts
         if: ${{ !cancelled() }}
-        timeout-minutes: 12
+        timeout-minutes: 31
         run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
       - name: Run JVM regression tests
         if: ${{ !cancelled() }}

@@ -8,12 +8,12 @@ OLD = 'values-b+ca+ES+valencia'
 NEW = 'values-b+ca+Latn+ES+valencia'
 
 class ValencianVariantPackagingTest(unittest.TestCase):
-    def test_build_stages_all_resources_with_only_one_exact_qualifier_replacement(self):
+    def test_build_stages_all_resources_with_exact_variant_and_legacy_language_replacements(self):
         build = (ROOT / 'Paintroid/build.gradle').read_text()
         block = build.split("tasks.register('generateVariantSafeResources', Sync)", 1)[1].split('// Android infers Kore', 1)[0]
-        self.assertEqual(["src/main/res", f"src/main/res/{OLD}"], re.findall(r"from\('([^']+)'\)", block))
-        self.assertEqual([OLD + '/**'], re.findall(r"exclude '([^']+)'", block))
-        self.assertEqual([NEW], re.findall(r"into '([^']+)'", block))
+        self.assertEqual(["src/main/res", f"src/main/res/{OLD}", "src/main/res/values-b+yi"], re.findall(r"from\('([^']+)'\)", block))
+        self.assertEqual([OLD + '/**', 'values-b+yi/**'], re.findall(r"exclude '([^']+)'", block))
+        self.assertEqual([NEW, 'values-ji'], re.findall(r"into '([^']+)'", block))
         self.assertIn('actual.keySet() != expected.keySet()', block)
         self.assertIn('java.util.Arrays.equals(source.bytes, actual[relative].bytes)', block)
         self.assertIn('expected.put(target, source) != null', block)

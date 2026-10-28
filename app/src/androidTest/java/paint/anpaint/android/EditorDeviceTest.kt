@@ -1146,6 +1146,54 @@ class EditorDeviceTest {
         finally {handler.removeCallbacks(check)}
     }
     @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun yiddishUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation() {
+        var originalOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        onMain {originalOrientation=it.requestedOrientation}
+        fun assertCatalogue(tag: String) {
+            awaitState("exact public Yiddish or English resource identity") {
+                it.startupReady && !it.busy && it.resources.configuration.locales[0].toLanguageTag()==tag
+            }
+            onMain {
+                assertEquals("Public persisted Yiddish identity",tag,
+                    it.getSharedPreferences("app-language",0).getString("language-tag",null))
+                assertEquals("Public Java default identity",tag,java.util.Locale.getDefault().toLanguageTag())
+                assertEquals("Public platform identity",tag,
+                    it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+                assertEquals(if(tag=="yi") "אויפֿהיטן" else "Save",it.getString(R.string.ui_save))
+                assertEquals(if(tag=="yi") "דאָס בילד ניצט אַ פֿאַרב־פּראָפֿיל וואָס AN Paint קען נאָך נישט קאָנווערטירן. פֿאַרוואַנדלט עס אין אַן sRGB PNG אין אַ רעדאַקטאָר מיט פֿאַרב־פֿאַרוואַלטונג איידער איר פֿירט עס אַרײַן." else "This image uses a color profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a color-managed editor before importing.",
+                    it.getString(R.string.save20_unsupported_image_colour))
+            }
+        }
+        try {
+            // Real picker/listener only. The compiled ji alias is not a public option.
+            chooseAppLanguage("yi")
+            assertCatalogue("yi")
+            var beforeWidth=0
+            var beforeHeight=0
+            var expectedOrientation=0
+            onMain {
+                val config=it.resources.configuration
+                beforeWidth=config.screenWidthDp;beforeHeight=config.screenHeightDp
+                val toLandscape=config.orientation!=android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                expectedOrientation=if(toLandscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                    else android.content.res.Configuration.ORIENTATION_PORTRAIT
+                it.requestedOrientation=if(toLandscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                    else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            }
+            awaitState("real Yiddish display rotation changes live resource dimensions") {
+                val config=it.resources.configuration
+                config.orientation==expectedOrientation && config.screenWidthDp!=beforeWidth &&
+                    config.screenHeightDp!=beforeHeight && it.paintCanvas.width>0 && it.paintCanvas.height>0
+            }
+            assertCatalogue("yi")
+            chooseAppLanguage("en-US")
+            assertCatalogue("en-US")
+            chooseAppLanguage("yi")
+            assertCatalogue("yi")
+        } finally {onMain {it.requestedOrientation=originalOrientation}}
+    }
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
     fun valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation() {
         var originalOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         onMain {originalOrientation=it.requestedOrientation}
