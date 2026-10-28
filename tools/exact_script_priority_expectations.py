@@ -268,6 +268,13 @@ def require_jvm_source(text):
         'val quantity=if(values.has(selected)) selected else "other"',
         'assertEquals(expected(tag,"ui_fg"),ui(R.string.ui_fg))',
         'assertEquals(expected(tag,"ui_bg"),ui(R.string.ui_bg))',
+        'assertEquals("Expected tooltip ownership $tag",vertical,VerticalText.uiVertical(button.context))',
+        'assertEquals(description,LocaleTooltip.logicalText(button).toString())',
+        'if(vertical) assertNull("No duplicate native tooltip $tag",button.tooltipText)',
+        'else assertEquals(description,button.tooltipText.toString())',
+        'assertEquals(description,node.tooltipText.toString())',
+        'requireCategoryCaptionAndTooltip(tag,button,ui(category.labelId),description)',
+        '@Test fun categoryTooltipChecksRejectCaptionLogicalNativeAndAccessibilityCorruption()',
         '@Test fun readersRejectCallerOwnedCoordinatedRawDisplayAndScopeMutants()',
         '@Test fun cachedRowMutationCannotChangeACompiledExpectation()',
     )

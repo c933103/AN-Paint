@@ -112,8 +112,8 @@ class ExactScriptPriorityTests(unittest.TestCase):
         self.assertEqual(g.bound_fixture('mn-Mong')['rows']['ui_drawing23']['compiled_display'],r['compiled_display'])
     def test_complete_jvm_consumer_source_and_mutations(self):
         text=(ROOT/g.JVM_PATH).read_text();g.require_jvm_source(text)
-        self.assertEqual(16,text.count('@Test fun '))
-        for before,after in [('requireRow(tag,key,supplied)','supplied'),('exactScriptSameJson(current.get(field),supplied.get(field))','Unit'),('val quantity=if(values.has(selected)) selected else "other"','val quantity="other"'),('assertEquals(expected(tag,"ui_fg"),ui(R.string.ui_fg))','assertTrue(true)'),('"compiled_display"','"reviewed_display"')]:
+        self.assertEqual(17,text.count('@Test fun '))
+        for before,after in [('requireRow(tag,key,supplied)','supplied'),('exactScriptSameJson(current.get(field),supplied.get(field))','Unit'),('val quantity=if(values.has(selected)) selected else "other"','val quantity="other"'),('assertEquals(expected(tag,"ui_fg"),ui(R.string.ui_fg))','assertTrue(true)'),('assertEquals(description,LocaleTooltip.logicalText(button).toString())','assertTrue(true)'),('if(vertical) assertNull("No duplicate native tooltip $tag",button.tooltipText)','if(vertical) Unit'),('else assertEquals(description,button.tooltipText.toString())','else Unit'),('assertEquals(description,node.tooltipText.toString())','assertTrue(true)'),('"compiled_display"','"reviewed_display"')]:
             self.assertIn(before,text)
             with self.assertRaises(ValueError):g.require_jvm_source(text.replace(before,after,1))
     def test_main_successor_exact_tatar_complete_branch_and_negatives(self):
