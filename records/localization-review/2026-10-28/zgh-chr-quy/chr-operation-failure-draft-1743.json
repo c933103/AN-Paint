@@ -1,0 +1,200 @@
+{
+  "record": "One new productive complete CHR failure-clause author draft, not integration acceptance",
+  "time_utc": "2026-10-28T17:43:00Z",
+  "source_head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+  "prior_checkpoint_commit": "0cae0115211bcd3944ee9b7467f0e3082a112027",
+  "accepted_bounded_count_unchanged": 120,
+  "new_pending_count": 1,
+  "rows": [
+    {
+      "locale": "chr",
+      "identity": "string/ui_could_not_complete_the_operation",
+      "tier": "P1",
+      "source": {
+        "value": "Could not complete the operation.",
+        "attributes": {
+          "name": "ui_could_not_complete_the_operation"
+        },
+        "value_json_sha256": "40ed0e90c74b5cb0cc1d0b2d8cf4760e4f35998c82a9f46c65c439b768230b7e"
+      },
+      "current": null,
+      "source_file": "Paintroid/src/main/res/values/strings.xml",
+      "proposed_value": "Ꮭ ᏰᎵ ᎠᏍᏆᏗᏍᏗᎢ ᏱᎨᏎ ᎯᎠ ᎠᎢᏒᎢ.",
+      "proposed_attributes": {
+        "name": "ui_could_not_complete_the_operation"
+      },
+      "target_utf8_sha256": "729506767f71373ea8ed042d078a29ce9eef7b4a6c778ca77d068401c78fa5f9",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1445,
+          "start_line": 1441,
+          "end_line": 1449,
+          "context": "    private fun attachLegacyImageCredit(token: String?) {\n        val credit=ImageCreditArchive.find(this,token) ?: return\n        if(busy) {message(ui(if(autosaving) R.string.ui_the_draft_is_saving_try_again_shortly\n            else R.string.ui_please_wait_for_the_current_operation));return}\n        if(credit.source.isBlank()) {message(ui(R.string.ui_could_not_complete_the_operation));return}\n        editAction {\n            val added=try {\n                document.attachImageCredit(credit) {projected ->\n                    AutosaveStore.metadataBytes(draftMetadata().put(\"image_credits\",projected))",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1441-L1449"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+          "line": 38,
+          "start_line": 34,
+          "end_line": 42,
+          "context": "                    val targetY = placementPixels(y) ?: throw IllegalArgumentException(ui(R.string.ui_assembly_position_nonnegative))\n                    assembly.position(imageId, targetX, targetY)\n                    dialog.dismiss()\n                } catch (problem: Exception) {\n                    error.text = problem.message ?: ui(R.string.ui_could_not_complete_the_operation)\n                }\n            }\n        }\n        dialog.show()",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L34-L42"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 117,
+          "start_line": 113,
+          "end_line": 121,
+          "context": "        tray = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL; tag = \"assembly_thumbnails\" }\n        root.addView(HorizontalScrollView(this).apply { tag = \"assembly_tray\"; contentDescription = ui(R.string.ui_image_thumbnails_and_filenames_scroll_horizontally_for_more); addView(tray) },LinearLayout.LayoutParams(-1,dp(if (compact()) 108 else 154)))\n        assembly.changed = { refresh() }; refresh(); loadMissingPreviews()\n    }\n    private fun perform(action: () -> Unit) { try { action() } catch (error: Exception) { message(error.message ?: ui(R.string.ui_could_not_complete_the_operation)) } catch (_: OutOfMemoryError) { message(ui(R.string.ui_not_enough_memory_for_this_operation_the_assembly)) } }\n    private fun message(value: String) {\n        lastError = value\n        if (!isDestroyed && !isFinishing) EditorDialogBuilder(this).setTitle(\"AN Paint\").setMessage(value).setPositiveButton(ui(R.string.ui_ok),null).show()\n    }",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L113-L121"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+          "line": 54,
+          "start_line": 50,
+          "end_line": 58,
+          "context": "    fun copy(context: Context, text: String, anchor: android.view.View? = null): Boolean {\n        try {publishClipboard(context,ClipData.newPlainText(ui(R.string.ui_image_credits),text))}\n        catch(_: Exception) {\n            // Binder/provider rejection must not roll back an accepted Save or claim Copied.\n            LocaleTypography.showMessage(context,ui(R.string.ui_could_not_complete_the_operation),Toast.LENGTH_LONG,anchor)\n            return false\n        }\n        LocaleTypography.showMessage(context,ui(R.string.gallery_credit_copied),Toast.LENGTH_SHORT,anchor)\n        return true",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt#L50-L58"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 121,
+          "start_line": 117,
+          "end_line": 125,
+          "context": "                    pendingExportToken=null\n                    status.text=when(error) {\n                        is ActivityNotFoundException -> ui(R.string.ui_android_could_not_find_a_file_picker_enable)\n                        is SecurityException -> ui(R.string.ui_android_blocked_the_file_picker,\n                            error.message ?: ui(R.string.ui_could_not_complete_the_operation))\n                        else -> ui(R.string.ui_could_not_complete_the_operation)\n                    }\n                }\n            }",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L117-L125"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 122,
+          "start_line": 118,
+          "end_line": 126,
+          "context": "                    status.text=when(error) {\n                        is ActivityNotFoundException -> ui(R.string.ui_android_could_not_find_a_file_picker_enable)\n                        is SecurityException -> ui(R.string.ui_android_blocked_the_file_picker,\n                            error.message ?: ui(R.string.ui_could_not_complete_the_operation))\n                        else -> ui(R.string.ui_could_not_complete_the_operation)\n                    }\n                }\n            }\n        }",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L118-L126"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 143,
+          "start_line": 139,
+          "end_line": 147,
+          "context": "        // Our own FileProvider is for sharing cache/images, not SAF destinations;\n        // strip Android's optional user-id prefix before rejecting that authority.\n        if(uri.scheme!=\"content\" || uri.authority.isNullOrEmpty() ||\n            uri.authority?.substringAfterLast('@')==\"$packageName.fileprovider\") {\n            status.text=ui(R.string.ui_could_not_complete_the_operation);return\n        }\n        val credit=records.singleOrNull {it.token==token}?.credit ?: ImageCreditArchive.find(this,token)\n        if(credit==null) {status.text=ui(R.string.ui_could_not_complete_the_operation);return}\n        status.text=ui(R.string.ui_working)",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L139-L147"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 146,
+          "start_line": 142,
+          "end_line": 150,
+          "context": "            uri.authority?.substringAfterLast('@')==\"$packageName.fileprovider\") {\n            status.text=ui(R.string.ui_could_not_complete_the_operation);return\n        }\n        val credit=records.singleOrNull {it.token==token}?.credit ?: ImageCreditArchive.find(this,token)\n        if(credit==null) {status.text=ui(R.string.ui_could_not_complete_the_operation);return}\n        status.text=ui(R.string.ui_working)\n        worker.execute {\n            val failure=try {\n                val stream=contentResolver.openOutputStream(uri,\"wt\") ?: throw IOException(\"No output stream\")",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L142-L150"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 155,
+          "start_line": 151,
+          "end_line": 159,
+          "context": "                stream.writer(Charsets.UTF_8).use {it.write(credit.text)}\n                null\n            } catch(error: Exception) {error}\n            runOnUiThread {if(!isDestroyed) status.text=ui(if(failure==null)\n                R.string.gallery_credit_saved else R.string.ui_could_not_complete_the_operation)}\n        }\n    }\n\n    override fun onSaveInstanceState(state: Bundle) {",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L151-L159"
+        }
+      ],
+      "status": "pending_independent_whole_value_and_caller_review",
+      "composition": "Full past negative-possibility predicate with completion infinitival complement and current-operation object. The attested completion spelling, including terminalᎢ, is kept intact. The source definite operation is rendered deictically as this operation in the current failed-action context.",
+      "reasoning": "The complete software rename-failure example supports past negative possibility with an infinitival action complement before the past predicate and the object afterward. The independent complete memory-operation example establishes the completion/action-object complement. Substituting that attested complement yields an explicitly new composition. This is not a quote, not obtained merely by deleting memory words, and does not assume a memory cause.",
+      "semantic_obligations": [
+        "Report generic failure to finish the requested operation, with no invented cause, retry instruction, loss/retention guarantee or requirement that pixels were modified.",
+        "Applicable to invalid/blank legacy-credit state, clipboard publication rejection, invalid export URI/missing record, export write failure, assembly operation failure and placement validation fallback. Not just a drawing error.",
+        "The negative-possibility construction should remain actor-neutral; no unsupported claim that user, app team or a particular human failed. Exact complement and predicate fit require independent review.",
+        "Source final period retained; no placeholder introduced. Where nested as detail into the Android-blocked-picker message, surrounding full resource remains unaccepted."
+      ]
+    }
+  ],
+  "primary_source": {
+    "title": "Microsoft Cherokee Style Guide, 36-page edition",
+    "mirror_url": "https://device.report/m/ec97d073ab6cbd68782ca40920086dfc88494072dd04c880442803a81c119438.pdf",
+    "method": "Fresh readable public web extraction of original guide text hosted by mirror. Original title, Microsoft-purpose section and Cherokee normative references read. Edition date not established; not asserted newer than another guide.",
+    "short_exact_evidence": [
+      {
+        "printed_page": 29,
+        "pdf_zero_index": 28,
+        "role": "Complete past failure to rename a software file; not bare cannot/could-not table fragments.",
+        "quote": "Ꮭ ᏰᎵ ᏄᏓᎴ ᏗᎦᏲᎪᏍᏗ ᏱᎨᏎ ᎾᏍᎩ ᎠᏍᏆᏂᎪᏙᏗ"
+      },
+      {
+        "printed_pages": [
+          29,
+          30
+        ],
+        "pdf_zero_indices": [
+          28,
+          29
+        ],
+        "role": "Completion-and-operation complement in a complete software-memory failure example. Memory assertion is not transferred.",
+        "quote": "ᎠᏍᏆᏗᏍᏗᎢ ᎯᎠ ᎠᎢᏒᎢ"
+      }
+    ],
+    "other_read_sections": [
+      {
+        "printed_page": 26,
+        "role": "Complexity of Cherokee verb conjugation and temporal accuracy motivates independent whole-clause validation rather than bare word substitution."
+      },
+      {
+        "printed_page": 25,
+        "role": "Conditional/negative roles of yi-gi discussed; does not alone license this clause."
+      }
+    ],
+    "limits": [
+      "This is a mirrored original primary document, not a fresh official-host/byte-identity verification. Hash-looking URL is not proof of bytes.",
+      "Web screenshot requests for PDF zero-based pages28 and29 returned Cache miss. No visual glyph certification, no repeated failed request, no full PDF downloaded/saved.",
+      "The separate official-index guide extraction contains malformed Latin-looking glyphs. Those are not silently repaired or mixed into this text. The standalone cannot/could-not fragment is not used as if a complete sentence.",
+      "Candidate uses clean extracted syllabary sequences from two complete examples; fresh visual or native-preferred certification remains absent."
+    ]
+  },
+  "caller_binding": {
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt": {
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+    },
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt": {
+      "git_blob": "72beab7b8140d9bb1462de0e2f1d7f152d6d21c5",
+      "sha256": "ef1c5a09c1a1bfc7258539180a1b3b0f1f9f2d57694adf14da97afe3620a8726"
+    },
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt": {
+      "git_blob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+      "sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+    },
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt": {
+      "git_blob": "7c01b3fe57630349e954aee8449342f88033bb96",
+      "sha256": "7d258390d8c1eb72d7f6fed1af7dd5ffe3ae812c7ea22c39510bc9a21be0f2f3"
+    },
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt": {
+      "git_blob": "62218dd1a72f4f69aa19cd1ea20b5bd42b6e1574",
+      "sha256": "b15f3d1dc8f813cb6cb4d9657ff30a86786bc2bee41594297293e0a818abd01a"
+    }
+  },
+  "nested_detail_source": {
+    "value": "Android blocked the file picker: %1$s",
+    "attributes": {
+      "name": "ui_android_blocked_the_file_picker"
+    },
+    "path": "Paintroid/src/main/res/values/strings.xml"
+  },
+  "checks": {
+    "production_and_resource_files_git_blob_verified": 116,
+    "source_value_attributes_match": true,
+    "all_direct_occurrences_reconciled": true,
+    "direct_occurrences": 9,
+    "caller_files": 5,
+    "target_currently_absent": true,
+    "not_in_prior120": true,
+    "xml_round_trip": true,
+    "placeholders": 0,
+    "source_or_catalogue_edits": false
+  },
+  "limits": [
+    "No target acceptance until independent full-clause/caller review. Model confidence moderate productive syntax, not native certification.",
+    "All18 original complete-warning gaps remain. No first-clause memory evidence is used to shorten source-resolution/retention/no-auto-resize guarantees.",
+    "No whole-language, installed/runtime, accessibility-rendering, integration or safe-release claim.",
+    "No private corpora, full copyrighted primary files, credentials or unrelated private data. No Work task."
+  ]
+}
