@@ -1,0 +1,110 @@
+{
+  "record": "Independent whole-resource preflight of three active P0 productive drafts",
+  "reviewer": "review_nine_translation_drafts",
+  "time_utc": "2026-10-28T17:37:00Z",
+  "input": {
+    "path": "zgh-chr-quy-recovery/new-three-p0-drafts-1735.json",
+    "sha256": "02283164ddc9b4034c76935a2f4562256536b3c28aa2914605af1a8e77fa43bc",
+    "source_head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+    "prior_bounded_checkpoint_commit": "f565ed8c5e125cd7fbd70d45a7b90d69bfc481d9",
+    "prior_bounded_count": 117
+  },
+  "decision": "All three bounded complete-resource preflights pass. Eligible addition is zgh1/quy2; this receipt does not publish or integrate them.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "identity": "string/ui_save_png",
+      "tier": "P0",
+      "source_value": "Save PNG",
+      "proposed_value": "ⵃⴹⵓ ⴰⴼⴰⵢⵍⵓ PNG",
+      "target_utf8_sha256": "2746e03d30f90ba5d69dbf85a803508e50b8b8eab11f209fb41337d260139421",
+      "decision": "bounded_complete_resource_preflight_pass",
+      "reason": "Bounded productive whole command accepted: exact Save-file phrase plus independently verified same-zgh file+format noun phrase supplies the full Save PNG file construction. Overt file noun resolves the earlier bare-acronym-object uncertainty. Replacing opaque SVG format identifier with unchanged PNG does not transfer dimensions, file-size or SVG behavior. Actual caller encodes PNG and invokes image/png save destination flow.",
+      "confidence": "moderate source-grounded productive composition; not native-preferred or attested whole-string certification"
+    },
+    {
+      "locale": "quy",
+      "identity": "string/ui_save_png",
+      "tier": "P0",
+      "source_value": "Save PNG",
+      "proposed_value": "PNG kiputa waqaychay",
+      "target_utf8_sha256": "c1df25155bc3535c6c57d1be80954356ed4d42cbc43b622ef66dfab08db8f5f2",
+      "decision": "bounded_complete_resource_preflight_pass",
+      "reason": "Bounded productive whole command accepted: invariant PNG is a file-kind modifier before software noun kipu, with direct-object -ta and attested Save command waqaychay. Independently read acronym-before-case-marked-head example provides structural support beyond capitalization alone. The result denotes saving a PNG file, not saving the acronym text. Actual caller requests PNG output and later destination write; it does not claim completion.",
+      "confidence": "moderate source-grounded productive composition; not native-preferred or attested whole-string certification"
+    },
+    {
+      "locale": "quy",
+      "identity": "string/ui_discard_changes23",
+      "tier": "P0",
+      "source_value": "Discard changes",
+      "proposed_value": "Allichasqaykita wischuy",
+      "target_utf8_sha256": "b4cf18627f4179a439ac04997e40f026ba55b4dce06d2903a2920135fb26fa1f",
+      "decision": "bounded_complete_resource_preflight_pass",
+      "reason": "Bounded productive whole command accepted: intact software changes-as-object allichasqaykita plus the independently evidenced intentional discard/software-delete verb wischuy. No period. Unsaved edits are the object, not a previously saved file, an undo step, physical throwing, accidental loss or vomiting. Actual callback proceeds with requested replacement or exit without taking Save; cancellation of a subsequent new/open dialog may leave current work intact.",
+      "confidence": "moderate source-grounded productive composition; not native-preferred or attested whole-string certification"
+    }
+  ],
+  "verification": {
+    "git_blob_verified_production_and_resource_files": 116,
+    "production_java_kotlin_files": 104,
+    "exact_source_values_attributes_and_source_value_json_hashes": true,
+    "all_three_target_utf8_sha256": true,
+    "xml_parses_and_round_trips": true,
+    "source_and_target_placeholders": 0,
+    "locale_target_values_currently_absent": true,
+    "no_duplicate_against_prior117": true,
+    "all_direct_resource_occurrences_reconciled": true,
+    "direct_and_additional_caller_windows_exact": 11,
+    "both_caller_file_sha256_and_git_blob_bindings_match": true
+  },
+  "fresh_primary_evidence": {
+    "zgh": {
+      "repository": "wikimedia/mediawiki",
+      "commit": "af270122ceda18ec7570eafe567ac5471a6a0b43",
+      "en_blob": "873a7446dbc2501919b5d63cc20b8570f2a98654",
+      "zgh_blob": "030040f759a05edabc6c8aa36a2854d57eb7a996",
+      "method": "Independent fresh GitHub fetch of en.json and exact zgh.json at same pinned commit. Exact savefile pair and initial noun phrase in svg-long-desc read and compared.",
+      "urls": [
+        "https://github.com/wikimedia/mediawiki/blob/af270122ceda18ec7570eafe567ac5471a6a0b43/languages/i18n/en.json",
+        "https://github.com/wikimedia/mediawiki/blob/af270122ceda18ec7570eafe567ac5471a6a0b43/languages/i18n/zgh.json"
+      ],
+      "short_zgh_constructions": [
+        "ⵃⴹⵓ ⴰⴼⴰⵢⵍⵓ",
+        "ⴰⴼⴰⵢⵍⵓ SVG"
+      ]
+    },
+    "quy_guide": {
+      "url": "https://manuals.plus/m/11177cc64c717458906fd98b18467750c1008fe87f4eb1a7a2028ed69dd64c47",
+      "method": "Independent fresh public search-indexed extraction of original Microsoft Quechua Style Guide, February2011 version; original-document text, not tertiary commentary.",
+      "pages_and_support": {
+        "7": "Explicit Ayacucho-Chanka normative dictionary basis, not inferred from que-per/quz product tags.",
+        "18": "Software file carries direct-object case in an imperative.",
+        "26": "Acronym before case-marked nominal head, supporting productive order rather than a capitalization-only inference.",
+        "30": "UI command morphology and absence of final period.",
+        "33": "Exact object form allichasqaykita in save-changes prompt.",
+        "38": "Save and software Delete commands, with menu prefixes distinguished."
+      },
+      "short_structural_quote": "P+F iqita qaway",
+      "limits": "No official PDF bytes freshly fetched, no mirror bytes freshly hashed, no visual-page claim. Search-indexed original-guide evidence supports bounded constructions only; URL hash is not byte-identity proof. Unavailable official sources not retried."
+    },
+    "quy_dictionary": {
+      "url": "https://indigenasdelperu.wordpress.com/wp-content/uploads/2015/09/diccionario-quechua-inglc3a9s-castellano-chanka-clodoaldo-soto.pdf",
+      "author": "Clodoaldo Soto Ruiz",
+      "variety": "Ayacucho-Chanka",
+      "method": "Independent fresh public primary-document text reads. Wischuy120 printed209 includes intentional discard. Printed240–241 give nominal direct-object -ta; printed242 direct imperative -y. Additional lose/vomit senses explicitly excluded. No visual-page or whole-PDF download claim."
+    }
+  },
+  "caller_semantics": {
+    "save_png": "AssemblyActivity88 -> requestOutput(false), validates composition and chooses direct render or output-size dialog. makeOutput319–336 renders PNG bytes. ACTION_CREATE_DOCUMENT uses image/png. Only RESULT_OK plus URI and pending file invokes saveOutput; failures/cancellation are possible. This is a prospective Save command, not saved-status, native assembly persistence or Edit in Paint.",
+    "discard_changes": "ClassicPaintActivity1074–1080 applies pending gesture and checks dirty state. Neutral button invokes action without Save. Callers cover New837, Load838, external-image read1143 and back/exit1647; fullscreen/startup exceptions are preserved. New dimensions dialog can be canceled before document replacement. No guarantee of immediate destruction or deletion of stored files is implied."
+  },
+  "limitations": [
+    "Three complete short command resources only. Parent may reconcile117+3=120 bounded preflights after binding this receipt; no catalogue or runtime change is made here.",
+    "Original18 whole-warning gaps remain. Save-change question, unsaved-changes warning, Keep-editing alternative, assembly memory/export error messages and adjacent resources are not accepted by these button translations.",
+    "No native, whole-language, compiled, installed, runtime, accessibility rendering, integration or safe-release claim.",
+    "No exact upstream full-string attestation is claimed for any of the three; each is a disclosed productive composition.",
+    "Exact zgh and explicitly grounded Ayacucho-Chanka only; no mixed-Amazigh/Cusco transfer.",
+    "Author packet unchanged. No production/catalogue edits, publication, Work task, authentication, private corpus access or full dictionary/guide PDF download/save."
+  ]
+}
