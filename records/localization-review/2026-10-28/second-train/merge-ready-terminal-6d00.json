@@ -1,0 +1,1869 @@
+{
+  "status": "Exact-head author gates complete; root retains actual-base merge verification and merge lease",
+  "pr": 211,
+  "head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+  "tree": "a2dc18974d9d90d9000b689657c9ce300b45e179",
+  "tested_run": 40633397049,
+  "tested_synthetic_merge": "c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+  "tested_original_ordered_parents": [
+    "3bc5d931d0e86b83cbf869df6767d596ab238805",
+    "6d00ef0f252f83f412f5b312613fa0eb01ab492a"
+  ],
+  "retargeted_actual_base": "4a611049a2b7836227563fedb72a6ffacb58987b",
+  "base_tree_identity": "Actual4a611 and tested3bc5 both019654f8c8392ad51a20225a52e03f7181ff0c68; mutable run metadata does not rewrite original synthetic parent evidence",
+  "code_review": {
+    "request": 6460796383,
+    "summary": 6458932787,
+    "receipt": 6460818385,
+    "exact_head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+    "completed_clean": true
+  },
+  "records": {
+    "yiddish_checker_independent": {
+      "sha256": "9a71368aedfbe883b51c0011233567d23bc8e577b4c6839a26cfc15aef82f309",
+      "record": {
+        "status": "passed",
+        "scope": "Transport-only static equivalence and synthetic boundary audit, not actual original artifact acceptance",
+        "predecessor_sha256": "10dce08ecb58ddc5c79761d04b645b02f93b4120c955a16c573f3652d3320f74",
+        "successor_sha256": "33406a432774a60d4acb09b84b13125c43117cf757c10f230cb491aa9429f192",
+        "all_rejection_predicates_transport_normalized_exact": true,
+        "unchanged_probe_binding": true,
+        "independent_checks": [
+          "digest-0",
+          "digest-1",
+          "digest-1048575",
+          "digest-1048576",
+          "digest-1048577",
+          "digest-2097169",
+          "table-newline-'\\n'",
+          "table-newline-'\\r\\n'",
+          "table-newline-'\\r'",
+          "git-blob-tree",
+          "reject-corrupt",
+          "reject-mode",
+          "reject-extra"
+        ],
+        "focused": "15 methods passed, independent-focused.log/exit",
+        "manual_read": [
+          "Unique ZIP and CRC checks retained before member streaming",
+          "Exact archive/APK/source/test-APK digest chain retained",
+          "One unique temporary APK used for aapt after identity checks",
+          "AAPT failure remains check=True; exact two-control and stale yi rejection retained",
+          "Raw protocol, terminal, XML, source identity and limitations unchanged",
+          "Disk UTF-8 dump digest covers actual emitted bytes; no volatile log or whole-catalogue assertion added"
+        ]
+      }
+    },
+    "original_terminal": {
+      "sha256": "ac507b4e7d38c3e94547e1454bcaf44f47d570ac40fd95cb66c671f0034d1520",
+      "record": {
+        "schema": 1,
+        "pr": 211,
+        "head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+        "tree": "a2dc18974d9d90d9000b689657c9ce300b45e179",
+        "tested_merge": "c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+        "run_id": 40633397049,
+        "artifact_digests_verified": [
+          {
+            "id": 12792458499,
+            "name": "apk-and-source-c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+            "sha256": "1a5dd8510bdbfd9e08a423c5ef19edd615c40bddc22d0255a09c6ebb1d5c5881",
+            "size_bytes": 149374199
+          },
+          {
+            "id": 12793065964,
+            "name": "instrumentation-apks-c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+            "sha256": "201518d4e60babbc3ef36bf2a47a8187f106319afe058bee73af2caab5682d13",
+            "size_bytes": 100080579
+          },
+          {
+            "id": 12793208485,
+            "name": "regression-and-lint-c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+            "sha256": "01afd150db4c313516b876893d3c8e83ebc6ddabbbf58ed0bc9cb47e097f5ae0",
+            "size_bytes": 84659328
+          },
+          {
+            "id": 12792129087,
+            "name": "exact-script-generation-c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+            "sha256": "8c367425b1259ce85da9df0c9d9284c43bcaf7827feb856ad6b5eabb0215753f",
+            "size_bytes": 11716
+          },
+          {
+            "id": 12793735438,
+            "name": "emulator-core-api-35-c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+            "sha256": "4b1c19be9ea98c17d5d6d15497eb717de76824f8627fdb46d6c539631fa81858",
+            "size_bytes": 12107523
+          },
+          {
+            "id": 12792324931,
+            "name": "emulator-position-api-35-c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+            "sha256": "80dfa40561448a6bf8aad9355de906e10650095d37a54d34e54ed66b77db6911",
+            "size_bytes": 1924645
+          },
+          {
+            "id": 12793710954,
+            "name": "emulator-api-35-c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+            "sha256": "df90d9b56a2c122c8163cb0e8f4a7b55ae8db6389f6a8016c12acd13c26a69a5",
+            "size_bytes": 12120086
+          }
+        ],
+        "terminal_jobs": [
+          {
+            "id": 122634750253,
+            "name": "Build APK and corresponding source",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40633397049
+          },
+          {
+            "id": 122634750520,
+            "name": "Exact-script resource generation",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40633397049
+          },
+          {
+            "id": 122634750549,
+            "name": "Regression tests and lint",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40633397049
+          },
+          {
+            "id": 122637524860,
+            "name": "Position dialog API 35",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40633397049
+          },
+          {
+            "id": 122637524867,
+            "name": "Core emulator API 35",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40633397049
+          },
+          {
+            "id": 122641414395,
+            "name": "Emulator API 35",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40633397049
+          }
+        ],
+        "source_archive_sha256": "db0f16a1450345f9fa6c69358ae5d1c57d2dde2c92147384bc6a65f077ce890a",
+        "source_tree_blobs_verified": 1542,
+        "source_archive_omitted_repository_metadata": [
+          ".gitignore",
+          ".idea/codeStyles/Project.xml",
+          "colorpicker/.gitignore"
+        ],
+        "missing_non_metadata_source_files": [],
+        "mismatched_source_files": [],
+        "hosted_python": {
+          "declared_tests": 1894,
+          "executed_successfully": 1892,
+          "skipped_tests": [
+            "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+            "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+          ],
+          "exit_status": 0,
+          "raw_log_sha256": "0459b0b3fee01e587c49a590c8305c8713cd9fff8af57a25367dde0673944bbb",
+          "scope": "Exact source unittest discovery-order identities mapped to every original hosted progress marker; skipped checks are not passes."
+        },
+        "jvm": {
+          "tests": 1783,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "suites": 182,
+          "contributed_jvm_consumers": {
+            "org.catrobat.paintroid.local.AppLanguageResourceRoutingTest": {
+              "source_methods": [
+                "onlyTheTwoSpecialCataloguesUseInternalResourceVariants",
+                "uzbekDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "tatarDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "mongolianDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue",
+                "mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches",
+                "systemEmojiSelectionAndDeviceLabelKeepThePublicTag",
+                "russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove",
+                "refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches",
+                "systemAppLanguageKeepsThePublicMixedScriptTag",
+                "deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection"
+              ],
+              "original_compiled_test_names": [
+                "deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection[30]",
+                "deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection",
+                "russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove[30]",
+                "russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove",
+                "systemEmojiSelectionAndDeviceLabelKeepThePublicTag",
+                "systemAppLanguageKeepsThePublicMixedScriptTag",
+                "onlyTheTwoSpecialCataloguesUseInternalResourceVariants[30]",
+                "onlyTheTwoSpecialCataloguesUseInternalResourceVariants",
+                "mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments[30]",
+                "mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments",
+                "everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue[30]",
+                "everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue",
+                "tatarDeviceLabelSuccessorRejectsChangedHistoricalRows[30]",
+                "tatarDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "uzbekDeviceLabelSuccessorRejectsChangedHistoricalRows[30]",
+                "uzbekDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches[30]",
+                "refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches",
+                "mongolianDeviceLabelSuccessorRejectsChangedHistoricalRows[30]",
+                "mongolianDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[21]",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[24]",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[30]",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches"
+              ]
+            },
+            "org.catrobat.paintroid.local.AppLanguageTest": {
+              "source_methods": [
+                "sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback",
+                "furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback",
+                "historicalAndMoroccanOptionsUseDistinctIdentitiesAndFallback",
+                "filipinoKeepsExistingCatalogueAndMigratesSavedTagalog",
+                "savedTagalogImportPersistsAcrossReadsAndNewContext",
+                "platformTagalogAliasMigratesWithoutSavedPreference",
+                "existingPlatformChoiceWinsOverUninitializedSavedAlias",
+                "initializedDeviceDefaultWinsOverSavedAlias",
+                "regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate",
+                "regionalLabelsLegacyMigrationsAndStarterChoicesUseTheirCatalogues",
+                "pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode",
+                "manchuPickerUsesItsOwnJoinedVerticalAutonym",
+                "nomPickerAutonymUsesBundledFontEvenBeforeSelectingNom",
+                "narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize",
+                "landscapePickerFitsTheFoldedMongolianOption",
+                "androidScriptOnlyChinesePreferenceMigratesToRegionalChoice",
+                "hakkaLegacyTagsMigrateToTaiwanOnBothPreferenceBackends",
+                "verticalTestLocalesUseExactResourcesAndCanonicalRoundTrips",
+                "tatarScriptsAndAdditionalGimpLanguagesSelectTheirOwnResources",
+                "deviceDefaultChoiceUsesSystemLanguageEvenWithAnotherAppLanguage",
+                "requestedRegionsAndArmenianHaveTheirOwnMainMenuResources",
+                "chosenLanguagePersistsAndChangesResourcesAndDecimalInput",
+                "pickerChangesCurrentWorkspaceWithoutLosingCanvasUndoOrSelection",
+                "androidAppLanguageAndInAppPreferenceUseTheSameSetting",
+                "languageOverridePreservesRotationWindowSizeAndLargeTextWithoutReplacingDocument"
+              ],
+              "original_compiled_test_names": [
+                "filipinoKeepsExistingCatalogueAndMigratesSavedTagalog[30]",
+                "filipinoKeepsExistingCatalogueAndMigratesSavedTagalog",
+                "existingPlatformChoiceWinsOverUninitializedSavedAlias[33]",
+                "existingPlatformChoiceWinsOverUninitializedSavedAlias",
+                "languageOverridePreservesRotationWindowSizeAndLargeTextWithoutReplacingDocument",
+                "requestedRegionsAndArmenianHaveTheirOwnMainMenuResources",
+                "deviceDefaultChoiceUsesSystemLanguageEvenWithAnotherAppLanguage[30]",
+                "deviceDefaultChoiceUsesSystemLanguageEvenWithAnotherAppLanguage",
+                "savedTagalogImportPersistsAcrossReadsAndNewContext[33]",
+                "savedTagalogImportPersistsAcrossReadsAndNewContext",
+                "narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize",
+                "pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode",
+                "androidAppLanguageAndInAppPreferenceUseTheSameSetting",
+                "sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback[30]",
+                "sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback",
+                "chosenLanguagePersistsAndChangesResourcesAndDecimalInput",
+                "androidScriptOnlyChinesePreferenceMigratesToRegionalChoice",
+                "landscapePickerFitsTheFoldedMongolianOption",
+                "manchuPickerUsesItsOwnJoinedVerticalAutonym",
+                "initializedDeviceDefaultWinsOverSavedAlias[33]",
+                "initializedDeviceDefaultWinsOverSavedAlias",
+                "hakkaLegacyTagsMigrateToTaiwanOnBothPreferenceBackends[30]",
+                "hakkaLegacyTagsMigrateToTaiwanOnBothPreferenceBackends",
+                "furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback[30]",
+                "furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback",
+                "regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate",
+                "verticalTestLocalesUseExactResourcesAndCanonicalRoundTrips",
+                "regionalLabelsLegacyMigrationsAndStarterChoicesUseTheirCatalogues",
+                "tatarScriptsAndAdditionalGimpLanguagesSelectTheirOwnResources",
+                "historicalAndMoroccanOptionsUseDistinctIdentitiesAndFallback[30]",
+                "historicalAndMoroccanOptionsUseDistinctIdentitiesAndFallback",
+                "nomPickerAutonymUsesBundledFontEvenBeforeSelectingNom",
+                "pickerChangesCurrentWorkspaceWithoutLosingCanvasUndoOrSelection",
+                "platformTagalogAliasMigratesWithoutSavedPreference[33]",
+                "platformTagalogAliasMigratesWithoutSavedPreference"
+              ]
+            },
+            "org.catrobat.paintroid.local.BretonAsturianOccitanPriorityWordingTest": {
+              "source_methods": [
+                "everyReviewedBretonAsturianOccitanCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "everyReviewedBretonAsturianOccitanCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording"
+              ]
+            },
+            "org.catrobat.paintroid.local.CebuanoLowGermanKashubianPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.CommonsSvgErrorTranslationTest": {
+              "source_methods": [
+                "unspecifiedOriginalSizeShowsItsLocalizedReasonThroughTheActualGallery",
+                "overflowingOriginalSizeShowsItsLocalizedReasonWithoutResizing",
+                "unrelatedExternalDiagnosticsStillPassThroughUnchanged"
+              ],
+              "original_compiled_test_names": [
+                "unspecifiedOriginalSizeShowsItsLocalizedReasonThroughTheActualGallery[30]",
+                "unspecifiedOriginalSizeShowsItsLocalizedReasonThroughTheActualGallery",
+                "overflowingOriginalSizeShowsItsLocalizedReasonWithoutResizing[30]",
+                "overflowingOriginalSizeShowsItsLocalizedReasonWithoutResizing",
+                "unrelatedExternalDiagnosticsStillPassThroughUnchanged[30]",
+                "unrelatedExternalDiagnosticsStillPassThroughUnchanged"
+              ]
+            },
+            "org.catrobat.paintroid.local.GalicianDutchGermanPriorityWordingTest": {
+              "source_methods": [
+                "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+                "realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation",
+                "gifDescriptionAndCheckboxProduceTheSelectedDitherRequest",
+                "completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo"
+              ],
+              "original_compiled_test_names": [
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "gifDescriptionAndCheckboxProduceTheSelectedDitherRequest",
+                "zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation"
+              ]
+            },
+            "org.catrobat.paintroid.local.GeorgianArmenianAzerbaijaniPriorityWordingTest": {
+              "source_methods": [
+                "everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "actualDimensionControlsHandleOneTwoGroupedCountsAndRepeatedUnitChanges",
+                "completedDecodedImageCannotReplaceBlockedDestinationAndLeavesBothSourcesUntouched",
+                "realExportAndLosslessDialogsKeepCompleteExplanationsAndCancelWithoutSaving",
+                "zeroBudgetRejectsOneAndManyPixelsWithCompleteWarning",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "actualDirtyImagePromptIsNotExportCompletionAndRepeatedCancelPreservesTheDrawing",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "gifExplanationAndRetainedDitherControlStayTogetherAcrossRepeatedToggles"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "zeroBudgetRejectsOneAndManyPixelsWithCompleteWarning",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "actualDimensionControlsHandleOneTwoGroupedCountsAndRepeatedUnitChanges",
+                "actualDirtyImagePromptIsNotExportCompletionAndRepeatedCancelPreservesTheDrawing",
+                "completedDecodedImageCannotReplaceBlockedDestinationAndLeavesBothSourcesUntouched",
+                "gifExplanationAndRetainedDitherControlStayTogetherAcrossRepeatedToggles",
+                "everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "realExportAndLosslessDialogsKeepCompleteExplanationsAndCancelWithoutSaving"
+              ]
+            },
+            "org.catrobat.paintroid.local.ImageDisplayLocaleTest": {
+              "source_methods": [
+                "completeSummariesUseResourceLocaleDespiteOppositeProcessDefaults",
+                "englishFallbackStillUsesSelectedLocaleNumbers",
+                "reviewedBretonSummaryStillUsesSelectedLocaleNumbers",
+                "memoryDisplayKeepsUnitScalingAndResourceSpecificDecimalDigits",
+                "existingDimensionControlRefreshUsesNewResourceSnapshot",
+                "localizedDisplayDoesNotChangeParsingUnitRoundTripsOrInvalidInputRejection",
+                "longPixelArithmeticAndAdmissionAreUnaffectedByDisplayLocale"
+              ],
+              "original_compiled_test_names": [
+                "localizedDisplayDoesNotChangeParsingUnitRoundTripsOrInvalidInputRejection",
+                "reviewedBretonSummaryStillUsesSelectedLocaleNumbers",
+                "completeSummariesUseResourceLocaleDespiteOppositeProcessDefaults",
+                "longPixelArithmeticAndAdmissionAreUnaffectedByDisplayLocale",
+                "englishFallbackStillUsesSelectedLocaleNumbers",
+                "memoryDisplayKeepsUnitScalingAndResourceSpecificDecimalDigits",
+                "existingDimensionControlRefreshUsesNewResourceSnapshot"
+              ]
+            },
+            "org.catrobat.paintroid.local.InterlinguaLatinKurdishPriorityWordingTest": {
+              "source_methods": [
+                "everyReviewedInterlinguaLatinKurdishCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel",
+                "everyReviewedInterlinguaLatinKurdishCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording"
+              ]
+            },
+            "org.catrobat.paintroid.local.KabyleHmongDawMaithiliPriorityWordingTest": {
+              "source_methods": [
+                "everyReviewedKabyleHmongDawMaithiliCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "everyReviewedKabyleHmongDawMaithiliCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording"
+              ]
+            },
+            "org.catrobat.paintroid.local.KazakhTajikPashtoPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.MaoriSamoanKinyarwandaPriorityWordingTest": {
+              "source_methods": [
+                "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+                "realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation",
+                "gifDescriptionAndCheckboxProduceTheSelectedDitherRequest",
+                "completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo"
+              ],
+              "original_compiled_test_names": [
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "gifDescriptionAndCheckboxProduceTheSelectedDitherRequest",
+                "zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation"
+              ]
+            },
+            "org.catrobat.paintroid.local.MoroccanArabicMongolianTokiPonaPriorityWordingTest": {
+              "source_methods": [
+                "everyReviewedMoroccanArabicMongolianTokiPonaCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "everyReviewedMoroccanArabicMongolianTokiPonaCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording"
+              ]
+            },
+            "org.catrobat.paintroid.local.SampledMemoryModalityTest": {
+              "source_methods": [
+                "tibetanWholeSuccessorRejectsCoordinatedFixtureReplacement",
+                "compiledCompleteValuesReachTheSampledDialogAcrossEditCancelAndReopen",
+                "nativeMemoryKeepsItsOwnFloorWarningAndBlocksImpossibleResize"
+              ],
+              "original_compiled_test_names": [
+                "compiledCompleteValuesReachTheSampledDialogAcrossEditCancelAndReopen",
+                "tibetanWholeSuccessorRejectsCoordinatedFixtureReplacement",
+                "nativeMemoryKeepsItsOwnFloorWarningAndBlocksImpossibleResize"
+              ]
+            },
+            "org.catrobat.paintroid.local.SindhiNigerianPidginTokPisinPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.SomaliWolofHaitianCreolePriorityWordingTest": {
+              "source_methods": [
+                "canonicalFixtureRejectsCoordinatedTargetReplacement",
+                "everyReviewedSomaliWolofHaitianCreoleCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "absentHeldValuesUseDefaultEnglishRatherThanRegionalAmericanOverrides",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "absentHeldValuesUseDefaultEnglishRatherThanRegionalAmericanOverrides",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "canonicalFixtureRejectsCoordinatedTargetReplacement",
+                "everyReviewedSomaliWolofHaitianCreoleCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ]
+            },
+            "org.catrobat.paintroid.local.SoraniUyghurTatarPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.TaggedColourImportTest": {
+              "source_methods": [
+                "packedDibAndIcoRejectUnsupportedProfilesThroughSharedImportAndKeepSources",
+                "americanEnglishImportsUseTheAmericanResource",
+                "explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection",
+                "failedSelectionNeverOffersTaggedDibOrIcoToTheDocumentAndDeletesStagedFile",
+                "finiteGaGdCyAdditionsRejectSourceAttributesAndPredecessorCorruption",
+                "finiteKaHyAzAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteGalicianAdditionRejectsSourceAttributesMissingFieldsAndPredecessorCorruption",
+                "finiteBrAstOcAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteIaLaKuAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteMiSmRwAdditionsRejectSourceAttributesAndPredecessorCorruption",
+                "finiteKabMwwMaiAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteEuFyUzAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "canonicalFixtureRejectsCoordinatedTargetReplacement",
+                "finiteSoWoHtAdditionRejectsSourceAttributesHistoryAndTargetCorruption",
+                "finiteKkTgPsAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteCebNdsCsbAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteWaSeSaAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteSdPcmTpiAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteCkbUgTtAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteAryMnTokAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteBoDzValAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteHneYiHkAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback"
+              ],
+              "original_compiled_test_names": [
+                "finiteKabMwwMaiAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteCkbUgTtAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback",
+                "finiteSdPcmTpiAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteGalicianAdditionRejectsSourceAttributesMissingFieldsAndPredecessorCorruption",
+                "failedSelectionNeverOffersTaggedDibOrIcoToTheDocumentAndDeletesStagedFile",
+                "finiteMiSmRwAdditionsRejectSourceAttributesAndPredecessorCorruption",
+                "americanEnglishImportsUseTheAmericanResource",
+                "canonicalFixtureRejectsCoordinatedTargetReplacement",
+                "finiteEuFyUzAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "packedDibAndIcoRejectUnsupportedProfilesThroughSharedImportAndKeepSources",
+                "finiteKkTgPsAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteGaGdCyAdditionsRejectSourceAttributesAndPredecessorCorruption",
+                "finiteSoWoHtAdditionRejectsSourceAttributesHistoryAndTargetCorruption",
+                "finiteBoDzValAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteCebNdsCsbAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteWaSeSaAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteAryMnTokAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteHneYiHkAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection",
+                "finiteKaHyAzAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteBrAstOcAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteIaLaKuAdditionRejectsSourceAttributesAndPredecessorCorruption"
+              ]
+            },
+            "org.catrobat.paintroid.local.TibetanDzongkhaValencianPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.WalloonNorthernSamiSanskritPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            }
+          }
+        },
+        "lint_issues": 0,
+        "api35": {
+          "paintroid": 74,
+          "app": 49,
+          "app_inventory_recomputed_from_exact_source": true,
+          "paintroid_inventory_recomputed_from_exact_source": true,
+          "raw_instrumentation_reports_reparsed": [
+            {
+              "path": "Paintroid/androidTest-results/summary.json",
+              "tests": 74,
+              "log_sha256": "acfc92a9d180fb2ef5fd8e03726500169bbe5b1096bc6f21cc59d7ecd2a0b2a8"
+            },
+            {
+              "path": "app/accepted-credit-restart/seed/summary.json",
+              "tests": 1,
+              "log_sha256": "b5933d8692b3bff6c3d7a2c88d090fd14e1dbae8882f10b37b81201e04cfa48a"
+            },
+            {
+              "path": "app/accepted-credit-restart/verify/summary.json",
+              "tests": 1,
+              "log_sha256": "48aa6cee5bb621301b7630dd48393683aae4f7639dd5e66e0267ad2d9969574f"
+            },
+            {
+              "path": "app/androidTest-results/summary.json",
+              "tests": 19,
+              "log_sha256": "7bd74a138bc920901361b4bd3ffd4242218fad2a086a78759a41b5a9a09ff5e5"
+            },
+            {
+              "path": "app-dialog/androidTest-results/summary.json",
+              "tests": 14,
+              "log_sha256": "001a9adc0cfb326d54f00ed4d665494957ee99f1b73342c0db6088df36254164"
+            },
+            {
+              "path": "app-gallery-draft/androidTest-results/summary.json",
+              "tests": 3,
+              "log_sha256": "d849cbdd894d126209c374563354147c7024ce848ab36f2da7c65ff8db0aa327"
+            },
+            {
+              "path": "app-position/ainu-manchu/androidTest-results/summary.json",
+              "tests": 3,
+              "log_sha256": "fe191562e3d841cecef2c0ca0b1e2d361d54ec0ab159c1424d0bc31a2392d329"
+            },
+            {
+              "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
+              "tests": 4,
+              "log_sha256": "50b78c870263cfdc19eccea569c4818e80fc32c868948e462728057ff619827b"
+            },
+            {
+              "path": "app-vertical/english-manchu/androidTest-results/summary.json",
+              "tests": 2,
+              "log_sha256": "252cf73ec0e14dba2aa0269dbe64be46e458f54c383a07a98ff79c7cf67e19c7"
+            },
+            {
+              "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+              "tests": 2,
+              "log_sha256": "91565980c70eea64461f010d6349603ed7fe3f83bdf47b0f7a6215a4740385c2"
+            }
+          ],
+          "original_core_position_recomposition_verified": true,
+          "complete_union_revalidated": true,
+          "missing": [],
+          "unexpected": [],
+          "suppressed": [],
+          "deferred": [],
+          "app_source_tests_sha256": "eb4eeece7a6a5ffa1c287d6e6f90a5afaf774777823c960e98abdc3dbc007411",
+          "paintroid_source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+        },
+        "resource_probes": {
+          "count": 13,
+          "original_log_hashes_match": true,
+          "all_expected_outcomes_match": true,
+          "intentional_rejection": "06-reserved-app-variant-rejected"
+        },
+        "apk_sha256": "7c2b3a0ddd12320cbfa5094731e2e05c81dad005d49059fb2122dd9e6b2cd51b",
+        "app_test_apk_sha256": "62602ed777e166d77c436fd636a53c8416499defbb11a5a335abc10e7591bd6e",
+        "source_archive_modes_verified": true,
+        "source_archive_additional_native_files": 6258,
+        "source_archive_additional_native_paths_sha256": "56fcd436c32164ba14eea4980f316456819c0053637a52b397794fdedcd4b45c",
+        "existing_checkout_all_blobs_modes_verified": 1545,
+        "limitations": [
+          "Hosted API35 evidence does not certify native linguistic fluency, TalkBack usability, all devices, or every locale layout.",
+          "Existing colour scope remains preview-rail reachability and Cancel only for API35 en-US/hu 2x 640x320 mdpi, with separate IME/Back/footer lifecycle; not universal 2x or simultaneous whole-dialog/IME fit.",
+          "Root retains merge lease. Release pause and other explicit project holds remain unchanged."
+        ],
+        "mandatory_exports": {
+          "dialog-evidence.json": {
+            "original_receipt_sha256": "c693ba0d540b2102dd4a71b0035b27e16b445f77ac97452c967b5783401098bd",
+            "exact_recomputed_match": true
+          },
+          "vertical-locale-export.json": {
+            "original_receipt_sha256": "6d6c91d39fbf22b6fd51e0af924768af74ad4ee96672125d5283b1514115b656",
+            "exact_recomputed_match": true
+          },
+          "vertical-control-reachability.json": {
+            "original_receipt_sha256": "0c11a9075b74f442fc60c9307aa39d2aa28c2d0683be2fd8b06520bab368ca57",
+            "exact_recomputed_match": true
+          },
+          "vertical-locale-screenshots.json": {
+            "original_receipt_sha256": "e7262c041919e35d7693956f76c949ff3efc8c2d43713bfff601e11e94ca1502",
+            "exact_recomputed_match": true
+          }
+        },
+        "mandatory_export_counts": {
+          "dialogs": 14,
+          "vertical_files": 104,
+          "reachability_cases": 8,
+          "reachability_screenshots": 64,
+          "locale_screenshots": 32
+        },
+        "apk_signature": {
+          "exit": 0,
+          "debug_signature_valid": true,
+          "signer_certificate_sha256": "2820d87546237d2e0048824ffacd42884cfe03e614e5fc6a5220e41134daef31",
+          "upgrade_identity_not_claimed": true,
+          "log_sha256": "18f4061ea0af8de23821e21f42d430dd226c9e1b0ab6042bdd691dcb9f8a8a6c",
+          "checker_jar_sha256": "00ef9948f843fe395d2440ae3ef41405b8040a6d5d46493bd1902ac0ee6deae7"
+        },
+        "temporary_extraction": "/workspace/scratch/bbca2890f602/localization-second-train-20261027/signal-enum-successor/hosted/verification-extraction-iznkvc9m"
+      }
+    },
+    "lifecycle": {
+      "sha256": "b04b6ede69d3164cbf4a89d560cf6021060fcf9c829e699bf354157914df3330",
+      "record": {
+        "status": "original-cleanup-and-nonoverlap-verified",
+        "archive_sha256": "01afd150db4c313516b876893d3c8e83ebc6ddabbbf58ed0bc9cb47e097f5ae0",
+        "head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+        "lifecycle": {
+          "launch_id": "f1965d604ef14f7da680ff371b76fe03",
+          "reason": "completed",
+          "forced_kill": "false",
+          "owned_children_remaining": "0",
+          "cleanup_complete": "true",
+          "output_complete": "true"
+        },
+        "timing": {
+          "real_seconds": "870.100",
+          "user_seconds": "809.809",
+          "sys_seconds": "28.429",
+          "exit_status": "0"
+        },
+        "timestamps": {
+          "python.started-at": "2026-10-28 04:39:04+00:00",
+          "python.ended-at": "2026-10-28 04:53:34+00:00",
+          "jvm.started-at": "2026-10-28 04:53:34+00:00"
+        },
+        "member_sha256": {
+          "python.owner": "74bfd54d6c4b7b424b398dc466d703ddf102d03fef1e08d5c24ad6c52d1cbe5e",
+          "python.lifecycle": "e6b3ad74780664b7d1b8d6c405c5f51354ec6f1d06a883452c20dc4f0ad15321",
+          "python.time": "2fc4aa07802ba3d4051af4f63042fe5fd8b87b55ec3942ff0eb3592a29887baa",
+          "python.started-at": "00a750786f8b97286a8d99c1cdaa8b82fad9d048c44c1c65c05e146c8bb7f11f",
+          "python.ended-at": "80ef038ae6ccf2078a6534e41764da0ea9c27ab6a3fe7b7ad5a7f46b0521f7f8",
+          "jvm.started-at": "80ef038ae6ccf2078a6534e41764da0ea9c27ab6a3fe7b7ad5a7f46b0521f7f8"
+        },
+        "scope": "Cleanup and phase ordering only; Python suite/Actions success separately required."
+      }
+    },
+    "yiddish": {
+      "sha256": "c8752bf005a3aa97669eb08ad0fac65f852679b1fc61c25cde5a949d2a4b8372",
+      "record": {
+        "status": "bounded-original-Yiddish-controls-and-installed-assertions-passed",
+        "head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+        "tree": "a2dc18974d9d90d9000b689657c9ce300b45e179",
+        "run_id": 40633397049,
+        "tested_merge": "c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+        "bound_source_leaves": 1545,
+        "compiled": {
+          "native_qualifier": "ji",
+          "exact_two_controls": {
+            "ui_save": "אויפֿהיטן",
+            "save20_unsupported_image_colour": "דאָס בילד ניצט אַ פֿאַרב־פּראָפֿיל וואָס AN Paint קען נאָך נישט קאָנווערטירן. פֿאַרוואַנדלט עס אין אַן sRGB PNG אין אַ רעדאַקטאָר מיט פֿאַרב־פֿאַרוואַלטונג איידער איר פֿירט עס אַרײַן."
+          }
+        },
+        "installed_case": {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "yiddishUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation",
+          "status": "passed",
+          "message": "."
+        },
+        "assertion_scope": [
+          "Real picker selects public yi, rotates, selects en-US, reselects yi",
+          "Each of four phases asserts exact Save and full colour warning and configured/persisted/default/platform public tag",
+          "Rotation asserts changed orientation and both width/height plus positive canvas dimensions"
+        ],
+        "inputs": {
+          "manifest": "a5d3c718ff3336ab8ca1cd9685aeb1e92b584b6638088d35addb44bb6f9dbc83",
+          "config": "13597632ab554db0ef289d057c2a9c4c81925e247f53695ba7a8a1cd5005818f",
+          "terminal": "ac507b4e7d38c3e94547e1454bcaf44f47d570ac40fd95cb66c671f0034d1520",
+          "apk_source_zip": "1a5dd8510bdbfd9e08a423c5ef19edd615c40bddc22d0255a09c6ebb1d5c5881",
+          "instrumentation_zip": "201518d4e60babbc3ef36bf2a47a8187f106319afe058bee73af2caab5682d13",
+          "core_zip": "4b1c19be9ea98c17d5d6d15497eb717de76824f8627fdb46d6c539631fa81858",
+          "aapt2": "d1096e11aba9c974644369ee3c50d239acac3f3428ffa928e5b9c14dfb7a57de"
+        },
+        "raw_protocol_sha256": "7bd74a138bc920901361b4bd3ffd4242218fad2a086a78759a41b5a9a09ff5e5",
+        "resource_dump_sha256": "0645400d710595e5d257ed9bcc7cd65290e17be8b1ecb737e2882a6dabc1bb42",
+        "limitations": [
+          "Two compiled controls and source-pinned executed picker/rotation assertions, not the whole installed catalogue or plural dispatch.",
+          "No volatile logcat requirement; numeric observed dimensions and per-phase emitted values are not claimed.",
+          "No linguistic or native-speaker certification."
+        ]
+      }
+    },
+    "valencian": {
+      "sha256": "3cbc9b927ce18b7203c60bfc8fe2583d3ad54cff70d869977a6fd9f57bfb02f9",
+      "record": {
+        "status": "exact-installed-method-assertions-passed",
+        "head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+        "identity": {
+          "group": "core",
+          "commit": "c5e697872e2262e242c4e9d88deb4e5360dc57ad",
+          "run_id": "40633397049",
+          "run_attempt": "1",
+          "build_variant": "debug",
+          "source_tests_sha256": "eb4eeece7a6a5ffa1c287d6e6f90a5afaf774777823c960e98abdc3dbc007411",
+          "device_sdk": 35,
+          "apk_sha256": "7c2b3a0ddd12320cbfa5094731e2e05c81dad005d49059fb2122dd9e6b2cd51b",
+          "source_sha256": "db0f16a1450345f9fa6c69358ae5d1c57d2dde2c92147384bc6a65f077ce890a",
+          "test_apk_sha256": "62602ed777e166d77c436fd636a53c8416499defbb11a5a335abc10e7591bd6e"
+        },
+        "raw_protocol_sha256": "7bd74a138bc920901361b4bd3ffd4242218fad2a086a78759a41b5a9a09ff5e5",
+        "source_method_file_sha256": "c44ebb850bbfccec770b69e5e7774b42a66f1eab688f725f52bfa003a815306e",
+        "method": {
+          "classname": "paint.anpaint.android.EditorDeviceTest",
+          "name": "valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation",
+          "status": "passed",
+          "message": "."
+        },
+        "unconditional_asserted_phases": [
+          "valencian-selected",
+          "valencian-after-rotation",
+          "parent-catalan-selected",
+          "valencian-reselected"
+        ],
+        "assertions": [
+          "complete warning and Save display for each phase",
+          "persisted/default/platform/configured public tag for each phase",
+          "real orientation and both width and height change before rotated phase"
+        ],
+        "diagnostic_phase_logs": "not used by this assertion proof; no observed values/dimensions claimed",
+        "remaining_gates": "Root actual-base merge proof; final YI supplemental gate"
+      }
+    },
+    "all171_original_rebind": {
+      "sha256": "a9c52e161815cb2eb79c870f268b151326a7fb96784988fbc0558a1a7099d5ea",
+      "record": {
+        "head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+        "tree": "a2dc18974d9d90d9000b689657c9ce300b45e179",
+        "run_id": 40633397049,
+        "source_archive_sha256": "db0f16a1450345f9fa6c69358ae5d1c57d2dde2c92147384bc6a65f077ce890a",
+        "all171_exact_present_missing_identity_sets_rebound": true,
+        "comparison_inventory_sha256": "f74cab0bd2aa49ab696b16887f120f0c5e9e36869fd135af1207b1024403e260",
+        "aggregate": {
+          "P0": {
+            "present": 12620,
+            "missing": 3112
+          },
+          "P1": {
+            "present": 34287,
+            "missing": 8292
+          }
+        },
+        "scope": "Unmerged candidate original-source typed presence, not new linguistic credit; parent PR210 is now merged separately."
+      }
+    },
+    "full_local_modes": {
+      "sha256": "7706233f4fbd9053c7525b0a071c88a731099b7f56f27216786c30d65f4a605c",
+      "record": {
+        "head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+        "tree": "a2dc18974d9d90d9000b689657c9ce300b45e179",
+        "all_source_leaf_bytes_modes_verified": 1545,
+        "full_modes": [
+          {
+            "mode": "ordinary",
+            "tests": 1894,
+            "seconds": 847.638,
+            "exit": 0,
+            "raw_sha256": "bc48f598653c0602b39eb7a254a97ddb5d69aa5b90f2d8a0f1e30c4c835c8838"
+          },
+          {
+            "mode": "optimized",
+            "tests": 1894,
+            "seconds": 848.555,
+            "exit": 0,
+            "raw_sha256": "b93209404b1cf137daff5ffb3c14bb36d3eef6cdd26b87c7f0ab169849189d42"
+          }
+        ],
+        "source_manifest_sha256": "a5d3c718ff3336ab8ca1cd9685aeb1e92b584b6638088d35addb44bb6f9dbc83",
+        "independent_gate_sha256": "6777d93d2aad3b6b49d3c637197b1a098bd501576d66c2a611ed017c58bd419c",
+        "source_publication": "verified non-force PR211 head",
+        "hosted": "separate current run40633397049 still pending regression",
+        "old_failed_head": "1f2e failure preserved dfa832e5554e428e5fc8fee80d8925a73c0e3a61"
+      }
+    },
+    "five_component_inclusion": {
+      "sha256": "eadea0df9bcecf03bfa9b4b85e024cfd87138e14324d1e2f164906e965ebdf1f",
+      "record": {
+        "head": "6d00ef0f252f83f412f5b312613fa0eb01ab492a",
+        "tree": "a2dc18974d9d90d9000b689657c9ce300b45e179",
+        "components": [
+          {
+            "id": "sd-pcm-tpi",
+            "tags": [
+              "sd",
+              "pcm",
+              "tpi"
+            ],
+            "edits": 1013,
+            "retained": 22,
+            "holds": 33,
+            "component_manifest_sha256": "84fc0ed9fdcd434e5647762e7f882f1bafa0b182b67268709cc69b0826121d15",
+            "component_independent_receipt_sha256": "f0d6b243dc13e18594140b5fb2e098eba92481ded22a84b7ed36ec62079628c3",
+            "exact_component_paths": [
+              {
+                "path": "Paintroid/src/main/res/values-b+pcm/strings.xml",
+                "component_blob": "8b77efff5cc50f91bcdba51243398da8b7eb0167",
+                "final_blob": "8b77efff5cc50f91bcdba51243398da8b7eb0167",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-b+tpi/strings.xml",
+                "component_blob": "5dde5f51689659598afad7bda75f5951e50f5ed9",
+                "final_blob": "5dde5f51689659598afad7bda75f5951e50f5ed9",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-sd/strings.xml",
+                "component_blob": "30f7ab0214a0257917a1de66a889499fa7ca4832",
+                "final_blob": "30f7ab0214a0257917a1de66a889499fa7ca4832",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/SindhiNigerianPidginTokPisinPriorityWordingTest.kt",
+                "component_blob": "5b8b2256dfc55a91d85690f0b1176d6be4fa861b",
+                "final_blob": "5b8b2256dfc55a91d85690f0b1176d6be4fa861b",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/sindhi_nigerian_pidgin_tok_pisin_priority_wording/pcm.json",
+                "component_blob": "f17232d9b558631d4e30ac84ba729ad444fa98ff",
+                "final_blob": "f17232d9b558631d4e30ac84ba729ad444fa98ff",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/sindhi_nigerian_pidgin_tok_pisin_priority_wording/sd.json",
+                "component_blob": "8a47ab6cd1d3ac49da9b54312d6357da402a4a0e",
+                "final_blob": "8a47ab6cd1d3ac49da9b54312d6357da402a4a0e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/sindhi_nigerian_pidgin_tok_pisin_priority_wording/tpi.json",
+                "component_blob": "b31236f87a3ad48657e9e299f4b7c7d614a2f204",
+                "final_blob": "b31236f87a3ad48657e9e299f4b7c7d614a2f204",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/pidgin_tok_pisin_option_successors.py",
+                "component_blob": "67bcd1fc21a374cf5b7ae95d4542380b62a9dbb8",
+                "final_blob": "67bcd1fc21a374cf5b7ae95d4542380b62a9dbb8",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/sindhi_nigerian_pidgin_tok_pisin_priority_expectations.py",
+                "component_blob": "ea4cd739a53bea5bb7741b7b23c3fa795571002e",
+                "final_blob": "ea4cd739a53bea5bb7741b7b23c3fa795571002e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_language_option_additions_second.py",
+                "component_blob": "e7de3784f2ff3427801a4d76ba957941c4ae302e",
+                "final_blob": "e7de3784f2ff3427801a4d76ba957941c4ae302e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_pidgin_tok_pisin_option_successors.py",
+                "component_blob": "54587f49c963fb8effa7c080520e0c111af39101",
+                "final_blob": "54587f49c963fb8effa7c080520e0c111af39101",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_sindhi_nigerian_pidgin_tok_pisin_priority_wording.py",
+                "component_blob": "dd22d006b919fbdc016774b359ef1b9025177542",
+                "final_blob": "dd22d006b919fbdc016774b359ef1b9025177542",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_tajik_option_jvm_successor.py",
+                "component_blob": "2f97e861e8bd4bc3d9491d051933a28d3ff087af",
+                "final_blob": "2f97e861e8bd4bc3d9491d051933a28d3ff087af",
+                "mode": "100644"
+              }
+            ],
+            "additively_composed_shared_paths": [
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+                "component_blob": "8953a2afa152ef57e32832e058ae8bbc9c2826bd",
+                "final_blob": "dca9eb9d7305166f5c5385b411c8d23a59dac40f",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+                "component_blob": "2a572c3a385fa8e8f180cd067cf6813e3676b3b9",
+                "final_blob": "3d5abcf16991dde3dedad929d264b847c1b8458b",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/memory_warning_source_review.py",
+                "component_blob": "f398e5a6e74514f1d36e77872f06ebff61e04039",
+                "final_blob": "bc090821eb0a9ce6e04aa871f898e58ed37d642e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_current_localization_contracts.py",
+                "component_blob": "1a19b3c01b206646258c9607b5581750d5425f77",
+                "final_blob": "95d11d9b93854832520e57ff95e97bacef426da0",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_source_review.py",
+                "component_blob": "ca752a42a63d5c2d59cb141aa8fa8151a729ad97",
+                "final_blob": "1bf066045024eb803ce18c3ae0047b64c6f24964",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_successors.py",
+                "component_blob": "ef151f045d7f3b1e334de6da0df303f04dd3018b",
+                "final_blob": "974b54b4fcbb6a51dd70bb34f6bf192a72fc89c4",
+                "mode": "100644"
+              }
+            ]
+          },
+          {
+            "id": "ckb-ug-tt",
+            "tags": [
+              "ckb",
+              "ug",
+              "tt-Cyrl"
+            ],
+            "edits": 973,
+            "retained": 62,
+            "holds": 33,
+            "component_manifest_sha256": "c573a9fba5c7186e80050cf0b4e2b8fed0664a0ca517cfe4ad39ba5b9111d8e2",
+            "component_independent_receipt_sha256": "a89325397ea7f06f7438b9d403a15a06494cd82bcd68eaf9845eb0d62a54a92e",
+            "exact_component_paths": [
+              {
+                "path": "Paintroid/src/main/res/values-b+ckb/strings.xml",
+                "component_blob": "57408cc1a55ca10c387f8869f300896d7c61cb9a",
+                "final_blob": "57408cc1a55ca10c387f8869f300896d7c61cb9a",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-b+tt+Cyrl/strings.xml",
+                "component_blob": "057b1f0c530937e10eea14dfebbdac07b9995048",
+                "final_blob": "057b1f0c530937e10eea14dfebbdac07b9995048",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-b+ug/strings.xml",
+                "component_blob": "4be3e95891e049fadfa2e25bccc9e7290e62d824",
+                "final_blob": "4be3e95891e049fadfa2e25bccc9e7290e62d824",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/SoraniUyghurTatarPriorityWordingTest.kt",
+                "component_blob": "021c73d584433a8c823f622e608889a2a0dbb7d2",
+                "final_blob": "021c73d584433a8c823f622e608889a2a0dbb7d2",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/sorani_uyghur_tatar_priority_wording/ckb.json",
+                "component_blob": "357a39816da49bc1416fd59de9e533578656f184",
+                "final_blob": "357a39816da49bc1416fd59de9e533578656f184",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/sorani_uyghur_tatar_priority_wording/tt-Cyrl.json",
+                "component_blob": "6757de0f550da1b9d1805cbf66f238f7713435a1",
+                "final_blob": "6757de0f550da1b9d1805cbf66f238f7713435a1",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/sorani_uyghur_tatar_priority_wording/ug.json",
+                "component_blob": "4b9e9889178d56de192b451e2ad2bb4c5195ce7a",
+                "final_blob": "4b9e9889178d56de192b451e2ad2bb4c5195ce7a",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/sorani_uyghur_tatar_priority_expectations.py",
+                "component_blob": "db1b04dcde5d382659dc4781001acae24073c44f",
+                "final_blob": "db1b04dcde5d382659dc4781001acae24073c44f",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_sorani_uyghur_tatar_priority_wording.py",
+                "component_blob": "3a07ac9f6fafd931e382776769a9c97b123ffea8",
+                "final_blob": "3a07ac9f6fafd931e382776769a9c97b123ffea8",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_tatar_script_priority_successor.py",
+                "component_blob": "169df4c969a8833155e5a289573078dcf00ea779",
+                "final_blob": "169df4c969a8833155e5a289573078dcf00ea779",
+                "mode": "100644"
+              }
+            ],
+            "additively_composed_shared_paths": [
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageResourceRoutingTest.kt",
+                "component_blob": "cfadd398fbc50b7a3ff510a465f74653d5b4a3be",
+                "final_blob": "398b17c4cf63de3b51e12567f198ef3dbeff4608",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+                "component_blob": "eb07ff2a1579ebbc40109da9aacbbe8cd86e1107",
+                "final_blob": "dca9eb9d7305166f5c5385b411c8d23a59dac40f",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+                "component_blob": "a0abea85fd0913d06bbd0bebf0bb90e564155822",
+                "final_blob": "3d5abcf16991dde3dedad929d264b847c1b8458b",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/memory_warning_source_review.py",
+                "component_blob": "e4e8dcc930163258cd3dff833f1a146c371ffa5f",
+                "final_blob": "bc090821eb0a9ce6e04aa871f898e58ed37d642e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_current_localization_contracts.py",
+                "component_blob": "9c418046f2b657a1aae528e8439cf55797d9cd82",
+                "final_blob": "95d11d9b93854832520e57ff95e97bacef426da0",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_exact_script_resource_routing.py",
+                "component_blob": "17458bfe0369e23b8b2c6b8752caf2a36b55a163",
+                "final_blob": "2d18f1c51a97648b549e1016adfa06e9f17ce9e1",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_source_review.py",
+                "component_blob": "2beadc2a121723fcaa15a221dec5188c6d229cb1",
+                "final_blob": "1bf066045024eb803ce18c3ae0047b64c6f24964",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_successors.py",
+                "component_blob": "f22d283058bccc7c9bfa84df51aeee56a4479add",
+                "final_blob": "974b54b4fcbb6a51dd70bb34f6bf192a72fc89c4",
+                "mode": "100644"
+              }
+            ]
+          },
+          {
+            "id": "ary-mn-tok",
+            "tags": [
+              "ary",
+              "mn-Cyrl-MN",
+              "tok"
+            ],
+            "edits": 703,
+            "retained": 341,
+            "holds": 33,
+            "component_manifest_sha256": "c189a6a996fc544885943cabe4c3766aed0da7caa811f476e91ccdcb34f4f5e7",
+            "component_independent_receipt_sha256": "d08a8137627d8b162998f64a5862e3478a104dd7f36488a8a8b68bf0a0140c22",
+            "exact_component_paths": [
+              {
+                "path": "Paintroid/src/main/res/values-b+ary/strings.xml",
+                "component_blob": "6a417e3683ad63f52d37272ce8fdb46a129bd9e1",
+                "final_blob": "6a417e3683ad63f52d37272ce8fdb46a129bd9e1",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-b+mn+Cyrl+MN/strings.xml",
+                "component_blob": "e12a6ac9ae95e233a94e142870b0e75cf2db7177",
+                "final_blob": "e12a6ac9ae95e233a94e142870b0e75cf2db7177",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-b+tok/strings.xml",
+                "component_blob": "c1edaac27d6201705caefc391d28f611c7856a8a",
+                "final_blob": "c1edaac27d6201705caefc391d28f611c7856a8a",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/MoroccanArabicMongolianTokiPonaPriorityWordingTest.kt",
+                "component_blob": "7a0fed42481f2733d3a789c8d78515c477e6ffbe",
+                "final_blob": "7a0fed42481f2733d3a789c8d78515c477e6ffbe",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/moroccan_arabic_mongolian_toki_pona_priority_wording.json",
+                "component_blob": "cc06a48cddf36c7ac43ba8bb5093b3d678e0aadf",
+                "final_blob": "cc06a48cddf36c7ac43ba8bb5093b3d678e0aadf",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/moroccan_arabic_mongolian_toki_pona_priority_expectations.py",
+                "component_blob": "605879e995620a398c15a3a18fb8bb9e9fe27c5e",
+                "final_blob": "605879e995620a398c15a3a18fb8bb9e9fe27c5e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_language_option_additions_third.py",
+                "component_blob": "4a8c7abf627ce36ea958a25535ed7f8997734c97",
+                "final_blob": "4a8c7abf627ce36ea958a25535ed7f8997734c97",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_moroccan_arabic_mongolian_toki_pona_family_additions.py",
+                "component_blob": "c551584c4b0e296bc9cc60c82988f2323e786595",
+                "final_blob": "c551584c4b0e296bc9cc60c82988f2323e786595",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_moroccan_arabic_mongolian_toki_pona_priority_wording.py",
+                "component_blob": "cf3decaec7813e64ecd565362c56d9cc3c2e0b25",
+                "final_blob": "cf3decaec7813e64ecd565362c56d9cc3c2e0b25",
+                "mode": "100644"
+              }
+            ],
+            "additively_composed_shared_paths": [
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageResourceRoutingTest.kt",
+                "component_blob": "ceaf95e31406a1313e7f6ea9abacd9e384b7123a",
+                "final_blob": "398b17c4cf63de3b51e12567f198ef3dbeff4608",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+                "component_blob": "2faccd59f80408f7cbbb3cdaba569693a92a5813",
+                "final_blob": "dca9eb9d7305166f5c5385b411c8d23a59dac40f",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+                "component_blob": "c94e2596d04105083e94899c3162a31d16042f08",
+                "final_blob": "3d5abcf16991dde3dedad929d264b847c1b8458b",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/memory_warning_source_review.py",
+                "component_blob": "bb1e56fd2bd7125ddc99412ad16a0ca72c3edcc5",
+                "final_blob": "bc090821eb0a9ce6e04aa871f898e58ed37d642e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_current_localization_contracts.py",
+                "component_blob": "813981d925e5cc381a48248936a060be5afef1a6",
+                "final_blob": "95d11d9b93854832520e57ff95e97bacef426da0",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_exact_script_resource_routing.py",
+                "component_blob": "c1587adc4ccccf0d4dff61c1197bde7e6f649dd1",
+                "final_blob": "2d18f1c51a97648b549e1016adfa06e9f17ce9e1",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_source_review.py",
+                "component_blob": "3241015b6666a37c1cad8bf1ad596ccb43b21ec8",
+                "final_blob": "1bf066045024eb803ce18c3ae0047b64c6f24964",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_successors.py",
+                "component_blob": "32e233e818de68d487fb18250925f44280eda678",
+                "final_blob": "974b54b4fcbb6a51dd70bb34f6bf192a72fc89c4",
+                "mode": "100644"
+              }
+            ]
+          },
+          {
+            "id": "bo-dz-valencia",
+            "tags": [
+              "bo",
+              "dz",
+              "ca-ES-valencia"
+            ],
+            "edits": 314,
+            "retained": 732,
+            "holds": 22,
+            "component_manifest_sha256": "95eadcab974711ff1b28957925b893845a071e99ce5da9cce5ec2cc79c91a84c",
+            "component_independent_receipt_sha256": "29d47891c91727be403617ad908c9b6f84dac3f5ffe6ed6e1bcd12c08fdedb6a",
+            "exact_component_paths": [
+              {
+                "path": "Paintroid/src/main/res/values-b+bo/strings.xml",
+                "component_blob": "caa867ef109bf6e0fcf9d56734af77bcb7eee8ac",
+                "final_blob": "caa867ef109bf6e0fcf9d56734af77bcb7eee8ac",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-b+ca+ES+valencia/strings.xml",
+                "component_blob": "d0911afdcd5df96cc16f1767d41058e655050ba9",
+                "final_blob": "d0911afdcd5df96cc16f1767d41058e655050ba9",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-b+dz/strings.xml",
+                "component_blob": "0c46d1e96a685f231269655fd57e481ffe35610b",
+                "final_blob": "0c46d1e96a685f231269655fd57e481ffe35610b",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/SampledMemoryModalityTest.kt",
+                "component_blob": "ff3f6c48e6147c868b3baa839e26f268c52ac64f",
+                "final_blob": "ff3f6c48e6147c868b3baa839e26f268c52ac64f",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TibetanDzongkhaValencianPriorityWordingTest.kt",
+                "component_blob": "37d2d238e744189be083f69242ba740b00be286c",
+                "final_blob": "37d2d238e744189be083f69242ba740b00be286c",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/bo.json",
+                "component_blob": "385903b3efce91623ff3f725ed9af7372f5fd5c0",
+                "final_blob": "385903b3efce91623ff3f725ed9af7372f5fd5c0",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/ca-ES-valencia.json",
+                "component_blob": "61be9a3c293b5922ddf46ce78e3c4648f5ceb064",
+                "final_blob": "61be9a3c293b5922ddf46ce78e3c4648f5ceb064",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/dz.json",
+                "component_blob": "8b17c845855c2499170d90f329686fa85e332af1",
+                "final_blob": "8b17c845855c2499170d90f329686fa85e332af1",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_sampled_memory_modality.py",
+                "component_blob": "9bd715f95a3af1a9285ee56c9e23067070afcb2e",
+                "final_blob": "9bd715f95a3af1a9285ee56c9e23067070afcb2e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_tibetan_dzongkha_valencian_priority_wording.py",
+                "component_blob": "bb4f5877516fc22a881db3f8bec592f321f9ee72",
+                "final_blob": "bb4f5877516fc22a881db3f8bec592f321f9ee72",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/tibetan_dzongkha_valencian_priority_expectations.py",
+                "component_blob": "f4ab57eb98e49ece976f4e8d89e44a43790b67e7",
+                "final_blob": "f4ab57eb98e49ece976f4e8d89e44a43790b67e7",
+                "mode": "100644"
+              }
+            ],
+            "additively_composed_shared_paths": [
+              {
+                "path": "Paintroid/build.gradle",
+                "component_blob": "1ca932d9ac9432e213d11c74abdfe7e442b7378a",
+                "final_blob": "cdc54f31ba3cab7a1a2b3531dc48394bbabd0b5e",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+                "component_blob": "8099ffb8292688bbf6e81ef8d108d02f477bea3d",
+                "final_blob": "dca9eb9d7305166f5c5385b411c8d23a59dac40f",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+                "component_blob": "d574785acf174ad1c13f58872bae5b245b105c89",
+                "final_blob": "3d5abcf16991dde3dedad929d264b847c1b8458b",
+                "mode": "100644"
+              },
+              {
+                "path": "app/src/androidTest/java/paint/anpaint/android/EditorDeviceTest.kt",
+                "component_blob": "858eee4ceeb63d740ae06de0c48c5955a75a637a",
+                "final_blob": "b98f391a0a8d1c6c4df883d903daa8306ddf4933",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/memory_warning_source_review.py",
+                "component_blob": "5ff22c4cb0e437688aaf8ef8c2bb6ed7bcf6198b",
+                "final_blob": "bc090821eb0a9ce6e04aa871f898e58ed37d642e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_app_instrumentation_matrix.py",
+                "component_blob": "9d78418afe270a4f39989e45eb12c594e923809d",
+                "final_blob": "5632b627698c2e6837588592e61f4a00258b71ce",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_current_localization_contracts.py",
+                "component_blob": "e568a3b6c3aafbee03bd13080d1dfff9af2b080d",
+                "final_blob": "95d11d9b93854832520e57ff95e97bacef426da0",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_source_review.py",
+                "component_blob": "f003f027408b8c7b8ca58f1ba54886daac799756",
+                "final_blob": "1bf066045024eb803ce18c3ae0047b64c6f24964",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_successors.py",
+                "component_blob": "f517c6405dd732f90e3f152f2b9ca62df3704882",
+                "final_blob": "974b54b4fcbb6a51dd70bb34f6bf192a72fc89c4",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_valencian_variant_packaging.py",
+                "component_blob": "a0f74e6405d42cf7656216ea17da342e92f957ce",
+                "final_blob": "578ad554c8d96ffa883a2072f73a469622572beb",
+                "mode": "100644"
+              }
+            ]
+          },
+          {
+            "id": "hne-yi-hk",
+            "tags": [
+              "hne",
+              "yi",
+              "zh-HK"
+            ],
+            "edits": 679,
+            "retained": 365,
+            "holds": 33,
+            "component_manifest_sha256": "593431187a5396fc1475bd23de96e91b96f7c34468ba1b4d119a193f6aa78180",
+            "component_independent_receipt_sha256": "b5b4fdc8f8f176947cbe00db6ccba99cec677876a64b5971ba0e8bd5847a6b14",
+            "exact_component_paths": [
+              {
+                "path": "Paintroid/src/main/res/values-b+hne/strings.xml",
+                "component_blob": "bc74d8b7f057c313a3a1bd1da9659c6daeb0b942",
+                "final_blob": "bc74d8b7f057c313a3a1bd1da9659c6daeb0b942",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-b+yi/strings.xml",
+                "component_blob": "1ec664e1c6849f8ecb29bc88ab1d34a3038909d0",
+                "final_blob": "1ec664e1c6849f8ecb29bc88ab1d34a3038909d0",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/main/res/values-zh-rHK/strings.xml",
+                "component_blob": "01f2b0492a77d94bdf12758036d761f8bf66bf3a",
+                "final_blob": "01f2b0492a77d94bdf12758036d761f8bf66bf3a",
+                "mode": "100644"
+              },
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ChhattisgarhiYiddishHongKongPriorityWordingTest.kt",
+                "component_blob": "8c4d1f0b176486b92fe864697dfdb247cb5dc7db",
+                "final_blob": "8c4d1f0b176486b92fe864697dfdb247cb5dc7db",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/chhattisgarhi_yiddish_hong_kong_priority_expectations.py",
+                "component_blob": "0ee425a909a08be7d8c1737234d008bc59293c9c",
+                "final_blob": "0ee425a909a08be7d8c1737234d008bc59293c9c",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/chhattisgarhi_yiddish_hong_kong_priority_wording/hne.json",
+                "component_blob": "8068857b85e83e354720589e3b11e54c0e028678",
+                "final_blob": "8068857b85e83e354720589e3b11e54c0e028678",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/chhattisgarhi_yiddish_hong_kong_priority_wording/yi.json",
+                "component_blob": "93fe07a010183b8a430d3d55c80ad9393da769af",
+                "final_blob": "93fe07a010183b8a430d3d55c80ad9393da769af",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/fixtures/current_localization/chhattisgarhi_yiddish_hong_kong_priority_wording/zh-HK.json",
+                "component_blob": "18c9d4e95fd2cd30f25b3a6154ab99d2814233d0",
+                "final_blob": "18c9d4e95fd2cd30f25b3a6154ab99d2814233d0",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_chhattisgarhi_yiddish_hong_kong_priority_wording.py",
+                "component_blob": "580957ddf575b33bcd55c394c968cb8ea2d3b5d9",
+                "final_blob": "580957ddf575b33bcd55c394c968cb8ea2d3b5d9",
+                "mode": "100644"
+              }
+            ],
+            "additively_composed_shared_paths": [
+              {
+                "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt",
+                "component_blob": "2361d8aa60687dab2ee86538be2b10320d925bec",
+                "final_blob": "3d5abcf16991dde3dedad929d264b847c1b8458b",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/memory_warning_source_review.py",
+                "component_blob": "f4b3deb545f1f067a8b0a854e63f39250b80d721",
+                "final_blob": "bc090821eb0a9ce6e04aa871f898e58ed37d642e",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_current_localization_contracts.py",
+                "component_blob": "27fad5040fecbda1d42951548d459684ff66cbb0",
+                "final_blob": "95d11d9b93854832520e57ff95e97bacef426da0",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_source_review.py",
+                "component_blob": "6d65934c88180f5a284c3d970c84571a0db53090",
+                "final_blob": "1bf066045024eb803ce18c3ae0047b64c6f24964",
+                "mode": "100644"
+              },
+              {
+                "path": "tools/test_memory_warning_successors.py",
+                "component_blob": "c502beffbfba49b1a20a3de729877d907c9a534b",
+                "final_blob": "974b54b4fcbb6a51dd70bb34f6bf192a72fc89c4",
+                "mode": "100644"
+              }
+            ]
+          }
+        ],
+        "original_union_independent_gate": "2f5a374a27115388719b7f8f422bed97f6870fb5b9e812a823ba6e0631f5a985",
+        "current_finite_gate": "6777d93d2aad3b6b49d3c637197b1a098bd501576d66c2a611ed017c58bd419c",
+        "preservation": "Every own catalogue/fixture blob remains exact; shared files explicitly composed and independently reviewed, not claimed byte-identical",
+        "pr209": {
+          "head": "7ab9ea08ac62b99db83c0989572513f8e6a6072d",
+          "state": "open/unmerged atfresh05:17GET",
+          "inclusion": "BO/DZ/Valencian accepted words retained; reviewed packaging/SDK/runtime successors included, not stale PR209 JVM failure transferred",
+          "close_after": "Root actual211 merge+inclusion proof only"
+        },
+        "totals": {
+          "edits": 3682,
+          "retained": 1522,
+          "holds": 154
+        }
+      }
+    },
+    "source_independent": {
+      "sha256": "6777d93d2aad3b6b49d3c637197b1a098bd501576d66c2a611ed017c58bd419c",
+      "record": {
+        "tree": "a2dc18974d9d90d9000b689657c9ce300b45e179",
+        "manifest_sha256": "a5d3c718ff3336ab8ca1cd9685aeb1e92b584b6638088d35addb44bb6f9dbc83",
+        "all_leaves_modes_verified": 1545,
+        "exact_changed_paths": [
+          "tools/test_ci_python_process_group.py"
+        ],
+        "unchanged_predecessor_leaves": 1544,
+        "finite_test_review_sha256": "0f47e1a187442e03007d8e5f195a3def40ab7b29a33327cbf3ea525d725e0747",
+        "focused_tests": 13,
+        "scope": "Exact finite composed-source gate only; fresh complete local/hosted/original artifact gates remain separate",
+        "findings": []
+      }
+    },
+    "streaming_verifier_independent": {
+      "sha256": "e206c36d05dfaae22a52c4ea423117f2119608b9d37e6b527672b9f733d1f038",
+      "record": {
+        "before_sha256": "5048f711e5da058a032cff125ece23ebad2189220f0da69c9133cf9e6421ab42",
+        "after_sha256": "4b1a38c0f04d7640b588e9cb8b6e9137e28101f7414d058e6d40ec65bba204ce",
+        "scope": "External original-artifact verifier transport-only static/fixture audit; not actual original-run acceptance",
+        "streaming_checks_passed": [
+          "file-sha-0",
+          "file-sha-1",
+          "file-sha-1048575",
+          "file-sha-1048576",
+          "file-sha-1048577",
+          "file-sha-2097171",
+          "nested-apk-source-identical",
+          "disk-corruption-digest-rejected"
+        ],
+        "evidence_assertions_preserved": 66,
+        "additional_exact_apk_member_count_assertion": true,
+        "signature_checker_ast_unchanged": true,
+        "assessment": "Archive size/digest, nested source identity, exact APK bytes, signature verification input and all device/JVM/export/run identity checks preserved; byte-buffer APK storage replaced by verified disk file.",
+        "findings": [],
+        "limits": [
+          "No actual original aggregate run performed by reviewer.",
+          "Failure before final cleanup retains temporary extraction for diagnosis and consumes disk, as predecessor already did for its extraction; owner must reconcile such remnants, not silently discard originals."
+        ]
+      }
+    },
+    "signature_ordering_independent": {
+      "sha256": "6b8fa6e39e5affecc387c48d899db0d1d6e90054579c1674483c831ce185ce14",
+      "record": {
+        "scope": "Transport-only signature sequencing; no actual original-artifact acceptance inferred",
+        "result": "pass",
+        "predecessor_sha256": "4b1a38c0f04d7640b588e9cb8b6e9137e28101f7414d058e6d40ec65bba204ce",
+        "successor_sha256": "da4da82e205ed472ea26492203cce06067a2205aa90f11e5e7db96c846092ab8",
+        "proofs": [
+          "Exact six-line original signature block moved without byte change",
+          "APK cleanup moved immediately after successful signature validation",
+          "Full local and embedded source, original archive and APK hashes validated before signature",
+          "No APK/workspace reference after cleanup",
+          "Every assertion AST preserved as exact multiset",
+          "All remaining bytes exactly restored by inverse move"
+        ],
+        "created_utc": "2026-10-28T05:18:50.059500+00:00"
+      }
+    }
+  },
+  "limitations": [
+    "No release; root owns merge/retarget and final actual ancestry/tree/check verification.",
+    "YI and Valencian installed assertion scope is exact full controls and public identity across actual picker/rotation/reselect, not whole-catalogue/plural/native-human certification.",
+    "Two explicit hosted Pillow skips are not passes; complete local modes separately passed.",
+    "Failed fe5/1f2e runs, initial verifier137 and all old unknown source writes remain preserved; no approval refusal inferred.",
+    "PR209 stays unchanged and open until actual merge inclusion proof, then root may close superseded."
+  ]
+}
