@@ -40,7 +40,7 @@
     <string name="ui_quality" formatted="false">"Квалитет (%)"</string>
     <string name="language20_settings">"Подешавања"</string>
     <string name="save20_file_name">"Назив датотеке"</string>
-    <string name="save20_file_format">Име слике</string>
+    <string name="save20_file_format">"Формат датотеке"</string>
     <string name="gallery_use_image" formatted="false">Користи слику</string>
     <string name="gallery_copy_credit" formatted="false">Копирај податке о аутору</string>
     <string name="ui_advanced" formatted="false">Напредно</string>
@@ -171,4 +171,80 @@
     <string name="ui_gallery_back34" formatted="false">Назад</string>
     <string name="ui_share_explanation34" formatted="false">Сачувајте копију на изабраном месту, па изаберите апликацију за дељење. Тренутно место чувања остаје непромењено.</string>
     <string name="ui_cursor_tap_hint37" formatted="false">Додирните курсор да започнете или зауставите цртање.</string>
+
+    <!-- 74 independently reviewed missing P0 values; bounded static scope. -->
+    <string name="formats22_animation_message">"Број кадрова у овој слици формата %1$s: %2$s. AN Paint уређује статичне слике и не чува анимацију."</string>
+    <string name="formats22_animation_poster">"Ова PNG слика има засебну подразумевану слику. Она ће бити увезена уместо кадрова анимације. Чувањем се добија статична слика."</string>
+    <string name="formats22_animation_still">"Биће увезен само први кадар. Чувањем се добија статична слика."</string>
+    <string name="formats22_animation_title">"Анимирана слика"</string>
+    <string name="formats22_animation_unknown">"Ова слика формата %1$s је превише сложена да би се потврдило да ли садржи више кадрова. AN Paint ће отворити само статичну слику и неће сачувати никакву анимацију."</string>
+    <string name="formats22_ascii_description">"Записује обичан текст помоћу светлих и тамних знакова. Прикажите га фонтом у којем су сви знакови исте ширине. То је визуелни приказ; не може се поново отворити као изворна слика."</string>
+    <string name="formats22_open_still">"Отвори статичну слику"</string>
+    <string name="formats22_pdf_raster_hint">"PDF странице се приказују у резолуцији од 144 dpi. Текст и векторски објекти претварају се у пикселе."</string>
+    <string name="gallery_credit_could_not_save">"Податке о ауторима и изворима слика није могуће сачувати или вратити. Постојећи сачувани подаци су задржани. Покушајте поново."</string>
+    <string name="gallery_credit_too_large">"Због ових података о ауторима и изворима слика, количина података у цртежу била би превелика за враћање. Ваш претходни цртеж и подаци о ауторима и изворима слика су задржани."</string>
+    <string name="legacy_credits_unreadable">"Неке сачуване податке о ауторима и изворима слика није могуће прочитати. Њихове сачуване копије су задржане."</string>
+    <string name="save20_destination_error">"Одредишну датотеку није било могуће заменити готовом сликом."</string>
+    <string name="save20_encoding_budget">"Слика и бафери за кодирање премашују ограничење меморије за извоз."</string>
+    <string name="save20_gif_description">"Статична слика са највише 256 боја. Дидеринг ублажава прелазе између боја. Анимиране GIF слике отварају се као први кадар анимације."</string>
+    <string name="save20_invalid_name">"Унесите назив датотеке без косих црта и контролних знакова."</string>
+    <string name="save20_lossy_quality_description">"Виши квалитет чува више детаља и обично ствара већу датотеку."</string>
+    <string name="save20_unsupported_image_colour">"Ова слика користи профил боја који AN Paint још не може да конвертује. Пре увоза је претворите у PNG слику са профилом sRGB у уређивачу који подржава управљање бојама."</string>
+    <string name="ui_a_separate_recovery_copy_has_been_kept_use">"%1$s Засебна копија за опоравак је сачувана. Користите „Датотека &gt; Извези копију за опоравак…“ да сачувате њену ZIP архиву. Издвојите canvas.png из ње и отворите ту слику да бисте по потреби користили уобичајене опције за промену величине."</string>
+    <string name="ui_an_assembly_source_image_is_missing">"Недостаје једна изворна слика за композицију."</string>
+    <string name="ui_assembly_saved">"Композиција је сачувана"</string>
+    <string name="ui_assembly_source_memory_floor">"Процењује се да је за ову композицију потребно више радне меморије него што тренутно ограничење дозвољава, чак и при најмањој величини излазне слике. Само смањење димензија композиције није довољно при тренутним ограничењима. Затворите друге документе или припремите мању изворну слику пре него што покушате поново. Ваша композиција је непромењена."</string>
+    <string name="ui_autosave_failed_use_save">"Аутоматско чување није успело · користите „Сачувај“"</string>
+    <string name="ui_autosave_image_encoding_failed">"Кодирање слике за аутоматско чување није успело."</string>
+    <string name="ui_autosave_is_paused_to_protect_that_draft_use">"%1$s Аутоматско чување је паузирано ради заштите те радне верзије. Да бисте је задржали, користите „Датотека → Извези копију за опоравак…“. Да бисте сачували тренутни рад, користите „Датотека → Сачувај као…“ и у пољу „Формат датотеке“ изаберите PNG / JPEG."</string>
+    <string name="ui_autosave_metadata_is_missing">"Недостају метаподаци аутоматски сачуване радне верзије."</string>
+    <string name="ui_autosave_paused_use_save">"Аутоматско чување је паузирано · користите „Сачувај“"</string>
+    <string name="ui_autosave_pixels_are_missing">"Недостају пиксели аутоматски сачуване радне верзије."</string>
+    <string name="ui_autosave_pixels_could_not_be_read">"Није могуће прочитати пикселе аутоматски сачуване радне верзије."</string>
+    <string name="ui_autosave_selection_encoding_failed">"Кодирање избора за аутоматско чување није успело."</string>
+    <string name="ui_cannot_create_the_undo_cache_free_some_device">"Није могуће направити кеш за опозив. Ослободите простор за складиштење на уређају и покушајте поново."</string>
+    <string name="ui_clear_all">"Очисти све"</string>
+    <string name="ui_could_not_export_the_recovery_copy">"Извоз копије за опоравак није успео"</string>
+    <string name="ui_could_not_open_image">"Отварање слике није успело"</string>
+    <string name="ui_could_not_save_image">"Чување слике није успело"</string>
+    <string name="ui_could_not_save_the_assembly">"Чување композиције није успело: %1$s"</string>
+    <string name="ui_could_not_store_the_assembly">"Складиштење композиције није успело."</string>
+    <string name="ui_d_d_pixels_2f_mp_exceeds_the_current">"Слика димензија %1$d × %2$d пиксела (%3$.2f MP) премашује тренутно ограничење за безбедно уређивање од %4$.2f MP. AN Paint држи целу слику у меморији и резервише простор за трансформације и изборе. Ово ограничење зависи од расположиве меморије. Операција је заустављена пре доделе меморије за превелику битмапу. Величина није аутоматски промењена."</string>
+    <string name="ui_draft_not_saved_yet">"Радна верзија још није сачувана"</string>
+    <string name="ui_draft_restored">"Радна верзија је враћена"</string>
+    <string name="ui_draft_saved">"Радна верзија је сачувана"</string>
+    <string name="ui_export_did_not_save23">"Извезена датотека је направљена. Пре него што наставите, користите „Сачувај“ или „Сачувај као…“ да сачувате тренутну слику."</string>
+    <string name="ui_export_explanation23">"Извезите икону, Base64 текст или ASCII цртеж. Извоз не мења тренутну слику нити њено одредиште за опцију „Сачувај“."</string>
+    <string name="ui_export_recovery_copy_144b8a">"Извези копију за опоравак"</string>
+    <string name="ui_higher_quality_usually_makes_a_larger_file_lossless">"Виши квалитет обично ствара већу датотеку. Компресија без губитака (Lossless) чува сваку вредност боје."</string>
+    <string name="ui_history_unavailable34" formatted="false">"Платно је враћено, али његову историју опозива није могуће прочитати. Изворна радна верзија је сачувана као копија за опоравак."</string>
+    <string name="ui_invalid_autosave_metadata">"Метаподаци аутоматски сачуване радне верзије нису исправни."</string>
+    <string name="ui_keeps_pixels_at_the_top_left_smaller_canvas">"Задржава пикселе у горњем левом углу. Мање димензије платна одбацују пикселе изван десне и доње ивице; опција „Опозови“ их враћа."</string>
+    <string name="ui_not_enough_memory_for_this_operation_the_assembly">"Нема довољно меморије за ову операцију. Изворне датотеке композиције су задржане."</string>
+    <string name="ui_not_enough_memory_to_save_in_this_format">"Нема довољно меморије за чување у овом формату. Покушајте са PNG форматом"</string>
+    <string name="ui_png_encoding_failed">"PNG кодирање није успело."</string>
+    <string name="ui_previous_draft_kept_for_recovery">"Претходна радна верзија је задржана за опоравак"</string>
+    <string name="ui_recovered_image">"Опорављена слика"</string>
+    <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">"Копија за опоравак је извезена. Издвојите canvas.png из ZIP архиве и отворите га помоћу „Датотека &gt; Отвори слику…“. ZIP архива садржи и подешавања радне верзије и плутајући избор, ако постоји."</string>
+    <string name="ui_resize_large_image">"Променити величину велике слике?"</string>
+    <string name="ui_sampled_resize_memory_explanation">"Процене обухватају тренутно платно и садржај оставе, декодирање у смањеној резолуцији и бафере за уређивање. Стварна потрошња меморије варира. Мања копија губи детаље. Изворна датотека остаје непромењена."</string>
+    <string name="ui_save_and_share_41edb4">"Сачувај и подели"</string>
+    <string name="ui_save_explanation23">"Изаберите формат слике и подешавања компресије. Опција „Сачувај“ ће поново користити овај назив датотеке, локацију, формат и подешавања."</string>
+    <string name="ui_save_png">"Сачувај PNG"</string>
+    <string name="ui_saved">"Сачувано: %1$s"</string>
+    <string name="ui_the_draft_is_saving_try_again_shortly">"Чување радне верзије је у току. Покушајте поново ускоро."</string>
+    <string name="ui_the_encoder_did_not_finish">"Кодирање није довршено."</string>
+    <string name="ui_the_image_was_saved_but_android_could_not">"Слика је сачувана, али Android није могао да покрене дељење: %1$s"</string>
+    <string name="ui_the_previous_draft_could_not_be_moved_to">"Претходну радну верзију није могуће преместити у копију за опоравак."</string>
+    <string name="ui_the_previous_draft_could_not_be_preserved_separately">"Претходну радну верзију није могуће сачувати засебно."</string>
+    <string name="ui_the_previous_draft_could_not_be_restored">"Претходну радну верзију није могуће вратити."</string>
+    <string name="ui_the_previous_draft_needs_more_memory_to_reopen">"За поновно отварање претходне радне верзије потребно је више меморије."</string>
+    <string name="ui_the_saved_assembly_could_not_be_opened">"Сачувану композицију није могуће отворити: %1$s"</string>
+    <string name="ui_the_selected_location_is_not_writable">"Није могуће уписивати на изабрану локацију."</string>
+    <string name="ui_the_trim_would_remove_the_entire_image">"Овим обрезивањем би се уклонила цела слика."</string>
+    <string name="ui_the_undo_cache_is_damaged">"Кеш за опозив је оштећен."</string>
+    <string name="ui_there_is_not_enough_memory_for_this_operation">"Нема довољно меморије за ову операцију у изворној резолуцији. Величина није аутоматски промењена."</string>
+    <string name="ui_this_location_is_not_writable">"Није могуће уписивати на ову локацију."</string>
+    <string name="ui_unexpected_data_in_the_undo_cache">"Неочекивани подаци у кешу за опозив."</string>
+    <string name="ui_your_current_image_has_unsaved_changes">"Ваша тренутна слика има несачуване измене."</string>
 </resources>

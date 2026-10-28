@@ -95,7 +95,55 @@ class ColourViewportContractTest(unittest.TestCase):
             'hungarianColourCaptionsFitPortraitAndLandscape',
             'largeEnglishColourCaptionsAndPreviewRemainReachable',
             'largeHungarianColourCaptionsAndPreviewRemainReachable',
+            'largeEnglishColourImeBackAndFooterLifecycle',
+            'largeHungarianColourImeBackAndFooterLifecycle',
         ])
+
+    def test_large_ime_lifecycle_keeps_native_oracles_exact_state_and_six_captures(self):
+        source = INSTALLED.read_text()
+        body = source.split('private fun largeColourImeLifecycle(', 1)[1].split('private fun ancestors(', 1)[0]
+        for required in ('fixture(tag,2f)', 'orient(true,scenario)', 'AdvancedColourDialog(',
+                         'assertEquals(640,activity.window.decorView.width)',
+                         'assertEquals(320,activity.window.decorView.height)',
+                         'field.setText("#13579B");field.setSelection(2,5)',
+                         'val focused=field.requestFocus()', '"colour-2x-synthetic-ime-activation"',
+                         '"focus_request_returned",focused', '"field_focused",field.hasFocus()',
+                         '"ime_request_returned",requested', '"initial_native_field_activation","not-tested"',
+                         '"initial_full_hex_visibility","not-accepted"',
+                         'awaitNativeImeWindow(true,root,field,"colour-2x-ime-open")',
+                         'awaitNativeImeWindow(false,root,field,"colour-2x-ime-hidden")',
+                         'nativeBack("hide 2x colour IME"', '!nativeImePresent()',
+                         'dialog===firstDialog && picker===firstPicker', 'dialog.window!!.decorView===root',
+                         'root.findViewWithTag<View>("colour_hex")===field', 'field.selectionStart==2 && field.selectionEnd==5',
+                         'nativeBack("close 2x reopened colour"', 'tap("2x Cancel",cancel)',
+                         'tap("2x invalid rejected",finalUse)', 'tap("2x valid committed",finalUse)',
+                         'assertNotNull(finalField.error)', 'commits==1 && closes==3',
+                         'preview==android.graphics.Color.RED', '"simultaneous_ime_field_footer_fit","not-accepted"'):
+            self.assertIn(required, body)
+        self.assertNotIn('rootWindowInsets', body)
+        self.assertNotIn('tap("2x hex field"', body)
+        self.assertLess(body.index('evidence.capture("colour-2x-initial")'), body.index('field.requestFocus()'))
+        self.assertLess(body.index('"colour-2x-synthetic-ime-activation"'), body.index('awaitNativeImeWindow(true'))
+        self.assertEqual(re.findall(r'evidence.capture\("([^"]+)"\)', body), [
+            'colour-2x-initial', 'colour-2x-cancel-reached', 'colour-2x-reopened', 'colour-2x-use-reached',
+            'colour-2x-failed-before-dismiss'])
+        helper = source.split('private fun largeLifecycleCaption(', 1)[1].split('private fun nativeImePresent(', 1)[0]
+        for required in ('intrinsic(view)', 'node.text?.toString()', 'getLineStart(line)', 'getLineEnd(line)',
+                         'reveal(view) {lineBounds()}', 'ancestors(view)', 'contains(target)', '"parent_id"'):
+            self.assertIn(required, helper)
+        for required in ('transformation?.getTransformation(view.text,view)', 'view.resources.getString(sourceResource)',
+                         '"text",rawText', '"raw_text_length",rawText.length', '"expected_text",expectedText',
+                         '"transformation_method",transformation?.javaClass?.name', '"transformed_text",transformed',
+                         '"caption_length",transformed.length', '"Exact source caption retained",expectedText,rawText',
+                         '"Actual native footer action id"', 'android.R.id.button2', 'android.R.id.button1',
+                         '"android.text.method.AllCapsTransformationMethod"',
+                         '"Complete transformed layout caption",transformed,view.layout.text.toString()',
+                         '"Complete accessible caption",transformed,node.text?.toString()'):
+            self.assertIn(required, helper)
+        for forbidden in ('uppercase(', 'lowercase(', 'ignoreCase', 'setAllCaps(', 'transformationMethod='):
+            self.assertNotIn(forbidden, helper)
+        for forbidden in ('performClick(', 'requestRectangleOnScreen(', 'setTextSize(', 'setSoftInputMode(', 'imeOptions='):
+            self.assertNotIn(forbidden, body + helper)
 
     def test_validation_and_callbacks_are_not_replaced_by_layout_changes(self):
         source = PRODUCTION.read_text()
@@ -120,6 +168,30 @@ class ColourViewportContractTest(unittest.TestCase):
         for required in ('largePreviewRailReflowsWithinTheInstalledShortViewport',
                          'editor.width>=controls.width', 'editor.height>0',
                          'caption(view);complete(view)', 'controls.isSmoothScrollingEnabled=false'):
+            self.assertIn(required, model)
+
+    def test_large_compact_tabs_share_editor_scroll_without_changing_normal_layout(self):
+        source = PRODUCTION.read_text()
+        for required in ('val scrollTabs=columns && activity.resources.configuration.fontScale>1f',
+                         'if(scrollTabs != (tabs.parent===body))',
+                         '(tabs.parent as? ViewGroup)?.removeView(tabs)',
+                         '(if(scrollTabs) body else editorPanel).addView(tabs,0,',
+                         'LinearLayout.LayoutParams(-1,-2)',
+                         'minHeight=dp(44);minimumHeight=dp(44)',
+                         'minHeight=dp(48);minimumHeight=dp(48)'):
+            self.assertIn(required, source)
+        self.assertLess(source.index('val scrollTabs=columns'),
+                        source.index('super.onMeasure(widthMeasureSpec,heightMeasureSpec)'))
+        model = MODEL.read_text()
+        for required in ('largeShortEditorScrollsTabsAndEveryFullCaptionLineWithoutShrinking',
+                         'modestlyEnlargedEditorRetainsCaptionsAndIdentityAcrossRepeatedReparenting',
+                         '@Config(fontScale=1.3f,qualifiers="w640dp-h320dp-land-mdpi")',
+                         'repeat(3)',
+                         'val panelHeight=if(tag=="en-US") 109 else 104',
+                         'assertSame(body,tabs.parent)', 'assertSame(editor.parent,tabs.parent)',
+                         'visible.contains(local)', 'editor.offsetDescendantRectToMyCoords(view,target)',
+                         'assertEquals(2,field.selectionStart);assertEquals(5,field.selectionEnd)',
+                         'assertSame(field,root.findViewWithTag<EditText>("colour_hex"))'):
             self.assertIn(required, model)
 
 

@@ -157,11 +157,13 @@ class VerticalLocaleDeviceTest {
         val started=SystemClock.uptimeMillis()
         try {
             chooseLanguage(tag)
+            val chosenActivity=onMain {activity}
             var overflowToolSwipes=0
             for(landscape in listOf(false,true)) {
                 val orientation=if(landscape) "landscape" else "portrait"
                 evidenceName="$tag-$orientation"
                 orient(landscape)
+                onMain {assertSame("Rotation retains the selected editor Activity",chosenActivity,activity)}
                 for(tab in listOf("View","Draw","File","Edit","Color")) {
                     selectTab(tab)
                     assertCanvas(tag)
@@ -384,6 +386,11 @@ class VerticalLocaleDeviceTest {
         assertEquals(resourceTag(tag),activity.resources.configuration.locales[0].toLanguageTag())
         assertEquals(tag,activity.getSharedPreferences("app-language",0).getString("language-tag",null))
         assertEquals(tag,java.util.Locale.getDefault().toLanguageTag())
+        val applicationResources=activity.applicationContext.resources
+        assertEquals("Application exposes the current public locale to Android",tag,
+            applicationResources.configuration.locales[0].toLanguageTag())
+        assertSame("Application resource and asset routes keep one owner",
+            activity.applicationContext.assets,applicationResources.assets)
         if(Build.VERSION.SDK_INT>=33) assertEquals(tag,
             activity.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
         if(tag=="qaa-Zsye-XV") {

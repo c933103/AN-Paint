@@ -75,11 +75,9 @@ class AcceptedCreditRestartSeedTest {
         }
         f.openGallery()
         val gallery=f.resumed(MediaGalleryActivity::class.java)
-        f.await("stopped editor's original autosave") {
-            ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(editor)==Stage.STOPPED && !editor.busy
-        }
+        val baseline=f.stoppedAutosaveBaseline()
         f.assertOriginalArchive(source)
-        val autosaveDigest=f.digest(File(f.context.filesDir,"classic-autosave.zip"))
+        val autosaveDigest=f.digest(baseline.bytes)
         var token=""
         f.onMain {
             token=gallery.intent.getStringExtra("image_credit_session") ?: error("Production Gallery session missing")
@@ -96,39 +94,55 @@ class AcceptedCreditRestartSeedTest {
         // Real production Save listener performs validation, immutable retention,
         // session write and RESULT_OK. No accepted-archive API is called by tests.
         f.tap("gallery_credit_save")
-        val sessionFile=File(f.context.filesDir,token)
-        val session=f.json(sessionFile)
-        assertTrue("Save was durably accepted",session.getBoolean("accepted"))
-        assertEquals(1L,session.getLong("revision"))
-        assertTrue("Parent has not adopted this revision",session.getLong("adopted_revision")<session.getLong("revision"))
-        f.assertCreditJson(session,source,expected)
-        val snapshot=session.getString("accepted_snapshot")
-        assertTrue(snapshot.matches(Regex("[0-9a-f]{64}")))
-        val snapshotFile=File(f.context.filesDir,"retained-image-credits/$snapshot.json")
-        f.assertCreditJson(f.json(snapshotFile),source,expected)
-        f.onMain {
-            assertSame(gallery,ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED).single())
-            assertEquals(Stage.STOPPED,ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(editor))
-            assertFalse(gallery.isFinishing)
-            assertTrue("Save leaves the actual editor dialog open",f.view("gallery_credit_save").isShown)
-            assertEquals(expected,(f.view("gallery_credit_text") as EditText).text.toString())
-            f.assertOriginalDrawing(editor,source)
+        try {
+            val sessionFile=File(f.context.filesDir,token)
+            val session=f.json(sessionFile)
+            assertTrue("Save was durably accepted",session.getBoolean("accepted"))
+            assertEquals(1L,session.getLong("revision"))
+            assertTrue("Parent has not adopted this revision",session.getLong("adopted_revision")<session.getLong("revision"))
+            f.assertCreditJson(session,source,expected)
+            val snapshot=session.getString("accepted_snapshot")
+            assertTrue(snapshot.matches(Regex("[0-9a-f]{64}")))
+            val snapshotFile=File(f.context.filesDir,"retained-image-credits/$snapshot.json")
+            f.assertCreditJson(f.json(snapshotFile),source,expected)
+            f.onMain {
+                assertSame(gallery,ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED).single())
+                assertEquals(Stage.STOPPED,ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(editor))
+                assertFalse(gallery.isFinishing)
+                assertTrue("Save leaves the actual editor dialog open",f.view("gallery_credit_save").isShown)
+                assertEquals(expected,(f.view("gallery_credit_text") as EditText).text.toString())
+                f.assertOriginalDrawing(editor,source)
+            }
+            f.assertOriginalArchive(source)
+            val afterBytes=File(f.context.filesDir,"classic-autosave.zip").readBytes()
+            var afterState: AcceptedCreditRestartFixture.AutosaveObservation?=null
+            f.onMain {afterState=f.autosaveObservation()}
+            assertEquals("Acceptance must not rewrite the stopped parent's autosave",autosaveDigest,f.digest(afterBytes))
+            assertTrue("Acceptance must not queue another parent autosave",checkNotNull(afterState).quiescent)
+            assertEquals("Acceptance must not complete another parent autosave",baseline.state.revision,checkNotNull(afterState).revision)
+            f.writeMarker(JSONObject().put("fixture",fixture).put("source",source)
+                .put("pid",Process.myPid()).put("process_start",Process.getStartElapsedRealtime())
+                .put("accepted_sha256",f.digest(expected.toByteArray(Charsets.UTF_8)))
+                .put("autosave_sha256",autosaveDigest).put("session",token)
+                .put("session_sha256",f.digest(sessionFile)).put("snapshot",snapshot)
+                .put("snapshot_sha256",f.digest(snapshotFile)))
+        } catch (failure: Throwable) {
+            // Preserve the original failed assertion, including credit/pixel failures,
+            // while exporting the same synthetic baseline and current archive.
+            runCatching {
+                val bytes=File(f.context.filesDir,"classic-autosave.zip").readBytes()
+                var state: AcceptedCreditRestartFixture.AutosaveObservation?=null
+                f.onMain {state=f.autosaveObservation()}
+                f.reportAutosaveMismatch(baseline,bytes,checkNotNull(state))
+            }.exceptionOrNull()?.let {failure.addSuppressed(it)}
+            throw failure
         }
-        f.assertOriginalArchive(source)
-        assertEquals("Acceptance must not rewrite the stopped parent's autosave",autosaveDigest,
-            f.digest(File(f.context.filesDir,"classic-autosave.zip")))
-        f.writeMarker(JSONObject().put("fixture",fixture).put("source",source)
-            .put("pid",Process.myPid()).put("process_start",Process.getStartElapsedRealtime())
-            .put("accepted_sha256",f.digest(expected.toByteArray(Charsets.UTF_8)))
-            .put("autosave_sha256",autosaveDigest).put("session",token)
-            .put("session_sha256",f.digest(sessionFile)).put("snapshot",snapshot)
-            .put("snapshot_sha256",f.digest(snapshotFile)))
         // Keep the scenario strongly reachable through completion, with no close.
         assertNotNull(scenario)
     }
 }
 
-/** Shared test-only helpers; all production calls below are public APIs. */
+/** Test-only helpers; private autosave state is observed without mutation. */
 @android.annotation.TargetApi(35)
 internal object AcceptedCreditRestartFixture {
     const val ORIGINAL_TEXT="Original source credit.\n作者: original only.\n  Preserve whitespace  "
@@ -137,6 +151,89 @@ internal object AcceptedCreditRestartFixture {
     private val device get()=UiDevice.getInstance(instrumentation)
     val markerFile get()=File(context.filesDir,"accepted-credit-restart-test.json")
     lateinit var editor: ClassicPaintActivity
+
+    data class AutosaveObservation(val stopped: Boolean,val busy: Boolean,val autosaving: Boolean,
+        val generation: Long,val savedGeneration: Long,val failedGeneration: Long,
+        val ready: Boolean,val blocked: Boolean,val callbackPending: Boolean,
+        val pendingWrites: Int,val ioLocked: Boolean,val revision: Long,val error: String?) {
+        val quiescent get()=stopped && !busy && !autosaving && ready && !blocked &&
+            generation==savedGeneration && generation!=failedGeneration && !callbackPending &&
+            pendingWrites==0 && !ioLocked && error==null
+        fun json()=JSONObject().put("stopped",stopped).put("busy",busy).put("autosaving",autosaving)
+            .put("generation",generation).put("saved_generation",savedGeneration).put("failed_generation",failedGeneration)
+            .put("ready",ready).put("blocked",blocked).put("callback_pending",callbackPending)
+            .put("pending_writes",pendingWrites).put("io_locked",ioLocked).put("revision",revision)
+            .put("error",error ?: JSONObject.NULL).put("quiescent",quiescent)
+    }
+    data class AutosaveBaseline(val bytes: ByteArray,val state: AutosaveObservation)
+
+    /** Observe only: never mutate production counters or block main on the I/O lock. */
+    fun autosaveObservation(): AutosaveObservation {
+        check(android.os.Looper.myLooper()==android.os.Looper.getMainLooper())
+        fun field(owner: Any,name: String): Any?=owner.javaClass.getDeclaredField(name).apply {isAccessible=true}.get(owner)
+        fun flag(name: String)=field(editor,name) as Boolean
+        fun counter(name: String)=field(editor,name) as Long
+        val store=checkNotNull(field(editor,"autosave"));val state=checkNotNull(field(store,"state"))
+        val pendingLock=checkNotNull(field(state,"pendingLock"))
+        val pending: Int;val revision: Long
+        synchronized(pendingLock) {
+            pending=field(state,"pendingWrites") as Int
+            revision=(field(state,"revision") as java.util.concurrent.atomic.AtomicLong).get()
+        }
+        // isLocked is an observation, not a lock acquisition or a transaction claim.
+        val locked=(field(state,"ioLock") as java.util.concurrent.locks.ReentrantLock).isLocked
+        val callback=(field(editor,"autosaveHandler") as android.os.Handler)
+            .hasCallbacks(field(editor,"saveDraft") as Runnable)
+        return AutosaveObservation(
+            ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(editor)==Stage.STOPPED,
+            editor.busy,flag("autosaving"),counter("draftGeneration"),counter("savedDraftGeneration"),
+            counter("failedDraftGeneration"),flag("autosaveReady"),flag("autosaveBlocked"),callback,
+            pending,locked,revision,editor.lastAutosaveError)
+    }
+
+    fun stoppedAutosaveBaseline(): AutosaveBaseline {
+        await("stopped editor's complete autosave generation with no queued writer") {autosaveObservation().quiescent}
+        instrumentation.waitForIdleSync()
+        var result: AutosaveBaseline?=null
+        onMain {
+            val before=autosaveObservation()
+            assertTrue("Autosave no longer quiescent before baseline: ${before.json()}",before.quiescent)
+            // This deliberately tiny synthetic document is captured in the same main task.
+            // No pendingLock or ioLock is held during disk I/O; revision/state is rechecked.
+            val bytes=File(context.filesDir,"classic-autosave.zip").readBytes()
+            val after=autosaveObservation()
+            assertTrue("Autosave no longer quiescent after baseline: ${after.json()}",after.quiescent)
+            assertEquals("Autosave changed while baseline bytes were captured",before,after)
+            result=AutosaveBaseline(bytes,after)
+        }
+        return checkNotNull(result)
+    }
+
+    /** Only this test's synthetic 37x29 document is exported, and only on failure. */
+    fun reportAutosaveMismatch(before: AutosaveBaseline,after: ByteArray,state: AutosaveObservation) {
+        fun archive(bytes: ByteArray): JSONObject {
+            val result=JSONObject().put("bytes",bytes.size).put("sha256",digest(bytes))
+            if(bytes.size<=128*1024) result.put("base64",android.util.Base64.encodeToString(bytes,android.util.Base64.NO_WRAP))
+            else result.put("archive_export_omitted","Synthetic archive exceeded 128 KiB diagnostic transport bound")
+            val entries=org.json.JSONArray()
+            runCatching { java.util.zip.ZipInputStream(bytes.inputStream()).use {zip ->
+                while(true) {
+                    val entry=zip.nextEntry ?: break
+                    val hash=MessageDigest.getInstance("SHA-256");val buffer=ByteArray(8192);var count=0L
+                    while(true) {val n=zip.read(buffer);if(n<0)break;hash.update(buffer,0,n);count+=n}
+                    entries.put(JSONObject().put("name",entry.name).put("time",entry.time)
+                        .put("method",entry.method).put("bytes",count)
+                        .put("sha256",hash.digest().joinToString("") {"%02x".format(it.toInt() and 255)}))
+                }
+            }
+            }.exceptionOrNull()?.let {result.put("member_decode_error",it.toString())}
+            return result.put("members",entries)
+        }
+        val report=JSONObject().put("schema",1).put("scope","synthetic-test-only; no user document")
+            .put("before_state",before.state.json()).put("after_state",state.json())
+            .put("before",archive(before.bytes)).put("after",archive(after))
+        instrumentation.addResults(android.os.Bundle().apply {putString("anpaint_autosave_mismatch",report.toString())})
+    }
 
     fun acceptedText(fixture: String)=buildString {
         append("  Accepted credit for $fixture\n")

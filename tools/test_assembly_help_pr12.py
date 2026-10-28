@@ -50,12 +50,35 @@ def catalogue(folder):
         raise AssertionError(f'{folder}: expected one canonical assembly-help key')
     values = {node.get('name'): ''.join(node.itertext()) for node in nodes if node.tag == 'string'}
     paragraphs = values[KEY].split(r'\n\n')
-    if len(paragraphs) != 7:
-        raise AssertionError(f'{folder}: expected seven assembly-help paragraphs')
+    expected_count = 8 if folder in ('values', 'values-vi', 'values-b+vi+Hani') else 7
+    if len(paragraphs) != expected_count:
+        raise AssertionError(f'{folder}: expected {expected_count} assembly-help paragraphs')
     return values, paragraphs
 
 
 class AssemblyHelpPr12Tests(unittest.TestCase):
+    def test_nom_reviewed_successor_preserves_scope_coordinates_and_empty_space(self):
+        # The 25-Oct successor preserves the original PR12 spans below and adds
+        # current numeric-position semantics without changing font assets.
+        values, paragraphs = catalogue('values-b+vi+Hani')
+        required = {
+            2: ('欺 𢯖 蹺 𧣲, 影 頭先 扒 頭 在 㭲 座 度.',
+                '各 影 㐌 𮇜 𣎏 体 移轉 欺 影 媄 𣖾 割.',
+                '空 朱 法 各 影 重 𬨠 僥 欺 𢯖 蹺 𧣲.'),
+            3: ('X 吧 Y 𪜀 數 元 併 蹺 單位 點影, 扒 頭 自 0.',
+                '各 影 恪 𡨺 原 位置 現在. 於 低 朱 法 各 影 重 𬨠 僥.'),
+            5: ('各 影 恪 吻 得 撻; 各 影 㐌 𮇜 𣎏 体 移轉 抵 垃 曠 𥧪.',
+                '捁 漨 𥧪 抵 移轉 椌 𥆾.'),
+        }
+        for paragraph, clauses in required.items():
+            for clause in clauses:
+                with self.subTest(paragraph=paragraph, clause=clause):
+                    self.assertEqual(1, paragraphs[paragraph].count(clause))
+        for paragraph, key in ((3, 'ui_assembly_exact_position'),
+                               (4, 'ui_same_width'), (4, 'ui_same_height'),
+                               (5, 'ui_remove')):
+            self.assertIn('「' + values[key] + '」', paragraphs[paragraph])
+
     def test_scope_is_two_registered_canonical_vietnamese_catalogues(self):
         self.assertEqual({'vi', 'vi-Hani'}, set(CASES))
         offered = {node.text for node in ET.parse(RES / 'values/app_language_tags.xml').findall('.//item')}
@@ -67,8 +90,8 @@ class AssemblyHelpPr12Tests(unittest.TestCase):
     def test_default_contract_still_requires_both_repairs(self):
         _, paragraphs = catalogue('values')
         self.assertIn('image dimensions after cropping and any Same width or Same height adjustment', paragraphs[0])
-        self.assertIn('choose a smaller output copy if offered', paragraphs[5])
-        self.assertIn('If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.', paragraphs[5])
+        self.assertIn('choose a smaller output copy if offered', paragraphs[6])
+        self.assertIn('If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.', paragraphs[6])
 
     def test_live_tray_uses_crop_and_normalization_with_the_named_controls(self):
         activity = (CLASSIC / 'AssemblyActivity.kt').read_text()
@@ -109,7 +132,7 @@ class AssemblyHelpPr12Tests(unittest.TestCase):
         _, paragraphs = catalogue(CASES['vi-Hani']['folder'])
         # Check actual resource text, including punctuation and supplementary Han,
         # rather than only the expected clauses or Android's fallback font.
-        required = {ord(c) for c in paragraphs[0] + paragraphs[5] if c not in '\n\r\t'}
+        required = {ord(c) for c in paragraphs[0] + paragraphs[6] if c not in '\n\r\t'}
         self.assertTrue(any(cp > 0xffff for cp in required))
         self.assertEqual([], [f'U+{cp:04X}' for cp in sorted(required - mapped_codepoints(font))])
 
@@ -132,8 +155,9 @@ def output_test(tag, obligation):
     def test(self):
         case = CASES[tag]
         _, paragraphs = catalogue(case['folder'])
-        self.assertIn(case[obligation], paragraphs[5], tag + ': missing ' + obligation)
-        self.assertNotIn(case['stale_choice'], paragraphs[5])
+        output_index = 6
+        self.assertIn(case[obligation], paragraphs[output_index], tag + ': missing ' + obligation)
+        self.assertNotIn(case['stale_choice'], paragraphs[output_index])
     return test
 
 

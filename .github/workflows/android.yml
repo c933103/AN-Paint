@@ -31,8 +31,9 @@ jobs:
   checks:
     name: Regression tests and lint
     runs-on: ubuntu-22.04
-    # Aggregate stop; individual phase maxima are not a guaranteed combined runtime.
-    timeout-minutes: 22
+    # 73 minutes of explicit phase caps plus 6 for checkout/cache/evidence overhead.
+    # This remains a hard cancellation policy, not a guaranteed runtime bound.
+    timeout-minutes: 79
     env:
       CCACHE_MAXSIZE: 2G
       CCACHE_COMPILERCHECK: content
@@ -78,11 +79,11 @@ jobs:
         run: bash tools/ci_prepare_build.sh
       - name: Run Python contracts
         if: ${{ !cancelled() }}
-        timeout-minutes: 4
+        timeout-minutes: 31
         run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
       - name: Run JVM regression tests
         if: ${{ !cancelled() }}
-        timeout-minutes: 12
+        timeout-minutes: 20
         run: bash tools/ci_run_timed.sh jvm ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest
       - name: Prepare lint native dependencies
         if: ${{ !cancelled() }}
@@ -359,6 +360,9 @@ jobs:
           path: build/reports/android-api-${{ matrix.api }}/
 
   device-union:
+    permissions:
+      contents: read
+      actions: read
     name: Emulator API ${{ matrix.api }}
     needs: [device, position]
     if: ${{ always() && (inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) }}
@@ -377,14 +381,21 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: emulator-core-api-${{ matrix.api }}-${{ github.sha }}
-          path: build/reports/android-api-${{ matrix.api }}
-      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: emulator-position-api-${{ matrix.api }}-${{ github.sha }}
-          path: build/reports/position-api-${{ matrix.api }}
+      - name: Select artifacts from successful job intervals
+        id: artifacts
+        timeout-minutes: 1
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/select_device_artifacts.py --sdk ${{ matrix.api }} --receipt build/reports/android-api-${{ matrix.api }}/artifact-selection.json
+      - name: Download and verify the selected artifact IDs
+        timeout-minutes: 4
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          python3 tools/download_selected_artifacts.py
+          --receipt build/reports/android-api-${{ matrix.api }}/artifact-selection.json
+          --core-root build/reports/android-api-${{ matrix.api }}
+          --position-root build/reports/position-api-${{ matrix.api }}
       - name: Require exact disjoint app union and matching prebuilt identity
         timeout-minutes: 1
         run: python3 tools/compose_device_reports.py compose --sdk ${{ matrix.api }} --root build/reports/android-api-${{ matrix.api }} --position-root build/reports/position-api-${{ matrix.api }}

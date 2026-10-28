@@ -22,12 +22,29 @@ TAGS = {'default', 'es-ES'}
 MEMORY = 'ui_d_d_pixels_2f_mp_exceeds_the_current'
 CANVAS = 'ui_drawing_canvas_pinch_and_move_two_fingers_to'
 FIXTURE = 'spanish_editor_current_wording.json'
+CURRENT = 'portuguese_spanish_priority_wording.json'
+
+
+def reviewed_memory_fixture(previous, current):
+    """One exact reviewed successor; keep the historical fixture immutable."""
+    data = deepcopy(previous)
+    row = current['locales']['es-ES']['values'][MEMORY]
+    values = data['values'][MEMORY]
+    constraints = data['constraints'][MEMORY]
+    if (values['default'] != row['source'] or values['es-ES'] != row['previous_target']
+            or constraints['attributes'] != row['previous_attributes']
+            or row['attributes'] != row['previous_attributes']
+            or row['target'] != row['previous_target'].replace('píxeles', 'px')
+            or row['previous_target'].count('píxeles') != 1):
+        raise ValueError('Spanish warning successor differs from its exact reviewed predecessor')
+    values['es-ES'] = row['target']
+    return data
 
 
 class SpanishEditorWordingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = require_wording_shape(fixture(FIXTURE), KEYS, TAGS)
+        cls.data = require_wording_shape(reviewed_memory_fixture(fixture(FIXTURE), fixture(CURRENT)), KEYS, TAGS)
         cls.xml = {
             'default': (catalogues.RES / 'values/strings.xml').read_text(encoding='utf-8'),
             'es-ES': (catalogues.RES / 'values-b+es+ES/strings.xml').read_text(encoding='utf-8'),
@@ -111,7 +128,7 @@ class SpanishEditorWordingTests(unittest.TestCase):
 
     def test_memory_warning_preserves_every_safety_clause(self):
         value = self.strings['es-ES'][MEMORY]
-        self.assertTrue(value.startswith('Una imagen de %1$d × %2$d píxeles (%3$.2f MP) supera '))
+        self.assertTrue(value.startswith('Una imagen de %1$d × %2$d px (%3$.2f MP) supera '))
         clauses = (
             'el límite seguro de edición actual de %4$.2f MP.',
             'AN Paint mantiene la imagen completa en memoria y reserva espacio para transformaciones y selecciones.',
@@ -121,6 +138,29 @@ class SpanishEditorWordingTests(unittest.TestCase):
         )
         for clause in clauses:
             self.assertIn(clause, value)
+
+    def test_memory_successor_rejects_source_value_attribute_and_unreviewed_target_drift(self):
+        previous, current = fixture(FIXTURE), fixture(CURRENT)
+        projected = reviewed_memory_fixture(previous, current)
+        for key in KEYS - {MEMORY}:
+            self.assertEqual(previous['values'][key], projected['values'][key])
+        self.assertEqual(previous['constraints'], projected['constraints'])
+        self.assertIn('píxeles', previous['values'][MEMORY]['es-ES'])
+        self.assertNotEqual(previous['values'][MEMORY]['es-ES'], projected['values'][MEMORY]['es-ES'])
+        for mutation in ('source', 'previous', 'attributes', 'target-attributes', 'target', 'second-word'):
+            old, new = deepcopy(previous), deepcopy(current)
+            row = new['locales']['es-ES']['values'][MEMORY]
+            if mutation == 'source': old['values'][MEMORY]['default'] += ' changed'
+            elif mutation == 'previous': old['values'][MEMORY]['es-ES'] += ' changed'
+            elif mutation == 'attributes': old['constraints'][MEMORY]['attributes']['formatted'] = 'false'
+            elif mutation == 'target-attributes': row['attributes']['formatted'] = 'false'
+            elif mutation == 'target': row['target'] += ' changed'
+            else:
+                old['values'][MEMORY]['es-ES'] += ' píxeles'
+                row['previous_target'] = old['values'][MEMORY]['es-ES']
+                row['target'] = row['previous_target'].replace('píxeles', 'px')
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                reviewed_memory_fixture(old, new)
 
     def test_feminine_and_masculine_tool_names_have_an_explicit_grammatical_head(self):
         strings = self.strings['es-ES']

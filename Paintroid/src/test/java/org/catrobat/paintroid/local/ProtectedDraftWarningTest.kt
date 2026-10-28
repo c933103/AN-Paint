@@ -9,9 +9,11 @@ import android.graphics.Color
 import android.os.Looper
 import android.util.AtomicFile
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import org.json.JSONObject
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.AutosaveStore
@@ -50,6 +52,12 @@ import java.util.concurrent.TimeUnit
 @LooperMode(LooperMode.Mode.PAUSED)
 class ProtectedDraftWarningTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
+    private val serbianFixture by lazy {
+        JSONObject(File("../tools/fixtures/current_localization/serbian_p0_wording.json").readText())
+    }
+    private val croatianBosnianFixture by lazy {
+        JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_p0_wording.json").readText())
+    }
     private val original="Unreadable previous draft that must not be replaced 作品".toByteArray(Charsets.UTF_8)
     private fun idle()=shadowOf(Looper.getMainLooper()).idle()
     private fun worker(activity: ClassicPaintActivity)=ReflectionHelpers.getField<ExecutorService>(activity,"worker")
@@ -66,6 +74,12 @@ class ProtectedDraftWarningTest {
     @Test fun koreanWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("ko-KR")
     @Test fun northKoreanWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("ko-KP")
     @Test fun mixedScriptKoreanWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("ko-Kore-KR")
+
+    @Test fun serbianCyrillicWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("sr-Cyrl")
+    @Test fun serbianLatinWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("sr-Latn")
+
+    @Test fun croatianWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("hr")
+    @Test fun bosnianWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes()=checkRoutes("bs")
 
     private fun checkRoutes(tag: String) {
         val previous=AppLanguage.selectedTag(context)
@@ -88,6 +102,26 @@ class ProtectedDraftWarningTest {
             val reason=activity.getString(R.string.ui_the_previous_draft_could_not_be_restored)
             val warning=shadowOf(notice).message.toString()
             assertEquals(activity.getString(R.string.ui_autosave_is_paused_to_protect_that_draft_use,reason),warning)
+            if (tag in listOf("sr-Cyrl", "sr-Latn")) {
+                val reviewed = serbianFixture.getJSONObject("values")
+                    .getJSONObject("ui_autosave_is_paused_to_protect_that_draft_use")
+                    .getString(tag).removeSurrounding("\"")
+                assertEquals(String.format(Locale.forLanguageTag(tag), reviewed, reason), warning)
+                assertEquals(Locale.forLanguageTag(tag).script, activity.resources.configuration.locales[0].script)
+                assertTrue(warning.contains(activity.getString(R.string.save20_file_format)))
+                if (tag == "sr-Cyrl") {
+                    assertTrue(warning.contains("Формат датотеке"))
+                    assertFalse("Obsolete image-name workaround must not return", warning.contains("Име слике"))
+                }
+            }
+            if (tag in listOf("hr", "bs")) {
+                val reviewed = croatianBosnianFixture.getJSONObject("values")
+                    .getJSONObject("ui_autosave_is_paused_to_protect_that_draft_use")
+                    .getString(tag).removeSurrounding("\"")
+                assertEquals(String.format(Locale.forLanguageTag(tag), reviewed, reason), warning)
+                assertEquals(tag, activity.resources.configuration.locales[0].language)
+                assertTrue(warning.contains("Format slike"))
+            }
             assertTrue("The triggering failure reason remains visible",warning.contains(reason))
             for(id in listOf(R.string.ui_menu_file,R.string.ui_export_recovery_copy,R.string.save20_title))
                 assertTrue("Warning must name the actual menu caption: ${activity.getString(id)}",warning.contains(activity.getString(id)))
@@ -164,6 +198,22 @@ class ProtectedDraftWarningTest {
         assertTrue(options.isShowing)
         assertEquals(activity.getString(R.string.save20_title),shadowOf(options).title.toString())
         assertNotNull(options.window!!.decorView.findViewWithTag<View>("export_format"))
+        val tag = AppLanguage.selectedTag(activity)
+        if (tag in listOf("sr-Cyrl", "sr-Latn", "hr", "bs")) {
+            val root = options.window!!.decorView
+            val format = root.findViewWithTag<Spinner>("export_format")
+            val filename = root.findViewWithTag<EditText>("export_filename")
+            val formatCaption = if (tag == "sr-Cyrl") "Формат датотеке" else "Format slike"
+            val filenameCaption = if (tag == "sr-Cyrl") "Назив датотеке" else "Naziv datoteke"
+            assertEquals(formatCaption, format.contentDescription.toString())
+            assertEquals(filenameCaption, filename.contentDescription.toString())
+            assertNotEquals(format.contentDescription, filename.contentDescription)
+            fun labels(view: View): List<String> =
+                (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
+                    (if (view is ViewGroup) (0 until view.childCount).flatMap { labels(view.getChildAt(it)) } else emptyList())
+            assertTrue(labels(root).contains(formatCaption))
+            assertTrue(labels(root).contains(filenameCaption))
+        }
         return options
     }
     private fun idlePastAutosave(activity: ClassicPaintActivity) {

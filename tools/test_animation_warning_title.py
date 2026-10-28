@@ -61,14 +61,14 @@ class AnimationWarningTitleSourceTest(unittest.TestCase):
                 self.assertNotRegex(values[key], r"%(?:\d+\$)?[a-zA-Z]", (folder.name, key))
         self.assertGreater(examined, 2)
 
-    def test_welsh_fixture_exercises_real_default_resource_fallback(self):
-        values = strings(RES / "values-b+cy")
+    def test_old_english_fixture_exercises_real_default_resource_fallback(self):
+        values = strings(RES / "values-b+ang")
         for key in ("formats22_open_still", "formats22_animation_title", "formats22_animation_unknown"):
             self.assertNotIn(key, values)
             self.assertIn(key, strings(RES / "values"))
         arrays = ET.parse(RES / "values/app_language_tags.xml").getroot()
         offered = arrays.find("string-array[@name='app_language_tags']")
-        self.assertIn("cy", [node.text for node in offered])
+        self.assertIn("ang", [node.text for node in offered])
 
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@ import pathlib
 import re
 import unittest
 import xml.etree.ElementTree as ET
+from latin_sinitic_priority_expectations import bound_fixture, require_row
 
 
 RES = pathlib.Path(__file__).resolve().parents[1] / "Paintroid/src/main/res"
@@ -19,6 +20,12 @@ def strings(qualifier):
         for node in ET.parse(RES / qualifier / "strings.xml").getroot()
         if node.tag == "string"
     }
+
+def require_latin_save_label(value):
+    row=bound_fixture('hak-Latn-TW')['rows']['ui_save_a5d0d9']
+    require_row('hak-Latn-TW','ui_save_a5d0d9',row)
+    if value!=row['reviewed_value']:raise ValueError('Exact independently reviewed Save label differs')
+    return value
 
 
 class HakkaContextTests(unittest.TestCase):
@@ -62,8 +69,12 @@ class HakkaContextTests(unittest.TestCase):
         self.assert_paired_term("保存", r"\bpó[- ]sùn\b")
         self.assert_paired_term("系統", r"\bne[- ]thúng\b")
         self.assertEqual("@string/ui_save", self.han["ui_save_a5d0d9"])
-        self.assertEqual("@string/ui_save", self.latin["ui_save_a5d0d9"])
+        self.assertEqual("Pó-sùn…",require_latin_save_label(self.latin["ui_save_a5d0d9"]))
+        self.assertNotEqual(self.latin["ui_save"],self.latin["ui_save_a5d0d9"])
 
+    def test_latin_save_complete_label_rejects_alias_and_changed_action(self):
+        for value in ['@string/ui_save','Pó-sùn','forged']:
+            with self.assertRaises(ValueError):require_latin_save_label(value)
 
 if __name__ == "__main__":
     unittest.main()

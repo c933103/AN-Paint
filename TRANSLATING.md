@@ -95,6 +95,10 @@ These four have empty exact canonical XML catalogues with **0 strings and 0 plur
 
 ## Editing a translation
 
+The [two memory-warning source corrections and review queue](translations/source-review/README.md)
+flag both affected terms across all 171 options. Review them one by one against
+the corrected English; older exact-key receipts do not grant renewed acceptance.
+
 Edit the locale directly, for example:
 
 - `Paintroid/src/main/res/values-ja/strings.xml`

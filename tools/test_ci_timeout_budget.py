@@ -41,6 +41,23 @@ def step_minutes(block, name):
     return int(one(r'^        timeout-minutes: (\d+)$', step))
 
 
+def regression_budget(workflow):
+    """Check explicit finite phase caps and six minutes of aggregate headroom."""
+    checks = job(workflow, 'checks')
+    names = ('Install pinned compiler cache', 'Prepare build tools and notices',
+             'Run Python contracts', 'Run JVM regression tests',
+             'Prepare lint native dependencies', 'Run Android lint')
+    phases = {name: step_minutes(checks, name) for name in names}
+    outer = int(one(r'^    timeout-minutes: (\d+)$', checks))
+    declared = re.findall(r'^        timeout-minutes: (\d+)$', checks, re.M)
+    expected = dict(zip(names, (2, 8, 31, 20, 6, 6)))
+    if len(declared) != len(phases) or phases != expected:
+        raise ValueError('Every regression phase must keep one explicit finite cap')
+    if outer != sum(phases.values()) + 6 or outer != 79:
+        raise ValueError('Regression job must reserve overhead within a finite aggregate cap')
+    return phases, outer
+
+
 def controlled_model(shell, runner):
     """Read configured constants; ordinary local I/O is explicitly outside this sum."""
     joined = shell.replace('\\\n', ' ')
@@ -194,18 +211,40 @@ class TimeoutBudgetTest(unittest.TestCase):
             self.assertNotIn(stale, canonical)
         self.assertIn('## Historical composed cancellation budgets', docs)
         dialog = docs.split('## Localized dialog evidence and separate phase', 1)[1]
-        for text in ('Twelve installed dialog method/class pairs', 'every SDK-eligible app identity',
+        for text in ('Fourteen installed dialog method/class pairs', 'every SDK-eligible app identity',
                      '`app-dialog` report', '300-second cancellation cap', '45-second interaction limit',
-                     'Twelve individual maxima exceed that aggregate cap', 'timeout remains a failure',
+                     'Fourteen individual maxima exceed that aggregate cap', 'timeout remains a failure',
                      '2× cases cover English/Hungarian caption and preview-rail reachability', 'C05 large-font ancestor visibility is still open'):
             self.assertIn(text, dialog)
 
-    def test_checks_job_is_an_explicit_aggregate_policy_not_a_sum_bound(self):
+    def test_checks_job_keeps_finite_caps_with_explicit_aggregate_headroom(self):
         checks = job(WORKFLOW, 'checks')
-        self.assertEqual(int(one(r'^    timeout-minutes: (\d+)$', checks)), 22)
-        self.assertEqual(step_minutes(checks, 'Run Python contracts'), 4)
-        self.assertEqual(sum(int(n) for n in re.findall(r'^        timeout-minutes: (\d+)$', checks, re.M)), 38)
+        phases, outer = regression_budget(WORKFLOW)
+        self.assertEqual(phases, {'Install pinned compiler cache': 2,
+            'Prepare build tools and notices': 8, 'Run Python contracts': 31,
+            'Run JVM regression tests': 20, 'Prepare lint native dependencies': 6,
+            'Run Android lint': 6})
+        self.assertEqual((sum(phases.values()), outer), (73, 79))
         self.assertNotIn('continue-on-error', checks)
+        for command in ('python python3 -m unittest discover', 'jvm ./gradlew',
+                        'native ./gradlew', 'lint ./gradlew'):
+            self.assertIn('bash tools/ci_run_timed.sh ' + command, checks)
+        docs = (ROOT / 'CI.md').read_text()
+        for text in ('Regression job: 79 minutes', 'Python contracts: 31 minutes',
+                     'JVM regression: 20 minutes', '773.047 seconds',
+                     '73 minutes total', '493.350 seconds', 'All tests, assertions, failure propagation'):
+            self.assertIn(text, docs)
+
+    def test_regression_budget_rejects_old_tight_unbounded_and_missing_caps(self):
+        for outer in (0, 22, 38, 50, 60, 73, 78, 80):
+            with self.subTest(outer=outer), self.assertRaises(ValueError):
+                regression_budget(WORKFLOW.replace('timeout-minutes: 79', f'timeout-minutes: {outer}'))
+        checks = job(WORKFLOW, 'checks')
+        for changed in (checks.replace('timeout-minutes: 20', 'timeout-minutes: 0'),
+                        checks.replace('timeout-minutes: 20', 'timeout-minutes: 31'),
+                        checks.replace('        timeout-minutes: 20\n', '')):
+            with self.assertRaises(ValueError):
+                regression_budget(WORKFLOW.replace(checks, changed))
 
 
 if __name__ == '__main__':

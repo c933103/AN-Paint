@@ -1,14 +1,39 @@
 """Current wording, syntax, fallback and Unicode contracts, not linguistic certification."""
 from pathlib import Path
 import json
+from exact_script_priority_expectations import require_addition as exact_script_addition, bound_fixture as exact_script_fixture
+EXACT_SCRIPT_ADDITION_TAGS={"tt-Latn"}
+from sindhi_nigerian_pidgin_tok_pisin_priority_expectations import require_shared_row as sd_pcm_tpi_shared_row
+from sorani_uyghur_tatar_priority_expectations import require_shared_row as ckb_ug_tt_shared_row
+from moroccan_arabic_mongolian_toki_pona_priority_expectations import ADDITION_TAGS as ARY_MN_TOK_TAGS, require_addition as ary_mn_tok_addition, display as ary_mn_tok_display
+from kazakh_tajik_pashto_priority_expectations import require_shared_row as kk_tg_ps_shared_row
+from basque_frisian_uzbek_priority_expectations import require_shared_row
 import re
 import unittest
 import unicodedata
 import xml.etree.ElementTree as ET
 from current_localization_contracts import fixture, require_string, require_wording_shape, require_locale_scope
 import translation_catalogues as catalogues
+from galician_priority_expectations import TAGS as GL_TAGS, current_row as gl_row, display as gl_display
+from cebuano_low_german_kashubian_priority_expectations import require_shared_row as ceb_nds_csb_shared_row, decode_android
+from maori_samoan_kinyarwanda_priority_expectations import TAGS as MI_SM_RW_TAGS, current_row as mi_sm_rw_row, display as mi_sm_rw_display
+from walloon_northern_sami_sanskrit_priority_expectations import require_shared_row as wa_se_sa_shared_row, decode_android
+from tibetan_dzongkha_valencian_priority_expectations import require_shared_row as bo_dz_val_shared_row, decode_android
+from chhattisgarhi_yiddish_hong_kong_priority_expectations import require_shared_row as hne_yi_hk_shared_row, decode_android
 from test_translations import SCOPED_TAGS
 from language_option_additions import ADDED_TAGS
+from irish_gaelic_welsh_priority_expectations import TAGS as GA_GD_CY_TAGS, current_row as ga_gd_cy_row, display as ga_gd_cy_display
+from somali_wolof_haitian_creole_priority_expectations import TAGS as SO_WO_HT_TAGS, current_row as so_wo_ht_row, display as so_wo_ht_display, require_addition as require_so_wo_ht_addition, display_row as so_wo_ht_display_row
+from breton_asturian_occitan_priority_expectations import TAGS as BR_AST_OC_TAGS, require_addition as br_ast_oc_addition, display as br_ast_oc_display
+from interlingua_latin_kurdish_priority_expectations import TAGS as IA_LA_KU_TAGS, require_addition as ia_la_ku_addition, display as ia_la_ku_display
+from kabyle_hmong_daw_maithili_priority_expectations import TAGS as KAB_MWW_MAI_TAGS, require_addition as kab_mww_mai_addition, display as kab_mww_mai_display
+from yoruba_zulu_xhosa_priority_expectations import TAGS as YO_ZU_XH_TAGS, current_row as yo_zu_xh_row, display as yo_zu_xh_display
+from hausa_igbo_lingala_priority_expectations import TAGS as HA_IG_LN_TAGS, current_row as ha_ig_ln_row, display as ha_ig_ln_display
+from javanese_sundanese_kyrgyz_priority_expectations import TAGS as JV_SU_KY_TAGS, current_row as jv_su_ky_row, display as jv_su_ky_display
+from assamese_khmer_lao_priority_expectations import TAGS as AS_KM_LO_TAGS, current_row as as_km_lo_row, display as as_km_lo_display
+from nepali_punjabi_priority_expectations import TAGS as NE_PA_TAGS, current_row as ne_pa_row, display as ne_pa_display
+from kannada_malayalam_filipino_priority_expectations import ADDITION_TAGS as KN_ML_TAGS, current_row as kn_ml_row, display as kn_ml_display
+from marathi_tamil_telugu_priority_expectations import TAGS as MR_TA_TE_TAGS, current_row as mr_ta_te_row, display as mr_ta_te_display
 
 ROOT = Path(__file__).resolve().parents[1]
 FAMILIES = ('commons_metadata_current_wording.json', 'commons_copy_credit_current_wording.json',
@@ -26,8 +51,23 @@ EXPECTED_KEYS = {
 }
 
 
-# Additions are message-family-specific; Czech and Polish still fall back for metadata/copy-credit.
-FAMILY_EXTRA_TAGS = {FAMILIES[2]: {'cs', 'pl'}}
+# Additions are message-family-specific. Czech and Swedish have independently reviewed metadata/copy-credit values.
+KA_HY_AZ_TAGS = {'ka', 'hy', 'az'}
+CEB_NDS_CSB_TAGS = {'csb', 'nds'}
+WA_SE_SA_TAGS = {'se', 'sa', 'wa'}
+BO_DZ_VAL_TAGS = {'ca-ES-valencia'}
+HNE_YI_HK_TAGS = {'yi', 'hne'}
+EU_FY_UZ_TAGS = {'eu-ES','fy','uz-Latn'}
+KK_TG_PS_TAGS = {'kk','tg','ps'}
+SD_PCM_TPI_TAGS = {'sd','pcm','tpi'}
+CKB_UG_TT_TAGS = {'ckb','ug','tt-Cyrl'}
+FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(CEB_NDS_CSB_TAGS) | set(WA_SE_SA_TAGS) | set(KA_HY_AZ_TAGS) | set(BR_AST_OC_TAGS) | set(IA_LA_KU_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS}
+
+FAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(GA_GD_CY_TAGS)
+
+FAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(GL_TAGS)
+
+FAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(MI_SM_RW_TAGS)
 
 
 def wording_tags(name):
@@ -35,11 +75,485 @@ def wording_tags(name):
 
 
 def wording_fixture(name):
-    return require_wording_shape(fixture(name), EXPECTED_KEYS[name], wording_tags(name))
+    data=fixture(name)
+    if name == FAMILIES[2]:
+        for key in EXPECTED_KEYS[name]:
+            row=exact_script_addition('tt-Latn',key,None,data['values'][key]['default'],already_present='tt-Latn' in data['values'][key])
+            data['values'][key]['tt-Latn']=row['reviewed_value']
+        data['additional_reviewed_tags'].append('tt-Latn')
+        data['additional_locale_review_status']['tt-Latn']='independent_model_static_own_script_review; no cross-script/native/runtime certification'
+        current=fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']
+        for tag in ('uk','ro'):
+            for key in EXPECTED_KEYS[name]:
+                row=current[tag]['values'][key]
+                if row['previous_target'] is not None or row['source'] != data['values'][key]['default']:
+                    raise ValueError('SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        current=fixture('slovak_slovenian_catalan_priority_wording.json')['locales']
+        for tag in ('sk','sl','ca'):
+            for key in EXPECTED_KEYS[name]:
+                row=current[tag]['values'][key]
+                if (tag in data['values'][key] or row['previous_target'] is not None
+                        or row['source'] != data['values'][key]['default'] or row['attributes'] != {'name':key}):
+                    raise ValueError('SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(GA_GD_CY_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=ga_gd_cy_row(tag,key)
+                if tag in data['values'][key] or row['source']!=data['values'][key]['default']:
+                    raise ValueError('GA/GD/CY SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(GL_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=gl_row(tag,key)
+                if tag in data['values'][key] or row['source']!=data['values'][key]['default']:
+                    raise ValueError('Galician SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(MI_SM_RW_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=mi_sm_rw_row(tag,key)
+                if tag in data['values'][key] or row['source']!=data['values'][key]['default']:
+                    raise ValueError('MI/SM/RW SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(MR_TA_TE_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=mr_ta_te_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Marathi/Tamil/Telugu SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(KN_ML_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=kn_ml_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Kannada/Malayalam SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(NE_PA_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=ne_pa_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Nepali/Punjabi SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(AS_KM_LO_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=as_km_lo_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Assamese/Khmer/Lao SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(JV_SU_KY_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=jv_su_ky_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Javanese/Sundanese/Kyrgyz SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(HA_IG_LN_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=ha_ig_ln_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Hausa/Igbo/Lingala SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(YO_ZU_XH_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=yo_zu_xh_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Yoruba/Zulu/Xhosa SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        current=fixture('georgian_armenian_azerbaijani_priority_wording.json')
+        for tag in ('ka','hy','az'):
+            for key in EXPECTED_KEYS[name]:
+                row=current['locales'][tag]['values'][key]
+                if (tag in data['values'][key] or row['previous'] is not None
+                        or current['sources'][key]['value'] != data['values'][key]['default'] or row['attributes'] != {'name':key}):
+                    raise ValueError('KA/HY/AZ SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(SO_WO_HT_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=so_wo_ht_row(tag,key)
+                data['values'][key][tag]=require_so_wo_ht_addition(tag,key,data['values'][key]['default'],
+                    already_present=tag in data['values'][key],row=row)
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(BR_AST_OC_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                data['values'][key][tag]=br_ast_oc_addition(tag,key,data['values'][key]['default'],already_present=tag in data['values'][key])
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(IA_LA_KU_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                data['values'][key][tag]=ia_la_ku_addition(tag,key,data['values'][key]['default'],already_present=tag in data['values'][key])
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(KAB_MWW_MAI_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                data['values'][key][tag]=kab_mww_mai_addition(tag,key,data['values'][key]['default'],already_present=tag in data['values'][key])
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(ARY_MN_TOK_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                data['values'][key][tag]=ary_mn_tok_addition(tag,key,data['values'][key]['default'],already_present=tag in data['values'][key])
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    if name == FAMILIES[2]:
+        for tag in ('eu-ES','fy','uz-Latn'):
+            current=fixture('basque_frisian_uzbek_priority_wording/'+tag+'.json')
+            for key in EXPECTED_KEYS[name]:
+                row=require_shared_row(tag,key,current,already_present=tag in data['values'][key])
+                if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+                    raise ValueError('EU/FY/UZ SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['reviewed_value']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    if name == FAMILIES[2]:
+        for tag in ('kk','tg','ps'):
+            current=fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json')
+            for key in EXPECTED_KEYS[name]:
+                row=kk_tg_ps_shared_row(tag,key,current,already_present=tag in data['values'][key])
+                if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+                    raise ValueError('KK/TG/PS SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['reviewed_value']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    if name == FAMILIES[2]:
+        for tag in ('nds', 'csb'):
+            current=fixture('cebuano_low_german_kashubian_priority_wording/'+tag+'.json')
+            for key in EXPECTED_KEYS[name]:
+                row=ceb_nds_csb_shared_row(tag,key,current,already_present=tag in data['values'][key])
+                if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+                    raise ValueError('CEB/NDS/CSB SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['reviewed_value']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    if name == FAMILIES[2]:
+        for tag in ('wa', 'se', 'sa'):
+            current=fixture('walloon_northern_sami_sanskrit_priority_wording/'+tag+'.json')
+            for key in EXPECTED_KEYS[name]:
+                row=wa_se_sa_shared_row(tag,key,current,already_present=tag in data['values'][key])
+                if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+                    raise ValueError('WA/SE/SA SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['reviewed_value']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    if name == FAMILIES[2]:
+        for tag in ('sd','pcm','tpi'):
+            current=fixture('sindhi_nigerian_pidgin_tok_pisin_priority_wording/'+tag+'.json')
+            for key in EXPECTED_KEYS[name]:
+                row=sd_pcm_tpi_shared_row(tag,key,current,already_present=tag in data['values'][key])
+                if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+                    raise ValueError('SD/PCM/TPI SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['reviewed_value']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    if name == FAMILIES[2]:
+        for tag in ('ckb','ug','tt-Cyrl'):
+            current=fixture('sorani_uyghur_tatar_priority_wording/'+tag+'.json')
+            for key in EXPECTED_KEYS[name]:
+                row=ckb_ug_tt_shared_row(tag,key,current,already_present=tag in data['values'][key])
+                if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+                    raise ValueError('CKB/UG/TT SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['reviewed_value']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    if name == FAMILIES[2]:
+        for tag in ('ca-ES-valencia',):
+            current=fixture('tibetan_dzongkha_valencian_priority_wording/'+tag+'.json')
+            for key in EXPECTED_KEYS[name]:
+                row=bo_dz_val_shared_row(tag,key,current,already_present=tag in data['values'][key])
+                if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+                    raise ValueError('BO/DZ/Valencian SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['reviewed_value']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    if name == FAMILIES[2]:
+        for tag in ('hne', 'yi'):
+            current=fixture('chhattisgarhi_yiddish_hong_kong_priority_wording/'+tag+'.json')
+            for key in EXPECTED_KEYS[name]:
+                row=hne_yi_hk_shared_row(tag,key,current,already_present=tag in data['values'][key])
+                if tag in data['values'][key] or 'previous_target' not in row or row['previous_target'] is not None or row['source']!={'value':data['values'][key]['default'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
+                    raise ValueError('HNE/YI/HK SVG addition precondition differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['reviewed_value']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+    return require_wording_shape(data, EXPECTED_KEYS[name], wording_tags(name))
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'cs', 'pl'}
+TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS
+TAGGED_COLOUR_EXTRA_TAGS |= set(GA_GD_CY_TAGS) | set(KK_TG_PS_TAGS) | set(KA_HY_AZ_TAGS) | set(BR_AST_OC_TAGS) | set(IA_LA_KU_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS | set(SO_WO_HT_TAGS) | set(CEB_NDS_CSB_TAGS) | set(WA_SE_SA_TAGS)
+TAGGED_COLOUR_EXTRA_TAGS |= set(GL_TAGS)
+TAGGED_COLOUR_EXTRA_TAGS |= set(MI_SM_RW_TAGS)
+# Explicit runtime parent inheritance, not an additional reviewed catalogue.
+TAGGED_COLOUR_INHERITED_CATALOGUES = {'ca-ES-valencia': 'ca'}
+
+
+def current_tagged_colour_data():
+    data=json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
+    row=fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['uk']['values'][TAGGED_COLOUR_KEY]
+    if 'uk' in data or row['previous_target'] is not None:
+        raise ValueError('Ukrainian tagged-colour addition must be absent in prior fixture')
+    data['uk']=row['display']
+    for tag in sorted(GA_GD_CY_TAGS):
+        if tag in data:raise ValueError('GA/GD/CY tagged-colour addition must be absent: '+tag)
+        data[tag]=ga_gd_cy_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(GL_TAGS):
+        if tag in data:raise ValueError('Galician tagged-colour addition must be absent: '+tag)
+        data[tag]=gl_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(MI_SM_RW_TAGS):
+        if tag in data:raise ValueError('MI/SM/RW tagged-colour addition must be absent: '+tag)
+        data[tag]=mi_sm_rw_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(MR_TA_TE_TAGS):
+        row=mr_ta_te_row(tag,TAGGED_COLOUR_KEY)
+        if tag in data or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Marathi/Tamil/Telugu tagged colour predecessor differs: '+tag)
+        data[tag]=mr_ta_te_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(KN_ML_TAGS):
+        row=kn_ml_row(tag,TAGGED_COLOUR_KEY)
+        if tag in data or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Kannada/Malayalam tagged colour predecessor differs: '+tag)
+        data[tag]=kn_ml_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(NE_PA_TAGS):
+        row=ne_pa_row(tag,TAGGED_COLOUR_KEY)
+        if tag in data or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Nepali/Punjabi tagged colour predecessor differs: '+tag)
+        data[tag]=ne_pa_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(AS_KM_LO_TAGS):
+        row=as_km_lo_row(tag,TAGGED_COLOUR_KEY)
+        if tag in data or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Assamese/Khmer/Lao tagged colour predecessor differs: '+tag)
+        data[tag]=as_km_lo_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(JV_SU_KY_TAGS):
+        row=jv_su_ky_row(tag,TAGGED_COLOUR_KEY)
+        if tag in data or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Javanese/Sundanese/Kyrgyz tagged colour predecessor differs: '+tag)
+        data[tag]=jv_su_ky_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(HA_IG_LN_TAGS):
+        row=ha_ig_ln_row(tag,TAGGED_COLOUR_KEY)
+        if (tag in data or row['previous_target'] is not None or not row['changed']
+                or row['source'] != ET.parse(catalogues.RES / 'values/strings.xml').find("./string[@name='"+TAGGED_COLOUR_KEY+"']").text or row['attributes'] != {'name':TAGGED_COLOUR_KEY}):
+            raise ValueError('Hausa/Igbo/Lingala tagged colour predecessor/source/attributes differ: '+tag)
+        data[tag]=ha_ig_ln_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(YO_ZU_XH_TAGS):
+        row=yo_zu_xh_row(tag,TAGGED_COLOUR_KEY)
+        if (tag in data or row['previous_target'] is not None or not row['changed']
+                or row['source'] != ET.parse(catalogues.RES / 'values/strings.xml').find("./string[@name='"+TAGGED_COLOUR_KEY+"']").text or row['attributes'] != {'name':TAGGED_COLOUR_KEY}):
+            raise ValueError('Yoruba/Zulu/Xhosa tagged colour predecessor/source/attributes differ: '+tag)
+        data[tag]=yo_zu_xh_display(tag,TAGGED_COLOUR_KEY)
+    reviewed={tag:fixture('basque_frisian_uzbek_priority_wording/'+tag+'.json') for tag in ('eu-ES','fy','uz-Latn')}
+    add_eu_fy_uz_tagged_colour(data,reviewed)
+    for tag in sorted(SO_WO_HT_TAGS):
+        row=so_wo_ht_row(tag,TAGGED_COLOUR_KEY)
+        source=ET.parse(catalogues.RES/'values/strings.xml').find("./string[@name='"+TAGGED_COLOUR_KEY+"']")
+        if source.attrib!={'name':TAGGED_COLOUR_KEY}:raise ValueError('Actual tagged colour source attributes differ')
+        require_so_wo_ht_addition(tag,TAGGED_COLOUR_KEY,source.text,already_present=tag in data,row=row)
+        data[tag]=so_wo_ht_display_row(row)
+    current=fixture('georgian_armenian_azerbaijani_priority_wording.json')
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[TAGGED_COLOUR_KEY]
+    for tag in ('ka','hy','az'):
+        row=current['locales'][tag]['values'][TAGGED_COLOUR_KEY]
+        if (tag in data or row['previous'] is not None or row['attributes'] != {'name':TAGGED_COLOUR_KEY}
+                or current['sources'][TAGGED_COLOUR_KEY]['value'] != english):
+            raise ValueError('KA/HY/AZ tagged-colour addition precondition differs: '+tag)
+        data[tag]=row['display']
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[TAGGED_COLOUR_KEY]
+    for tag in sorted(BR_AST_OC_TAGS):
+        br_ast_oc_addition(tag,TAGGED_COLOUR_KEY,english,already_present=tag in data)
+        data[tag]=br_ast_oc_display(tag,TAGGED_COLOUR_KEY)
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[TAGGED_COLOUR_KEY]
+    for tag in sorted(IA_LA_KU_TAGS):
+        ia_la_ku_addition(tag,TAGGED_COLOUR_KEY,english,already_present=tag in data)
+        data[tag]=ia_la_ku_display(tag,TAGGED_COLOUR_KEY)
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[TAGGED_COLOUR_KEY]
+    for tag in sorted(KAB_MWW_MAI_TAGS):
+        kab_mww_mai_addition(tag,TAGGED_COLOUR_KEY,english,already_present=tag in data)
+        data[tag]=kab_mww_mai_display(tag,TAGGED_COLOUR_KEY)
+    reviewed={tag:fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json') for tag in ('kk','tg','ps')}
+    add_kk_tg_ps_tagged_colour(data,reviewed)
+    reviewed={tag:fixture('cebuano_low_german_kashubian_priority_wording/'+tag+'.json') for tag in ('nds', 'csb')}
+    add_ceb_nds_csb_tagged_colour(data,reviewed)
+    reviewed={tag:fixture('walloon_northern_sami_sanskrit_priority_wording/'+tag+'.json') for tag in ('wa', 'se', 'sa')}
+    add_wa_se_sa_tagged_colour(data,reviewed)
+    reviewed={tag:fixture('sindhi_nigerian_pidgin_tok_pisin_priority_wording/'+tag+'.json') for tag in ('sd','pcm','tpi')}
+    add_sd_pcm_tpi_tagged_colour(data,reviewed)
+    reviewed={tag:fixture('sorani_uyghur_tatar_priority_wording/'+tag+'.json') for tag in ('ckb','ug','tt-Cyrl')}
+    add_ckb_ug_tt_tagged_colour(data,reviewed)
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[TAGGED_COLOUR_KEY]
+    for tag in sorted(ARY_MN_TOK_TAGS):
+        ary_mn_tok_addition(tag,TAGGED_COLOUR_KEY,english,already_present=tag in data)
+        data[tag]=ary_mn_tok_display(tag,TAGGED_COLOUR_KEY)
+    reviewed={tag:fixture('tibetan_dzongkha_valencian_priority_wording/'+tag+'.json') for tag in ('ca-ES-valencia',)}
+    add_bo_dz_val_tagged_colour(data,reviewed)
+    reviewed={tag:fixture('chhattisgarhi_yiddish_hong_kong_priority_wording/'+tag+'.json') for tag in ('hne', 'yi')}
+    add_hne_yi_hk_tagged_colour(data,reviewed)
+    row=exact_script_addition('tt-Latn',TAGGED_COLOUR_KEY,None,english,already_present='tt-Latn' in data)
+    data['tt-Latn']=row['compiled_display']
+    return data
+
+
+def add_eu_fy_uz_tagged_colour(data,reviewed):
+    """Finite new additions: never overwrite a predecessor or invent its absence."""
+    key=TAGGED_COLOUR_KEY
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
+    for tag in ('eu-ES','fy','uz-Latn'):
+        row=require_shared_row(tag,key,reviewed[tag],already_present=tag in data)
+        raw=row['reviewed_value']
+        if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
+                or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
+                or row['reviewed_attributes']!={'name':key} or not isinstance(raw,str)
+                or not raw.startswith('"') or not raw.endswith('"') or chr(92) in raw[1:-1]
+                or row['display']!=raw[1:-1]):
+            raise ValueError('EU/FY/UZ tagged-colour source/attributes/display/predecessor differs: '+tag)
+        data[tag]=row['display']
+    return data
+
+
+def add_ceb_nds_csb_tagged_colour(data,reviewed):
+    """Finite new additions: never overwrite a predecessor or invent its absence."""
+    key=TAGGED_COLOUR_KEY
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
+    for tag in ('nds', 'csb'):
+        row=ceb_nds_csb_shared_row(tag,key,reviewed[tag],already_present=tag in data)
+        raw=row['reviewed_value']
+        if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
+                or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
+                or row['reviewed_attributes']!={'name':key} or not isinstance(raw,str)
+                or row['display']!=decode_android(raw)):
+            raise ValueError('CEB/NDS/CSB tagged-colour source/attributes/display/predecessor differs: '+tag)
+        data[tag]=row['display']
+    return data
+
+
+def add_wa_se_sa_tagged_colour(data,reviewed):
+    """Finite new additions: never overwrite a predecessor or invent its absence."""
+    key=TAGGED_COLOUR_KEY
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
+    for tag in ('wa', 'se', 'sa'):
+        row=wa_se_sa_shared_row(tag,key,reviewed[tag],already_present=tag in data)
+        raw=row['reviewed_value']
+        if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
+                or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
+                or row['reviewed_attributes']!={'name':key} or not isinstance(raw,str)
+                or row['display']!=decode_android(raw)):
+            raise ValueError('WA/SE/SA tagged-colour source/attributes/display/predecessor differs: '+tag)
+        data[tag]=row['display']
+    return data
+
+
+def add_kk_tg_ps_tagged_colour(data,reviewed):
+    """Finite new additions: never overwrite a predecessor or invent its absence."""
+    key=TAGGED_COLOUR_KEY
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
+    for tag in ('kk','tg','ps'):
+        row=kk_tg_ps_shared_row(tag,key,reviewed[tag],already_present=tag in data)
+        raw=row['reviewed_value']
+        if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
+                or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
+                or row['reviewed_attributes']!={'name':key} or not isinstance(raw,str)
+                or not raw.startswith('"') or not raw.endswith('"') or chr(92) in raw[1:-1]
+                or row['display']!=raw[1:-1]):
+            raise ValueError('KK/TG/PS tagged-colour source/attributes/display/predecessor differs: '+tag)
+        data[tag]=row['display']
+    return data
+
+
+
+
+def add_bo_dz_val_tagged_colour(data,reviewed):
+    """Finite new additions: never overwrite a predecessor or invent its absence."""
+    key=TAGGED_COLOUR_KEY
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
+    for tag in ('ca-ES-valencia',):
+        row=bo_dz_val_shared_row(tag,key,reviewed[tag],already_present=tag in data)
+        raw=row['reviewed_value']
+        if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
+                or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
+                or row['reviewed_attributes']!={'name':key} or not isinstance(raw,str)
+                or row['display']!=decode_android(raw)):
+            raise ValueError('BO/DZ/Valencian tagged-colour source/attributes/display/predecessor differs: '+tag)
+        data[tag]=row['display']
+    return data
+
+
+def add_hne_yi_hk_tagged_colour(data,reviewed):
+    """Finite new additions: never overwrite a predecessor or invent its absence."""
+    key=TAGGED_COLOUR_KEY
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
+    for tag in ('hne', 'yi'):
+        row=hne_yi_hk_shared_row(tag,key,reviewed[tag],already_present=tag in data)
+        raw=row['reviewed_value']
+        if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
+                or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
+                or row['reviewed_attributes']!={'name':key} or not isinstance(raw,str)
+                or row['display']!=decode_android(raw)):
+            raise ValueError('HNE/YI/HK tagged-colour source/attributes/display/predecessor differs: '+tag)
+        data[tag]=row['display']
+    return data
+
+
+
+
+def add_sd_pcm_tpi_tagged_colour(data,reviewed):
+    """Finite new additions: never overwrite a predecessor or invent its absence."""
+    key=TAGGED_COLOUR_KEY
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
+    for tag in ('sd','pcm','tpi'):
+        row=sd_pcm_tpi_shared_row(tag,key,reviewed[tag],already_present=tag in data)
+        raw=row['reviewed_value']
+        if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
+                or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
+                or row['reviewed_attributes']!={'name':key} or not isinstance(raw,str)
+                or raw.startswith('"') or raw.endswith('"') or chr(92) in raw
+                or row['display']!=raw):
+            raise ValueError('SD/PCM/TPI tagged-colour source/attributes/display/predecessor differs: '+tag)
+        data[tag]=row['display']
+    return data
+
+
+def add_ckb_ug_tt_tagged_colour(data,reviewed):
+    """Finite new additions: never overwrite a predecessor or invent its absence."""
+    key=TAGGED_COLOUR_KEY
+    english=catalogues.read_strings(catalogues.RES/'values/strings.xml')[key]
+    for tag in ('ckb','ug','tt-Cyrl'):
+        row=ckb_ug_tt_shared_row(tag,key,reviewed[tag],already_present=tag in data)
+        raw=row['reviewed_value']
+        if (tag in data or 'previous_target' not in row or row['previous_target'] is not None
+                or row['type']!='string' or row['source']!={'value':english,'attributes':{'name':key}}
+                or row['reviewed_attributes']!={'name':key} or not isinstance(raw,str)
+                or raw.startswith('"') or raw.endswith('"') or chr(92) in raw
+                or row['display']!=raw):
+            raise ValueError('CKB/UG/TT tagged-colour source/attributes/display/predecessor differs: '+tag)
+        data[tag]=row['display']
+    return data
 
 
 def tagged_colour_expectations(data):
@@ -47,20 +561,147 @@ def tagged_colour_expectations(data):
         raise ValueError('Tagged-colour family locale inventory differs')
     if not all(isinstance(value, str) and value for value in data.values()):
         raise ValueError('Tagged-colour expectations must be complete nonempty strings')
-    for tag, name in [('cs', 'czech'), ('pl', 'polish')]:
-        reviewed = fixture(name + '_priority_draft_wording.json')['values'][TAGGED_COLOUR_KEY][tag]
+    for tag, name in [('cs', 'czech'), ('pl', 'polish'), ('sv', 'swedish')]:
+        suffix = '_priority_current_wording.json' if tag == 'sv' else '_priority_draft_wording.json'
+        reviewed = fixture(name + suffix)['values'][TAGGED_COLOUR_KEY][tag]
         if data[tag] != reviewed:
             raise ValueError('Tagged-colour expectation differs from reviewed complete pair: ' + tag)
+    for tag in ('bg', 'bn'):
+        reviewed = fixture('bulgarian_bengali_priority_wording.json')['values'][TAGGED_COLOUR_KEY][tag]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour priority expectation differs: ' + tag)
+    reviewed_am = fixture('amharic_priority.json')['values'][TAGGED_COLOUR_KEY]['expected'][1:-1]
+    if data['am'] != reviewed_am:
+        raise ValueError('Tagged-colour expectation differs from reviewed Amharic value')
+    reviewed_nn = fixture('nynorsk_p0_remaining_wording.json')['values'][TAGGED_COLOUR_KEY]['nn'][1:-1]
+    if data['nn'] != reviewed_nn:
+        raise ValueError('Tagged-colour expectation differs from reviewed Nynorsk value')
+    for tag in ('da', 'no'):
+        reviewed = fixture('danish_norwegian_p0_wording.json')['values'][TAGGED_COLOUR_KEY][tag][1:-1]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour expectation differs from reviewed DA/NO value: ' + tag)
+    for tag in ('ca', 'ro'):
+        reviewed = fixture('catalan_romanian_import_wording.json')['values'][TAGGED_COLOUR_KEY][tag][1:-1]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour expectation differs from reviewed CA/RO value: ' + tag)
+    for tag in ('sk', 'sl'):
+        reviewed = fixture('slovak_slovenian_p0_wording.json')['values'][TAGGED_COLOUR_KEY][tag]
+        if reviewed.startswith('"') and reviewed.endswith('"'):
+            reviewed = reviewed[1:-1]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour expectation differs from reviewed SK/SL value: ' + tag)
+    for tag in ('sr-Cyrl', 'sr-Latn'):
+        reviewed = fixture('serbian_p0_wording.json')['values'][TAGGED_COLOUR_KEY][tag]
+        if reviewed.startswith('"') and reviewed.endswith('"'):
+            reviewed = reviewed[1:-1]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour expectation differs from reviewed Serbian value: ' + tag)
+    for tag in ('hr', 'bs'):
+        reviewed = fixture('croatian_bosnian_p0_wording.json')['values'][TAGGED_COLOUR_KEY][tag]
+        if reviewed.startswith('"') and reviewed.endswith('"'):
+            reviewed = reviewed[1:-1]
+        if data[tag] != reviewed:
+            raise ValueError('Tagged-colour differs from reviewed Croatian/Bosnian value: ' + tag)
+    for tag in GA_GD_CY_TAGS:
+        if data[tag]!=ga_gd_cy_display(tag,TAGGED_COLOUR_KEY):raise ValueError('GA/GD/CY tagged-colour expectation differs: '+tag)
+    for tag in GL_TAGS:
+        if data[tag]!=gl_display(tag,TAGGED_COLOUR_KEY):raise ValueError('Galician tagged-colour expectation differs: '+tag)
+    for tag in MI_SM_RW_TAGS:
+        if data[tag]!=mi_sm_rw_display(tag,TAGGED_COLOUR_KEY):raise ValueError('MI/SM/RW tagged-colour expectation differs: '+tag)
+    reviewed_uk = fixture('ukrainian_lithuanian_romanian_priority_wording.json')['locales']['uk']['values'][TAGGED_COLOUR_KEY]['display']
+    if data['uk'] != reviewed_uk:
+        raise ValueError('Tagged-colour differs from reviewed Ukrainian value')
+    for tag in MR_TA_TE_TAGS:
+        if data[tag]!=mr_ta_te_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Marathi/Tamil/Telugu value: '+tag)
+    for tag in KN_ML_TAGS:
+        if data[tag]!=kn_ml_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Kannada/Malayalam value: '+tag)
+    for tag in NE_PA_TAGS:
+        if data[tag]!=ne_pa_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Nepali/Punjabi value: '+tag)
+    for tag in AS_KM_LO_TAGS:
+        if data[tag]!=as_km_lo_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Assamese/Khmer/Lao value: '+tag)
+    for tag in JV_SU_KY_TAGS:
+        if data[tag]!=jv_su_ky_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Javanese/Sundanese/Kyrgyz value: '+tag)
+    for tag in HA_IG_LN_TAGS:
+        if data[tag]!=ha_ig_ln_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Hausa/Igbo/Lingala value: '+tag)
+    for tag in YO_ZU_XH_TAGS:
+        if data[tag]!=yo_zu_xh_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Yoruba/Zulu/Xhosa value: '+tag)
+    for tag in ('ka','hy','az'):
+        row=fixture('georgian_armenian_azerbaijani_priority_wording.json')['locales'][tag]['values'][TAGGED_COLOUR_KEY]
+        if data[tag] != row['display']:
+            raise ValueError('KA/HY/AZ tagged-colour expectation differs: '+tag)
+    for tag in BR_AST_OC_TAGS:
+        if data[tag]!=br_ast_oc_display(tag,TAGGED_COLOUR_KEY):raise ValueError('Tagged-colour differs from complete BR/AST/OC value: '+tag)
+    for tag in IA_LA_KU_TAGS:
+        if data[tag]!=ia_la_ku_display(tag,TAGGED_COLOUR_KEY):raise ValueError('Tagged-colour differs from complete IA/LA/KU value: '+tag)
+    for tag in KAB_MWW_MAI_TAGS:
+        if data[tag]!=kab_mww_mai_display(tag,TAGGED_COLOUR_KEY):raise ValueError('Tagged-colour differs from complete KAB/MWW/MAI value: '+tag)
+    for tag in ('eu-ES','fy','uz-Latn'):
+        reviewed=require_shared_row(tag,TAGGED_COLOUR_KEY,fixture('basque_frisian_uzbek_priority_wording/'+tag+'.json'))['display']
+        if data[tag]!=reviewed:
+            raise ValueError('Tagged-colour differs from reviewed EU/FY/UZ value: '+tag)
+    for tag in SO_WO_HT_TAGS:
+        if data[tag]!=so_wo_ht_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Somali/Wolof/Haitian Creole value: '+tag)
+    for tag in ('kk','tg','ps'):
+        reviewed=kk_tg_ps_shared_row(tag,TAGGED_COLOUR_KEY,fixture('kazakh_tajik_pashto_priority_wording/'+tag+'.json'))['display']
+        if data[tag]!=reviewed:
+            raise ValueError('Tagged-colour differs from reviewed KK/TG/PS value: '+tag)
+    for tag in ('nds', 'csb'):
+        reviewed=ceb_nds_csb_shared_row(tag,TAGGED_COLOUR_KEY,fixture('cebuano_low_german_kashubian_priority_wording/'+tag+'.json'))['display']
+        if data[tag]!=reviewed:
+            raise ValueError('Tagged-colour differs from reviewed CEB/NDS/CSB value: '+tag)
+    for tag in ('wa', 'se', 'sa'):
+        reviewed=wa_se_sa_shared_row(tag,TAGGED_COLOUR_KEY,fixture('walloon_northern_sami_sanskrit_priority_wording/'+tag+'.json'))['display']
+        if data[tag]!=reviewed:
+            raise ValueError('Tagged-colour differs from reviewed WA/SE/SA value: '+tag)
+    for tag in ('sd','pcm','tpi'):
+        reviewed=sd_pcm_tpi_shared_row(tag,TAGGED_COLOUR_KEY,fixture('sindhi_nigerian_pidgin_tok_pisin_priority_wording/'+tag+'.json'))['display']
+        if data[tag]!=reviewed:
+            raise ValueError('Tagged-colour differs from reviewed SD/PCM/TPI value: '+tag)
+    for tag in ('ckb','ug','tt-Cyrl'):
+        reviewed=ckb_ug_tt_shared_row(tag,TAGGED_COLOUR_KEY,fixture('sorani_uyghur_tatar_priority_wording/'+tag+'.json'))['display']
+        if data[tag]!=reviewed:
+            raise ValueError('Tagged-colour differs from reviewed CKB/UG/TT value: '+tag)
+    for tag in ARY_MN_TOK_TAGS:
+        if data[tag]!=ary_mn_tok_display(tag,TAGGED_COLOUR_KEY):raise ValueError('Tagged-colour differs from complete ARY/MN/TOK value: '+tag)
+    for tag in ('ca-ES-valencia',):
+        reviewed=bo_dz_val_shared_row(tag,TAGGED_COLOUR_KEY,fixture('tibetan_dzongkha_valencian_priority_wording/'+tag+'.json'))['display']
+        if data[tag]!=reviewed:
+            raise ValueError('Tagged-colour differs from reviewed BO/DZ/Valencian value: '+tag)
+    for tag in ('hne', 'yi'):
+        reviewed=hne_yi_hk_shared_row(tag,TAGGED_COLOUR_KEY,fixture('chhattisgarhi_yiddish_hong_kong_priority_wording/'+tag+'.json'))['display']
+        if data[tag]!=reviewed:
+            raise ValueError('Tagged-colour differs from reviewed HNE/YI/HK value: '+tag)
+    for tag in ('tt-Latn',):
+        if data[tag]!=exact_script_fixture(tag)['rows'][TAGGED_COLOUR_KEY]['compiled_display']:
+            raise ValueError('Exact-script complete tagged value differs: '+tag)
     return data
 
 
 def require_tagged_colour_resolution(data, strings, offered, english):
-    """Model exact family expectations; Android resource routing is tested separately."""
+    """Model direct values and the one explicit parent fallback, checked by Android too."""
     data = tagged_colour_expectations(data)
+    if not (set(TAGGED_COLOUR_INHERITED_CATALOGUES) |
+            set(TAGGED_COLOUR_INHERITED_CATALOGUES.values())) <= set(offered):
+        raise ValueError('Tagged-colour inheritance uses an unoffered catalogue')
     for tag in offered:
-        expected = data[tag] if tag in data else english
+        parent = None if tag in BO_DZ_VAL_TAGS else TAGGED_COLOUR_INHERITED_CATALOGUES.get(tag)
+        if parent is not None and (tag in data or parent not in data or
+                                   TAGGED_COLOUR_KEY in strings[tag]):
+            raise ValueError('Explicit tagged-colour parent inheritance differs: ' + tag)
+        catalogue = parent or tag
+        expected = data[catalogue] if catalogue in data else english
         # Catalogue values retain Android apostrophe escapes; this family uses no other escapes.
-        actual = strings[tag].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
+        actual = strings[catalogue].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
+        if (catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk', 'ga', 'gd', 'cy', 'eu-ES', 'fy', 'uz-Latn', 'ka', 'hy', 'az', 'gl', 'kk', 'tg', 'ps', 'br', 'ast', 'oc', 'nds', 'csb', 'ia', 'la', 'ku', 'mi', 'sm', 'rw', 'wa', 'se', 'sa', 'kab', 'mww', 'mai', 'sd', 'pcm', 'tpi', 'ckb', 'ug', 'tt-Cyrl', 'ary', 'mn-Cyrl-MN', 'tok', 'ca-ES-valencia', 'hne', 'yi', 'tt-Latn') or catalogue in SO_WO_HT_TAGS) and actual.startswith('"') and actual.endswith('"'):
+            actual = actual[1:-1]  # Android removes the reviewed outer quoting.
         if actual != expected:
             raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
 
@@ -88,33 +729,45 @@ class CurrentLocalizationContracts(unittest.TestCase):
             data=deepcopy(original);data['values']={}
             with self.assertRaises(ValueError): require_wording_shape(data,EXPECTED_KEYS[name],tags)
 
-    def test_czech_polish_svg_scope_does_not_expand_other_message_families(self):
+    def test_each_message_family_has_only_its_explicitly_reviewed_additions(self):
         svg = wording_fixture(FAMILIES[2])
-        extra_tags = {'cs', 'pl'}
-        self.assertEqual(extra_tags, set(svg['additional_draft_tags']))
+        extra_tags = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(GA_GD_CY_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS
+        self.assertEqual({'cs', 'pl'}, set(svg['additional_draft_tags']))
+        self.assertEqual({'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(GA_GD_CY_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS, set(svg['additional_reviewed_tags']))
         self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
         for name in FAMILIES[:2]:
-            self.assertTrue(extra_tags.isdisjoint(wording_tags(name)))
-            self.assertEqual({'default'} | SCOPED_TAGS, wording_tags(name))
+            self.assertTrue({'pl'}.isdisjoint(wording_tags(name)))
+            self.assertEqual({'default'} | SCOPED_TAGS | {'cs', 'sv'}, wording_tags(name))
+            self.assertEqual(['cs', 'sv'], wording_fixture(name)['additional_reviewed_tags'])
         self.assertEqual({'hu'}, wording_tags(FAMILIES[3]))
         self.assertEqual({'default'} | SCOPED_TAGS | extra_tags, wording_tags(FAMILIES[2]))
+        amharic = fixture('amharic_priority.json')
+        for key, values in svg['values'].items():
+            self.assertEqual(amharic['values'][key]['expected'], values['am'])
+        swedish = fixture('swedish_remaining_p1_wording.json')
+        for key, values in svg['values'].items():
+            self.assertEqual(swedish['values'][key]['sv'], values['sv'])
+            for tag in ('bg', 'bn'):
+                self.assertEqual(fixture('bulgarian_bengali_priority_wording.json')['values'][key][tag], values[tag])
 
-    def test_tagged_colour_family_resolves_complete_cs_pl_values_and_exact_english_fallbacks(self):
-        data = json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
+    def test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks(self):
+        data = current_tagged_colour_data()
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(61, len(data))
-        self.assertEqual(110, len(offered - set(data)))
+        self.assertEqual(77+len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(data))
+        self.assertEqual(94-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.
+        self.assertEqual({'ca-ES-valencia': 'ca'}, TAGGED_COLOUR_INHERITED_CATALOGUES)
+        self.assertEqual(94-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data) - (set(TAGGED_COLOUR_INHERITED_CATALOGUES)-BO_DZ_VAL_TAGS)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:
             self.assertNotEqual(english, data[tag])
 
     def test_tagged_colour_oracle_rejects_missing_localization_and_arbitrary_defaults(self):
-        data = json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
+        data = current_tagged_colour_data()
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
@@ -132,7 +785,7 @@ class CurrentLocalizationContracts(unittest.TestCase):
                 else: changed_data[tag] = 'arbitrary default'
                 with self.subTest(tag=tag, mutation=mutation), self.assertRaises(ValueError):
                     require_tagged_colour_resolution(changed_data, changed_strings, offered, english)
-        fallback = sorted(offered - set(data))[0]
+        fallback = sorted(offered - set(data) - set(TAGGED_COLOUR_INHERITED_CATALOGUES))[0]
         changed_strings = dict(strings)
         changed_strings[fallback] = dict(strings[fallback])
         changed_strings[fallback][TAGGED_COLOUR_KEY] = english
@@ -141,6 +794,31 @@ class CurrentLocalizationContracts(unittest.TestCase):
         with self.assertRaises(ValueError):
             require_tagged_colour_resolution(data, changed_strings, offered, english)
 
+    def test_tagged_colour_parent_inheritance_stays_separate_and_rejects_overrides(self):
+        data = current_tagged_colour_data()
+        strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
+        offered = set(catalogues.offered_tags())
+        english = strings['default'][TAGGED_COLOUR_KEY]
+        child, parent = 'ca-ES-valencia', 'ca'
+        self.assertIn(child, data)
+        reviewed = fixture("tibetan_dzongkha_valencian_priority_wording/ca-ES-valencia.json")
+        self.assertNotIn(TAGGED_COLOUR_KEY, reviewed["original_catalogue"])
+        bo_dz_val_shared_row(child,TAGGED_COLOUR_KEY,reviewed)
+        self.assertEqual(data[child],decode_android(strings[child][TAGGED_COLOUR_KEY]))
+        self.assertEqual(data[parent], fixture('catalan_romanian_import_wording.json')['values'][TAGGED_COLOUR_KEY][parent][1:-1])
+        require_tagged_colour_resolution(data, strings, offered, english)
+        for value in (english, 'arbitrary override', strings[parent][TAGGED_COLOUR_KEY]):
+            changed = dict(strings)
+            changed[child] = dict(strings[child], **{TAGGED_COLOUR_KEY: value})
+            with self.subTest(override=value), self.assertRaises(ValueError):
+                require_tagged_colour_resolution(data, changed, offered, english)
+        for missing in (child, parent):
+            with self.subTest(unoffered=missing), self.assertRaises(ValueError):
+                require_tagged_colour_resolution(data, strings, offered - {missing}, english)
+        changed_data = dict(data, **{child: data[parent]})
+        with self.assertRaises(ValueError):
+            require_tagged_colour_resolution(changed_data, strings, offered, english)
+
     def test_explicit_scope_and_open_fallbacks_match_current_picker(self):
         scope = fixture('locale_contract_scope.json')
         scoped, fallback = require_locale_scope(scope, SCOPED_TAGS, catalogues.offered_tags())
@@ -148,13 +826,13 @@ class CurrentLocalizationContracts(unittest.TestCase):
         self.assertEqual(112, len(fallback))
         self.assertEqual(27, len(ADDED_TAGS))
         self.assertLessEqual(ADDED_TAGS, fallback)
-        self.assertEqual(fallback, set(fixture('commons_import_current_wording.json')['remaining_other_offered_locales']))
+        self.assertEqual(fallback - {'cs', 'sv'}, set(fixture('commons_import_current_wording.json')['remaining_other_offered_locales']))
         source = (ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt').read_text()
         declaration = re.search(r'private val fallbackTags=setOf\((.*?)\n    \)', source, re.S)
         self.assertIsNotNone(declaration)
         runtime_fallbacks = re.findall(r'"([\w-]+)"', declaration.group(1))
-        self.assertEqual(len(fallback), len(runtime_fallbacks))
-        self.assertEqual(fallback, set(runtime_fallbacks))
+        self.assertEqual(len(fallback - {'cs', 'sv'}), len(runtime_fallbacks))
+        self.assertEqual(fallback - {'cs', 'sv'}, set(runtime_fallbacks))
 
     def test_missing_duplicate_overlapping_or_unknown_scope_tags_are_rejected(self):
         from copy import deepcopy

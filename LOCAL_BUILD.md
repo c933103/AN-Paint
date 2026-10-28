@@ -1,7 +1,9 @@
 # AN Paint build notes
 
-Current release candidate: `0.0.38`, code `95`, package `paint.anpaint.android`.
-The signed development build uses code `94`.
+Current release candidate: `0.0.41`, code `98`, package `paint.anpaint.android`.
+This identity prepares the next release; publication requires the exact-source
+build, test and upgrade-signing gates in CI.md. The earlier signed development
+build used code `94`.
 See HANDOFF.md for the current change record and CI.md for build/test status rules.
 
 ## Historical local.20 baseline

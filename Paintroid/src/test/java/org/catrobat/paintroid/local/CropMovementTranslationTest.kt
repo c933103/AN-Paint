@@ -59,6 +59,19 @@ class CropMovementTranslationTest {
         "ja" to mapOf(
             "other" to "プレビュー: %1\$d × %2\$d px\n%3\$d 枚の画像に適用します。配置済み画像をトリミングすると、接続された画像が移動する場合があります。"
         )
+,
+        "fi" to mapOf(
+            "one" to "Esikatselu: %1\$d × %2\$d px\nKäytä %3\$d kuvaan. Aseteltujen kuvien rajaaminen voi siirtää niihin liitettyjä kuvia.",
+            "other" to "Esikatselu: %1\$d × %2\$d px\nKäytä %3\$d kuvaan. Aseteltujen kuvien rajaaminen voi siirtää niihin liitettyjä kuvia."
+        ),
+        "et" to mapOf(
+            "one" to "Eelvaade: %1\$d × %2\$d px\nRakenda %3\$d pildile. Paigutatud piltide kärpimine võib liigutada nende külge kinnitatud pilte.",
+            "other" to "Eelvaade: %1\$d × %2\$d px\nRakenda %3\$d pildile. Paigutatud piltide kärpimine võib liigutada nende külge kinnitatud pilte."
+        ),
+        "lv" to mapOf(
+            "one" to "Priekšskatījums: %1\$d × %2\$d px\nLietot %3\$d attēlam. Novietotu attēlu apgriešana var pārvietot tiem piesaistītos attēlus.",
+            "other" to "Priekšskatījums: %1\$d × %2\$d px\nLietot %3\$d attēliem. Novietotu attēlu apgriešana var pārvietot tiem piesaistītos attēlus."
+        )
     )
 
     // Independent integer examples. Russian "other" is covered by the XML test;
@@ -71,7 +84,12 @@ class CropMovementTranslationTest {
             "other" to listOf(100, 101, 102)),
         "ru" to mapOf("one" to listOf(1, 21, 101), "few" to listOf(2, 3, 4, 22, 102),
             "many" to listOf(0, 5, 11, 12, 14, 20, 111)),
-        "ja" to mapOf("other" to listOf(0, 1, 2, 3, 11, 20, 101))
+        "ja" to mapOf("other" to listOf(0, 1, 2, 3, 11, 20, 101)),
+        "fi" to mapOf("one" to listOf(1), "other" to listOf(0, 2, 3, 11, 20, 21, 101)),
+        "et" to mapOf("one" to listOf(1), "other" to listOf(0, 2, 3, 11, 20, 21, 101)),
+        // Latvian zero-category counts below intentionally resolve through Android
+        // fallback to the resource other item; they are not all CLDR other.
+        "lv" to mapOf("one" to listOf(1, 21, 101), "other" to listOf(0, 2, 3, 10, 11, 20, 111))
     )
 
     private fun withLanguage(tag: String, check: (AssemblyActivity) -> Unit) {
@@ -95,16 +113,24 @@ class CropMovementTranslationTest {
             assertEquals(tag, activity.resources.configuration.locales[0].language)
             check(activity)
         } finally {
-            ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
-            controller?.let { if (!it.get().isDestroyed) it.pause().stop().destroy() }
-            manager.applicationLocales = previousPlatform
-            preferences.edit().apply {
-                if (previousTag == null) remove("language-tag") else putString("language-tag", previousTag)
-                if (previousInitialized == null) remove("platform-initialized")
-                else putBoolean("platform-initialized", previousInitialized)
-            }.commit()
-            PaintApplication.currentResources = previousResources
-            Locale.setDefault(previousLocale)
+            try {
+                try { ShadowAlertDialog.getLatestAlertDialog()?.dismiss() }
+                finally { controller?.let { if (!it.get().isDestroyed) it.pause().stop().destroy() } }
+            } finally {
+                try { manager.applicationLocales = previousPlatform }
+                finally {
+                    try {
+                        preferences.edit().apply {
+                            if (previousTag == null) remove("language-tag") else putString("language-tag", previousTag)
+                            if (previousInitialized == null) remove("platform-initialized")
+                            else putBoolean("platform-initialized", previousInitialized)
+                        }.commit()
+                    } finally {
+                        PaintApplication.currentResources = previousResources
+                        Locale.setDefault(previousLocale)
+                    }
+                }
+            }
         }
     }
 
@@ -158,6 +184,50 @@ class CropMovementTranslationTest {
             check(20, 12)
             root.findViewWithTag<View>("crop_reset").performClick()
             check(20)
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
+            assertFalse(applied)
+        }
+    }
+
+    @Test fun finnishEstonianLatvianCropSideDescriptionsRemainWholeOnEveryUnitSwitch() {
+        val expected = mapOf(
+            "fi" to mapOf(
+                "left" to listOf("Vasen: rajaus pikseleinä", "Vasen: rajaus prosentteina"),
+                "top" to listOf("Ylhäällä: rajaus pikseleinä", "Ylhäällä: rajaus prosentteina"),
+                "right" to listOf("Oikea: rajaus pikseleinä", "Oikea: rajaus prosentteina"),
+                "bottom" to listOf("Alhaalla: rajaus pikseleinä", "Alhaalla: rajaus prosentteina")
+            ),
+            "et" to mapOf(
+                "left" to listOf("Vasak: kärbe pikslites", "Vasak: kärbe protsentides"),
+                "top" to listOf("Ülal: kärbe pikslites", "Ülal: kärbe protsentides"),
+                "right" to listOf("Parem: kärbe pikslites", "Parem: kärbe protsentides"),
+                "bottom" to listOf("All: kärbe pikslites", "All: kärbe protsentides")
+            ),
+            "lv" to mapOf(
+                "left" to listOf("Pa kreisi: apgriešana pikseļos", "Pa kreisi: apgriešana procentos"),
+                "top" to listOf("Augšā: apgriešana pikseļos", "Augšā: apgriešana procentos"),
+                "right" to listOf("Pa labi: apgriešana pikseļos", "Pa labi: apgriešana procentos"),
+                "bottom" to listOf("Apakšā: apgriešana pikseļos", "Apakšā: apgriešana procentos")
+            )
+        )
+        for ((tag, edges) in expected) withLanguage(tag) { activity ->
+            val image = AssemblyImage("edge-crop", File(activity.cacheDir, "edge-crop.image"),
+                "Image", null, ImageDimensions(24, 16))
+            var applied = false
+            val dialog = ImageCropDialog(activity, listOf(image), { null }) { applied = true }.show()
+            val root = dialog.window!!.decorView
+            fun check(unit: Int) {
+                shadowOf(Looper.getMainLooper()).idle()
+                for ((edge, values) in edges) assertEquals(tag + "/" + edge + "/" + unit,
+                    values[unit], root.findViewWithTag<EditText>("crop_" + edge).contentDescription.toString())
+            }
+            check(0)
+            root.findViewWithTag<EditText>("crop_top").setText("4")
+            root.findViewWithTag<View>("crop_percent").performClick(); check(1)
+            assertEquals("25", root.findViewWithTag<EditText>("crop_top").text.toString())
+            root.findViewWithTag<View>("crop_pixels").performClick(); check(0)
+            assertEquals("4", root.findViewWithTag<EditText>("crop_top").text.toString())
+            root.findViewWithTag<View>("crop_reset").performClick(); check(0)
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
             assertFalse(applied)
         }

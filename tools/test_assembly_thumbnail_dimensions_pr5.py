@@ -20,7 +20,7 @@ PHRASES = {
     "values-b+es+419": "dimensiones de las imágenes tras el recorte y cualquier ajuste de {width} o {height}",
     "values-fr": "les dimensions des images après recadrage et après tout ajustement avec {width} ou {height}",
     "values-de": "Bildmaße nach dem Zuschneiden und einer etwaigen Anpassung mit «{width}» oder «{height}»",
-    "values-b+eo": "bildajn dimensiojn post stuĉado kaj eventuala alĝustigo per {width} aŭ {height}",
+    "values-b+eo": "bildajn dimensiojn post stucado kaj eventuala alĝustigo per «{width}» aŭ «{height}»",
     "values": "image dimensions after cropping and any {width} or {height} adjustment",
 }
 

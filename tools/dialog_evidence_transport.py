@@ -61,6 +61,17 @@ LARGE_COLOUR_METHODS = {
 for method in LARGE_COLOUR_METHODS:
     COLOUR_SCREENS[method] = ['0-colour-large-initial.png', '1-colour-large-preview-reached.png',
                               '2-colour-large-top-reached.png']
+LARGE_COLOUR_IME_METHODS = {
+    'largeEnglishColourImeBackAndFooterLifecycle': 'en-US',
+    'largeHungarianColourImeBackAndFooterLifecycle': 'hu',
+}
+for method in LARGE_COLOUR_IME_METHODS:
+    COLOUR_SCREENS[method] = ['0-colour-2x-initial.png', '1-colour-2x-ime-open.png',
+                              '2-colour-2x-ime-hidden.png', '3-colour-2x-cancel-reached.png',
+                              '4-colour-2x-reopened.png', '5-colour-2x-use-reached.png']
+LARGE_COLOUR_IME_CAPTIONS = ['colour_mode_0', 'colour_mode_3', 'colour_advanced_tab', 'colour_mode_1',
+                             'colour_mode_2', 'add_custom_colour', 'selected_colour_caption',
+                             'custom_colour_selection', 'colour_hex', 'cancel', 'use']
 LARGE_COLOUR_CAPTIONS = ['selected_colour_caption', 'add_custom_colour', 'custom_colour_selection']
 METHOD_SCREENS = {**DIALOG_SCREENS, **COLOUR_SCREENS}
 # Identity is a method-to-class mapping, never a Cartesian product of two lists.
@@ -68,7 +79,7 @@ METHOD_CLASSES = {**dict.fromkeys(DIALOG_SCREENS, TEST_CLASS),
                   **dict.fromkeys(COLOUR_SCREENS, COLOUR_CLASS)}
 MAX_FILE = 2 * 1024 * 1024
 MAX_CASE = 24 * 1024 * 1024
-MAX_TOTAL = 72 * 1024 * 1024  # Unchanged aggregate ceiling; twelve cases contain 39 PNGs.
+MAX_TOTAL = 72 * 1024 * 1024  # Unchanged aggregate ceiling; fourteen cases contain 51 PNGs.
 MAX_MANIFEST = 64 * 1024
 PNG = b'\x89PNG\r\n\x1a\n'
 
@@ -87,12 +98,12 @@ def source_binding(summary):
     require(len(cases) == len(expected)
             and {(c.get('classname'), c.get('name')) for c in cases} == expected
             and all(c.get('status') == 'passed' for c in cases),
-            'All twelve exact method/class pairs must pass in dedicated dialog report')
+            'All fourteen exact method/class pairs must pass in dedicated dialog report')
     require(type(summary.get('expected_tests')) is int and summary['expected_tests'] == len(METHOD_CLASSES)
             and type(summary.get('completed_tests')) is int and summary['completed_tests'] == len(METHOD_CLASSES)
             and summary.get('missing') == [] and summary.get('unexpected') == [] and summary.get('errors') == []
             and summary.get('included_tests') == sorted(owner + '#' + method for method, owner in METHOD_CLASSES.items()),
-            'Exact selected twelve-method two-class dialog phase required')
+            'Exact selected fourteen-method two-class dialog phase required')
     return digest
 
 
@@ -311,6 +322,8 @@ COLOUR_POINTERS = {
     'hungarianColourCaptionsFitPortraitAndLandscape': ['Hungarian colour Cancel'],
 }
 COLOUR_POINTERS.update(dict.fromkeys(LARGE_COLOUR_METHODS, ['large colour Cancel']))
+COLOUR_POINTERS.update(dict.fromkeys(LARGE_COLOUR_IME_METHODS,
+    ['2x Cancel', '2x invalid rejected', '2x valid committed']))
 COLOUR_CAPTIONS = ['colour_mode_0', 'colour_mode_3', 'colour_advanced_tab',
                    'colour_mode_1', 'colour_mode_2', 'add_custom_colour']
 
@@ -360,9 +373,10 @@ def verify_colour_profile(method, observations):
     """
     require(method in COLOUR_SCREENS, 'Unknown colour profile')
     fixture = one(observations, 'fixture')
-    large = method in LARGE_COLOUR_METHODS
+    lifecycle = method in LARGE_COLOUR_IME_METHODS
+    large = method in LARGE_COLOUR_METHODS or lifecycle
     scale = 2 if large else 1
-    locale = LARGE_COLOUR_METHODS[method] if large else ('hu' if method == 'hungarianColourCaptionsFitPortraitAndLandscape' else 'en-US')
+    locale = LARGE_COLOUR_IME_METHODS[method] if lifecycle else LARGE_COLOUR_METHODS[method] if large else ('hu' if method == 'hungarianColourCaptionsFitPortraitAndLandscape' else 'en-US')
     require(fixture.get('locale') == locale and type(fixture.get('font_scale')) in (int, float)
             and fixture['font_scale'] == scale, 'Colour acceptance requires its exact locale and font scale')
     expected_orientations = ([False, True] if large or method.startswith('normal') else
@@ -401,7 +415,9 @@ def verify_colour_profile(method, observations):
         left, right = ((bounds[0], bounds[0] + route['gutter_pixels']) if route['rtl'] else
                        (bounds[2] - route['gutter_pixels'], bounds[2]))
         require(left <= route['x'] < right, 'Colour scroll must use the native gutter')
-    if large:
+    if lifecycle:
+        verify_large_colour_ime(method, observations)
+    elif large:
         verify_large_colour_rail(method, observations)
     elif method.startswith('normal'):
         verify_colour_allocation(observations)
@@ -423,6 +439,244 @@ def verify_colour_profile(method, observations):
                 colour_geometry(fit.get('inner'), complete=True, tag='colour_editor_scroll')
                 colour_geometry(fit.get('add'), complete=True, tag='add_custom_colour')
             require(not any(o.get('kind', '').startswith('native-back-') for o in observations), 'Unexpected colour Back')
+
+
+def verify_large_colour_ime(method, observations):
+    """Separate 2x lifecycle profile: IME occlusion is measured, never a failure oracle."""
+    initial = one(observations, 'colour-2x-initial')
+    require(initial.get('locale') == LARGE_COLOUR_IME_METHODS[method]
+            and type(initial.get('font_scale')) in (int, float) and initial['font_scale'] == 2
+            and type(initial.get('density')) in (int, float) and initial['density'] == 1
+            and initial.get('setup') == 'synthetic hex #13579B selection [2,5]; synthetic focus/IME activation; native Back and footer input',
+            'Wrong 2x lifecycle fixture')
+    display = colour_geometry(initial.get('display'), complete=True)
+    require(display[2] - display[0] == 640 and display[3] - display[1] == 320,
+            '2x lifecycle requires 640x320 mdpi')
+    identity = initial.get('state', {})
+    identity_keys = ('dialog_id', 'root_id', 'field_id', 'picker_id')
+    require(all(type(identity.get(k)) is int and identity[k] != 0 for k in identity_keys), 'Missing exact fixture identity')
+
+    def retained(state, ime):
+        verify_colour_back_state(state)
+        require(all(state.get(k) == identity[k] and type(state.get(k)) is int for k in identity_keys)
+                and all(state.get(k) is True for k in ('same_dialog', 'same_picker', 'same_root', 'same_field',
+                    'target_attached', 'target_showing', 'dialog_showing'))
+                and state.get('value') == '#13579B' and state.get('selection_start') == 2
+                and state.get('selection_end') == 5 and state.get('picker_colour') == -15509605
+                and state['commit_callbacks'] == state['closed_callbacks'] == 0
+                and type(state.get('native_ime_present')) is bool
+                and (ime is None or state['native_ime_present'] is ime), '2x draft/selection/root identity or callbacks changed')
+
+    retained(identity, False)
+    activation = one(observations, 'colour-2x-synthetic-ime-activation')
+    require(activation.get('strategy') == 'View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)'
+            and activation.get('focus_request_returned') is True and activation.get('field_focused') is True
+            and type(activation.get('ime_request_returned')) is bool,
+            'Explicit synthetic focus/IME activation required; request return is not rendered IME evidence')
+    retained(activation.get('state'), None)
+    occlusion = one(observations, 'colour-2x-ime-occlusion')
+    hidden = one(observations, 'colour-2x-hidden-retained')
+    retained(occlusion.get('state'), True)
+    retained(hidden.get('state'), False)
+    require(hidden['state']['target_focused'] is True and hidden['state']['focused_app_window_is_target'] is True,
+            'Hidden IME must restore exact dialog focus')
+    ime_events = [o for o in observations if o.get('kind') == 'colour-native-ime-window']
+    require([o.get('requested_visible') for o in ime_events] == [True, False]
+            and all(type(o.get('requested_visible')) is bool for o in ime_events), 'Missing 2x native IME show/hide')
+    for event in ime_events:
+        require(event.get('condition_passed') is True and type(event.get('stable_window_ms')) is int
+                and event['stable_window_ms'] >= 250 and event.get('root_id') == identity['root_id']
+                and event.get('field_id') == identity['field_id'] and event.get('value') == '#13579B'
+                and type(event.get('ime_visible')) is bool and type(event.get('fullscreen_ime')) is bool
+                and type(event.get('ime_inset_bottom')) is int and event['ime_inset_bottom'] >= 0,
+                'Unstable or stale-root 2x native IME evidence')
+        # Inset visibility/height are observations, not the native-window oracle.
+        # In fullscreen extract mode the underlying app can have zero IME inset.
+        for key in ('dialog', 'field'):
+            observe_colour_geometry(event.get(key))
+        windows = event.get('windows')
+        require(isinstance(windows, list) and len(windows) <= 16, 'Missing or excessive 2x IME windows')
+        for window in windows:
+            require(isinstance(window, dict) and type(window.get('id')) is int and type(window.get('type')) is int
+                    and window['type'] == 2 and isinstance(window.get('package'), str) and window['package']
+                    and type(window.get('root_visible')) is bool and type(window.get('configured_ime')) is bool
+                    and type(window.get('root_children')) is int and window['root_children'] >= 0,
+                    'Wrong native 2x IME window')
+            bounds, root_bounds = rectangle(window.get('bounds')), rectangle(window.get('root_bounds'))
+            require(contains(display, bounds) and contains(bounds, root_bounds), 'Empty or out-of-display native IME')
+        if event['requested_visible']:
+            require(any(w['configured_ime'] and w['root_visible'] and w['root_children'] > 0 for w in windows),
+                    'Configured actual IME is absent')
+        else:
+            require(windows == [], 'Actual IME remains after Back')
+    windows = ime_events[0]['windows']
+    require(len({w['id'] for w in windows}) == len(windows), 'Duplicate IME window')
+    controls = occlusion.get('controls')
+    require(isinstance(controls, list) and [v.get('key') for v in controls] == ['hex', 'cancel', 'use'],
+            'Missing raw field/footer occlusion observations')
+    for control in controls:
+        raw = observe_colour_geometry(control.get('geometry'))
+        validate_colour_ancestor_chain(control, identity['root_id'], visible_line=False)
+        overlaps = control.get('ime_overlaps')
+        require(isinstance(overlaps, list) and len(overlaps) == len(windows), 'Missing actual IME overlap observations')
+        for overlap, window in zip(overlaps, windows):
+            b = window['bounds']
+            intersects = (raw[0] < raw[2] and raw[1] < raw[3] and b[0] < b[2] and b[1] < b[3]
+                          and raw[0] < b[2] and b[0] < raw[2] and raw[1] < b[3] and b[1] < raw[3])
+            require(overlap.get('window_id') == window['id'] and overlap.get('overlaps') is intersects,
+                    'IME overlap observation disagrees with raw geometry')
+    backs = [o for o in observations if o.get('kind', '').startswith('native-back-')]
+    labels = ['hide 2x colour IME', 'close 2x reopened colour']
+    require([(o.get('kind'), o.get('label')) for o in backs] ==
+            [(kind, label) for label in labels for kind in ('native-back-before', 'native-back-injected', 'native-back-after')],
+            'Exactly one native Back per required 2x outcome')
+    for offset in (0, 3):
+        before, injected, after = backs[offset:offset + 3]
+        for event in (before, injected, after):
+            verify_colour_back_state(event.get('state'))
+        require(before.get('postcondition_met') is False
+                and all(before['state'][k] is True for k in ('target_attached', 'target_showing', 'target_focused', 'dialog_showing'))
+                and injected.get('route') == 'UiDevice.pressKeyCode(KEYCODE_BACK)'
+                and type(injected.get('keycode')) is int and injected['keycode'] == 4
+                and type(injected.get('injection_count')) is int and injected['injection_count'] == 1
+                and injected.get('injected') is True and after.get('injected') is True
+                and after.get('completed') is True and after.get('postcondition_met') is True,
+                'Missing actual 2x Back injection/outcome')
+    retained(backs[0]['state'], True)
+    retained(backs[1]['state'], None)  # IME may be in transition; identity/callbacks may not.
+    retained(backs[2]['state'], False)
+    require(backs[2]['state']['target_focused'] is True and backs[2]['state']['focused_app_window_is_target'] is True,
+            'IME Back did not restore exact dialog focus')
+    cancelled = one(observations, 'colour-2x-cancelled')
+    require(all(type(cancelled.get(k)) is int for k in ('commit_callbacks', 'closed_callbacks', 'selected_colour', 'preview_colour'))
+            and cancelled.get('commit_callbacks') == 0 and cancelled.get('closed_callbacks') == 1
+            and cancelled.get('selected_colour') == cancelled.get('preview_colour') == -65536
+            and cancelled.get('dialog_showing') is False and cancelled.get('root_attached') is False,
+            'Native Cancel must restore original colour once')
+    reopened = one(observations, 'colour-2x-reopened')
+    require(all(type(reopened.get(k)) is int and reopened[k] != identity[k] for k in ('root_id', 'dialog_id'))
+            and reopened.get('value') == '#FF0000', 'Reopened dialog is stale or retains cancelled draft')
+    for event in backs[3:]:
+        state = event['state']
+        require(all(state.get(k) == reopened[k] for k in ('root_id', 'dialog_id')) and state.get('same_root') is True
+                and state['commit_callbacks'] == 0 and state['closed_callbacks'] in (1, 2)
+                and state.get('selected_colour') == state.get('preview_colour') == -65536,
+                'Reopened Back targets stale root, changes colour or reports impossible callback counts')
+    require(backs[3]['state']['closed_callbacks'] == 1 and backs[5]['state']['closed_callbacks'] == 2
+            and all(backs[5]['state'][k] is False for k in ('target_attached', 'target_showing', 'dialog_showing'))
+            and backs[5]['state']['focused_app_window_is_editor'] is True, 'Reopened Back failed to close once')
+    invalid = one(observations, 'colour-2x-invalid-rejected')
+    require(all(type(invalid.get(k)) is int for k in ('commit_callbacks', 'closed_callbacks'))
+            and invalid.get('value') == '#broken' and invalid.get('dialog_showing') is True
+            and invalid.get('error_present') is True and invalid.get('commit_callbacks') == 0
+            and invalid.get('closed_callbacks') == 2
+            and all(type(invalid.get(k)) is int and invalid[k] not in (identity[k], reopened[k]) for k in ('root_id', 'dialog_id')),
+            'Invalid hex must remain in a distinct third dialog without callbacks')
+    complete = one(observations, 'colour-2x-complete')
+    require(type(complete.get('commit_callbacks')) is int and complete['commit_callbacks'] == 1
+            and type(complete.get('closed_callbacks')) is int and complete['closed_callbacks'] == 3
+            and complete.get('selected_colour') == -14391124 and complete.get('dialog_showing') is False
+            and complete.get('root_attached') is False, 'Valid hex must commit exactly once')
+    pointers = [o for o in observations if o.get('kind') == 'pointer-before']
+    captions = [o for o in observations if o.get('kind') == 'colour-2x-caption']
+    require([o.get('key') for o in captions] == LARGE_COLOUR_IME_CAPTIONS, 'Incomplete 2x caption coverage')
+    for caption in captions:
+        key = caption['key']
+        expected_tag = 'About-row' if key in ('cancel', 'use') else key
+        require(caption.get('tag') == expected_tag, 'Wrong caption control identity')
+        expected_root = invalid['root_id'] if key == 'use' else identity['root_id']
+        text = caption.get('text')
+        raw_length = len(text.encode('utf-16-le')) // 2 if isinstance(text, str) else 0
+        transformed = caption.get('transformed_text')
+        length = len(transformed.encode('utf-16-le')) // 2 if isinstance(transformed, str) else 0
+        require(raw_length > 0 and caption.get('raw_text_length') == raw_length and caption.get('expected_text') == text
+                and isinstance(caption.get('transformation_method'), str) and caption['transformation_method']
+                and type(caption.get('view_id')) is int, 'Missing exact raw/source caption or platform transformation')
+        if key in ('cancel', 'use'):
+            # Bounded en-US/hu fixture resources and actual API35 framework Button transform.
+            # This is exact text equality, not a case-insensitive acceptance shortcut.
+            expected = {'en-US': {'cancel': ('Cancel', 'CANCEL'), 'use': ('Use color', 'USE COLOR')},
+                        'hu': {'cancel': ('Mégse', 'MÉGSE'), 'use': ('Szín használata', 'SZÍN HASZNÁLATA')}}
+            require((text, transformed) == expected[LARGE_COLOUR_IME_METHODS[method]][key]
+                    and caption.get('source_resource') == ('ui_cancel' if key == 'cancel' else 'ui_use_colour')
+                    and caption['view_id'] == (16908314 if key == 'cancel' else 16908313)
+                    and caption['transformation_method'] == 'android.text.method.AllCapsTransformationMethod',
+                    'Wrong native footer source text, action identity or actual transformation')
+        else:
+            require(caption.get('source_resource') == 'view-text' and transformed == text,
+                    'Unexpected non-footer caption transformation')
+        require(length > 0 and caption.get('accessible_text') == transformed and caption.get('caption_length') == length
+                and caption.get('root_id') == expected_root and type(caption.get('lines')) is int and caption['lines'] > 0,
+                'Incomplete accessible 2x caption or wrong root')
+        layout_text = caption.get('layout_text')
+        require(layout_text == transformed,
+                'Incomplete transformed layout text')
+        ranges = caption.get('line_ranges')
+        require(isinstance(ranges, list) and len(ranges) == caption['lines'], 'Incomplete layout ranges')
+        end = 0
+        for interval in ranges:
+            require(isinstance(interval, list) and len(interval) == 2 and all(type(v) is int for v in interval)
+                    and interval[0] == end and interval[1] > end, 'Skipped UTF-16 caption text')
+            end = interval[1]
+        require(end == length, 'Incomplete full-text caption layout')
+        index = observations.index(caption)
+        intrinsic = observations[index - 1]
+        require(intrinsic.get('kind') == 'intrinsic-caption' and intrinsic.get('caption_length') == length
+                and intrinsic.get('lines') == caption['lines'] and intrinsic.get('tag') == expected_tag,
+                'Missing bound intrinsic caption measurement')
+        lines = [o for o in observations if o.get('kind') == 'colour-2x-caption-line' and o.get('key') == key]
+        require([o.get('line') for o in lines] == list(range(caption['lines']))
+                and all(type(o.get('line')) is int for o in lines), 'Missing sequential 2x caption lines')
+        boundary = observations.index(pointers[1] if key == 'use' else pointers[0])
+        following = [observations.index(c) for c in captions if observations.index(c) > index]
+        if following:
+            boundary = min(boundary, following[0])
+        positions = [observations.index(line) for line in lines]
+        require(positions == sorted(set(positions)) and all(index < pos < boundary for pos in positions),
+                'Caption reachability must precede its next measurement and native footer action')
+        for line in lines:
+            require(contains(line['geometry']['visible'], line['line_rect'])
+                    and line['geometry'].get('tag') == (None if key in ('cancel', 'use') else key),
+                    '2x caption line clipped or belongs to another control')
+            validate_colour_ancestor_chain(line, expected_root)
+    pointers = [o for o in observations if o.get('kind') == 'pointer-before']
+    order = [initial, activation, ime_events[0], occlusion, *backs[:3], ime_events[1], hidden,
+             *captions[:-1], pointers[0], cancelled, reopened, *backs[3:], captions[-1], pointers[1], invalid, pointers[2], complete]
+    indices = [observations.index(o) for o in order]
+    require(indices == sorted(set(indices)), '2x native lifecycle order changed')
+    for event in (initial, occlusion, complete):
+        require(event.get('simultaneous_ime_field_footer_fit') == 'not-accepted', 'Do not grant IME-open simultaneous fit')
+    for event in (initial, activation, complete):
+        require(event.get('initial_native_field_activation') == 'not-tested'
+                and event.get('initial_full_hex_visibility') == 'not-accepted',
+                'Synthetic setup must not masquerade as native initial entry or full hex visibility acceptance')
+
+
+def observe_colour_geometry(value):
+    """Raw/ancestor observations allow empty clipped regions while IME is open."""
+    require(isinstance(value, dict), 'Missing observed geometry')
+    raw, visible = rectangle(value.get('raw')), rectangle(value.get('visible'))
+    require(type(value.get('shown')) is bool
+            and all(type(value.get(k)) is int for k in ('scroll_x', 'scroll_y')), 'Malformed observed geometry')
+    require(visible[0] == visible[2] or visible[1] == visible[3] or contains(raw, visible),
+            'Visible geometry exceeds raw bounds')
+    return raw
+
+
+def validate_colour_ancestor_chain(line, root_id, *, visible_line=True):
+    chain = line.get('ancestors')
+    require(isinstance(chain, list) and 0 < len(chain) <= 32, 'Missing complete caption ancestor path')
+    parent_id = line.get('parent_id')
+    require(type(parent_id) is int and parent_id != 0, 'Missing caption parent identity')
+    seen = set()
+    for index, ancestor in enumerate(chain):
+        (colour_geometry if visible_line else observe_colour_geometry)(ancestor)
+        require(type(ancestor.get('id')) is int and ancestor['id'] == parent_id and parent_id not in seen
+                and (not visible_line or contains(ancestor['visible'], line['line_rect']))
+                and ancestor.get('is_root') is (index == len(chain) - 1), 'Incomplete or clipped ancestor chain')
+        seen.add(parent_id)
+        parent_id = ancestor.get('parent_id')
+    require(chain[-1]['id'] == root_id and type(parent_id) is int and parent_id == 0, 'Wrong terminal dialog root')
 
 
 def verify_large_colour_rail(method, observations):
@@ -746,7 +1000,8 @@ def inspect_archive(archive, method, digest):
         require(seen == expected, 'Missing export records')
         verify_receipt(json.loads(zipped.read('receipt.json'), object_pairs_hook=strict_object), method, digest)
     return {'method': method, 'test_class': METHOD_CLASSES[method],
-            'profile': 'colour-original-deadline' if method in COLOUR_SCREENS else 'dialog-whole-interaction',
+            'profile': ('colour-2x-ime-lifecycle-original-deadline' if method in LARGE_COLOUR_IME_METHODS else
+                        'colour-original-deadline' if method in COLOUR_SCREENS else 'dialog-whole-interaction'),
             'zip_bytes': size, 'zip_sha256': archive_digest,
             'manifest_bytes': len(manifest_bytes), 'manifest_sha256': hashlib.sha256(manifest_bytes).hexdigest(),
             'files': entries}
@@ -783,11 +1038,16 @@ def extract(exports, destination, dialog_summary):
     return {'success': True, 'scope': ('source-bound-installed-api35-notice-credit-and-normal-font-colour; '
                                      'ko-KP/ko-KR/ko-Kore-KR real-picker attribution-controls and conditional crop status; '
                                      'en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; '
-                                     'whole-dialog and universal 2x not accepted'),
+                                     'separate native IME/Back/footer lifecycle; whole-dialog and universal 2x not accepted'),
             'source_tests_sha256': digest, 'source_report': 'dedicated dialog instrumentation summary',
             'source_report_sha256': hashlib.sha256(summary_bytes).hexdigest(), 'device_sdk': 35,
             'cases': receipts, 'normal_font_colour_source_bound_pass': True,
             'large_font_preview_rail_source_bound_pass': True,
+            'large_font_ime_footer_lifecycle_source_bound_pass': True,
+            'large_font_ime_footer_scope': 'API35 en-US/hu 2x 640x320 mdpi; native IME presence/absence, retained Back, sequential captions/footers and callbacks only',
+            'large_font_ime_activation': 'synthetic requestFocus + showSoftInput; actual configured native IME separately required',
+            'initial_native_field_activation': 'not-tested',
+            'initial_full_hex_visibility': 'not-accepted',
             'large_font_preview_rail_scope': 'API35 en-US/hu 2x 640x320 mdpi, native caption/preview/top reachability and Cancel only',
             'universal_colour_acceptance': False,
             'colour_interaction_timing': 'original source-enforced 45000ms deadline; no exported whole-interval measurement',

@@ -224,19 +224,30 @@ run_dialog_regression() {
     --include-test "$colour_class#retainedColourStateSurvivesRotationImeCancelAndReopen" \
     --include-test "$colour_class#hungarianColourCaptionsFitPortraitAndLandscape" \
     --include-test "$colour_class#largeEnglishColourCaptionsAndPreviewRemainReachable" \
-    --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable"
+    --include-test "$colour_class#largeHungarianColourCaptionsAndPreviewRemainReachable" \
+    --include-test "$colour_class#largeEnglishColourImeBackAndFooterLifecycle" \
+    --include-test "$colour_class#largeHungarianColourImeBackAndFooterLifecycle"
 }
 
 cleanup() {
-  local status=$?
+  local status=$? pull_status logcat_status adb_server_log
   trap - ERR
   set +e
   progress "Collecting logs and stopping emulator (result $status, phase: $phase)"
-  timeout --kill-after=3s 10s "$adb" logcat -d > "$report/logcat.txt" 2>&1
+  # Mandatory app-owned exports come before the best-effort bulk diagnostic.
+  # A logcat transport failure must not prevent an otherwise available capture.
+  # This does not retry pulls, recapture screenshots or relax validation.
+  : > "$report/collection-status.log"
   if (( ${dialog_started:-0} )); then
-    if ! timeout --kill-after=3s 15s "$adb" pull \
+    if timeout --kill-after=3s 15s "$adb" pull \
         /sdcard/Download/anpaint-ci-dialog-evidence \
         "$report/dialog-export" > "$report/dialog-pull.log" 2>&1; then
+      pull_status=0
+    else
+      pull_status=$?
+    fi
+    printf 'dialog_pull_exit=%s\n' "$pull_status" >> "$report/collection-status.log"
+    if (( pull_status != 0 )); then
       progress 'FAILED: could not collect installed dialog evidence' >&2
       if (( status == 0 )); then status=1; fi
     elif ! python3 tools/dialog_evidence_transport.py "$report/dialog-export" \
@@ -249,9 +260,15 @@ cleanup() {
   fi
   if (( ${vertical_started:-0} )); then
     mkdir -p "$report/app"
-    if ! timeout --kill-after=3s 15s "$adb" pull \
+    if timeout --kill-after=3s 15s "$adb" pull \
         /sdcard/Download/anpaint-ci-vertical-evidence \
         "$report/vertical-locale-export" > "$report/vertical-locale-pull.log" 2>&1; then
+      pull_status=0
+    else
+      pull_status=$?
+    fi
+    printf 'vertical_pull_exit=%s\n' "$pull_status" >> "$report/collection-status.log"
+    if (( pull_status != 0 )); then
       progress 'FAILED: could not collect vertical locale screenshots' >&2
       if (( status == 0 )); then status=1; fi
     elif ! python3 tools/vertical_evidence_transport.py "$report/vertical-locale-export" \
@@ -271,6 +288,20 @@ cleanup() {
       if (( status == 0 )); then status=1; fi
     fi
   fi
+  progress 'Collecting best-effort logcat after mandatory evidence'
+  if timeout --kill-after=3s 10s "$adb" logcat -d > "$report/logcat.txt" 2>&1; then
+    logcat_status=0
+  else
+    logcat_status=$?
+  fi
+  printf 'logcat_exit=%s\n' "$logcat_status" >> "$report/collection-status.log"
+  # Retain a bounded tail of the existing runner-owned server log when present.
+  # Do not start/restart ADB or add another device command during cleanup.
+  adb_server_log="${TMPDIR:-/tmp}/adb.$UID.log"
+  if [[ -f "$adb_server_log" && ! -L "$adb_server_log" ]]; then
+    tail -c 65536 "$adb_server_log" > "$report/adb-server-tail.log" 2>&1
+  fi
+  printf 'result=%s\n' "$status" >> "$report/collection-status.log"
   timeout --kill-after=3s 10s "$adb" emu kill
   if test -n "$emulator_pid"; then
     kill "$emulator_pid" 2>/dev/null

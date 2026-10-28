@@ -1,5 +1,7 @@
 # AN Paint
 
+[Project brief and kanban](docs/PROJECT_KANBAN.md) records dated work status, next actions and linked evidence; historical checkpoints and current holds remain distinct.
+
 AN Paint is an independently maintained Android image editor derived from
 [Catrobat's Pocket Paint (Paintroid)](https://github.com/Catrobat/Paintroid).
 It is based on tag `v2.14.1`, commit `853ce3c346910ea73aa4de5514f2a76ace1396fb`;

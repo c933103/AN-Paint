@@ -5,6 +5,13 @@ import re
 import unittest
 
 import translation_catalogues as catalogues
+from basque_frisian_uzbek_priority_expectations import reviewed_uzbek_script_row
+from sorani_uyghur_tatar_priority_expectations import reviewed_tatar_script_row
+from moroccan_arabic_mongolian_toki_pona_priority_expectations import reviewed_mongolian_script_row, NAME as MN_FIXTURE_NAME
+from current_localization_contracts import fixture
+import copy
+from unittest.mock import patch
+import exact_script_priority_expectations as exact_script
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt'
@@ -31,7 +38,7 @@ class ExactScriptResourceRoutingContracts(unittest.TestCase):
     def test_build_mirrors_all_xml_from_canonical_catalogue_before_prebuild(self):
         build = (ROOT / 'Paintroid/build.gradle').read_text()
         task = build.split("tasks.register('generateExactScriptResources', Sync)", 1)[1]
-        task = task.split('// Host-side Android graphics tests', 1)[0]
+        task = task.split('// AAPT decodes canonical English', 1)[0]
         self.assertIn("from('src/main/res/values-b+ko+Kore+KR')", task)
         self.assertIn("include '*.xml'", task)
         self.assertIn("into 'values-b+ko+Kore+KR+anpaint'", task)
@@ -54,6 +61,10 @@ class ExactScriptResourceRoutingContracts(unittest.TestCase):
         self.assertEqual(28, len(rows))
         defaults = catalogues.default_resources()[0]
         for row in rows:
+            if row['requested_tag']=='uz-Latn':row=reviewed_uzbek_script_row(row)
+            if row['requested_tag']=='tt-Latn':row=exact_script.reviewed_tatar_latin_script_row(row)
+            if row['requested_tag']=='tt-Cyrl':row=reviewed_tatar_script_row(row)
+            elif row['requested_tag']=='mn-Cyrl-MN':row=reviewed_mongolian_script_row(row)
             tag = row['requested_tag']
             strings = catalogues.read_strings(catalogues.catalogue_paths()[tag])
             expected = {'ko-Kore-KR': 'ko-Kore-KR-anpaint',
@@ -62,6 +73,62 @@ class ExactScriptResourceRoutingContracts(unittest.TestCase):
             self.assertEqual({key: strings.get(key, defaults[key]).strip('"')
                               for key in ('ui_save', 'ui_menu_file', 'language20_device_default')},
                              row['expected'])
+
+    def test_tatar_latin_successor_rejects_changed_history_and_coordinated_fixture(self):
+        original={'requested_tag':'tt-Latn','resource_tag':'tt-Latn','expected':{
+            'ui_save':'Saqlaw','ui_menu_file':'Fayl','language20_device_default':'Use device language'}}
+        snapshot=copy.deepcopy(original)
+        self.assertEqual('Caylanma telen qullanu',exact_script.reviewed_tatar_latin_script_row(original)['expected']['language20_device_default'])
+        self.assertEqual(snapshot,original)
+        invalid=[]
+        for key in ('requested_tag','resource_tag','expected'):
+            row=copy.deepcopy(original);del row[key];invalid.append(row)
+        for key in ('requested_tag','resource_tag'):
+            row=copy.deepcopy(original);row[key]='tt-Cyrl';invalid.append(row)
+        row=copy.deepcopy(original);row['extra']=True;invalid.append(row)
+        for key in original['expected']:
+            row=copy.deepcopy(original);del row['expected'][key];invalid.append(row)
+            row=copy.deepcopy(original);row['expected'][key]='forged';invalid.append(row)
+        row=copy.deepcopy(original);row['expected']['extra']=True;invalid.append(row)
+        row=copy.deepcopy(original);row['expected']['language20_device_default']='Caylanma telen qullanu';invalid.append(row)
+        self.assertEqual(14,len(invalid))
+        for row in invalid:
+            with self.subTest(row=row),self.assertRaises(ValueError):exact_script.reviewed_tatar_latin_script_row(row)
+        for field in ('reviewed_value','compiled_display','source','previous_target','attributes'):
+            data=exact_script.bound_fixture('tt-Latn');data['rows']['language20_device_default'][field]='forged'
+            with patch.object(exact_script,'bound_fixture',return_value=data),self.assertRaises(ValueError):
+                exact_script.reviewed_tatar_latin_script_row(original)
+        self.assertEqual(snapshot,original)
+
+    def test_mongolian_successor_rejects_changed_history_or_reviewed_binding(self):
+        original={'requested_tag':'mn-Cyrl-MN','resource_tag':'mn-Cyrl-MN','expected':{
+            'ui_save':'Хадгалах','ui_menu_file':'Файл','language20_device_default':'Төхөөрөмжийн хэл'}}
+        snapshot=copy.deepcopy(original)
+        self.assertEqual('Төхөөрөмжийн хэлийг ашиглах',reviewed_mongolian_script_row(original)['expected']['language20_device_default'])
+        self.assertEqual(snapshot,original)
+        invalid=[]
+        for key in ('requested_tag','resource_tag','expected'):
+            row=copy.deepcopy(original);del row[key];invalid.append(row)
+        for key in ('requested_tag','resource_tag'):
+            row=copy.deepcopy(original);row[key]='mn';invalid.append(row)
+        row=copy.deepcopy(original);row['extra']=True;invalid.append(row)
+        for key in original['expected']:
+            row=copy.deepcopy(original);del row['expected'][key];invalid.append(row)
+            row=copy.deepcopy(original);row['expected'][key]='forged';invalid.append(row)
+        row=copy.deepcopy(original);row['expected']['extra']=True;invalid.append(row)
+        row=copy.deepcopy(original);row['expected']['language20_device_default']='Төхөөрөмжийн хэлийг ашиглах';invalid.append(row)
+        self.assertEqual(14,len(invalid))
+        for row in invalid:
+            with self.subTest(row=row),self.assertRaises(ValueError):reviewed_mongolian_script_row(row)
+        data=fixture(MN_FIXTURE_NAME)
+        for area in ('accepted','predecessors'):
+            mutant=copy.deepcopy(data)
+            if area=='accepted':mutant['locales']['mn-Cyrl-MN'][area]['language20_device_default']='forged'
+            else:mutant['locales']['mn-Cyrl-MN'][area]['language20_device_default']['target']='forged'
+            with self.subTest(area=area),self.assertRaises(ValueError):reviewed_mongolian_script_row(original,mutant)
+        mutant=copy.deepcopy(data);mutant['sources']['language20_device_default']['source']='forged'
+        with self.assertRaises(ValueError):reviewed_mongolian_script_row(original,mutant)
+        self.assertEqual(snapshot,original)
 
     def test_wrap_refresh_and_device_label_apply_the_same_bounded_resource_mapping(self):
         source = JAVA.read_text()

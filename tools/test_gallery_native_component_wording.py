@@ -23,8 +23,11 @@ class GalleryNativeComponentWordingTests(unittest.TestCase):
         cls.scope = contracts.fixture("locale_contract_scope.json")
         cls.wording = contracts.fixture("gallery_native_component_current_wording.json")
 
+    def test_only_reviewed_czech_and_swedish_extend_this_family(self):
+        self.assertEqual(['cs', 'sv'], self.wording['additional_reviewed_tags'])
+
     def test_complete_values_match_scoped_catalogues(self):
-        contracts.require_wording_shape(self.wording, {KEY}, {"default", *self.scope["scoped_tags"]})
+        contracts.require_wording_shape(self.wording, {KEY}, {"default", *self.scope["scoped_tags"], *self.wording["additional_reviewed_tags"]})
         self.assertEqual(SOURCE, self.wording["values"][KEY]["default"])
         paths = {"default": catalogues.RES / "values/strings.xml", **catalogues.catalogue_paths()}
         for tag, expected in self.wording["values"][KEY].items():
@@ -33,12 +36,12 @@ class GalleryNativeComponentWordingTests(unittest.TestCase):
 
     def test_every_definition_is_accounted_for_and_open_fallbacks_remain_absent(self):
         paths = catalogues.catalogue_paths()
-        expected = {catalogues.RES / "values/strings.xml", *(paths[tag] for tag in self.scope["scoped_tags"])}
+        expected = {catalogues.RES / "values/strings.xml", *(paths[tag] for tag in [*self.scope["scoped_tags"], *self.wording["additional_reviewed_tags"]])}
         actual = {path for path in catalogues.RES.glob("values*/*.xml")
                   if ET.parse(path).getroot().find(f"./string[@name='{KEY}']") is not None}
         self.assertEqual(expected, actual)
         contracts.require_locale_scope(self.scope, set(self.scope["scoped_tags"]), catalogues.offered_tags())
-        for tag in self.scope["fallback_tags"]:
+        for tag in set(self.scope["fallback_tags"]) - set(self.wording["additional_reviewed_tags"]):
             with self.subTest(tag=tag):
                 self.assertNotIn(KEY, catalogues.read_strings(paths[tag]))
 

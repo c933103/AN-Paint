@@ -30,7 +30,7 @@ HARNESS_WATCHDOG_SECONDS = (HARNESS_SETUP_ALLOWANCE_SECONDS + HARNESS_COMMAND_AL
 
 
 class EmulatorReadinessTest(unittest.TestCase):
-    def run_probe(self, fake_adb, *, budget=5, process='$$', pattern='1'):
+    def run_probe(self, fake_adb, *, budget=5, process='$$', pattern='1', clock_ticks=None):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             adb = root / 'adb'
@@ -41,6 +41,26 @@ source "$CI_SCRIPT"
 report="$CI_TEST_DIR"
 adb="$report/adb"
 emulator_pid=PROCESS
+timeout() {
+    printf '%s\\n' "$@" > "$report/timeout-args"
+    command timeout "$@"
+}
+if [[ -n "$CI_TEST_CLOCK_TICKS" ]]; then
+    # Replace only this test shell's clock. The production timeout is still real.
+    # Advance at completed log boundaries so host scheduling cannot select which
+    # deadline branch a test exercises.
+    unset SECONDS
+    SECONDS=0
+    read -r -a clock_ticks <<< "$CI_TEST_CLOCK_TICKS"
+    eval "real_$(declare -f progress)"
+    progress() {
+        real_progress "$@"
+        if (( ${#clock_ticks[@]} )); then
+            SECONDS=${clock_ticks[0]}
+            clock_ticks=("${clock_ticks[@]:1}")
+        fi
+    }
+fi
 readiness_deadline=$((SECONDS + CI_TEST_BUDGET))
 wait_until_ready "Test readiness" "$CI_TEST_PATTERN" shell getprop sys.boot_completed
 '''.replace('PROCESS', process)
@@ -48,8 +68,12 @@ wait_until_ready "Test readiness" "$CI_TEST_PATTERN" shell getprop sys.boot_comp
             result = subprocess.run(
                 ['bash', '-c', command], text=True, capture_output=True, timeout=10,
                 env={**os.environ, 'CI_SCRIPT': str(SCRIPT), 'CI_TEST_DIR': directory,
-                     'CI_TEST_BUDGET': str(budget), 'CI_TEST_PATTERN': pattern})
+                     'CI_TEST_BUDGET': str(budget), 'CI_TEST_PATTERN': pattern,
+                     'CI_TEST_CLOCK_TICKS': ' '.join(map(str, clock_ticks or ()))})
             elapsed = time.monotonic() - started
+            self.probe_pid = int((root / 'adb-pid').read_text()) if (root / 'adb-pid').exists() else None
+            self.probe_timeout_args = ((root / 'timeout-args').read_text().splitlines()
+                                       if (root / 'timeout-args').exists() else None)
             saved = (root / 'startup.log').read_text()
             count = (root / 'count').read_text().strip() if (root / 'count').exists() else None
             return result, elapsed, saved, count
@@ -76,11 +100,37 @@ printf '1\\r\\n'
         self.assertNotIn('Ready:', saved)
 
     def test_hung_service_is_killed_within_remaining_budget(self):
-        result, elapsed, saved, _ = self.run_probe('exec sleep 30\n', budget=1, pattern='*')
+        # Hold the test clock until the real one-second timeout completes. With
+        # the real SECONDS clock, initial progress/tee scheduling could consume
+        # the entire budget before ADB started, legitimately taking a different
+        # path. That boundary is required independently below.
+        result, elapsed, saved, _ = self.run_probe(
+            'printf \'%s\\n\' "$$" > "$CI_TEST_DIR/adb-pid"\nexec sleep 30\n',
+            budget=1, pattern='*', clock_ticks=(0, 1))
         self.assertEqual(result.returncode, 124, result.stdout + result.stderr)
+        self.assertEqual(self.probe_timeout_args[:2], ['--kill-after=1s', '1s'])
+        self.assertGreaterEqual(elapsed, 1)
         self.assertLess(elapsed, 4)
-        self.assertIn('probe exit 124', saved)
+        self.assertIsNotNone(self.probe_pid, 'The hung service must actually start')
+        with self.assertRaises(ProcessLookupError):
+            os.kill(self.probe_pid, 0)
+        self.assertEqual(saved.count('probe exit 124'), 1)
         self.assertIn('startup deadline reached', saved)
+
+    def test_deadline_reached_during_initial_progress_never_launches_probe(self):
+        # Model being scheduled at the deadline and after it, following the
+        # initial phase log. An immediate-success ADB must not bypass the guard.
+        for elapsed_seconds in (1, 2):
+            with self.subTest(elapsed_seconds=elapsed_seconds):
+                result, _, saved, count = self.run_probe(
+                    'echo called > "$CI_TEST_DIR/count"\necho 1\n',
+                    budget=1, clock_ticks=(elapsed_seconds,))
+                self.assertEqual(result.returncode, 124, result.stdout + result.stderr)
+                self.assertIsNone(count, 'No ADB process may start after the deadline')
+                self.assertIsNone(self.probe_timeout_args)
+                self.assertIn('startup deadline reached during Test readiness', saved)
+                self.assertNotIn('probe exit', saved)
+                self.assertNotIn('Ready:', saved)
 
     def test_exited_emulator_fails_without_waiting_for_deadline(self):
         result, elapsed, saved, _ = self.run_probe('echo 1\n', process='999999999')
@@ -283,12 +333,12 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
                 result,events,boundary,status,coverage=self.run_boundary(future_sdk_bound=bound)
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr+boundary)
                 self.assertEqual(coverage['device_sdk'],35)
-                self.assertEqual(coverage['declared_tests'],30)
-                self.assertEqual(coverage['sdk_eligible_tests'],29)
-                self.assertEqual(coverage['completed_tests'],29)
+                self.assertEqual(coverage['declared_tests'],32)
+                self.assertEqual(coverage['sdk_eligible_tests'],31)
+                self.assertEqual(coverage['completed_tests'],31)
                 self.assertNotIn(['paint.anpaint.android.FutureTest','future'],coverage['completed'])
                 self.assertIn(['paint.anpaint.android.EditorDeviceTest','ordinary'],coverage['completed'])
-                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':3, 'dialog':12, **{phase:2 for phase in VERTICAL_SHARDS}, **{phase:len(part) for phase,part in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})
+                self.assertEqual(coverage['phases'],{'ordinary':1, 'gallery-draft':3, 'dialog':14, **{phase:2 for phase in VERTICAL_SHARDS}, **{phase:len(part) for phase,part in POSITION_SHARDS.items()}, 'seed':1, 'verify':1})
 
     def test_complete_seed_precedes_stop_and_fresh_normal_verify_with_full_union(self):
         result,events,boundary,status,coverage=self.run_boundary()
@@ -298,7 +348,7 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('Complete successful seed report verified; PID=123',boundary)
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
-        self.assertEqual(coverage['completed_tests'],30)
+        self.assertEqual(coverage['completed_tests'],32)
 
     def test_failed_seed_or_dead_changed_process_never_reaches_external_stop(self):
         for failure in ('truncated','died','changed','transport','timeout','gallery_closed','die_after_gallery'):
@@ -367,8 +417,8 @@ python3 tools/app_instrumentation_matrix.py --source-tests app/src/androidTest -
         self.assertIn('Verified target PID absent',boundary)
         self.assertIn('COMPLETED',status)
         self.assertTrue(coverage['success'])
-        self.assertEqual(coverage['declared_tests'],30)
-        self.assertEqual(coverage['completed_tests'],30)
+        self.assertEqual(coverage['declared_tests'],32)
+        self.assertEqual(coverage['completed_tests'],32)
         self.assertEqual({tuple(identity) for identity in coverage['completed']},{
             ('paint.anpaint.android.EditorDeviceTest','ordinary'),
             ('paint.anpaint.android.FutureTest','future'),

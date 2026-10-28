@@ -25,6 +25,8 @@ import org.robolectric.annotation.Config
 class CommonsMetadataQueryFailureTranslationTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
     private val expectedMessages=mapOf(
+        "cs" to "Dotaz na metadata Commons selhal",
+        "sv" to "Förfrågan om Commons-metadata misslyckades",
         "af" to "Die navraag vir Commons-metadata het misluk",
         "ain-Kana" to "タトゥㇺ (ノカ オルㇱペ) アナㇰ Commons アコヌ エアイカㇷ゚.",
         "ain-Latn" to "Tatum (noka oruspe) anak Commons a=konu eaykap.",
@@ -117,8 +119,8 @@ class CommonsMetadataQueryFailureTranslationTest {
         PaintApplication.currentResources=wrapped.resources
         return wrapped.resources
     }
-    @Test fun allRequired59CataloguesHaveExplicitProposals() {
-        assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",59,expectedMessages.size)
+    @Test fun allRequiredCataloguesAndReviewedCzechAndSwedishHaveExplicitValues() {
+        assertEquals("Unresolved required proposals are a failing completeness gate, not English-filled translations",61,expectedMessages.size)
     }
     @Test fun allOfferedTagsResolveTheirExplicitMessageOrDocumentedFallback() {
         assertEquals(171,AppLanguage.tags(context).size)
@@ -129,6 +131,6 @@ class CommonsMetadataQueryFailureTranslationTest {
             assertEquals(tag,expected,resources.getString(R.string.commons_metadata_query_failed))
             assertTrue(expected.contains("Commons"))
         }
-        assertEquals(112,fallbacks)
+        assertEquals(110,fallbacks)
     }
 }

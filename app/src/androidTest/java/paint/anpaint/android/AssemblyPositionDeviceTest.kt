@@ -241,13 +241,23 @@ class AssemblyPositionDeviceTest {
         // view clipping does not subtract IME occlusion; dismiss it before
         // measuring/revealing the next touch target, just as before Apply.
         hideIme(onMain {field.rootView})
+        onMain {android.util.Log.i("AssemblyPositionDeviceTest","native edit field=${field.tag} " +
+            "raw=${rawBounds(field)} focused=${field.hasFocus()} selection=${field.selectionStart}:${field.selectionEnd}")}
         tap(field)
         try {
             await("native field focus: ${field.tag}") {field.hasFocus() && field.hasWindowFocus()}
+            // A field tap requests the IME asynchronously. Typing can finish
+            // before it appears; a single hidden-insets sample would then skip
+            // Back and let the late IME cover the next Apply/Cancel target.
+            await("IME shown for native field input: ${field.tag}") {
+                field.hasFocus() && field.hasWindowFocus() &&
+                    field.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==true
+            }
         } catch(error: AssertionError) {
             throw AssertionError(onMain {"${error.message}; raw=${rawBounds(field)} visible=${visibleBounds(field)} " +
                 "focused=${field.rootView.findFocus()?.tag} windowFocus=${field.hasWindowFocus()} " +
-                "ime=${field.rootWindowInsets?.isVisible(WindowInsets.Type.ime())}"},error)
+                "ime=${field.rootWindowInsets?.isVisible(WindowInsets.Type.ime())} " +
+                "selection=${field.selectionStart}:${field.selectionEnd} showSoftInputOnFocus=${field.showSoftInputOnFocus}"},error)
         }
         assertTrue(device.pressKeyCode(KeyEvent.KEYCODE_A,KeyEvent.META_CTRL_ON))
         assertTrue(device.pressKeyCode(KeyEvent.KEYCODE_DEL))
@@ -322,11 +332,16 @@ class AssemblyPositionDeviceTest {
         revealText(view)
         reveal(view) {rawBounds(view).let {raw ->val half=(12*view.resources.displayMetrics.density).toInt()
             Rect(raw.centerX()-half,raw.centerY()-half,raw.centerX()+half,raw.centerY()+half)}}
-        val bounds=onMain {assertTrue(view.isEnabled);visibleBounds(view)}
+        val bounds=onMain {
+            assertTrue(view.isEnabled)
+            assertTrue("Native tap requires a focused window with the IME hidden: ${view.text}",
+                view.hasWindowFocus() && view.rootWindowInsets?.isVisible(WindowInsets.Type.ime())==false)
+            visibleBounds(view)
+        }
         assertTrue("Native dialog tap",device.click(bounds.centerX(),bounds.centerY()))
         instrumentation.waitForIdleSync()
     }
-    private data class Gesture(val bounds: Rect,val horizontal: Boolean,val direction: Int,val hidden: Int)
+    private data class Gesture(val owner: View,val bounds: Rect,val horizontal: Boolean,val direction: Int,val hidden: Int)
     private fun reveal(view: View,target: ()->Rect) {
         repeat(24) {
             checkDeadline()
@@ -342,7 +357,7 @@ class AssemblyPositionDeviceTest {
                             val high=if(horizontal) wanted.right-bounds.right else wanted.bottom-bounds.bottom
                             val direction=if(low<0) -1 else if(high>0) 1 else 0
                             if(direction!=0 && (if(horizontal) candidate.canScrollHorizontally(direction) else candidate.canScrollVertically(direction)))
-                                found=Gesture(bounds,horizontal,direction,if(direction<0) -low else high)
+                                found=Gesture(candidate,bounds,horizontal,direction,if(direction<0) -low else high)
                         }
                     }
                     parent=candidate.parent as? View
@@ -355,10 +370,36 @@ class AssemblyPositionDeviceTest {
             val distance=(gesture.hidden+android.view.ViewConfiguration.get(context).scaledTouchSlop+2).coerceIn(1,high-low)
             val start=if(gesture.direction>0) high else low
             val end=start-gesture.direction*distance
-            val first=if(gesture.horizontal) Point(start,bounds.centerY()) else Point(bounds.centerX(),start)
-            val last=if(gesture.horizontal) Point(end,bounds.centerY()) else Point(bounds.centerX(),end)
+            // A scroll-container center can be an EditText. On a busy emulator,
+            // an injected scroll can then become native cursor/selection input,
+            // leaving a popup or consuming the next tap instead of requesting
+            // the IME. Use a real non-editable lane, not a programmatic scroll,
+            // focus/keyboard call, extra field tap, or relaxed IME assertion.
+            val lane=onMain {
+                val clearance=(2*view.resources.displayMetrics.density).toInt().coerceAtLeast(1)
+                val occupied=descendants(gesture.owner).filterIsInstance<EditText>().mapNotNull {input ->
+                    val rect=visibleBounds(input)
+                    val overlaps=if(gesture.horizontal) rect.left<=maxOf(start,end) && rect.right>minOf(start,end)
+                        else rect.top<=maxOf(start,end) && rect.bottom>minOf(start,end)
+                    if(rect.isEmpty || !overlaps) null
+                    else if(gesture.horizontal) intArrayOf(rect.top,rect.bottom) else intArrayOf(rect.left,rect.right)
+                }.toTypedArray()
+                NativeScrollLane.choose(
+                    (if(gesture.horizontal) bounds.top else bounds.left)+clearance,
+                    (if(gesture.horizontal) bounds.bottom else bounds.right)-clearance,occupied,clearance)
+            }
+            val first=if(gesture.horizontal) Point(start,lane) else Point(lane,start)
+            val last=if(gesture.horizontal) Point(end,lane) else Point(lane,end)
+            val focusBefore=onMain {view.rootView.findFocus()}
+            val inputBefore=onMain {descendants(view.rootView).filterIsInstance<EditText>().associateWith {it.text.toString()}}
+            android.util.Log.i("AssemblyPositionDeviceTest","native reveal from=$first to=$last bounds=$bounds " +
+                "horizontal=${gesture.horizontal} target=${view.tag}")
             assertTrue("Native caption reveal",device.swipe(arrayOf(first,last,last,last),16))
             settle(view)
+            onMain {
+                assertSame("Caption scrolling must not focus an editable control",focusBefore,view.rootView.findFocus())
+                inputBefore.forEach {(input,text) ->assertEquals("Caption scrolling must not edit ${input.tag}",text,input.text.toString())}
+            }
         }
         throw AssertionError("Native caption scrolling exceeded gesture bound")
     }

@@ -25,6 +25,7 @@ import org.robolectric.annotation.Config
 class CommonsCopyCreditTranslationTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
     private val scopedTags=setOf(
+        "cs", "sv",
         "af", "ain-Kana", "ain-Latn", "ar", "bo", "ceb", "de", "dz",
         "el", "en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US",
         "en-XV", "eo", "es-419", "es-ES", "et", "fi", "fr", "hak-Hant-TW",
@@ -36,6 +37,8 @@ class CommonsCopyCreditTranslationTest {
     )
     // Exact language-tag expectations are independent of Android's fallback resolution.
     private val expectedMessages=mapOf(
+        "cs" to listOf("Údaje o autorství obrázku se nepodařilo zkopírovat.", "Údaje o autorství obrázku se nepodařilo zkopírovat: %1\$s", "Pro zkopírování údajů o autorství obrázku není dostatek paměti."),
+        "sv" to listOf("Bildens erkännande kunde inte kopieras.", "Bildens erkännande kunde inte kopieras: %1\$s", "Det finns inte tillräckligt med minne för att kopiera bildens erkännande."),
         "af" to listOf("Kon nie die beeldkrediet kopieer nie.", "Kon nie die beeldkrediet kopieer nie: %1\$s", "Onvoldoende geheue om die beeldkrediet te kopieer."),
         "ain-Kana" to listOf("ノカ オルㇱペ アアットゥㇷ゚テ エアイカㇷ゚.", "ノカ オルㇱペ アアットゥㇷ゚テ エアイカㇷ゚: %1\$s", "ノカ オルㇱペ アアットゥㇷ゚テ クス RAM エハイェ."),
         "ain-Latn" to listOf("Noka oruspe a=attupte eaykap.", "Noka oruspe a=attupte eaykap: %1\$s", "Noka oruspe a=attupte kusu RAM ehaye."),
@@ -101,14 +104,14 @@ class CommonsCopyCreditTranslationTest {
         "as", "ch", "chr", "ht", "mi", "nch", "nhe", "nhw", "nv", "pcm", "qug", "quh", "quy", "quz", "sa", "sm", "so", "tg", "tpi", "wo", "yua",
         "ha", "ig", "ln", "su", "yo", "zu",
         "am", "ast", "az", "be", "bg", "bn", "br", "bs",
-        "ca", "ca-ES-valencia", "ckb", "cs", "csb", "cy", "da", "eu-ES",
+        "ca", "ca-ES-valencia", "ckb", "csb", "cy", "da", "eu-ES",
         "fa", "fa-IR", "fy", "ga", "gd", "gl", "gu", "he",
         "hi", "hne", "hr", "hy", "ia", "is", "jv", "ka",
         "kab", "kk", "km", "kn", "ku", "ky", "la", "lo",
         "mai", "mk", "ml-IN", "mr", "mww", "my", "nds", "ne",
         "nn", "no", "oc", "pa-IN", "pl", "ps", "ro", "rw",
         "sd", "se", "shn", "si", "sk", "sl", "sq", "sr-Cyrl",
-        "sr-Latn", "sv", "ta", "tdd", "te", "th", "tok", "tt-Cyrl",
+        "sr-Latn", "ta", "tdd", "te", "th", "tok", "tt-Cyrl",
         "tt-Latn", "ug", "uk", "ur", "uz-Latn", "wa", "xh", "yi",
         "za"
     )
@@ -147,7 +150,7 @@ class CommonsCopyCreditTranslationTest {
         PaintApplication.currentResources=wrapped.resources
         return wrapped.resources
     }
-    @Test fun all59ExactCataloguesResolveWholeMessagesAndKeepReasonArgumentVerbatim() {
+    @Test fun allReviewedExactCataloguesResolveWholeMessagesAndKeepReasonArgumentVerbatim() {
         val reason="Provider 50%: %1\$s · détails\nTry again."
         val mismatches=mutableListOf<String>()
         val observations=org.json.JSONArray()
@@ -178,7 +181,7 @@ class CommonsCopyCreditTranslationTest {
     }
     @Test fun remainingOfferedTagsExplicitlyResolveTheDefaultEnglishFallback() {
         val remaining=AppLanguage.tags(context).filter {it !in scopedTags}
-        assertEquals(171,AppLanguage.tags(context).size);assertEquals(59,scopedTags.size);assertEquals(112,remaining.size)
+        assertEquals(171,AppLanguage.tags(context).size);assertEquals(61,scopedTags.size);assertEquals(110,remaining.size)
         assertEquals(fallbackTags,remaining.toSet())
         for(tag in remaining) assertEquals("$tag documented default fallback is incomplete localization",
             defaultMessages,keys.map {resourcesFor(tag).getString(it)})

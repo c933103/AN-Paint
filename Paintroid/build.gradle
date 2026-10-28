@@ -147,6 +147,50 @@ dependencies {
 
 tasks.withType(Javadoc).configureEach { enabled = false }
 
+// AGP 8.13's JVM resource compiler truncates variants without an explicit
+// script (ResTableConfig.getBcp47Locale reads the script array for variant length).
+// Keep the canonical/public ca-ES-valencia catalogue unchanged. Stage all main
+// resources byte-for-byte, replacing its build qualifier with explicit Latn.
+// Android ResourcesImpl maps public yi to the legacy native ji resource code.
+// Stage canonical Yiddish as ji too; public identity and accepted text stay yi.
+// Do not compile the malformed qualifier as well: it can collide with parent ca.
+def variantSafeResourceDirectory = layout.buildDirectory.dir('generated/variantSafeResources')
+def generateVariantSafeResources = tasks.register('generateVariantSafeResources', Sync) {
+    from('src/main/res') {
+        exclude 'values-b+ca+ES+valencia/**'
+        exclude 'values-b+yi/**'
+    }
+    from('src/main/res/values-b+ca+ES+valencia') {
+        into 'values-b+ca+Latn+ES+valencia'
+    }
+    from('src/main/res/values-b+yi') {
+        into 'values-ji'
+    }
+    into variantSafeResourceDirectory
+    doLast {
+        def expected = [:]
+        fileTree('src/main/res').files.each { source ->
+            def relative = file('src/main/res').toPath().relativize(source.toPath()).toString().replace('\\', '/')
+            def target = relative.startsWith('values-b+ca+ES+valencia/') ?
+                relative.replaceFirst('values-b\\+ca\\+ES\\+valencia/', 'values-b+ca+Latn+ES+valencia/') :
+                relative.startsWith('values-b+yi/') ? relative.replaceFirst('values-b\\+yi/', 'values-ji/') : relative
+            if (expected.put(target, source) != null) throw new GradleException("Duplicate staged resource: $target")
+        }
+        def directory = variantSafeResourceDirectory.get().asFile
+        def actual = fileTree(directory).files.collectEntries { output ->
+            [(directory.toPath().relativize(output.toPath()).toString().replace('\\', '/')): output]
+        }
+        if (actual.keySet() != expected.keySet()) throw new GradleException('Variant-safe resource identities differ')
+        expected.each { relative, source ->
+            if (!java.util.Arrays.equals(source.bytes, actual[relative].bytes)) {
+                throw new GradleException("Variant-safe resource bytes differ: $relative")
+            }
+        }
+    }
+}
+android.sourceSets.main.res.setSrcDirs([variantSafeResourceDirectory])
+tasks.named('preBuild').configure { dependsOn(generateVariantSafeResources) }
+
 // Android infers Kore for ordinary ko-KR. A whole-catalogue variant breaks its
 // resource-ranking tie with the explicitly selected mixed-script catalogue.
 // The canonical source stays in res/values-b+ko+Kore+KR; never edit a second copy.
@@ -166,6 +210,37 @@ def generateExactScriptResources = tasks.register('generateExactScriptResources'
 }
 android.sourceSets.main.res.srcDir(exactScriptResourceDirectory)
 tasks.named('preBuild').configure { dependsOn(generateExactScriptResources) }
+
+// AAPT decodes canonical English under reserved IDs. Generation validates and
+// rebinds aliases, so fallback never re-enters a translated catalogue.
+def sourceTextDirectory = layout.buildDirectory.dir('generated/sourceTextResources')
+def generateSourceTextResources = tasks.register('generateSourceTextResources', Exec) {
+    inputs.file(rootProject.file('tools/SourceTextResources.java'))
+    inputs.files(fileTree('src/main/res/values') { include '*.xml' })
+    outputs.dir(sourceTextDirectory)
+    // Its copied catalogues also participate in the reserved-name check.
+    dependsOn(generateExactScriptResources, generateVariantSafeResources)
+}
+android.sourceSets.main.res.srcDir(sourceTextDirectory)
+tasks.named('preBuild').configure { dependsOn(generateSourceTextResources) }
+// Source sets are finalized by every Android project before discovering roots.
+// Include application/library variants and currently absent conventional roots;
+// exclude only this generator's own output, never another source-set overlay.
+gradle.projectsEvaluated {
+    def ownOutput = sourceTextDirectory.get().asFile.canonicalFile
+    def resourceRoots = rootProject.allprojects.findAll {
+        it.plugins.hasPlugin('com.android.application') || it.plugins.hasPlugin('com.android.library')
+    }.collectMany { project ->
+        project.extensions.getByName('android').sourceSets.collectMany { it.res.srcDirs }
+    }.collect { it.canonicalFile }.findAll { it != ownOutput }.unique().sort { it.absolutePath }
+    generateSourceTextResources.configure {
+        inputs.property('sourceResourceRoots', resourceRoots.collect { it.absolutePath })
+        inputs.files(resourceRoots.collect { directory -> fileTree(directory) { include 'values*/**/*.xml' } })
+        commandLine([new File(System.getProperty('java.home'), 'bin/java').absolutePath,
+            rootProject.file('tools/SourceTextResources.java').absolutePath,
+            file('src/main/res').absolutePath, ownOutput.absolutePath] + resourceRoots.collect { it.absolutePath })
+    }
+}
 
 // Host-side Android graphics tests supplement the upstream unit tests.
 tasks.withType(Test).configureEach {

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
@@ -15,6 +16,7 @@ import android.widget.CheckBox
 import android.widget.Spinner
 import android.widget.TextView
 import org.catrobat.paintroid.R
+import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.ClassicPaintActivity
 import org.catrobat.paintroid.classic.IcoCodec
 import org.catrobat.paintroid.classic.ImageFormat
@@ -33,6 +35,7 @@ import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.shadows.ShadowAlertDialog
+import org.robolectric.shadows.ShadowToast
 import java.io.File
 
 /** Real encoders and picker results exercise the unsaved-work guard through Back > Save. */
@@ -97,7 +100,7 @@ class DerivedExportStateTest {
     }
     private fun title() = activity.window.decorView.findViewWithTag<TextView>("document_title").text.toString()
 
-    private fun derivedExportKeepsDrawing(format: ImageFormat) {
+    private fun derivedExportKeepsDrawing(format: ImageFormat, expectedStatus: ((String) -> String)? = null) {
         val dialog = options(format)
         if (format == ImageFormat.ICO) {
             dialog.window!!.decorView.findViewWithTag<Spinner>("export_ico_size").setSelection(2); idle()
@@ -109,12 +112,15 @@ class DerivedExportStateTest {
         val original = IntArray(bitmap.width * bitmap.height)
         bitmap.getPixels(original, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
         val originalTitle = title()
+        val saveTarget = ClassicPaintActivity::class.java.getDeclaredField("savedTarget").apply { isAccessible = true }
+        val originalTarget = saveTarget.get(activity)
         assertTrue(activity.document.dirty)
         val exporting=options(format)
         exporting.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
         val file = File.createTempFile("derived-state-", format.extension, activity.cacheDir)
         try {
             writePickerResult(file)
+            expectedStatus?.let { assertEquals(it(file.name), ShadowToast.getTextOfLatestToast()) }
             if (format == ImageFormat.ICO) {
                 assertTrue(IcoCodec.isIco(file)); assertEquals(32, IcoCodec.dimensions(file).width)
             } else if(format==ImageFormat.BASE64) {
@@ -137,6 +143,7 @@ class DerivedExportStateTest {
             bitmap.getPixels(actual, 0, 320, 0, 0, 320, 160)
             assertArrayEquals(original, actual)
             assertEquals(originalTitle, title())
+            assertSame("Export must not change which file ordinary Save writes to", originalTarget, saveTarget.get(activity))
             val pending = ClassicPaintActivity::class.java.getDeclaredField("afterSave").apply { isAccessible = true }
             assertNull("The blocked replacement must not run during a later save", pending.get(activity))
         } finally { file.delete() }
@@ -146,6 +153,87 @@ class DerivedExportStateTest {
     @Test fun asciiExportKeepsOriginalDrawingAndBlocksPendingClose() = derivedExportKeepsDrawing(ImageFormat.ASCII_ART)
 
     @Test fun base64ExportKeepsOriginalDrawingAndWritesRecoverableImage() = derivedExportKeepsDrawing(ImageFormat.BASE64)
+
+    @Test fun nynorskExportStatusNamesTheWrittenFileWithoutClaimingTheDrawingIsSaved() {
+        val previous = AppLanguage.selectedTag(activity)
+        try {
+            AppLanguage.select(activity, "nn")
+            // Resource refresh alone leaves the already-built command captions stale.
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            idle()
+            derivedExportKeepsDrawing(ImageFormat.ASCII_ART) { name -> "$name er lagra" }
+        } finally {
+            AppLanguage.select(activity, previous)
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            idle()
+        }
+    }
+
+    @Test fun danishAndNorwegianExportStatusNamesTheWrittenCopyAndKeepsTheDrawingUnsaved() {
+        val previous = AppLanguage.selectedTag(activity)
+        try {
+            for ((tag, saved) in listOf("da" to "Gemt", "no" to "Lagret")) {
+                AppLanguage.select(activity, tag)
+                // Invoke the production resource refresh AND workspace rebuild; do not patch captions.
+                activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+                idle()
+                derivedExportKeepsDrawing(ImageFormat.ASCII_ART) { name -> "$saved $name" }
+            }
+        } finally {
+            AppLanguage.select(activity, previous)
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            idle()
+        }
+    }
+
+    @Test fun catalanAndRomanianExportKeepsTheDirtyDrawingAndExistingOrdinarySaveDestination() {
+        val previous = AppLanguage.selectedTag(activity)
+        try {
+            for ((tag, saved) in listOf("ca" to "S’ha desat", "ro" to "S-a salvat")) {
+                AppLanguage.select(activity, tag)
+                // Exercise the real lifecycle resource update AND command-caption rebuild.
+                activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+                idle()
+                activity.onBackPressed(); idle()
+                val unsaved = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
+                assertEquals(if (tag == "ca") SkSlCaPriorityExpectations.display("ca","ui_save_your_changes") else "Salvaţi modificările?", shadowOf(unsaved).title.toString())
+                assertEquals(if (tag == "ca") "La imatge actual té canvis sense desar."
+                    else "Imaginea curentă are modificări nesalvate.", shadowOf(unsaved).message.toString())
+                unsaved.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
+                assertFalse(activity.isFinishing)
+                assertTrue(activity.document.dirty)
+                menu(activity.getString(R.string.ui_save_and_share))
+                val share = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
+                assertEquals(if (tag == "ca") "Desa i comparteix" else "Salvează și partajează", shadowOf(share).title.toString())
+                share.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
+                assertTrue(activity.document.dirty)
+
+                // Establish a non-null Save association through a real ordinary PNG write.
+                // Unlike the fresh-document cases above, this proves retention of an existing target.
+                val destination = File.createTempFile("retained-save-100%-", ".png", activity.cacheDir)
+                try {
+                    val ordinarySave = options(ImageFormat.PNG)
+                    ordinarySave.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
+                    writePickerResult(destination)
+                    assertFalse(activity.document.dirty)
+                    val saveTarget = ClassicPaintActivity::class.java.getDeclaredField("savedTarget").apply { isAccessible = true }
+                    val retainedTarget = saveTarget.get(activity)
+                    assertNotNull(retainedTarget)
+                    val savedBytes = destination.readBytes()
+                    activity.document.bitmap.setPixel(0, 0, Color.CYAN)
+                    activity.document.edited(); idle()
+                    derivedExportKeepsDrawing(ImageFormat.ASCII_ART) { name -> "$saved $name" }
+                    assertSame("Export options and writing must retain the original non-null Save association",
+                        retainedTarget, saveTarget.get(activity))
+                    assertArrayEquals("Export must not overwrite the ordinary Save destination", savedBytes, destination.readBytes())
+                } finally { destination.delete() }
+            }
+        } finally {
+            AppLanguage.select(activity, previous)
+            activity.onConfigurationChanged(Configuration(activity.resources.configuration))
+            idle()
+        }
+    }
 
     @Test fun savedAsciiOptionsDriveRealExportAfterActivityRecreationAndIconSizeRemainsAvailable() {
         val dialog = options(ImageFormat.ICO)

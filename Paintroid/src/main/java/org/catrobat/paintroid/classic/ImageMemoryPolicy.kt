@@ -6,7 +6,6 @@ import org.catrobat.paintroid.R
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Build
-import java.util.Locale
 
 /** Admission control for this whole-bitmap editor, not a promise that allocation cannot fail.
  * Three ARGB work buffers cover decode/orientation, transforms and selection compositing.
@@ -44,8 +43,7 @@ class ImageMemoryPolicy private constructor(val workingBytes: Long) {
         require(width > 0 && height > 0) { ui(R.string.ui_enter_positive_image_dimensions) }
         val pixels = width.toLong() * height.toLong()
         val permitted = maxPixels(residentPixels)
-        if (pixels > permitted) throw ImageSizeException(String.format(Locale.ROOT,
-            ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current),
+        if (pixels > permitted) throw ImageSizeException(ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,
             width, height, pixels / 1_000_000.0, permitted / 1_000_000.0))
     }
 }

@@ -9,7 +9,6 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.widget.*
-import java.util.Locale
 import kotlin.math.roundToInt
 
 class ImageResizeDialog(
@@ -40,7 +39,7 @@ class ImageResizeDialog(
         fun target(): ImageDimensions? = sizing.dimensions?.takeIf { it.width <= source.width && it.height <= source.height }
         fun refresh(): Boolean {
             val current = policy()
-            budget.text = String.format(Locale.ROOT, ui(R.string.ui_current_safe_editing_budget_s_up_to_2f), memoryLabel(current.workingBytes.toDouble()), current.maxPixels(residentPixels) / 1_000_000.0)
+            budget.text = ui(R.string.ui_current_safe_editing_budget_s_up_to_2f, memoryLabel(current.workingBytes.toDouble()), current.maxPixels(residentPixels) / 1_000_000.0)
             val size = target()
             val plan = size?.let { ImportPlan.create(source,it) }
             val fits = plan != null && memoryRequirements.accepts(current,plan,residentPixels)

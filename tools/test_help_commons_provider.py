@@ -14,7 +14,8 @@ class HelpCommonsProviderTest(unittest.TestCase):
         data=fixture('help_commons_provider_current_contract.json')
         _, fallback = require_locale_scope(fixture('locale_contract_scope.json'), SCOPED_TAGS, catalogues.offered_tags())
         paths={'default': catalogues.RES/'values/strings.xml', **catalogues.catalogue_paths()}
-        self.assertEqual({'default'}|SCOPED_TAGS,set(data['provider_segments']))
+        self.assertEqual(['cs', 'sv'], data['additional_reviewed_tags'])
+        self.assertEqual({'default'}|SCOPED_TAGS|{'cs', 'sv'},set(data['provider_segments']))
         for tag,segment in data['provider_segments'].items():
             with self.subTest(tag=tag):
                 strings=catalogues.read_strings(paths[tag]);value=strings[KEY]
@@ -27,7 +28,7 @@ class HelpCommonsProviderTest(unittest.TestCase):
                 self.assertEqual([],catalogues.android_string_errors(value))
                 self.assertEqual([],catalogues.format_string_errors(value,False))
         for tag,path in paths.items():
-            if tag in fallback:
+            if tag in fallback - {'cs', 'sv'}:
                 self.assertNotIn(KEY,catalogues.read_strings(path))
 
     def test_source_assisted_punctuation_corrections(self):
@@ -42,6 +43,7 @@ class HelpCommonsProviderTest(unittest.TestCase):
         self.assertEqual('Wikimedia Commons · 版圖 𥧪…', caption)
         self.assertEqual(1, strings[KEY].count('「' + caption + '」'))
         self.assertIn('版圖 𥧪', strings['commons_svg_png_encode_failed'])
+
 
     def test_default_lists_actual_device_and_four_provider_choices(self):
         strings = catalogues.read_strings(catalogues.RES / 'values/strings.xml')
@@ -66,6 +68,6 @@ class HelpCommonsProviderTest(unittest.TestCase):
     def test_android_resource_test_uses_same_explicit_scope(self):
         source = (ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsHelpProviderTranslationTest.kt').read_text()
         tags = re.search(r'private val scopedTags=listOf\((.*?)\n    \)', source, re.S).group(1)
-        self.assertEqual(set(SCOPED_TAGS), set(re.findall(r'"([\w-]+)"', tags)))
+        self.assertEqual(set(SCOPED_TAGS) | {'cs', 'sv'}, set(re.findall(r'"([\w-]+)"', tags)))
         self.assertIn('EditorTestNavigation.command(activity,"File",7)', source)
         self.assertIn('ShadowAlertDialog.getLatestAlertDialog()', source)

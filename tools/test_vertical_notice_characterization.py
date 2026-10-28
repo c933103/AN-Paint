@@ -11,7 +11,7 @@ ORACLE = ROOT / "Paintroid/src/test/resources/vertical-notice-resize/expected-re
 TAGS = {"mn-Mong", "mnc-Mong", "lzh-Hant", "en-XV", "qaa-Zsye-XV"}
 KEYS = {"ui_cursor_pan_move32", "ui_cursor_tap_hint37", "ui_saved"}
 METHODS = {
-    "compiledAppResourcesKeepFiveVerticalProfilesOnSystemToasts",
+    "compiledAppResourcesRouteFiveVerticalProfilesToWindowCards",
     "unchangedHorizontalDirectHelperKeepsNodeTextAndDeadlineAcrossRepeatedGeometryChanges",
     "accessibilityObserverSeesControlsAndSeparatesInitialContentFromGeometryEvents",
     "currentRendererNominalFitIsNotAnInkContainmentOracle",
@@ -30,7 +30,7 @@ def contracts(source):
         "oracle packaging": 'getResourceAsStream("/vertical-notice-resize/expected-resources.json")',
         "caller newline": 'getString(R.string.ui_cursor_pan_move32)+"\\n"+a.getString(R.string.ui_cursor_tap_hint37)',
         "real validator": "ExportNames.valid(joinedEmoji,ImageFormat.PNG)",
-        "route remains toast": 'assertNull("Vertical profile must not take the direct-helper diagnostic route",notice(a))',
+        "foreground vertical route": 'assertNotNull("Vertical profile must use its foreground window card",notice(a))',
         "same node": "assertSame(n,notice(a));assertSame(body,label(a))",
         "before original expiry": "advanceTo(shownAt+7999);assertSame(n,notice(a))",
         "after original expiry": "advanceTo(shownAt+8001);assertNull(notice(a))",
@@ -118,13 +118,17 @@ class VerticalNoticeCharacterizationContractTest(unittest.TestCase):
                 self.assertIn(snippet, source)
                 self.assertTrue(contracts(source.replace(snippet, "REMOVED_CONTROL", 1)))
 
-    def test_characterization_does_not_enable_route_or_implement_policy(self):
+    def test_new_route_keeps_original_horizontal_diagnostics_and_observer_controls(self):
         route = (ROOT / "Paintroid/src/main/java/org/catrobat/paintroid/classic/LocaleTypography.kt").read_text()
-        self.assertIn("if(Build.VERSION.SDK_INT>=30 && !VerticalText.uiVertical(context))", route)
+        self.assertIn("if(Build.VERSION.SDK_INT>=30)", route)
+        self.assertIn("font!=null || VerticalText.uiVertical(context)", route)
         source = TEST.read_text()
         self.assertIn('importantForAccessibility=View.IMPORTANT_FOR_ACCESSIBILITY_NO', source)
         self.assertEqual(1, source.count("announceForAccessibility("))
         self.assertNotIn(".sendAccessibilityEvent(", source)
+        self.assertIn("LocaleNotification.show(horizontalDiagnosticContext(a),text,Toast.LENGTH_SHORT,", source)
+        self.assertIn("LocaleNotification.show(horizontalDiagnosticContext(a),text,Toast.LENGTH_LONG,", source)
+        self.assertIn("applyOverrideConfiguration(android.content.res.Configuration().apply {setLocale(Locale.ENGLISH)})", source)
         # Only the marked test positive control deliberately calls an announcement API.
         self.assertEqual(1, source.count("body.announceForAccessibility(marker)"))
         self.assertIn('recorder.phase="explicit-positive-control"', source)

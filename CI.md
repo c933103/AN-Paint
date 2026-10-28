@@ -43,6 +43,9 @@ Both the mixed-script Korean and emoji-English mirrors are checked independently
 Only `:Paintroid:bundleCorrespondingSource` is excluded there; the normal build
 verifies that native-source/bundling graph. Production translations are not edited.
 
+The same resource probe now verifies the generated canonical fallback catalogue
+and its ordering/clean/incremental behavior. See [translation runtime boundaries](TRANSLATION_RUNTIME.md).
+
 ## Local commands
 
 Run relevant focused tests first, then the current host suite:
@@ -60,7 +63,8 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 ## Deadlines and evidence
 
-- Regression job: 22 minutes; Python contracts: 4 minutes; build job: 45 minutes;
+- Regression job: 79 minutes; Python contracts: 31 minutes (30-minute owned-process execution deadline); JVM regression: 20 minutes;
+  build job: 45 minutes;
   universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
   shared 120 seconds, each transient probe at most 10 seconds within that budget.
@@ -79,11 +83,71 @@ Focused checks do not turn an incomplete aggregate into a pass.
   cleanup allowances. Inner deadlines and failure behavior must not be relaxed
   to obtain green results. Test/installation failures are not automatically retried.
 
+The expanded regression suite exceeded its former 4-minute Python and 12-minute
+JVM caps in [run 39427728235](https://github.com/c933103/AN-Paint/actions/runs/39427728235):
+the command receipts exited zero after 250.311 and 773.047 seconds, respectively,
+but Actions explicitly timed out both steps. The artifact contains 1,066 Python
+tests (two skipped) and 1,186 successful JVM tests; those results do not turn the
+timed-out workflow into a pass. The job's terminal conclusion was cancelled;
+the available log proves the step timeouts, not the separate source of that
+aggregate conclusion. Nearby successful [run 39427218699](https://github.com/c933103/AN-Paint/actions/runs/39427218699)
+took 232 seconds for Python and 614 seconds for JVM by step timestamps.
+
+Those earlier caps left about 92% and 55% margin over the slower hosted command
+measurements. That earlier regression policy's explicit phase maxima were 2 minutes for
+compiler-cache installation, 8 for preparation, 8 for Python, 20 for JVM, 6 for
+native lint dependencies and 6 for lint: 50 minutes total. Its 55-minute hard
+stop additionally reserves 5 minutes for checkout, cache and evidence overhead.
+That was an explicit cancellation policy, not a universal runtime guarantee.
+The expanded 1,774-test Python suite in [run 40604314909](https://github.com/c933103/AN-Paint/actions/runs/40604314909)
+completed with two optional-image skips and command exit zero in 493.350 seconds,
+but Actions explicitly timed out `Run Python contracts` after eight minutes.
+That workflow failure remains a failure; it is not converted into a pass by the
+command receipt. The then-current Python cap was 12 minutes, about 46% above that
+observed command time. The other phase caps are unchanged: 2 + 8 + 12 + 20 + 6 + 6
+is 54 minutes total, within the 60-minute regression job cap with six minutes for
+checkout, cache and evidence overhead. JVM, build, device, installation and inner
+interaction deadlines are unchanged. This bounded host-suite allowance does not
+retry failures, omit tests or guarantee that every future run will finish.
+
+
+The second-train 1,877-test run completed 1,875 passes and two optional-image skips
+in 1251.472 seconds, but its 12-minute Actions step had already failed. The Python
+process continued into the JVM phase; its eventual zero exit does not clear the
+workflow failure. Current Python execution is bounded at 30 minutes (1800 seconds),
+about 44% above that measured duration. A signal-aware Linux process owner starts
+an isolated child session, preserves live and raw output and timing, and on a
+deadline or cancellation sends TERM, allows 15 seconds, then sends KILL with a five-second reap bound and a two-second output-pump bound.
+A strict atomic lifecycle receipt distinguishes verified cleanup from failure.
+If cleanup is not established, later phase wrappers fail before launching their
+commands; missing or malformed receipts also fail closed, never reporting omitted
+execution as a pass. Clean Python failures still allow the other required phases. Deadline exit124 and
+signal exits remain failures even if a child exits zero after cancellation.
+The Python outer step is 31 minutes for cleanup/reporting. The other phase caps
+are unchanged: 2 + 8 + 31 + 20 + 6 + 6 is 73 minutes total, within the 79-minute
+regression job with the same six-minute checkout/cache/evidence overhead.
+Device, installation and interaction deadlines are unchanged. This is measured
+headroom and explicit process ownership, not a universal liveness guarantee.
+
+All tests, assertions, failure propagation and existing device/interaction caps
+remain unchanged. A future timeout still fails; it must be diagnosed, not
+silently retried or counted as success.
+
 The runner retains live raw output, JUnit XML and summaries, including partial
 failures. Success requires the final protocol plus every selected identity,
 without unexpected, missing, ignored, failed or aborted methods. A zero ADB exit
 alone is insufficient. Artifact upload runs even on failure, but cancellation
 can leave partial evidence. Keep passed, failed, timed out and unrun distinct.
+Mandatory dialog and vertical exports are pulled and fully validated before
+best-effort bulk logcat collection. Each pull still runs once within its original
+15-second deadline plus 3-second kill grace; logcat keeps 10 seconds plus 3 seconds.
+A failed/partial export keeps the job failed and its raw files available, while a
+logcat failure remains diagnostic only. Collection exit codes and, when available,
+the last 64 KiB of the existing runner ADB server log are retained before shutdown.
+There is no screenshot recapture, ADB restart or automatic collection retry. This
+ordering avoids exposing mandatory evidence to an earlier diagnostic transport
+failure; it does not diagnose or claim to fix an underlying emulator disconnect.
+
 Actions artifacts expire after 14 days; preserve needed final evidence on a
 separate durable ref before expiration. Never include keys, credentials or
 unrelated private data.
@@ -98,19 +162,41 @@ before retrying; use the affected scope, not a repeated full matrix by default.
 
 ## Localized dialog evidence and separate phase
 
-Twelve installed dialog method/class pairs run in the `app-dialog` report: four
-current notice/credit cases, three Korean attribution/crop consumer cases, three normal-font colour cases and two 2× short-landscape preview-rail cases. Source discovery
+Fourteen installed dialog method/class pairs run in the `app-dialog` report: four
+current notice/credit cases, three Korean attribution/crop consumer cases, three normal-font colour cases, two 2× short-landscape preview-rail cases and two separate 2× IME/Back/footer lifecycle cases (en-US/hu, 640×320, density 1). Source discovery
 still requires every SDK-eligible app identity, without duplication or omission.
 The colour cases replace the old zero-height limitation characterization; its
 original failed positive and measured negative results remain historical evidence,
 not claims about the repaired source. See [PR51's accepted bounded baseline](https://github.com/c933103/AN-Paint/pull/51).
 
 The dialog 300-second cancellation cap and each 45-second interaction limit stay
-unchanged. Twelve individual maxima exceed that aggregate cap; fresh actual combined
+unchanged. Fourteen individual maxima exceed that aggregate cap; fresh actual combined
 execution must fit, and a timeout remains a failure. Neither historical timings
-nor synthetic transport fixtures prove the combined runtime. The new 2× cases cover English/Hungarian caption and preview-rail reachability
-only. Large-font IME/footer, physical-device and TalkBack coverage remain separate
-limits; C05 large-font ancestor visibility is still open.
+nor synthetic transport fixtures prove the combined runtime. The existing
+2× cases cover English/Hungarian caption and preview-rail reachability only.
+In horizontal landscape columns, enlarged text (`fontScale > 1`) places the
+existing top tab row inside the editor scroll body; normal-font, stacked and
+vertical-script layouts retain their existing tab placement. API30/35 model
+checks cover 1.3× and 2× full caption lines at the measured short allocations and
+repeated column/stack remeasurement without replacing field or tab identities.
+Those model checks do not establish installed gesture, rotation or IME outcomes.
+The separate 2× lifecycle cases use explicitly labelled synthetic field focus and
+`showSoftInput` fixture activation; initial native field activation and initial full
+hex visibility are untested/unaccepted. They require the configured native IME
+window stable for 250 ms (including fullscreen
+extract with zero app inset), one Back retaining the exact draft/selection/dialog,
+sequential full-caption/footer reachability, native Cancel, reopened Back and
+invalid/valid commit outcomes. Footer caption receipts retain the raw resource text,
+actual framework transformation method/output, Layout text and accessibility text;
+the transformed strings must match exactly, not by case-insensitive comparison.
+IME-open raw field/footer bounds, ancestor clipping
+and actual IME overlap are observations, not a simultaneous-fit acceptance gate.
+The complete success inventory is 14 dialog methods/51 PNGs and 47 API35 app methods;
+API30 eligibility is unchanged. New source is not installed evidence until exact-source
+CI and all six PNGs per lifecycle case are inspected. Failed/partial captures never
+count as successful inventory. Simultaneous IME/field/footer fit, physical-device,
+TalkBack and universal 2× acceptance remain unaccepted;
+C05 large-font ancestor visibility is still open.
 
 The three Korean cases select `ko-KP`, `ko-KR` and `ko-Kore-KR` through the real
 picker and require their public/platform/resource identities. They open the
@@ -245,8 +331,8 @@ main/test APK and corresponding-source hashes, and the exact disjoint source-bou
 app report union. Exact-identity groups from earlier attempts of the same run may
 be reused; both positive attempt numbers are recorded and cannot be in the future.
 Missing/failed/duplicate methods, wrong selectors/deadlines,
-stale artifacts and SDK mismatches fail closed. All 45 declared methods remain
-required according to their existing SDK rules (30 selected on API30; 45 on API35).
+stale artifacts and SDK mismatches fail closed. All 47 declared methods remain
+required according to their existing SDK rules (30 selected on API30; 47 on API35).
 Count/selector contracts and synthetic receipts do not prove Android execution
 or runtime. These
 checks cover native layout boxes and input, not pixel-level glyph clipping,
@@ -254,3 +340,38 @@ linguistic acceptance, picker/import/export, forced IME visibility, enlarged-fon
 layouts, physical devices or all catalogue languages. The production dialog is
 opened as a fixture; the assembly toolbar launch route retains its separate JVM
 coverage. The existing glyph/font checks remain complementary.
+
+## Selecting artifacts after a partial retry
+
+The final emulator gate resolves each exact core/position artifact name to an
+explicit ID before download. It paginates current-run artifacts and jobs, requires
+the latest matching job to have succeeded, and requires exactly one nonexpired
+artifact created/updated inside that job's recorded start/end interval. Repository,
+run, workflow head, exact checkout in the name, SDK and positive/nonfuture attempt
+identities must match. Duplicate names from earlier attempts are retained; numeric
+artifact IDs and API list order are not chronological selection rules. Ambiguous
+or incomplete metadata fails closed.
+
+On a partial rerun, GitHub may carry a successful earlier job into the current
+attempt's job metadata with its original execution interval. That interval selects
+the existing successful core artifact, while the rerun position job selects its
+new artifact. The unchanged composer still checks complete successful inventories,
+exact prebuilt/source hashes and each artifact's declared original attempt. The
+selection receipt does not replace those content checks. PR workflow head and
+synthetic merge checkout are distinct identities and are checked separately.
+
+Only the final composition job receives read-only Actions metadata permission;
+no write permission or persistent credential is added. The selector has a one-minute
+step cap inside the unchanged eight-minute composition-job cap. Existing device,
+interaction, setup, report and composition deadlines remain unchanged.
+
+The pinned download action re-lists with `latest: true` even for explicit IDs; its
+SDK filters duplicate names by highest ID. The final gate therefore uses the
+runner's existing GitHub CLI to GET each selected REST artifact ID directly, then
+checks the selected SHA-256 before safe report extraction. Each transfer has a
+90-second deadline; the two-transfer step is capped at four minutes within the
+unchanged eight-minute job. Report archives are limited to 128 MiB compressed,
+512 MiB expanded and 10,000 members. Unsafe paths, symlinks, duplicate members,
+unsupported encodings and attempts to overwrite existing evidence are rejected.
+No downloaded artifact can replace the saved selection receipt. The normal
+content/inventory composer still runs after extraction.

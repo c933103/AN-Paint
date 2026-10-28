@@ -4,10 +4,13 @@ These are source-contract and known-wording guards, not a fluency or rendering
 classifier. Native linguistic and Traditional Mongolian layout acceptance stay
 separate. No translations JSON is an input to this test.
 """
+from copy import deepcopy
 from functools import lru_cache
+from hashlib import sha256
 from pathlib import Path
 import re
 import unittest
+from memory_warning_successors import accepted_warning
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,15 +20,19 @@ KEY = "ui_add_up_to_20_images_with_android_s"
 CONTRACTS = {
     "values-b+bo": {
         "tag": "bo",
+        "paragraph_count": 8,
+        "output_index": 6,
         "post_crop": "གཅོད་པ་དང་",
         "post_adjustment": "གིས་ཚད་བསྒྱུར་རྗེས་ཀྱི་པར་རིས་ཀྱི་ཆེ་ཆུང",
         "stale_tray": "གཅོད་ཁུལ་གྱི་ཆེ་ཆུང",
         "offer": "འདྲ་བཤུས་ཆུང་བ་འདེམས་རྒྱུ་ཡོད་ན་དེ་འདེམས།",
-        "floor": "གྲུབ་འབྲས་ཧ་ཅང་ཆུང་བ་ཞིག་ཀྱང་ཚད་ལས་བརྒལ་ན། ཉེར་སྤྱོད་ཀྱིས་ཆེ་ཆུང་འདེམས་ཆས་ཀྱི་ཚབ་ཏུ་དྲན་ཤེས་ཀྱི་ཉེན་བརྡ་སྟོན།",
+        "floor": "གྲུབ་འབྲས་ཧ་ཅང་ཆུང་བ་ཞིག་ལ་དགོས་པའི་ནང་གསོག་ཀྱང་ཚད་དེ་ལས་བརྒལ་ན། ཉེར་སྤྱོད་ཀྱིས་ཆེ་ཆུང་འདེམས་ཆས་ཀྱི་ཚབ་ཏུ་ནང་གསོག་གི་ཉེན་བརྡ་སྟོན།",
         "stale_output": "གྲུབ་འབྲས་དྲན་ཤེས་ཚད་ལས་བརྒལ་ན་འདྲ་བཤུས་ཆུང་བ་འདེམས།",
     },
     "values-b+dz": {
         "tag": "dz",
+        "paragraph_count": 8,
+        "output_index": 6,
         "post_crop": "བཏོག་ནི་དང་",
         "post_adjustment": "གིས་ཚད་བསྒྱུར་བའི་ཤུལ་གྱི་གཟུགས་བརྙན་གྱི་ཚད",
         "stale_tray": "བཏོག་ཚད",
@@ -35,10 +42,12 @@ CONTRACTS = {
     },
     "values-b+mn+Cyrl+MN": {
         "tag": "mn-Cyrl-MN",
+        "paragraph_count": 8,
+        "output_index": 6,
         "post_crop": "тайралт болон",
         "post_adjustment": "тохируулгын дараах зургийн хэмжээ",
         "stale_tray": "тайралтын хэмжээ",
-        "offer": "жижиг гаралтын хуулбар сонгох боломжийг санал болгосон үед сонгоно.",
+        "offer": "жижиг хэмжээтэй гаралтын хуулбар сонгох боломж санал болгосон тохиолдолд түүнийг сонгоно.",
         "floor": "Маш жижиг гаралт ч хязгаараас давбал апп хэмжээ сонгогчийн оронд санах ойн анхааруулга харуулна.",
         "stale_output": "Гаралт санах ойн хязгаараас давбал жижиг хуулбар сонгоно.",
     },
@@ -63,6 +72,16 @@ def strings(directory):
 
 def paragraph(directory, index):
     return re.split(r"\\n\\n|\n\s*\n", strings(directory)[KEY])[index]
+
+
+def require_complete_bo_help(root):
+    """Guard the exact independently accepted v2 XML value, not runtime fluency."""
+    nodes = root.findall(f"./string[@name='{KEY}']")
+    if len(nodes) != 1 or nodes[0].attrib != {"name": KEY} or len(nodes[0]):
+        raise ValueError("Tibetan Help key, attributes or markup changed")
+    expected = "1106922bbcd1dbf72639721a52f5d1e4f9427f3f8fc1e77282902d0538e8dabf"
+    if sha256((nodes[0].text or "").encode("utf-8")).hexdigest() != expected:
+        raise ValueError("Complete Tibetan Help differs from accepted v2")
 
 
 def kotlin_tokens(source):
@@ -174,9 +193,11 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         # Reuse an already present local term. This guards literal wording,
         # not native fluency or an independent execution of the memory policy.
         prefix = "གྲུབ་འབྲས་ཆུང་ཤོས་ཡང་"
-        self.assertTrue(strings("values-b+dz")["ui_no_resize_fits_decoder_memory"].startswith(prefix))
-        self.assertIn(prefix, paragraph("values-b+dz", 5))
-        self.assertNotIn("གྲུབ་འབྲས་ཆུང་ཀུ་རང་ཨིན་རུང་", paragraph("values-b+dz", 5))
+        warning = strings("values-b+dz")["ui_no_resize_fits_decoder_memory"]
+        self.assertEqual(accepted_warning("ui_no_resize_fits_decoder_memory", "dz"), warning)
+        self.assertTrue(warning.startswith("གྲུབ་འབྲས་ཀྱི་ཚད་ཆུང་ཤོས་ཨིན་རུང་"))
+        self.assertIn(prefix, paragraph("values-b+dz", CONTRACTS["values-b+dz"]["output_index"]))
+        self.assertNotIn("གྲུབ་འབྲས་ཆུང་ཀུ་རང་ཨིན་རུང་", paragraph("values-b+dz", CONTRACTS["values-b+dz"]["output_index"]))
 
     def test_source_contract_still_matches_the_documented_behaviour(self):
         activity = (CLASSIC / "AssemblyActivity.kt").read_text()
@@ -191,8 +212,51 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         self.assertRegex(activity, r"if \(suggested == null\)\s*\{\s*message\(ui\(R.string.ui_assembly_source_memory_floor\)\)\s*return\s*\}")
         self.assertLess(activity.index("if (suggested == null)"), activity.index("val sizing = DimensionControls(this,renderer.original,suggested"))
 
+    def test_bo_complete_help_is_bound_to_reviewed_source(self):
+        # Accepted v2 against b12c1ce79e2683d5cc841f218c1d19d74e9fd699.
+        # A source change needs re-review, not blind regeneration of this guard.
+        self.assertEqual("6ae12f86846110a7573a5c608b8561b0c03b037454f1905d3b5bf8342fb26aac",
+                         sha256(strings("values")[KEY].encode("utf-8")).hexdigest())
+        require_complete_bo_help(ET.parse(RES / "values-b+bo/strings.xml").getroot())
+
+    def test_bo_complete_oracle_rejects_mode_and_instrumental_regressions(self):
+        root = ET.parse(RES / "values-b+bo/strings.xml").getroot()
+        original = root.find(f"./string[@name='{KEY}']").text
+        position = paragraph("values-b+bo", 3)
+        mutations = (
+            ("missing-position", position + r"\n\n", ""),
+            ("unscoped-origin", "མཐའ་ལ་སྦྱར་བའི་ཐབས་ཀྱིས་གནས་འཇོག་བྱེད་སྐབས། པར་རིས་དང་པོ་", "པར་རིས་དང་པོ་"),
+            ("unscoped-overlap", "མཐའ་ལ་སྦྱར་བའི་ཐབས་ཀྱིས་གནས་འཇོག་བྱེད་སྐབས། པར་རིས་ཕན་ཚུན་བརྩེགས་མི་ཆོག", "པར་རིས་ཕན་ཚུན་བརྩེགས་མི་ཆོག"),
+            ("guaranteed-anchor-move", "གནས་ས་འགྱུར་སྲིད།", "གནས་ས་འགྱུར།"),
+            ("wrong-position-label", "«གནས་ས་ཏག་ཏག»", "«Exact position»"),
+            ("wrong-coordinate-origin", " 0 ནས་འགོ་འཛུགས།", " 1 ནས་འགོ་འཛུགས།"),
+            ("missing-other-position-preservation", "པར་རིས་གཞན་རྣམས་རང་རང་གི་ད་ལྟའི་གནས་སུ་གནས།", ""),
+            ("reject-exact-overlap", "འདིར་པར་རིས་ཕན་ཚུན་བརྩེགས་ཆོག", "འདིར་པར་རིས་ཕན་ཚུན་བརྩེགས་མི་ཆོག"),
+            ("guaranteed-gap", "ཁ་སྐོང་བའི་ཆེད་དུ་སྤོ་སྲིད།", "ཁ་སྐོང་བའི་ཆེད་དུ་སྤོ།"),
+            ("v1-crop-instrumental", "«པར་རིས་གཅོད» ཀྱིས", "«པར་རིས་གཅོད» ཡིས"),
+        )
+        for mutation, before, after in mutations:
+            with self.subTest(mutation=mutation):
+                self.assertEqual(1, original.count(before))
+                broken = deepcopy(root)
+                node = broken.find(f"./string[@name='{KEY}']")
+                node.text = original.replace(before, after, 1)
+                self.assertNotEqual(original, node.text)
+                with self.assertRaises(ValueError):
+                    require_complete_bo_help(broken)
+        for mutation in ("truncated", "duplicate", "missing", "attribute", "markup"):
+            broken = deepcopy(root)
+            node = broken.find(f"./string[@name='{KEY}']")
+            if mutation == "truncated": node.text = node.text[:-1]
+            elif mutation == "duplicate": broken.append(deepcopy(node))
+            elif mutation == "missing": broken.remove(node)
+            elif mutation == "attribute": node.set("formatted", "false")
+            elif mutation == "markup": ET.SubElement(node, "b")
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                require_complete_bo_help(broken)
+
     def test_english_contract_and_four_exact_active_catalogues(self):
-        first, output = paragraph("values", 0), paragraph("values", 5)
+        first, output = paragraph("values", 0), paragraph("values", 6)
         self.assertIn("image dimensions after cropping and any Same width or Same height adjustment", first)
         self.assertIn("choose a smaller output copy if offered", output)
         self.assertIn("If even a tiny output exceeds the budget, the app shows a memory warning instead of a size chooser.", output)
@@ -200,7 +264,7 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         for directory, clauses in CONTRACTS.items():
             with self.subTest(directory=directory):
                 self.assertIn(clauses["tag"], offered)
-                self.assertEqual(7, len(re.split(r"\\n\\n|\n\s*\n", strings(directory)[KEY])))
+                self.assertEqual(clauses.get("paragraph_count", 7), len(re.split(r"\\n\\n|\n\s*\n", strings(directory)[KEY])))
 
 
 def make_tray_test(directory, clauses):
@@ -219,7 +283,7 @@ def make_tray_test(directory, clauses):
 
 def make_output_test(directory, clauses, name):
     def test(self):
-        output = paragraph(directory, 5)
+        output = paragraph(directory, clauses.get("output_index", 5))
         self.assertNotIn(clauses["stale_output"], output)
         self.assertIn(clauses[name], output)
     return test

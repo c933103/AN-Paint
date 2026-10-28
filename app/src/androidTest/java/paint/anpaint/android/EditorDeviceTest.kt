@@ -1145,4 +1145,121 @@ class EditorDeviceTest {
         try {assertTrue("Timed out: $description",done.await(16,TimeUnit.SECONDS));error.get()?.let {throw it}}
         finally {handler.removeCallbacks(check)}
     }
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun yiddishUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation() {
+        var originalOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        onMain {originalOrientation=it.requestedOrientation}
+        fun assertCatalogue(tag: String) {
+            awaitState("exact public Yiddish or English resource identity") {
+                it.startupReady && !it.busy && it.resources.configuration.locales[0].toLanguageTag()==tag
+            }
+            onMain {
+                assertEquals("Public persisted Yiddish identity",tag,
+                    it.getSharedPreferences("app-language",0).getString("language-tag",null))
+                assertEquals("Public Java default identity",tag,java.util.Locale.getDefault().toLanguageTag())
+                assertEquals("Public platform identity",tag,
+                    it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+                assertEquals(if(tag=="yi") "אויפֿהיטן" else "Save",it.getString(R.string.ui_save))
+                assertEquals(if(tag=="yi") "דאָס בילד ניצט אַ פֿאַרב־פּראָפֿיל וואָס AN Paint קען נאָך נישט קאָנווערטירן. פֿאַרוואַנדלט עס אין אַן sRGB PNG אין אַ רעדאַקטאָר מיט פֿאַרב־פֿאַרוואַלטונג איידער איר פֿירט עס אַרײַן." else "This image uses a color profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a color-managed editor before importing.",
+                    it.getString(R.string.save20_unsupported_image_colour))
+            }
+        }
+        try {
+            // Real picker/listener only. The compiled ji alias is not a public option.
+            chooseAppLanguage("yi")
+            assertCatalogue("yi")
+            var beforeWidth=0
+            var beforeHeight=0
+            var expectedOrientation=0
+            onMain {
+                val config=it.resources.configuration
+                beforeWidth=config.screenWidthDp;beforeHeight=config.screenHeightDp
+                val toLandscape=config.orientation!=android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                expectedOrientation=if(toLandscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                    else android.content.res.Configuration.ORIENTATION_PORTRAIT
+                it.requestedOrientation=if(toLandscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                    else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            }
+            awaitState("real Yiddish display rotation changes live resource dimensions") {
+                val config=it.resources.configuration
+                config.orientation==expectedOrientation && config.screenWidthDp!=beforeWidth &&
+                    config.screenHeightDp!=beforeHeight && it.paintCanvas.width>0 && it.paintCanvas.height>0
+            }
+            assertCatalogue("yi")
+            chooseAppLanguage("en-US")
+            assertCatalogue("en-US")
+            chooseAppLanguage("yi")
+            assertCatalogue("yi")
+        } finally {onMain {it.requestedOrientation=originalOrientation}}
+    }
+
+    @Test @SdkSuppress(minSdkVersion=35,maxSdkVersion=35)
+    fun valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation() {
+        var originalOrientation=android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        onMain {originalOrientation=it.requestedOrientation}
+        fun assertCatalogue(tag: String,phase: String) {
+            val valencian=tag=="ca-ES-valencia"
+            val configured=tag // Script is inferred; public runtime identity is unchanged.
+            awaitState("$phase exact Valencian resource override") {
+                it.startupReady && !it.busy &&
+                    it.resources.configuration.locales[0].toLanguageTag()==configured
+            }
+            onMain {
+                val preferences=it.getSharedPreferences("app-language",0)
+                assertEquals("Public persisted identity",tag,preferences.getString("language-tag",null))
+                assertEquals("Public Java default identity",tag,java.util.Locale.getDefault().toLanguageTag())
+                if(Build.VERSION.SDK_INT>=33) assertEquals("Public platform identity",tag,
+                    it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags())
+                val values=linkedMapOf(
+                    "ui_save" to it.getString(R.string.ui_save),
+                    "save20_unsupported_image_colour" to it.getString(R.string.save20_unsupported_image_colour))
+                assertEquals(if(valencian) "Guarda" else "Desa",values["ui_save"])
+                assertEquals(if(valencian)
+                    "Esta imatge utilitza un perfil de color que AN Paint encara no pot convertir. Convertiu-la a PNG sRGB en un editor amb gestió del color abans d’importar-la."
+                    else "Aquesta imatge fa servir un perfil de color que AN Paint encara no pot convertir. Converteix-la a PNG sRGB en un editor amb gestió del color abans d’importar-la.",
+                    values["save20_unsupported_image_colour"])
+                val config=it.resources.configuration
+                android.util.Log.i("ExactScriptResourceTest",org.json.JSONObject()
+                    .put("api",Build.VERSION.SDK_INT).put("phase",phase).put("requested_tag",tag)
+                    .put("persisted_tag",preferences.getString("language-tag",null))
+                    .put("configured_tag",config.locales[0].toLanguageTag())
+                    .put("default_tag",java.util.Locale.getDefault().toLanguageTag())
+                    .put("platform_tag",if(Build.VERSION.SDK_INT>=33)
+                        it.getSystemService(LocaleManager::class.java).applicationLocales.toLanguageTags() else org.json.JSONObject.NULL)
+                    .put("orientation",config.orientation).put("screen_width_dp",config.screenWidthDp)
+                    .put("screen_height_dp",config.screenHeightDp)
+                    .put("strings",org.json.JSONObject().apply {values.forEach { (key,value) -> put(key,value) }}).toString())
+            }
+        }
+        try {
+            // All selections go through the visible native picker and its original
+            // listener. The test never writes a selected preference to make it pass.
+            chooseAppLanguage("ca-ES-valencia")
+            assertCatalogue("ca-ES-valencia","valencian-selected")
+            var beforeWidth=0
+            var beforeHeight=0
+            var expectedOrientation=0
+            onMain {
+                val config=it.resources.configuration
+                beforeWidth=config.screenWidthDp;beforeHeight=config.screenHeightDp
+                val toLandscape=config.orientation!=android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                expectedOrientation=if(toLandscape) android.content.res.Configuration.ORIENTATION_LANDSCAPE
+                    else android.content.res.Configuration.ORIENTATION_PORTRAIT
+                it.requestedOrientation=if(toLandscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+                    else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            }
+            awaitState("real display rotation changes live resource dimensions") {
+                val config=it.resources.configuration
+                config.orientation==expectedOrientation && config.screenWidthDp!=beforeWidth &&
+                    config.screenHeightDp!=beforeHeight && it.paintCanvas.width>0 && it.paintCanvas.height>0
+            }
+            assertCatalogue("ca-ES-valencia","valencian-after-rotation")
+            chooseAppLanguage("ca")
+            assertCatalogue("ca","parent-catalan-selected")
+            chooseAppLanguage("ca-ES-valencia")
+            assertCatalogue("ca-ES-valencia","valencian-reselected")
+        } finally {onMain {it.requestedOrientation=originalOrientation}}
+    }
+
+
 }

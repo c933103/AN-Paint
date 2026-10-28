@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.os.Looper
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
+import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -160,9 +161,86 @@ class ImportSelectionTitleTest {
         cancel(warning("Imagem animada", confirmedMessage("APNG", "3", true), "Abrir imagem estática"), file)
     }
 
-    @Test fun incompleteWelshCatalogueRetainsDefaultEnglishFallback() {
-        // cy is offered but has no animation-warning keys at this candidate's base.
-        language("cy")
+    @Test fun nynorskAnimationWarningsRetainUncertainAndMixedCountSemanticsInRealDialogs() {
+        language("nn")
+        var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
+        cancel(warning("Opna stillbilete", "Dette GIF-biletet er for komplekst til å stadfesta om det har fleire biletruter. AN Paint opnar berre eit stillbilete og tek ikkje vare på nokon animasjon.", "Opna stillbilete"), file)
+        file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
+        cancel(warning("Animert bilete", "Dette GIF-biletet har at least 2 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nBerre den første biletruta vert importert. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete"), file)
+        file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
+        val dialog = warning("Animert bilete", "Dette APNG-biletet har 3 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nDette PNG-biletet har eit eige standardbilete. Det vert importert i staden for dei animerte biletrutene. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete")
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+        worker.drain(); worker.drain()
+        assertEquals(1, selectedCalls); assertEquals(0, selected!!.pageIndex)
+        assertEquals(file, selected!!.file); assertEquals(0, cancelled); assertNull(failure)
+        assertFalse(dialog.isShowing)
+        selection!!.dispose()
+        assertTrue("Confirmed import transfers ownership rather than deleting the original staged file", file.exists())
+    }
+
+    @Test fun danishAndNorwegianAnimationWarningsUseReviewedBodiesAndKeepRealDecisionSemantics() {
+        val values = JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText())
+            .getJSONObject("values")
+        for (tag in listOf("da", "no")) {
+            language(tag)
+            fun expected(key: String) = values.getJSONObject(key).getString(tag).removeSurrounding("\"")
+            fun formatted(key: String, vararg arguments: Any) = String.format(Locale.forLanguageTag(tag), expected(key), *arguments)
+            val open = expected("formats22_open_still")
+            val animated = expected("formats22_animation_title")
+            var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
+            cancel(warning(open, formatted("formats22_animation_unknown", "GIF"), open), file)
+            assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
+            file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
+            cancel(warning(animated, formatted("formats22_animation_message", "GIF", "at least 2") +
+                "\n\n" + expected("formats22_animation_still"), open), file)
+            file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
+            val dialog = warning(animated, formatted("formats22_animation_message", "APNG", "3") +
+                "\n\n" + expected("formats22_animation_poster"), open)
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            worker.drain(); worker.drain()
+            assertEquals(1, selectedCalls); assertEquals(0, selected!!.pageIndex)
+            assertEquals(file, selected!!.file); assertEquals(0, cancelled); assertNull(failure)
+            assertFalse(dialog.isShowing)
+            selection!!.dispose()
+            assertTrue("Confirmed import transfers ownership of the staged file", file.exists())
+        }
+    }
+
+    @Test fun catalanAndRomanianAnimationWarningsKeepMixedCountsAndRealImportDecisions() {
+        val values = JSONObject(File("../tools/fixtures/current_localization/catalan_romanian_import_wording.json").readText())
+            .getJSONObject("values")
+        for (tag in listOf("ca", "ro")) {
+            language(tag)
+            assertEquals(tag, AppLanguage.selectedTag(activity))
+            fun expected(key: String) = SkSlCaPriorityExpectations.current(
+                tag, key, values.getJSONObject(key).getString(tag)).removeSurrounding("\"")
+            fun formatted(key: String, vararg arguments: Any) = String.format(Locale.forLanguageTag(tag), expected(key), *arguments)
+            val open = expected("formats22_open_still")
+            val animated = expected("formats22_animation_title")
+            var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
+            cancel(warning(open, formatted("formats22_animation_unknown", "GIF"), open), file)
+            val countText = String.format(
+                Locale.forLanguageTag(tag), SkSlCaPriorityExpectations.display(tag, "formats22_at_least_frames"), 2)
+            assertEquals(countText, ui(R.string.formats22_at_least_frames, 2))
+            file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
+            cancel(warning(animated, formatted("formats22_animation_message", "GIF", countText) +
+                "\n\n" + expected("formats22_animation_still"), open), file, dismiss = true)
+            file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
+            val dialog = warning(animated, formatted("formats22_animation_message", "APNG", "3") +
+                "\n\n" + expected("formats22_animation_poster"), open)
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
+            worker.drain(); worker.drain()
+            assertEquals(1, selectedCalls); assertEquals(0, selected!!.pageIndex)
+            assertEquals(file, selected!!.file); assertEquals(0, cancelled); assertNull(failure)
+            assertFalse(dialog.isShowing)
+            selection!!.dispose()
+            assertTrue("Confirmed import transfers ownership of the staged file", file.exists())
+        }
+    }
+
+    @Test fun incompleteOldEnglishCatalogueRetainsDefaultEnglishFallback() {
+        // ang is offered and has no animation-warning keys; Welsh is now translated.
+        language("ang")
         val file = begin(cappedPng(), AnimationInfo("PNG", 0, false, false))
         val message = "This PNG is too complex to confirm whether it contains multiple frames. " +
             "AN Paint will open only a still image and will not preserve any animation."

@@ -251,8 +251,8 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
             group.forEach { (key, label, max) -> row.addView(field(key, ui(label), max), LinearLayout.LayoutParams(0, -2, 1f)) }
             advanced.addView(row)
         }
-        // Keep the tabs, custom slots and Save action reachable while the long
-        // Advanced controls scroll, including on short landscape screens.
+        // Keep the custom slots and Save action independently reachable while
+        // the long Advanced controls scroll, including on short landscape screens.
         fun preferredHeight()=minOf(dp(650),(activity.resources.displayMetrics.heightPixels*.68f).toInt())
         val holder=object : FrameLayout(activity) {
             override fun onMeasure(widthMeasureSpec: Int,heightMeasureSpec: Int) {
@@ -262,6 +262,16 @@ class AdvancedColourDialog(private val activity: Activity, initial: Int, private
                 val columns=!VerticalText.uiVertical(activity) &&
                     activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE &&
                     MeasureSpec.getSize(widthMeasureSpec)>=dp(520)
+                // At enlarged text sizes the fixed top tabs can consume nearly
+                // the entire short editor viewport. Scroll those same objects
+                // with the editor instead; never shrink captions or touch minima.
+                // Normal-font, portrait and vertical-script layouts stay fixed.
+                val scrollTabs=columns && activity.resources.configuration.fontScale>1f
+                if(scrollTabs != (tabs.parent===body)) {
+                    (tabs.parent as? ViewGroup)?.removeView(tabs)
+                    (if(scrollTabs) body else editorPanel).addView(tabs,0,
+                        LinearLayout.LayoutParams(-1,-2))
+                }
                 shell.orientation=if(columns) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
                 (editorPanel.layoutParams as LinearLayout.LayoutParams).apply {
                     width=if(columns) 0 else -1;height=if(columns) -1 else 0;weight=1f

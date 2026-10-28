@@ -128,6 +128,31 @@ class CommonsCreditFlowTest {
         CommonsAttribution.cache(context,record)
         return ImageCredit(source,record.text(true))
     }
+    @Test fun metadataAndImageRequestsUseTheInstalledApplicationVersion() {
+        val info=context.packageManager.getPackageInfo(context.packageName,0)
+        val originalVersion=info.versionName
+        info.versionName="91.2-regression"
+        shadowOf(context.packageManager).installPackage(info)
+        val controller=gallery();val activity=controller.get()
+        val connections=mutableListOf<Connection>()
+        try {
+            activity.openConnection={url ->
+                Connection(url,ByteArrayInputStream((if(url.host=="commons.wikimedia.org")
+                    CommonsTestMetadata.response(source,page) else svg).toByteArray())).also {connections.add(it)}
+            }
+            select(activity);await {activity.isFinishing && !activity.downloading}
+            assertEquals(setOf("commons.wikimedia.org","upload.wikimedia.org"),connections.map {it.url.host}.toSet())
+            assertEquals(2,connections.size)
+            for(connection in connections) assertEquals(
+                "AN-Paint/91.2-regression (https://github.com/c933103/AN-Paint; Android)",
+                connection.getRequestProperty("User-Agent"))
+        } finally {
+            controller.pause().stop().destroy()
+            info.versionName=originalVersion
+            shadowOf(context.packageManager).installPackage(info)
+        }
+    }
+
     @Test fun copyFromFileFetchesOnlyMetadataAndDoesNotRecordInsertion() {
         selectLanguage("fr")
         val controller=gallery();val activity=controller.get();var count=0
@@ -197,9 +222,22 @@ class CommonsCreditFlowTest {
         val fixture=JSONObject(File("../tools/fixtures/current_localization/gallery_empty_credit_current_wording.json").readText())
         val expected=fixture.getJSONObject("values").getJSONObject("ui_no_gallery_images_have_been_inserted")
         val scope=JSONObject(File("../tools/fixtures/current_localization/locale_contract_scope.json").readText())
-        val fallback=scope.getJSONArray("fallback_tags").let { values ->
+        val baselineFallback=scope.getJSONArray("fallback_tags").let { values ->
             (0 until values.length()).map { values.getString(it) }.toSet()
         }
+        val additional=fixture.getJSONArray("additional_reviewed_tags").let { values ->
+            (0 until values.length()).map { values.getString(it) }.toSet()
+        }
+        val scoped=scope.getJSONArray("scoped_tags").let { values ->
+            (0 until values.length()).map { values.getString(it) }.toSet()
+        }
+        assertTrue("Family extensions must come from the explicit baseline fallbacks",
+            baselineFallback.containsAll(additional))
+        val reviewed=scoped+additional
+        val fallback=baselineFallback-additional
+        assertTrue(reviewed.intersect(fallback).isEmpty())
+        assertEquals(AppLanguage.tags(context).toSet(),reviewed+fallback)
+        assertEquals(reviewed+"default",expected.keys().asSequence().toSet())
         for(tag in AppLanguage.tags(context)) {
             AppLanguage.select(context,tag)
             val selected=AppLanguage.wrap(context)
