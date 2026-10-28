@@ -1,0 +1,178 @@
+{
+  "head": "4124342de1f0b8eb2453fa072b620852e67a3fed",
+  "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+  "run_id": 40645833911,
+  "scope": "Completed current original subgates only, not terminal overall acceptance",
+  "records": {
+    "early-build-source-verification.json": {
+      "sha256": "6e47594e8641fa2575b82ea09300fad56a4ff0b7b1613d5080a76b3bda040268",
+      "record": {
+        "scope": "early original build/source and streamed APK hash only",
+        "head": "4124342de1f0b8eb2453fa072b620852e67a3fed",
+        "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+        "tested_merge": "28207e2e839df9da19bbd2e3bd7b751686320cbb",
+        "run_id": 40645833911,
+        "artifact_id": 12798156119,
+        "artifact_sha256": "9fbc55ed4912b4189e56f26a36839eee85227281b24e90efd511fba28472fa77",
+        "build_info": {
+          "commit": "28207e2e839df9da19bbd2e3bd7b751686320cbb",
+          "run_id": "40645833911",
+          "build_variant": "debug",
+          "apk_sha256": "206e828a0eed7a17d4261cc00c47e6d05a9827d7e477c4cb1fa6fe06f12282cc",
+          "source_sha256": "c4299d5bf798832ea0335051c93c231c730245a62c330559a948e4c6868bdbf6",
+          "test_status": "Reported separately; artifact availability does not imply tests passed.",
+          "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+        },
+        "full_tree_leaves": 1555,
+        "source_blobs_modes_verified": 1552,
+        "only_metadata_omissions": [
+          ".gitignore",
+          ".idea/codeStyles/Project.xml",
+          "colorpicker/.gitignore"
+        ],
+        "mismatches": [],
+        "remaining": [
+          "embedded-source-in-APK rebinding",
+          "APK cryptographic signature",
+          "all terminal original JVM/device/export gates"
+        ],
+        "originals_preserved": true
+      }
+    },
+    "early-signature-verification.json": {
+      "sha256": "55140c17fbaef0245e70cc07707340b646b6ee5fcef914038ff3963b72e43c3a",
+      "record": {
+        "scope": "original exact APK cryptographic signature and embedded corresponding-source hash; terminal other gates separate",
+        "head": "4124342de1f0b8eb2453fa072b620852e67a3fed",
+        "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+        "tested_merge": "28207e2e839df9da19bbd2e3bd7b751686320cbb",
+        "run_id": 40645833911,
+        "original_artifact_sha256": "9fbc55ed4912b4189e56f26a36839eee85227281b24e90efd511fba28472fa77",
+        "apk_sha256": "206e828a0eed7a17d4261cc00c47e6d05a9827d7e477c4cb1fa6fe06f12282cc",
+        "embedded_source_sha256": "c4299d5bf798832ea0335051c93c231c730245a62c330559a948e4c6868bdbf6",
+        "signer_jar_sha256": "00ef9948f843fe395d2440ae3ef41405b8040a6d5d46493bd1902ac0ee6deae7",
+        "signature_log_sha256": "ffadbe898954fb0bf504a4e849402ac1d06844d3c7f67c053d52668a0729856c",
+        "certificate_sha256": "a363344dec26375b450018c975085fffca3a1f4d9667510e2dece98733ccb59f",
+        "verified_v1_v2": true,
+        "signing": "CI debug key. Upgrade signing remains a separate private packaging step.",
+        "unchanged_helper_ast_sha256": "c89d150360009d4a1f9f099cd05f8cf5156ebc0b50fe6bea6acb824e86494de7",
+        "exact_transient_bytes": 176847772,
+        "originals_retained": true,
+        "verified_reproducible_transient_removed": true,
+        "free_after_cleanup": 231682048
+      }
+    },
+    "early-probe-verification.json": {
+      "sha256": "ee7b594a78cdcc4aad87e80a7ac93d16ebe8eec2e8b10dddcf4bfb917ffb895e",
+      "record": {
+        "scope": "exact original generation logs only",
+        "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+        "count": 13,
+        "all_original_hashes_tasks_and_rejections_match": true,
+        "source_checker_sha256": "aa5359c82a89bbc68c76f49b5ec76a37f2210a775e3a55ae8a148a9dde77aa83"
+      }
+    },
+    "early-device-verification.json": {
+      "sha256": "6d29e3b7fb40be36635cd06231772e83a6040576b1713bc49245b57a3361ce51",
+      "record": {
+        "scope": "original device raw protocol, independent core/position recomposition and four export validators only",
+        "head": "4124342de1f0b8eb2453fa072b620852e67a3fed",
+        "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+        "run_id": 40645833911,
+        "app_tests": 49,
+        "paintroid_tests": 74,
+        "raw_reports": [
+          {
+            "path": "Paintroid/androidTest-results/summary.json",
+            "tests": 74,
+            "log_sha256": "493b19472821052f6ebfd9a4c56811b764e02ea665cbd47407d823ceef0998f0"
+          },
+          {
+            "path": "app/accepted-credit-restart/seed/summary.json",
+            "tests": 1,
+            "log_sha256": "030d34c48fa24ff46a5798c80a944a4158fe06531a36f44faa11112cf1a28081"
+          },
+          {
+            "path": "app/accepted-credit-restart/verify/summary.json",
+            "tests": 1,
+            "log_sha256": "4b3ce6d06135adcf056839d54f4b43cc57c2e3deac656b5bd413c1c520355d9c"
+          },
+          {
+            "path": "app/androidTest-results/summary.json",
+            "tests": 19,
+            "log_sha256": "c1255b7e4df9a9d70d7de81aff9ee808e130a6b23bdc18f18a8524daaf6bd9a2"
+          },
+          {
+            "path": "app-dialog/androidTest-results/summary.json",
+            "tests": 14,
+            "log_sha256": "576e0a4a634749aec50ee9e3e54350d8ae629cd6dd8870c0e26e8169970f3c9b"
+          },
+          {
+            "path": "app-gallery-draft/androidTest-results/summary.json",
+            "tests": 3,
+            "log_sha256": "70ff51d236554c5f2cfe2888cb74441159c5b2f7927b5a69075cd51694b2c05e"
+          },
+          {
+            "path": "app-position/ainu-manchu/androidTest-results/summary.json",
+            "tests": 3,
+            "log_sha256": "75282d5e70cdbdda6baf68fb7c3eaeacf68ac2d8e310d7cad5cacf775af12a19"
+          },
+          {
+            "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
+            "tests": 4,
+            "log_sha256": "bb36e691f10ba46bfa2397923d80b0c9e3c71d9915623c1a567341c44a70eb2e"
+          },
+          {
+            "path": "app-vertical/english-manchu/androidTest-results/summary.json",
+            "tests": 2,
+            "log_sha256": "6a5619940b0d70cd2d9599c3743400f9641626b572be619df1158a22caac03ce"
+          },
+          {
+            "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+            "tests": 2,
+            "log_sha256": "a3ffa81cf8f8f1545123ad5f5be2f311c585c7ca14cc8b7b0d1375b5d618648a"
+          }
+        ],
+        "remaining": [
+          "instrumentation APK hash rebinding",
+          "original JVM/Python/lint terminal verification"
+        ],
+        "mandatory_exports": {
+          "dialog-evidence.json": {
+            "original_receipt_sha256": "700bb5846a3a05f08a93d94f32c8b5fb55bc73b974986c7c4c7f3be695312162",
+            "exact_recomputed_match": true
+          },
+          "vertical-locale-export.json": {
+            "original_receipt_sha256": "5db675a02ceec4e44bba582dc149b736f5277ea91f1f2d236407cc8574eb9c79",
+            "exact_recomputed_match": true
+          },
+          "vertical-control-reachability.json": {
+            "original_receipt_sha256": "55837cfcdae05010f9b55d4ee6b4433c16011e2295e36769b37c4fa8e0c6afbd",
+            "exact_recomputed_match": true
+          },
+          "vertical-locale-screenshots.json": {
+            "original_receipt_sha256": "566de0f461b0cd8aa38d5ab7e104c0c708f9484b6ad03d3152bbdf8c80303e08",
+            "exact_recomputed_match": true
+          }
+        },
+        "mandatory_export_counts": {
+          "dialogs": 14,
+          "vertical_files": 104,
+          "reachability_cases": 8,
+          "reachability_screenshots": 64,
+          "locale_screenshots": 32
+        },
+        "verified_reproducible_extraction_removed": true
+      }
+    }
+  },
+  "signature_raw_log": "Verifies\nVerified using v1 scheme (JAR signing): true\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): false\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: C=US, O=Android, CN=Android Debug\nSigner #1 certificate SHA-256 digest: a363344dec26375b450018c975085fffca3a1f4d9667510e2dece98733ccb59f\nSigner #1 certificate SHA-1 digest: 931781e8113ac910a95866253a56a4e713ae374d\nSigner #1 certificate MD5 digest: 1c06ed1e79494e6e80bd64e8c82ae320\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 2048\nSigner #1 public key SHA-256 digest: 0d00c261bf4391cb86dc3b194fa773c194bdc91e53519a3d0ecba8686889eb4e\nSigner #1 public key SHA-1 digest: c677b9b7003f6efada8528025d0843d33b17e26f\nSigner #1 public key MD5 digest: 3d5645bcd7f553d2932b7f51eeac8e48\nWARNING: META-INF/com/android/build/gradle/app-metadata.properties not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.appcompat_appcompat.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.arch.core_core-runtime.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.asynclayoutinflater_asynclayoutinflater.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.coordinatorlayout_coordinatorlayout.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.core_core-ktx.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.core_core.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.cursoradapter_cursoradapter.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.customview_customview.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.documentfile_documentfile.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.drawerlayout_drawerlayout.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.exifinterface_exifinterface.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.fragment_fragment.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.interpolator_interpolator.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.legacy_legacy-support-core-ui.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.legacy_legacy-support-core-utils.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.lifecycle_lifecycle-livedata-core.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.lifecycle_lifecycle-livedata.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.lifecycle_lifecycle-runtime.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.lifecycle_lifecycle-viewmodel.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.loader_loader.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.localbroadcastmanager_localbroadcastmanager.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.print_print.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.slidingpanelayout_slidingpanelayout.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.swiperefreshlayout_swiperefreshlayout.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.vectordrawable_vectordrawable-animated.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.vectordrawable_vectordrawable.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.versionedparcelable_versionedparcelable.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\nWARNING: META-INF/androidx.viewpager_viewpager.version not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.\n",
+  "pending": [
+    "original instrumentation test APK hash",
+    "original regression archive Python identities/JVM exact classes/lint/lifecycle",
+    "all six terminal job binding",
+    "final complete terminal bundle"
+  ],
+  "source_or_originals_deleted": false,
+  "only_reproducible_extraction_cleaned_after_success": true
+}
