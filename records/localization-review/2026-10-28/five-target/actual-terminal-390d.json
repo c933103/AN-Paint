@@ -1,0 +1,1162 @@
+{
+  "status": "actual-natural-push-original-gates-verified",
+  "created_utc": "2026-10-28T12:00:27.963212+00:00",
+  "pr": 212,
+  "actual_commit": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+  "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+  "ordered_parents": [
+    "60354b80d5978bcc9a8a21dd45058de948b418d3",
+    "4124342de1f0b8eb2453fa072b620852e67a3fed"
+  ],
+  "event": "push",
+  "run_id": 40680438655,
+  "records": [
+    {
+      "path": "hosted/terminal-verification.json",
+      "sha256": "4822ffafdd814ff6702d7fe8d71f7924a7cc21b18ece3fc1ff1ab7557340d7bb",
+      "record": {
+        "schema": 1,
+        "pr": 212,
+        "head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+        "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+        "tested_merge": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+        "run_id": 40680438655,
+        "artifact_digests_verified": [
+          {
+            "id": 12812897769,
+            "name": "apk-and-source-390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+            "sha256": "7d88ff9d1e0da416550efae50ba432f920840c997bcc6062c6f6a7ecd70185c5",
+            "size_bytes": 149863206
+          },
+          {
+            "id": 12813580009,
+            "name": "instrumentation-apks-390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+            "sha256": "d92884ad04a6e436b6f44b81b0680097c86c28fc15c103971ced93e0f111271a",
+            "size_bytes": 100325513
+          },
+          {
+            "id": 12813852443,
+            "name": "regression-and-lint-390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+            "sha256": "929e6191530ef9e8d49985df2ccaacdacca93f5d6716f773e2cc719d2b169448",
+            "size_bytes": 84665989
+          },
+          {
+            "id": 12813011643,
+            "name": "exact-script-generation-390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+            "sha256": "20a618ed8c9ac726b30ecfec7fa2380b74e111e792392cc8242c0087126a60dd",
+            "size_bytes": 11661
+          },
+          {
+            "id": 12813857017,
+            "name": "emulator-core-api-35-390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+            "sha256": "4d42260186e8690ebee57be9c29278a6174570dae13431bb4ea753b445848fc3",
+            "size_bytes": 12055666
+          },
+          {
+            "id": 12813406253,
+            "name": "emulator-position-api-35-390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+            "sha256": "90df3ee632b8f33428c7fb2d926c81862c2a2b4f3338e5e30133bfbfcec6e2d9",
+            "size_bytes": 1911951
+          },
+          {
+            "id": 12813054643,
+            "name": "emulator-api-35-390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+            "sha256": "63ce56d644daabd419933dc91891a03141e8879989d388b4d92508f22548c607",
+            "size_bytes": 12068192
+          }
+        ],
+        "terminal_jobs": [
+          {
+            "id": 122789505640,
+            "name": "Regression tests and lint",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40680438655
+          },
+          {
+            "id": 122789505970,
+            "name": "Build APK and corresponding source",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40680438655
+          },
+          {
+            "id": 122789506145,
+            "name": "Exact-script resource generation",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40680438655
+          },
+          {
+            "id": 122793737396,
+            "name": "Position dialog API 35",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40680438655
+          },
+          {
+            "id": 122793737451,
+            "name": "Core emulator API 35",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40680438655
+          },
+          {
+            "id": 122800093970,
+            "name": "Emulator API 35",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 40680438655
+          }
+        ],
+        "source_archive_sha256": "c4299d5bf798832ea0335051c93c231c730245a62c330559a948e4c6868bdbf6",
+        "source_tree_blobs_verified": 1552,
+        "source_archive_omitted_repository_metadata": [
+          ".gitignore",
+          ".idea/codeStyles/Project.xml",
+          "colorpicker/.gitignore"
+        ],
+        "missing_non_metadata_source_files": [],
+        "mismatched_source_files": [],
+        "hosted_python": {
+          "declared_tests": 1923,
+          "executed_successfully": 1921,
+          "skipped_tests": [
+            "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+            "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+          ],
+          "exit_status": 0,
+          "raw_log_sha256": "1ec74ef0c70bbef813391bee688cc6c3b70640d59eb36d949608722378ee3e58",
+          "scope": "Exact source unittest discovery-order identities mapped to every original hosted progress marker; skipped checks are not passes."
+        },
+        "jvm": {
+          "tests": 1818,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "suites": 184,
+          "contributed_jvm_consumers": {
+            "org.catrobat.paintroid.local.AppLanguageResourceRoutingTest": {
+              "source_methods": [
+                "onlyTheTwoSpecialCataloguesUseInternalResourceVariants",
+                "uzbekDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "tatarDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "mongolianDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue",
+                "mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches",
+                "systemEmojiSelectionAndDeviceLabelKeepThePublicTag",
+                "russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove",
+                "refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches",
+                "systemAppLanguageKeepsThePublicMixedScriptTag",
+                "deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection"
+              ],
+              "original_compiled_test_names": [
+                "deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection[30]",
+                "deviceDefaultLabelUsesTheExactCatalogueWithoutChangingTheSelection",
+                "russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove[30]",
+                "russianCropPreviewKeepsCountsAndWarnsThatAttachedImagesMove",
+                "systemEmojiSelectionAndDeviceLabelKeepThePublicTag",
+                "systemAppLanguageKeepsThePublicMixedScriptTag",
+                "onlyTheTwoSpecialCataloguesUseInternalResourceVariants[30]",
+                "onlyTheTwoSpecialCataloguesUseInternalResourceVariants",
+                "mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments[30]",
+                "mixedScriptPluralUsesTheWholeCatalogueAndKeepsFormatArguments",
+                "everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue[30]",
+                "everyExplicitScriptAndRegionalControlResolvesItsExpectedGeneralUiCatalogue",
+                "tatarDeviceLabelSuccessorRejectsChangedHistoricalRows[30]",
+                "tatarDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "uzbekDeviceLabelSuccessorRejectsChangedHistoricalRows[30]",
+                "uzbekDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches[30]",
+                "refreshKeepsTheRequestedTagAndLiveConfigurationAcrossRepeatedSwitches",
+                "mongolianDeviceLabelSuccessorRejectsChangedHistoricalRows[30]",
+                "mongolianDeviceLabelSuccessorRejectsChangedHistoricalRows",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[21]",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[24]",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches[30]",
+                "emojiEnglishKeepsPublicIdentityWholeStringsAndEnglishPluralsAcrossSwitches"
+              ]
+            },
+            "org.catrobat.paintroid.local.AppLanguageTest": {
+              "source_methods": [
+                "sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback",
+                "furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback",
+                "historicalAndMoroccanOptionsUseDistinctIdentitiesAndFallback",
+                "filipinoKeepsExistingCatalogueAndMigratesSavedTagalog",
+                "savedTagalogImportPersistsAcrossReadsAndNewContext",
+                "platformTagalogAliasMigratesWithoutSavedPreference",
+                "existingPlatformChoiceWinsOverUninitializedSavedAlias",
+                "initializedDeviceDefaultWinsOverSavedAlias",
+                "regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate",
+                "regionalLabelsLegacyMigrationsAndStarterChoicesUseTheirCatalogues",
+                "pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode",
+                "manchuPickerUsesItsOwnJoinedVerticalAutonym",
+                "nomPickerAutonymUsesBundledFontEvenBeforeSelectingNom",
+                "narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize",
+                "landscapePickerFitsTheFoldedMongolianOption",
+                "androidScriptOnlyChinesePreferenceMigratesToRegionalChoice",
+                "hakkaLegacyTagsMigrateToTaiwanOnBothPreferenceBackends",
+                "verticalTestLocalesUseExactResourcesAndCanonicalRoundTrips",
+                "tatarScriptsAndAdditionalGimpLanguagesSelectTheirOwnResources",
+                "deviceDefaultChoiceUsesSystemLanguageEvenWithAnotherAppLanguage",
+                "requestedRegionsAndArmenianHaveTheirOwnMainMenuResources",
+                "chosenLanguagePersistsAndChangesResourcesAndDecimalInput",
+                "pickerChangesCurrentWorkspaceWithoutLosingCanvasUndoOrSelection",
+                "androidAppLanguageAndInAppPreferenceUseTheSameSetting",
+                "languageOverridePreservesRotationWindowSizeAndLargeTextWithoutReplacingDocument"
+              ],
+              "original_compiled_test_names": [
+                "filipinoKeepsExistingCatalogueAndMigratesSavedTagalog[30]",
+                "filipinoKeepsExistingCatalogueAndMigratesSavedTagalog",
+                "existingPlatformChoiceWinsOverUninitializedSavedAlias[33]",
+                "existingPlatformChoiceWinsOverUninitializedSavedAlias",
+                "languageOverridePreservesRotationWindowSizeAndLargeTextWithoutReplacingDocument",
+                "requestedRegionsAndArmenianHaveTheirOwnMainMenuResources",
+                "deviceDefaultChoiceUsesSystemLanguageEvenWithAnotherAppLanguage[30]",
+                "deviceDefaultChoiceUsesSystemLanguageEvenWithAnotherAppLanguage",
+                "savedTagalogImportPersistsAcrossReadsAndNewContext[33]",
+                "savedTagalogImportPersistsAcrossReadsAndNewContext",
+                "narrowPickerFitsMongolianAutonymAndCodeAtLargeTextSize",
+                "pickerPinsInternationalEnglishAndMongolianWordsFoldBesideTheCode",
+                "androidAppLanguageAndInAppPreferenceUseTheSameSetting",
+                "sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback[30]",
+                "sixNewOptionsKeepTheirIdentityAndExplicitEnglishFallback",
+                "chosenLanguagePersistsAndChangesResourcesAndDecimalInput",
+                "androidScriptOnlyChinesePreferenceMigratesToRegionalChoice",
+                "landscapePickerFitsTheFoldedMongolianOption",
+                "manchuPickerUsesItsOwnJoinedVerticalAutonym",
+                "initializedDeviceDefaultWinsOverSavedAlias[33]",
+                "initializedDeviceDefaultWinsOverSavedAlias",
+                "hakkaLegacyTagsMigrateToTaiwanOnBothPreferenceBackends[30]",
+                "hakkaLegacyTagsMigrateToTaiwanOnBothPreferenceBackends",
+                "furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback[30]",
+                "furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback",
+                "regionalAndScriptChoicesAreSortedAndLegacyPreferencesMigrate",
+                "verticalTestLocalesUseExactResourcesAndCanonicalRoundTrips",
+                "regionalLabelsLegacyMigrationsAndStarterChoicesUseTheirCatalogues",
+                "tatarScriptsAndAdditionalGimpLanguagesSelectTheirOwnResources",
+                "historicalAndMoroccanOptionsUseDistinctIdentitiesAndFallback[30]",
+                "historicalAndMoroccanOptionsUseDistinctIdentitiesAndFallback",
+                "nomPickerAutonymUsesBundledFontEvenBeforeSelectingNom",
+                "pickerChangesCurrentWorkspaceWithoutLosingCanvasUndoOrSelection",
+                "platformTagalogAliasMigratesWithoutSavedPreference[33]",
+                "platformTagalogAliasMigratesWithoutSavedPreference"
+              ]
+            },
+            "org.catrobat.paintroid.local.BretonAsturianOccitanPriorityWordingTest": {
+              "source_methods": [
+                "everyReviewedBretonAsturianOccitanCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "everyReviewedBretonAsturianOccitanCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording"
+              ]
+            },
+            "org.catrobat.paintroid.local.CebuanoLowGermanKashubianPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.ChineseCropPreviewTest": {
+              "source_methods": [
+                "nanLatinWarningRejectsCoordinatedRawAndDisplayFixtureMutation",
+                "compiledResourcesKeepCompleteWarningsAndAllThreeArguments",
+                "taiwanWarningSurvivesActualBatchCropSelectionTrimResetCancelAndReopen",
+                "chinaWarningSurvivesActualBatchCropSelectionTrimResetCancelAndReopen",
+                "cantoneseHanWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly",
+                "cantoneseJyutpingWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly",
+                "literaryChineseWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly",
+                "taiwaneseHanWarningKeepsPlacedAntecedentAndAlternateGraph",
+                "taiwanesePojWarningKeepsPlacedAntecedentAndCombiningDot"
+              ],
+              "original_compiled_test_names": [
+                "cantoneseJyutpingWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly",
+                "compiledResourcesKeepCompleteWarningsAndAllThreeArguments",
+                "taiwanesePojWarningKeepsPlacedAntecedentAndCombiningDot",
+                "chinaWarningSurvivesActualBatchCropSelectionTrimResetCancelAndReopen",
+                "literaryChineseWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly",
+                "taiwaneseHanWarningKeepsPlacedAntecedentAndAlternateGraph",
+                "taiwanWarningSurvivesActualBatchCropSelectionTrimResetCancelAndReopen",
+                "nanLatinWarningRejectsCoordinatedRawAndDisplayFixtureMutation",
+                "cantoneseHanWarningSeparatesSelectedCountFromPlacementAndKeepsDraftReadOnly"
+              ]
+            },
+            "org.catrobat.paintroid.local.CommonsSvgErrorTranslationTest": {
+              "source_methods": [
+                "unspecifiedOriginalSizeShowsItsLocalizedReasonThroughTheActualGallery",
+                "overflowingOriginalSizeShowsItsLocalizedReasonWithoutResizing",
+                "unrelatedExternalDiagnosticsStillPassThroughUnchanged"
+              ],
+              "original_compiled_test_names": [
+                "unspecifiedOriginalSizeShowsItsLocalizedReasonThroughTheActualGallery[30]",
+                "unspecifiedOriginalSizeShowsItsLocalizedReasonThroughTheActualGallery",
+                "overflowingOriginalSizeShowsItsLocalizedReasonWithoutResizing[30]",
+                "overflowingOriginalSizeShowsItsLocalizedReasonWithoutResizing",
+                "unrelatedExternalDiagnosticsStillPassThroughUnchanged[30]",
+                "unrelatedExternalDiagnosticsStillPassThroughUnchanged"
+              ]
+            },
+            "org.catrobat.paintroid.local.GalicianDutchGermanPriorityWordingTest": {
+              "source_methods": [
+                "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+                "realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation",
+                "gifDescriptionAndCheckboxProduceTheSelectedDitherRequest",
+                "completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo"
+              ],
+              "original_compiled_test_names": [
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "gifDescriptionAndCheckboxProduceTheSelectedDitherRequest",
+                "zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation"
+              ]
+            },
+            "org.catrobat.paintroid.local.GeorgianArmenianAzerbaijaniPriorityWordingTest": {
+              "source_methods": [
+                "everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "actualDimensionControlsHandleOneTwoGroupedCountsAndRepeatedUnitChanges",
+                "completedDecodedImageCannotReplaceBlockedDestinationAndLeavesBothSourcesUntouched",
+                "realExportAndLosslessDialogsKeepCompleteExplanationsAndCancelWithoutSaving",
+                "zeroBudgetRejectsOneAndManyPixelsWithCompleteWarning",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "actualDirtyImagePromptIsNotExportCompletionAndRepeatedCancelPreservesTheDrawing",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "gifExplanationAndRetainedDitherControlStayTogetherAcrossRepeatedToggles"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "zeroBudgetRejectsOneAndManyPixelsWithCompleteWarning",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "actualDimensionControlsHandleOneTwoGroupedCountsAndRepeatedUnitChanges",
+                "actualDirtyImagePromptIsNotExportCompletionAndRepeatedCancelPreservesTheDrawing",
+                "completedDecodedImageCannotReplaceBlockedDestinationAndLeavesBothSourcesUntouched",
+                "gifExplanationAndRetainedDitherControlStayTogetherAcrossRepeatedToggles",
+                "everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "realExportAndLosslessDialogsKeepCompleteExplanationsAndCancelWithoutSaving"
+              ]
+            },
+            "org.catrobat.paintroid.local.ImageDisplayLocaleTest": {
+              "source_methods": [
+                "completeSummariesUseResourceLocaleDespiteOppositeProcessDefaults",
+                "englishFallbackStillUsesSelectedLocaleNumbers",
+                "reviewedBretonSummaryStillUsesSelectedLocaleNumbers",
+                "memoryDisplayKeepsUnitScalingAndResourceSpecificDecimalDigits",
+                "existingDimensionControlRefreshUsesNewResourceSnapshot",
+                "localizedDisplayDoesNotChangeParsingUnitRoundTripsOrInvalidInputRejection",
+                "longPixelArithmeticAndAdmissionAreUnaffectedByDisplayLocale"
+              ],
+              "original_compiled_test_names": [
+                "localizedDisplayDoesNotChangeParsingUnitRoundTripsOrInvalidInputRejection",
+                "reviewedBretonSummaryStillUsesSelectedLocaleNumbers",
+                "completeSummariesUseResourceLocaleDespiteOppositeProcessDefaults",
+                "longPixelArithmeticAndAdmissionAreUnaffectedByDisplayLocale",
+                "englishFallbackStillUsesSelectedLocaleNumbers",
+                "memoryDisplayKeepsUnitScalingAndResourceSpecificDecimalDigits",
+                "existingDimensionControlRefreshUsesNewResourceSnapshot"
+              ]
+            },
+            "org.catrobat.paintroid.local.InterlinguaLatinKurdishPriorityWordingTest": {
+              "source_methods": [
+                "everyReviewedInterlinguaLatinKurdishCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel",
+                "everyReviewedInterlinguaLatinKurdishCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording"
+              ]
+            },
+            "org.catrobat.paintroid.local.KabyleHmongDawMaithiliPriorityWordingTest": {
+              "source_methods": [
+                "everyReviewedKabyleHmongDawMaithiliCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "everyReviewedKabyleHmongDawMaithiliCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording"
+              ]
+            },
+            "org.catrobat.paintroid.local.KazakhTajikPashtoPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.LatinSiniticPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels",
+                "immutableReadersRejectCoordinatedRawDisplayAndWholeFixtureMutants",
+                "cachedRowMutationCannotChangeACompiledExpectation"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "cachedRowMutationCannotChangeACompiledExpectation",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "immutableReadersRejectCoordinatedRawDisplayAndWholeFixtureMutants",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.MaoriSamoanKinyarwandaPriorityWordingTest": {
+              "source_methods": [
+                "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+                "realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation",
+                "gifDescriptionAndCheckboxProduceTheSelectedDitherRequest",
+                "completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo"
+              ],
+              "original_compiled_test_names": [
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup",
+                "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+                "gifDescriptionAndCheckboxProduceTheSelectedDitherRequest",
+                "zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation",
+                "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+                "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic",
+                "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation"
+              ]
+            },
+            "org.catrobat.paintroid.local.MoroccanArabicMongolianTokiPonaPriorityWordingTest": {
+              "source_methods": [
+                "everyReviewedMoroccanArabicMongolianTokiPonaCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "everyReviewedMoroccanArabicMongolianTokiPonaCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel",
+                "heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording"
+              ]
+            },
+            "org.catrobat.paintroid.local.NorthKoreanAustralianPriorityWordingTest": {
+              "source_methods": [
+                "completeFixtureRejectsCoordinatedAndUnrelatedSuppliedChanges",
+                "everyReviewedNorthKoreanAustralianCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "existingHeldValuesRemainExactWithoutNewWordingAcceptance",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "completeSampledExplanationSurvivesInvalidEditCancelAndReopen",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "everyReviewedNorthKoreanAustralianCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeFixtureRejectsCoordinatedAndUnrelatedSuppliedChanges",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "existingHeldValuesRemainExactWithoutNewWordingAcceptance",
+                "completeSampledExplanationSurvivesInvalidEditCancelAndReopen",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ]
+            },
+            "org.catrobat.paintroid.local.SampledMemoryModalityTest": {
+              "source_methods": [
+                "tibetanWholeSuccessorRejectsCoordinatedFixtureReplacement",
+                "compiledCompleteValuesReachTheSampledDialogAcrossEditCancelAndReopen",
+                "nativeMemoryKeepsItsOwnFloorWarningAndBlocksImpossibleResize"
+              ],
+              "original_compiled_test_names": [
+                "compiledCompleteValuesReachTheSampledDialogAcrossEditCancelAndReopen",
+                "tibetanWholeSuccessorRejectsCoordinatedFixtureReplacement",
+                "nativeMemoryKeepsItsOwnFloorWarningAndBlocksImpossibleResize"
+              ]
+            },
+            "org.catrobat.paintroid.local.SindhiNigerianPidginTokPisinPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.SomaliWolofHaitianCreolePriorityWordingTest": {
+              "source_methods": [
+                "canonicalFixtureRejectsCoordinatedTargetReplacement",
+                "everyReviewedSomaliWolofHaitianCreoleCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "absentHeldValuesUseDefaultEnglishRatherThanRegionalAmericanOverrides",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices",
+                "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel",
+                "keepEditingCancelsActualReplacementAndPreservesDirtyPixelsAndHistory",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts",
+                "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel",
+                "absentHeldValuesUseDefaultEnglishRatherThanRegionalAmericanOverrides",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "swapColourCommandExchangesExactlyForegroundAndBackgroundWithoutEditingPixels",
+                "canonicalFixtureRejectsCoordinatedTargetReplacement",
+                "everyReviewedSomaliWolofHaitianCreoleCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments",
+                "returnToDrawingRestoresThePreviousToolWithoutRedrawing",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "commitSelectionKeepsRealUndoRedoAndRestoresEveryPixel"
+              ]
+            },
+            "org.catrobat.paintroid.local.SoraniUyghurTatarPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.TaggedColourImportTest": {
+              "source_methods": [
+                "packedDibAndIcoRejectUnsupportedProfilesThroughSharedImportAndKeepSources",
+                "americanEnglishImportsUseTheAmericanResource",
+                "explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection",
+                "failedSelectionNeverOffersTaggedDibOrIcoToTheDocumentAndDeletesStagedFile",
+                "finiteGaGdCyAdditionsRejectSourceAttributesAndPredecessorCorruption",
+                "finiteKaHyAzAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteGalicianAdditionRejectsSourceAttributesMissingFieldsAndPredecessorCorruption",
+                "finiteBrAstOcAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteIaLaKuAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteMiSmRwAdditionsRejectSourceAttributesAndPredecessorCorruption",
+                "finiteKabMwwMaiAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteEuFyUzAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "canonicalFixtureRejectsCoordinatedTargetReplacement",
+                "finiteSoWoHtAdditionRejectsSourceAttributesHistoryAndTargetCorruption",
+                "finiteKkTgPsAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteCebNdsCsbAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteWaSeSaAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteSdPcmTpiAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteCkbUgTtAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteAryMnTokAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteBoDzValAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteHneYiHkAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback"
+              ],
+              "original_compiled_test_names": [
+                "finiteKabMwwMaiAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteCkbUgTtAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback",
+                "finiteSdPcmTpiAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteGalicianAdditionRejectsSourceAttributesMissingFieldsAndPredecessorCorruption",
+                "failedSelectionNeverOffersTaggedDibOrIcoToTheDocumentAndDeletesStagedFile",
+                "finiteMiSmRwAdditionsRejectSourceAttributesAndPredecessorCorruption",
+                "americanEnglishImportsUseTheAmericanResource",
+                "canonicalFixtureRejectsCoordinatedTargetReplacement",
+                "finiteEuFyUzAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "packedDibAndIcoRejectUnsupportedProfilesThroughSharedImportAndKeepSources",
+                "finiteKkTgPsAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteGaGdCyAdditionsRejectSourceAttributesAndPredecessorCorruption",
+                "finiteSoWoHtAdditionRejectsSourceAttributesHistoryAndTargetCorruption",
+                "finiteBoDzValAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteCebNdsCsbAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteWaSeSaAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "finiteAryMnTokAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteHneYiHkAdditionRejectsMissingHistorySourceAttributesAndDisplayCorruption",
+                "explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection",
+                "finiteKaHyAzAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteBrAstOcAdditionRejectsSourceAttributesAndPredecessorCorruption",
+                "finiteIaLaKuAdditionRejectsSourceAttributesAndPredecessorCorruption"
+              ]
+            },
+            "org.catrobat.paintroid.local.TibetanDzongkhaValencianPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            },
+            "org.catrobat.paintroid.local.WalloonNorthernSamiSanskritPriorityWordingTest": {
+              "source_methods": [
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany"
+              ],
+              "original_compiled_test_names": [
+                "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+                "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+                "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+                "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+                "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+                "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+                "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+                "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+                "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+                "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments"
+              ]
+            }
+          }
+        },
+        "lint_issues": 0,
+        "api35": {
+          "paintroid": 74,
+          "app": 49,
+          "app_inventory_recomputed_from_exact_source": true,
+          "paintroid_inventory_recomputed_from_exact_source": true,
+          "raw_instrumentation_reports_reparsed": [
+            {
+              "path": "Paintroid/androidTest-results/summary.json",
+              "tests": 74,
+              "log_sha256": "3fae3764b6e69b7cd76b55541b7d218a445d118edcedd3a583cbce14c24ade44"
+            },
+            {
+              "path": "app/accepted-credit-restart/seed/summary.json",
+              "tests": 1,
+              "log_sha256": "6dcd56df77935439ee7a2b74ab83e3a859d708d350d88077cecc23fcb5d63377"
+            },
+            {
+              "path": "app/accepted-credit-restart/verify/summary.json",
+              "tests": 1,
+              "log_sha256": "e2037cc9cf98c2acea2157ca909de87080dfcf1868dc6b8893ef5810a057a5c4"
+            },
+            {
+              "path": "app/androidTest-results/summary.json",
+              "tests": 19,
+              "log_sha256": "1559703d2e3619b312cb56215bf2a2bffd76839df90cc7920e396d5e7b554863"
+            },
+            {
+              "path": "app-dialog/androidTest-results/summary.json",
+              "tests": 14,
+              "log_sha256": "37d962d17c65c75c4d36f91270cb02b09838f125c1a9f4812f8d36714617f66f"
+            },
+            {
+              "path": "app-gallery-draft/androidTest-results/summary.json",
+              "tests": 3,
+              "log_sha256": "5fc9204656928438f7e0be669e843b93b72f4d21e94fc3c957ad09c515b2c49e"
+            },
+            {
+              "path": "app-position/ainu-manchu/androidTest-results/summary.json",
+              "tests": 3,
+              "log_sha256": "3cbd1b5674c87457b29ecbca57ef9bbe153b737a3a666557468a8cf150ec6d18"
+            },
+            {
+              "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
+              "tests": 4,
+              "log_sha256": "d137958631ba0e4ef4be8141551c380528d5088ee47bda43e2a4b1bd1f8c42d2"
+            },
+            {
+              "path": "app-vertical/english-manchu/androidTest-results/summary.json",
+              "tests": 2,
+              "log_sha256": "6a17e1e94011ea74a960cc64bb25343d66061d1bf1146d337ca8d8afb7ad82c0"
+            },
+            {
+              "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
+              "tests": 2,
+              "log_sha256": "38b65c6dae3e8703fc8ac7099f91a7541ee451fc8bd7ecac0a0e7fa32ad724cc"
+            }
+          ],
+          "original_core_position_recomposition_verified": true,
+          "complete_union_revalidated": true,
+          "missing": [],
+          "unexpected": [],
+          "suppressed": [],
+          "deferred": [],
+          "app_source_tests_sha256": "eb4eeece7a6a5ffa1c287d6e6f90a5afaf774777823c960e98abdc3dbc007411",
+          "paintroid_source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+        },
+        "resource_probes": {
+          "count": 13,
+          "original_log_hashes_match": true,
+          "all_expected_outcomes_match": true,
+          "intentional_rejection": "06-reserved-app-variant-rejected"
+        },
+        "apk_sha256": "83b3c192c87d6ab3bb537f7749dbe64fa5ffd8657436a609a756f13711b85939",
+        "app_test_apk_sha256": "1fcf0999ca44906bfe54be9f8f7c47c1368566d3dce27615c8e446a0f7ba11ae",
+        "source_archive_modes_verified": true,
+        "source_archive_additional_native_files": 6258,
+        "source_archive_additional_native_paths_sha256": "56fcd436c32164ba14eea4980f316456819c0053637a52b397794fdedcd4b45c",
+        "existing_checkout_all_blobs_modes_verified": 1555,
+        "limitations": [
+          "Hosted API35 evidence does not certify native linguistic fluency, TalkBack usability, all devices, or every locale layout.",
+          "Existing colour scope remains preview-rail reachability and Cancel only for API35 en-US/hu 2x 640x320 mdpi, with separate IME/Back/footer lifecycle; not universal 2x or simultaneous whole-dialog/IME fit.",
+          "Root retains merge lease. Release pause and other explicit project holds remain unchanged."
+        ],
+        "mandatory_exports": {
+          "dialog-evidence.json": {
+            "original_receipt_sha256": "05925c1892814a79a5364ca85730364cc67d5845321798a8866898982336388a",
+            "exact_recomputed_match": true
+          },
+          "vertical-locale-export.json": {
+            "original_receipt_sha256": "7ca03f06a786dcd8387a7e048ccad87d4d7a5c65bd5651193c5a2be28fd59082",
+            "exact_recomputed_match": true
+          },
+          "vertical-control-reachability.json": {
+            "original_receipt_sha256": "aa508e12b4e87a12b405620db399ccc8fa9dfad764b58895e300b71022d0573e",
+            "exact_recomputed_match": true
+          },
+          "vertical-locale-screenshots.json": {
+            "original_receipt_sha256": "444226b7705c19d915d9114c5bf41cbc32d4f9e3e4253d15cc240eb9ccdc61c7",
+            "exact_recomputed_match": true
+          }
+        },
+        "mandatory_export_counts": {
+          "dialogs": 14,
+          "vertical_files": 104,
+          "reachability_cases": 8,
+          "reachability_screenshots": 64,
+          "locale_screenshots": 32
+        },
+        "apk_signature": {
+          "exit": 0,
+          "debug_signature_valid": true,
+          "signer_certificate_sha256": "a2bec70a2fe28fa9bf3aed0fd887ff7837feaa23b41136734871b8ecbd63973e",
+          "upgrade_identity_not_claimed": true,
+          "log_sha256": "680ac528c7d54b6e88dce477465be2add209136f6318c280af2ca4016098a80e",
+          "checker_jar_sha256": "00ef9948f843fe395d2440ae3ef41405b8040a6d5d46493bd1902ac0ee6deae7"
+        },
+        "temporary_extraction": "/workspace/scratch/bbca2890f602/pr212-actual390d-recovery/hosted/verification-extraction-13j9y0_7",
+        "actual_parents": [
+          "60354b80d5978bcc9a8a21dd45058de948b418d3",
+          "4124342de1f0b8eb2453fa072b620852e67a3fed"
+        ],
+        "event": "push"
+      }
+    },
+    {
+      "path": "hosted/python-original-lifecycle-verification.json",
+      "sha256": "8e2ef7c5d730b781d4c28915f480dd63d2e55b7bfddc4b73909ff9f9b773966b",
+      "record": {
+        "status": "original-cleanup-and-nonoverlap-verified",
+        "archive_sha256": "929e6191530ef9e8d49985df2ccaacdacca93f5d6716f773e2cc719d2b169448",
+        "head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+        "lifecycle": {
+          "launch_id": "cd332f48257c4386875f6e8207bef1c6",
+          "reason": "completed",
+          "forced_kill": "false",
+          "owned_children_remaining": "0",
+          "cleanup_complete": "true",
+          "output_complete": "true"
+        },
+        "timing": {
+          "real_seconds": "673.804",
+          "user_seconds": "626.846",
+          "sys_seconds": "11.459",
+          "exit_status": "0"
+        },
+        "timestamps": {
+          "python.started-at": "2026-10-28 11:31:31+00:00",
+          "python.ended-at": "2026-10-28 11:42:45+00:00",
+          "jvm.started-at": "2026-10-28 11:42:45+00:00"
+        },
+        "member_sha256": {
+          "python.owner": "5e5ac2d4a3261d9e97938d28d26ea0b15bb0dc9fb28e342a35da08233bc6821b",
+          "python.lifecycle": "ce523ec2e3bdcffa83940327f8f3fc9ca5a87f31fee2aeb359f0a272bb547c13",
+          "python.time": "6f32a26065423a9a2ce401482c853fc2be4c3dbeb57d3added11e8ec90f8cbd7",
+          "python.started-at": "313280976ec8f8d4c80bd480e4478a24b9053d53e608ab6541657a6cf5c73006",
+          "python.ended-at": "cb218d2c4e7cfa342ecafb2d7cf6fa580375207e4f666175c231a9884da9817b",
+          "jvm.started-at": "cb218d2c4e7cfa342ecafb2d7cf6fa580375207e4f666175c231a9884da9817b"
+        },
+        "scope": "Cleanup and phase ordering only; Python suite/Actions success separately required."
+      }
+    },
+    {
+      "path": "hosted/independent-review/review.json",
+      "sha256": "af49be122fd947c949eeb595feb9e1551f69474029b29318bed9a33dfddbbb3a",
+      "record": {
+        "status": "accepted_finite_actual_push_verifier_rebind",
+        "head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+        "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+        "run_id": 40680438655,
+        "verifier_sha256": "473aae57d74def8decbdd8ecc4e4f7efa1b5e47cc9361492769ceefaa458c468",
+        "proof_sha256": "936b8b056e7cb6a022471bcc594b7803f1285b4f7683782ab3c3dbbe44bf4598",
+        "required_inventory_byte_values_equal_recovered_premerge": true,
+        "premerge_config_sha256": "54b8b0f2ac806cf2020a3dbb4828be0d0b2d0086e046366d38493d0c46817434",
+        "review": [
+          "Whole recovered accepted da4da82e verifier restored byte-exact by reversing only actual ordered-parent/head/event/run assertions and two result labels.",
+          "Fresh APK extraction, embedded-source check, original cryptographic signature execution, all seven-original/JVM/raw-device/export/probe/lifecycle predicates unchanged. No checkpoint substitution.",
+          "All1555 restored current source leaf bytes/modes and identity set independently checked against b085 manifest;24 required JVM classes and6job inventory exactly equal recovered premerge configuration.",
+          "Twelve mutations executed against exact changed assertion AST reject wrong/reversed/missing/extra parent, tree/truncation, head/commit, run/attempt/event and configured tested merge."
+        ],
+        "limits": [
+          "Verifier source/configuration gate only. Natural-push40680438655 still requires its own terminal jobs and all fresh original artifacts; old premerge passes not reused as actual-push evidence.",
+          "Saved actual commit/tree/run metadata inspected locally; no independent fresh network query in this gate.",
+          "No app source edits, full-suite rerun, publication retry, merge or release action."
+        ],
+        "timestamp_utc": "2026-10-28T11:39:12Z"
+      }
+    },
+    {
+      "path": "hosted/early-build-source-signature.json",
+      "sha256": "23ca5e1986d07b72b3a95cef8f7703c26570400ca91665695d4ba8aa65b60453",
+      "record": {
+        "status": "early-actual-build-source-signature-verified",
+        "head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+        "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+        "run_id": 40680438655,
+        "actual_parents": [
+          "60354b80d5978bcc9a8a21dd45058de948b418d3",
+          "4124342de1f0b8eb2453fa072b620852e67a3fed"
+        ],
+        "artifact": {
+          "id": 12812897769,
+          "name": "apk-and-source-390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+          "sha256": "7d88ff9d1e0da416550efae50ba432f920840c997bcc6062c6f6a7ecd70185c5",
+          "size_bytes": 149863206
+        },
+        "source_archive_sha256": "c4299d5bf798832ea0335051c93c231c730245a62c330559a948e4c6868bdbf6",
+        "apk_sha256": "83b3c192c87d6ab3bb537f7749dbe64fa5ffd8657436a609a756f13711b85939",
+        "source_leaves": 1552,
+        "metadata_omissions": [
+          ".gitignore",
+          ".idea/codeStyles/Project.xml",
+          "colorpicker/.gitignore"
+        ],
+        "mismatch": [],
+        "signature_certificate": "a2bec70a2fe28fa9bf3aed0fd887ff7837feaa23b41136734871b8ecbd63973e",
+        "signature_log_sha256": "680ac528c7d54b6e88dce477465be2add209136f6318c280af2ca4016098a80e",
+        "scope": "Actual current original source and cryptographic signature only; remaining CI/device/JVM/export gates pending."
+      }
+    },
+    {
+      "path": "evidence/source-restoration-verification.json",
+      "sha256": "7366ee2e1090d97283134e61db8ca1c408dde27caedf9851824060237bfef9c0",
+      "record": {
+        "status": "all1555-exact-source-leaves-and-modes-restored",
+        "tree": "b08560dd3bbe5b18a597084862d001293d6e1be3",
+        "source": "Recovered premerge hosted source archive plus3native repository metadata files; actual merge same immutable tree",
+        "old_local_archives_survived": false
+      }
+    }
+  ],
+  "signature": "Fresh actual-run original APK cryptographic signature and embedded corresponding source independently executed; no old checkpoint reuse",
+  "premerge_acceptance": "Durable independent/full/CI acceptance remains separately preserved; old local archives did not survive environment replacement; recovered source exact to immutable tree",
+  "scope": "Actual merged five-target catalogue union:66 edits,1672 retained,63 holds; not five new languages. Source/JVM/raw/device/export checks do not imply native linguistic certification. Release remains paused."
+}
