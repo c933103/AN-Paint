@@ -1,0 +1,164 @@
+{
+  "record": "One productive active QUY Clear all P0 author candidate, pending independent review",
+  "time_utc": "2026-10-28T17:59:39Z",
+  "repository": "c933103/AN-Paint",
+  "source_head": "390d5e23a7b59dd5469a4cb6a3f3cff005318f05",
+  "prior_bounded_checkpoint_commit": "1bdef0a7ab50a087e5f6567de0208e64f69b2b57",
+  "accepted_bounded_count_unchanged": 121,
+  "new_pending_count": 1,
+  "rows": [
+    {
+      "locale": "quy",
+      "identity": "string/ui_clear_all",
+      "tier": "P0",
+      "source": {
+        "value": "Clear all",
+        "attributes": {
+          "name": "ui_clear_all"
+        },
+        "value_json_sha256": "085d94913987744ca2925c59c230bb2d8c890f791030882aa60c4ac4c59f7989"
+      },
+      "source_file": "Paintroid/src/main/res/values/strings.xml",
+      "current": null,
+      "proposed_value": "Llapan wischuy",
+      "proposed_attributes": {
+        "name": "ui_clear_all"
+      },
+      "target_utf8_sha256": "1561762181a074569bed68a5c425e29619fa19facc2f6f51a63584e30130ae21",
+      "direct_consumers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 101,
+          "start_line": 97,
+          "end_line": 105,
+          "context": "            button(ui(R.string.ui_same_width),\"assembly_same_width\") { normalize(NormalizeAxis.WIDTH) },\n            button(ui(R.string.ui_same_height),\"assembly_same_height\") { normalize(NormalizeAxis.HEIGHT) },\n            button(ui(R.string.ui_unplace),\"assembly_unplace\") { selected?.let { assembly.unplace(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },\n            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },\n            button(ui(R.string.ui_show_all),\"assembly_fit\") { board.fit(); info.text=ui(R.string.ui_shows_the_whole_assembly_image_and_output_sizes) },button(ui(R.string.ui_clear_all),\"assembly_clear\") { assembly.clear() })\n        val sortRow = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(8),0,dp(8),0) }\n        sortRow.addView(text(ui(R.string.ui_sort_tray)))\n        sortRow.addView(Spinner(this).apply {\n            tag = \"assembly_sort\"; contentDescription = ui(R.string.ui_sort_images_by_filename_or_modification_time)",
+          "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L97-L105"
+        }
+      ],
+      "complete_value_rationale": "Productive complete command: all-object command construction and software Delete from the same Ayacucho-Chanka guide. Wischuy is discard/remove here, not accidental loss or vomiting. Clear all in this caller removes all assembly entries; it is not a request to wipe image pixels or deselect checkboxes. Not an exact upstream string.",
+      "status": "pending_independent_whole_value_and_caller_review"
+    }
+  ],
+  "primary_sources": [
+    {
+      "locale": "quy",
+      "title": "Microsoft Quechua Style Guide, February2011",
+      "mirror_url": "https://manuals.plus/m/11177cc64c717458906fd98b18467750c1008fe87f4eb1a7a2028ed69dd64c47",
+      "access": "Fresh search-indexed original document extraction, not tertiary summary; official-host and mirror-byte identity remain unverified. URL hash is not byte proof.",
+      "printed_page": 38,
+      "bounded_pairs": [
+        {
+          "english": "Edit Select All",
+          "target": "Allichay llapan akllay"
+        },
+        {
+          "english": "Edit Delete",
+          "target": "Allichay wischuy"
+        }
+      ],
+      "interpretation": "Leading Allichay identifies Edit menu; command bodies are llapan akllay and wischuy. Productive substitution preserves all-object imperative order.",
+      "variety": "Original p7 normative reference names Ayacucho Chanka, Guardia Dictionary; no Cusco/quz TBX transfer."
+    },
+    {
+      "locale": "quy",
+      "author": "Clodoaldo Soto Ruiz",
+      "title": "Ayacucho-Chanka functional dictionary",
+      "url": "https://indigenasdelperu.wordpress.com/wp-content/uploads/2015/09/diccionario-quechua-inglc3a9s-castellano-chanka-clodoaldo-soto.pdf",
+      "printed_page": 209,
+      "pdf_zero_index": 208,
+      "entry": "Wischuy120",
+      "sense": "Discard/throw out; accidentally lose and vomit are excluded.",
+      "access": "Fresh public primary-text extraction; no new visual certification."
+    }
+  ],
+  "caller_binding": {
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt": {
+      "git_blob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+      "sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+    },
+    "Paintroid/src/main/res/values/strings.xml": {
+      "git_blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612",
+      "sha256": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261"
+    },
+    "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt": {
+      "git_blob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+      "sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+    }
+  },
+  "additional_callers": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "start_line": 53,
+      "end_line": 56,
+      "context": "    private fun button(value: String, name: String, action: () -> Unit) = Button(this).apply {\n        text = value; tag = name; isAllCaps = false; textSize = 12f; minWidth = 0; minimumWidth = 0; setPadding(dp(10),0,dp(10),0)\n        setOnClickListener { if (!busy) perform(action) }\n    }",
+      "purpose": "Buttons only execute when not busy, through perform; no completed-clear status claim.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L53-L56"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "start_line": 75,
+      "end_line": 78,
+      "context": "        LocaleTypography.install(root)\n        val header = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(10),0,dp(6),0); setBackgroundColor(EditorColours.primaryContainer) }\n        count = text(ui(R.string.ui_an_paint_image_assembly),15f).apply { setTextColor(EditorColours.onPrimaryContainer); maxLines = 2 }\n        header.addView(count,LinearLayout.LayoutParams(0,dp(if (compact()) 44 else 54),1f))",
+      "purpose": "Undo and redo buttons operate on assembly history.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L75-L78"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+      "start_line": 53,
+      "end_line": 66,
+      "context": "\n/** Original files stay on disk. Crops and attachments are reversible metadata edits. */\nclass ImageAssembly(val directory: File) {\n    companion object { const val MAX_IMAGES = 20 }\n    private val saved = AtomicFile(File(directory,\"project.json\"))\n    private var state = emptyList<AssemblyImage>()\n    private val undo = java.util.ArrayDeque<List<AssemblyImage>>()\n    private val redo = java.util.ArrayDeque<List<AssemblyImage>>()\n    val images: List<AssemblyImage> get() = state\n    val canUndo get() = undo.isNotEmpty()\n    val canRedo get() = redo.isNotEmpty()\n    var changed: () -> Unit = {}\n    init { directory.mkdirs(); if (saved.baseFile.exists()) state = read(); validate(state); prune() }\n    fun image(id: String) = state.first { it.id == id }",
+      "purpose": "Current state is a list of assembly image entries, separate from original external image pixels.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L53-L66"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+      "start_line": 153,
+      "end_line": 153,
+      "context": "    fun clear() = change(emptyList())",
+      "purpose": "Clear changes the complete assembly state to an empty list, not just placement or selection.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L153-L153"
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+      "start_line": 233,
+      "end_line": 255,
+      "context": "    private fun change(next: List<AssemblyImage>) {\n        validate(next); if (next == state) return\n        write(next); undo.addLast(state); if (undo.size > 50) undo.removeFirst(); redo.clear(); state = next; prune(); changed()\n    }\n    fun undo() { if (undo.isNotEmpty()) { val next = undo.last; write(next); undo.removeLast(); redo.addLast(state); state = next; prune(); changed() } }\n    fun redo() { if (redo.isNotEmpty()) { val next = redo.last; write(next); redo.removeLast(); undo.addLast(state); state = next; prune(); changed() } }\n    private fun prune() {\n        val retained = (state + undo.flatMap { it } + redo.flatMap { it }).map { it.file.name }.toSet()\n        directory.listFiles()?.filter { it.isFile && it.name.endsWith(\".image\") && it.name !in retained }?.forEach { it.delete() }\n    }\n    private fun write(items: List<AssemblyImage>) {\n        val list = JSONArray()\n        items.forEach { item -> list.put(JSONObject().apply {\n            put(\"id\",item.id); put(\"file\",item.file.name); put(\"name\",item.name); put(\"time\",item.timestamp ?: JSONObject.NULL)\n            put(\"width\",item.dimensions.width); put(\"height\",item.dimensions.height);put(\"page\",item.pageIndex)\n            put(\"crop\",JSONArray(listOf(item.crop.left,item.crop.top,item.crop.right,item.crop.bottom)))\n            item.normalization?.let { put(\"normalize_axis\",it.axis.name); put(\"normalize_pixels\",it.pixels) }\n            item.attachment?.let { put(\"placed\",true); put(\"anchor\",it.anchor ?: JSONObject.NULL); put(\"edge\",it.edge?.name ?: JSONObject.NULL) }\n            item.position?.let { put(\"position\",JSONArray(listOf(it.x,it.y))) }\n        }) }\n        val stream = saved.startWrite()\n        try { stream.write(JSONObject().put(\"version\",4).put(\"images\",list).toString().toByteArray(Charsets.UTF_8)); saved.finishWrite(stream) }\n        catch (error: Throwable) { saved.failWrite(stream); throw error }",
+      "purpose": "Validate/write before state change; retain prior state in undo, clear redo, prune unreachable owned cache files; current prior entries remain reachable by Undo. No indefinite/permanent source-file-retention claim.",
+      "url": "https://github.com/c933103/AN-Paint/blob/390d5e23a7b59dd5469a4cb6a3f3cff005318f05/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L233-L255"
+    }
+  ],
+  "semantic_scope": [
+    "All assembly entries are removed from the active list, including placed and unplaced items. Not bitmap erasure, unplace-only, selection clearing, deleting all external files, or a statement that an operation has completed.",
+    "change validates and persists next state first. Exceptions surface through perform; no success guarantee is translated. Previous active state enters bounded in-memory Undo history, but the label does not add permanence or retention promises.",
+    "No transfer to ui_clear_image: list-removal evidence still does not establish pixel clearing. No transfer to ui_discard, which has no current direct caller."
+  ],
+  "checks": {
+    "production_and_resource_files_git_blob_verified": 116,
+    "complete_source_value_hash_attributes_match": true,
+    "all_direct_occurrences_reconciled": true,
+    "direct_occurrences_per_locale": 1,
+    "target_absent_from_current_catalogues": true,
+    "not_in_prior121": true,
+    "placeholder_count": 0,
+    "xml_round_trip": true,
+    "production_or_catalogue_edits": false
+  },
+  "separate_research_lead": {
+    "target": "quy/string/ui_keep_editing23",
+    "new_primary": "https://textos.pucp.edu.pe/pdf/1707.pdf",
+    "title": "Qayna, kunan, paqarin, Zariquiey and Cordova, PUCP2008",
+    "variety": "Ayacucho-Chanka explicit p14; official publisher-hosted text readable",
+    "read_sections": {
+      "168": "Imperative -y",
+      "184": "-lla restrictive/no mas, not automatically continuation",
+      "185": "-raq continuative still/yet"
+    },
+    "outcome": "No target authored. These suffix facts alone do not establish a natural full Keep editing control; existing physical-route/same-state evidence remains insufficient."
+  },
+  "review_lane_status": "Resuming designated independent reviewer via collaboration.followup_task returned agent thread limit reached at17:57. This is capacity, not source-access rejection or user refusal. Formal target acceptance waits for available authorized native lane.",
+  "limits": [
+    "121 accepted/provisional historical bounded drafts unchanged until independent review; 18 original whole-warning gaps unchanged.",
+    "No full-language, native, runtime, accessibility-rendering, integration or release credit.",
+    "Only project evidence records; no source/catalogue changes, full copyrighted primary documents, credentials, private corpora or unrelated private data."
+  ]
+}
