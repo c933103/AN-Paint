@@ -166,7 +166,7 @@ class PythonProcessGroupTests(unittest.TestCase):
                     'Path("ready").write_text("yes");time.sleep(30)'
                 proc=self.launch(root,script);self.ready(Path(root)/'ready',proc);proc.send_signal(sig)
                 out,err=self.finish(proc);self.assertEqual(128+sig,proc.returncode,err)
-                self.assertEqual(str(sig),(Path(root)/'signal').read_text());self.reports(root,128+sig,'signal')
+                self.assertEqual(str(int(sig)),(Path(root)/'signal').read_text());self.reports(root,128+sig,'signal')
 
     def test_workflow_and_shell_use_exact_owned_deadline_and_unchanged_command(self):
         shell=(ROOT/'tools/ci_run_timed.sh').read_text();workflow=(ROOT/'.github/workflows/android.yml').read_text()
