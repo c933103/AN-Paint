@@ -1249,6 +1249,74 @@ class TaggedColourImportTest {
         }
     }
 
+    private fun exactScriptBoundFixture(tag: String): JSONObject {
+        require(tag in listOf("tt-Latn","ain-Latn","mn-Mong"))
+        val data=JSONObject(File("../tools/fixtures/exact_script_priority_wording/$tag.json").readText(Charsets.UTF_8))
+        assertEquals(1,data.getInt("schema_version"))
+        assertEquals(tag,data.getString("locale"))
+        assertEquals("Paintroid/src/main/res/values-b+${tag.replace('-', '+')}/strings.xml",data.getString("catalogue_path"))
+        return data
+    }
+
+    private fun exactScriptSameJson(expected: Any?, actual: Any?) {
+        when(expected) {
+            is JSONObject -> {
+                assertTrue(actual is JSONObject);val other=actual as JSONObject
+                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
+                for(key in expected.keys()) exactScriptSameJson(expected.get(key),other.get(key))
+            }
+            is org.json.JSONArray -> {
+                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
+                assertEquals(expected.length(),other.length())
+                for(i in 0 until expected.length()) exactScriptSameJson(expected.get(i),other.get(i))
+            }
+            else -> assertEquals(expected,actual)
+        }
+    }
+
+    private fun addExactScript(expected: JSONObject, supplied: JSONObject) {
+        val key="save20_unsupported_image_colour"
+        assertEquals(setOf("tt-Latn"),supplied.keys().asSequence().toSet())
+        for(tag in listOf("tt-Latn")) {
+            val current=exactScriptBoundFixture(tag).getJSONObject("rows").getJSONObject(key)
+            val row=supplied.getJSONObject(tag).getJSONObject("rows").getJSONObject(key)
+            exactScriptSameJson(current,row)
+            assertEquals("string",row.getString("type"))
+            assertEquals("edited",row.getString("decision"))
+            assertEquals("This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",row.getJSONObject("source").getString("value"))
+            assertFalse(expected.has(tag));assertTrue(row.isNull("previous_target"))
+            expected.put(tag,row.getString("compiled_display"))
+        }
+    }
+    private fun exactScriptExpectations()=JSONObject().apply {
+        for(tag in listOf("tt-Latn")) put(tag,exactScriptBoundFixture(tag))
+    }
+    @Test fun exactScriptTaggedRejectsCoordinatedFixtureAndPredecessorMutations() {
+        val key="save20_unsupported_image_colour"
+        for(tag in listOf("tt-Latn")) for(mutation in listOf("coordinated","source","previous","attributes","presence")) {
+            val data=exactScriptExpectations()
+            val expected=JSONObject()
+            val row=data.getJSONObject(tag).getJSONObject("rows").getJSONObject(key)
+            when(mutation) {
+                "coordinated" -> {row.put("reviewed_value","forged");row.put("reviewed_display","forged");row.put("compiled_display","forged")}
+                "source" -> row.getJSONObject("source").put("value","forged")
+                "previous" -> row.put("previous_target","forged")
+                "attributes" -> row.getJSONObject("attributes").put("formatted","false")
+                "presence" -> expected.put(tag,"forged")
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) { addExactScript(expected,data) }
+        }
+    }
+
+    @Test fun exactScriptTaggedIgnoresUnrelatedFixtureMetadata() {
+        val data=exactScriptExpectations()
+        data.getJSONObject("tt-Latn").put("limits","Caller note does not redefine the tagged message")
+        val expected=JSONObject()
+        addExactScript(expected,data)
+        assertEquals(exactScriptBoundFixture("tt-Latn").getJSONObject("rows")
+            .getJSONObject("save20_unsupported_image_colour").getString("compiled_display"),expected.getString("tt-Latn"))
+    }
+
     private fun hneYiHkBoundFixture(tag: String): JSONObject {
         val expected=mapOf("hne" to "f8b8c8231e57836acffd62019573ce74d966c7c89e878484704f5e07b5c19640", "yi" to "15ff376fa0f3893632e40fce7da4d96d886fb53f42e34e89ec080d04429445ff")
         val bytes=File("../tools/fixtures/current_localization/chhattisgarhi_yiddish_hong_kong_priority_wording/$tag.json").readBytes()
@@ -1410,6 +1478,8 @@ class TaggedColourImportTest {
         assertEquals(138, expected.length())
         addHneYiHk(expected,hneYiHkExpectations())
         assertEquals(140, expected.length())
+        addExactScript(expected,exactScriptExpectations())
+        assertEquals(141, expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -1444,6 +1514,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(0, inherited)
-        assertEquals(31, fallbacks) // 171 offered - 140 direct, including direct Valencian; no remaining inherited catalogue.
+        assertEquals(30, fallbacks) // 171 offered - 141 direct, including direct Valencian and Tatar Latin; no remaining inherited catalogue.
     }
 }

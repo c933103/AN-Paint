@@ -401,6 +401,10 @@ class AppLanguageTest {
                     assertEquals("ساقلاش",wrapped.getString(R.string.ui_save))
                     assertEquals("ساقلاش…",wrapped.getString(R.string.ui_save_a5d0d9))
                 }
+                "tt-Latn" -> {
+                    assertEquals("Saqlaw",wrapped.getString(R.string.ui_save))
+                    assertEquals("Saqlaw…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
                 "yue-Latn" -> {
                     assertEquals("Cyu5 cyun4",wrapped.getString(R.string.ui_save))
                     assertEquals("Cyu5 cyun4…",wrapped.getString(R.string.ui_save_a5d0d9))
