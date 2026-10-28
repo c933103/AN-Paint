@@ -1,0 +1,151 @@
+{
+  "record": "Bounded QUY three-resource review successor; no full-language completion",
+  "time_utc": "2026-10-28T07:07:48.423607+00:00",
+  "prior_public_record": {
+    "commit": "6c91391e2096603bea09af97c491938a7fc5165a",
+    "path": "records/localization-review/2026-10-28/zgh-chr-quy/bounded-research-0648.json",
+    "status_then": "three latest QUY drafts pending; historical snapshot unchanged"
+  },
+  "review_sha256": "76b3921efd72185287888b5489f98fc6c6bcf023557d36e4635ba75043367cd4",
+  "review": {
+    "status": "bounded_three_complete_resource_review_closed",
+    "locale": "quy",
+    "actual_source_head": "60354b80d5978bcc9a8a21dd45058de948b418d3",
+    "actual_source_tree": "a2dc18974d9d90d9000b689657c9ce300b45e179",
+    "original_3bc5_callers_still_exact": true,
+    "packet_sha256": "741d0f2c24ea8877aaac4737f1fe414b43d290e64722818a386a7e57cdc12687",
+    "primary_pdf_sha256": "10d6b913d3be4e77cb0e0d9c1eb848efd38147c462d562052806bb1d98d183c6",
+    "primary_url": "https://indigenasdelperu.wordpress.com/wp-content/uploads/2015/09/diccionario-quechua-inglc3a9s-castellano-chanka-clodoaldo-soto.pdf",
+    "printed_pages_visually_read": [
+      83,
+      140
+    ],
+    "supplemental_primary": "Microsoft Ayacucho-Chanka style guide p37 graphic capture image/object construction, locally inspected; no quz transfer",
+    "rows": [
+      {
+        "identity": "string/ui_pencil",
+        "tier": "P1",
+        "source": {
+          "value": "Pencil",
+          "attributes": {
+            "name": "ui_pencil"
+          },
+          "value_json_sha256": "72596007e3ddad444221633fc22e19d4a74600c53e2370de344edfa9e6183f25"
+        },
+        "previous_target": null,
+        "reviewed_value": "Lapis",
+        "reviewed_attributes": {
+          "name": "ui_pencil"
+        },
+        "decision": "bounded_complete_resource_supported",
+        "independent_rationale": "The dictionary explicitly gives Lapis as the pencil noun. Ordinary software-tool metaphor fits the raster Pencil tool, without material/graphite claim.",
+        "direct_consumers": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+            "line": 21,
+            "start_line": 17,
+            "end_line": 25,
+            "context": "    ERASER(R.string.ui_eraser, R.string.ui_drag_to_erase_with_the_background_colour),\n    FILL(R.string.ui_bucket_fill, R.string.ui_tap_an_enclosed_area_adjust_tolerance_for_similar),\n    PICKER(R.string.ui_eyedropper, R.string.ui_tap_the_image_to_sample_the_foreground_colour),\n    ZOOM(R.string.ui_navigate, R.string.ui_drag_to_pan_without_drawing_pinch_with_two),\n    PENCIL(R.string.ui_pencil, R.string.ui_draw_a_crisp_one_pixel_line),\n    BRUSH(R.string.ui_brush, R.string.ui_draw_with_the_selected_brush_tip_and_size),\n    WATERCOLOR(R.string.ui_watercolor, R.string.ui_draw_soft_watercolor_strokes_strength_controls_how_strongly),\n    SPRAY(R.string.ui_airbrush, R.string.ui_hold_or_drag_to_spray_colour),\n    TEXT(R.string.ui_text, R.string.ui_tap_the_canvas_to_place_text_and_choose),",
+            "url": "https://github.com/c933103/AN-Paint/blob/3bc5d931d0e86b83cbf869df6767d596ab238805/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L17-L25"
+          }
+        ],
+        "source_file_sha256": {
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5"
+        }
+      },
+      {
+        "identity": "string/ui_draw26",
+        "tier": "P1",
+        "source": {
+          "value": "Draw",
+          "attributes": {
+            "name": "ui_draw26"
+          },
+          "value_json_sha256": "b5c56dd8c68de3090d1d3432bea840076f76064a5d2ef6e81515c6f757139315"
+        },
+        "previous_target": null,
+        "reviewed_value": "Qillqay",
+        "reviewed_attributes": {
+          "name": "ui_draw26"
+        },
+        "decision": "bounded_complete_resource_supported",
+        "independent_rationale": "Qillqay explicitly includes drawing shapes and a tree/flower example, not merely writing text. Suitable verbal Draw menu caption; not automatic acceptance for Drawing noun or Resume drawing.",
+        "direct_consumers": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "line": 830,
+            "start_line": 826,
+            "end_line": 834,
+            "context": "        options.addView(choice, LinearLayout.LayoutParams(-1, dp(48)))\n    }\n\n    private fun menuTitle(name: String): String=ui(when(name) {\n        \"Draw\"->R.string.ui_draw26;\"File\"->R.string.ui_menu_file;\"Edit\"->R.string.ui_menu_edit\n        \"View\"->R.string.ui_menu_view;\"Color\"->R.string.ui_colour_tab23;else->R.string.ui_menu_help\n    })\n    private data class PanelCommand(val first: String,val second: () -> Unit,val icon: Int?=null)\n    private fun command(title: String,icon: Int,action: () -> Unit)=PanelCommand(title,action,icon)",
+            "url": "https://github.com/c933103/AN-Paint/blob/3bc5d931d0e86b83cbf869df6767d596ab238805/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L826-L834"
+          }
+        ],
+        "source_file_sha256": {
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      },
+      {
+        "identity": "string/ui_clear_image",
+        "tier": "P0",
+        "source": {
+          "value": "Clear image",
+          "attributes": {
+            "name": "ui_clear_image"
+          },
+          "value_json_sha256": "62102ada7d611b10a5f063988f3bd7986f76bcc47d0f4c2ac63cfb5c5be2c6f3"
+        },
+        "previous_target": null,
+        "reviewed_value": "Siqita pichay",
+        "reviewed_attributes": {
+          "name": "ui_clear_image"
+        },
+        "decision": "bounded_complete_resource_supported",
+        "independent_rationale": "Siqita pichay combines the guide-supported graphic-image sense and object suffix with explicit erase sense under Qillqay. The actual clear action erases bitmap to background with checkpoint and credit clearing; it is not deleting an original file. Productive whole command assessed at moderate confidence.",
+        "direct_consumers": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "line": 859,
+            "start_line": 855,
+            "end_line": 863,
+            "context": "            command(ui(R.string.ui_flip_vertical),R.drawable.classic_flip_v) {paintCanvas.applyPending();document.transform(Matrix().apply {setScale(1f,-1f)})},\n            command(ui(R.string.ui_rotate_90_clockwise),R.drawable.classic_rotate90) {paintCanvas.applyPending();document.transform(Matrix().apply {setRotate(90f)});paintCanvas.fit()},\n            command(ui(R.string.ui_rotate_180),R.drawable.classic_rotate180) {paintCanvas.applyPending();document.transform(Matrix().apply {setRotate(180f)})},\n            command(ui(R.string.ui_invert_colours),R.drawable.classic_invert) {paintCanvas.applyPending();document.invert()},\n            command(ui(R.string.ui_clear_image),R.drawable.breeze_eraser) {paintCanvas.applyPending();document.clear()}\n        )\n        \"View\"->listOf(\n            command(PaintTool.ZOOM.label,R.drawable.breeze_zoom_in) {chooseTool(PaintTool.ZOOM)},\n            command(ui(R.string.ui_pixel_grid33),R.drawable.classic_grid) {paintCanvas.grid=!paintCanvas.grid;paintCanvas.invalidate()},",
+            "url": "https://github.com/c933103/AN-Paint/blob/3bc5d931d0e86b83cbf869df6767d596ab238805/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L855-L863"
+          }
+        ],
+        "source_file_sha256": {
+          "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      }
+    ],
+    "additional_clear_caller": {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+      "sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+      "start_line": 478,
+      "end_line": 478,
+      "context": "    fun clear() { finishSelection(); checkpoint(); bitmap.eraseColor(background); committedCredits.clear(); edited() }",
+      "purpose": "Actual clear operation distinct from deleting original source file."
+    },
+    "limits": [
+      "Only these three complete short resources, not full341 or complex-warning acceptance.",
+      "Moderate model lexical/contextual assessment; productive Clear image is not claimed as a quoted native-preferred UI sentence.",
+      "Software metaphors and exact caller semantics reviewed; no native, usability, compiled or installed certification.",
+      "No catalogue/source edits and no private PDF/images or full-corpus publication.",
+      "Existing complex-warning evidence gaps and all unrelated holds preserved."
+    ]
+  },
+  "metadata_only_predecessor_sha256": "1b588a7729e90b18ba40e931c890b135ee6403062a6a1819d15373bf373cf222",
+  "metadata_correction": "Pencil rationale changed from one-pixel tool to raster tool after actual1..100px size control checked. Exact source/targets/callers and bounded decisions unchanged.",
+  "research_current": {
+    "resource_drafts": 108,
+    "locale_counts": {
+      "zgh": 27,
+      "chr": 40,
+      "quy": 41
+    },
+    "limits": "Bounded per-resource preflights only; ZGH None remains qualified action-sense gap. No full341/native/installed acceptance;18 original complete-warning gaps unchanged.",
+    "pending_source_only_passes": [
+      "p0-final-route-source-pass.json",
+      "p1-interaction-source-pass.json"
+    ]
+  },
+  "excluded": "Full copyrighted primary PDFs/images/TBX/corpora and original held fixtures, secrets or unrelated private data."
+}
