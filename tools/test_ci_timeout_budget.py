@@ -220,24 +220,24 @@ class TimeoutBudgetTest(unittest.TestCase):
         checks = job(WORKFLOW, 'checks')
         phases, outer = regression_budget(WORKFLOW)
         self.assertEqual(phases, {'Install pinned compiler cache': 2,
-            'Prepare build tools and notices': 8, 'Run Python contracts': 8,
+            'Prepare build tools and notices': 8, 'Run Python contracts': 12,
             'Run JVM regression tests': 20, 'Prepare lint native dependencies': 6,
             'Run Android lint': 6})
-        self.assertEqual((sum(phases.values()), outer), (50, 55))
+        self.assertEqual((sum(phases.values()), outer), (54, 60))
         self.assertNotIn('continue-on-error', checks)
         for command in ('python python3 -m unittest discover', 'jvm ./gradlew',
                         'native ./gradlew', 'lint ./gradlew'):
             self.assertIn('bash tools/ci_run_timed.sh ' + command, checks)
         docs = (ROOT / 'CI.md').read_text()
-        for text in ('Regression job: 55 minutes', 'Python contracts: 8 minutes',
+        for text in ('Regression job: 60 minutes', 'Python contracts: 12 minutes',
                      'JVM regression: 20 minutes', '773.047 seconds',
-                     '50 minutes total', 'All tests, assertions, failure propagation'):
+                     '54 minutes total', '493.350 seconds', 'All tests, assertions, failure propagation'):
             self.assertIn(text, docs)
 
     def test_regression_budget_rejects_old_tight_unbounded_and_missing_caps(self):
-        for outer in (0, 22, 38, 50, 54, 61):
+        for outer in (0, 22, 38, 50, 54, 55, 58, 61):
             with self.subTest(outer=outer), self.assertRaises(ValueError):
-                regression_budget(WORKFLOW.replace('timeout-minutes: 55', f'timeout-minutes: {outer}'))
+                regression_budget(WORKFLOW.replace('timeout-minutes: 60', f'timeout-minutes: {outer}'))
         checks = job(WORKFLOW, 'checks')
         for changed in (checks.replace('timeout-minutes: 20', 'timeout-minutes: 0'),
                         checks.replace('timeout-minutes: 20', 'timeout-minutes: 31'),
