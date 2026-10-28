@@ -213,15 +213,54 @@ class ExactScriptPriorityWordingTest {
         } finally { shown.dismiss() }
     }
 
+    private fun requireCategoryCaptionAndTooltip(tag: String,button: ToolCategoryButton,caption: String,description: String) {
+        val vertical=tag=="mn-Mong"
+        assertEquals("Expected tooltip ownership $tag",vertical,VerticalText.uiVertical(button.context))
+        assertEquals(caption,button.text.toString())
+        assertEquals(description,button.contentDescription.toString())
+        assertEquals(description,LocaleTooltip.logicalText(button).toString())
+        if(vertical) assertNull("No duplicate native tooltip $tag",button.tooltipText)
+        else assertEquals(description,button.tooltipText.toString())
+        val node=button.createAccessibilityNodeInfo()
+        assertEquals(description,node.contentDescription.toString())
+        assertEquals(description,node.tooltipText.toString())
+    }
+
     @Test fun categoryAccessibilityTracksEveryActualToolAndExpansionState() = forEachLocale { tag,activity ->
         for(down in listOf(false,true)) for(category in ToolCategory.values()) {
             val button=ToolCategoryButton(activity,category,category.tools.first(),down)
             for(tool in category.tools) for(expanded in listOf(false,true)) {
                 button.selectedTool=tool;button.expanded=expanded;button.refresh()
                 val description=formatted(tag,if(expanded) "ui_collapse_tool_category" else "ui_expand_tool_category",ui(category.labelId),tool.label)
-                assertEquals(ui(category.labelId),button.text.toString())
-                assertEquals(description,button.contentDescription.toString())
-                assertEquals(description,button.tooltipText.toString())
+                requireCategoryCaptionAndTooltip(tag,button,ui(category.labelId),description)
+            }
+        }
+    }
+
+    @Test fun categoryTooltipChecksRejectCaptionLogicalNativeAndAccessibilityCorruption() = forEachLocale { tag,activity ->
+        val category=ToolCategory.BRUSH
+        val caption=ui(category.labelId)
+        val description=formatted(tag,"ui_expand_tool_category",caption,PaintTool.PENCIL.label)
+        for(mutation in listOf("caption","description","logical","native","accessibility")) {
+            val button=ToolCategoryButton(activity,category,PaintTool.PENCIL,false)
+            requireCategoryCaptionAndTooltip(tag,button,caption,description)
+            when(mutation) {
+                "caption" -> button.text="forged"
+                "description" -> button.contentDescription="forged"
+                "logical" -> {
+                    LocaleTooltip.set(button,"forged")
+                    if(tag!="mn-Mong") button.tooltipText=description
+                }
+                "native" -> button.tooltipText="forged"
+                "accessibility" -> button.accessibilityDelegate=object: View.AccessibilityDelegate() {
+                    override fun onInitializeAccessibilityNodeInfo(host: View,info: android.view.accessibility.AccessibilityNodeInfo) {
+                        super.onInitializeAccessibilityNodeInfo(host,info)
+                        info.tooltipText="forged"
+                    }
+                }
+            }
+            assertThrows("$tag/$mutation",AssertionError::class.java) {
+                requireCategoryCaptionAndTooltip(tag,button,caption,description)
             }
         }
     }
