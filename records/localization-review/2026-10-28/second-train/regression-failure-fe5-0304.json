@@ -1,0 +1,107 @@
+{
+  "head": "fe5ba3a3bbfa40fda567745a04217df00441d4c8",
+  "tree": "032d39b5cce30adc143e72cab0884547f83d31ef",
+  "run_id": 40620575872,
+  "regression_artifact": 12788970886,
+  "original_zip_sha256": "cac4c9b256b6a6605be9cce078e7a9dbde3b32b76bd1bc52e00c958aa40cecea",
+  "python": {
+    "raw_result": "1877 tests completed OK, skipped2",
+    "raw_log_sha256": "ac96c684e8a8be848c13dafc7b4ce80f7795801299f06f3b904af38c703dfac8",
+    "phase_time": "real_seconds=1252.829\nuser_seconds=1175.987\nsys_seconds=34.288\nexit_status=0\n",
+    "started_at": "2026-10-28T02:24:40Z",
+    "ended_at": "2026-10-28T02:45:33Z",
+    "actions_error": [
+      "2026-10-28T02:36:52.9959612Z ##[error]The action 'Run Python contracts' has timed out after 12 minutes."
+    ],
+    "status": "Actions gate failed despite eventual subprocess exit0; not relabelled as CI pass"
+  },
+  "jvm": {
+    "suites": 182,
+    "totals": {
+      "tests": 1783,
+      "failures": 15,
+      "errors": 0,
+      "skipped": 0
+    },
+    "failures": [
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection",
+        "message": "org.junit.ComparisonFailure: expected:<[אָפּשנײַדן לינקס אין פּיקסלען]> but was:<[Left trim in pixels]>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting",
+        "message": "org.junit.ComparisonFailure: expected:<[דער GIF אַנטהאַלט 2 ראַמען. AN Paint רעדאַקטירט שטילע בילדער און היט נישט אָפּ אַנימאַציע.\n\nנאָר דער ערשטער ראַם וועט אַרײַנגעפֿירט ווערן. בײַם אויפֿהיטן ווערט געשאַפֿן אַ שטיל בילד].> but was:<[This GIF contains 2 frames. AN Paint edits still images and does not preserve animation.\n\nOnly the first frame will be imported. Saving creates a still image].>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges",
+        "message": "org.junit.ComparisonFailure: expected:<1 × 1 px · [צאָל פּיקסלען]: 1 (0.00 MP)> but was:<1 × 1 px · [Pixel count]: 1 (0.00 MP)>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels",
+        "message": "java.util.NoSuchElementException: Collection contains no element matching the predicate."
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel",
+        "message": "org.junit.ComparisonFailure: expected:<[טעקע־פֿאָרמאַט]> but was:<[File format]>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany",
+        "message": "org.junit.ComparisonFailure: expected:<[פֿאָרויסווײַז: 24 × 16 px\nאָנווענדן אויף 0 בילדער. אָפּשנײַדן פּלאַצירטע בילדער קען רירן זייערע צוגעבונדענע בילדער].> but was:<[Preview: 24 × 16 px\nApply to 0 images. Cropping placed images may move their attached images].>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "categoryAccessibilityTracksEveryActualToolAndExpansionState",
+        "message": "org.junit.ComparisonFailure: expected:<Drawing: Pencil [איז אויסגעקליבן. אויפֿקלאַפּן געצײַג און אָפּציעס]> but was:<Drawing: Pencil [selected. Expand tools and options]>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "memoryAdmissionStopsBeforeAllocationWithAllFourArguments",
+        "message": "org.junit.ComparisonFailure: expected:<1000 × 2000 [פּיקסלען (2.00 MP) גייען איבער דעם איצטיקן בודזשעט פֿון 0.00 MP פֿאַר זיכער רעדאַקטירן. AN Paint האַלט דאָס גאַנצע בילד אין זכּרון און רעזערווירט פּלאַץ פֿאַר טראַנספֿאָרמאַציעס און סעלעקציעס. דער בנימצא זכּרון באַשטימט דעם בודזשעט. די אָפּעראַציע איז אָפּגעשטעלט געוואָרן איידער מען האָט צוגעטיילט זכּרון פֿאַר דעם צו גרויסן פּיקסל־בילד. קיין אויטאָמאַטישע גרייס־ענדערונג איז נישט דורכגעפֿירט געוואָרן].> but was:<1000 × 2000 [pixels (2.00 MP) exceeds the current safe editing budget of 0.00 MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied].>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo",
+        "message": "java.util.NoSuchElementException: Collection contains no element matching the predicate."
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing",
+        "message": "org.junit.ComparisonFailure: expected:<[ווײַטער צייכענען]> but was:<[Draw again]>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy",
+        "message": "java.lang.AssertionError"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+        "message": "org.junit.ComparisonFailure: expected:<[שטאַרקייט] (%)> but was:<[Strength] (%)>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation",
+        "message": "org.junit.ComparisonFailure: expected:<[די פֿריִערדיקע טיוטע איז געבליבן פֿאַר צוריקשטעלן]> but was:<[Previous draft kept for recovery]>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "name": "everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments",
+        "message": "org.junit.ComparisonFailure: yi/formats22_animation_message expected:<[דער %1$s אַנטהאַלט %2$s ראַמען. AN Paint רעדאַקטירט שטילע בילדער און היט נישט אָפּ אַנימאַציע].> but was:<[This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation].>"
+      },
+      {
+        "class": "org.catrobat.paintroid.local.TaggedColourImportTest",
+        "name": "everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback",
+        "message": "org.junit.ComparisonFailure: Direct, parent-inherited or explicit English family value for yi expected:<[דאָס בילד ניצט אַ פֿאַרב־פּראָפֿיל וואָס AN Paint קען נאָך נישט קאָנווערטירן. פֿאַרוואַנדלט עס אין אַן sRGB PNG אין אַ רעדאַקטאָר מיט פֿאַרב־פֿאַרוואַלטונג איידער איר פֿירט עס אַרײַן].> but was:<[This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing].>"
+      }
+    ],
+    "status": "failed Yiddish expected direct wording resolves English; no translation rollback"
+  },
+  "other_gates": "Five CI jobs and exact Code passed; complete installed assertion proof/source/signature/four exports recorded separately; diagnostic logphase limitation retained",
+  "next": "finite source-preserving routing and runtime-budget diagnosis, independent successor gates and fresh exact-head CI; no blind retry"
+}
