@@ -1,0 +1,167 @@
+{
+  "scope": "PR211 intermediate original evidence; regression/complete terminal gate pending; diagnostic phase logs absent, strict supplemental checker failed honestly",
+  "head": "fe5ba3a3bbfa40fda567745a04217df00441d4c8",
+  "run_id": 40620575872,
+  "receipts": {
+    "build-partial/early-source-signature-verification.json": {
+      "head": "fe5ba3a3bbfa40fda567745a04217df00441d4c8",
+      "tree": "032d39b5cce30adc143e72cab0884547f83d31ef",
+      "run_id": 40620575872,
+      "original_source_blobs_modes_verified": 1539,
+      "approved_metadata_omissions": [
+        ".gitignore",
+        "colorpicker/.gitignore",
+        ".idea/codeStyles/Project.xml"
+      ],
+      "native_extra_files": 6258,
+      "source_sha256": "1055b0735ad6e4d955bc5a2648c47629b7b2ea53aaa557b0eedc5961a6efc051",
+      "apk_sha256": "7d00e95bdc4faccd2f3a00c726eb58fc432af15da295d46f70f41c03c93fc0c4",
+      "signature_verify_exit": 0,
+      "signature_log_sha256": "5060a81a93fdb7527343eb8346539399c8570279ced82d7cadf7761a7774e945",
+      "installed_runtime_and_remaining_originals": "pending"
+    },
+    "build-partial/compiled-valencian-controls.json": {
+      "status": "compiled-two-full-string-controls-passed",
+      "head": "fe5ba3a3bbfa40fda567745a04217df00441d4c8",
+      "run": 40620575872,
+      "artifact": 12786799792,
+      "archive_sha256": "6f3a7a2ce7d0a4fba33442953466da1c1f97ca1fe27a514acc385c1cae6336ac",
+      "apk_sha256": "7d00e95bdc4faccd2f3a00c726eb58fc432af15da295d46f70f41c03c93fc0c4",
+      "checker_sha256": "df714ade5c3b94cb64c3a4cf810000f03f5df0c2ea8d06cddd40ddd7a961d0b1",
+      "compiled": {
+        "explicit_variant_configuration": "b+ca+Latn+ES+valencia",
+        "verified_exact_displays": {
+          "ca-ES-valencia": {
+            "ui_save": "Guarda",
+            "save20_unsupported_image_colour": "Esta imatge utilitza un perfil de color que AN Paint encara no pot convertir. Convertiu-la a PNG sRGB en un editor amb gestió del color abans d’importar-la."
+          },
+          "ca": {
+            "ui_save": "Desa",
+            "save20_unsupported_image_colour": "Aquesta imatge fa servir un perfil de color que AN Paint encara no pot convertir. Converteix-la a PNG sRGB en un editor amb gestió del color abans d’importar-la."
+          }
+        },
+        "scope": "Two complete string controls, not all catalogue values"
+      },
+      "build_info": {
+        "commit": "d8a4308d4aa57be2f539fefd6a5c49af7a78e783",
+        "run_id": "40620575872",
+        "build_variant": "debug",
+        "apk_sha256": "7d00e95bdc4faccd2f3a00c726eb58fc432af15da295d46f70f41c03c93fc0c4",
+        "source_sha256": "1055b0735ad6e4d955bc5a2648c47629b7b2ea53aaa557b0eedc5961a6efc051",
+        "test_status": "Reported separately; artifact availability does not imply tests passed.",
+        "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+      },
+      "installed_probe": "pending; no XML/logcat acceptance inferred",
+      "full_source_archive_signature_and_other_originals": "pending independent complete verifier"
+    },
+    "build-partial/valencian-asserted-execution.json": {
+      "status": "exact-installed-method-assertions-passed",
+      "head": "fe5ba3a3bbfa40fda567745a04217df00441d4c8",
+      "identity": {
+        "group": "core",
+        "commit": "d8a4308d4aa57be2f539fefd6a5c49af7a78e783",
+        "run_id": "40620575872",
+        "run_attempt": "1",
+        "build_variant": "debug",
+        "source_tests_sha256": "367bd6465d8cb08eb507bd4adacdb92506fdc0d7eb73c36bf5973d8d6c92ba36",
+        "device_sdk": 35,
+        "apk_sha256": "7d00e95bdc4faccd2f3a00c726eb58fc432af15da295d46f70f41c03c93fc0c4",
+        "source_sha256": "1055b0735ad6e4d955bc5a2648c47629b7b2ea53aaa557b0eedc5961a6efc051",
+        "test_apk_sha256": "83495e51d1455b625ca745e2688ad4a5c39e925a3f87c21edb2f7087b2d7e6c0"
+      },
+      "raw_protocol_sha256": "9396280082cae7eddbf3d5fbab8d71857b47a1f34b0d05727d780693eb9323a7",
+      "source_method_file_sha256": "aa17fdc56cef2d34ca091a5b23a869116490864abd6d47387118b76345410f34",
+      "method": {
+        "classname": "paint.anpaint.android.EditorDeviceTest",
+        "name": "valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation",
+        "status": "passed",
+        "message": "."
+      },
+      "unconditional_asserted_phases": [
+        "valencian-selected",
+        "valencian-after-rotation",
+        "parent-catalan-selected",
+        "valencian-reselected"
+      ],
+      "assertions": [
+        "complete warning and Save display for each phase",
+        "persisted/default/platform/configured public tag for each phase",
+        "real orientation and both width and height change before rotated phase"
+      ],
+      "diagnostic_phase_logs": "absent from late original logcat; supplemental strict phase-log checker remains failed, no observed values/dimensions claimed",
+      "remaining_gates": "complete regression/JVM/original aggregate/four exports/Code"
+    },
+    "build-partial/valencian-log-absence.json": {
+      "all_original_text_members_searched": true,
+      "matches": [],
+      "first_logcat_lines": [
+        "--------- beginning of kernel",
+        "10-28 02:34:21.638     0     0 I         : Linux version 6.6.50-android15-8-g8adecb593e9b-ab12525588 (kleaf@build-host) (Android (11368308, +pgo, +bolt, +lto, +mlgo, based on r510928) clang version 18.0.0 (https://android.googlesource.com/toolchain/llvm-project 477610d4d0d988e69dbc3fae4fe86bff3f07f2b5), LLD 18.0.0) #1 SMP PREEMPT Fri Oct 18 23:59:20 UTC 2024",
+        "10-28 02:34:21.638     0     0 I Command line: 8250.nr_uarts=1 clocksource=pit no_timer_check console=0 loop.max_part=7 ramoops.mem_address=0xff018000 ramoops.mem_size=0x10000 memmap=0x10000$0xff018000 printk.devkmsg=on bootconfig mac80211_hwsim.radios=0",
+        "10-28 02:34:21.638     0     0 I         : BIOS-provided physical RAM map:"
+      ],
+      "last_logcat_lines": [
+        "10-28 02:45:53.486   376  8226 W android.hardware.audio@7.1-impl.ranchu: pcmWrite:259 pcm_writei failed with 'cannot read/write stream data: I/O error' (-1)",
+        "10-28 02:45:53.486   376  8226 E android.hardware.audio@7.1-impl.ranchu: pcmWrite:260 failure: -1",
+        "10-28 02:45:53.514   571  1658 W ActivityManager: stopServiceToken startId 26 is last, but have 1 remaining args"
+      ],
+      "installed_checker": "failed missing four phase logs; XML method passed",
+      "head": "fe5ba3a3bbfa40fda567745a04217df00441d4c8",
+      "run_id": 40620575872,
+      "core_artifact_id": 12787224363,
+      "core_sha256": "bc1a521c805f04e8e38c014b1ac01ff5e71b250815b9a1a933709324c9201c74",
+      "checker_sha256": "df714ade5c3b94cb64c3a4cf810000f03f5df0c2ea8d06cddd40ddd7a961d0b1",
+      "checker_error": "ValueError: missing, duplicate, stale or out-of-order phase logs",
+      "raw_protocol": "Exact method current7/18 start1 then terminal0; retained original",
+      "diagnosis": "Main buffer begins02:38:34, after early app method; final dump02:45:53. Ring rollover inferred, not product assertion failure."
+    },
+    "early-four-exports-verification.json": {
+      "head": "fe5ba3a3bbfa40fda567745a04217df00441d4c8",
+      "run_id": 40620575872,
+      "core_original_sha256": "bc1a521c805f04e8e38c014b1ac01ff5e71b250815b9a1a933709324c9201c74",
+      "mandatory_exports": {
+        "dialog-evidence.json": {
+          "exact_recomputed_match": true,
+          "original_receipt_sha256": "7244d9449935cd9c5a677e5e55a365d1021858f1a4d3bb63a00eb7e2767b5ec7"
+        },
+        "vertical-locale-export.json": {
+          "exact_recomputed_match": true,
+          "original_receipt_sha256": "4ed8a2bacca72de081204de7b5a1853db2f6284542ffe90d3b80aa52dcbece37"
+        },
+        "vertical-control-reachability.json": {
+          "exact_recomputed_match": true,
+          "original_receipt_sha256": "862796f5d6ac493bdabd8cc21ee32806416ea7b4c9b01c4ba87ec259765fe263"
+        },
+        "vertical-locale-screenshots.json": {
+          "exact_recomputed_match": true,
+          "original_receipt_sha256": "84695583f73b4d6503468d0859b2d5ed68366005a0fe79a65d276f678932ba7e"
+        }
+      },
+      "counts": {
+        "dialogs": 14,
+        "vertical_files": 104,
+        "reachability_cases": 8,
+        "reachability_screenshots": 64,
+        "locale_screenshots": 32
+      }
+    },
+    "all171-original-source-rebind.json": {
+      "head": "fe5ba3a3bbfa40fda567745a04217df00441d4c8",
+      "tree": "032d39b5cce30adc143e72cab0884547f83d31ef",
+      "source_archive_sha256": "1055b0735ad6e4d955bc5a2648c47629b7b2ea53aaa557b0eedc5961a6efc051",
+      "all171_exact_present_missing_identity_sets_rebound": true,
+      "original_identity_proof_sha256": "f74cab0bd2aa49ab696b16887f120f0c5e9e36869fd135af1207b1024403e260",
+      "aggregate": {
+        "P0": {
+          "present": 12620,
+          "missing": 3112
+        },
+        "P1": {
+          "present": 34287,
+          "missing": 8292
+        }
+      },
+      "scope": "Unmerged candidate original-source presence, not new linguistic credit or merged coverage"
+    }
+  }
+}
