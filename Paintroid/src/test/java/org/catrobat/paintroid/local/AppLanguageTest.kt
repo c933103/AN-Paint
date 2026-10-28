@@ -126,11 +126,48 @@ class AppLanguageTest {
             assertEquals(tag,Locale.getDefault().toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
             if (tag == "as") {
-                // Exact reviewed priority successor; the other 20 options retain English fallback.
+                // Exact reviewed priority successors below; every other option retains its original English fallback.
                 assertEquals("ফাইল",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("ব্ৰাছ",wrapped.getString(R.string.ui_brush))
                 assertEquals("সংৰক্ষণ কৰক",wrapped.getString(R.string.ui_save))
                 assertEquals("এপৰ ভাষা\n\nAN Paint-ৰ ভাষাৰ সম্পদসমূহত অনুবাদসমূহ ৰক্ষণাবেক্ষণ কৰা হয়। নতুন বা অনুবাদ নকৰা পাঠ ইংৰাজীত দেখা যায়।",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "so") {
+                assertEquals("Faylka",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Burush",wrapped.getString(R.string.ui_brush))
+                assertEquals("Kaydi",wrapped.getString(R.string.ui_save))
+                assertEquals("Luqadda abka\n\nTarjumaadaha waxaa lagu hayaa agabka luqadaha AN Paint. Qoraal cusub ama aan la tarjumin waxa uu ku muuqdaa Ingiriisi.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "wo") {
+                assertEquals("Dencukaay",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Pënso",wrapped.getString(R.string.ui_brush))
+                assertEquals("Denc",wrapped.getString(R.string.ui_save))
+                assertEquals("Làkku aplikasiyoŋ bi\n\nTekki yi ñu ngi leen di toppatoo ci jumtukaayi làkk yu AN Paint. Mbind mu bees walla muñu tekkagul day feeñ ci àngale.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "ht") {
+                assertEquals("Fichye",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Penso",wrapped.getString(R.string.ui_brush))
+                assertEquals("Anrejistre",wrapped.getString(R.string.ui_save))
+                assertEquals("Lang aplikasyon an\n\nTradiksyon yo konsève nan resous lang AN Paint yo. Tèks ki nouvo oswa ki poko tradui parèt ann anglè.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "tg") {
+                // Only this exact reviewed Tajik option replaces its historical English fallback.
+                assertEquals("Файл",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Мӯқалам",wrapped.getString(R.string.ui_brush))
+                assertEquals("Захира",wrapped.getString(R.string.ui_save))
+                assertEquals("Забони барнома\n\nТарҷумаҳо дар захираҳои забонии AN Paint нигоҳ дошта мешаванд. Матни нав ё тарҷуманашуда ба забони англисӣ нишон дода мешавад.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "mi") {
+                assertEquals("Kōnae",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Paraihe",wrapped.getString(R.string.ui_brush))
+                assertEquals("Tiaki",wrapped.getString(R.string.ui_save))
+                assertEquals("Reo taupānga\n\nKei ngā rauemi reo o AN Paint ngā whakamāoritanga e tiakina ana. Ka puta te kuputuhi hou, kāore anō rānei kia whakamāoritia, ki te reo Ingarihi.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "sm") {
+                assertEquals("Faila",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Pulumu",wrapped.getString(R.string.ui_brush))
+                assertEquals("Sefe",wrapped.getString(R.string.ui_save))
+                assertEquals("Gagana o le polokalame\n\nE tausia faaliliuga i puna gagana o AN Paint. E faaalia tusitusiga fou po o tusitusiga e leʻi faaliliuina i le gagana Peretania.",wrapped.getString(R.string.language20_translation_note))
+            } else if (tag == "sa") {
+                // Exact reviewed Sanskrit values; preserve other options and identity checks.
+                assertEquals("सञ्चिका",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("तूलिका",wrapped.getString(R.string.ui_brush))
+                assertEquals("रक्षतु",wrapped.getString(R.string.ui_save))
+                assertEquals("अनुप्रयोगभाषा\n\nअनुवादाः AN Paint इत्यस्य भाषासंसाधनेषु अनुरक्ष्यन्ते। नूतनः अथवा अननूदितः पाठः आङ्ग्लभाषायां दृश्यते।",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
@@ -313,8 +350,29 @@ class AppLanguageTest {
             assertNotEquals(wrapped.getString(R.string.ui_discard_changes23),wrapped.getString(R.string.ui_keep_editing23))
             val vocabulary=listOf(wrapped.getString(R.string.ui_brush),wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_cancel))
             assertNotEquals(listOf("Brush","Save","Cancel"),vocabulary)
-            assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
-                wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
+            if (tag == "se") {
+                assertEquals("Vurke", wrapped.getString(R.string.ui_save))
+                assertEquals("Vurke…", wrapped.getString(R.string.ui_save_a5d0d9))
+                assertNotEquals(wrapped.getString(R.string.ui_save), wrapped.getString(R.string.ui_save_a5d0d9))
+            } else {
+            // Each reviewed Save… control keeps its own complete label.
+            when(tag) {
+                "ku" -> {
+                    assertEquals("Tomar bike",wrapped.getString(R.string.ui_save))
+                    assertEquals("Tomar bike…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
+                "la" -> {
+                    assertEquals("Serva",wrapped.getString(R.string.ui_save))
+                    assertEquals("Serva…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
+                "mww" -> {
+                    assertEquals("Khaws",wrapped.getString(R.string.ui_save))
+                    assertEquals("Khaws…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
+                else -> assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
+                    wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
+            }
+            }
         }
         assertFalse("The mistaken Tai collection choice is removed",tags.contains("tai"))
         assertEquals("ᥖᥭᥰ ᥖᥬᥲ ᥑᥨᥒᥰ [tdd]",AppLanguage.name("tdd"))

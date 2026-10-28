@@ -63,7 +63,7 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 ## Deadlines and evidence
 
-- Regression job: 55 minutes; Python contracts: 8 minutes; JVM regression: 20 minutes;
+- Regression job: 60 minutes; Python contracts: 12 minutes; JVM regression: 20 minutes;
   build job: 45 minutes;
   universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
@@ -93,12 +93,23 @@ the available log proves the step timeouts, not the separate source of that
 aggregate conclusion. Nearby successful [run 39427218699](https://github.com/c933103/AN-Paint/actions/runs/39427218699)
 took 232 seconds for Python and 614 seconds for JVM by step timestamps.
 
-The new caps leave about 92% and 55% margin over the slower hosted command
-measurements. The regression job's explicit phase maxima are 2 minutes for
+Those earlier caps left about 92% and 55% margin over the slower hosted command
+measurements. That earlier regression policy's explicit phase maxima were 2 minutes for
 compiler-cache installation, 8 for preparation, 8 for Python, 20 for JVM, 6 for
 native lint dependencies and 6 for lint: 50 minutes total. Its 55-minute hard
 stop additionally reserves 5 minutes for checkout, cache and evidence overhead.
-This is an explicit cancellation policy, not a universal runtime guarantee.
+That was an explicit cancellation policy, not a universal runtime guarantee.
+The expanded 1,774-test Python suite in [run 40604314909](https://github.com/c933103/AN-Paint/actions/runs/40604314909)
+completed with two optional-image skips and command exit zero in 493.350 seconds,
+but Actions explicitly timed out `Run Python contracts` after eight minutes.
+That workflow failure remains a failure; it is not converted into a pass by the
+command receipt. The current Python cap is 12 minutes, about 46% above that
+observed command time. The other phase caps are unchanged: 2 + 8 + 12 + 20 + 6 + 6
+is 54 minutes total, within the 60-minute regression job cap with six minutes for
+checkout, cache and evidence overhead. JVM, build, device, installation and inner
+interaction deadlines are unchanged. This bounded host-suite allowance does not
+retry failures, omit tests or guarantee that every future run will finish.
+
 All tests, assertions, failure propagation and existing device/interaction caps
 remain unchanged. A future timeout still fails; it must be diagnosed, not
 silently retried or counted as success.
