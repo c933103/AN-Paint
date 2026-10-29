@@ -32,6 +32,25 @@ class ColourViewportContractTest(unittest.TestCase):
         self.assertNotIn('.scrollTo(', helper)
         self.assertIn('visibleBounds(view).contains(target())', helper)
 
+    def test_notice_reveal_keeps_the_same_exact_endpoint_route_as_colour(self):
+        colour = INSTALLED.read_text()
+        notice = (INSTALLED.parent / 'LocalizedDialogDeviceTest.kt').read_text()
+        def endpoint(source):
+            return source.split('    private fun scrollLimit(', 1)[1].split('    private fun swipe(', 1)[0]
+        self.assertIn('private fun scrollLimit(', notice)
+        self.assertEqual(endpoint(colour), endpoint(notice))
+        route = notice.split('private fun reveal(', 1)[1].split('private fun scrollLimit', 1)[0]
+        self.assertIn('canRevealVertically(candidate,direction)', route)
+        self.assertNotIn('candidate.canScrollVertically(direction)', route)
+        self.assertIn('visibleBounds(view).contains(target())', route)
+        self.assertIn('swipe(route.first,route.second,route.third);settle(view)', route)
+        self.assertIn('repeat(12)', route)
+        self.assertIn('seen.add(onMain {geometry(view).toString()})', route)
+        self.assertNotIn('.scrollTo(', route)
+        self.assertNotIn('.performClick(', route)
+        self.assertIn('deadline=started+45000', notice)
+        self.assertIn('No native scroll route to full caption', route)
+
     def test_all_direction_decisions_use_the_rendering_context(self):
         source = PRODUCTION.read_text()
         self.assertEqual(re.findall(r'VerticalText.uiVertical\(([^)]*)\)', source), ['activity'] * 4)
