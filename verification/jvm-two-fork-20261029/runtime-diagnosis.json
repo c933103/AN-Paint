@@ -1,0 +1,497 @@
+{
+  "status": "read-only diagnosis; no source change or experiment performed",
+  "source_head": "6fd72e8d31f13676e92c16c40506e4c1bdd4c221",
+  "actual_merge": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+  "tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+  "run_id": 40820454209,
+  "regression_artifact_id": 12876111901,
+  "phase_seconds": 1188.239,
+  "unchanged_cap_seconds": 1200,
+  "headroom_seconds": 11.761,
+  "profile": {
+    "total_build_seconds": 1187.8,
+    "startup_seconds": 3.451,
+    "test_task_seconds": 985.02,
+    "compile_unit_test_kotlin_seconds": 89.47,
+    "compile_production_kotlin_seconds": 70.39
+  },
+  "junit": {
+    "suites": 193,
+    "tests": 1925,
+    "sum_suite_seconds": 972.055,
+    "top_suites": [
+      {
+        "seconds": 33.479,
+        "class": "org.catrobat.paintroid.local.ANPaintControlsTest",
+        "tests": 16
+      },
+      {
+        "seconds": 32.488,
+        "class": "org.catrobat.paintroid.local.ClassicWorkspaceTest",
+        "tests": 39
+      },
+      {
+        "seconds": 29.045,
+        "class": "org.catrobat.paintroid.local.DeviceLanguagePickerTest",
+        "tests": 14
+      },
+      {
+        "seconds": 24.43,
+        "class": "org.catrobat.paintroid.local.UiDirectionContextTest",
+        "tests": 14
+      },
+      {
+        "seconds": 23.327,
+        "class": "org.catrobat.paintroid.local.LocalizedDialogLayoutTest",
+        "tests": 28
+      },
+      {
+        "seconds": 23.096,
+        "class": "org.catrobat.paintroid.local.CommonsMetadataQueryFailureFlowTest",
+        "tests": 18
+      },
+      {
+        "seconds": 21.806,
+        "class": "org.catrobat.paintroid.local.GalleryControlsLayoutTest",
+        "tests": 4
+      },
+      {
+        "seconds": 20.988,
+        "class": "org.catrobat.paintroid.local.AssemblyActivityTest",
+        "tests": 24
+      },
+      {
+        "seconds": 20.641,
+        "class": "org.catrobat.paintroid.local.AdvancedColourViewportTest",
+        "tests": 18
+      },
+      {
+        "seconds": 18.915,
+        "class": "org.catrobat.paintroid.local.AdvancedColourLayoutDiagnosticTest",
+        "tests": 4
+      },
+      {
+        "seconds": 18.686,
+        "class": "org.catrobat.paintroid.local.ExactScriptPriorityWordingTest",
+        "tests": 17
+      },
+      {
+        "seconds": 17.812,
+        "class": "org.catrobat.paintroid.local.ResponsiveToolboxTest",
+        "tests": 19
+      },
+      {
+        "seconds": 16.337,
+        "class": "org.catrobat.paintroid.local.LocaleTooltipTest",
+        "tests": 16
+      },
+      {
+        "seconds": 15.609,
+        "class": "org.catrobat.paintroid.local.LocaleNumberInputTest",
+        "tests": 35
+      },
+      {
+        "seconds": 15.295,
+        "class": "org.catrobat.paintroid.local.ImportSelectionTitleTest",
+        "tests": 12
+      },
+      {
+        "seconds": 15.043,
+        "class": "org.catrobat.paintroid.local.GalleryControlReachabilityTest",
+        "tests": 8
+      },
+      {
+        "seconds": 14.766,
+        "class": "org.catrobat.paintroid.local.VerticalRibbonTest",
+        "tests": 7
+      },
+      {
+        "seconds": 13.988,
+        "class": "org.catrobat.paintroid.local.AssameseKhmerLaoPriorityWordingTest",
+        "tests": 15
+      },
+      {
+        "seconds": 13.844,
+        "class": "org.catrobat.paintroid.local.WorkspaceRefinementTest",
+        "tests": 21
+      },
+      {
+        "seconds": 13.695,
+        "class": "org.catrobat.paintroid.local.GalleryBackDirectionTest",
+        "tests": 6
+      },
+      {
+        "seconds": 13.157,
+        "class": "org.catrobat.paintroid.local.CanvasEditingControlsTest",
+        "tests": 21
+      },
+      {
+        "seconds": 12.628,
+        "class": "org.catrobat.paintroid.local.GalleryCreditBoundsTest",
+        "tests": 4
+      },
+      {
+        "seconds": 12.257,
+        "class": "org.catrobat.paintroid.local.BretonAsturianOccitanPriorityWordingTest",
+        "tests": 16
+      },
+      {
+        "seconds": 11.934,
+        "class": "org.catrobat.paintroid.local.SizingAndTrimTest",
+        "tests": 15
+      },
+      {
+        "seconds": 11.467,
+        "class": "org.catrobat.paintroid.local.ChhattisgarhiYiddishHongKongPriorityWordingTest",
+        "tests": 14
+      }
+    ]
+  },
+  "configuration": {
+    "test_maxParallelForks": 1,
+    "test_heap": "2g",
+    "workflow_max_workers": 2,
+    "gradle_heap": "4g",
+    "gradle": "8.13",
+    "robolectric": "4.14.1"
+  },
+  "shared_report_writer_scan": [
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ANPaintControlsTest.kt",
+      "sinks": [
+        {
+          "line": 268,
+          "text": "val file=File(\"build/reports/classic-preview\",name); file.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AdvancedColourLayoutDiagnosticTest.kt",
+      "sinks": [
+        {
+          "line": 116,
+          "text": "val directory=File(\"build/reports/advanced-colour-diagnostic\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageResourceRoutingTest.kt",
+      "sinks": [
+        {
+          "line": 284,
+          "text": "val directory=File(\"build/reports/exact-script-resource-routing\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt",
+      "sinks": [
+        {
+          "line": 501,
+          "text": "val file=java.io.File(\"build/reports/classic-preview/language-$tag-code-${textSize.toInt()}-${activity.resources.configuration.orientation}.png\");file.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/AssemblyActivityTest.kt",
+      "sinks": [
+        {
+          "line": 346,
+          "text": "val file=File(\"build/reports/classic-preview\",name); file.parentFile.mkdirs(); file.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG,100,it)) }; bitmap.recycle()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CanvasEditingControlsTest.kt",
+      "sinks": [
+        {
+          "line": 79,
+          "text": "val path=File(\"build/reports/classic-preview\",name);path.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ClassicWorkspaceTest.kt",
+      "sinks": [
+        {
+          "line": 468,
+          "text": "val output = File(\"build/reports/classic-preview\", name); output.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditErrorTest.kt",
+      "sinks": [
+        {
+          "line": 261,
+          "text": "val directory=java.io.File(\"build/reports/commons-copy-credit-errors\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsCopyCreditTranslationTest.kt",
+      "sinks": [
+        {
+          "line": 177,
+          "text": "val report=java.io.File(\"build/reports/commons-copy-credit-resolution\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsImportFailureFlowTest.kt",
+      "sinks": [
+        {
+          "line": 459,
+          "text": "val directory=java.io.File(\"build/reports/commons-import-failures\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataHttpFlowTest.kt",
+      "sinks": [
+        {
+          "line": 277,
+          "text": "val directory=java.io.File(\"build/reports/commons-metadata-m02\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataQueryFailureFlowTest.kt",
+      "sinks": [
+        {
+          "line": 432,
+          "text": "val directory=java.io.File(\"build/reports/commons-metadata-m04\").apply {mkdirs()}"
+        },
+        {
+          "line": 455,
+          "text": "val directory=java.io.File(\"build/reports/commons-metadata-m04-diagnostic\").apply {mkdirs()}"
+        },
+        {
+          "line": 659,
+          "text": "val directory=java.io.File(\"build/reports/commons-metadata-m04-painted-ink\").apply {mkdirs()}"
+        },
+        {
+          "line": 777,
+          "text": "val directory=java.io.File(\"build/reports/commons-metadata-m04-painted-ink\").apply {mkdirs()}"
+        },
+        {
+          "line": 907,
+          "text": "val directory=java.io.File(\"build/reports/commons-metadata-m04-diagnostic\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsMetadataResponseLimitFlowTest.kt",
+      "sinks": [
+        {
+          "line": 376,
+          "text": "val directory=java.io.File(\"build/reports/commons-metadata-m03\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CommonsSvgErrorReadabilityTest.kt",
+      "sinks": [
+        {
+          "line": 212,
+          "text": "val folder=File(\"build/reports/$reportDirectory\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CursorDrawingTest.kt",
+      "sinks": [
+        {
+          "line": 130,
+          "text": "val file=java.io.File(\"build/reports/classic-preview/cursor-magnifier.png\");file.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/CzechFitWorkflowTest.kt",
+      "sinks": [
+        {
+          "line": 149,
+          "text": "val directory=File(\"build/reports/czech-workflows/fit\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/DeviceLanguagePickerTest.kt",
+      "sinks": [
+        {
+          "line": 264,
+          "text": "val file=File(\"build/reports/classic-preview/device-language-$tag-api${Build.VERSION.SDK_INT}.png\")"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/EdgeSelectionControlsTest.kt",
+      "sinks": [
+        {
+          "line": 84,
+          "text": "val path=File(\"build/reports/classic-preview\",name);path.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ExportFormatDialogTest.kt",
+      "sinks": [
+        {
+          "line": 333,
+          "text": "val file=File(\"build/reports/classic-preview\",name);file.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryBackDirectionTest.kt",
+      "sinks": [
+        {
+          "line": 104,
+          "text": "val folder=File(\"build/reports/gallery-back-direction\").apply {mkdirs()}"
+        },
+        {
+          "line": 216,
+          "text": "val folder=File(\"build/reports/gallery-back-direction\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlReachabilityTest.kt",
+      "sinks": [
+        {
+          "line": 334,
+          "text": "val folder=File(\"build/reports/gallery-controls\").apply {mkdirs()}"
+        },
+        {
+          "line": 341,
+          "text": "val folder=File(\"build/reports/gallery-controls\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/GalleryControlsLayoutTest.kt",
+      "sinks": [
+        {
+          "line": 134,
+          "text": "val folder=java.io.File(\"build/reports/gallery-controls-matrix\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/HungarianAttributionC05Test.kt",
+      "sinks": [
+        {
+          "line": 243,
+          "text": "val directory=File(\"build/reports/hungarian-attribution-c05\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ImageResizeFlowTest.kt",
+      "sinks": [
+        {
+          "line": 237,
+          "text": "val file = File(\"build/reports/classic-preview\",name); file.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/LocalizedDialogLayoutTest.kt",
+      "sinks": [
+        {
+          "line": 112,
+          "text": "val directory=File(\"build/reports/localized-dialog-layout\").apply {mkdirs()}"
+        },
+        {
+          "line": 143,
+          "text": "val directory=File(\"build/reports/localized-dialog-layout\").apply {mkdirs()}"
+        },
+        {
+          "line": 222,
+          "text": "val directory=File(\"build/reports/localized-dialog-layout\").apply {mkdirs()}"
+        },
+        {
+          "line": 372,
+          "text": "val directory=File(\"build/reports/localized-dialog-layout\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/ResponsiveToolboxTest.kt",
+      "sinks": [
+        {
+          "line": 400,
+          "text": "val file=File(\"build/reports/classic-preview\",name);file.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/SizingAndTrimTest.kt",
+      "sinks": [
+        {
+          "line": 341,
+          "text": "val file=File(\"build/reports/classic-preview\",name); file.parentFile.mkdirs(); file.outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG,100,it) }; bitmap.recycle()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/TiffDescriptionDialogTest.kt",
+      "sinks": [
+        {
+          "line": 252,
+          "text": "val file = File(\"build/reports/classic-preview\", \"tiff-cebuano-$name-$compressed.png\")"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalCanvasCaptionTest.kt",
+      "sinks": [
+        {
+          "line": 430,
+          "text": "val directory=File(\"build/reports/classic-preview/vertical-canvas-captions\").apply {mkdirs()}"
+        },
+        {
+          "line": 435,
+          "text": "val directory=File(\"build/reports/classic-preview/vertical-canvas-captions\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalNoticeResizeCharacterizationTest.kt",
+      "sinks": [
+        {
+          "line": 72,
+          "text": "private val output get()=File(\"build/reports/vertical-notice-resize\").apply {mkdirs()}"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/VerticalRibbonTest.kt",
+      "sinks": [
+        {
+          "line": 46,
+          "text": "val file=File(\"build/reports/classic-preview\",(if(activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE) \"landscape-\" else \"\")+name);file.parentFile.mkdirs()"
+        }
+      ]
+    },
+    {
+      "path": "Paintroid/src/test/java/org/catrobat/paintroid/local/WorkspaceRefinementTest.kt",
+      "sinks": [
+        {
+          "line": 84,
+          "text": "val out=File(\"build/reports/classic-preview\",name);out.parentFile.mkdirs()"
+        }
+      ]
+    }
+  ],
+  "scan_limitation": "Literal rooted report sink inventory, not complete data-flow proof or proof of collision. Call-site filename mapping and indirect sinks need review before enabling concurrency.",
+  "candidate": "Bounded two-process class-level test execution, retaining default method execution, whole scope, all reports, assertions, identity checks, failure propagation and unchanged 1200s. Verify shared report path ownership or isolate/serialize writers, memory/RSS and exact complete test identity/output union in an isolated reviewed experiment before acceptance. No daemon change, cache of compiled output, deadline increase or test removal proposed.",
+  "primary_sources": [
+    "https://docs.gradle.org/current/userguide/java_testing.html",
+    "https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html",
+    "https://docs.github.com/en/actions/reference/runners/github-hosted-runners",
+    "https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/utils/src/main/java/org/robolectric/util/TempDirectory.java",
+    "https://github.com/robolectric/robolectric/blob/robolectric-4.14.1/robolectric/src/main/java/org/robolectric/android/internal/AndroidTestEnvironment.java"
+  ]
+}
