@@ -1,0 +1,39 @@
+{
+  "head": "4bab486911bf0e2272c1278015d13e1fb977013e",
+  "tree": "d82bfd9a2336273901933c45f5aa837e643e7a53",
+  "tested_merge": "12b36b8cfa3cb763bc2c563506c0e6a64986a085",
+  "run": 40804963602,
+  "regression_archive_sha256": "4921ac1b5af5fdd9e9bcdc68369c4095f7bc6bbea7313e191ddb910a9bbf6396",
+  "jvm": {
+    "tests": 1850,
+    "failures": 3,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failures": [
+    {
+      "suite": "org.catrobat.paintroid.local.CroatianBosnianP0WordingTest",
+      "method": "realFormatPanelUpdatesDescriptionsRejectsInvalidNamesAndCancelsRepeatedly",
+      "message": "org.junit.ComparisonFailure: expected:<[Choose location]\u2026> but was:<[Odaberi lokaciju]\u2026>"
+    },
+    {
+      "suite": "org.catrobat.paintroid.local.CroatianBosnianP0WordingTest",
+      "method": "actualSaveExportSharePanelsKeepDistinctMessagesAndRepeatedCancel",
+      "message": "org.junit.ComparisonFailure: expected:<[Choose location]\u2026> but was:<[Odaberi lokaciju]\u2026>"
+    },
+    {
+      "suite": "org.catrobat.paintroid.local.ProtectedDraftWarningTest",
+      "method": "croatianWarningLeadsToDistinctRecoveryAndCurrentArtworkRoutes",
+      "message": "org.junit.ComparisonFailure: expected:<...jebite \u201eDatoteka \u2192 S[ave as]\u2026\u201c i u polju \u201eFormat...> but was:<...jebite \u201eDatoteka \u2192 S[premi kao]\u2026\u201c i u polju \u201eFormat...>"
+    }
+  ],
+  "local_ordinary": {
+    "tests": 1964,
+    "seconds": 1489.993,
+    "owner_seconds": 1491.367,
+    "exit": 0
+  },
+  "local_optimized": "running",
+  "fix_proposal_sha256": "1c4f346bc967d2d8fa1d697d05880d41da6d1ac777341c225e19126972fa52f3",
+  "status": "Input remains frozen. Patch unapplied; no successor/runtime pass implied. Earlier JVM-pass inference from stage advancement withdrawn."
+}

@@ -1,0 +1,5 @@
+# PR220 terminal evidence
+
+Input4bab486/tree d82bfd9a remains frozen. Hosted1850 JVM tests have3 stale-oracle failures; all original XML (including new8/8 suite), hosted phase receipts, local1964 ordinary pass, Codex receipts and device revalidation are in the numbered ZIP parts. Manifest gives exact reconstruction hashes. Five other jobs and lint passed; regression failed. Earlier progress inference of JVM pass from stage advancement is withdrawn.
+
+Archive contains original v1 repair proposal for history only. Standalone v3 patch supersedes it, adding explicit complete source/previous/target/display/attribute checks and recorded-null-member guard. Targeted v3 normal22/3.398s and optimized22/3.974s pass. Patch not applied to frozen input; parent independent acceptance/integration and fresh combined runtime gates remain required. Original review archive remains unchanged in parent directory. Full optimized input run pending at this checkpoint. No release or whole-language/native-human/layout certification.
