@@ -1,0 +1,27 @@
+{
+  "prior_head": "ce7ca9894ff29a2c04271714ffb7aa2827541e65",
+  "run": 40798831423,
+  "job": 123201890776,
+  "artifact_id": 12867105573,
+  "artifact_sha256": "0a7f7f9c8349dcd8c203c6f27bbce80e1133e38b812a67432b06146706029404",
+  "suite": "org.catrobat.paintroid.local.BelarusianAlbanianPriorityWordingTest",
+  "tests": 12,
+  "failures": [
+    {
+      "test": "allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments",
+      "message": "org.junit.ComparisonFailure: sq/string/ui_new_image expected:<Imazh i ri[ ]> but was:<Imazh i ri[]>"
+    },
+    {
+      "test": "canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge",
+      "message": "java.lang.ClassCastException: class org.catrobat.paintroid.classic.NumericSlider$slider$1 cannot be cast to class org.catrobat.paintroid.classic.NumericSlider (org.catrobat.paintroid.classic.NumericSlider$slider$1 and org.catrobat.paintroid.classic.NumericSlider are in unnamed module of loader org.robolectric.internal.AndroidSandbox$SdkSandboxClassLoader @4cfa8227)"
+    }
+  ],
+  "repairs": [
+    "Two finite SQ unquoted raw-space to compiled-display bindings; keep both catalogue and historical fixture bytes unchanged; explicit altered/quoted/trimmed raw negatives and quoted-space preservation control.",
+    "Resolve actual watercolor_strength SeekBar child, cast its parent to NumericSlider and assertSame before original localized name, progress, document, canvas and undo checks."
+  ],
+  "limits": [
+    "No Android runtime pass claimed until new exact-head hosted test completes.",
+    "No linguistic/resource edits or new linguistic-review credit."
+  ]
+}

@@ -1,28 +1,27 @@
 {
-  "head": "ce7ca9894ff29a2c04271714ffb7aa2827541e65",
-  "tree": "795ca02c001b631e07bf05ccf62bcab6f544b6a0",
-  "local_source_clean": true,
-  "normal": {
-    "tests": 1963,
-    "seconds": 1707.623,
-    "exit": 0,
+  "head": "f78fa4481960be0628b80cf4da69106317fe00c2",
+  "tree": "be1a765da2f761bafdb86a2130cb0c20cae5805a",
+  "synthetic_merge": {
+    "sha": "27947ccd08557b60db115c611705a4650f2b822f",
+    "tree": "e039303a64348e7f68def2d595b4bed208a15b1d",
+    "base": "246f2bbfa3e156b832f65f7a8c468c9a36306537"
+  },
+  "source_catalogue_changes": false,
+  "focused_normal": {
+    "tests": 20,
+    "seconds": 25.845,
     "result": "OK"
   },
-  "optimized": {
-    "tests": 1963,
-    "seconds": 1720.97,
-    "exit": 0,
+  "focused_optimized": {
+    "tests": 20,
+    "seconds": 13.755,
     "result": "OK"
   },
-  "note": "Post-summary instrument-runner JSON failures are intentional negative-test outputs, not aggregate failures. Both actual test aggregates exited0. No native-human/installed-language/TalkBack certification.",
-  "codex": {
-    "exact_head": true,
-    "clean": true,
-    "receipt_id": 6485157302
-  },
-  "hosted": {
-    "run": 40798831423,
-    "conclusion": "pending JVM/regression+lint; all other jobs success"
-  },
-  "merge": "Parent coordinates; no merge/release performed by this agent."
+  "full_local": "normal and optimized running on clean f78f branch source; separate from tested current-base synthetic merge",
+  "hosted": "new run pending",
+  "previous": {
+    "head": "ce7ca9894ff29a2c04271714ffb7aa2827541e65",
+    "full_local_both_passed": 1963,
+    "hosted_jvm": "1859 total,2 failed, precise diagnosis retained; no earlier runtime acceptance"
+  }
 }
