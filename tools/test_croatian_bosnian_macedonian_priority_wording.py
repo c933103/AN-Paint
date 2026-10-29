@@ -6,7 +6,7 @@ import re
 import unittest
 import xml.etree.ElementTree as ET
 from unittest.mock import patch
-from current_localization_contracts import fixture, require_string
+from current_localization_contracts import fixture, require_string, require_string_root
 import hr_bs_mk_priority_expectations as current
 import translation_catalogues as catalogues
 
@@ -40,7 +40,7 @@ class CroatianBosnianMacedonianPriorityTests(unittest.TestCase):
                 with self.subTest(tag=tag,key=key):
                     self.assertEqual(row['source'],self.roots['default'].find(f"./string[@name='{key}']").text)
                     self.assertEqual(row['attributes'],self.roots['default'].find(f"./string[@name='{key}']").attrib)
-                    require_string(self.xml[tag],key,row['target'],{'attributes':row['attributes'],'child_elements':0})
+                    require_string_root(self.roots[tag],key,row['target'],{'attributes':row['attributes'],'child_elements':0})
                     self.assertEqual(Counter(TOKEN.findall(row['source'])),Counter(TOKEN.findall(row['target'])))
                     self.assertEqual(row['source'].count('\\n'),row['target'].count('\\n'))
                     self.assertEqual(row['source'].count('\n'),row['target'].count('\n'))

@@ -4,7 +4,7 @@ import json
 import unittest
 import xml.etree.ElementTree as ET
 
-from current_localization_contracts import fixture, require_string, require_wording_shape
+from current_localization_contracts import fixture, require_string, require_wording_shape, require_string_root
 from test_danish_norwegian_p0_wording import full_format_tokens, require_reviewed_string
 import translation_catalogues as catalogues
 from priority_wording_successors import current_fixture, added_keys, catalogue_count, current_display
@@ -92,7 +92,7 @@ class UkrainianSaveWordingTests(unittest.TestCase):
         self.assertEqual(127, len(preserved));self.assertFalse(set(preserved) & KEYS)
         for key, expected in preserved.items():
             with self.subTest(key=key):
-                require_string(self.xml['uk'], key, expected['value'], {'attributes': expected['attributes']})
+                require_string_root(self.roots['uk'], key, expected['value'], {'attributes': expected['attributes']})
         self.assertEqual(catalogue_count('uk',137), len(self.roots['uk']))
         self.assertEqual(set(preserved) | KEYS | added_keys('uk'), {node.get('name') for node in self.roots['uk']})
         from test_translations import SCOPED_TAGS

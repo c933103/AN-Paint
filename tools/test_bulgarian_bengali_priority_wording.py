@@ -5,7 +5,7 @@ import re
 import unittest
 import xml.etree.ElementTree as ET
 
-from current_localization_contracts import fixture, require_string
+from current_localization_contracts import fixture, require_string, require_string_root
 import translation_catalogues as catalogues
 
 TAGS = {'bg', 'bn'}
@@ -51,7 +51,7 @@ class BulgarianBengaliPriorityTests(unittest.TestCase):
             self.assertEqual(set(values), set(self.data['constraints'][key]))
             for tag, expected in values.items():
                 with self.subTest(tag=tag, key=key):
-                    require_string(self.xml[tag], key, expected, self.data['constraints'][key][tag])
+                    require_string_root(self.roots[tag], key, expected, self.data['constraints'][key][tag])
 
     def test_bounded_guards_reject_missing_duplicate_truncated_markup_and_attribute_changes(self):
         for tag in TAGS:

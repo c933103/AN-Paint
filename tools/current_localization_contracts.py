@@ -50,8 +50,13 @@ def require_locale_scope(data, expected_scoped_tags, offered_tags):
 
 def require_string(xml, key, expected, constraints=None):
     """Validate one complete Android string, rejecting missing/duplicate definitions."""
+    return require_string_root(ET.fromstring(xml), key, expected, constraints)
+
+
+def require_string_root(root, key, expected, constraints=None):
+    """Validate an already parsed resource root without mutating it."""
     constraints = constraints or {}
-    nodes = ET.fromstring(xml).findall(f"./string[@name='{key}']")
+    nodes = root.findall(f"./string[@name='{key}']")
     if len(nodes) != 1:
         raise ValueError(f'{key}: expected exactly one definition, found {len(nodes)}')
     node = nodes[0]

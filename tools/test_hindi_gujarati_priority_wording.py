@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 import unittest
 import xml.etree.ElementTree as ET
-from current_localization_contracts import fixture,require_string
+from current_localization_contracts import fixture,require_string, require_string_root
 from hindi_gujarati_priority_expectations import NAME,TAGS,current_row,display,require_reviewed_fixture,validated_fixture_text,reviewed_fixture
 import translation_catalogues as catalogues
 ROOT=Path(__file__).resolve().parents[1]
@@ -23,7 +23,7 @@ class HindiGujaratiPriorityWordingTests(unittest.TestCase):
   for tag,loc in data['locales'].items():
    xml=(ROOT/loc['catalogue_path']).read_text();root=ET.fromstring(xml)
    for key,value in loc['accepted'].items():
-    require_string(xml,key,value,{'attributes':loc['attributes'][key]})
+    require_string_root(root,key,value,{'attributes':loc['attributes'][key]})
     self.assertEqual(catalogues.placeholders(data['sources'][key]['value']),catalogues.placeholders(value))
    for key in loc['holds']:self.assertIsNone(root.find(f"./string[@name='{key}']"))
  def test_every_value_and_coordinated_metadata_mutation_rejected(self):

@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
-from current_localization_contracts import fixture, require_string, require_wording_shape
+from current_localization_contracts import fixture, require_string, require_wording_shape, require_string_root
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
@@ -29,7 +29,7 @@ class NynorskRemainingP0Tests(unittest.TestCase):
         for key in KEYS:
             for tag in ('default', 'nn'):
                 with self.subTest(key=key, tag=tag):
-                    require_string(self.xml[tag], key, self.data['values'][key][tag], self.data['constraints'][key][tag])
+                    require_string_root(self.roots[tag], key, self.data['values'][key][tag], self.data['constraints'][key][tag])
         self.assertEqual('false', self.roots['nn'].find("./string[@name='ui_history_unavailable34']").get('formatted'))
 
     def test_each_value_rejects_missing_duplicate_truncation_markup_attributes_types_and_placeholders(self):
@@ -52,7 +52,7 @@ class NynorskRemainingP0Tests(unittest.TestCase):
         self.assertEqual(118, len(preserved));self.assertFalse(set(preserved) & KEYS)
         for key, expected in preserved.items():
             with self.subTest(key=key):
-                require_string(self.xml['nn'], key, expected['value'], {'attributes': expected['attributes']})
+                require_string_root(self.roots['nn'], key, expected['value'], {'attributes': expected['attributes']})
         self.assertEqual(190+len(added_keys('nn')), len(self.roots['nn']))
         from test_translations import SCOPED_TAGS
         self.assertNotIn('nn', SCOPED_TAGS)
@@ -66,7 +66,7 @@ class NynorskRemainingP0Tests(unittest.TestCase):
         for key in ('ui_no_resize_fits_decoder_memory','formats22_at_least_frames','ui_load_image','ui_choose_location'):
             row=current_row('nn',key)
             self.assertIsNone(row['previous_target'])
-            require_string(self.xml['nn'],key,row['target'],{'attributes':row['attributes']})
+            require_string_root(self.roots['nn'],key,row['target'],{'attributes':row['attributes']})
 
     def test_recovery_and_animation_compositions_keep_actual_commands_and_quantity(self):
         value = lambda key: self.data['values'][key]['nn'].strip('"')

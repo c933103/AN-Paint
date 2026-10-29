@@ -3,7 +3,7 @@ from copy import deepcopy
 import json
 import unittest
 import xml.etree.ElementTree as ET
-from current_localization_contracts import fixture, require_string, require_wording_shape
+from current_localization_contracts import fixture, require_string, require_wording_shape, require_string_root
 from test_danish_norwegian_p0_wording import full_format_tokens, require_reviewed_string
 import translation_catalogues as catalogues
 from sk_sl_ca_priority_successors import current_fixture, added_keys, catalogue_count, current_display
@@ -82,7 +82,7 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
             self.assertEqual(127, len(preserved));self.assertFalse(set(preserved) & KEYS)
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
-                    require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
+                    require_string_root(self.roots[tag], key, expected['value'], {'attributes': expected['attributes']})
             self.assertEqual(catalogue_count(tag,205), len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('"' + current_display(tag,'save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertEqual('"'+current_display('ca','ui_save_your_changes')+'"', self.roots['ca'].find("./string[@name='ui_save_your_changes']").text)
@@ -102,7 +102,7 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
                 if key not in HOLDS:
                     successor = fixture('slovak_slovenian_catalan_priority_wording.json' if tag == 'ca' else 'ukrainian_lithuanian_romanian_priority_wording.json')['locales'][tag]['values'][key]
                     self.assertIsNone(successor['previous_target'])
-                    require_string(self.xml[tag], key, successor['target'], {'attributes': successor['attributes']})
+                    require_string_root(self.roots[tag], key, successor['target'], {'attributes': successor['attributes']})
                 else:
                     self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
         self.assertEqual('Choose location…', self.roots['default'].find("./string[@name='ui_choose_location']").text)

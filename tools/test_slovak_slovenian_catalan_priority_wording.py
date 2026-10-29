@@ -6,7 +6,7 @@ import re
 import unittest
 import xml.etree.ElementTree as ET
 
-from current_localization_contracts import fixture, require_string
+from current_localization_contracts import fixture, require_string, require_string_root
 from test_danish_norwegian_p0_wording import FULL_FORMAT_TOKEN
 import translation_catalogues as catalogues
 
@@ -633,7 +633,7 @@ class SlovakSlovenianCatalanPriorityWordingTests(unittest.TestCase):
                     require_complete(self.xml[tag],key,row)
             for key, row in data['context'].items():
                 with self.subTest(tag=tag,context=key):
-                    require_string(self.xml[tag],key,row['target'],{'attributes':row['attributes']})
+                    require_string_root(self.roots[tag],key,row['target'],{'attributes':row['attributes']})
 
     def test_every_changed_value_rejects_absence_duplicate_wrong_type_markup_attributes_and_truncation(self):
         for tag, data in self.data['locales'].items():
