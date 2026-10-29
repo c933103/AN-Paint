@@ -35,7 +35,15 @@ class HelpCommonsProviderTest(unittest.TestCase):
         rows=fixture('help_commons_provider_current_contract.json')['provider_segments']
         self.assertTrue(rows['et'].endswith('„Wikimedia Commons · Kontuurkaardid…“'))
         self.assertTrue(rows['fi'].endswith('”Wikimedia Commons · Ääriviivakartat…” -valinnan'))
-        self.assertTrue(rows['vi-Hani'].endswith('吧 「Wikimedia Commons · 版圖 𤿰…」'))
+        self.assertTrue(rows['vi-Hani'].endswith('吧 「Wikimedia Commons · 版圖 𥧪…」'))
+
+    def test_nom_blank_map_label_help_and_encode_reason_agree(self):
+        strings = catalogues.read_strings(catalogues.catalogue_paths()['vi-Hani'])
+        caption = strings['commons_blank_maps']
+        self.assertEqual('Wikimedia Commons · 版圖 𥧪…', caption)
+        self.assertEqual(1, strings[KEY].count('「' + caption + '」'))
+        self.assertIn('版圖 𥧪', strings['commons_svg_png_encode_failed'])
+
 
     def test_default_lists_actual_device_and_four_provider_choices(self):
         strings = catalogues.read_strings(catalogues.RES / 'values/strings.xml')
