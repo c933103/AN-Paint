@@ -130,6 +130,8 @@ class CheckPhaseContracts(unittest.TestCase):
     def test_log_write_failure_cannot_turn_a_passing_check_green(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
+            (root / 'tools').mkdir()
+            shutil.copy(ROOT / 'tools/ci_run_process_group.py', root / 'tools')
             (root / 'build/reports/ci-phases/jvm.log').mkdir(parents=True)
             result = subprocess.run(['bash', str(ROOT / 'tools/ci_run_timed.sh'), 'jvm', 'true'],
                                     cwd=root, capture_output=True, text=True)

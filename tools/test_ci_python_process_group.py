@@ -1,6 +1,7 @@
 """Owned process lifecycle, not a universal runner/kernel liveness claim."""
 from pathlib import Path
 import os
+import shutil
 import signal
 import subprocess
 import sys
@@ -13,8 +14,8 @@ OWNER=ROOT/'tools/ci_run_process_group.py'
 
 
 class PythonProcessGroupTests(unittest.TestCase):
-    def launch(self,root,script,timeout=5,grace=.15):
-        return subprocess.Popen([sys.executable,str(OWNER),'--timeout-seconds',str(timeout),
+    def launch(self,root,script,timeout=5,grace=.15,phase='python'):
+        return subprocess.Popen([sys.executable,str(OWNER),'--phase',phase,'--timeout-seconds',str(timeout),
             '--kill-after-seconds',str(grace),'--',sys.executable,'-u','-c',script],
             cwd=root,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
 
@@ -34,14 +35,14 @@ class PythonProcessGroupTests(unittest.TestCase):
     def gone(self,pid):
         with self.assertRaises(ProcessLookupError):os.kill(pid,0)
 
-    def reports(self,root,status,reason):
+    def reports(self,root,status,reason,phase='python'):
         p=Path(root)/'build/reports/ci-phases'
-        self.assertIn(f'exit_status={status}\n',(p/'python.time').read_text())
+        self.assertIn(f'exit_status={status}\n',(p/f'{phase}.time').read_text())
         for key in ('real_seconds','user_seconds','sys_seconds'):
-            self.assertRegex((p/'python.time').read_text(),key+r'=\d+\.\d+')
-        self.assertIn('reason='+reason+'\n',(p/'python.lifecycle').read_text())
-        self.assertIn('owned_children_remaining=0\n',(p/'python.lifecycle').read_text())
-        for name in ('python.started-at','python.ended-at'):
+            self.assertRegex((p/f'{phase}.time').read_text(),key+r'=\d+\.\d+')
+        self.assertIn('reason='+reason+'\n',(p/f'{phase}.lifecycle').read_text())
+        self.assertIn('owned_children_remaining=0\n',(p/f'{phase}.lifecycle').read_text())
+        for name in (f'{phase}.started-at',f'{phase}.ended-at'):
             self.assertRegex((p/name).read_text(),r'^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ\n$')
         return p
 
@@ -69,19 +70,26 @@ class PythonProcessGroupTests(unittest.TestCase):
                 'print("tree-running",flush=True);time.sleep(30)')
 
     def test_deadline_kills_and_reaps_stubborn_child_and_escaped_grandchild(self):
-        with tempfile.TemporaryDirectory() as root:
-            proc=self.launch(root,self.stubborn_tree(),timeout=1)
-            self.ready(Path(root)/'grand.pid',proc);out,err=self.finish(proc)
-            self.assertEqual(124,proc.returncode,err);p=self.reports(root,124,'deadline')
-            self.assertIn('forced_kill=true',(p/'python.lifecycle').read_text())
-            for n in ('child.pid','grand.pid'):self.gone(int((Path(root)/n).read_text()))
+        for phase in ('python','jvm'):
+            with self.subTest(phase=phase),tempfile.TemporaryDirectory() as root:
+                root=Path(root);(root/'tools').mkdir();shutil.copy(OWNER,root/'tools')
+                shell=(ROOT/'tools/ci_run_timed.sh').read_text().replace('--timeout-seconds 1800','--timeout-seconds 1').replace('--timeout-seconds 1140','--timeout-seconds 1').replace('--kill-after-seconds 15','--kill-after-seconds .15')
+                (root/'tools/ci_run_timed.sh').write_text(shell)
+                proc=subprocess.Popen(['bash','tools/ci_run_timed.sh',phase,sys.executable,'-u','-c',self.stubborn_tree()],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+                self.ready(root/'grand.pid',proc);out,err=self.finish(proc)
+                self.assertEqual(124,proc.returncode,err);p=self.reports(root,124,'deadline',phase)
+                self.assertIn('forced_kill=true',(p/f'{phase}.lifecycle').read_text())
+                for n in ('child.pid','grand.pid'):self.gone(int((root/n).read_text()))
+                # A clean timeout remains failed, but required later checks can run.
+                r=subprocess.run(['bash','tools/ci_run_timed.sh','native','true'],cwd=root,capture_output=True,text=True,timeout=5)
+                self.assertEqual(0,r.returncode,r.stderr)
 
     def test_sigterm_and_sigint_to_owner_propagate_and_reap_before_return(self):
-        for sig in (signal.SIGTERM,signal.SIGINT):
-            with self.subTest(signal=sig),tempfile.TemporaryDirectory() as root:
-                proc=self.launch(root,self.stubborn_tree());self.ready(Path(root)/'grand.pid',proc)
+        for phase,sig in (('python',signal.SIGTERM),('python',signal.SIGINT),('jvm',signal.SIGTERM),('jvm',signal.SIGINT)):
+            with self.subTest(phase=phase,signal=sig),tempfile.TemporaryDirectory() as root:
+                proc=self.launch(root,self.stubborn_tree(),phase=phase);self.ready(Path(root)/'grand.pid',proc)
                 proc.send_signal(sig);out,err=self.finish(proc)
-                self.assertEqual(128+sig,proc.returncode,err);self.reports(root,128+sig,'signal')
+                self.assertEqual(128+sig,proc.returncode,err);self.reports(root,128+sig,'signal',phase)
                 for n in ('child.pid','grand.pid'):self.gone(int((Path(root)/n).read_text()))
 
     def test_successful_parent_cannot_leave_owned_background_descendant(self):
@@ -115,29 +123,34 @@ class PythonProcessGroupTests(unittest.TestCase):
             self.assertEqual(125,proc.returncode);self.reports(root,125,'launch-error')
 
     def test_later_phase_rejects_missing_malformed_failed_or_cross_run_receipt(self):
-        import shutil
         good='launch_id='+'a'*32+'\nreason=completed\nforced_kill=false\nowned_children_remaining=0\ncleanup_complete=true\noutput_complete=true\n'
         cases=[None, 'invalid',good.replace('cleanup_complete=true','cleanup_complete=false'),
                good.replace('owned_children_remaining=0','owned_children_remaining=1'),
                good.replace('launch_id='+'a'*32,'launch_id='+'b'*32),
                good+'extra=unreviewed\n',good.replace('output_complete=true','output_complete=false'),
                good.replace('reason=completed','reason=cleanup-error')]
-        for content in cases:
-            with self.subTest(content=content),tempfile.TemporaryDirectory() as root:
-                root=Path(root);(root/'tools').mkdir();shutil.copy(OWNER,root/'tools');shutil.copy(ROOT/'tools/ci_run_timed.sh',root/'tools')
-                reports=root/'build/reports/ci-phases';reports.mkdir(parents=True)
-                (reports/'python.started-at').write_text('started\n');(reports/'python.owner').write_text('a'*32+'\n')
-                if content is not None:(reports/'python.lifecycle').write_text(content)
-                r=subprocess.run(['bash','tools/ci_run_timed.sh','jvm',sys.executable,'-c','open("launched","w").close()'],cwd=root,capture_output=True,text=True,timeout=5)
-                self.assertEqual(125,r.returncode,r.stderr);self.assertFalse((root/'launched').exists())
+        for previous,following in (('python','jvm'),('jvm','native'),('jvm','lint')):
+            for content in cases:
+                with self.subTest(previous=previous,following=following,content=content),tempfile.TemporaryDirectory() as root:
+                    root=Path(root);(root/'tools').mkdir();shutil.copy(OWNER,root/'tools');shutil.copy(ROOT/'tools/ci_run_timed.sh',root/'tools')
+                    reports=root/'build/reports/ci-phases';reports.mkdir(parents=True)
+                    (reports/f'{previous}.started-at').write_text('started\n');(reports/f'{previous}.owner').write_text('a'*32+'\n')
+                    if content is not None:(reports/f'{previous}.lifecycle').write_text(content)
+                    r=subprocess.run(['bash','tools/ci_run_timed.sh',following,sys.executable,'-c','open("launched","w").close()'],cwd=root,capture_output=True,text=True,timeout=5)
+                    self.assertEqual(125,r.returncode,r.stderr);self.assertFalse((root/'launched').exists())
 
-    def test_clean_failed_python_allows_required_later_phase(self):
-        import shutil
+    def test_clean_failed_python_allows_required_later_phase_with_distinct_owner(self):
         with tempfile.TemporaryDirectory() as root:
             root=Path(root);(root/'tools').mkdir();shutil.copy(OWNER,root/'tools');shutil.copy(ROOT/'tools/ci_run_timed.sh',root/'tools')
             proc=self.launch(root,'import sys;sys.exit(7)');self.finish(proc);self.assertEqual(7,proc.returncode)
             r=subprocess.run(['bash','tools/ci_run_timed.sh','jvm',sys.executable,'-c','open("launched","w").close()'],cwd=root,capture_output=True,text=True,timeout=5)
             self.assertEqual(0,r.returncode,r.stderr);self.assertTrue((root/'launched').exists())
+            reports=root/'build/reports/ci-phases'
+            self.reports(root,7,'completed');self.reports(root,0,'completed','jvm')
+            self.assertNotEqual((reports/'python.owner').read_text(),(reports/'jvm.owner').read_text())
+            shutil.copy(reports/'python.lifecycle',reports/'jvm.lifecycle')
+            r=subprocess.run(['bash','tools/ci_run_timed.sh','native','true'],cwd=root,capture_output=True,text=True,timeout=5)
+            self.assertEqual(125,r.returncode,r.stderr)
 
     def test_unreapable_child_and_stuck_output_have_finite_failure_bound(self):
         import importlib.util
@@ -174,6 +187,9 @@ class PythonProcessGroupTests(unittest.TestCase):
         self.assertIn("run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'",workflow)
         block=workflow.split('      - name: Run Python contracts\n',1)[1].split('      - name:',1)[0]
         self.assertIn('timeout-minutes: 31',block)
+        self.assertIn('exec python3 tools/ci_run_process_group.py --phase jvm --timeout-seconds 1140 --kill-after-seconds 15 -- "$@"',shell)
+        jvm=workflow.split('      - name: Run JVM regression tests\n',1)[1].split('      - name:',1)[0]
+        self.assertIn('timeout-minutes: 20',jvm)
         import ast
         syntax=ast.parse(OWNER.read_text())
         defs={n.name:n for n in syntax.body if isinstance(n,ast.FunctionDef)}
@@ -182,3 +198,4 @@ class PythonProcessGroupTests(unittest.TestCase):
         self.assertEqual(5,cleanup_defaults['reap_grace']);self.assertEqual(2,pump_defaults['seconds'])
         self.assertEqual(1,shell.count('exec python3 tools/ci_run_process_group.py --timeout-seconds'))
         self.assertLess(1800+15+cleanup_defaults['reap_grace']+pump_defaults['seconds'],31*60)
+        self.assertLess(1140+15+cleanup_defaults['reap_grace']+pump_defaults['seconds'],20*60)
