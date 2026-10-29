@@ -1,0 +1,7 @@
+# Accepted oracle hardening successor
+
+PR222 head04b34e3dc59ac6bb2b41bd71faf911ed19d8210d / treefba812280a202e0459c01e87d61fae34645d7bc2, parent1a951a693d355cf97998f8008e7ff5fae70246e7. Six test/helper paths, +140/-17, no production resource or accepted fixture changes. Parent identified a coordinated fixture+XML self-oracle gap; author reproduced it without touching source, then bound only the finite accepted fixture and added Python/JVM coordinated-value, metadata and missing-predecessor rejection. Original reproduction preserved, not rewritten as a passing check.
+
+Also preserves two Hebrew route-guard failures caused by disallowing logical-order left-arrow separators. Test-only ← support now includes exact Hebrew positive routes and reversed/missing/wrong-caption negatives; no global caption normalization change.
+
+Archive accepted-oracle-hardening.tar.xz SHA25625a23bdff7da14f58e6f868d231883b99a389f876f93b8758c5a3544a300fb14 contains original reproduction and failures, new rejection, patch scripts and normal8/optimized8 plus combined17/17 passing logs. Combined tests43.795s/26.200s. Fresh complete normal/optimized runs started after final successor tree frozen in separate workspace. Earlier normal discovery imported memory union before13th-path repair; that run remains diagnostic, not exact-final evidence. [New hosted run40813729049](https://github.com/c933103/AN-Paint/actions/runs/40813729049) queued at publication. Exact-head review requested6487298615; earlier clean review only applies1a951. Production wording acceptance and24 holds unchanged.
