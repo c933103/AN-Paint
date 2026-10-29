@@ -7,7 +7,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 import translation_catalogues as cat
 from current_localization_contracts import fixture,require_string as scalar
-from nynorsk_belarusian_albanian_priority_expectations import NAME,TAGS,current_row,current_value,display,require_addition,MEMORY_ADDITIONS
+from nynorsk_belarusian_albanian_priority_expectations import NAME,TAGS,current_row,current_value,display,compiled_display,require_addition,MEMORY_ADDITIONS
 HOLDS={'formats22_derived_exported','ui_save_as','ui_save_as_jpeg','ui_save_as_jpeg_xl','ui_save_as_png','ui_foreground_background_colour_palette','ui_main23','ui_pinch_and_pan_mode'}
 def require_resource(xml,identity,target,attrs):
     root=ET.fromstring(xml);kind,key=identity.split('/')
@@ -85,6 +85,19 @@ class RecoveredTrioTests(unittest.TestCase):
                 elif mutation=='parent-text':n.text='extra'
                 else:n[0].tail='extra'
                 with self.subTest(t=t,mutation=mutation),self.assertRaises(ValueError):require_resource(ET.tostring(root,encoding='unicode'),'plurals/ui_crop_preview_images',r['target'],r['attributes'])
+    def test_inherited_albanian_raw_spaces_have_finite_compiled_successors_only(self):
+        for key,raw,compiled in [('ui_new_image','Imazh i ri ','Imazh i ri'),('ui_watercolor','Akuarel ','Akuarel')]:
+            self.assertEqual(raw,self.data['locales']['sq']['accepted'][key])
+            require_resource(self.xml['sq'],'string/'+key,raw,{'name':key})
+            self.assertEqual(compiled,display('sq',key))
+            for wrong in (compiled,raw+'changed','"'+raw+'"'):
+                with self.subTest(key=key,wrong=wrong),self.assertRaises(ValueError):compiled_display('sq',key,wrong)
+        self.assertEqual(' preserve ',compiled_display('be','test-only','" preserve "'))
+        source=(cat.ROOT/'Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt').read_text()
+        self.assertIn('control.slider.tag=tagName',source)
+        jvm=(cat.ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/BelarusianAlbanianPriorityWordingTest.kt').read_text()
+        for fragment in ['findViewWithTag<SeekBar>("watercolor_strength")','val strength=strengthSlider.parent as NumericSlider','assertSame(strengthSlider,strength.slider)','assertEquals(37,activity.document.watercolorStrength)','assertArrayEquals(original,restored)']:self.assertIn(fragment,jvm)
+
     def test_exact_previous_value_guards_and_historical_scope(self):
         for t,l in self.data['locales'].items():
             for i in set(l['changed'])&set(l['predecessors']):

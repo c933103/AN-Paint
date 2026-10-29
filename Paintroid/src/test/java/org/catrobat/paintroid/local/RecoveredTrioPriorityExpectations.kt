@@ -14,5 +14,20 @@ internal object RecoveredTrioPriorityExpectations {
         require(previous==old.getString("target")) {"$tag/$key previous value differs"}
         return locale.getJSONObject("accepted").getString(key)
     }
-    fun display(tag: String,key: String) = data.getJSONObject("locales").getJSONObject(tag).getJSONObject("accepted").getString(key).removeSurrounding("\"")
+    fun compiledDisplay(tag: String,key: String,raw: String): String {
+        val inherited = when(tag to key) {
+            "sq" to "ui_new_image" -> "Imazh i ri " to "Imazh i ri"
+            "sq" to "ui_watercolor" -> "Akuarel " to "Akuarel"
+            else -> null
+        }
+        if(inherited!=null) {
+            require(raw==inherited.first) {"$tag/$key inherited raw whitespace binding differs"}
+            return inherited.second
+        }
+        return Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
+            when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
+        }
+    }
+    fun display(tag: String,key: String) = compiledDisplay(tag,key,
+        data.getJSONObject("locales").getJSONObject(tag).getJSONObject("accepted").getString(key))
 }

@@ -40,10 +40,20 @@ def current_fixture(name):
     return d
 def added_keys(tag):
     l=fixture(NAME)['locales'][tag];return {i.split('/')[1]for i in l['changed']if i not in l['predecessors']}
-def display(tag,key):
+COMPILED_WHITESPACE = {
+    ('sq','ui_new_image'): ('Imazh i ri ', 'Imazh i ri'),
+    ('sq','ui_watercolor'): ('Akuarel ', 'Akuarel'),
+}
+def compiled_display(tag,key,value):
     import re
+    if (tag,key) in COMPILED_WHITESPACE:
+        raw,compiled=COMPILED_WHITESPACE[(tag,key)]
+        if value!=raw:raise ValueError('Exact inherited unquoted whitespace binding differs')
+        return compiled
+    return re.sub(r'\\(.)',lambda m:{'n':'\n','t':'\t','r':'\r'}.get(m[1],m[1]),value.removeprefix('"').removesuffix('"'))
+def display(tag,key):
     value=current_row(tag,key)['target']
     if value.startswith('@string/'):
         if key!='ui_save_a5d0d9'or value!='@string/ui_save':raise ValueError('Unreviewed alias')
         return display(tag,'ui_save')
-    return re.sub(r'\\(.)',lambda m:{'n':'\n','t':'\t','r':'\r'}.get(m[1],m[1]),value.removeprefix('"').removesuffix('"'))
+    return compiled_display(tag,key,value)

@@ -30,3 +30,10 @@ No local Android SDK. All unrelated options and MK source remain unchanged.
 This is separate from PR215's da/is/no batch. Parent coordinates merge after
 exact-head Codex and required CI; no PR113, release0.0.41, stopped-archive,
 access, signing or provider changes. The broader programme is not complete.
+
+The hosted BE/SQ test successor preserves inherited raw trailing spaces for
+`ui_new_image` and `ui_watercolor` while checking Android's exact compiled display;
+finite raw-value guards reject arbitrary trimming or changed wording. The actual
+watercolor strength tag resolves to a SeekBar child and its NumericSlider parent;
+identity, localized name, progress, document strength, canvas clipping and undo
+checks remain. These are test-model/consumer repairs, not resource changes.

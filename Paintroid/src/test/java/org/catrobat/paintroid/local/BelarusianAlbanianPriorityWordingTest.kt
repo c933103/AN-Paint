@@ -13,6 +13,7 @@ import android.graphics.Rect
 import android.os.Looper
 import android.view.View
 import android.widget.CheckBox
+import android.widget.SeekBar
 import android.widget.EditText
 import android.widget.TextView
 import org.catrobat.paintroid.R
@@ -60,7 +61,7 @@ class BelarusianAlbanianPriorityWordingTest {
         val raw=locale.getJSONObject("accepted").getString(key)
         val text=if(raw=="@string/ui_save") {
             require(key=="ui_save_a5d0d9");decoded(locale.getJSONObject("accepted").getString("ui_save"))
-        } else decoded(raw)
+        } else RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,raw)
         return JSONObject().put("display",text)
     }
     private fun expected(tag: String,key: String)=row(tag,"string/$key").getString("display")
@@ -93,6 +94,18 @@ class BelarusianAlbanianPriorityWordingTest {
                 PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
             }
         }
+    }
+
+    @Test fun inheritedAlbanianUnquotedWhitespaceKeepsRawReceiptsAndExactCompiledValues() = forEachLocale(listOf("sq")) { tag,activity ->
+        for((key,raw,compiled) in listOf(Triple("ui_new_image","Imazh i ri ","Imazh i ri"),Triple("ui_watercolor","Akuarel ","Akuarel"))) {
+            assertEquals(raw,fixture.getJSONObject(tag).getJSONObject("accepted").getString(key))
+            assertEquals(compiled,RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,raw))
+            assertEquals(compiled,activity.getString(activity.resources.getIdentifier(key,"string",activity.packageName)))
+            for(wrong in listOf(compiled,raw+"changed","\"$raw\"")) {
+                assertThrows(IllegalArgumentException::class.java) {RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,wrong)}
+            }
+        }
+        assertEquals(" preserve ",RecoveredTrioPriorityExpectations.compiledDisplay("be","test-only","\" preserve \""))
     }
 
     @Test fun allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments() = forEachLocale { tag,activity ->
@@ -306,7 +319,9 @@ class BelarusianAlbanianPriorityWordingTest {
                 val original=IntArray(12) { 0xff000000.toInt() or ((it+1)*0x010101) }
                 activity.document.bitmap.setPixels(original,0,4,0,0,4,3)
                 EditorTestNavigation.click(activity,"tool_WATERCOLOR")
-                val strength=activity.window.decorView.findViewWithTag<NumericSlider>("watercolor_strength")
+                val strengthSlider=activity.window.decorView.findViewWithTag<SeekBar>("watercolor_strength")
+                val strength=strengthSlider.parent as NumericSlider
+                assertSame(strengthSlider,strength.slider)
                 assertEquals(expected(tag,"ui_strength"),strength.name)
                 assertEquals(expected(tag,"ui_strength"),strength.slider.contentDescription.toString())
                 strength.slider.progress=37-strength.minimum;idle()
