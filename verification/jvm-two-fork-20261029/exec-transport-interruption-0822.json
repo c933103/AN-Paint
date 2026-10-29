@@ -1,0 +1,29 @@
+{
+  "observed_at": "2026-10-29T08:22:44.327250+00:00",
+  "event": "second computer unavailable/restored followed by exec transport recovery timeout",
+  "classification": "underlying owner outcome unknown; no terminal or cleanup receipt inferred",
+  "tool_sessions": {
+    "normal": 77571,
+    "optimized": 89242
+  },
+  "attempts": [
+    {
+      "path": "combined-successors-20261029/evidence/jvm-two-fork-integrated-recovery-normal",
+      "started_at": "2026-10-29T07:54:09Z",
+      "exit_exists": false,
+      "last_write": "2026-10-29T08:15:48.739778+00:00",
+      "log_bytes": 209148,
+      "log_sha256": "bcc64e6125035f777be26c1b28931fe6aab786cba0019798beaba0348fa44863"
+    },
+    {
+      "path": "combined-successors-20261029/evidence/jvm-two-fork-integrated-recovery-optimized",
+      "started_at": "2026-10-29T07:54:11Z",
+      "exit_exists": false,
+      "last_write": "2026-10-29T08:15:46.247802+00:00",
+      "log_bytes": 228142,
+      "log_sha256": "b89a75a3138f37fddff56f650716cdf6a5255f7cb2a4f7aed70f5ffb3e504f5b"
+    }
+  ],
+  "inspection": "Read-only /proc filtering by known worktree prefix requested outside per-command PID sandbox; command did not execute because bwrap setup failed creating a file at a read-only restricted path. No forbidden path was read; no mount/path workaround attempted.",
+  "recovery_authority": "Root directed preserving uncertainty and safe isolated sequential retries coordinated with Eastern; no user cancellation."
+}

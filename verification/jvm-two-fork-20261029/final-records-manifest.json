@@ -1,0 +1,17 @@
+{
+  "archive_bytes": 103880,
+  "archive_sha256": "cf1827a6701006462a85b44d8516882285c513bf1192fecd25da57242c42aa8e",
+  "parts": [
+    {
+      "path": "final-records.tar.xz.part01",
+      "bytes": 65536,
+      "sha256": "c60209ad454ecd24bceff6ecbbc930ed07e300e21c0f0b11488d609f1197dc89"
+    },
+    {
+      "path": "final-records.tar.xz.part02",
+      "bytes": 38344,
+      "sha256": "e9fe686e78202426381bb00c4f6ea45589f3ae8edb5546b1e9b15cc6c4af04d4"
+    }
+  ],
+  "restore": "Concatenate numbered parts, verify SHA256, tar -xJf. Includes complete194 XML/JVM and API receipts, final gate observations and second interrupted local snapshots; no omitted failure is promoted to pass."
+}

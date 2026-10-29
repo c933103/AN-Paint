@@ -1,0 +1,26 @@
+{
+  "head": "d8f1840ac60ec9c2134f6a01439fac35433d349c",
+  "tree": "da88c011b601f106259a4ef8912c0c06c9eb32ee",
+  "tested_base": "b05a4463e03683f92c2b3ebe21905e0420362a42",
+  "tested_merge": "a8cb8b3a61f67359c5d92cf2269c941ab953cb99",
+  "decision": "Unadopted experimental implementation. No demonstrated total-runtime improvement against comparable observed premerge225 baseline; retain source and evidence, no further verification to force adoption.",
+  "state": "PR226 open and unmerged. Closure not executed; do not infer user rejection from action-review status. Root owns disposition.",
+  "required_run": 40837374139,
+  "code_summary": 6489567657,
+  "code_exact_head_clean": true,
+  "all_six_required_jobs_success": true,
+  "performance": {
+    "jvm_cases": 1933,
+    "jvm_classes": 194,
+    "report_paths": 2704,
+    "current_jvm_seconds": 969.688,
+    "premerge_225_one_fork_seconds": 968.815,
+    "actual_b05a_natural_one_fork_seconds": 1162.687,
+    "peak_sampled_rss_kib": 13315712,
+    "minimum_sampled_host_available_kib": 2481020,
+    "largest_observed_process_hwm_kib": 4427060,
+    "limits": "Different-run timings are not a controlled causal speedup estimate. RSS sample peak can double-count shared pages and miss short peaks; no exact aggregate memory bound."
+  },
+  "verification_limits": "Hosted normal2035 passed (2 documented skips), JVM1933 passed (0 skips), lint0, API35 49app+74native passed. Exact current optimized full aggregate did not complete locally due transport interruptions; no pass or policy waiver claimed. Extra host-modes workflow remains unpublished and no new local full cycle was launched.",
+  "production": "No experiment merge, signing, version or release action. Release0.0.41 remains paused."
+}

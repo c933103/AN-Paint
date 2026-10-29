@@ -1,3 +1,22 @@
+# Final: unadopted JVM experiment, source/history retained
+
+PR226 remains **open and unmerged** at `d8f1840ac60ec9c2134f6a01439fac35433d349c` / tree `da88c011b601f106259a4ef8912c0c06c9eb32ee`. Root rejected implementation adoption; a requested closure has not executed. This record does not close it or attribute rejection to the user. No source/branch deletion, release, signing or version action.
+
+[Exact-head standard run40837374139](https://github.com/c933103/AN-Paint/actions/runs/40837374139) passed all six jobs. Tested synthetic `a8cb8b3a61f67359c5d92cf2269c941ab953cb99` has exact da88 tree, parents b05a+d8. Code summary6489567657 completed clean at d8, both finding flags false. Optional old Security metadata has unavailable flags/disabled merge gate; not represented as current clean Security review.
+
+Regression artifact12883027786 SHA256 `575386ff18a6ac7b1726a9a64da84f91e8ecb70c669284379bfab2e191de05be`: all194-class/1933-case identities and2704 PNG/JSON/JSONL report paths equal the accepted225 baseline, zero JVM failures/errors/skips. HostedPython2035/1246.825s passed with2 documented skips; owner1248.091s clean. Lint0/158.583s. API35 artifact12882172241 SHA `de6baadd665fac353c8d0f69785d26a5401520b7711faa970004dae984772beb` verifies exact49app+74native identities, unchanged caps and installed/source binding;147 PNGs are retained by Actions, not newly visually accepted.
+
+**No demonstrated total-runtime benefit:** JVM969.688s versus225 premerge one-fork968.815s (0.873s slower, not meaningful causal evidence). Actual-b05a natural regression was1162.687s, showing run-to-run variation; its whole attempt1 separately failed mandatory device collection. Parallel class overlap is proven, but different-run observations do not establish a guaranteed speedup. The implementation added497 lines/seven files and twelve host controls.
+
+Sampled aggregate descendant RSS peaked13315712KiB (~12.70GiB), minimum sampled host MemAvailable2481020KiB (~2.37GiB), largest observed per-process VmHWM4427060KiB. Shared pages can be counted twice, short peaks missed, and heap caps are not totalRSS caps. Observer cleanup completed without forced kill. These are measured samples, not exact memory bounds or a general safety/performance guarantee.
+
+All original failures and interruptions remain: initial wrapper/receipt mismatch; original Codex startup P2;19e full-normal cancellation KeyError; original cancelled hosted attempts; both local transport interruptions with unknown underlying outcomes and absent terminal receipts. Current complete optimized aggregate was not obtained. No pass or acceptance-policy waiver is claimed; further verification is unnecessary for an implementation not being adopted. The extra host-modes workflow remained unpublished, and fresh sequential local worktrees were prepared but never launched. Current-develop227 later adds its own accepted package; it is not silently included in this frozen experiment's1933-case result.
+
+`FINAL-CONCLUSION.json`, verification receipts and numbered `final-records` parts bind all194 raw JVM XML, API XML/phase identities, lint/timing/memory evidence, current clean Code observation, and second partial local snapshots. Prior compact records remain below and in immutable parent commits. Release0.0.41 remains paused.
+
+---
+## Historical snapshots, retained without current acceptance credit
+
 # Current local recovery at unchanged d8f1840 / da88c011
 
 Around07:48 the local exec-server transport disconnected. Explicit resume of both5f9 full owners and both queued d8 attempts later returned pong_timeout/unknown-session.5f9 logs ended07:48:14 and07:47:37 without terminal receipts; queued d8 attempts had never started. No terminal outcome, completed cleanup or pass is inferred. The initial07:48 claim that sessions survived was based on log contents progressing since the earlier snapshot, not live resumption; corrected to parent07:53. All four source trees remain exact and clean.
