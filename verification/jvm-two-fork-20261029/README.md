@@ -1,3 +1,10 @@
+# Current local recovery at unchanged d8f1840 / da88c011
+
+Around07:48 the local exec-server transport disconnected. Explicit resume of both5f9 full owners and both queued d8 attempts later returned pong_timeout/unknown-session.5f9 logs ended07:48:14 and07:47:37 without terminal receipts; queued d8 attempts had never started. No terminal outcome, completed cleanup or pass is inferred. The initial07:48 claim that sessions survived was based on log contents progressing since the earlier snapshot, not live resumption; corrected to parent07:53. All four source trees remain exact and clean.
+
+Original partial logs/markers and the explicit infrastructure receipt are retained here. Fresh complete current d8 normal and optimized began07:54 in separate new recovery worktrees, preserving the same7200s outer owner allowance and every internal/CI deadline. Hosted40837374139 and Code remain independent current gates. No source move or acceptance waiver.
+
+---
 # Current integrated226: d8f1840 / da88c011, still unadopted
 
 Head `d8f1840ac60ec9c2134f6a01439fac35433d349c`, tree `da88c011b601f106259a4ef8912c0c06c9eb32ee`, parents frozen5f9 and actual merged225 developb05a. Parent independently reconstructed every1611 leaf/mode: all8 inherited225 paths exact, all7 reviewed experiment paths exact, no overlap/conflict or new resolution. Non-force expected5f9 update and remote tree verified.

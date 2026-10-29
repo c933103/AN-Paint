@@ -1,0 +1,83 @@
+{
+  "observed_at": "2026-10-29T07:53:50.089823+00:00",
+  "event": "exec-server transport disconnected, pong_timeout, session id unknown",
+  "server_session": "25839312-a961-4999-b8a3-f4d8783bf86e",
+  "classification": "Incomplete infrastructure-interrupted attempts; no terminal outcome or cleanup receipt inferred",
+  "attempts": [
+    {
+      "path": "combined-successors-20261029/evidence/jvm-two-fork-cancellation-full-normal",
+      "session": 5770,
+      "resume": "unknown session id / transport disconnected",
+      "exit_file_exists": false,
+      "started": "2026-10-29T07:35:16Z",
+      "queued": null,
+      "log_bytes": 193726,
+      "log_mtime_utc": "2026-10-29T07:48:14.320941+00:00"
+    },
+    {
+      "path": "combined-successors-20261029/evidence/jvm-two-fork-cancellation-full-optimized",
+      "session": 84925,
+      "resume": "unknown session id / transport disconnected",
+      "exit_file_exists": false,
+      "started": "2026-10-29T07:35:18Z",
+      "queued": null,
+      "log_bytes": 190313,
+      "log_mtime_utc": "2026-10-29T07:47:37.577336+00:00"
+    },
+    {
+      "path": "combined-successors-20261029/evidence/jvm-two-fork-integrated-full-normal",
+      "session": 78231,
+      "resume": "unknown session id / transport disconnected",
+      "exit_file_exists": false,
+      "started": null,
+      "queued": "2026-10-29T07:45:30Z",
+      "log_bytes": null,
+      "log_mtime_utc": null
+    },
+    {
+      "path": "combined-successors-20261029/evidence/jvm-two-fork-integrated-full-optimized",
+      "session": 79782,
+      "resume": "unknown session id / transport disconnected",
+      "exit_file_exists": false,
+      "started": null,
+      "queued": "2026-10-29T07:45:32Z",
+      "log_bytes": null,
+      "log_mtime_utc": null
+    }
+  ],
+  "correction": "Initial07:48 statement that existing sessions survived was based on log contents advancing since earlier snapshot; explicit session resumption disproved it, and parent was notified07:53.",
+  "source_states": [
+    {
+      "path": "combined-successors-20261029/jvm-two-fork-cancellation-fix",
+      "identities": [
+        "5f9edb07a23f2a1647c6f071a8dd3605f630bffc",
+        "295c25156862c596d55d176a91c691ced2cf9e41"
+      ],
+      "status": ""
+    },
+    {
+      "path": "combined-successors-20261029/jvm-two-fork-cancellation-fix-optimized",
+      "identities": [
+        "5f9edb07a23f2a1647c6f071a8dd3605f630bffc",
+        "295c25156862c596d55d176a91c691ced2cf9e41"
+      ],
+      "status": ""
+    },
+    {
+      "path": "combined-successors-20261029/jvm-two-fork-develop-integration",
+      "identities": [
+        "d8f1840ac60ec9c2134f6a01439fac35433d349c",
+        "da88c011b601f106259a4ef8912c0c06c9eb32ee"
+      ],
+      "status": ""
+    },
+    {
+      "path": "combined-successors-20261029/jvm-two-fork-develop-integration-optimized",
+      "identities": [
+        "d8f1840ac60ec9c2134f6a01439fac35433d349c",
+        "da88c011b601f106259a4ef8912c0c06c9eb32ee"
+      ],
+      "status": ""
+    }
+  ]
+}
