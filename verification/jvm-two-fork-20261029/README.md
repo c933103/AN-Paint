@@ -1,3 +1,16 @@
+# Current integrated226: d8f1840 / da88c011, still unadopted
+
+Head `d8f1840ac60ec9c2134f6a01439fac35433d349c`, tree `da88c011b601f106259a4ef8912c0c06c9eb32ee`, parents frozen5f9 and actual merged225 developb05a. Parent independently reconstructed every1611 leaf/mode: all8 inherited225 paths exact, all7 reviewed experiment paths exact, no overlap/conflict or new resolution. Non-force expected5f9 update and remote tree verified.
+
+Current baseline:194 classes/1933 cases/2704 report paths, from accepted225 artifact12879498334/run40830701186 (tree0f596 equals actualb05a). Compressed complete identities bind that baseline. Natural225 run40836724809 is separately pending. Prior1925 comparisons below are not current acceptance.
+
+Fresh Code request6490979502 and CI40837374139 pending. Fresh d8 full modes queued in isolated worktrees behind matching still-running5f9 owners, avoiding four simultaneous suites. Focused42 normal15.544s/optimized14.405s passed after correcting only a direct-test PYTHONPATH omission; original import-harness failure retained.5f9 hosted40836292464 auto-cancelled on integration publication, not pass; terminal metadata retained. No adoption/release; root owns merge.
+
+One-fork225 JVM968.815s demonstrates runtime variation. Prior19e two-fork935.073s had Gradle test task728.460s and summed suite time1424.175s: work overlapped but per-class duration increased under concurrency. Different uncontrolled runs do not establish guaranteed causal speedup. Current complete identity/output and memory/runtime evidence is required.
+
+---
+## Prior evidence snapshots (historical)
+
 # Current cancellation-test successor: exact source, no adoption yet
 
 Current PR226 head `5f9edb07a23f2a1647c6f071a8dd3605f630bffc`, tree `295c25156862c596d55d176a91c691ced2cf9e41`, parent `19e62e20e5f1862ee107e8a37369694e697a7400`. All1606 remote leaf identities/modes and the one changed file's bytes were verified before publishing with the expected non-force lease.
