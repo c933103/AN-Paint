@@ -115,9 +115,24 @@ class ProtectedDraftWarningTest {
                 }
             }
             if (tag in listOf("hr", "bs")) {
-                val reviewed = croatianBosnianFixture.getJSONObject("values")
-                    .getJSONObject("ui_autosave_is_paused_to_protect_that_draft_use")
-                    .getString(tag).removeSurrounding("\"")
+                val key = "ui_autosave_is_paused_to_protect_that_draft_use"
+                val historical = croatianBosnianFixture.getJSONObject("values").getJSONObject(key)
+                val previous = historical.getString(tag)
+                val reviewed = if (tag == "hr") {
+                    val current = JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_macedonian_priority_wording.json").readText())
+                        .getJSONObject("locales").getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+                    assertEquals("Exact historical Croatian warning", previous, current.getString("previous"))
+                    assertEquals("Exact English warning binding", historical.getString("default"), current.getString("source"))
+                    assertTrue(current.getBoolean("changed"))
+                    val attributes = current.getJSONObject("attributes")
+                    assertEquals(setOf("name"), attributes.keys().asSequence().toSet())
+                    assertEquals(key, attributes.getString("name"))
+                    assertEquals(1, Regex(Regex.escape("Save as…")).findAll(previous).count())
+                    val target = previous.replace("Save as…", "Spremi kao…")
+                    assertEquals("Only the accepted complete Croatian successor", target, current.getString("target"))
+                    assertEquals(target.removeSurrounding("\""), current.getString("display"))
+                    current.getString("display")
+                } else previous.removeSurrounding("\"")
                 assertEquals(String.format(Locale.forLanguageTag(tag), reviewed, reason), warning)
                 assertEquals(tag, activity.resources.configuration.locales[0].language)
                 assertTrue(warning.contains("Format slike"))

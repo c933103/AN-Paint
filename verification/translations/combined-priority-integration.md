@@ -7,8 +7,8 @@ linguistic-completion claim. Thai remains replacement evidence; prior unrecovere
 draft work is not reconstructed or credited. Existing holds remain holds.
 
 The twelve locale XML files and five full-value fixtures are unchanged from their
-respective candidate heads. All source/test changes outside the six shared
-integration files are also retained byte-for-byte. Those shared files combine:
+respective candidate heads. Outside six shared integration files and two bounded JVM expectation repairs,
+all source/test changes are retained byte-for-byte. The shared files combine:
 
 - Danish/Norwegian and Nynorsk actual import-warning consumer expectations.
 - All five cohorts' finite memory/SVG/tagged-colour source, attribute and absent-
@@ -19,6 +19,15 @@ integration files are also retained byte-for-byte. Those shared files combine:
   `mk`. The final union is 148 direct and 23 explicit English fallbacks among
   171 options, with no remaining parent-inherited tagged-colour catalogue.
   Existing `da`, `no`, `nn`, `hr` and `bs` entries are not added again.
+
+Two independently reviewed JVM expectation repairs follow the first combined
+candidate: Save/Export Choose-location controls use exact HR/BS full accepted
+values with source/explicit-previous-absence/attribute/display guards, and the
+Croatian protected-draft warning uses its exact recorded predecessor with only
+one `Save as…` → `Spremi kao…` successor. Bosnian warning text is untouched.
+All actual panel decisions, warning routes and state assertions remain. Original
+failed source-candidate XML and the first combined head remain preserved as
+evidence; these expectation repairs do not change production wording.
 
 The final Android loop still compares every actual locale's complete runtime
 value. Existing unsupported-resource fallback, consumer, corruption, native-input,

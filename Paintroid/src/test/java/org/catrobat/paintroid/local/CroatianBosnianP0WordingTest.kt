@@ -87,6 +87,25 @@ class CroatianBosnianP0WordingTest {
 
     private fun saveTitle(tag: String) = priorityDisplay(tag,"save20_title")
 
+    private fun chooseLocation(tag: String): String {
+        val key = "ui_choose_location"
+        val row = priority.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+        val expected = when (tag) {
+            "hr" -> "Odaberi lokaciju…"
+            "bs" -> "Izaberi lokaciju…"
+            else -> error("Unreviewed location locale: $tag")
+        }
+        assertEquals("Choose location…", row.getString("source"))
+        assertTrue(row.has("previous") && row.isNull("previous"))
+        assertTrue(row.getBoolean("changed"))
+        val attributes = row.getJSONObject("attributes")
+        assertEquals(setOf("name"), attributes.keys().asSequence().toSet())
+        assertEquals(key, attributes.getString("name"))
+        assertEquals("\"$expected\"", row.getString("target"))
+        assertEquals(expected, row.getString("display"))
+        return expected
+    }
+
     private fun awaitUi(label: String, ready: () -> Boolean) {
         val until = System.nanoTime() + TimeUnit.SECONDS.toNanos(3)
         while (!ready() && System.nanoTime() < until) {
@@ -337,7 +356,7 @@ class CroatianBosnianP0WordingTest {
                 val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
                 assertDistinctFormatAndFilenameControls(root, tag)
                 assertEquals(formatLabel(tag), spinner.contentDescription.toString())
-                assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(chooseLocation(tag), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(preserved(tag, "ui_cancel"),
                     dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 fun select(format: ImageFormat, key: String) {
@@ -461,7 +480,7 @@ class CroatianBosnianP0WordingTest {
                 assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
                     else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(dialog).title.toString())
                 assertTrue(displayed.contains(formatLabel(tag)))
-                assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(chooseLocation(tag), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(preserved(tag, "ui_cancel"), dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
                 shadowOf(Looper.getMainLooper()).idle()
