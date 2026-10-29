@@ -1480,6 +1480,7 @@ class TaggedColourImportTest {
         assertEquals(140, expected.length())
         addExactScript(expected,exactScriptExpectations())
         assertEquals(141, expected.length())
+        assertEquals(30, 171 - expected.length()) // exact-script stage, before later reviewed additions
         val recovered=JSONObject(File("../tools/fixtures/current_localization/nynorsk_belarusian_albanian_priority_wording.json").readText())
         val recoveredKey="save20_unsupported_image_colour"
         assertEquals(neutral,recovered.getJSONObject("sources").getJSONObject("string/$recoveredKey").getString("source"))
