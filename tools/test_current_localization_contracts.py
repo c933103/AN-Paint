@@ -373,7 +373,7 @@ TAGGED_COLOUR_EXTRA_TAGS |= set(GA_GD_CY_TAGS) | set(KK_TG_PS_TAGS) | set(KA_HY_
 TAGGED_COLOUR_EXTRA_TAGS |= set(GL_TAGS)
 TAGGED_COLOUR_EXTRA_TAGS |= set(MI_SM_RW_TAGS)
 # Explicit runtime parent inheritance, not an additional reviewed catalogue.
-TAGGED_COLOUR_INHERITED_CATALOGUES = {'ca-ES-valencia': 'ca'}
+TAGGED_COLOUR_INHERITED_CATALOGUES = {'ca-ES-valencia': 'ca', 'fa-IR': 'fa'}
 
 
 def current_tagged_colour_data():
@@ -792,6 +792,8 @@ def tagged_colour_expectations(data):
 def require_tagged_colour_resolution(data, strings, offered, english):
     """Model direct values and the one explicit parent fallback, checked by Android too."""
     data = tagged_colour_expectations(data)
+    if TAGGED_COLOUR_INHERITED_CATALOGUES != {'ca-ES-valencia':'ca', 'fa-IR':'fa'}:
+        raise ValueError('Finite tagged-colour parent mapping differs')
     if not (set(TAGGED_COLOUR_INHERITED_CATALOGUES) |
             set(TAGGED_COLOUR_INHERITED_CATALOGUES.values())) <= set(offered):
         raise ValueError('Tagged-colour inheritance uses an unoffered catalogue')
@@ -876,8 +878,8 @@ class CurrentLocalizationContracts(unittest.TestCase):
         english = strings['default'][TAGGED_COLOUR_KEY]
         self.assertEqual(77+len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(data))
         self.assertEqual(94-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.
-        self.assertEqual({'ca-ES-valencia': 'ca'}, TAGGED_COLOUR_INHERITED_CATALOGUES)
-        self.assertEqual(94-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data) - (set(TAGGED_COLOUR_INHERITED_CATALOGUES)-BO_DZ_VAL_TAGS)))
+        self.assertEqual({'ca-ES-valencia': 'ca', 'fa-IR': 'fa'}, TAGGED_COLOUR_INHERITED_CATALOGUES)
+        self.assertEqual(93-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data) - (set(TAGGED_COLOUR_INHERITED_CATALOGUES)-BO_DZ_VAL_TAGS)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:
@@ -935,6 +937,24 @@ class CurrentLocalizationContracts(unittest.TestCase):
         changed_data = dict(data, **{child: data[parent]})
         with self.assertRaises(ValueError):
             require_tagged_colour_resolution(changed_data, strings, offered, english)
+
+    def test_persian_regional_inheritance_is_not_direct_or_english_acceptance(self):
+        from unittest.mock import patch
+        data=current_tagged_colour_data()
+        strings={tag:catalogues.read_strings(path) for tag,path in paths().items()}
+        offered=set(catalogues.offered_tags());english=strings['default'][TAGGED_COLOUR_KEY]
+        self.assertNotIn('fa-IR',data);self.assertNotIn(TAGGED_COLOUR_KEY,strings['fa-IR'])
+        self.assertEqual(fa_he_ur_display('fa',TAGGED_COLOUR_KEY),data['fa'])
+        require_tagged_colour_resolution(data,strings,offered,english)
+        for override in (strings['fa'][TAGGED_COLOUR_KEY],english,'invented direct acceptance'):
+            changed={**strings,'fa-IR':{**strings['fa-IR'],TAGGED_COLOUR_KEY:override}}
+            with self.assertRaises(ValueError):require_tagged_colour_resolution(data,changed,offered,english)
+        with self.assertRaises(ValueError):require_tagged_colour_resolution({**data,'fa-IR':data['fa']},strings,offered,english)
+        for parent in ('he','ur','missing'):
+            with patch.dict(TAGGED_COLOUR_INHERITED_CATALOGUES,{'fa-IR':parent}),self.assertRaises(ValueError):
+                require_tagged_colour_resolution(data,strings,offered,english)
+        for missing in ('fa','fa-IR'):
+            with self.assertRaises(ValueError):require_tagged_colour_resolution(data,strings,offered-{missing},english)
 
     def test_explicit_scope_and_open_fallbacks_match_current_picker(self):
         scope = fixture('locale_contract_scope.json')

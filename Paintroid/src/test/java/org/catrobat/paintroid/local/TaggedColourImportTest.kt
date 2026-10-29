@@ -1515,7 +1515,8 @@ class TaggedColourImportTest {
         assertEquals(171, AppLanguage.tags(context).size)
         val historicalInheritedCatalogues = mapOf("ca-ES-valencia" to "ca")
         assertEquals("ca", historicalInheritedCatalogues["ca-ES-valencia"])
-        val inheritedCatalogues = historicalInheritedCatalogues.filterKeys { it != "ca-ES-valencia" }
+        val inheritedCatalogues = historicalInheritedCatalogues.filterKeys { it != "ca-ES-valencia" } + mapOf("fa-IR" to "fa")
+        assertEquals(mapOf("fa-IR" to "fa"),inheritedCatalogues)
         assertTrue(inheritedCatalogues.keys.none { expected.has(it) })
         val exactScriptStageTags = expected.keys().asSequence().toSet()
         val nordic=JSONObject(File("../tools/fixtures/current_localization/nordic_priority_wording.json").readText())
@@ -1554,8 +1555,10 @@ class TaggedColourImportTest {
         PersianHebrewUrduPriorityExpectations.addTagged(expected,PersianHebrewUrduPriorityExpectations.fixture())
         assertEquals(exactScriptStageTags + combinedAddedTags + setOf("fa","he","ur"), expected.keys().asSequence().toSet())
         assertEquals(151, expected.length())
-        val expectedFallbacks = 171 - expected.length()
-        assertEquals(20, expectedFallbacks)
+        assertFalse(expected.has("fa-IR")) // no regional direct wording acceptance
+        assertEquals(20, 171 - expected.length()) // direct absences include the parent-inherited option
+        val expectedFallbacks = 171 - expected.length() - inheritedCatalogues.size
+        assertEquals(19, expectedFallbacks)
         var inherited = 0
         var fallbacks = 0
         assertTrue(AppLanguage.tags(context).containsAll(expected.keys().asSequence().toList()))
@@ -1577,7 +1580,7 @@ class TaggedColourImportTest {
             assertEquals("Direct, parent-inherited or explicit English family value for $tag",
                 expectedMessage, message)
         }
-        assertEquals(0, inherited)
-        assertEquals(expectedFallbacks, fallbacks) // 171 offered - 151 direct; no inherited catalogue.
+        assertEquals(1, inherited)
+        assertEquals(expectedFallbacks, fallbacks) // 171 offered - 151 direct - 1 explicitly parent-inherited.
     }
 }
