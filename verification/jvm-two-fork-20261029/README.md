@@ -1,3 +1,13 @@
+## Current corrected successor — not adopted
+
+Head `19e62e20e5f1862ee107e8a37369694e697a7400`, tree `86cc089101827dfd108838201bb6f7f8343ddddc`, matching tested synthetic `646380fbf8f395b2cf8356d45f54911f97c73c3d`. All 1,606 remote leaves/modes and both changed-file bytes verified. `current-successor.json` records parent review, exact current gates and original failed states. `startup-fix.diff` is the accepted two-file repair of Codex P2 comment 4409332250. The complete same-checkout stale-success reproduction and raw original attempts are reconstructable with `startup-records-manifest.json`.
+
+Original 3cc full local modes passed 2,024 tests each, but its Code P2 and cancelled hosted run are not retroactively cleared: JVM was skipped, core cancelled, aggregate API35 failed. Current 19e full modes began 06:53 after the old owners terminated, with the unchanged 7,200-second local outer owner budget; all internal/CI limits unchanged. Current hosted 40830722346 and exact-head Code are pending. No real two-fork JVM performance outcome exists yet.
+
+---
+
+### Original experiment history (3cc804b)
+
 # Two-worker JVM experiment — not yet adopted
 
 Source PR [#226](https://github.com/c933103/AN-Paint/pull/226), head `3cc804b03205759861f096496e5f5c5507d70f36`, tree `9795047419c1db0c055df2b6e797a7b2b78a6eab`, parent actual merged #224 `956f6b17fc4ab9196bfbe5ca43064c97a8e8179d`. All 1,606 remote leaves/modes and all seven changed-file bytes read back and verified. Only Gradle test-worker configuration, CI observation/test helpers and CI documentation changed. No application/test Kotlin or Java, locale resources, fixtures, workflow command, assertion, filtering, heap cap or deadline changed.

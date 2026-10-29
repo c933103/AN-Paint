@@ -1,0 +1,106 @@
+diff --git a/tools/ci_run_timed.sh b/tools/ci_run_timed.sh
+index 1f45e1793..1446003b9 100644
+--- a/tools/ci_run_timed.sh
++++ b/tools/ci_run_timed.sh
+@@ -19,7 +19,15 @@ mkdir -p "$directory"
+ # Observe the JVM phase without moving its command into a new session or changing
+ # its deadline. The observer only reads /proc; it never signals measured PIDs.
+ if [[ "$phase" == jvm ]]; then
+-  rm -f "$directory/jvm.memory.json"
++  # A new invocation invalidates old terminal evidence before probe startup.
++  rm -f "$directory/jvm.time" "$directory/jvm.ended-at" "$directory/jvm.log" \
++    "$directory/jvm.memory.json" "$directory/jvm.memory.json.partial" \
++    "$directory/jvm.observer-cleanup.json" "$directory/jvm.observer-cleanup.json.partial"
++  : > "$directory/jvm.time"
++  : > "$directory/jvm.log"
++  date -u +%Y-%m-%dT%H:%M:%SZ > "$directory/jvm.started-at"
++  workload_status=unrun
++  phase_finalized=false
+   python3 tools/ci_observe_jvm_memory.py --root-pid "$$" --output "$directory/jvm.memory.json" &
+   observer=$!
+   observer_start=0
+@@ -40,6 +48,13 @@ if [[ "$phase" == jvm ]]; then
+     local original=$?
+     finish_observer
+     if (( original == 0 && observer_status != 0 )); then original=125; fi
++    # Bash can enter EXIT after a signal with a prior successful shell status.
++    # An unrun/interrupted workload must never acquire a successful receipt.
++    if (( original == 0 )) && [[ "$workload_status" == unrun || "$workload_status" == interrupted ]]; then original=125; fi
++    if [[ "$phase_finalized" == false ]]; then
++      printf 'workload_exit_status=%s\nobserver_exit_status=%s\nobserver_cleanup_complete=%s\nexit_status=%s\n' "$workload_status" "$observer_status" "$observer_cleanup" "$original" >> "$directory/jvm.time"
++      date -u +%Y-%m-%dT%H:%M:%SZ > "$directory/jvm.ended-at"
++    fi
+     exit "$original"
+   }
+   trap finish_on_exit EXIT
+@@ -58,9 +73,10 @@ if [[ "$phase" == jvm ]]; then
+   done
+   [[ -f "$directory/jvm.memory.json" ]] || exit 125
+ fi
+-date -u +%Y-%m-%dT%H:%M:%SZ > "$directory/$phase.started-at"
++if [[ "$phase" != jvm ]]; then date -u +%Y-%m-%dT%H:%M:%SZ > "$directory/$phase.started-at"; fi
+ TIMEFORMAT=$'real_seconds=%R\nuser_seconds=%U\nsys_seconds=%S'
+ status=0
++if [[ "$phase" == jvm ]]; then workload_status=interrupted; fi
+ { time "$@" 2>&1 | tee "$directory/$phase.log"; } 2> "$directory/$phase.time" || status=$?
+ if [[ "$phase" == jvm ]]; then
+   workload_status=$status
+@@ -70,4 +86,5 @@ if [[ "$phase" == jvm ]]; then
+ fi
+ printf 'exit_status=%s\n' "$status" >> "$directory/$phase.time"
+ date -u +%Y-%m-%dT%H:%M:%SZ > "$directory/$phase.ended-at"
++if [[ "$phase" == jvm ]]; then phase_finalized=true; fi
+ exit "$status"
+diff --git a/tools/test_ci_jvm_memory.py b/tools/test_ci_jvm_memory.py
+index 1b974fb8a..e20f795a6 100644
+--- a/tools/test_ci_jvm_memory.py
++++ b/tools/test_ci_jvm_memory.py
+@@ -71,6 +71,37 @@ class JvmMemoryTest(unittest.TestCase):
+             self.assertEqual(result.returncode, 125)
+             self.assertFalse((root / 'command-ran').exists())
+ 
++    def test_reused_checkout_startup_failure_replaces_old_success_and_failed_receipts(self):
++        for prior_status in (0, 7):
++            with self.subTest(prior_status=prior_status), tempfile.TemporaryDirectory() as temporary:
++                root = Path(temporary); (root / 'tools').mkdir()
++                for name in ('ci_run_timed.sh', 'ci_observe_jvm_memory.py'):
++                    shutil.copy(ROOT / 'tools' / name, root / 'tools')
++                before = subprocess.run(['bash', 'tools/ci_run_timed.sh', 'jvm', 'bash', '-c',
++                    f'echo previous-invocation; exit {prior_status}'], cwd=root,
++                    capture_output=True, text=True, timeout=5)
++                self.assertEqual(before.returncode, prior_status, before.stderr)
++                reports = root / 'build/reports/ci-phases'
++                prior = (reports / 'jvm.time').read_text()
++                self.assertIn(f'workload_exit_status={prior_status}\n', prior)
++                self.assertTrue((reports / 'jvm.memory.json').exists())
++                (reports / 'jvm.ended-at').write_text('old terminal marker\n')
++                real = str(ROOT / 'tools/ci_observe_jvm_memory.py')
++                (root / 'tools/ci_observe_jvm_memory.py').write_text(
++                    'import sys,runpy\n'
++                    f'if "--stop-pid" in sys.argv: runpy.run_path({real!r},run_name="__main__")\n'
++                    'raise SystemExit(19)\n')
++                after = subprocess.run(['bash', 'tools/ci_run_timed.sh', 'jvm', 'touch', 'must-not-run'],
++                                       cwd=root, capture_output=True, text=True, timeout=5)
++                self.assertEqual(after.returncode, 125, after.stderr)
++                self.assertFalse((root / 'must-not-run').exists())
++                current = dict(line.split('=', 1) for line in (reports / 'jvm.time').read_text().splitlines())
++                self.assertEqual(current, {'workload_exit_status': 'unrun', 'observer_exit_status': '19',
++                    'observer_cleanup_complete': 'true', 'exit_status': '125'})
++                self.assertEqual((reports / 'jvm.log').read_text(), '')
++                self.assertFalse((reports / 'jvm.memory.json').exists())
++                self.assertRegex((reports / 'jvm.ended-at').read_text(), r'^\d{4}-\d\d-\d\dT')
++
+     def test_cancelled_jvm_remains_failure_with_partial_output(self):
+         with tempfile.TemporaryDirectory() as temporary:
+             root = Path(temporary); (root / 'tools').mkdir()
+@@ -82,7 +113,9 @@ class JvmMemoryTest(unittest.TestCase):
+             self.assertEqual(result.returncode, 124)
+             reports = root / 'build/reports/ci-phases'
+             self.assertEqual((reports / 'jvm.log').read_text(), 'partial-jvm\n')
+-            self.assertNotIn('exit_status=0', (reports / 'jvm.time').read_text())
++            receipt = dict(line.split('=', 1) for line in (reports / 'jvm.time').read_text().splitlines() if '=' in line)
++            self.assertNotEqual(receipt['exit_status'], '0')
++            self.assertNotEqual(receipt['workload_exit_status'], '0')
+ 
+     def test_bad_proc_record_is_not_silently_ignored(self):
+         with tempfile.TemporaryDirectory() as temporary:
