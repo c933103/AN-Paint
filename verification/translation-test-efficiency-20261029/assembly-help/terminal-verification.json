@@ -1,0 +1,166 @@
+{
+  "head": "b050b3691c6dbee966d666c47b388b7537f084b7",
+  "tree": "0926f300002fa33653562604d5ed1d999aeabfda",
+  "tested_merge": "db3bf74a5461c05a15b22d9fd5e046bad4b4bd5f",
+  "run_id": 40850241366,
+  "all_six_jobs_success": true,
+  "code_exact_head_clean": true,
+  "artifacts": {
+    "regression": {
+      "artifact_id": 12888768415,
+      "bytes": 84703269,
+      "sha256": "c193e5379344fa317eb9999f30714ba07a35a1f397914d4b311d0575773be40b"
+    },
+    "api35": {
+      "artifact_id": 12888426737,
+      "bytes": 12159452,
+      "sha256": "e41d8de2caec4c65c4ab70a32a9249b67dc1a659ddb7352b0a7c01c722318c18"
+    }
+  },
+  "python": {
+    "cases": 2031,
+    "seconds": 1023.041,
+    "documented_skips": 2,
+    "owner_lifecycle": {
+      "launch_id": "71d42265fadb41c388bae2d49f1c1e26",
+      "reason": "completed",
+      "forced_kill": "false",
+      "owned_children_remaining": "0",
+      "cleanup_complete": "true",
+      "output_complete": "true"
+    }
+  },
+  "jvm": {
+    "classes": 195,
+    "cases": 1937,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "exact_identity_set_equals_accepted_227": true
+  },
+  "phase_timings": {
+    "python": {
+      "real_seconds": "1024.608",
+      "user_seconds": "962.361",
+      "sys_seconds": "30.547",
+      "exit_status": "0"
+    },
+    "jvm": {
+      "real_seconds": "1025.792",
+      "user_seconds": "2.939",
+      "sys_seconds": "0.440",
+      "exit_status": "0"
+    },
+    "lint": {
+      "real_seconds": "140.802",
+      "user_seconds": "407.859",
+      "sys_seconds": "8.285",
+      "exit_status": "0"
+    }
+  },
+  "lint_issues": 0,
+  "api35": {
+    "identity": {
+      "commit": "db3bf74a5461c05a15b22d9fd5e046bad4b4bd5f",
+      "run_id": "40850241366",
+      "build_variant": "debug",
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27",
+      "device_sdk": 35,
+      "apk_sha256": "7cdbba3d6ed3b8363ebfb7f2e68b7462e45e26f9926e09c7c629d40ee9ab0d9b",
+      "source_sha256": "6e75df59275dd805aac7af326a90a9ffde1772c71eb2c0595f408d978d48ed43",
+      "test_apk_sha256": "8ef1175fc978ed3602c32b3192b2387d796c768b07d14d7d687a53cc8621f6ba",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "app_cases": 49,
+    "native_cases": 74,
+    "exact_prior_identity_set_preserved": true,
+    "phases": {
+      "Paintroid/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 74,
+        "expected_tests": 74,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 81.35634054500002,
+        "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+      },
+      "app/accepted-credit-restart/seed/summary.json": {
+        "success": true,
+        "completed_tests": 1,
+        "expected_tests": 1,
+        "timeout_seconds": 60,
+        "elapsed_seconds": 9.331653124000013,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app/accepted-credit-restart/verify/summary.json": {
+        "success": true,
+        "completed_tests": 1,
+        "expected_tests": 1,
+        "timeout_seconds": 60,
+        "elapsed_seconds": 9.408038000000033,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 19,
+        "expected_tests": 19,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 166.28574652999998,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-dialog/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 14,
+        "expected_tests": 14,
+        "timeout_seconds": 300,
+        "elapsed_seconds": 219.565351469,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-gallery-draft/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 3,
+        "expected_tests": 3,
+        "timeout_seconds": 90,
+        "elapsed_seconds": 49.900892741999996,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-position/ainu-manchu/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 3,
+        "expected_tests": 3,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 102.36363235200002,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-position/tibetan-jeju-nom/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 4,
+        "expected_tests": 4,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 93.78878816000002,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-vertical/english-manchu/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 2,
+        "expected_tests": 2,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 123.99196429400001,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-vertical/literary-chinese-emoji/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 2,
+        "expected_tests": 2,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 118.67411426600006,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      }
+    },
+    "png_count": 147
+  },
+  "limits": "No runtime-saving or new visual/linguistic acceptance claim. Hosted aggregate and focused normal/optimized remain distinct. Optional old security flags unavailable/gate disabled. Prior bb0 cancellation remains historical."
+}
