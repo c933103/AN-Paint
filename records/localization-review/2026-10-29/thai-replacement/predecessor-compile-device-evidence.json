@@ -1,0 +1,43 @@
+{
+  "prior_head": "8ca88befb765d19dee0e0db05a4033e9d1fbf60b",
+  "run": 40799246718,
+  "status": "failure",
+  "python": {
+    "tests": 1964,
+    "seconds": 906.184,
+    "skips": 2,
+    "passed": true
+  },
+  "jvm_compile": {
+    "job": 123203276338,
+    "error": "CommonsSvgErrorTranslationTest.kt:217:50 No type arguments expected for fun getApplication(): Application!",
+    "repair": "Remove unsupported generic type argument; keep all qtz and source assertions."
+  },
+  "core": {
+    "job": 123205291943,
+    "artifact": 12865514930,
+    "artifact_sha256": "515374c1442f418bdd2593c4f2131aed7118339fc76b310d34f8ab10eb876612",
+    "test": "LocalizedDialogDeviceTest.aboutArtworkNoticeCompletesNativeFooterFlow",
+    "locale": "fr",
+    "font_scale": 2,
+    "error": "No native scroll route to full caption: terms_title raw[47,33,592,109], visible[47,48,592,108], wanted Rect(47,72-592,109)",
+    "missing_reports": "accepted-credit-restart seed/verify; downstream symptoms, not independently classified causes",
+    "parent_diagnosis": "Native test-route boundary hypothesis: last1px rejected by canScrollVertically although exact ScrollView range remains16. Not proven production clipping; parent owns bounded separate repair preserving full containment/deadlines.",
+    "unchanged_vs_0070_and_pr113": "LocalizedDialogDeviceTest plus all Paintroid production Java/Kotlin paths; test SHA2561d1bed3eaacaebcf8cfcb811273ea0b60fa4818f8af0bdece7ada798141becc5"
+  },
+  "successors": {
+    "hi_gu": {
+      "head": "1351a28fa924ea28b16b6fe1fb12bd1b0e2e909a",
+      "tree": "ae5e881d0a267be1043cd0f9d67a48b53404f0cf"
+    },
+    "thai": {
+      "head": "7acb8be5a23a3e16fa1ff89a71197294926c6666",
+      "tree": "338e381c0ae7b203f5297634fd2074c7f626f452",
+      "merge_parents": [
+        "e28c667b6d285f0dd410210af15ef2d9e47e874e",
+        "1351a28fa924ea28b16b6fe1fb12bd1b0e2e909a"
+      ]
+    }
+  },
+  "gates": "Fresh exact-head Codex/CI pending; no failed-run waiver or blind same-head retry; local runs started on prior whole trees must be labelled accordingly."
+}
