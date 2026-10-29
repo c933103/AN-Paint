@@ -417,7 +417,8 @@ class SerbianP0WordingTest {
         val format = "GIF 100%"
         assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_unknown"), format),
             ui(R.string.formats22_animation_unknown, format))
-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format, "at least 2"),
+        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format,
+            String.format(Locale.forLanguageTag(tag),added(tag,"formats22_at_least_frames"),2)),
             ui(R.string.formats22_animation_message, format, ui(R.string.formats22_at_least_frames, 2)))
         val filename = "drawing 100%.png"
         val detail = "provider 50% unavailable"

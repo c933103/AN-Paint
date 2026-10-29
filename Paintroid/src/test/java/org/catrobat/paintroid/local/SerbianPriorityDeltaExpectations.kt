@@ -12,7 +12,7 @@ internal object SerbianPriorityDeltaExpectations {
         val bytes=File("../tools/fixtures/current_localization/serbian_priority_delta_wording.json").readBytes()
         val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes)
             .joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Finite Serbian delta/context fixture", "c4805743cc2dcc04c6a0bea1fa28fbd7e323876dbc6d51f967a42206c22ed876",actual)
+        assertEquals("Finite Serbian delta/context fixture", "11eb6ba37f8521033694cf3c84770efcc0bf370ac63f118b91a608c20b37bb47",actual)
         return JSONObject(String(bytes,Charsets.UTF_8))
     }
     fun same(expected: Any?, actual: Any?) {

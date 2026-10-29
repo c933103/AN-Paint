@@ -70,6 +70,25 @@ class SerbianPriorityDeltaTests(unittest.TestCase):
             for key in d['dependencies']:
                 r=d['values'][key];self.assertIsNone(r['previous']);self.assertEqual(r['target'],current.addition(tag,key,r['source'],None))
                 with self.assertRaises(ValueError):current.addition(tag,key,r['source'],'forged')
+    def test_retained_top_P2_context_is_complete_exact_and_not_an_accepted_change(self):
+        for tag,label in [('sr-Cyrl','Горе'),('sr-Latn','Gore')]:
+            key='ui_top';row=current.row(tag,key)
+            self.assertEqual({'source':'Top','attributes':{'name':key},'previous':'"'+label+'"','target':'"'+label+'"','display':label,'changed':False,'review_status':'retained_P2_consumer_context'},row)
+            self.assertNotIn(key,self.data[tag]['values']);self.assertNotIn(key,self.data[tag]['priority_status'])
+            self.assertEqual(('Top',{'name':key}),(self.roots['default'].find(f"./string[@name='{key}']").text,self.roots['default'].find(f"./string[@name='{key}']").attrib))
+            require_string(self.xml[tag],key,row['target'],{'attributes':row['attributes'],'child_elements':0})
+            for field in ('source','previous','target','display','review_status'):
+                bad=current.reviewed_fixture();bad['locales'][tag]['context'][key][field]='forged'
+                with self.subTest(tag=tag,field=field),self.assertRaises(ValueError):current.require_reviewed_fixture(bad)
+            bad=current.reviewed_fixture();del bad['locales'][tag]['context'][key]['previous']
+            with self.assertRaises(ValueError):current.require_reviewed_fixture(bad)
+            for mode in ('missing','duplicate','text','attributes'):
+                root=ET.fromstring(self.xml[tag]);node=root.find(f"./string[@name='{key}']")
+                if mode=='missing':root.remove(node)
+                elif mode=='duplicate':root.append(deepcopy(node))
+                elif mode=='text':node.text='forged'
+                else:node.set('formatted','false')
+                with self.subTest(tag=tag,mode=mode),self.assertRaises(ValueError):require_string(ET.tostring(root,encoding='unicode'),key,row['target'],{'attributes':row['attributes'],'child_elements':0})
     def test_coordinated_target_display_and_xml_cannot_replace_any_accepted_row(self):
         for tag,locale in self.data.items():
             for key,row in locale['values'].items():

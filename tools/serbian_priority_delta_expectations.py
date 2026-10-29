@@ -6,7 +6,7 @@ TAGS=frozenset({'sr-Cyrl','sr-Latn'})
 MEMORY_ADDITIONS=frozenset((tag,'ui_no_resize_fits_decoder_memory') for tag in TAGS)
 # Only the finite reviewed delta/context fixture is bound, never application source files.
 # Its context statuses remain retained/pending; this digest does not grant language credit.
-FIXTURE_SHA256='c4805743cc2dcc04c6a0bea1fa28fbd7e323876dbc6d51f967a42206c22ed876'
+FIXTURE_SHA256='11eb6ba37f8521033694cf3c84770efcc0bf370ac63f118b91a608c20b37bb47'
 def validated_fixture_text(text):
     import hashlib,json
     if hashlib.sha256(text.encode('utf-8')).hexdigest()!=FIXTURE_SHA256:
