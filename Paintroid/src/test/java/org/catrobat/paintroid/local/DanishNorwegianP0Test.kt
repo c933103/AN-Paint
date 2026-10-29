@@ -30,7 +30,7 @@ import java.util.Locale
 class DanishNorwegianP0Test {
     private lateinit var previousResources: Resources
     private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText())
+        NordicPriorityExpectations.project(JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText()))
     }
     private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
         .getJSONObject(key).getString(tag).removeSurrounding("\"")
@@ -51,7 +51,7 @@ class DanishNorwegianP0Test {
         }
     }
 
-    @Test fun all78CompiledValuesPerLocaleAndEveryInheritedValueRemainExact() = forEachLocale { tag, context ->
+    @Test fun all78CompiledValuesAndInheritedValuesRespectFinitePrioritySuccessors() = forEachLocale { tag, context ->
         val values = fixture.getJSONObject("values")
         assertEquals(78, values.length())
         for (key in values.keys()) {
@@ -67,13 +67,13 @@ class DanishNorwegianP0Test {
             assertNotEquals("$tag/$key", 0, id)
             assertEquals("Inherited $tag/$key", preserved.getJSONObject(key).getString("value").removeSurrounding("\""), context.getString(id))
         }
-        assertEquals("Image format", ui(R.string.save20_file_format))
+        assertEquals(NordicPriorityExpectations.display(tag,"save20_file_format"), ui(R.string.save20_file_format))
         assertEquals(if (tag == "da") "Gem ændringer?" else "Lagre endringer?", ui(R.string.ui_save_your_changes))
-        assertEquals("Load image…", ui(R.string.ui_load_image))
-        assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
-        assertEquals("Choose location…", ui(R.string.ui_choose_location))
+        assertEquals(NordicPriorityExpectations.display(tag,"ui_load_image"), ui(R.string.ui_load_image))
+        assertEquals(String.format(Locale.forLanguageTag(tag),NordicPriorityExpectations.display(tag,"formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
+        assertEquals(NordicPriorityExpectations.display(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
         assertEquals("Image assembly…", ui(R.string.ui_image_assembly))
-        assertEquals("Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.", ui(R.string.ui_no_resize_fits_decoder_memory))
+        assertEquals(NordicPriorityExpectations.display(tag,"ui_no_resize_fits_decoder_memory"), ui(R.string.ui_no_resize_fits_decoder_memory))
         assertEquals("PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", ui(R.string.formats22_derived_exported, "PNG"))
         assertEquals("Save as PNG", ui(R.string.ui_save_as, "PNG"))
         assertEquals("Save as JPEG…", ui(R.string.ui_save_as_jpeg))

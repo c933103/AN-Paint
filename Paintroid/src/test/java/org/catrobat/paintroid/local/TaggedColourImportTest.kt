@@ -1480,6 +1480,13 @@ class TaggedColourImportTest {
         assertEquals(140, expected.length())
         addExactScript(expected,exactScriptExpectations())
         assertEquals(141, expected.length())
+        val nordic=JSONObject(File("../tools/fixtures/current_localization/nordic_priority_wording.json").readText())
+        val nordicKey="save20_unsupported_image_colour"
+        assertEquals(neutral,nordic.getJSONObject("sources").getJSONObject(nordicKey).getString("source"))
+        assertFalse(expected.has("is"))
+        assertFalse(nordic.getJSONObject("locales").getJSONObject("is").getJSONObject("predecessors").has(nordicKey))
+        expected.put("is",NordicPriorityExpectations.display("is",nordicKey))
+        assertEquals(142,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -1514,6 +1521,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(0, inherited)
-        assertEquals(30, fallbacks) // 171 offered - 141 direct, including direct Valencian and Tatar Latin; no remaining inherited catalogue.
+        assertEquals(29, fallbacks) // 171 offered - 142 direct, including direct Valencian and Tatar Latin; no remaining inherited catalogue.
     }
 }
