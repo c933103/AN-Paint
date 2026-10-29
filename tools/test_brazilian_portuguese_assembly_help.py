@@ -3,11 +3,10 @@
 The fixture is one reviewed value, not a generator or permanent source hash.
 Explicit ValueError checks and unittest assertions remain active under python -O.
 """
-from copy import deepcopy
 import json
 from pathlib import Path
 import unittest
-import xml.etree.ElementTree as ET
+import assembly_help_checks as help_checks
 
 ROOT = Path(__file__).resolve().parents[1]
 KEY = 'ui_add_up_to_20_images_with_android_s'
@@ -41,26 +40,13 @@ def require_complete(root, expected):
 class BrazilianPortugueseAssemblyHelpTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.fixture = json.loads(FIXTURE.read_text(encoding='utf-8'))
-        cls.expected = require_fixture(cls.fixture)
-        cls.root = ET.parse(RESOURCE).getroot()
-        cls.paragraphs = cls.expected.split(r'\n\n')
+        help_checks.set_up_class(cls, FIXTURE, RESOURCE, require_fixture)
 
     def reject_value(self, value):
-        self.assertNotEqual(self.expected, value, 'Corruption must not be a no-op')
-        broken = deepcopy(self.root)
-        broken.find(f"./string[@name='{KEY}']").text = value
-        with self.assertRaises(ValueError):
-            require_complete(broken, self.expected)
+        help_checks.reject_value(self, value, KEY, require_complete)
 
     def test_exact_complete_eight_paragraph_value(self):
-        require_complete(self.root, self.expected)
-        self.assertEqual(8, len(self.paragraphs))
-        self.assertEqual(14, self.expected.count(r'\n'))
-        self.assertNotRegex(self.expected, r'%\d+\$')
-        english = ET.parse(ROOT / 'Paintroid/src/main/res/values/strings.xml').find(f"./string[@name='{KEY}']").text
-        self.assertEqual(8, len(english.split(r'\n\n')))
-        self.assertEqual(14, english.count(r'\n'))
+        help_checks.check_complete_eight_paragraph_value(self, ROOT, KEY, require_complete)
 
     def test_actual_captions_and_existing_p3_scope(self):
         for key in CAPTIONS:
@@ -86,20 +72,7 @@ class BrazilianPortugueseAssemblyHelpTests(unittest.TestCase):
                     self.reject_value(self.expected.replace(sentence, replacement, 1))
 
     def test_oracle_rejects_each_paragraph_omission_duplication_and_reorder(self):
-        for index in range(8):
-            for kind in ('omit', 'duplicate'):
-                changed = list(self.paragraphs)
-                if kind == 'omit':
-                    del changed[index]
-                else:
-                    changed.insert(index, changed[index])
-                with self.subTest(paragraph=index, mutation=kind):
-                    self.reject_value(r'\n\n'.join(changed))
-        for index in range(7):
-            changed = list(self.paragraphs)
-            changed[index], changed[index + 1] = changed[index + 1], changed[index]
-            with self.subTest(paragraph=index, mutation='adjacent-swap'):
-                self.reject_value(r'\n\n'.join(changed))
+        help_checks.check_paragraph_corruptions(self)
 
     def test_oracle_rejects_mode_memory_and_other_semantic_corruptions(self):
         mutations = {'unscoped-origin': ('Ao encaixar imagens, a primeira imagem começa na origem.', 'A primeira imagem começa na origem.'), 'unscoped-overlap': ('As sobreposições são rejeitadas durante o encaixe.', 'As sobreposições são rejeitadas.'), 'wrong-position-label': ('use «Posição exata»', 'use «Posição»'), 'wrong-corner': ('do canto superior esquerdo', 'do canto inferior direito'), 'wrong-origin': ('a partir de zero', 'a partir de um'), 'wrong-position-unit': ('em números inteiros de pixels', 'em porcentagem'), 'exact-position-moves-others': ('As outras imagens mantêm suas posições', 'As outras imagens mudam de posição'), 'exact-position-rejects-overlap': ('as sobreposições são permitidas', 'as sobreposições são proibidas'), 'crop-movement-unconditional': ('As imagens encaixadas podem se mover quando', 'As imagens encaixadas sempre se movem quando'), 'gap-movement-unconditional': ('as imagens encaixadas podem se mover para', 'as imagens encaixadas sempre se movem para'), 'unconditional-smaller-output': ('escolha uma cópia de saída menor, se essa opção estiver disponível.', 'escolha uma cópia de saída menor.'), 'wrong-tiny-output-branch': ('o app mostra um aviso de memória em vez de um seletor de tamanho.', 'o app mostra um seletor de tamanho.'), 'resize-removes-crop': ('remove a normalização e mantém os recortes', 'remove a normalização e os recortes'), 'zoom-changes-output': ('nunca altera as dimensões de saída', 'sempre altera as dimensões de saída'), 'editor-replacement-not-undoable': ('como uma substituição que pode ser desfeita', 'como uma substituição que não pode ser desfeita'), 'provider-time-unconditional': ('quando fornecidas pelo provedor', 'mesmo quando não fornecidas pelo provedor')}
@@ -109,18 +82,7 @@ class BrazilianPortugueseAssemblyHelpTests(unittest.TestCase):
                 self.reject_value(self.expected.replace(before, after, 1))
 
     def test_oracle_rejects_resource_structure_changes(self):
-        for mutation in ('missing', 'duplicate', 'wrong-key', 'attribute', 'markup', 'empty', 'truncated'):
-            broken = deepcopy(self.root)
-            node = broken.find(f"./string[@name='{KEY}']")
-            if mutation == 'missing': broken.remove(node)
-            elif mutation == 'duplicate': broken.append(deepcopy(node))
-            elif mutation == 'wrong-key': node.set('name', KEY + '_wrong')
-            elif mutation == 'attribute': node.set('formatted', 'false')
-            elif mutation == 'markup': ET.SubElement(node, 'b').text = 'Unexpected'
-            elif mutation == 'empty': node.text = None
-            elif mutation == 'truncated': node.text = node.text[:-1]
-            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
-                require_complete(broken, self.expected)
+        help_checks.check_resource_structure(self, KEY, require_complete)
 
     def test_oracle_rejects_unicode_escape_placeholder_and_clause_relocation(self):
         mutations = (
