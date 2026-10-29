@@ -1,0 +1,19 @@
+{
+  "archive_bytes": 115512,
+  "archive_sha256": "2ada70bd5cb6905d461378d857f457b9d2626e6ff31e6432942e2eb771281f57",
+  "parts": [
+    {
+      "path": "cancellation-records.tar.xz.part01",
+      "bytes": 65536,
+      "sha256": "01d9c2547b7f8cc138de43e96555c82578e516f18ba01aab5f334e3559ff58d5"
+    },
+    {
+      "path": "cancellation-records.tar.xz.part02",
+      "bytes": 49976,
+      "sha256": "a4e8656f2b0e00681481f6126a647a674eebf734d60afed671d9a8ef30d9bf19"
+    }
+  ],
+  "restore": "Concatenate numbered parts, verify archive SHA256, then tar -xJf.",
+  "source_head": "19e62e20e5f1862ee107e8a37369694e697a7400",
+  "reviewed_successor_head": "5f9edb07a23f2a1647c6f071a8dd3605f630bffc"
+}
