@@ -1,0 +1,67 @@
+{
+  "source_head": "2e58204c73ff24ea9b73fbaf4d265baa1e0c3fce",
+  "source_tree": "de438227d759a2def5fc987600c3c1591f452f9f",
+  "normal": {
+    "tests": 1994,
+    "seconds": 1456.927,
+    "exit": 0,
+    "lifecycle": {
+      "launch_id": "255f4bf4ec8f40b294fd771b6956a3f5",
+      "reason": "completed",
+      "forced_kill": "false",
+      "owned_children_remaining": "0",
+      "cleanup_complete": "true",
+      "output_complete": "true"
+    },
+    "started_at": "2026-10-29T02:59:05Z",
+    "ended_at": "2026-10-29T03:23:24Z",
+    "console_sha256": "0f2ab1f616f68413e654540dbd36cc238d68924d30421422f094570466ba366c"
+  },
+  "optimized_first_attempt": {
+    "tests": 1994,
+    "seconds": 1462.165,
+    "exit": 1,
+    "lifecycle": {
+      "launch_id": "268dc6bb47ee496591e5a593ef09414f",
+      "reason": "completed",
+      "forced_kill": "false",
+      "owned_children_remaining": "0",
+      "cleanup_complete": "true",
+      "output_complete": "true"
+    },
+    "started_at": "2026-10-29T02:59:25Z",
+    "ended_at": "2026-10-29T03:23:52Z",
+    "console_sha256": "9c5e5820ec471e688abc3857f7d60e478ac1288de36b84dd9aaf5492f1e0c222"
+  },
+  "focused_reproduction": {
+    "normal": {
+      "tests": 13,
+      "seconds": 6.282,
+      "exit": 0,
+      "log_sha256": "6df1caa3228bfc6dee91c7683724adbec9435235da8573a125b5779f6457b4e9"
+    },
+    "optimized": {
+      "tests": 13,
+      "seconds": 5.635,
+      "exit": 0,
+      "log_sha256": "db70290419af156cfebfa45f5ecee01e7aaa1507b75c5a981021a7f4bfb30e9c"
+    }
+  },
+  "optimized_full_recheck": "running; unchanged exact head and original1800/15 deadline",
+  "failure": {
+    "test": "test_ci_python_process_group.PythonProcessGroupTests.test_deadline_stays_failure_when_term_handler_exits_zero",
+    "assertion": "'ready' not found in ''",
+    "prior_assertion": "expected deadline exit124 passed",
+    "fixture_timeout_seconds": 0.3,
+    "observed_scope": "child readiness output absent before deadline; the trace does not establish why startup/readiness was late",
+    "inference": "short startup precondition is timing-sensitive; initial/recheck scheduling differs, not a proven production bug",
+    "classification": "first optimized aggregate remains FAILED; isolated passes do not clear it; full recheck separately required",
+    "not_changed": [
+      "source code",
+      "deadline",
+      "cleanup bound",
+      "assertions",
+      "suite selection"
+    ]
+  }
+}
