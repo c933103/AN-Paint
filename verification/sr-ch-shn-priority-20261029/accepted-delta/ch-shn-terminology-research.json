@@ -1,0 +1,119 @@
+{
+  "status": "Research anchors only; no independent linguistic acceptance or production edits",
+  "base": "246f2bbfa3e156b832f65f7a8c468c9a36306537",
+  "scope": [
+    "ch",
+    "shn"
+  ],
+  "date": "2026-10-29",
+  "ch": {
+    "source": "https://natibunmarianas.org/p/",
+    "source_version": "Dictionary site identifies revised January 2024 edition; web read 2026-10-29",
+    "anchors": [
+      {
+        "term": "pinenta",
+        "sense": "noun for depicted picture/design/painting/drawing",
+        "entry_line": 751,
+        "candidate_keys": [
+          "ui_image",
+          "ui_menu_image"
+        ],
+        "limit": "Does not establish a drawing-activity noun or every digital image context."
+      },
+      {
+        "term": "penta",
+        "sense": "transitive drawing/painting action",
+        "entry_line": 606,
+        "candidate_keys": [
+          "ui_draw26"
+        ],
+        "limit": "Imperative menu wording and companion noun forms need independent verification."
+      },
+      {
+        "term": "pensét",
+        "sense": "paintbrush noun",
+        "entry_line": 605,
+        "candidate_keys": [
+          "ui_brush",
+          "ui_category_brush"
+        ],
+        "limit": "Physical tool is lexical support, not independent acceptance of digital UI terminology."
+      }
+    ],
+    "rejected_shortcuts": [
+      "Do not infer digital Save from rescue dictionary senses alone. Later primary MediaWiki software context supplies separate evidence; it still requires AN Paint context and orthography review.",
+      "Do not use image-object noun as the BRUSH drawing-activity category label without contextual review.",
+      "Do not silently generalize the dictionary's Saipan-labelled yunga' to all offered ch users.",
+      "Do not silently mix Guam and CNMI orthographic variants."
+    ],
+    "unresolved_technical_domains": [
+      "file persistence and Save as",
+      "draft recovery versus current image",
+      "working memory versus device storage",
+      "decoder and encoding buffers",
+      "canvas bounds versus resampling",
+      "colour profiles and lossless encoding",
+      "animation and lower-bound frame counts"
+    ],
+    "additional_primary_source": {
+      "url": "https://raw.githubusercontent.com/wikimedia/mediawiki/5ae807b624cc1e70960c8e84a899d21572bf1179/languages/i18n/ch.json",
+      "verified": "Exact immutable content equals live fetched 2026-10-29; 604 catalogue members including metadata",
+      "findings": [
+        "Actual software savearticle/tooltip-save entries attest a save verb, unlike general rescue dictionary evidence.",
+        "savearticle and tooltip-save differ in accent marking; do not normalize automatically.",
+        "File entries use atkibu; menu image references in MediaWiki may actually mean file namespace, not image pixels.",
+        "editundo is a wiki revision action, not sufficient evidence to label AN Paint undo history without review."
+      ]
+    }
+  },
+  "shn": {
+    "source": "https://raw.githubusercontent.com/wikimedia/mediawiki/5ae807b624cc1e70960c8e84a899d21572bf1179/languages/i18n/shn.json",
+    "source_version": "Exact commit 5ae807b624cc1e70960c8e84a899d21572bf1179 (2026-10-28); fetched frozen content equals live catalogue read 2026-10-29",
+    "anchors": [
+      {
+        "term": "သိမ်း",
+        "sense": "digital save action",
+        "source_key": "upload-dialog-button-save",
+        "candidate_keys": [
+          "ui_save",
+          "ui_save_a5d0d9"
+        ]
+      },
+      {
+        "term": "တူၺ်းတူဝ်ယၢင်ႇ",
+        "sense": "preview action",
+        "source_key": "preview",
+        "candidate_keys": [
+          "ui_preview"
+        ],
+        "limit": "Compare alternate preview wording in same catalogue; independent contextual choice required."
+      },
+      {
+        "term": "ၾၢႆႇ",
+        "sense": "file noun in file upload and filename messages",
+        "source_key": "badfilename",
+        "candidate_keys": [
+          "save20_file_name",
+          "ui_menu_file"
+        ],
+        "limit": "A noun anchor cannot certify full filenames or memory warnings."
+      }
+    ],
+    "other_primary_sources": [
+      "https://www.shandictionary.com/data",
+      "https://www.kddictionary.com/dictionary/eng-shan",
+      "https://translation.shanlc.org/"
+    ],
+    "unresolved_technical_domains": [
+      "canvas bounds and crop",
+      "working memory and decoder floor",
+      "draft recovery and undo cache",
+      "colour profiles",
+      "animation retention",
+      "accessibility gesture instructions"
+    ],
+    "dictionary_access": "Web text exposes KD browse pages but not dynamic search results. Browser bind timed out; not a denial or bot block. Browser operations paused in coordination with parent, not worked around."
+  },
+  "full_inventory": "source-context-inventory.json contains complete 341 P0/P1 English/current resources and consumers per option. No lexical anchor alone upgrades any inventory row to accepted.",
+  "next_action": "Develop contextual proposals only where reliable; retain explicit terminology gaps for independent review. Serbian full packet is separately frozen pending review."
+}
