@@ -1480,6 +1480,7 @@ class TaggedColourImportTest {
         assertEquals(140, expected.length())
         addExactScript(expected,exactScriptExpectations())
         assertEquals(141, expected.length())
+        assertEquals(30, 171 - expected.length())
         val macedonian=JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_macedonian_priority_wording.json").readText())
             .getJSONObject("locales").getJSONObject("mk").getJSONObject("values").getJSONObject("save20_unsupported_image_colour")
         assertFalse(expected.has("mk"))

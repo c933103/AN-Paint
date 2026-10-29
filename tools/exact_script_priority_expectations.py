@@ -292,7 +292,7 @@ def require_main_successor(text):
     return text
 
 def require_tagged_jvm_source(text):
-    for fragment in ('exactScriptSameJson(current,row)','assertFalse(expected.has(tag));assertTrue(row.isNull("previous_target"))','assertEquals(setOf("tt-Latn"),supplied.keys().asSequence().toSet())','addExactScript(expected,exactScriptExpectations())','assertEquals(140, expected.length())','assertEquals(141, expected.length())','assertEquals(30, fallbacks)','@Test fun exactScriptTaggedRejectsCoordinatedFixtureAndPredecessorMutations()'):
+    for fragment in ('exactScriptSameJson(current,row)','assertFalse(expected.has(tag));assertTrue(row.isNull("previous_target"))','assertEquals(setOf("tt-Latn"),supplied.keys().asSequence().toSet())','addExactScript(expected,exactScriptExpectations())','assertEquals(140, expected.length())','assertEquals(141, expected.length())','assertEquals(141, expected.length())\n        assertEquals(30, 171 - expected.length())','@Test fun exactScriptTaggedRejectsCoordinatedFixtureAndPredecessorMutations()'):
         if text.count(fragment)!=1:raise ValueError('Finite tagged consumer/binding differs')
     return text
 
