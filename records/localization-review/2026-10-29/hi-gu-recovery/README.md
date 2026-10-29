@@ -1,0 +1,3 @@
+# Hindi/Gujarati recovered integration evidence
+
+Application PR216 head e48010c4a37e6d59496276d8930068ea6dcaef35, tree d18c9db2659ea4945a4eec9f2a14b2628051b7aa. Archive includes parent independent source acceptance, all696 original source/context rebindings, shared-file preservation proofs, focused checks and initial failures. All617 accepted edits are recovered prior linguistic work, not fresh programme-wide review credit. Original unknown blob outcome is distinguished from two verified new denials resolved by one same-content retry each after independent bounded-scope evidence. Full frozen host and exact-head hosted/Codex gates are pending, not passed. No merge/release or native-human/whole-language claim. Archive manifest binds each relative regular-file member.
