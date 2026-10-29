@@ -6,13 +6,13 @@ import org.json.JSONObject
 import org.junit.Assert.*
 import java.io.File
 
-/** Finite six-container review binding; retained contexts carry no additional priority credit. */
+/** Finite nine-container review binding; retained contexts carry no additional priority credit. */
 internal object OrdinaryPriorityExpectations {
     fun fixture(): JSONObject {
         val bytes=File("../tools/fixtures/current_localization/ordinary_priority_followthrough.json").readBytes()
         val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes)
             .joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Finite ordinary priority fixture", "aa8215c815c10b45517fbe482bcac44f514cb9c4468a5cfb39ac14b961c129a4",actual)
+        assertEquals("Finite ordinary priority fixture", "3941373cd41425e7fcbfa8afaeafd2f36b1588141ac7e469824225ff03732ee5",actual)
         return JSONObject(String(bytes,Charsets.UTF_8))
     }
     fun same(expected: Any?, actual: Any?) {
