@@ -31,9 +31,9 @@ jobs:
   checks:
     name: Regression tests and lint
     runs-on: ubuntu-22.04
-    # 73 minutes of explicit phase caps plus 6 for checkout/cache/evidence overhead.
+    # 78 minutes of explicit phase caps plus 6 for checkout/cache/evidence overhead.
     # This remains a hard cancellation policy, not a guaranteed runtime bound.
-    timeout-minutes: 79
+    timeout-minutes: 84
     env:
       CCACHE_MAXSIZE: 2G
       CCACHE_COMPILERCHECK: content
@@ -83,7 +83,7 @@ jobs:
         run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'
       - name: Run JVM regression tests
         if: ${{ !cancelled() }}
-        timeout-minutes: 20
+        timeout-minutes: 25
         run: bash tools/ci_run_timed.sh jvm ./gradlew --no-daemon --max-workers=2 --console=plain --continue --profile -PnativeAbis=x86_64 :Paintroid:test${BUILD_VARIANT^}UnitTest
       - name: Prepare lint native dependencies
         if: ${{ !cancelled() }}

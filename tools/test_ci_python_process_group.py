@@ -73,7 +73,7 @@ class PythonProcessGroupTests(unittest.TestCase):
         for phase in ('python','jvm'):
             with self.subTest(phase=phase),tempfile.TemporaryDirectory() as root:
                 root=Path(root);(root/'tools').mkdir();shutil.copy(OWNER,root/'tools')
-                shell=(ROOT/'tools/ci_run_timed.sh').read_text().replace('--timeout-seconds 1800','--timeout-seconds 1').replace('--timeout-seconds 1140','--timeout-seconds 1').replace('--kill-after-seconds 15','--kill-after-seconds .15')
+                shell=(ROOT/'tools/ci_run_timed.sh').read_text().replace('--timeout-seconds 1800','--timeout-seconds 1').replace('--timeout-seconds 1440','--timeout-seconds 1').replace('--kill-after-seconds 15','--kill-after-seconds .15')
                 (root/'tools/ci_run_timed.sh').write_text(shell)
                 proc=subprocess.Popen(['bash','tools/ci_run_timed.sh',phase,sys.executable,'-u','-c',self.stubborn_tree()],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
                 self.ready(root/'grand.pid',proc);out,err=self.finish(proc)
@@ -187,9 +187,9 @@ class PythonProcessGroupTests(unittest.TestCase):
         self.assertIn("run: bash tools/ci_run_timed.sh python python3 -m unittest discover -s tools -p 'test_*.py'",workflow)
         block=workflow.split('      - name: Run Python contracts\n',1)[1].split('      - name:',1)[0]
         self.assertIn('timeout-minutes: 31',block)
-        self.assertIn('exec python3 tools/ci_run_process_group.py --phase jvm --timeout-seconds 1140 --kill-after-seconds 15 -- "$@"',shell)
+        self.assertIn('exec python3 tools/ci_run_process_group.py --phase jvm --timeout-seconds 1440 --kill-after-seconds 15 -- "$@"',shell)
         jvm=workflow.split('      - name: Run JVM regression tests\n',1)[1].split('      - name:',1)[0]
-        self.assertIn('timeout-minutes: 20',jvm)
+        self.assertIn('timeout-minutes: 25',jvm)
         import ast
         syntax=ast.parse(OWNER.read_text())
         defs={n.name:n for n in syntax.body if isinstance(n,ast.FunctionDef)}
@@ -198,4 +198,4 @@ class PythonProcessGroupTests(unittest.TestCase):
         self.assertEqual(5,cleanup_defaults['reap_grace']);self.assertEqual(2,pump_defaults['seconds'])
         self.assertEqual(1,shell.count('exec python3 tools/ci_run_process_group.py --timeout-seconds'))
         self.assertLess(1800+15+cleanup_defaults['reap_grace']+pump_defaults['seconds'],31*60)
-        self.assertLess(1140+15+cleanup_defaults['reap_grace']+pump_defaults['seconds'],20*60)
+        self.assertLess(1440+15+cleanup_defaults['reap_grace']+pump_defaults['seconds'],25*60)

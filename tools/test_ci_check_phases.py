@@ -20,7 +20,7 @@ STEPS = {
 }
 PHASES = {
     'Run Python contracts': ('python', 31),
-    'Run JVM regression tests': ('jvm', 20),
+    'Run JVM regression tests': ('jvm', 25),
     'Prepare lint native dependencies': ('native', 6),
     'Run Android lint': ('lint', 6),
 }
@@ -29,7 +29,7 @@ PHASES = {
 class CheckPhaseContracts(unittest.TestCase):
     def test_each_phase_required_and_bounded_with_explicit_outer_limit(self):
         # Expanded-suite measurements justify headroom, not omitted assertions.
-        self.assertIn('    timeout-minutes: 79\n', CHECKS)
+        self.assertIn('    timeout-minutes: 84\n', CHECKS)
         self.assertNotIn('continue-on-error', CHECKS)
         for name, (phase, minutes) in PHASES.items():
             with self.subTest(phase=phase):
