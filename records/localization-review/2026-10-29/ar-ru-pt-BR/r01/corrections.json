@@ -1,0 +1,141 @@
+{
+  "source_commit": "47d5e64e8e20ef3e13641a05ee83c61203316a82",
+  "scope": "Three companion containers only, separate from the retained 341-key priority review in each of ar/ru/pt-BR. No native-human or runtime certification.",
+  "rows": [
+    {
+      "tag": "ar",
+      "identity": "string/formats22_page_description",
+      "path": "Paintroid/src/main/res/values-ar/strings.xml",
+      "source": {
+        "type": "string",
+        "attributes": {
+          "name": "formats22_page_description"
+        },
+        "value": "%1$s · %2$s\\nNumber of pages: %3$d. Choose one page to edit as an image."
+      },
+      "previous": {
+        "type": "string",
+        "attributes": {
+          "name": "formats22_page_description"
+        },
+        "value": "%1$s · %2$s\\n%3$d صفحة. اختر صفحة واحدة لتحريرها كصورة."
+      },
+      "target": {
+        "type": "string",
+        "attributes": {
+          "name": "formats22_page_description"
+        },
+        "value": "%1$s · %2$s\\nعدد الصفحات: %3$d. اختر صفحة واحدة لتحريرها كصورة."
+      },
+      "display": "%1$s · %2$s\nعدد الصفحات: %3$d. اختر صفحة واحدة لتحريرها كصورة.",
+      "rationale": "Count-neutral label avoids the incorrect fixed singular noun with counts such as 3–10. This is not a claim that صفحة is wrong at every count.",
+      "caller": "ImportSelection.kt:98-101: require(count>0); ui(resource,kind,name,count)."
+    },
+    {
+      "tag": "pt-BR",
+      "identity": "string/formats22_page_description",
+      "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+      "source": {
+        "type": "string",
+        "attributes": {
+          "name": "formats22_page_description"
+        },
+        "value": "%1$s · %2$s\\nNumber of pages: %3$d. Choose one page to edit as an image."
+      },
+      "previous": {
+        "type": "string",
+        "attributes": {
+          "name": "formats22_page_description"
+        },
+        "value": "%1$s · %2$s\\n%3$d páginas. Escolha uma página para editar como imagem."
+      },
+      "target": {
+        "type": "string",
+        "attributes": {
+          "name": "formats22_page_description"
+        },
+        "value": "%1$s · %2$s\\nNúmero de páginas: %3$d. Escolha uma página para editar como imagem."
+      },
+      "display": "%1$s · %2$s\nNúmero de páginas: %3$d. Escolha uma página para editar como imagem.",
+      "rationale": "The fixed plural páginas is wrong at count 1; a count label preserves the existing formatted-string caller.",
+      "caller": "ImportSelection.kt:98-101: require(count>0); ui(resource,kind,name,count)."
+    },
+    {
+      "tag": "pt-BR",
+      "identity": "plurals/ui_crop_preview_images",
+      "path": "Paintroid/src/main/res/values-pt-rBR/strings.xml",
+      "source": {
+        "type": "plurals",
+        "attributes": {
+          "name": "ui_crop_preview_images"
+        },
+        "value": [
+          {
+            "type": "item",
+            "attributes": {
+              "quantity": "one"
+            },
+            "value": "Preview: %1$d × %2$d px\\nApply to %3$d image. Cropping placed images may move their attached images."
+          },
+          {
+            "type": "item",
+            "attributes": {
+              "quantity": "other"
+            },
+            "value": "Preview: %1$d × %2$d px\\nApply to %3$d images. Cropping placed images may move their attached images."
+          }
+        ]
+      },
+      "previous": {
+        "type": "plurals",
+        "attributes": {
+          "name": "ui_crop_preview_images"
+        },
+        "value": [
+          {
+            "type": "item",
+            "attributes": {
+              "quantity": "one"
+            },
+            "value": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagem. Recortar uma imagem colocada também reposiciona as imagens conectadas."
+          },
+          {
+            "type": "item",
+            "attributes": {
+              "quantity": "other"
+            },
+            "value": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagens. Recortar uma imagem colocada também reposiciona as imagens conectadas."
+          }
+        ]
+      },
+      "target": {
+        "type": "plurals",
+        "attributes": {
+          "name": "ui_crop_preview_images"
+        },
+        "value": [
+          {
+            "type": "item",
+            "attributes": {
+              "quantity": "one"
+            },
+            "value": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagem. Recortar imagens colocadas pode mover as imagens conectadas a elas."
+          },
+          {
+            "type": "item",
+            "attributes": {
+              "quantity": "other"
+            },
+            "value": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagens. Recortar imagens colocadas pode mover as imagens conectadas a elas."
+          }
+        ]
+      },
+      "display": {
+        "one": "Pré-visualização: %1$d × %2$d px\nAplica-se a %3$d imagem. Recortar imagens colocadas pode mover as imagens conectadas a elas.",
+        "other": "Pré-visualização: %1$d × %2$d px\nAplica-se a %3$d imagens. Recortar imagens colocadas pode mover as imagens conectadas a elas."
+      },
+      "rationale": "The old statement guarantees repositioning; actual movement depends on the affected attachment edge. Preserve may, not will.",
+      "caller": "ImageCropDialog.kt:87-93 and 143-148 passes selected count and dimensions; ImageAssembly.kt:154-159 and 198-219 changes crop metadata and derives child coordinates from parent edges."
+    }
+  ]
+}
