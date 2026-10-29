@@ -2,6 +2,7 @@
 package org.catrobat.paintroid.local
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.AlertDialog
 import android.content.ClipboardManager
 import android.content.Context
@@ -49,6 +50,12 @@ class ExportFormatDialogTest {
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
     @Before fun start() {
         val context = RuntimeEnvironment.getApplication() as Context
+        // Export UI needs a fixed device-memory fixture, not transient host-JVM headroom.
+        // Robolectric resets this system-service state after each test.
+        val mib = 1024L * 1024
+        shadowOf(context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).setMemoryInfo(ActivityManager.MemoryInfo().apply {
+            totalMem = 1024 * mib; availMem = 512 * mib; threshold = 128 * mib
+        })
         context.filesDir.listFiles()?.filter { it.name.startsWith("classic-") }?.forEach { it.delete() }
         listOf("classic-ui", "export").forEach { context.getSharedPreferences(it, 0).edit().clear().commit() }
         create()
