@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "scope": "One independently reviewed Indonesian conditional crop plural; one retained actual error companion. No new priority credit.",
+  "review_packet_sha256": "92dee2e955c983bf79a9ed682e71d4a4bc6ba65020f1a72ddcafbc209fe7dd3b",
+  "independent_receipt_sha256": "5184f5f362e5cf221a516a628eebcf017eb2e6170cb26a3fae78badc9c6671dc",
+  "locales": {
+    "id": {
+      "plurals/ui_crop_preview_images": {
+        "source": {
+          "type": "plurals",
+          "attributes": {
+            "name": "ui_crop_preview_images"
+          },
+          "value": [
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "one"
+              },
+              "value": "Preview: %1$d × %2$d px\\nApply to %3$d image. Cropping placed images may move their attached images."
+            },
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "other"
+              },
+              "value": "Preview: %1$d × %2$d px\\nApply to %3$d images. Cropping placed images may move their attached images."
+            }
+          ]
+        },
+        "previous": {
+          "type": "plurals",
+          "attributes": {
+            "name": "ui_crop_preview_images"
+          },
+          "value": [
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "other"
+              },
+              "value": "Pratinjau: %1$d × %2$d px\\nTerapkan ke %3$d gambar. Pemangkasan gambar yang ditempatkan juga menyesuaikan posisi gambar yang tersambung."
+            }
+          ]
+        },
+        "target": {
+          "type": "plurals",
+          "attributes": {
+            "name": "ui_crop_preview_images"
+          },
+          "value": [
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "other"
+              },
+              "value": "Pratinjau: %1$d × %2$d px\\nTerapkan ke %3$d gambar. Pemangkasan gambar yang ditempatkan dapat menggeser gambar yang tersambung dengannya."
+            }
+          ]
+        },
+        "display": {
+          "other": "Pratinjau: %1$d × %2$d px\nTerapkan ke %3$d gambar. Pemangkasan gambar yang ditempatkan dapat menggeser gambar yang tersambung dengannya."
+        },
+        "changed": true,
+        "scope": "atomic_companion_conditional_correction"
+      },
+      "string/ui_choose_at_least_one_image": {
+        "source": {
+          "type": "string",
+          "attributes": {
+            "name": "ui_choose_at_least_one_image"
+          },
+          "value": "Choose at least one image."
+        },
+        "previous": {
+          "type": "string",
+          "attributes": {
+            "name": "ui_choose_at_least_one_image"
+          },
+          "value": "Pilih setidaknya satu gambar."
+        },
+        "target": {
+          "type": "string",
+          "attributes": {
+            "name": "ui_choose_at_least_one_image"
+          },
+          "value": "Pilih setidaknya satu gambar."
+        },
+        "display": "Pilih setidaknya satu gambar.",
+        "changed": false,
+        "scope": "retained_error_context_no_new_credit"
+      }
+    }
+  }
+}
