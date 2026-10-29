@@ -1,0 +1,1127 @@
+{
+  "source_head": "c9855d9fbd70fe6353a1228a12f54b27d01e5364",
+  "source_tree": "45bb547cdc60fb6658c69a6c02e797f4b78a13d5",
+  "prior_path": "/tmp/fi-et-lv-review/current-1023-review.json",
+  "prior_sha256": "d2bbf0bd74609353bce8ee4173790d13f697989b16137f4705f34f3eabfb5436",
+  "status": "read-only receipt reconciliation; no new linguistic review or promoted disposition",
+  "locales": {
+    "fi": {
+      "count": 341,
+      "counts": {
+        "retained_no_concrete_defect_in_current_bounded_review": 292,
+        "retained_wording_only": 31,
+        "held": 9,
+        "accepted_prior_text_reused": 9
+      },
+      "source_drift": [],
+      "target_drift": [],
+      "held": [
+        {
+          "identity": "string/save20_gif_description",
+          "hold": {
+            "n": 17,
+            "tier": "P0",
+            "key": "string/save20_gif_description",
+            "english": {
+              "value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+              "attrs": {
+                "name": "save20_gif_description"
+              }
+            },
+            "finnish": {
+              "value": "Staattinen kuva, enintään 256 väriä. Rasterointi tasoittaa väriliukumia. Animoiduista GIF-kuvista avataan ensimmäinen ruutu.",
+              "attrs": {
+                "name": "save20_gif_description"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+                "line": 95,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L95"
+              }
+            ],
+            "candidate": "Staattinen kuva, enintään 256 väriä. Rasterointi tasoittaa väriliukumia. Animoiduista GIF-kuvista avataan ensimmäinen ruutu.",
+            "decision": "held_uncertain",
+            "reason": "Still image, 256-colour ceiling and first GIF frame are retained. Rasterointi is a broad conventional raster/halftone term; its exact preferred dithering terminology is held for specialist/native confirmation rather than silently changed.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "d6f9eeb45c2999a514f5a93a045dd5277ed1e68f3f0157885de46cc8a5e281c2",
+            "before_sha256": "7a150c9997b3ef0f06825718576dd0bfece59c444de8d0b1971b47de84486029",
+            "candidate_sha256": "7a150c9997b3ef0f06825718576dd0bfece59c444de8d0b1971b47de84486029",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L634",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L629"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+          "hold": {
+            "n": 78,
+            "tier": "P0",
+            "key": "string/ui_the_draft_is_saving_try_again_shortly",
+            "english": {
+              "value": "The draft is saving. Try again shortly.",
+              "attrs": {
+                "name": "ui_the_draft_is_saving_try_again_shortly"
+              }
+            },
+            "finnish": {
+              "value": "Luonnosta tallennetaan. Yritä hetken kuluttua uudelleen.",
+              "attrs": {
+                "name": "ui_the_draft_is_saving_try_again_shortly"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+                "line": 916,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L916"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+                "line": 1434,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1434"
+              }
+            ],
+            "candidate": "Luonnosta tallennetaan. Yritä hetken kuluttua uudelleen.",
+            "decision": "held_uncertain",
+            "reason": "Faithful wording, but the existing generic-busy credit-attachment path also emits a draft-saving claim. Preserve unchanged under the existing PR72 source-context hold; no consumer acceptance.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "61e2efe783a5c0958d756a47edd7ca6fba6808596108a8af71e6890bbd4b1d20",
+            "before_sha256": "f749125c87e9de4160309585b57209ebee096587539aed59f54bc9c236ff2851",
+            "candidate_sha256": "f749125c87e9de4160309585b57209ebee096587539aed59f54bc9c236ff2851",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L414",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L453"
+          },
+          "observations": [
+            "Current static source resolves the previously alleged generic-busy mismatch: editAction925 checks autosaving; attachment1443 selects draft wording only if autosaving, otherwise genericwait1444; state set1615 and cleared1625. Existing LegacyImageCreditsUpgradeTest122–155 covers true/false busy/autosaving combinations and unchanged credits/history/pixels. Original hold preserved explicitly; source-context release is a separately justified successor proposal, not a silent override or a new wording acceptance. Test read, not run locally."
+          ]
+        },
+        {
+          "identity": "string/ui_bg",
+          "hold": {
+            "n": 124,
+            "tier": "P1",
+            "key": "string/ui_bg",
+            "english": {
+              "value": "BG",
+              "attrs": {
+                "name": "ui_bg"
+              }
+            },
+            "finnish": {
+              "value": "TA",
+              "attrs": {
+                "name": "ui_bg"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+                "line": 45,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L45"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+                "line": 59,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L59"
+              }
+            ],
+            "candidate": "TA",
+            "decision": "held_uncertain",
+            "reason": "TA can stand for tausta alongside ET, but compact abbreviation clarity has not been independently established. Retain unchanged with an explicit readability/terminology uncertainty, not a defect claim.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "82ff23ecefd92d226ca3d16733aafb6dcc798bfbe47b26d7b1f910247eb405a9",
+            "before_sha256": "d82b965431184e2813d6044e925744f5853fb94459ecb1b105deea8423e86c61",
+            "candidate_sha256": "d82b965431184e2813d6044e925744f5853fb94459ecb1b105deea8423e86c61",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L63",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L53"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_bottom",
+          "hold": {
+            "n": 126,
+            "tier": "P1",
+            "key": "string/ui_bottom",
+            "english": {
+              "value": "Bottom",
+              "attrs": {
+                "name": "ui_bottom"
+              }
+            },
+            "finnish": {
+              "value": "Alhaalla",
+              "attrs": {
+                "name": "ui_bottom"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+                "line": 72,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72"
+              }
+            ],
+            "candidate": "Alhaalla",
+            "decision": "held_uncertain",
+            "reason": "Alhaalla identifies the lower crop edge, but the composed Alhaalla-rajaus wording is awkward. Keep this edge/template family unchanged pending a coordinated full-composition review; no confident correction is smuggled into this batch.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "b3a163b453896bef078b87ab855ba28d52076b0852e09af29f48b23dadb97dc9",
+            "before_sha256": "c3176d8b97d5c4e68c2ebfcfc3850084e5e3c37f66f6d7d722cafb3c3a8d4b14",
+            "candidate_sha256": "c3176d8b97d5c4e68c2ebfcfc3850084e5e3c37f66f6d7d722cafb3c3a8d4b14",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L65",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L55"
+          },
+          "observations": [
+            "Standalone edge label fits its edge. Whole contentDescription is separately reviewed with P2 trim templates and top companion; FI/LV inherited grammar/dependency cautions persist, ET analogous composition caution recorded. Six label-colon-description candidates are separate and unaccepted."
+          ]
+        },
+        {
+          "identity": "string/ui_fg",
+          "hold": {
+            "n": 199,
+            "tier": "P1",
+            "key": "string/ui_fg",
+            "english": {
+              "value": "FG",
+              "attrs": {
+                "name": "ui_fg"
+              }
+            },
+            "finnish": {
+              "value": "ET",
+              "attrs": {
+                "name": "ui_fg"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+                "line": 45,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L45"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+                "line": 59,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L59"
+              }
+            ],
+            "candidate": "ET",
+            "decision": "held_uncertain",
+            "reason": "ET plausibly abbreviates etuala paired with TA, but compact-caption clarity is not established. Retain with explicit uncertainty and no invented defect.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "301fc7ce55f0cc2adfad869f6bd6e2896cc81b93633805859d76ca28ed20c646",
+            "before_sha256": "1a704895b0bcb7971f751ef338fd472d7a343d3f03a1b69e8f9e2a4715019ea4",
+            "candidate_sha256": "1a704895b0bcb7971f751ef338fd472d7a343d3f03a1b69e8f9e2a4715019ea4",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L191",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L61"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_foreground_background_colour_palette",
+          "hold": {
+            "n": 208,
+            "tier": "P1",
+            "key": "string/ui_foreground_background_colour_palette",
+            "english": {
+              "value": "Foreground %1$s, background %2$s. %3$s colour palette.",
+              "attrs": {
+                "name": "ui_foreground_background_colour_palette"
+              }
+            },
+            "finnish": {
+              "value": "Etuala %1$s, tausta %2$s. Väripaletti %3$s.",
+              "attrs": {
+                "name": "ui_foreground_background_colour_palette"
+              }
+            },
+            "refs": [],
+            "candidate": "Etuala %1$s, tausta %2$s. Väripaletti %3$s.",
+            "decision": "held_uncertain",
+            "reason": "Foreground/background code slots are clear, but the third palette-state argument has no located consumer. Keep unchanged under a composition uncertainty rather than accepting an unobserved sentence.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "ab790df82eb7dbc1f7339b77b80f047d3b06aac7a1abbc98f874d10599d8ee4d",
+            "before_sha256": "269128242dfee16b5a38fb4c112bb2c0286da98f4a434ed1ddc5515aa46cd764",
+            "candidate_sha256": "269128242dfee16b5a38fb4c112bb2c0286da98f4a434ed1ddc5515aa46cd764",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L207",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L300"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_left",
+          "hold": {
+            "n": 227,
+            "tier": "P1",
+            "key": "string/ui_left",
+            "english": {
+              "value": "Left",
+              "attrs": {
+                "name": "ui_left"
+              }
+            },
+            "finnish": {
+              "value": "Vasen",
+              "attrs": {
+                "name": "ui_left"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+                "line": 72,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72"
+              }
+            ],
+            "candidate": "Vasen",
+            "decision": "held_uncertain",
+            "reason": "Vasen is clear as a crop-edge label, but Vasen-rajaus in accessibility composition is a literal compound. Preserve pending the same coordinated edge/template review as Alhaalla, without broadening P2 changes.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "f365c6b6dd9ebab91f1a6bf03eeb0b22833982cf4c0eae43440018268d3cbae8",
+            "before_sha256": "5aac6a3f5bf981a10929b2770ac0c8e41a04f0c2088de13542ed4ebb2667019c",
+            "candidate_sha256": "5aac6a3f5bf981a10929b2770ac0c8e41a04f0c2088de13542ed4ebb2667019c",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L255",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L67"
+          },
+          "observations": [
+            "Standalone edge label fits its edge. Whole contentDescription is separately reviewed with P2 trim templates and top companion; FI/LV inherited grammar/dependency cautions persist, ET analogous composition caution recorded. Six label-colon-description candidates are separate and unaccepted."
+          ]
+        },
+        {
+          "identity": "string/ui_main23",
+          "hold": {
+            "n": 236,
+            "tier": "P1",
+            "key": "string/ui_main23",
+            "english": {
+              "value": "Main",
+              "attrs": {
+                "name": "ui_main23"
+              }
+            },
+            "finnish": {
+              "value": "Pää",
+              "attrs": {
+                "name": "ui_main23"
+              }
+            },
+            "refs": [],
+            "candidate": "Pää",
+            "decision": "held_uncertain",
+            "reason": "Pää is a possible shortened Main caption, but no consumer establishes its referent and it is unusually bare Finnish. Preserve with wording uncertainty rather than guessing Päävalikko or Päänäkymä.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "1f46c0f59ce84579193611f1d7e1a965a72a21e71348e6f544bc40c36908dfe9",
+            "before_sha256": "5686c912652d081da87efbf4bfa88966a3fcb8c6da7ef88eeb92f70f10170845",
+            "candidate_sha256": "5686c912652d081da87efbf4bfa88966a3fcb8c6da7ef88eeb92f70f10170845",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L504",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L131"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_right",
+          "hold": {
+            "n": 286,
+            "tier": "P1",
+            "key": "string/ui_right",
+            "english": {
+              "value": "Right",
+              "attrs": {
+                "name": "ui_right"
+              }
+            },
+            "finnish": {
+              "value": "Oikea",
+              "attrs": {
+                "name": "ui_right"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+                "line": 72,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L72"
+              }
+            ],
+            "candidate": "Oikea",
+            "decision": "held_uncertain",
+            "reason": "Oikea clearly names the right crop edge, but Oikea-rajaus needs the same coordinated compound/edge review as Vasen. Preserve unchanged with composition uncertainty.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "b34d5ee0f218221d7db099145fe272859cb365e772a0fa23652df83c72b43b7f",
+            "before_sha256": "233abda96da59fdefb26cc5d29b3b7d8b3123571513ce243c7449dc194235e0d",
+            "candidate_sha256": "233abda96da59fdefb26cc5d29b3b7d8b3123571513ce243c7449dc194235e0d",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based full-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L334",
+            "finnish_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-fi/strings.xml#L81"
+          },
+          "observations": [
+            "Standalone edge label fits its edge. Whole contentDescription is separately reviewed with P2 trim templates and top companion; FI/LV inherited grammar/dependency cautions persist, ET analogous composition caution recorded. Six label-colon-description candidates are separate and unaccepted."
+          ]
+        }
+      ]
+    },
+    "et": {
+      "count": 341,
+      "counts": {
+        "retained_no_concrete_defect_in_current_bounded_review": 294,
+        "retained_wording_only": 32,
+        "held": 7,
+        "accepted_prior_text_reused": 8
+      },
+      "source_drift": [],
+      "target_drift": [],
+      "held": [
+        {
+          "identity": "string/save20_gif_description",
+          "hold": {
+            "n": 17,
+            "tier": "P0",
+            "key": "string/save20_gif_description",
+            "english": {
+              "value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+              "attrs": {
+                "name": "save20_gif_description"
+              }
+            },
+            "estonian": {
+              "value": "Staatiline pilt, kuni 256 värvi. Rasterdamine silub värviüleminekuid. Animeeritud GIF-id avatakse esimese kaadrina.",
+              "attrs": {
+                "name": "save20_gif_description"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+                "line": 95,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L95"
+              }
+            ],
+            "candidate": "Staatiline pilt, kuni 256 värvi. Rasterdamine silub värviüleminekuid. Animeeritud GIF-id avatakse esimese kaadrina.",
+            "decision": "held_uncertain",
+            "reason": "The still-image, 256-colour, gradient-smoothing and first-frame clauses are preserved. Rasterdamine for dithering needs terminology review; do not replace it on an unverified lexical preference.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "535e2f6e5b6b24046631981dae374e3bc5b2f7e7119e526f8c92f3778523c5dd",
+            "before_sha256": "ea1881419f0c18a039636879f295140ec8cef64c3b13b78692e7a2efad01123b",
+            "candidate_sha256": "ea1881419f0c18a039636879f295140ec8cef64c3b13b78692e7a2efad01123b",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based complete-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L634",
+            "estonian_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml#L628"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_sampled_resize_memory_explanation",
+          "hold": {
+            "n": 64,
+            "tier": "P0",
+            "key": "string/ui_sampled_resize_memory_explanation",
+            "english": {
+              "value": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+              "attrs": {
+                "name": "ui_sampled_resize_memory_explanation"
+              }
+            },
+            "estonian": {
+              "value": "Hinnang hõlmab praegust lõuendit ja lõikelauda, näidispõhist dekodeerimist ning muutmispuhvreid. Tegelik mälukasutus varieerub. Väiksem koopia kaotab detaile. Algne fail jääb muutmata.",
+              "attrs": {
+                "name": "ui_sampled_resize_memory_explanation"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+                "line": 34,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L34"
+              }
+            ],
+            "candidate": "Hinnang hõlmab praegust lõuendit ja lõikelauda, näidispõhist dekodeerimist ning muutmispuhvreid. Tegelik mälukasutus varieerub. Väiksem koopia kaotab detaile. Algne fail jääb muutmata.",
+            "decision": "held_uncertain",
+            "reason": "All five memory/detail/source-preservation meanings remain. The prior bounded receipt is preserved; näidispõhine as sampled-decoding terminology is understandable but warrants specialist idiom review rather than stronger certification.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "6a01b3e861d48a5c150ae16257de375d645d776c3e572a4a7d344e68d995f3e3",
+            "before_sha256": "ae89001abb46c9582a46aac4c2c93ab8e37d8e0051752eda269aa000653520af",
+            "candidate_sha256": "ae89001abb46c9582a46aac4c2c93ab8e37d8e0051752eda269aa000653520af",
+            "prior_receipt": {
+              "tag": "et",
+              "key": "string/ui_sampled_resize_memory_explanation",
+              "cohort": "SAMPLED-MEMORY-20261015",
+              "reviewed_english_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
+              "current_english_sha256": "a7aed411a8dac6f7b498b5c3627f0b8c1b7ee34b8bcbcfcbc2fe584c10a7ca4f",
+              "reviewed_localized_sha256": "ab447315c1687ab55a2b2f9b22b93c706928eddecacda2fad19448c3f54aa664",
+              "current_localized_sha256": "ab447315c1687ab55a2b2f9b22b93c706928eddecacda2fad19448c3f54aa664",
+              "confidence": "H",
+              "reviewed_source_revision": "0056bbacec0599959313b86a4c0c98c431ba67c8",
+              "en_line": 561,
+              "localized_line": 248,
+              "localized_blob_sha": "1b777cce077c4483fe23ed9c41466f047ebc7138",
+              "state": "reviewed_current",
+              "disposition": "accepted_static",
+              "review_scope": "complete_value_bounded_semantic",
+              "scope_limit": "High-confidence target claims and grammatical boundary review; no whole-language/runtime claim."
+            },
+            "new_tracker_credit": false,
+            "limit": "Model-based complete-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L563",
+            "estonian_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml#L248"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_the_draft_is_saving_try_again_shortly",
+          "hold": {
+            "n": 78,
+            "tier": "P0",
+            "key": "string/ui_the_draft_is_saving_try_again_shortly",
+            "english": {
+              "value": "The draft is saving. Try again shortly.",
+              "attrs": {
+                "name": "ui_the_draft_is_saving_try_again_shortly"
+              }
+            },
+            "estonian": {
+              "value": "Mustandit salvestatakse. Proovi varsti uuesti.",
+              "attrs": {
+                "name": "ui_the_draft_is_saving_try_again_shortly"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+                "line": 916,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L916"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+                "line": 1434,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1434"
+              }
+            ],
+            "candidate": "Mustandit salvestatakse. Proovi varsti uuesti.",
+            "decision": "held_uncertain",
+            "reason": "The Estonian sentence faithfully says the draft is saving and suggests retry. The generic busy branch in legacy-credit attachment can represent other work; preserve the existing source-context hold rather than accept all consumers.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "5fc230a5669bbeb2ef3718b581bc5a03a04e7e336eaa67980bbb8e7015084c96",
+            "before_sha256": "fe6789b7babb291d5ddbbb366db7c8c2ec4f26543bfaf653841a46b82685e299",
+            "candidate_sha256": "fe6789b7babb291d5ddbbb366db7c8c2ec4f26543bfaf653841a46b82685e299",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based complete-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L414",
+            "estonian_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml#L439"
+          },
+          "observations": [
+            "Current static source resolves the previously alleged generic-busy mismatch: editAction925 checks autosaving; attachment1443 selects draft wording only if autosaving, otherwise genericwait1444; state set1615 and cleared1625. Existing LegacyImageCreditsUpgradeTest122–155 covers true/false busy/autosaving combinations and unchanged credits/history/pixels. Original hold preserved explicitly; source-context release is a separately justified successor proposal, not a silent override or a new wording acceptance. Test read, not run locally."
+          ]
+        },
+        {
+          "identity": "string/ui_bg",
+          "hold": {
+            "n": 124,
+            "tier": "P1",
+            "key": "string/ui_bg",
+            "english": {
+              "value": "BG",
+              "attrs": {
+                "name": "ui_bg"
+              }
+            },
+            "estonian": {
+              "value": "TA",
+              "attrs": {
+                "name": "ui_bg"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+                "line": 45,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L45"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+                "line": 59,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L59"
+              }
+            ],
+            "candidate": "TA",
+            "decision": "held_uncertain",
+            "reason": "TA is plausibly an abbreviation of taust but native clarity in the compact swatch is not established; preserve unchanged with uncertainty rather than assert a defect.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "736b57465bc098745b079bbf59b7645dc4548bc5e23e4805c92fa6a35eb0e3a9",
+            "before_sha256": "034fc48ba584fc2a8b0b40c727e4ce36b79845d7ed910c63abfb2c22e630382c",
+            "candidate_sha256": "034fc48ba584fc2a8b0b40c727e4ce36b79845d7ed910c63abfb2c22e630382c",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based complete-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L63",
+            "estonian_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml#L140"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_fg",
+          "hold": {
+            "n": 199,
+            "tier": "P1",
+            "key": "string/ui_fg",
+            "english": {
+              "value": "FG",
+              "attrs": {
+                "name": "ui_fg"
+              }
+            },
+            "estonian": {
+              "value": "ES",
+              "attrs": {
+                "name": "ui_fg"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+                "line": 45,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L45"
+              },
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+                "line": 59,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L59"
+              }
+            ],
+            "candidate": "ES",
+            "decision": "held_uncertain",
+            "reason": "ES plausibly abbreviates esiplaan, but compact-label native clarity remains unproven; retain unchanged as an explicit uncertainty.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "2097d9edbebf7ccc834ac87b2bf4f2b871908a7f8ef80b35a8608cbb08e0ce07",
+            "before_sha256": "ce344a418127968f2bd07ada86c8cf3808eea524c399a02c0c2c0ebbe0f5467c",
+            "candidate_sha256": "ce344a418127968f2bd07ada86c8cf3808eea524c399a02c0c2c0ebbe0f5467c",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based complete-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L191",
+            "estonian_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml#L254"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_foreground_background_colour_palette",
+          "hold": {
+            "n": 208,
+            "tier": "P1",
+            "key": "string/ui_foreground_background_colour_palette",
+            "english": {
+              "value": "Foreground %1$s, background %2$s. %3$s colour palette.",
+              "attrs": {
+                "name": "ui_foreground_background_colour_palette"
+              }
+            },
+            "estonian": {
+              "value": "Esiplaan %1$s, taust %2$s. %3$s värvipalett.",
+              "attrs": {
+                "name": "ui_foreground_background_colour_palette"
+              }
+            },
+            "refs": [],
+            "candidate": "Esiplaan %1$s, taust %2$s. %3$s värvipalett.",
+            "decision": "held_uncertain",
+            "reason": "The complete palette sentence preserves all three slots, but the third slot has no current consumer defining its inflection or content; leave composition acceptance unresolved.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "67af5bc5800068853c10482361ea2d76758f4c8d2c189577b317e470a2c9ab51",
+            "before_sha256": "f37543f2b70bbac1785641d8caeb544c540eced37d453ddc4b45bb02e226f904",
+            "candidate_sha256": "f37543f2b70bbac1785641d8caeb544c540eced37d453ddc4b45bb02e226f904",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based complete-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L207",
+            "estonian_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml#L264"
+          },
+          "observations": []
+        },
+        {
+          "identity": "string/ui_hex_rrggbb",
+          "hold": {
+            "n": 217,
+            "tier": "P1",
+            "key": "string/ui_hex_rrggbb",
+            "english": {
+              "value": "Hex #RRGGBB",
+              "attrs": {
+                "name": "ui_hex_rrggbb"
+              }
+            },
+            "estonian": {
+              "value": "Kuueteistkümnend #RRGGBB",
+              "attrs": {
+                "name": "ui_hex_rrggbb"
+              }
+            },
+            "refs": [
+              {
+                "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+                "line": 246,
+                "url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L246"
+              }
+            ],
+            "candidate": "Kuueteistkümnend #RRGGBB",
+            "decision": "held_uncertain",
+            "reason": "Kuueteistkümnend is a terse technical label beside #RRGGBB. The exact idiomatic standalone form is uncertain; preserve unchanged rather than claim a verified terminology repair.",
+            "confidence": "open",
+            "source_revision": "b6a99b41c4390ca6a412e3a1938eb913c59509fb",
+            "english_sha256": "14c675955a6da7499dadad395d45366a3631f0b2b2edcb440055fdddd229155c",
+            "before_sha256": "0102c21e0d93abb98a8aa17d8e5ed3f6eb32254d1fa1c9e609711921f47773dd",
+            "candidate_sha256": "0102c21e0d93abb98a8aa17d8e5ed3f6eb32254d1fa1c9e609711921f47773dd",
+            "prior_receipt": null,
+            "new_tracker_credit": false,
+            "limit": "Model-based complete-value linguistic and static-consumer review only; no native-speaker, installed-layout, TalkBack or whole-language certification.",
+            "english_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values/strings.xml#L221",
+            "estonian_source_url": "https://github.com/c933103/AN-Paint/blob/b6a99b41c4390ca6a412e3a1938eb913c59509fb/Paintroid/src/main/res/values-b+et/strings.xml#L277"
+          },
+          "observations": []
+        }
+      ]
+    },
+    "lv": {
+      "count": 341,
+      "counts": {
+        "accepted_prior_text_reused": 12,
+        "retained_no_concrete_defect_in_current_bounded_review": 291,
+        "retained_wording_only": 33,
+        "held": 5
+      },
+      "source_drift": [],
+      "target_drift": [],
+      "held": [
+        {
+          "identity": "string/save20_gif_description",
+          "hold": {
+            "receipt": {
+              "original_independent_row": {
+                "n": 17,
+                "tier": "P0",
+                "key": "string/save20_gif_description",
+                "reviewed": true,
+                "disposition": "terminology_uncertainty_held",
+                "finding_ids": [],
+                "uncertainty_ids": [
+                  "LV-U01"
+                ],
+                "observation_ids": [],
+                "rationale": "Core operational meaning is represented, but the linked technical-language uncertainty remains open; no automatic change recommended.",
+                "consumer_refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+                    "line": 95
+                  }
+                ]
+              },
+              "original_pair": {
+                "n": 17,
+                "tier": "P0",
+                "key": "string/save20_gif_description",
+                "english": {
+                  "value": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+                  "attrs": {
+                    "name": "save20_gif_description"
+                  }
+                },
+                "latvian": {
+                  "value": "Nekustīgs attēls, līdz 256 krāsām. Diterēšana izlīdzina krāsu pārejas. Animēti GIF tiek atvērti ar pirmo kadru.",
+                  "attrs": {
+                    "name": "save20_gif_description"
+                  }
+                },
+                "refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+                    "line": 95
+                  }
+                ]
+              },
+              "current_source_exact": true,
+              "current_target_exact": true,
+              "current_pair_exact": true,
+              "original_scope": {
+                "pairs_reviewed": 341,
+                "P0": 92,
+                "P1": 249,
+                "unique_keys": 341,
+                "missing_latvian_pairs": 0,
+                "direct_consumer_refs_present": 311,
+                "no_direct_consumer_refs": 30,
+                "P3": "deferred and not reviewed",
+                "PR56": "read-only and unchanged",
+                "paused_ms_id_ja_zhHK_processing_labels": "unchanged",
+                "production_changes_made": false,
+                "publication_performed": false
+              },
+              "original_review_type": "Independent model-assisted source and consumer-context review; no native-speaker certification",
+              "scope_limit": "No finding is not proof of correctness. No current whole-file/runtime or native acceptance is inferred."
+            },
+            "status": "Original later independent terminology hold retained; earlier narrower review does not waive this whole-value uncertainty."
+          },
+          "observations": [
+            "LV author caution retained: Still/256-colour/gradient/first-frame clauses are preserved; Diterēšana terminology remains open."
+          ]
+        },
+        {
+          "identity": "string/save20_unsupported_image_colour",
+          "hold": {
+            "receipt": {
+              "original_independent_row": {
+                "n": 21,
+                "tier": "P0",
+                "key": "string/save20_unsupported_image_colour",
+                "reviewed": true,
+                "disposition": "terminology_uncertainty_held",
+                "finding_ids": [],
+                "uncertainty_ids": [
+                  "LV-U04"
+                ],
+                "observation_ids": [],
+                "rationale": "Core operational meaning is represented, but the linked technical-language uncertainty remains open; no automatic change recommended.",
+                "consumer_refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+                    "line": 115
+                  },
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+                    "line": 21
+                  },
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+                    "line": 21
+                  },
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+                    "line": 50
+                  }
+                ]
+              },
+              "original_pair": {
+                "n": 21,
+                "tier": "P0",
+                "key": "string/save20_unsupported_image_colour",
+                "english": {
+                  "value": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+                  "attrs": {
+                    "name": "save20_unsupported_image_colour"
+                  }
+                },
+                "latvian": {
+                  "value": "Šis attēls izmanto krāsu profilu, ko AN Paint vēl nevar pārveidot. Pirms importēšanas pārveidojiet to uz sRGB PNG krāsu pārvaldītā redaktorā.",
+                  "attrs": {
+                    "name": "save20_unsupported_image_colour"
+                  }
+                },
+                "refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+                    "line": 115
+                  },
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+                    "line": 21
+                  },
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+                    "line": 21
+                  },
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+                    "line": 50
+                  }
+                ]
+              },
+              "current_source_exact": true,
+              "current_target_exact": true,
+              "current_pair_exact": true,
+              "original_scope": {
+                "pairs_reviewed": 341,
+                "P0": 92,
+                "P1": 249,
+                "unique_keys": 341,
+                "missing_latvian_pairs": 0,
+                "direct_consumer_refs_present": 311,
+                "no_direct_consumer_refs": 30,
+                "P3": "deferred and not reviewed",
+                "PR56": "read-only and unchanged",
+                "paused_ms_id_ja_zhHK_processing_labels": "unchanged",
+                "production_changes_made": false,
+                "publication_performed": false
+              },
+              "original_review_type": "Independent model-assisted source and consumer-context review; no native-speaker certification",
+              "scope_limit": "No finding is not proof of correctness. No current whole-file/runtime or native acceptance is inferred."
+            },
+            "status": "Original later independent terminology hold retained; earlier narrower review does not waive this whole-value uncertainty."
+          },
+          "observations": [
+            "LV author caution retained: Unsupported colour profile, conversion to sRGB PNG and prerequisite colour-managed editor are retained; krāsu pārvaldītā redaktorā remains a terminology uncertainty, with no established semantic defect."
+          ]
+        },
+        {
+          "identity": "string/ui_sampled_resize_memory_explanation",
+          "hold": {
+            "receipt": {
+              "original_independent_row": {
+                "n": 64,
+                "tier": "P0",
+                "key": "string/ui_sampled_resize_memory_explanation",
+                "reviewed": true,
+                "disposition": "terminology_uncertainty_held",
+                "finding_ids": [],
+                "uncertainty_ids": [
+                  "LV-U02"
+                ],
+                "observation_ids": [],
+                "rationale": "Core operational meaning is represented, but the linked technical-language uncertainty remains open; no automatic change recommended.",
+                "consumer_refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+                    "line": 34
+                  }
+                ]
+              },
+              "original_pair": {
+                "n": 64,
+                "tier": "P0",
+                "key": "string/ui_sampled_resize_memory_explanation",
+                "english": {
+                  "value": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+                  "attrs": {
+                    "name": "ui_sampled_resize_memory_explanation"
+                  }
+                },
+                "latvian": {
+                  "value": "Aprēķins ietver pašreizējo audeklu un starpliktuvi, paraugu dekodēšanu un rediģēšanas buferus. Faktiskais atmiņas patēriņš atšķiras. Mazāka kopija zaudē detaļas. Sākotnējais fails paliek nemainīts.",
+                  "attrs": {
+                    "name": "ui_sampled_resize_memory_explanation"
+                  }
+                },
+                "refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+                    "line": 34
+                  }
+                ]
+              },
+              "current_source_exact": true,
+              "current_target_exact": true,
+              "current_pair_exact": true,
+              "original_scope": {
+                "pairs_reviewed": 341,
+                "P0": 92,
+                "P1": 249,
+                "unique_keys": 341,
+                "missing_latvian_pairs": 0,
+                "direct_consumer_refs_present": 311,
+                "no_direct_consumer_refs": 30,
+                "P3": "deferred and not reviewed",
+                "PR56": "read-only and unchanged",
+                "paused_ms_id_ja_zhHK_processing_labels": "unchanged",
+                "production_changes_made": false,
+                "publication_performed": false
+              },
+              "original_review_type": "Independent model-assisted source and consumer-context review; no native-speaker certification",
+              "scope_limit": "No finding is not proof of correctness. No current whole-file/runtime or native acceptance is inferred."
+            },
+            "status": "Original later independent terminology hold retained; earlier narrower review does not waive this whole-value uncertainty."
+          },
+          "observations": [
+            "LV author caution retained: Prior bounded receipt preserved; full claims match sampled resize path, but paraugu dekodēšanu remains a terminology uncertainty."
+          ]
+        },
+        {
+          "identity": "string/colour_unsupported_icc_model",
+          "hold": {
+            "receipt": {
+              "original_independent_row": {
+                "n": 96,
+                "tier": "P1",
+                "key": "string/colour_unsupported_icc_model",
+                "reviewed": true,
+                "disposition": "terminology_uncertainty_held",
+                "finding_ids": [],
+                "uncertainty_ids": [
+                  "LV-U04"
+                ],
+                "observation_ids": [],
+                "rationale": "Core operational meaning is represented, but the linked technical-language uncertainty remains open; no automatic change recommended.",
+                "consumer_refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+                    "line": 214
+                  }
+                ]
+              },
+              "original_pair": {
+                "n": 96,
+                "tier": "P1",
+                "key": "string/colour_unsupported_icc_model",
+                "english": {
+                  "value": "This image uses an ICC colour model that the image decoder cannot convert. Export an RGB copy in a colour-managed application first.",
+                  "attrs": {
+                    "name": "colour_unsupported_icc_model"
+                  }
+                },
+                "latvian": {
+                  "value": "Šis attēls izmanto ICC krāsu modeli, ko attēlu dekodētājs nevar pārveidot. Vispirms eksportējiet RGB kopiju krāsu pārvaldītā lietotnē.",
+                  "attrs": {
+                    "name": "colour_unsupported_icc_model"
+                  }
+                },
+                "refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+                    "line": 214
+                  }
+                ]
+              },
+              "current_source_exact": true,
+              "current_target_exact": true,
+              "current_pair_exact": true,
+              "original_scope": {
+                "pairs_reviewed": 341,
+                "P0": 92,
+                "P1": 249,
+                "unique_keys": 341,
+                "missing_latvian_pairs": 0,
+                "direct_consumer_refs_present": 311,
+                "no_direct_consumer_refs": 30,
+                "P3": "deferred and not reviewed",
+                "PR56": "read-only and unchanged",
+                "paused_ms_id_ja_zhHK_processing_labels": "unchanged",
+                "production_changes_made": false,
+                "publication_performed": false
+              },
+              "original_review_type": "Independent model-assisted source and consumer-context review; no native-speaker certification",
+              "scope_limit": "No finding is not proof of correctness. No current whole-file/runtime or native acceptance is inferred."
+            },
+            "status": "Original later independent terminology hold retained; earlier narrower review does not waive this whole-value uncertainty."
+          },
+          "observations": [
+            "LV author caution retained: Unsupported decoder ICC model and prerequisite RGB export remain accurate; krāsu pārvaldītā redaktorā remains a terminology uncertainty, with no established semantic defect."
+          ]
+        },
+        {
+          "identity": "string/ui_codec_resize_memory_floor",
+          "hold": {
+            "receipt": {
+              "original_independent_row": {
+                "n": 144,
+                "tier": "P1",
+                "key": "string/ui_codec_resize_memory_floor",
+                "reviewed": true,
+                "disposition": "terminology_uncertainty_held",
+                "finding_ids": [],
+                "uncertainty_ids": [
+                  "LV-U03"
+                ],
+                "observation_ids": [],
+                "rationale": "Core operational meaning is represented, but the linked technical-language uncertainty remains open; no automatic change recommended.",
+                "consumer_refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+                    "line": 34
+                  }
+                ]
+              },
+              "original_pair": {
+                "n": 144,
+                "tier": "P1",
+                "key": "string/ui_codec_resize_memory_floor",
+                "english": {
+                  "value": "This format must decode its source image or source tiles before resizing. A smaller output may still exceed available memory.",
+                  "attrs": {
+                    "name": "ui_codec_resize_memory_floor"
+                  }
+                },
+                "latvian": {
+                  "value": "Šim formātam pirms izmēra maiņas jāatkodē avota attēls vai avota flīzes. Arī mazāka izvade var pārsniegt pieejamo atmiņu.",
+                  "attrs": {
+                    "name": "ui_codec_resize_memory_floor"
+                  }
+                },
+                "refs": [
+                  {
+                    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+                    "line": 34
+                  }
+                ]
+              },
+              "current_source_exact": true,
+              "current_target_exact": true,
+              "current_pair_exact": true,
+              "original_scope": {
+                "pairs_reviewed": 341,
+                "P0": 92,
+                "P1": 249,
+                "unique_keys": 341,
+                "missing_latvian_pairs": 0,
+                "direct_consumer_refs_present": 311,
+                "no_direct_consumer_refs": 30,
+                "P3": "deferred and not reviewed",
+                "PR56": "read-only and unchanged",
+                "paused_ms_id_ja_zhHK_processing_labels": "unchanged",
+                "production_changes_made": false,
+                "publication_performed": false
+              },
+              "original_review_type": "Independent model-assisted source and consumer-context review; no native-speaker certification",
+              "scope_limit": "No finding is not proof of correctness. No current whole-file/runtime or native acceptance is inferred."
+            },
+            "status": "Original later independent terminology hold retained; earlier narrower review does not waive this whole-value uncertainty."
+          },
+          "observations": [
+            "LV author caution retained: Decode-before-resize and possible memory insufficiency are retained; avota flīzes technical idiom remains open."
+          ]
+        }
+      ]
+    }
+  }
+}
