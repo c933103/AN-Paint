@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
+from nynorsk_belarusian_albanian_priority_expectations import current_fixture, current_value, current_row
 
 KEYS = {'ui_save_your_changes', 'ui_your_current_image_has_unsaved_changes',
         'ui_export_did_not_save23', 'ui_could_not_save_image', 'ui_saved',
@@ -70,13 +71,15 @@ class NynorskSaveWordingTests(unittest.TestCase):
                     'ui_discard_changes23': '"Avslutt utan lagring"',
                     'ui_keep_editing23': '"Avbryt"', 'ui_cancel': '"Avbryt"'}
         for key, value in expected.items():
-            require_string(self.xml['nn'], key, value, {'attributes': {'name': key}})
+            require_string(self.xml['nn'], key, current_value('nn',key,value,{'name':key}), {'attributes': {'name': key}})
         # Newly reviewed neighbors have exact separate expectations, not removed guards.
-        remaining = fixture('nynorsk_p0_remaining_wording.json')
+        remaining = current_fixture('nynorsk_p0_remaining_wording.json')
         for key in ('ui_save_and_share', 'ui_save_and_share_41edb4', 'save20_file_format'):
             require_string(self.xml['nn'], key, remaining['values'][key]['nn'], remaining['constraints'][key]['nn'])
         for key in ('ui_choose_location', 'ui_try_a_different_file_or_location'):
-            self.assertIsNone(self.roots['nn'].find(f"./string[@name='{key}']"))
+            row=current_row('nn',key)
+            self.assertIsNone(row['previous_target'])
+            require_string(self.xml['nn'],key,row['target'],{'attributes':row['attributes']})
         from test_translations import SCOPED_TAGS
         self.assertNotIn('nn', SCOPED_TAGS)
 
@@ -84,7 +87,7 @@ class NynorskSaveWordingTests(unittest.TestCase):
         self.assertEqual([], catalogues.validate_catalogue('nn', require_complete=False))
         names = [(node.tag, node.get('name')) for node in self.roots['nn']]
         self.assertEqual(len(names), len(set(names)))
-        remaining = fixture('nynorsk_p0_remaining_wording.json')
+        remaining = current_fixture('nynorsk_p0_remaining_wording.json')
         require_string(self.xml['nn'], 'ui_draft_restored', remaining['values']['ui_draft_restored']['nn'],
                        remaining['constraints']['ui_draft_restored']['nn'])
 

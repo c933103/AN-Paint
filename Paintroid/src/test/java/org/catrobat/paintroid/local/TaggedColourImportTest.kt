@@ -1480,6 +1480,15 @@ class TaggedColourImportTest {
         assertEquals(140, expected.length())
         addExactScript(expected,exactScriptExpectations())
         assertEquals(141, expected.length())
+        val recovered=JSONObject(File("../tools/fixtures/current_localization/nynorsk_belarusian_albanian_priority_wording.json").readText())
+        val recoveredKey="save20_unsupported_image_colour"
+        assertEquals(neutral,recovered.getJSONObject("sources").getJSONObject("string/$recoveredKey").getString("source"))
+        for(tag in listOf("be","sq")) {
+            assertFalse(expected.has(tag))
+            assertFalse(recovered.getJSONObject("locales").getJSONObject(tag).getJSONObject("predecessors").has("string/$recoveredKey"))
+            expected.put(tag,RecoveredTrioPriorityExpectations.display(tag,recoveredKey))
+        }
+        assertEquals(143,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -1514,6 +1523,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(0, inherited)
-        assertEquals(30, fallbacks) // 171 offered - 141 direct, including direct Valencian and Tatar Latin; no remaining inherited catalogue.
+        assertEquals(28, fallbacks) // 171 offered - 143 direct, including direct Valencian and Tatar Latin; no remaining inherited catalogue.
     }
 }

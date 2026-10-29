@@ -1,3 +1,4 @@
+from nynorsk_belarusian_albanian_priority_expectations import MEMORY_ADDITIONS as NN_BE_SQ_ADDITIONS, require_addition as nn_be_sq_row
 """Current English expectations and the pending two-term review queue.
 
 Historical paired-language fixtures stay unchanged. Default-English and explicitly receipt-bound current successors are selected here;
@@ -245,6 +246,15 @@ old source snapshot.
         row=so_wo_ht_row(tag,key)
         return require_so_wo_ht_addition(tag,key,queue['keys'][key]['corrected_english'],
             historical_value=historical_value,already_present=old is not None,row=row)
+    if (tag,key) in NN_BE_SQ_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=nn_be_sq_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical NN/BE/SQ warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('NN/BE/SQ warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
     if (tag,key) in NE_PA_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
