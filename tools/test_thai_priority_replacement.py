@@ -2,7 +2,7 @@
 from pathlib import Path
 from copy import deepcopy
 import unittest,json,xml.etree.ElementTree as E
-from thai_priority_expectations import reviewed_fixture,require_reviewed_fixture,validated_fixture_text,current_row,NAME
+from thai_priority_expectations import reviewed_fixture,require_reviewed_fixture,validated_fixture_text,current_row,display,NAME
 import translation_catalogues as catalogues
 ROOT=Path(__file__).resolve().parents[1]
 def value(n):
@@ -33,6 +33,19 @@ class ThaiReplacementTests(unittest.TestCase):
   for key in ('holds','attributes','changed','priority','dependencies','predecessors'):
    bad=deepcopy(d);bad['locales']['th'][key]={}
    with self.assertRaises(ValueError):require_reviewed_fixture(bad)
+ def test_retained_alias_resolves_without_changing_raw_resource(self):
+  self.assertEqual('@string/ui_save',current_row('th','ui_save_a5d0d9')['target'])
+  self.assertEqual(display('th','ui_save'),display('th','ui_save_a5d0d9'))
+  with self.assertRaises(ValueError):display('th','ui_crop_preview_images')
+  from unittest.mock import patch
+  for replacement in ('@string/ui_save_a5d0d9','@string/missing_alias_target'):
+   def changed(tag,key):
+    row=current_row(tag,key)
+    if key=='ui_save':row['target']=replacement
+    return row
+   with patch('thai_priority_expectations.current_row',side_effect=changed):
+    with self.assertRaises(ValueError):display('th','ui_save_a5d0d9')
+  self.assertEqual(display('th','ui_save'),display('th','ui_save_a5d0d9'))
  def test_raw_coordinated_fixture_and_mutable_cache_poison_rejected(self):
   text=(ROOT/'tools/fixtures/current_localization'/NAME).read_text();validated_fixture_text(text)
   d=json.loads(text);d['locales']['th']['accepted']['ui_undo']='forged'

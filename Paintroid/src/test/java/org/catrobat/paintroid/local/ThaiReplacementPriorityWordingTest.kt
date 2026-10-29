@@ -48,8 +48,7 @@ class ThaiReplacementPriorityWordingTest {
         ThaiPriorityExpectations.fixture().getJSONObject("locales")
     }
     private fun expected(tag: String, key: String): String {
-        val raw=fixture.getJSONObject(tag).getJSONObject("accepted").getString(key)
-        return decoded(raw)
+        return ThaiPriorityExpectations.display(fixture.getJSONObject(tag).getJSONObject("accepted"),key)
     }
     private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
         when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
@@ -111,6 +110,16 @@ class ThaiReplacementPriorityWordingTest {
         val plural=decoded(values.getJSONObject("ui_crop_preview_images").getString("other"))
         for(count in listOf(0,1,2,21,101)) assertEquals(String.format(Locale.forLanguageTag(tag),plural,24,16,count),
             uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,24,16,count))
+    }
+
+    @Test fun retainedSaveAliasResolvesActualValueAndRejectsCyclesAndMissingTargets() = forEachLocale { tag,activity ->
+        val values=fixture.getJSONObject(tag).getJSONObject("accepted")
+        assertEquals("@string/ui_save",values.getString("ui_save_a5d0d9"))
+        assertEquals(activity.getString(R.string.ui_save),expected(tag,"ui_save_a5d0d9"))
+        for(replacement in listOf("@string/ui_save_a5d0d9","@string/missing_alias_target")) {
+            val bad=JSONObject(values.toString()).put("ui_save",replacement)
+            assertThrows(IllegalArgumentException::class.java) { ThaiPriorityExpectations.display(bad,"ui_save_a5d0d9") }
+        }
     }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->

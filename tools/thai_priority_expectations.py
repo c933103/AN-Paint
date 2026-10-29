@@ -35,7 +35,14 @@ def current_row(tag,key):
             'previous_attributes':dict(previous['attributes']) if previous else None,'changed':key in loc['changed']}
 
 def display(tag,key):
-    value=current_row(tag,key)['target']
+    seen=set()
+    while True:
+        if key in seen:raise ValueError('Cyclic resource alias')
+        seen.add(key)
+        value=current_row(tag,key)['target']
+        if not isinstance(value,str):raise ValueError('Expected string, not plural')
+        if not value.startswith('@string/'):break
+        key=value[len('@string/'):]
     if value.startswith('"') and value.endswith('"'):value=value[1:-1]
     return re.sub(r'\\(.)',lambda m:{'n':'\n','t':'\t','r':'\r'}.get(m.group(1),m.group(1)),value)
 

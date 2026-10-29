@@ -13,6 +13,19 @@ internal object ThaiPriorityExpectations {
         assertEquals("Complete finite accepted Thai replacement fixture", "0dffad5b3b729fa57da3feb781b9e97edd12e108200f5e4076356cbc1697d1f6",actual)
         return JSONObject(String(bytes,Charsets.UTF_8))
     }
+    fun display(values: JSONObject, key: String): String {
+        val seen=mutableSetOf<String>()
+        fun resolve(name: String): String {
+            require(seen.add(name)) { "Cyclic resource alias: $name" }
+            require(values.has(name) && values.get(name) is String) { "Missing string alias target: $name" }
+            val raw=values.getString(name)
+            if(raw.startsWith("@string/")) return resolve(raw.removePrefix("@string/"))
+            return Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
+                when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
+            }
+        }
+        return resolve(key)
+    }
     fun same(expected: Any?, actual: Any?) {
         when(expected) {
             is JSONObject -> {

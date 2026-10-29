@@ -17,3 +17,5 @@ Explicit predecessor: HI/GU PR216, head `8ca88befb765d19dee0e0db05a4033e9d1fbf60
 New Python regressions cover all sources/targets/attributes/arguments, inventory/holds, each complete-value mutation, coordinated fixture forgery, foreign/unaccepted scope and mutable nested plural cache poisoning. New JVM tests exercise compiled values and selected Thai locale, quantity 0/1/2/21/101, actual dimension/crop/category/animation/memory/save/share/alignment/quality consumers. The existing SVG and tagged-colour real-consumer tests gain exact Thai oracles.
 
 Local focused normal/optimized checks and full aggregates are recorded separately; hosted Android/JVM/device, exact-head Codex and final develop reconciliation remain required. No local SDK/device execution is implied by source tests. Durable full evidence belongs on a dedicated evidence ref, not in the application source tree.
+
+The retained Save alias remains `@string/ui_save` in production. Current Python/JVM display oracles resolve that alias before comparing compiled values and reject cycles, missing targets and non-string targets; raw source/value assertions still preserve the original alias.
