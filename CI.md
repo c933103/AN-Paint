@@ -61,6 +61,19 @@ canonical command/variant source. If Android tools are absent locally, report
 compile/native/device stages as unrun and use the exact-source hosted results.
 Focused checks do not turn an incomplete aggregate into a pass.
 
+JVM regression uses at most two class-level test processes, each retaining its
+2 GiB heap cap and the existing two-worker build limit. Methods and SDK variants
+within a class remain together; all test discovery and assertions remain enabled.
+Shared report writers must keep disjoint class-owned paths. The JVM phase records
+100 ms sampled descendant RSS (excluding the observer), observed per-process
+kernel RSS high-water marks, and minimum host available memory. Sampling can miss
+short-lived peaks and shared pages can be counted twice: this is measured runtime
+evidence, not an exact aggregate memory bound. The read-only observer cannot
+signal workload processes. Its identity-bound pidfd cleanup has one second for
+TERM and one for KILL, inside the unchanged phase cap. The final phase receipt
+retains workload and observer status separately; an observer failure cannot leave
+a zero final phase status. No test, phase or job deadline is increased.
+
 ## Deadlines and evidence
 
 - Regression job: 79 minutes; Python contracts: 31 minutes (30-minute owned-process execution deadline); JVM regression: 20 minutes;
