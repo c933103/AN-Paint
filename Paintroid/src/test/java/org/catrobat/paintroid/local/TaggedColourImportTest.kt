@@ -1492,6 +1492,7 @@ class TaggedColourImportTest {
         assertEquals(140, expected.length())
         addExactScript(expected,exactScriptExpectations())
         assertEquals(141, expected.length())
+        assertEquals(30, 171 - expected.length()) // exact-script stage, before later reviewed additions
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
