@@ -1,0 +1,4398 @@
+{
+  "schema_version": 1,
+  "scope": "Independent 290-row changed-value delta only. Context rows are exact retained inputs, not newly reviewed translations. 235 pending retained rows, 149 prior P0 carries, 16 holds remain separately classified.",
+  "source_base": "2e58204c73ff24ea9b73fbaf4d265baa1e0c3fce",
+  "source_tree": "de438227d759a2def5fc987600c3c1591f452f9f",
+  "review_evidence": "4bec16b8bcb8de31af91a5bd950cad9a59b8b3ee/verification/sr-ch-shn-priority-20261029/accepted-delta",
+  "locales": {
+    "sr-Cyrl": {
+      "values": {
+        "ui_keep_editing23": {
+          "source": "Keep editing",
+          "attributes": {
+            "name": "ui_keep_editing23"
+          },
+          "previous": "\"Откажи\"",
+          "target": "\"Настави уређивање\"",
+          "display": "Настави уређивање",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "colour_converter_unavailable": {
+          "source": "The image colour converter could not start. The image was not imported.",
+          "attributes": {
+            "name": "colour_converter_unavailable"
+          },
+          "previous": null,
+          "target": "\"Претварач боја слике није могао да се покрене. Слика није увезена.\"",
+          "display": "Претварач боја слике није могао да се покрене. Слика није увезена.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "colour_invalid_metadata": {
+          "source": "The image has invalid or unsupported colour metadata.",
+          "attributes": {
+            "name": "colour_invalid_metadata"
+          },
+          "previous": null,
+          "target": "\"Слика садржи неисправне или неподржане метаподатке о бојама.\"",
+          "display": "Слика садржи неисправне или неподржане метаподатке о бојама.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "colour_truncated_metadata": {
+          "source": "The image ends inside its colour metadata.",
+          "attributes": {
+            "name": "colour_truncated_metadata"
+          },
+          "previous": null,
+          "target": "\"Датотека слике се завршава усред метаподатака о бојама.\"",
+          "display": "Датотека слике се завршава усред метаподатака о бојама.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "colour_unsupported_icc_model": {
+          "source": "This image uses an ICC colour model that the image decoder cannot convert. Export an RGB copy in a colour-managed application first.",
+          "attributes": {
+            "name": "colour_unsupported_icc_model"
+          },
+          "previous": null,
+          "target": "\"Ова слика користи ICC модел боја који декодер слике не може да претвори. Прво извезите RGB копију у апликацији са управљањем бојама.\"",
+          "display": "Ова слика користи ICC модел боја који декодер слике не може да претвори. Прво извезите RGB копију у апликацији са управљањем бојама.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "commons_svg_original_size_too_large": {
+          "source": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",
+          "attributes": {
+            "name": "commons_svg_original_size_too_large"
+          },
+          "previous": null,
+          "target": "\"Изворне димензије SVG-а премашују ограничења система Android за димензије битмапе. Величина није промењена.\"",
+          "display": "Изворне димензије SVG-а премашују ограничења система Android за димензије битмапе. Величина није промењена.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "commons_svg_original_size_unavailable": {
+          "source": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+          "attributes": {
+            "name": "commons_svg_original_size_unavailable"
+          },
+          "previous": null,
+          "target": "\"SVG не наводи употребљиву изворну величину. Није замењена величином заснованом на платну.\"",
+          "display": "SVG не наводи употребљиву изворну величину. Није замењена величином заснованом на платну.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "formats22_import_limit": {
+          "source": "This file exceeds the 512 MiB import limit. Choose a smaller file.",
+          "attributes": {
+            "name": "formats22_import_limit"
+          },
+          "previous": null,
+          "target": "\"Ова датотека премашује ограничење увоза од 512 MiB. Изаберите мању датотеку.\"",
+          "display": "Ова датотека премашује ограничење увоза од 512 MiB. Изаберите мању датотеку.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "language20_current": {
+          "source": "App language: %1$s",
+          "attributes": {
+            "name": "language20_current"
+          },
+          "previous": null,
+          "target": "\"Језик апликације: %1$s\"",
+          "display": "Језик апликације: %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "language20_translation_note": {
+          "source": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+          "attributes": {
+            "name": "language20_translation_note"
+          },
+          "previous": null,
+          "target": "\"Језик апликације\\n\\nПреводи се одржавају у језичким ресурсима апликације AN Paint. Нови или непреведени текст приказује се на енглеском.\"",
+          "display": "Језик апликације\n\nПреводи се одржавају у језичким ресурсима апликације AN Paint. Нови или непреведени текст приказује се на енглеском.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_0f_0f_px_1f": {
+          "source": "%1$.0f × %2$.0f px\\n%3$.1f°",
+          "attributes": {
+            "name": "ui_0f_0f_px_1f"
+          },
+          "previous": null,
+          "target": "\"%1$.0f × %2$.0f px\\n%3$.1f°\"",
+          "display": "%1$.0f × %2$.0f px\n%3$.1f°",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_100": {
+          "source": "100%",
+          "attributes": {
+            "name": "ui_100",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"100%\"",
+          "display": "100%",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_1_px": {
+          "source": "1 px",
+          "attributes": {
+            "name": "ui_1_px"
+          },
+          "previous": null,
+          "target": "\"1 px\"",
+          "display": "1 px",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_1f_s": {
+          "source": "%1$.1f %2$s",
+          "attributes": {
+            "name": "ui_1f_s"
+          },
+          "previous": null,
+          "target": "\"%1$.1f %2$s\"",
+          "display": "%1$.1f %2$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_actual_size_100": {
+          "source": "Actual size (100%)",
+          "attributes": {
+            "name": "ui_actual_size_100",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Стварна величина (100%)\"",
+          "display": "Стварна величина (100%)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_add_text": {
+          "source": "Add text",
+          "attributes": {
+            "name": "ui_add_text"
+          },
+          "previous": null,
+          "target": "\"Додај текст\"",
+          "display": "Додај текст",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_all": {
+          "source": "All",
+          "attributes": {
+            "name": "ui_all"
+          },
+          "previous": null,
+          "target": "\"Све\"",
+          "display": "Све",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_android_blocked_the_file_picker": {
+          "source": "Android blocked the file picker: %1$s",
+          "attributes": {
+            "name": "ui_android_blocked_the_file_picker"
+          },
+          "previous": null,
+          "target": "\"Android је блокирао бирач датотека: %1$s\"",
+          "display": "Android је блокирао бирач датотека: %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_android_could_not_decode_this_image": {
+          "source": "Android could not decode this image.",
+          "attributes": {
+            "name": "ui_android_could_not_decode_this_image"
+          },
+          "previous": null,
+          "target": "\"Android није могао да декодира ову слику.\"",
+          "display": "Android није могао да декодира ову слику.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_android_could_not_find_a_file_picker_enable": {
+          "source": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
+          "attributes": {
+            "name": "ui_android_could_not_find_a_file_picker_enable"
+          },
+          "previous": null,
+          "target": "\"Android није могао да пронађе бирач датотека. Омогућите апликацију Датотеке или Документи у подешавањима система Android, па покушајте поново.\"",
+          "display": "Android није могао да пронађе бирач датотека. Омогућите апликацију Датотеке или Документи у подешавањима система Android, па покушајте поново.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_apply_bounds": {
+          "source": "Apply bounds",
+          "attributes": {
+            "name": "ui_apply_bounds"
+          },
+          "previous": null,
+          "target": "\"Примени границе\"",
+          "display": "Примени границе",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_apply_crop": {
+          "source": "Apply crop",
+          "attributes": {
+            "name": "ui_apply_crop"
+          },
+          "previous": null,
+          "target": "\"Примени исецање\"",
+          "display": "Примени исецање",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_autosaving_draft": {
+          "source": "Autosaving draft…",
+          "attributes": {
+            "name": "ui_autosaving_draft"
+          },
+          "previous": null,
+          "target": "\"Аутоматско чување радне верзије…\"",
+          "display": "Аутоматско чување радне верзије…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_background_edit_colour": {
+          "source": "Background %1$s. Edit colour.",
+          "attributes": {
+            "name": "ui_background_edit_colour"
+          },
+          "previous": null,
+          "target": "\"Позадина %1$s. Уреди боју.\"",
+          "display": "Позадина %1$s. Уреди боју.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_basic_colours": {
+          "source": "Basic colours",
+          "attributes": {
+            "name": "ui_basic_colours"
+          },
+          "previous": null,
+          "target": "\"Основне боје\"",
+          "display": "Основне боје",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_canvas_zoom": {
+          "source": "Canvas zoom",
+          "attributes": {
+            "name": "ui_canvas_zoom"
+          },
+          "previous": null,
+          "target": "\"Увећање платна\"",
+          "display": "Увећање платна",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_canvas_zoom_771f84": {
+          "source": "Canvas zoom %1$s",
+          "attributes": {
+            "name": "ui_canvas_zoom_771f84"
+          },
+          "previous": null,
+          "target": "\"Увећање платна %1$s\"",
+          "display": "Увећање платна %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_a_smaller_output_copy_the_source_images": {
+          "source": "Choose a smaller output copy. The source images and crop settings stay at their original resolution.",
+          "attributes": {
+            "name": "ui_choose_a_smaller_output_copy_the_source_images"
+          },
+          "previous": null,
+          "target": "\"Изаберите мању излазну копију. Изворне слике и подешавања исецања остају у изворној резолуцији.\"",
+          "display": "Изаберите мању излазну копију. Изворне слике и подешавања исецања остају у изворној резолуцији.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_a_smaller_size": {
+          "source": "Choose a smaller size.",
+          "attributes": {
+            "name": "ui_choose_a_smaller_size"
+          },
+          "previous": null,
+          "target": "\"Изаберите мању величину.\"",
+          "display": "Изаберите мању величину.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_at_least_one_image": {
+          "source": "Choose at least one image.",
+          "attributes": {
+            "name": "ui_choose_at_least_one_image"
+          },
+          "previous": null,
+          "target": "\"Изаберите бар једну слику.\"",
+          "display": "Изаберите бар једну слику.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_dimensions_no_larger_than_the_original": {
+          "source": "Choose dimensions no larger than the original.",
+          "attributes": {
+            "name": "ui_choose_dimensions_no_larger_than_the_original"
+          },
+          "previous": null,
+          "target": "\"Изаберите димензије које нису веће од изворних.\"",
+          "display": "Изаберите димензије које нису веће од изворних.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_location": {
+          "source": "Choose location…",
+          "attributes": {
+            "name": "ui_choose_location"
+          },
+          "previous": null,
+          "target": "\"Изабери локацију…\"",
+          "display": "Изабери локацију…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_codec_resize_memory_floor": {
+          "source": "This format must decode its source image or source tiles before resizing. A smaller output may still exceed available memory.",
+          "attributes": {
+            "name": "ui_codec_resize_memory_floor"
+          },
+          "previous": null,
+          "target": "\"Овај формат мора да декодира изворну слику или њене плочице пре промене величине. И мањи излаз може да премаши расположиву меморију.\"",
+          "display": "Овај формат мора да декодира изворну слику или њене плочице пре промене величине. И мањи излаз може да премаши расположиву меморију.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_collapse_colour_palette": {
+          "source": "Collapse colour palette",
+          "attributes": {
+            "name": "ui_collapse_colour_palette"
+          },
+          "previous": null,
+          "target": "\"Скупи палету боја\"",
+          "display": "Скупи палету боја",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_collapse_tool_category": {
+          "source": "%1$s: %2$s selected. Collapse tools and options",
+          "attributes": {
+            "name": "ui_collapse_tool_category"
+          },
+          "previous": null,
+          "target": "\"%1$s: изабрани алат: %2$s. Скупи алате и опције\"",
+          "display": "%1$s: изабрани алат: %2$s. Скупи алате и опције",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_collapse_toolbox": {
+          "source": "Collapse toolbox",
+          "attributes": {
+            "name": "ui_collapse_toolbox"
+          },
+          "previous": null,
+          "target": "\"Скупи кутију са алатима\"",
+          "display": "Скупи кутију са алатима",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_colour": {
+          "source": "Colour %1$s",
+          "attributes": {
+            "name": "ui_colour"
+          },
+          "previous": null,
+          "target": "\"Боја %1$s\"",
+          "display": "Боја %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_colour_palette_tap_for_foreground_hold_for_background": {
+          "source": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+          "attributes": {
+            "name": "ui_colour_palette_tap_for_foreground_hold_for_background"
+          },
+          "previous": null,
+          "target": "\"Палета боја. Додирните за предњи план; задржите притисак за позадину. Померајте палету да видите још боја.\"",
+          "display": "Палета боја. Додирните за предњи план; задржите притисак за позадину. Померајте палету да видите још боја.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_colour_tap_foreground_hold_background": {
+          "source": "Colour #%1$s. Tap foreground, hold background.",
+          "attributes": {
+            "name": "ui_colour_tap_foreground_hold_background"
+          },
+          "previous": null,
+          "target": "\"Боја #%1$s. Додирните за предњи план, задржите притисак за позадину.\"",
+          "display": "Боја #%1$s. Додирните за предњи план, задржите притисак за позадину.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_commit_selection": {
+          "source": "Commit selection",
+          "attributes": {
+            "name": "ui_commit_selection"
+          },
+          "previous": null,
+          "target": "\"Потврди избор\"",
+          "display": "Потврди избор",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_copy_all": {
+          "source": "Copy all",
+          "attributes": {
+            "name": "ui_copy_all"
+          },
+          "previous": null,
+          "target": "\"Копирај све\"",
+          "display": "Копирај све",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_apply_the_crop": {
+          "source": "Could not apply the crop.",
+          "attributes": {
+            "name": "ui_could_not_apply_the_crop"
+          },
+          "previous": null,
+          "target": "\"Исецање није могло да се примени.\"",
+          "display": "Исецање није могло да се примени.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_complete_the_edit": {
+          "source": "Could not complete the edit. %1$s",
+          "attributes": {
+            "name": "ui_could_not_complete_the_edit"
+          },
+          "previous": null,
+          "target": "\"Измена није могла да се доврши. %1$s\"",
+          "display": "Измена није могла да се доврши. %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_complete_the_operation": {
+          "source": "Could not complete the operation.",
+          "attributes": {
+            "name": "ui_could_not_complete_the_operation"
+          },
+          "previous": null,
+          "target": "\"Радња није могла да се доврши.\"",
+          "display": "Радња није могла да се доврши.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_place_the_image": {
+          "source": "Could not place the image.",
+          "attributes": {
+            "name": "ui_could_not_place_the_image"
+          },
+          "previous": null,
+          "target": "\"Слика није могла да се постави.\"",
+          "display": "Слика није могла да се постави.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_prepare_the_image": {
+          "source": "Could not prepare the image.",
+          "attributes": {
+            "name": "ui_could_not_prepare_the_image"
+          },
+          "previous": null,
+          "target": "\"Слика није могла да се припреми.\"",
+          "display": "Слика није могла да се припреми.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_crop": {
+          "source": "Crop %1$s",
+          "attributes": {
+            "name": "ui_crop"
+          },
+          "previous": null,
+          "target": "\"Исецање %1$s\"",
+          "display": "Исецање %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_crop_image": {
+          "source": "Crop image",
+          "attributes": {
+            "name": "ui_crop_image"
+          },
+          "previous": "\"Исецање слику\"",
+          "target": "\"Исеци слику\"",
+          "display": "Исеци слику",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_crop_must_stay_inside_the_canvas": {
+          "source": "Crop must stay inside the canvas.",
+          "attributes": {
+            "name": "ui_crop_must_stay_inside_the_canvas"
+          },
+          "previous": null,
+          "target": "\"Исечак мора да остане унутар платна.\"",
+          "display": "Исечак мора да остане унутар платна.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_crop_preview_drag_an_edge_or_corner_drag": {
+          "source": "Crop preview. Drag an edge or corner; drag inside to move the crop.",
+          "attributes": {
+            "name": "ui_crop_preview_drag_an_edge_or_corner_drag"
+          },
+          "previous": null,
+          "target": "\"Преглед исецања. Превуците ивицу или угао; превуците унутар исечка да га померите.\"",
+          "display": "Преглед исецања. Превуците ивицу или угао; превуците унутар исечка да га померите.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_d_d_px_d_pixels_2f_mp": {
+          "source": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+          "attributes": {
+            "name": "ui_d_d_px_d_pixels_2f_mp"
+          },
+          "previous": null,
+          "target": "\"%1$d × %2$d px · Број пиксела: %3$,d (%4$.2f MP)\"",
+          "display": "%1$d × %2$d px · Број пиксела: %3$,d (%4$.2f MP)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_draft_pending": {
+          "source": "Draft pending",
+          "attributes": {
+            "name": "ui_draft_pending"
+          },
+          "previous": null,
+          "target": "\"Радна верзија чека на чување\"",
+          "display": "Радна верзија чека на чување",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_draw_again": {
+          "source": "Draw again",
+          "attributes": {
+            "name": "ui_draw_again"
+          },
+          "previous": null,
+          "target": "\"Цртај поново\"",
+          "display": "Цртај поново",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_drawing_canvas_pinch_and_move_two_fingers_to": {
+          "source": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+          "attributes": {
+            "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+          },
+          "previous": null,
+          "target": "\"Платно за цртање. Примакните или размакните два прста да промените увећање и померајте их да померите приказ. Режим Померање и зумирање омогућава померање и једним прстом.\"",
+          "display": "Платно за цртање. Примакните или размакните два прста да промените увећање и померајте их да померите приказ. Режим Померање и зумирање омогућава померање и једним прстом.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_drawing_settings": {
+          "source": "Drawing settings…",
+          "attributes": {
+            "name": "ui_drawing_settings"
+          },
+          "previous": null,
+          "target": "\"Подешавања цртања…\"",
+          "display": "Подешавања цртања…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_drawing_settings_d900c6": {
+          "source": "Drawing settings",
+          "attributes": {
+            "name": "ui_drawing_settings_d900c6"
+          },
+          "previous": null,
+          "target": "\"Подешавања цртања\"",
+          "display": "Подешавања цртања",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_a_number_from_to": {
+          "source": "Enter a number from %1$s to %2$s.",
+          "attributes": {
+            "name": "ui_enter_a_number_from_to"
+          },
+          "previous": null,
+          "target": "\"Унесите број од %1$s до %2$s.\"",
+          "display": "Унесите број од %1$s до %2$s.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_a_positive_size": {
+          "source": "Enter a positive size.",
+          "attributes": {
+            "name": "ui_enter_a_positive_size"
+          },
+          "previous": null,
+          "target": "\"Унесите позитивну величину.\"",
+          "display": "Унесите позитивну величину.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_a_trim_amount_for_every_edge": {
+          "source": "Enter a trim amount for every edge.",
+          "attributes": {
+            "name": "ui_enter_a_trim_amount_for_every_edge"
+          },
+          "previous": null,
+          "target": "\"Унесите износ одсецања за сваку ивицу.\"",
+          "display": "Унесите износ одсецања за сваку ивицу.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_a_whole_number_from_to": {
+          "source": "Enter a whole number from %1$s to %2$s.",
+          "attributes": {
+            "name": "ui_enter_a_whole_number_from_to"
+          },
+          "previous": null,
+          "target": "\"Унесите цео број од %1$s до %2$s.\"",
+          "display": "Унесите цео број од %1$s до %2$s.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_all_four_trim_amounts": {
+          "source": "Enter all four trim amounts.",
+          "attributes": {
+            "name": "ui_enter_all_four_trim_amounts"
+          },
+          "previous": null,
+          "target": "\"Унесите сва четири износа одсецања.\"",
+          "display": "Унесите сва четири износа одсецања.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_canvas_dimensions_within_android_s_coordinate": {
+          "source": "Enter positive canvas dimensions within Android\\'s coordinate range.",
+          "attributes": {
+            "name": "ui_enter_positive_canvas_dimensions_within_android_s_coordinate"
+          },
+          "previous": null,
+          "target": "\"Унесите позитивне димензије платна у оквиру опсега координата система Android.\"",
+          "display": "Унесите позитивне димензије платна у оквиру опсега координата система Android.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_dimensions": {
+          "source": "Enter positive dimensions.",
+          "attributes": {
+            "name": "ui_enter_positive_dimensions"
+          },
+          "previous": null,
+          "target": "\"Унесите позитивне димензије.\"",
+          "display": "Унесите позитивне димензије.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_dimensions_no_larger_than_the_original": {
+          "source": "Enter positive dimensions no larger than the original.",
+          "attributes": {
+            "name": "ui_enter_positive_dimensions_no_larger_than_the_original"
+          },
+          "previous": null,
+          "target": "\"Унесите позитивне димензије које нису веће од изворних.\"",
+          "display": "Унесите позитивне димензије које нису веће од изворних.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_dimensions_that_resolve_to_at_least": {
+          "source": "Enter positive dimensions that resolve to at least 1 pixel.",
+          "attributes": {
+            "name": "ui_enter_positive_dimensions_that_resolve_to_at_least"
+          },
+          "previous": null,
+          "target": "\"Унесите позитивне димензије које одговарају најмање једном пикселу.\"",
+          "display": "Унесите позитивне димензије које одговарају најмање једном пикселу.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_image_dimensions": {
+          "source": "Enter positive image dimensions.",
+          "attributes": {
+            "name": "ui_enter_positive_image_dimensions"
+          },
+          "previous": null,
+          "target": "\"Унесите позитивне димензије слике.\"",
+          "display": "Унесите позитивне димензије слике.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_valid_dimensions": {
+          "source": "Enter valid dimensions.",
+          "attributes": {
+            "name": "ui_enter_valid_dimensions"
+          },
+          "previous": null,
+          "target": "\"Унесите исправне димензије.\"",
+          "display": "Унесите исправне димензије.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_expand_colour_palette": {
+          "source": "Expand colour palette",
+          "attributes": {
+            "name": "ui_expand_colour_palette"
+          },
+          "previous": null,
+          "target": "\"Прошири палету боја\"",
+          "display": "Прошири палету боја",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_expand_tool_category": {
+          "source": "%1$s: %2$s selected. Expand tools and options",
+          "attributes": {
+            "name": "ui_expand_tool_category"
+          },
+          "previous": null,
+          "target": "\"%1$s: изабрани алат: %2$s. Прошири алате и опције\"",
+          "display": "%1$s: изабрани алат: %2$s. Прошири алате и опције",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_expand_toolbox": {
+          "source": "Expand toolbox",
+          "attributes": {
+            "name": "ui_expand_toolbox"
+          },
+          "previous": null,
+          "target": "\"Прошири кутију са алатима\"",
+          "display": "Прошири кутију са алатима",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_font_family": {
+          "source": "Font family",
+          "attributes": {
+            "name": "ui_font_family"
+          },
+          "previous": null,
+          "target": "\"Породица фонтова\"",
+          "display": "Породица фонтова",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_foreground_edit_colour": {
+          "source": "Foreground %1$s. Edit colour.",
+          "attributes": {
+            "name": "ui_foreground_edit_colour"
+          },
+          "previous": null,
+          "target": "\"Предњи план %1$s. Уреди боју.\"",
+          "display": "Предњи план %1$s. Уреди боју.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_full_text_copied": {
+          "source": "Full text copied",
+          "attributes": {
+            "name": "ui_full_text_copied"
+          },
+          "previous": null,
+          "target": "\"Цео текст је копиран\"",
+          "display": "Цео текст је копиран",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_height": {
+          "source": "Height (%1$s)",
+          "attributes": {
+            "name": "ui_height"
+          },
+          "previous": null,
+          "target": "\"Висина (%1$s)\"",
+          "display": "Висина (%1$s)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_height_in": {
+          "source": "Height in %1$s",
+          "attributes": {
+            "name": "ui_height_in"
+          },
+          "previous": null,
+          "target": "\"Висина (%1$s)\"",
+          "display": "Висина (%1$s)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_heights": {
+          "source": "Heights",
+          "attributes": {
+            "name": "ui_heights"
+          },
+          "previous": null,
+          "target": "\"Висине\"",
+          "display": "Висине",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_hex_rrggbb": {
+          "source": "Hex #RRGGBB",
+          "attributes": {
+            "name": "ui_hex_rrggbb"
+          },
+          "previous": null,
+          "target": "\"Хексадецимално #RRGGBB\"",
+          "display": "Хексадецимално #RRGGBB",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_invalid_colour": {
+          "source": "Invalid colour",
+          "attributes": {
+            "name": "ui_invalid_colour"
+          },
+          "previous": null,
+          "target": "\"Неисправна боја\"",
+          "display": "Неисправна боја",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_invalid_selection_outline": {
+          "source": "Invalid selection outline.",
+          "attributes": {
+            "name": "ui_invalid_selection_outline"
+          },
+          "previous": null,
+          "target": "\"Неисправна контура избора.\"",
+          "display": "Неисправна контура избора.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_left_arrow_collapse": {
+          "source": "Left arrow: collapse",
+          "attributes": {
+            "name": "ui_left_arrow_collapse"
+          },
+          "previous": null,
+          "target": "\"Стрелица улево: скупи\"",
+          "display": "Стрелица улево: скупи",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_line_spacing": {
+          "source": "Line spacing (%)",
+          "attributes": {
+            "name": "ui_line_spacing",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Проред (%)\"",
+          "display": "Проред (%)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_lock_aspect_ratio": {
+          "source": "Lock aspect ratio",
+          "attributes": {
+            "name": "ui_lock_aspect_ratio"
+          },
+          "previous": null,
+          "target": "\"Закључај однос ширине и висине\"",
+          "display": "Закључај однос ширине и висине",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_lock_proportions": {
+          "source": "Lock proportions",
+          "attributes": {
+            "name": "ui_lock_proportions"
+          },
+          "previous": null,
+          "target": "\"Закључај пропорције\"",
+          "display": "Закључај пропорције",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_magnification": {
+          "source": "Magnification (%)",
+          "attributes": {
+            "name": "ui_magnification",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Увећање (%)\"",
+          "display": "Увећање (%)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_new_colour": {
+          "source": "New colour",
+          "attributes": {
+            "name": "ui_new_colour"
+          },
+          "previous": null,
+          "target": "\"Нова боја\"",
+          "display": "Нова боја",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_no_readable_image_data": {
+          "source": "No readable image data.",
+          "attributes": {
+            "name": "ui_no_readable_image_data"
+          },
+          "previous": null,
+          "target": "\"Нема читљивих података слике.\"",
+          "display": "Нема читљивих података слике.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_no_resize_fits_decoder_memory": {
+          "source": "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+          "attributes": {
+            "name": "ui_no_resize_fits_decoder_memory"
+          },
+          "previous": null,
+          "target": "\"Чак ни при најмањој излазној величини, ова слика не може да се учита за уређивање у оквиру тренутних ограничења меморије. Откажите и употребите мању изворну слику.\"",
+          "display": "Чак ни при најмањој излазној величини, ова слика не може да се учита за уређивање у оквиру тренутних ограничења меморије. Откажите и употребите мању изворну слику.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_none": {
+          "source": "None",
+          "attributes": {
+            "name": "ui_none"
+          },
+          "previous": null,
+          "target": "\"Ништа\"",
+          "display": "Ништа",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_not_enough_memory_to_finish_opening_this_image": {
+          "source": "Not enough memory to finish opening this image",
+          "attributes": {
+            "name": "ui_not_enough_memory_to_finish_opening_this_image"
+          },
+          "previous": null,
+          "target": "\"Нема довољно меморије за довршавање отварања ове слике\"",
+          "display": "Нема довољно меморије за довршавање отварања ове слике",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_not_enough_memory_to_inspect_this_image": {
+          "source": "Not enough memory to inspect this image",
+          "attributes": {
+            "name": "ui_not_enough_memory_to_inspect_this_image"
+          },
+          "previous": null,
+          "target": "\"Нема довољно меморије за проверу ове слике\"",
+          "display": "Нема довољно меморије за проверу ове слике",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_numeric_slider_value": {
+          "source": "%1$s: %2$d",
+          "attributes": {
+            "name": "ui_numeric_slider_value"
+          },
+          "previous": null,
+          "target": "\"%1$s: %2$d\"",
+          "display": "%1$s: %2$d",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_paste_hint34": {
+          "source": "Copy an area or use Draw → Insert → Other images.",
+          "attributes": {
+            "name": "ui_paste_hint34",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Копирајте област или изаберите Цртање → Уметање → Друге слике.\"",
+          "display": "Копирајте област или изаберите Цртање → Уметање → Друге слике.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_place_text": {
+          "source": "Place text",
+          "attributes": {
+            "name": "ui_place_text"
+          },
+          "previous": null,
+          "target": "\"Постави текст\"",
+          "display": "Постави текст",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_please_try_again": {
+          "source": "Please try again.",
+          "attributes": {
+            "name": "ui_please_try_again"
+          },
+          "previous": null,
+          "target": "\"Покушајте поново.\"",
+          "display": "Покушајте поново.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_please_wait_for_the_current_operation": {
+          "source": "Please wait for the current operation.",
+          "attributes": {
+            "name": "ui_please_wait_for_the_current_operation"
+          },
+          "previous": null,
+          "target": "\"Сачекајте да се тренутна радња заврши.\"",
+          "display": "Сачекајте да се тренутна радња заврши.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_px": {
+          "source": "%1$s · %2$s\\n%3$s × %4$s px · %5$s",
+          "attributes": {
+            "name": "ui_px"
+          },
+          "previous": null,
+          "target": "\"%1$s · %2$s\\n%3$s × %4$s px · %5$s\"",
+          "display": "%1$s · %2$s\n%3$s × %4$s px · %5$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_px_724eb3": {
+          "source": "%1$s × %2$s px",
+          "attributes": {
+            "name": "ui_px_724eb3"
+          },
+          "previous": null,
+          "target": "\"%1$s × %2$s px\"",
+          "display": "%1$s × %2$s px",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_rectangle_select": {
+          "source": "Rectangle select",
+          "attributes": {
+            "name": "ui_rectangle_select"
+          },
+          "previous": "\"Изаберите правоугаоник\"",
+          "target": "\"Правоугаони избор\"",
+          "display": "Правоугаони избор",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_reset_crop": {
+          "source": "Reset crop",
+          "attributes": {
+            "name": "ui_reset_crop"
+          },
+          "previous": null,
+          "target": "\"Поништи подешавања исецања\"",
+          "display": "Поништи подешавања исецања",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_reset_to_black_white": {
+          "source": "Reset to black / white",
+          "attributes": {
+            "name": "ui_reset_to_black_white"
+          },
+          "previous": null,
+          "target": "\"Врати на црну / белу\"",
+          "display": "Врати на црну / белу",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_resize_and_load": {
+          "source": "Resize and load",
+          "attributes": {
+            "name": "ui_resize_and_load"
+          },
+          "previous": null,
+          "target": "\"Промени величину и учитај\"",
+          "display": "Промени величину и учитај",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_resize_the_copy": {
+          "source": "Resize the copy",
+          "attributes": {
+            "name": "ui_resize_the_copy"
+          },
+          "previous": null,
+          "target": "\"Промени величину копије\"",
+          "display": "Промени величину копије",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_scales_the_image_unlock_the_ratio_to_stretch": {
+          "source": "Scales the image. Unlock the ratio to stretch width and height independently.",
+          "attributes": {
+            "name": "ui_scales_the_image_unlock_the_ratio_to_stretch"
+          },
+          "previous": null,
+          "target": "\"Мења величину слике. Откључајте однос ширине и висине да их мењате независно.\"",
+          "display": "Мења величину слике. Откључајте однос ширине и висине да их мењате независно.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_select_an_area": {
+          "source": "Select an area",
+          "attributes": {
+            "name": "ui_select_an_area"
+          },
+          "previous": null,
+          "target": "\"Изабери област\"",
+          "display": "Изабери област",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_select_an_area_first": {
+          "source": "Select an area first.",
+          "attributes": {
+            "name": "ui_select_an_area_first"
+          },
+          "previous": null,
+          "target": "\"Прво изаберите област.\"",
+          "display": "Прво изаберите област.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_selected_colour23": {
+          "source": "Selected color",
+          "attributes": {
+            "name": "ui_selected_colour23"
+          },
+          "previous": null,
+          "target": "\"Изабрана боја\"",
+          "display": "Изабрана боја",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_selection_dimensions_are_too_large": {
+          "source": "Selection dimensions are too large.",
+          "attributes": {
+            "name": "ui_selection_dimensions_are_too_large"
+          },
+          "previous": null,
+          "target": "\"Димензије избора су превелике.\"",
+          "display": "Димензије избора су превелике.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_share_saved_image": {
+          "source": "Share saved image",
+          "attributes": {
+            "name": "ui_share_saved_image"
+          },
+          "previous": null,
+          "target": "\"Подели сачувану слику\"",
+          "display": "Подели сачувану слику",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_show_all": {
+          "source": "Show all",
+          "attributes": {
+            "name": "ui_show_all"
+          },
+          "previous": null,
+          "target": "\"Прикажи све\"",
+          "display": "Прикажи све",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_show_controls": {
+          "source": "Show controls",
+          "attributes": {
+            "name": "ui_show_controls"
+          },
+          "previous": null,
+          "target": "\"Прикажи контроле\"",
+          "display": "Прикажи контроле",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_show_magnified_drawing_preview": {
+          "source": "Show magnified drawing preview",
+          "attributes": {
+            "name": "ui_show_magnified_drawing_preview"
+          },
+          "previous": null,
+          "target": "\"Прикажи увећани преглед цртежа\"",
+          "display": "Прикажи увећани преглед цртежа",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_size_pixels": {
+          "source": "Size (pixels)",
+          "attributes": {
+            "name": "ui_size_pixels"
+          },
+          "previous": null,
+          "target": "\"Величина (пиксели)\"",
+          "display": "Величина (пиксели)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_size_px": {
+          "source": "Size (px)",
+          "attributes": {
+            "name": "ui_size_px"
+          },
+          "previous": null,
+          "target": "\"Величина (px)\"",
+          "display": "Величина (px)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tap_an_image_first": {
+          "source": "Tap an image first.",
+          "attributes": {
+            "name": "ui_tap_an_image_first"
+          },
+          "previous": null,
+          "target": "\"Прво додирните слику.\"",
+          "display": "Прво додирните слику.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tap_canvas_to_type": {
+          "source": "Tap canvas\\nto type",
+          "attributes": {
+            "name": "ui_tap_canvas_to_type"
+          },
+          "previous": null,
+          "target": "\"Додирните платно\\nда унесете текст\"",
+          "display": "Додирните платно\nда унесете текст",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tap_to_type_a_number": {
+          "source": "%1$s: %2$s. Tap to type a number.",
+          "attributes": {
+            "name": "ui_tap_to_type_a_number"
+          },
+          "previous": null,
+          "target": "\"%1$s: %2$s. Додирните да унесете број.\"",
+          "display": "%1$s: %2$s. Додирните да унесете број.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_text_direction23": {
+          "source": "Text direction",
+          "attributes": {
+            "name": "ui_text_direction23"
+          },
+          "previous": null,
+          "target": "\"Смер текста\"",
+          "display": "Смер текста",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_crop_must_contain_at_least_one_pixel": {
+          "source": "The crop must contain at least one pixel.",
+          "attributes": {
+            "name": "ui_the_crop_must_contain_at_least_one_pixel"
+          },
+          "previous": null,
+          "target": "\"Исечак мора да садржи бар један пиксел.\"",
+          "display": "Исечак мора да садржи бар један пиксел.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_crop_must_stay_inside_the_image": {
+          "source": "The crop must stay inside the image.",
+          "attributes": {
+            "name": "ui_the_crop_must_stay_inside_the_image"
+          },
+          "previous": null,
+          "target": "\"Исечак мора да остане унутар слике.\"",
+          "display": "Исечак мора да остане унутар слике.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_decoder_and_editing_buffers_need_about_the": {
+          "source": "The decoder and editing buffers need about %1$s; the current safe editing budget is %2$s. Choose a smaller copy.",
+          "attributes": {
+            "name": "ui_the_decoder_and_editing_buffers_need_about_the"
+          },
+          "previous": null,
+          "target": "\"Декодеру и баферима за уређивање потребно је око %1$s; тренутна безбедна граница меморије за уређивање је %2$s. Изаберите мању копију.\"",
+          "display": "Декодеру и баферима за уређивање потребно је око %1$s; тренутна безбедна граница меморије за уређивање је %2$s. Изаберите мању копију.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_full_image_and_working_buffers_exceed_the": {
+          "source": "The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.",
+          "attributes": {
+            "name": "ui_the_full_image_and_working_buffers_exceed_the"
+          },
+          "previous": null,
+          "target": "\"Цела слика и радни бафери премашују тренутну безбедну границу меморије или Android није могао да им додели меморију. Промените величину копије да бисте је уређивали. Изворна датотека остаје непромењена.\"",
+          "display": "Цела слика и радни бафери премашују тренутну безбедну границу меморије или Android није могао да им додели меморију. Промените величину копије да бисте је уређивали. Изворна датотека остаје непромењена.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_picker_returned_no_file_please_choose_the": {
+          "source": "The picker returned no file. Please choose the file again.",
+          "attributes": {
+            "name": "ui_the_picker_returned_no_file_please_choose_the"
+          },
+          "previous": null,
+          "target": "\"Бирач није вратио датотеку. Изаберите је поново.\"",
+          "display": "Бирач није вратио датотеку. Изаберите је поново.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_picker_returned_no_files": {
+          "source": "The picker returned no files.",
+          "attributes": {
+            "name": "ui_the_picker_returned_no_files"
+          },
+          "previous": null,
+          "target": "\"Бирач није вратио ниједну датотеку.\"",
+          "display": "Бирач није вратио ниједну датотеку.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_selected_provider_did_not_return_any_image": {
+          "source": "The selected provider did not return any image data.",
+          "attributes": {
+            "name": "ui_the_selected_provider_did_not_return_any_image"
+          },
+          "previous": null,
+          "target": "\"Изабрани пружалац није вратио податке слике.\"",
+          "display": "Изабрани пружалац није вратио податке слике.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_this_file_is_not_a_supported_image_use": {
+          "source": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
+          "attributes": {
+            "name": "ui_this_file_is_not_a_supported_image_use"
+          },
+          "previous": null,
+          "target": "\"Ова датотека није подржана слика. Користите PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF или текст слике у кодирању Base64.\"",
+          "display": "Ова датотека није подржана слика. Користите PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF или текст слике у кодирању Base64.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tolerance": {
+          "source": "Tolerance",
+          "attributes": {
+            "name": "ui_tolerance"
+          },
+          "previous": null,
+          "target": "\"Толеранција\"",
+          "display": "Толеранција",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_too_large_for_the_current_budget_reduce_the": {
+          "source": "Too large for the current budget. Reduce the dimensions or cancel and free memory.",
+          "attributes": {
+            "name": "ui_too_large_for_the_current_budget_reduce_the"
+          },
+          "previous": null,
+          "target": "\"Превелико за тренутну границу меморије. Смањите димензије или откажите и ослободите меморију.\"",
+          "display": "Превелико за тренутну границу меморије. Смањите димензије или откажите и ослободите меморију.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tool_categories": {
+          "source": "Tool categories. Scroll to see more tools",
+          "attributes": {
+            "name": "ui_tool_categories"
+          },
+          "previous": null,
+          "target": "\"Категорије алата. Померајте приказ да видите још алата\"",
+          "display": "Категорије алата. Померајте приказ да видите још алата",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_amounts_must_be_zero_or_greater": {
+          "source": "Trim amounts must be zero or greater.",
+          "attributes": {
+            "name": "ui_trim_amounts_must_be_zero_or_greater"
+          },
+          "previous": null,
+          "target": "\"Износи одсецања морају бити нула или већи.\"",
+          "display": "Износи одсецања морају бити нула или већи.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_amounts_must_fit_inside_each_image_use": {
+          "source": "Trim amounts must fit inside each image; use whole pixels or percentages.",
+          "attributes": {
+            "name": "ui_trim_amounts_must_fit_inside_each_image_use"
+          },
+          "previous": null,
+          "target": "\"Износи одсецања морају да стану унутар сваке слике; користите целе пикселе или проценте.\"",
+          "display": "Износи одсецања морају да стану унутар сваке слике; користите целе пикселе или проценте.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_expand_canvas_by_touch": {
+          "source": "Trim / expand canvas by touch…",
+          "attributes": {
+            "name": "ui_trim_expand_canvas_by_touch"
+          },
+          "previous": null,
+          "target": "\"Одсеци / прошири платно додиром…\"",
+          "display": "Одсеци / прошири платно додиром…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_try_a_different_file_or_location": {
+          "source": "Please try a different file or location.",
+          "attributes": {
+            "name": "ui_try_a_different_file_or_location"
+          },
+          "previous": null,
+          "target": "\"Покушајте са другом датотеком или локацијом.\"",
+          "display": "Покушајте са другом датотеком или локацијом.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_type_text": {
+          "source": "Type text",
+          "attributes": {
+            "name": "ui_type_text"
+          },
+          "previous": null,
+          "target": "\"Унеси текст\"",
+          "display": "Унеси текст",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_1_1024_pixels": {
+          "source": "Use 1–1024 pixels.",
+          "attributes": {
+            "name": "ui_use_1_1024_pixels"
+          },
+          "previous": null,
+          "target": "\"Користите 1–1024 пиксела.\"",
+          "display": "Користите 1–1024 пиксела.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_50_300": {
+          "source": "Use 50–300%.",
+          "attributes": {
+            "name": "ui_use_50_300",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Користите 50–300%.\"",
+          "display": "Користите 50–300%.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_a_positive_target_dimension": {
+          "source": "Use a positive target dimension.",
+          "attributes": {
+            "name": "ui_use_a_positive_target_dimension"
+          },
+          "previous": null,
+          "target": "\"Употребите позитивну циљну димензију.\"",
+          "display": "Употребите позитивну циљну димензију.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_colour": {
+          "source": "Use colour",
+          "attributes": {
+            "name": "ui_use_colour"
+          },
+          "previous": null,
+          "target": "\"Употреби боју\"",
+          "display": "Употреби боју",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_rrggbb": {
+          "source": "Use #RRGGBB",
+          "attributes": {
+            "name": "ui_use_rrggbb"
+          },
+          "previous": null,
+          "target": "\"Употребите #RRGGBB\"",
+          "display": "Употребите #RRGGBB",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_width": {
+          "source": "Width (%1$s)",
+          "attributes": {
+            "name": "ui_width"
+          },
+          "previous": null,
+          "target": "\"Ширина (%1$s)\"",
+          "display": "Ширина (%1$s)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_working": {
+          "source": "Working…",
+          "attributes": {
+            "name": "ui_working"
+          },
+          "previous": null,
+          "target": "\"Обрада…\"",
+          "display": "Обрада…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_width_in": {
+          "source": "Width in %1$s",
+          "attributes": {
+            "name": "ui_width_in"
+          },
+          "previous": null,
+          "target": "\"Ширина (%1$s)\"",
+          "display": "Ширина (%1$s)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_in_pixels": {
+          "source": "%1$s trim in pixels",
+          "attributes": {
+            "name": "ui_trim_in_pixels"
+          },
+          "previous": null,
+          "target": "\"Одсецање у пикселима — %1$s\"",
+          "display": "Одсецање у пикселима — %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_in_percent": {
+          "source": "%1$s trim in percent",
+          "attributes": {
+            "name": "ui_trim_in_percent"
+          },
+          "previous": null,
+          "target": "\"Одсецање у процентима — %1$s\"",
+          "display": "Одсецање у процентима — %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "formats22_at_least_frames": {
+          "source": "at least %1$d",
+          "attributes": {
+            "name": "formats22_at_least_frames"
+          },
+          "previous": null,
+          "target": "\"најмање %1$d\"",
+          "display": "најмање %1$d",
+          "changed": true,
+          "review_status": "accepted_delta"
+        }
+      },
+      "context": {
+        "formats22_animation_message": {
+          "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+          "attributes": {
+            "name": "formats22_animation_message"
+          },
+          "previous": "\"Број кадрова у овој слици формата %1$s: %2$s. AN Paint уређује статичне слике и не чува анимацију.\"",
+          "target": "\"Број кадрова у овој слици формата %1$s: %2$s. AN Paint уређује статичне слике и не чува анимацију.\"",
+          "display": "Број кадрова у овој слици формата %1$s: %2$s. AN Paint уређује статичне слике и не чува анимацију.",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        },
+        "formats22_animation_still": {
+          "source": "Only the first frame will be imported. Saving creates a still image.",
+          "attributes": {
+            "name": "formats22_animation_still"
+          },
+          "previous": "\"Биће увезен само први кадар. Чувањем се добија статична слика.\"",
+          "target": "\"Биће увезен само први кадар. Чувањем се добија статична слика.\"",
+          "display": "Биће увезен само први кадар. Чувањем се добија статична слика.",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        },
+        "formats22_animation_title": {
+          "source": "Animated image",
+          "attributes": {
+            "name": "formats22_animation_title"
+          },
+          "previous": "\"Анимирана слика\"",
+          "target": "\"Анимирана слика\"",
+          "display": "Анимирана слика",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        },
+        "formats22_open_still": {
+          "source": "Open still image",
+          "attributes": {
+            "name": "formats22_open_still"
+          },
+          "previous": "\"Отвори статичну слику\"",
+          "target": "\"Отвори статичну слику\"",
+          "display": "Отвори статичну слику",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        },
+        "save20_title": {
+          "source": "Save as…",
+          "attributes": {
+            "name": "save20_title"
+          },
+          "previous": "Сачувај као…",
+          "target": "Сачувај као…",
+          "display": "Сачувај као…",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_discard_changes23": {
+          "source": "Discard changes",
+          "attributes": {
+            "name": "ui_discard_changes23"
+          },
+          "previous": "Одбаци измене",
+          "target": "Одбаци измене",
+          "display": "Одбаци измене",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_export_recovery_copy": {
+          "source": "Export recovery copy…",
+          "attributes": {
+            "name": "ui_export_recovery_copy"
+          },
+          "previous": "Извези копију за опоравак…",
+          "target": "Извези копију за опоравак…",
+          "display": "Извези копију за опоравак…",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_save": {
+          "source": "Save",
+          "attributes": {
+            "name": "ui_save"
+          },
+          "previous": "Сачувај",
+          "target": "Сачувај",
+          "display": "Сачувај",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_bottom": {
+          "source": "Bottom",
+          "attributes": {
+            "name": "ui_bottom"
+          },
+          "previous": "\"Доле\"",
+          "target": "\"Доле\"",
+          "display": "Доле",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_category_insert": {
+          "source": "Insert",
+          "attributes": {
+            "name": "ui_category_insert"
+          },
+          "previous": "Уметање",
+          "target": "Уметање",
+          "display": "Уметање",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_draw26": {
+          "source": "Draw",
+          "attributes": {
+            "name": "ui_draw26"
+          },
+          "previous": "Цртање",
+          "target": "Цртање",
+          "display": "Цртање",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_left": {
+          "source": "Left",
+          "attributes": {
+            "name": "ui_left"
+          },
+          "previous": "\"Лево\"",
+          "target": "\"Лево\"",
+          "display": "Лево",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_load_image": {
+          "source": "Load image…",
+          "attributes": {
+            "name": "ui_load_image"
+          },
+          "previous": "Отвори слику…",
+          "target": "Отвори слику…",
+          "display": "Отвори слику…",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_menu_file": {
+          "source": "File",
+          "attributes": {
+            "name": "ui_menu_file"
+          },
+          "previous": "Датотека",
+          "target": "Датотека",
+          "display": "Датотека",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_other_images34": {
+          "source": "Other images",
+          "attributes": {
+            "name": "ui_other_images34",
+            "formatted": "false"
+          },
+          "previous": "Друге слике",
+          "target": "Друге слике",
+          "display": "Друге слике",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_percent_fd8671": {
+          "source": "percent",
+          "attributes": {
+            "name": "ui_percent_fd8671"
+          },
+          "previous": "\"процената\"",
+          "target": "\"процената\"",
+          "display": "процената",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_pixels_6ec9c2": {
+          "source": "pixels",
+          "attributes": {
+            "name": "ui_pixels_6ec9c2"
+          },
+          "previous": "\"Пиксели\"",
+          "target": "\"Пиксели\"",
+          "display": "Пиксели",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_right": {
+          "source": "Right",
+          "attributes": {
+            "name": "ui_right"
+          },
+          "previous": "\"Десно\"",
+          "target": "\"Десно\"",
+          "display": "Десно",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_save_a5d0d9": {
+          "source": "Save…",
+          "attributes": {
+            "name": "ui_save_a5d0d9"
+          },
+          "previous": "@string/ui_save",
+          "target": "@string/ui_save",
+          "display": "Сачувај",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_save_your_changes": {
+          "source": "Save your changes?",
+          "attributes": {
+            "name": "ui_save_your_changes"
+          },
+          "previous": "Сачувати промене?",
+          "target": "Сачувати промене?",
+          "display": "Сачувати промене?",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_your_current_image_has_unsaved_changes": {
+          "source": "Your current image has unsaved changes.",
+          "attributes": {
+            "name": "ui_your_current_image_has_unsaved_changes"
+          },
+          "previous": "\"Ваша тренутна слика има несачуване измене.\"",
+          "target": "\"Ваша тренутна слика има несачуване измене.\"",
+          "display": "Ваша тренутна слика има несачуване измене.",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        }
+      },
+      "priority_status": {
+        "formats22_animation_message": "prior_exact_P0_carry_PR180_182",
+        "formats22_animation_poster": "prior_exact_P0_carry_PR180_182",
+        "formats22_animation_still": "prior_exact_P0_carry_PR180_182",
+        "formats22_animation_title": "prior_exact_P0_carry_PR180_182",
+        "formats22_animation_unknown": "prior_exact_P0_carry_PR180_182",
+        "formats22_ascii_description": "prior_exact_P0_carry_PR180_182",
+        "formats22_derived_exported": "hold_absent_no_direct_consumer",
+        "formats22_open_still": "prior_exact_P0_carry_PR180_182",
+        "formats22_pdf_raster_hint": "prior_exact_P0_carry_PR180_182",
+        "gallery_credit_could_not_save": "prior_exact_P0_carry_PR180_182",
+        "gallery_credit_too_large": "prior_exact_P0_carry_PR180_182",
+        "legacy_credits_unreadable": "prior_exact_P0_carry_PR180_182",
+        "save20_destination_error": "prior_exact_P0_carry_PR180_182",
+        "save20_encoding_budget": "prior_exact_P0_carry_PR180_182",
+        "save20_file_format": "prior_exact_P0_carry_PR182",
+        "save20_file_name": "retain_pending_prior_binding",
+        "save20_gif_description": "prior_exact_P0_carry_PR180_182",
+        "save20_invalid_name": "prior_exact_P0_carry_PR180_182",
+        "save20_lossy_quality_description": "prior_exact_P0_carry_PR180_182",
+        "save20_title": "retain_pending_prior_binding",
+        "save20_unsupported_image_colour": "prior_exact_P0_carry_PR180_182",
+        "ui_a_separate_recovery_copy_has_been_kept_use": "prior_exact_P0_carry_PR180_182",
+        "ui_an_assembly_source_image_is_missing": "prior_exact_P0_carry_PR180_182",
+        "ui_assembly_saved": "prior_exact_P0_carry_PR180_182",
+        "ui_assembly_source_memory_floor": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_failed_use_save": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_image_encoding_failed": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_is_paused_to_protect_that_draft_use": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_metadata_is_missing": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_paused_use_save": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_pixels_are_missing": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_pixels_could_not_be_read": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_selection_encoding_failed": "prior_exact_P0_carry_PR180_182",
+        "ui_cannot_create_the_undo_cache_free_some_device": "prior_exact_P0_carry_PR180_182",
+        "ui_clear_all": "prior_exact_P0_carry_PR180_182",
+        "ui_clear_image": "retain_pending_prior_binding",
+        "ui_could_not_export_the_recovery_copy": "prior_exact_P0_carry_PR180_182",
+        "ui_could_not_open_image": "prior_exact_P0_carry_PR180_182",
+        "ui_could_not_save_image": "prior_exact_P0_carry_PR180_182",
+        "ui_could_not_save_the_assembly": "prior_exact_P0_carry_PR180_182",
+        "ui_could_not_store_the_assembly": "prior_exact_P0_carry_PR180_182",
+        "ui_d_d_pixels_2f_mp_exceeds_the_current": "prior_exact_P0_carry_PR180_182",
+        "ui_discard": "retained_existing_generic_discard_hold",
+        "ui_discard_changes23": "retain_pending_prior_binding",
+        "ui_draft_not_saved_yet": "prior_exact_P0_carry_PR180_182",
+        "ui_draft_restored": "prior_exact_P0_carry_PR180_182",
+        "ui_draft_saved": "prior_exact_P0_carry_PR180_182",
+        "ui_export_did_not_save23": "prior_exact_P0_carry_PR180_182",
+        "ui_export_explanation23": "prior_exact_P0_carry_PR180_182",
+        "ui_export_recovery_copy": "retain_pending_prior_binding",
+        "ui_export_recovery_copy_144b8a": "prior_exact_P0_carry_PR180_182",
+        "ui_higher_quality_usually_makes_a_larger_file_lossless": "prior_exact_P0_carry_PR180_182",
+        "ui_history_unavailable34": "prior_exact_P0_carry_PR180_182",
+        "ui_invalid_autosave_metadata": "prior_exact_P0_carry_PR180_182",
+        "ui_keep_editing23": "proposed_correction",
+        "ui_keeps_pixels_at_the_top_left_smaller_canvas": "prior_exact_P0_carry_PR180_182",
+        "ui_not_enough_memory_for_this_operation_the_assembly": "prior_exact_P0_carry_PR180_182",
+        "ui_not_enough_memory_to_save_in_this_format": "prior_exact_P0_carry_PR180_182",
+        "ui_png_encoding_failed": "prior_exact_P0_carry_PR180_182",
+        "ui_previous_draft_kept_for_recovery": "prior_exact_P0_carry_PR180_182",
+        "ui_recovered_image": "prior_exact_P0_carry_PR180_182",
+        "ui_recovery_copy_exported_extract_canvas_png_from_the": "prior_exact_P0_carry_PR180_182",
+        "ui_resize_large_image": "prior_exact_P0_carry_PR180_182",
+        "ui_sampled_resize_memory_explanation": "prior_exact_P0_carry_PR180_182",
+        "ui_save": "retain_pending_prior_binding",
+        "ui_save_a5d0d9": "retain_pending_prior_binding",
+        "ui_save_and_share": "retain_pending_prior_binding",
+        "ui_save_and_share_41edb4": "prior_exact_P0_carry_PR180_182",
+        "ui_save_as": "hold_absent_no_direct_consumer",
+        "ui_save_as_jpeg": "hold_absent_no_direct_consumer",
+        "ui_save_as_jpeg_xl": "hold_absent_no_direct_consumer",
+        "ui_save_as_png": "hold_absent_no_direct_consumer",
+        "ui_save_explanation23": "prior_exact_P0_carry_PR180_182",
+        "ui_save_png": "prior_exact_P0_carry_PR180_182",
+        "ui_save_your_changes": "retain_pending_prior_binding",
+        "ui_saved": "prior_exact_P0_carry_PR180_182",
+        "ui_share_explanation34": "retain_pending_prior_binding",
+        "ui_the_draft_is_saving_try_again_shortly": "prior_exact_P0_carry_PR180_182",
+        "ui_the_encoder_did_not_finish": "prior_exact_P0_carry_PR180_182",
+        "ui_the_image_was_saved_but_android_could_not": "prior_exact_P0_carry_PR180_182",
+        "ui_the_previous_draft_could_not_be_moved_to": "prior_exact_P0_carry_PR180_182",
+        "ui_the_previous_draft_could_not_be_preserved_separately": "prior_exact_P0_carry_PR180_182",
+        "ui_the_previous_draft_could_not_be_restored": "prior_exact_P0_carry_PR180_182",
+        "ui_the_previous_draft_needs_more_memory_to_reopen": "prior_exact_P0_carry_PR180_182",
+        "ui_the_saved_assembly_could_not_be_opened": "prior_exact_P0_carry_PR180_182",
+        "ui_the_selected_location_is_not_writable": "prior_exact_P0_carry_PR180_182",
+        "ui_the_trim_would_remove_the_entire_image": "prior_exact_P0_carry_PR180_182",
+        "ui_the_undo_cache_is_damaged": "prior_exact_P0_carry_PR180_182",
+        "ui_there_is_not_enough_memory_for_this_operation": "prior_exact_P0_carry_PR180_182",
+        "ui_this_location_is_not_writable": "prior_exact_P0_carry_PR180_182",
+        "ui_unexpected_data_in_the_undo_cache": "prior_exact_P0_carry_PR180_182",
+        "ui_your_current_image_has_unsaved_changes": "prior_exact_P0_carry_PR180_182",
+        "colour_converter_unavailable": "proposed_addition",
+        "colour_invalid_metadata": "proposed_addition",
+        "colour_truncated_metadata": "proposed_addition",
+        "colour_unsupported_icc_model": "proposed_addition",
+        "commons_svg_original_size_too_large": "proposed_addition",
+        "commons_svg_original_size_unavailable": "proposed_addition",
+        "formats22_import_limit": "proposed_addition",
+        "language20_app_language": "retain_pending_prior_binding",
+        "language20_current": "proposed_addition",
+        "language20_device_default": "retain_pending_prior_binding",
+        "language20_settings": "retain_pending_prior_binding",
+        "language20_translation_note": "proposed_addition",
+        "ui_0f_0f_px_1f": "proposed_addition",
+        "ui_100": "proposed_addition",
+        "ui_1_px": "proposed_addition",
+        "ui_1f_s": "proposed_addition",
+        "ui_actual_size_100": "proposed_addition",
+        "ui_add_colour26": "retain_pending_prior_binding",
+        "ui_add_text": "proposed_addition",
+        "ui_airbrush": "retain_pending_prior_binding",
+        "ui_all": "proposed_addition",
+        "ui_android_blocked_the_file_picker": "proposed_addition",
+        "ui_android_could_not_decode_this_image": "proposed_addition",
+        "ui_android_could_not_find_a_file_picker_enable": "proposed_addition",
+        "ui_apply": "retain_pending_prior_binding",
+        "ui_apply_bounds": "proposed_addition",
+        "ui_apply_crop": "proposed_addition",
+        "ui_autosaving_draft": "proposed_addition",
+        "ui_background_colour": "retain_pending_prior_binding",
+        "ui_background_edit_colour": "proposed_addition",
+        "ui_basic_colours": "proposed_addition",
+        "ui_bg": "retain_pending_prior_binding",
+        "ui_bold": "retain_pending_prior_binding",
+        "ui_bottom": "retain_pending_prior_binding",
+        "ui_brush": "retain_pending_prior_binding",
+        "ui_bucket_fill": "retain_pending_prior_binding",
+        "ui_cancel": "retain_pending_prior_binding",
+        "ui_canvas_bounds": "retain_pending_prior_binding",
+        "ui_canvas_size": "retain_pending_prior_binding",
+        "ui_canvas_size_30460e": "retain_pending_prior_binding",
+        "ui_canvas_zoom": "proposed_addition",
+        "ui_canvas_zoom_771f84": "proposed_addition",
+        "ui_category_brush": "retain_pending_prior_binding",
+        "ui_category_insert": "retain_pending_prior_binding",
+        "ui_category_selection": "retain_pending_prior_binding",
+        "ui_centred": "retain_pending_prior_binding",
+        "ui_choose_a_smaller_output_copy_the_source_images": "proposed_addition",
+        "ui_choose_a_smaller_size": "proposed_addition",
+        "ui_choose_at_least_one_image": "proposed_addition",
+        "ui_choose_dimensions_no_larger_than_the_original": "proposed_addition",
+        "ui_choose_location": "proposed_addition",
+        "ui_codec_resize_memory_floor": "proposed_addition",
+        "ui_collapse_colour_palette": "proposed_addition",
+        "ui_collapse_tool_category": "proposed_addition",
+        "ui_collapse_toolbox": "proposed_addition",
+        "ui_colour": "proposed_addition",
+        "ui_colour_palette_tap_for_foreground_hold_for_background": "proposed_addition",
+        "ui_colour_tab23": "retain_pending_prior_binding",
+        "ui_colour_tap_foreground_hold_background": "proposed_addition",
+        "ui_commit_selection": "proposed_addition",
+        "ui_copy": "retain_pending_prior_binding",
+        "ui_copy_all": "proposed_addition",
+        "ui_could_not_apply_the_crop": "proposed_addition",
+        "ui_could_not_complete_the_edit": "proposed_addition",
+        "ui_could_not_complete_the_operation": "proposed_addition",
+        "ui_could_not_place_the_image": "proposed_addition",
+        "ui_could_not_prepare_the_image": "proposed_addition",
+        "ui_crop": "proposed_addition",
+        "ui_crop_image": "proposed_correction",
+        "ui_crop_must_stay_inside_the_canvas": "proposed_addition",
+        "ui_crop_preview_drag_an_edge_or_corner_drag": "proposed_addition",
+        "ui_crop_to_selection": "retain_pending_prior_binding",
+        "ui_cut": "retain_pending_prior_binding",
+        "ui_d_d_px_d_pixels_2f_mp": "proposed_addition",
+        "ui_delete_selection": "retain_pending_prior_binding",
+        "ui_done": "retain_pending_prior_binding",
+        "ui_draft_pending": "proposed_addition",
+        "ui_draw26": "retain_pending_prior_binding",
+        "ui_draw_again": "proposed_addition",
+        "ui_drawing23": "retain_pending_prior_binding",
+        "ui_drawing_canvas_pinch_and_move_two_fingers_to": "proposed_addition",
+        "ui_drawing_settings": "proposed_addition",
+        "ui_drawing_settings_d900c6": "proposed_addition",
+        "ui_edit_background": "retain_pending_prior_binding",
+        "ui_edit_canvas33": "retain_pending_prior_binding",
+        "ui_edit_colour26": "retain_pending_prior_binding",
+        "ui_edit_foreground": "retain_pending_prior_binding",
+        "ui_edit_transform33": "retain_pending_prior_binding",
+        "ui_ellipse": "retain_pending_prior_binding",
+        "ui_enter_a_number_from_to": "proposed_addition",
+        "ui_enter_a_positive_size": "proposed_addition",
+        "ui_enter_a_trim_amount_for_every_edge": "proposed_addition",
+        "ui_enter_a_whole_number_from_to": "proposed_addition",
+        "ui_enter_all_four_trim_amounts": "proposed_addition",
+        "ui_enter_positive_canvas_dimensions_within_android_s_coordinate": "proposed_addition",
+        "ui_enter_positive_dimensions": "proposed_addition",
+        "ui_enter_positive_dimensions_no_larger_than_the_original": "proposed_addition",
+        "ui_enter_positive_dimensions_that_resolve_to_at_least": "proposed_addition",
+        "ui_enter_positive_image_dimensions": "proposed_addition",
+        "ui_enter_valid_dimensions": "proposed_addition",
+        "ui_eraser": "retain_pending_prior_binding",
+        "ui_expand_colour_palette": "proposed_addition",
+        "ui_expand_tool_category": "proposed_addition",
+        "ui_expand_toolbox": "proposed_addition",
+        "ui_export_as23": "retain_pending_prior_binding",
+        "ui_eyedropper": "retain_pending_prior_binding",
+        "ui_fg": "retain_pending_prior_binding",
+        "ui_fit": "retain_pending_prior_binding",
+        "ui_fit_entire_canvas_in_view": "retain_pending_prior_binding",
+        "ui_fit_image": "retain_pending_prior_binding",
+        "ui_fit_selection34": "retain_pending_prior_binding",
+        "ui_flip_horizontal": "retain_pending_prior_binding",
+        "ui_flip_vertical": "retain_pending_prior_binding",
+        "ui_font": "retain_pending_prior_binding",
+        "ui_font_family": "proposed_addition",
+        "ui_foreground_background_colour_palette": "hold_absent_no_direct_consumer",
+        "ui_foreground_colour": "retain_pending_prior_binding",
+        "ui_foreground_edit_colour": "proposed_addition",
+        "ui_free_form_select": "retain_pending_prior_binding",
+        "ui_from_device34": "retain_pending_prior_binding",
+        "ui_full_text_copied": "proposed_addition",
+        "ui_height": "proposed_addition",
+        "ui_height_in": "proposed_addition",
+        "ui_heights": "proposed_addition",
+        "ui_hex_rrggbb": "proposed_addition",
+        "ui_hide_editor_controls": "retain_pending_prior_binding",
+        "ui_image": "retain_pending_prior_binding",
+        "ui_insert": "retain_pending_prior_binding",
+        "ui_insert_image_into_canvas": "retain_pending_prior_binding",
+        "ui_invalid_colour": "proposed_addition",
+        "ui_invalid_selection_outline": "proposed_addition",
+        "ui_invert_colours": "retain_pending_prior_binding",
+        "ui_italic": "retain_pending_prior_binding",
+        "ui_languages23": "retain_pending_prior_binding",
+        "ui_left": "retain_pending_prior_binding",
+        "ui_left_aligned": "retain_pending_prior_binding",
+        "ui_left_arrow_collapse": "proposed_addition",
+        "ui_line": "retain_pending_prior_binding",
+        "ui_line_spacing": "proposed_addition",
+        "ui_load_image": "retain_pending_prior_binding",
+        "ui_lock_aspect_ratio": "proposed_addition",
+        "ui_lock_proportions": "proposed_addition",
+        "ui_magnification": "proposed_addition",
+        "ui_main23": "retain_pending_prior_binding",
+        "ui_menu": "retain_pending_prior_binding",
+        "ui_menu_colours": "retain_pending_prior_binding",
+        "ui_menu_edit": "retain_pending_prior_binding",
+        "ui_menu_file": "retain_pending_prior_binding",
+        "ui_menu_help": "retain_pending_prior_binding",
+        "ui_menu_image": "retain_pending_prior_binding",
+        "ui_menu_view": "retain_pending_prior_binding",
+        "ui_navigate": "retain_pending_prior_binding",
+        "ui_new": "retain_pending_prior_binding",
+        "ui_new_colour": "proposed_addition",
+        "ui_new_image": "retain_pending_prior_binding",
+        "ui_no_readable_image_data": "proposed_addition",
+        "ui_no_resize_fits_decoder_memory": "proposed_addition",
+        "ui_none": "proposed_addition",
+        "ui_not_enough_memory_to_finish_opening_this_image": "proposed_addition",
+        "ui_not_enough_memory_to_inspect_this_image": "proposed_addition",
+        "ui_numeric_slider_value": "proposed_addition",
+        "ui_ok": "retain_pending_prior_binding",
+        "ui_original_size34": "retain_pending_prior_binding",
+        "ui_other_images34": "retain_pending_prior_binding",
+        "ui_outline": "retain_pending_prior_binding",
+        "ui_palette": "retain_pending_prior_binding",
+        "ui_paste": "retain_pending_prior_binding",
+        "ui_paste_hint34": "proposed_addition",
+        "ui_pencil": "retain_pending_prior_binding",
+        "ui_percent": "retain_pending_prior_binding",
+        "ui_percent_fd8671": "retain_pending_prior_binding",
+        "ui_pinch_and_pan_mode": "hold_absent_no_direct_consumer",
+        "ui_pixels": "retain_pending_prior_binding",
+        "ui_pixels_6ec9c2": "retain_pending_prior_binding",
+        "ui_place_text": "proposed_addition",
+        "ui_please_try_again": "proposed_addition",
+        "ui_please_wait_for_the_current_operation": "proposed_addition",
+        "ui_polygon": "retain_pending_prior_binding",
+        "ui_preview": "retain_pending_prior_binding",
+        "ui_px": "proposed_addition",
+        "ui_px_724eb3": "proposed_addition",
+        "ui_ready": "retain_pending_prior_binding",
+        "ui_rectangle": "retain_pending_prior_binding",
+        "ui_rectangle_select": "proposed_correction",
+        "ui_redo": "retain_pending_prior_binding",
+        "ui_remove": "retain_pending_prior_binding",
+        "ui_reset_bw23": "retain_pending_prior_binding",
+        "ui_reset_crop": "proposed_addition",
+        "ui_reset_to_black_white": "proposed_addition",
+        "ui_resize_and_load": "proposed_addition",
+        "ui_resize_image": "retain_pending_prior_binding",
+        "ui_resize_image_ab28be": "retain_pending_prior_binding",
+        "ui_resize_the_copy": "proposed_addition",
+        "ui_right": "retain_pending_prior_binding",
+        "ui_right_aligned": "retain_pending_prior_binding",
+        "ui_rotate": "retain_pending_prior_binding",
+        "ui_rotate_180": "retain_pending_prior_binding",
+        "ui_rotate_90_clockwise": "retain_pending_prior_binding",
+        "ui_scales_the_image_unlock_the_ratio_to_stretch": "proposed_addition",
+        "ui_select_all": "retain_pending_prior_binding",
+        "ui_select_an_area": "proposed_addition",
+        "ui_select_an_area_first": "proposed_addition",
+        "ui_selected_colour23": "proposed_addition",
+        "ui_selection_dimensions_are_too_large": "proposed_addition",
+        "ui_share_saved_image": "proposed_addition",
+        "ui_show_all": "proposed_addition",
+        "ui_show_controls": "proposed_addition",
+        "ui_show_editor_controls": "retain_pending_prior_binding",
+        "ui_show_magnified_drawing_preview": "proposed_addition",
+        "ui_size_pixels": "proposed_addition",
+        "ui_size_px": "proposed_addition",
+        "ui_solid_fill": "retain_pending_prior_binding",
+        "ui_swap23": "retain_pending_prior_binding",
+        "ui_swap_foreground_background": "retain_pending_prior_binding",
+        "ui_tap_an_image_first": "proposed_addition",
+        "ui_tap_canvas_to_type": "proposed_addition",
+        "ui_tap_to_type_a_number": "proposed_addition",
+        "ui_text": "retain_pending_prior_binding",
+        "ui_text_alignment": "retain_pending_prior_binding",
+        "ui_text_direction23": "proposed_addition",
+        "ui_the_crop_must_contain_at_least_one_pixel": "proposed_addition",
+        "ui_the_crop_must_stay_inside_the_image": "proposed_addition",
+        "ui_the_decoder_and_editing_buffers_need_about_the": "proposed_addition",
+        "ui_the_full_image_and_working_buffers_exceed_the": "proposed_addition",
+        "ui_the_picker_returned_no_file_please_choose_the": "proposed_addition",
+        "ui_the_picker_returned_no_files": "proposed_addition",
+        "ui_the_selected_provider_did_not_return_any_image": "proposed_addition",
+        "ui_this_file_is_not_a_supported_image_use": "proposed_addition",
+        "ui_tolerance": "proposed_addition",
+        "ui_too_large_for_the_current_budget_reduce_the": "proposed_addition",
+        "ui_tool_categories": "proposed_addition",
+        "ui_trim_amounts_must_be_zero_or_greater": "proposed_addition",
+        "ui_trim_amounts_must_fit_inside_each_image_use": "proposed_addition",
+        "ui_trim_expand_canvas_by_touch": "proposed_addition",
+        "ui_try_a_different_file_or_location": "proposed_addition",
+        "ui_type_text": "proposed_addition",
+        "ui_underline": "retain_pending_prior_binding",
+        "ui_undo": "retain_pending_prior_binding",
+        "ui_untitled": "retain_pending_prior_binding",
+        "ui_use_1_1024_pixels": "proposed_addition",
+        "ui_use_50_300": "proposed_addition",
+        "ui_use_a_positive_target_dimension": "proposed_addition",
+        "ui_use_colour": "proposed_addition",
+        "ui_use_rrggbb": "proposed_addition",
+        "ui_watercolor": "retain_pending_prior_binding",
+        "ui_width": "proposed_addition",
+        "ui_working": "proposed_addition",
+        "ui_zoom_in": "retain_pending_prior_binding",
+        "ui_zoom_out": "retain_pending_prior_binding"
+      },
+      "dependencies": [
+        "ui_width_in",
+        "ui_trim_in_pixels",
+        "ui_trim_in_percent",
+        "formats22_at_least_frames"
+      ],
+      "held_absent": [
+        "formats22_derived_exported",
+        "ui_save_as",
+        "ui_save_as_jpeg",
+        "ui_save_as_jpeg_xl",
+        "ui_save_as_png",
+        "ui_foreground_background_colour_palette",
+        "ui_pinch_and_pan_mode"
+      ],
+      "held_existing": [
+        "ui_discard"
+      ]
+    },
+    "sr-Latn": {
+      "values": {
+        "ui_keep_editing23": {
+          "source": "Keep editing",
+          "attributes": {
+            "name": "ui_keep_editing23"
+          },
+          "previous": "\"Otkaži\"",
+          "target": "\"Nastavi uređivanje\"",
+          "display": "Nastavi uređivanje",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "colour_converter_unavailable": {
+          "source": "The image colour converter could not start. The image was not imported.",
+          "attributes": {
+            "name": "colour_converter_unavailable"
+          },
+          "previous": null,
+          "target": "\"Pretvarač boja slike nije mogao da se pokrene. Slika nije uvezena.\"",
+          "display": "Pretvarač boja slike nije mogao da se pokrene. Slika nije uvezena.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "colour_invalid_metadata": {
+          "source": "The image has invalid or unsupported colour metadata.",
+          "attributes": {
+            "name": "colour_invalid_metadata"
+          },
+          "previous": null,
+          "target": "\"Slika sadrži neispravne ili nepodržane metapodatke o bojama.\"",
+          "display": "Slika sadrži neispravne ili nepodržane metapodatke o bojama.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "colour_truncated_metadata": {
+          "source": "The image ends inside its colour metadata.",
+          "attributes": {
+            "name": "colour_truncated_metadata"
+          },
+          "previous": null,
+          "target": "\"Datoteka slike se završava usred metapodataka o bojama.\"",
+          "display": "Datoteka slike se završava usred metapodataka o bojama.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "colour_unsupported_icc_model": {
+          "source": "This image uses an ICC colour model that the image decoder cannot convert. Export an RGB copy in a colour-managed application first.",
+          "attributes": {
+            "name": "colour_unsupported_icc_model"
+          },
+          "previous": null,
+          "target": "\"Ova slika koristi ICC model boja koji dekoder slike ne može da pretvori. Prvo izvezite RGB kopiju u aplikaciji sa upravljanjem bojama.\"",
+          "display": "Ova slika koristi ICC model boja koji dekoder slike ne može da pretvori. Prvo izvezite RGB kopiju u aplikaciji sa upravljanjem bojama.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "commons_svg_original_size_too_large": {
+          "source": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",
+          "attributes": {
+            "name": "commons_svg_original_size_too_large"
+          },
+          "previous": null,
+          "target": "\"Izvorna veličina SVG-a premašuje Androidova ograničenja dimenzija bitmape. Veličina nije promenjena.\"",
+          "display": "Izvorna veličina SVG-a premašuje Androidova ograničenja dimenzija bitmape. Veličina nije promenjena.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "commons_svg_original_size_unavailable": {
+          "source": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+          "attributes": {
+            "name": "commons_svg_original_size_unavailable"
+          },
+          "previous": null,
+          "target": "\"SVG ne navodi upotrebljivu izvornu veličinu. Nije zamenjena veličinom zasnovanom na platnu.\"",
+          "display": "SVG ne navodi upotrebljivu izvornu veličinu. Nije zamenjena veličinom zasnovanom na platnu.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "formats22_import_limit": {
+          "source": "This file exceeds the 512 MiB import limit. Choose a smaller file.",
+          "attributes": {
+            "name": "formats22_import_limit"
+          },
+          "previous": null,
+          "target": "\"Ova datoteka premašuje ograničenje uvoza od 512 MiB. Izaberite manju datoteku.\"",
+          "display": "Ova datoteka premašuje ograničenje uvoza od 512 MiB. Izaberite manju datoteku.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "language20_current": {
+          "source": "App language: %1$s",
+          "attributes": {
+            "name": "language20_current"
+          },
+          "previous": null,
+          "target": "\"Jezik aplikacije: %1$s\"",
+          "display": "Jezik aplikacije: %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "language20_translation_note": {
+          "source": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+          "attributes": {
+            "name": "language20_translation_note"
+          },
+          "previous": null,
+          "target": "\"Jezik aplikacije\\n\\nPrevodi se održavaju u jezičkim resursima aplikacije AN Paint. Novi ili neprevedeni tekst prikazuje se na engleskom.\"",
+          "display": "Jezik aplikacije\n\nPrevodi se održavaju u jezičkim resursima aplikacije AN Paint. Novi ili neprevedeni tekst prikazuje se na engleskom.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_0f_0f_px_1f": {
+          "source": "%1$.0f × %2$.0f px\\n%3$.1f°",
+          "attributes": {
+            "name": "ui_0f_0f_px_1f"
+          },
+          "previous": null,
+          "target": "\"%1$.0f × %2$.0f px\\n%3$.1f°\"",
+          "display": "%1$.0f × %2$.0f px\n%3$.1f°",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_100": {
+          "source": "100%",
+          "attributes": {
+            "name": "ui_100",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"100%\"",
+          "display": "100%",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_1_px": {
+          "source": "1 px",
+          "attributes": {
+            "name": "ui_1_px"
+          },
+          "previous": null,
+          "target": "\"1 px\"",
+          "display": "1 px",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_1f_s": {
+          "source": "%1$.1f %2$s",
+          "attributes": {
+            "name": "ui_1f_s"
+          },
+          "previous": null,
+          "target": "\"%1$.1f %2$s\"",
+          "display": "%1$.1f %2$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_actual_size_100": {
+          "source": "Actual size (100%)",
+          "attributes": {
+            "name": "ui_actual_size_100",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Stvarna veličina (100%)\"",
+          "display": "Stvarna veličina (100%)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_add_text": {
+          "source": "Add text",
+          "attributes": {
+            "name": "ui_add_text"
+          },
+          "previous": null,
+          "target": "\"Dodaj tekst\"",
+          "display": "Dodaj tekst",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_all": {
+          "source": "All",
+          "attributes": {
+            "name": "ui_all"
+          },
+          "previous": null,
+          "target": "\"Sve\"",
+          "display": "Sve",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_android_blocked_the_file_picker": {
+          "source": "Android blocked the file picker: %1$s",
+          "attributes": {
+            "name": "ui_android_blocked_the_file_picker"
+          },
+          "previous": null,
+          "target": "\"Android je blokirao birač datoteka: %1$s\"",
+          "display": "Android je blokirao birač datoteka: %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_android_could_not_decode_this_image": {
+          "source": "Android could not decode this image.",
+          "attributes": {
+            "name": "ui_android_could_not_decode_this_image"
+          },
+          "previous": null,
+          "target": "\"Android nije mogao da dekodira ovu sliku.\"",
+          "display": "Android nije mogao da dekodira ovu sliku.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_android_could_not_find_a_file_picker_enable": {
+          "source": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
+          "attributes": {
+            "name": "ui_android_could_not_find_a_file_picker_enable"
+          },
+          "previous": null,
+          "target": "\"Android nije mogao da pronađe birač datoteka. Omogućite aplikaciju Datoteke ili Dokumenti u podešavanjima Androida, pa pokušajte ponovo.\"",
+          "display": "Android nije mogao da pronađe birač datoteka. Omogućite aplikaciju Datoteke ili Dokumenti u podešavanjima Androida, pa pokušajte ponovo.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_apply_bounds": {
+          "source": "Apply bounds",
+          "attributes": {
+            "name": "ui_apply_bounds"
+          },
+          "previous": null,
+          "target": "\"Primeni granice\"",
+          "display": "Primeni granice",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_apply_crop": {
+          "source": "Apply crop",
+          "attributes": {
+            "name": "ui_apply_crop"
+          },
+          "previous": null,
+          "target": "\"Primeni isecanje\"",
+          "display": "Primeni isecanje",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_autosaving_draft": {
+          "source": "Autosaving draft…",
+          "attributes": {
+            "name": "ui_autosaving_draft"
+          },
+          "previous": null,
+          "target": "\"Automatsko čuvanje radne verzije…\"",
+          "display": "Automatsko čuvanje radne verzije…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_background_edit_colour": {
+          "source": "Background %1$s. Edit colour.",
+          "attributes": {
+            "name": "ui_background_edit_colour"
+          },
+          "previous": null,
+          "target": "\"Pozadina %1$s. Uredi boju.\"",
+          "display": "Pozadina %1$s. Uredi boju.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_basic_colours": {
+          "source": "Basic colours",
+          "attributes": {
+            "name": "ui_basic_colours"
+          },
+          "previous": null,
+          "target": "\"Osnovne boje\"",
+          "display": "Osnovne boje",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_canvas_zoom": {
+          "source": "Canvas zoom",
+          "attributes": {
+            "name": "ui_canvas_zoom"
+          },
+          "previous": null,
+          "target": "\"Uvećanje platna\"",
+          "display": "Uvećanje platna",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_canvas_zoom_771f84": {
+          "source": "Canvas zoom %1$s",
+          "attributes": {
+            "name": "ui_canvas_zoom_771f84"
+          },
+          "previous": null,
+          "target": "\"Uvećanje platna %1$s\"",
+          "display": "Uvećanje platna %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_a_smaller_output_copy_the_source_images": {
+          "source": "Choose a smaller output copy. The source images and crop settings stay at their original resolution.",
+          "attributes": {
+            "name": "ui_choose_a_smaller_output_copy_the_source_images"
+          },
+          "previous": null,
+          "target": "\"Izaberite manju izlaznu kopiju. Izvorne slike i podešavanja isecanja ostaju u izvornoj rezoluciji.\"",
+          "display": "Izaberite manju izlaznu kopiju. Izvorne slike i podešavanja isecanja ostaju u izvornoj rezoluciji.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_a_smaller_size": {
+          "source": "Choose a smaller size.",
+          "attributes": {
+            "name": "ui_choose_a_smaller_size"
+          },
+          "previous": null,
+          "target": "\"Izaberite manju veličinu.\"",
+          "display": "Izaberite manju veličinu.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_at_least_one_image": {
+          "source": "Choose at least one image.",
+          "attributes": {
+            "name": "ui_choose_at_least_one_image"
+          },
+          "previous": null,
+          "target": "\"Izaberite bar jednu sliku.\"",
+          "display": "Izaberite bar jednu sliku.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_dimensions_no_larger_than_the_original": {
+          "source": "Choose dimensions no larger than the original.",
+          "attributes": {
+            "name": "ui_choose_dimensions_no_larger_than_the_original"
+          },
+          "previous": null,
+          "target": "\"Izaberite dimenzije koje nisu veće od izvornih.\"",
+          "display": "Izaberite dimenzije koje nisu veće od izvornih.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_choose_location": {
+          "source": "Choose location…",
+          "attributes": {
+            "name": "ui_choose_location"
+          },
+          "previous": null,
+          "target": "\"Izaberi lokaciju…\"",
+          "display": "Izaberi lokaciju…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_codec_resize_memory_floor": {
+          "source": "This format must decode its source image or source tiles before resizing. A smaller output may still exceed available memory.",
+          "attributes": {
+            "name": "ui_codec_resize_memory_floor"
+          },
+          "previous": null,
+          "target": "\"Ovaj format mora da dekodira izvornu sliku ili njene pločice pre promene veličine. I manji izlaz može da premaši raspoloživu memoriju.\"",
+          "display": "Ovaj format mora da dekodira izvornu sliku ili njene pločice pre promene veličine. I manji izlaz može da premaši raspoloživu memoriju.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_collapse_colour_palette": {
+          "source": "Collapse colour palette",
+          "attributes": {
+            "name": "ui_collapse_colour_palette"
+          },
+          "previous": null,
+          "target": "\"Skupi paletu boja\"",
+          "display": "Skupi paletu boja",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_collapse_tool_category": {
+          "source": "%1$s: %2$s selected. Collapse tools and options",
+          "attributes": {
+            "name": "ui_collapse_tool_category"
+          },
+          "previous": null,
+          "target": "\"%1$s: izabrani alat: %2$s. Skupi alate i opcije\"",
+          "display": "%1$s: izabrani alat: %2$s. Skupi alate i opcije",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_collapse_toolbox": {
+          "source": "Collapse toolbox",
+          "attributes": {
+            "name": "ui_collapse_toolbox"
+          },
+          "previous": null,
+          "target": "\"Skupi kutiju sa alatima\"",
+          "display": "Skupi kutiju sa alatima",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_colour": {
+          "source": "Colour %1$s",
+          "attributes": {
+            "name": "ui_colour"
+          },
+          "previous": null,
+          "target": "\"Boja %1$s\"",
+          "display": "Boja %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_colour_palette_tap_for_foreground_hold_for_background": {
+          "source": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+          "attributes": {
+            "name": "ui_colour_palette_tap_for_foreground_hold_for_background"
+          },
+          "previous": null,
+          "target": "\"Paleta boja. Dodirnite za prednji plan; zadržite pritisak za pozadinu. Pomerajte paletu da vidite još boja.\"",
+          "display": "Paleta boja. Dodirnite za prednji plan; zadržite pritisak za pozadinu. Pomerajte paletu da vidite još boja.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_colour_tap_foreground_hold_background": {
+          "source": "Colour #%1$s. Tap foreground, hold background.",
+          "attributes": {
+            "name": "ui_colour_tap_foreground_hold_background"
+          },
+          "previous": null,
+          "target": "\"Boja #%1$s. Dodirnite za prednji plan, zadržite pritisak za pozadinu.\"",
+          "display": "Boja #%1$s. Dodirnite za prednji plan, zadržite pritisak za pozadinu.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_commit_selection": {
+          "source": "Commit selection",
+          "attributes": {
+            "name": "ui_commit_selection"
+          },
+          "previous": null,
+          "target": "\"Potvrdi izbor\"",
+          "display": "Potvrdi izbor",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_copy_all": {
+          "source": "Copy all",
+          "attributes": {
+            "name": "ui_copy_all"
+          },
+          "previous": null,
+          "target": "\"Kopiraj sve\"",
+          "display": "Kopiraj sve",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_apply_the_crop": {
+          "source": "Could not apply the crop.",
+          "attributes": {
+            "name": "ui_could_not_apply_the_crop"
+          },
+          "previous": null,
+          "target": "\"Isecanje nije moglo da se primeni.\"",
+          "display": "Isecanje nije moglo da se primeni.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_complete_the_edit": {
+          "source": "Could not complete the edit. %1$s",
+          "attributes": {
+            "name": "ui_could_not_complete_the_edit"
+          },
+          "previous": null,
+          "target": "\"Izmena nije mogla da se dovrši. %1$s\"",
+          "display": "Izmena nije mogla da se dovrši. %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_complete_the_operation": {
+          "source": "Could not complete the operation.",
+          "attributes": {
+            "name": "ui_could_not_complete_the_operation"
+          },
+          "previous": null,
+          "target": "\"Radnja nije mogla da se dovrši.\"",
+          "display": "Radnja nije mogla da se dovrši.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_place_the_image": {
+          "source": "Could not place the image.",
+          "attributes": {
+            "name": "ui_could_not_place_the_image"
+          },
+          "previous": null,
+          "target": "\"Slika nije mogla da se postavi.\"",
+          "display": "Slika nije mogla da se postavi.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_could_not_prepare_the_image": {
+          "source": "Could not prepare the image.",
+          "attributes": {
+            "name": "ui_could_not_prepare_the_image"
+          },
+          "previous": null,
+          "target": "\"Slika nije mogla da se pripremi.\"",
+          "display": "Slika nije mogla da se pripremi.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_crop": {
+          "source": "Crop %1$s",
+          "attributes": {
+            "name": "ui_crop"
+          },
+          "previous": null,
+          "target": "\"Isecanje %1$s\"",
+          "display": "Isecanje %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_crop_image": {
+          "source": "Crop image",
+          "attributes": {
+            "name": "ui_crop_image"
+          },
+          "previous": "\"Isecanje sliku\"",
+          "target": "\"Iseci sliku\"",
+          "display": "Iseci sliku",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_crop_must_stay_inside_the_canvas": {
+          "source": "Crop must stay inside the canvas.",
+          "attributes": {
+            "name": "ui_crop_must_stay_inside_the_canvas"
+          },
+          "previous": null,
+          "target": "\"Isečak mora da ostane unutar platna.\"",
+          "display": "Isečak mora da ostane unutar platna.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_crop_preview_drag_an_edge_or_corner_drag": {
+          "source": "Crop preview. Drag an edge or corner; drag inside to move the crop.",
+          "attributes": {
+            "name": "ui_crop_preview_drag_an_edge_or_corner_drag"
+          },
+          "previous": null,
+          "target": "\"Pregled isecanja. Prevucite ivicu ili ugao; prevucite unutar isečka da ga pomerite.\"",
+          "display": "Pregled isecanja. Prevucite ivicu ili ugao; prevucite unutar isečka da ga pomerite.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_d_d_px_d_pixels_2f_mp": {
+          "source": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+          "attributes": {
+            "name": "ui_d_d_px_d_pixels_2f_mp"
+          },
+          "previous": null,
+          "target": "\"%1$d × %2$d px · Broj piksela: %3$,d (%4$.2f MP)\"",
+          "display": "%1$d × %2$d px · Broj piksela: %3$,d (%4$.2f MP)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_draft_pending": {
+          "source": "Draft pending",
+          "attributes": {
+            "name": "ui_draft_pending"
+          },
+          "previous": null,
+          "target": "\"Radna verzija čeka na čuvanje\"",
+          "display": "Radna verzija čeka na čuvanje",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_draw_again": {
+          "source": "Draw again",
+          "attributes": {
+            "name": "ui_draw_again"
+          },
+          "previous": null,
+          "target": "\"Crtaj ponovo\"",
+          "display": "Crtaj ponovo",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_drawing_canvas_pinch_and_move_two_fingers_to": {
+          "source": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+          "attributes": {
+            "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+          },
+          "previous": null,
+          "target": "\"Platno za crtanje. Primaknite ili razmaknite dva prsta da promenite uvećanje i pomerajte ih da pomerite prikaz. Režim Pomeranje i zumiranje omogućava pomeranje i jednim prstom.\"",
+          "display": "Platno za crtanje. Primaknite ili razmaknite dva prsta da promenite uvećanje i pomerajte ih da pomerite prikaz. Režim Pomeranje i zumiranje omogućava pomeranje i jednim prstom.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_drawing_settings": {
+          "source": "Drawing settings…",
+          "attributes": {
+            "name": "ui_drawing_settings"
+          },
+          "previous": null,
+          "target": "\"Podešavanja crtanja…\"",
+          "display": "Podešavanja crtanja…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_drawing_settings_d900c6": {
+          "source": "Drawing settings",
+          "attributes": {
+            "name": "ui_drawing_settings_d900c6"
+          },
+          "previous": null,
+          "target": "\"Podešavanja crtanja\"",
+          "display": "Podešavanja crtanja",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_a_number_from_to": {
+          "source": "Enter a number from %1$s to %2$s.",
+          "attributes": {
+            "name": "ui_enter_a_number_from_to"
+          },
+          "previous": null,
+          "target": "\"Unesite broj od %1$s do %2$s.\"",
+          "display": "Unesite broj od %1$s do %2$s.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_a_positive_size": {
+          "source": "Enter a positive size.",
+          "attributes": {
+            "name": "ui_enter_a_positive_size"
+          },
+          "previous": null,
+          "target": "\"Unesite pozitivnu veličinu.\"",
+          "display": "Unesite pozitivnu veličinu.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_a_trim_amount_for_every_edge": {
+          "source": "Enter a trim amount for every edge.",
+          "attributes": {
+            "name": "ui_enter_a_trim_amount_for_every_edge"
+          },
+          "previous": null,
+          "target": "\"Unesite iznos odsecanja za svaku ivicu.\"",
+          "display": "Unesite iznos odsecanja za svaku ivicu.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_a_whole_number_from_to": {
+          "source": "Enter a whole number from %1$s to %2$s.",
+          "attributes": {
+            "name": "ui_enter_a_whole_number_from_to"
+          },
+          "previous": null,
+          "target": "\"Unesite ceo broj od %1$s do %2$s.\"",
+          "display": "Unesite ceo broj od %1$s do %2$s.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_all_four_trim_amounts": {
+          "source": "Enter all four trim amounts.",
+          "attributes": {
+            "name": "ui_enter_all_four_trim_amounts"
+          },
+          "previous": null,
+          "target": "\"Unesite sva četiri iznosa odsecanja.\"",
+          "display": "Unesite sva četiri iznosa odsecanja.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_canvas_dimensions_within_android_s_coordinate": {
+          "source": "Enter positive canvas dimensions within Android\\'s coordinate range.",
+          "attributes": {
+            "name": "ui_enter_positive_canvas_dimensions_within_android_s_coordinate"
+          },
+          "previous": null,
+          "target": "\"Unesite pozitivne dimenzije platna u okviru Androidovog opsega koordinata.\"",
+          "display": "Unesite pozitivne dimenzije platna u okviru Androidovog opsega koordinata.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_dimensions": {
+          "source": "Enter positive dimensions.",
+          "attributes": {
+            "name": "ui_enter_positive_dimensions"
+          },
+          "previous": null,
+          "target": "\"Unesite pozitivne dimenzije.\"",
+          "display": "Unesite pozitivne dimenzije.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_dimensions_no_larger_than_the_original": {
+          "source": "Enter positive dimensions no larger than the original.",
+          "attributes": {
+            "name": "ui_enter_positive_dimensions_no_larger_than_the_original"
+          },
+          "previous": null,
+          "target": "\"Unesite pozitivne dimenzije koje nisu veće od izvornih.\"",
+          "display": "Unesite pozitivne dimenzije koje nisu veće od izvornih.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_dimensions_that_resolve_to_at_least": {
+          "source": "Enter positive dimensions that resolve to at least 1 pixel.",
+          "attributes": {
+            "name": "ui_enter_positive_dimensions_that_resolve_to_at_least"
+          },
+          "previous": null,
+          "target": "\"Unesite pozitivne dimenzije koje odgovaraju najmanje jednom pikselu.\"",
+          "display": "Unesite pozitivne dimenzije koje odgovaraju najmanje jednom pikselu.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_positive_image_dimensions": {
+          "source": "Enter positive image dimensions.",
+          "attributes": {
+            "name": "ui_enter_positive_image_dimensions"
+          },
+          "previous": null,
+          "target": "\"Unesite pozitivne dimenzije slike.\"",
+          "display": "Unesite pozitivne dimenzije slike.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_enter_valid_dimensions": {
+          "source": "Enter valid dimensions.",
+          "attributes": {
+            "name": "ui_enter_valid_dimensions"
+          },
+          "previous": null,
+          "target": "\"Unesite ispravne dimenzije.\"",
+          "display": "Unesite ispravne dimenzije.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_expand_colour_palette": {
+          "source": "Expand colour palette",
+          "attributes": {
+            "name": "ui_expand_colour_palette"
+          },
+          "previous": null,
+          "target": "\"Proširi paletu boja\"",
+          "display": "Proširi paletu boja",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_expand_tool_category": {
+          "source": "%1$s: %2$s selected. Expand tools and options",
+          "attributes": {
+            "name": "ui_expand_tool_category"
+          },
+          "previous": null,
+          "target": "\"%1$s: izabrani alat: %2$s. Proširi alate i opcije\"",
+          "display": "%1$s: izabrani alat: %2$s. Proširi alate i opcije",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_expand_toolbox": {
+          "source": "Expand toolbox",
+          "attributes": {
+            "name": "ui_expand_toolbox"
+          },
+          "previous": null,
+          "target": "\"Proširi kutiju sa alatima\"",
+          "display": "Proširi kutiju sa alatima",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_font_family": {
+          "source": "Font family",
+          "attributes": {
+            "name": "ui_font_family"
+          },
+          "previous": null,
+          "target": "\"Porodica fontova\"",
+          "display": "Porodica fontova",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_foreground_edit_colour": {
+          "source": "Foreground %1$s. Edit colour.",
+          "attributes": {
+            "name": "ui_foreground_edit_colour"
+          },
+          "previous": null,
+          "target": "\"Prednji plan %1$s. Uredi boju.\"",
+          "display": "Prednji plan %1$s. Uredi boju.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_full_text_copied": {
+          "source": "Full text copied",
+          "attributes": {
+            "name": "ui_full_text_copied"
+          },
+          "previous": null,
+          "target": "\"Ceo tekst je kopiran\"",
+          "display": "Ceo tekst je kopiran",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_height": {
+          "source": "Height (%1$s)",
+          "attributes": {
+            "name": "ui_height"
+          },
+          "previous": null,
+          "target": "\"Visina (%1$s)\"",
+          "display": "Visina (%1$s)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_height_in": {
+          "source": "Height in %1$s",
+          "attributes": {
+            "name": "ui_height_in"
+          },
+          "previous": null,
+          "target": "\"Visina (%1$s)\"",
+          "display": "Visina (%1$s)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_heights": {
+          "source": "Heights",
+          "attributes": {
+            "name": "ui_heights"
+          },
+          "previous": null,
+          "target": "\"Visine\"",
+          "display": "Visine",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_hex_rrggbb": {
+          "source": "Hex #RRGGBB",
+          "attributes": {
+            "name": "ui_hex_rrggbb"
+          },
+          "previous": null,
+          "target": "\"Heksadecimalno #RRGGBB\"",
+          "display": "Heksadecimalno #RRGGBB",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_invalid_colour": {
+          "source": "Invalid colour",
+          "attributes": {
+            "name": "ui_invalid_colour"
+          },
+          "previous": null,
+          "target": "\"Neispravna boja\"",
+          "display": "Neispravna boja",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_invalid_selection_outline": {
+          "source": "Invalid selection outline.",
+          "attributes": {
+            "name": "ui_invalid_selection_outline"
+          },
+          "previous": null,
+          "target": "\"Neispravna kontura izbora.\"",
+          "display": "Neispravna kontura izbora.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_left_arrow_collapse": {
+          "source": "Left arrow: collapse",
+          "attributes": {
+            "name": "ui_left_arrow_collapse"
+          },
+          "previous": null,
+          "target": "\"Strelica ulevo: skupi\"",
+          "display": "Strelica ulevo: skupi",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_line_spacing": {
+          "source": "Line spacing (%)",
+          "attributes": {
+            "name": "ui_line_spacing",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Prored (%)\"",
+          "display": "Prored (%)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_lock_aspect_ratio": {
+          "source": "Lock aspect ratio",
+          "attributes": {
+            "name": "ui_lock_aspect_ratio"
+          },
+          "previous": null,
+          "target": "\"Zaključaj odnos širine i visine\"",
+          "display": "Zaključaj odnos širine i visine",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_lock_proportions": {
+          "source": "Lock proportions",
+          "attributes": {
+            "name": "ui_lock_proportions"
+          },
+          "previous": null,
+          "target": "\"Zaključaj proporcije\"",
+          "display": "Zaključaj proporcije",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_magnification": {
+          "source": "Magnification (%)",
+          "attributes": {
+            "name": "ui_magnification",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Uvećanje (%)\"",
+          "display": "Uvećanje (%)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_new_colour": {
+          "source": "New colour",
+          "attributes": {
+            "name": "ui_new_colour"
+          },
+          "previous": null,
+          "target": "\"Nova boja\"",
+          "display": "Nova boja",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_no_readable_image_data": {
+          "source": "No readable image data.",
+          "attributes": {
+            "name": "ui_no_readable_image_data"
+          },
+          "previous": null,
+          "target": "\"Nema čitljivih podataka slike.\"",
+          "display": "Nema čitljivih podataka slike.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_no_resize_fits_decoder_memory": {
+          "source": "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+          "attributes": {
+            "name": "ui_no_resize_fits_decoder_memory"
+          },
+          "previous": null,
+          "target": "\"Čak ni pri najmanjoj izlaznoj veličini, ova slika ne može da se učita za uređivanje u okviru trenutnih ograničenja memorije. Otkažite i upotrebite manju izvornu sliku.\"",
+          "display": "Čak ni pri najmanjoj izlaznoj veličini, ova slika ne može da se učita za uređivanje u okviru trenutnih ograničenja memorije. Otkažite i upotrebite manju izvornu sliku.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_none": {
+          "source": "None",
+          "attributes": {
+            "name": "ui_none"
+          },
+          "previous": null,
+          "target": "\"Ništa\"",
+          "display": "Ništa",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_not_enough_memory_to_finish_opening_this_image": {
+          "source": "Not enough memory to finish opening this image",
+          "attributes": {
+            "name": "ui_not_enough_memory_to_finish_opening_this_image"
+          },
+          "previous": null,
+          "target": "\"Nema dovoljno memorije za dovršavanje otvaranja ove slike\"",
+          "display": "Nema dovoljno memorije za dovršavanje otvaranja ove slike",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_not_enough_memory_to_inspect_this_image": {
+          "source": "Not enough memory to inspect this image",
+          "attributes": {
+            "name": "ui_not_enough_memory_to_inspect_this_image"
+          },
+          "previous": null,
+          "target": "\"Nema dovoljno memorije za proveru ove slike\"",
+          "display": "Nema dovoljno memorije za proveru ove slike",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_numeric_slider_value": {
+          "source": "%1$s: %2$d",
+          "attributes": {
+            "name": "ui_numeric_slider_value"
+          },
+          "previous": null,
+          "target": "\"%1$s: %2$d\"",
+          "display": "%1$s: %2$d",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_paste_hint34": {
+          "source": "Copy an area or use Draw → Insert → Other images.",
+          "attributes": {
+            "name": "ui_paste_hint34",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Kopirajte oblast ili izaberite Crtanje → Umetanje → Druge slike.\"",
+          "display": "Kopirajte oblast ili izaberite Crtanje → Umetanje → Druge slike.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_percent": {
+          "source": "Percent",
+          "attributes": {
+            "name": "ui_percent"
+          },
+          "previous": null,
+          "target": "\"Procenat\"",
+          "display": "Procenat",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_percent_fd8671": {
+          "source": "percent",
+          "attributes": {
+            "name": "ui_percent_fd8671"
+          },
+          "previous": null,
+          "target": "\"procenata\"",
+          "display": "procenata",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_place_text": {
+          "source": "Place text",
+          "attributes": {
+            "name": "ui_place_text"
+          },
+          "previous": null,
+          "target": "\"Postavi tekst\"",
+          "display": "Postavi tekst",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_please_try_again": {
+          "source": "Please try again.",
+          "attributes": {
+            "name": "ui_please_try_again"
+          },
+          "previous": null,
+          "target": "\"Pokušajte ponovo.\"",
+          "display": "Pokušajte ponovo.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_please_wait_for_the_current_operation": {
+          "source": "Please wait for the current operation.",
+          "attributes": {
+            "name": "ui_please_wait_for_the_current_operation"
+          },
+          "previous": null,
+          "target": "\"Sačekajte da se trenutna radnja završi.\"",
+          "display": "Sačekajte da se trenutna radnja završi.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_px": {
+          "source": "%1$s · %2$s\\n%3$s × %4$s px · %5$s",
+          "attributes": {
+            "name": "ui_px"
+          },
+          "previous": null,
+          "target": "\"%1$s · %2$s\\n%3$s × %4$s px · %5$s\"",
+          "display": "%1$s · %2$s\n%3$s × %4$s px · %5$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_px_724eb3": {
+          "source": "%1$s × %2$s px",
+          "attributes": {
+            "name": "ui_px_724eb3"
+          },
+          "previous": null,
+          "target": "\"%1$s × %2$s px\"",
+          "display": "%1$s × %2$s px",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_rectangle_select": {
+          "source": "Rectangle select",
+          "attributes": {
+            "name": "ui_rectangle_select"
+          },
+          "previous": "\"Izaberite pravougaonik\"",
+          "target": "\"Pravougaoni izbor\"",
+          "display": "Pravougaoni izbor",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_reset_crop": {
+          "source": "Reset crop",
+          "attributes": {
+            "name": "ui_reset_crop"
+          },
+          "previous": null,
+          "target": "\"Poništi podešavanja isecanja\"",
+          "display": "Poništi podešavanja isecanja",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_reset_to_black_white": {
+          "source": "Reset to black / white",
+          "attributes": {
+            "name": "ui_reset_to_black_white"
+          },
+          "previous": null,
+          "target": "\"Vrati na crnu / belu\"",
+          "display": "Vrati na crnu / belu",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_resize_and_load": {
+          "source": "Resize and load",
+          "attributes": {
+            "name": "ui_resize_and_load"
+          },
+          "previous": null,
+          "target": "\"Promeni veličinu i učitaj\"",
+          "display": "Promeni veličinu i učitaj",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_resize_the_copy": {
+          "source": "Resize the copy",
+          "attributes": {
+            "name": "ui_resize_the_copy"
+          },
+          "previous": null,
+          "target": "\"Promeni veličinu kopije\"",
+          "display": "Promeni veličinu kopije",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_scales_the_image_unlock_the_ratio_to_stretch": {
+          "source": "Scales the image. Unlock the ratio to stretch width and height independently.",
+          "attributes": {
+            "name": "ui_scales_the_image_unlock_the_ratio_to_stretch"
+          },
+          "previous": null,
+          "target": "\"Menja veličinu slike. Otključajte odnos širine i visine da ih menjate nezavisno.\"",
+          "display": "Menja veličinu slike. Otključajte odnos širine i visine da ih menjate nezavisno.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_select_an_area": {
+          "source": "Select an area",
+          "attributes": {
+            "name": "ui_select_an_area"
+          },
+          "previous": null,
+          "target": "\"Izaberi oblast\"",
+          "display": "Izaberi oblast",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_select_an_area_first": {
+          "source": "Select an area first.",
+          "attributes": {
+            "name": "ui_select_an_area_first"
+          },
+          "previous": null,
+          "target": "\"Prvo izaberite oblast.\"",
+          "display": "Prvo izaberite oblast.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_selected_colour23": {
+          "source": "Selected color",
+          "attributes": {
+            "name": "ui_selected_colour23"
+          },
+          "previous": null,
+          "target": "\"Izabrana boja\"",
+          "display": "Izabrana boja",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_selection_dimensions_are_too_large": {
+          "source": "Selection dimensions are too large.",
+          "attributes": {
+            "name": "ui_selection_dimensions_are_too_large"
+          },
+          "previous": null,
+          "target": "\"Dimenzije izbora su prevelike.\"",
+          "display": "Dimenzije izbora su prevelike.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_share_saved_image": {
+          "source": "Share saved image",
+          "attributes": {
+            "name": "ui_share_saved_image"
+          },
+          "previous": null,
+          "target": "\"Podeli sačuvanu sliku\"",
+          "display": "Podeli sačuvanu sliku",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_show_all": {
+          "source": "Show all",
+          "attributes": {
+            "name": "ui_show_all"
+          },
+          "previous": null,
+          "target": "\"Prikaži sve\"",
+          "display": "Prikaži sve",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_show_controls": {
+          "source": "Show controls",
+          "attributes": {
+            "name": "ui_show_controls"
+          },
+          "previous": null,
+          "target": "\"Prikaži kontrole\"",
+          "display": "Prikaži kontrole",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_show_magnified_drawing_preview": {
+          "source": "Show magnified drawing preview",
+          "attributes": {
+            "name": "ui_show_magnified_drawing_preview"
+          },
+          "previous": null,
+          "target": "\"Prikaži uvećani pregled crteža\"",
+          "display": "Prikaži uvećani pregled crteža",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_size_pixels": {
+          "source": "Size (pixels)",
+          "attributes": {
+            "name": "ui_size_pixels"
+          },
+          "previous": null,
+          "target": "\"Veličina (pikseli)\"",
+          "display": "Veličina (pikseli)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_size_px": {
+          "source": "Size (px)",
+          "attributes": {
+            "name": "ui_size_px"
+          },
+          "previous": null,
+          "target": "\"Veličina (px)\"",
+          "display": "Veličina (px)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tap_an_image_first": {
+          "source": "Tap an image first.",
+          "attributes": {
+            "name": "ui_tap_an_image_first"
+          },
+          "previous": null,
+          "target": "\"Prvo dodirnite sliku.\"",
+          "display": "Prvo dodirnite sliku.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tap_canvas_to_type": {
+          "source": "Tap canvas\\nto type",
+          "attributes": {
+            "name": "ui_tap_canvas_to_type"
+          },
+          "previous": null,
+          "target": "\"Dodirnite platno\\nda unesete tekst\"",
+          "display": "Dodirnite platno\nda unesete tekst",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tap_to_type_a_number": {
+          "source": "%1$s: %2$s. Tap to type a number.",
+          "attributes": {
+            "name": "ui_tap_to_type_a_number"
+          },
+          "previous": null,
+          "target": "\"%1$s: %2$s. Dodirnite da unesete broj.\"",
+          "display": "%1$s: %2$s. Dodirnite da unesete broj.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_text_direction23": {
+          "source": "Text direction",
+          "attributes": {
+            "name": "ui_text_direction23"
+          },
+          "previous": null,
+          "target": "\"Smer teksta\"",
+          "display": "Smer teksta",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_crop_must_contain_at_least_one_pixel": {
+          "source": "The crop must contain at least one pixel.",
+          "attributes": {
+            "name": "ui_the_crop_must_contain_at_least_one_pixel"
+          },
+          "previous": null,
+          "target": "\"Isečak mora da sadrži bar jedan piksel.\"",
+          "display": "Isečak mora da sadrži bar jedan piksel.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_crop_must_stay_inside_the_image": {
+          "source": "The crop must stay inside the image.",
+          "attributes": {
+            "name": "ui_the_crop_must_stay_inside_the_image"
+          },
+          "previous": null,
+          "target": "\"Isečak mora da ostane unutar slike.\"",
+          "display": "Isečak mora da ostane unutar slike.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_decoder_and_editing_buffers_need_about_the": {
+          "source": "The decoder and editing buffers need about %1$s; the current safe editing budget is %2$s. Choose a smaller copy.",
+          "attributes": {
+            "name": "ui_the_decoder_and_editing_buffers_need_about_the"
+          },
+          "previous": null,
+          "target": "\"Dekoderu i baferima za uređivanje potrebno je oko %1$s; trenutna bezbedna granica memorije za uređivanje je %2$s. Izaberite manju kopiju.\"",
+          "display": "Dekoderu i baferima za uređivanje potrebno je oko %1$s; trenutna bezbedna granica memorije za uređivanje je %2$s. Izaberite manju kopiju.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_full_image_and_working_buffers_exceed_the": {
+          "source": "The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.",
+          "attributes": {
+            "name": "ui_the_full_image_and_working_buffers_exceed_the"
+          },
+          "previous": null,
+          "target": "\"Cela slika i radni baferi premašuju trenutnu bezbednu granicu memorije ili Android nije mogao da im dodeli memoriju. Promenite veličinu kopije da biste je uređivali. Izvorna datoteka ostaje nepromenjena.\"",
+          "display": "Cela slika i radni baferi premašuju trenutnu bezbednu granicu memorije ili Android nije mogao da im dodeli memoriju. Promenite veličinu kopije da biste je uređivali. Izvorna datoteka ostaje nepromenjena.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_picker_returned_no_file_please_choose_the": {
+          "source": "The picker returned no file. Please choose the file again.",
+          "attributes": {
+            "name": "ui_the_picker_returned_no_file_please_choose_the"
+          },
+          "previous": null,
+          "target": "\"Birač nije vratio datoteku. Izaberite je ponovo.\"",
+          "display": "Birač nije vratio datoteku. Izaberite je ponovo.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_picker_returned_no_files": {
+          "source": "The picker returned no files.",
+          "attributes": {
+            "name": "ui_the_picker_returned_no_files"
+          },
+          "previous": null,
+          "target": "\"Birač nije vratio nijednu datoteku.\"",
+          "display": "Birač nije vratio nijednu datoteku.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_the_selected_provider_did_not_return_any_image": {
+          "source": "The selected provider did not return any image data.",
+          "attributes": {
+            "name": "ui_the_selected_provider_did_not_return_any_image"
+          },
+          "previous": null,
+          "target": "\"Izabrani pružalac nije vratio podatke slike.\"",
+          "display": "Izabrani pružalac nije vratio podatke slike.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_this_file_is_not_a_supported_image_use": {
+          "source": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
+          "attributes": {
+            "name": "ui_this_file_is_not_a_supported_image_use"
+          },
+          "previous": null,
+          "target": "\"Ova datoteka nije podržana slika. Koristite PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF ili tekst slike u kodiranju Base64.\"",
+          "display": "Ova datoteka nije podržana slika. Koristite PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF ili tekst slike u kodiranju Base64.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tolerance": {
+          "source": "Tolerance",
+          "attributes": {
+            "name": "ui_tolerance"
+          },
+          "previous": null,
+          "target": "\"Tolerancija\"",
+          "display": "Tolerancija",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_too_large_for_the_current_budget_reduce_the": {
+          "source": "Too large for the current budget. Reduce the dimensions or cancel and free memory.",
+          "attributes": {
+            "name": "ui_too_large_for_the_current_budget_reduce_the"
+          },
+          "previous": null,
+          "target": "\"Preveliko za trenutnu granicu memorije. Smanjite dimenzije ili otkažite i oslobodite memoriju.\"",
+          "display": "Preveliko za trenutnu granicu memorije. Smanjite dimenzije ili otkažite i oslobodite memoriju.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_tool_categories": {
+          "source": "Tool categories. Scroll to see more tools",
+          "attributes": {
+            "name": "ui_tool_categories"
+          },
+          "previous": null,
+          "target": "\"Kategorije alata. Pomerajte prikaz da vidite još alata\"",
+          "display": "Kategorije alata. Pomerajte prikaz da vidite još alata",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_amounts_must_be_zero_or_greater": {
+          "source": "Trim amounts must be zero or greater.",
+          "attributes": {
+            "name": "ui_trim_amounts_must_be_zero_or_greater"
+          },
+          "previous": null,
+          "target": "\"Iznosi odsecanja moraju biti nula ili veći.\"",
+          "display": "Iznosi odsecanja moraju biti nula ili veći.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_amounts_must_fit_inside_each_image_use": {
+          "source": "Trim amounts must fit inside each image; use whole pixels or percentages.",
+          "attributes": {
+            "name": "ui_trim_amounts_must_fit_inside_each_image_use"
+          },
+          "previous": null,
+          "target": "\"Iznosi odsecanja moraju da stanu unutar svake slike; koristite cele piksele ili procente.\"",
+          "display": "Iznosi odsecanja moraju da stanu unutar svake slike; koristite cele piksele ili procente.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_expand_canvas_by_touch": {
+          "source": "Trim / expand canvas by touch…",
+          "attributes": {
+            "name": "ui_trim_expand_canvas_by_touch"
+          },
+          "previous": null,
+          "target": "\"Odseci / proširi platno dodirom…\"",
+          "display": "Odseci / proširi platno dodirom…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_try_a_different_file_or_location": {
+          "source": "Please try a different file or location.",
+          "attributes": {
+            "name": "ui_try_a_different_file_or_location"
+          },
+          "previous": null,
+          "target": "\"Pokušajte sa drugom datotekom ili lokacijom.\"",
+          "display": "Pokušajte sa drugom datotekom ili lokacijom.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_type_text": {
+          "source": "Type text",
+          "attributes": {
+            "name": "ui_type_text"
+          },
+          "previous": null,
+          "target": "\"Unesi tekst\"",
+          "display": "Unesi tekst",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_1_1024_pixels": {
+          "source": "Use 1–1024 pixels.",
+          "attributes": {
+            "name": "ui_use_1_1024_pixels"
+          },
+          "previous": null,
+          "target": "\"Koristite 1–1024 piksela.\"",
+          "display": "Koristite 1–1024 piksela.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_50_300": {
+          "source": "Use 50–300%.",
+          "attributes": {
+            "name": "ui_use_50_300",
+            "formatted": "false"
+          },
+          "previous": null,
+          "target": "\"Koristite 50–300%.\"",
+          "display": "Koristite 50–300%.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_a_positive_target_dimension": {
+          "source": "Use a positive target dimension.",
+          "attributes": {
+            "name": "ui_use_a_positive_target_dimension"
+          },
+          "previous": null,
+          "target": "\"Upotrebite pozitivnu ciljnu dimenziju.\"",
+          "display": "Upotrebite pozitivnu ciljnu dimenziju.",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_colour": {
+          "source": "Use colour",
+          "attributes": {
+            "name": "ui_use_colour"
+          },
+          "previous": null,
+          "target": "\"Upotrebi boju\"",
+          "display": "Upotrebi boju",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_use_rrggbb": {
+          "source": "Use #RRGGBB",
+          "attributes": {
+            "name": "ui_use_rrggbb"
+          },
+          "previous": null,
+          "target": "\"Upotrebite #RRGGBB\"",
+          "display": "Upotrebite #RRGGBB",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_width": {
+          "source": "Width (%1$s)",
+          "attributes": {
+            "name": "ui_width"
+          },
+          "previous": null,
+          "target": "\"Širina (%1$s)\"",
+          "display": "Širina (%1$s)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_working": {
+          "source": "Working…",
+          "attributes": {
+            "name": "ui_working"
+          },
+          "previous": null,
+          "target": "\"Obrada…\"",
+          "display": "Obrada…",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_width_in": {
+          "source": "Width in %1$s",
+          "attributes": {
+            "name": "ui_width_in"
+          },
+          "previous": null,
+          "target": "\"Širina (%1$s)\"",
+          "display": "Širina (%1$s)",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_in_pixels": {
+          "source": "%1$s trim in pixels",
+          "attributes": {
+            "name": "ui_trim_in_pixels"
+          },
+          "previous": null,
+          "target": "\"Odsecanje u pikselima — %1$s\"",
+          "display": "Odsecanje u pikselima — %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "ui_trim_in_percent": {
+          "source": "%1$s trim in percent",
+          "attributes": {
+            "name": "ui_trim_in_percent"
+          },
+          "previous": null,
+          "target": "\"Odsecanje u procentima — %1$s\"",
+          "display": "Odsecanje u procentima — %1$s",
+          "changed": true,
+          "review_status": "accepted_delta"
+        },
+        "formats22_at_least_frames": {
+          "source": "at least %1$d",
+          "attributes": {
+            "name": "formats22_at_least_frames"
+          },
+          "previous": null,
+          "target": "\"najmanje %1$d\"",
+          "display": "najmanje %1$d",
+          "changed": true,
+          "review_status": "accepted_delta"
+        }
+      },
+      "context": {
+        "formats22_animation_message": {
+          "source": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+          "attributes": {
+            "name": "formats22_animation_message"
+          },
+          "previous": "\"Broj kadrova u ovoj slici formata %1$s: %2$s. AN Paint uređuje statične slike i ne čuva animaciju.\"",
+          "target": "\"Broj kadrova u ovoj slici formata %1$s: %2$s. AN Paint uređuje statične slike i ne čuva animaciju.\"",
+          "display": "Broj kadrova u ovoj slici formata %1$s: %2$s. AN Paint uređuje statične slike i ne čuva animaciju.",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        },
+        "formats22_animation_still": {
+          "source": "Only the first frame will be imported. Saving creates a still image.",
+          "attributes": {
+            "name": "formats22_animation_still"
+          },
+          "previous": "\"Biće uvezen samo prvi kadar. Čuvanjem se dobija statična slika.\"",
+          "target": "\"Biće uvezen samo prvi kadar. Čuvanjem se dobija statična slika.\"",
+          "display": "Biće uvezen samo prvi kadar. Čuvanjem se dobija statična slika.",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        },
+        "formats22_animation_title": {
+          "source": "Animated image",
+          "attributes": {
+            "name": "formats22_animation_title"
+          },
+          "previous": "\"Animirana slika\"",
+          "target": "\"Animirana slika\"",
+          "display": "Animirana slika",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        },
+        "formats22_open_still": {
+          "source": "Open still image",
+          "attributes": {
+            "name": "formats22_open_still"
+          },
+          "previous": "\"Otvori statičnu sliku\"",
+          "target": "\"Otvori statičnu sliku\"",
+          "display": "Otvori statičnu sliku",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        },
+        "save20_title": {
+          "source": "Save as…",
+          "attributes": {
+            "name": "save20_title"
+          },
+          "previous": "Sačuvaj kao…",
+          "target": "Sačuvaj kao…",
+          "display": "Sačuvaj kao…",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_discard_changes23": {
+          "source": "Discard changes",
+          "attributes": {
+            "name": "ui_discard_changes23"
+          },
+          "previous": "Odbaci izmene",
+          "target": "Odbaci izmene",
+          "display": "Odbaci izmene",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_export_recovery_copy": {
+          "source": "Export recovery copy…",
+          "attributes": {
+            "name": "ui_export_recovery_copy"
+          },
+          "previous": "Izvezi kopiju za oporavak…",
+          "target": "Izvezi kopiju za oporavak…",
+          "display": "Izvezi kopiju za oporavak…",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_save": {
+          "source": "Save",
+          "attributes": {
+            "name": "ui_save"
+          },
+          "previous": "Sačuvaj",
+          "target": "Sačuvaj",
+          "display": "Sačuvaj",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_bottom": {
+          "source": "Bottom",
+          "attributes": {
+            "name": "ui_bottom"
+          },
+          "previous": "\"Dole\"",
+          "target": "\"Dole\"",
+          "display": "Dole",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_category_insert": {
+          "source": "Insert",
+          "attributes": {
+            "name": "ui_category_insert"
+          },
+          "previous": "Umetanje",
+          "target": "Umetanje",
+          "display": "Umetanje",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_draw26": {
+          "source": "Draw",
+          "attributes": {
+            "name": "ui_draw26"
+          },
+          "previous": "Crtanje",
+          "target": "Crtanje",
+          "display": "Crtanje",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_left": {
+          "source": "Left",
+          "attributes": {
+            "name": "ui_left"
+          },
+          "previous": "\"Levo\"",
+          "target": "\"Levo\"",
+          "display": "Levo",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_load_image": {
+          "source": "Load image…",
+          "attributes": {
+            "name": "ui_load_image"
+          },
+          "previous": "Otvori sliku…",
+          "target": "Otvori sliku…",
+          "display": "Otvori sliku…",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_menu_file": {
+          "source": "File",
+          "attributes": {
+            "name": "ui_menu_file"
+          },
+          "previous": "Datoteka",
+          "target": "Datoteka",
+          "display": "Datoteka",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_other_images34": {
+          "source": "Other images",
+          "attributes": {
+            "name": "ui_other_images34",
+            "formatted": "false"
+          },
+          "previous": "Druge slike",
+          "target": "Druge slike",
+          "display": "Druge slike",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_pixels_6ec9c2": {
+          "source": "pixels",
+          "attributes": {
+            "name": "ui_pixels_6ec9c2"
+          },
+          "previous": "\"Pikseli\"",
+          "target": "\"Pikseli\"",
+          "display": "Pikseli",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_right": {
+          "source": "Right",
+          "attributes": {
+            "name": "ui_right"
+          },
+          "previous": "\"Desno\"",
+          "target": "\"Desno\"",
+          "display": "Desno",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_save_a5d0d9": {
+          "source": "Save…",
+          "attributes": {
+            "name": "ui_save_a5d0d9"
+          },
+          "previous": "@string/ui_save",
+          "target": "@string/ui_save",
+          "display": "Sačuvaj",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_save_your_changes": {
+          "source": "Save your changes?",
+          "attributes": {
+            "name": "ui_save_your_changes"
+          },
+          "previous": "Sačuvati promene?",
+          "target": "Sačuvati promene?",
+          "display": "Sačuvati promene?",
+          "changed": false,
+          "review_status": "retain_pending_prior_binding"
+        },
+        "ui_your_current_image_has_unsaved_changes": {
+          "source": "Your current image has unsaved changes.",
+          "attributes": {
+            "name": "ui_your_current_image_has_unsaved_changes"
+          },
+          "previous": "\"Vaša trenutna slika ima nesačuvane izmene.\"",
+          "target": "\"Vaša trenutna slika ima nesačuvane izmene.\"",
+          "display": "Vaša trenutna slika ima nesačuvane izmene.",
+          "changed": false,
+          "review_status": "prior_exact_P0_carry_PR180_182"
+        }
+      },
+      "priority_status": {
+        "formats22_animation_message": "prior_exact_P0_carry_PR180_182",
+        "formats22_animation_poster": "prior_exact_P0_carry_PR180_182",
+        "formats22_animation_still": "prior_exact_P0_carry_PR180_182",
+        "formats22_animation_title": "prior_exact_P0_carry_PR180_182",
+        "formats22_animation_unknown": "prior_exact_P0_carry_PR180_182",
+        "formats22_ascii_description": "prior_exact_P0_carry_PR180_182",
+        "formats22_derived_exported": "hold_absent_no_direct_consumer",
+        "formats22_open_still": "prior_exact_P0_carry_PR180_182",
+        "formats22_pdf_raster_hint": "prior_exact_P0_carry_PR180_182",
+        "gallery_credit_could_not_save": "prior_exact_P0_carry_PR180_182",
+        "gallery_credit_too_large": "prior_exact_P0_carry_PR180_182",
+        "legacy_credits_unreadable": "prior_exact_P0_carry_PR180_182",
+        "save20_destination_error": "prior_exact_P0_carry_PR180_182",
+        "save20_encoding_budget": "prior_exact_P0_carry_PR180_182",
+        "save20_file_format": "retain_pending_prior_binding",
+        "save20_file_name": "retain_pending_prior_binding",
+        "save20_gif_description": "prior_exact_P0_carry_PR180_182",
+        "save20_invalid_name": "prior_exact_P0_carry_PR180_182",
+        "save20_lossy_quality_description": "prior_exact_P0_carry_PR180_182",
+        "save20_title": "retain_pending_prior_binding",
+        "save20_unsupported_image_colour": "prior_exact_P0_carry_PR180_182",
+        "ui_a_separate_recovery_copy_has_been_kept_use": "prior_exact_P0_carry_PR180_182",
+        "ui_an_assembly_source_image_is_missing": "prior_exact_P0_carry_PR180_182",
+        "ui_assembly_saved": "prior_exact_P0_carry_PR180_182",
+        "ui_assembly_source_memory_floor": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_failed_use_save": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_image_encoding_failed": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_is_paused_to_protect_that_draft_use": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_metadata_is_missing": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_paused_use_save": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_pixels_are_missing": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_pixels_could_not_be_read": "prior_exact_P0_carry_PR180_182",
+        "ui_autosave_selection_encoding_failed": "prior_exact_P0_carry_PR180_182",
+        "ui_cannot_create_the_undo_cache_free_some_device": "prior_exact_P0_carry_PR180_182",
+        "ui_clear_all": "prior_exact_P0_carry_PR180_182",
+        "ui_clear_image": "retain_pending_prior_binding",
+        "ui_could_not_export_the_recovery_copy": "prior_exact_P0_carry_PR180_182",
+        "ui_could_not_open_image": "prior_exact_P0_carry_PR180_182",
+        "ui_could_not_save_image": "prior_exact_P0_carry_PR180_182",
+        "ui_could_not_save_the_assembly": "prior_exact_P0_carry_PR180_182",
+        "ui_could_not_store_the_assembly": "prior_exact_P0_carry_PR180_182",
+        "ui_d_d_pixels_2f_mp_exceeds_the_current": "prior_exact_P0_carry_PR180_182",
+        "ui_discard": "retained_existing_generic_discard_hold",
+        "ui_discard_changes23": "retain_pending_prior_binding",
+        "ui_draft_not_saved_yet": "prior_exact_P0_carry_PR180_182",
+        "ui_draft_restored": "prior_exact_P0_carry_PR180_182",
+        "ui_draft_saved": "prior_exact_P0_carry_PR180_182",
+        "ui_export_did_not_save23": "prior_exact_P0_carry_PR180_182",
+        "ui_export_explanation23": "prior_exact_P0_carry_PR180_182",
+        "ui_export_recovery_copy": "retain_pending_prior_binding",
+        "ui_export_recovery_copy_144b8a": "prior_exact_P0_carry_PR180_182",
+        "ui_higher_quality_usually_makes_a_larger_file_lossless": "prior_exact_P0_carry_PR180_182",
+        "ui_history_unavailable34": "prior_exact_P0_carry_PR180_182",
+        "ui_invalid_autosave_metadata": "prior_exact_P0_carry_PR180_182",
+        "ui_keep_editing23": "proposed_correction",
+        "ui_keeps_pixels_at_the_top_left_smaller_canvas": "prior_exact_P0_carry_PR180_182",
+        "ui_not_enough_memory_for_this_operation_the_assembly": "prior_exact_P0_carry_PR180_182",
+        "ui_not_enough_memory_to_save_in_this_format": "prior_exact_P0_carry_PR180_182",
+        "ui_png_encoding_failed": "prior_exact_P0_carry_PR180_182",
+        "ui_previous_draft_kept_for_recovery": "prior_exact_P0_carry_PR180_182",
+        "ui_recovered_image": "prior_exact_P0_carry_PR180_182",
+        "ui_recovery_copy_exported_extract_canvas_png_from_the": "prior_exact_P0_carry_PR180_182",
+        "ui_resize_large_image": "prior_exact_P0_carry_PR180_182",
+        "ui_sampled_resize_memory_explanation": "prior_exact_P0_carry_PR180_182",
+        "ui_save": "retain_pending_prior_binding",
+        "ui_save_a5d0d9": "retain_pending_prior_binding",
+        "ui_save_and_share": "retain_pending_prior_binding",
+        "ui_save_and_share_41edb4": "prior_exact_P0_carry_PR180_182",
+        "ui_save_as": "hold_absent_no_direct_consumer",
+        "ui_save_as_jpeg": "hold_absent_no_direct_consumer",
+        "ui_save_as_jpeg_xl": "hold_absent_no_direct_consumer",
+        "ui_save_as_png": "hold_absent_no_direct_consumer",
+        "ui_save_explanation23": "prior_exact_P0_carry_PR180_182",
+        "ui_save_png": "prior_exact_P0_carry_PR180_182",
+        "ui_save_your_changes": "retain_pending_prior_binding",
+        "ui_saved": "prior_exact_P0_carry_PR180_182",
+        "ui_share_explanation34": "retain_pending_prior_binding",
+        "ui_the_draft_is_saving_try_again_shortly": "prior_exact_P0_carry_PR180_182",
+        "ui_the_encoder_did_not_finish": "prior_exact_P0_carry_PR180_182",
+        "ui_the_image_was_saved_but_android_could_not": "prior_exact_P0_carry_PR180_182",
+        "ui_the_previous_draft_could_not_be_moved_to": "prior_exact_P0_carry_PR180_182",
+        "ui_the_previous_draft_could_not_be_preserved_separately": "prior_exact_P0_carry_PR180_182",
+        "ui_the_previous_draft_could_not_be_restored": "prior_exact_P0_carry_PR180_182",
+        "ui_the_previous_draft_needs_more_memory_to_reopen": "prior_exact_P0_carry_PR180_182",
+        "ui_the_saved_assembly_could_not_be_opened": "prior_exact_P0_carry_PR180_182",
+        "ui_the_selected_location_is_not_writable": "prior_exact_P0_carry_PR180_182",
+        "ui_the_trim_would_remove_the_entire_image": "prior_exact_P0_carry_PR180_182",
+        "ui_the_undo_cache_is_damaged": "prior_exact_P0_carry_PR180_182",
+        "ui_there_is_not_enough_memory_for_this_operation": "prior_exact_P0_carry_PR180_182",
+        "ui_this_location_is_not_writable": "prior_exact_P0_carry_PR180_182",
+        "ui_unexpected_data_in_the_undo_cache": "prior_exact_P0_carry_PR180_182",
+        "ui_your_current_image_has_unsaved_changes": "prior_exact_P0_carry_PR180_182",
+        "colour_converter_unavailable": "proposed_addition",
+        "colour_invalid_metadata": "proposed_addition",
+        "colour_truncated_metadata": "proposed_addition",
+        "colour_unsupported_icc_model": "proposed_addition",
+        "commons_svg_original_size_too_large": "proposed_addition",
+        "commons_svg_original_size_unavailable": "proposed_addition",
+        "formats22_import_limit": "proposed_addition",
+        "language20_app_language": "retain_pending_prior_binding",
+        "language20_current": "proposed_addition",
+        "language20_device_default": "retain_pending_prior_binding",
+        "language20_settings": "retain_pending_prior_binding",
+        "language20_translation_note": "proposed_addition",
+        "ui_0f_0f_px_1f": "proposed_addition",
+        "ui_100": "proposed_addition",
+        "ui_1_px": "proposed_addition",
+        "ui_1f_s": "proposed_addition",
+        "ui_actual_size_100": "proposed_addition",
+        "ui_add_colour26": "retain_pending_prior_binding",
+        "ui_add_text": "proposed_addition",
+        "ui_airbrush": "retain_pending_prior_binding",
+        "ui_all": "proposed_addition",
+        "ui_android_blocked_the_file_picker": "proposed_addition",
+        "ui_android_could_not_decode_this_image": "proposed_addition",
+        "ui_android_could_not_find_a_file_picker_enable": "proposed_addition",
+        "ui_apply": "retain_pending_prior_binding",
+        "ui_apply_bounds": "proposed_addition",
+        "ui_apply_crop": "proposed_addition",
+        "ui_autosaving_draft": "proposed_addition",
+        "ui_background_colour": "retain_pending_prior_binding",
+        "ui_background_edit_colour": "proposed_addition",
+        "ui_basic_colours": "proposed_addition",
+        "ui_bg": "retain_pending_prior_binding",
+        "ui_bold": "retain_pending_prior_binding",
+        "ui_bottom": "retain_pending_prior_binding",
+        "ui_brush": "retain_pending_prior_binding",
+        "ui_bucket_fill": "retain_pending_prior_binding",
+        "ui_cancel": "retain_pending_prior_binding",
+        "ui_canvas_bounds": "retain_pending_prior_binding",
+        "ui_canvas_size": "retain_pending_prior_binding",
+        "ui_canvas_size_30460e": "retain_pending_prior_binding",
+        "ui_canvas_zoom": "proposed_addition",
+        "ui_canvas_zoom_771f84": "proposed_addition",
+        "ui_category_brush": "retain_pending_prior_binding",
+        "ui_category_insert": "retain_pending_prior_binding",
+        "ui_category_selection": "retain_pending_prior_binding",
+        "ui_centred": "retain_pending_prior_binding",
+        "ui_choose_a_smaller_output_copy_the_source_images": "proposed_addition",
+        "ui_choose_a_smaller_size": "proposed_addition",
+        "ui_choose_at_least_one_image": "proposed_addition",
+        "ui_choose_dimensions_no_larger_than_the_original": "proposed_addition",
+        "ui_choose_location": "proposed_addition",
+        "ui_codec_resize_memory_floor": "proposed_addition",
+        "ui_collapse_colour_palette": "proposed_addition",
+        "ui_collapse_tool_category": "proposed_addition",
+        "ui_collapse_toolbox": "proposed_addition",
+        "ui_colour": "proposed_addition",
+        "ui_colour_palette_tap_for_foreground_hold_for_background": "proposed_addition",
+        "ui_colour_tab23": "retain_pending_prior_binding",
+        "ui_colour_tap_foreground_hold_background": "proposed_addition",
+        "ui_commit_selection": "proposed_addition",
+        "ui_copy": "retain_pending_prior_binding",
+        "ui_copy_all": "proposed_addition",
+        "ui_could_not_apply_the_crop": "proposed_addition",
+        "ui_could_not_complete_the_edit": "proposed_addition",
+        "ui_could_not_complete_the_operation": "proposed_addition",
+        "ui_could_not_place_the_image": "proposed_addition",
+        "ui_could_not_prepare_the_image": "proposed_addition",
+        "ui_crop": "proposed_addition",
+        "ui_crop_image": "proposed_correction",
+        "ui_crop_must_stay_inside_the_canvas": "proposed_addition",
+        "ui_crop_preview_drag_an_edge_or_corner_drag": "proposed_addition",
+        "ui_crop_to_selection": "retain_pending_prior_binding",
+        "ui_cut": "retain_pending_prior_binding",
+        "ui_d_d_px_d_pixels_2f_mp": "proposed_addition",
+        "ui_delete_selection": "retain_pending_prior_binding",
+        "ui_done": "retain_pending_prior_binding",
+        "ui_draft_pending": "proposed_addition",
+        "ui_draw26": "retain_pending_prior_binding",
+        "ui_draw_again": "proposed_addition",
+        "ui_drawing23": "retain_pending_prior_binding",
+        "ui_drawing_canvas_pinch_and_move_two_fingers_to": "proposed_addition",
+        "ui_drawing_settings": "proposed_addition",
+        "ui_drawing_settings_d900c6": "proposed_addition",
+        "ui_edit_background": "retain_pending_prior_binding",
+        "ui_edit_canvas33": "retain_pending_prior_binding",
+        "ui_edit_colour26": "retain_pending_prior_binding",
+        "ui_edit_foreground": "retain_pending_prior_binding",
+        "ui_edit_transform33": "retain_pending_prior_binding",
+        "ui_ellipse": "retain_pending_prior_binding",
+        "ui_enter_a_number_from_to": "proposed_addition",
+        "ui_enter_a_positive_size": "proposed_addition",
+        "ui_enter_a_trim_amount_for_every_edge": "proposed_addition",
+        "ui_enter_a_whole_number_from_to": "proposed_addition",
+        "ui_enter_all_four_trim_amounts": "proposed_addition",
+        "ui_enter_positive_canvas_dimensions_within_android_s_coordinate": "proposed_addition",
+        "ui_enter_positive_dimensions": "proposed_addition",
+        "ui_enter_positive_dimensions_no_larger_than_the_original": "proposed_addition",
+        "ui_enter_positive_dimensions_that_resolve_to_at_least": "proposed_addition",
+        "ui_enter_positive_image_dimensions": "proposed_addition",
+        "ui_enter_valid_dimensions": "proposed_addition",
+        "ui_eraser": "retain_pending_prior_binding",
+        "ui_expand_colour_palette": "proposed_addition",
+        "ui_expand_tool_category": "proposed_addition",
+        "ui_expand_toolbox": "proposed_addition",
+        "ui_export_as23": "retain_pending_prior_binding",
+        "ui_eyedropper": "retain_pending_prior_binding",
+        "ui_fg": "retain_pending_prior_binding",
+        "ui_fit": "retain_pending_prior_binding",
+        "ui_fit_entire_canvas_in_view": "retain_pending_prior_binding",
+        "ui_fit_image": "retain_pending_prior_binding",
+        "ui_fit_selection34": "retain_pending_prior_binding",
+        "ui_flip_horizontal": "retain_pending_prior_binding",
+        "ui_flip_vertical": "retain_pending_prior_binding",
+        "ui_font": "retain_pending_prior_binding",
+        "ui_font_family": "proposed_addition",
+        "ui_foreground_background_colour_palette": "hold_absent_no_direct_consumer",
+        "ui_foreground_colour": "retain_pending_prior_binding",
+        "ui_foreground_edit_colour": "proposed_addition",
+        "ui_free_form_select": "retain_pending_prior_binding",
+        "ui_from_device34": "retain_pending_prior_binding",
+        "ui_full_text_copied": "proposed_addition",
+        "ui_height": "proposed_addition",
+        "ui_height_in": "proposed_addition",
+        "ui_heights": "proposed_addition",
+        "ui_hex_rrggbb": "proposed_addition",
+        "ui_hide_editor_controls": "retain_pending_prior_binding",
+        "ui_image": "retain_pending_prior_binding",
+        "ui_insert": "retain_pending_prior_binding",
+        "ui_insert_image_into_canvas": "retain_pending_prior_binding",
+        "ui_invalid_colour": "proposed_addition",
+        "ui_invalid_selection_outline": "proposed_addition",
+        "ui_invert_colours": "retain_pending_prior_binding",
+        "ui_italic": "retain_pending_prior_binding",
+        "ui_languages23": "retain_pending_prior_binding",
+        "ui_left": "retain_pending_prior_binding",
+        "ui_left_aligned": "retain_pending_prior_binding",
+        "ui_left_arrow_collapse": "proposed_addition",
+        "ui_line": "retain_pending_prior_binding",
+        "ui_line_spacing": "proposed_addition",
+        "ui_load_image": "retain_pending_prior_binding",
+        "ui_lock_aspect_ratio": "proposed_addition",
+        "ui_lock_proportions": "proposed_addition",
+        "ui_magnification": "proposed_addition",
+        "ui_main23": "retain_pending_prior_binding",
+        "ui_menu": "retain_pending_prior_binding",
+        "ui_menu_colours": "retain_pending_prior_binding",
+        "ui_menu_edit": "retain_pending_prior_binding",
+        "ui_menu_file": "retain_pending_prior_binding",
+        "ui_menu_help": "retain_pending_prior_binding",
+        "ui_menu_image": "retain_pending_prior_binding",
+        "ui_menu_view": "retain_pending_prior_binding",
+        "ui_navigate": "retain_pending_prior_binding",
+        "ui_new": "retain_pending_prior_binding",
+        "ui_new_colour": "proposed_addition",
+        "ui_new_image": "retain_pending_prior_binding",
+        "ui_no_readable_image_data": "proposed_addition",
+        "ui_no_resize_fits_decoder_memory": "proposed_addition",
+        "ui_none": "proposed_addition",
+        "ui_not_enough_memory_to_finish_opening_this_image": "proposed_addition",
+        "ui_not_enough_memory_to_inspect_this_image": "proposed_addition",
+        "ui_numeric_slider_value": "proposed_addition",
+        "ui_ok": "retain_pending_prior_binding",
+        "ui_original_size34": "retain_pending_prior_binding",
+        "ui_other_images34": "retain_pending_prior_binding",
+        "ui_outline": "retain_pending_prior_binding",
+        "ui_palette": "retain_pending_prior_binding",
+        "ui_paste": "retain_pending_prior_binding",
+        "ui_paste_hint34": "proposed_addition",
+        "ui_pencil": "retain_pending_prior_binding",
+        "ui_percent": "proposed_addition",
+        "ui_percent_fd8671": "proposed_addition",
+        "ui_pinch_and_pan_mode": "hold_absent_no_direct_consumer",
+        "ui_pixels": "retain_pending_prior_binding",
+        "ui_pixels_6ec9c2": "retain_pending_prior_binding",
+        "ui_place_text": "proposed_addition",
+        "ui_please_try_again": "proposed_addition",
+        "ui_please_wait_for_the_current_operation": "proposed_addition",
+        "ui_polygon": "retain_pending_prior_binding",
+        "ui_preview": "retain_pending_prior_binding",
+        "ui_px": "proposed_addition",
+        "ui_px_724eb3": "proposed_addition",
+        "ui_ready": "retain_pending_prior_binding",
+        "ui_rectangle": "retain_pending_prior_binding",
+        "ui_rectangle_select": "proposed_correction",
+        "ui_redo": "retain_pending_prior_binding",
+        "ui_remove": "retain_pending_prior_binding",
+        "ui_reset_bw23": "retain_pending_prior_binding",
+        "ui_reset_crop": "proposed_addition",
+        "ui_reset_to_black_white": "proposed_addition",
+        "ui_resize_and_load": "proposed_addition",
+        "ui_resize_image": "retain_pending_prior_binding",
+        "ui_resize_image_ab28be": "retain_pending_prior_binding",
+        "ui_resize_the_copy": "proposed_addition",
+        "ui_right": "retain_pending_prior_binding",
+        "ui_right_aligned": "retain_pending_prior_binding",
+        "ui_rotate": "retain_pending_prior_binding",
+        "ui_rotate_180": "retain_pending_prior_binding",
+        "ui_rotate_90_clockwise": "retain_pending_prior_binding",
+        "ui_scales_the_image_unlock_the_ratio_to_stretch": "proposed_addition",
+        "ui_select_all": "retain_pending_prior_binding",
+        "ui_select_an_area": "proposed_addition",
+        "ui_select_an_area_first": "proposed_addition",
+        "ui_selected_colour23": "proposed_addition",
+        "ui_selection_dimensions_are_too_large": "proposed_addition",
+        "ui_share_saved_image": "proposed_addition",
+        "ui_show_all": "proposed_addition",
+        "ui_show_controls": "proposed_addition",
+        "ui_show_editor_controls": "retain_pending_prior_binding",
+        "ui_show_magnified_drawing_preview": "proposed_addition",
+        "ui_size_pixels": "proposed_addition",
+        "ui_size_px": "proposed_addition",
+        "ui_solid_fill": "retain_pending_prior_binding",
+        "ui_swap23": "retain_pending_prior_binding",
+        "ui_swap_foreground_background": "retain_pending_prior_binding",
+        "ui_tap_an_image_first": "proposed_addition",
+        "ui_tap_canvas_to_type": "proposed_addition",
+        "ui_tap_to_type_a_number": "proposed_addition",
+        "ui_text": "retain_pending_prior_binding",
+        "ui_text_alignment": "retain_pending_prior_binding",
+        "ui_text_direction23": "proposed_addition",
+        "ui_the_crop_must_contain_at_least_one_pixel": "proposed_addition",
+        "ui_the_crop_must_stay_inside_the_image": "proposed_addition",
+        "ui_the_decoder_and_editing_buffers_need_about_the": "proposed_addition",
+        "ui_the_full_image_and_working_buffers_exceed_the": "proposed_addition",
+        "ui_the_picker_returned_no_file_please_choose_the": "proposed_addition",
+        "ui_the_picker_returned_no_files": "proposed_addition",
+        "ui_the_selected_provider_did_not_return_any_image": "proposed_addition",
+        "ui_this_file_is_not_a_supported_image_use": "proposed_addition",
+        "ui_tolerance": "proposed_addition",
+        "ui_too_large_for_the_current_budget_reduce_the": "proposed_addition",
+        "ui_tool_categories": "proposed_addition",
+        "ui_trim_amounts_must_be_zero_or_greater": "proposed_addition",
+        "ui_trim_amounts_must_fit_inside_each_image_use": "proposed_addition",
+        "ui_trim_expand_canvas_by_touch": "proposed_addition",
+        "ui_try_a_different_file_or_location": "proposed_addition",
+        "ui_type_text": "proposed_addition",
+        "ui_underline": "retain_pending_prior_binding",
+        "ui_undo": "retain_pending_prior_binding",
+        "ui_untitled": "retain_pending_prior_binding",
+        "ui_use_1_1024_pixels": "proposed_addition",
+        "ui_use_50_300": "proposed_addition",
+        "ui_use_a_positive_target_dimension": "proposed_addition",
+        "ui_use_colour": "proposed_addition",
+        "ui_use_rrggbb": "proposed_addition",
+        "ui_watercolor": "retain_pending_prior_binding",
+        "ui_width": "proposed_addition",
+        "ui_working": "proposed_addition",
+        "ui_zoom_in": "retain_pending_prior_binding",
+        "ui_zoom_out": "retain_pending_prior_binding"
+      },
+      "dependencies": [
+        "ui_width_in",
+        "ui_trim_in_pixels",
+        "ui_trim_in_percent",
+        "formats22_at_least_frames"
+      ],
+      "held_absent": [
+        "formats22_derived_exported",
+        "ui_save_as",
+        "ui_save_as_jpeg",
+        "ui_save_as_jpeg_xl",
+        "ui_save_as_png",
+        "ui_foreground_background_colour_palette",
+        "ui_pinch_and_pan_mode"
+      ],
+      "held_existing": [
+        "ui_discard"
+      ]
+    }
+  }
+}

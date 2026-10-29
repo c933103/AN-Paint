@@ -1,3 +1,4 @@
+from serbian_priority_delta_expectations import MEMORY_ADDITIONS as SERBIAN_DELTA_ADDITIONS, addition as serbian_delta_addition
 from nynorsk_belarusian_albanian_priority_expectations import MEMORY_ADDITIONS as NN_BE_SQ_ADDITIONS, require_addition as nn_be_sq_row
 from thai_priority_expectations import MEMORY_ADDITIONS as THAI_ADDITIONS, current_row as thai_row
 from hindi_gujarati_priority_expectations import MEMORY_ADDITIONS as HI_GU_ADDITIONS, current_row as hi_gu_row
@@ -81,6 +82,11 @@ fixture corruption. This selects explicitly bound paired and single-key
 expectations, not a catalogue generator, review result or reconstruction of an
 old source snapshot.
 """
+    if (tag,key) in SERBIAN_DELTA_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        if old is not None:raise ValueError('Historical Serbian warning must remain absent')
+        return serbian_delta_addition(tag,key,queue['keys'][key]['corrected_english'],historical_value)
     if (tag,key) in HR_BS_MK_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']

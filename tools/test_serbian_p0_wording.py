@@ -12,6 +12,7 @@ from current_localization_contracts import fixture, require_string, require_word
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
+import serbian_priority_delta_expectations as delta
 
 KEYS = frozenset({
     'formats22_animation_message', 'formats22_animation_poster', 'formats22_animation_still',
@@ -232,7 +233,7 @@ class SerbianP0Tests(unittest.TestCase):
                         require_reviewed_string(ET.tostring(root, encoding='unicode'),
                             key, changed, constraints, source)
 
-    def test_all_337_other_prior_values_and_catalogue_identity_stay_unchanged(self):
+    def test_historical_337_values_keep_only_exact_bound_delta_and_catalogue_identity(self):
         self.assertEqual({'sr-Cyrl', 'sr-Latn'}, set(self.data['preserved_values']))
         self.assertEqual(337, sum(len(values) for values in self.data['preserved_values'].values()))
         from test_translations import SCOPED_TAGS
@@ -241,8 +242,11 @@ class SerbianP0Tests(unittest.TestCase):
             self.assertEqual(count, len(preserved));self.assertFalse(set(preserved) & KEYS)
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
-                    require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(total, len(self.roots[tag]))
+                    source=self.roots['default'].find(f"./string[@name='{key}']").text
+                    target=delta.current_value(tag,key,expected['value'],expected['attributes'],source)
+                    require_string(self.xml[tag], key, target, {'attributes': expected['attributes']})
+            added=sum(r['previous'] is None for r in delta.cohort()[tag]['values'].values())
+            self.assertEqual(total+added, len(self.roots[tag]))
             self.assertEqual(total, count + 74 + (tag == SUCCESSOR_LOCALE))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('"Формат датотеке"' if tag == SUCCESSOR_LOCALE else 'Format slike',
@@ -367,13 +371,17 @@ class SerbianP0Tests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 require_format_label_successor(data, self.xml)
 
-    def test_five_holds_each_and_unreviewed_neighbor_fallbacks_remain_absent(self):
+    def test_five_historical_holds_and_three_exact_reviewed_neighbor_additions(self):
         self.assertEqual(HOLDS, set(self.data['held_absent']))
         neighbors = {'ui_no_resize_fits_decoder_memory', 'formats22_at_least_frames',
                      'ui_choose_location'}
         for tag in ('sr-Cyrl', 'sr-Latn'):
-            for key in HOLDS | neighbors:
+            for key in HOLDS:
                 self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+            for key in neighbors:
+                source=self.roots['default'].find(f"./string[@name='{key}']").text
+                target=delta.addition(tag,key,source,None)
+                require_string(self.xml[tag],key,target,{'attributes':{'name':key},'child_elements':0})
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
 
@@ -439,7 +447,8 @@ class SerbianP0Tests(unittest.TestCase):
                 self.assertIsNone(old['terms'][term]['value'])
                 with self.assertRaises(ValueError):accepted_warning(term, tag)
             self.assertEqual(self.data['values'][key][tag], warnings.current_source_expectation(key, tag, None))
-            self.assertIsNone(warnings.current_source_expectation(other, tag, None))
+            self.assertEqual(delta.addition(tag,other,queue['keys'][other]['corrected_english'],None),
+                             warnings.current_source_expectation(other,tag,None))
             with self.assertRaises(ValueError):warnings.current_source_expectation(key, tag, 'invented history')
             changed = deepcopy(queue);next(row for row in changed['options'] if row['tag'] == tag)['terms'][key]['value'] = 'invented history'
             with patch.object(warnings, 'review_record', return_value=changed), self.assertRaises(ValueError):
