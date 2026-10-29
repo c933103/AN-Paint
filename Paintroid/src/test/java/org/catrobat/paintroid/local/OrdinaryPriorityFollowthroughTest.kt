@@ -34,7 +34,7 @@ import java.util.Locale
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
-/** Six corrections, actual bounded consumers; not whole-language or layout certification. */
+/** Nine corrections, actual bounded consumers; not whole-language or layout certification. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk=[33])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -73,7 +73,7 @@ class OrdinaryPriorityFollowthroughTest {
         else -> emptyList()
     }
     @Test fun completeCompiledValuesAndBothPluralBranchesMatchFiniteReview() {
-        for(tag in listOf("es-419","eo","en-001"))inLocale(tag) { activity ->
+        for(tag in listOf("es-419","eo","en-001","ar","pt-BR"))inLocale(tag) { activity ->
             val rows=fixture.getJSONObject("locales").getJSONObject(tag)
             for(identity in rows.keys()) {
                 val (kind,key)=identity.split('/',limit=2);val value=row(tag,identity)
