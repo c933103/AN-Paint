@@ -5,11 +5,22 @@ import json
 import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
-from current_localization_contracts import fixture, require_string
+from current_localization_contracts import fixture, require_string as require_scalar
 import translation_catalogues as cat
 from nordic_priority_expectations import NAME, TAGS, current_row, current_value, added_keys, display
 
-HOLDS = {'formats22_derived_exported','ui_foreground_background_colour_palette','ui_save_as','ui_save_as_jpeg','ui_save_as_jpeg_xl','ui_save_as_png'}
+def require_string(xml,key,value,rule):
+    root=ET.fromstring(xml)
+    if root.tag!='resources' or root.attrib or (root.text or '').strip():
+        raise ValueError('Unexpected resources shape')
+    if any((node.tail or '').strip() for node in root):
+        raise ValueError('Unexpected resource tail')
+    named=[node for node in root if node.get('name')==key]
+    if len(named)!=1 or named[0].tag!='string':
+        raise ValueError('Ambiguous scalar identity')
+    return require_scalar(xml,key,value,rule)
+
+HOLDS = {'formats22_derived_exported','ui_foreground_background_colour_palette','ui_save_as','ui_save_as_jpeg','ui_save_as_jpeg_xl','ui_save_as_png','ui_pinch_and_pan_mode'}
 COMPANIONS={'da':{'ui_top','ui_width_in','ui_trim_in_pixels','ui_trim_in_percent','formats22_at_least_frames'},'is':{'ui_top','ui_width_in','ui_trim_in_pixels','ui_trim_in_percent','formats22_at_least_frames','save20_dither'},'no':{'ui_top','ui_width_in','ui_trim_in_pixels','ui_trim_in_percent','formats22_at_least_frames'}}
 
 class NordicPriorityTests(unittest.TestCase):
@@ -26,10 +37,11 @@ class NordicPriorityTests(unittest.TestCase):
         for tag,loc in self.data['locales'].items():
             self.assertEqual(expected,{k:r['tier'] for k,r in loc['priority_dispositions'].items()})
             self.assertEqual(Counter({'P0':92,'P1':249}),Counter(r['tier'] for r in loc['priority_dispositions'].values()))
-            self.assertEqual(HOLDS,set(loc['held_absent']))
-            self.assertEqual(set(expected)-HOLDS|COMPANIONS[tag],set(loc['accepted']))
-            self.assertEqual(24,sum(r['status']=='bounded-wording-only' for r in loc['priority_dispositions'].values()))
-            for key in HOLDS:self.assertIsNone(ET.fromstring(self.xml[tag]).find(f"./string[@name='{key}']"))
+            holds=HOLDS|({'ui_main23'} if tag=='is' else set())
+            self.assertEqual(holds,set(loc['held_absent']))
+            self.assertEqual(set(expected)-holds|COMPANIONS[tag],set(loc['accepted']))
+            self.assertEqual(22 if tag=='is' else 23,sum(r['status']=='bounded-wording-only' for r in loc['priority_dispositions'].values()))
+            for key in holds:self.assertIsNone(ET.fromstring(self.xml[tag]).find(f"./string[@name='{key}']"))
         self.assertIn('no',cat.offered_tags());self.assertIn('nn',cat.offered_tags());self.assertNotIn('nb',cat.offered_tags())
 
     def test_every_full_source_target_attributes_alias_and_placeholder(self):
@@ -47,14 +59,18 @@ class NordicPriorityTests(unittest.TestCase):
         for tag,loc in self.data['locales'].items():
             for key in loc['changed']:
                 row=current_row(tag,key)
-                for mutation in ('old','missing','truncated','duplicate','markup','attributes'):
+                for mutation in ('old','missing','truncated','duplicate','markup','attributes','root-text','root-attribute','tail','wrong-type'):
                     root=ET.Element('resources');node=ET.SubElement(root,'string',row['attributes']);node.text=row['target']
                     if mutation=='old':node.text=row['previous_target'] or ''
                     elif mutation=='missing':root.remove(node)
                     elif mutation=='truncated':node.text=node.text[:-2]
                     elif mutation=='duplicate':root.append(deepcopy(node))
                     elif mutation=='markup':ET.SubElement(node,'b').text='extra'
-                    else:node.set('translatable','false')
+                    elif mutation=='attributes':node.set('translatable','false')
+                    elif mutation=='root-text':root.text='unexpected'
+                    elif mutation=='root-attribute':root.set('unexpected','true')
+                    elif mutation=='tail':node.tail='unexpected'
+                    else:ET.SubElement(root,'plurals',{'name':key})
                     with self.subTest(tag=tag,key=key,mutation=mutation),self.assertRaises(ValueError):
                         require_string(ET.tostring(root,encoding='unicode'),key,row['target'],{'attributes':row['attributes']})
 

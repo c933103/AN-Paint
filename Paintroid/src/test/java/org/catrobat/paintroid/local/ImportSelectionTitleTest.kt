@@ -179,7 +179,7 @@ class ImportSelectionTitleTest {
     }
 
     @Test fun danishAndNorwegianAnimationWarningsUseReviewedBodiesAndKeepRealDecisionSemantics() {
-        val values = JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText())
+        val values = NordicPriorityExpectations.project(JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText()))
             .getJSONObject("values")
         for (tag in listOf("da", "no")) {
             language(tag)
@@ -189,9 +189,11 @@ class ImportSelectionTitleTest {
             val animated = expected("formats22_animation_title")
             var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
             cancel(warning(open, formatted("formats22_animation_unknown", "GIF"), open), file)
-            assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
+            val lowerBound = String.format(Locale.forLanguageTag(tag),
+                NordicPriorityExpectations.display(tag, "formats22_at_least_frames"), 2)
+            assertEquals(lowerBound, ui(R.string.formats22_at_least_frames, 2))
             file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
-            cancel(warning(animated, formatted("formats22_animation_message", "GIF", "at least 2") +
+            cancel(warning(animated, formatted("formats22_animation_message", "GIF", lowerBound) +
                 "\n\n" + expected("formats22_animation_still"), open), file)
             file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
             val dialog = warning(animated, formatted("formats22_animation_message", "APNG", "3") +
