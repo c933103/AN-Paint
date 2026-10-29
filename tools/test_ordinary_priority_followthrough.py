@@ -1,4 +1,4 @@
-"""Six reviewed corrections: finite typed fixtures, complete values and coordinated mutations."""
+"""Nine reviewed corrections: finite typed fixtures, complete values and coordinated mutations."""
 from copy import deepcopy
 from collections import Counter
 from pathlib import Path
@@ -12,11 +12,11 @@ class OrdinaryPriorityFollowthroughTest(unittest.TestCase):
         self.data=oracle.reviewed_fixture()
         self.source=catalogues.RES/'values/strings.xml'
         self.paths={t:catalogues.catalogue_paths()[t]for t in self.data['locales']}
-    def test_exact_three_option_six_container_scope_and_current_values(self):
-        self.assertEqual({'es-419','eo','en-001'},set(self.data['locales']))
+    def test_exact_five_option_nine_container_scope_and_current_values(self):
+        self.assertEqual({'es-419','eo','en-001','ar','pt-BR'},set(self.data['locales']))
         self.assertTrue(set(self.paths)<=set(catalogues.offered_tags()))
         changed=[(t,k,r)for t,rows in self.data['locales'].items()for k,r in rows.items()if r['changed']]
-        self.assertEqual(6,len(changed));self.assertEqual(Counter({'priority':3,'companion':3}),Counter(r['scope']for _,_,r in changed))
+        self.assertEqual(9,len(changed));self.assertEqual(Counter({'priority':3,'companion':6}),Counter(r['scope']for _,_,r in changed))
         self.assertTrue(oracle.validate_resources(self.data,self.source,self.paths))
         for _,_,r in changed:
             self.assertNotEqual(r['previous'],r['target']);self.assertEqual(r['previous']['attributes'],r['target']['attributes'])
@@ -100,9 +100,10 @@ class OrdinaryPriorityFollowthroughTest(unittest.TestCase):
             finally:oracle._baseline.cache_clear()
     def test_finite_display_counts_and_conditional_crop_semantics(self):
         es=oracle.row(self.data,'es-419','string/ui_d_d_px_d_pixels_2f_mp')['display'];self.assertEqual('%1$d × %2$d px · Número de píxeles: %3$,d (%4$.2f MP)',es)
-        for tag,label in [('es-419','Número de páginas: %3$d.'),('eo','Nombro de paĝoj: %3$d.')]:self.assertIn(label,oracle.row(self.data,tag,'string/formats22_page_description')['display'])
-        plurals=oracle.row(self.data,'es-419','plurals/ui_crop_preview_images')['display'];self.assertEqual({'one','other'},set(plurals))
-        for value in plurals.values():self.assertIn('puede mover las imágenes unidas a ellas.',value);self.assertNotIn('reposiciona sus uniones',value)
+        for tag,label in [('es-419','Número de páginas: %3$d.'),('eo','Nombro de paĝoj: %3$d.'),('ar','عدد الصفحات: %3$d.'),('pt-BR','Número de páginas: %3$d.')]:self.assertIn(label,oracle.row(self.data,tag,'string/formats22_page_description')['display'])
+        for tag,conditional,old in [('es-419','puede mover las imágenes unidas a ellas.','reposiciona sus uniones'),('pt-BR','pode mover as imagens conectadas a elas.','também reposiciona')]:
+            plurals=oracle.row(self.data,tag,'plurals/ui_crop_preview_images')['display'];self.assertEqual({'one','other'},set(plurals))
+            for value in plurals.values():self.assertIn(conditional,value);self.assertNotIn(old,value)
     def test_source_binding_and_whole_fixture_scope_cannot_be_forged(self):
         for field in ['schema','scope','review_packet_sha256','independent_receipt_sha256']:
             data=deepcopy(self.data);data[field]='forged'

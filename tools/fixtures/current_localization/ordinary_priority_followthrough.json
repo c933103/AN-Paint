@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "scope": "Six independently accepted containers, three priority and three companion resources; retained finite contexts only. Not full-language/runtime/native certification.",
+  "scope": "Nine independently accepted containers, three priority and six companion resources, from two bounded batches; retained finite contexts only. Not full-language/runtime/native certification.",
   "review_packet_sha256": "7922833023ba4dba9232c0027e9261fea30f96b605d9ed477fa9e97bfc29948f",
   "independent_receipt_sha256": "7720f3f73a765614644b8e46ef96a8763e5e3a45a53ce7d2f8b76b97e44fb529",
   "locales": {
@@ -577,6 +577,144 @@
         "changed": false,
         "scope": "retained_consumer_context_no_new_credit"
       }
+    },
+    "ar": {
+      "string/formats22_page_description": {
+        "source": {
+          "type": "string",
+          "attributes": {
+            "name": "formats22_page_description"
+          },
+          "value": "%1$s · %2$s\\nNumber of pages: %3$d. Choose one page to edit as an image."
+        },
+        "previous": {
+          "type": "string",
+          "attributes": {
+            "name": "formats22_page_description"
+          },
+          "value": "%1$s · %2$s\\n%3$d صفحة. اختر صفحة واحدة لتحريرها كصورة."
+        },
+        "target": {
+          "type": "string",
+          "attributes": {
+            "name": "formats22_page_description"
+          },
+          "value": "%1$s · %2$s\\nعدد الصفحات: %3$d. اختر صفحة واحدة لتحريرها كصورة."
+        },
+        "display": "%1$s · %2$s\nعدد الصفحات: %3$d. اختر صفحة واحدة لتحريرها كصورة.",
+        "changed": true,
+        "scope": "companion"
+      }
+    },
+    "pt-BR": {
+      "string/formats22_page_description": {
+        "source": {
+          "type": "string",
+          "attributes": {
+            "name": "formats22_page_description"
+          },
+          "value": "%1$s · %2$s\\nNumber of pages: %3$d. Choose one page to edit as an image."
+        },
+        "previous": {
+          "type": "string",
+          "attributes": {
+            "name": "formats22_page_description"
+          },
+          "value": "%1$s · %2$s\\n%3$d páginas. Escolha uma página para editar como imagem."
+        },
+        "target": {
+          "type": "string",
+          "attributes": {
+            "name": "formats22_page_description"
+          },
+          "value": "%1$s · %2$s\\nNúmero de páginas: %3$d. Escolha uma página para editar como imagem."
+        },
+        "display": "%1$s · %2$s\nNúmero de páginas: %3$d. Escolha uma página para editar como imagem.",
+        "changed": true,
+        "scope": "companion"
+      },
+      "plurals/ui_crop_preview_images": {
+        "source": {
+          "type": "plurals",
+          "attributes": {
+            "name": "ui_crop_preview_images"
+          },
+          "value": [
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "one"
+              },
+              "value": "Preview: %1$d × %2$d px\\nApply to %3$d image. Cropping placed images may move their attached images."
+            },
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "other"
+              },
+              "value": "Preview: %1$d × %2$d px\\nApply to %3$d images. Cropping placed images may move their attached images."
+            }
+          ]
+        },
+        "previous": {
+          "type": "plurals",
+          "attributes": {
+            "name": "ui_crop_preview_images"
+          },
+          "value": [
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "one"
+              },
+              "value": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagem. Recortar uma imagem colocada também reposiciona as imagens conectadas."
+            },
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "other"
+              },
+              "value": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagens. Recortar uma imagem colocada também reposiciona as imagens conectadas."
+            }
+          ]
+        },
+        "target": {
+          "type": "plurals",
+          "attributes": {
+            "name": "ui_crop_preview_images"
+          },
+          "value": [
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "one"
+              },
+              "value": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagem. Recortar imagens colocadas pode mover as imagens conectadas a elas."
+            },
+            {
+              "type": "item",
+              "attributes": {
+                "quantity": "other"
+              },
+              "value": "Pré-visualização: %1$d × %2$d px\\nAplica-se a %3$d imagens. Recortar imagens colocadas pode mover as imagens conectadas a elas."
+            }
+          ]
+        },
+        "display": {
+          "one": "Pré-visualização: %1$d × %2$d px\nAplica-se a %3$d imagem. Recortar imagens colocadas pode mover as imagens conectadas a elas.",
+          "other": "Pré-visualização: %1$d × %2$d px\nAplica-se a %3$d imagens. Recortar imagens colocadas pode mover as imagens conectadas a elas."
+        },
+        "changed": true,
+        "scope": "companion"
+      }
     }
-  }
+  },
+  "successor_reviews": [
+    {
+      "scope": "Arabic and Brazilian Portuguese: three companion corrections; Russian retained review requires no source edit.",
+      "source_commit": "47d5e64e8e20ef3e13641a05ee83c61203316a82",
+      "review_packet_sha256": "7a0f495ae044fb137f73aed1ec82575d6d8b3795ccd2a6eafd3bf8c6427b005d",
+      "independent_receipt_sha256": "f2a80417c2b3573004e24f83504c17f8b1887ece6f00505ae6c889db3a50523e"
+    }
+  ]
 }

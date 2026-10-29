@@ -1,6 +1,6 @@
 """Finite complete reviewed values, detached from callers and production output.
 
-Six independently accepted corrections; retained context gives no additional priority credit.
+Nine independently accepted corrections; retained context gives no additional priority credit.
 """
 from copy import deepcopy
 from functools import lru_cache
@@ -11,7 +11,7 @@ from finite_resource_values import _blank, _resource_map, _same_type_and_value, 
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / 'tools/fixtures/current_localization/ordinary_priority_followthrough.json'
-FIXTURE_SHA256 = 'aa8215c815c10b45517fbe482bcac44f514cb9c4468a5cfb39ac14b961c129a4'
+FIXTURE_SHA256 = '3941373cd41425e7fcbfa8afaeafd2f36b1588141ac7e469824225ff03732ee5'
 
 
 def require(condition, message):
