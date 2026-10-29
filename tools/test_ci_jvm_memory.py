@@ -4,6 +4,8 @@ import json
 import os
 from pathlib import Path
 import shutil
+import signal
+import sys
 import subprocess
 import tempfile
 import time
@@ -102,20 +104,74 @@ class JvmMemoryTest(unittest.TestCase):
                 self.assertFalse((reports / 'jvm.memory.json').exists())
                 self.assertRegex((reports / 'jvm.ended-at').read_text(), r'^\d{4}-\d\d-\d\dT')
 
-    def test_cancelled_jvm_remains_failure_with_partial_output(self):
+    def cancellation_case(self, force_kill):
         with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary); (root / 'tools').mkdir()
+            root = Path(temporary); (root / 'tools').mkdir(); (root / 'owner').mkdir()
             for name in ('ci_run_timed.sh', 'ci_observe_jvm_memory.py'):
                 shutil.copy(ROOT / 'tools' / name, root / 'tools')
-            result = subprocess.run(['timeout', '--kill-after=1s', '.5s', 'bash',
-                'tools/ci_run_timed.sh', 'jvm', 'bash', '-c', 'echo partial-jvm; sleep 10'],
-                cwd=root, capture_output=True, text=True, timeout=5)
-            self.assertEqual(result.returncode, 124)
+            # Reuse the existing subreaper in a separate report directory: it
+            # owns only this invocation and reaps every cancelled descendant.
+            workload = ('import os,signal,time; from pathlib import Path; '
+                'Path("workload.pid").write_text(str(os.getpid())); '
+                'print("partial-jvm",flush=True)\n'
+                'while not Path("stop-now").exists(): time.sleep(.01)\n'
+                'os.killpg(os.getpgrp(),signal.SIGSTOP)\n')
+            owner = subprocess.Popen([sys.executable, str(ROOT / 'tools/ci_run_process_group.py'),
+                '--timeout-seconds', '5', '--kill-after-seconds', '3', '--',
+                'bash', '-c', 'cd ..; exec "$@"', 'owned-jvm', 'bash',
+                'tools/ci_run_timed.sh', 'jvm', sys.executable, '-c', workload],
+                cwd=root / 'owner', stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             reports = root / 'build/reports/ci-phases'
+            def ready(predicate):
+                deadline = time.monotonic() + 5
+                while not predicate() and owner.poll() is None and time.monotonic() < deadline:
+                    time.sleep(.01)
+                self.assertTrue(predicate(), 'Workload readiness must precede cancellation')
+            try:
+                ready(lambda: (root / 'workload.pid').exists() and
+                    (reports / 'jvm.log').exists() and
+                    (reports / 'jvm.log').read_text() == 'partial-jvm\n')
+                pid = int((root / 'workload.pid').read_text())
+                if force_kill:
+                    # A stopped owned group cannot run EXIT traps. The owner
+                    # must KILL/reap it and retain explicitly incomplete evidence.
+                    (root / 'stop-now').touch()
+                    ready(lambda: Path(f'/proc/{pid}/stat').read_text().rsplit(')', 1)[1].split()[0] == 'T')
+                owner.send_signal(signal.SIGTERM)
+                out, err = owner.communicate(timeout=10)
+            finally:
+                if owner.poll() is None:
+                    owner.send_signal(signal.SIGTERM)
+                    owner.communicate(timeout=10)
+            self.assertEqual(owner.returncode, 143, err)
+            owner_reports = root / 'owner/build/reports/ci-phases'
+            lifecycle = dict(line.split('=', 1) for line in (owner_reports / 'python.lifecycle').read_text().splitlines())
+            self.assertEqual(lifecycle['reason'], 'signal')
+            self.assertEqual(lifecycle['forced_kill'], str(force_kill).lower())
+            self.assertEqual(lifecycle['owned_children_remaining'], '0')
+            self.assertEqual(lifecycle['cleanup_complete'], 'true')
+            self.assertEqual(lifecycle['output_complete'], 'true')
+            self.assertIn('exit_status=143\n', (owner_reports / 'python.time').read_text())
+            self.assertIn('partial-jvm\n', out)
             self.assertEqual((reports / 'jvm.log').read_text(), 'partial-jvm\n')
             receipt = dict(line.split('=', 1) for line in (reports / 'jvm.time').read_text().splitlines() if '=' in line)
-            self.assertNotEqual(receipt['exit_status'], '0')
-            self.assertNotEqual(receipt['workload_exit_status'], '0')
+            if force_kill:
+                self.assertNotIn('exit_status', receipt)
+                self.assertFalse((reports / 'jvm.ended-at').exists())
+                self.assertFalse(json.loads((reports / 'jvm.memory.json').read_text())['completed'])
+            else:
+                self.assertNotEqual(receipt['exit_status'], '0')
+                self.assertNotEqual(receipt['workload_exit_status'], '0')
+                self.assertEqual(receipt['observer_cleanup_complete'], 'true')
+                self.assertTrue((reports / 'jvm.ended-at').is_file())
+            with self.assertRaises(ProcessLookupError):
+                os.kill(pid, 0)
+
+    def test_cancelled_jvm_remains_failure_with_partial_output(self):
+        self.cancellation_case(force_kill=False)
+
+    def test_force_killed_jvm_retains_incomplete_non_success_evidence(self):
+        self.cancellation_case(force_kill=True)
 
     def test_bad_proc_record_is_not_silently_ignored(self):
         with tempfile.TemporaryDirectory() as temporary:
