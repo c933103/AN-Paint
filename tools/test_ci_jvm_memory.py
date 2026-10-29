@@ -71,6 +71,37 @@ class JvmMemoryTest(unittest.TestCase):
             self.assertEqual(result.returncode, 125)
             self.assertFalse((root / 'command-ran').exists())
 
+    def test_reused_checkout_startup_failure_replaces_old_success_and_failed_receipts(self):
+        for prior_status in (0, 7):
+            with self.subTest(prior_status=prior_status), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary); (root / 'tools').mkdir()
+                for name in ('ci_run_timed.sh', 'ci_observe_jvm_memory.py'):
+                    shutil.copy(ROOT / 'tools' / name, root / 'tools')
+                before = subprocess.run(['bash', 'tools/ci_run_timed.sh', 'jvm', 'bash', '-c',
+                    f'echo previous-invocation; exit {prior_status}'], cwd=root,
+                    capture_output=True, text=True, timeout=5)
+                self.assertEqual(before.returncode, prior_status, before.stderr)
+                reports = root / 'build/reports/ci-phases'
+                prior = (reports / 'jvm.time').read_text()
+                self.assertIn(f'workload_exit_status={prior_status}\n', prior)
+                self.assertTrue((reports / 'jvm.memory.json').exists())
+                (reports / 'jvm.ended-at').write_text('old terminal marker\n')
+                real = str(ROOT / 'tools/ci_observe_jvm_memory.py')
+                (root / 'tools/ci_observe_jvm_memory.py').write_text(
+                    'import sys,runpy\n'
+                    f'if "--stop-pid" in sys.argv: runpy.run_path({real!r},run_name="__main__")\n'
+                    'raise SystemExit(19)\n')
+                after = subprocess.run(['bash', 'tools/ci_run_timed.sh', 'jvm', 'touch', 'must-not-run'],
+                                       cwd=root, capture_output=True, text=True, timeout=5)
+                self.assertEqual(after.returncode, 125, after.stderr)
+                self.assertFalse((root / 'must-not-run').exists())
+                current = dict(line.split('=', 1) for line in (reports / 'jvm.time').read_text().splitlines())
+                self.assertEqual(current, {'workload_exit_status': 'unrun', 'observer_exit_status': '19',
+                    'observer_cleanup_complete': 'true', 'exit_status': '125'})
+                self.assertEqual((reports / 'jvm.log').read_text(), '')
+                self.assertFalse((reports / 'jvm.memory.json').exists())
+                self.assertRegex((reports / 'jvm.ended-at').read_text(), r'^\d{4}-\d\d-\d\dT')
+
     def test_cancelled_jvm_remains_failure_with_partial_output(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); (root / 'tools').mkdir()
@@ -82,7 +113,9 @@ class JvmMemoryTest(unittest.TestCase):
             self.assertEqual(result.returncode, 124)
             reports = root / 'build/reports/ci-phases'
             self.assertEqual((reports / 'jvm.log').read_text(), 'partial-jvm\n')
-            self.assertNotIn('exit_status=0', (reports / 'jvm.time').read_text())
+            receipt = dict(line.split('=', 1) for line in (reports / 'jvm.time').read_text().splitlines() if '=' in line)
+            self.assertNotEqual(receipt['exit_status'], '0')
+            self.assertNotEqual(receipt['workload_exit_status'], '0')
 
     def test_bad_proc_record_is_not_silently_ignored(self):
         with tempfile.TemporaryDirectory() as temporary:
