@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Linux CI Python owner: deadline, live logs, and bounded TERM/KILL cleanup.
+"""Linux CI phase owner: deadline, live logs, and bounded TERM/KILL cleanup.
 
 The shell execs this owner, so cancellation reaches the process that owns the
 child session. Subreaping also collects grandchildren after their parents exit.
@@ -85,7 +85,7 @@ def verify_completion(path):
         if any(len(pair)!=2 for pair in pairs):return False
         data=dict(pairs)
         if len(data)!=len(pairs) or set(data)!={'launch_id','reason','forced_kill','owned_children_remaining','cleanup_complete','output_complete'}:return False
-        owner=(Path(path).parent/'python.owner').read_text().strip()
+        owner=Path(path).with_suffix('.owner').read_text().strip()
         if not re.fullmatch('[0-9a-f]{32}',owner) or data['launch_id']!=owner:return False
         if data['reason'] not in {'completed','signal','deadline','launch-error'}:return False
         if data['forced_kill'] not in {'true','false'} or data['output_complete'] not in {'true','false'}:return False
@@ -103,6 +103,7 @@ def main(argv=None):
     if argv[:1]==['--verify-completion']:
         return 0 if len(argv)==2 and verify_completion(argv[1]) else 125
     parser=argparse.ArgumentParser()
+    parser.add_argument('--phase',choices=('python','jvm'),default='python')
     parser.add_argument('--timeout-seconds',type=float,required=True)
     parser.add_argument('--kill-after-seconds',type=float,required=True)
     parser.add_argument('command',nargs=argparse.REMAINDER)
@@ -114,19 +115,20 @@ def main(argv=None):
     if libc.prctl(36,1,0,0,0)!=0: # PR_SET_CHILD_SUBREAPER, Linux runner contract.
         raise OSError(ctypes.get_errno(),'Could not become CI child subreaper')
     children()  # Fail before launching if owned-child discovery is unavailable.
+    phase=args.phase
     directory=Path('build/reports/ci-phases');directory.mkdir(parents=True,exist_ok=True)
-    for name in ('python.lifecycle','python.ended-at','python.time'):
+    for name in (f'{phase}.lifecycle',f'{phase}.ended-at',f'{phase}.time'):
         (directory/name).unlink(missing_ok=True)
     launch_id=uuid.uuid4().hex
-    owner=directory/'python.owner.partial';owner.write_text(launch_id+'\n');owner.replace(directory/'python.owner')
-    (directory/'python.started-at').write_text(stamp()+'\n')
+    owner=directory/f'{phase}.owner.partial';owner.write_text(launch_id+'\n');owner.replace(directory/f'{phase}.owner')
+    (directory/f'{phase}.started-at').write_text(stamp()+'\n')
     started=time.monotonic();usage=resource.getrusage(resource.RUSAGE_CHILDREN)
     received=[];pump_errors=[];proc=None
     def cancelled(signum,frame):
         if not received:received.append(signum)
     for sig in (signal.SIGTERM,signal.SIGINT):signal.signal(sig,cancelled)
     status=125;reason='launch-error';forced=False;clean=True;output_complete=True;forwarded=False
-    with (directory/'python.log').open('wb') as log:
+    with (directory/f'{phase}.log').open('wb') as log:
         try:
             proc=subprocess.Popen(command,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,start_new_session=True)
         except OSError as error:
@@ -169,11 +171,11 @@ def main(argv=None):
     clean=clean and remaining==0
     if not clean:status=125;reason='cleanup-error'
     elapsed=time.monotonic()-started;after=resource.getrusage(resource.RUSAGE_CHILDREN)
-    (directory/'python.time').write_text(f'real_seconds={elapsed:.3f}\nuser_seconds={after.ru_utime-usage.ru_utime:.3f}\nsys_seconds={after.ru_stime-usage.ru_stime:.3f}\nexit_status={status}\n')
-    (directory/'python.ended-at').write_text(stamp()+'\n')
-    marker=directory/'python.lifecycle.partial'
+    (directory/f'{phase}.time').write_text(f'real_seconds={elapsed:.3f}\nuser_seconds={after.ru_utime-usage.ru_utime:.3f}\nsys_seconds={after.ru_stime-usage.ru_stime:.3f}\nexit_status={status}\n')
+    (directory/f'{phase}.ended-at').write_text(stamp()+'\n')
+    marker=directory/f'{phase}.lifecycle.partial'
     marker.write_text(f'launch_id={launch_id}\nreason={reason}\nforced_kill={str(forced).lower()}\nowned_children_remaining={remaining}\ncleanup_complete={str(clean).lower()}\noutput_complete={str(output_complete).lower()}\n')
-    marker.replace(directory/'python.lifecycle')
+    marker.replace(directory/f'{phase}.lifecycle')
     return status
 
 

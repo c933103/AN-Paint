@@ -63,7 +63,7 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 ## Deadlines and evidence
 
-- Regression job: 79 minutes; Python contracts: 31 minutes (30-minute owned-process execution deadline); JVM regression: 20 minutes;
+- Regression job: 79 minutes; Python contracts: 31 minutes (30-minute owned-process execution deadline); JVM regression: 20 minutes (19-minute owned-process execution deadline);
   build job: 45 minutes;
   universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
@@ -128,6 +128,14 @@ are unchanged: 2 + 8 + 31 + 20 + 6 + 6 is 73 minutes total, within the 79-minute
 regression job with the same six-minute checkout/cache/evidence overhead.
 Device, installation and interaction deadlines are unchanged. This is measured
 headroom and explicit process ownership, not a universal liveness guarantee.
+
+JVM now uses that same process owner and phase-specific lifecycle receipts.
+Its 19-minute execution deadline reserves one minute within the unchanged
+20-minute Actions cap for the existing TERM/KILL, reap and output cleanup.
+Native/lint cannot start after an unverified Python or JVM cleanup. This repairs
+the JVM overlap observed in [run 40915200093](https://github.com/c933103/AN-Paint/actions/runs/40915200093),
+not its runtime: the roughly 22.5-minute workload still exceeds the deadline.
+Cleanup is not a speedup, and the broader slowdown remains unexplained.
 
 All tests, assertions, failure propagation and existing device/interaction caps
 remain unchanged. A future timeout still fails; it must be diagnosed, not
