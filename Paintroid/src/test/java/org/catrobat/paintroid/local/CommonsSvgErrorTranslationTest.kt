@@ -37,10 +37,14 @@ class CommonsSvgErrorTranslationTest {
     private val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Size_test.svg"
     private val page="https://commons.wikimedia.org/wiki/File:Size_test.svg"
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val tags=listOf("bg","bn","en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am","ast","gu")
+    private val tags=listOf("bg","bn","en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am","ast","gu","th")
 
     // Independent reviewed wording oracles for later exact catalogue additions; model review is not native certification.
     private val addedReasons=mapOf(
+        "th" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVG ไม่ได้ระบุขนาดดั้งเดิมที่ใช้งานได้ ไม่ได้ใช้ขนาดผืนผ้าใบแทน",
+            R.string.commons_svg_original_size_too_large to "ขนาดดั้งเดิมของ SVG เกินขีดจำกัดขนาดบิตแมปของ Android ไม่ได้ปรับขนาดภาพ"
+        ),
         // Exact AST and recovered GU values retain complete independent wording oracles.
         "gu" to mapOf(
             R.string.commons_svg_original_size_unavailable to "SVGમાં વાપરી શકાય તેવું મૂળ માપ આપેલું નથી. તેના બદલે કેન્વાસ પર આધારિત માપ વાપરવામાં આવ્યું નથી.",

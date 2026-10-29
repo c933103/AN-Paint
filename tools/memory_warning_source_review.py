@@ -1,3 +1,4 @@
+from thai_priority_expectations import MEMORY_ADDITIONS as THAI_ADDITIONS, current_row as thai_row
 from hindi_gujarati_priority_expectations import MEMORY_ADDITIONS as HI_GU_ADDITIONS, current_row as hi_gu_row
 """Current English expectations and the pending two-term review queue.
 
@@ -212,6 +213,15 @@ old source snapshot.
             raise ValueError('Historical Hindi/Gujarati warning addition must be absent: '+tag+'/'+key)
         if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
             raise ValueError('Hindi/Gujarati warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in THAI_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=thai_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Thai replacement warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Thai replacement warning source or attributes differ: '+tag+'/'+key)
         return row['target']
     if (tag,key) in AS_KM_LO_ADDITIONS:
         queue=review_record()

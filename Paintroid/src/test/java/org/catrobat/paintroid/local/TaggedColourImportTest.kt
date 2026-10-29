@@ -89,6 +89,18 @@ class TaggedColourImportTest {
         }
     }
 
+    @Test fun replacementThaiTaggedAdditionsRejectCoordinatedFixtureAndDuplicateMutations() {
+        for(tag in listOf("th")) for(field in listOf("accepted","attributes","predecessors")) {
+            val data=ThaiPriorityExpectations.fixture()
+            data.getJSONObject("locales").getJSONObject(tag).getJSONObject(field).put("save20_unsupported_image_colour","forged")
+            assertThrows(AssertionError::class.java) { ThaiPriorityExpectations.addTagged(JSONObject(),data) }
+        }
+        for(tag in listOf("th")) {
+            val expected=JSONObject().put(tag,"already present")
+            assertThrows(AssertionError::class.java) { ThaiPriorityExpectations.addTagged(expected,ThaiPriorityExpectations.fixture()) }
+        }
+    }
+
     @Test fun explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection() {
         val file = File.createTempFile("srgb-import-", ".bin", context.cacheDir)
         try {
@@ -1508,6 +1520,8 @@ class TaggedColourImportTest {
         // Finite recovered HI/GU additions after all existing checkpoints.
         HiGuPriorityExpectations.addTagged(expected,HiGuPriorityExpectations.fixture())
         assertEquals(143, expected.length())
+        ThaiPriorityExpectations.addTagged(expected,ThaiPriorityExpectations.fixture())
+        assertEquals(144, expected.length())
         var inherited = 0
         var fallbacks = 0
         assertTrue(AppLanguage.tags(context).containsAll(expected.keys().asSequence().toList()))
@@ -1530,6 +1544,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(0, inherited)
-        assertEquals(28, fallbacks) // 171 offered - 143 direct, including recovered HI/GU; no inherited catalogue.
+        assertEquals(27, fallbacks) // 171 offered - 144 direct, including Thai replacement; no inherited catalogue.
     }
 }
