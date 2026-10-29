@@ -1,0 +1,67 @@
+{
+  "pr": 225,
+  "actual_merge": "b05a4463e03683f92c2b3ebe21905e0420362a42",
+  "tree": "0f5961b48f686b0c04748517e095eaa349cfa0a0",
+  "run": 40836724809,
+  "attempt1": {
+    "status": "FAIL: mandatory device evidence collection lost ADB connection after 42 core app and 74 native tests; union dependency guard failed",
+    "preserved_commit": "71f29e05d45611bd4fef15815b251ee054f4736b",
+    "regression": "1933 JVM / 194 suites passed; hosted Python 2023/1268.928s passed (2 skips); lint zero"
+  },
+  "attempt2": {
+    "status": "SUCCESS",
+    "route": "One supported failed-job rerun, unchanged actual merge; no source/ref movement",
+    "core_job": 123340541559,
+    "union_job": 123346631848,
+    "app_union": 49,
+    "native": 74,
+    "mandatory_capture_receipts": "success",
+    "other_jobs": "Successful prior jobs carried, not newly rerun"
+  },
+  "artifact": {
+    "id": 12884117066,
+    "bytes": 12149720,
+    "sha256": "87efe05a0e2bf0e7815dd8bcbef3d802523cef7d046fae154b6b56c49cc181bb",
+    "download_hash_verified": true
+  },
+  "selection": {
+    "run_id": 40836724809,
+    "current_attempt": 2,
+    "checkout": "b05a4463e03683f92c2b3ebe21905e0420362a42",
+    "workflow_head": "b05a4463e03683f92c2b3ebe21905e0420362a42",
+    "device_sdk": 35,
+    "selected": {
+      "core": {
+        "artifact_id": 12884285715,
+        "name": "emulator-core-api-35-b05a4463e03683f92c2b3ebe21905e0420362a42",
+        "digest": "sha256:5e4990b631e2c3a08ad3dda4302a1a63c8e4935677af0207126682236e2c632c",
+        "created_at": "2026-10-29T08:40:59Z",
+        "updated_at": "2026-10-29T08:40:59Z",
+        "job_id": 123340541559,
+        "job_record_run_attempt": 2,
+        "job_started_at": "2026-10-29T08:25:51Z",
+        "job_completed_at": "2026-10-29T08:41:01Z"
+      },
+      "position": {
+        "artifact_id": 12881353592,
+        "name": "emulator-position-api-35-b05a4463e03683f92c2b3ebe21905e0420362a42",
+        "digest": "sha256:56a2f698adeab36c49201bc14e3770bb555c380e3201735e73333d6064700f7b",
+        "created_at": "2026-10-29T07:53:25Z",
+        "updated_at": "2026-10-29T07:53:25Z",
+        "job_id": 123340544459,
+        "job_record_run_attempt": 2,
+        "job_started_at": "2026-10-29T07:48:21Z",
+        "job_completed_at": "2026-10-29T07:53:27Z"
+      }
+    }
+  },
+  "limits": [
+    "Attempt 1 remains failed; no retrospective pass.",
+    "Device artifacts prove required test/capture checks, not native-human linguistic acceptance.",
+    "APK/source identity receipt read; binary bytes not independently downloaded."
+  ],
+  "zip": {
+    "bytes": 22026,
+    "sha256": "d5490aaf4f45ee1310a5894c524c415be1b1d7d20cb9694a006e403bd44444f4"
+  }
+}
