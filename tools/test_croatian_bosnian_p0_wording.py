@@ -12,6 +12,7 @@ from current_localization_contracts import fixture, require_string, require_word
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
+import hr_bs_mk_priority_expectations as current
 
 KEYS = frozenset({
     'formats22_animation_message', 'formats22_animation_poster', 'formats22_animation_still',
@@ -178,7 +179,7 @@ class CroatianBosnianP0Tests(unittest.TestCase):
             source = self.data['values'][key]['default']
             for tag in TAGS:
                 with self.subTest(key=key, tag=tag):
-                    require_reviewed_string(self.xml[tag], key, self.data['values'][key][tag],
+                    require_reviewed_string(self.xml[tag], key, current.current_value(tag,key,self.data['values'][key][tag],self.data['constraints'][key][tag]['attributes'],source),
                                             self.data['constraints'][key][tag], source)
                     self.assertEqual(self.roots['default'].find(f"./string[@name='{key}']").attrib,
                                      self.roots[tag].find(f"./string[@name='{key}']").attrib)
@@ -255,8 +256,8 @@ class CroatianBosnianP0Tests(unittest.TestCase):
             self.assertEqual(count, len(preserved));self.assertFalse(set(preserved) & KEYS)
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
-                    require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(count + 78 + (1 if tag == 'hr' else 0), len(self.roots[tag]))
+                    require_string(self.xml[tag], key, current.current_value(tag,key,expected['value'],expected['attributes']), {'attributes': expected['attributes']})
+            self.assertEqual(count + 78 + (1 if tag == 'hr' else 0) + len(current.added_keys(tag)), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('Format slike', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertTrue({'hr', 'bs'} <= set(catalogues.offered_tags()))
@@ -331,17 +332,20 @@ class CroatianBosnianP0Tests(unittest.TestCase):
                      'ui_load_image', 'ui_choose_location', 'ui_image_assembly'}
         for tag in ('hr', 'bs'):
             for key in HOLDS | neighbors:
-                self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
-        self.assertIsNone(self.roots['hr'].find("./string[@name='save20_title']"))
+                node=self.roots[tag].find(f"./string[@name='{key}']")
+                if key in current.added_keys(tag):
+                    self.assertEqual(current.row(tag,key)['target'],node.text)
+                else:self.assertIsNone(node,(tag,key))
+        self.assertEqual(current.row("hr","save20_title")["target"],self.roots["hr"].find("./string[@name='save20_title']").text)
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
 
     def test_recovery_compositions_retain_actual_labels_and_literal_filenames(self):
         for tag in ('hr', 'bs'):
-            value = lambda key: display_value(self.data['values'][key][tag])
-            prior = lambda key: ('Save as…' if tag == 'hr' and key == 'save20_title' else display_value(self.data['preserved_values'][tag][key]['value']))
+            value = lambda key: current.current_display(tag,key)
+            prior = lambda key: current.current_display(tag,key)
             recovery = value('ui_recovery_copy_exported_extract_canvas_png_from_the')
-            for literal in (prior('ui_menu_file'), 'Load image…', 'canvas.png', 'ZIP'):
+            for literal in (prior('ui_menu_file'), prior('ui_load_image'), 'canvas.png', 'ZIP'):
                 self.assertIn(literal, recovery)
             paused = value('ui_autosave_is_paused_to_protect_that_draft_use')
             for literal in (prior('ui_menu_file'), value('ui_export_recovery_copy'), prior('save20_title'), prior('save20_file_format'), 'PNG', 'JPEG'):
@@ -352,8 +356,8 @@ class CroatianBosnianP0Tests(unittest.TestCase):
 
     def test_save_share_and_error_composition_keeps_command_and_punctuation_contracts(self):
         for tag in ('hr', 'bs'):
-            value = lambda key: display_value(self.data['values'][key][tag])
-            prior = lambda key: ('Save as…' if tag == 'hr' and key == 'save20_title' else display_value(self.data['preserved_values'][tag][key]['value']))
+            value = lambda key: current.current_display(tag,key)
+            prior = lambda key: current.current_display(tag,key)
             for key in ('ui_export_did_not_save23', 'ui_export_explanation23', 'ui_save_explanation23', 'ui_share_explanation34'):
                 self.assertIn(prior('ui_save'), value(key))
             self.assertIn(prior('save20_title'), value('ui_export_did_not_save23'))
@@ -384,7 +388,7 @@ class CroatianBosnianP0Tests(unittest.TestCase):
                 self.assertIsNone(old['terms'][term]['value'])
                 with self.assertRaises(ValueError):accepted_warning(term, tag)
             self.assertEqual(self.data['values'][key][tag], warnings.current_source_expectation(key, tag, None))
-            self.assertIsNone(warnings.current_source_expectation(other, tag, None))
+            self.assertEqual(current.row(tag,other)['target'],warnings.current_source_expectation(other, tag, None))
             with self.assertRaises(ValueError):warnings.current_source_expectation(key, tag, 'invented history')
             changed = deepcopy(queue);next(row for row in changed['options'] if row['tag'] == tag)['terms'][key]['value'] = 'invented history'
             with patch.object(warnings, 'review_record', return_value=changed), self.assertRaises(ValueError):
