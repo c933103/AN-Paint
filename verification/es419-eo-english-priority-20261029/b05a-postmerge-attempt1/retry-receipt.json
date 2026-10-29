@@ -1,0 +1,32 @@
+{
+  "run": 40836724809,
+  "head": "b05a4463e03683f92c2b3ebe21905e0420362a42",
+  "original_attempt": 1,
+  "original_terminal": "failure",
+  "successful_original_jobs": [
+    "Build APK and corresponding source",
+    "Exact-script resource generation",
+    "Regression tests and lint",
+    "Position dialog API 35"
+  ],
+  "failed_original_jobs": [
+    123326550636,
+    123331994026
+  ],
+  "original_failure_evidence": "71f29e05d45611bd4fef15815b251ee054f4736b",
+  "recovery": {
+    "requested_at": "2026-10-29T08:25:40Z",
+    "route": "github_rerun_failed_workflow_run_jobs",
+    "response": {
+      "success": true
+    },
+    "readback": {
+      "attempt": 2,
+      "head": "b05a4463e03683f92c2b3ebe21905e0420362a42",
+      "status": "in_progress"
+    },
+    "new_core_job": 123340541559,
+    "scope": "One parent-authorized same-head failed-job recovery, original attempt terminal before request, no source/ref movement, no test/screenshot requirements changed."
+  },
+  "limit": "Attempt2 not terminal; carried successful jobs are not freshly rerun passes."
+}
