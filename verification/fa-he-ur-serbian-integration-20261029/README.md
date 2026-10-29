@@ -25,8 +25,13 @@ A provisional local 104-test normal pass on old5cdd is diagnostic, not this head
 acceptance. `focused-current-raw.tar.xz` records exact-tree 32 normal + 32 optimized
 passes; these do not replace complete host or hosted Android gates.
 
-Fresh full local normal/optimized modes are active with 7200s local outer owners,
-unchanged internal/CI deadlines. Hosted run 40820454209 and exact-head code/security
-reviews are pending. Root owns final merge. SI/MY/ZA is excluded; release 0.0.41
+Fresh exact-head full normal passed 2014 tests in 1508.480s; optimized passed
+2014 in 1575.498s. Both local outer 7200s owners exited zero with clean complete
+lifecycles and unchanged clean source. Internal/CI deadlines remain unchanged.
+The full-local-verification.json and full-local-raw.tar.xz files retain exact
+counts, timings, source identity and raw logs. Code review is exact-head clean.
+Optional Security review completed with unavailable finding flags and its merge
+gate disabled; this is not a clean-security claim or additional required gate.
+Hosted run 40820454209 has five successful jobs; JVM/lint is still pending. Root owns final merge. SI/MY/ZA is excluded; release 0.0.41
 is paused and historical bulk171 remains stopped. No signing/access change,
 whole-language/full-Serbian-P1/native-human/visual-RTL acceptance is claimed.

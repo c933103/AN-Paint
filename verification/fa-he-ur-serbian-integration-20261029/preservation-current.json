@@ -1,5 +1,5 @@
 {
-  "status": "Published combined PR224; exact-head review/hosted/full modes pending",
+  "status": "Exact combined head: full normal/optimized pass; required hosted JVM/lint pending",
   "base": "ae7d25ca60f9852a9d936743a3c4a1833e9e24ba",
   "base_tree": "de438227d759a2def5fc987600c3c1591f452f9f",
   "input_heads": {
@@ -460,9 +460,28 @@
     "timeout_seconds": 7200,
     "kill_after_seconds": 15,
     "scope": "local outer cancellation owner only; internal assertions/deadlines and CI source unchanged",
-    "normal": "running",
-    "optimized": "running"
+    "normal": "passed2014",
+    "optimized": "passed2014"
   },
   "merge_owner": "root",
-  "code_security_request_comment": 6488331774
+  "code_security_request_comment": 6488331774,
+  "code_review": {
+    "status": "completed",
+    "has_any_findings": false,
+    "has_unresolved_findings": false,
+    "summary_comment": 6488332424,
+    "receipt_comment": 6488408098
+  },
+  "optional_security": {
+    "head": "6fd72e8d31f13676e92c16c40506e4c1bdd4c221",
+    "status": "completed",
+    "has_any_findings": null,
+    "has_unresolved_findings": null,
+    "mergeGateEnabled": false,
+    "classification": "optional metadata unavailable; not a new mandatory gate; no clean-security claim",
+    "code": "completed clean",
+    "summary_comment": 6488332424,
+    "reconciliation_request": 6488547491,
+    "additional_requests": "stopped"
+  }
 }
