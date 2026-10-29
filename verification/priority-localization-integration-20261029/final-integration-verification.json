@@ -432,13 +432,105 @@
     "merged_at": "2026-10-29T04:34:24Z"
   },
   "postmerge_ci": {
-    "id": 40818507446,
-    "status": "in_progress",
-    "conclusion": null,
+    "run_id": 40818507446,
     "head": "ae7d25ca60f9852a9d936743a3c4a1833e9e24ba",
-    "event": "push",
-    "observation_time": "2026-10-29T04:38:30Z"
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-29T04:34:27Z",
+    "terminal_updated_at": "2026-10-29T05:19:32Z",
+    "jobs": [
+      {
+        "id": 123265172148,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123265172463,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123265172502,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123266957944,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123266957966,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123271378392,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "input_cleanup": [
+      {
+        "pr": 215,
+        "state": "closed",
+        "merged": true,
+        "head": "13e5112652873c5d45144c30d7355a9ccd110d70",
+        "base": "develop",
+        "comment_id": 6488120356
+      },
+      {
+        "pr": 216,
+        "state": "closed",
+        "merged": true,
+        "head": "1351a28fa924ea28b16b6fe1fb12bd1b0e2e909a",
+        "base": "develop",
+        "comment_id": 6488122441
+      },
+      {
+        "pr": 217,
+        "state": "closed",
+        "merged": true,
+        "head": "f78fa4481960be0628b80cf4da69106317fe00c2",
+        "base": "develop",
+        "comment_id": 6488124089
+      },
+      {
+        "pr": 218,
+        "state": "closed",
+        "merged": false,
+        "head": "7acb8be5a23a3e16fa1ff89a71197294926c6666",
+        "base": "localization/hi-gu-priority-recovery-20261029",
+        "comment_id": 6488126256
+      },
+      {
+        "pr": 220,
+        "state": "closed",
+        "merged": true,
+        "head": "4bab486911bf0e2272c1278015d13e1fb977013e",
+        "base": "develop",
+        "comment_id": 6488128433
+      }
+    ],
+    "jvm_tests": 1902,
+    "jvm_phase_seconds": 1161.848,
+    "jvm_failures": 0,
+    "jvm_errors": 0,
+    "jvm_skipped": 0,
+    "python_tests": 1994,
+    "python_seconds": 1210.752,
+    "python_skipped": 2,
+    "lint_issues": 0,
+    "lint_phase_seconds": 156.66,
+    "api35_app_cases": 49,
+    "api35_native_cases": 74
   },
   "release_status": "0.0.41 remains paused; no release/version/signing action",
-  "source_input_disposition": "All five frozen heads are ancestors of the accepted combined head; GitHub auto-marked 215/216/217/220 merged via ancestry. Thai218 remains open on original stacked base; safe superseded closure proposed, no separate merge."
+  "source_input_disposition": "All five frozen heads are ancestors of accepted combined head. GitHub auto-marked 215/216/217/220 merged by ancestry, not individual CI acceptance; 218 closed as superseded by 221 without merge/retarget/deletion. All original failures retained."
 }

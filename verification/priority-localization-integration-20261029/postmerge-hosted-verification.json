@@ -1,0 +1,163 @@
+{
+  "head": "ae7d25ca60f9852a9d936743a3c4a1833e9e24ba",
+  "tree": "de438227d759a2def5fc987600c3c1591f452f9f",
+  "run_id": 40818507446,
+  "artifact_id": 12875680496,
+  "artifact_bytes": 84697114,
+  "artifact_sha256": "ec9f38b5516355db674b0dd43ad584cc3386e85b777604780b465a5c608cb1eb",
+  "jvm": {
+    "tests": 1902,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": 191,
+    "summed_case_suite_seconds": 949.398
+  },
+  "python": {
+    "tests": 1994,
+    "seconds": 1210.752,
+    "skips": 2,
+    "terminal_summary": "Ran 1994 tests in 1210.752s\\n\\nOK (skipped=2)",
+    "lifecycle": {
+      "launch_id": "752a91408961458a9b9b8cb85e74d2bd",
+      "reason": "completed",
+      "forced_kill": "false",
+      "owned_children_remaining": "0",
+      "cleanup_complete": "true",
+      "output_complete": "true"
+    }
+  },
+  "lint": {
+    "issues": 0
+  },
+  "phases": {
+    "python": {
+      "timing": {
+        "real_seconds": "1212.168",
+        "user_seconds": "1154.748",
+        "sys_seconds": "34.697",
+        "exit_status": "0"
+      },
+      "started_at": "2026-10-29T04:35:45Z",
+      "ended_at": "2026-10-29T04:55:57Z"
+    },
+    "jvm": {
+      "timing": {
+        "real_seconds": "1161.848",
+        "user_seconds": "3.941",
+        "sys_seconds": "0.424",
+        "exit_status": "0"
+      },
+      "started_at": "2026-10-29T04:55:57Z",
+      "ended_at": "2026-10-29T05:15:19Z"
+    },
+    "native": {
+      "timing": {
+        "real_seconds": "78.783",
+        "user_seconds": "177.258",
+        "sys_seconds": "53.767",
+        "exit_status": "0"
+      },
+      "started_at": "2026-10-29T05:15:19Z",
+      "ended_at": "2026-10-29T05:16:38Z"
+    },
+    "lint": {
+      "timing": {
+        "real_seconds": "156.660",
+        "user_seconds": "2.266",
+        "sys_seconds": "0.203",
+        "exit_status": "0"
+      },
+      "started_at": "2026-10-29T05:16:38Z",
+      "ended_at": "2026-10-29T05:19:15Z"
+    }
+  },
+  "workflow": {
+    "run_id": 40818507446,
+    "head": "ae7d25ca60f9852a9d936743a3c4a1833e9e24ba",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-29T04:34:27Z",
+    "terminal_updated_at": "2026-10-29T05:19:32Z",
+    "jobs": [
+      {
+        "id": 123265172148,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123265172463,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123265172502,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123266957944,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123266957966,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123271378392,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "input_cleanup": [
+      {
+        "pr": 215,
+        "state": "closed",
+        "merged": true,
+        "head": "13e5112652873c5d45144c30d7355a9ccd110d70",
+        "base": "develop",
+        "comment_id": 6488120356
+      },
+      {
+        "pr": 216,
+        "state": "closed",
+        "merged": true,
+        "head": "1351a28fa924ea28b16b6fe1fb12bd1b0e2e909a",
+        "base": "develop",
+        "comment_id": 6488122441
+      },
+      {
+        "pr": 217,
+        "state": "closed",
+        "merged": true,
+        "head": "f78fa4481960be0628b80cf4da69106317fe00c2",
+        "base": "develop",
+        "comment_id": 6488124089
+      },
+      {
+        "pr": 218,
+        "state": "closed",
+        "merged": false,
+        "head": "7acb8be5a23a3e16fa1ff89a71197294926c6666",
+        "base": "localization/hi-gu-priority-recovery-20261029",
+        "comment_id": 6488126256
+      },
+      {
+        "pr": 220,
+        "state": "closed",
+        "merged": true,
+        "head": "4bab486911bf0e2272c1278015d13e1fb977013e",
+        "base": "develop",
+        "comment_id": 6488128433
+      }
+    ]
+  }
+}

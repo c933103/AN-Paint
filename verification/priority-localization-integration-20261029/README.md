@@ -1,5 +1,32 @@
 # PR221 combined priority-localization evidence
 
+## Current merged result
+
+Accepted combined head `2e58204c73ff24ea9b73fbaf4d265baa1e0c3fce` was merged
+through PR221 into develop `ae7d25ca60f9852a9d936743a3c4a1833e9e24ba`.
+The actual merge tree `de438227d759a2def5fc987600c3c1591f452f9f` equals
+the exact reviewed/tested combined and synthetic-merge trees.
+
+`final-integration-verification.json` records all 60 changed paths/modes/blobs,
+all protected merged fixes, the clean final 1994 normal/1994 optimized results,
+exact-head clean code/security review, and six successful hosted gates in
+run40809479280. `final-optimized-raw.tar.xz` retains the complete final optimized
+log and clean owner lifecycle. The first optimized readiness failure, later
+1800-second timeout, original220 JVM failures and initial49a history remain
+failures/incomplete states; successor success does not rewrite them.
+`source-input-inclusion.json` accounts for every frozen input delta as exact
+incoming bytes or independently reviewed shared/bounded JVM successors.
+GitHub ancestry-derived merged status on source PRs is not standalone CI credit.
+Thai218 was closed as superseded, not merged into216; no source head or base
+was changed. Natural develop push run 40818507446 completed successfully at 05:19:32 UTC.
+All six jobs passed: 1902 JVM cases without failures/errors/skips (1161.848s phase),
+1994 hosted Python cases with two documented skips (1210.752s), zero lint issues
+(156.660s), and 49 app / 74 native API35 cases. The postmerge-hosted-verification.json,
+postmerge-api35-verification.json and postmerge-phase-receipts.zip files bind the
+actual merge checkout, artifact hashes, complete counts, timings and lifecycle. Release0.0.41 stays paused; no release/signing action.
+
+## Historical initial integration receipt (preserved)
+
 Source head: `49a74322ee12a2bbf442f3b57a43f6f0d2b8d0fd`
 Source tree: `22a9133b39d6e1ceefcc844825c1656663792155`
 Base: `72f987b2b02b4a9a421a0c0874cce6a0d0b53934` (merged #113 and #219).
