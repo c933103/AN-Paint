@@ -1,0 +1,110 @@
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt
+index d2b0b6c56..6949b9c81 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianP0WordingTest.kt
+@@ -417,7 +417,8 @@ class SerbianP0WordingTest {
+         val format = "GIF 100%"
+         assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_unknown"), format),
+             ui(R.string.formats22_animation_unknown, format))
+-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format, "at least 2"),
++        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format,
++            String.format(Locale.forLanguageTag(tag),added(tag,"formats22_at_least_frames"),2)),
+             ui(R.string.formats22_animation_message, format, ui(R.string.formats22_at_least_frames, 2)))
+         val filename = "drawing 100%.png"
+         val detail = "provider 50% unavailable"
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianPriorityDeltaExpectations.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianPriorityDeltaExpectations.kt
+index 88fa378d7..5293a1aa6 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianPriorityDeltaExpectations.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianPriorityDeltaExpectations.kt
+@@ -12,7 +12,7 @@ internal object SerbianPriorityDeltaExpectations {
+         val bytes=File("../tools/fixtures/current_localization/serbian_priority_delta_wording.json").readBytes()
+         val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes)
+             .joinToString("") { "%02x".format(it.toInt() and 0xff) }
+-        assertEquals("Finite Serbian delta/context fixture", "c4805743cc2dcc04c6a0bea1fa28fbd7e323876dbc6d51f967a42206c22ed876",actual)
++        assertEquals("Finite Serbian delta/context fixture", "11eb6ba37f8521033694cf3c84770efcc0bf370ac63f118b91a608c20b37bb47",actual)
+         return JSONObject(String(bytes,Charsets.UTF_8))
+     }
+     fun same(expected: Any?, actual: Any?) {
+diff --git a/tools/fixtures/current_localization/serbian_priority_delta_wording.json b/tools/fixtures/current_localization/serbian_priority_delta_wording.json
+index 8e547f00a..bb88e7dee 100644
+--- a/tools/fixtures/current_localization/serbian_priority_delta_wording.json
++++ b/tools/fixtures/current_localization/serbian_priority_delta_wording.json
+@@ -1830,6 +1830,17 @@
+           "display": "Ваша тренутна слика има несачуване измене.",
+           "changed": false,
+           "review_status": "prior_exact_P0_carry_PR180_182"
++        },
++        "ui_top": {
++          "source": "Top",
++          "attributes": {
++            "name": "ui_top"
++          },
++          "previous": "\"Горе\"",
++          "target": "\"Горе\"",
++          "display": "Горе",
++          "changed": false,
++          "review_status": "retained_P2_consumer_context"
+         }
+       },
+       "priority_status": {
+@@ -4030,6 +4041,17 @@
+           "display": "Vaša trenutna slika ima nesačuvane izmene.",
+           "changed": false,
+           "review_status": "prior_exact_P0_carry_PR180_182"
++        },
++        "ui_top": {
++          "source": "Top",
++          "attributes": {
++            "name": "ui_top"
++          },
++          "previous": "\"Gore\"",
++          "target": "\"Gore\"",
++          "display": "Gore",
++          "changed": false,
++          "review_status": "retained_P2_consumer_context"
+         }
+       },
+       "priority_status": {
+diff --git a/tools/serbian_priority_delta_expectations.py b/tools/serbian_priority_delta_expectations.py
+index 73f0a4c1e..2f9d86cce 100644
+--- a/tools/serbian_priority_delta_expectations.py
++++ b/tools/serbian_priority_delta_expectations.py
+@@ -6,7 +6,7 @@ TAGS=frozenset({'sr-Cyrl','sr-Latn'})
+ MEMORY_ADDITIONS=frozenset((tag,'ui_no_resize_fits_decoder_memory') for tag in TAGS)
+ # Only the finite reviewed delta/context fixture is bound, never application source files.
+ # Its context statuses remain retained/pending; this digest does not grant language credit.
+-FIXTURE_SHA256='c4805743cc2dcc04c6a0bea1fa28fbd7e323876dbc6d51f967a42206c22ed876'
++FIXTURE_SHA256='11eb6ba37f8521033694cf3c84770efcc0bf370ac63f118b91a608c20b37bb47'
+ def validated_fixture_text(text):
+     import hashlib,json
+     if hashlib.sha256(text.encode('utf-8')).hexdigest()!=FIXTURE_SHA256:
+diff --git a/tools/test_serbian_priority_delta_wording.py b/tools/test_serbian_priority_delta_wording.py
+index 92683224d..b3e26c52c 100644
+--- a/tools/test_serbian_priority_delta_wording.py
++++ b/tools/test_serbian_priority_delta_wording.py
+@@ -70,6 +70,25 @@ class SerbianPriorityDeltaTests(unittest.TestCase):
+             for key in d['dependencies']:
+                 r=d['values'][key];self.assertIsNone(r['previous']);self.assertEqual(r['target'],current.addition(tag,key,r['source'],None))
+                 with self.assertRaises(ValueError):current.addition(tag,key,r['source'],'forged')
++    def test_retained_top_P2_context_is_complete_exact_and_not_an_accepted_change(self):
++        for tag,label in [('sr-Cyrl','Горе'),('sr-Latn','Gore')]:
++            key='ui_top';row=current.row(tag,key)
++            self.assertEqual({'source':'Top','attributes':{'name':key},'previous':'"'+label+'"','target':'"'+label+'"','display':label,'changed':False,'review_status':'retained_P2_consumer_context'},row)
++            self.assertNotIn(key,self.data[tag]['values']);self.assertNotIn(key,self.data[tag]['priority_status'])
++            self.assertEqual(('Top',{'name':key}),(self.roots['default'].find(f"./string[@name='{key}']").text,self.roots['default'].find(f"./string[@name='{key}']").attrib))
++            require_string(self.xml[tag],key,row['target'],{'attributes':row['attributes'],'child_elements':0})
++            for field in ('source','previous','target','display','review_status'):
++                bad=current.reviewed_fixture();bad['locales'][tag]['context'][key][field]='forged'
++                with self.subTest(tag=tag,field=field),self.assertRaises(ValueError):current.require_reviewed_fixture(bad)
++            bad=current.reviewed_fixture();del bad['locales'][tag]['context'][key]['previous']
++            with self.assertRaises(ValueError):current.require_reviewed_fixture(bad)
++            for mode in ('missing','duplicate','text','attributes'):
++                root=ET.fromstring(self.xml[tag]);node=root.find(f"./string[@name='{key}']")
++                if mode=='missing':root.remove(node)
++                elif mode=='duplicate':root.append(deepcopy(node))
++                elif mode=='text':node.text='forged'
++                else:node.set('formatted','false')
++                with self.subTest(tag=tag,mode=mode),self.assertRaises(ValueError):require_string(ET.tostring(root,encoding='unicode'),key,row['target'],{'attributes':row['attributes'],'child_elements':0})
+     def test_coordinated_target_display_and_xml_cannot_replace_any_accepted_row(self):
+         for tag,locale in self.data.items():
+             for key,row in locale['values'].items():
