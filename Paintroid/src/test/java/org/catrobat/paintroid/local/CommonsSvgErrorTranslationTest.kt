@@ -218,7 +218,7 @@ class CommonsSvgErrorTranslationTest {
         }
     }
     @Test fun deliberatelyUnsupportedResourceLocaleUsesCompleteSourceReasons() {
-        val app=RuntimeEnvironment.getApplication<android.app.Application>()
+        val app=RuntimeEnvironment.getApplication()
         val configuration=android.content.res.Configuration(app.resources.configuration)
         configuration.setLocale(java.util.Locale.forLanguageTag("qtz"))
         val resources=app.createConfigurationContext(configuration).resources
