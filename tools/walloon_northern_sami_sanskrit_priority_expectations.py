@@ -2,6 +2,7 @@
 import hashlib
 import json
 from pathlib import Path
+import priority_cohort_checks as cohort_checks
 import xml.etree.ElementTree as E
 from current_localization_contracts import fixture
 
@@ -13,58 +14,19 @@ SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_deco
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 
 def require_fixture_binding(tag,data):
-    if tag not in TAGS:raise ValueError('Outside exact locale set')
-    try:raw=json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
-    except (TypeError,ValueError) as error:raise ValueError('Malformed review fixture') from error
-    if hashlib.sha256(raw).hexdigest()!=FIXTURE_DIGESTS[tag]:raise ValueError('Complete canonical review fixture differs: '+tag)
-    return data
+    return cohort_checks.require_fixture_binding(tag, data, TAGS, FIXTURE_DIGESTS)
 
 def bound_fixture(tag):
-    if tag not in TAGS:raise ValueError('Outside exact locale set')
-    return require_fixture_binding(tag,fixture(FAMILY+'/'+tag+'.json'))
+    return cohort_checks.bound_fixture(tag, TAGS, FAMILY, fixture, require_fixture_binding)
 
 def require_resource_shape(element,kind,expected):
-    if element is None or element.tag!=kind or element.attrib!=expected['attributes']:
-        raise ValueError('Exact resource type/attributes differ')
-    if (element.tail or '').strip():raise ValueError('Unexpected resource tail')
-    if kind=='string':
-        if list(element) or element.text!=expected['value']:raise ValueError('Exact child-free string differs')
-    elif kind=='plurals':
-        values=expected['value'];attrs=expected['children_attributes']
-        if (element.text or '').strip() or len(element)!=len(values):raise ValueError('Plural parent text/count differs')
-        quantities=[node.get('quantity') for node in element]
-        if len(set(quantities))!=len(quantities) or set(quantities)!=set(values):raise ValueError('Exact plural quantity set differs')
-        for node in element:
-            q=node.get('quantity')
-            if node.tag!='item' or node.attrib!=attrs[q] or list(node) or (node.tail or '').strip() or node.text!=values[q]:
-                raise ValueError('Exact child-free plural item/attributes/tail differs')
-    else:raise ValueError('Unexpected resource type')
+    return cohort_checks.require_resource_shape(element, kind, expected)
 
 def require_edited_resource(tag,key,element,data=None):
-    data=bound_fixture(tag) if data is None else require_fixture_binding(tag,data)
-    if key not in data['values']:raise ValueError('Outside exact reviewed edit set')
-    row=data['values'][key]
-    expected={'value':row['reviewed_value'],'attributes':row['reviewed_attributes']}
-    if row['type']=='plurals':expected['children_attributes']=row['reviewed_children_attributes']
-    require_resource_shape(element,row['type'],expected)
+    return cohort_checks.require_edited_resource(tag, key, element, data, bound_fixture, require_fixture_binding, require_resource_shape)
 
 def require_catalogue(tag,root,data=None):
-    data=bound_fixture(tag) if data is None else require_fixture_binding(tag,data)
-    if root.tag!='resources' or root.attrib or (root.text or '').strip() or (root.tail or '').strip():
-        raise ValueError('Malformed resource root')
-    expected=set(data['original_catalogue'])|set(data['values'])
-    names=[node.get('name') for node in root]
-    if len(set(names))!=len(names) or set(names)!=expected:raise ValueError('Exact complete catalogue identity set differs')
-    for node in root:
-        key=node.get('name')
-        if key in data['values']:
-            row=data['values'][key];value={'value':row['reviewed_value'],'attributes':row['reviewed_attributes']}
-            if row['type']=='plurals':value['children_attributes']=row['reviewed_children_attributes']
-            require_resource_shape(node,row['type'],value)
-        else:
-            old=data['original_catalogue'][key]
-            require_resource_shape(node,'plurals' if isinstance(old['value'],dict) else 'string',old)
-    return root
+    return cohort_checks.require_catalogue(tag, root, data, bound_fixture, require_fixture_binding, require_resource_shape)
 
 def require_shared_row(tag,key,data=None,historical_value=None,already_present=False):
     if tag not in ('wa', 'se', 'sa') or key not in SHARED_KEYS:raise ValueError('Outside exact fifteen WA/SE/SA family additions')
