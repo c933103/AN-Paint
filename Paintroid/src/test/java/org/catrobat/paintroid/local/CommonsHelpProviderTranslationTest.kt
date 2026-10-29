@@ -83,11 +83,21 @@ class CommonsHelpProviderTranslationTest {
             "en-GB" to "Irasutoya, Openclipart and “Wikimedia Commons · Blank maps…”",
             "fr" to "Irasutoya, Openclipart et « Wikimedia Commons · Cartes muettes… »",
             "ja" to "［描画］→［挿入］→［ほかの画像］には、端末内ファイル、Catrobat、いらすとや、Openclipart、［Wikimedia Commons · 白地図…］があります。",
-            "vi-Hani" to "Irasutoya, Openclipart 吧 「Wikimedia Commons · 版圖 𤿰…」",
+            "vi-Hani" to "Irasutoya, Openclipart 吧 「Wikimedia Commons · 版圖 𥧪…」",
             "et" to "Irasutoyat, Opencliparti ja valikut „Wikimedia Commons · Kontuurkaardid…“",
             "fi" to "Irasutoyan, Openclipartin ja ”Wikimedia Commons · Ääriviivakartat…” -valinnan"
         )
         for((tag,passage) in passages) assertTrue(tag,resourcesFor(tag).getString(R.string.ui_help23).contains(passage))
+    }
+
+    @Test fun nomMapLabelHelpAndEncodingFailureUseTheSameBlankTerm() {
+        val resources=resourcesFor("vi-Hani")
+        val caption=resources.getString(R.string.commons_blank_maps)
+        assertEquals("Wikimedia Commons · 版圖 𥧪…",caption)
+        assertTrue(resources.getString(R.string.ui_help23).contains("「$caption」"))
+        assertTrue(resources.getString(R.string.commons_svg_png_encode_failed).contains("版圖 𥧪"))
+        val paint=Paint().apply {typeface=LocaleTypography.typeface(context,Locale.forLanguageTag("vi-Hani"))}
+        assertTrue("empty/blank glyph U+259EA is bundled",paint.hasGlyph("𥧪"))
     }
 
     /** Capture preference presence before any selectedTag call can perform migration. */
