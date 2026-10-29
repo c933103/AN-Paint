@@ -80,7 +80,7 @@ class OrdinaryPriorityFollowthroughTest {
                 val id=activity.resources.getIdentifier(key,kind,activity.packageName);assertNotEquals(identity,0,id)
                 if(kind=="string")assertEquals(identity,value.getString("display"),activity.getString(id))
                 else for(count in listOf(1,2)) {
-                    val text=value.getJSONObject("display").getString(if(count==1)"one"else"other")
+                    val text=value.getJSONObject("display").getString(if (count == 1) "one" else "other")
                     assertEquals(text,activity.resources.getQuantityString(id,count))
                     assertEquals(String.format(Locale.forLanguageTag(tag),text,24,16,count),uiQuantity(activity.resources,id,count,24,16,count))
                 }
@@ -178,7 +178,7 @@ class OrdinaryPriorityFollowthroughTest {
         try {
             idle();val root=dialog.window!!.decorView;val status=root.findViewWithTag<TextView>("crop_status")
             val display=row("es-419","plurals/ui_crop_preview_images").getJSONObject("display")
-            fun check(count: Int) {assertEquals(String.format(Locale.forLanguageTag("es-419"),display.getString(if(count==1)"one"else"other"),24,16,count),status.text.toString())}
+            fun check(count: Int) {assertEquals(String.format(Locale.forLanguageTag("es-419"),display.getString(if (count == 1) "one" else "other"),24,16,count),status.text.toString())}
             check(2);root.findViewWithTag<CheckBox>("crop_include_two").performClick();idle();check(1)
             root.findViewWithTag<View>("crop_none").performClick();dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
             assertFalse(applied);assertTrue(dialog.isShowing);assertEquals(expected("es-419","ui_choose_at_least_one_image"),status.text.toString())
