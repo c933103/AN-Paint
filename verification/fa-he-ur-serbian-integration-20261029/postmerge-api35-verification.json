@@ -1,0 +1,397 @@
+{
+  "merge": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+  "tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+  "run_id": 40825317618,
+  "artifact_id": 12876764630,
+  "artifact_bytes": 12150552,
+  "artifact_sha256": "a3220a5099a96027ec33ba54a49264441d413e8f5b1552860006371607a95e9e",
+  "identity": {
+    "commit": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+    "run_id": "40825317618",
+    "build_variant": "debug",
+    "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27",
+    "device_sdk": 35,
+    "apk_sha256": "abaa1ce7a72bdbe08c8d61dd1e8365da6cf2b4c1887f0c2e143903a2626938de",
+    "source_sha256": "500ee52345ca299737a2056389fe581d926e014f5d51ced88af2998b8a5e07c5",
+    "test_apk_sha256": "04b4cc31740675e6549bc2d97c88333f093fcfd4c6722def6f2ee7d7e62cc17a",
+    "group_run_attempts": {
+      "core": 1,
+      "position": 1
+    },
+    "composed_in_run_attempt": 1
+  },
+  "selection": {
+    "run_id": 40825317618,
+    "current_attempt": 1,
+    "checkout": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+    "workflow_head": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+    "device_sdk": 35,
+    "selected": {
+      "core": {
+        "artifact_id": 12876809437,
+        "name": "emulator-core-api-35-956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+        "digest": "sha256:7aa2cfcd3a7abcc752cafc5bbd4930d29f12cbd2c220f745c95ae2d359b405ea",
+        "created_at": "2026-10-29T06:09:53Z",
+        "updated_at": "2026-10-29T06:09:53Z",
+        "job_id": 123290089965,
+        "job_record_run_attempt": 1,
+        "job_started_at": "2026-10-29T05:57:18Z",
+        "job_completed_at": "2026-10-29T06:09:55Z"
+      },
+      "position": {
+        "artifact_id": 12876692154,
+        "name": "emulator-position-api-35-956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+        "digest": "sha256:49a09ce53dccca64b1a8fa62b27fa43a145d8238437ad58837cca21d80e3df6f",
+        "created_at": "2026-10-29T06:02:17Z",
+        "updated_at": "2026-10-29T06:02:17Z",
+        "job_id": 123290089869,
+        "job_record_run_attempt": 1,
+        "job_started_at": "2026-10-29T05:57:19Z",
+        "job_completed_at": "2026-10-29T06:02:20Z"
+      }
+    }
+  },
+  "app_complete_disjoint_cases": 49,
+  "native_cases": 74,
+  "complete_identity_sets_equal_premerge": true,
+  "phases": {
+    "Paintroid/androidTest-results/summary.json": {
+      "expected_tests": 74,
+      "completed_tests": 74,
+      "success": true,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 45.93595727000002,
+      "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+    },
+    "app/accepted-credit-restart/seed/summary.json": {
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "success": true,
+      "timeout_seconds": 60,
+      "elapsed_seconds": 5.312415745999942,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    },
+    "app/accepted-credit-restart/verify/summary.json": {
+      "expected_tests": 1,
+      "completed_tests": 1,
+      "success": true,
+      "timeout_seconds": 60,
+      "elapsed_seconds": 7.138281417000144,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    },
+    "app/androidTest-results/summary.json": {
+      "expected_tests": 19,
+      "completed_tests": 19,
+      "success": true,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 134.1129088880001,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    },
+    "app-dialog/androidTest-results/summary.json": {
+      "expected_tests": 14,
+      "completed_tests": 14,
+      "success": true,
+      "timeout_seconds": 300,
+      "elapsed_seconds": 183.41767196699993,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    },
+    "app-gallery-draft/androidTest-results/summary.json": {
+      "expected_tests": 3,
+      "completed_tests": 3,
+      "success": true,
+      "timeout_seconds": 90,
+      "elapsed_seconds": 43.74963387499997,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    },
+    "app-position/ainu-manchu/androidTest-results/summary.json": {
+      "expected_tests": 3,
+      "completed_tests": 3,
+      "success": true,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 101.97791733199998,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    },
+    "app-position/tibetan-jeju-nom/androidTest-results/summary.json": {
+      "expected_tests": 4,
+      "completed_tests": 4,
+      "success": true,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 91.37505132499996,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    },
+    "app-vertical/english-manchu/androidTest-results/summary.json": {
+      "expected_tests": 2,
+      "completed_tests": 2,
+      "success": true,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 109.02799977400014,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    },
+    "app-vertical/literary-chinese-emoji/androidTest-results/summary.json": {
+      "expected_tests": 2,
+      "completed_tests": 2,
+      "success": true,
+      "timeout_seconds": 180,
+      "elapsed_seconds": 105.06730346299992,
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+    }
+  },
+  "coverage": {
+    "success": true,
+    "execution_status": "passed",
+    "inventory_validated": true,
+    "device_sdk": 35,
+    "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27",
+    "timeout_seconds_by_phase": {
+      "ordinary": 180,
+      "gallery-draft": 90,
+      "vertical-english-manchu": 180,
+      "vertical-literary-chinese-emoji": 180,
+      "position-ainu-manchu": 180,
+      "position-tibetan-jeju-nom": 180,
+      "dialog": 300,
+      "seed": 60,
+      "verify": 60
+    },
+    "dialog_timeout_seconds": 300,
+    "colour_scope": "source-bound-positive-normal-font; API35 en-US/hu 2x 640x320 mdpi preview-rail reachability and Cancel only; separate native IME/Back/footer lifecycle; simultaneous IME/field/footer fit, whole-dialog and universal 2x not accepted",
+    "ordinary_and_gallery_total_timeout_seconds": 270,
+    "vertical_timeout_seconds_per_shard": 180,
+    "vertical_total_timeout_seconds": 360,
+    "receipt_scope": "complete-composed-app-union",
+    "deferred_tests": [],
+    "all_app_total_timeout_seconds": 1410,
+    "declared_tests": 49,
+    "sdk_eligible_tests": 49,
+    "sdk_suppressed_tests": [],
+    "selected_tests": 49,
+    "explicitly_excluded_tests": [],
+    "completed_tests": 49,
+    "phases": {
+      "ordinary": 19,
+      "gallery-draft": 3,
+      "vertical-english-manchu": 2,
+      "vertical-literary-chinese-emoji": 2,
+      "position-ainu-manchu": 3,
+      "position-tibetan-jeju-nom": 4,
+      "dialog": 14,
+      "seed": 1,
+      "verify": 1
+    },
+    "completed": [
+      [
+        "paint.anpaint.android.AcceptedCreditRestartSeedTest",
+        "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
+      ],
+      [
+        "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
+        "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "ainuKanaPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "ainuLatinPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "dzongkhaPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "jejuPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "manchuPositionColumnsAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "nomPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.AssemblyPositionDeviceTest",
+        "tibetanPositionTextAndNativeEditing"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "hungarianColourCaptionsFitPortraitAndLandscape"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeEnglishColourCaptionsAndPreviewRemainReachable"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeEnglishColourImeBackAndFooterLifecycle"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeHungarianColourCaptionsAndPreviewRemainReachable"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "largeHungarianColourImeBackAndFooterLifecycle"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
+      ],
+      [
+        "paint.anpaint.android.ColourViewportDeviceTest",
+        "retainedColourStateSurvivesRotationImeCancelAndReopen"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "cursorPositionsUntilVisibleStartControlEnablesRealTouchDrawing"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "filePickerLoadsOpaqueImageAndInsertionKeepsTheCurrentCanvas"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "galleryMenuStartsTheCreditedGalleryActivityWithoutRequiringASeparateEditor"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsRemainOriginalAndCopyableAfterChoosingVerticalEnglish"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "insertedCreditsStayCollapsedAndCopyExactlyFromSaveAndExport"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "jpegQualityChangesOutputAndEveryAdditionalFormatReachesTheCorrectFilePicker"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "largestBundledTermsKeepFooterVisibleAndCopyAllTextThroughTheAndroidClipboard"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "lossyJpegXlAndAvifQualityControlsChangeTheEncodedImage"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "mixedScriptKoreanUsesItsCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "responsiveCategoriesOpenBesideTheToolStripInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAndShareWritesReadablePngBeforeRequestingTheAndroidChooser"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "saveAsJpegXlAndSubsequentSavePreserveEveryCanvasPixel"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "tappingCursorWithAndroidInputTogglesDrawingWithoutLeavingADot"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "valencianUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "watercolorShapesAndNumericBrushControlsWorkInTheInstalledRenderer"
+      ],
+      [
+        "paint.anpaint.android.EditorDeviceTest",
+        "yiddishUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "cancelledRecreatedGalleryDraftKeepsTheOriginalDocumentAndCredits"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "confirmedRecreatedGalleryDraftReturnsToTheCoveredRecreatedEditor"
+      ],
+      [
+        "paint.anpaint.android.GalleryDraftDeviceTest",
+        "savedFirstCreditSurvivesRecreationAndCancellationOfAnEmptySecondDraft"
+      ],
+      [
+        "paint.anpaint.android.GalleryViewportDeviceTest",
+        "realBrowserKeepsItsViewportAtLargeTextAcrossGalleryRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutArtworkNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "northKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
+      ],
+      [
+        "paint.anpaint.android.LocalizedDialogDeviceTest",
+        "southKoreanAttributionAndConditionalCropUseRealConsumers"
+      ],
+      [
+        "paint.anpaint.android.PageCountWordingDeviceTest",
+        "oneAndTwoPagePdfAndTiffRetainCountsNamesControlsAndSelectionInEnglishAndFrench"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "literaryChinesePickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "manchuPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEmojiPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ],
+      [
+        "paint.anpaint.android.VerticalLocaleDeviceTest",
+        "verticalEnglishPickerRibbonToolsAndJpegUseNativeInputInBothOrientations"
+      ]
+    ],
+    "device_identity": {
+      "commit": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+      "run_id": "40825317618",
+      "build_variant": "debug",
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27",
+      "device_sdk": 35,
+      "apk_sha256": "abaa1ce7a72bdbe08c8d61dd1e8365da6cf2b4c1887f0c2e143903a2626938de",
+      "source_sha256": "500ee52345ca299737a2056389fe581d926e014f5d51ced88af2998b8a5e07c5",
+      "test_apk_sha256": "04b4cc31740675e6549bc2d97c88333f093fcfd4c6722def6f2ee7d7e62cc17a",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    }
+  },
+  "png_count": 147,
+  "limit": "All natural postmerge required gates passed. No new visual review or expanded linguistic/layout claim."
+}

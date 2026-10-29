@@ -1,0 +1,163 @@
+{
+  "merge": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+  "tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+  "run_id": 40825317618,
+  "status": "completed",
+  "conclusion": "success",
+  "terminal_updated_at": "2026-10-29T06:32:52Z",
+  "artifact_id": 12877967121,
+  "artifact_bytes": 84697107,
+  "artifact_sha256": "934b6b7eddf73c3391378bdcc30a63f604892a1f496873a579b41d1c081a5fa3",
+  "jvm": {
+    "tests": 1925,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": 193,
+    "sum_suite_seconds": 924.963,
+    "full_identity_set_matches_premerge": true
+  },
+  "python": {
+    "tests": 2014,
+    "seconds": 1278.2,
+    "skips": 2,
+    "lifecycle": {
+      "launch_id": "45565de87b7f477093636bfcbb9ffefd",
+      "reason": "completed",
+      "forced_kill": "false",
+      "owned_children_remaining": "0",
+      "cleanup_complete": "true",
+      "output_complete": "true"
+    }
+  },
+  "lint": {
+    "issues": 0
+  },
+  "phases": {
+    "python": {
+      "timing": {
+        "real_seconds": "1279.620",
+        "user_seconds": "1211.887",
+        "sys_seconds": "34.503",
+        "exit_status": "0"
+      },
+      "started_at": "2026-10-29T05:48:25Z",
+      "ended_at": "2026-10-29T06:09:45Z"
+    },
+    "jvm": {
+      "timing": {
+        "real_seconds": "1134.867",
+        "user_seconds": "3.850",
+        "sys_seconds": "0.380",
+        "exit_status": "0"
+      },
+      "started_at": "2026-10-29T06:09:45Z",
+      "ended_at": "2026-10-29T06:28:40Z"
+    },
+    "native": {
+      "timing": {
+        "real_seconds": "80.794",
+        "user_seconds": "172.716",
+        "sys_seconds": "52.674",
+        "exit_status": "0"
+      },
+      "started_at": "2026-10-29T06:28:40Z",
+      "ended_at": "2026-10-29T06:30:00Z"
+    },
+    "lint": {
+      "timing": {
+        "real_seconds": "158.393",
+        "user_seconds": "509.725",
+        "sys_seconds": "8.670",
+        "exit_status": "0"
+      },
+      "started_at": "2026-10-29T06:30:01Z",
+      "ended_at": "2026-10-29T06:32:39Z"
+    }
+  },
+  "jobs": [
+    {
+      "id": 123286901874,
+      "name": "Exact-script resource generation",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-29T05:46:31Z",
+      "completed_at": "2026-10-29T05:51:23Z",
+      "steps": []
+    },
+    {
+      "id": 123286902098,
+      "name": "Regression tests and lint",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-29T05:46:31Z",
+      "completed_at": "2026-10-29T06:32:52Z",
+      "steps": [
+        {
+          "name": "Run Python contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-29T05:48:25Z",
+          "completed_at": "2026-10-29T06:09:45Z"
+        },
+        {
+          "name": "Run JVM regression tests",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-29T06:09:45Z",
+          "completed_at": "2026-10-29T06:28:40Z"
+        },
+        {
+          "name": "Prepare lint native dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-29T06:28:40Z",
+          "completed_at": "2026-10-29T06:30:00Z"
+        },
+        {
+          "name": "Run Android lint",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-29T06:30:00Z",
+          "completed_at": "2026-10-29T06:32:39Z"
+        }
+      ]
+    },
+    {
+      "id": 123286902169,
+      "name": "Build APK and corresponding source",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-29T05:46:31Z",
+      "completed_at": "2026-10-29T05:57:16Z",
+      "steps": []
+    },
+    {
+      "id": 123290089869,
+      "name": "Position dialog API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-29T05:57:19Z",
+      "completed_at": "2026-10-29T06:02:20Z",
+      "steps": []
+    },
+    {
+      "id": 123290089965,
+      "name": "Core emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-29T05:57:18Z",
+      "completed_at": "2026-10-29T06:09:55Z",
+      "steps": []
+    },
+    {
+      "id": 123294014400,
+      "name": "Emulator API 35",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-29T06:09:58Z",
+      "completed_at": "2026-10-29T06:10:09Z",
+      "steps": []
+    }
+  ]
+}

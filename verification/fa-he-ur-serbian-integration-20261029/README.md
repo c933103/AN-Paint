@@ -45,6 +45,15 @@ Root merged PR224 at 05:46:27 UTC into develop
 f8b21a7aa5c3822e099fa58ffc81020a0b558318 have the exact reviewed tree; all
 1604 actual merged leaves/modes were verified. Source PR222/223 are marked
 merged through ancestry, not separate acceptance merges. Natural develop push
-40825317618 is separately active; final-gate-receipt.json records its status. Root owns final merge. SI/MY/ZA is excluded; release 0.0.41
+40825317618 completed successfully at 06:32:52 UTC. All six jobs passed. Its full
+193-suite / 1925-case JVM identity set equals the premerge set, with no failures,
+errors or skips (1134.867s phase). Python 2014 passed in1278.200s with two
+documented skips and clean process lifecycle; lint has zero issues (158.393s).
+API35 complete disjoint49-app/74-native identities and unchanged phase deadlines
+were independently checked;147 PNGs are present but not newly visually reviewed.
+postmerge-records-manifest.json reconstructs all original merged-run JVM XML and
+phase records. Both source component top bodies preserve their full historical
+bodies, failures and ancestry-only status. The separate #226 runtime experiment
+is not adopted and cannot retrospectively alter #224 acceptance. SI/MY/ZA is excluded; release 0.0.41
 is paused and historical bulk171 remains stopped. No signing/access change,
 whole-language/full-Serbian-P1/native-human/visual-RTL acceptance is claimed.
