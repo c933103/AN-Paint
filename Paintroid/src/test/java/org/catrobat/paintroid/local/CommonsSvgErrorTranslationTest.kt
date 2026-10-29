@@ -41,7 +41,11 @@ class CommonsSvgErrorTranslationTest {
 
     // Independent reviewed wording oracles for later exact catalogue additions; model review is not native certification.
     private val addedReasons=mapOf(
-        // AST now has independently reviewed exact values; GU retains the unchanged absent fallback.
+        // Exact AST and recovered GU values retain complete independent wording oracles.
+        "gu" to mapOf(
+            R.string.commons_svg_original_size_unavailable to "SVGમાં વાપરી શકાય તેવું મૂળ માપ આપેલું નથી. તેના બદલે કેન્વાસ પર આધારિત માપ વાપરવામાં આવ્યું નથી.",
+            R.string.commons_svg_original_size_too_large to "SVGનું મૂળ માપ Androidની બિટમૅપ પરિમાણ મર્યાદા કરતાં વધારે છે. માપ બદલવામાં આવ્યું નથી."
+        ),
         "ast" to mapOf(
             R.string.commons_svg_original_size_unavailable to "El SVG nun declara un tamañu orixinal utilizable. Nun se sustituyó por un tamañu basáu nel llenzu.",
             R.string.commons_svg_original_size_too_large to "El tamañu orixinal del SVG supera les dimensiones de mapa de bits d’Android. Nun se camudó’l tamañu."
@@ -171,7 +175,7 @@ class CommonsSvgErrorTranslationTest {
     private fun checkSizeFailure(svg: String,key: Int,english: String) {
         for(tag in tags) withGallery(tag) {activity ->
             val reason=activity.getString(key)
-            if(tag in listOf("en-US","gu"))
+            if(tag == "en-US")
                 assertEquals("Independent source oracle, including explicit incomplete-catalogue fallback",english,reason)
             else assertNotEquals("This representative exact catalogue must resolve its translation",english,reason)
             addedReasons[tag]?.get(key)?.let {
@@ -208,5 +212,14 @@ class CommonsSvgErrorTranslationTest {
         assertRejected(activity,activity.getString(R.string.ui_could_not_load_gallery_image,diagnostic)) {
             select(activity)
         }
+    }
+    @Test fun deliberatelyUnsupportedResourceLocaleUsesCompleteSourceReasons() {
+        val app=RuntimeEnvironment.getApplication<android.app.Application>()
+        val configuration=android.content.res.Configuration(app.resources.configuration)
+        configuration.setLocale(java.util.Locale.forLanguageTag("qtz"))
+        val resources=app.createConfigurationContext(configuration).resources
+        assertEquals("qtz",resources.configuration.locales[0].language)
+        assertEquals("The SVG does not declare a usable original size. No canvas-based size was substituted.",resources.getString(R.string.commons_svg_original_size_unavailable))
+        assertEquals("The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",resources.getString(R.string.commons_svg_original_size_too_large))
     }
 }

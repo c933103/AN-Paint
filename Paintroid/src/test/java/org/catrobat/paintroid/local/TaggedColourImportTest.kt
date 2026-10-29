@@ -77,6 +77,18 @@ class TaggedColourImportTest {
         } finally { file.delete() }
     }
 
+    @Test fun recoveredHiGuTaggedAdditionsRejectCoordinatedFixtureAndDuplicateMutations() {
+        for(tag in listOf("hi","gu")) for(field in listOf("accepted","attributes","predecessors")) {
+            val data=HiGuPriorityExpectations.fixture()
+            data.getJSONObject("locales").getJSONObject(tag).getJSONObject(field).put("save20_unsupported_image_colour","forged")
+            assertThrows(AssertionError::class.java) { HiGuPriorityExpectations.addTagged(JSONObject(),data) }
+        }
+        for(tag in listOf("hi","gu")) {
+            val expected=JSONObject().put(tag,"already present")
+            assertThrows(AssertionError::class.java) { HiGuPriorityExpectations.addTagged(expected,HiGuPriorityExpectations.fixture()) }
+        }
+    }
+
     @Test fun explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection() {
         val file = File.createTempFile("srgb-import-", ".bin", context.cacheDir)
         try {
@@ -1492,6 +1504,9 @@ class TaggedColourImportTest {
         assertEquals("ca", historicalInheritedCatalogues["ca-ES-valencia"])
         val inheritedCatalogues = historicalInheritedCatalogues.filterKeys { it != "ca-ES-valencia" }
         assertTrue(inheritedCatalogues.keys.none { expected.has(it) })
+        // Finite recovered HI/GU additions after all existing checkpoints.
+        HiGuPriorityExpectations.addTagged(expected,HiGuPriorityExpectations.fixture())
+        assertEquals(143, expected.length())
         var inherited = 0
         var fallbacks = 0
         assertTrue(AppLanguage.tags(context).containsAll(expected.keys().asSequence().toList()))
@@ -1514,6 +1529,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(0, inherited)
-        assertEquals(30, fallbacks) // 171 offered - 141 direct, including direct Valencian and Tatar Latin; no remaining inherited catalogue.
+        assertEquals(28, fallbacks) // 171 offered - 143 direct, including recovered HI/GU; no inherited catalogue.
     }
 }
