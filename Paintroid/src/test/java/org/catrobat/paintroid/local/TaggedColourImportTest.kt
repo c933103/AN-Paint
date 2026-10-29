@@ -1480,6 +1480,16 @@ class TaggedColourImportTest {
         assertEquals(140, expected.length())
         addExactScript(expected,exactScriptExpectations())
         assertEquals(141, expected.length())
+        val macedonian=JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_macedonian_priority_wording.json").readText())
+            .getJSONObject("locales").getJSONObject("mk").getJSONObject("values").getJSONObject("save20_unsupported_image_colour")
+        assertFalse(expected.has("mk"))
+        assertTrue(macedonian.has("previous") && macedonian.isNull("previous"))
+        assertEquals(neutral,macedonian.getString("source"))
+        assertEquals(setOf("name"),macedonian.getJSONObject("attributes").keys().asSequence().toSet())
+        assertEquals("save20_unsupported_image_colour",macedonian.getJSONObject("attributes").getString("name"))
+        assertEquals(macedonian.getString("target").removeSurrounding("\""),macedonian.getString("display"))
+        expected.put("mk",macedonian.getString("display"))
+        assertEquals(142,expected.length())
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -1514,6 +1524,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(0, inherited)
-        assertEquals(30, fallbacks) // 171 offered - 141 direct, including direct Valencian and Tatar Latin; no remaining inherited catalogue.
+        assertEquals(29, fallbacks) // 171 offered - 142 direct; Macedonian is a bounded new addition.
     }
 }

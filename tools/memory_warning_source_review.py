@@ -4,6 +4,7 @@ Historical paired-language fixtures stay unchanged. Default-English and explicit
 no historical fixture or receipt is rewritten.
 """
 import json
+from hr_bs_mk_priority_expectations import MEMORY_ADDITIONS as HR_BS_MK_ADDITIONS, addition as hr_bs_mk_addition
 from exact_script_priority_expectations import MEMORY_ADDITIONS as EXACT_SCRIPT_ADDITIONS, require_addition as exact_script_addition
 from sindhi_nigerian_pidgin_tok_pisin_priority_expectations import require_shared_row as sd_pcm_tpi_shared_row
 from sorani_uyghur_tatar_priority_expectations import require_shared_row as ckb_ug_tt_shared_row
@@ -76,6 +77,11 @@ fixture corruption. This selects explicitly bound paired and single-key
 expectations, not a catalogue generator, review result or reconstruction of an
 old source snapshot.
 """
+    if (tag,key) in HR_BS_MK_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        if old is not None:raise ValueError('Historical HR/BS/MK warning must remain absent')
+        return hr_bs_mk_addition(tag,key,queue['keys'][key]['corrected_english'],historical_value)
     if (tag,key) in NL_DE_MEMORY_CORRECTIONS:
         return nl_de_successor(tag,key,historical_value)
     if key not in KEYS:
