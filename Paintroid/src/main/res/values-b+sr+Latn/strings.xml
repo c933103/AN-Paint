@@ -51,7 +51,7 @@
     <string name="ui_bottom">"Dole"</string>
     <string name="ui_canvas_size" formatted="false">Veličina platna…</string>
     <string name="ui_canvas_size_30460e">"Veličina platna"</string>
-    <string name="ui_crop_image">"Isecanje sliku"</string>
+    <string name="ui_crop_image">"Iseci sliku"</string>
     <string name="ui_crop_to_selection" formatted="false">Iseci na izbor</string>
     <string name="ui_curve">"Krivulje"</string>
     <string name="ui_fg" formatted="false">Prednji plan</string>
@@ -71,7 +71,7 @@
     <string name="ui_polygon">"Poligon"</string>
     <string name="ui_preview">"Pregled"</string>
     <string name="ui_ready">"Spremno"</string>
-    <string name="ui_rectangle_select">"Izaberite pravougaonik"</string>
+    <string name="ui_rectangle_select">"Pravougaoni izbor"</string>
     <string name="ui_right">"Desno"</string>
     <string name="ui_rotate">"Rotacija"</string>
     <string name="ui_rotate_180" formatted="false">Rotiraj 180°</string>
@@ -121,7 +121,7 @@
     <string name="ui_edit_background">"Izmenite zadnju boju…"</string>
     <string name="ui_swap_foreground_background">"Razmeni boje"</string>
     <string name="save20_dither">"Didering"</string>
-    <string name="ui_keep_editing23">"Otkaži"</string>
+    <string name="ui_keep_editing23">"Nastavi uređivanje"</string>
     <string name="ui_main23">Glavno</string>
     <string name="ui_drawing23" formatted="false">Alati za crtanje</string>
     <string name="ui_about_credits23" formatted="false">O programu, licence i zahvalnice</string>
@@ -245,4 +245,147 @@
     <string name="ui_this_location_is_not_writable">"Nije moguće upisivati na ovu lokaciju."</string>
     <string name="ui_unexpected_data_in_the_undo_cache">"Neočekivani podaci u kešu za opoziv."</string>
     <string name="ui_your_current_image_has_unsaved_changes">"Vaša trenutna slika ima nesačuvane izmene."</string>
+    <string name="colour_converter_unavailable">"Pretvarač boja slike nije mogao da se pokrene. Slika nije uvezena."</string>
+    <string name="colour_invalid_metadata">"Slika sadrži neispravne ili nepodržane metapodatke o bojama."</string>
+    <string name="colour_truncated_metadata">"Datoteka slike se završava usred metapodataka o bojama."</string>
+    <string name="colour_unsupported_icc_model">"Ova slika koristi ICC model boja koji dekoder slike ne može da pretvori. Prvo izvezite RGB kopiju u aplikaciji sa upravljanjem bojama."</string>
+    <string name="commons_svg_original_size_too_large">"Izvorna veličina SVG-a premašuje Androidova ograničenja dimenzija bitmape. Veličina nije promenjena."</string>
+    <string name="commons_svg_original_size_unavailable">"SVG ne navodi upotrebljivu izvornu veličinu. Nije zamenjena veličinom zasnovanom na platnu."</string>
+    <string name="formats22_import_limit">"Ova datoteka premašuje ograničenje uvoza od 512 MiB. Izaberite manju datoteku."</string>
+    <string name="language20_current">"Jezik aplikacije: %1$s"</string>
+    <string name="language20_translation_note">"Jezik aplikacije\n\nPrevodi se održavaju u jezičkim resursima aplikacije AN Paint. Novi ili neprevedeni tekst prikazuje se na engleskom."</string>
+    <string name="ui_0f_0f_px_1f">"%1$.0f × %2$.0f px\n%3$.1f°"</string>
+    <string name="ui_100" formatted="false">"100%"</string>
+    <string name="ui_1_px">"1 px"</string>
+    <string name="ui_1f_s">"%1$.1f %2$s"</string>
+    <string name="ui_actual_size_100" formatted="false">"Stvarna veličina (100%)"</string>
+    <string name="ui_add_text">"Dodaj tekst"</string>
+    <string name="ui_all">"Sve"</string>
+    <string name="ui_android_blocked_the_file_picker">"Android je blokirao birač datoteka: %1$s"</string>
+    <string name="ui_android_could_not_decode_this_image">"Android nije mogao da dekodira ovu sliku."</string>
+    <string name="ui_android_could_not_find_a_file_picker_enable">"Android nije mogao da pronađe birač datoteka. Omogućite aplikaciju Datoteke ili Dokumenti u podešavanjima Androida, pa pokušajte ponovo."</string>
+    <string name="ui_apply_bounds">"Primeni granice"</string>
+    <string name="ui_apply_crop">"Primeni isecanje"</string>
+    <string name="ui_autosaving_draft">"Automatsko čuvanje radne verzije…"</string>
+    <string name="ui_background_edit_colour">"Pozadina %1$s. Uredi boju."</string>
+    <string name="ui_basic_colours">"Osnovne boje"</string>
+    <string name="ui_canvas_zoom">"Uvećanje platna"</string>
+    <string name="ui_canvas_zoom_771f84">"Uvećanje platna %1$s"</string>
+    <string name="ui_choose_a_smaller_output_copy_the_source_images">"Izaberite manju izlaznu kopiju. Izvorne slike i podešavanja isecanja ostaju u izvornoj rezoluciji."</string>
+    <string name="ui_choose_a_smaller_size">"Izaberite manju veličinu."</string>
+    <string name="ui_choose_at_least_one_image">"Izaberite bar jednu sliku."</string>
+    <string name="ui_choose_dimensions_no_larger_than_the_original">"Izaberite dimenzije koje nisu veće od izvornih."</string>
+    <string name="ui_choose_location">"Izaberi lokaciju…"</string>
+    <string name="ui_codec_resize_memory_floor">"Ovaj format mora da dekodira izvornu sliku ili njene pločice pre promene veličine. I manji izlaz može da premaši raspoloživu memoriju."</string>
+    <string name="ui_collapse_colour_palette">"Skupi paletu boja"</string>
+    <string name="ui_collapse_tool_category">"%1$s: izabrani alat: %2$s. Skupi alate i opcije"</string>
+    <string name="ui_collapse_toolbox">"Skupi kutiju sa alatima"</string>
+    <string name="ui_colour">"Boja %1$s"</string>
+    <string name="ui_colour_palette_tap_for_foreground_hold_for_background">"Paleta boja. Dodirnite za prednji plan; zadržite pritisak za pozadinu. Pomerajte paletu da vidite još boja."</string>
+    <string name="ui_colour_tap_foreground_hold_background">"Boja #%1$s. Dodirnite za prednji plan, zadržite pritisak za pozadinu."</string>
+    <string name="ui_commit_selection">"Potvrdi izbor"</string>
+    <string name="ui_copy_all">"Kopiraj sve"</string>
+    <string name="ui_could_not_apply_the_crop">"Isecanje nije moglo da se primeni."</string>
+    <string name="ui_could_not_complete_the_edit">"Izmena nije mogla da se dovrši. %1$s"</string>
+    <string name="ui_could_not_complete_the_operation">"Radnja nije mogla da se dovrši."</string>
+    <string name="ui_could_not_place_the_image">"Slika nije mogla da se postavi."</string>
+    <string name="ui_could_not_prepare_the_image">"Slika nije mogla da se pripremi."</string>
+    <string name="ui_crop">"Isecanje %1$s"</string>
+    <string name="ui_crop_must_stay_inside_the_canvas">"Isečak mora da ostane unutar platna."</string>
+    <string name="ui_crop_preview_drag_an_edge_or_corner_drag">"Pregled isecanja. Prevucite ivicu ili ugao; prevucite unutar isečka da ga pomerite."</string>
+    <string name="ui_d_d_px_d_pixels_2f_mp">"%1$d × %2$d px · Broj piksela: %3$,d (%4$.2f MP)"</string>
+    <string name="ui_draft_pending">"Radna verzija čeka na čuvanje"</string>
+    <string name="ui_draw_again">"Crtaj ponovo"</string>
+    <string name="ui_drawing_canvas_pinch_and_move_two_fingers_to">"Platno za crtanje. Primaknite ili razmaknite dva prsta da promenite uvećanje i pomerajte ih da pomerite prikaz. Režim Pomeranje i zumiranje omogućava pomeranje i jednim prstom."</string>
+    <string name="ui_drawing_settings">"Podešavanja crtanja…"</string>
+    <string name="ui_drawing_settings_d900c6">"Podešavanja crtanja"</string>
+    <string name="ui_enter_a_number_from_to">"Unesite broj od %1$s do %2$s."</string>
+    <string name="ui_enter_a_positive_size">"Unesite pozitivnu veličinu."</string>
+    <string name="ui_enter_a_trim_amount_for_every_edge">"Unesite iznos odsecanja za svaku ivicu."</string>
+    <string name="ui_enter_a_whole_number_from_to">"Unesite ceo broj od %1$s do %2$s."</string>
+    <string name="ui_enter_all_four_trim_amounts">"Unesite sva četiri iznosa odsecanja."</string>
+    <string name="ui_enter_positive_canvas_dimensions_within_android_s_coordinate">"Unesite pozitivne dimenzije platna u okviru Androidovog opsega koordinata."</string>
+    <string name="ui_enter_positive_dimensions">"Unesite pozitivne dimenzije."</string>
+    <string name="ui_enter_positive_dimensions_no_larger_than_the_original">"Unesite pozitivne dimenzije koje nisu veće od izvornih."</string>
+    <string name="ui_enter_positive_dimensions_that_resolve_to_at_least">"Unesite pozitivne dimenzije koje odgovaraju najmanje jednom pikselu."</string>
+    <string name="ui_enter_positive_image_dimensions">"Unesite pozitivne dimenzije slike."</string>
+    <string name="ui_enter_valid_dimensions">"Unesite ispravne dimenzije."</string>
+    <string name="ui_expand_colour_palette">"Proširi paletu boja"</string>
+    <string name="ui_expand_tool_category">"%1$s: izabrani alat: %2$s. Proširi alate i opcije"</string>
+    <string name="ui_expand_toolbox">"Proširi kutiju sa alatima"</string>
+    <string name="ui_font_family">"Porodica fontova"</string>
+    <string name="ui_foreground_edit_colour">"Prednji plan %1$s. Uredi boju."</string>
+    <string name="ui_full_text_copied">"Ceo tekst je kopiran"</string>
+    <string name="ui_height">"Visina (%1$s)"</string>
+    <string name="ui_height_in">"Visina (%1$s)"</string>
+    <string name="ui_heights">"Visine"</string>
+    <string name="ui_hex_rrggbb">"Heksadecimalno #RRGGBB"</string>
+    <string name="ui_invalid_colour">"Neispravna boja"</string>
+    <string name="ui_invalid_selection_outline">"Neispravna kontura izbora."</string>
+    <string name="ui_left_arrow_collapse">"Strelica ulevo: skupi"</string>
+    <string name="ui_line_spacing" formatted="false">"Prored (%)"</string>
+    <string name="ui_lock_aspect_ratio">"Zaključaj odnos širine i visine"</string>
+    <string name="ui_lock_proportions">"Zaključaj proporcije"</string>
+    <string name="ui_magnification" formatted="false">"Uvećanje (%)"</string>
+    <string name="ui_new_colour">"Nova boja"</string>
+    <string name="ui_no_readable_image_data">"Nema čitljivih podataka slike."</string>
+    <string name="ui_no_resize_fits_decoder_memory">"Čak ni pri najmanjoj izlaznoj veličini, ova slika ne može da se učita za uređivanje u okviru trenutnih ograničenja memorije. Otkažite i upotrebite manju izvornu sliku."</string>
+    <string name="ui_none">"Ništa"</string>
+    <string name="ui_not_enough_memory_to_finish_opening_this_image">"Nema dovoljno memorije za dovršavanje otvaranja ove slike"</string>
+    <string name="ui_not_enough_memory_to_inspect_this_image">"Nema dovoljno memorije za proveru ove slike"</string>
+    <string name="ui_numeric_slider_value">"%1$s: %2$d"</string>
+    <string name="ui_paste_hint34" formatted="false">"Kopirajte oblast ili izaberite Crtanje → Umetanje → Druge slike."</string>
+    <string name="ui_percent">"Procenat"</string>
+    <string name="ui_percent_fd8671">"procenata"</string>
+    <string name="ui_place_text">"Postavi tekst"</string>
+    <string name="ui_please_try_again">"Pokušajte ponovo."</string>
+    <string name="ui_please_wait_for_the_current_operation">"Sačekajte da se trenutna radnja završi."</string>
+    <string name="ui_px">"%1$s · %2$s\n%3$s × %4$s px · %5$s"</string>
+    <string name="ui_px_724eb3">"%1$s × %2$s px"</string>
+    <string name="ui_reset_crop">"Poništi podešavanja isecanja"</string>
+    <string name="ui_reset_to_black_white">"Vrati na crnu / belu"</string>
+    <string name="ui_resize_and_load">"Promeni veličinu i učitaj"</string>
+    <string name="ui_resize_the_copy">"Promeni veličinu kopije"</string>
+    <string name="ui_scales_the_image_unlock_the_ratio_to_stretch">"Menja veličinu slike. Otključajte odnos širine i visine da ih menjate nezavisno."</string>
+    <string name="ui_select_an_area">"Izaberi oblast"</string>
+    <string name="ui_select_an_area_first">"Prvo izaberite oblast."</string>
+    <string name="ui_selected_colour23">"Izabrana boja"</string>
+    <string name="ui_selection_dimensions_are_too_large">"Dimenzije izbora su prevelike."</string>
+    <string name="ui_share_saved_image">"Podeli sačuvanu sliku"</string>
+    <string name="ui_show_all">"Prikaži sve"</string>
+    <string name="ui_show_controls">"Prikaži kontrole"</string>
+    <string name="ui_show_magnified_drawing_preview">"Prikaži uvećani pregled crteža"</string>
+    <string name="ui_size_pixels">"Veličina (pikseli)"</string>
+    <string name="ui_size_px">"Veličina (px)"</string>
+    <string name="ui_tap_an_image_first">"Prvo dodirnite sliku."</string>
+    <string name="ui_tap_canvas_to_type">"Dodirnite platno\nda unesete tekst"</string>
+    <string name="ui_tap_to_type_a_number">"%1$s: %2$s. Dodirnite da unesete broj."</string>
+    <string name="ui_text_direction23">"Smer teksta"</string>
+    <string name="ui_the_crop_must_contain_at_least_one_pixel">"Isečak mora da sadrži bar jedan piksel."</string>
+    <string name="ui_the_crop_must_stay_inside_the_image">"Isečak mora da ostane unutar slike."</string>
+    <string name="ui_the_decoder_and_editing_buffers_need_about_the">"Dekoderu i baferima za uređivanje potrebno je oko %1$s; trenutna bezbedna granica memorije za uređivanje je %2$s. Izaberite manju kopiju."</string>
+    <string name="ui_the_full_image_and_working_buffers_exceed_the">"Cela slika i radni baferi premašuju trenutnu bezbednu granicu memorije ili Android nije mogao da im dodeli memoriju. Promenite veličinu kopije da biste je uređivali. Izvorna datoteka ostaje nepromenjena."</string>
+    <string name="ui_the_picker_returned_no_file_please_choose_the">"Birač nije vratio datoteku. Izaberite je ponovo."</string>
+    <string name="ui_the_picker_returned_no_files">"Birač nije vratio nijednu datoteku."</string>
+    <string name="ui_the_selected_provider_did_not_return_any_image">"Izabrani pružalac nije vratio podatke slike."</string>
+    <string name="ui_this_file_is_not_a_supported_image_use">"Ova datoteka nije podržana slika. Koristite PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF ili tekst slike u kodiranju Base64."</string>
+    <string name="ui_tolerance">"Tolerancija"</string>
+    <string name="ui_too_large_for_the_current_budget_reduce_the">"Preveliko za trenutnu granicu memorije. Smanjite dimenzije ili otkažite i oslobodite memoriju."</string>
+    <string name="ui_tool_categories">"Kategorije alata. Pomerajte prikaz da vidite još alata"</string>
+    <string name="ui_trim_amounts_must_be_zero_or_greater">"Iznosi odsecanja moraju biti nula ili veći."</string>
+    <string name="ui_trim_amounts_must_fit_inside_each_image_use">"Iznosi odsecanja moraju da stanu unutar svake slike; koristite cele piksele ili procente."</string>
+    <string name="ui_trim_expand_canvas_by_touch">"Odseci / proširi platno dodirom…"</string>
+    <string name="ui_try_a_different_file_or_location">"Pokušajte sa drugom datotekom ili lokacijom."</string>
+    <string name="ui_type_text">"Unesi tekst"</string>
+    <string name="ui_use_1_1024_pixels">"Koristite 1–1024 piksela."</string>
+    <string name="ui_use_50_300" formatted="false">"Koristite 50–300%."</string>
+    <string name="ui_use_a_positive_target_dimension">"Upotrebite pozitivnu ciljnu dimenziju."</string>
+    <string name="ui_use_colour">"Upotrebi boju"</string>
+    <string name="ui_use_rrggbb">"Upotrebite #RRGGBB"</string>
+    <string name="ui_width">"Širina (%1$s)"</string>
+    <string name="ui_working">"Obrada…"</string>
+    <string name="ui_width_in">"Širina (%1$s)"</string>
+    <string name="ui_trim_in_pixels">"Odsecanje u pikselima — %1$s"</string>
+    <string name="ui_trim_in_percent">"Odsecanje u procentima — %1$s"</string>
+    <string name="formats22_at_least_frames">"najmanje %1$d"</string>
 </resources>

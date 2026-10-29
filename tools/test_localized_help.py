@@ -52,7 +52,7 @@ def route_pattern(rendered, keys):
             key = value.removeprefix("@string/")
         raise AssertionError(f"Cyclic caption reference: {key}")
 
-    return r"[།༎]*[>→]".join(re.escape(caption(resolve(key))) for key in keys)
+    return r"[།༎]*[>→←]".join(re.escape(caption(resolve(key))) for key in keys)
 
 
 class LocalizedHelpTests(unittest.TestCase):
@@ -91,6 +91,22 @@ class LocalizedHelpTests(unittest.TestCase):
             final_paragraph = re.split(r"\\n\\n|\n\s*\n", local[MANUAL])[-1]
             with self.subTest(locale=locale):
                 self.assertRegex(displayed(final_paragraph), route_pattern(rendered, keys))
+
+    def test_hebrew_left_arrow_routes_keep_logical_caption_order(self):
+        local=self.locales['values-iw'];rendered={**self.locales['values'],**local}
+        for keys,resource in [
+            (("ui_draw26","ui_category_insert","ui_other_images34"),"ui_paste_hint34"),
+            (("ui_menu_file","ui_export_recovery_copy"),"ui_autosave_is_paused_to_protect_that_draft_use"),
+            (("ui_menu_file","save20_title"),"ui_autosave_is_paused_to_protect_that_draft_use"),
+        ]:
+            with self.subTest(route=keys):
+                pattern=route_pattern(rendered,keys)
+                self.assertRegex(displayed(local[resource]),pattern)
+                labels=[caption(rendered[k]) for k in keys]
+                self.assertRegex('←'.join(labels),pattern)
+                self.assertNotRegex('←'.join(reversed(labels)),pattern)
+                self.assertNotRegex('←'.join(labels[:-1]),pattern)
+                self.assertNotRegex('←'.join([*labels[:-1],'wrong-caption']),pattern)
 
     def test_paste_hints_name_the_actual_insert_controls(self):
         # The category caption is ui_category_insert, not the similarly named

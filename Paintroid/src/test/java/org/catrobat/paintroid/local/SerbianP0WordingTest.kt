@@ -55,6 +55,28 @@ class SerbianP0WordingTest {
     private fun preserved(tag: String, key: String) = fixture.getJSONObject("preserved_values")
         .getJSONObject(tag).getJSONObject(key).getString("value").removeSurrounding("\"")
 
+    private val priorityDelta by lazy { SerbianPriorityDeltaExpectations.fixture() }
+    private fun added(tag: String, key: String): String {
+        val source = when(key) {
+            "ui_choose_location" -> "Choose location…"
+            "formats22_at_least_frames" -> "at least %1\$d"
+            "ui_no_resize_fits_decoder_memory" -> "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image."
+            else -> error("Unbound Serbian addition: $key")
+        }
+        val row = SerbianPriorityDeltaExpectations.row(priorityDelta,tag,key)
+        assertEquals(source,row.getString("source"))
+        assertTrue(row.has("previous") && row.isNull("previous"))
+        assertTrue(row.getBoolean("changed"))
+        assertEquals("accepted_delta",row.getString("review_status"))
+        val attrs=row.getJSONObject("attributes")
+        assertEquals(setOf("name"),attrs.keys().asSequence().toSet())
+        assertEquals(key,attrs.getString("name"))
+        val target=row.getString("target")
+        assertTrue(target.startsWith("\"") && target.endsWith("\""))
+        assertEquals(target.removeSurrounding("\""),row.getString("display"))
+        return row.getString("display")
+    }
+
     private fun formatLabel(tag: String): String {
         if (tag != "sr-Cyrl") return preserved(tag, "save20_file_format")
         val successor = fixture.getJSONObject("format_label_successor")
@@ -151,7 +173,7 @@ class SerbianP0WordingTest {
         }
     }
 
-    @Test fun all74CompiledValuesPerLocaleMatchWhileHeldAndP1FallbacksRemainEnglish() = forEachLocale { tag, activity ->
+    @Test fun all74PriorCompiledValuesAndFinitePrioritySuccessorsKeepHeldFallbacks() = forEachLocale { tag, activity ->
         val values = fixture.getJSONObject("values")
         assertEquals(74, values.length())
         val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
@@ -166,12 +188,12 @@ class SerbianP0WordingTest {
         // paired warning oracle and its P1 companion are not expanded by this test.
         assertEquals(expected(tag, "ui_assembly_source_memory_floor"), ui(R.string.ui_assembly_source_memory_floor))
         assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
-        assertEquals("Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+        assertEquals(added(tag,"ui_no_resize_fits_decoder_memory"),
             ui(R.string.ui_no_resize_fits_decoder_memory))
         assertEquals(formatLabel(tag), ui(R.string.save20_file_format))
         assertEquals(preserved(tag, "ui_load_image"), ui(R.string.ui_load_image))
-        assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
-        assertEquals("Choose location…", ui(R.string.ui_choose_location))
+        assertEquals(String.format(Locale.forLanguageTag(tag),added(tag,"formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
+        assertEquals(added(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
         assertEquals("PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
             ui(R.string.formats22_derived_exported, "PNG"))
         assertEquals("Save as PNG", ui(R.string.ui_save_as, "PNG"))
@@ -313,7 +335,7 @@ class SerbianP0WordingTest {
                 val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
                 assertDistinctFormatAndFilenameControls(root, tag)
                 assertEquals(formatLabel(tag), spinner.contentDescription.toString())
-                assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(added(tag,"ui_choose_location"), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(preserved(tag, "ui_cancel"),
                     dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 fun select(format: ImageFormat, key: String) {
@@ -380,7 +402,7 @@ class SerbianP0WordingTest {
                 assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
                     else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(dialog).title.toString())
                 assertTrue(displayed.contains(formatLabel(tag)))
-                assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(added(tag,"ui_choose_location"), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(preserved(tag, "ui_cancel"), dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
                 shadowOf(Looper.getMainLooper()).idle()
@@ -395,7 +417,8 @@ class SerbianP0WordingTest {
         val format = "GIF 100%"
         assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_unknown"), format),
             ui(R.string.formats22_animation_unknown, format))
-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format, "at least 2"),
+        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format,
+            String.format(Locale.forLanguageTag(tag),added(tag,"formats22_at_least_frames"),2)),
             ui(R.string.formats22_animation_message, format, ui(R.string.formats22_at_least_frames, 2)))
         val filename = "drawing 100%.png"
         val detail = "provider 50% unavailable"
