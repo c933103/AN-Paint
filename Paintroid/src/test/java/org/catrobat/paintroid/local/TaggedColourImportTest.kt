@@ -1550,8 +1550,22 @@ class TaggedColourImportTest {
         assertTrue(combinedAddedTags.intersect(exactScriptStageTags).isEmpty())
         assertEquals(exactScriptStageTags + combinedAddedTags, expected.keys().asSequence().toSet())
         assertEquals(141 + combinedAddedTags.size, expected.length())
+        assertEquals(23, 171 - expected.length()) // frozen combined-input stage
+        val rtlPriority=JSONObject(File("../tools/fixtures/current_localization/persian_hebrew_urdu_priority_wording.json").readText())
+        val rtlKey="save20_unsupported_image_colour"
+        assertEquals(neutral,rtlPriority.getJSONObject("sources").getJSONObject("string/$rtlKey").getString("source"))
+        for(tag in listOf("fa","he","ur")) {
+            val row=rtlPriority.getJSONObject("locales").getJSONObject(tag)
+            assertFalse(expected.has(tag))
+            assertFalse(row.getJSONObject("predecessors").has("string/$rtlKey"))
+            val raw=row.getJSONObject("accepted").getString(rtlKey)
+            assertTrue(raw.startsWith("\"") && raw.endsWith("\""))
+            expected.put(tag,raw.removeSurrounding("\""))
+        }
+        assertEquals(exactScriptStageTags + combinedAddedTags + setOf("fa","he","ur"), expected.keys().asSequence().toSet())
+        assertEquals(151, expected.length())
         val expectedFallbacks = 171 - expected.length()
-        assertEquals(23, expectedFallbacks)
+        assertEquals(20, expectedFallbacks)
         var inherited = 0
         var fallbacks = 0
         assertTrue(AppLanguage.tags(context).containsAll(expected.keys().asSequence().toList()))
@@ -1574,6 +1588,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(0, inherited)
-        assertEquals(expectedFallbacks, fallbacks) // 171 offered - 148 direct; no inherited catalogue.
+        assertEquals(expectedFallbacks, fallbacks) // 171 offered - 151 direct; no inherited catalogue.
     }
 }

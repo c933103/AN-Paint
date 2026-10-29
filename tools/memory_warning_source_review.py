@@ -1,3 +1,4 @@
+from persian_hebrew_urdu_priority_expectations import MEMORY_ADDITIONS as FA_HE_UR_ADDITIONS, require_addition as fa_he_ur_row
 from nynorsk_belarusian_albanian_priority_expectations import MEMORY_ADDITIONS as NN_BE_SQ_ADDITIONS, require_addition as nn_be_sq_row
 from thai_priority_expectations import MEMORY_ADDITIONS as THAI_ADDITIONS, current_row as thai_row
 from hindi_gujarati_priority_expectations import MEMORY_ADDITIONS as HI_GU_ADDITIONS, current_row as hi_gu_row
@@ -290,6 +291,15 @@ old source snapshot.
             raise ValueError('Historical NN/BE/SQ warning addition must be absent: '+tag+'/'+key)
         if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
             raise ValueError('NN/BE/SQ warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in FA_HE_UR_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=fa_he_ur_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical FA/HE/UR warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('FA/HE/UR warning source or attributes differ: '+tag+'/'+key)
         return row['target']
     if (tag,key) in NE_PA_ADDITIONS:
         queue=review_record()

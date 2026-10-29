@@ -1,3 +1,4 @@
+from persian_hebrew_urdu_priority_expectations import MEMORY_ADDITIONS as FA_HE_UR_ADDITIONS
 """Source wording and review-queue structure, not linguistic or runtime approval."""
 from collections import Counter
 from copy import deepcopy
@@ -91,7 +92,7 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
             self.assertEqual(62, counts[(key, 'present')])
             self.assertEqual(109, counts[(key, 'missing')])
             # Explicit separate priority additions; the frozen queue still retains every historical absence.
-            added = (12 if key == 'ui_assembly_source_memory_floor' else 5) + sum(k==key for _,k in MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NORDIC_ADDITIONS | NN_BE_SQ_ADDITIONS | HR_BS_MK_ADDITIONS | HI_GU_ADDITIONS | THAI_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | GA_GD_CY_ADDITIONS | EU_FY_UZ_ADDITIONS | KA_HY_AZ_ADDITIONS | GL_ADDITIONS | SO_WO_HT_ADDITIONS | KK_TG_PS_ADDITIONS | BR_AST_OC_ADDITIONS | CEB_NDS_CSB_ADDITIONS | IA_LA_KU_ADDITIONS | MI_SM_RW_ADDITIONS | WA_SE_SA_ADDITIONS | KAB_MWW_MAI_ADDITIONS | SD_PCM_TPI_ADDITIONS | CKB_UG_TT_ADDITIONS | ARY_MN_TOK_ADDITIONS | BO_DZ_VAL_ADDITIONS | HNE_YI_HK_ADDITIONS | EXACT_SCRIPT_ADDITIONS)
+            added = (12 if key == 'ui_assembly_source_memory_floor' else 5) + sum(k==key for _,k in MR_TA_TE_ADDITIONS | KN_ML_ADDITIONS | NORDIC_ADDITIONS | NN_BE_SQ_ADDITIONS | FA_HE_UR_ADDITIONS | HR_BS_MK_ADDITIONS | HI_GU_ADDITIONS | THAI_ADDITIONS | NE_PA_ADDITIONS | YO_ZU_XH_ADDITIONS | HA_IG_LN_ADDITIONS | JV_SU_KY_ADDITIONS | AS_KM_LO_ADDITIONS | GA_GD_CY_ADDITIONS | EU_FY_UZ_ADDITIONS | KA_HY_AZ_ADDITIONS | GL_ADDITIONS | SO_WO_HT_ADDITIONS | KK_TG_PS_ADDITIONS | BR_AST_OC_ADDITIONS | CEB_NDS_CSB_ADDITIONS | IA_LA_KU_ADDITIONS | MI_SM_RW_ADDITIONS | WA_SE_SA_ADDITIONS | KAB_MWW_MAI_ADDITIONS | SD_PCM_TPI_ADDITIONS | CKB_UG_TT_ADDITIONS | ARY_MN_TOK_ADDITIONS | BO_DZ_VAL_ADDITIONS | HNE_YI_HK_ADDITIONS | EXACT_SCRIPT_ADDITIONS)
             self.assertEqual(65 + added, current_counts[(key, 'present')])
             self.assertEqual(106 - added, current_counts[(key, 'missing')])
 
