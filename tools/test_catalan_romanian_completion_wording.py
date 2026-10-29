@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
-from current_localization_contracts import fixture, require_string, require_wording_shape
+from current_localization_contracts import fixture, require_string, require_wording_shape, require_string_root
 from test_danish_norwegian_p0_wording import full_format_tokens, require_reviewed_string
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
@@ -138,7 +138,7 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
             self.assertEqual(150, len(preserved));self.assertFalse(set(preserved) & KEYS)
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
-                    require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
+                    require_string_root(self.roots[tag], key, expected['value'], {'attributes': expected['attributes']})
             names = [(node.tag, node.get('name')) for node in self.roots[tag]]
             self.assertEqual(catalogue_count(tag,205), len(names));self.assertEqual(len(names), len(set(names)))
             self.assertEqual({('string', key) for key in set(preserved) | KEYS | added_keys(tag)}, set(names))
@@ -155,7 +155,7 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
                 if key not in HOLDS:
                     successor = fixture('slovak_slovenian_catalan_priority_wording.json' if tag == 'ca' else 'ukrainian_lithuanian_romanian_priority_wording.json')['locales'][tag]['values'][key]
                     self.assertIsNone(successor['previous_target'])
-                    require_string(self.xml[tag], key, successor['target'], {'attributes': successor['attributes']})
+                    require_string_root(self.roots[tag], key, successor['target'], {'attributes': successor['attributes']})
                 else:
                     self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
             self.assertEqual('"' + current_display(tag,'save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)

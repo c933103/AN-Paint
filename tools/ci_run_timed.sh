@@ -18,8 +18,8 @@ for previous in python jvm; do
   fi
 done
 if [[ "$phase" == jvm ]]; then
-  # Reserve one minute of the unchanged 20-minute step for cleanup/reporting.
-  exec python3 tools/ci_run_process_group.py --phase jvm --timeout-seconds 1140 --kill-after-seconds 15 -- "$@"
+  # Reserve one minute of the 25-minute step for cleanup/reporting.
+  exec python3 tools/ci_run_process_group.py --phase jvm --timeout-seconds 1440 --kill-after-seconds 15 -- "$@"
 fi
 mkdir -p "$directory"
 date -u +%Y-%m-%dT%H:%M:%SZ > "$directory/$phase.started-at"

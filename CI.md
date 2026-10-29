@@ -63,7 +63,7 @@ Focused checks do not turn an incomplete aggregate into a pass.
 
 ## Deadlines and evidence
 
-- Regression job: 79 minutes; Python contracts: 31 minutes (30-minute owned-process execution deadline); JVM regression: 20 minutes (19-minute owned-process execution deadline);
+- Regression job: 84 minutes; Python contracts: 31 minutes (30-minute owned-process execution deadline); JVM regression: 25 minutes (24-minute owned-process execution deadline);
   build job: 45 minutes;
   universal assembly: 30 minutes; emulator jobs: 53 minutes, including a 43-minute execution step.
 - SDK install: 5 minutes; device discovery: 60 seconds; boot/service readiness:
@@ -123,19 +123,33 @@ If cleanup is not established, later phase wrappers fail before launching their
 commands; missing or malformed receipts also fail closed, never reporting omitted
 execution as a pass. Clean Python failures still allow the other required phases. Deadline exit124 and
 signal exits remain failures even if a child exits zero after cancellation.
-The Python outer step is 31 minutes for cleanup/reporting. The other phase caps
-are unchanged: 2 + 8 + 31 + 20 + 6 + 6 is 73 minutes total, within the 79-minute
+The Python outer step is 31 minutes for cleanup/reporting. Current phase caps
+are 2 + 8 + 31 + 25 + 6 + 6: 78 minutes total, within the 84-minute
 regression job with the same six-minute checkout/cache/evidence overhead.
 Device, installation and interaction deadlines are unchanged. This is measured
 headroom and explicit process ownership, not a universal liveness guarantee.
 
-JVM now uses that same process owner and phase-specific lifecycle receipts.
-Its 19-minute execution deadline reserves one minute within the unchanged
-20-minute Actions cap for the existing TERM/KILL, reap and output cleanup.
+JVM uses that same process owner and phase-specific lifecycle receipts.
+Its 24-minute execution deadline reserves one minute within the 25-minute
+Actions cap for the existing TERM/KILL, reap and output cleanup.
 Native/lint cannot start after an unverified Python or JVM cleanup. This repairs
 the JVM overlap observed in [run 40915200093](https://github.com/c933103/AN-Paint/actions/runs/40915200093),
-not its runtime: the roughly 22.5-minute workload still exceeds the deadline.
+not its runtime: the roughly 22.5-minute workload exceeded the former 19-minute deadline.
 Cleanup is not a speedup, and the broader slowdown remains unexplained.
+
+The two attempts of [run 40953915017](https://github.com/c933103/AN-Paint/actions/runs/40953915017)
+both hit that 1140-second execution deadline and exited 124 after verified cleanup,
+without finalized JVM method results. Both remain failures. Existing complete
+command receipts for the same 1,937 JVM identities took 1345.410 and 1350.386 seconds;
+[the artifact diagnosis](https://github.com/c933103/AN-Paint/pull/233#issuecomment-6510090818)
+records the distinction between those completed workloads and the truncated attempts.
+The current 1440-second execution allowance is 89.614 seconds (about 6.6%) above
+the slower complete observation. It is a bounded robustness calibration, not a
+speedup or a guarantee against hangs or slower runners. The unchanged 15-second
+TERM allowance, five-second reap bound and two-second output bound total 22 seconds,
+leaving 38 seconds inside the 25-minute outer cap for owner/reporting overhead.
+New heads require their own exact-source review and CI; earlier passes do not
+automatically transfer and deadline failures cannot be reclassified as successes.
 
 All tests, assertions, failure propagation and existing device/interaction caps
 remain unchanged. A future timeout still fails; it must be diagnosed, not

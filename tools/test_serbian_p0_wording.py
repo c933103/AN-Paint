@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
-from current_localization_contracts import fixture, require_string, require_wording_shape
+from current_localization_contracts import fixture, require_string, require_wording_shape, require_string_root
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
@@ -244,7 +244,7 @@ class SerbianP0Tests(unittest.TestCase):
                 with self.subTest(tag=tag, key=key):
                     source=self.roots['default'].find(f"./string[@name='{key}']").text
                     target=delta.current_value(tag,key,expected['value'],expected['attributes'],source)
-                    require_string(self.xml[tag], key, target, {'attributes': expected['attributes']})
+                    require_string_root(self.roots[tag], key, target, {'attributes': expected['attributes']})
             added=sum(r['previous'] is None for r in delta.cohort()[tag]['values'].values())
             self.assertEqual(total+added, len(self.roots[tag]))
             self.assertEqual(total, count + 74 + (tag == SUCCESSOR_LOCALE))
@@ -275,7 +275,7 @@ class SerbianP0Tests(unittest.TestCase):
         # alternatives that may be used to label the format selection control.
         for tag in ('sr-Cyrl', 'sr-Latn'):
             filename = self.data['preserved_values'][tag]['save20_file_name']
-            actual = require_string(self.xml[tag], 'save20_file_name', filename['value'],
+            actual = require_string_root(self.roots[tag], 'save20_file_name', filename['value'],
                                     {'attributes': filename['attributes']})
             self.assertNotEqual(display_value(actual), display_value(
                 self.roots[tag].find(f"./string[@name='{FORMAT_KEY}']").text))
@@ -381,7 +381,7 @@ class SerbianP0Tests(unittest.TestCase):
             for key in neighbors:
                 source=self.roots['default'].find(f"./string[@name='{key}']").text
                 target=delta.addition(tag,key,source,None)
-                require_string(self.xml[tag],key,target,{'attributes':{'name':key},'child_elements':0})
+                require_string_root(self.roots[tag],key,target,{'attributes':{'name':key},'child_elements':0})
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
 

@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
-from current_localization_contracts import fixture, require_string, require_wording_shape
+from current_localization_contracts import fixture, require_string, require_wording_shape, require_string_root
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
@@ -256,7 +256,7 @@ class CroatianBosnianP0Tests(unittest.TestCase):
             self.assertEqual(count, len(preserved));self.assertFalse(set(preserved) & KEYS)
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
-                    require_string(self.xml[tag], key, current.current_value(tag,key,expected['value'],expected['attributes']), {'attributes': expected['attributes']})
+                    require_string_root(self.roots[tag], key, current.current_value(tag,key,expected['value'],expected['attributes']), {'attributes': expected['attributes']})
             self.assertEqual(count + 78 + (1 if tag == 'hr' else 0) + len(current.added_keys(tag)), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('Format slike', self.roots[tag].find("./string[@name='save20_file_format']").text)

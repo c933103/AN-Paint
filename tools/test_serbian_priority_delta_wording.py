@@ -3,7 +3,7 @@ from collections import Counter
 from copy import deepcopy
 import json,re,unittest,xml.etree.ElementTree as ET
 from unittest.mock import patch
-from current_localization_contracts import fixture,require_string
+from current_localization_contracts import fixture,require_string, require_string_root
 import serbian_priority_delta_expectations as current
 import translation_catalogues as cat
 TOKEN=re.compile(r'%(?:(?:\d+)\$)?[-#+ 0,(<]*(?:\d+)?(?:\.\d+)?(?:[tT][A-Za-z]|[bBhHsScCdoxXeEfgGaA%n])')
@@ -31,7 +31,7 @@ class SerbianPriorityDeltaTests(unittest.TestCase):
                 with self.subTest(tag=tag,key=key):
                     s=self.roots['default'].find(f"./string[@name='{key}']")
                     self.assertEqual((s.text,s.attrib),(row['source'],row['attributes']))
-                    require_string(self.xml[tag],key,row['target'],{'attributes':row['attributes'],'child_elements':0})
+                    require_string_root(self.roots[tag],key,row['target'],{'attributes':row['attributes'],'child_elements':0})
                     self.assertEqual(Counter(TOKEN.findall(row['source'])),Counter(TOKEN.findall(row['target'])))
                     for newline in ('\n','\\n'):self.assertEqual(row['source'].count(newline),row['target'].count(newline))
                     self.assertTrue(row['changed']);self.assertNotEqual(row['previous'],row['target'])
@@ -76,7 +76,7 @@ class SerbianPriorityDeltaTests(unittest.TestCase):
             self.assertEqual({'source':'Top','attributes':{'name':key},'previous':'"'+label+'"','target':'"'+label+'"','display':label,'changed':False,'review_status':'retained_P2_consumer_context'},row)
             self.assertNotIn(key,self.data[tag]['values']);self.assertNotIn(key,self.data[tag]['priority_status'])
             self.assertEqual(('Top',{'name':key}),(self.roots['default'].find(f"./string[@name='{key}']").text,self.roots['default'].find(f"./string[@name='{key}']").attrib))
-            require_string(self.xml[tag],key,row['target'],{'attributes':row['attributes'],'child_elements':0})
+            require_string_root(self.roots[tag],key,row['target'],{'attributes':row['attributes'],'child_elements':0})
             for field in ('source','previous','target','display','review_status'):
                 bad=current.reviewed_fixture();bad['locales'][tag]['context'][key][field]='forged'
                 with self.subTest(tag=tag,field=field),self.assertRaises(ValueError):current.require_reviewed_fixture(bad)

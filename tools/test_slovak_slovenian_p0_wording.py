@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
-from current_localization_contracts import fixture, require_string, require_wording_shape
+from current_localization_contracts import fixture, require_string, require_wording_shape, require_string_root
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
@@ -177,7 +177,7 @@ class SlovakSlovenianP0Tests(unittest.TestCase):
             self.assertEqual(count, len(preserved));self.assertFalse(set(preserved) & KEYS)
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
-                    require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
+                    require_string_root(self.roots[tag], key, expected['value'], {'attributes': expected['attributes']})
             self.assertEqual(catalogue_count(tag,count + 78), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('"'+current_display(tag,'save20_file_format')+'"', self.roots[tag].find("./string[@name='save20_file_format']").text)
@@ -194,7 +194,7 @@ class SlovakSlovenianP0Tests(unittest.TestCase):
                 if key in added_keys(tag):
                     row = fixture('slovak_slovenian_catalan_priority_wording.json')['locales'][tag]['values'][key]
                     self.assertIsNone(row['previous_target'])
-                    require_string(self.xml[tag],key,row['target'],{'attributes':row['attributes']})
+                    require_string_root(self.roots[tag],key,row['target'],{'attributes':row['attributes']})
                 else:
                     self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
