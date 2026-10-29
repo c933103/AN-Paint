@@ -1,5 +1,5 @@
 {
-  "status": "Exact combined head: full normal/optimized pass; required hosted JVM/lint pending",
+  "status": "Merged through PR224 after exact Code review, all required hosted gates and fresh full modes passed",
   "base": "ae7d25ca60f9852a9d936743a3c4a1833e9e24ba",
   "base_tree": "de438227d759a2def5fc987600c3c1591f452f9f",
   "input_heads": {
@@ -460,8 +460,8 @@
     "timeout_seconds": 7200,
     "kill_after_seconds": 15,
     "scope": "local outer cancellation owner only; internal assertions/deadlines and CI source unchanged",
-    "normal": "passed2014",
-    "optimized": "passed2014"
+    "normal": "passed (2014 tests)",
+    "optimized": "passed (2014 tests)"
   },
   "merge_owner": "root",
   "code_security_request_comment": 6488331774,
@@ -483,5 +483,21 @@
     "summary_comment": 6488332424,
     "reconciliation_request": 6488547491,
     "additional_requests": "stopped"
+  },
+  "actual_merge": {
+    "head": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+    "tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+    "parents": [
+      "ae7d25ca60f9852a9d936743a3c4a1833e9e24ba",
+      "6fd72e8d31f13676e92c16c40506e4c1bdd4c221"
+    ],
+    "merged_at": "2026-10-29T05:46:26Z",
+    "full_tree_verified_leaves": 1604
+  },
+  "postmerge_ci": {
+    "run_id": 40825317618,
+    "head": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+    "status": "in_progress",
+    "conclusion": null
   }
 }

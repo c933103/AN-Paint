@@ -32,6 +32,19 @@ The full-local-verification.json and full-local-raw.tar.xz files retain exact
 counts, timings, source identity and raw logs. Code review is exact-head clean.
 Optional Security review completed with unavailable finding flags and its merge
 gate disabled; this is not a clean-security claim or additional required gate.
-Hosted run 40820454209 has five successful jobs; JVM/lint is still pending. Root owns final merge. SI/MY/ZA is excluded; release 0.0.41
+All six jobs in hosted run 40820454209 passed. Complete XML proves 1925 JVM
+cases / 193 suites with zero failures/errors/skips; hosted Python passed 2014
+in 1318.799s with two documented skips; lint has zero issues. API35 has a
+complete disjoint 49-app/74-native pass. The hosted record manifest reconstructs
+the 190663-byte archive of all JVM XML and phase logs/receipts. JVM phase
+1188.239s leaves 11.761s beneath the unchanged 1200s ceiling: a real future
+runtime-margin risk, not a failed run or reason to weaken tests/deadlines.
+
+Root merged PR224 at 05:46:27 UTC into develop
+956f6b17fc4ab9196bfbe5ca43064c97a8e8179d. Actual merge and tested synthetic
+f8b21a7aa5c3822e099fa58ffc81020a0b558318 have the exact reviewed tree; all
+1604 actual merged leaves/modes were verified. Source PR222/223 are marked
+merged through ancestry, not separate acceptance merges. Natural develop push
+40825317618 is separately active; final-gate-receipt.json records its status. Root owns final merge. SI/MY/ZA is excluded; release 0.0.41
 is paused and historical bulk171 remains stopped. No signing/access change,
 whole-language/full-Serbian-P1/native-human/visual-RTL acceptance is claimed.

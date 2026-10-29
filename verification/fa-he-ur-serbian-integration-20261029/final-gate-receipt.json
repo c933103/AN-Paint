@@ -1,0 +1,269 @@
+{
+  "source_head": "6fd72e8d31f13676e92c16c40506e4c1bdd4c221",
+  "source_tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+  "actual_merge": {
+    "head": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+    "tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+    "parents": [
+      "ae7d25ca60f9852a9d936743a3c4a1833e9e24ba",
+      "6fd72e8d31f13676e92c16c40506e4c1bdd4c221"
+    ],
+    "merged_at": "2026-10-29T05:46:26Z",
+    "full_tree_verified_leaves": 1604
+  },
+  "premerge_ci": {
+    "run_id": 40820454209,
+    "status": "completed",
+    "conclusion": "success",
+    "terminal_updated_at": "2026-10-29T05:43:53Z",
+    "tested_merge": "f8b21a7aa5c3822e099fa58ffc81020a0b558318",
+    "tested_merge_tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+    "jobs": [
+      {
+        "id": 123271450202,
+        "name": "Build APK and corresponding source",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123271450321,
+        "name": "Exact-script resource generation",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123271450375,
+        "name": "Regression tests and lint",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123274389575,
+        "name": "Core emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123274389871,
+        "name": "Position dialog API 35",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 123278838841,
+        "name": "Emulator API 35",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "code_review": {
+    "status": "completed",
+    "has_any_findings": false,
+    "has_unresolved_findings": false,
+    "summary_comment": 6488332424,
+    "receipt_comment": 6488408098
+  },
+  "optional_security": {
+    "head": "6fd72e8d31f13676e92c16c40506e4c1bdd4c221",
+    "status": "completed",
+    "has_any_findings": null,
+    "has_unresolved_findings": null,
+    "mergeGateEnabled": false,
+    "classification": "optional metadata unavailable; not a new mandatory gate; no clean-security claim",
+    "code": "completed clean",
+    "summary_comment": 6488332424,
+    "reconciliation_request": 6488547491,
+    "additional_requests": "stopped"
+  },
+  "components": [
+    {
+      "number": 222,
+      "head": "e366953d9a446f129af53a5f924688f22a31a912",
+      "state": "closed",
+      "merged": true,
+      "ancestry_merge_commit": "6fd72e8d31f13676e92c16c40506e4c1bdd4c221",
+      "base": "develop",
+      "ancestor_of_combined_and_actual_merge": true
+    },
+    {
+      "number": 223,
+      "head": "d331c8ea322de59d0b169f83263b99580d2065f3",
+      "state": "closed",
+      "merged": true,
+      "ancestry_merge_commit": "6fd72e8d31f13676e92c16c40506e4c1bdd4c221",
+      "base": "develop",
+      "ancestor_of_combined_and_actual_merge": true
+    }
+  ],
+  "postmerge_ci": {
+    "run_id": 40825317618,
+    "head": "956f6b17fc4ab9196bfbe5ca43064c97a8e8179d",
+    "status": "in_progress",
+    "conclusion": null
+  },
+  "jvm_runtime_risk": {
+    "phase_seconds": 1188.239,
+    "unchanged_timeout_seconds": 1200,
+    "headroom_seconds": 11.761,
+    "classification": "Successful run with limited runtime margin; risk for further growth, not a failure or permission to relax deadlines. Separate read-only diagnosis requested."
+  },
+  "release": "0.0.41 remains paused; no signing/release/version action",
+  "original_failures": "All original source-candidate and prior combined failures retained; GitHub ancestry-derived merged status is not retroactive standalone acceptance.",
+  "hosted_totals": {
+    "jvm": {
+      "tests": 1925,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "suites": 193,
+      "summed_case_suite_seconds": 972.055
+    },
+    "python": {
+      "tests": 2014,
+      "seconds": 1318.799,
+      "skips": 2,
+      "lifecycle": {
+        "launch_id": "abdebb2b45a14b99b289534f4b805eb9",
+        "reason": "completed",
+        "forced_kill": "false",
+        "owned_children_remaining": "0",
+        "cleanup_complete": "true",
+        "output_complete": "true"
+      }
+    },
+    "lint": {
+      "issues": 0
+    },
+    "phases": {
+      "python": {
+        "timing": {
+          "real_seconds": "1320.264",
+          "user_seconds": "1258.987",
+          "sys_seconds": "37.221",
+          "exit_status": "0"
+        },
+        "started_at": "2026-10-29T04:57:38Z",
+        "ended_at": "2026-10-29T05:19:39Z"
+      },
+      "jvm": {
+        "timing": {
+          "real_seconds": "1188.239",
+          "user_seconds": "4.095",
+          "sys_seconds": "0.504",
+          "exit_status": "0"
+        },
+        "started_at": "2026-10-29T05:19:39Z",
+        "ended_at": "2026-10-29T05:39:27Z"
+      },
+      "native": {
+        "timing": {
+          "real_seconds": "83.900",
+          "user_seconds": "182.083",
+          "sys_seconds": "55.464",
+          "exit_status": "0"
+        },
+        "started_at": "2026-10-29T05:39:27Z",
+        "ended_at": "2026-10-29T05:40:51Z"
+      },
+      "lint": {
+        "timing": {
+          "real_seconds": "167.482",
+          "user_seconds": "2.487",
+          "sys_seconds": "0.240",
+          "exit_status": "0"
+        },
+        "started_at": "2026-10-29T05:40:51Z",
+        "ended_at": "2026-10-29T05:43:39Z"
+      }
+    }
+  },
+  "api35": {
+    "app_cases": 49,
+    "native_cases": 74,
+    "artifact_id": 12875226578,
+    "artifact_sha256": "4513bfe077577eef2c8712dccc3ef82527694b4c0a1324756c38d42010de56bd"
+  },
+  "local_full": {
+    "head": "6fd72e8d31f13676e92c16c40506e4c1bdd4c221",
+    "tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+    "synthetic_merge": "f8b21a7aa5c3822e099fa58ffc81020a0b558318",
+    "synthetic_tree": "8f4874a6daffab624fb65501cf1d370017714c99",
+    "hosted_run": 40820454209,
+    "code_review": {
+      "status": "completed",
+      "has_any_findings": false,
+      "has_unresolved_findings": false,
+      "summary_comment": 6488332424,
+      "receipt_comment": 6488408098
+    },
+    "optional_security": {
+      "head": "6fd72e8d31f13676e92c16c40506e4c1bdd4c221",
+      "status": "completed",
+      "has_any_findings": null,
+      "has_unresolved_findings": null,
+      "mergeGateEnabled": false,
+      "classification": "optional metadata unavailable; not a new mandatory gate; no clean-security claim",
+      "code": "completed clean",
+      "summary_comment": 6488332424,
+      "reconciliation_request": 6488547491,
+      "additional_requests": "stopped"
+    },
+    "normal": {
+      "tests": 2014,
+      "seconds": 1508.48,
+      "exit": 0,
+      "timing": {
+        "real_seconds": "1510.866",
+        "user_seconds": "1446.788",
+        "sys_seconds": "48.505",
+        "exit_status": "0"
+      },
+      "lifecycle": {
+        "launch_id": "6525f2b0f7314fd9abc45f76423c6f83",
+        "reason": "completed",
+        "forced_kill": "false",
+        "owned_children_remaining": "0",
+        "cleanup_complete": "true",
+        "output_complete": "true"
+      },
+      "source_clean": true,
+      "started_at": "2026-10-29T04:56:53Z",
+      "ended_at": "2026-10-29T05:22:03Z",
+      "outer_timeout_seconds": 7200,
+      "kill_after_seconds": 15,
+      "console_sha256": "1382835a9d915802a93f610307611e2865402ffd7df6815ccf1def91fcc81f69"
+    },
+    "optimized": {
+      "tests": 2014,
+      "seconds": 1575.498,
+      "exit": 0,
+      "timing": {
+        "real_seconds": "1578.708",
+        "user_seconds": "1517.350",
+        "sys_seconds": "46.619",
+        "exit_status": "0"
+      },
+      "lifecycle": {
+        "launch_id": "fe1c46a4a50d4ccaa6ba35bdde5f303e",
+        "reason": "completed",
+        "forced_kill": "false",
+        "owned_children_remaining": "0",
+        "cleanup_complete": "true",
+        "output_complete": "true"
+      },
+      "source_clean": true,
+      "started_at": "2026-10-29T04:56:55Z",
+      "ended_at": "2026-10-29T05:23:14Z",
+      "outer_timeout_seconds": 7200,
+      "kill_after_seconds": 15,
+      "console_sha256": "c6eaeb352c31524918cce8e5a6c05c88909286594a97723643bf4cf279d39550"
+    },
+    "classification": "Fresh complete exact combined-head host passes; not a replacement for pending hosted JVM/lint. Internal and CI deadlines/assertions/source unchanged. Root owns merge; no release action.",
+    "raw_archive": {
+      "name": "full-local-raw.tar.xz",
+      "bytes": 41756,
+      "sha256": "5ace78d45f1e731570aa6b8baccec0a1f60be42647fd028d7b45db652b968c7a"
+    }
+  }
+}
