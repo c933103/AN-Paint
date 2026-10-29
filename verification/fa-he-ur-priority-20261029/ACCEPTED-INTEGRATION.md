@@ -1,0 +1,5 @@
+# Accepted successor integration
+
+PR222 head 1a951a693d355cf97998f8008e7ff5fae70246e7 / tree7acd9967a3a52d49862b8c64fbd04febd362392d is stacked on #221 head2e58204c73ff24ea9b73fbaf4d265baa1e0c3fce. Remote tree equals reviewed local index. Thirteen paths; 850 resource edits (819 additions,31 replacements); all24 holds retained.
+
+Archive accepted-integration-checks.tar.xz SHA2568d5f1663326a740132ac614f963c5200b7d3ee9584f9a4e6c8fa95f502ed9d7e contains source rebinding, exact peer-to-successor generator/check, normal/optimized2 acceptance checks, focused29 host pass241.833s and memory-successor12 pass4.823s. Local JVM attempt failed before execution because wrapper distribution is unavailable; not a runtime pass. Normal/optimized full host runs active. [Hosted run40811980963](https://github.com/c933103/AN-Paint/actions/runs/40811980963) pending at publication; exact-head Codex requested via comment6487031817. No old source or independent acceptance superseded; parent controls integration/merge.
