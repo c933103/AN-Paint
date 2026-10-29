@@ -4,12 +4,29 @@ from current_localization_contracts import fixture
 import translation_catalogues as cat
 import xml.etree.ElementTree as ET
 NAME='persian_hebrew_urdu_priority_wording.json'
+# Only the finite independently accepted wording fixture, not source files or trees.
+FIXTURE_SHA256='1a6c04bd3d34965bb6aa12de7924d308bfdebcc80e5dd81032a8569f707839ac'
+def validated_fixture_text(text):
+    import hashlib,json
+    if hashlib.sha256(text.encode('utf-8')).hexdigest()!=FIXTURE_SHA256:
+        raise ValueError('Complete finite accepted FA/HE/UR fixture differs')
+    return json.loads(text)
+from functools import lru_cache
+@lru_cache(maxsize=1)
+def _baseline():
+    from pathlib import Path
+    return validated_fixture_text((Path(__file__).resolve().parent/'fixtures/current_localization'/NAME).read_text())
+def require_reviewed_fixture(data):
+    if data!=_baseline():raise ValueError('Accepted complete values or metadata differ')
+    return data
+def reviewed_fixture():
+    return deepcopy(_baseline())
 TAGS=frozenset({'fa','he','ur'})
 MEMORY_ADDITIONS=frozenset({(t,k) for t in TAGS for k in ('ui_no_resize_fits_decoder_memory','ui_assembly_source_memory_floor')})
 COLOUR_TAGS=TAGS
 def current_row(tag,key):
     if tag not in TAGS:raise ValueError('Outside exact trio')
-    d=fixture(NAME);loc=d['locales'][tag];identity='string/'+key;src=d['sources'][identity]
+    d=require_reviewed_fixture(fixture(NAME));loc=d['locales'][tag];identity='string/'+key;src=d['sources'][identity]
     if key not in loc['accepted']:raise ValueError('Not an accepted scalar')
     old=loc['predecessors'].get(identity)
     return {'changed':identity in loc['changed'],'source':src['source'],'source_attributes':src['attributes'],'target':loc['accepted'][key],
@@ -24,7 +41,7 @@ def require_addition(tag,key):
     return r
 def current_value(tag,key,previous,attributes=None):
     if tag not in TAGS:return previous
-    l=fixture(NAME)['locales'][tag];i='string/'+key
+    l=require_reviewed_fixture(fixture(NAME))['locales'][tag];i='string/'+key
     if i not in l['changed']or i not in l['predecessors']:return previous
     r=current_row(tag,key)
     if previous!=r['previous_target']or(attributes is not None and attributes!=r['previous_attributes']):raise ValueError('Exact predecessor differs')

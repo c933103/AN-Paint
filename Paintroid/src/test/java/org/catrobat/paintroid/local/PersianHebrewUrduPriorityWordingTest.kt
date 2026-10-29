@@ -45,7 +45,7 @@ class PersianHebrewUrduPriorityWordingTest {
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
     private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/persian_hebrew_urdu_priority_wording.json").readText()).getJSONObject("locales")
+        PersianHebrewUrduPriorityExpectations.fixture().getJSONObject("locales")
     }
     private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
         when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
@@ -439,6 +439,29 @@ class PersianHebrewUrduPriorityWordingTest {
                 PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
             }
         }
+    }
+
+    @Test fun finiteAcceptedFixtureRejectsCoordinatedTargetsMetadataAndMissingPredecessors() {
+        val helper=PersianHebrewUrduPriorityExpectations
+        for(tag in listOf("fa","he","ur")) {
+            for(mutation in listOf("target","display","attributes","receipt","held","previous")) {
+                val bad=helper.fixture();val locale=bad.getJSONObject("locales").getJSONObject(tag)
+                when(mutation) {
+                    "target" -> locale.getJSONObject("accepted").put("save20_unsupported_image_colour","Forged sRGB PNG")
+                    "display" -> locale.put("display",JSONObject().put("save20_unsupported_image_colour","Forged sRGB PNG"))
+                    "attributes" -> locale.getJSONObject("target_attribute_exceptions").put("save20_unsupported_image_colour",JSONObject().put("name","wrong"))
+                    "receipt" -> locale.put("review_receipt_sha256","forged")
+                    "held" -> locale.remove("held_absent")
+                    "previous" -> locale.getJSONObject("predecessors").remove("string/ui_apply")
+                }
+                val expected=JSONObject()
+                assertThrows("$tag/$mutation",AssertionError::class.java) {helper.addTagged(expected,bad)}
+                assertEquals(0,expected.length())
+            }
+        }
+        val expected=JSONObject();helper.addTagged(expected,helper.fixture())
+        assertEquals(setOf("fa","he","ur"),expected.keys().asSequence().toSet())
+        assertThrows(AssertionError::class.java) {helper.addTagged(expected,helper.fixture())}
     }
 
 }

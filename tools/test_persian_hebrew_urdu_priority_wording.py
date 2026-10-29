@@ -7,7 +7,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 import translation_catalogues as cat
 from current_localization_contracts import fixture,require_string as scalar
-from persian_hebrew_urdu_priority_expectations import NAME,TAGS,current_row,current_value,display,compiled_display,require_addition,MEMORY_ADDITIONS
+from persian_hebrew_urdu_priority_expectations import NAME,TAGS,require_reviewed_fixture,reviewed_fixture,validated_fixture_text,current_row,current_value,display,compiled_display,require_addition,MEMORY_ADDITIONS
 HOLDS={'formats22_derived_exported','ui_save_as','ui_save_as_jpeg','ui_save_as_jpeg_xl','ui_save_as_png','ui_foreground_background_colour_palette','ui_main23','ui_pinch_and_pan_mode'}
 def require_resource(xml,identity,target,attrs):
     root=ET.fromstring(xml);kind,key=identity.split('/')
@@ -30,7 +30,7 @@ def resource(identity,target,attrs):
 class PersianHebrewUrduTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data=fixture(NAME);cls.xml={t:(cat.ROOT/l['path']).read_text()for t,l in cls.data['locales'].items()};cls.english=(cat.RES/'values/strings.xml').read_text()
+        cls.data=require_reviewed_fixture(fixture(NAME));cls.xml={t:(cat.ROOT/l['path']).read_text()for t,l in cls.data['locales'].items()};cls.english=(cat.RES/'values/strings.xml').read_text()
     def test_three_complete_priority_inventories_and_explicit_unaccepted_limits(self):
         expected={k.split('/')[1]:t['id']for t in json.loads((cat.DATA/'string-importance.json').read_text())['tiers']if t['id']in ('P0','P1')for k in t['keys']}
         self.assertEqual(TAGS,set(self.data['locales']))
@@ -115,4 +115,24 @@ class PersianHebrewUrduTests(unittest.TestCase):
                     self.assertNotIn('%1$s',display(t,k).replace('%1$s',display(t,u)))
             for k in ('ui_trim_in_pixels','ui_trim_in_percent'):
                 for edge in ('ui_left','ui_top','ui_right','ui_bottom'):self.assertNotIn('%1$s',display(t,k).replace('%1$s',display(t,edge)))
+    def test_coordinated_targets_xml_display_and_metadata_cannot_replace_accepted_values(self):
+        import persian_hebrew_urdu_priority_expectations as current
+        for tag,locale in self.data['locales'].items():
+            for key in locale['accepted']:
+                bad=deepcopy(self.data);bad['locales'][tag]['accepted'][key]+=' forged'
+                # Matching altered XML is insufficient: independent accepted row refuses it.
+                with self.subTest(tag=tag,key=key),patch.object(current,'fixture',return_value=bad),self.assertRaises(ValueError):current.current_row(tag,key)
+            for field in ('predecessors','changed','held_absent','held_present','target_attribute_exceptions','priority_dispositions','preserved_unreviewed','review_receipt_sha256'):
+                bad=deepcopy(self.data);del bad['locales'][tag][field]
+                with self.subTest(tag=tag,field=field),self.assertRaises(ValueError):require_reviewed_fixture(bad)
+            bad=deepcopy(self.data);del bad['locales'][tag]['predecessors']['string/ui_apply']
+            with self.assertRaises(ValueError):require_reviewed_fixture(bad)
+            bad=deepcopy(self.data);bad['locales'][tag]['display']={'save20_unsupported_image_colour':'forged'}
+            with self.assertRaises(ValueError):require_reviewed_fixture(bad)
+        raw=(cat.ROOT/'tools/fixtures/current_localization'/NAME).read_text()
+        self.assertEqual(self.data,validated_fixture_text(raw))
+        for corrupted in (raw+' ',raw.replace('sRGB','forgedRGB',1)):
+            with self.assertRaises(ValueError):validated_fixture_text(corrupted)
+        copy=reviewed_fixture();copy['locales']['fa']['accepted']['ui_apply']='forged'
+        self.assertNotEqual(copy,reviewed_fixture())
 if __name__=='__main__':unittest.main()
