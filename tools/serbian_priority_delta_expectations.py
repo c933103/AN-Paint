@@ -4,12 +4,30 @@ from current_localization_contracts import fixture
 FIXTURE='serbian_priority_delta_wording.json'
 TAGS=frozenset({'sr-Cyrl','sr-Latn'})
 MEMORY_ADDITIONS=frozenset((tag,'ui_no_resize_fits_decoder_memory') for tag in TAGS)
+# Only the finite reviewed delta/context fixture is bound, never application source files.
+# Its context statuses remain retained/pending; this digest does not grant language credit.
+FIXTURE_SHA256='c4805743cc2dcc04c6a0bea1fa28fbd7e323876dbc6d51f967a42206c22ed876'
+def validated_fixture_text(text):
+    import hashlib,json
+    if hashlib.sha256(text.encode('utf-8')).hexdigest()!=FIXTURE_SHA256:
+        raise ValueError('Finite Serbian delta/context fixture differs')
+    return json.loads(text)
 @lru_cache(maxsize=1)
+def _baseline():
+    from pathlib import Path
+    return validated_fixture_text((Path(__file__).resolve().parent/'fixtures/current_localization'/FIXTURE).read_bytes().decode('utf-8'))
+def require_reviewed_fixture(data):
+    if data!=_baseline():raise ValueError('Serbian delta values or context/metadata differ')
+    return data
+def reviewed_fixture():
+    from copy import deepcopy
+    return deepcopy(_baseline())
 def cohort():
-    data=fixture(FIXTURE)
+    from copy import deepcopy
+    data=require_reviewed_fixture(fixture(FIXTURE))
     if data.get('schema_version')!=1 or set(data.get('locales',{}))!=TAGS:
         raise ValueError('Serbian delta locale/schema differs')
-    return data['locales']
+    return deepcopy(data['locales'])
 def row(tag,key):return cohort()[tag]['values'].get(key) or cohort()[tag]['context'][key]
 def current_value(tag,key,previous,attributes,source):
     item=cohort().get(tag,{}).get('values',{}).get(key)

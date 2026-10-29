@@ -55,10 +55,7 @@ class SerbianP0WordingTest {
     private fun preserved(tag: String, key: String) = fixture.getJSONObject("preserved_values")
         .getJSONObject(tag).getJSONObject(key).getString("value").removeSurrounding("\"")
 
-    private val priorityDelta by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/serbian_priority_delta_wording.json").readText())
-            .getJSONObject("locales")
-    }
+    private val priorityDelta by lazy { SerbianPriorityDeltaExpectations.fixture() }
     private fun added(tag: String, key: String): String {
         val source = when(key) {
             "ui_choose_location" -> "Choose location…"
@@ -66,7 +63,7 @@ class SerbianP0WordingTest {
             "ui_no_resize_fits_decoder_memory" -> "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image."
             else -> error("Unbound Serbian addition: $key")
         }
-        val row = priorityDelta.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+        val row = SerbianPriorityDeltaExpectations.row(priorityDelta,tag,key)
         assertEquals(source,row.getString("source"))
         assertTrue(row.has("previous") && row.isNull("previous"))
         assertTrue(row.getBoolean("changed"))

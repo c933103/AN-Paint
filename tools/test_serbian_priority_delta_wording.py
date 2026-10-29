@@ -2,6 +2,7 @@
 from collections import Counter
 from copy import deepcopy
 import json,re,unittest,xml.etree.ElementTree as ET
+from unittest.mock import patch
 from current_localization_contracts import fixture,require_string
 import serbian_priority_delta_expectations as current
 import translation_catalogues as cat
@@ -10,7 +11,7 @@ HOLDS={'formats22_derived_exported','ui_save_as','ui_save_as_jpeg','ui_save_as_j
 class SerbianPriorityDeltaTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data=fixture(current.FIXTURE)['locales']
+        cls.data=current.cohort()
         cls.xml={t:(cat.RES/('values' if t=='default' else 'values-b+'+t.replace('-','+'))/'strings.xml').read_text() for t in ['default','sr-Cyrl','sr-Latn']}
         cls.roots={t:ET.fromstring(v) for t,v in cls.xml.items()}
     def test_scope_separates_changed_values_context_holds_and_pending_retained_rows(self):
@@ -69,4 +70,38 @@ class SerbianPriorityDeltaTests(unittest.TestCase):
             for key in d['dependencies']:
                 r=d['values'][key];self.assertIsNone(r['previous']);self.assertEqual(r['target'],current.addition(tag,key,r['source'],None))
                 with self.assertRaises(ValueError):current.addition(tag,key,r['source'],'forged')
+    def test_coordinated_target_display_and_xml_cannot_replace_any_accepted_row(self):
+        for tag,locale in self.data.items():
+            for key,row in locale['values'].items():
+                bad=current.reviewed_fixture();changed=bad['locales'][tag]['values'][key]
+                changed['target']+=' forged';changed['display']+=' forged'
+                root=ET.fromstring(self.xml[tag]);root.find(f"./string[@name='{key}']").text=changed['target']
+                # The altered resource matches the altered fixture, so its own full-text
+                # comparison passes. The separately bound finite fixture must reject it.
+                require_string(ET.tostring(root,encoding='unicode'),key,changed['target'],{'attributes':changed['attributes'],'child_elements':0})
+                with self.subTest(tag=tag,key=key),patch.object(current,'fixture',return_value=bad),self.assertRaises(ValueError):
+                    current.current_value(tag,key,row['previous'],row['attributes'],row['source'])
+    def test_bound_fixture_rejects_metadata_previous_attributes_and_context_mutations(self):
+        for tag in current.TAGS:
+            for mutation in ('previous','missing-previous','attributes','source','review-status','held','scope','context','display-only'):
+                bad=current.reviewed_fixture();loc=bad['locales'][tag];row=loc['values']['ui_choose_location']
+                if mutation=='previous':row['previous']='forged'
+                elif mutation=='missing-previous':del row['previous']
+                elif mutation=='attributes':row['attributes']['name']='wrong'
+                elif mutation=='source':row['source']='forged'
+                elif mutation=='review-status':row['review_status']='retained'
+                elif mutation=='held':loc['held_absent'].remove('ui_save_as_png')
+                elif mutation=='scope':bad['scope']='full language certified'
+                elif mutation=='context':loc['context']['ui_save']['display']='forged'
+                else:row['display']='forged'
+                with self.subTest(tag=tag,mutation=mutation),self.assertRaises(ValueError):current.require_reviewed_fixture(bad)
+                with patch.object(current,'fixture',return_value=bad),self.assertRaises(ValueError):current.addition(tag,'ui_choose_location','Choose location…',None)
+        raw=(cat.ROOT/'tools/fixtures/current_localization'/current.FIXTURE).read_bytes().decode('utf-8')
+        self.assertEqual(current.reviewed_fixture(),current.validated_fixture_text(raw))
+        for corrupted in (raw+' ',raw.replace('accepted_delta','forged',1)):
+            with self.assertRaises(ValueError):current.validated_fixture_text(corrupted)
+        first=current.cohort();first['sr-Cyrl']['values']['ui_keep_editing23']['target']='forged'
+        self.assertNotEqual(first,current.cohort())
+        reviewed=current.reviewed_fixture();reviewed['scope']='forged'
+        self.assertNotEqual(reviewed,current.reviewed_fixture())
 if __name__=='__main__':unittest.main()

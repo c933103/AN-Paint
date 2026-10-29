@@ -42,14 +42,8 @@ class SerbianPriorityDeltaWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/serbian_priority_delta_wording.json").readText())
-            .getJSONObject("locales")
-    }
-    private fun row(tag: String, key: String): JSONObject {
-        val locale = fixture.getJSONObject(tag)
-        return locale.getJSONObject("values").optJSONObject(key) ?: locale.getJSONObject("context").getJSONObject(key)
-    }
+    private val fixture by lazy { SerbianPriorityDeltaExpectations.fixture() }
+    private fun row(tag: String,key: String) = SerbianPriorityDeltaExpectations.row(fixture,tag,key)
     private fun expected(tag: String, key: String) = row(tag,key).getString("display")
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
@@ -84,7 +78,7 @@ class SerbianPriorityDeltaWordingTest {
     }
 
     @Test fun everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
-        val values=fixture.getJSONObject(tag).getJSONObject("values")
+        val values=fixture.getJSONObject("locales").getJSONObject(tag).getJSONObject("values")
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
         for(key in values.keys()) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
@@ -254,4 +248,29 @@ class SerbianPriorityDeltaWordingTest {
         }} finally {bitmap.recycle()}
     }
 
+    @Test fun finiteFixtureRejectsCoordinatedTargetsDisplaysMetadataAndPreviousMutations() {
+        val helper=SerbianPriorityDeltaExpectations
+        for(tag in listOf("sr-Cyrl","sr-Latn")) {
+            for(mutation in listOf("target-display","display","attributes","source","review-status","held","previous","missing-previous","scope","context")) {
+                val bad=helper.fixture();val locale=bad.getJSONObject("locales").getJSONObject(tag)
+                val row=locale.getJSONObject("values").getJSONObject("ui_choose_location")
+                when(mutation) {
+                    "target-display" -> {row.put("target","\"forged\"");row.put("display","forged")}
+                    "display" -> row.put("display","forged")
+                    "attributes" -> row.getJSONObject("attributes").put("name","wrong")
+                    "source" -> row.put("source","forged")
+                    "review-status" -> row.put("review_status","retained")
+                    "held" -> locale.remove("held_absent")
+                    "previous" -> row.put("previous","forged")
+                    "missing-previous" -> row.remove("previous")
+                    "scope" -> bad.put("scope","full language certified")
+                    "context" -> locale.getJSONObject("context").getJSONObject("ui_save").put("display","forged")
+                }
+                assertThrows("$tag/$mutation",AssertionError::class.java) {helper.row(bad,tag,"ui_choose_location")}
+            }
+            val detached=helper.row(helper.fixture(),tag,"ui_choose_location")
+            detached.put("target","forged")
+            assertNotEquals(detached.getString("target"),helper.row(helper.fixture(),tag,"ui_choose_location").getString("target"))
+        }
+    }
 }
