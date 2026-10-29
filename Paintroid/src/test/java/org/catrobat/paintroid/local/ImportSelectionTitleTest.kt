@@ -163,10 +163,13 @@ class ImportSelectionTitleTest {
 
     @Test fun nynorskAnimationWarningsRetainUncertainAndMixedCountSemanticsInRealDialogs() {
         language("nn")
+        val lowerBound = String.format(Locale.forLanguageTag("nn"),
+            RecoveredTrioPriorityExpectations.display("nn","formats22_at_least_frames"),2)
+        assertEquals(lowerBound,ui(R.string.formats22_at_least_frames,2))
         var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
         cancel(warning("Opna stillbilete", "Dette GIF-biletet er for komplekst til å stadfesta om det har fleire biletruter. AN Paint opnar berre eit stillbilete og tek ikkje vare på nokon animasjon.", "Opna stillbilete"), file)
         file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
-        cancel(warning("Animert bilete", "Dette GIF-biletet har at least 2 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nBerre den første biletruta vert importert. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete"), file)
+        cancel(warning("Animert bilete", "Dette GIF-biletet har $lowerBound biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nBerre den første biletruta vert importert. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete"), file)
         file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
         val dialog = warning("Animert bilete", "Dette APNG-biletet har 3 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nDette PNG-biletet har eit eige standardbilete. Det vert importert i staden for dei animerte biletrutene. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete")
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
@@ -179,7 +182,7 @@ class ImportSelectionTitleTest {
     }
 
     @Test fun danishAndNorwegianAnimationWarningsUseReviewedBodiesAndKeepRealDecisionSemantics() {
-        val values = JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText())
+        val values = NordicPriorityExpectations.project(JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText()))
             .getJSONObject("values")
         for (tag in listOf("da", "no")) {
             language(tag)
@@ -189,9 +192,11 @@ class ImportSelectionTitleTest {
             val animated = expected("formats22_animation_title")
             var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
             cancel(warning(open, formatted("formats22_animation_unknown", "GIF"), open), file)
-            assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
+            val lowerBound = String.format(Locale.forLanguageTag(tag),
+                NordicPriorityExpectations.display(tag, "formats22_at_least_frames"), 2)
+            assertEquals(lowerBound, ui(R.string.formats22_at_least_frames, 2))
             file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
-            cancel(warning(animated, formatted("formats22_animation_message", "GIF", "at least 2") +
+            cancel(warning(animated, formatted("formats22_animation_message", "GIF", lowerBound) +
                 "\n\n" + expected("formats22_animation_still"), open), file)
             file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
             val dialog = warning(animated, formatted("formats22_animation_message", "APNG", "3") +

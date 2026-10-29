@@ -47,13 +47,23 @@ class CroatianBosnianP0WordingTest {
         JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_p0_wording.json").readText())
     }
 
-    // Only this batch's simply quote-wrapped reviewed values use this decoder.
-    // 214 inherited values/attributes remain unchanged; one label has separate review.
-    private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
-        .getJSONObject(key).getString(tag).removeSurrounding("\"")
-
-    private fun preserved(tag: String, key: String) = fixture.getJSONObject("preserved_values")
-        .getJSONObject(tag).getJSONObject(key).getString("value").removeSurrounding("\"")
+    private val priority by lazy {
+        JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_macedonian_priority_wording.json").readText()).getJSONObject("locales")
+    }
+    private fun priorityDisplay(tag:String,key:String)=priority.getJSONObject(tag).getJSONObject("values").getJSONObject(key).getString("display")
+    private fun successor(tag:String,key:String,previous:String,source:String?=null):String {
+        val row=priority.getJSONObject(tag).getJSONObject("values").optJSONObject(key) ?: return previous.removeSurrounding("\"")
+        if(!row.getBoolean("changed")) return previous.removeSurrounding("\"")
+        assertEquals("$tag/$key previous complete value",previous,row.getString("previous"))
+        if(source!=null) assertEquals("$tag/$key English binding",source,row.getString("source"))
+        return row.getString("display")
+    }
+    private fun expected(tag: String, key: String):String {
+        val values=fixture.getJSONObject("values").getJSONObject(key)
+        return successor(tag,key,values.getString(tag),values.getString("default"))
+    }
+    private fun preserved(tag: String, key: String) = successor(tag,key,
+        fixture.getJSONObject("preserved_values").getJSONObject(tag).getJSONObject(key).getString("value"))
 
     private fun ditherLabel(tag: String) = if (tag == "hr")
         fixture.getJSONObject("dither_label_successor").getString("value").removeSurrounding("\"")
@@ -75,7 +85,26 @@ class CroatianBosnianP0WordingTest {
 
     private fun formatLabel(tag: String) = preserved(tag, "save20_file_format")
 
-    private fun saveTitle(tag: String) = if (tag == "hr") "Save as…" else preserved(tag, "save20_title")
+    private fun saveTitle(tag: String) = priorityDisplay(tag,"save20_title")
+
+    private fun chooseLocation(tag: String): String {
+        val key = "ui_choose_location"
+        val row = priority.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
+        val expected = when (tag) {
+            "hr" -> "Odaberi lokaciju…"
+            "bs" -> "Izaberi lokaciju…"
+            else -> error("Unreviewed location locale: $tag")
+        }
+        assertEquals("Choose location…", row.getString("source"))
+        assertTrue(row.has("previous") && row.isNull("previous"))
+        assertTrue(row.getBoolean("changed"))
+        val attributes = row.getJSONObject("attributes")
+        assertEquals(setOf("name"), attributes.keys().asSequence().toSet())
+        assertEquals(key, attributes.getString("name"))
+        assertEquals("\"$expected\"", row.getString("target"))
+        assertEquals(expected, row.getString("display"))
+        return expected
+    }
 
     private fun awaitUi(label: String, ready: () -> Boolean) {
         val until = System.nanoTime() + TimeUnit.SECONDS.toNanos(3)
@@ -164,7 +193,7 @@ class CroatianBosnianP0WordingTest {
         }
     }
 
-    @Test fun all78CompiledValuesPerLocaleMatchWhileHeldAndP1FallbacksRemainEnglish() = forEachLocale { tag, activity ->
+    @Test fun all78CompiledValuesKeepExplicitSuccessorsWhileHeldFallbacksRemainEnglish() = forEachLocale { tag, activity ->
         val values = fixture.getJSONObject("values")
         assertEquals(78, values.length())
         val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
@@ -179,13 +208,13 @@ class CroatianBosnianP0WordingTest {
         // paired warning oracle and its P1 companion are not expanded by this test.
         assertEquals(expected(tag, "ui_assembly_source_memory_floor"), ui(R.string.ui_assembly_source_memory_floor))
         assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
-        assertEquals("Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+        assertEquals(priorityDisplay(tag,"ui_no_resize_fits_decoder_memory"),
             ui(R.string.ui_no_resize_fits_decoder_memory))
         assertEquals(ditherLabel(tag), ui(R.string.save20_dither))
         assertEquals(formatLabel(tag), ui(R.string.save20_file_format))
-        assertEquals("Load image…", ui(R.string.ui_load_image))
+        assertEquals(priorityDisplay(tag,"ui_load_image"), ui(R.string.ui_load_image))
         assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
-        assertEquals("Choose location…", ui(R.string.ui_choose_location))
+        assertEquals(priorityDisplay(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
         assertEquals("PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
             ui(R.string.formats22_derived_exported, "PNG"))
         assertEquals("Save as PNG", ui(R.string.ui_save_as, "PNG"))
@@ -327,7 +356,7 @@ class CroatianBosnianP0WordingTest {
                 val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
                 assertDistinctFormatAndFilenameControls(root, tag)
                 assertEquals(formatLabel(tag), spinner.contentDescription.toString())
-                assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(chooseLocation(tag), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(preserved(tag, "ui_cancel"),
                     dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 fun select(format: ImageFormat, key: String) {
@@ -451,7 +480,7 @@ class CroatianBosnianP0WordingTest {
                 assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
                     else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(dialog).title.toString())
                 assertTrue(displayed.contains(formatLabel(tag)))
-                assertEquals("Choose location…", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(chooseLocation(tag), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(preserved(tag, "ui_cancel"), dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
                 shadowOf(Looper.getMainLooper()).idle()

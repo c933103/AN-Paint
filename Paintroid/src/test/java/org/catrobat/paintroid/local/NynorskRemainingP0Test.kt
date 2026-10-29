@@ -33,8 +33,8 @@ class NynorskRemainingP0Test {
     private val fixture by lazy {
         JSONObject(File("../tools/fixtures/current_localization/nynorsk_p0_remaining_wording.json").readText())
     }
-    private fun expected(key: String) = fixture.getJSONObject("values").getJSONObject(key)
-        .getString("nn").removeSurrounding("\"")
+    private fun expected(key: String) = RecoveredTrioPriorityExpectations.current("nn",key,
+        fixture.getJSONObject("values").getJSONObject(key).getString("nn")).removeSurrounding("\"")
 
     @Before fun useNynorsk() {
         beforeResources = PaintApplication.currentResources
@@ -54,10 +54,10 @@ class NynorskRemainingP0Test {
             assertNotEquals(key, 0, id)
             assertEquals(key, expected(key), nynorsk.getString(id))
         }
-        assertEquals("Load image…", ui(R.string.ui_load_image))
-        assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
+        assertEquals(RecoveredTrioPriorityExpectations.display("nn","ui_load_image"), ui(R.string.ui_load_image))
+        assertEquals(String.format(Locale.forLanguageTag("nn"),RecoveredTrioPriorityExpectations.display("nn","formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
         assertEquals("Save as PNG…", ui(R.string.ui_save_as_png))
-        assertEquals("Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.", ui(R.string.ui_no_resize_fits_decoder_memory))
+        assertEquals(RecoveredTrioPriorityExpectations.display("nn","ui_no_resize_fits_decoder_memory"), ui(R.string.ui_no_resize_fits_decoder_memory))
         assertEquals(expected("ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
     }
 

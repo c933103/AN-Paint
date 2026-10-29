@@ -1,9 +1,14 @@
+from nynorsk_belarusian_albanian_priority_expectations import MEMORY_ADDITIONS as NN_BE_SQ_ADDITIONS, require_addition as nn_be_sq_row
+from thai_priority_expectations import MEMORY_ADDITIONS as THAI_ADDITIONS, current_row as thai_row
+from hindi_gujarati_priority_expectations import MEMORY_ADDITIONS as HI_GU_ADDITIONS, current_row as hi_gu_row
 """Current English expectations and the pending two-term review queue.
 
 Historical paired-language fixtures stay unchanged. Default-English and explicitly receipt-bound current successors are selected here;
 no historical fixture or receipt is rewritten.
 """
+from nordic_priority_expectations import MEMORY_ADDITIONS as NORDIC_ADDITIONS, current_row as nordic_row
 import json
+from hr_bs_mk_priority_expectations import MEMORY_ADDITIONS as HR_BS_MK_ADDITIONS, addition as hr_bs_mk_addition
 from exact_script_priority_expectations import MEMORY_ADDITIONS as EXACT_SCRIPT_ADDITIONS, require_addition as exact_script_addition
 from sindhi_nigerian_pidgin_tok_pisin_priority_expectations import require_shared_row as sd_pcm_tpi_shared_row
 from sorani_uyghur_tatar_priority_expectations import require_shared_row as ckb_ug_tt_shared_row
@@ -76,6 +81,11 @@ fixture corruption. This selects explicitly bound paired and single-key
 expectations, not a catalogue generator, review result or reconstruction of an
 old source snapshot.
 """
+    if (tag,key) in HR_BS_MK_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        if old is not None:raise ValueError('Historical HR/BS/MK warning must remain absent')
+        return hr_bs_mk_addition(tag,key,queue['keys'][key]['corrected_english'],historical_value)
     if (tag,key) in NL_DE_MEMORY_CORRECTIONS:
         return nl_de_successor(tag,key,historical_value)
     if key not in KEYS:
@@ -203,6 +213,24 @@ old source snapshot.
         if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
             raise ValueError('Kannada/Malayalam warning source or attributes differ: '+tag+'/'+key)
         return row['target']
+    if (tag,key) in HI_GU_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=hi_gu_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Hindi/Gujarati warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Hindi/Gujarati warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in THAI_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=thai_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Thai replacement warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Thai replacement warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
     if (tag,key) in AS_KM_LO_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
@@ -245,6 +273,24 @@ old source snapshot.
         row=so_wo_ht_row(tag,key)
         return require_so_wo_ht_addition(tag,key,queue['keys'][key]['corrected_english'],
             historical_value=historical_value,already_present=old is not None,row=row)
+    if (tag,key) in NORDIC_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=nordic_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical Nordic warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('Nordic warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
+    if (tag,key) in NN_BE_SQ_ADDITIONS:
+        queue=review_record()
+        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
+        row=nn_be_sq_row(tag,key)
+        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Historical NN/BE/SQ warning addition must be absent: '+tag+'/'+key)
+        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
+            raise ValueError('NN/BE/SQ warning source or attributes differ: '+tag+'/'+key)
+        return row['target']
     if (tag,key) in NE_PA_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']

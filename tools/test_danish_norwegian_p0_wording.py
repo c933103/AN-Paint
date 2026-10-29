@@ -1,4 +1,5 @@
 """156 bounded DA/NO P0 whole values; not native, complete-locale or runtime acceptance."""
+from nordic_priority_expectations import current_fixture, added_keys, display, current_row
 from collections import Counter
 from copy import deepcopy
 import json
@@ -80,7 +81,7 @@ def require_reviewed_string(xml, key, expected, constraints, source):
 class DanishNorwegianP0Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = require_wording_shape(fixture('danish_norwegian_p0_wording.json'), KEYS, TAGS)
+        cls.data = require_wording_shape(current_fixture('danish_norwegian_p0_wording.json'), KEYS, TAGS)
         cls.xml = {tag: (catalogues.RES / folder / 'strings.xml').read_text(encoding='utf-8')
                    for tag, folder in [('default', 'values'), ('da', 'values-da'), ('no', 'values-no')]}
         cls.roots = {tag: ET.fromstring(xml) for tag, xml in cls.xml.items()}
@@ -164,7 +165,7 @@ class DanishNorwegianP0Tests(unittest.TestCase):
                         require_reviewed_string(ET.tostring(root, encoding='unicode'),
                             key, changed, constraints, source)
 
-    def test_all_127_and_115_prior_values_and_catalogue_identity_stay_unchanged(self):
+    def test_all_prior_values_keep_exact_finite_successors_and_catalogue_identity(self):
         self.assertEqual({'da', 'no'}, set(self.data['preserved_values']))
         from test_translations import SCOPED_TAGS
         for tag, count in [('da', 127), ('no', 115)]:
@@ -173,20 +174,20 @@ class DanishNorwegianP0Tests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string(self.xml[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(count + 78, len(self.roots[tag]))
+            self.assertEqual(count + 78 + len(added_keys(tag)), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
-            self.assertEqual('Image format', self.roots[tag].find("./string[@name='save20_file_format']").text)
+            self.assertEqual(current_row(tag,'save20_file_format')['target'], self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertIn('no', catalogues.offered_tags())
         self.assertNotIn('nb', catalogues.offered_tags())
         self.assertEqual(59, len(SCOPED_TAGS))
         self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
 
-    def test_five_holds_each_and_unreviewed_neighbor_fallbacks_remain_absent(self):
+    def test_five_holds_and_only_still_unreviewed_neighbors_remain_absent(self):
         self.assertEqual(HOLDS, set(self.data['held_absent']))
         neighbors = {'ui_no_resize_fits_decoder_memory', 'formats22_at_least_frames',
                      'ui_load_image', 'ui_choose_location', 'ui_image_assembly'}
         for tag in ('da', 'no'):
-            for key in HOLDS | neighbors:
+            for key in HOLDS | (neighbors - added_keys(tag)):
                 self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
@@ -197,12 +198,12 @@ class DanishNorwegianP0Tests(unittest.TestCase):
             value = lambda key: self.data['values'][key][tag][1:-1]
             prior = self.data['preserved_values'][tag]
             recovery = value('ui_recovery_copy_exported_extract_canvas_png_from_the')
-            self.assertIn(menu + ' > Load image…', recovery)
+            self.assertIn(menu + ' > ' + display(tag,'ui_load_image'), recovery)
             self.assertIn('canvas.png', recovery);self.assertIn('ZIP', recovery);self.assertIn(optional, recovery)
             paused = value('ui_autosave_is_paused_to_protect_that_draft_use')
             self.assertIn(menu + ' → ' + value('ui_export_recovery_copy'), paused)
             self.assertIn(menu + ' → ' + prior['save20_title']['value'][1:-1], paused)
-            self.assertIn(prior['save20_file_format']['value'] + ': PNG / JPEG', paused)
+            self.assertIn(display(tag,'save20_file_format') + ': PNG / JPEG', paused)
             kept = value('ui_a_separate_recovery_copy_has_been_kept_use')
             self.assertIn(menu + ' > ' + value('ui_export_recovery_copy'), kept)
             self.assertIn('canvas.png', kept);self.assertIn('ZIP', kept)
@@ -223,7 +224,7 @@ class DanishNorwegianP0Tests(unittest.TestCase):
             self.assertEqual({'%1$s': 1}, catalogues.placeholders(value('ui_saved')))
             self.assertEqual({'%1$s': 1}, catalogues.placeholders(value('ui_the_image_was_saved_but_android_could_not')))
 
-    def test_single_P0_warnings_have_no_paired_acceptance_or_rewritten_history(self):
+    def test_single_P0_history_stays_frozen_and_P1_has_separate_successor(self):
         key = 'ui_assembly_source_memory_floor';other = 'ui_no_resize_fits_decoder_memory'
         self.assertEqual({(tag, key) for tag in ('nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs')}, warnings.SINGLE_KEY_EXPECTATIONS)
         self.assertEqual({'tags': ['da', 'no'], 'key': key, 'historical_value': None,
@@ -236,7 +237,7 @@ class DanishNorwegianP0Tests(unittest.TestCase):
                 self.assertIsNone(old['terms'][term]['value'])
                 with self.assertRaises(ValueError):accepted_warning(term, tag)
             self.assertEqual(self.data['values'][key][tag], warnings.current_source_expectation(key, tag, None))
-            self.assertIsNone(warnings.current_source_expectation(other, tag, None))
+            self.assertEqual(current_row(tag,other)['target'], warnings.current_source_expectation(other, tag, None))
             with self.assertRaises(ValueError):warnings.current_source_expectation(key, tag, 'invented history')
             changed = deepcopy(queue);next(row for row in changed['options'] if row['tag'] == tag)['terms'][key]['value'] = 'invented history'
             with patch.object(warnings, 'review_record', return_value=changed), self.assertRaises(ValueError):

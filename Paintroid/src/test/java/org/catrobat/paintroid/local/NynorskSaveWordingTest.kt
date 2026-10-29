@@ -64,7 +64,7 @@ class NynorskSaveWordingTest {
         assertEquals("Eksporter som…", ui(R.string.ui_export_as23))
         // This neighbor now has its own bounded P0 review; unrelated fallback stays explicit.
         assertEquals("Lagra og del", ui(R.string.ui_save_and_share_41edb4))
-        assertEquals("Choose location…", ui(R.string.ui_choose_location))
+        assertEquals(RecoveredTrioPriorityExpectations.display("nn","ui_choose_location"), ui(R.string.ui_choose_location))
     }
 
     @Test fun actualSaveExportAndSharePanelsShowDistinctWholeMessagesAndCancelWithoutSaving() {

@@ -9,6 +9,7 @@ from current_localization_contracts import fixture, require_string, require_word
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
+from nynorsk_belarusian_albanian_priority_expectations import current_fixture, display, added_keys, current_row
 
 KEYS = frozenset(['formats22_animation_message', 'formats22_animation_poster', 'formats22_animation_still', 'formats22_animation_title', 'formats22_animation_unknown', 'formats22_ascii_description', 'formats22_open_still', 'formats22_pdf_raster_hint', 'gallery_credit_could_not_save', 'gallery_credit_too_large', 'legacy_credits_unreadable', 'save20_destination_error', 'save20_encoding_budget', 'save20_file_format', 'save20_gif_description', 'save20_invalid_name', 'save20_lossy_quality_description', 'save20_unsupported_image_colour', 'ui_a_separate_recovery_copy_has_been_kept_use', 'ui_an_assembly_source_image_is_missing', 'ui_assembly_saved', 'ui_assembly_source_memory_floor', 'ui_autosave_failed_use_save', 'ui_autosave_image_encoding_failed', 'ui_autosave_is_paused_to_protect_that_draft_use', 'ui_autosave_metadata_is_missing', 'ui_autosave_paused_use_save', 'ui_autosave_pixels_are_missing', 'ui_autosave_pixels_could_not_be_read', 'ui_autosave_selection_encoding_failed', 'ui_cannot_create_the_undo_cache_free_some_device', 'ui_clear_all', 'ui_clear_image', 'ui_could_not_export_the_recovery_copy', 'ui_could_not_open_image', 'ui_could_not_save_the_assembly', 'ui_could_not_store_the_assembly', 'ui_d_d_pixels_2f_mp_exceeds_the_current', 'ui_draft_not_saved_yet', 'ui_draft_restored', 'ui_draft_saved', 'ui_export_recovery_copy', 'ui_export_recovery_copy_144b8a', 'ui_higher_quality_usually_makes_a_larger_file_lossless', 'ui_history_unavailable34', 'ui_invalid_autosave_metadata', 'ui_keeps_pixels_at_the_top_left_smaller_canvas', 'ui_not_enough_memory_for_this_operation_the_assembly', 'ui_not_enough_memory_to_save_in_this_format', 'ui_png_encoding_failed', 'ui_previous_draft_kept_for_recovery', 'ui_recovered_image', 'ui_recovery_copy_exported_extract_canvas_png_from_the', 'ui_resize_large_image', 'ui_sampled_resize_memory_explanation', 'ui_save_and_share', 'ui_save_and_share_41edb4', 'ui_save_png', 'ui_the_draft_is_saving_try_again_shortly', 'ui_the_encoder_did_not_finish', 'ui_the_image_was_saved_but_android_could_not', 'ui_the_previous_draft_could_not_be_moved_to', 'ui_the_previous_draft_could_not_be_preserved_separately', 'ui_the_previous_draft_could_not_be_restored', 'ui_the_previous_draft_needs_more_memory_to_reopen', 'ui_the_saved_assembly_could_not_be_opened', 'ui_the_selected_location_is_not_writable', 'ui_the_trim_would_remove_the_entire_image', 'ui_the_undo_cache_is_damaged', 'ui_there_is_not_enough_memory_for_this_operation', 'ui_this_location_is_not_writable', 'ui_unexpected_data_in_the_undo_cache'])
 
@@ -16,7 +17,7 @@ KEYS = frozenset(['formats22_animation_message', 'formats22_animation_poster', '
 class NynorskRemainingP0Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = require_wording_shape(fixture('nynorsk_p0_remaining_wording.json'), KEYS, {'default', 'nn'})
+        cls.data = require_wording_shape(current_fixture('nynorsk_p0_remaining_wording.json'), KEYS, {'default', 'nn'})
         cls.xml = {tag: (catalogues.RES / folder / 'strings.xml').read_text(encoding='utf-8')
                    for tag, folder in [('default', 'values'), ('nn', 'values-b+nn')]}
         cls.roots = {tag: ET.fromstring(xml) for tag, xml in cls.xml.items()}
@@ -46,26 +47,31 @@ class NynorskRemainingP0Tests(unittest.TestCase):
                 with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
                     require_string(ET.tostring(root, encoding='unicode'), key, self.data['values'][key]['nn'], self.data['constraints'][key]['nn'])
 
-    def test_prior_118_values_aliases_attributes_and_global_scope_stay_exact(self):
+    def test_prior_118_values_allow_only_exact_reviewed_forward_successors(self):
         preserved = self.data['preserved_values']
         self.assertEqual(118, len(preserved));self.assertFalse(set(preserved) & KEYS)
         for key, expected in preserved.items():
             with self.subTest(key=key):
                 require_string(self.xml['nn'], key, expected['value'], {'attributes': expected['attributes']})
-        self.assertEqual(190, len(self.roots['nn']))
+        self.assertEqual(190+len(added_keys('nn')), len(self.roots['nn']))
         from test_translations import SCOPED_TAGS
         self.assertNotIn('nn', SCOPED_TAGS)
 
     def test_five_holds_and_unreviewed_neighbor_fallbacks_remain_absent(self):
         holds = {'formats22_derived_exported', 'ui_save_as', 'ui_save_as_jpeg', 'ui_save_as_jpeg_xl', 'ui_save_as_png'}
         self.assertEqual(holds, set(self.data['held_absent']))
-        for key in holds | {'ui_no_resize_fits_decoder_memory', 'formats22_at_least_frames', 'ui_load_image', 'ui_choose_location', 'ui_image_assembly'}:
+        for key in holds | {'ui_image_assembly'}:
             self.assertIsNone(self.roots['nn'].find(f"./string[@name='{key}']"), key)
+
+        for key in ('ui_no_resize_fits_decoder_memory','formats22_at_least_frames','ui_load_image','ui_choose_location'):
+            row=current_row('nn',key)
+            self.assertIsNone(row['previous_target'])
+            require_string(self.xml['nn'],key,row['target'],{'attributes':row['attributes']})
 
     def test_recovery_and_animation_compositions_keep_actual_commands_and_quantity(self):
         value = lambda key: self.data['values'][key]['nn'].strip('"')
         recovery = value('ui_recovery_copy_exported_extract_canvas_png_from_the')
-        self.assertIn('Fil > Load image…', recovery)
+        self.assertIn('Fil > '+display('nn','ui_load_image'), recovery)
         self.assertIn('canvas.png', recovery);self.assertIn('ZIP', recovery)
         self.assertIn('eit eventuelt flytande utval.', recovery)
         paused = value('ui_autosave_is_paused_to_protect_that_draft_use')
@@ -84,7 +90,7 @@ class NynorskRemainingP0Tests(unittest.TestCase):
             self.assertIsNone(old['terms'][k]['value'])
             with self.assertRaises(ValueError):accepted_warning(k, 'nn')
         self.assertEqual(self.data['values'][key]['nn'], warnings.current_source_expectation(key, 'nn', None))
-        self.assertIsNone(warnings.current_source_expectation(other, 'nn', None))
+        self.assertEqual(current_row('nn',other)['target'],warnings.current_source_expectation(other, 'nn', None))
         with self.assertRaises(ValueError):warnings.current_source_expectation(key, 'nn', 'invented old value')
         changed = deepcopy(queue);next(x for x in changed['options'] if x['tag']=='nn')['terms'][key]['value'] = 'invented history'
         with patch.object(warnings, 'review_record', return_value=changed), self.assertRaises(ValueError):

@@ -77,6 +77,30 @@ class TaggedColourImportTest {
         } finally { file.delete() }
     }
 
+    @Test fun recoveredHiGuTaggedAdditionsRejectCoordinatedFixtureAndDuplicateMutations() {
+        for(tag in listOf("hi","gu")) for(field in listOf("accepted","attributes","predecessors")) {
+            val data=HiGuPriorityExpectations.fixture()
+            data.getJSONObject("locales").getJSONObject(tag).getJSONObject(field).put("save20_unsupported_image_colour","forged")
+            assertThrows(AssertionError::class.java) { HiGuPriorityExpectations.addTagged(JSONObject(),data) }
+        }
+        for(tag in listOf("hi","gu")) {
+            val expected=JSONObject().put(tag,"already present")
+            assertThrows(AssertionError::class.java) { HiGuPriorityExpectations.addTagged(expected,HiGuPriorityExpectations.fixture()) }
+        }
+    }
+
+    @Test fun replacementThaiTaggedAdditionsRejectCoordinatedFixtureAndDuplicateMutations() {
+        for(tag in listOf("th")) for(field in listOf("accepted","attributes","predecessors")) {
+            val data=ThaiPriorityExpectations.fixture()
+            data.getJSONObject("locales").getJSONObject(tag).getJSONObject(field).put("save20_unsupported_image_colour","forged")
+            assertThrows(AssertionError::class.java) { ThaiPriorityExpectations.addTagged(JSONObject(),data) }
+        }
+        for(tag in listOf("th")) {
+            val expected=JSONObject().put(tag,"already present")
+            assertThrows(AssertionError::class.java) { ThaiPriorityExpectations.addTagged(expected,ThaiPriorityExpectations.fixture()) }
+        }
+    }
+
     @Test fun explicitSrgbControlsAndRecheckedIconEntryKeepProfileProtection() {
         val file = File.createTempFile("srgb-import-", ".bin", context.cacheDir)
         try {
@@ -1480,6 +1504,7 @@ class TaggedColourImportTest {
         assertEquals(140, expected.length())
         addExactScript(expected,exactScriptExpectations())
         assertEquals(141, expected.length())
+        assertEquals(30, 171 - expected.length()) // exact-script stage, before later reviewed additions
         assertTrue(expected.has("bg")); assertTrue(expected.has("bn")); assertTrue(expected.has("nn"))
         assertTrue(expected.has("da")); assertTrue(expected.has("no"))
         assertTrue(expected.has("ca")); assertTrue(expected.has("ro"))
@@ -1492,6 +1517,41 @@ class TaggedColourImportTest {
         assertEquals("ca", historicalInheritedCatalogues["ca-ES-valencia"])
         val inheritedCatalogues = historicalInheritedCatalogues.filterKeys { it != "ca-ES-valencia" }
         assertTrue(inheritedCatalogues.keys.none { expected.has(it) })
+        val exactScriptStageTags = expected.keys().asSequence().toSet()
+        val nordic=JSONObject(File("../tools/fixtures/current_localization/nordic_priority_wording.json").readText())
+        val nordicKey="save20_unsupported_image_colour"
+        assertEquals(neutral,nordic.getJSONObject("sources").getJSONObject(nordicKey).getString("source"))
+        assertFalse(expected.has("is"))
+        assertFalse(nordic.getJSONObject("locales").getJSONObject("is").getJSONObject("predecessors").has(nordicKey))
+        expected.put("is",NordicPriorityExpectations.display("is",nordicKey))
+        val recovered=JSONObject(File("../tools/fixtures/current_localization/nynorsk_belarusian_albanian_priority_wording.json").readText())
+        val recoveredKey="save20_unsupported_image_colour"
+        assertEquals(neutral,recovered.getJSONObject("sources").getJSONObject("string/$recoveredKey").getString("source"))
+        for(tag in listOf("be","sq")) {
+            assertFalse(expected.has(tag))
+            assertFalse(recovered.getJSONObject("locales").getJSONObject(tag).getJSONObject("predecessors").has("string/$recoveredKey"))
+            expected.put(tag,RecoveredTrioPriorityExpectations.display(tag,recoveredKey))
+        }
+        val macedonian=JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_macedonian_priority_wording.json").readText())
+            .getJSONObject("locales").getJSONObject("mk").getJSONObject("values").getJSONObject("save20_unsupported_image_colour")
+        assertFalse(expected.has("mk"))
+        assertTrue(macedonian.has("previous") && macedonian.isNull("previous"))
+        assertEquals(neutral,macedonian.getString("source"))
+        assertEquals(setOf("name"),macedonian.getJSONObject("attributes").keys().asSequence().toSet())
+        assertEquals("save20_unsupported_image_colour",macedonian.getJSONObject("attributes").getString("name"))
+        assertEquals(macedonian.getString("target").removeSurrounding("\""),macedonian.getString("display"))
+        expected.put("mk",macedonian.getString("display"))
+        // Finite recovered HI/GU additions after all existing checkpoints.
+        HiGuPriorityExpectations.addTagged(expected,HiGuPriorityExpectations.fixture())
+        ThaiPriorityExpectations.addTagged(expected,ThaiPriorityExpectations.fixture())
+        // The five candidates add this disjoint union, not five standalone totals.
+        val combinedAddedTags = setOf("is", "hi", "gu", "be", "sq", "th", "mk")
+        assertEquals(7, combinedAddedTags.size)
+        assertTrue(combinedAddedTags.intersect(exactScriptStageTags).isEmpty())
+        assertEquals(exactScriptStageTags + combinedAddedTags, expected.keys().asSequence().toSet())
+        assertEquals(141 + combinedAddedTags.size, expected.length())
+        val expectedFallbacks = 171 - expected.length()
+        assertEquals(23, expectedFallbacks)
         var inherited = 0
         var fallbacks = 0
         assertTrue(AppLanguage.tags(context).containsAll(expected.keys().asSequence().toList()))
@@ -1514,6 +1574,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(0, inherited)
-        assertEquals(30, fallbacks) // 171 offered - 141 direct, including direct Valencian and Tatar Latin; no remaining inherited catalogue.
+        assertEquals(expectedFallbacks, fallbacks) // 171 offered - 148 direct; no inherited catalogue.
     }
 }
