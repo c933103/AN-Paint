@@ -161,14 +161,27 @@ without unexpected, missing, ignored, failed or aborted methods. A zero ADB exit
 alone is insufficient. Artifact upload runs even on failure, but cancellation
 can leave partial evidence. Keep passed, failed, timed out and unrun distinct.
 Mandatory dialog and vertical exports are pulled and fully validated before
-best-effort bulk logcat collection. Each pull still runs once within its original
-15-second deadline plus 3-second kill grace; logcat keeps 10 seconds plus 3 seconds.
-A failed/partial export keeps the job failed and its raw files available, while a
-logcat failure remains diagnostic only. Collection exit codes and, when available,
-the last 64 KiB of the existing runner ADB server log are retained before shutdown.
-There is no screenshot recapture, ADB restart or automatic collection retry. This
-ordering avoids exposing mandatory evidence to an earlier diagnostic transport
-failure; it does not diagnose or claim to fix an underlying emulator disconnect.
+best-effort bulk logcat collection. Each export retains one outer 15-second
+collection deadline plus 3-second kill grace; logcat keeps 10 seconds plus 3 seconds.
+A failed transfer may passively await the same emulator and re-pull once into a
+fresh isolated directory, using only the original remaining monotonic deadline.
+An initially offline identity query can instead consume that same single recovery
+allowance; it does not permit another recovery after a later transfer failure.
+Serial, original live emulator PID, boot UUID, SDK and ABI must still match;
+startup records the boot UUID within its existing readiness deadline. Both raw
+attempts and command statuses are retained, and failed bytes are never merged
+into the accepted export. The existing ZIP, digest, screenshot and reachability
+validators still run once; a validation failure is never retried. APK/source/run
+identity and composition checks remain unchanged. An earlier instrumentation
+failure remains failed even if evidence collection recovers.
+There is no screenshot recapture, instrumentation retry, explicit ADB server
+restart/reconnect command, privilege change or larger collection budget. The
+standard SDK client may auto-start an absent server on the isolated runner;
+server-process continuity is not promised, and emulator/session identity is
+revalidated before accepting any export. This handles an
+observed transient read-only transfer interruption, not its underlying ADB cause.
+Collection exit codes and the existing runner ADB server log's last 64 KiB are
+retained when available before shutdown; logcat failure remains diagnostic only.
 
 Actions artifacts expire after 14 days; preserve needed final evidence on a
 separate durable ref before expiration. Never include keys, credentials or

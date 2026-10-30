@@ -1,4 +1,5 @@
 """Complete source/target/typed scope guards plus actual composition contracts."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json
@@ -3407,8 +3408,8 @@ class KannadaMalayalamFilipinoPriorityWordingTests(unittest.TestCase):
         self.assertEqual(341,len(priority_ids()))
         for tag,locale in self.data['locales'].items():
             actual={e.tag+'/'+e.get('name')for e in self.roots[tag]}
-            self.assertEqual(set(locale['catalogue_identities']),actual);self.assertEqual(len(actual),len(self.roots[tag]))
-            self.assertEqual({'string/'+key for key in HELD_ABSENT[tag]},priority_ids()-actual)
+            self.assertEqual(set(locale['catalogue_identities'])|{'string/'+k for k in RESIDUAL_KEYS.get(tag,set())},actual);self.assertEqual(len(actual),len(self.roots[tag]))
+            self.assertEqual({'string/'+key for key in HELD_ABSENT[tag]-RESIDUAL_KEYS.get(tag,set())},priority_ids()-actual)
             for key,target in locale['accepted'].items():
                 with self.subTest(tag=tag,key=key):require_complete(self.roots[tag],key,self.data['sources'][key],target,locale['target_attribute_exceptions'].get(key,{'name':key}))
 
@@ -3477,7 +3478,7 @@ class KannadaMalayalamFilipinoPriorityWordingTests(unittest.TestCase):
             for key,row in locale['outside_review'].items():
                 source={'type':row['type'],'source':row['target']}
                 require_complete(root,key,source,row['target'],row['attributes'])
-            for key in HELD_ABSENT[tag]:self.assertEqual([],root.findall(f"./string[@name='{key}']"))
+            for key in HELD_ABSENT[tag]:require_residual_or_previous(root,tag,key)
             for key,row in HELD_PRESENT[tag].items():require_complete(root,key,{'type':row['type'],'source':row['target']},row['target'],row['attributes'])
 
     def test_preserved_alias_and_complete_command_references_are_bound_to_controls(self):

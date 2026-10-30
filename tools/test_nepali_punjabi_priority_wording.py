@@ -1,4 +1,5 @@
 """Complete source/target/typed scope guards plus actual composition contracts."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json
@@ -1062,8 +1063,8 @@ class NepaliPunjabiPriorityWordingTests(unittest.TestCase):
         self.assertEqual(341,len(priority_ids()))
         for tag,locale in self.data['locales'].items():
             actual={e.tag+'/'+e.get('name')for e in self.roots[tag]}
-            self.assertEqual(set(locale['catalogue_identities']),actual);self.assertEqual(len(actual),len(self.roots[tag]))
-            self.assertEqual({'string/'+key for key in HOLDS},priority_ids()-actual)
+            self.assertEqual(set(locale['catalogue_identities'])|{'string/'+k for k in RESIDUAL_KEYS.get(tag,set())},actual);self.assertEqual(len(actual),len(self.roots[tag]))
+            self.assertEqual({'string/'+key for key in HOLDS-RESIDUAL_KEYS.get(tag,set())},priority_ids()-actual)
             for key,target in locale['accepted'].items():
                 with self.subTest(tag=tag,key=key):require_complete(self.roots[tag],key,self.data['sources'][key],target,locale['target_attribute_exceptions'].get(key,{'name':key}))
 
@@ -1129,7 +1130,7 @@ class NepaliPunjabiPriorityWordingTests(unittest.TestCase):
             for key,row in locale['outside_review'].items():
                 source={'type':row['type'],'source':row['target']}
                 require_complete(root,key,source,row['target'],row['attributes'])
-            for key in HOLDS:self.assertEqual([],root.findall(f"./string[@name='{key}']"))
+            for key in HOLDS:require_residual_or_previous(root,tag,key)
 
     def test_preserved_alias_and_complete_command_references_are_bound_to_controls(self):
         self.assertEqual(display('ne','ui_save'),display('ne','ui_save_a5d0d9'))

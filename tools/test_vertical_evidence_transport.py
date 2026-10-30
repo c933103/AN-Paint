@@ -215,7 +215,8 @@ class VerticalEvidenceTransportTest(unittest.TestCase):
         for forbidden in ('adoptShellPermissionIdentity','grantRuntimePermission','executeShellCommand','MANAGE_EXTERNAL_STORAGE','WRITE_EXTERNAL_STORAGE'):
             self.assertNotIn(forbidden,source)
         shell=(ROOT/'tools/ci_emulator.sh').read_text()
-        self.assertIn('timeout --kill-after=3s 15s "$adb" pull',shell)
+        self.assertEqual(shell.count('timeout --kill-after=3s 15s python3 tools/pull_device_evidence.py'), 2)
+        self.assertIn('--boot-id "${emulator_boot_id:-}"', shell)
         self.assertIn("rm -rf /sdcard/Download/anpaint-ci-vertical-evidence && test ! -e /sdcard/Download/anpaint-ci-vertical-evidence",shell)
         self.assertNotIn('/sdcard/Android/data/paint.anpaint.android/files/vertical-locale-evidence',shell)
 
