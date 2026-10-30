@@ -6,7 +6,7 @@ from copy import deepcopy
 from pathlib import Path
 from current_localization_contracts import fixture
 NAME='sinhala_burmese_zhuang_priority_wording.json'
-FIXTURE_SHA256='92c0f8eadd3374f82d8761fce44cff52bdd889f22d7cf7453f7172da20960388'
+FIXTURE_SHA256='5dafb2cc67d04e2bd61702c579d8966fd9f417e5eb861c6e0748b2cf27d8bd79'
 
 def validated_fixture_text(text):
     if hashlib.sha256(text.encode()).hexdigest()!=FIXTURE_SHA256:

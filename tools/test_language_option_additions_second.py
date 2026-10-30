@@ -14,6 +14,8 @@ from assamese_khmer_lao_priority_expectations import ASSAMESE_OPTION_STATUS, req
 from language_option_additions import ADDED_TAGS, FIRST_ADDED_TAGS, SECOND_ADDED_TAGS, SECOND_ADDITIONS_PATH
 
 ROOT = Path(__file__).resolve().parents[1]
+BATCHES = json.loads((ROOT / 'tools/fixtures/current_localization/reviewed_priority_batches.json').read_text())
+BATCH_STATUS = 'partial independently reviewed wording; incomplete catalogue'
 EXPECTED = {'pcm': 'Naijá', 'so': 'Soomaaliga', 'as': 'অসমীয়া', 'wo': 'Wolof',
             'ht': 'Kreyòl ayisyen', 'tpi': 'Tok Pisin', 'nv': 'Diné bizaad', 'chr': 'ᏣᎳᎩ',
             'yua': 'Maaya t’aan', 'ch': 'Chamoru',
@@ -45,9 +47,31 @@ class FurtherLanguageOptionTests(unittest.TestCase):
             self.assertEqual(name, by_tag[tag])
             rows = [r for r in options if r['tag'] == tag]
             self.assertEqual(1, len(rows)); self.assertEqual(name, rows[0]['name'])
-            self.assertEqual(SO_WO_HT_OPTION_STATUS if tag in SO_WO_HT_OPTION_TAGS else SANSKRIT_OPTION_STATUS if tag=='sa' else ASSAMESE_OPTION_STATUS if tag=='as' else 'not-started', rows[0]['translation_status'])
+            self.assertEqual(BATCH_STATUS if tag in BATCHES['locales'] else SO_WO_HT_OPTION_STATUS if tag in SO_WO_HT_OPTION_TAGS else SANSKRIT_OPTION_STATUS if tag=='sa' else ASSAMESE_OPTION_STATUS if tag=='as' else 'not-started', rows[0]['translation_status'])
             self.assertEqual('default-English', rows[0]['fallback'])
             self.assertEqual(catalogues.RES / f'values-b+{tag}/strings.xml', catalogues.catalogue_paths()[tag])
+
+    def test_reviewed_batches_exact_values_and_preserved_existing_entries(self):
+        expected_counts = {'ch': 68, 'shn': 156, 'za': 39, 'nv': 12,
+                           'yua': 49, 'qug': 51, 'quh': 53, 'quz': 53}
+        self.assertEqual(expected_counts, {t: len(v['accepted']) for t,v in BATCHES['locales'].items()})
+        self.assertEqual(474, sum(len(v['added']) for v in BATCHES['locales'].values()))
+        self.assertEqual(1, sum(len(v['updated']) for v in BATCHES['locales'].values()))
+        self.assertEqual(6, sum(len(v['unchanged']) for v in BATCHES['locales'].values()))
+        for tag, loc in BATCHES['locales'].items():
+            root = ET.parse(catalogues.catalogue_paths()[tag]).getroot()
+            actual = {n.attrib['name']: {'attributes':dict(n.attrib), 'value': n.text} for n in root}
+            self.assertEqual(len(root),len(actual),tag)
+            self.assertEqual({**loc['existing_unreviewed'], **loc['accepted']}, actual, tag)
+            self.assertEqual(set(loc['accepted']), set(loc['added']) | set(loc['updated']) | set(loc['unchanged']))
+            for key, row in loc['accepted'].items():
+                self.assertEqual([], catalogues.android_string_errors(row['value']), tag+'/'+key)
+                self.assertEqual([], catalogues.format_string_errors(row['value'], row['attributes'].get('formatted') != 'false'), tag+'/'+key)
+            self.assertEqual([], catalogues.validate_catalogue(tag))
+            self.assertTrue(catalogues.validate_catalogue(tag, require_complete=True))
+        self.assertEqual(9, len(BATCHES['locales']['za']['existing_unreviewed']))
+        self.assertNotIn('tdd', BATCHES['locales'])
+        self.assertNotIn('quy', BATCHES['locales'])
 
     def test_principal_varieties_replace_broad_groups_with_exact_scope(self):
         data = json.loads(SECOND_ADDITIONS_PATH.read_text())
@@ -79,6 +103,12 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         self.assertLessEqual(strings, set(defaults)); self.assertLessEqual(plurals, set(default_plurals))
         for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']:
             path = ROOT / row['catalogue']
+            if row['tag'] in BATCHES['locales']:
+                tag = row['tag']
+                self.assertEqual([], catalogues.validate_catalogue(tag))
+                self.assertTrue(catalogues.validate_catalogue(tag, require_complete=True))
+                self.assertEqual('default-English', row['fallback'])
+                continue
             if row['tag'] in SO_WO_HT_OPTION_TAGS:
                 tag=row['tag'];root=require_so_wo_ht_option_successor(row,path.read_text())
                 self.assertEqual([],catalogues.validate_catalogue(tag))

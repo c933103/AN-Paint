@@ -14,7 +14,7 @@ class SinhalaBurmeseZhuangTests(unittest.TestCase):
    self.assertEqual(keys,set(loc['priority']));self.assertEqual(15,len(loc['dependencies']))
    self.assertEqual(set(loc['priority'])|set(loc['dependencies']),set(loc['accepted'])|set(loc['holds']))
    self.assertTrue(set(loc['accepted']).isdisjoint(loc['holds']))
-   self.assertEqual({'si':7,'my':7,'za':351}[tag],len(loc['holds']))
+   self.assertEqual({'si':7,'my':7,'za':312}[tag],len(loc['holds']))
    self.assertEqual({'si':335,'my':301,'za':2}[tag],len(loc['changed']))
    self.assertEqual(set(loc['changed']),set(loc['predecessors']))
    for key in loc['changed']:self.assertNotEqual(loc['predecessors'][key],{'attributes':loc['attributes'][key],'value':loc['accepted'][key]})
