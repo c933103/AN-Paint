@@ -1,10 +1,12 @@
-"""Keep the finite Tajik JVM option expectation aligned with reviewed full displays."""
+"""Finite Tajik option expectations and reviewed partial/fallback resources."""
 import json
 from pathlib import Path
 import re
 import unittest
 import xml.etree.ElementTree as E
 from kazakh_tajik_pashto_priority_expectations import bound_fixture, require_edited_resource
+from language_option_additions import SECOND_ADDITIONS_PATH
+import translation_catalogues as catalogues
 
 ROOT=Path(__file__).resolve().parents[1]
 KEYS=('ui_menu_file','ui_brush','ui_save','language20_translation_note')
@@ -24,18 +26,30 @@ class TajikOptionJvmSuccessorTest(unittest.TestCase):
             expected='assertEquals('+json.dumps(data['values'][key]['display'],ensure_ascii=False)+',wrapped.getString(R.string.'+key+'))'
             self.assertIn(expected,branch)
 
-    def test_exact_combined_successors_preserve_eleven_remaining_fallbacks(self):
-        section=self.section()
-        successors=['as','so','wo','ht','tg','mi','sm','sa','pcm','tpi']
-        self.assertEqual(successors,re.findall(r'(?:if|else if) \(tag == "([^"]+)"\)',section))
-        expected=section.split('val expectedNames=mapOf(')[1].split('assertEquals(171,')[0]
-        tags=re.findall(r'"([a-z]+)" to ',expected)
-        self.assertEqual(21,len(tags));self.assertEqual(21,len(set(tags)))
-        self.assertEqual(11,len(set(tags)-set(successors)))
-        branch=section.split('} else {')[1].split('if(android.os.Build')[0]
-        for key,value in zip(KEYS[:3],('File','Brush','Save')):
-            self.assertIn(f'assertEquals("{value}",wrapped.getString(R.string.{key}))',branch)
-        self.assertIn('.contains("New or untranslated text appears in English.")',branch)
+    def test_exact_combined_successors_preserve_partial_and_remaining_fallbacks(self):
+        rows=json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']
+        tags={r['tag'] for r in rows}
+        successors={'as','so','wo','ht','tg','mi','sm','sa','pcm','tpi'}
+        partial={'qug','quh','quz'}
+        fallbacks={'ch','chr','nv','yua','nch','nhe','nhw','quy'}
+        self.assertEqual(21,len(rows));self.assertEqual(21,len(tags))
+        self.assertEqual(tags,successors|partial|fallbacks)
+        reviewed=json.loads((ROOT/'tools/fixtures/current_localization/reviewed_priority_batches.json').read_text())
+        defaults=catalogues.default_resources()[0]
+        paths=catalogues.catalogue_paths()
+        for tag in partial|fallbacks:
+            values=catalogues.read_strings(paths[tag])
+            for key in KEYS:
+                if tag in partial and key=='ui_save':
+                    row=reviewed['locales'][tag]['accepted'][key]
+                    node=E.parse(paths[tag]).find("./string[@name='ui_save']")
+                    self.assertIsNotNone(node,tag)
+                    self.assertEqual(row['attributes'],dict(node.attrib),tag)
+                    self.assertEqual(row['value'],node.text,tag)
+                else:
+                    self.assertNotIn(key,values,tag+'/'+key)
+                    self.assertEqual(defaults[key],values.get(key,defaults[key]),tag+'/'+key)
+        self.assertEqual(8,len(fallbacks))
 
     def test_identity_and_platform_round_trip_assertions_remain(self):
         section=self.section()
