@@ -1,4 +1,5 @@
 """157 bounded Croatian/Bosnian current reviewed whole values; not native, complete-locale or runtime acceptance."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json
@@ -257,7 +258,7 @@ class CroatianBosnianP0Tests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string_root(self.roots[tag], key, current.current_value(tag,key,expected['value'],expected['attributes']), {'attributes': expected['attributes']})
-            self.assertEqual(count + 78 + (1 if tag == 'hr' else 0) + len(current.added_keys(tag)), len(self.roots[tag]))
+            self.assertEqual(count + 78 + (1 if tag == 'hr' else 0) + len(current.added_keys(tag)) + len(RESIDUAL_KEYS.get(tag,set())), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('Format slike', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertTrue({'hr', 'bs'} <= set(catalogues.offered_tags()))
@@ -335,7 +336,7 @@ class CroatianBosnianP0Tests(unittest.TestCase):
                 node=self.roots[tag].find(f"./string[@name='{key}']")
                 if key in current.added_keys(tag):
                     self.assertEqual(current.row(tag,key)['target'],node.text)
-                else:self.assertIsNone(node,(tag,key))
+                else:require_residual_or_previous(self.roots[tag],tag,key)
         self.assertEqual(current.row("hr","save20_title")["target"],self.roots["hr"].find("./string[@name='save20_title']").text)
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)

@@ -86,3 +86,42 @@ def require_string_root(root, key, expected, constraints=None):
     if any(part in value.casefold() for part in constraints.get('forbidden_casefold_substrings', [])):
         raise ValueError(f'{key}: forbidden wording')
     return value
+
+
+# Exact successors to historical cohort holds; unrelated holds stay unchanged.
+# Review links and complete values live in the compact current fixture.
+_RESIDUAL_COMMON = frozenset({'formats22_derived_exported', 'ui_save_as',
+    'ui_save_as_jpeg', 'ui_save_as_jpeg_xl', 'ui_save_as_png',
+    'ui_foreground_background_colour_palette'})
+RESIDUAL_KEYS = {tag: _RESIDUAL_COMMON | extra for tag, extra in {
+    'gl': {'ui_main23', 'ui_pinch_and_pan_mode', 'ui_discard', 'ui_bg', 'ui_fg'},
+    'ro': set(), 'nn': {'ui_main23', 'ui_pinch_and_pan_mode'},
+    'hr': {'ui_pinch_and_pan_mode'}, 'be': {'ui_main23', 'ui_pinch_and_pan_mode'},
+    'uk': set(), 'hi': {'ui_pinch_and_pan_mode'},
+    'ta': {'ui_pinch_and_pan_mode'}, 'th': {'ui_pinch_and_pan_mode'},
+}.items()}
+
+
+def residual_rows():
+    data = fixture('reviewed_residuals_20261030.json')
+    rows = {(r['locale'], r['key']): r for r in data['decisions']}
+    expected = {(tag, key) for tag, keys in RESIDUAL_KEYS.items() for key in keys}
+    if data.get('schema_version') != 1 or len(data['decisions']) != 67 or set(rows) != expected:
+        raise ValueError('Exact reviewed residual scope differs')
+    return rows
+
+
+def require_residual_or_previous(root, tag, key, previous_target=None):
+    """Bind an exact reviewed successor; preserve every other historical guard."""
+    row = residual_rows().get((tag, key))
+    if row is not None:
+        if row['previous_target'] != previous_target:
+            raise ValueError('Residual predecessor differs: ' + tag + '/' + key)
+        return require_string_root(root, key, row['target'], {
+            'attributes': row['attributes'],
+            'placeholders': catalogues.placeholders(row['source']),
+        })
+    if previous_target is not None:
+        return require_string_root(root, key, previous_target, {'attributes': {'name': key}})
+    if root.findall(f"./*[@name='{key}']"):
+        raise ValueError('Unreviewed historical absence changed: ' + tag + '/' + key)

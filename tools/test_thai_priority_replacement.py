@@ -1,4 +1,5 @@
 """Full-value Thai replacement evidence; no new programme-wide review credit."""
+from current_localization_contracts import require_residual_or_previous
 from pathlib import Path
 from copy import deepcopy
 import unittest,json,xml.etree.ElementTree as E
@@ -24,7 +25,7 @@ class ThaiReplacementTests(unittest.TestCase):
     self.assertEqual({'other'},set(expected))
     for v in expected.values():self.assertEqual(catalogues.placeholders(src['other']),catalogues.placeholders(v))
    else:self.assertEqual(catalogues.placeholders(src),catalogues.placeholders(expected))
-  for key,row in loc['holds'].items():self.assertEqual(row,value(actual[key]) if key in actual else None)
+  for key,row in loc['holds'].items():require_residual_or_previous(E.parse(ROOT/loc['catalogue_path']).getroot(),'th',key,None if row is None else row['value'])
  def test_every_target_and_coordinated_metadata_mutant_rejected(self):
   d=reviewed_fixture();require_reviewed_fixture(d)
   for key,v in d['locales']['th']['accepted'].items():

@@ -1,4 +1,5 @@
 """Bounded complete-value and real-consumer guards for accepted GL/NL/DE changes."""
+from current_localization_contracts import require_residual_or_previous
 from copy import deepcopy
 import json,re,unittest,xml.etree.ElementTree as E
 import translation_catalogues as c
@@ -64,7 +65,7 @@ class GalicianDutchGermanPriorityWordingTest(unittest.TestCase):
  def test_each_precise_present_or_absent_hold_remains_exact(self):
   for tag,loc in self.locales.items():
    for identity,row in loc['held'].items():
-    with self.subTest(tag=tag,identity=identity):require_entry(self.xml[tag],identity,row);require_entry(self.en,identity,row,'source')
+    with self.subTest(tag=tag,identity=identity):require_residual_or_previous(E.fromstring(self.xml[tag]),tag,identity.split('/')[1],row['target']);require_entry(self.en,identity,row,'source')
  def test_every_changed_scalar_and_plural_child_rejects_corruption(self):
   for tag,loc in self.locales.items():
    for identity,row in loc['values'].items():

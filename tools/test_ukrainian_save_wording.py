@@ -1,4 +1,5 @@
 """Ten bounded Ukrainian P0 values; not native-language or whole-locale acceptance."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from copy import deepcopy
 import json
 import unittest
@@ -93,8 +94,8 @@ class UkrainianSaveWordingTests(unittest.TestCase):
         for key, expected in preserved.items():
             with self.subTest(key=key):
                 require_string_root(self.roots['uk'], key, expected['value'], {'attributes': expected['attributes']})
-        self.assertEqual(catalogue_count('uk',137), len(self.roots['uk']))
-        self.assertEqual(set(preserved) | KEYS | added_keys('uk'), {node.get('name') for node in self.roots['uk']})
+        self.assertEqual(catalogue_count('uk',137)+len(RESIDUAL_KEYS['uk']), len(self.roots['uk']))
+        self.assertEqual(set(preserved) | KEYS | added_keys('uk') | RESIDUAL_KEYS['uk'], {node.get('name') for node in self.roots['uk']})
         from test_translations import SCOPED_TAGS
         self.assertNotIn('uk', SCOPED_TAGS)
         self.assertIn('uk', catalogues.offered_tags())
@@ -104,7 +105,7 @@ class UkrainianSaveWordingTests(unittest.TestCase):
     def test_five_holds_remain_absent_while_reviewed_priority_neighbors_advance(self):
         self.assertEqual(HOLDS, set(self.data['held_absent']))
         for key in HOLDS:
-            self.assertIsNone(self.roots['uk'].find(f"./string[@name='{key}']"), key)
+            require_residual_or_previous(self.roots['uk'],'uk',key)
         self.assertEqual('Choose location…', self.roots['default'].find("./string[@name='ui_choose_location']").text)
         self.assertEqual('Share saved image', self.roots['default'].find("./string[@name='ui_share_saved_image']").text)
 

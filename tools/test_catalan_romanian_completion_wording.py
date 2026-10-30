@@ -1,4 +1,5 @@
 """110 bounded CA/RO P0 recovery/memory/encoding values, not whole-locale acceptance."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from copy import deepcopy
 import json
 import unittest
@@ -70,8 +71,8 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
                                      self.roots[tag].find(f"./string[@name='{key}']").attrib)
         for tag in ('ca', 'ro'):
             actual = {node.tag + '/' + node.get('name') for node in self.roots[tag]}
-            self.assertEqual(87, len(actual & p0))
-            self.assertEqual({'string/' + key for key in HOLDS}, p0 - actual)
+            self.assertEqual(87 + len({'string/'+k for k in RESIDUAL_KEYS.get(tag,set())} & p0), len(actual & p0))
+            self.assertEqual({'string/' + key for key in HOLDS - RESIDUAL_KEYS.get(tag,set())}, p0 - actual)
             formatted_false = {key for key in KEYS if self.data['constraints'][key][tag]['attributes'].get('formatted') == 'false'}
             self.assertEqual({'ui_history_unavailable34'}, formatted_false)
         self.assertEqual({
@@ -140,8 +141,8 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
                 with self.subTest(tag=tag, key=key):
                     require_string_root(self.roots[tag], key, expected['value'], {'attributes': expected['attributes']})
             names = [(node.tag, node.get('name')) for node in self.roots[tag]]
-            self.assertEqual(catalogue_count(tag,205), len(names));self.assertEqual(len(names), len(set(names)))
-            self.assertEqual({('string', key) for key in set(preserved) | KEYS | added_keys(tag)}, set(names))
+            self.assertEqual(catalogue_count(tag,205)+len(RESIDUAL_KEYS.get(tag,set())), len(names));self.assertEqual(len(names), len(set(names)))
+            self.assertEqual({('string', key) for key in set(preserved) | KEYS | added_keys(tag) | RESIDUAL_KEYS.get(tag,set())}, set(names))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual([], catalogues.validate_catalogue(tag, require_complete=False))
         self.assertEqual(59, len(SCOPED_TAGS))
@@ -157,7 +158,7 @@ class CatalanRomanianCompletionWordingTests(unittest.TestCase):
                     self.assertIsNone(successor['previous_target'])
                     require_string_root(self.roots[tag], key, successor['target'], {'attributes': successor['attributes']})
                 else:
-                    self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+                    require_residual_or_previous(self.roots[tag],tag,key)
             self.assertEqual('"' + current_display(tag,'save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)

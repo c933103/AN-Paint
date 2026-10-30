@@ -105,9 +105,8 @@ class HindiGujaratiPriorityWordingTest {
                 assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
             }
         }
-        assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
-            activity.getString(R.string.ui_foreground_background_colour_palette))
-        assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),activity.getString(R.string.ui_foreground_background_colour_palette))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
     }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->

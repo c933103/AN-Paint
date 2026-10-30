@@ -1,4 +1,5 @@
 """Complete resource/composition regressions for recovered HI/GU wording."""
+from current_localization_contracts import require_residual_or_previous
 from copy import deepcopy
 from pathlib import Path
 import json
@@ -25,7 +26,7 @@ class HindiGujaratiPriorityWordingTests(unittest.TestCase):
    for key,value in loc['accepted'].items():
     require_string_root(root,key,value,{'attributes':loc['attributes'][key]})
     self.assertEqual(catalogues.placeholders(data['sources'][key]['value']),catalogues.placeholders(value))
-   for key in loc['holds']:self.assertIsNone(root.find(f"./string[@name='{key}']"))
+   for key in loc['holds']:require_residual_or_previous(root,tag,key)
  def test_every_value_and_coordinated_metadata_mutation_rejected(self):
   data=fixture(NAME);require_reviewed_fixture(data)
   for tag,loc in data['locales'].items():

@@ -1098,4 +1098,41 @@ class CurrentLocalizationContracts(unittest.TestCase):
                 require_string(xml, key, expected, data['constraints'][key])
 
 
+class ReviewedResidualSuccessorTests(unittest.TestCase):
+    """The finite review receipt supersedes holds, not whole-language acceptance."""
+    def test_complete_reviewed_successors_and_predecessors(self):
+        from current_localization_contracts import residual_rows, require_residual_or_previous
+        rows = residual_rows()
+        english = ET.parse(catalogues.RES/'values/strings.xml').getroot()
+        roots = {tag: ET.parse(catalogues.catalogue_paths()[tag]).getroot() for tag, _ in rows}
+        self.assertEqual(64, sum(r['previous_target'] is None for r in rows.values()))
+        self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg')},
+                         {identity for identity,r in rows.items() if r['previous_target'] is not None})
+        for (tag,key),row in rows.items():
+            with self.subTest(tag=tag,key=key):
+                require_string(ET.tostring(english,encoding='unicode'),key,row['source'],{'attributes':row['attributes']})
+                require_residual_or_previous(roots[tag],tag,key,row['previous_target'])
+                self.assertEqual([],catalogues.android_string_errors(row['target']))
+
+    def test_each_successor_rejects_missing_duplicate_wrong_type_and_full_message_corruption(self):
+        from current_localization_contracts import residual_rows, require_residual_or_previous
+        from copy import deepcopy
+        for (tag,key),row in residual_rows().items():
+            for mutation in ('missing','duplicate','type','truncate','argument','markup','attribute','predecessor'):
+                root=ET.Element('resources');node=ET.SubElement(root,'string',row['attributes']);node.text=row['target']
+                if mutation=='missing':root.remove(node)
+                elif mutation=='duplicate':root.append(deepcopy(node))
+                elif mutation=='type':node.tag='plurals'
+                elif mutation=='truncate':node.text=node.text[:-1]
+                elif mutation=='argument':node.text+=' %9$s'
+                elif mutation=='markup':ET.SubElement(node,'b').text='extra'
+                elif mutation=='attribute':node.set('translatable','false')
+                elif row['previous_target'] is None:root.remove(node)
+                else:node.text=row['previous_target']
+                with self.subTest(tag=tag,key=key,mutation=mutation),self.assertRaises(ValueError):
+                    require_residual_or_previous(root,tag,key,row['previous_target'])
+        with self.assertRaises(ValueError):
+            require_residual_or_previous(ET.fromstring('<resources><string name="ui_save_as">unreviewed</string></resources>'),'sq','ui_save_as')
+
+
 if __name__ == '__main__': unittest.main()

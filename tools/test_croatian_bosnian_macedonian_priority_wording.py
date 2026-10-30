@@ -1,4 +1,5 @@
 """Complete resource/composition regressions; not fluency or installed UI certification."""
+from current_localization_contracts import require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json
@@ -32,7 +33,7 @@ class CroatianBosnianMacedonianPriorityTests(unittest.TestCase):
             self.assertEqual(HOLDS,set(d['held_absent']))
             self.assertEqual(keys-HOLDS,set(d['values'])-set(d['dependencies']))
             self.assertEqual(HOLDS,{k for k,s in d['priority_status'].items() if s=='hold'})
-            for key in HOLDS:self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"))
+            for key in HOLDS:require_residual_or_previous(self.roots[tag],tag,key)
 
     def test_every_complete_value_attributes_tokens_and_newlines(self):
         for tag,d in self.data.items():
