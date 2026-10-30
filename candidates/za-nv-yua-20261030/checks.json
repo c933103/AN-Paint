@@ -1,0 +1,55 @@
+{
+  "za": {
+    "existing_priority_entries": 9,
+    "candidate_entries": 53,
+    "candidate_tiers": {
+      "P0": 8,
+      "P1": 45
+    },
+    "remaining_undrafted": 279,
+    "remaining_tiers": {
+      "P0": 82,
+      "P1": 197
+    }
+  },
+  "nv": {
+    "existing_priority_entries": 0,
+    "candidate_entries": 14,
+    "candidate_tiers": {
+      "P1": 14
+    },
+    "remaining_undrafted": 327,
+    "remaining_tiers": {
+      "P0": 92,
+      "P1": 235
+    }
+  },
+  "yua": {
+    "existing_priority_entries": 0,
+    "candidate_entries": 79,
+    "candidate_tiers": {
+      "P0": 13,
+      "P1": 66
+    },
+    "remaining_undrafted": 262,
+    "remaining_tiers": {
+      "P0": 79,
+      "P1": 183
+    }
+  },
+  "checks": [
+    "Candidate XML parses",
+    "Unique known P0/P1 keys",
+    "All placeholders preserved exactly and in source order",
+    "No candidate overwrites an existing locale value",
+    "Canonical production catalogues unchanged",
+    "Backtranslation present for every candidate"
+  ],
+  "not_run": [
+    "Independent linguistic review",
+    "Android resource compile",
+    "UI layout or device tests",
+    "Full test suite"
+  ],
+  "baseline": "420cb76fb1fc02a53a5b6296505be193eaa3bb2f"
+}
