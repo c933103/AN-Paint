@@ -4,6 +4,7 @@ from copy import deepcopy
 import json,unittest,xml.etree.ElementTree as E
 from sinhala_burmese_zhuang_priority_expectations import reviewed_fixture,require_reviewed_fixture,validated_fixture_text,current_row,display,NAME
 import translation_catalogues as c
+from current_localization_contracts import require_residual_or_previous
 ROOT=Path(__file__).resolve().parents[1]
 def value(n):return {'attributes':dict(n.attrib),'value':{x.attrib['quantity']:x.text for x in n} if n.tag=='plurals' else n.text}
 class SinhalaBurmeseZhuangTests(unittest.TestCase):
@@ -28,7 +29,10 @@ class SinhalaBurmeseZhuangTests(unittest.TestCase):
     src=d['sources'][key]['value'];src=src['other'] if isinstance(src,dict) else src
     for text in v.values() if isinstance(v,dict) else [v]:
      self.assertEqual(c.placeholders(src),c.placeholders(text));self.assertEqual([],c.android_string_errors(text));self.assertEqual([],c.format_string_errors(text,loc['attributes'][key].get('formatted')!='false'))
-   for key,v in loc['holds'].items():self.assertEqual(v,value(actual[key]) if key in actual else None,tag+'/'+key)
+   root=E.parse(ROOT/loc['catalogue_path']).getroot()
+   for key,v in loc['holds'].items():
+    if v is None:require_residual_or_previous(root,tag,key)
+    else:self.assertEqual(v,value(actual[key]) if key in actual else None,tag+'/'+key)
    if tag!='za':self.assertEqual({'one','other'} if tag=='si' else {'other'},set(loc['accepted']['ui_crop_preview_images']))
  def test_every_target_and_finite_metadata_mutation_rejected(self):
   data=reviewed_fixture();require_reviewed_fixture(data)

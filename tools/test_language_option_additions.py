@@ -110,6 +110,33 @@ class LanguageOptionAdditionTests(unittest.TestCase):
                        '<resources>Unreviewed English</resources>', '<catalogue/>'):
             with self.subTest(xml=broken), self.assertRaises(ValueError):
                 require_untranslated_option(row, broken)
+    def test_sundanese_residual_additions_keep_strict_shape_source_and_predecessors(self):
+        from copy import deepcopy
+        from unittest.mock import patch
+        from current_localization_contracts import residual_rows
+        old=next(row for row in json.loads(ADDITIONS_PATH.read_text())['languages'] if row['tag']=='su')
+        original=ET.parse(ROOT/old['catalogue']).getroot();rows=residual_rows()
+        keys={key for tag,key in rows if tag=='su'}
+        self.assertEqual(7,len(keys));self.assertEqual(356,len(original))
+        require_sundanese_option_successor(old,ET.tostring(original,encoding='unicode'))
+        for key in keys:
+            for mode in ('missing','duplicate','type','value','attribute','child','tail'):
+                root=deepcopy(original);node=root.find(f"./string[@name='{key}']")
+                if mode=='missing':root.remove(node)
+                elif mode=='duplicate':root.append(deepcopy(node))
+                elif mode=='type':node.tag='plurals'
+                elif mode=='value':node.text+=' forged'
+                elif mode=='attribute':node.set('formatted','false')
+                elif mode=='child':ET.SubElement(node,'b')
+                else:node.tail='unreviewed'
+                with self.subTest(key=key,mode=mode),self.assertRaises(ValueError):
+                    require_sundanese_option_successor(old,ET.tostring(root,encoding='unicode'))
+            for field in ('source','previous_target'):
+                changed=deepcopy(rows);changed[('su',key)][field]='forged'
+                with patch('current_localization_contracts.residual_rows',return_value=changed):
+                    with self.subTest(key=key,field=field),self.assertRaises(ValueError):
+                        require_sundanese_option_successor(old,ET.tostring(original,encoding='unicode'))
+
     def test_only_exact_reviewed_sundanese_values_supersede_the_original_empty_option(self):
         from copy import deepcopy
         rows=json.loads(ADDITIONS_PATH.read_text())['languages']

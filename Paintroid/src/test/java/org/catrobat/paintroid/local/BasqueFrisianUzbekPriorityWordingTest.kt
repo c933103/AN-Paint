@@ -113,7 +113,7 @@ class BasqueFrisianUzbekPriorityWordingTest {
         assertEquals("Voz kechish",PriorityWordingExpectations.residual("uz-Latn","ui_discard","Discard"))
         assertEquals("PNG sifatida saqlash",PriorityWordingExpectations.residual("uz-Latn","ui_save_as","Save as PNG","PNG"))
         assertEquals("Gem som PNG…",PriorityWordingExpectations.residual("da","ui_save_as_png","Save as PNG…"))
-        assertEquals("Save as PNG…",PriorityWordingExpectations.residual("fy","ui_save_as_png","Save as PNG…"))
+        assertEquals("Save as PNG…",PriorityWordingExpectations.residual("eu-ES","ui_save_as_png","Save as PNG…"))
         assertEquals("say \"hi\"\npath\\file",RecoveredTrioPriorityExpectations.compiledDisplay("uz-Latn","test-only","\"say \\\"hi\\\"\\npath\\\\file\""))
     }
 
@@ -143,7 +143,16 @@ class BasqueFrisianUzbekPriorityWordingTest {
             assertEquals("string",entry.getString("type"))
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("Held $tag/$key",0,id)
-            assertEquals("Held current or English fallback $tag/$key",PriorityWordingExpectations.residual(tag,key,entry.getString("display")),activity.getString(id))
+            val text=PriorityWordingExpectations.residual(tag,key,entry.getString("display"))
+            assertEquals("Held current or reviewed successor $tag/$key",text,activity.getString(id))
+            val tokens=pattern.findAll(text).toList()
+            if(tokens.isNotEmpty()) {
+                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
+                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
+                    "d"->21001L;"f"->12.75;else->"argument 100%"
+                }
+                assertEquals("$tag/$key held/successor arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
+            }
         }
         run {
             assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
