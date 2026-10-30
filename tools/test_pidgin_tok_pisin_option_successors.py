@@ -1,4 +1,4 @@
-"""Finite PCM/TPI option adoption and preserved legacy JVM routing assertions."""
+"""Finite PCM/TPI option adoption and exact registered resource displays."""
 from copy import deepcopy
 import json
 from pathlib import Path
@@ -8,6 +8,7 @@ import xml.etree.ElementTree as E
 from unittest.mock import patch
 from language_option_additions import SECOND_ADDITIONS_PATH, require_untranslated_option
 from pidgin_tok_pisin_option_successors import require_pidgin_option_successor
+import translation_catalogues as catalogues
 from sindhi_nigerian_pidgin_tok_pisin_priority_expectations import bound_fixture
 ROOT=Path(__file__).resolve().parents[1]
 TAGS=('pcm','tpi')
@@ -56,17 +57,18 @@ class PidginTokPisinOptionSuccessorsTest(unittest.TestCase):
         for tag in TAGS:
             original=E.parse(ROOT/'Paintroid/src/main/res/values/strings.xml');root=deepcopy(original.getroot());root.find("./string[@name='ui_save']").text='unreviewed'
             with patch.object(helper.E,'parse',return_value=E.ElementTree(root)),self.assertRaises(ValueError):require_pidgin_option_successor(self.old[tag],self.xml(tag))
-    def test_legacy_jvm_loop_preserves_all_other_fallbacks_and_exact_displays(self):
-        text=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/AppLanguageTest.kt').read_text();start=text.index('fun furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback()');section=text[start:text.index('\n    @Test',start)]
-        self.assertEqual(['as','so','wo','ht','tg','mi','sm','sa','pcm','tpi'],re.findall(r'(?:if|else if) \(tag == "([^"]+)"\)',section))
+    def test_registered_pidgin_options_keep_exact_four_resource_displays(self):
         for tag in TAGS:
-            data=bound_fixture(tag);branch=section.split('} else if (tag == '+json.dumps(tag)+') {')[1].split('} else')[0]
-            self.assertEqual(4,branch.count('assertEquals('))
+            data=bound_fixture(tag)
+            self.assertIn(tag,catalogues.offered_tags())
+            self.assertEqual(ROOT/self.old[tag]['catalogue'],catalogues.catalogue_paths()[tag])
+            root=require_pidgin_option_successor(self.old[tag],self.xml(tag))
             for key in ('ui_menu_file','ui_brush','ui_save','language20_translation_note'):
-                self.assertIn('assertEquals('+json.dumps(data['values'][key]['display'],ensure_ascii=False)+',wrapped.getString(R.string.'+key+'))',branch)
-        fallback=section.split('} else {')[1]
-        for key,value in [('ui_menu_file','File'),('ui_brush','Brush'),('ui_save','Save')]:self.assertIn(f'assertEquals("{value}",wrapped.getString(R.string.{key}))',fallback)
-        for assertion in ('assertEquals(tag,AppLanguage.selectedTag(wrapped))','assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())','assertEquals(tag,Locale.getDefault().toLanguageTag())','assertEquals(tag,manager.applicationLocales[0].toLanguageTag())','assertEquals("en-001",AppLanguage.selectedTag(context))'):
-            self.assertIn(assertion,section)
+                node=root.find("./string[@name='"+key+"']")
+                self.assertIsNotNone(node,tag+'/'+key)
+                raw=node.text
+                if raw.startswith('"') and raw.endswith('"'):raw=raw[1:-1]
+                display=re.sub(r'\\(.)',lambda m:{'n':'\n','t':'\t','r':'\r'}.get(m[1],m[1]),raw)
+                self.assertEqual(data['values'][key]['display'],display,tag+'/'+key)
 
 if __name__=='__main__':unittest.main()

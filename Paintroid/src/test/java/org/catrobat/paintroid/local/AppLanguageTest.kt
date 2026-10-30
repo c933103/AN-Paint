@@ -183,7 +183,14 @@ class AppLanguageTest {
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
-                assertEquals("Save",wrapped.getString(R.string.ui_save))
+                // Only these independently reviewed Save labels replace the fallback.
+                val save = when(tag) {
+                    "qug" -> "Wakaychina"
+                    "quh" -> "Jallch'ay"
+                    "quz" -> "Waqaychay"
+                    else -> "Save"
+                }
+                assertEquals(save,wrapped.getString(R.string.ui_save))
                 assertTrue(wrapped.getString(R.string.language20_translation_note)
                     .contains("New or untranslated text appears in English."))
             }
@@ -381,6 +388,10 @@ class AppLanguageTest {
             } else {
             // Each reviewed Save… control keeps its own complete label.
             when(tag) {
+                "shn" -> {
+                    assertEquals("သိမ်း",wrapped.getString(R.string.ui_save))
+                    assertEquals("သိမ်း…",wrapped.getString(R.string.ui_save_a5d0d9))
+                }
                 "ku" -> {
                     assertEquals("Tomar bike",wrapped.getString(R.string.ui_save))
                     assertEquals("Tomar bike…",wrapped.getString(R.string.ui_save_a5d0d9))
