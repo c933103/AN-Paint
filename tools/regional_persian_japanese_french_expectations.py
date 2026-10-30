@@ -1,5 +1,6 @@
 """Finite accepted full values; regional inheritance is not direct acceptance."""
 from copy import deepcopy
+from current_localization_contracts import residual_rows
 from functools import lru_cache
 from pathlib import Path
 import hashlib,json,xml.etree.ElementTree as ET
@@ -41,6 +42,10 @@ def check_catalogues(data,catalogues,english,parent_fa):
             if direct!=row['direct']:raise ValueError('Direct differs: '+tag+'/'+identity)
             if row['disposition']=='hold_preserved':
                 if direct!=row['previous_direct']:raise ValueError('Hold changed')
+                successor=residual_rows().get(('fa',identity.split('/')[1])) if tag=='fa-IR' else None
+                if successor is not None:
+                    if direct is not None or successor['previous_target'] is not None:raise ValueError('Inherited successor became direct')
+                    if parent_fa.get(identity)!={'attributes':successor['attributes'],'value':successor['target']}:raise ValueError('Inherited Persian successor differs')
                 continue
             effective=direct if direct is not None else parent_fa.get(identity) if tag=='fa-IR'else english.get(identity)
             if effective!=row['effective']:raise ValueError('Effective value/parent differs: '+tag+'/'+identity)

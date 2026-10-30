@@ -17,6 +17,22 @@ class RegionalPersianJapaneseFrench(unittest.TestCase):
    rows=loc['rows'];self.assertEqual(357,len(rows));self.assertEqual(8,sum(r['disposition']=='hold_preserved'for r in rows.values()));self.assertEqual(30,sum(r['consumer_binding']=='no_direct_consumer_in_packet'for r in rows.values()))
    changed=[r for r in rows.values()if r['direct']!=r['previous_direct']];self.assertEqual({'fa-IR':5,'ja':0,'fr':2}[tag],len(changed));self.assertTrue(all(r['previous_direct']is not None for r in changed))
   self.assertEqual(303,sum(r['disposition']=='carry_generic_no_duplicate_credit'for r in self.data['locales']['fa-IR']['rows'].values()))
+ def test_seven_base_persian_successors_are_inherited_not_direct_or_main_credit(self):
+  from current_localization_contracts import RESIDUAL_KEYS
+  self.assertEqual(7,len(RESIDUAL_KEYS['fa']))
+  for key in RESIDUAL_KEYS['fa']:
+   identity='string/'+key
+   self.assertNotIn(identity,self.catalogues['fa-IR'])
+   for mutation in ('missing','value','attributes','direct'):
+    parent=deepcopy(self.fa);cats=deepcopy(self.catalogues)
+    if mutation=='missing':del parent[identity]
+    elif mutation=='value':parent[identity]['value']+=' forged'
+    elif mutation=='attributes':parent[identity]['attributes']['formatted']='false'
+    else:cats['fa-IR'][identity]=deepcopy(parent[identity])
+    with self.subTest(key=key,mutation=mutation),self.assertRaises(ValueError):e.check_catalogues(self.data,cats,self.english,parent)
+  main=self.data['locales']['fa-IR']['rows']['string/ui_main23']
+  self.assertEqual('hold_preserved',main['disposition']);self.assertIsNone(main['effective'])
+  self.assertEqual(main['previous_direct'],self.catalogues['fa-IR']['string/ui_main23'])
  def test_every_coordinated_target_and_resource_corruption_rejected(self):
   for tag,loc in e.reviewed_fixture()['locales'].items():
    for identity,row in loc['rows'].items():

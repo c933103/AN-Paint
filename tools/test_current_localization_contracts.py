@@ -1100,12 +1100,44 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
 class ReviewedResidualSuccessorTests(unittest.TestCase):
     """The finite review receipt supersedes holds, not whole-language acceptance."""
+    def test_current_cohort_catalogues_keep_strict_successor_shape_and_predecessors(self):
+        from copy import deepcopy
+        from unittest.mock import patch
+        from current_localization_contracts import residual_rows
+        import basque_frisian_uzbek_priority_expectations as uz
+        import sorani_uyghur_tatar_priority_expectations as ckb
+        rows = residual_rows()
+        for tag, module, count in [('uz-Latn', uz, 10), ('ckb', ckb, 11)]:
+            data = module.bound_fixture(tag)
+            original = ET.parse(ROOT / data['catalogue_path']).getroot()
+            module.require_catalogue(tag, original)
+            keys = {key for locale, key in rows if locale == tag}
+            self.assertEqual(count, len(keys))
+            self.assertFalse(keys & (set(data['original_catalogue']) | set(data['values'])))
+            for key in keys:
+                for mutation in ('missing', 'duplicate', 'type', 'value', 'attribute', 'child', 'tail', 'unreviewed'):
+                    root = deepcopy(original); node = root.find(f"./string[@name='{key}']")
+                    if mutation == 'missing': root.remove(node)
+                    elif mutation == 'duplicate': root.append(deepcopy(node))
+                    elif mutation == 'type': node.tag = 'plurals'
+                    elif mutation == 'value': node.text += ' forged'
+                    elif mutation == 'attribute': node.set('formatted', 'false')
+                    elif mutation == 'child': ET.SubElement(node, 'b')
+                    elif mutation == 'tail': node.tail = 'unreviewed'
+                    else: node.set('name', 'unreviewed')
+                    with self.subTest(tag=tag, key=key, mutation=mutation), self.assertRaises(ValueError):
+                        module.require_catalogue(tag, root)
+                changed = deepcopy(rows); changed[(tag, key)]['previous_target'] = 'forged'
+                with patch('current_localization_contracts.residual_rows', return_value=changed):
+                    with self.subTest(tag=tag, key=key, mutation='predecessor'), self.assertRaises(ValueError):
+                        module.require_catalogue(tag, original)
+
     def test_complete_reviewed_successors_and_predecessors(self):
         from current_localization_contracts import residual_rows, require_residual_or_previous
         rows = residual_rows()
         english = ET.parse(catalogues.RES/'values/strings.xml').getroot()
         roots = {tag: ET.parse(catalogues.catalogue_paths()[tag]).getroot() for tag, _ in rows}
-        self.assertEqual(163, sum(r['previous_target'] is None for r in rows.values()))
+        self.assertEqual(320, sum(r['previous_target'] is None for r in rows.values()))
         self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg'), ('xh','ui_free_form_select'),('xh','ui_palette'),('xh','ui_preview'),('xh','ui_rotate'),('sr-Cyrl','ui_discard'),('sr-Latn','ui_discard')},
                          {identity for identity,r in rows.items() if r['previous_target'] is not None})
         for (tag,key),row in rows.items():
@@ -1113,6 +1145,24 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
                 require_string(ET.tostring(english,encoding='unicode'),key,row['source'],{'attributes':row['attributes']})
                 require_residual_or_previous(roots[tag],tag,key,row['previous_target'])
                 self.assertEqual([],catalogues.android_string_errors(row['target']))
+
+    def test_unchanged_main_acceptances_have_zero_presence_and_no_regional_credit(self):
+        data = fixture('reviewed_residuals_20261030.json')
+        rows = data['unchanged_acceptances']
+        self.assertEqual({('fa','ui_main23'),('he','ui_main23')}, {(r['locale'],r['key']) for r in rows})
+        self.assertEqual(2,len(rows))
+        for row in rows:
+            self.assertEqual(row['target'],row['previous_target'])
+            self.assertEqual(0,row['presence_delta'])
+            self.assertEqual('accepted_unchanged',row['disposition'])
+            self.assertFalse(row['regional_direct_acceptance'])
+            held=fixture('persian_hebrew_urdu_priority_wording.json')['locales'][row['locale']]['held_present'][row['key']]
+            self.assertEqual(held,{'attributes':row['attributes'],'value':row['target']})
+            require_string(catalogues.catalogue_paths()[row['locale']].read_text(),row['key'],row['target'],{'attributes':row['attributes']})
+        regional=fixture('regional_persian_japanese_french_wording.json')['locales']['fa-IR']['rows']['string/ui_main23']
+        self.assertEqual('hold_preserved',regional['disposition'])
+        self.assertIsNone(regional['effective'])
+        require_string(catalogues.catalogue_paths()['fa-IR'].read_text(),'ui_main23',regional['direct']['value'],{'attributes':regional['direct']['attributes']})
 
     def test_each_successor_rejects_missing_duplicate_wrong_type_and_full_message_corruption(self):
         from current_localization_contracts import residual_rows, require_residual_or_previous

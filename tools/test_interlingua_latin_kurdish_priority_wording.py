@@ -1,4 +1,5 @@
 """Complete current typed scope, retained/held boundaries and consumer compositions."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json,re,unittest,xml.etree.ElementTree as ET
@@ -1419,11 +1420,12 @@ def require_current(data,roots,english):
     for tag,loc in data['locales'].items():
         root=roots[tag]
         if root.tag!='resources' or root.attrib or (root.text or '').strip():raise ValueError('Malformed catalogue root')
-        if len(root)!=len(loc['catalogue_identities']) or {e.tag+'/'+e.get('name')for e in root}!=set(loc['catalogue_identities']):raise ValueError('Actual exact catalogue differs')
+        expected_identities=set(loc['catalogue_identities'])|{'string/'+k for k in RESIDUAL_KEYS.get(tag,())}
+        if len(root)!=len(expected_identities) or {e.tag+'/'+e.get('name')for e in root}!=expected_identities:raise ValueError('Actual exact catalogue differs')
         for key,target in loc['accepted'].items():require_complete(root,key,data['sources'][key],target,loc['target_attribute_exceptions'].get(key,{'name':key}))
         for key,previous in loc['held'].items():
             if previous is None:
-                if root.findall(f"./string[@name='{key}']"):raise ValueError('Absent hold changed')
+                require_residual_or_previous(root,tag,key)
             else:require_complete(root,key,{'type':previous['type'],'source':previous['target']},previous['target'],previous['attributes'])
         for key,row in loc['outside_review'].items():require_complete(root,key,{'type':row['type'],'source':row['target']},row['target'],row['attributes'])
     return data

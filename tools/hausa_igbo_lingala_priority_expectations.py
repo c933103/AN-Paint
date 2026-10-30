@@ -1,5 +1,5 @@
 """Bounded current expectations; complete original evidence stays on its immutable ref."""
-from current_localization_contracts import fixture
+from current_localization_contracts import fixture, RESIDUAL_KEYS, require_residual_or_previous
 
 NAME='hausa_igbo_lingala_priority_wording.json'
 TAGS=frozenset({'ha','ig','ln'})
@@ -48,10 +48,16 @@ def require_priority_option_successor(historical_row,xml):
     require_untranslated_option(historical_row,'<resources/>')
     locale=fixture(NAME)['locales'][tag];accepted=locale['accepted'];root=ET.fromstring(xml)
     if root.tag!='resources' or root.attrib or (root.text or '').strip():raise ValueError('Malformed current catalogue')
-    if len(root)!=346 or {n.tag+'/'+n.get('name','')for n in root}!=set(locale['catalogue_identities']):raise ValueError('Exact accepted typed identity set differs')
+    successors=RESIDUAL_KEYS.get(tag,frozenset())
+    identities=set(locale['catalogue_identities'])|{'string/'+key for key in successors}
+    if len(root)!=len(identities) or {n.tag+'/'+n.get('name','')for n in root}!=identities:raise ValueError('Exact accepted typed identity set differs')
     if len(accepted)!=346 or locale['outside_review']:raise ValueError('Exact empty predecessor successor scope differs')
     for node in root:
-        key=node.get('name');expected=accepted[key]
+        key=node.get('name')
+        if key in successors:
+            require_residual_or_previous(root,tag,key)
+            continue
+        expected=accepted[key]
         if node.attrib!=locale['target_attribute_exceptions'].get(key,{'name':key}):raise ValueError('Exact target attributes differ')
         if node.tag=='string':
             if list(node) or node.text!=expected:raise ValueError('Exact accepted string differs')

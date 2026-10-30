@@ -112,6 +112,24 @@ RESIDUAL_KEYS = {tag: _RESIDUAL_COMMON | extra for tag, extra in {
     'yo': {'ui_bg', 'ui_fg', 'ui_main23'},
     'zu': {'ui_bg', 'ui_fg', 'ui_main23', 'ui_pinch_and_pan_mode'},
     'xh': {'ui_bg', 'ui_fg', 'ui_free_form_select', 'ui_main23', 'ui_palette', 'ui_pinch_and_pan_mode', 'ui_preview', 'ui_rotate'},
+    'ckb': {'ui_main23', 'ui_pinch_and_pan_mode', 'ui_fit_image', 'ui_fg', 'ui_bg'},
+    'cy': {'ui_pinch_and_pan_mode', 'ui_bg', 'ui_fg', 'ui_main23'},
+    'ga': {'ui_pinch_and_pan_mode', 'ui_bg', 'ui_fg', 'ui_main23'},
+    'gd': {'ui_pinch_and_pan_mode', 'ui_bg', 'ui_fg', 'ui_main23'},
+    'ha': {'ui_pinch_and_pan_mode', 'ui_bg', 'ui_fg', 'ui_main23'},
+    'ig': {'ui_pinch_and_pan_mode', 'ui_bg', 'ui_fg', 'ui_main23'},
+    'ku': {'ui_main23', 'ui_pinch_and_pan_mode', 'ui_fit_image', 'ui_fg', 'ui_bg'},
+    'ln': {'ui_pinch_and_pan_mode', 'ui_bg', 'ui_fg', 'ui_main23'},
+    'uz-Latn': {'ui_pinch_and_pan_mode', 'ui_bg', 'ui_fg', 'ui_discard'},
+    'is': {'ui_pinch_and_pan_mode', 'ui_main23'},
+    'ca': {'ui_pinch_and_pan_mode'},
+    'da': {'ui_pinch_and_pan_mode'},
+    'fa': {'ui_pinch_and_pan_mode'},
+    'he': {'ui_pinch_and_pan_mode'},
+    'no': {'ui_pinch_and_pan_mode'},
+    'sk': {'ui_pinch_and_pan_mode'},
+    'sl': {'ui_pinch_and_pan_mode'},
+    'ur': {'ui_pinch_and_pan_mode', 'ui_main23'},
 }.items()}
 
 
@@ -119,7 +137,7 @@ def residual_rows():
     data = fixture('reviewed_residuals_20261030.json')
     rows = {(r['locale'], r['key']): r for r in data['decisions']}
     expected = {(tag, key) for tag, keys in RESIDUAL_KEYS.items() for key in keys}
-    if data.get('schema_version') != 1 or len(data['decisions']) != 172 or set(rows) != expected:
+    if data.get('schema_version') != 1 or len(data['decisions']) != 329 or set(rows) != expected:
         raise ValueError('Exact reviewed residual scope differs')
     return rows
 

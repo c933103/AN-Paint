@@ -9,6 +9,7 @@ import xml.etree.ElementTree as E
 import translation_catalogues as c
 from current_localization_contracts import fixture
 from tibetan_dzongkha_valencian_priority_expectations import require_fixture_binding, require_edited_resource as bound_require_edited_resource
+from tibetan_dzongkha_valencian_priority_expectations import inherited_held_display
 from test_slovak_slovenian_catalan_priority_wording import token_contract
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -263,7 +264,7 @@ class TibetanDzongkhaValencianPriorityWordingTest(unittest.TestCase):
    if tag=='ca-ES-valencia':fallback.update({node.get('name'):resource(node)['value'] for node in E.parse(ROOT/'Paintroid/src/main/res/values-ca/strings.xml').getroot()})
    for key,row in data['held_display'].items():
     prior=data['original_catalogue'].get(key)
-    self.assertEqual(decode(prior['value'],resources) if prior else decode(fallback[key],fallback),row['display'],(tag,key))
+    self.assertEqual(decode(prior['value'],resources) if prior else decode(fallback[key],fallback),inherited_held_display(tag,key,row['display']),(tag,key))
 
  def test_downstream_tagged_projection_rejects_coordinated_fixture_and_expected_value(self):
   import test_current_localization_contracts as current
@@ -295,11 +296,48 @@ class TibetanDzongkhaValencianPriorityWordingTest(unittest.TestCase):
      target=raw.split('/',1)[1]
      self.assertNotIn(target,seen);seen.add(target);raw=resolved[target].text
     self.assertEqual('string',node.tag)
-    self.assertEqual(decode_android(raw),data['held_display'][key]['display'],(tag,key))
+    self.assertEqual(decode_android(raw),inherited_held_display(tag,key,data['held_display'][key]['display']),(tag,key))
     changed=deepcopy(data);changed['held_display'][key]['display']+=' forged'
     with self.assertRaises(ValueError):require_review_metadata(tag,changed)
    if tag=='ca-ES-valencia':
     self.assertNotIn('ui_main23',self.local[tag])
     self.assertEqual('Principal',data['held_display']['ui_main23']['display'])
+
+ def test_seven_catalan_successors_remain_inherited_with_exact_shape_and_no_valencian_presence(self):
+  from current_localization_contracts import RESIDUAL_KEYS, residual_rows
+  from tibetan_dzongkha_valencian_priority_expectations import decode_android
+  tag='ca-ES-valencia';data=DATA[tag]
+  keys={'formats22_derived_exported','ui_save_as','ui_save_as_jpeg','ui_save_as_jpeg_xl',
+        'ui_save_as_png','ui_foreground_background_colour_palette','ui_pinch_and_pan_mode'}
+  self.assertEqual(keys,RESIDUAL_KEYS['ca'])
+  self.assertEqual(keys|{'ui_main23'},set(data['held_display']))
+  self.assertEqual({'string/'+key for key in keys|{'ui_main23'}},set(data['holds']))
+  parent=E.parse(ROOT/'Paintroid/src/main/res/values-ca/strings.xml').getroot()
+  direct=E.parse(ROOT/data['catalogue_path']).getroot();rows=residual_rows()
+  for key in keys:
+   previous=data['held_display'][key]['display']
+   self.assertEqual(decode_android(rows[('ca',key)]['target']),inherited_held_display(tag,key,previous,parent,direct))
+   for mutation in ('missing','duplicate','type','value','attribute','child','tail','direct-string','direct-plurals','previous'):
+    root=deepcopy(parent);local=deepcopy(direct);node=root.find(f"./string[@name='{key}']");old=previous
+    if mutation=='missing':root.remove(node)
+    elif mutation=='duplicate':root.append(deepcopy(node))
+    elif mutation=='type':node.tag='plurals'
+    elif mutation=='value':node.text+=' forged'
+    elif mutation=='attribute':node.set('formatted','false')
+    elif mutation=='child':E.SubElement(node,'b')
+    elif mutation=='tail':node.tail='unreviewed'
+    elif mutation.startswith('direct-'):E.SubElement(local,mutation.split('-')[1],name=key).text=node.text
+    else:old+=' forged'
+    with self.subTest(key=key,mutation=mutation),self.assertRaises(ValueError):
+     inherited_held_display(tag,key,old,root,local)
+   for mutation in ('source','previous_target'):
+    changed=deepcopy(rows);changed[('ca',key)][mutation]='forged'
+    with patch('current_localization_contracts.residual_rows',return_value=changed):
+     with self.subTest(key=key,mutation=mutation),self.assertRaises(ValueError):
+      inherited_held_display(tag,key,previous,parent,direct)
+  self.assertEqual('Principal',inherited_held_display(tag,'ui_main23','Principal'))
+  for other in ('bo','dz'):
+   for key,row in DATA[other]['held_display'].items():
+    self.assertEqual(row['display'],inherited_held_display(other,key,row['display']))
 
 if __name__=='__main__':unittest.main()

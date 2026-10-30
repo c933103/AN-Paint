@@ -74,11 +74,11 @@ class DanishNorwegianP0Test {
         assertEquals(NordicPriorityExpectations.display(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
         assertEquals("Image assembly…", ui(R.string.ui_image_assembly))
         assertEquals(NordicPriorityExpectations.display(tag,"ui_no_resize_fits_decoder_memory"), ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals("PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", ui(R.string.formats22_derived_exported, "PNG"))
-        assertEquals("Save as PNG", ui(R.string.ui_save_as, "PNG"))
-        assertEquals("Save as JPEG…", ui(R.string.ui_save_as_jpeg))
-        assertEquals("Save as JPEG XL…", ui(R.string.ui_save_as_jpeg_xl))
-        assertEquals("Save as PNG…", ui(R.string.ui_save_as_png))
+        assertEquals(PriorityWordingExpectations.residual(tag,"formats22_derived_exported","PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", "PNG"), ui(R.string.formats22_derived_exported, "PNG"))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as","Save as PNG", "PNG"), ui(R.string.ui_save_as, "PNG"))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg","Save as JPEG…"), ui(R.string.ui_save_as_jpeg))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg_xl","Save as JPEG XL…"), ui(R.string.ui_save_as_jpeg_xl))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"), ui(R.string.ui_save_as_png))
     }
 
     @Test fun realMemoryAdmissionFailureFormatsAllArgumentsWithoutClaimingAutomaticResize() = forEachLocale { tag, _ ->
