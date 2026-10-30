@@ -64,7 +64,8 @@ class GeorgianArmenianAzerbaijaniPriorityWordingTest {
         }
     }
 
-    private val fixture by lazy { kaHyAzBoundFixture().getJSONObject("locales") }
+    private val contract by lazy { kaHyAzBoundFixture() }
+    private val fixture get() = contract.getJSONObject("locales")
     private fun row(tag: String, key: String): JSONObject {
         val locale=fixture.getJSONObject(tag)
         return locale.getJSONObject("values").optJSONObject(key)
@@ -72,7 +73,10 @@ class GeorgianArmenianAzerbaijaniPriorityWordingTest {
             ?: locale.getJSONObject("context").optJSONObject(key)
             ?: error("Missing exact expectation $tag/$key")
     }
-    private fun expected(tag: String,key: String)=row(tag,key).getString("display")
+    private fun expected(tag: String,key: String)=
+        if(PriorityWordingExpectations.hasResidual(tag,key)) PriorityWordingExpectations.residual(tag,key,
+            contract.getJSONObject("sources").getJSONObject(key).getString("value"))
+        else row(tag,key).getString("display")
     private fun formatted(tag: String,key: String,vararg args: Any)=String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
 
     @Before fun rememberLanguage() {
@@ -110,13 +114,15 @@ class GeorgianArmenianAzerbaijaniPriorityWordingTest {
     @Test fun everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
         val values=fixture.getJSONObject(tag).getJSONObject("values")
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
-        for(key in values.keys()) {
+        val successors=fixture.getJSONObject(tag).getJSONObject("holds").keys().asSequence()
+            .filter { PriorityWordingExpectations.hasResidual(tag,it) }.toList()
+        for(key in values.keys().asSequence().toList()+successors) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag/$key",0,id)
             val text=expected(tag,key)
             assertEquals("$tag/$key",text,activity.getString(id))
             val tokens=pattern.findAll(text).toList()
-            if(tokens.isNotEmpty() && values.getJSONObject(key).getJSONObject("attributes").optString("formatted")!="false") {
+            if(tokens.isNotEmpty() && values.optJSONObject(key)?.optJSONObject("attributes")?.optString("formatted")!="false") {
                 val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
                 for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
                     "d"->21001L;"f"->12.75;else->"argument 100%"

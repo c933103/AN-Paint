@@ -24,11 +24,18 @@ def require_tajik_option_successor(row,xml):
  fixture=json.loads(raw)
  if fixture['catalogue_path']!=row['catalogue'] or fixture['original_catalogue']:
   raise ValueError('Historical Tajik catalogue must remain explicitly empty')
+ from kazakh_tajik_pashto_priority_expectations import require_catalogue
+ from current_localization_contracts import residual_rows
  accepted=fixture['values'];root=E.fromstring(xml)
+ require_catalogue('tg',root,fixture)
+ successors={key:review for (tag,key),review in residual_rows().items() if tag=='tg'}
  nodes={node.get('name'):node for node in root}
- if root.tag!='resources' or root.attrib or (root.text or '').strip() or len(root)!=len(nodes) or set(nodes)!=set(accepted):
+ if root.tag!='resources' or root.attrib or (root.text or '').strip() or len(root)!=len(nodes) or set(nodes)!=set(accepted)|set(successors):
   raise ValueError('Tajik successor must contain exactly the reviewed typed resources')
  english={node.get('name'):node for node in E.parse(ROOT/'Paintroid/src/main/res/values/strings.xml').getroot()}
+ for key,review in successors.items():
+  if review['previous_target'] is not None or resource(english[key])!={'value':review['source'],'attributes':review['attributes']}:
+   raise ValueError('Tajik residual source/predecessor contract differs: '+key)
  for key,review in accepted.items():
   if 'previous_target' not in review or review['previous_target'] is not None or resource(english[key])!=review['source']:
    raise ValueError('Tajik source/predecessor contract differs: '+key)

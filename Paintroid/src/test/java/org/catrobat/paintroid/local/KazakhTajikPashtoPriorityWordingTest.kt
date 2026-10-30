@@ -135,17 +135,17 @@ class KazakhTajikPashtoPriorityWordingTest {
             assertEquals("string",entry.getString("type"))
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("Held $tag/$key",0,id)
-            assertEquals("Held current or English fallback $tag/$key",entry.getString("display"),activity.getString(id))
+            assertEquals("Held current or English fallback $tag/$key",PriorityWordingExpectations.residual(tag,key,entry.getString("display")),activity.getString(id))
         }
         run {
-            assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
                 activity.getString(R.string.ui_foreground_background_colour_palette))
-            assertEquals("Foreground foreground 100%, background background 100%. palette 100% colour palette.",
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground foreground 100%, background background 100%. palette 100% colour palette.","foreground 100%","background 100%","palette 100%"),
                 ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
-            assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
             if(tag!="kk") {
-                assertEquals("FG",ui(R.string.ui_fg))
-                assertEquals("BG",ui(R.string.ui_bg))
+                assertEquals(PriorityWordingExpectations.residual(tag,"ui_fg","FG"),ui(R.string.ui_fg))
+                assertEquals(PriorityWordingExpectations.residual(tag,"ui_bg","BG"),ui(R.string.ui_bg))
             }
         }
     }

@@ -1106,8 +1106,9 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
         from current_localization_contracts import residual_rows
         import basque_frisian_uzbek_priority_expectations as uz
         import sorani_uyghur_tatar_priority_expectations as ckb
+        import kazakh_tajik_pashto_priority_expectations as kk_tg
         rows = residual_rows()
-        for tag, module, count in [('uz-Latn', uz, 10), ('ckb', ckb, 11)]:
+        for tag, module, count in [('uz-Latn', uz, 10), ('ckb', ckb, 11), ('kk', kk_tg, 7), ('tg', kk_tg, 10)]:
             data = module.bound_fixture(tag)
             original = ET.parse(ROOT / data['catalogue_path']).getroot()
             module.require_catalogue(tag, original)
@@ -1137,7 +1138,7 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
         rows = residual_rows()
         english = ET.parse(catalogues.RES/'values/strings.xml').getroot()
         roots = {tag: ET.parse(catalogues.catalogue_paths()[tag]).getroot() for tag, _ in rows}
-        self.assertEqual(320, sum(r['previous_target'] is None for r in rows.values()))
+        self.assertEqual(393, sum(r['previous_target'] is None for r in rows.values()))
         self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg'), ('xh','ui_free_form_select'),('xh','ui_palette'),('xh','ui_preview'),('xh','ui_rotate'),('sr-Cyrl','ui_discard'),('sr-Latn','ui_discard')},
                          {identity for identity,r in rows.items() if r['previous_target'] is not None})
         for (tag,key),row in rows.items():
@@ -1182,7 +1183,7 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
                 with self.subTest(tag=tag,key=key,mutation=mutation),self.assertRaises(ValueError):
                     require_residual_or_previous(root,tag,key,row['previous_target'])
         with self.assertRaises(ValueError):
-            require_residual_or_previous(ET.fromstring('<resources><string name="ui_save_as">unreviewed</string></resources>'),'sq','ui_save_as')
+            require_residual_or_previous(ET.fromstring('<resources><string name="ui_save_as">unreviewed</string></resources>'),'fy','ui_save_as')
 
 
 if __name__ == '__main__': unittest.main()

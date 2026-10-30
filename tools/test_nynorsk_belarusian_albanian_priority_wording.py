@@ -44,6 +44,22 @@ class RecoveredTrioTests(unittest.TestCase):
             for k in HOLDS|({'ui_common_in','ui_common_in_pixels','ui_each_px_px_percent_is_relative_to_the'}if t!='nn'else set()):require_residual_or_previous(ET.fromstring(self.xml[t]),t,k)
             for i,r in l['preserved_unreviewed'].items():require_resource(self.xml[t],i,r['target'],r['attributes'])
             self.assertEqual([],cat.validate_catalogue(t,require_complete=False))
+    def test_compiled_residual_source_map_is_exact_without_rewriting_historical_fixture(self):
+        from current_localization_contracts import residual_rows
+        source=ET.fromstring(self.english)
+        jvm=(cat.ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/BelarusianAlbanianPriorityWordingTest.kt').read_text()
+        rows=residual_rows()
+        mapping=jvm.split('private val heldSources = mapOf(',1)[1].split('\n    )',1)[0]
+        keys=[json.loads(line.strip().split(' to ',1)[0]) for line in mapping.strip().splitlines()]
+        self.assertEqual(HOLDS,set(keys));self.assertEqual(len(HOLDS),len(keys))
+        for key in HOLDS:
+            english=source.find(f"./string[@name='{key}']").text
+            self.assertNotIn('string/'+key,self.data['sources'])
+            self.assertEqual(english,rows[('sq',key)]['source'])
+            literal=json.dumps(english,ensure_ascii=False).replace('$',chr(92)+'$')
+            self.assertIn(json.dumps(key)+' to '+literal,jvm)
+        self.assertIn('PriorityWordingExpectations.residual(tag,key,heldSources.getValue(key))',jvm)
+
     def test_all_complete_scalar_plural_values_attributes_and_placeholder_contracts(self):
         for t,l in self.data['locales'].items():
             entries={"string/"+k:{'target':v,'attributes':l['target_attribute_exceptions'].get(k,{'name':k})}for k,v in l['accepted'].items()}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "329 independently reviewed source-changing decisions plus two unchanged Main acceptances (zero presence): preserved 67 from PR238 and 105 from PR239; 157 exact additions from the two reviewed source batches. Existing Main acceptances remain unchanged; fa-IR inherits base Persian additions without direct presence or Main acceptance. Exact successors only; model wording review, not native-human certification or runtime/UI-fit acceptance.",
+  "scope": "402 independently reviewed source-changing decisions plus two unchanged Main acceptances (zero presence): preserved 67 from PR238 and 105 from PR239; 157 exact additions from the two reviewed source batches; 24 KK/TG/KY residual additions (20 accepted, four corrected Tajik Save-as action labels). 27 AZ/KA/HY residual additions preserve the reviewer’s medium idiomatic confidence for object-neutral Armenian Discard. 22 SQ/ML-IN/AS residual additions are accepted unchanged from their drafts. Existing Main acceptances remain unchanged; fa-IR inherits base Persian additions without direct presence or Main acceptance. Exact successors only; model wording review, not native-human certification or runtime/UI-fit acceptance.",
   "reviews": [
     "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6525404202",
     "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6525404988",
@@ -11,7 +11,11 @@
     "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6526459461",
     "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6526735743",
     "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6526754169",
-    "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6526775713"
+    "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6526775713",
+    "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6529950870",
+    "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6530000067",
+    "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6530274818",
+    "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6530314282"
   ],
   "decisions": [
     {
@@ -3302,6 +3306,736 @@
       "source": "Main",
       "attributes": {
         "name": "ui_main23"
+      }
+    },
+    {
+      "locale": "kk",
+      "key": "formats22_derived_exported",
+      "target": "\"%1$s экспортталды. Толық суретіңізде әлі сақталмаған өзгерістер бар; оны ауыстырмас бұрын толық кескін көшірмесін сақтаңыз.\"",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "kk",
+      "key": "ui_save_as",
+      "target": "\"%1$s ретінде сақтау\"",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "kk",
+      "key": "ui_save_as_jpeg",
+      "target": "\"JPEG ретінде сақтау…\"",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "kk",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "\"JPEG XL ретінде сақтау…\"",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "kk",
+      "key": "ui_save_as_png",
+      "target": "\"PNG ретінде сақтау…\"",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "kk",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "\"Алдыңғы көрініс: %1$s, фон: %2$s. Түстер палитрасы: %3$s.\"",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "kk",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "\"Екі саусақты жақындатып-алшақтатып масштабтау және көріністі жылжыту режимі\"",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "formats22_derived_exported",
+      "target": "\"%1$s содир карда шуд. Дар расми пурраи шумо ҳанӯз тағйироти захиранашуда ҳастанд; пеш аз иваз кардани он нусхаи пурраи тасвирро захира кунед.\"",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_discard",
+      "target": "\"Партофтан\"",
+      "previous_target": null,
+      "source": "Discard",
+      "attributes": {
+        "name": "ui_discard"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_save_as",
+      "target": "\"Ҳамчун %1$s захира кардан\"",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_save_as_jpeg",
+      "target": "\"Ҳамчун JPEG захира кардан…\"",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "\"Ҳамчун JPEG XL захира кардан…\"",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_save_as_png",
+      "target": "\"Ҳамчун PNG захира кардан…\"",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_bg",
+      "target": "\"Замина\"",
+      "previous_target": null,
+      "source": "BG",
+      "attributes": {
+        "name": "ui_bg"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_fg",
+      "target": "\"Пешзамина\"",
+      "previous_target": null,
+      "source": "FG",
+      "attributes": {
+        "name": "ui_fg"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "\"Пешзамина: %1$s, замина: %2$s. Лавҳаи рангҳо: %3$s.\"",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "tg",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "\"Ҳолати тағйири миқёс бо наздик ё дур кардани ду ангушт ва ҷойивазкунии намоиш\"",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      }
+    },
+    {
+      "locale": "ky",
+      "key": "formats22_derived_exported",
+      "target": "\"%1$s экспорттолду. Толук сүрөтүңүздө дагы эле сакталбаган өзгөртүүлөр бар; аны алмаштыруудан мурун сүрөттүн толук көчүрмөсүн сактаңыз.\"",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "ky",
+      "key": "ui_save_as",
+      "target": "\"%1$s катары сактоо\"",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "ky",
+      "key": "ui_save_as_jpeg",
+      "target": "\"JPEG катары сактоо…\"",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "ky",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "\"JPEG XL катары сактоо…\"",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "ky",
+      "key": "ui_save_as_png",
+      "target": "\"PNG катары сактоо…\"",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "ky",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "\"Алдыңкы план: %1$s, фон: %2$s. Түс палитрасы: %3$s.\"",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "ky",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "\"Эки манжаны жакындатып-алыстатып масштабдоо жана көрүнүштү жылдыруу режими\"",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "formats22_derived_exported",
+      "target": "%1$s ixrac edildi. Tam rəsminizdə hələ saxlanmamış dəyişikliklər var; onu əvəz etməzdən əvvəl şəklin tam surətini saxlayın.",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_save_as",
+      "target": "%1$s kimi saxla",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_save_as_jpeg",
+      "target": "JPEG kimi saxla…",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "JPEG XL kimi saxla…",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_save_as_png",
+      "target": "PNG kimi saxla…",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_bg",
+      "target": "Fon",
+      "previous_target": null,
+      "source": "BG",
+      "attributes": {
+        "name": "ui_bg"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_fg",
+      "target": "Ön plan",
+      "previous_target": null,
+      "source": "FG",
+      "attributes": {
+        "name": "ui_fg"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "Ön plan: %1$s, fon: %2$s. Rəng palitrası: %3$s.",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_main23",
+      "target": "Əsas",
+      "previous_target": null,
+      "source": "Main",
+      "attributes": {
+        "name": "ui_main23"
+      }
+    },
+    {
+      "locale": "az",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "İki barmaqla miqyaslama və görünüşü sürüşdürmə rejimi",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      }
+    },
+    {
+      "locale": "ka",
+      "key": "formats22_derived_exported",
+      "target": "%1$s ექსპორტირებულია. თქვენს სრულ ნახატში ჯერ კიდევ არის შეუნახავი ცვლილებები; მის ჩანაცვლებამდე შეინახეთ გამოსახულების სრული ასლი.",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "ka",
+      "key": "ui_save_as",
+      "target": "შენახვა როგორც %1$s",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "ka",
+      "key": "ui_save_as_jpeg",
+      "target": "შენახვა როგორც JPEG…",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "ka",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "შენახვა როგორც JPEG XL…",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "ka",
+      "key": "ui_save_as_png",
+      "target": "შენახვა როგორც PNG…",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "ka",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "წინა პლანი: %1$s, ფონი: %2$s. ფერთა პალიტრა: %3$s.",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "ka",
+      "key": "ui_main23",
+      "target": "მთავარი",
+      "previous_target": null,
+      "source": "Main",
+      "attributes": {
+        "name": "ui_main23"
+      }
+    },
+    {
+      "locale": "ka",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "ორი თითით მასშტაბირებისა და ხედის გადაადგილების რეჟიმი",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "formats22_derived_exported",
+      "target": "%1$s արտահանվել է։ Ձեր ամբողջական նկարում դեռ կան չպահված փոփոխություններ․ այն փոխարինելուց առաջ պահպանեք պատկերի ամբողջական պատճենը։",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "ui_discard",
+      "target": "Դեն նետել",
+      "previous_target": null,
+      "source": "Discard",
+      "attributes": {
+        "name": "ui_discard"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "ui_save_as",
+      "target": "Պահել որպես %1$s",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "ui_save_as_jpeg",
+      "target": "Պահել որպես JPEG…",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "Պահել որպես JPEG XL…",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "ui_save_as_png",
+      "target": "Պահել որպես PNG…",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "Առջևի գույն՝ %1$s, ֆոնի գույն՝ %2$s։ Գունապնակ՝ %3$s։",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "ui_main23",
+      "target": "Հիմնական",
+      "previous_target": null,
+      "source": "Main",
+      "attributes": {
+        "name": "ui_main23"
+      }
+    },
+    {
+      "locale": "hy",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "Երկու մատով մասշտաբի փոփոխման և տեսադաշտի տեղաշարժման ռեժիմ",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      }
+    },
+    {
+      "locale": "sq",
+      "key": "formats22_derived_exported",
+      "target": "U eksportua %1$s. Vizatimi juaj i plotë ka ende ndryshime të paruajtura; ruani një kopje të imazhit të plotë para se ta zëvendësoni.",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "sq",
+      "key": "ui_save_as",
+      "target": "Ruaj si %1$s",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "sq",
+      "key": "ui_save_as_jpeg",
+      "target": "Ruaj si JPEG…",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "sq",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "Ruaj si JPEG XL…",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "sq",
+      "key": "ui_save_as_png",
+      "target": "Ruaj si PNG…",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "sq",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "Plani i parë: %1$s, sfondi: %2$s. Paleta e ngjyrave: %3$s.",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "sq",
+      "key": "ui_main23",
+      "target": "Kryesore",
+      "previous_target": null,
+      "source": "Main",
+      "attributes": {
+        "name": "ui_main23"
+      }
+    },
+    {
+      "locale": "sq",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "Modaliteti i zmadhimit e zvogëlimit me dy gishta dhe i zhvendosjes së pamjes",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      }
+    },
+    {
+      "locale": "ml-IN",
+      "key": "formats22_derived_exported",
+      "target": "%1$s കയറ്റുമതി ചെയ്തു. നിങ്ങളുടെ പൂർണ്ണ ചിത്രത്തിൽ ഇനിയും സംരക്ഷിക്കാത്ത മാറ്റങ്ങളുണ്ട്; അത് മാറ്റിസ്ഥാപിക്കുന്നതിന് മുമ്പ് പൂർണ്ണ ചിത്രത്തിന്റെ ഒരു പകർപ്പ് സംരക്ഷിക്കുക.",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "ml-IN",
+      "key": "ui_save_as",
+      "target": "%1$s ആയി സംരക്ഷിക്കുക",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "ml-IN",
+      "key": "ui_save_as_jpeg",
+      "target": "JPEG ആയി സംരക്ഷിക്കുക…",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "ml-IN",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "JPEG XL ആയി സംരക്ഷിക്കുക…",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "ml-IN",
+      "key": "ui_save_as_png",
+      "target": "PNG ആയി സംരക്ഷിക്കുക…",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "ml-IN",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "മുൻഭാഗം: %1$s, പശ്ചാത്തലം: %2$s. നിറപ്പലക: %3$s.",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "ml-IN",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "രണ്ടു വിരലുകൾ അടുപ്പിച്ചോ അകറ്റിയോ സൂം ചെയ്യാനും കാഴ്ച നീക്കാനുമുള്ള മോഡ്",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      }
+    },
+    {
+      "locale": "as",
+      "key": "formats22_derived_exported",
+      "target": "%1$s ৰপ্তানি কৰা হৈছে। আপোনাৰ সম্পূৰ্ণ অংকনত এতিয়াও সংৰক্ষণ নকৰা পৰিৱৰ্তন আছে; ইয়াক সলনি কৰাৰ আগতে সম্পূৰ্ণ ছবিখনৰ এটা প্ৰতিলিপি সংৰক্ষণ কৰক।",
+      "previous_target": null,
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "attributes": {
+        "name": "formats22_derived_exported"
+      }
+    },
+    {
+      "locale": "as",
+      "key": "ui_save_as",
+      "target": "%1$s ৰূপে সংৰক্ষণ কৰক",
+      "previous_target": null,
+      "source": "Save as %1$s",
+      "attributes": {
+        "name": "ui_save_as"
+      }
+    },
+    {
+      "locale": "as",
+      "key": "ui_save_as_jpeg",
+      "target": "JPEG ৰূপে সংৰক্ষণ কৰক…",
+      "previous_target": null,
+      "source": "Save as JPEG…",
+      "attributes": {
+        "name": "ui_save_as_jpeg"
+      }
+    },
+    {
+      "locale": "as",
+      "key": "ui_save_as_jpeg_xl",
+      "target": "JPEG XL ৰূপে সংৰক্ষণ কৰক…",
+      "previous_target": null,
+      "source": "Save as JPEG XL…",
+      "attributes": {
+        "name": "ui_save_as_jpeg_xl"
+      }
+    },
+    {
+      "locale": "as",
+      "key": "ui_save_as_png",
+      "target": "PNG ৰূপে সংৰক্ষণ কৰক…",
+      "previous_target": null,
+      "source": "Save as PNG…",
+      "attributes": {
+        "name": "ui_save_as_png"
+      }
+    },
+    {
+      "locale": "as",
+      "key": "ui_foreground_background_colour_palette",
+      "target": "অগ্ৰভূমি: %1$s, পটভূমি: %2$s। ৰঙৰ পেলেট: %3$s।",
+      "previous_target": null,
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "attributes": {
+        "name": "ui_foreground_background_colour_palette"
+      }
+    },
+    {
+      "locale": "as",
+      "key": "ui_pinch_and_pan_mode",
+      "target": "দুটা আঙুলি ওচৰ চপাই বা আঁতৰাই জুম কৰা আৰু দৃশ্য স্থানান্তৰ কৰা মোড",
+      "previous_target": null,
+      "source": "Pinch and pan mode",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
       }
     }
   ],
