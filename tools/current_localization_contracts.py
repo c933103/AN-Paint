@@ -130,6 +130,9 @@ RESIDUAL_KEYS = {tag: _RESIDUAL_COMMON | extra for tag, extra in {
     'sk': {'ui_pinch_and_pan_mode'},
     'sl': {'ui_pinch_and_pan_mode'},
     'ur': {'ui_pinch_and_pan_mode', 'ui_main23'},
+    'kk': {'ui_pinch_and_pan_mode'},
+    'tg': {'ui_pinch_and_pan_mode', 'ui_discard', 'ui_bg', 'ui_fg'},
+    'ky': {'ui_pinch_and_pan_mode'},
 }.items()}
 
 
@@ -137,7 +140,7 @@ def residual_rows():
     data = fixture('reviewed_residuals_20261030.json')
     rows = {(r['locale'], r['key']): r for r in data['decisions']}
     expected = {(tag, key) for tag, keys in RESIDUAL_KEYS.items() for key in keys}
-    if data.get('schema_version') != 1 or len(data['decisions']) != 329 or set(rows) != expected:
+    if data.get('schema_version') != 1 or len(data['decisions']) != 353 or set(rows) != expected:
         raise ValueError('Exact reviewed residual scope differs')
     return rows
 

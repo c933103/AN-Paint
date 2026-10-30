@@ -303,7 +303,7 @@ class FurtherLanguageOptionTests(unittest.TestCase):
     def test_each_tajik_typed_resource_rejects_complete_text_corruption(self):
         old=next(row for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages'] if row['tag']=='tg')
         xml=(ROOT/old['catalogue']).read_text();original=ET.fromstring(xml)
-        self.assertEqual(346,len(original))
+        self.assertEqual(356,len(original))
         for index,node in enumerate(original):
             root=ET.fromstring(xml);changed=root[index]
             if changed.tag=='string':changed.text+=' unreviewed'

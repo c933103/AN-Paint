@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as E
 import translation_catalogues as c
-from current_localization_contracts import fixture
+from current_localization_contracts import fixture, RESIDUAL_KEYS, require_residual_or_previous
 from kazakh_tajik_pashto_priority_expectations import require_fixture_binding, require_edited_resource as bound_require_edited_resource
 from test_slovak_slovenian_catalan_priority_wording import token_contract
 
@@ -43,7 +43,7 @@ class KazakhTajikPashtoPriorityWordingTest(unittest.TestCase):
    for identity in data['holds']:
     key=identity.split('/')[1];self.assertNotIn(key,data['values'])
     if key in data['original_catalogue']:self.assertEqual(resource(self.local[tag][key]),data['original_catalogue'][key])
-    else:self.assertNotIn(key,self.local[tag])
+    else:require_residual_or_previous(E.parse(ROOT/data['catalogue_path']).getroot(),tag,key)
 
  def test_disposition_contract_rejects_status_value_attributes_and_context_mutations(self):
   for tag,data in DATA.items():
@@ -90,7 +90,7 @@ class KazakhTajikPashtoPriorityWordingTest(unittest.TestCase):
   for tag,data in DATA.items():
    for key,row in data['original_catalogue'].items():
     if key not in data['values']:self.assertEqual(resource(self.local[tag][key]),row)
-   self.assertEqual(set(self.local[tag]),set(data['original_catalogue'])|set(data['values']))
+   self.assertEqual(set(self.local[tag]),set(data['original_catalogue'])|set(data['values'])|RESIDUAL_KEYS.get(tag,set()))
 
  def test_full_tokens_newlines_and_android_syntax(self):
   for tag,data in DATA.items():
