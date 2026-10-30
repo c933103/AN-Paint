@@ -1,0 +1,25 @@
+<!-- ang-non-metadata-M2-adoption-20261030-03e030493919 -->
+## ANG / NON metadata M2 — final two bounded clause adoptions
+
+The two exact M2 targets below are adopted at **moderate confidence**, following independent primary-source checking. They add **2 P1 lexical values, no notation**. Historical wording totals become **457 adopted / 225 held** (ANG 223 / 118; NON 234 / 107). Every unrelated hold remains.
+
+| Locale | Key | Tier | Exact adopted M2 target |
+|---|---|---|---|
+| ang | colour_invalid_metadata | P1 | Seo anlicnes hæfþ unriht hiwsidegewritu oþþe swilc þe þis weorctol ne onfehþ. |
+| non | colour_truncated_metadata | P1 | Myndritit endisk innan viðbótarrita sinna um liti. |
+
+- **ANG:** `onfehþ` chooses the attested present indicative acceptance form and an ordinary factual object-relative, preserving invalid **OR** unsupported. [B–T on-fón](https://bosworthtoller.com/24545); [Glasgow §67](https://stella.glasgow.ac.uk/eoe/plus-sentence-structure-3.html).
+- **NON:** `endisk` chooses an attested historical come-to-an-end middle with a nominative subject. Genitive plural `sinna` agrees with the possessed records and refers to the file subject; the meaning is termination within encoded colour records. [C–V ENDA](https://norroen.info/dct/cleasby/e.html); [C–V SINN](https://norroen.info/dct/cleasby/s.html); [Sweet §§110,130](https://www.gutenberg.org/files/5424/5424-h/5424-h.htm).
+
+The old `onfo` generic/modal relative and case-syncretic `endar` impersonal analysis are **not declared impossible**. These revisions resolve the specific construction uncertainties; they are not two proven universal grammar prohibitions. The limited M1 convention remains: structured descriptive/control records, text or binary, embedded or archive-associated, without implying prose, external/appended storage, optionality or disposability.
+
+**Bindings:**
+- Supplied source: develop `96681f687671a1fdffe134a325843919c1543401`, tree `39bb7351fa5532194e2c0430432b2f0cc6358a86`; no independently resolved local HEAD claimed.
+- Author M2 SHA256: `10ce9baef42c5beab6fdb6195778b87589132b5f3c34cbee4e2a26f7074fc930`.
+- Independent two-row review delta SHA256: `03e030493919c78ff55397eb57ce2b2dfea3f878d644e878c76a105c93dc74dd`.
+- Exact two-row adoption overlay SHA256: `5ab3e723c05a52f43c9cd566a08fb749b8f568b7dcea781aa2e586a9480601a9`.
+- Separate M2 adoption receipt JSON SHA256: `23cb3b862ecd87578a994ff9025a5135fdd66b38c0a274ae42d30228e5d7ac75`.
+
+The [frozen 449-value receipt](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6534700034) and [M1 adoption receipt](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6534896627) remain unchanged. Together M1+M2 add 8 lexical values (4 P0 + 4 P1); the earlier 14 notation-only values are not counted again.
+
+Documentation only: no source integration, application/Work changes, project tests, runtime/UI or native-human certification, release or merge action. PR56 remains the never-merge tracking draft.
