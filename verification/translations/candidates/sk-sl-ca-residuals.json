@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "kind": "translation-candidates-only",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "53f650d38af84817043270bf3265c0dd17decd97",
+  "scope": "Seven previously absent P0/P1 keys per locale; 21 candidate values. Existing 334 accepted values per locale are unchanged and not re-reviewed.",
+  "evidence": "https://github.com/c933103/AN-Paint/blob/53f650d38af84817043270bf3265c0dd17decd97/verification/translations/slovak-slovenian-catalan-priority.md",
+  "source_files": [
+    {
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "blob_sha": "b50c607aac54c6148e5ac4e44325cb6db3be3612"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-sk/strings.xml",
+      "blob_sha": "b1e3d8bfa5dd64d1b001a96f8ac3f6fc57496776"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-sl/strings.xml",
+      "blob_sha": "08cc1a88da4c66d7f3183c315241718c6bce97c6"
+    },
+    {
+      "path": "Paintroid/src/main/res/values-ca/strings.xml",
+      "blob_sha": "0c8e9be86911058d6abd6291dd4f41dc4dfe0b9e"
+    }
+  ],
+  "terminology": {
+    "sk": "Uložiť ako; popredie/pozadie; paleta farieb; zmena mierky/posúvanie",
+    "sl": "Shrani kot; ospredje/ozadje; barvna paleta; povečava/premikanje pogleda",
+    "ca": "Anomena i desa; primer pla/fons; paleta de colors; desplaçament"
+  },
+  "verification": {
+    "entry_count": 21,
+    "per_locale": 7,
+    "all_target_keys_absent_at_source": true,
+    "exact_positional_tokens_preserved": true,
+    "ellipsis_counts_preserved": true,
+    "source_and_locale_blobs_match_read_only_local_files": true,
+    "review": "Bounded model-based source/terminology/meaning self-review only; not independent or native-human review.",
+    "not_performed": [
+      "Production resource changes",
+      "Android compilation or full tests",
+      "Runtime/TalkBack/layout validation",
+      "Repeated review of 341 identities"
+    ],
+    "candidate_encoding": "Decoded display strings, not XML-escaped resource fragments. Curly apostrophes are literal Unicode."
+  },
+  "entries": [
+    {
+      "locale": "sk",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "Export dokončený: %1$s. Celá vaša kresba stále obsahuje neuložené zmeny; pred jej nahradením uložte kópiu celého obrázka.",
+      "backtranslation": "Export completed: %1$s. Your whole drawing still contains unsaved changes; before replacing it, save a copy of the whole image.",
+      "uncertainty": "Preserves export success, still-unsaved complete drawing, full-image-copy instruction and before-replacement ordering. Label-style success in sk/sl avoids gender agreement with unknown %1$s. Replacement refers to the drawing; the source pronoun is not expanded into a claimed file workflow."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "candidate": "Uložiť ako %1$s",
+      "backtranslation": "Save as %1$s",
+      "uncertainty": "Placeholder payload is not runtime-verified; no format name or filename is invented. Catalan retains the accepted Save as command Anomena i desa, with com a linking the payload."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "candidate": "Uložiť ako JPEG…",
+      "backtranslation": "Save as JPEG…",
+      "uncertainty": "Format name and ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "candidate": "Uložiť ako JPEG XL…",
+      "backtranslation": "Save as JPEG XL…",
+      "uncertainty": "JPEG XL remains one format name; ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "candidate": "Uložiť ako PNG…",
+      "backtranslation": "Save as PNG…",
+      "uncertainty": "Format name and ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Popredie: %1$s, pozadie: %2$s. Paleta farieb: %3$s.",
+      "backtranslation": "Foreground: %1$s, background: %2$s. Colour palette: %3$s.",
+      "uncertainty": "Neutral label-colon composition permits %3$s to be an action (Expand/Collapse) or state without forcing grammatical agreement or assuming Main. An already-complete action phrase could repeat palette; actual substitution and speech cadence remain to be checked when a consumer exists."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "candidate": "Režim zmeny mierky dvoma prstami a posúvania",
+      "backtranslation": "Mode for changing scale with two fingers and panning",
+      "uncertainty": "Gesture/navigation meaning preserved, not a drawing tool claim. Slovak/Slovenian explain pinch as two-finger zoom using established neighbouring accessibility terminology; Catalan names the pinch gesture. Exact mode behaviour and rendered label length remain unverified."
+    },
+    {
+      "locale": "sl",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "Izvoz končan: %1$s. Vaša celotna risba še vedno vsebuje neshranjene spremembe; preden jo zamenjate, shranite kopijo celotne slike.",
+      "backtranslation": "Export completed: %1$s. Your entire drawing still contains unsaved changes; before replacing it, save a copy of the entire image.",
+      "uncertainty": "Preserves export success, still-unsaved complete drawing, full-image-copy instruction and before-replacement ordering. Label-style success in sk/sl avoids gender agreement with unknown %1$s. Replacement refers to the drawing; the source pronoun is not expanded into a claimed file workflow."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "candidate": "Shrani kot %1$s",
+      "backtranslation": "Save as %1$s",
+      "uncertainty": "Placeholder payload is not runtime-verified; no format name or filename is invented. Catalan retains the accepted Save as command Anomena i desa, with com a linking the payload."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "candidate": "Shrani kot JPEG…",
+      "backtranslation": "Save as JPEG…",
+      "uncertainty": "Format name and ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "candidate": "Shrani kot JPEG XL…",
+      "backtranslation": "Save as JPEG XL…",
+      "uncertainty": "JPEG XL remains one format name; ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "candidate": "Shrani kot PNG…",
+      "backtranslation": "Save as PNG…",
+      "uncertainty": "Format name and ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Ospredje: %1$s, ozadje: %2$s. Barvna paleta: %3$s.",
+      "backtranslation": "Foreground: %1$s, background: %2$s. Colour palette: %3$s.",
+      "uncertainty": "Neutral label-colon composition permits %3$s to be an action (Expand/Collapse) or state without forcing grammatical agreement or assuming Main. An already-complete action phrase could repeat palette; actual substitution and speech cadence remain to be checked when a consumer exists."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "candidate": "Način spreminjanja povečave z dvema prstoma in premikanja pogleda",
+      "backtranslation": "Mode for changing zoom with two fingers and moving the view",
+      "uncertainty": "Gesture/navigation meaning preserved, not a drawing tool claim. Slovak/Slovenian explain pinch as two-finger zoom using established neighbouring accessibility terminology; Catalan names the pinch gesture. Exact mode behaviour and rendered label length remain unverified."
+    },
+    {
+      "locale": "ca",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "S’ha exportat %1$s. El dibuix complet encara té canvis sense desar; desa una còpia de la imatge completa abans de substituir-lo.",
+      "backtranslation": "%1$s has been exported. The complete drawing still has unsaved changes; save a copy of the complete image before replacing it.",
+      "uncertainty": "Preserves export success, still-unsaved complete drawing, full-image-copy instruction and before-replacement ordering. Label-style success in sk/sl avoids gender agreement with unknown %1$s. Replacement refers to the drawing; the source pronoun is not expanded into a claimed file workflow."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "candidate": "Anomena i desa com a %1$s",
+      "backtranslation": "Name and save as %1$s",
+      "uncertainty": "Placeholder payload is not runtime-verified; no format name or filename is invented. Catalan retains the accepted Save as command Anomena i desa, with com a linking the payload."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "candidate": "Anomena i desa com a JPEG…",
+      "backtranslation": "Name and save as JPEG…",
+      "uncertainty": "Format name and ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "candidate": "Anomena i desa com a JPEG XL…",
+      "backtranslation": "Name and save as JPEG XL…",
+      "uncertainty": "JPEG XL remains one format name; ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "candidate": "Anomena i desa com a PNG…",
+      "backtranslation": "Name and save as PNG…",
+      "uncertainty": "Format name and ellipsis preserved. Catalan retains the accepted Anomena i desa command."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Primer pla: %1$s, fons: %2$s. Paleta de colors: %3$s.",
+      "backtranslation": "Foreground: %1$s, background: %2$s. Colour palette: %3$s.",
+      "uncertainty": "Neutral label-colon composition permits %3$s to be an action (Expand/Collapse) or state without forcing grammatical agreement or assuming Main. An already-complete action phrase could repeat palette; actual substitution and speech cadence remain to be checked when a consumer exists."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "candidate": "Mode de gest de pinça i desplaçament",
+      "backtranslation": "Pinch-gesture and panning mode",
+      "uncertainty": "Gesture/navigation meaning preserved, not a drawing tool claim. Slovak/Slovenian explain pinch as two-finger zoom using established neighbouring accessibility terminology; Catalan names the pinch gesture. Exact mode behaviour and rendered label length remain unverified."
+    }
+  ]
+}
