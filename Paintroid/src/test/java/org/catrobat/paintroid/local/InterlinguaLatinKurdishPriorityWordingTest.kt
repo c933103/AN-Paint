@@ -133,12 +133,12 @@ class InterlinguaLatinKurdishPriorityWordingTest {
                 assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
             }
         }
-        // Eleven absent identities per locale retain complete default-source fallback.
+        // Historical holds use exact reviewed successors, otherwise default-source fallback.
         val held=locale.getJSONObject("held")
         for(key in held.keys().asSequence()) if(held.isNull(key)) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag held/$key",0,id)
-            assertEquals("$tag held/$key",defaultSource(key),activity.getString(id))
+            assertEquals("$tag held/$key",PriorityWordingExpectations.residual(tag,key,defaultSource(key)),activity.getString(id))
         }
     }
 
@@ -155,7 +155,7 @@ class InterlinguaLatinKurdishPriorityWordingTest {
         }).resources
         assertEquals(americanText,american.getString(R.string.ui_foreground_background_colour_palette))
         assertNotEquals(defaultText,americanText)
-        assertEquals("$tag must use default not US",defaultText,activity.getString(R.string.ui_foreground_background_colour_palette))
+        assertEquals("$tag must use default not US",PriorityWordingExpectations.residual(tag,key,defaultText),activity.getString(R.string.ui_foreground_background_colour_palette))
     }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->

@@ -24,6 +24,8 @@ internal object PriorityWordingExpectations {
         val rows=JSONObject(File("../tools/fixtures/current_localization/reviewed_residuals_20261030.json").readText()).getJSONArray("decisions")
         (0 until rows.length()).map { rows.getJSONObject(it) }.associateBy { it.getString("locale") to it.getString("key") }
     }
+    fun hasResidual(tag: String,key: String)=residuals.containsKey(tag to key)
+
     /** Only exact reviewed successors replace an English fallback expectation. */
     fun residual(tag: String,key: String,previous: String,vararg args: Any): String {
         val row=residuals[tag to key] ?: return previous

@@ -94,7 +94,18 @@ class RegionalPersianJapaneseFrenchWordingTest {
     @Test fun allAcceptedCompiledValuesAndRealPluralArguments() = forEachLocale { tag,activity ->
         val rows=fixture.getJSONObject(tag).getJSONObject("rows")
         for(identity in rows.keys()) {
-            if(rows.getJSONObject(identity).isNull("effective")) continue
+            if(rows.getJSONObject(identity).isNull("effective")) {
+                val key=identity.removePrefix("string/")
+                if(tag=="fa-IR" && PriorityWordingExpectations.hasResidual("fa",key)) {
+                    val historical=rows.getJSONObject(identity)
+                    assertTrue("Inherited, not direct acceptance",historical.isNull("direct"))
+                    val expected=PriorityWordingExpectations.residual("fa",key,historical.getJSONObject("source").getString("value"))
+                    val id=activity.resources.getIdentifier(key,"string",activity.packageName)
+                    assertNotEquals(identity,0,id)
+                    assertEquals("$tag inherited/$key",expected,activity.getString(id))
+                }
+                continue
+            }
             val (kind,key)=identity.split('/');val id=activity.resources.getIdentifier(key,kind,activity.packageName)
             assertNotEquals(identity,0,id)
             if(kind=="string") assertEquals("$tag/$identity",expected(tag,key),activity.getString(id))

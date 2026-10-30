@@ -1,4 +1,5 @@
 """Complete independently reviewed FA/HE/UR inventories, typed resources and fail-closed successors."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json
@@ -40,7 +41,7 @@ class PersianHebrewUrduTests(unittest.TestCase):
             self.assertEqual(HOLDS,set(l['held_absent'])|set(l['held_present']))
             self.assertEqual({'fa':262,'he':266,'ur':322}[t],len(l['changed']))
             self.assertEqual(set(expected)-HOLDS,set(expected)&set(l['accepted']))
-            for k in l['held_absent']:self.assertIsNone(ET.fromstring(self.xml[t]).find(f"./*[@name='{k}']"))
+            for k in l['held_absent']:require_residual_or_previous(ET.fromstring(self.xml[t]),t,k)
             for i,r in l['preserved_unreviewed'].items():require_resource(self.xml[t],i,r['target'],r['attributes'])
             self.assertEqual([],cat.validate_catalogue(t,require_complete=False))
     def test_all_complete_scalar_plural_values_attributes_and_placeholder_contracts(self):

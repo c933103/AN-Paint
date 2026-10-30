@@ -1,4 +1,5 @@
 """Current complete-value and composition contracts; no fluency/whole-UI certification."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json
@@ -619,7 +620,7 @@ class SlovakSlovenianCatalanPriorityWordingTests(unittest.TestCase):
                 self.assertEqual(expected_holds, set(data['held_absent']))
                 actual = {node.tag + '/' + node.get('name') for node in self.roots[tag]}
                 missing = (self.tiers['P0'] | self.tiers['P1']) - actual
-                self.assertEqual({'string/' + k for k in expected_holds}, missing)
+                self.assertEqual({'string/' + k for k in expected_holds-set(RESIDUAL_KEYS.get(tag,()))}, missing)
 
     def test_complete_changed_values_and_context_match_canonical_values_attributes_and_tokens(self):
         for tag, data in self.data['locales'].items():
@@ -712,7 +713,7 @@ class SlovakSlovenianCatalanPriorityWordingTests(unittest.TestCase):
             data=self.data['locales'][tag]
             for key in P0_HOLDS|{PALETTE_HOLD,'ui_pinch_and_pan_mode'}:
                 self.assertNotIn(key,data['values'])
-                self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"))
+                require_residual_or_previous(self.roots[tag],tag,key)
             dormant=[k for k,v in data['values'].items() if v['scope']=='wording-only-no-direct-consumer']
             self.assertEqual(13,len(dormant))
             self.assertTrue(all('P1'==data['values'][k]['tier'] for k in dormant))
@@ -760,7 +761,7 @@ class SlovakSlovenianCatalanPriorityWordingTests(unittest.TestCase):
         for tag,data in self.data['locales'].items():
             names=[node.tag+'/'+node.get('name') for node in self.roots[tag]]
             self.assertEqual(len(names),len(set(names)))
-            self.assertEqual(set(data['catalogue_keys']),set(names))
+            self.assertEqual(set(data['catalogue_keys'])|{'string/'+k for k in RESIDUAL_KEYS.get(tag,())},set(names))
             self.assertEqual([],catalogues.validate_catalogue(tag,require_complete=False))
         self.assertEqual(59,len(SCOPED_TAGS));self.assertTrue(TAGS.isdisjoint(SCOPED_TAGS))
         self.assertEqual(171,len(catalogues.offered_tags()))

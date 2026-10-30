@@ -1,4 +1,5 @@
 """Full Nordic priority scope, typed text, compositions and negative controls."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json
@@ -41,7 +42,7 @@ class NordicPriorityTests(unittest.TestCase):
             self.assertEqual(holds,set(loc['held_absent']))
             self.assertEqual(set(expected)-holds|COMPANIONS[tag],set(loc['accepted']))
             self.assertEqual(22 if tag=='is' else 23,sum(r['status']=='bounded-wording-only' for r in loc['priority_dispositions'].values()))
-            for key in holds:self.assertIsNone(ET.fromstring(self.xml[tag]).find(f"./string[@name='{key}']"))
+            for key in holds:require_residual_or_previous(ET.fromstring(self.xml[tag]),tag,key)
         self.assertIn('no',cat.offered_tags());self.assertIn('nn',cat.offered_tags());self.assertNotIn('nb',cat.offered_tags())
 
     def test_every_full_source_target_attributes_alias_and_placeholder(self):

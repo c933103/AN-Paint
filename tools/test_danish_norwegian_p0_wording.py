@@ -1,4 +1,5 @@
 """156 bounded DA/NO P0 whole values; not native, complete-locale or runtime acceptance."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from nordic_priority_expectations import current_fixture, added_keys, display, current_row
 from collections import Counter
 from copy import deepcopy
@@ -174,7 +175,7 @@ class DanishNorwegianP0Tests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string_root(self.roots[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(count + 78 + len(added_keys(tag)), len(self.roots[tag]))
+            self.assertEqual(count + 78 + len(added_keys(tag)) + len(RESIDUAL_KEYS.get(tag,())), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual(current_row(tag,'save20_file_format')['target'], self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertIn('no', catalogues.offered_tags())
@@ -188,7 +189,7 @@ class DanishNorwegianP0Tests(unittest.TestCase):
                      'ui_load_image', 'ui_choose_location', 'ui_image_assembly'}
         for tag in ('da', 'no'):
             for key in HOLDS | (neighbors - added_keys(tag)):
-                self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+                require_residual_or_previous(self.roots[tag],tag,key)
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
 
