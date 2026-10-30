@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "scope": "Independent linguistic review of all 22 supplied residual candidates only",
+  "reviewer": "review_da_is_no_residuals",
+  "date": "2026-10-30",
+  "source": {
+    "repository": "c933103/AN-Paint",
+    "commit": "dd0963d33bd6acfa443b654c2dc4fc13f1477c0a",
+    "path": "verification/nordic-residual-candidates-20261030.json",
+    "blob_sha": "0f661df06038b89361b670ea6123d12afc75bd53"
+  },
+  "decisions": [
+    {
+      "locale": "da",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "%1$s eksporteret. Hele din tegning har stadig ændringer, der ikke er gemt; gem en kopi af hele billedet, før du erstatter det.",
+      "wording": "%1$s eksporteret. Hele din tegning har stadig ændringer, der ikke er gemt; gem en kopi af hele billedet, før du erstatter det.",
+      "reason": "Accept. 'Hele din tegning' retains the complete drawing; 'stadig ... ikke er gemt' preserves the continuing unsaved state despite export. Imperative 'gem' requires a copy of the entire image before replacement; neuter 'det' refers to 'billedet', not common-gender 'kopi'. 'Eksporteret' works as a terse result notice with the unchanged format slot."
+    },
+    {
+      "locale": "da",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Gem som %1$s",
+      "wording": "Gem som %1$s",
+      "reason": "Accept. Danish command 'Gem som' matches the established Save terminology; the format remains the unchanged %1$s slot and no ellipsis is added."
+    },
+    {
+      "locale": "da",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Gem som JPEG…",
+      "wording": "Gem som JPEG…",
+      "reason": "Accept. 'Gem som' retains the established Save-as command, rather than substituting export. The technical format name JPEG is exact; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "da",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Gem som JPEG XL…",
+      "wording": "Gem som JPEG XL…",
+      "reason": "Accept. 'Gem som' retains the established Save-as command, rather than substituting export. The technical format name JPEG XL is exact including its space; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "da",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Gem som PNG…",
+      "wording": "Gem som PNG…",
+      "reason": "Accept. 'Gem som' retains the established Save-as command, rather than substituting export. The technical format name PNG is exact; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "da",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "status": "accepted",
+      "candidate": "Forgrund %1$s, baggrund %2$s. Farvepalet: %3$s.",
+      "wording": "Forgrund %1$s, baggrund %2$s. Farvepalet: %3$s.",
+      "reason": "Accept. 'Forgrund' and 'baggrund' match established labels; 'Farvepalet' is a regular Danish compound. The colon deliberately makes %3$s a separate action/state value without forcing adjective agreement or choosing an unsupported action verb. All three numbered slots remain in order."
+    },
+    {
+      "locale": "da",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "status": "accepted",
+      "candidate": "Tilstand til knibezoom og panorering",
+      "wording": "Tilstand til knibezoom og panorering",
+      "reason": "Accept. 'Tilstand til' introduces purpose; coordinated nouns 'knibezoom' and 'panorering' denote pinch zoom and panning rather than drawing or moving a selection. The transparent compound retains the pinch gesture, not just generic zoom."
+    },
+    {
+      "locale": "is",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "status": "corrected",
+      "candidate": "%1$s flutt út. Teikningin þín í heild inniheldur enn óvistaðar breytingar; vistaðu afrit af allri myndinni áður en þú skiptir henni út.",
+      "wording": "Útflutningi lokið: %1$s. Teikningin þín í heild inniheldur enn óvistaðar breytingar; vistaðu afrit af allri myndinni áður en þú skiptir henni út.",
+      "reason": "Correct the completion clause to 'Útflutningi lokið: %1$s.' The original 'flutt' is not universally gender/number independent when read as a participial predicate attached to an unknown label. The dative completion construction avoids any agreement with the label. The remainder is accepted: 'í heild', 'enn óvistaðar breytingar', imperative 'vistaðu', and 'afrit af allri myndinni' retain completeness, still-unsaved changes and the full-copy requirement; 'henni' refers to the feminine image/drawing, not neuter 'afrit', and 'áður en' retains save-before-replace order."
+    },
+    {
+      "locale": "is",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Vista sem %1$s",
+      "wording": "Vista sem %1$s",
+      "reason": "Accept. Infinitive UI command 'Vista sem' matches established Save terminology and correctly introduces a format label. %1$s is unchanged; no ellipsis is added."
+    },
+    {
+      "locale": "is",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Vista sem JPEG…",
+      "wording": "Vista sem JPEG…",
+      "reason": "Accept. 'Vista sem' retains the established Save-as command, rather than substituting export. The technical format name JPEG is exact; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "is",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Vista sem JPEG XL…",
+      "wording": "Vista sem JPEG XL…",
+      "reason": "Accept. 'Vista sem' retains the established Save-as command, rather than substituting export. The technical format name JPEG XL is exact including its space; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "is",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Vista sem PNG…",
+      "wording": "Vista sem PNG…",
+      "reason": "Accept. 'Vista sem' retains the established Save-as command, rather than substituting export. The technical format name PNG is exact; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "is",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "status": "accepted",
+      "candidate": "Forgrunnur %1$s, bakgrunnur %2$s. Litaspjald: %3$s.",
+      "wording": "Forgrunnur %1$s, bakgrunnur %2$s. Litaspjald: %3$s.",
+      "reason": "Accept. Nominative 'Forgrunnur' and 'bakgrunnur' are valid independent labels; 'Litaspjald' matches accepted palette terminology. Colon composition leaves the opaque action/state slot independent of noun inflection; all numbered slots are preserved."
+    },
+    {
+      "locale": "is",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "status": "accepted",
+      "candidate": "Hamur fyrir klípuþysjun og hliðrun",
+      "wording": "Hamur fyrir klípuþysjun og hliðrun",
+      "reason": "Accept as a transparent descriptive label, not a claim that this is a standardized term. 'Hamur fyrir' takes accusative; 'klípuþysjun' and 'hliðrun' have the required form. The compound's 'klípu-' specifies pinch, 'þysjun' specifies zooming, and 'hliðrun' preserves pan, consistent with the supplied 'klíptu ... þysja og hliðra' terminology."
+    },
+    {
+      "locale": "is",
+      "key": "ui_main23",
+      "priority": "P1",
+      "status": "corrected",
+      "candidate": "Aðal",
+      "wording": "Aðalhluti",
+      "reason": "Correct to 'Aðalhluti'. Standalone 'Aðal' is a clipped compound element rather than a complete, idiomatic generic section caption. The supplied meaning is specifically a main/primary section, so 'hluti' makes that generic section explicit without inventing palette, screen or menu semantics. This decision uses the given context, not an unavailable consumer."
+    },
+    {
+      "locale": "no",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "%1$s eksportert. Hele tegningen din har fortsatt ulagrede endringer; lagre en kopi av hele bildet før du erstatter det.",
+      "wording": "%1$s eksportert. Hele tegningen din har fortsatt ulagrede endringer; lagre en kopi av hele bildet før du erstatter det.",
+      "reason": "Accept for offered locale no. 'Hele tegningen din' retains the full drawing; 'fortsatt ulagrede endringer' preserves the continuing unsaved state after export. Imperative 'lagre en kopi av hele bildet' requires a full-image copy; 'før' preserves save-before-replace order, and neuter 'det' refers to 'bildet', not 'kopi'. 'Eksportert' is a suitable terse result predicate."
+    },
+    {
+      "locale": "no",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Lagre som %1$s",
+      "wording": "Lagre som %1$s",
+      "reason": "Accept for no. 'Lagre som' is the normal command and agrees with the supplied Save terminology. The format remains %1$s and no ellipsis is introduced."
+    },
+    {
+      "locale": "no",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Lagre som JPEG…",
+      "wording": "Lagre som JPEG…",
+      "reason": "Accept. 'Lagre som' retains the established Save-as command, rather than substituting export. The technical format name JPEG is exact; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "no",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Lagre som JPEG XL…",
+      "wording": "Lagre som JPEG XL…",
+      "reason": "Accept. 'Lagre som' retains the established Save-as command, rather than substituting export. The technical format name JPEG XL is exact including its space; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "no",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "status": "accepted",
+      "candidate": "Lagre som PNG…",
+      "wording": "Lagre som PNG…",
+      "reason": "Accept. 'Lagre som' retains the established Save-as command, rather than substituting export. The technical format name PNG is exact; the final single Unicode ellipsis U+2026 is retained, marking the continuing dialog/action."
+    },
+    {
+      "locale": "no",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "status": "accepted",
+      "candidate": "Forgrunn %1$s, bakgrunn %2$s. Fargepalett: %3$s.",
+      "wording": "Forgrunn %1$s, bakgrunn %2$s. Fargepalett: %3$s.",
+      "reason": "Accept for no. 'Forgrunn' and 'bakgrunn' match established labels. 'Fargepalett' is a regular compound; colon syntax deliberately isolates opaque %3$s as an action/state value instead of inflecting it or inventing its verb. All numbered slots remain unchanged and ordered."
+    },
+    {
+      "locale": "no",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "status": "accepted",
+      "candidate": "Modus for knipezoom og panorering",
+      "wording": "Modus for knipezoom og panorering",
+      "reason": "Accept for no. 'Modus for' plus coordinated 'knipezoom og panorering' denotes the interaction mode, not an action on image content. 'Knipe-' preserves the two-finger pinch qualification; 'panorering' agrees with the established canvas instruction."
+    }
+  ],
+  "verification": {
+    "count": 22,
+    "unique": true,
+    "placeholders_exact": true,
+    "ellipses_exact": true,
+    "locales": {
+      "da": 7,
+      "is": 8,
+      "no": 7
+    },
+    "statuses": {
+      "accepted": 20,
+      "corrected": 2
+    }
+  },
+  "limits": {
+    "production_edits": false,
+    "full_tests_run": false,
+    "native_human_certification": false,
+    "ui_fit_certification": false,
+    "consumer_search_gate": false,
+    "review_basis": "Supplied English strings, candidate target wording, supplied established terminology, and explicit parent scope. Independent linguistic judgment, not backtranslation-only approval. Brief dictionary web discovery was nonconclusive and is not claimed as validation. Offered Norwegian catalogue remains no; no nb/nn edits. Opaque palette action/state placeholders deliberately remain label values. Prior accepted strings are not re-reviewed or re-credited."
+  }
+}
