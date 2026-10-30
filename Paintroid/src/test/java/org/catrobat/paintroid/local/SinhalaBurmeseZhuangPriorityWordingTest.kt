@@ -388,6 +388,7 @@ class SinhalaBurmeseZhuangPriorityWordingTest {
                     } finally {sample.recycle()}
                 }
                 activity.document.shapeStyle=0;activity.document.foreground=0x80ff0000.toInt()
+                assertEquals(0xffff0000.toInt(),activity.document.foreground) // foreground input is normalized opaque
                 EditorTestNavigation.click(activity,"category_INSERT");EditorTestNavigation.click(activity,"tool_RECTANGLE")
                 val choice=activity.window.decorView.findViewWithTag<TextView>("tool_option")
                 choice.performClick();idle();val shown=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
@@ -398,8 +399,9 @@ class SinhalaBurmeseZhuangPriorityWordingTest {
                 try {
                     val path=android.graphics.Path().apply {addRect(0f,0f,4f,4f,android.graphics.Path.Direction.CW)}
                     activity.document.drawShape(android.graphics.Canvas(rendered),PaintTool.RECTANGLE,path)
-                    assertEquals(128,android.graphics.Color.alpha(rendered.getPixel(2,2)))
-                    assertEquals(0x80ff0000.toInt(),activity.document.foreground)
+                    assertEquals(0xffff0000.toInt(),rendered.getPixel(2,2))
+                    assertEquals(255,android.graphics.Color.alpha(rendered.getPixel(2,2)))
+                    assertEquals(0xffff0000.toInt(),activity.document.foreground)
                 } finally {rendered.recycle()}
             } finally {
                 ShadowAlertDialog.getLatestAlertDialog()?.dismiss();controller.pause().stop().destroy()
