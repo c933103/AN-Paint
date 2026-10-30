@@ -119,6 +119,9 @@ wait_until_ready() {
   case "$1" in
     'Verify Android API') ready_output="$ACTUAL_SDK";;
     'Verify native ABI') ready_output="$ACTUAL_ABI";;
+    'Record emulator boot identity')
+      [[ "${*:2}" == '* shell cat /proc/sys/kernel/random/boot_id' ]] || return 1
+      ready_output='12345678-1234-1234-1234-123456789abc';;
     *) ready_output=1;;
   esac
 }
@@ -138,6 +141,8 @@ wait_until_ready() {
                     self.assertIn('system-images;android-'+str(sdk)+';google_apis;'+abi, run.stdout)
                     self.assertIn('<shell> <getprop> <ro.product.cpu.abi>', run.stdout)
                     self.assertIn('budget='+str(180 if sdk<30 else 120), run.stdout)
+                    self.assertEqual('<shell> <cat> </proc/sys/kernel/random/boot_id>' in run.stdout,
+                                     sdk>=30)
                     self.assertIn('<shell> <pm> <path> <android>' if sdk<30 else
                                   '<shell> <cmd> <package> <path> <android>', run.stdout)
                     self.assertEqual('<shell> <wm> <dismiss-keyguard>' in run.stdout, sdk>=23)
