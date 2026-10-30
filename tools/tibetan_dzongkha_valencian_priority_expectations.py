@@ -48,6 +48,30 @@ def decode_android(raw):
     return re.sub(r'\\(.)',lambda m:{'n':'\n','t':'\t','r':'\r'}.get(m[1],m[1]),raw)
 
 
+def inherited_held_display(tag, key, previous, parent_root=None, direct_root=None):
+    """Seven current Catalan successors are inherited, never Valencian presence/review."""
+    from current_localization_contracts import RESIDUAL_KEYS, residual_rows, require_residual_or_previous
+    if tag != 'ca-ES-valencia' or key not in RESIDUAL_KEYS['ca']:
+        return previous
+    data = bound_fixture(tag)
+    if (key in data['original_catalogue'] or key in data['values']
+            or previous != data['held_display'][key]['display']):
+        raise ValueError('Exact historical Valencian fallback differs')
+    if direct_root is None:
+        direct_root = E.parse(ROOT / data['catalogue_path']).getroot()
+    if direct_root.findall(f"./*[@name='{key}']"):
+        raise ValueError('Inherited Catalan successor must remain directly absent in Valencian')
+    row = residual_rows()[('ca', key)]
+    if row['source'] != previous:
+        raise ValueError('Exact Catalan parent fallback predecessor differs')
+    if parent_root is None:
+        parent_root = E.parse(ROOT / 'Paintroid/src/main/res/values-ca/strings.xml').getroot()
+    raw = require_residual_or_previous(parent_root, 'ca', key)
+    require_resource_shape(parent_root.find(f"./string[@name='{key}']"), 'string',
+                           {'value': row['target'], 'attributes': row['attributes']})
+    return decode_android(raw)
+
+
 def current_sampled_modality_value(tag,historical):
     if tag != 'bo':return historical
     key='ui_sampled_resize_memory_explanation'

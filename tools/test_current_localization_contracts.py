@@ -1100,6 +1100,38 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
 class ReviewedResidualSuccessorTests(unittest.TestCase):
     """The finite review receipt supersedes holds, not whole-language acceptance."""
+    def test_current_cohort_catalogues_keep_strict_successor_shape_and_predecessors(self):
+        from copy import deepcopy
+        from unittest.mock import patch
+        from current_localization_contracts import residual_rows
+        import basque_frisian_uzbek_priority_expectations as uz
+        import sorani_uyghur_tatar_priority_expectations as ckb
+        rows = residual_rows()
+        for tag, module, count in [('uz-Latn', uz, 10), ('ckb', ckb, 11)]:
+            data = module.bound_fixture(tag)
+            original = ET.parse(ROOT / data['catalogue_path']).getroot()
+            module.require_catalogue(tag, original)
+            keys = {key for locale, key in rows if locale == tag}
+            self.assertEqual(count, len(keys))
+            self.assertFalse(keys & (set(data['original_catalogue']) | set(data['values'])))
+            for key in keys:
+                for mutation in ('missing', 'duplicate', 'type', 'value', 'attribute', 'child', 'tail', 'unreviewed'):
+                    root = deepcopy(original); node = root.find(f"./string[@name='{key}']")
+                    if mutation == 'missing': root.remove(node)
+                    elif mutation == 'duplicate': root.append(deepcopy(node))
+                    elif mutation == 'type': node.tag = 'plurals'
+                    elif mutation == 'value': node.text += ' forged'
+                    elif mutation == 'attribute': node.set('formatted', 'false')
+                    elif mutation == 'child': ET.SubElement(node, 'b')
+                    elif mutation == 'tail': node.tail = 'unreviewed'
+                    else: node.set('name', 'unreviewed')
+                    with self.subTest(tag=tag, key=key, mutation=mutation), self.assertRaises(ValueError):
+                        module.require_catalogue(tag, root)
+                changed = deepcopy(rows); changed[(tag, key)]['previous_target'] = 'forged'
+                with patch('current_localization_contracts.residual_rows', return_value=changed):
+                    with self.subTest(tag=tag, key=key, mutation='predecessor'), self.assertRaises(ValueError):
+                        module.require_catalogue(tag, original)
+
     def test_complete_reviewed_successors_and_predecessors(self):
         from current_localization_contracts import residual_rows, require_residual_or_previous
         rows = residual_rows()

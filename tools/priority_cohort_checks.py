@@ -61,16 +61,26 @@ def require_edited_resource(tag, key, element, data, bound_fixture, require_fixt
 
 
 def require_catalogue(tag, root, data, bound_fixture, require_fixture_binding, require_resource_shape):
+    from current_localization_contracts import residual_rows
     data = bound_fixture(tag) if data is None else require_fixture_binding(tag, data)
     if root.tag != 'resources' or root.attrib or (root.text or '').strip() or (root.tail or '').strip():
         raise ValueError('Malformed resource root')
-    expected = set(data['original_catalogue']) | set(data['values'])
+    successors = {key: row for (locale, key), row in residual_rows().items() if locale == tag}
+    expected = set(data['original_catalogue']) | set(data['values']) | set(successors)
     names = [node.get('name') for node in root]
     if len(set(names)) != len(names) or set(names) != expected:
         raise ValueError('Exact complete catalogue identity set differs')
     for node in root:
         key = node.get('name')
-        if key in data['values']:
+        if key in successors:
+            row = successors[key]
+            old = data['original_catalogue'].get(key)
+            previous = data['values'][key]['reviewed_value'] if key in data['values'] else old['value'] if old else None
+            if row['previous_target'] != previous:
+                raise ValueError('Exact catalogue successor predecessor differs')
+            # Retain the catalogue's strict tail/child/type checks for additions too.
+            require_resource_shape(node, 'string', {'value': row['target'], 'attributes': row['attributes']})
+        elif key in data['values']:
             row = data['values'][key]
             value = {'value': row['reviewed_value'], 'attributes': row['reviewed_attributes']}
             if row['type'] == 'plurals':

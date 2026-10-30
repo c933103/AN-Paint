@@ -79,6 +79,9 @@ class TibetanDzongkhaValencianPriorityWordingTest {
     private fun expected(tag: String, key: String) = row(tag,key).getString("display")
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
+    // Parent fallback changes do not grant direct Valencian presence or wording acceptance.
+    private fun heldDisplay(tag: String, key: String, previous: String, vararg args: Any) =
+        if(tag=="ca-ES-valencia") PriorityWordingExpectations.residual("ca",key,previous,*args) else previous
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources
@@ -135,14 +138,15 @@ class TibetanDzongkhaValencianPriorityWordingTest {
             assertEquals("string",entry.getString("type"))
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("Held $tag/$key",0,id)
-            assertEquals("Held current or English fallback $tag/$key",entry.getString("display"),activity.getString(id))
+            assertEquals("Held current or inherited fallback $tag/$key",heldDisplay(tag,key,entry.getString("display")),activity.getString(id))
         }
         if(tag=="ca-ES-valencia") {
-            assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+            assertEquals(heldDisplay(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
                 activity.getString(R.string.ui_foreground_background_colour_palette))
-            assertEquals("Foreground foreground 100%, background background 100%. palette 100% colour palette.",
+            assertEquals(heldDisplay(tag,"ui_foreground_background_colour_palette","Foreground foreground 100%, background background 100%. palette 100% colour palette.",
+                    "foreground 100%","background 100%","palette 100%"),
                 ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
-            assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
+            assertEquals(heldDisplay(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
             run {
                 assertEquals("Primer pla",ui(R.string.ui_fg))
                 assertEquals("Fons",ui(R.string.ui_bg))
