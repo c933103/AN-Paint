@@ -1,4 +1,5 @@
 """Twenty bounded CA/RO P0 Save/export/share values; no whole-locale acceptance."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from copy import deepcopy
 import json
 import unittest
@@ -83,7 +84,7 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string_root(self.roots[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(catalogue_count(tag,205), len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
+            self.assertEqual(catalogue_count(tag,205)+len(RESIDUAL_KEYS.get(tag,set())), len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('"' + current_display(tag,'save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertEqual('"'+current_display('ca','ui_save_your_changes')+'"', self.roots['ca'].find("./string[@name='ui_save_your_changes']").text)
         self.assertEqual('Salvaţi modificările?', self.roots['ro'].find("./string[@name='ui_save_your_changes']").text)
@@ -104,7 +105,7 @@ class CatalanRomanianSaveWordingTests(unittest.TestCase):
                     self.assertIsNone(successor['previous_target'])
                     require_string_root(self.roots[tag], key, successor['target'], {'attributes': successor['attributes']})
                 else:
-                    self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+                    require_residual_or_previous(self.roots[tag],tag,key)
         self.assertEqual('Choose location…', self.roots['default'].find("./string[@name='ui_choose_location']").text)
         self.assertEqual('Share saved image', self.roots['default'].find("./string[@name='ui_share_saved_image']").text)
 

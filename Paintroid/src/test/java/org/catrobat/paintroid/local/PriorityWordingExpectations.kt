@@ -19,4 +19,17 @@ internal object PriorityWordingExpectations {
         val data=locales.getJSONObject(tag)
         return (data.getJSONObject("values").optJSONObject(key) ?: data.getJSONObject("context").getJSONObject(key)).getString("display")
     }
+
+    private val residuals by lazy {
+        val rows=JSONObject(File("../tools/fixtures/current_localization/reviewed_residuals_20261030.json").readText()).getJSONArray("decisions")
+        (0 until rows.length()).map { rows.getJSONObject(it) }.associateBy { it.getString("locale") to it.getString("key") }
+    }
+    /** Only exact reviewed successors replace an English fallback expectation. */
+    fun residual(tag: String,key: String,previous: String,vararg args: Any): String {
+        val row=residuals[tag to key] ?: return previous
+        require(row.isNull("previous_target")) { "$tag/$key is not a missing-value successor" }
+        fun formatted(value: String)=if(args.isEmpty()) value else java.lang.String.format(java.util.Locale.forLanguageTag(tag),value,*args)
+        require(previous==formatted(row.getString("source"))) { "$tag/$key previous fallback differs" }
+        return formatted(row.getString("target"))
+    }
 }

@@ -1,4 +1,5 @@
 """72 exact NN P0 values; no whole-locale, native-human or runtime certification."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from copy import deepcopy
 import json
 import unittest
@@ -53,7 +54,7 @@ class NynorskRemainingP0Tests(unittest.TestCase):
         for key, expected in preserved.items():
             with self.subTest(key=key):
                 require_string_root(self.roots['nn'], key, expected['value'], {'attributes': expected['attributes']})
-        self.assertEqual(190+len(added_keys('nn')), len(self.roots['nn']))
+        self.assertEqual(190+len(added_keys('nn'))+len(RESIDUAL_KEYS['nn']), len(self.roots['nn']))
         from test_translations import SCOPED_TAGS
         self.assertNotIn('nn', SCOPED_TAGS)
 
@@ -61,7 +62,7 @@ class NynorskRemainingP0Tests(unittest.TestCase):
         holds = {'formats22_derived_exported', 'ui_save_as', 'ui_save_as_jpeg', 'ui_save_as_jpeg_xl', 'ui_save_as_png'}
         self.assertEqual(holds, set(self.data['held_absent']))
         for key in holds | {'ui_image_assembly'}:
-            self.assertIsNone(self.roots['nn'].find(f"./string[@name='{key}']"), key)
+            require_residual_or_previous(self.roots['nn'],'nn',key)
 
         for key in ('ui_no_resize_fits_decoder_memory','formats22_at_least_frames','ui_load_image','ui_choose_location'):
             row=current_row('nn',key)

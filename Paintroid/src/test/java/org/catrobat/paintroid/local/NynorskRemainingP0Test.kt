@@ -56,7 +56,7 @@ class NynorskRemainingP0Test {
         }
         assertEquals(RecoveredTrioPriorityExpectations.display("nn","ui_load_image"), ui(R.string.ui_load_image))
         assertEquals(String.format(Locale.forLanguageTag("nn"),RecoveredTrioPriorityExpectations.display("nn","formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
-        assertEquals("Save as PNG…", ui(R.string.ui_save_as_png))
+        assertEquals(PriorityWordingExpectations.residual("nn","ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
         assertEquals(RecoveredTrioPriorityExpectations.display("nn","ui_no_resize_fits_decoder_memory"), ui(R.string.ui_no_resize_fits_decoder_memory))
         assertEquals(expected("ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
     }

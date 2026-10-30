@@ -96,12 +96,11 @@ class CatalanRomanianImportWordingTest {
         assertEquals(if (tag == "ca") "Anomena i desa…" else "Salvează ca…", ui(R.string.save20_title))
         assertEquals(if (tag == "ca") SkSlCaPriorityExpectations.display("ca","ui_save_your_changes") else "Salvaţi modificările?", ui(R.string.ui_save_your_changes))
         assertEquals(if (tag == "ca") "Art ASCII" else "Artă ASCII", ui(R.string.formats22_ascii_label))
-        assertEquals("PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
-            ui(R.string.formats22_derived_exported, "PNG"))
-        assertEquals("Save as PNG", ui(R.string.ui_save_as, "PNG"))
-        assertEquals("Save as JPEG…", ui(R.string.ui_save_as_jpeg))
-        assertEquals("Save as JPEG XL…", ui(R.string.ui_save_as_jpeg_xl))
-        assertEquals("Save as PNG…", ui(R.string.ui_save_as_png))
+        assertEquals(PriorityWordingExpectations.residual(tag,"formats22_derived_exported","PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", "PNG"),ui(R.string.formats22_derived_exported, "PNG"))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as","Save as PNG", "PNG"),ui(R.string.ui_save_as, "PNG"))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg","Save as JPEG…"),ui(R.string.ui_save_as_jpeg))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg_xl","Save as JPEG XL…"),ui(R.string.ui_save_as_jpeg_xl))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
     }
 
     @Test fun realFormatPanelUpdatesDescriptionsRejectsInvalidNamesAndCancelsRepeatedly() = forEachLocale { tag, activity ->

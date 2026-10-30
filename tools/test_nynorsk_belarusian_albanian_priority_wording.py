@@ -1,4 +1,5 @@
 """Full previously reviewed inventories, typed resources and fail-closed successors."""
+from current_localization_contracts import require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json
@@ -40,7 +41,7 @@ class RecoveredTrioTests(unittest.TestCase):
             self.assertEqual(HOLDS,set(l['held_absent']));self.assertEqual({'nn':169,'be':258,'sq':305}[t],len(l['changed']))
             self.assertEqual({'ui_discard'}if t=='sq'else set(),set(l['held_present']))
             self.assertEqual(set(expected)-HOLDS-set(l['held_present']),set(expected)&set(l['accepted']))
-            for k in HOLDS|({'ui_common_in','ui_common_in_pixels','ui_each_px_px_percent_is_relative_to_the'}if t!='nn'else set()):self.assertIsNone(ET.fromstring(self.xml[t]).find(f"./*[@name='{k}']"))
+            for k in HOLDS|({'ui_common_in','ui_common_in_pixels','ui_each_px_px_percent_is_relative_to_the'}if t!='nn'else set()):require_residual_or_previous(ET.fromstring(self.xml[t]),t,k)
             for i,r in l['preserved_unreviewed'].items():require_resource(self.xml[t],i,r['target'],r['attributes'])
             self.assertEqual([],cat.validate_catalogue(t,require_complete=False))
     def test_all_complete_scalar_plural_values_attributes_and_placeholder_contracts(self):

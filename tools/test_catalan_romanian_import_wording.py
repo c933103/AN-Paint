@@ -1,4 +1,5 @@
 """26 bounded CA/RO P0 import/format values; no whole-language certification."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from copy import deepcopy
 import json
 import unittest
@@ -83,7 +84,7 @@ class CatalanRomanianImportWordingTests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string_root(self.roots[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(catalogue_count(tag,205), len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
+            self.assertEqual(catalogue_count(tag,205)+len(RESIDUAL_KEYS.get(tag,set())), len(self.roots[tag]));self.assertNotIn(tag, SCOPED_TAGS)
         self.assertEqual(59, len(SCOPED_TAGS))
         self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
 
@@ -100,7 +101,7 @@ class CatalanRomanianImportWordingTests(unittest.TestCase):
                     self.assertIsNone(successor['previous_target'])
                     require_string_root(self.roots[tag], key, successor['target'], {'attributes': successor['attributes']})
                 else:
-                    self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+                    require_residual_or_previous(self.roots[tag],tag,key)
             self.assertEqual('"' + current_display(tag,'save20_file_format') + '"', self.roots[tag].find("./string[@name='save20_file_format']").text)
             self.assertEqual({'%1$s': 1, '%2$s': 1}, full_format_tokens(self.data['values']['formats22_animation_message'][tag]))
             self.assertEqual({'%1$s': 1}, full_format_tokens(self.data['values']['formats22_animation_unknown'][tag]))
