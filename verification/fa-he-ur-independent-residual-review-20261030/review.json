@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "review_type": "Independent string-level linguistic review; no native-human certification",
+  "source": "https://github.com/c933103/AN-Paint/blob/9d3d22b0184029108eab7164c725ce1d36a7160b/verification/fa-he-ur-residual-wording-20261030/candidates.json",
+  "scope": "24 residual decisions: 22 missing entries and 2 retained Main values. Generic fa is not fa-IR; Hebrew catalogue is values-iw.",
+  "counts": {
+    "accepted": 22,
+    "corrected": 2,
+    "uncertain": 0
+  },
+  "limitations": [
+    "No production edits or application tests.",
+    "No actual RTL layout, truncation, bidi-token isolation, or TalkBack rendering certification.",
+    "Palette action/state slots assessed as opaque labelled fragments, not verified runtime caller output.",
+    "This review does not certify the rest of any locale."
+  ],
+  "checks": {
+    "exact_key_count": 24,
+    "numbered_placeholder_multisets": "pass",
+    "ellipsis_counts": "pass",
+    "existing_fa_he_main": "retained"
+  },
+  "rows": [
+    {
+      "locale": "fa",
+      "catalogue": "Paintroid/src/main/res/values-fa/strings.xml",
+      "key": "formats22_derived_exported",
+      "status": "accepted",
+      "wording": "%1$s برون‌بری شد. نقاشی کامل شما هنوز تغییرات ذخیره‌نشده دارد؛ پیش از جایگزین کردن آن، یک نسخهٔ کامل از تصویر را ذخیره کنید.",
+      "reason": "شد expresses completed export without gender agreement. هنوز scopes استمرار to ذخیره‌نشده changes in نقاشی کامل; پیش از ... ذخیره کنید explicitly orders saving a complete copy before replacement. The pronoun آن links naturally to the drawing/image, not the export operation."
+    },
+    {
+      "locale": "fa",
+      "catalogue": "Paintroid/src/main/res/values-fa/strings.xml",
+      "key": "ui_save_as",
+      "status": "accepted",
+      "wording": "ذخیره با قالب %1$s",
+      "reason": "ذخیره is the save action noun; با قالب explicitly marks the opaque slot as a format rather than a filename. No export verb is substituted."
+    },
+    {
+      "locale": "fa",
+      "catalogue": "Paintroid/src/main/res/values-fa/strings.xml",
+      "key": "ui_save_as_jpeg",
+      "status": "accepted",
+      "wording": "ذخیره با قالب JPEG…",
+      "reason": "ذخیره با قالب is grammatical Persian menu wording for saving in a format; JPEG remains an identifier and the continuation ellipsis remains."
+    },
+    {
+      "locale": "fa",
+      "catalogue": "Paintroid/src/main/res/values-fa/strings.xml",
+      "key": "ui_save_as_jpeg_xl",
+      "status": "accepted",
+      "wording": "ذخیره با قالب JPEG XL…",
+      "reason": "The same grammatical save-plus-format construction preserves the entire JPEG XL identifier, including its space, and the ellipsis."
+    },
+    {
+      "locale": "fa",
+      "catalogue": "Paintroid/src/main/res/values-fa/strings.xml",
+      "key": "ui_save_as_png",
+      "status": "accepted",
+      "wording": "ذخیره با قالب PNG…",
+      "reason": "The nominal Save label plus با قالب retains saving rather than export; PNG and the continuation ellipsis are intact."
+    },
+    {
+      "locale": "fa",
+      "catalogue": "Paintroid/src/main/res/values-fa/strings.xml",
+      "key": "ui_foreground_background_colour_palette",
+      "status": "accepted",
+      "wording": "پیش‌زمینه %1$s، پس‌زمینه %2$s. تخته‌رنگ: %3$s.",
+      "reason": "پیش‌زمینه and پس‌زمینه identify the two colour roles in the correct order. تخته‌رنگ followed by a colon makes %3$s a separately labelled utterance, so either an action or a state can occupy it without imposed agreement. It does not assume a palette called Main."
+    },
+    {
+      "locale": "fa",
+      "catalogue": "Paintroid/src/main/res/values-fa/strings.xml",
+      "key": "ui_pinch_and_pan_mode",
+      "status": "accepted",
+      "wording": "حالت بزرگ‌نمایی با دو انگشت و جابه‌جایی نما",
+      "reason": "حالت heads a mode label. با دو انگشت makes the zoom gesture explicit; جابه‌جایی نما identifies movement of the view, not movement of drawing objects. بزرگ‌نمایی is conventional zoom terminology in this construction."
+    },
+    {
+      "locale": "fa",
+      "catalogue": "Paintroid/src/main/res/values-fa/strings.xml",
+      "key": "ui_main23",
+      "status": "accepted",
+      "wording": "اصلی",
+      "reason": "اصلی is the ordinary attributive/substantivized main or primary adjective; as a short generic section caption it requires no palette noun. Retain the existing wording."
+    },
+    {
+      "locale": "he",
+      "catalogue": "Paintroid/src/main/res/values-iw/strings.xml",
+      "key": "formats22_derived_exported",
+      "status": "corrected",
+      "wording": "הייצוא של %1$s הושלם. בציור המלא שלך עדיין יש שינויים שלא נשמרו; לפני החלפתו, יש לשמור עותק של התמונה המלאה.",
+      "reason": "Change the initial clause only: יוצא can be read as present 'goes out' as well as unpointed passive 'was exported', and syntactically predicates masculine singular of opaque %1$s. הייצוא ... הושלם explicitly expresses completed export and agrees with known masculine הייצוא instead. עדיין and שלא נשמרו retain ongoing unsaved changes; הציור המלא, לפני החלפתו and עותק של התמונה המלאה preserve the full-drawing scope and save-before-replace order."
+    },
+    {
+      "locale": "he",
+      "catalogue": "Paintroid/src/main/res/values-iw/strings.xml",
+      "key": "ui_save_as",
+      "status": "accepted",
+      "wording": "שמירה בתבנית %1$s",
+      "reason": "שמירה is the conventional nominal Save action; בתבנית denotes the output format. The slot is not inflected and Save is distinct from ייצוא."
+    },
+    {
+      "locale": "he",
+      "catalogue": "Paintroid/src/main/res/values-iw/strings.xml",
+      "key": "ui_save_as_jpeg",
+      "status": "accepted",
+      "wording": "שמירה בתבנית JPEG…",
+      "reason": "The noun phrase שמירה בתבנית is well-formed for a menu command. JPEG is preserved as a format identifier and U+2026 still signals continuation."
+    },
+    {
+      "locale": "he",
+      "catalogue": "Paintroid/src/main/res/values-iw/strings.xml",
+      "key": "ui_save_as_jpeg_xl",
+      "status": "accepted",
+      "wording": "שמירה בתבנית JPEG XL…",
+      "reason": "The same Save construction accepts the complete JPEG XL format name without Hebrew agreement or splitting the name; the ellipsis is retained."
+    },
+    {
+      "locale": "he",
+      "catalogue": "Paintroid/src/main/res/values-iw/strings.xml",
+      "key": "ui_save_as_png",
+      "status": "accepted",
+      "wording": "שמירה בתבנית PNG…",
+      "reason": "בתבנית qualifies the Save operation with the PNG format, without introducing Export terminology; the continuation ellipsis is preserved."
+    },
+    {
+      "locale": "he",
+      "catalogue": "Paintroid/src/main/res/values-iw/strings.xml",
+      "key": "ui_foreground_background_colour_palette",
+      "status": "accepted",
+      "wording": "קדמה %1$s, רקע %2$s. לוח צבעים: %3$s.",
+      "reason": "קדמה versus רקע distinguishes foreground and background in a graphics context. The colon after לוח צבעים leaves %3$s syntactically standalone; it is not forced to agree with לוח or construed as a palette name."
+    },
+    {
+      "locale": "he",
+      "catalogue": "Paintroid/src/main/res/values-iw/strings.xml",
+      "key": "ui_pinch_and_pan_mode",
+      "status": "accepted",
+      "wording": "מצב צביטה והזזת התצוגה",
+      "reason": "מצב clearly makes this a mode label. צביטה denotes the pinch gesture, and the construct phrase הזזת התצוגה names moving the display/view rather than moving painted content."
+    },
+    {
+      "locale": "he",
+      "catalogue": "Paintroid/src/main/res/values-iw/strings.xml",
+      "key": "ui_main23",
+      "status": "accepted",
+      "wording": "ראשי",
+      "reason": "ראשי is the ordinary masculine singular main/primary caption used substantivally for a generic section. Without an expressed feminine noun there is no agreement error and no reason to replace it or add palette terminology."
+    },
+    {
+      "locale": "ur",
+      "catalogue": "Paintroid/src/main/res/values-ur/strings.xml",
+      "key": "formats22_derived_exported",
+      "status": "corrected",
+      "wording": "%1$s کی برآمد مکمل ہو گئی۔ آپ کی مکمل ڈرائنگ میں اب بھی ایسی تبدیلیاں ہیں جو محفوظ نہیں کی گئیں؛ اسے بدلنے سے پہلے مکمل تصویر کی ایک نقل محفوظ کریں۔",
+      "reason": "Change only the initial clause: ہو گیا assigns masculine agreement to an opaque result token; کی برآمد مکمل ہو گئی makes feminine agreement refer to the explicit noun برآمد, not the unknown token. مکمل ڈرائنگ, اب بھی, محفوظ نہیں کی گئیں and بدلنے سے پہلے preserve the complete drawing, persistent unsaved changes, and temporal requirement to save a full image copy before replacement."
+    },
+    {
+      "locale": "ur",
+      "catalogue": "Paintroid/src/main/res/values-ur/strings.xml",
+      "key": "ui_save_as",
+      "status": "accepted",
+      "wording": "%1$s کی شکل میں محفوظ کریں",
+      "reason": "کی شکل میں is a grammatical postpositional format construction; محفوظ کریں is a polite Save imperative, distinct from برآمد. The format token itself remains uninflected."
+    },
+    {
+      "locale": "ur",
+      "catalogue": "Paintroid/src/main/res/values-ur/strings.xml",
+      "key": "ui_save_as_jpeg",
+      "status": "accepted",
+      "wording": "JPEG کی شکل میں محفوظ کریں…",
+      "reason": "JPEG کی شکل میں qualifies the polite Save imperative as a format choice, not a filename or export operation. The continuation ellipsis remains."
+    },
+    {
+      "locale": "ur",
+      "catalogue": "Paintroid/src/main/res/values-ur/strings.xml",
+      "key": "ui_save_as_jpeg_xl",
+      "status": "accepted",
+      "wording": "JPEG XL کی شکل میں محفوظ کریں…",
+      "reason": "کی شکل میں attaches to the entire JPEG XL identifier and محفوظ کریں clearly requests Save; neither the identifier nor ellipsis is altered."
+    },
+    {
+      "locale": "ur",
+      "catalogue": "Paintroid/src/main/res/values-ur/strings.xml",
+      "key": "ui_save_as_png",
+      "status": "accepted",
+      "wording": "PNG کی شکل میں محفوظ کریں…",
+      "reason": "PNG کی شکل میں محفوظ کریں is a complete polite command with an explicit format relation and unchanged continuation ellipsis."
+    },
+    {
+      "locale": "ur",
+      "catalogue": "Paintroid/src/main/res/values-ur/strings.xml",
+      "key": "ui_foreground_background_colour_palette",
+      "status": "accepted",
+      "wording": "پیش منظر %1$s، پس منظر %2$s۔ رنگوں کا تختہ: %3$s۔",
+      "reason": "پیش منظر and پس منظر distinguish the two roles; رنگوں کا تختہ is a grammatical possessive construction for the palette. The following colon avoids forcing an opaque action/state into gender agreement with تختہ."
+    },
+    {
+      "locale": "ur",
+      "catalogue": "Paintroid/src/main/res/values-ur/strings.xml",
+      "key": "ui_pinch_and_pan_mode",
+      "status": "accepted",
+      "wording": "دو انگلیوں سے زوم اور منظر منتقل کرنے کی حالت",
+      "reason": "دو انگلیوں سے names the two-finger interaction; زوم and منظر منتقل کرنے coordinate zoom with movement of the view. کی حالت makes it a mode rather than an instruction to move drawing objects."
+    },
+    {
+      "locale": "ur",
+      "catalogue": "Paintroid/src/main/res/values-ur/strings.xml",
+      "key": "ui_main23",
+      "status": "accepted",
+      "wording": "مرکزی",
+      "reason": "مرکزی is an ordinary main/central adjective that works as a standalone generic section heading. It adds no unsupported palette meaning."
+    }
+  ]
+}
