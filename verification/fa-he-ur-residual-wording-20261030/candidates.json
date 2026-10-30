@@ -1,0 +1,342 @@
+{
+  "schema": 1,
+  "scope": "Residual P0/P1 wording only; generic Persian fa, Hebrew he using values-iw, Urdu ur.",
+  "base_commit": "53f650d38af84817043270bf3265c0dd17decd97",
+  "counts": {
+    "decisions": 24,
+    "missing_entries": 22,
+    "retain_existing": 2
+  },
+  "status": "Author candidates and retention decisions; not independent acceptance, production application, native-human certification or full-language completion.",
+  "source_path": "Paintroid/src/main/res/values/strings.xml",
+  "catalogue_paths": {
+    "fa": "Paintroid/src/main/res/values-fa/strings.xml",
+    "he": "Paintroid/src/main/res/values-iw/strings.xml",
+    "ur": "Paintroid/src/main/res/values-ur/strings.xml"
+  },
+  "prior_review": "https://github.com/c933103/AN-Paint/tree/87b6babebb85b5507ba860ecf4d7504f2c9d8ff4/verification/fa-he-ur-priority-20261029",
+  "terminology_basis": {
+    "fa": {
+      "save": "ذخیره",
+      "export": "برون‌بری",
+      "palette": "تخته‌رنگ",
+      "foreground": "پیش‌زمینه",
+      "background": "پس‌زمینه"
+    },
+    "he": {
+      "save": "שמירה",
+      "export": "ייצוא",
+      "palette": "לוח צבעים",
+      "foreground": "קדמה",
+      "background": "רקע"
+    },
+    "ur": {
+      "save": "محفوظ کریں",
+      "export": "برآمد",
+      "palette": "رنگوں کا تختہ",
+      "foreground": "پیش منظر",
+      "background": "پس منظر"
+    }
+  },
+  "context_limits": "Main is the generic section heading adjacent to Drawing/Color, not the separate palette action/state. Current ColourStatusButton.refresh instead composes the separate foreground/background labels. No re-review of the 341-key packets. No application tests or production changes.",
+  "encoding": "Candidate fields contain display text, not Android outer quote delimiters. Preserve numbered ASCII placeholders exactly and literal U+2026 ellipses. No bidi controls added; consumer-supplied token isolation remains a runtime concern.",
+  "rows": [
+    {
+      "locale": "fa",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "current_raw": null,
+      "candidate": "%1$s برون‌بری شد. نقاشی کامل شما هنوز تغییرات ذخیره‌نشده دارد؛ پیش از جایگزین کردن آن، یک نسخهٔ کامل از تصویر را ذخیره کنید.",
+      "decision": "propose_add",
+      "backtranslation": "%1$s was exported. Your complete drawing still has unsaved changes; before replacing it, save a complete copy of the image.",
+      "rationale": "Export completion is not Save completion. Preserve full-drawing scope, still-unsaved changes, and saving a complete image copy before replacement.",
+      "uncertainty": "No unresolved warning-clause meaning; opaque export-result token and RTL rendering not exercised."
+    },
+    {
+      "locale": "fa",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "current_raw": null,
+      "candidate": "ذخیره با قالب %1$s",
+      "decision": "propose_add",
+      "backtranslation": "Save in %1$s format",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "fa",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "current_raw": null,
+      "candidate": "ذخیره با قالب JPEG…",
+      "decision": "propose_add",
+      "backtranslation": "Save in JPEG format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "fa",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "current_raw": null,
+      "candidate": "ذخیره با قالب JPEG XL…",
+      "decision": "propose_add",
+      "backtranslation": "Save in JPEG XL format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "fa",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "current_raw": null,
+      "candidate": "ذخیره با قالب PNG…",
+      "decision": "propose_add",
+      "backtranslation": "Save in PNG format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "fa",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "current_raw": null,
+      "candidate": "پیش‌زمینه %1$s، پس‌زمینه %2$s. تخته‌رنگ: %3$s.",
+      "decision": "propose_add",
+      "backtranslation": "Foreground %1$s, background %2$s. Palette: %3$s.",
+      "rationale": "Keep foreground/background slots in order and palette action/state slot separate. Label-colon composition admits an action or state without requiring agreement or inventing Main as its value.",
+      "uncertainty": "Exact %3$s caller is not present in inspected current ColourStatusButton.kt or ClassicPaintActivity.kt. Candidate preserves an opaque action/state as a standalone palette-labelled slot; no rendered or TalkBack composition claim."
+    },
+    {
+      "locale": "fa",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "current_raw": null,
+      "candidate": "حالت بزرگ‌نمایی با دو انگشت و جابه‌جایی نما",
+      "decision": "propose_add",
+      "backtranslation": "Two-finger zoom and view-panning mode",
+      "rationale": "Describe pinch zoom plus movement of the viewport, not moving drawing content.",
+      "uncertainty": "Two-finger zoom is an explanatory rendering of pinch; actual label length/rendering untested."
+    },
+    {
+      "locale": "fa",
+      "key": "ui_main23",
+      "priority": "P1",
+      "source": "Main",
+      "current_raw": "اصلی",
+      "candidate": "اصلی",
+      "decision": "retain_existing",
+      "backtranslation": "Main / primary",
+      "rationale": "Generic main/primary section label; no palette noun. Existing value is semantically adequate; no rewrite.",
+      "uncertainty": "No remaining lexical uncertainty for generic section meaning; installed layout not checked."
+    },
+    {
+      "locale": "he",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "current_raw": null,
+      "candidate": "%1$s יוצא. בציור המלא שלך עדיין יש שינויים שלא נשמרו; לפני החלפתו, יש לשמור עותק של התמונה המלאה.",
+      "decision": "propose_add",
+      "backtranslation": "%1$s was exported. In your full drawing there are still changes that were not saved; before replacing it, save a copy of the full image.",
+      "rationale": "Export completion is not Save completion. Preserve full-drawing scope, still-unsaved changes, and saving a complete image copy before replacement.",
+      "uncertainty": "No unresolved warning-clause meaning; opaque export-result token and RTL rendering not exercised."
+    },
+    {
+      "locale": "he",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "current_raw": null,
+      "candidate": "שמירה בתבנית %1$s",
+      "decision": "propose_add",
+      "backtranslation": "Save in %1$s format",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "he",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "current_raw": null,
+      "candidate": "שמירה בתבנית JPEG…",
+      "decision": "propose_add",
+      "backtranslation": "Save in JPEG format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "he",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "current_raw": null,
+      "candidate": "שמירה בתבנית JPEG XL…",
+      "decision": "propose_add",
+      "backtranslation": "Save in JPEG XL format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "he",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "current_raw": null,
+      "candidate": "שמירה בתבנית PNG…",
+      "decision": "propose_add",
+      "backtranslation": "Save in PNG format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "he",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "current_raw": null,
+      "candidate": "קדמה %1$s, רקע %2$s. לוח צבעים: %3$s.",
+      "decision": "propose_add",
+      "backtranslation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+      "rationale": "Keep foreground/background slots in order and palette action/state slot separate. Label-colon composition admits an action or state without requiring agreement or inventing Main as its value.",
+      "uncertainty": "Exact %3$s caller is not present in inspected current ColourStatusButton.kt or ClassicPaintActivity.kt. Candidate preserves an opaque action/state as a standalone palette-labelled slot; no rendered or TalkBack composition claim."
+    },
+    {
+      "locale": "he",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "current_raw": null,
+      "candidate": "מצב צביטה והזזת התצוגה",
+      "decision": "propose_add",
+      "backtranslation": "Pinch and view-moving mode",
+      "rationale": "Describe pinch zoom plus movement of the viewport, not moving drawing content.",
+      "uncertainty": "צביטה retains the existing accepted pinch term; actual label length/rendering untested."
+    },
+    {
+      "locale": "he",
+      "key": "ui_main23",
+      "priority": "P1",
+      "source": "Main",
+      "current_raw": "ראשי",
+      "candidate": "ראשי",
+      "decision": "retain_existing",
+      "backtranslation": "Main / primary",
+      "rationale": "Generic main/primary section label; no palette noun. Existing value is semantically adequate; no rewrite.",
+      "uncertainty": "No remaining lexical uncertainty for generic section meaning; installed layout not checked."
+    },
+    {
+      "locale": "ur",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "current_raw": null,
+      "candidate": "%1$s برآمد ہو گیا۔ آپ کی مکمل ڈرائنگ میں اب بھی ایسی تبدیلیاں ہیں جو محفوظ نہیں کی گئیں؛ اسے بدلنے سے پہلے مکمل تصویر کی ایک نقل محفوظ کریں۔",
+      "decision": "propose_add",
+      "backtranslation": "%1$s was exported. Your complete drawing still has changes that have not been saved; before replacing it, save a copy of the complete image.",
+      "rationale": "Export completion is not Save completion. Preserve full-drawing scope, still-unsaved changes, and saving a complete image copy before replacement.",
+      "uncertainty": "Masculine export-result agreement treats %1$s as the export/output, not the image; opaque format/name token preserved. No installed bidi check."
+    },
+    {
+      "locale": "ur",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "current_raw": null,
+      "candidate": "%1$s کی شکل میں محفوظ کریں",
+      "decision": "propose_add",
+      "backtranslation": "Save in %1$s format",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "ur",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "current_raw": null,
+      "candidate": "JPEG کی شکل میں محفوظ کریں…",
+      "decision": "propose_add",
+      "backtranslation": "Save in JPEG format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "ur",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "current_raw": null,
+      "candidate": "JPEG XL کی شکل میں محفوظ کریں…",
+      "decision": "propose_add",
+      "backtranslation": "Save in JPEG XL format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "ur",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "current_raw": null,
+      "candidate": "PNG کی شکل میں محفوظ کریں…",
+      "decision": "propose_add",
+      "backtranslation": "Save in PNG format…",
+      "rationale": "Use established Save terminology, not Export. Explicit format wording avoids interpreting JPEG/PNG or the format slot as a filename. Preserve original ellipsis policy.",
+      "uncertainty": "No unresolved Save/Export distinction; Latin format/RTL rendering not exercised."
+    },
+    {
+      "locale": "ur",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "current_raw": null,
+      "candidate": "پیش منظر %1$s، پس منظر %2$s۔ رنگوں کا تختہ: %3$s۔",
+      "decision": "propose_add",
+      "backtranslation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+      "rationale": "Keep foreground/background slots in order and palette action/state slot separate. Label-colon composition admits an action or state without requiring agreement or inventing Main as its value.",
+      "uncertainty": "Exact %3$s caller is not present in inspected current ColourStatusButton.kt or ClassicPaintActivity.kt. Candidate preserves an opaque action/state as a standalone palette-labelled slot; no rendered or TalkBack composition claim."
+    },
+    {
+      "locale": "ur",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "current_raw": null,
+      "candidate": "دو انگلیوں سے زوم اور منظر منتقل کرنے کی حالت",
+      "decision": "propose_add",
+      "backtranslation": "Two-finger zoom and view-moving mode",
+      "rationale": "Describe pinch zoom plus movement of the viewport, not moving drawing content.",
+      "uncertainty": "Two-finger zoom is an explanatory rendering of pinch; actual label length/rendering untested."
+    },
+    {
+      "locale": "ur",
+      "key": "ui_main23",
+      "priority": "P1",
+      "source": "Main",
+      "current_raw": null,
+      "candidate": "مرکزی",
+      "decision": "propose_add",
+      "backtranslation": "Main / central",
+      "rationale": "Generic main/primary section label; no palette noun. New Urdu wording.",
+      "uncertainty": "No remaining lexical uncertainty for generic section meaning; installed layout not checked."
+    }
+  ],
+  "mechanical_checks": {
+    "scope_counts": "pass",
+    "exact_source_binding": "pass from fetched pinned XML",
+    "numbered_placeholders": "pass",
+    "ellipsis_policy": "pass",
+    "main_retention": "pass",
+    "production_edits": "none",
+    "application_tests": "not run"
+  }
+}
