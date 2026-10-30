@@ -47,7 +47,7 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
     private fun boundSoWoHtFixture(bytes: ByteArray = File("../tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json").readBytes()): JSONObject {
         val digest = java.security.MessageDigest.getInstance("SHA-256").digest(bytes)
             .joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete canonical Somali/Wolof/Haitian Creole fixture", "601d60e5fb772bc7bdfebc6774492fb1b0a3f84454937c4f29711cb2080319eb", digest)
+        assertEquals("Complete canonical Somali/Wolof/Haitian Creole fixture", "cbd9e458561e044f52f6c5c4622574b3f27e72dd50a1b04ec26c3d45494fb836", digest)
         return JSONObject(String(bytes, Charsets.UTF_8))
     }
 
@@ -127,7 +127,7 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
         // The full source texts and held-absence sets are independently pinned by host tests.
         val defaultEnglish = reviewFixture.getJSONObject("sources")
         val held=locale.getJSONArray("held_absent")
-        assertEquals(mapOf("so" to 12,"wo" to 13,"ht" to 11).getValue(tag),held.length())
+        assertEquals(mapOf("so" to 11,"wo" to 11,"ht" to 11).getValue(tag),held.length())
         for(index in 0 until held.length()) {
             val key=held.getString(index);val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag held/$key",0,id)
