@@ -1,0 +1,177 @@
+{
+  "title": "Independent focused review of fourteen proposed localization corrections",
+  "date": "2026-10-30",
+  "reviewer": "Chat-native model independent review; not native-speaker certification",
+  "scope": "Only nine CH/SHN corrected dispositions and five QUG/QUZ corrected dispositions. Conditional uncertain proposals excluded. No production edits or tests.",
+  "source_reviews": [
+    "https://github.com/c933103/AN-Paint/blob/762fb1f2293b5153f4f3cb0abd5709a89811331d/records/localization-reviews/2026-10-30/ch-shn-tdd-independent.json",
+    "https://github.com/c933103/AN-Paint/tree/7d7d6e5a6dd4c362661d83d4ad6980829f99c234/records/localization-review/2026-10-30/qug-quh-quz-independent"
+  ],
+  "method": "Read exact English, candidate, proposed correction and prior reasoning; independently assessed meaning and morphology. Did not require published UI sentences. Narrow lexical checks do not substitute for whole-message judgment.",
+  "lexical_cross_check": "https://escholarship.org/uc/item/0098k2nh",
+  "summary": {
+    "accepted": 14,
+    "revised": 0,
+    "uncertain": 0,
+    "lower_idiomatic_confidence": [
+      "qug:ui_copy",
+      "qug:ui_copy_all"
+    ]
+  },
+  "entries": [
+    {
+      "locale": "ch",
+      "key": "ui_choose_at_least_one_image",
+      "english": "Choose at least one image.",
+      "original_candidate": "Pili maseha unu na imåhen.",
+      "proposed_correction": "Pili putlumenus unu na imåhen.",
+      "previous_reason": "Replace maseha (even/although/any) with an explicit minimum quantity, putlumenus; one or more, not an arbitrary single image.",
+      "disposition": "accepted",
+      "final_wording": "Pili putlumenus unu na imåhen.",
+      "independent_reason": "Accept. The command and noun phrase remain coherent; putlumenus establishes a minimum of one. Maseha did not reliably express that quantitative constraint."
+    },
+    {
+      "locale": "ch",
+      "key": "ui_height",
+      "english": "Height (%1$s)",
+      "original_candidate": "Tinekcha' (%1$s)",
+      "proposed_correction": "Attura (%1$s)",
+      "previous_reason": "Tinekcha' is fruit, not height. Attura denotes height; preserve the unit argument.",
+      "disposition": "accepted",
+      "final_wording": "Attura (%1$s)",
+      "independent_reason": "Accept. Attura corrects the dimension noun: Tinekcha' was not height. Unit placeholder unchanged."
+    },
+    {
+      "locale": "ch",
+      "key": "ui_height_in",
+      "english": "Height in %1$s",
+      "original_candidate": "Tinekcha' gi %1$s",
+      "proposed_correction": "Attura gi %1$s",
+      "previous_reason": "Tinekcha' is fruit. Replace only the dimension noun with height and retain the unit relation.",
+      "disposition": "accepted",
+      "final_wording": "Attura gi %1$s",
+      "independent_reason": "Accept. Same substantive dimension correction; gi supplies the relation to the measurement unit."
+    },
+    {
+      "locale": "ch",
+      "key": "ui_heights",
+      "english": "Heights",
+      "original_candidate": "Tinekcha' siha",
+      "proposed_correction": "Attura siha",
+      "previous_reason": "Tinekcha' siha means fruits, not heights. Retain plural siha.",
+      "disposition": "accepted",
+      "final_wording": "Attura siha",
+      "independent_reason": "Accept. Height noun plus plural siha denotes multiple heights rather than fruits."
+    },
+    {
+      "locale": "ch",
+      "key": "ui_original_size34",
+      "english": "Original size",
+      "original_candidate": "Orifinåt na mineddong",
+      "proposed_correction": "Urihinåt na mineddong",
+      "previous_reason": "Orifinåt is not the original adjective; use urihinåt with the size noun.",
+      "disposition": "accepted",
+      "final_wording": "Urihinåt na mineddong",
+      "independent_reason": "Accept. Urihinåt supplies original, na links the modifier, and mineddong denotes size; repairs malformed original adjective."
+    },
+    {
+      "locale": "shn",
+      "key": "language20_settings",
+      "english": "Settings",
+      "original_candidate": "ၵၢၼ်တင်ႈၶႃႈ",
+      "proposed_correction": "ၵၢၼ်တင်ႈ",
+      "previous_reason": "Remove the anomalous ၶႃႈ; the simple settings noun is supported by SIIT's own computing instructions.",
+      "disposition": "accepted",
+      "final_wording": "ၵၢၼ်တင်ႈ",
+      "independent_reason": "Accept. Nominalized setting expression works as menu label; ၶႃႈ is an inappropriate attached politeness particle, not necessary settings morphology."
+    },
+    {
+      "locale": "shn",
+      "key": "ui_android_could_not_find_a_file_picker_enable",
+      "english": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
+      "original_candidate": "Android ႁႃတူဝ်လိူၵ်ႈၾၢႆႇဢမ်ႇႁၼ်။ ပိုတ်ႇၸႂ်ႉဢႅပ်ႉ Files ဢမ်ႇၼၼ် Documents ၼႂ်းၵၢၼ်တင်ႈၶႃႈ Android၊ ယဝ်ႉၸၢမ်းထႅင်ႈၵမ်းၼိုင်ႈ။",
+      "proposed_correction": "Android ႁႃတူဝ်လိူၵ်ႈၾၢႆႇဢမ်ႇႁၼ်။ ပိုတ်ႇၸႂ်ႉဢႅပ်ႉ Files ဢမ်ႇၼၼ် Documents ၼႂ်းၵၢၼ်တင်ႈ Android၊ ယဝ်ႉၸၢမ်းထႅင်ႈၵမ်းၼိုင်ႈ။",
+      "previous_reason": "Correct settings noun only; retain missing picker, enable action, both app names, then retry in order.",
+      "disposition": "accepted",
+      "final_wording": "Android ႁႃတူဝ်လိူၵ်ႈၾၢႆႇဢမ်ႇႁၼ်။ ပိုတ်ႇၸႂ်ႉဢႅပ်ႉ Files ဢမ်ႇၼၼ် Documents ၼႂ်းၵၢၼ်တင်ႈ Android၊ ယဝ်ႉၸၢမ်းထႅင်ႈၵမ်းၼိုင်ႈ။",
+      "independent_reason": "Accept. Removes intrusive particle in settings phrase. Whole instruction preserves failure to find picker, enable Files or Documents in Android settings, then retry."
+    },
+    {
+      "locale": "shn",
+      "key": "ui_choose_at_least_one_image",
+      "english": "Choose at least one image.",
+      "original_candidate": "လိူၵ်ႈႁၢင်ႈယၢမ်ႈသုတ်းၼိုင်ႈႁၢင်ႈ။",
+      "proposed_correction": "လိူၵ်ႈႁၢင်ႈၼိုင်ႈႁၢင်ႈ ဢမ်ႇၼၼ် လိူဝ်ၼၼ်ႉ။",
+      "previous_reason": "ယၢမ်ႈ is accustomed/ever, not minimum. Explicit one image or more avoids the false minimum expression.",
+      "disposition": "accepted",
+      "final_wording": "လိူၵ်ႈႁၢင်ႈၼိုင်ႈႁၢင်ႈ ဢမ်ႇၼၼ် လိူဝ်ၼၼ်ႉ။",
+      "independent_reason": "Accept. Coherent choose-one-image-or-more formulation expresses minimum, unlike mistaken accustomed/ever component in ယၢမ်ႈသုတ်း."
+    },
+    {
+      "locale": "shn",
+      "key": "ui_trim_amounts_must_be_zero_or_greater",
+      "english": "Trim amounts must be zero or greater.",
+      "original_candidate": "ၸမ်းတတ်းၼၼ်ႉ တေလႆႈပဵၼ်သုၼ် ဢမ်ႇၼၼ် ယႂ်ႇလိူဝ်သုၼ်။",
+      "proposed_correction": "တၢင်းၼမ်ဢၼ်တေတတ်းဢွၵ်ႇ တေလႆႈပဵၼ်သုၼ် ဢမ်ႇၼၼ် ယႂ်ႇလိူဝ်သုၼ်။",
+      "previous_reason": "ၸမ်းတတ်း does not clearly express amounts to trim. Replacement explicitly says the amount to cut off must be zero or greater; preserves inclusive zero.",
+      "disposition": "accepted",
+      "final_wording": "တၢင်းၼမ်ဢၼ်တေတတ်းဢွၵ်ႇ တေလႆႈပဵၼ်သုၼ် ဢမ်ႇၼၼ် ယႂ်ႇလိူဝ်သုၼ်။",
+      "independent_reason": "Accept. Subject explicitly names amount to cut off; obligation includes zero or greater than zero. Does not exclude zero or command trimming to zero."
+    },
+    {
+      "locale": "qug",
+      "key": "ui_bold",
+      "english": "Bold",
+      "original_candidate": "Rakuta",
+      "proposed_correction": "Raku",
+      "previous_reason": "Use the adjective Raku for a standalone Bold style label; Rakuta bears an unnecessary object/adverbial -ta here. Typographic thickness metaphor is reasonable.",
+      "disposition": "accepted",
+      "final_wording": "Raku",
+      "independent_reason": "Accept. Thick is a workable typographic style label. Bare adjective suits label better than Rakuta, though the latter is not ungrammatical in every construction."
+    },
+    {
+      "locale": "qug",
+      "key": "ui_copy",
+      "english": "Copy",
+      "original_candidate": "Kikinllatata rurana",
+      "proposed_correction": "Kikinllata rurana",
+      "previous_reason": "Remove duplicated -ta in kikinllatata. This is a bounded morphological correction, not certification of the phrase as conventional clipboard Copy.",
+      "disposition": "accepted",
+      "final_wording": "Kikinllata rurana",
+      "independent_reason": "Accept as descriptive wording. Removes duplicated -ta. Remaining expression coherently directs making the same/reproducing. Lower idiomatic confidence; no claim this is the preferred established clipboard term."
+    },
+    {
+      "locale": "qug",
+      "key": "ui_copy_all",
+      "english": "Copy all",
+      "original_candidate": "Tukuyta kikinllatata rurana",
+      "proposed_correction": "Tukuyta kikinllata rurana",
+      "previous_reason": "Remove duplicated -ta in kikinllatata; preserve all. Clipboard terminology remains a usage question.",
+      "disposition": "accepted",
+      "final_wording": "Tukuyta kikinllata rurana",
+      "independent_reason": "Accept as descriptive wording. Removes duplicated -ta within kikinllatata and retains all. The -ta on Tukuyta and in kikinllata perform separate roles. Lower idiomatic confidence; no claim of preferred established clipboard terminology."
+    },
+    {
+      "locale": "qug",
+      "key": "ui_left",
+      "english": "Left",
+      "original_candidate": "Lluk'i",
+      "proposed_correction": "Lluki",
+      "previous_reason": "Remove the Southern-style ejective apostrophe for the stated Ecuadorian Kichwa orthography. This is not a change to Southern Lluq'i.",
+      "disposition": "accepted",
+      "final_wording": "Lluki",
+      "independent_reason": "Accept. Ecuadorian Kichwa spelling removes ejective marker imported from another orthographic/phonological system; no reason to substitute Southern Lluq'i."
+    },
+    {
+      "locale": "quz",
+      "key": "ui_clear_all",
+      "english": "Clear all",
+      "original_candidate": "Llapan pichay",
+      "proposed_correction": "Llapanta pichay",
+      "previous_reason": "Mark the full object with -ta, consistently with Llapanta akllay and Llapanta rikuchiy already used in this catalogue.",
+      "disposition": "accepted",
+      "final_wording": "Llapanta pichay",
+      "independent_reason": "Accept. Explicitly marks all as object of clearing. Original bare Llapan might admit elliptical reading; correction is preferable without declaring all bare-object constructions impossible."
+    }
+  ]
+}
