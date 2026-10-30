@@ -60,6 +60,8 @@ class SinhalaBurmeseZhuangTests(unittest.TestCase):
    self.assertIn('පික්සලවලින්',display('si',key).replace('%1$s',display('si','ui_pixels_6ec9c2')))
    self.assertIn('ප්‍රතිශතවලින්',display('si',key).replace('%1$s',display('si','ui_percent_fd8671')))
   text=(ROOT/'tools/fixtures/current_localization'/NAME).read_text();validated_fixture_text(text)
+  from sinhala_burmese_zhuang_priority_expectations import FIXTURE_SHA256
+  self.assertIn(FIXTURE_SHA256,(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/SinhalaBurmeseZhuangPriorityExpectations.kt').read_text())
   bad=json.loads(text);bad['locales']['za']['accepted']['ui_all']='forged'
   with self.assertRaises(ValueError):validated_fixture_text(json.dumps(bad,ensure_ascii=False))
 if __name__=='__main__':unittest.main()

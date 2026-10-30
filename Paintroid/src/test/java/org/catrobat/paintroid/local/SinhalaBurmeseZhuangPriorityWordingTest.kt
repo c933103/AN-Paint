@@ -344,9 +344,14 @@ class SinhalaBurmeseZhuangPriorityWordingTest {
         }
     }
 
-    @Test fun boundedZhuangAdditionsDoNotPromoteUnreviewedSaveMemoryOrColourValues() = forEachLocale(listOf("za")) { tag,activity ->
+    @Test fun boundedZhuangAdditionsKeepReviewedLabelsAndMemoryColourFallbacks() = forEachLocale(listOf("za")) { tag,activity ->
         val accepted=fixture.getJSONObject(tag).getJSONObject("accepted")
-        assertEquals(setOf("ui_all","ui_menu_file","ui_menu_edit","ui_menu_help","ui_undo"),accepted.keys().asSequence().toSet())
+        val additions=JSONObject(java.io.File("../tools/fixtures/current_localization/reviewed_priority_batches.json").readText())
+            .getJSONObject("locales").getJSONObject("za").getJSONObject("accepted")
+        assertEquals(39,additions.length())
+        assertEquals(setOf("ui_all","ui_menu_file","ui_menu_edit","ui_menu_help","ui_undo") +
+            additions.keys().asSequence().toSet(),accepted.keys().asSequence().toSet())
+        assertEquals(44,accepted.length())
         for(key in accepted.keys()) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertEquals(expected(tag,key),activity.getString(id))

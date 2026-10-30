@@ -10,7 +10,7 @@ internal object SinhalaBurmeseZhuangPriorityExpectations {
     fun fixture(): JSONObject {
         val bytes=File("../tools/fixtures/current_localization/sinhala_burmese_zhuang_priority_wording.json").readBytes()
         val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete finite accepted SI/MY replacement and bounded ZA fixture", "92c0f8eadd3374f82d8761fce44cff52bdd889f22d7cf7453f7172da20960388",actual)
+        assertEquals("Complete finite accepted SI/MY replacement and bounded ZA fixture", "5dafb2cc67d04e2bd61702c579d8966fd9f417e5eb861c6e0748b2cf27d8bd79",actual)
         return JSONObject(String(bytes,Charsets.UTF_8))
     }
     fun display(values: JSONObject, key: String): String {
