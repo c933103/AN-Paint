@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
+from finite_resource_values import typed, require, _blank
 
 import translation_catalogues as catalogues
 from walloon_northern_sami_sanskrit_priority_expectations import SANSKRIT_OPTION_STATUS, require_sanskrit_option_successor
@@ -24,6 +25,20 @@ EXPECTED = {'pcm': 'Naijá', 'so': 'Soomaaliga', 'as': 'অসমীয়া', 
             'quy': 'Qichwa (Ayacucho / Chanka)', 'quh': 'Qhichwa (South Bolivian)',
             'qug': 'Kichwa (Chimborazo)',
             'sm': 'Gagana Samoa', 'mi': 'Māori', 'sa': 'संस्कृतम्', 'tg': 'Тоҷикӣ'}
+
+
+def reviewed_batch_values(xml):
+    root = ET.fromstring(xml)
+    require(root.tag == 'resources' and not root.attrib, 'Unexpected resource root')
+    require(_blank(root.text) and _blank(root.tail), 'Unexpected resource root text')
+    result = {}
+    for node in root:
+        row = typed(node)  # Reject nested content and nonblank resource tails.
+        require(row['type'] == 'string', 'Unexpected batch resource type')
+        name = node.get('name')
+        require(name is not None and name not in result, 'Missing or duplicate resource name')
+        result[name] = {'attributes': row['attributes'], 'value': row['value']}
+    return result
 
 
 class FurtherLanguageOptionTests(unittest.TestCase):
@@ -59,9 +74,7 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         self.assertEqual(1, sum(len(v['updated']) for v in BATCHES['locales'].values()))
         self.assertEqual(6, sum(len(v['unchanged']) for v in BATCHES['locales'].values()))
         for tag, loc in BATCHES['locales'].items():
-            root = ET.parse(catalogues.catalogue_paths()[tag]).getroot()
-            actual = {n.attrib['name']: {'attributes':dict(n.attrib), 'value': n.text} for n in root}
-            self.assertEqual(len(root),len(actual),tag)
+            actual = reviewed_batch_values(catalogues.catalogue_paths()[tag].read_text())
             self.assertEqual({**loc['existing_unreviewed'], **loc['accepted']}, actual, tag)
             self.assertEqual(set(loc['accepted']), set(loc['added']) | set(loc['updated']) | set(loc['unchanged']))
             for key, row in loc['accepted'].items():
@@ -72,6 +85,25 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         self.assertEqual(9, len(BATCHES['locales']['za']['existing_unreviewed']))
         self.assertNotIn('tdd', BATCHES['locales'])
         self.assertNotIn('quy', BATCHES['locales'])
+
+    def test_reviewed_batches_reject_hidden_markup_tails_and_wrong_xml_shape(self):
+        for tag in BATCHES['locales']:
+            xml = catalogues.catalogue_paths()[tag].read_text()
+            for mode in ('child', 'child-tail', 'resource-tail', 'root-text',
+                         'root-tag', 'root-attribute', 'wrong-type', 'duplicate'):
+                root = ET.fromstring(xml)
+                if mode in ('child', 'child-tail'):
+                    child = ET.SubElement(root[0], 'b')
+                    if mode == 'child': child.text = 'unreviewed addition'
+                    else: child.tail = 'unreviewed addition'
+                elif mode == 'resource-tail': root[0].tail = 'unreviewed addition'
+                elif mode == 'root-text': root.text = 'unreviewed addition'
+                elif mode == 'root-tag': root.tag = 'unreviewed'
+                elif mode == 'root-attribute': root.set('unreviewed', 'true')
+                elif mode == 'wrong-type': root[0].tag = 'item'
+                else: root.append(ET.fromstring(ET.tostring(root[0], encoding='unicode')))
+                with self.subTest(tag=tag, mode=mode), self.assertRaises(ValueError):
+                    reviewed_batch_values(ET.tostring(root, encoding='unicode'))
 
     def test_principal_varieties_replace_broad_groups_with_exact_scope(self):
         data = json.loads(SECOND_ADDITIONS_PATH.read_text())
