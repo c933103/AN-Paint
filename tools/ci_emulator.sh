@@ -236,12 +236,15 @@ cleanup() {
   progress "Collecting logs and stopping emulator (result $status, phase: $phase)"
   # Mandatory app-owned exports come before the best-effort bulk diagnostic.
   # A logcat transport failure must not prevent an otherwise available capture.
-  # This does not retry pulls, recapture screenshots or relax validation.
+  # Each transfer shares its original deadline across at most two isolated pulls.
+  # Passive same-boot recovery never reruns tests/captures or relaxes validation.
   : > "$report/collection-status.log"
   if (( ${dialog_started:-0} )); then
-    if timeout --kill-after=3s 15s "$adb" pull \
-        /sdcard/Download/anpaint-ci-dialog-evidence \
-        "$report/dialog-export" > "$report/dialog-pull.log" 2>&1; then
+    if timeout --kill-after=3s 15s python3 tools/pull_device_evidence.py \
+        --adb "$adb" --serial "$ANDROID_SERIAL" --boot-id "${emulator_boot_id:-}" \
+        --sdk "$TEST_API" --abi "$emulator_abi" --emulator-pid "${emulator_pid:-0}" \
+        --remote /sdcard/Download/anpaint-ci-dialog-evidence \
+        --output "$report/dialog-export" > "$report/dialog-pull.log" 2>&1; then
       pull_status=0
     else
       pull_status=$?
@@ -260,9 +263,11 @@ cleanup() {
   fi
   if (( ${vertical_started:-0} )); then
     mkdir -p "$report/app"
-    if timeout --kill-after=3s 15s "$adb" pull \
-        /sdcard/Download/anpaint-ci-vertical-evidence \
-        "$report/vertical-locale-export" > "$report/vertical-locale-pull.log" 2>&1; then
+    if timeout --kill-after=3s 15s python3 tools/pull_device_evidence.py \
+        --adb "$adb" --serial "$ANDROID_SERIAL" --boot-id "${emulator_boot_id:-}" \
+        --sdk "$TEST_API" --abi "$emulator_abi" --emulator-pid "${emulator_pid:-0}" \
+        --remote /sdcard/Download/anpaint-ci-vertical-evidence \
+        --output "$report/vertical-locale-export" > "$report/vertical-locale-pull.log" 2>&1; then
       pull_status=0
     else
       pull_status=$?
@@ -332,6 +337,8 @@ main() {
   vertical_started=0
   dialog_started=0
   rm -rf "$report/dialog-export" "$report/app/dialog-evidence"
+  rm -rf "$report/dialog-export-attempts" "$report/vertical-locale-export-attempts"
+  rm -f "$report/dialog-export-transfer.json" "$report/vertical-locale-export-transfer.json"
   rm -f "$report/dialog-evidence.json"
   rm -f "$report/app/coverage.json" "$report/app/ordinary-gallery-coverage.json" \
     "$report/app/vertical-coverage.json" "$report/app/accepted-credit-restart/coverage.json"
@@ -367,6 +374,15 @@ main() {
   if [[ "$ready_output" != "$emulator_abi" ]]; then
     progress "FAILED: expected emulator ABI $emulator_abi, received $ready_output" >&2
     exit 1
+  fi
+  if (( TEST_API >= 30 )); then
+    # Same startup deadline; bind later read-only transport recovery to this boot.
+    wait_until_ready 'Record emulator boot identity' '*' shell cat /proc/sys/kernel/random/boot_id
+    if [[ ! "$ready_output" =~ ^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$ ]]; then
+      progress 'FAILED: malformed emulator boot identity' >&2
+      exit 1
+    fi
+    emulator_boot_id="$ready_output"
   fi
   if (( TEST_API < 30 )); then
     # Android 5/7 predates some modern `cmd package` entry points.

@@ -394,13 +394,17 @@ raise SystemExit('Unexpected command: '+repr(args))
                 fake = root/'adb'
                 fake.write_text('#!'+sys.executable+'\n'+r'''
 import json, os, shutil, sys
-with open('events','a') as out: out.write(json.dumps(sys.argv[1:])+'\n')
-if sys.argv[1]=='pull':
+args = sys.argv[1:]
+if args[:2] == ['-s', 'emulator-5554']: args = args[2:]
+with open('events','a') as out: out.write(json.dumps(args)+'\n')
+if args[0]=='shell':
+    print('12345678-1234-1234-1234-123456789abc\n35\nx86_64')
+elif args[0]=='pull':
     if os.environ['TEST_FAULT']=='pull': sys.exit(1)
-    shutil.copytree('exports',sys.argv[3])
+    shutil.copytree('exports',args[2])
 ''')
                 fake.chmod(0o700)
-                command = 'source "$CI_SCRIPT"; report="$PWD/report"; adb="$PWD/adb"; emulator_pid=""; TEST_API=35; vertical_started=1; phase=test; trap cleanup EXIT; exit "$INITIAL_STATUS"'
+                command = 'source "$CI_SCRIPT"; report="$PWD/report"; adb="$PWD/adb"; emulator_pid=$$; kill() { return 1; }; export ANDROID_SERIAL=emulator-5554; emulator_abi=x86_64; emulator_boot_id=12345678-1234-1234-1234-123456789abc; TEST_API=35; vertical_started=1; phase=test; trap cleanup EXIT; exit "$INITIAL_STATUS"'
                 result = subprocess.run(['bash','-c',command], cwd=root, capture_output=True, text=True, timeout=15,
                     env={**os.environ, 'CI_SCRIPT': str(ROOT/'tools/ci_emulator.sh'), 'INITIAL_STATUS': str(start), 'TEST_FAULT': fault})
                 self.assertEqual(result.returncode, expected_status, result.stdout+result.stderr)
