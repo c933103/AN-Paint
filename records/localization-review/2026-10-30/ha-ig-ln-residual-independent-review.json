@@ -1,0 +1,351 @@
+{
+  "schema": "an-paint.residual-independent-review.v1",
+  "date": "2026-10-30",
+  "reviewer": "independent chat reviewer: review_ha_ig_ln_residuals",
+  "candidate_commit": "2f17d9fe5e61471b0c49337801dd71f0a4eea3da",
+  "candidate_path": "records/localization-review/2026-10-30/ha-ig-ln-residual-candidates.json",
+  "source_catalogue_commit": "53f650d38af84817043270bf3265c0dd17decd97",
+  "scope": "All 30 residual candidates: 10 each ha/ig/ln; direct target-language grammar and UI semantics review. No recredit of the other 331 rows per language.",
+  "summary": {
+    "accepted": 29,
+    "corrected": 1,
+    "rejected": 0,
+    "uncertain": 0
+  },
+  "context": {
+    "main": "Main is interpreted as the primary/default palette section, supported by neighbouring palette catalogue keys, not an invented screen or tab destination.",
+    "palette_argument_3": "Localized imperative action to expand/collapse the palette, supported by the existing Expand colour palette / Collapse colour palette catalogue. Acceptance evaluates that meaningful action reading. Do not supply an English action, a full duplicated palette sentence, or an adjective/palette name; such substitutions have a different grammar. Runtime wiring is not certified.",
+    "fg_bg": "Live compact colour-role captions beside colour values.",
+    "save_export": "Export result does not mark the full drawing saved; all three warnings retain full drawing, still-unsaved changes, full image copy and save-before-replacement safeguard."
+  },
+  "entries": [
+    {
+      "locale": "ha",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "An fitar da %1$s. Cikakken zanenka har yanzu yana da canje-canjen da ba a ajiye ba; ajiye kwafin cikakken hoto kafin maye gurbinsa.",
+      "disposition": "accepted",
+      "final_wording": "An fitar da %1$s. Cikakken zanenka har yanzu yana da canje-canjen da ba a ajiye ba; ajiye kwafin cikakken hoto kafin maye gurbinsa.",
+      "reason": "An fitar da marks export, distinct from ajiye (save). Cikakken zanenka retains the whole drawing; har yanzu and ba a ajiye ba retain still-unsaved changes. The imperative requires a full-image copy before replacement, not after it."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "candidate": "Ajiye a matsayin %1$s",
+      "disposition": "accepted",
+      "final_wording": "Ajiye a matsayin %1$s",
+      "reason": "Ajiye is the save imperative; a matsayin introduces the format/name without converting Save to Export. The numbered string argument is unchanged."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "candidate": "Ajiye a matsayin JPEG…",
+      "disposition": "accepted",
+      "final_wording": "Ajiye a matsayin JPEG…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; JPEG and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "candidate": "Ajiye a matsayin JPEG XL…",
+      "disposition": "accepted",
+      "final_wording": "Ajiye a matsayin JPEG XL…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; JPEG XL and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "candidate": "Ajiye a matsayin PNG…",
+      "disposition": "accepted",
+      "final_wording": "Ajiye a matsayin PNG…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; PNG and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_fg",
+      "priority": "P1",
+      "source": "FG",
+      "candidate": "Gaba",
+      "disposition": "accepted",
+      "final_wording": "Gaba",
+      "reason": "Gaba is a compact front/foreground caption. Beside a colour value and paired with Baya it is meaningful, not an unexplained English acronym."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_bg",
+      "priority": "P1",
+      "source": "BG",
+      "candidate": "Baya",
+      "disposition": "accepted",
+      "final_wording": "Baya",
+      "reason": "Baya is a compact back/background caption paired with Gaba; the live colour-caption context resolves the ordinary positional word."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Launin gaba %1$s, launin baya %2$s. %3$s allon launuka.",
+      "disposition": "accepted",
+      "final_wording": "Launin gaba %1$s, launin baya %2$s. %3$s allon launuka.",
+      "reason": "Launin gaba/baya correctly name the two colours. With the catalogue expand/collapse action reading, Hausa imperative precedes allon launuka: Buɗe allon launuka / Rufe allon launuka. A leading localized action is grammatically sound."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "candidate": "Yanayin matse ko raba yatsu da matsar da abin dubawa",
+      "disposition": "accepted",
+      "final_wording": "Yanayin matse ko raba yatsu da matsar da abin dubawa",
+      "reason": "Yanayin introduces the mode; matse ko raba yatsu describes pinch/spread, and matsar da abin dubawa targets the viewed region rather than painting or transforming pixels."
+    },
+    {
+      "locale": "ha",
+      "key": "ui_main23",
+      "priority": "P1",
+      "source": "Main",
+      "candidate": "Babba",
+      "disposition": "accepted",
+      "final_wording": "Babba",
+      "reason": "Babba can denote the main/principal item. The catalogue groups Main with palette controls: understood as the main palette section, with masculine allo implicit. No invented navigation destination is needed."
+    },
+    {
+      "locale": "ig",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "E bupụrụ %1$s. Ihe osise gị dum ka nwere mgbanwe echekwabeghị; chekwaa nnomi onyonyo zuru ezu tupu ịdochie ya.",
+      "disposition": "accepted",
+      "final_wording": "E bupụrụ %1$s. Ihe osise gị dum ka nwere mgbanwe echekwabeghị; chekwaa nnomi onyonyo zuru ezu tupu ịdochie ya.",
+      "reason": "E bupụrụ reports export, whereas chekwaa commands save. Ihe osise gị dum retains the whole drawing; ka and echekwabeghị retain changes still not saved. The copy is a complete image and tupu ịdochie ya puts saving before replacement. The compressed relative description of mgbanwe is intelligible."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "candidate": "Chekwaa dịka %1$s",
+      "disposition": "accepted",
+      "final_wording": "Chekwaa dịka %1$s",
+      "reason": "Chekwaa is a save imperative, not export; dịka supplies the as relation before the unchanged argument. Retain the established catalogue spelling."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "candidate": "Chekwaa dịka JPEG…",
+      "disposition": "accepted",
+      "final_wording": "Chekwaa dịka JPEG…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; JPEG and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "candidate": "Chekwaa dịka JPEG XL…",
+      "disposition": "accepted",
+      "final_wording": "Chekwaa dịka JPEG XL…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; JPEG XL and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "candidate": "Chekwaa dịka PNG…",
+      "disposition": "accepted",
+      "final_wording": "Chekwaa dịka PNG…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; PNG and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_fg",
+      "priority": "P1",
+      "source": "FG",
+      "candidate": "Ihu",
+      "disposition": "accepted",
+      "final_wording": "Ihu",
+      "reason": "Ihu names front/foreground concisely; paired with Azụ and a colour value, it functions as a colour-role caption."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_bg",
+      "priority": "P1",
+      "source": "BG",
+      "candidate": "Azụ",
+      "disposition": "accepted",
+      "final_wording": "Azụ",
+      "reason": "Azụ names back/background concisely; pairing and colour value distinguish this from a navigation Back command."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Agba ihu %1$s, agba azụ %2$s. %3$s bọọdụ agba.",
+      "disposition": "accepted",
+      "final_wording": "Agba ihu %1$s, agba azụ %2$s. %3$s bọọdụ agba.",
+      "reason": "Agba ihu/azụ correctly label the colour roles. An imperative precedes its object: Gbasaa bọọdụ agba / Sụkọọ bọọdụ agba are grammatical expand/collapse constructions. All arguments retain their roles."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "candidate": "Ọnọdụ ịsụkọta ma ọ bụ ịgbasa mkpịsị aka na ịdọkpụ nlele",
+      "disposition": "accepted",
+      "final_wording": "Ọnọdụ ịsụkọta ma ọ bụ ịgbasa mkpịsị aka na ịdọkpụ nlele",
+      "reason": "Ọnọdụ with coordinated infinitives correctly names a mode. Bringing fingers together/spreading them gives the gesture; ịdọkpụ nlele describes dragging the view, not editing the drawing."
+    },
+    {
+      "locale": "ig",
+      "key": "ui_main23",
+      "priority": "P1",
+      "source": "Main",
+      "candidate": "Isi",
+      "disposition": "accepted",
+      "final_wording": "Isi",
+      "reason": "Isi is the established head/main/principal modifier and is suitable as an elliptical main palette-section label. It does not introduce a screen or action absent from Main."
+    },
+    {
+      "locale": "ln",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "%1$s ebimisami. Dessin na yo mobimba ezali naino na mbongwana oyo ebombami te; bombá kɔpi ya elilingi mobimba liboso ya kotya elilingi mosusu na esika na yango.",
+      "disposition": "accepted",
+      "final_wording": "%1$s ebimisami. Dessin na yo mobimba ezali naino na mbongwana oyo ebombami te; bombá kɔpi ya elilingi mobimba liboso ya kotya elilingi mosusu na esika na yango.",
+      "reason": "Ebimisami reports output/export and is distinct from bomba/bombá (save). Dessin na yo mobimba preserves the whole drawing, naino the continuing state, and ebombami te the unsaved changes. A complete-image copy must be saved liboso ya replacement. The retained French dessin loan is consistent with the stated catalogue convention."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "candidate": "Bomba lokola %1$s",
+      "disposition": "accepted",
+      "final_wording": "Bomba lokola %1$s",
+      "reason": "Bomba is the save imperative; lokola introduces as. The unchanged argument can name a format; the wording does not label saving as export."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "candidate": "Bomba lokola JPEG…",
+      "disposition": "accepted",
+      "final_wording": "Bomba lokola JPEG…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; JPEG and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "candidate": "Bomba lokola JPEG XL…",
+      "disposition": "accepted",
+      "final_wording": "Bomba lokola JPEG XL…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; JPEG XL and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "candidate": "Bomba lokola PNG…",
+      "disposition": "accepted",
+      "final_wording": "Bomba lokola PNG…",
+      "reason": "Save action and format construction are grammatical and consistent with ui_save_as; PNG and the continuation ellipsis remain unchanged."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_fg",
+      "priority": "P1",
+      "source": "FG",
+      "candidate": "Liboso",
+      "disposition": "accepted",
+      "final_wording": "Liboso",
+      "reason": "Liboso is the concise front/foreground caption. The paired colour indicator makes the role clear rather than suggesting a Next action."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_bg",
+      "priority": "P1",
+      "source": "BG",
+      "candidate": "Nsima",
+      "disposition": "accepted",
+      "final_wording": "Nsima",
+      "reason": "Nsima is the paired back/background caption; suitable next to a colour value and contrasted with Liboso."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Langi ya liboso %1$s, langi ya nsima %2$s. %3$s etanda ya balangi.",
+      "disposition": "accepted",
+      "final_wording": "Langi ya liboso %1$s, langi ya nsima %2$s. %3$s etanda ya balangi.",
+      "reason": "Langi ya liboso/nsima correctly identify foreground/background colours. With the existing expand/collapse context, an imperative can precede etanda ya balangi: Fungolá etanda ya balangi / Kangá etanda ya balangi. This is action-object order, not a palette-name adjective construction."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "candidate": "Mode ya kopusanisa misapi mpe kotambwisa komona",
+      "disposition": "corrected",
+      "final_wording": "Mode ya kopusanisa misapi mpe kobongola eteni ya elilingi oyo ezali komonana",
+      "reason": "Correct kotambwisa komona: komona means seeing/to see, not a concrete viewport. The replacement describes changing which part of the image is visible, retaining finger-pinching and view navigation without suggesting pixel transformation. It is intentionally descriptive; fit has not been tested."
+    },
+    {
+      "locale": "ln",
+      "key": "ui_main23",
+      "priority": "P1",
+      "source": "Main",
+      "candidate": "Ya liboso",
+      "disposition": "accepted",
+      "final_wording": "Ya liboso",
+      "reason": "Ya liboso has first/foremost meaning. In the catalogue's main/default palette-section context, this is an acceptable primary-section label, distinct from the standalone foreground caption Liboso. Acceptance is context-specific, not a claim that it translates every use of Main."
+    }
+  ],
+  "validation": {
+    "entry_count": 30,
+    "unique_locale_keys": 30,
+    "placeholder_signatures_match": true,
+    "format_names_and_ellipsis_preserved": true,
+    "review_basis": "Direct assessment of target text, not acceptance of supplied backtranslations. Catalogue context used for Main and palette action grammar.",
+    "not_performed": [
+      "Production changes",
+      "Full tests",
+      "Runtime substitution tests",
+      "Rendered fit/legibility testing",
+      "Native-human certification"
+    ]
+  },
+  "references": [
+    {
+      "url": "https://github.com/c933103/AN-Paint/blob/53f650d38af84817043270bf3265c0dd17decd97/Paintroid/src/main/res/values/strings.xml",
+      "use": "English catalogue: Main beside palette keys and expand/collapse palette action context."
+    },
+    {
+      "url": "https://dic.lingala.be/fr/komona",
+      "use": "Resolved actual lexical ambiguity: komona is seeing/to see, not a viewport noun."
+    },
+    {
+      "url": "https://www.ksludotique.com/espace-lingala/initiation-au-lingala/",
+      "use": "Resolved actual Main ambiguity: (ya) liboso means first/in front; primary-section interpretation is a contextual review judgment."
+    }
+  ]
+}
