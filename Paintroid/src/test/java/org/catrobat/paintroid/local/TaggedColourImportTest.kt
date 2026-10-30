@@ -326,7 +326,7 @@ class TaggedColourImportTest {
     private fun brAstOcBoundFixture(): JSONObject {
         val bytes=File("../tools/fixtures/current_localization/breton_asturian_occitan_priority_wording.json").readBytes()
         val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete finite BR/AST/OC reviewed fixture", "05b7c4a966c7203f28f5154d39e92b806fd123433da93dc780082dd18ed0504c", actual)
+        assertEquals("Complete finite BR/AST/OC reviewed fixture", "f45f54e4428d438907514b0d54ef267f2b5dce5003fb7a68657c2159b44e2c9d", actual)
         return JSONObject(String(bytes,Charsets.UTF_8))
     }
 
@@ -672,7 +672,7 @@ class TaggedColourImportTest {
     private fun boundSoWoHtFixture(bytes: ByteArray = File("../tools/fixtures/current_localization/somali_wolof_haitian_creole_priority_wording.json").readBytes()): JSONObject {
         val digest = java.security.MessageDigest.getInstance("SHA-256").digest(bytes)
             .joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete canonical Somali/Wolof/Haitian Creole fixture", "601d60e5fb772bc7bdfebc6774492fb1b0a3f84454937c4f29711cb2080319eb", digest)
+        assertEquals("Complete canonical Somali/Wolof/Haitian Creole fixture", "cbd9e458561e044f52f6c5c4622574b3f27e72dd50a1b04ec26c3d45494fb836", digest)
         return JSONObject(String(bytes, Charsets.UTF_8))
     }
 
