@@ -99,6 +99,19 @@ RESIDUAL_KEYS = {tag: _RESIDUAL_COMMON | extra for tag, extra in {
     'hr': {'ui_pinch_and_pan_mode'}, 'be': {'ui_main23', 'ui_pinch_and_pan_mode'},
     'uk': set(), 'hi': {'ui_pinch_and_pan_mode'},
     'ta': {'ui_pinch_and_pan_mode'}, 'th': {'ui_pinch_and_pan_mode'},
+    'te': {'ui_pinch_and_pan_mode'},
+    'kn': {'ui_pinch_and_pan_mode'},
+    'mr': {'ui_pinch_and_pan_mode'},
+    'gu': {'ui_pinch_and_pan_mode'},
+    'pa-IN': {'ui_pinch_and_pan_mode'},
+    'ne': {'ui_pinch_and_pan_mode'},
+    'bs': {'ui_pinch_and_pan_mode'},
+    'mk': {'ui_pinch_and_pan_mode'},
+    'sr-Cyrl': {'ui_discard', 'ui_pinch_and_pan_mode'},
+    'sr-Latn': {'ui_discard', 'ui_pinch_and_pan_mode'},
+    'yo': {'ui_bg', 'ui_fg', 'ui_main23'},
+    'zu': {'ui_bg', 'ui_fg', 'ui_main23', 'ui_pinch_and_pan_mode'},
+    'xh': {'ui_bg', 'ui_fg', 'ui_free_form_select', 'ui_main23', 'ui_palette', 'ui_pinch_and_pan_mode', 'ui_preview', 'ui_rotate'},
 }.items()}
 
 
@@ -106,7 +119,7 @@ def residual_rows():
     data = fixture('reviewed_residuals_20261030.json')
     rows = {(r['locale'], r['key']): r for r in data['decisions']}
     expected = {(tag, key) for tag, keys in RESIDUAL_KEYS.items() for key in keys}
-    if data.get('schema_version') != 1 or len(data['decisions']) != 67 or set(rows) != expected:
+    if data.get('schema_version') != 1 or len(data['decisions']) != 172 or set(rows) != expected:
         raise ValueError('Exact reviewed residual scope differs')
     return rows
 

@@ -1,4 +1,5 @@
 """Exact accepted delta and mutation tests; retained context is not linguistic acceptance."""
+from current_localization_contracts import require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import json,re,unittest,xml.etree.ElementTree as ET
@@ -23,7 +24,7 @@ class SerbianPriorityDeltaTests(unittest.TestCase):
             self.assertEqual(144 if tag=='sr-Cyrl' else 146,len(d['values']));self.assertEqual(4,len(d['dependencies']))
             self.assertEqual(118 if tag=='sr-Cyrl' else 117,Counter(d['priority_status'].values())['retain_pending_prior_binding'])
             self.assertEqual(75 if tag=='sr-Cyrl' else 74,sum(s.startswith('prior_exact_P0_carry') for s in d['priority_status'].values()))
-            for key in HOLDS:self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"))
+            for key in HOLDS:require_residual_or_previous(self.roots[tag],tag,key)
             for row in d['context'].values():self.assertFalse(row['changed']);self.assertNotEqual('accepted_delta',row['review_status'])
     def test_complete_targets_and_source_attributes_slots_newlines(self):
         for tag,d in self.data.items():

@@ -1105,8 +1105,8 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
         rows = residual_rows()
         english = ET.parse(catalogues.RES/'values/strings.xml').getroot()
         roots = {tag: ET.parse(catalogues.catalogue_paths()[tag]).getroot() for tag, _ in rows}
-        self.assertEqual(64, sum(r['previous_target'] is None for r in rows.values()))
-        self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg')},
+        self.assertEqual(163, sum(r['previous_target'] is None for r in rows.values()))
+        self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg'), ('xh','ui_free_form_select'),('xh','ui_palette'),('xh','ui_preview'),('xh','ui_rotate'),('sr-Cyrl','ui_discard'),('sr-Latn','ui_discard')},
                          {identity for identity,r in rows.items() if r['previous_target'] is not None})
         for (tag,key),row in rows.items():
             with self.subTest(tag=tag,key=key):

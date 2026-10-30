@@ -1,4 +1,5 @@
 """149 current reviewed Serbian values; not native, complete-locale or runtime acceptance."""
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from collections import Counter
 from copy import deepcopy
 import hashlib
@@ -244,9 +245,10 @@ class SerbianP0Tests(unittest.TestCase):
                 with self.subTest(tag=tag, key=key):
                     source=self.roots['default'].find(f"./string[@name='{key}']").text
                     target=delta.current_value(tag,key,expected['value'],expected['attributes'],source)
-                    require_string_root(self.roots[tag], key, target, {'attributes': expected['attributes']})
+                    if key in RESIDUAL_KEYS.get(tag,set()):require_residual_or_previous(self.roots[tag],tag,key,target)
+                    else:require_string_root(self.roots[tag], key, target, {'attributes': expected['attributes']})
             added=sum(r['previous'] is None for r in delta.cohort()[tag]['values'].values())
-            self.assertEqual(total+added, len(self.roots[tag]))
+            self.assertEqual(total+added+7, len(self.roots[tag]))
             self.assertEqual(total, count + 74 + (tag == SUCCESSOR_LOCALE))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('"Формат датотеке"' if tag == SUCCESSOR_LOCALE else 'Format slike',
@@ -377,7 +379,7 @@ class SerbianP0Tests(unittest.TestCase):
                      'ui_choose_location'}
         for tag in ('sr-Cyrl', 'sr-Latn'):
             for key in HOLDS:
-                self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+                require_residual_or_previous(self.roots[tag],tag,key)
             for key in neighbors:
                 source=self.roots['default'].find(f"./string[@name='{key}']").text
                 target=delta.addition(tag,key,source,None)
