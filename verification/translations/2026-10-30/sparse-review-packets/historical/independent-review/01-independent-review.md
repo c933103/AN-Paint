@@ -1,0 +1,75 @@
+# Independent review — batch 1, fixed snapshot
+
+This is an **AI, research-assisted linguistic review**, not a native-human review or specialist certification. ACCEPT below means a defensible experimental candidate in the declared register, not acceptance into application resources, permission to implement, or proof of medieval software usage. Final project acceptance remains a separate gate. CORRECT identifies a substantive issue; a proposed replacement is not automatically accepted. HOLD preserves an unresolved question, not a claim that a value is certainly wrong.
+
+## Reviewed identity
+
+- Exact batch snapshot: `01-common-safety-controls.reviewed-snapshot.md`, SHA-256 `d22656345d23ae151fc09b6af864bd28388f14cf38ad74aecc273fd1be2c1284`.
+- Conventions snapshot: `00-conventions.reviewed-snapshot.md`, SHA-256 `d9b867fca4d22922d8de71e9192e42827d0144b2bcf704db0989de7918a11620`.
+- Review concerns those bytes, **not later changes** in the author's mutable directory.
+- Source provenance supplied: develop commit `96681f687671a1fdffe134a325843919c1543401`, tree `39bb7351fa5532194e2c0430432b2f0cc6358a86`. The original review used supplied resource copies, not an independently resolvable checkout of that commit; the publication source-binding manifest separately verifies their Git blob identities. Spot-read English includes saved/save-as/current-image/draft-restored/keep-editing/colours.
+- Research review only; no application resource changes or test results are asserted.
+
+## Evidence and editorial decisions
+
+1. **Keep the author's accusative with varðveita.** Cleasby–Vigfusson explicitly distinguishes older dative uses from medieval accusative examples. This is not simply modern Icelandic case government. The disk-save meaning remains an openly new extension. [C–V p.680](https://www.germanic-lexicon-project.org/html/oi_cleasbyvigfusson/b0680.html).
+2. **Replace halda áfram as the purported historical continuation idiom.** The same dictionary calls it modern and apparently absent from old writers, while documenting continuation with `halda ... fram` and dative object. `Halda breytingu fram` is a candidate for author re-review, not a certified replacement. [C–V p.233](https://www.germanic-lexicon-project.org/html/oi_cleasbyvigfusson/b0233.html).
+3. **Correct eptirrit's status, not silently its spelling.** C–V marks `eptir-rit` modern. It can be proposed consciously as a new/reconstructed technical compound made from historical elements; current conventions overstate its status as an established historical copy-word undergoing only a technical extension. [C–V p.131](https://www.germanic-lexicon-project.org/html/oi_cleasbyvigfusson/b0131.html).
+4. **Do not manufacture an OE feminine-plural error.** Strong feminine nominative/accusative `-e` variants are expressly allowed in the cited grammar. Thus `þine awendinga` and `gehealdene` are not rejected merely for failing to use `-a`; choosing `-a` consistently would be an editorial normalization, not a compulsory correction. [UT Old English lesson 9, §44](https://lrc.la.utexas.edu/eieol/engol/90).
+5. **efenwyrht has a defensible feminine head, but not a demonstrated copy sense.** `wyrht, e; f.` is documented. The hold below concerns the new compound's referent and fitness in recovery instructions, not an invented gender mismatch. [B–T wyrht](https://bosworthtoller.com/36971).
+6. **Forð really can mark continuation.** Its use is not merely the modern phrase “go forth” back-projected. [B–T supplement p.254, forð](https://www.germanic-lexicon-project.org/html/oe_bosworthtoller/d0254.html).
+7. **hiw does mean colour as well as shape/form.** The source supports that lexical sense, but does not resolve the exact nominative plural `Hiwu` in this normalization. Keep that inflection question open. [B–T hiw](https://bosworthtoller.com/19127).
+8. **hætta is historical; hætta við requires separate evidence.** An edited historical text's glossary supports cessation with dative or `at` + infinitive, but that does not establish the proposed fixed `við` idiom. `Hætta` is a simpler candidate to examine. [Egils saga, Viking Society edition and glossary](https://vsnr.org/wp-content/uploads/2021/11/Egils_saga.pdf).
+
+Confidence: **M** = moderate in the specified judgment; **L** = unresolved/low in the proposed wording; **H** = strong documentary basis for a correction only. No high/native fluency claim is made. All ACCEPTs retain the global modern-UI adaptation disclosure.
+
+## Exact per-value decisions
+
+| Key | Exact English | ang exact value | ang decision / reason | non exact value | non decision / reason |
+|---|---|---|---|---|---|
+| ui_save | Save | Healdan | ACCEPT M — coherent keep/preserve extension; infinitive convention followed. | Varðveita | ACCEPT M — preserve/save extension; historical lexical base. |
+| ui_save_a5d0d9 | Save… | Healdan… | ACCEPT M — same action and ellipsis. | Varðveita… | ACCEPT M — same action and ellipsis. |
+| ui_save_as | Save as %1$s | Healdan swa %1$s | ACCEPT M — intelligible experimental format classification; placeholder intact; `swa` is not proof of historical UI idiom. | Varðveita sem %1$s | ACCEPT M — category/format comparison plausible; placeholder intact. |
+| ui_save_as_jpeg | Save as JPEG… | Healdan swa JPEG… | ACCEPT M — same declared save-as construction, literal format retained. | Varðveita sem JPEG… | ACCEPT M — save-as, not export; format retained. |
+| ui_save_as_jpeg_xl | Save as JPEG XL… | Healdan swa JPEG XL… | ACCEPT M — does not collapse JPEG XL into JPEG. | Varðveita sem JPEG XL… | ACCEPT M — preserves distinct format. |
+| ui_save_as_png | Save as PNG… | Healdan swa PNG… | ACCEPT M — same construction; PNG retained. | Varðveita sem PNG… | ACCEPT M — same construction; PNG retained. |
+| ui_save_png | Save PNG | Healdan PNG | ACCEPT M — elliptical object/format is suitable to a short action label. | Varðveita PNG | ACCEPT M — short action label, not completed-save claim. |
+| ui_save_your_changes | Save your changes? | Healdan þine awendinga? | ACCEPT M — plural alterations and possession retained; `þine` is not automatically wrong [4]. | Varðveita breytingar þínar? | ACCEPT M — feminine accusative plural agreement; question remains a proposal. |
+| ui_saved | Saved %1$s | Gehealden: %1$s | ACCEPT M — neutral status heading avoids falsely agreeing with unknown placeholder; added colon does not reverse outcome. | Varðveitt: %1$s | ACCEPT M — neuter status heading, not claimed agreement with arbitrary filename. |
+| ui_save_and_share | Save and share… | Healdan and dælan… | ACCEPT M — both coordinated actions retained; digital sharing is a new sense, not physical division. | Varðveita ok deila… | ACCEPT M — both infinitives; no object-government error in this bare label. |
+| ui_save_and_share_41edb4 | Save and share | Healdan and dælan | ACCEPT M — same pair without ellipsis. | Varðveita ok deila | ACCEPT M — same pair without ellipsis. |
+| ui_could_not_save_image | Could not save image | Ne mihte man þa anlicnesse healdan | ACCEPT M — explicit negated possibility, accusative image; no success implied. | Eigi mátti varðveita myndina | ACCEPT M — negated possibility and accusative image; no invented cause. |
+| ui_discard | Discard | Forlætan | ACCEPT M — abandon/leave, lexically distinct from cease/cancel and erase. | Kasta brott | ACCEPT M — throw away, distinct from cancel/save. |
+| ui_discard_changes23 | Discard changes | Forlætan þa awendinga | ACCEPT M — alterations explicitly abandoned; accusative plural coherent. | Kasta breytingum brott | ACCEPT M — dative plural object matches throwing construction; changes not entire image. |
+| ui_keep_editing23 | Keep editing | Forð awendan | ACCEPT M — continuation force of `forð` supported [6]; edit sense explicitly new. | Halda áfram at breyta | CORRECT H — modern continuation construction conflicts with declared register [2]; examine `Halda breytingu fram`, with new UI sense disclosed. |
+| ui_clear_all | Clear all | Eall adilegian | ACCEPT M — erase everything; neuter totality object, not cancel. | Má allt brott | ACCEPT M — erase all, not the finite modal “may”; action-label infinitive convention disambiguates. |
+| ui_clear_image | Clear image | Adilegian þa anlicnesse | ACCEPT M — accusative image is erased, not dismissed. | Má myndina brott | ACCEPT M — image is object of effacing; distinct from discard pending changes. |
+| ui_your_current_image_has_unsaved_changes | Your current image has unsaved changes. | On þinre andweardan anlicnesse sind awendinga þe ne sind gehealdene. | ACCEPT M — dative image phrase, current/your, plural alterations and explicit not-saved all survive; plural `-e` not a forced error [4]. | Í myndinni er þú vinnr nú eru breytingar er eigi eru varðveittar. | HOLD L — currentness paraphrased as the image you work/create now; exact `vinna` construction and replacement of explicit possession need second-check. Negation and feminine plural participle are sound; do not rewrite those gratuitously. |
+| ui_draft_not_saved_yet | Draft not saved yet | Weorcgewrit ne is giet gehealden | HOLD L — negation/yet and neuter participle coherent; glossary must establish that new “work-document” specifically means recoverable draft, not any document. | Vinnurit er enn eigi varðveitt | HOLD L — same term-definition question; `vinnu-rit` formation and neuter participle are not themselves errors. |
+| ui_draft_saved | Draft saved | Weorcgewrit gehealden | HOLD L — depends on unresolved draft term above; correctly states completed save rather than ongoing saving. | Vinnurit varðveitt | HOLD L — same draft-term dependency; neuter agreement coherent. |
+| ui_draft_restored | Draft restored | Weorcgewrit eft gestaþelod | HOLD L — restoration metaphor and draft term need settlement together; not interchangeable with merely retaining a backup. | Vinnurit aptr fengit | HOLD L — “obtained again” supports recovery but can fail to express reconstituted editor state; decide restoration terminology before accepting. |
+| ui_export_recovery_copy | Export recovery copy… | Utberan efenwyrhte to eftstaþelunge… | HOLD L — accusative new copy noun and purpose dative are internally coherent; copy/restoration concepts need agreed definitions [5]. | Fœra út eptirrit til viðgerðar… | HOLD L — syntax coherent, but eptirrit status must be corrected [3] and repair/restoration sense explicitly defined. |
+| ui_export_recovery_copy_144b8a | Export recovery copy | Utberan efenwyrhte to eftstaþelunge | HOLD L — same terminology dependency; omission of ellipsis is correct. | Fœra út eptirrit til viðgerðar | HOLD L — same terminology/status dependency, not a save-completed claim. |
+| ui_could_not_export_the_recovery_copy | Could not export the recovery copy | Ne mihte man utberan þa efenwyrhte to eftstaþelunge | HOLD L — failure semantics intact; unresolved copy/restoration term, not a demonstrated case error. | Eigi mátti fœra út eptirritit til viðgerðar | HOLD L — failure and definite neuter form coherent; copy status/repair sense remain unresolved [3]. |
+| ui_export_as23 | Export as… | Utberan swa… | ACCEPT M — new outward-transfer action distinct from save; expected format complement omitted by source too. | Fœra út sem… | ACCEPT M — separate export action and open complement retained. |
+| ui_cancel | Cancel | Ablinnan | ACCEPT M — cease the pending action, not erase content. | Hætta við | HOLD L — base verb historical, exact `við` cancellation idiom unverified [8]; examine bare `Hætta`. |
+| ui_done | Done | Gedon | ACCEPT M — neuter/uninflected completion label. | Lokit | ACCEPT M — neuter completion label; not an imperative to erase. |
+| ui_ok | OK | Swa beo hit | ACCEPT M — intelligible assent/jussive; not a save-success statement. | Svá sé | ACCEPT M — jussive assent; ellipsis of subject suits short control. |
+| ui_new | New… | Niwe… | ACCEPT M — adjectival label; no need to force a nonexistent displayed noun. | Nýtt… | ACCEPT M — neuter ellipsis can refer to a new rit; align with actual menu action later, not automatically ný for invisible mynd. |
+| ui_new_image | New image | Niwe anlicnes | ACCEPT M — feminine image noun and new adjective coherent. | Ný mynd | ACCEPT M — feminine nominative agreement. |
+| ui_load_image | Load image… | Inlædan anlicnesse… | ACCEPT M — bring-in metaphor with accusative image; new load sense explicit. | Fœra mynd inn… | ACCEPT M — inward-transfer metaphor and accusative image; distinct from export. |
+| ui_undo | Undo | Undon | ACCEPT M — undo/release lexical base provides reversible-action extension; not a deletion label. | Gera aptr ógert | HOLD L — words can suggest making undone again, but exact reversal idiom and `aptr` scope remain unsubstantiated; needs a stable undo term for later warnings. |
+| ui_redo | Redo | Eft don | ACCEPT M — do again; not restore a saved backup. | Gera aptr | ACCEPT M — do again; define this as replaying history in UI context. |
+| ui_menu_file | File | Gewrit | ACCEPT M — honest new file sense of written item, not a claim every file is text. | Rit | ACCEPT M — honest modern file sense; no misleading morphology. |
+| ui_menu_edit | Edit | Awendan | ACCEPT M — alteration sense fits action/menu; not correction-only. | Breyta | ACCEPT M — alter; later explicit objects must obey its case government. |
+| ui_menu_image | Image | Anlicnes | ACCEPT M — likeness/image extension fits; historical sense not limited to software. | Mynd | ACCEPT M — image base, new raster application. |
+| ui_menu_view | View | Gesihþ | ACCEPT M — noun sight/view fits category, not a command misinflected as a verb. | Sýn | ACCEPT M — noun view/sight fits category. |
+| ui_menu_help | Help | Help | ACCEPT M — legitimate OE noun, not modern-English fallback merely because spelling matches. | Hjálp | ACCEPT M — aid/help noun fits category. |
+| ui_menu_colours | Colors | Hiwu | HOLD L — colour sense is real [7]; exact normalized plural `Hiwu` requires inflection evidence. Shared use of hiw for format also needs UI-context disambiguation. | Litir | ACCEPT M — colour noun nominative plural fits menu. |
+
+## Open questions and limits
+
+- Holds for new compounds do **not** demand nonexistent medieval software attestations. They require a transparent, consistent concept definition and a defensible morphology/semantic extension. An explicit accepted experimental glossary can resolve them.
+- A search failure is not evidence of unattestation. Several direct dictionary pages returned internal/cache errors; `hætta við`, `Hiwu`, and the exact undo periphrasis remain uncertain rather than “proved impossible.”
+- The Old Norse Dictionary mirror returned noun-only entries for some homographs (halda, deila, má). Those results were not treated as evidence against the missing verb entries, nor used to certify the verbs.
+- Needed second-check outcome: author resolves continuation wording, honestly relabels eptirrit, fixes/defines copy–draft–restore–undo terms, and supplies a revised exact snapshot. No application acceptance is asserted by this review.

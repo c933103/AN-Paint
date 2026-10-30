@@ -1,0 +1,45 @@
+# Independent review — batch 6, version 1
+
+Exact English and full ang/non value register: adjacent `06-p1-import-memory-failures.reviewed-snapshot.md`, SHA-256 `018584c97ef0d3a7272874dcfefda4c402e33fe6179de34b729ab9edbf954eb5`. Incorporated by reference. Every decision is about the whole value. Later revisions receive a separate review.
+
+ACCEPT is experimental candidate suitability, not native-human certification or integration. HOLD preserves real uncertainty, not rejection; CORRECT identifies substantive repair. H/M indicates confidence in the decision. New software concepts remain new even when based on historical words.
+
+| Key | ang | non |
+|---|---|---|
+| ui_android_blocked_the_file_picker | ACCEPT M — blocked chooser, not file itself; error detail retained without invented cause; chooser compound explicit. | ACCEPT M — chooser blocking and error placeholder retained; no invented permission explanation. |
+| ui_android_could_not_decode_this_image | HOLD M — failure to interpret encoded image data matches decode, but onrædan base/form not independently substantiated. | ACCEPT M — read encoded writing of image coherently paraphrases decoding under disclosed táknrit convention; failure explicit. |
+| ui_android_could_not_find_a_file_picker_enable | CORRECT M — Ongin means begin/start and may instruct launching rather than enabling a disabled app in Settings. Preserve enabled-state change explicitly. | HOLD M — making app active conveys enable better, but virkt technical enabled-state convention and exact Settings flow need context; named apps and retry retained. |
+| ui_choose_a_smaller_output_copy_the_source_images | HOLD M — smaller output copy contrasted with retained source/crop resolution; copy and resolution-as-count conventions unresolved. | HOLD M — same preserved-source meaning; eptirrit and scalar count versus resolution terminology unresolved. |
+| ui_could_not_apply_the_crop | HOLD M — failure clear; depends on unresolved Apply/commit crop convention, not false applied state. | HOLD M — failure clear; same Apply convention question. |
+| ui_could_not_complete_the_edit | ACCEPT M — failure to complete edit, no assertion of rollback/loss; error detail retained. | ACCEPT M — ljúka with dative breytingunni correct; detail retained. |
+| ui_could_not_complete_the_operation | ACCEPT M — generic inability to finish operation; no invented data-loss claim. | ACCEPT M — dative verkinu with ljúka coherent; generic failure preserved. |
+| ui_could_not_place_the_image | ACCEPT M — placement failure distinct from decoding or saving failure. | ACCEPT M — same placement failure, acc image coherent. |
+| ui_could_not_prepare_the_image | ACCEPT M — image preparation failure, not automatically corrupt source. | ACCEPT M — búa til coherent preparation phrase; no fabricated cause. |
+| ui_no_readable_image_data | HOLD M — data-as-image-count compound may misleadingly mean one number; readable-data concept needs explicit agreed convention. | HOLD M — image numbers is a proposed data metaphor; could under-specify readable encoded content, so not certified from backtranslation. |
+| ui_not_enough_memory_to_finish_opening_this_image | ACCEPT M — insufficiency specifically to finish opening, not inability to read initial file. | ACCEPT M — memory insufficiency scoped to finishing opening; dative opnun compatible with ljúka. |
+| ui_not_enough_memory_to_inspect_this_image | ACCEPT M — inspection-stage memory failure preserved. | ACCEPT M — inspecting image rather than saving/loading, clear scoped failure. |
+| ui_the_decoder_and_editing_buffers_need_about_the | HOLD M — approximation versus budget correctly distinct; decoder formation, temporary buffers and copy terminology unresolved. | HOLD M — approximate requirement/budget and smaller-copy remedy retained; copy/decoder technical conventions remain provisional. |
+| ui_the_full_image_and_working_buffers_exceed_the | HOLD M — over-budget OR allocation failure preserved, resize only copy, original unchanged; copy and buffer wording need terminology review. | HOLD M — same disjunctive causes and unchanged original retained; provisional copy/buffer terminology. |
+| ui_the_picker_returned_no_file_please_choose_the | ACCEPT M — chooser returned no file, not deleted source; choose again remedy retained. | ACCEPT M — skilaði engu riti dative coherent; missing-return versus deletion distinguished. |
+| ui_the_picker_returned_no_files | ACCEPT M — plural no files returned, not singular or destroyed data. | ACCEPT M — plural dative engum ritum correct; no files returned. |
+| ui_the_selected_provider_did_not_return_any_image | HOLD M — selected provider/no returned data retained, but data-as-count compound unresolved; no invented authorization cause. | HOLD M — same provider event preserved; image-data-as-numbers convention unresolved. |
+| ui_this_file_is_not_a_supported_image_use | HOLD M — all formats retained; relative onfo subjunctive and app-accepts phrase need checking for generic unsupported classification, not a specific permission denial. | ACCEPT M — supported-as-app-receives metaphor explicit; full format list and Base64 image text retained, JPEG XL distinct. |
+| ui_too_large_for_the_current_budget_reduce_the | ACCEPT M — reduce dimensions OR cancel-and-free-memory alternatives preserved; no storage-space substitution. | HOLD M — correct memory/alternatives, but exact hætt við cancellation idiom remains historically unsubstantiated in this review. |
+| ui_try_a_different_file_or_location | ACCEPT M — alternate file OR location retained; costna genitive option coherent. | ACCEPT M — alternate file or location accusative phrases coherent. |
+| colour_invalid_metadata | HOLD M — invalid OR unsupported colour metadata retained; exact data-side-writing convention and relative onfo need specialist checking. | HOLD M — invalid versus unsupported correctly alternative, but additional-writing convention must specifically denote metadata. |
+| colour_truncated_metadata | HOLD M — ends within metadata describes file truncation, not visual image edge; metadata compound remains provisional. | HOLD M — same truncation meaning; colour-metadata technical phrase unresolved. |
+| colour_unsupported_icc_model | HOLD M — first external RGB copy remedy and conversion limitation retained. ICC-hiwgebisnes has undeclared lemma/gender/genitive, plus decoder/copy conventions unresolved. | HOLD M — ICC model and first RGB-copy remedy retained; model-as-pattern and copy conventions remain unapproved. |
+| colour_converter_unavailable | ACCEPT M — failed converter start and explicit not imported both retained; no partial success claim. | ACCEPT M — failed start and not imported clearly distinguished; converter agent compound honest new derivation. |
+| ui_codec_resize_memory_floor | CORRECT H — frumdæla genitive cannot serve proposed coordinated decoded direct object; use acc frumdælas. onrædan/decoder terminology separately held; smaller output may still fail retained. | HOLD M — decoding source image OR tiles before resizing, smaller-output failure possibility retained; tile/decode convention needs definition, not a guaranteed remedy. |
+| ui_no_resize_fits_decoder_memory | ACCEPT M — even smallest output still cannot load; cancel and smaller source explicit; bruc genitive-compatible phrase coherent. | HOLD M — same minimum-output insufficiency and smaller-source remedy; cancellation idiom hætt við still unresolved. |
+| formats22_import_limit | ACCEPT M — exact512 MiB import threshold and smaller-file remedy preserved, not MB substitution. | ACCEPT M — same binary limit/import scope and remedy. |
+| commons_svg_original_size_unavailable | HOLD M — no usable original size and explicitly no canvas-derived fallback retained; exact usable-size adjective and based-on-canvas phrase need idiom review. | HOLD M — no usable original size/no fallback retained; genitive segja til phrase and canvas-derived sense need full-sentence review. |
+| commons_svg_original_size_too_large | ACCEPT M — original SVG exceeds Android bitmap dimensions and no resizing explicit; technical bitmap compound disclosed. | ACCEPT M — platform bitmap dimension limit/no resizing explicit; no automatic fallback asserted. |
+
+## Scope and evidence limits
+
+The direct-object correction is morphological, not evidence that a medieval text used a software decoder. The author has proposed a later arædan reading/interpreting family; this v1 report does not pre-accept it. [B–T arædan](https://bosworthtoller.com/38876) can ground a later explicit new decoding sense, but a dictionary entry alone does not establish the full technical construction.
+
+The enable/start distinction is semantic and operational: the source specifically requests enabled state in Android Settings, not merely beginning the app. No new Android operational advice or changed system behavior is being asserted.
+
+Outstanding items are linguistic/terminology/context uncertainty. No implementation or test result is asserted.
