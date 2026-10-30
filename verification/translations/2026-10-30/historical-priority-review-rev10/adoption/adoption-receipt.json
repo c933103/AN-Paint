@@ -1,0 +1,88 @@
+{
+  "schema": "bounded-historical-wording-adoption/v1",
+  "date": "2026-10-30",
+  "authority": "Final project acceptance review inspected the dependency-audited exact-value ledger and authorized adoption of its449 ACCEPT rows, conditional on no substantive placeholder/numeric mismatch.",
+  "adoption_state": "ADOPTED_BOUNDED_AI_REVIEWED_WORDING_NOT_SOURCE_INTEGRATED",
+  "adopted_rows": 449,
+  "held_rows": 233,
+  "notation_only_rows": 14,
+  "non_notation_adopted_rows": 435,
+  "notation_only_definition": "Only format placeholders, mathematical/numeric notation and fixed units, no historical-language lexical wording. Seven keys per locale, allP1. Included within449, not additional language credit. BG/FG abbreviations and ANG Help are not counted merely because English bytes match.",
+  "counts": {
+    "ang": {
+      "P0": {
+        "adopted": 49,
+        "hold": 43,
+        "notation_only_in_adopted": 0
+      },
+      "P1": {
+        "adopted": 170,
+        "hold": 79,
+        "notation_only_in_adopted": 7
+      }
+    },
+    "non": {
+      "P0": {
+        "adopted": 47,
+        "hold": 45,
+        "notation_only_in_adopted": 0
+      },
+      "P1": {
+        "adopted": 183,
+        "hold": 66,
+        "notation_only_in_adopted": 7
+      }
+    }
+  },
+  "scope": "Experimental normalized late West Saxon ang and normalized Old West Norse non; explicit modern UI coinages; no native-human certification, entire-language completion, source presence, installed rendering, TalkBack, runtime, CI or release credit.",
+  "review_ledger_path": "../dependency-audited/current-value-recommendations.tsv",
+  "review_ledger_sha256": "6e6f8ad79d3243c7e41c75e0c401abf2f23d0eb01e7ff383abfe66fb9df43eb2",
+  "source_baseline": {
+    "repository": "c933103/AN-Paint",
+    "supplied_develop_commit": "96681f687671a1fdffe134a325843919c1543401",
+    "supplied_tree": "39bb7351fa5532194e2c0430432b2f0cc6358a86",
+    "local_checkout_head_claim": "None; source identity supplied, local HEAD absent"
+  },
+  "author_revision": 10,
+  "author_ledger_sha256": "533e16a1aea28666f53b0c66f0ba5aad34f7d569bd451c017c4ae789363a5901",
+  "author_latest_index_sha256": "092f3d415337ca108e51c3658f8726352adb3fbcbd97feccbdee9a237911d28e",
+  "validation": {
+    "scope": "Ledger-only comparison of exact format-token sequences; literal identifiers/format names/units; digit/range preservation with manual semantic-equivalence exceptions; escaped line breaks, percent, hash, multiplication and degree symbol counts; selected spelled numbers and decimal-percent convention.",
+    "checked_rows": 682,
+    "placeholder_bearing_rows": 72,
+    "adopted_placeholder_bearing_rows": 56,
+    "substantive_mismatches": 0,
+    "explained_digit_representation_differences": 16,
+    "explicit_actor_addition_in_held_row": 1,
+    "project_tests_run": 0,
+    "application_resources_changed": 0,
+    "not_claimed": "Android format compilation, resource/XML packaging, displayed-unit substitution, runtime behavior or app tests"
+  },
+  "held_metadata_pairs": [
+    {
+      "locale": "ang",
+      "key": "ui_autosave_metadata_is_missing"
+    },
+    {
+      "locale": "ang",
+      "key": "ui_invalid_autosave_metadata"
+    },
+    {
+      "locale": "non",
+      "key": "ui_autosave_metadata_is_missing"
+    },
+    {
+      "locale": "non",
+      "key": "ui_invalid_autosave_metadata"
+    }
+  ],
+  "original_recommendations_rewritten": false,
+  "adopted_values_sha256": "df3fd4f16c4e26f713379eb72d34595b486625c566e63461d63ae1a66522b7c6",
+  "validation_sha256": "a5a96703efa5a192746bebbde97250ca2e904ae72a0b22877a6a91ae7e88a868",
+  "notation_only_values_sha256": "023aee418f4d263fa4621438a01d27975f95afeff2ef2e58623bf2c75c33c550",
+  "past_withdrawn_allegations_remain_withdrawn": [
+    "OE -aþ is not exclusively plural; GIF agreement allegation withdrawn",
+    "OE weak genitive -a is not inherently invalid; -pricena is normalization",
+    "No blanket rejection of feminine plural -e, tvá fingr, or historical vera at infinitive"
+  ]
+}

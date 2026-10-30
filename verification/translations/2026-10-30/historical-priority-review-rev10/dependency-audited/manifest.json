@@ -1,0 +1,125 @@
+{
+  "schema": "independent-current-recommendations/dependency-audit-v1",
+  "state": "UNADOPTED EXPERIMENTAL REVIEW; final acceptance review required; no native-human certification",
+  "unique_source_keys": 341,
+  "rows": 682,
+  "author_ledger_sha256": "533e16a1aea28666f53b0c66f0ba5aad34f7d569bd451c017c4ae789363a5901",
+  "author_latest_index_sha256": "092f3d415337ca108e51c3658f8726352adb3fbcbd97feccbdee9a237911d28e",
+  "current_author_revision": 10,
+  "text_overrides": 44,
+  "evidence_only_restatements": 3,
+  "counts": {
+    "ang": {
+      "ACCEPT": 219,
+      "CORRECT": 0,
+      "HOLD": 122
+    },
+    "non": {
+      "ACCEPT": 230,
+      "CORRECT": 0,
+      "HOLD": 111
+    }
+  },
+  "tier_counts": {
+    "ang": {
+      "P0": {
+        "ACCEPT": 49,
+        "CORRECT": 0,
+        "HOLD": 43
+      },
+      "P1": {
+        "ACCEPT": 170,
+        "CORRECT": 0,
+        "HOLD": 79
+      }
+    },
+    "non": {
+      "P0": {
+        "ACCEPT": 47,
+        "CORRECT": 0,
+        "HOLD": 45
+      },
+      "P1": {
+        "ACCEPT": 183,
+        "CORRECT": 0,
+        "HOLD": 66
+      }
+    }
+  },
+  "base_snapshots": [
+    {
+      "file": "01-common-safety-controls.reviewed-snapshot.md",
+      "sha256": "d22656345d23ae151fc09b6af864bd28388f14cf38ad74aecc273fd1be2c1284",
+      "keys": 39
+    },
+    {
+      "file": "02-p0-recovery-storage.reviewed-snapshot.md",
+      "sha256": "fe70501599dfbe2a39560b423d159fc2d5806cb291f1d83d6fe8bd46205f5b51",
+      "keys": 38
+    },
+    {
+      "file": "03-p0-safety-explanations.reviewed-snapshot.md",
+      "sha256": "041c68741f7bc582612bd242a19f7b5b96834142cfb0cf7f86cfdf5affadd0b8",
+      "keys": 30
+    },
+    {
+      "file": "04-p1-editing-labels.reviewed-snapshot.md",
+      "sha256": "435cb202de40ef41f9a6e95fd2a6b90306d20535198e3388ce0d0207eb5219a0",
+      "keys": 141
+    },
+    {
+      "file": "05-p1-controls-instructions.reviewed-snapshot.md",
+      "sha256": "a84c304b832d47d6992e5c606f9bfd61832bff65e8f050cb9cec5c5f74417fa3",
+      "keys": 64
+    },
+    {
+      "file": "06-p1-import-memory-failures.reviewed-snapshot.md",
+      "sha256": "018584c97ef0d3a7272874dcfefda4c402e33fe6179de34b729ab9edbf954eb5",
+      "keys": 29
+    }
+  ],
+  "packaging_correction": "Old reviewed-v1-values.tsv had wrong positional columns for batch1. Rebuilt by immutable snapshot named headers; linguistic judgments were not shifted. Old TSV is withdrawn/superseded.",
+  "withdrawn_allegations_not_counted": [
+    "OE -aþ is not exclusively plural; GIF agreement allegation withdrawn",
+    "OE weak genitive -a is not inherently invalid; -pricena is normalization",
+    "No blanket rejection of feminine plural -e, tvá fingr, or historical vera at infinitive"
+  ],
+  "only_current_correct_values": [],
+  "tsv_sha256": "6e6f8ad79d3243c7e41c75e0c401abf2f23d0eb01e7ff383abfe66fb9df43eb2",
+  "supersedes": "consolidated-current-rev10/current-value-recommendations.tsv",
+  "superseded_tsv_sha256": "ba85e02fe7f0ce9eef20c906ca6a4a77fb591a8b76f49ffa8337c029baa3a68b",
+  "changed_targets": 0,
+  "previous_accepts": 453,
+  "independently_usable_accepts": 449,
+  "previous_holds_retained": 229,
+  "new_dependency_holds": 4,
+  "reason_scope_corrections_without_status_change": 15,
+  "dependency_exceptions": [
+    {
+      "locale": "ang",
+      "key": "ui_autosave_metadata_is_missing"
+    },
+    {
+      "locale": "ang",
+      "key": "ui_invalid_autosave_metadata"
+    },
+    {
+      "locale": "non",
+      "key": "ui_autosave_metadata_is_missing"
+    },
+    {
+      "locale": "non",
+      "key": "ui_invalid_autosave_metadata"
+    }
+  ],
+  "artifact_hashes": {
+    "current-value-recommendations.md": "047a8b5c97553e256c63dec3163980cf2c91a0187f12e2ee0954264b8b8565fe",
+    "current-value-recommendations.tsv": "6e6f8ad79d3243c7e41c75e0c401abf2f23d0eb01e7ff383abfe66fb9df43eb2",
+    "dependency-hold-exceptions.tsv": "231f9856cd9ba1bd7ddffcf33a7aaabce99c7d4921527aec9a290c30102fcf2d",
+    "family-membership.tsv": "9e3fbaf7419959832f553778b38abc4287172a1962e388e6e8aba1524d7cfbb0",
+    "independently-usable-accepted-values.tsv": "1fd623c8beaf63e55524d55b4f221450b4a58c9897fc104eb67eb5f3a47781b6",
+    "prior-accept-value-gates.tsv": "a3086e3f84f9dedc59ba2b2f16116649e9267b9843b87a75465687b5f6c549f8",
+    "reason-scope-corrections.tsv": "57a1653237b3322478672e2c1cbcc4c49618b72e8fde2b491142750aa5579408",
+    "terminology-dependency-audit.md": "c36bc7379a431fe16428b0e999f7069195a6180e882fcc36648870ab784a809b"
+  }
+}
