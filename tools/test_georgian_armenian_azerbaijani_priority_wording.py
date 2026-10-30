@@ -4,7 +4,7 @@ import json
 import unittest
 import xml.etree.ElementTree as ET
 import translation_catalogues as catalogues
-from current_localization_contracts import fixture,require_string, require_string_root
+from current_localization_contracts import fixture,require_string, require_string_root, require_residual_or_previous
 from test_slovak_slovenian_catalan_priority_wording import token_contract
 FIXTURE = 'georgian_armenian_azerbaijani_priority_wording.json'
 SOURCE_KEYS = {'colour_converter_unavailable',
@@ -4053,7 +4053,7 @@ class GeorgianArmenianAzerbaijaniPriorityWording(unittest.TestCase):
                 nodes=[node for node in root if node.get('name')==key]
                 old=row['previous']
                 with self.subTest(tag=tag,key=key):
-                    if old is None:self.assertEqual([],nodes)
+                    if old is None:require_residual_or_previous(root,tag,key)
                     else:
                         self.assertEqual(1,len(nodes));self.assertEqual(old['value'],nodes[0].text)
                         self.assertEqual(old['attributes'],nodes[0].attrib);self.assertEqual(0,len(nodes[0]))

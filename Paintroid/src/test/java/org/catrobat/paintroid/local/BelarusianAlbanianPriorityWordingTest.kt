@@ -47,6 +47,17 @@ class BelarusianAlbanianPriorityWordingTest {
     private val fixture by lazy {
         JSONObject(File("../tools/fixtures/current_localization/nynorsk_belarusian_albanian_priority_wording.json").readText()).getJSONObject("locales")
     }
+    // The immutable trio fixture predates these source-only held captions.
+    private val heldSources = mapOf(
+        "formats22_derived_exported" to "%1\$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+        "ui_foreground_background_colour_palette" to "Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+        "ui_main23" to "Main",
+        "ui_pinch_and_pan_mode" to "Pinch and pan mode",
+        "ui_save_as" to "Save as %1\$s",
+        "ui_save_as_jpeg" to "Save as JPEG…",
+        "ui_save_as_jpeg_xl" to "Save as JPEG XL…",
+        "ui_save_as_png" to "Save as PNG…"
+    )
     private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
         when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
     }
@@ -58,6 +69,8 @@ class BelarusianAlbanianPriorityWordingTest {
             val display=JSONObject();for(q in target.keys()) display.put(q,decoded(target.getString(q)))
             return JSONObject().put("display",display)
         }
+        if(PriorityWordingExpectations.hasResidual(tag,key)) return JSONObject().put("display",
+            PriorityWordingExpectations.residual(tag,key,heldSources.getValue(key)))
         val raw=locale.getJSONObject("accepted").getString(key)
         val text=if(raw=="@string/ui_save") {
             require(key=="ui_save_a5d0d9");decoded(locale.getJSONObject("accepted").getString("ui_save"))
@@ -113,6 +126,11 @@ class BelarusianAlbanianPriorityWordingTest {
         val values=JSONObject()
         for(key in locale.getJSONObject("accepted").keys()) values.put("string/$key",true)
         for(key in locale.getJSONObject("plurals").keys()) values.put("plurals/$key",true)
+        val held=locale.getJSONArray("held_absent")
+        for(i in 0 until held.length()) {
+            val key=held.getString(i)
+            if(PriorityWordingExpectations.hasResidual(tag,key)) values.put("string/$key",true)
+        }
         for(identity in values.keys()) {
             val (kind,key)=identity.split('/')
             val id=activity.resources.getIdentifier(key,kind,activity.packageName)

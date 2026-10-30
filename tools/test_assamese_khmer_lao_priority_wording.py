@@ -4,7 +4,7 @@ from copy import deepcopy
 import json
 import unittest
 import xml.etree.ElementTree as ET
-from current_localization_contracts import fixture
+from current_localization_contracts import fixture, RESIDUAL_KEYS, require_residual_or_previous
 from test_danish_norwegian_p0_wording import FULL_FORMAT_TOKEN
 import translation_catalogues as catalogues
 from assamese_khmer_lao_priority_expectations import NAME,TAGS,current_row,display
@@ -1297,8 +1297,10 @@ class AssameseKhmerLaoPriorityWordingTests(unittest.TestCase):
         self.assertEqual(341,len(priority_ids()))
         for tag,locale in self.data['locales'].items():
             actual={e.tag+'/'+e.get('name')for e in self.roots[tag]}
-            self.assertEqual(set(locale['catalogue_identities']),actual);self.assertEqual(len(actual),len(self.roots[tag]))
-            self.assertEqual({'string/'+key for key in HOLDS},priority_ids()-actual)
+            successors=RESIDUAL_KEYS.get(tag,set())
+            self.assertEqual(set(locale['catalogue_identities'])|{'string/'+key for key in successors},actual);self.assertEqual(len(actual),len(self.roots[tag]))
+            self.assertEqual({'string/'+key for key in HOLDS-successors},priority_ids()-actual)
+            for key in successors:require_residual_or_previous(self.roots[tag],tag,key)
             for key,target in locale['accepted'].items():
                 with self.subTest(tag=tag,key=key):require_complete(self.roots[tag],key,self.data['sources'][key],target,locale['target_attribute_exceptions'].get(key,{'name':key}))
 
@@ -1370,7 +1372,7 @@ class AssameseKhmerLaoPriorityWordingTests(unittest.TestCase):
             for key,row in locale['outside_review'].items():
                 source={'type':row['type'],'source':row['target']}
                 require_complete(root,key,source,row['target'],row['attributes'])
-            for key in HOLDS:self.assertEqual([],root.findall(f"./string[@name='{key}']"))
+            for key in HOLDS:require_residual_or_previous(root,tag,key)
 
     def test_preserved_alias_and_complete_command_references_are_bound_to_controls(self):
         for tag in ('km','lo'):self.assertEqual(display(tag,'ui_save'),display(tag,'ui_save_a5d0d9'))

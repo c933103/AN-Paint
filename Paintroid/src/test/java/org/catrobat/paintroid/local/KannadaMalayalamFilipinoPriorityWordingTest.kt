@@ -44,12 +44,15 @@ class KannadaMalayalamFilipinoPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
+    private val contract by lazy {
         JSONObject(File("../tools/fixtures/current_localization/kannada_malayalam_filipino_priority_wording.json").readText())
-            .getJSONObject("locales")
     }
+    private val fixture get() = contract.getJSONObject("locales")
     private fun expected(tag: String, key: String): String {
-        val raw=fixture.getJSONObject(tag).getJSONObject("accepted").getString(key)
+        val accepted=fixture.getJSONObject(tag).getJSONObject("accepted")
+        if(!accepted.has(key)) return PriorityWordingExpectations.residual(tag,key,
+            contract.getJSONObject("sources").getJSONObject(key).getString("source"))
+        val raw=accepted.getString(key)
         if(raw.startsWith("@string/")) {
             require(tag=="fil" && key=="ui_save_a5d0d9" && raw=="@string/ui_save")
             return expected(tag,"ui_save")
@@ -94,7 +97,9 @@ class KannadaMalayalamFilipinoPriorityWordingTest {
     @Test fun everyReviewedKannadaMalayalamFilipinoCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
         val locale=fixture.getJSONObject(tag)
         val values=locale.getJSONObject("accepted")
-        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList()
+        val held=locale.getJSONArray("held_absent")
+        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList() +
+            (0 until held.length()).map { held.getString(it) }
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
         for(key in keys) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)

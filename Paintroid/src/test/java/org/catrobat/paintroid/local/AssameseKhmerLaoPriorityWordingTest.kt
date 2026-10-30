@@ -44,12 +44,15 @@ class AssameseKhmerLaoPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
+    private val contract by lazy {
         JSONObject(File("../tools/fixtures/current_localization/assamese_khmer_lao_priority_wording.json").readText())
-            .getJSONObject("locales")
     }
+    private val fixture get() = contract.getJSONObject("locales")
     private fun expected(tag: String, key: String): String {
-        val raw=fixture.getJSONObject(tag).getJSONObject("accepted").getString(key)
+        val accepted=fixture.getJSONObject(tag).getJSONObject("accepted")
+        if(!accepted.has(key)) return PriorityWordingExpectations.residual(tag,key,
+            contract.getJSONObject("sources").getJSONObject(key).getString("source"))
+        val raw=accepted.getString(key)
         if(raw.startsWith("@string/")) {
             require(tag in listOf("km","lo") && key=="ui_save_a5d0d9" && raw=="@string/ui_save")
             return expected(tag,"ui_save")
@@ -94,7 +97,9 @@ class AssameseKhmerLaoPriorityWordingTest {
     @Test fun everyReviewedAssameseKhmerLaoCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
         val locale=fixture.getJSONObject(tag)
         val values=locale.getJSONObject("accepted")
-        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList()
+        val held=locale.getJSONArray("held_absent")
+        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList() +
+            (0 until held.length()).map { held.getString(it) }
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
         for(key in keys) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
@@ -111,11 +116,11 @@ class AssameseKhmerLaoPriorityWordingTest {
             }
         }
         run {
-            assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
                 activity.getString(R.string.ui_foreground_background_colour_palette))
-            assertEquals("Foreground foreground 100%, background background 100%. palette 100% colour palette.",
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground foreground 100%, background background 100%. palette 100% colour palette.","foreground 100%","background 100%","palette 100%"),
                 ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
-            assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
         }
     }
 
