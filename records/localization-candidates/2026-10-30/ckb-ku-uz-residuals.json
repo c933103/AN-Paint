@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "kind": "translation-candidates-not-production",
+  "created_utc": "2026-10-30",
+  "repository": "c933103/AN-Paint",
+  "source_commit": "53f650d38af84817043270bf3265c0dd17decd97",
+  "scope": {
+    "ckb": 11,
+    "ku": 11,
+    "uz-Latn": 10,
+    "total": 32
+  },
+  "status": "All requested residuals translated; ready for independent wording review. Not yet accepted or integrated.",
+  "source": {
+    "path": "Paintroid/src/main/res/values/strings.xml",
+    "blob": "b50c607aac54c6148e5ac4e44325cb6db3be3612"
+  },
+  "consumer": {
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt",
+    "blob": "f233c81fbdbfefd76f461ca5dbb1c0da5351448e",
+    "lines": [
+      45,
+      59
+    ],
+    "observations": "ui_fg/ui_bg drawn beside hex colour codes. Horizontal layout uses 11*d bold text then scales down to available measured width. Vertical branch measures and draws caption plus newline plus hex. Separate accessible targets already use full foreground/background edit-colour strings."
+  },
+  "prior_review_index": "https://github.com/c933103/AN-Paint/blob/8a960dea535b452a453489defeeb53750e12699a/records/localization-review/2026-10-28/current60354/evidence-index.json",
+  "limitations": [
+    "Author model translation and static comparison only; no native-human certification or independent acceptance claimed.",
+    "No production files changed; no Android build, full test suite, runtime rendering, accessibility, RTL or font-fit verification performed.",
+    "Earlier 330/330/331 accepted priority counts are provenance only and are not increased by these candidate additions."
+  ],
+  "locales": {
+    "ckb": {
+      "script": "Arabic-script Central Kurdish",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ckb/strings.xml",
+      "catalogue_blob": "57408cc1a55ca10c387f8869f300896d7c61cb9a",
+      "accepted_terminology": {
+        "ui_save": "\"پاشەکەوتکردن\"",
+        "save20_title": "پاشەکەوتکردن بە ناوێکی تر…",
+        "ui_export_as23": "هەناردەکردن بە جۆرێکی تر…",
+        "ui_export_did_not_save23": "هەناردەکە دروست کرا. پێش بەردەوامبوون، بۆ پاشەکەوتکردنی وێنەی ئێستا «پاشەکەوتکردن» یان «پاشەکەوتکردن بە ناوێکی تر» بەکاربهێنە.",
+        "ui_foreground_colour": "ڕەنگی پێشەوە",
+        "ui_background_colour": "ڕەنگی پاشبنەما",
+        "ui_foreground_edit_colour": "پێشەوە %1$s. دەستکاریی ڕەنگ.",
+        "ui_background_edit_colour": "پاشبنەما %1$s. دەستکاریی ڕەنگ.",
+        "ui_palette": "تەختەی ڕەنگ",
+        "ui_drawing_canvas_pinch_and_move_two_fingers_to": "تەختەی وێنەکێشان. بۆ گەورەکردن و بچووککردنەوە و جووڵاندنی دیمەن، دوو پەنجە نزیک یان دوور بکەوە و بیانجووڵێنە. دۆخی «جووڵاندنی دیمەن» بە یەک پەنجەش دیمەن دەجووڵێنێت.",
+        "ui_fit": "گونجاندن",
+        "ui_fit_selection34": "گونجاندنی وێنە لە تەختەی وێنەکێشاندا",
+        "ui_discard_changes23": "فڕێدانی گۆڕانکارییەکان"
+      },
+      "candidates": [
+        {
+          "key": "formats22_derived_exported",
+          "priority": "P0",
+          "english": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+          "candidate": "%1$s هەناردە کرا. وێنە تەواوەکەت هێشتا گۆڕانکاریی پاشەکەوتنەکراوی هەیە؛ پێش ئەوەی وێنەیەکی تر لە شوێنیدا دابنێیت، کۆپییەکی تەواوی وێنەکە پاشەکەوت بکە.",
+          "back_translation": "%1$s was exported. Your complete drawing still has unsaved changes; before putting another image in its place, save a complete copy of the image.",
+          "note": "Preserves successful derived export versus still-unsaved full drawing and the prerequisite to save a full image copy before replacement. No exact live consumer asserted.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as",
+          "priority": "P0",
+          "english": "Save as %1$s",
+          "candidate": "پاشەکەوتکردن بە %1$s",
+          "back_translation": "Save as %1$s",
+          "note": "Format/context substitution retained exactly once; no new ellipsis added.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_jpeg",
+          "priority": "P0",
+          "english": "Save as JPEG…",
+          "candidate": "پاشەکەوتکردن بە JPEG…",
+          "back_translation": "Save as JPEG…",
+          "note": "JPEG literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_jpeg_xl",
+          "priority": "P0",
+          "english": "Save as JPEG XL…",
+          "candidate": "پاشەکەوتکردن بە JPEG XL…",
+          "back_translation": "Save as JPEG XL…",
+          "note": "JPEG XL literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_png",
+          "priority": "P0",
+          "english": "Save as PNG…",
+          "candidate": "پاشەکەوتکردن بە PNG…",
+          "back_translation": "Save as PNG…",
+          "note": "PNG literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_fg",
+          "priority": "P1",
+          "english": "FG",
+          "candidate": "پێشەوە",
+          "back_translation": "Foreground",
+          "note": "Uses established foreground term rather than inventing an opaque initialism. Live colour caption; horizontal branch scales label plus hex to available width. Rendered legibility/fit and RTL drawing remain untested.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_bg",
+          "priority": "P1",
+          "english": "BG",
+          "candidate": "پاشبنەما",
+          "back_translation": "Background",
+          "note": "Uses established background term rather than inventing an opaque initialism. Live colour caption; horizontal branch scales label plus hex to available width. Rendered legibility/fit and RTL drawing remain untested.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_foreground_background_colour_palette",
+          "priority": "P1",
+          "english": "Foreground %1$s, background %2$s. %3$s colour palette.",
+          "candidate": "پێشەوە %1$s، پاشبنەما %2$s. تەختەی ڕەنگی %3$s.",
+          "back_translation": "Foreground %1$s, background %2$s. %3$s colour palette.",
+          "note": "All three numbered substitutions preserved. Exact %3$s runtime producer not established. State/qualifier composition needs checking when a consumer is integrated; wording candidate is not runtime certification.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_pinch_and_pan_mode",
+          "priority": "P1",
+          "english": "Pinch and pan mode",
+          "candidate": "دۆخی گەورەکردن و بچووککردنەوە بە دوو پەنجە و جووڵاندنی دیمەن",
+          "back_translation": "Mode for zooming in and out with two fingers and moving the view",
+          "note": "Descriptive pinch wording means two-finger zoom, not pinching the image content; pan means view movement, not moving a selection. Longer than English; no rendered-fit claim.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_main23",
+          "priority": "P1",
+          "english": "Main",
+          "candidate": "سەرەکی",
+          "back_translation": "Main",
+          "note": "Generic Main label; does not invent a Home/navigation route. Exact referent remains a consumer-context uncertainty, not a reason to leave the translation absent.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_fit_image",
+          "priority": "P1",
+          "english": "Fit image",
+          "candidate": "گونجاندنی وێنە",
+          "back_translation": "Fit image",
+          "note": "Generic fit-image command, intentionally does not add canvas, screen, resize-pixels or crop. Destination/referring action remains context-dependent.",
+          "previous_target": null
+        }
+      ]
+    },
+    "ku": {
+      "script": "Latin-script Northern Kurdish (Kurmanji)",
+      "catalogue_path": "Paintroid/src/main/res/values-b+ku/strings.xml",
+      "catalogue_blob": "a09d200f7191190cb1d7bf31045b5c16717764d7",
+      "accepted_terminology": {
+        "ui_save": "Tomar bike",
+        "save20_title": "Wek tomar bike…",
+        "ui_export_as23": "Wek derxe…",
+        "ui_export_did_not_save23": "Derxistin hat çêkirin. Berî berdewamkirinê ji bo tomarkirina wêneyê heyî Tomar bike an Wek tomar bike bi kar bîne.",
+        "ui_foreground_colour": "Rengê pêşplanê",
+        "ui_background_colour": "Rengê paşplanê",
+        "ui_foreground_edit_colour": "Pêşplan %1$s. Reng biguherîne.",
+        "ui_background_edit_colour": "Paşplan %1$s. Reng biguherîne.",
+        "ui_palette": "Palet",
+        "ui_drawing_canvas_pinch_and_move_two_fingers_to": "Qada nexşê. Du tiliyan nêzîkî hev bike an ji hev dûr bike û wan bikişîne da ku mezinahiya dîtinê biguherînî û dîtinê veguhezînî. Di moda Ger bike de jî dikarî bi tiliyekê dîtinê veguhezînî.",
+        "ui_fit": "Li gor bike",
+        "ui_fit_selection34": "Wêneyê li gor qada nexşê bike",
+        "ui_discard_changes23": "Guherandinan berde"
+      },
+      "candidates": [
+        {
+          "key": "formats22_derived_exported",
+          "priority": "P0",
+          "english": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+          "candidate": "%1$s hat derxistin. Di nexşa te ya tevahî de hîn guherandinên nehatine tomarkirin hene; berî ku li şûna wê tiştekî din bînî, kopiyeke wêneyê ya tevahî tomar bike.",
+          "back_translation": "%1$s was exported. Your full drawing still has changes that have not been saved; before replacing it with something else, save a full image copy.",
+          "note": "Preserves successful derived export versus still-unsaved full drawing and the prerequisite to save a full image copy before replacement. No exact live consumer asserted.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as",
+          "priority": "P0",
+          "english": "Save as %1$s",
+          "candidate": "Wek %1$s tomar bike",
+          "back_translation": "Save as %1$s",
+          "note": "Format/context substitution retained exactly once; no new ellipsis added.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_jpeg",
+          "priority": "P0",
+          "english": "Save as JPEG…",
+          "candidate": "Wek JPEG tomar bike…",
+          "back_translation": "Save as JPEG…",
+          "note": "JPEG literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_jpeg_xl",
+          "priority": "P0",
+          "english": "Save as JPEG XL…",
+          "candidate": "Wek JPEG XL tomar bike…",
+          "back_translation": "Save as JPEG XL…",
+          "note": "JPEG XL literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_png",
+          "priority": "P0",
+          "english": "Save as PNG…",
+          "candidate": "Wek PNG tomar bike…",
+          "back_translation": "Save as PNG…",
+          "note": "PNG literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_fg",
+          "priority": "P1",
+          "english": "FG",
+          "candidate": "Pêşplan",
+          "back_translation": "Foreground",
+          "note": "Uses established foreground term rather than inventing an opaque initialism. Live colour caption; horizontal branch scales label plus hex to available width. Rendered legibility/fit and RTL drawing remain untested.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_bg",
+          "priority": "P1",
+          "english": "BG",
+          "candidate": "Paşplan",
+          "back_translation": "Background",
+          "note": "Uses established background term rather than inventing an opaque initialism. Live colour caption; horizontal branch scales label plus hex to available width. Rendered legibility/fit and RTL drawing remain untested.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_foreground_background_colour_palette",
+          "priority": "P1",
+          "english": "Foreground %1$s, background %2$s. %3$s colour palette.",
+          "candidate": "Pêşplan %1$s, paşplan %2$s. Paleta rengan: %3$s.",
+          "back_translation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+          "note": "All three numbered substitutions preserved. Exact %3$s runtime producer not established. State/qualifier composition needs checking when a consumer is integrated; wording candidate is not runtime certification.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_pinch_and_pan_mode",
+          "priority": "P1",
+          "english": "Pinch and pan mode",
+          "candidate": "Moda guherandina mezinahiya dîtinê bi du tiliyan û veguhestina dîtinê",
+          "back_translation": "Mode for changing the view size with two fingers and moving the view",
+          "note": "Descriptive pinch wording means two-finger zoom, not pinching the image content; pan means view movement, not moving a selection. Longer than English; no rendered-fit claim.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_main23",
+          "priority": "P1",
+          "english": "Main",
+          "candidate": "Sereke",
+          "back_translation": "Main",
+          "note": "Generic Main label; does not invent a Home/navigation route. Exact referent remains a consumer-context uncertainty, not a reason to leave the translation absent.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_fit_image",
+          "priority": "P1",
+          "english": "Fit image",
+          "candidate": "Wêneyê li gor bike",
+          "back_translation": "Fit image",
+          "note": "Generic fit-image command, intentionally does not add canvas, screen, resize-pixels or crop. Destination/referring action remains context-dependent.",
+          "previous_target": null
+        }
+      ]
+    },
+    "uz-Latn": {
+      "script": "Uzbek Latin",
+      "catalogue_path": "Paintroid/src/main/res/values-b+uz+Latn/strings.xml",
+      "catalogue_blob": "e2b13cbf2ef7745522d27ac8aea1493eb48a51fb",
+      "accepted_terminology": {
+        "ui_save": "\"Saqlash\"",
+        "save20_title": "\"Boshqacha saqlash…\"",
+        "ui_export_as23": "\"Boshqa shaklda eksport qilish…\"",
+        "ui_export_did_not_save23": "\"Eksport yaratildi. Davom etishdan oldin joriy rasmni saqlash uchun «Saqlash» yoki «Boshqacha saqlash»dan foydalaning.\"",
+        "ui_foreground_colour": "\"Old plan rangi\"",
+        "ui_background_colour": "\"Orqa fon rangi\"",
+        "ui_foreground_edit_colour": "\"Old plan: %1$s. Rangni tahrirlash.\"",
+        "ui_background_edit_colour": "\"Orqa fon: %1$s. Rangni tahrirlash.\"",
+        "ui_palette": "\"Palitra\"",
+        "ui_drawing_canvas_pinch_and_move_two_fingers_to": "\"Chizish maydoni. Masshtabni oʻzgartirish uchun ikki barmoqni yaqinlashtiring yoki uzoqlashtiring, koʻrinishni siljitish uchun ularni suring. «Navigatsiya» rejimida bitta barmoq bilan ham siljitish mumkin.\"",
+        "ui_fit": "\"Sigʻdirish\"",
+        "ui_fit_selection34": "\"Rasmni chizish maydoniga moslash\"",
+        "ui_discard_changes23": "\"Oʻzgarishlardan voz kechish\""
+      },
+      "candidates": [
+        {
+          "key": "formats22_derived_exported",
+          "priority": "P0",
+          "english": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+          "candidate": "%1$s eksport qilindi. Toʻliq chizmangizda hali saqlanmagan oʻzgarishlar bor; uni almashtirishdan oldin rasmning toʻliq nusxasini saqlang.",
+          "back_translation": "%1$s was exported. Your complete drawing still has unsaved changes; save a complete image copy before replacing it.",
+          "note": "Preserves successful derived export versus still-unsaved full drawing and the prerequisite to save a full image copy before replacement. No exact live consumer asserted.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as",
+          "priority": "P0",
+          "english": "Save as %1$s",
+          "candidate": "%1$s sifatida saqlash",
+          "back_translation": "Save as %1$s",
+          "note": "Format/context substitution retained exactly once; no new ellipsis added.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_jpeg",
+          "priority": "P0",
+          "english": "Save as JPEG…",
+          "candidate": "JPEG sifatida saqlash…",
+          "back_translation": "Save as JPEG…",
+          "note": "JPEG literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_jpeg_xl",
+          "priority": "P0",
+          "english": "Save as JPEG XL…",
+          "candidate": "JPEG XL sifatida saqlash…",
+          "back_translation": "Save as JPEG XL…",
+          "note": "JPEG XL literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_save_as_png",
+          "priority": "P0",
+          "english": "Save as PNG…",
+          "candidate": "PNG sifatida saqlash…",
+          "back_translation": "Save as PNG…",
+          "note": "PNG literal and U+2026 ellipsis preserved.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_fg",
+          "priority": "P1",
+          "english": "FG",
+          "candidate": "Old plan",
+          "back_translation": "Foreground",
+          "note": "Uses established foreground term rather than inventing an opaque initialism. Live colour caption; horizontal branch scales label plus hex to available width. Rendered legibility/fit and RTL drawing remain untested.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_bg",
+          "priority": "P1",
+          "english": "BG",
+          "candidate": "Orqa fon",
+          "back_translation": "Background",
+          "note": "Uses established background term rather than inventing an opaque initialism. Live colour caption; horizontal branch scales label plus hex to available width. Rendered legibility/fit and RTL drawing remain untested.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_foreground_background_colour_palette",
+          "priority": "P1",
+          "english": "Foreground %1$s, background %2$s. %3$s colour palette.",
+          "candidate": "Old plan: %1$s, orqa fon: %2$s. Rang palitrasi: %3$s.",
+          "back_translation": "Foreground: %1$s, background: %2$s. Colour palette: %3$s.",
+          "note": "All three numbered substitutions preserved. Exact %3$s runtime producer not established. State/qualifier composition needs checking when a consumer is integrated; wording candidate is not runtime certification.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_pinch_and_pan_mode",
+          "priority": "P1",
+          "english": "Pinch and pan mode",
+          "candidate": "Ikki barmoq bilan masshtabni oʻzgartirish va koʻrinishni siljitish rejimi",
+          "back_translation": "Mode for changing zoom with two fingers and moving the view",
+          "note": "Descriptive pinch wording means two-finger zoom, not pinching the image content; pan means view movement, not moving a selection. Longer than English; no rendered-fit claim.",
+          "previous_target": null
+        },
+        {
+          "key": "ui_discard",
+          "priority": "P0",
+          "english": "Discard",
+          "candidate": "Voz kechish",
+          "back_translation": "Discard / give up",
+          "note": "Matches accepted Uzbek ui_discard_changes23 terminology; generic action only, no unsupported permanent-file-deletion meaning.",
+          "previous_target": null
+        }
+      ]
+    }
+  }
+}
