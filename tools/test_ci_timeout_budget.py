@@ -112,11 +112,11 @@ def controlled_model(shell, runner):
     reset = shell_timeout(body(joined, 'run_vertical_locale_matrix'), r"shell\s+'?rm -rf")[0]
     cleanup = body(joined, 'cleanup')
     collection = sum(sum(shell_timeout(cleanup, command)) for command in ('logcat -d', 'emu kill'))
-    pulls = re.findall(r'timeout --kill-after=(\d+)s (\d+)s [^\n]*\bpull\b', cleanup)
-    if len(pulls) != 2:
-        raise ValueError('Exactly vertical and dialog evidence pulls are budgeted')
+    pulls = re.findall(r'timeout --kill-after=(\d+)s (\d+)s python3 tools/pull_device_evidence\.py\b', cleanup)
+    if pulls != [('3', '15'), ('3', '15')]:
+        raise ValueError('Exactly two shared 15s evidence collection envelopes with 3s grace required')
     collection += sum(int(grace) + int(deadline) for grace, deadline in pulls)
-    dialog_collection = sum(shell_timeout(cleanup, r'pull\s+/sdcard/Download/anpaint-ci-dialog-evidence'))
+    dialog_collection = sum(shell_timeout(cleanup, r'python3 tools/pull_device_evidence\.py[^\n]*--remote /sdcard/Download/anpaint-ci-dialog-evidence'))
     collection += int(one(r'for attempt in \$\(seq 1 (\d+)\)', cleanup)) * int(one(r'^      sleep (\d+)$', cleanup))
     prep = preparation['device_sdk'] + preparation['installed'] + preparation['instrumentation']
     seed = prep + phases['app-credit-restart-seed'] + tail + preparation['live']
