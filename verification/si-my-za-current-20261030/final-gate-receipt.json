@@ -1,0 +1,233 @@
+{
+  "status": "all required premerge gates passed for exact combined head",
+  "head": "dc713447975c15391d7aca9b803bbe64688507a2",
+  "tree": "d2fab1608c333b195a1a06c6251191a664637f06",
+  "synthetic": "7061b20bbe336a0219a88b708ba7b1a3792655b4",
+  "base": "3b505f871ba6e52b6759be6d34bf7e4ec3995e46",
+  "run": 40995073540,
+  "run_attempt": 1,
+  "all_six_jobs_success": true,
+  "code_review": {
+    "head": "dc713447975c15391d7aca9b803bbe64688507a2",
+    "completed_clean": true,
+    "receipt_comment": 6513931762,
+    "summary_comment": 6513206253
+  },
+  "optional_security": "Predecessor-only completed/null flags; disabled optional gate, not current clean claim",
+  "regression": {
+    "head": "dc713447975c15391d7aca9b803bbe64688507a2",
+    "tree": "d2fab1608c333b195a1a06c6251191a664637f06",
+    "synthetic": "7061b20bbe336a0219a88b708ba7b1a3792655b4",
+    "run": 40995073540,
+    "artifact": {
+      "id": 12952268061,
+      "bytes": 84708859,
+      "sha256": "24412e7fe47bd058a3dcd75c90659eeb2b6bfe70c8de63951f22bb4fe182ed86"
+    },
+    "jvm": {
+      "cases": 1958,
+      "classes": 197,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "all_1943_current_base_identities_preserved": true,
+      "all_fifteen_source_cohort_identities_preserved": true,
+      "corrected_method": {
+        "name": "realFillThresholdAndInteriorShapeChoicePreserveDocumentAndForegroundAlpha",
+        "classname": "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "time": "0.801"
+      },
+      "own_junit_total_seconds": 5.231
+    },
+    "python": {
+      "cases": 2045,
+      "seconds": 1029.343,
+      "documented_skips": 2
+    },
+    "phases": {
+      "python": {
+        "real_seconds": "1030.471",
+        "user_seconds": "967.405",
+        "sys_seconds": "29.716",
+        "exit_status": "0",
+        "lifecycle": {
+          "launch_id": "87f4595b55884cf4942bafdc002d504b",
+          "reason": "completed",
+          "forced_kill": "false",
+          "owned_children_remaining": "0",
+          "cleanup_complete": "true",
+          "output_complete": "true"
+        }
+      },
+      "jvm": {
+        "real_seconds": "943.809",
+        "user_seconds": "1649.241",
+        "sys_seconds": "76.768",
+        "exit_status": "0",
+        "lifecycle": {
+          "launch_id": "6a0e1167e9cb40e686052efd2f6bba81",
+          "reason": "completed",
+          "forced_kill": "false",
+          "owned_children_remaining": "0",
+          "cleanup_complete": "true",
+          "output_complete": "true"
+        }
+      },
+      "lint": {
+        "real_seconds": "126.497",
+        "user_seconds": "410.777",
+        "sys_seconds": "8.420",
+        "exit_status": "0"
+      }
+    },
+    "baseline": {
+      "commit": "3b505f871ba6e52b6759be6d34bf7e4ec3995e46",
+      "artifact": 12951143992,
+      "sha256": "e262376862faeb94fd4aa4ed499d30cdd52f172cd736b84a85042772b01c1ec9"
+    },
+    "prior_run_40989923300": "failure preserved, not reclassified"
+  },
+  "api35": {
+    "head": "dc713447975c15391d7aca9b803bbe64688507a2",
+    "tree": "d2fab1608c333b195a1a06c6251191a664637f06",
+    "run": 40995073540,
+    "artifact": {
+      "id": 12951603285,
+      "bytes": 12139605,
+      "sha256": "9fad90ac7513fb617e0356009e2f5b763842565af0e6f95cbe4a7f77e096b91c"
+    },
+    "identity": {
+      "commit": "7061b20bbe336a0219a88b708ba7b1a3792655b4",
+      "run_id": "40995073540",
+      "build_variant": "debug",
+      "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27",
+      "device_sdk": 35,
+      "apk_sha256": "13dda3d0465469e4932b83ffcb4e92b46982666a394f7e54b04c1bcfae79aced",
+      "source_sha256": "17425568f5a994108e99a5bab13ccef0000a0ca11bd6b48442d7bc70d0664067",
+      "test_apk_sha256": "c8e3474cc91afa852b099258ebc1790b0c34aeed4ced82dcd0b550027ff3c316",
+      "group_run_attempts": {
+        "core": 1,
+        "position": 1
+      },
+      "composed_in_run_attempt": 1
+    },
+    "phases": {
+      "Paintroid/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 74,
+        "expected_tests": 74,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 79.80157346600001,
+        "source_tests_sha256": "4d70ff78cad759b02664ff7b4e8f897d93dcb17543d82412d5a66441ca094827"
+      },
+      "app/accepted-credit-restart/seed/summary.json": {
+        "success": true,
+        "completed_tests": 1,
+        "expected_tests": 1,
+        "timeout_seconds": 60,
+        "elapsed_seconds": 8.487101837999944,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app/accepted-credit-restart/verify/summary.json": {
+        "success": true,
+        "completed_tests": 1,
+        "expected_tests": 1,
+        "timeout_seconds": 60,
+        "elapsed_seconds": 8.807038098000021,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 19,
+        "expected_tests": 19,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 160.32992845400003,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-dialog/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 14,
+        "expected_tests": 14,
+        "timeout_seconds": 300,
+        "elapsed_seconds": 211.89037100899998,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-gallery-draft/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 3,
+        "expected_tests": 3,
+        "timeout_seconds": 90,
+        "elapsed_seconds": 47.670462101,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-position/ainu-manchu/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 3,
+        "expected_tests": 3,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 105.95530583000004,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-position/tibetan-jeju-nom/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 4,
+        "expected_tests": 4,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 92.96402046100002,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-vertical/english-manchu/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 2,
+        "expected_tests": 2,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 119.79614305899997,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      },
+      "app-vertical/literary-chinese-emoji/androidTest-results/summary.json": {
+        "success": true,
+        "completed_tests": 2,
+        "expected_tests": 2,
+        "timeout_seconds": 180,
+        "elapsed_seconds": 114.58796987400001,
+        "source_tests_sha256": "2e1e5ca11f342fb4f5e87abba0521ad60e27ac89987695e8122d1e5658f05d27"
+      }
+    },
+    "app_cases": 49,
+    "native_cases": 74,
+    "all_source_identities_preserved": true,
+    "png_count": 147,
+    "limits": "Current combined installed regression, not SI/MY-specific installed visual or native-human linguistic certification."
+  },
+  "lint_reports": {
+    "app/build/reports/lint-results-debug.xml": {
+      "issues": 0,
+      "severities": {}
+    }
+  },
+  "focused": {
+    "cases": 17,
+    "seconds": 51.442,
+    "exit": 0
+  },
+  "preservation": {
+    "remote_leaves_modes_verified": 1628,
+    "all_8_pr234_paths_exact": true,
+    "all_13_pr235_paths_retained": true,
+    "only_corrective_change": "existing normalized-foreground JVM expectations; no production/fixture/new-method change"
+  },
+  "old_run_40989923300": "failed, all original XML and phase logs preserved under earlier immutable evidence",
+  "merge": {
+    "actual_commit": "420cb76fb1fc02a53a5b6296505be193eaa3bb2f",
+    "actual_tree": "d2fab1608c333b195a1a06c6251191a664637f06",
+    "parents": [
+      "3b505f871ba6e52b6759be6d34bf7e4ec3995e46",
+      "dc713447975c15391d7aca9b803bbe64688507a2"
+    ],
+    "root_guarded_merge_utc": "2026-10-30T03:41Z",
+    "exact_reviewed_tested_tree_preserved": true,
+    "all_1628_leaf_modes_bound_by_exact_tree": true,
+    "natural_ci": "pending, separately monitored; no extra dispatch"
+  },
+  "release": "none"
+}
