@@ -3,7 +3,7 @@
   "status": "candidate wording only; not applied, independently accepted or merged",
   "base_commit": "e6b207b7373b33dd832e6b32cd9a8139b6fa6fc5",
   "source_catalogue": "Paintroid/src/main/res/values/strings.xml",
-  "scope": "All 22 absent P0/P1 values in three independently offered locales; retained present holds separately assessed below.",
+  "scope": "All 22 absent P0/P1 values in three independently offered locales, plus three Galician present-held replacement candidates.",
   "locales": {
     "gl": {
       "path": "Paintroid/src/main/res/values-gl/strings.xml",
@@ -374,9 +374,9 @@
   },
   "technical_checks": {
     "all_missing_keys_accounted": true,
-    "unique_locale_key_pairs": 22,
-    "placeholder_multisets_match": 22,
-    "candidate_xml_fragments_parse": 22,
+    "unique_locale_key_pairs": 25,
+    "placeholder_multisets_match": 25,
+    "candidate_xml_fragments_parse": 25,
     "source_values_had_markup": false,
     "production_files_modified": 0,
     "test_files_modified": 0,
@@ -384,9 +384,10 @@
   },
   "competence_limits": [
     "Agent-authored translation candidates, not native-human review or fluency certification.",
-    "All 22 complete messages within ordinary wording competence; no candidate held solely for lack of matching published phrases or direct consumer.",
+    "All 25 complete messages within ordinary wording competence; no candidate held solely for lack of matching published phrases or direct consumer.",
     "No Android compilation, runtime, visual layout, TalkBack, independent linguistic review or CI execution claimed.",
-    "Generic Main and parameterized palette text require future integration to preserve these semantics; source-only candidate status does not invent a UI referent."
+    "Generic Main and parameterized palette text require future integration to preserve these semantics; source-only candidate status does not invent a UI referent.",
+    "Galician spelled-out FG/BG candidates are not certified to fit short controls. No novel abbreviation is invented."
   ],
   "offered_evidence": {
     "tags": "Paintroid/src/main/res/values/app_language_tags.xml",
@@ -395,29 +396,6 @@
     "no_line": 110,
     "note": "nn is independently offered as Norsk nynorsk, separate from Norsk no. All selected tags verified in runtime tags array."
   },
-  "retained_present_review": [
-    {
-      "locale": "gl",
-      "key": "string/ui_discard",
-      "source": "Discard",
-      "current": "Descartar os cambios",
-      "disposition": "Retain: complete ordinary discard-changes caption; no replacement drafted and no added presence. Does not assert all possible future referents are changes."
-    },
-    {
-      "locale": "gl",
-      "key": "string/ui_bg",
-      "source": "BG",
-      "current": "BG",
-      "disposition": "Compact abbreviation retained pending specific compact-control context. Full background wording supplied in palette composition; no ungrounded two-letter localized abbreviation invented."
-    },
-    {
-      "locale": "gl",
-      "key": "string/ui_fg",
-      "source": "FG",
-      "current": "FG",
-      "disposition": "Compact abbreviation retained pending specific compact-control context. Full foreground wording supplied in palette composition; no ungrounded two-letter localized abbreviation invented."
-    }
-  ],
   "deduplication": {
     "checkpoint": "Private issue 1 current checkpoint read 2026-10-30; pending nine-language and following nine-language cohorts excluded.",
     "current_fixtures": [
@@ -426,5 +404,46 @@
       "tools/fixtures/current_localization/nynorsk_belarusian_albanian_priority_wording.json"
     ],
     "finding": "Selected missing keys are held absent in existing fixtures, not already accepted target values. No open production PR for these three found; no pending upload changed. Prior fixture histories and holds remain unchanged; this is a candidate successor record, not automatic hold closure."
-  }
+  },
+  "present_replacement_candidates": [
+    {
+      "locale": "gl",
+      "key": "string/ui_discard",
+      "tier": "P0",
+      "source": "Discard",
+      "previous_target": "Descartar os cambios",
+      "candidate": "Descartar",
+      "candidate_xml": "<string name=\"ui_discard\">Descartar</string>",
+      "context": "Preserves generic Discard without adding a changes-only object. Independent integration should check actual action; no broader referent is assumed.",
+      "source_line": 136,
+      "source_url": "https://github.com/c933103/AN-Paint/blob/e6b207b7373b33dd832e6b32cd9a8139b6fa6fc5/Paintroid/src/main/res/values/strings.xml#L136",
+      "path": "Paintroid/src/main/res/values-gl/strings.xml"
+    },
+    {
+      "locale": "gl",
+      "key": "string/ui_bg",
+      "tier": "P1",
+      "source": "BG",
+      "previous_target": "\"BG\"",
+      "candidate": "Fondo",
+      "candidate_xml": "<string name=\"ui_bg\">Fondo</string>",
+      "context": "Spelled-out background meaning instead of English abbreviation. Wording candidate only; compact-control width requires separate layout verification, not a reason to withhold competent wording.",
+      "source_line": 63,
+      "source_url": "https://github.com/c933103/AN-Paint/blob/e6b207b7373b33dd832e6b32cd9a8139b6fa6fc5/Paintroid/src/main/res/values/strings.xml#L63",
+      "path": "Paintroid/src/main/res/values-gl/strings.xml"
+    },
+    {
+      "locale": "gl",
+      "key": "string/ui_fg",
+      "tier": "P1",
+      "source": "FG",
+      "previous_target": "\"FG\"",
+      "candidate": "Primeiro plano",
+      "candidate_xml": "<string name=\"ui_fg\">Primeiro plano</string>",
+      "context": "Spelled-out foreground meaning instead of English abbreviation. Wording candidate only; compact-control width requires separate layout verification, not a reason to withhold competent wording.",
+      "source_line": 191,
+      "source_url": "https://github.com/c933103/AN-Paint/blob/e6b207b7373b33dd832e6b32cd9a8139b6fa6fc5/Paintroid/src/main/res/values/strings.xml#L191",
+      "path": "Paintroid/src/main/res/values-gl/strings.xml"
+    }
+  ]
 }
