@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-30",
+  "kind": "independent-four-correction-linguistic-review",
+  "scope": "Only gd/ln ui_pinch_and_pan_mode and ku formats22_derived_exported/ui_fit_image; no Main review or production changes.",
+  "summary": {
+    "accepted": 4,
+    "revised": 0,
+    "uncertain": 0
+  },
+  "basis": "Direct target-language morphology, syntax and action meaning assessed against exact English/candidate/review-final text. No acceptance from backtranslation alone. Context: two-finger zoom and viewport pan.",
+  "provenance": [
+    "https://github.com/c933103/AN-Paint/blob/15fbe81fd55bc00142e1ddeba810722abfa3007c/records/localization-review/2026-10-30/ga-gd-cy-residuals/independent-review-v2.json",
+    "https://github.com/c933103/AN-Paint/blob/265dd9e69c6e1f4c84554cdb69978e165e33d4c3/records/localization-review/2026-10-30/ha-ig-ln-residual-independent-review.json",
+    "https://github.com/c933103/AN-Paint/blob/6e6c6a06c8099a408c0c599493712c001bd2e7d5/records/localization-review/2026-10-30/ckb-ku-uz-residuals-independent.json",
+    "https://github.com/c933103/AN-Paint/blob/9010218a9cb00113b49b7c6f288305b357715578/records/localization-candidates/2026-10-30/ckb-ku-uz-residuals.json"
+  ],
+  "entries": [
+    {
+      "locale": "gd",
+      "key": "ui_pinch_and_pan_mode",
+      "source": "Pinch and pan mode",
+      "candidate": "Modh sùmaidh le dà chorrag is panaidh",
+      "disposition": "accept_with_correction",
+      "accepted_wording": "Modh sùmaidh is panaidh le dà chorrag",
+      "reason": "Correct word order so le dà chorrag scopes naturally over both coordinated actions: sùmaidh is panaidh. Two-finger zoom and pan is a valid functional description of this mode, not a literal squeeze/spread instruction. It preserves mode meaning and avoids Prìnich (pin/fasten); it would not suffice alone as detailed gesture training.",
+      "confidence": "high_for_stated_context",
+      "review_status": "accepted",
+      "final_wording": "Modh sùmaidh is panaidh le dà chorrag",
+      "independent_reason": "Modh governs the coordinated genitive verbal nouns sùmaidh and panaidh. Is is an ordinary reduced conjunction here, not a copular reading. Le dà chorrag follows the complete coordination and naturally modifies zoom and pan together; dà triggers the lenition in chorrag. The result identifies two-finger zoom/pan, not pinning, cropping or moving image data. It is a mode label, not step-by-step gesture instruction.",
+      "review_confidence": "medium-high"
+    },
+    {
+      "locale": "ln",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "candidate": "Mode ya kopusanisa misapi mpe kotambwisa komona",
+      "disposition": "corrected",
+      "final_wording": "Mode ya kopusanisa misapi mpe kobongola eteni ya elilingi oyo ezali komonana",
+      "reason": "Correct kotambwisa komona: komona means seeing/to see, not a concrete viewport. The replacement describes changing which part of the image is visible, retaining finger-pinching and view navigation without suggesting pixel transformation. It is intentionally descriptive; fit has not been tested.",
+      "review_status": "accepted",
+      "independent_reason": "Ya introduces the mode's coordinated infinitival actions; kopusanisa misapi identifies bringing fingers together. Kobongola eteni ya elilingi oyo ezali komonana describes changing the portion of the image that is visible. The relative predicate ezali komonana is a visibility expression, unlike the original bare komona (to see), so the intended viewport reading is available without an invented noun meaning viewport. In this mode context it is an acceptable descriptive pan label, not a command to crop or translate the image pixels. It does not explicitly teach spreading fingers/zooming out and is less concise than a conventional UI term; acceptance is for the stated mode context, not a gesture tutorial or a claim of unique idiom.",
+      "review_confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "formats22_derived_exported",
+      "disposition": "accept_with_correction",
+      "final_wording": "%1$s hat derxistin. Di nexşa te ya tevahî de hîn guherandinên ku nehatine tomarkirin hene; berî ku li şûna wê tiştekî din bînî, kopiyeke wêneyê ya tevahî tomar bike.",
+      "reason": "Insert ku between the plural construct noun and the finite passive relative clause: guherandinên ku nehatine tomarkirin. The original omitted the standard relative linker. The rest retains full drawing, still-unsaved changes, successful export and saving a full copy before replacement; retain project nexş terminology.",
+      "confidence": "medium",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "%1$s hat derxistin. Di nexşa te ya tevahî de hîn guherandinên nehatine tomarkirin hene; berî ku li şûna wê tiştekî din bînî, kopiyeke wêneyê ya tevahî tomar bike.",
+      "review_status": "accepted",
+      "independent_reason": "Guherandinên is plural construct form and ku correctly introduces its finite relative predicate nehatine tomarkirin. Nehatine is plural and the passive tomarkirin retains not-yet-saved changes, with hîn retaining still. Hat derxistin states completed export, distinct from imperative tomar bike. Di nexşa te ya tevahî de identifies the full drawing; kopiyeke ... ya tevahî demands a complete copy. Berî ku ... orders saving before putting something else in its place. The sole %1$s remains byte-for-byte intact once. The relative-linker insertion fixes grammar without dropping any warning proposition.",
+      "review_confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_fit_image",
+      "disposition": "accept_with_correction",
+      "final_wording": "Wêneyê biguncîne",
+      "reason": "Li gor is relational (according to/in accordance with) and the candidate leaves its complement unexpressed. Use the transitive imperative biguncîne (fit/adapt) with oblique object Wêneyê; this avoids inventing a screen/canvas destination. Medium confidence in preferred UI idiom, not native-human certification.",
+      "confidence": "medium",
+      "source": "Fit image",
+      "candidate": "Wêneyê li gor bike",
+      "review_status": "accepted",
+      "independent_reason": "Wêneyê is the oblique direct-object form used with this present/imperative transitive construction; biguncîne is the imperative of guncandin, to fit/adapt. The original li gor phrase lacks the standard or reference complement it calls for. This correction is a grammatical short Fit image command; it does not add cropping, pixel resampling or a specific destination. Preferred UI idiom remains medium-confidence.",
+      "review_confidence": "medium"
+    }
+  ],
+  "verification": {
+    "reviewed_locale_keys": 4,
+    "placeholder_signatures_match": true,
+    "all_export_warning_propositions_retained": true
+  },
+  "limits": [
+    "Independent model linguistic review, not native-human certification.",
+    "No production edits, full tests, rendering, accessibility or device-fit verification.",
+    "Optional corroborative web fetches failed; no claim that their contents were verified and no source-finding gate imposed."
+  ]
+}
