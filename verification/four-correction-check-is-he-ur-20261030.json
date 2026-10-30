@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "date": "2026-10-30",
+  "reviewer": "review_nordic_rtl_corrections",
+  "scope": "Independent check of exactly four proposed corrections; linguistic acceptance only",
+  "inputs": [
+    {
+      "url": "https://github.com/c933103/AN-Paint/blob/0d571c6814d1cb7c0d3e3ef101af8a65103bb99b/verification/nordic-residual-review-da-is-no-20261030.json",
+      "blob_sha": "788457451294482d60638cf1535fe150cc6f392a"
+    },
+    {
+      "url": "https://github.com/c933103/AN-Paint/blob/0707ce0acc98c3ef8ff1e2e07cac172281cd89cb/verification/fa-he-ur-independent-residual-review-20261030/review.json",
+      "blob_sha": "d0826b5fdb5072d344fabea51e68c95081ef9835"
+    }
+  ],
+  "source_packets": [
+    "https://github.com/c933103/AN-Paint/blob/dd0963d33bd6acfa443b654c2dc4fc13f1477c0a/verification/nordic-residual-candidates-20261030.json",
+    "https://github.com/c933103/AN-Paint/blob/9d3d22b0184029108eab7164c725ce1d36a7160b/verification/fa-he-ur-residual-wording-20261030/candidates.json"
+  ],
+  "decisions": [
+    {
+      "locale": "is",
+      "key": "formats22_derived_exported",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "status": "accepted",
+      "final": "Útflutningi lokið: %1$s. Teikningin þín í heild inniheldur enn óvistaðar breytingar; vistaðu afrit af allri myndinni áður en þú skiptir henni út.",
+      "reason": "Útflutningi is dative in the impersonal completion construction (útflutningi [er] lokið); lokið does not predicate a gender of %1$s. Colon-label punctuation is appropriate for a result notice. Teikningin þín í heild explicitly covers the drawing as a whole; enn óvistaðar breytingar retains ongoing unsaved changes. The imperative vistaðu requires saving afrit af allri myndinni, a copy of the entire image. Áður en orders this before replacement; henni matches feminine mynd/teikning, not neuter afrit. No export-equals-full-save implication."
+    },
+    {
+      "locale": "is",
+      "key": "ui_main23",
+      "source": "Main",
+      "status": "accepted",
+      "final": "Aðalhluti",
+      "reason": "Aðal- plus hluti forms a complete noun meaning main part/section and is suitable for the supplied generic section-caption context adjacent to Drawing/Color. It adds neither palette nor screen/menu specificity. Acceptance is an idiomatic explicit-section choice, not proof that every compact Aðal caption is ungrammatical: UI clipping can be intentional. The longer caption has not been layout-tested."
+    },
+    {
+      "locale": "he",
+      "key": "formats22_derived_exported",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "status": "accepted",
+      "final": "הייצוא של %1$s הושלם. בציור המלא שלך עדיין יש שינויים שלא נשמרו; לפני החלפתו, יש לשמור עותק של התמונה המלאה.",
+      "reason": "הייצוא is the explicit masculine singular subject; הושלם is its completed passive predicate. של links the opaque label without requiring that label to have masculine gender. בציור המלא שלך locates the changes in the full drawing; עדיין plus שלא נשמרו preserves the still-unsaved state. לפני החלפתו refers back to masculine ציור (before its replacement); יש לשמור expresses the requirement to save עותק של התמונה המלאה, a copy of the complete image. The warning does not claim export saved the full drawing. Original periods, comma and semicolon remain."
+    },
+    {
+      "locale": "ur",
+      "key": "formats22_derived_exported",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "status": "accepted",
+      "final": "%1$s کی برآمد مکمل ہو گئی۔ آپ کی مکمل ڈرائنگ میں اب بھی ایسی تبدیلیاں ہیں جو محفوظ نہیں کی گئیں؛ اسے بدلنے سے پہلے مکمل تصویر کی ایک نقل محفوظ کریں۔",
+      "reason": "In %1$s کی برآمد, کی agrees with feminine برآمد, not the opaque preceding token; مکمل ہو گئی likewise agrees with that explicit export noun and states completion. آپ کی مکمل ڈرائنگ retains the complete drawing; اب بھی and تبدیلیاں ... محفوظ نہیں کی گئیں retain still-unsaved changes, with feminine plural passive agreement to تبدیلیاں. اسے refers to the drawing in the warning; بدلنے سے پہلے plus محفوظ کریں requires saving before replacing it. مکمل تصویر کی ایک نقل requests a copy of the complete image, not merely a derivative export. Urdu full stops U+06D4 and semicolon U+061B are preserved."
+    }
+  ],
+  "verification": {
+    "count": 4,
+    "statuses": {
+      "accepted": 4,
+      "revised": 0,
+      "uncertain": 0
+    },
+    "checks": [
+      {
+        "locale": "is",
+        "key": "formats22_derived_exported",
+        "placeholder_exact": true
+      },
+      {
+        "locale": "is",
+        "key": "ui_main23",
+        "placeholder_exact": true
+      },
+      {
+        "locale": "he",
+        "key": "formats22_derived_exported",
+        "placeholder_exact": true
+      },
+      {
+        "locale": "ur",
+        "key": "formats22_derived_exported",
+        "placeholder_exact": true
+      }
+    ],
+    "proposed_finals_unchanged": true,
+    "complete_source_and_warning_clauses_reviewed": true
+  },
+  "limits": [
+    "Independent model linguistic judgment, not native-human certification; reasoning uses grammar and source meaning, not backtranslation alone.",
+    "No production changes, application tests, rendered UI/RTL/bidi checks or full-language certification.",
+    "No published matching sentence or consumer discovery required for acceptance."
+  ]
+}
