@@ -1,0 +1,11 @@
+# Actual PR234 merge — natural verification passed
+
+Actual merge3b505f871ba6e52b6759be6d34bf7e4ec3995e46, treec39f602e4fe749339df44e874b32efb9026a1249, parentsdf08247d+0aa998df. Natural push run40992169074 attempt1 completed all six required jobs successfully. No extra dispatch/retry, local full-suite repetition or coverage change.
+
+- JVM artifact12951143992 SHA256e262376862faeb94fd4aa4ed499d30cdd52f172cd736b84a85042772b01c1ec9:196 XMLs, exactly1943 unique identities = independently preserved1937 baseline plus six cohort methods; zero failures/errors/skips/duplicates/missing/unexpected. Same complete identity digestfa67e8c85be756f155e77d7c694a1938bc2a5e5cc7d3957326461b859b01c433 as premerge.
+- Python2040 tests/1325.289s:2038 passed; the same two optional Pillow checks skipped. Exact progress/discovery-order binding preserved; no test rerun. Python wall1326.688s, JVM1157.382s, native78.857s, lint158.259s; all exit0. Python/JVM owner receipts completed with no remaining children and clean output/cleanup.
+- API35 artifact12950736416 SHA256b84b7d198ffaff980044804db4d38295e50e638475417203bfdaff4b2355bbca:49 app and74 native exact-current-source identities all passed, no exclusions/loss; composed identity binds actual merge/run and matching APK/source. Existing bounded UI acceptance limits remain.
+- APK/source artifact12950365750 SHA256a5b06e604dc477973f7e96f887756ccacd815b7a00fc72793acbc4bd51ace93b: APK56bd1b79d2de9ebd0f44226f54090ad1799083bc8aa6149c205bba662e88fac4; sourcecd457db2fdcbe45c0586bae04e58014c061316a1b2a8778057b30bbae4ec5b2b. Embedded/delivered source identical; all1620 included tracked files match checkout, same three config exclusions and zero differing files. CI debug signing only.
+- Exact-script artifact12949832192 SHA256bc7f92765458edfa0ba26d5b8624b38e143740891ba7f956e04a7da61f438219:13 source-bound probe logs hash-verified, including expected negative rejection.
+
+Compact archive post234-terminal-evidence.tar.xz preserves all JVM XMLs, phase logs/lifecycles, exact-script logs and API35 JSON/XML plus independent verification receipts. This closes the natural verification of234 only; separate235 composition needs its own gates. Eight holds perlocale and no duplicate generic-fa review credit remain. No whole-language/native-human certification, release or signing change.
