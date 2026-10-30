@@ -1,3 +1,4 @@
+from sinhala_burmese_zhuang_priority_expectations import ADDITION_TAGS as SI_MY_TAGS, current_row as si_my_row, display as si_my_display
 from persian_hebrew_urdu_priority_expectations import TAGS as FA_HE_UR_TAGS, require_addition as fa_he_ur_row, display as fa_he_ur_display
 from nynorsk_belarusian_albanian_priority_expectations import TAGS as NN_BE_SQ_TAGS, COLOUR_TAGS as NN_BE_SQ_COLOUR_TAGS, require_addition as nn_be_sq_row, display as nn_be_sq_display
 from thai_priority_expectations import TAGS as THAI_TAGS, current_row as thai_row, display as thai_display
@@ -69,7 +70,7 @@ EU_FY_UZ_TAGS = {'eu-ES','fy','uz-Latn'}
 KK_TG_PS_TAGS = {'kk','tg','ps'}
 SD_PCM_TPI_TAGS = {'sd','pcm','tpi'}
 CKB_UG_TT_TAGS = {'ckb','ug','tt-Cyrl'}
-FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NORDIC_TAGS | NN_BE_SQ_TAGS | FA_HE_UR_TAGS | HI_GU_TAGS | THAI_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(CEB_NDS_CSB_TAGS) | set(WA_SE_SA_TAGS) | set(KA_HY_AZ_TAGS) | set(BR_AST_OC_TAGS) | set(IA_LA_KU_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS}
+FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NORDIC_TAGS | NN_BE_SQ_TAGS | FA_HE_UR_TAGS | HI_GU_TAGS | THAI_TAGS | SI_MY_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(CEB_NDS_CSB_TAGS) | set(WA_SE_SA_TAGS) | set(KA_HY_AZ_TAGS) | set(BR_AST_OC_TAGS) | set(IA_LA_KU_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS}
 
 FAMILY_EXTRA_TAGS[FAMILIES[2]] |= set(GA_GD_CY_TAGS) | set(hr_bs_mk.TAGS) | set(serbian_delta.TAGS)
 
@@ -157,6 +158,15 @@ def wording_fixture(name):
                 if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
                         or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
                     raise ValueError('Thai replacement SVG addition binding differs: '+tag+'/'+key)
+                data['values'][key][tag]=row['target']
+            data['additional_reviewed_tags'].append(tag)
+            data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
+        for tag in sorted(SI_MY_TAGS):
+            for key in EXPECTED_KEYS[name]:
+                row=si_my_row(tag,key)
+                if (tag in data['values'][key] or row['previous_target'] is not None or not row['changed']
+                        or row['source']!=data['values'][key]['default'] or row['attributes']!={'name':key}):
+                    raise ValueError('Sinhala/Burmese replacement SVG addition binding differs: '+tag+'/'+key)
                 data['values'][key][tag]=row['target']
             data['additional_reviewed_tags'].append(tag)
             data['additional_locale_review_status'][tag]='independent_model_static_priority_review; no native-human or runtime/layout certification'
@@ -376,7 +386,7 @@ def wording_fixture(name):
 
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'mk', 'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk'} | MR_TA_TE_TAGS | KN_ML_TAGS | NORDIC_TAGS | NN_BE_SQ_TAGS | FA_HE_UR_TAGS | HI_GU_TAGS | THAI_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS
+TAGGED_COLOUR_EXTRA_TAGS = {'mk', 'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk'} | MR_TA_TE_TAGS | KN_ML_TAGS | NORDIC_TAGS | NN_BE_SQ_TAGS | FA_HE_UR_TAGS | HI_GU_TAGS | THAI_TAGS | SI_MY_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS
 TAGGED_COLOUR_EXTRA_TAGS |= set(GA_GD_CY_TAGS) | set(KK_TG_PS_TAGS) | set(KA_HY_AZ_TAGS) | set(BR_AST_OC_TAGS) | set(IA_LA_KU_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS | set(SO_WO_HT_TAGS) | set(CEB_NDS_CSB_TAGS) | set(WA_SE_SA_TAGS)
 TAGGED_COLOUR_EXTRA_TAGS |= set(GL_TAGS)
 TAGGED_COLOUR_EXTRA_TAGS |= set(MI_SM_RW_TAGS)
@@ -414,6 +424,11 @@ def current_tagged_colour_data():
         if tag in data or row['previous_target'] is not None or not row['changed']:
             raise ValueError('Thai replacement tagged colour predecessor differs: '+tag)
         data[tag]=thai_display(tag,TAGGED_COLOUR_KEY)
+    for tag in sorted(SI_MY_TAGS):
+        row=si_my_row(tag,TAGGED_COLOUR_KEY)
+        if tag in data or row['previous_target'] is not None or not row['changed']:
+            raise ValueError('Sinhala/Burmese replacement tagged colour predecessor differs: '+tag)
+        data[tag]=si_my_display(tag,TAGGED_COLOUR_KEY)
     for tag in sorted(HI_GU_TAGS):
         row=hi_gu_row(tag,TAGGED_COLOUR_KEY)
         if tag in data or row['previous_target'] is not None or not row['changed']:
@@ -717,6 +732,9 @@ def tagged_colour_expectations(data):
     for tag in THAI_TAGS:
         if data[tag]!=thai_display(tag,TAGGED_COLOUR_KEY):
             raise ValueError('Tagged-colour differs from complete Thai replacement value: '+tag)
+    for tag in SI_MY_TAGS:
+        if data[tag]!=si_my_display(tag,TAGGED_COLOUR_KEY):
+            raise ValueError('Tagged-colour differs from complete Sinhala/Burmese replacement value: '+tag)
     for tag in HI_GU_TAGS:
         if data[tag]!=hi_gu_display(tag,TAGGED_COLOUR_KEY):
             raise ValueError('Tagged-colour differs from complete Hindi/Gujarati value: '+tag)
@@ -814,7 +832,7 @@ def require_tagged_colour_resolution(data, strings, offered, english):
         expected = data[catalogue] if catalogue in data else english
         # Catalogue values retain Android apostrophe escapes; this family uses no other escapes.
         actual = strings[catalogue].get(TAGGED_COLOUR_KEY, english).replace("\\'", "'")
-        if (catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk', 'ga', 'gd', 'cy', 'eu-ES', 'fy', 'uz-Latn', 'ka', 'hy', 'az', 'gl', 'kk', 'tg', 'ps', 'br', 'ast', 'oc', 'nds', 'csb', 'ia', 'la', 'ku', 'mi', 'sm', 'rw', 'wa', 'se', 'sa', 'kab', 'mww', 'mai', 'sd', 'pcm', 'tpi', 'ckb', 'ug', 'tt-Cyrl', 'ary', 'mn-Cyrl-MN', 'tok', 'ca-ES-valencia', 'hne', 'yi', 'tt-Latn') or catalogue in SO_WO_HT_TAGS or catalogue in NORDIC_COLOUR_TAGS or catalogue in NN_BE_SQ_COLOUR_TAGS or catalogue in FA_HE_UR_TAGS or catalogue == 'mk' or catalogue in HI_GU_TAGS or catalogue in THAI_TAGS) and actual.startswith('"') and actual.endswith('"'):
+        if (catalogue in ('am', 'nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs', 'uk', 'ga', 'gd', 'cy', 'eu-ES', 'fy', 'uz-Latn', 'ka', 'hy', 'az', 'gl', 'kk', 'tg', 'ps', 'br', 'ast', 'oc', 'nds', 'csb', 'ia', 'la', 'ku', 'mi', 'sm', 'rw', 'wa', 'se', 'sa', 'kab', 'mww', 'mai', 'sd', 'pcm', 'tpi', 'ckb', 'ug', 'tt-Cyrl', 'ary', 'mn-Cyrl-MN', 'tok', 'ca-ES-valencia', 'hne', 'yi', 'tt-Latn') or catalogue in SO_WO_HT_TAGS or catalogue in NORDIC_COLOUR_TAGS or catalogue in NN_BE_SQ_COLOUR_TAGS or catalogue in FA_HE_UR_TAGS or catalogue == 'mk' or catalogue in HI_GU_TAGS or catalogue in THAI_TAGS or catalogue in SI_MY_TAGS) and actual.startswith('"') and actual.endswith('"'):
             actual = actual[1:-1]  # Android removes the reviewed outer quoting.
         if actual != expected:
             raise ValueError('Tagged-colour message or explicit English fallback differs: ' + tag)
@@ -845,9 +863,9 @@ class CurrentLocalizationContracts(unittest.TestCase):
 
     def test_each_message_family_has_only_its_explicitly_reviewed_additions(self):
         svg = wording_fixture(FAMILIES[2])
-        extra_tags = set(serbian_delta.TAGS) | set(hr_bs_mk.TAGS) | {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NORDIC_TAGS | NN_BE_SQ_TAGS | FA_HE_UR_TAGS | HI_GU_TAGS | THAI_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(GA_GD_CY_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS
+        extra_tags = set(serbian_delta.TAGS) | set(hr_bs_mk.TAGS) | {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NORDIC_TAGS | NN_BE_SQ_TAGS | FA_HE_UR_TAGS | HI_GU_TAGS | THAI_TAGS | SI_MY_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(GA_GD_CY_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS
         self.assertEqual({'cs', 'pl'}, set(svg['additional_draft_tags']))
-        self.assertEqual(set(serbian_delta.TAGS) | set(hr_bs_mk.TAGS) | {'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NORDIC_TAGS | NN_BE_SQ_TAGS | FA_HE_UR_TAGS | HI_GU_TAGS | THAI_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(GA_GD_CY_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS, set(svg['additional_reviewed_tags']))
+        self.assertEqual(set(serbian_delta.TAGS) | set(hr_bs_mk.TAGS) | {'am', 'sv', 'bg', 'bn', 'uk', 'ro', 'sk', 'sl', 'ca'} | MR_TA_TE_TAGS | KN_ML_TAGS | NORDIC_TAGS | NN_BE_SQ_TAGS | FA_HE_UR_TAGS | HI_GU_TAGS | THAI_TAGS | SI_MY_TAGS | NE_PA_TAGS | YO_ZU_XH_TAGS | HA_IG_LN_TAGS | JV_SU_KY_TAGS | AS_KM_LO_TAGS | EU_FY_UZ_TAGS | set(GA_GD_CY_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS, set(svg['additional_reviewed_tags']))
         self.assertEqual(extra_tags, FAMILY_EXTRA_TAGS[FAMILIES[2]])
         self.assertEqual(extra_tags, set(svg['additional_locale_review_status']))
         self.assertTrue(extra_tags.isdisjoint(SCOPED_TAGS))
@@ -873,21 +891,26 @@ class CurrentLocalizationContracts(unittest.TestCase):
         self.assertEqual(sum(map(len, cohorts)), len(additions))
         data = tagged_colour_expectations(current_tagged_colour_data())
         self.assertTrue(additions.issubset(data))
-        self.assertEqual(141 + len(additions), len(set(data) - FA_HE_UR_TAGS))
-        self.assertEqual(151, len(data))
+        historical = set(data) - set(SI_MY_TAGS)
+        self.assertEqual(141 + len(additions), len(historical - FA_HE_UR_TAGS))
+        self.assertEqual(151, len(historical))
         offered = set(catalogues.offered_tags())
         self.assertEqual(171, len(offered))
-        self.assertEqual(20, len(offered - set(data)))
+        self.assertEqual(20, len(offered - historical))
+        self.assertTrue(set(SI_MY_TAGS).isdisjoint(historical))
+        self.assertEqual(historical | set(SI_MY_TAGS), set(data))
+        self.assertEqual(153, len(data))
+        self.assertEqual(18, len(offered - set(data)))
 
     def test_tagged_colour_family_resolves_complete_extra_values_and_exact_english_fallbacks(self):
         data = current_tagged_colour_data()
         strings = {tag: catalogues.read_strings(path) for tag, path in paths().items()}
         offered = set(catalogues.offered_tags())
         english = strings['default'][TAGGED_COLOUR_KEY]
-        self.assertEqual(77+len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(data))
-        self.assertEqual(94-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.
+        self.assertEqual(77+len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(SI_MY_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(data))
+        self.assertEqual(94-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(SI_MY_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data)))  # Missing direct values, not all English at runtime.
         self.assertEqual({'ca-ES-valencia': 'ca', 'fa-IR': 'fa'}, TAGGED_COLOUR_INHERITED_CATALOGUES)
-        self.assertEqual(93-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data) - (set(TAGGED_COLOUR_INHERITED_CATALOGUES)-BO_DZ_VAL_TAGS)))
+        self.assertEqual(93-len(set(GA_GD_CY_TAGS) | set(MR_TA_TE_TAGS) | set(KN_ML_TAGS) | NORDIC_COLOUR_TAGS | NN_BE_SQ_COLOUR_TAGS | FA_HE_UR_TAGS | {'mk'} | set(HI_GU_TAGS) | set(THAI_TAGS) | set(SI_MY_TAGS) | set(NE_PA_TAGS) | set(YO_ZU_XH_TAGS) | set(HA_IG_LN_TAGS) | set(JV_SU_KY_TAGS) | set(AS_KM_LO_TAGS) | set(EU_FY_UZ_TAGS) | set(KA_HY_AZ_TAGS) | set(GL_TAGS) | set(SO_WO_HT_TAGS) | set(KK_TG_PS_TAGS) | set(BR_AST_OC_TAGS) | set(CEB_NDS_CSB_TAGS) | set(IA_LA_KU_TAGS) | set(MI_SM_RW_TAGS) | set(WA_SE_SA_TAGS) | set(KAB_MWW_MAI_TAGS) | set(SD_PCM_TPI_TAGS) | set(CKB_UG_TT_TAGS) | set(ARY_MN_TOK_TAGS) | set(HNE_YI_HK_TAGS) | BO_DZ_VAL_TAGS | EXACT_SCRIPT_ADDITION_TAGS), len(offered - set(data) - (set(TAGGED_COLOUR_INHERITED_CATALOGUES)-BO_DZ_VAL_TAGS)))
         self.assertTrue(TAGGED_COLOUR_EXTRA_TAGS.isdisjoint(SCOPED_TAGS))
         require_tagged_colour_resolution(data, strings, offered, english)
         for tag in TAGGED_COLOUR_EXTRA_TAGS:
