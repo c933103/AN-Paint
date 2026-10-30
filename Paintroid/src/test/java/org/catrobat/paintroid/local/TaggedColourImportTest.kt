@@ -1557,8 +1557,12 @@ class TaggedColourImportTest {
         assertEquals(151, expected.length())
         assertFalse(expected.has("fa-IR")) // no regional direct wording acceptance
         assertEquals(20, 171 - expected.length()) // direct absences include the parent-inherited option
+        assertEquals(19, 171 - expected.length() - inheritedCatalogues.size) // preserved FA/HE/UR runtime checkpoint
+        SinhalaBurmeseZhuangPriorityExpectations.addTagged(expected,SinhalaBurmeseZhuangPriorityExpectations.fixture())
+        assertEquals(exactScriptStageTags + combinedAddedTags + setOf("fa","he","ur","si","my"), expected.keys().asSequence().toSet())
+        assertEquals(153, expected.length())
         val expectedFallbacks = 171 - expected.length() - inheritedCatalogues.size
-        assertEquals(19, expectedFallbacks)
+        assertEquals(17, expectedFallbacks)
         var inherited = 0
         var fallbacks = 0
         assertTrue(AppLanguage.tags(context).containsAll(expected.keys().asSequence().toList()))
@@ -1581,6 +1585,6 @@ class TaggedColourImportTest {
                 expectedMessage, message)
         }
         assertEquals(1, inherited)
-        assertEquals(expectedFallbacks, fallbacks) // 171 offered - 151 direct - 1 explicitly parent-inherited.
+        assertEquals(expectedFallbacks, fallbacks) // 171 offered - 153 direct - 1 explicitly parent-inherited.
     }
 }
