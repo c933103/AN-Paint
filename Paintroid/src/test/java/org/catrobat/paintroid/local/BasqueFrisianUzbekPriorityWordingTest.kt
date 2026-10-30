@@ -109,6 +109,14 @@ class BasqueFrisianUzbekPriorityWordingTest {
         }
     }
 
+    @Test fun reviewedResidualsDecodeOuterAndroidQuotesBeforeFormatting() {
+        assertEquals("Voz kechish",PriorityWordingExpectations.residual("uz-Latn","ui_discard","Discard"))
+        assertEquals("PNG sifatida saqlash",PriorityWordingExpectations.residual("uz-Latn","ui_save_as","Save as PNG","PNG"))
+        assertEquals("Gem som PNG…",PriorityWordingExpectations.residual("da","ui_save_as_png","Save as PNG…"))
+        assertEquals("Save as PNG…",PriorityWordingExpectations.residual("fy","ui_save_as_png","Save as PNG…"))
+        assertEquals("say \"hi\"\npath\\file",RecoveredTrioPriorityExpectations.compiledDisplay("uz-Latn","test-only","\"say \\\"hi\\\"\\npath\\\\file\""))
+    }
+
     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
         val values=fixture.getJSONObject(tag).getJSONObject("values")
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")

@@ -11,6 +11,7 @@ from current_localization_contracts import fixture, require_string, require_word
 import memory_warning_source_review as warnings
 from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
+from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
 from sk_sl_ca_priority_successors import current_fixture, added_keys, catalogue_count, current_display
 
 KEYS = frozenset({
@@ -178,7 +179,7 @@ class SlovakSlovenianP0Tests(unittest.TestCase):
             for key, expected in preserved.items():
                 with self.subTest(tag=tag, key=key):
                     require_string_root(self.roots[tag], key, expected['value'], {'attributes': expected['attributes']})
-            self.assertEqual(catalogue_count(tag,count + 78), len(self.roots[tag]))
+            self.assertEqual(catalogue_count(tag,count + 78)+len(RESIDUAL_KEYS.get(tag,())), len(self.roots[tag]))
             self.assertNotIn(tag, SCOPED_TAGS)
             self.assertEqual('"'+current_display(tag,'save20_file_format')+'"', self.roots[tag].find("./string[@name='save20_file_format']").text)
         self.assertTrue({'sk', 'sl'} <= set(catalogues.offered_tags()))
@@ -196,7 +197,7 @@ class SlovakSlovenianP0Tests(unittest.TestCase):
                     self.assertIsNone(row['previous_target'])
                     require_string_root(self.roots[tag],key,row['target'],{'attributes':row['attributes']})
                 else:
-                    self.assertIsNone(self.roots[tag].find(f"./string[@name='{key}']"), (tag, key))
+                    require_residual_or_previous(self.roots[tag],tag,key)
         self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
         self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
 

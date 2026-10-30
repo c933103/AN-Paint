@@ -32,6 +32,7 @@ internal object PriorityWordingExpectations {
         require(row.isNull("previous_target")) { "$tag/$key is not a missing-value successor" }
         fun formatted(value: String)=if(args.isEmpty()) value else java.lang.String.format(java.util.Locale.forLanguageTag(tag),value,*args)
         require(previous==formatted(row.getString("source"))) { "$tag/$key previous fallback differs" }
-        return formatted(row.getString("target"))
+        // Reuse the existing raw-resource/display boundary before substituting arguments.
+        return formatted(RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,row.getString("target")))
     }
 }
