@@ -2,6 +2,7 @@
 package org.catrobat.paintroid.local
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.AlertDialog
 import android.content.Context
 import android.content.ContextWrapper
@@ -103,6 +104,13 @@ class ExactScriptPriorityWordingTest {
     private fun idle()=shadowOf(Looper.getMainLooper()).idle()
 
     @Before fun rememberLanguage() {
+        // Wording/menu checks need a fixed device budget, not transient host-JVM headroom.
+        // Robolectric resets this system-service fixture after each test.
+        val context = RuntimeEnvironment.getApplication() as Context
+        val mib = 1024L * 1024
+        shadowOf(context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).setMemoryInfo(ActivityManager.MemoryInfo().apply {
+            totalMem = 1024 * mib; availMem = 512 * mib; threshold = 128 * mib
+        })
         previousResources = PaintApplication.currentResources
         previousLocale = Locale.getDefault()
         previousTag = AppLanguage.selectedTag(RuntimeEnvironment.getApplication())
