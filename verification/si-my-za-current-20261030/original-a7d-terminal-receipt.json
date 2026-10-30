@@ -1,0 +1,106 @@
+{
+  "head": "a7d824a335a305fd36adf8630d8db9de5d0b153a",
+  "tree": "46434413972018d3862e8c15db5040e340dfbf26",
+  "synthetic": "3ac109726fd3f35c8cd836c2f8792ae4a73f3c3c",
+  "run": 40989923300,
+  "run_conclusion": "failure",
+  "artifact": {
+    "id": 12950995745,
+    "bytes": 84709958,
+    "sha256": "2f433c007dc1630949570d8f1b897fda91d248385faafc35faf9fff2a5e5d5e7"
+  },
+  "jvm": {
+    "suites": 196,
+    "cases": 1952,
+    "failures": [
+      {
+        "class": "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "method": "realFillThresholdAndInteriorShapeChoicePreserveDocumentAndForegroundAlpha",
+        "kind": "failure",
+        "message": "java.lang.AssertionError: expected:<128> but was:<255>"
+      }
+    ],
+    "new_methods": [
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "boundedZhuangAdditionsDoNotPromoteUnreviewedSaveMemoryOrColourValues"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "categoryAccessibilityTracksEveryActualToolAndExpansionState"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "everyReviewedSinhalaBurmeseReplacementCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "finiteTaggedUnionRejectsChangedWholeValuesMetadataAndAlreadyPresentPredecessors"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "keepEditingCancelsRepeatedActualReplacementWithoutSavingDiscardingOrLaunching"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "memoryAdmissionStopsBeforeAllocationWithAllFourArguments"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "qualityLosslessAndDitherRemainCoherentAcrossRealFormatChangesAndCancel"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "realFillThresholdAndInteriorShapeChoicePreserveDocumentAndForegroundAlpha"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "retainedSaveAliasResolvesActualValueAndRejectsCyclesAndMissingTargets"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel"
+      ],
+      [
+        "org.catrobat.paintroid.local.SinhalaBurmeseZhuangPriorityWordingTest",
+        "textAlignmentCaptionsCommitTheirActualLeftAndRightIndices"
+      ]
+    ],
+    "all_1937_baseline_ids_preserved": true,
+    "seconds": 1150.415,
+    "exit": 1,
+    "cleanup_complete": true,
+    "owned_children_remaining": 0
+  },
+  "python": {
+    "cases": 2036,
+    "seconds": 1281.284,
+    "skipped": 2,
+    "exit": 0,
+    "owner_seconds": 1282.604,
+    "cleanup_complete": true
+  },
+  "lint": {
+    "exit": 0,
+    "seconds": 169.542
+  },
+  "code_review": "clean exact a7d; does not waive JVM failure",
+  "failure_diagnosis": "Test expects alpha 128 after assigning 0x80ff0000, but existing PaintDocument foreground setter forces opaque ARGB with value or Color.BLACK. Observed 255 is consistent with production normalization; no production change proposed.",
+  "later_composition": "Not yet includes PR234; planned combined tree needs new exact-head CI."
+}
