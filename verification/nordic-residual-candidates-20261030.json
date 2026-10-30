@@ -1,0 +1,362 @@
+{
+  "schema": 1,
+  "repository": "c933103/AN-Paint",
+  "base_commit": "53f650d38af84817043270bf3265c0dd17decd97",
+  "scope": "22 residual wording candidates only; no production edits",
+  "prior_review": {
+    "evidence": "https://github.com/c933103/AN-Paint/tree/aab842bb69f78729e5384fefb628ecb3f8bcfefb/verification/nordic-priority-20261029",
+    "accepted_preserved": {
+      "da": 334,
+      "is": 333,
+      "no": 334
+    },
+    "note": "Prior acceptance is preserved, not re-credited as fresh review. Norwegian is the offered no catalogue; no nb or nn edits."
+  },
+  "source_files": [
+    {
+      "locale": "en",
+      "path": "Paintroid/src/main/res/values/strings.xml",
+      "git_blob_sha": "b50c607aac54c6148e5ac4e44325cb6db3be3612"
+    },
+    {
+      "locale": "da",
+      "path": "Paintroid/src/main/res/values-da/strings.xml",
+      "git_blob_sha": "926113ac6638c8c2a73c75ca4342bfa942901503"
+    },
+    {
+      "locale": "is",
+      "path": "Paintroid/src/main/res/values-b+is/strings.xml",
+      "git_blob_sha": "959a4f7b42a757aac6eb66fc697b04722a78684a"
+    },
+    {
+      "locale": "no",
+      "path": "Paintroid/src/main/res/values-no/strings.xml",
+      "git_blob_sha": "810595e1ad63dceb2fe2f18644a9c20a91f7d977"
+    }
+  ],
+  "source_metadata": {
+    "main_adjacent_english": [
+      "Main",
+      "Drawing",
+      "Color"
+    ],
+    "all_target_source_attributes": "name only; no explicit formatted/translatable/product attribute",
+    "consumer_status": "No exact consumer located per assignment; not a gate for candidate translation.",
+    "verification": "GitHub fetched exact base-commit UTF-8 catalogues; all four returned blob SHAs match local immutable git objects. All 22 target identities absent from the current locale catalogues."
+  },
+  "accepted_terminology": {
+    "da": {
+      "save20_title": "\"Gem som…\"",
+      "ui_recovery_copy_exported_extract_canvas_png_from_the": "\"Gendannelseskopi eksporteret. Pak canvas.png ud af ZIP-filen, og åbn billedet via »Filer &gt; Indlæs billede…«. ZIP-filen indeholder også kladdens indstillinger og en eventuel flydende markering.\"",
+      "ui_your_current_image_has_unsaved_changes": "\"Dit aktuelle billede har ændringer, der ikke er gemt.\"",
+      "ui_foreground_edit_colour": "\"Forgrund %1$s. Redigér farve.\"",
+      "ui_background_edit_colour": "\"Baggrund %1$s. Redigér farve.\"",
+      "ui_palette": "\"Palet\"",
+      "ui_drawing_canvas_pinch_and_move_two_fingers_to": "\"Tegnelærred. Knib og flyt to fingre for at zoome og panorere. Navigationstilstand panorerer også med én finger.\""
+    },
+    "is": {
+      "save20_title": "\"Vista sem…\"",
+      "ui_recovery_copy_exported_extract_canvas_png_from_the": "\"Endurheimtarafrit flutt út. Dragðu canvas.png út úr ZIP-skránni og opnaðu myndina með „Skrá &gt; Opna mynd…“. ZIP-skráin inniheldur einnig stillingar draganna og fljótandi myndval, ef það er til staðar.\"",
+      "ui_your_current_image_has_unsaved_changes": "\"Núverandi mynd inniheldur óvistaðar breytingar.\"",
+      "ui_foreground_edit_colour": "\"Forgrunnur %1$s. Breyta lit.\"",
+      "ui_background_edit_colour": "\"Bakgrunnur %1$s. Breyta lit.\"",
+      "ui_palette": "\"Litaspjald\"",
+      "ui_drawing_canvas_pinch_and_move_two_fingers_to": "\"Teikniflötur. Klíptu og færðu tvo fingur til að þysja og hliðra. Í flakkham er einnig hægt að hliðra með einum fingri.\""
+    },
+    "no": {
+      "save20_title": "\"Lagre som…\"",
+      "ui_recovery_copy_exported_extract_canvas_png_from_the": "\"Gjenopprettingskopi eksportert. Pakk ut canvas.png fra ZIP-filen og åpne bildet med «Fil &gt; Last inn bilde…». ZIP-filen inneholder også innstillingene for utkastet og et eventuelt flytende utvalg.\"",
+      "ui_your_current_image_has_unsaved_changes": "\"Det gjeldende bildet har ulagrede endringer.\"",
+      "ui_foreground_edit_colour": "\"Forgrunn %1$s. Rediger farge.\"",
+      "ui_background_edit_colour": "\"Bakgrunn %1$s. Rediger farge.\"",
+      "ui_palette": "\"Palett\"",
+      "ui_drawing_canvas_pinch_and_move_two_fingers_to": "\"Tegnelerret. Knip og flytt to fingre for å zoome og panorere. Navigeringsmodus panorerer også med én finger.\""
+    }
+  },
+  "candidates": [
+    {
+      "locale": "da",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "source_xml": "<string name=\"formats22_derived_exported\">%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.</string>",
+      "current_target": null,
+      "candidate": "%1$s eksporteret. Hele din tegning har stadig ændringer, der ikke er gemt; gem en kopi af hele billedet, før du erstatter det.",
+      "backtranslation": "%1$s exported. Your drawing as a whole still has unsaved changes; save a copy of the whole image before replacing it.",
+      "specific_uncertainty": "The English 'it' refers to the current full image/drawing; preserve that rather than suggesting the exported derivative is a full save. Runtime export-type label in %1$s is not known; the result clause avoids gender agreement.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "da",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "source_xml": "<string name=\"ui_save_as\">Save as %1$s</string>",
+      "current_target": null,
+      "candidate": "Gem som %1$s",
+      "backtranslation": "Save as %1$s",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "da",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "source_xml": "<string name=\"ui_save_as_jpeg\">Save as JPEG…</string>",
+      "current_target": null,
+      "candidate": "Gem som JPEG…",
+      "backtranslation": "Save as JPEG…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "da",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "source_xml": "<string name=\"ui_save_as_jpeg_xl\">Save as JPEG XL…</string>",
+      "current_target": null,
+      "candidate": "Gem som JPEG XL…",
+      "backtranslation": "Save as JPEG XL…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "da",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "source_xml": "<string name=\"ui_save_as_png\">Save as PNG…</string>",
+      "current_target": null,
+      "candidate": "Gem som PNG…",
+      "backtranslation": "Save as PNG…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "da",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "source_xml": "<string name=\"ui_foreground_background_colour_palette\">Foreground %1$s, background %2$s. %3$s colour palette.</string>",
+      "current_target": null,
+      "candidate": "Forgrund %1$s, baggrund %2$s. Farvepalet: %3$s.",
+      "backtranslation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+      "specific_uncertainty": "Exact %3$s runtime domain remains unknown (action or state). Label-colon phrasing separates the slot from noun inflection and preserves all three placeholders, but full action strings may sound repetitive. Validate the actual inserted strings at integration; do not substitute the unrelated Main label.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "da",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "source_xml": "<string name=\"ui_pinch_and_pan_mode\">Pinch and pan mode</string>",
+      "current_target": null,
+      "candidate": "Tilstand til knibezoom og panorering",
+      "backtranslation": "Mode for pinch zoom and panning",
+      "specific_uncertainty": "Explicit pinch-zoom and panning mode, consistent with the accepted two-finger canvas instruction. Compact compound versus a longer explanatory label is a UI wording preference; no layout fit claim.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "is",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "source_xml": "<string name=\"formats22_derived_exported\">%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.</string>",
+      "current_target": null,
+      "candidate": "%1$s flutt út. Teikningin þín í heild inniheldur enn óvistaðar breytingar; vistaðu afrit af allri myndinni áður en þú skiptir henni út.",
+      "backtranslation": "%1$s exported. Your drawing as a whole still has unsaved changes; save a copy of the whole image before replacing it.",
+      "specific_uncertainty": "The English 'it' refers to the current full image/drawing; preserve that rather than suggesting the exported derivative is a full save. Runtime export-type label in %1$s is not known; the result clause avoids gender agreement.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "is",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "source_xml": "<string name=\"ui_save_as\">Save as %1$s</string>",
+      "current_target": null,
+      "candidate": "Vista sem %1$s",
+      "backtranslation": "Save as %1$s",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "is",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "source_xml": "<string name=\"ui_save_as_jpeg\">Save as JPEG…</string>",
+      "current_target": null,
+      "candidate": "Vista sem JPEG…",
+      "backtranslation": "Save as JPEG…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "is",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "source_xml": "<string name=\"ui_save_as_jpeg_xl\">Save as JPEG XL…</string>",
+      "current_target": null,
+      "candidate": "Vista sem JPEG XL…",
+      "backtranslation": "Save as JPEG XL…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "is",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "source_xml": "<string name=\"ui_save_as_png\">Save as PNG…</string>",
+      "current_target": null,
+      "candidate": "Vista sem PNG…",
+      "backtranslation": "Save as PNG…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "is",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "source_xml": "<string name=\"ui_foreground_background_colour_palette\">Foreground %1$s, background %2$s. %3$s colour palette.</string>",
+      "current_target": null,
+      "candidate": "Forgrunnur %1$s, bakgrunnur %2$s. Litaspjald: %3$s.",
+      "backtranslation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+      "specific_uncertainty": "Exact %3$s runtime domain remains unknown (action or state). Label-colon phrasing separates the slot from noun inflection and preserves all three placeholders, but full action strings may sound repetitive. Validate the actual inserted strings at integration; do not substitute the unrelated Main label.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "is",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "source_xml": "<string name=\"ui_pinch_and_pan_mode\">Pinch and pan mode</string>",
+      "current_target": null,
+      "candidate": "Hamur fyrir klípuþysjun og hliðrun",
+      "backtranslation": "Mode for pinch zooming and panning",
+      "specific_uncertainty": "Klípuþysjun explicitly names pinch zoom, derived from accepted klíptu/þysja; hliðrun preserves accepted hliðra. The compact compound needs a fluent-language check for preferred UI idiom, not a source-hunting gate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "is",
+      "key": "ui_main23",
+      "priority": "P1",
+      "source": "Main",
+      "source_xml": "<string name=\"ui_main23\">Main</string>",
+      "current_target": null,
+      "candidate": "Aðal",
+      "backtranslation": "Main / primary",
+      "specific_uncertainty": "Generic, deliberately terse Main label adjacent to Drawing/Color. Aðal is a clipped UI label/compound stem; the missing noun and exact consumer prevent certainty about idiomatic standalone form. No palette noun is introduced; this is unrelated to the %3$s palette action/state slot.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "no",
+      "key": "formats22_derived_exported",
+      "priority": "P0",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "source_xml": "<string name=\"formats22_derived_exported\">%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.</string>",
+      "current_target": null,
+      "candidate": "%1$s eksportert. Hele tegningen din har fortsatt ulagrede endringer; lagre en kopi av hele bildet før du erstatter det.",
+      "backtranslation": "%1$s exported. Your drawing as a whole still has unsaved changes; save a copy of the whole image before replacing it.",
+      "specific_uncertainty": "The English 'it' refers to the current full image/drawing; preserve that rather than suggesting the exported derivative is a full save. Runtime export-type label in %1$s is not known; the result clause avoids gender agreement.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "no",
+      "key": "ui_save_as",
+      "priority": "P0",
+      "source": "Save as %1$s",
+      "source_xml": "<string name=\"ui_save_as\">Save as %1$s</string>",
+      "current_target": null,
+      "candidate": "Lagre som %1$s",
+      "backtranslation": "Save as %1$s",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "no",
+      "key": "ui_save_as_jpeg",
+      "priority": "P0",
+      "source": "Save as JPEG…",
+      "source_xml": "<string name=\"ui_save_as_jpeg\">Save as JPEG…</string>",
+      "current_target": null,
+      "candidate": "Lagre som JPEG…",
+      "backtranslation": "Save as JPEG…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "no",
+      "key": "ui_save_as_jpeg_xl",
+      "priority": "P0",
+      "source": "Save as JPEG XL…",
+      "source_xml": "<string name=\"ui_save_as_jpeg_xl\">Save as JPEG XL…</string>",
+      "current_target": null,
+      "candidate": "Lagre som JPEG XL…",
+      "backtranslation": "Save as JPEG XL…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "no",
+      "key": "ui_save_as_png",
+      "priority": "P0",
+      "source": "Save as PNG…",
+      "source_xml": "<string name=\"ui_save_as_png\">Save as PNG…</string>",
+      "current_target": null,
+      "candidate": "Lagre som PNG…",
+      "backtranslation": "Save as PNG…",
+      "specific_uncertainty": "No lexical ambiguity beyond the source: %1$s is retained as the format label where present. The exact consumer is not located; this does not block a wording candidate.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "no",
+      "key": "ui_foreground_background_colour_palette",
+      "priority": "P1",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "source_xml": "<string name=\"ui_foreground_background_colour_palette\">Foreground %1$s, background %2$s. %3$s colour palette.</string>",
+      "current_target": null,
+      "candidate": "Forgrunn %1$s, bakgrunn %2$s. Fargepalett: %3$s.",
+      "backtranslation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+      "specific_uncertainty": "Exact %3$s runtime domain remains unknown (action or state). Label-colon phrasing separates the slot from noun inflection and preserves all three placeholders, but full action strings may sound repetitive. Validate the actual inserted strings at integration; do not substitute the unrelated Main label.",
+      "status": "candidate_not_production_accepted"
+    },
+    {
+      "locale": "no",
+      "key": "ui_pinch_and_pan_mode",
+      "priority": "P1",
+      "source": "Pinch and pan mode",
+      "source_xml": "<string name=\"ui_pinch_and_pan_mode\">Pinch and pan mode</string>",
+      "current_target": null,
+      "candidate": "Modus for knipezoom og panorering",
+      "backtranslation": "Mode for pinch zoom and panning",
+      "specific_uncertainty": "Explicit pinch-zoom and panning mode, consistent with the accepted two-finger canvas instruction. Compact compound versus a longer explanatory label is a UI wording preference; no layout fit claim.",
+      "status": "candidate_not_production_accepted"
+    }
+  ],
+  "validation": {
+    "candidate_count": 22,
+    "locale_counts": {
+      "da": 7,
+      "is": 8,
+      "no": 7
+    },
+    "priority_counts": {
+      "P0": 15,
+      "P1": 7
+    },
+    "all_unique": true,
+    "all_placeholders_exact": true,
+    "all_sources_exact": true,
+    "all_targets_currently_absent": true,
+    "production_files_changed": false,
+    "full_tests_run": false,
+    "native_human_certification": false,
+    "limitations": "Artifact structural/source verification only; no runtime, screen-reader, installed-layout, or independent linguistic acceptance claimed."
+  }
+}
