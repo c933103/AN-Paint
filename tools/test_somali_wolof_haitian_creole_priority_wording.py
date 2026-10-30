@@ -10,7 +10,7 @@ import translation_catalogues as catalogues
 from somali_wolof_haitian_creole_priority_expectations import NAME,TAGS,current_row,display
 
 COMMON_HOLDS=frozenset({'formats22_derived_exported','ui_save_as','ui_save_as_jpeg','ui_save_as_jpeg_xl','ui_save_as_png','ui_foreground_background_colour_palette','ui_pinch_and_pan_mode','ui_main23','ui_fg','ui_bg'})
-HOLDS_BY_TAG={tag:COMMON_HOLDS|{'ui_fit_image'}|({'ui_ellipse'}if tag=='so'else {'ui_android_could_not_find_a_file_picker_enable','ui_free_form_select'}if tag=='wo'else set())for tag in TAGS}
+HOLDS_BY_TAG={tag:COMMON_HOLDS|{'ui_fit_image'} for tag in TAGS}
 DEPENDENCIES=frozenset({'formats22_at_least_frames','ui_top','ui_width_in','ui_lossless_format','save20_dither','ui_quality','ui_trim_in_pixels','ui_trim_in_percent','ui_rounded_rectangle','ui_star','ui_curve','ui_arrow','ui_heart','ui_image_shown_in_crop_preview','ui_crop_preview_images'})
 # Insert exact independently accepted partitions and finite previous values here.
 HELD_PRESENT = {'ht': {}, 'so': {}, 'wo': {}}
@@ -61,7 +61,7 @@ ATTRIBUTE_EXCEPTIONS = {'ht': {'ui_100': {'formatted': 'false', 'name': 'ui_100'
         'ui_share_explanation34': {'formatted': 'false', 'name': 'ui_share_explanation34'},
         'ui_use_50_300': {'formatted': 'false', 'name': 'ui_use_50_300'}}}
 
-EDIT_COUNTS = {'ht': 345, 'so': 344, 'wo': 343}
+EDIT_COUNTS = {'ht': 345, 'so': 345, 'wo': 345}
 
 PRIORITY_STATUS = {'ht': {'string/colour_converter_unavailable': 'accept_new',
         'string/colour_invalid_metadata': 'accept_new',
@@ -539,7 +539,7 @@ PRIORITY_STATUS = {'ht': {'string/colour_converter_unavailable': 'accept_new',
         'string/ui_edit_colour26': 'accept_new',
         'string/ui_edit_foreground': 'accept_new_wording_or_route_limited',
         'string/ui_edit_transform33': 'accept_new',
-        'string/ui_ellipse': 'hold_absent',
+        'string/ui_ellipse': 'accept_new',
         'string/ui_enter_a_number_from_to': 'accept_new',
         'string/ui_enter_a_positive_size': 'accept_new',
         'string/ui_enter_a_trim_amount_for_every_edge': 'accept_new',
@@ -791,7 +791,7 @@ PRIORITY_STATUS = {'ht': {'string/colour_converter_unavailable': 'accept_new',
         'string/ui_an_assembly_source_image_is_missing': 'accept_new',
         'string/ui_android_blocked_the_file_picker': 'accept_new',
         'string/ui_android_could_not_decode_this_image': 'accept_new',
-        'string/ui_android_could_not_find_a_file_picker_enable': 'hold_absent',
+        'string/ui_android_could_not_find_a_file_picker_enable': 'accept_new',
         'string/ui_apply': 'accept_new',
         'string/ui_apply_bounds': 'accept_new',
         'string/ui_apply_crop': 'accept_new',
@@ -914,7 +914,7 @@ PRIORITY_STATUS = {'ht': {'string/colour_converter_unavailable': 'accept_new',
         'string/ui_foreground_background_colour_palette': 'hold_absent',
         'string/ui_foreground_colour': 'accept_new',
         'string/ui_foreground_edit_colour': 'accept_new',
-        'string/ui_free_form_select': 'hold_absent',
+        'string/ui_free_form_select': 'accept_new',
         'string/ui_from_device34': 'accept_new',
         'string/ui_full_text_copied': 'accept_new',
         'string/ui_height': 'accept_new',

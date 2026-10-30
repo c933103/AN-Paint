@@ -11,7 +11,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in TAGS for key in ('commons_svg_origi
 def require_fixture_binding(data):
     import hashlib,json
     digest=hashlib.sha256(json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-    if digest!='ed321a1dc859c518725c540e52cdf4fc0837313239d0c56756adce2180bdbcd0':raise ValueError('Complete reviewed trio fixture binding differs')
+    if digest!='2a138467d806a99948d8edfff815ff580fcf4599f821a6cd731bb2e288ed7197':raise ValueError('Complete reviewed trio fixture binding differs')
     return data
 
 
@@ -72,7 +72,7 @@ def _display(value):
 # Three finite successors to existing options, never additions to the picker.
 SO_WO_HT_OPTION_TAGS=TAGS
 PRIORITY_OPTION_STATUS='partial-priority-reviewed'
-FIXTURE_SHA256='601d60e5fb772bc7bdfebc6774492fb1b0a3f84454937c4f29711cb2080319eb'
+FIXTURE_SHA256='cbd9e458561e044f52f6c5c4622574b3f27e72dd50a1b04ec26c3d45494fb836'
 
 def require_priority_option_successor(historical_row,xml):
     import hashlib,json
@@ -87,7 +87,7 @@ def require_priority_option_successor(historical_row,xml):
     require_untranslated_option(historical_row,'<resources/>')
     raw=(root_path/'tools/fixtures/current_localization'/NAME).read_bytes()
     if hashlib.sha256(raw).hexdigest()!=FIXTURE_SHA256:raise ValueError('Complete reviewed trio fixture differs')
-    data=json.loads(raw);locale=data['locales'][tag];accepted=locale['accepted'];count={'so':344,'wo':343,'ht':345}[tag]
+    data=json.loads(raw);locale=data['locales'][tag];accepted=locale['accepted'];count={'so':345,'wo':345,'ht':345}[tag]
     if locale['catalogue_path']!=historical['catalogue'] or len(accepted)!=count or locale['outside_review'] or locale['held_present'] or locale['predecessors'] or locale['unchanged_accepted']:
         raise ValueError('Exact empty predecessor successor scope differs')
     if len(locale['changed'])!=count or set(locale['changed'])!=set(accepted) or locale['previous_targets']!={key:None for key in accepted}:

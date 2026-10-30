@@ -4,7 +4,7 @@ from current_localization_contracts import fixture
 NAME='breton_asturian_occitan_priority_wording.json'
 TAGS=frozenset({'br','ast','oc'})
 # Bind this compact immutable reviewed fixture, never a whole-source snapshot.
-FIXTURE_SHA256='64ea50af3807bff28d28085bd0e7819ece7e31eef7320782d0e7fe012fea9649'
+FIXTURE_SHA256='fc5972a3a4c226fc21f902c405067b1102cb35c743bade667dc2a43a6a8645d9'
 def require_fixture_binding(data):
     actual=hashlib.sha256(json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
     if actual!=FIXTURE_SHA256:raise ValueError('Complete reviewed fixture binding differs')

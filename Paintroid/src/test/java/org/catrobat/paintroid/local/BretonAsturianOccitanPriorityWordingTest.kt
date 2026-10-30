@@ -47,7 +47,7 @@ class BretonAsturianOccitanPriorityWordingTest {
     private fun brAstOcBoundFixture(): JSONObject {
         val bytes=File("../tools/fixtures/current_localization/breton_asturian_occitan_priority_wording.json").readBytes()
         val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete finite BR/AST/OC reviewed fixture", "05b7c4a966c7203f28f5154d39e92b806fd123433da93dc780082dd18ed0504c", actual)
+        assertEquals("Complete finite BR/AST/OC reviewed fixture", "f45f54e4428d438907514b0d54ef267f2b5dce5003fb7a68657c2159b44e2c9d", actual)
         return JSONObject(String(bytes,Charsets.UTF_8))
     }
 
