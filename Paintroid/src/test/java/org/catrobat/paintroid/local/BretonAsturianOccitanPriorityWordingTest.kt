@@ -72,7 +72,9 @@ class BretonAsturianOccitanPriorityWordingTest {
     private fun defaultSource(key: String): String =
         decoded(sourceFixture.getJSONObject("sources").getJSONObject(key).getString("source"))
     private fun expected(tag: String, key: String): String {
-        val raw=fixture.getJSONObject(tag).getJSONObject("accepted").getString(key)
+        val accepted=fixture.getJSONObject(tag).getJSONObject("accepted")
+        if(!accepted.has(key)) return PriorityWordingExpectations.residual(tag,key,defaultSource(key))
+        val raw=accepted.getString(key)
         if(raw.startsWith("@string/")) {
             require(key=="ui_save_a5d0d9" && raw=="@string/ui_save") { "Only the exact inherited Save alias is reviewed" }
             return expected(tag,"ui_save")
@@ -117,7 +119,8 @@ class BretonAsturianOccitanPriorityWordingTest {
     @Test fun everyReviewedBretonAsturianOccitanCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
         val locale=fixture.getJSONObject(tag)
         val values=locale.getJSONObject("accepted")
-        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList()
+        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList() +
+            locale.getJSONObject("held").keys().asSequence().filter { PriorityWordingExpectations.hasResidual(tag,it) }.toList()
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
         for(key in keys) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
@@ -133,17 +136,17 @@ class BretonAsturianOccitanPriorityWordingTest {
                 assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
             }
         }
-        // Held absent identities must remain exact English fallback; the three dormant Fit-image
-        // inherited values remain byte-bound in the host test, not newly accepted UI wording.
+        // Only exact reviewed successors replace historical English fallbacks. The three dormant
+        // Fit-image inherited values remain byte-bound, not newly accepted UI wording.
         val held=locale.getJSONObject("held")
         for(key in held.keys().asSequence()) if(held.isNull(key)) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag held/$key",0,id)
-            assertEquals("$tag held/$key",defaultSource(key),activity.getString(id))
+            assertEquals("$tag held/successor/$key",PriorityWordingExpectations.residual(tag,key,defaultSource(key)),activity.getString(id))
         }
     }
 
-    @Test fun heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording() = forEachLocale { tag,activity ->
+    @Test fun heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording() = forEachLocale(listOf("br")) { tag,activity ->
         val key="ui_foreground_background_colour_palette"
         val held=fixture.getJSONObject(tag).getJSONObject("held")
         assertTrue("$tag explicitly held",held.has(key))

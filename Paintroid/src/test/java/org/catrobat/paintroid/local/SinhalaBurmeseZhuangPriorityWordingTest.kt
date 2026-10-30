@@ -45,10 +45,11 @@ class SinhalaBurmeseZhuangPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        SinhalaBurmeseZhuangPriorityExpectations.fixture().getJSONObject("locales")
-    }
+    private val contract by lazy { SinhalaBurmeseZhuangPriorityExpectations.fixture() }
+    private val fixture get() = contract.getJSONObject("locales")
     private fun expected(tag: String, key: String): String {
+        if(PriorityWordingExpectations.hasResidual(tag,key)) return PriorityWordingExpectations.residual(tag,key,
+            contract.getJSONObject("sources").getJSONObject(key).getString("value"))
         return SinhalaBurmeseZhuangPriorityExpectations.display(fixture.getJSONObject(tag).getJSONObject("accepted"),key)
     }
     private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
@@ -89,7 +90,8 @@ class SinhalaBurmeseZhuangPriorityWordingTest {
     @Test fun everyReviewedSinhalaBurmeseReplacementCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
         val locale=fixture.getJSONObject(tag)
         val values=locale.getJSONObject("accepted")
-        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList()
+        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList() +
+            locale.getJSONObject("holds").keys().asSequence().filter { PriorityWordingExpectations.hasResidual(tag,it) }.toList()
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
         for(key in keys) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
@@ -105,9 +107,9 @@ class SinhalaBurmeseZhuangPriorityWordingTest {
                 assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
             }
         }
-        assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
             activity.getString(R.string.ui_foreground_background_colour_palette))
-        assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
+        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
         val plural=decoded(values.getJSONObject("ui_crop_preview_images").getString("other"))
         for(count in listOf(0,1,2,21,101)) assertEquals(String.format(Locale.forLanguageTag(tag),plural,24,16,count),
             uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,24,16,count))
