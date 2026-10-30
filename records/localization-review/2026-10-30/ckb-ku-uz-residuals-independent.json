@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "kind": "independent-model-wording-review-not-production",
+  "created_utc": "2026-10-30",
+  "repository": "c933103/AN-Paint",
+  "candidate_commit": "9010218a9cb00113b49b7c6f288305b357715578",
+  "candidate_path": "records/localization-candidates/2026-10-30/ckb-ku-uz-residuals.json",
+  "candidate_blob": "f2889736fd641df2c9f0435fe60db98b6bd7f4eb",
+  "scope": {
+    "ckb": 11,
+    "ku": 11,
+    "uz-Latn": 10,
+    "total": 32
+  },
+  "summary": {
+    "accept": 30,
+    "accept_with_correction": 2,
+    "unresolved": 0
+  },
+  "method": "Independent reading of candidate strings against English meanings and regional grammar, not acceptance of author backtranslations. Focused references consulted for Kurmanji relative clauses, Main and guncandin; no requirement for exact published UI phrases or an extant consumer.",
+  "regional_findings": {
+    "ckb": "Central Kurdish Arabic script retained; Kurdish ڕ/ە/ێ/ۆ/ڵ characters are not replaced with Arabic/Persian approximations. Nominal action labels are coherent.",
+    "ku": "Northern Kurdish Latin orthography retained, including ê/î/ş/ç/û. Do not treat Sorani forms as interchangeable. Sereke is a valid Main adjective; Serekê would instead risk a different grammatical reading.",
+    "uz-Latn": "Uzbek Latin preserved, including oʻ/ʻ in oʻzgartirish and Toʻliq; no Cyrillic mixing. Saqlash and eksport qilish remain distinct. Voz kechish is appropriate Discard."
+  },
+  "supporting_references": [
+    {
+      "url": "https://agorism.dev/book/kurdish/kurmanji_1_grammar.pdf",
+      "use": "Thackston Kurmanji grammar §30: noun construct + ku + relative clause, including passive relative examples."
+    },
+    {
+      "url": "https://www.kurdi.info/ferheng/mafnasi.pdf",
+      "use": "Dictionary lists sereke and serekî for main/primary; supports retaining Sereke."
+    },
+    {
+      "url": "https://glosbe.com/ku/ku/guncandin",
+      "use": "Secondary lexical corroboration for guncandin and imperative biguncîne; not treated as native UI certification."
+    }
+  ],
+  "limitations": [
+    "Model linguistic review, not native-human certification.",
+    "No production edits, Android builds, full tests, runtime rendering, RTL, accessibility or font-fit certification.",
+    "FG/BG caption wording is semantically accepted; long full terms may scale down and rendered legibility remains unmeasured.",
+    "Kurmanji Fit image correction has medium confidence in preferred UI idiom; local stylistic alternatives remain possible. This is not an unresolved meaning or placeholder blocker.",
+    "Only 32 supplied candidates reviewed; accepted_terminology serves as context, not blanket re-certification of other catalogue entries."
+  ],
+  "entries": [
+    {
+      "locale": "ckb",
+      "key": "formats22_derived_exported",
+      "disposition": "accept",
+      "final_wording": "%1$s هەناردە کرا. وێنە تەواوەکەت هێشتا گۆڕانکاریی پاشەکەوتنەکراوی هەیە؛ پێش ئەوەی وێنەیەکی تر لە شوێنیدا دابنێیت، کۆپییەکی تەواوی وێنەکە پاشەکەوت بکە.",
+      "reason": "All four propositions survive: successful derived export; full drawing still has unsaved changes; save a full image copy; do so before replacement. Export and Save use distinct verbs.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_save_as",
+      "disposition": "accept",
+      "final_wording": "پاشەکەوتکردن بە %1$s",
+      "reason": "Save action is retained, not substituted with Export; %1$s occurs exactly once.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_save_as_jpeg",
+      "disposition": "accept",
+      "final_wording": "پاشەکەوتکردن بە JPEG…",
+      "reason": "Save action, JPEG literal and single U+2026 ellipsis are retained.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_save_as_jpeg_xl",
+      "disposition": "accept",
+      "final_wording": "پاشەکەوتکردن بە JPEG XL…",
+      "reason": "Save action, JPEG XL literal including space, and single U+2026 ellipsis are retained.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_save_as_png",
+      "disposition": "accept",
+      "final_wording": "پاشەکەوتکردن بە PNG…",
+      "reason": "Save action, PNG literal and single U+2026 ellipsis are retained.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_fg",
+      "disposition": "accept",
+      "final_wording": "پێشەوە",
+      "reason": "Readable foreground colour caption; matches locale terminology without inventing an opaque initialism. Longer than FG; no rendered-fit claim.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_bg",
+      "disposition": "accept",
+      "final_wording": "پاشبنەما",
+      "reason": "Readable background colour caption; matches locale terminology without inventing an opaque initialism. Longer than BG; no rendered-fit claim.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_foreground_background_colour_palette",
+      "disposition": "accept",
+      "final_wording": "پێشەوە %1$s، پاشبنەما %2$s. تەختەی ڕەنگی %3$s.",
+      "reason": "All three numbered string placeholders occur once; foreground/background roles stay in order. Palette identity/qualifier remains intelligible in ordinary colour-palette context. With %3$s = سەرەکی the phrase تەختەی ڕەنگی سەرەکی is grammatical as main colour palette.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_pinch_and_pan_mode",
+      "disposition": "accept",
+      "final_wording": "دۆخی گەورەکردن و بچووککردنەوە بە دوو پەنجە و جووڵاندنی دیمەن",
+      "reason": "Describes two-finger zoom and movement of the view, not movement of a selected object. Grammatical descriptive label; long but no arbitrary abbreviation or fit certification.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_main23",
+      "disposition": "accept",
+      "final_wording": "سەرەکی",
+      "reason": "Generic Main adjective is appropriate for the ordinary main colour-palette context; does not invent Home navigation.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ckb",
+      "key": "ui_fit_image",
+      "disposition": "accept",
+      "final_wording": "گونجاندنی وێنە",
+      "reason": "Grammatical fit-image action without adding crop, pixel resizing or an unsupported destination.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "formats22_derived_exported",
+      "disposition": "accept_with_correction",
+      "final_wording": "%1$s hat derxistin. Di nexşa te ya tevahî de hîn guherandinên ku nehatine tomarkirin hene; berî ku li şûna wê tiştekî din bînî, kopiyeke wêneyê ya tevahî tomar bike.",
+      "reason": "Insert ku between the plural construct noun and the finite passive relative clause: guherandinên ku nehatine tomarkirin. The original omitted the standard relative linker. The rest retains full drawing, still-unsaved changes, successful export and saving a full copy before replacement; retain project nexş terminology.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_save_as",
+      "disposition": "accept",
+      "final_wording": "Wek %1$s tomar bike",
+      "reason": "Save action is retained, not substituted with Export; %1$s occurs exactly once.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_save_as_jpeg",
+      "disposition": "accept",
+      "final_wording": "Wek JPEG tomar bike…",
+      "reason": "Save action, JPEG literal and single U+2026 ellipsis are retained.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_save_as_jpeg_xl",
+      "disposition": "accept",
+      "final_wording": "Wek JPEG XL tomar bike…",
+      "reason": "Save action, JPEG XL literal including space, and single U+2026 ellipsis are retained.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_save_as_png",
+      "disposition": "accept",
+      "final_wording": "Wek PNG tomar bike…",
+      "reason": "Save action, PNG literal and single U+2026 ellipsis are retained.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_fg",
+      "disposition": "accept",
+      "final_wording": "Pêşplan",
+      "reason": "Readable foreground colour caption; matches locale terminology without inventing an opaque initialism. Longer than FG; no rendered-fit claim.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_bg",
+      "disposition": "accept",
+      "final_wording": "Paşplan",
+      "reason": "Readable background colour caption; matches locale terminology without inventing an opaque initialism. Longer than BG; no rendered-fit claim.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_foreground_background_colour_palette",
+      "disposition": "accept",
+      "final_wording": "Pêşplan %1$s, paşplan %2$s. Paleta rengan: %3$s.",
+      "reason": "All three numbered string placeholders occur once; foreground/background roles stay in order. Palette identity/qualifier remains intelligible in ordinary colour-palette context. With %3$s = Sereke, Paleta rengan: Sereke is a grammatical label/value composition avoiding adjective inflection around arbitrary palette names.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_pinch_and_pan_mode",
+      "disposition": "accept",
+      "final_wording": "Moda guherandina mezinahiya dîtinê bi du tiliyan û veguhestina dîtinê",
+      "reason": "Describes two-finger zoom and movement of the view, not movement of a selected object. Grammatical descriptive label; long but no arbitrary abbreviation or fit certification.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_main23",
+      "disposition": "accept",
+      "final_wording": "Sereke",
+      "reason": "Generic Main adjective is appropriate for the ordinary main colour-palette context; does not invent Home navigation.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ku",
+      "key": "ui_fit_image",
+      "disposition": "accept_with_correction",
+      "final_wording": "Wêneyê biguncîne",
+      "reason": "Li gor is relational (according to/in accordance with) and the candidate leaves its complement unexpressed. Use the transitive imperative biguncîne (fit/adapt) with oblique object Wêneyê; this avoids inventing a screen/canvas destination. Medium confidence in preferred UI idiom, not native-human certification.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "formats22_derived_exported",
+      "disposition": "accept",
+      "final_wording": "%1$s eksport qilindi. Toʻliq chizmangizda hali saqlanmagan oʻzgarishlar bor; uni almashtirishdan oldin rasmning toʻliq nusxasini saqlang.",
+      "reason": "All four propositions survive: successful derived export; full drawing still has unsaved changes; save a full image copy; do so before replacement. Export and Save use distinct verbs.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_save_as",
+      "disposition": "accept",
+      "final_wording": "%1$s sifatida saqlash",
+      "reason": "Save action is retained, not substituted with Export; %1$s occurs exactly once.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_save_as_jpeg",
+      "disposition": "accept",
+      "final_wording": "JPEG sifatida saqlash…",
+      "reason": "Save action, JPEG literal and single U+2026 ellipsis are retained.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_save_as_jpeg_xl",
+      "disposition": "accept",
+      "final_wording": "JPEG XL sifatida saqlash…",
+      "reason": "Save action, JPEG XL literal including space, and single U+2026 ellipsis are retained.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_save_as_png",
+      "disposition": "accept",
+      "final_wording": "PNG sifatida saqlash…",
+      "reason": "Save action, PNG literal and single U+2026 ellipsis are retained.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_fg",
+      "disposition": "accept",
+      "final_wording": "Old plan",
+      "reason": "Readable foreground colour caption; matches locale terminology without inventing an opaque initialism. Longer than FG; no rendered-fit claim.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_bg",
+      "disposition": "accept",
+      "final_wording": "Orqa fon",
+      "reason": "Readable background colour caption; matches locale terminology without inventing an opaque initialism. Longer than BG; no rendered-fit claim.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_foreground_background_colour_palette",
+      "disposition": "accept",
+      "final_wording": "Old plan: %1$s, orqa fon: %2$s. Rang palitrasi: %3$s.",
+      "reason": "All three numbered string placeholders occur once; foreground/background roles stay in order. Palette identity/qualifier remains intelligible in ordinary colour-palette context. Rang palitrasi: %3$s uses a grammatical label/value composition; Asosiy or a palette name can occupy the value.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_pinch_and_pan_mode",
+      "disposition": "accept",
+      "final_wording": "Ikki barmoq bilan masshtabni oʻzgartirish va koʻrinishni siljitish rejimi",
+      "reason": "Describes two-finger zoom and movement of the view, not movement of a selected object. Grammatical descriptive label; long but no arbitrary abbreviation or fit certification.",
+      "confidence": "high"
+    },
+    {
+      "locale": "uz-Latn",
+      "key": "ui_discard",
+      "disposition": "accept",
+      "final_wording": "Voz kechish",
+      "reason": "Standard nominal action for abandoning the pending work; aligns with Oʻzgarishlardan voz kechish and does not claim permanent file deletion.",
+      "confidence": "high"
+    }
+  ]
+}
