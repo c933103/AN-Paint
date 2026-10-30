@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "kind": "independent-translation-review",
+  "reviewed_candidate_commit": "2bb14ce12e83b6c26ac056b5fb9facc1536acfb4",
+  "candidate_path": "verification/translations/candidates/sk-sl-ca-residuals.json",
+  "review_basis": "Independent target-language grammar and source-meaning assessment; candidate backtranslations are not the basis of acceptance.",
+  "summary": {
+    "accepted": 21,
+    "corrected": 0,
+    "uncertain": 0
+  },
+  "verification": {
+    "coverage": "All seven exact keys in each of sk/sl/ca; 21 unique identities.",
+    "placeholders": "Exact positional token multisets match source in every entry.",
+    "ellipses": "U+2026 counts match source in every entry.",
+    "warnings": "All three preserve export versus save, still-unsaved full drawing, complete-image copy, and saving before replacement.",
+    "scope_limits": "Translation review only, not native-human certification, runtime/TalkBack/UI-fit validation, XML integration or Android/full tests. No production edits. Missing consumers are not a translation blocker."
+  },
+  "entries": [
+    {
+      "locale": "sk",
+      "key": "formats22_derived_exported",
+      "status": "accepted",
+      "final": "Export dokončený: %1$s. Celá vaša kresba stále obsahuje neuložené zmeny; pred jej nahradením uložte kópiu celého obrázka.",
+      "reason": "Export dokončený is a grammatical label-style completion announcement without imposing agreement on %1$s. Celá vaša kresba with neuložené zmeny explicitly retains the whole drawing and unsaved changes after export; pred jej nahradením + uložte requires saving the complete-image copy before replacing that feminine kresba."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_save_as",
+      "status": "accepted",
+      "final": "Uložiť ako %1$s",
+      "reason": "Uložiť is the standard infinitive menu command; ako introduces the output designation without changing %1$s."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_save_as_jpeg",
+      "status": "accepted",
+      "final": "Uložiť ako JPEG…",
+      "reason": "The infinitive command Uložiť ako is grammatical with the unchanged format name JPEG; the single U+2026 marks a continuing action."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_save_as_jpeg_xl",
+      "status": "accepted",
+      "final": "Uložiť ako JPEG XL…",
+      "reason": "Uložiť ako correctly introduces the complete format name JPEG XL, not two separate choices; one U+2026 remains."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_save_as_png",
+      "status": "accepted",
+      "final": "Uložiť ako PNG…",
+      "reason": "Uložiť ako correctly introduces PNG; format spelling and the single U+2026 remain unchanged."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_foreground_background_colour_palette",
+      "status": "accepted",
+      "final": "Popredie: %1$s, pozadie: %2$s. Paleta farieb: %3$s.",
+      "reason": "Popredie and pozadie correctly name foreground/background. Paleta farieb uses the correct genitive plural farieb. Colon-separated labels preserve each slot without requiring %3$s to agree adjectivally or assuming it means Main; a state or action can follow the label."
+    },
+    {
+      "locale": "sk",
+      "key": "ui_pinch_and_pan_mode",
+      "status": "accepted",
+      "final": "Režim zmeny mierky dvoma prstami a posúvania",
+      "reason": "Režim governs the coordinated genitives zmeny and posúvania; mierky specifies scaling and dvoma prstami is correct instrumental for two fingers. This denotes two-finger zoom and panning rather than a paint tool."
+    },
+    {
+      "locale": "sl",
+      "key": "formats22_derived_exported",
+      "status": "accepted",
+      "final": "Izvoz končan: %1$s. Vaša celotna risba še vedno vsebuje neshranjene spremembe; preden jo zamenjate, shranite kopijo celotne slike.",
+      "reason": "Izvoz končan is grammatical compressed UI wording agreeing with masculine izvoz, not unknown %1$s. Celotna risba and neshranjene spremembe retain the whole drawing and still-unsaved changes. Preden jo zamenjate requires shranite kopijo celotne slike first, with feminine jo referring to risba."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_save_as",
+      "status": "accepted",
+      "final": "Shrani kot %1$s",
+      "reason": "Shrani is a grammatical singular imperative menu command and kot introduces the unchanged %1$s designation."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_save_as_jpeg",
+      "status": "accepted",
+      "final": "Shrani kot JPEG…",
+      "reason": "Shrani kot is the correct imperative Save-as construction; JPEG stays intact and one U+2026 remains."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_save_as_jpeg_xl",
+      "status": "accepted",
+      "final": "Shrani kot JPEG XL…",
+      "reason": "Shrani kot correctly treats JPEG XL as one format designation; its internal space and single U+2026 are retained."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_save_as_png",
+      "status": "accepted",
+      "final": "Shrani kot PNG…",
+      "reason": "Shrani kot correctly introduces PNG; the single U+2026 preserves the continuing-action cue."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_foreground_background_colour_palette",
+      "status": "accepted",
+      "final": "Ospredje: %1$s, ozadje: %2$s. Barvna paleta: %3$s.",
+      "reason": "Ospredje/ozadje correctly contrast foreground/background; barvna agrees with feminine paleta. Colons separate labels from their values, so %3$s need not be an adjective and can name a state or action without an invented Main."
+    },
+    {
+      "locale": "sl",
+      "key": "ui_pinch_and_pan_mode",
+      "status": "accepted",
+      "final": "Način spreminjanja povečave z dvema prstoma in premikanja pogleda",
+      "reason": "Način governs coordinated genitives spreminjanja and premikanja; povečave specifies zoom and pogleda makes movement of the view explicit. Z dvema prstoma correctly uses Slovenian instrumental dual, preserving the two-finger gesture rather than drawing."
+    },
+    {
+      "locale": "ca",
+      "key": "formats22_derived_exported",
+      "status": "accepted",
+      "final": "S’ha exportat %1$s. El dibuix complet encara té canvis sense desar; desa una còpia de la imatge completa abans de substituir-lo.",
+      "reason": "S’ha exportat reports export, not full-drawing saving. El dibuix complet encara té canvis sense desar explicitly retains the full drawing and still-unsaved changes. Desa una còpia de la imatge completa abans de substituir-lo imposes the save-before-replace order; masculine -lo refers to dibuix, not feminine còpia/imatge."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_save_as",
+      "status": "accepted",
+      "final": "Anomena i desa com a %1$s",
+      "reason": "Anomena i desa preserves the accepted paired imperative command; com a introduces the output designation and %1$s is unchanged."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_save_as_jpeg",
+      "status": "accepted",
+      "final": "Anomena i desa com a JPEG…",
+      "reason": "The accepted Anomena i desa command remains intact; com a is a grammatical designation link to JPEG and one U+2026 remains."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_save_as_jpeg_xl",
+      "status": "accepted",
+      "final": "Anomena i desa com a JPEG XL…",
+      "reason": "Anomena i desa com a preserves accepted command terminology and the single JPEG XL designation, including its space; one U+2026 remains."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_save_as_png",
+      "status": "accepted",
+      "final": "Anomena i desa com a PNG…",
+      "reason": "Anomena i desa com a is grammatical using the accepted Save-as term; PNG and its single U+2026 are intact."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_foreground_background_colour_palette",
+      "status": "accepted",
+      "final": "Primer pla: %1$s, fons: %2$s. Paleta de colors: %3$s.",
+      "reason": "Primer pla and fons correctly name foreground/background; paleta de colors is natural Catalan noun-phrase composition. Colons attach all three slots without adjective agreement or inventing Main; %3$s may supply a state or action."
+    },
+    {
+      "locale": "ca",
+      "key": "ui_pinch_and_pan_mode",
+      "status": "accepted",
+      "final": "Mode de gest de pinça i desplaçament",
+      "reason": "Mode de governs the coordinated concepts gest de pinça and desplaçament. Gest de pinça denotes the pinch gesture (not a physical clamp tool here), and desplaçament denotes panning. Repeating de before the second coordinated noun is not required."
+    }
+  ]
+}
