@@ -1,0 +1,345 @@
+{
+  "title": "Independent ga/gd/cy residual linguistic review",
+  "review_date": "2026-10-30",
+  "candidate_commit": "f10b6928223af89103b55792624241057c7a965f",
+  "english_source_commit": "53f650d38af84817043270bf3265c0dd17decd97",
+  "english_source_path": "Paintroid/src/main/res/values/strings.xml",
+  "scope": "All 30 residual entries, 10 per locale. Independent reading of JSON and candidate XML plus authoritative English source XML; not a new 341-key review.",
+  "summary": "26 accepted unchanged; 4 accepted with concrete corrections. No linguistic holds in the stated palette/catalogue context.",
+  "context_decision": "Main is resolved as the main colour-palette catalogue entry. %3$s is treated as the palette's independent label/name; colon constructions are accepted. This is a reasonable contextual interpretation expressly requested for this review, not verified consumer archaeology. If integration establishes a different referent, revise the three Main labels accordingly.",
+  "gesture_decision": "The Scottish Gaelic descriptive two-finger zoom/pan mode preserves the functional meaning of the mode label, though it does not teach squeeze/spread mechanics. Reorder the modifier for scope; do not restore Prìnich. Irish adapted gesture terms accepted with medium terminology confidence, not held for an exact published phrase.",
+  "limits": [
+    "AI linguistic review, not native-human certification.",
+    "No production resources changed; no Android build, full test suite, device, TalkBack or rendered-fit checks.",
+    "Full foreground/background captions are accepted linguistically; code-based shrinking alone does not certify readability.",
+    "No backtranslation used as sole proof. Reasons inspect morphology, syntax, action semantics and placeholder associations."
+  ],
+  "supporting_references": [
+    {
+      "url": "https://geiriadur.uwtsd.ac.uk/?direction=ew&search=ateb_top&term=main&type=all&whichpart=exact",
+      "use": "Welsh prif precedes its noun and causes soft mutation; supports Prif balet, not a claim of exact phrase attestation."
+    },
+    {
+      "url": "https://lists.gnome.org/archives/commits-list/2016-October/msg02696.html",
+      "use": "Existing Gaelic graphics translation uses beulaibh/cùlaibh for foreground/background; supporting terminology evidence only."
+    },
+    {
+      "url": "https://dev.speakgaelic.scot/level/ealain/topic/a-mineachadh-obair-ealaine/section/a-toirt-tuairisgeul-air-obair-ealain",
+      "use": "Artwork vocabulary distinguishes front/back of picture and foreground/background alternatives; confirms that UI-caption wording is contextual rather than the sole Gaelic art terminology."
+    }
+  ],
+  "checks": {
+    "entries": 30,
+    "per_locale": {
+      "ga": 10,
+      "gd": 10,
+      "cy": 10
+    },
+    "accepted": 26,
+    "corrected": 4,
+    "placeholder_multisets_preserved": true,
+    "candidate_xml_matches_json": true
+  },
+  "entries": [
+    {
+      "locale": "ga",
+      "key": "formats22_derived_exported",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "Easpórtáladh %1$s. Tá athruithe gan sábháil fós i do líníocht iomlán; sábháil cóip iomlán den íomhá sula gcuirfidh tú ceann eile ina háit.",
+      "disposition": "accept",
+      "accepted_wording": "Easpórtáladh %1$s. Tá athruithe gan sábháil fós i do líníocht iomlán; sábháil cóip iomlán den íomhá sula gcuirfidh tú ceann eile ina háit.",
+      "reason": "Easpórtáladh reports completed export, not saving. Tá ... fós and gan sábháil preserve outstanding changes. The imperative sábháil requires a complete image copy; sula gcuirfidh ... ina háit puts replacement after saving. Feminine ina háit agrees with líníocht/íomhá.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_save_as",
+      "source": "Save as %1$s",
+      "candidate": "Sábháil mar %1$s",
+      "disposition": "accept",
+      "accepted_wording": "Sábháil mar %1$s",
+      "reason": "Sábháil is the save imperative; mar introduces format. %1$s is unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_save_as_jpeg",
+      "source": "Save as JPEG…",
+      "candidate": "Sábháil mar JPEG…",
+      "disposition": "accept",
+      "accepted_wording": "Sábháil mar JPEG…",
+      "reason": "Sábháil mar retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_save_as_jpeg_xl",
+      "source": "Save as JPEG XL…",
+      "candidate": "Sábháil mar JPEG XL…",
+      "disposition": "accept",
+      "accepted_wording": "Sábháil mar JPEG XL…",
+      "reason": "Sábháil mar retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_save_as_png",
+      "source": "Save as PNG…",
+      "candidate": "Sábháil mar PNG…",
+      "disposition": "accept",
+      "accepted_wording": "Sábháil mar PNG…",
+      "reason": "Sábháil mar retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_fg",
+      "source": "FG",
+      "candidate": "Tulra",
+      "disposition": "accept",
+      "accepted_wording": "Tulra",
+      "reason": "Tulra is the foreground noun, not a new opaque abbreviation; five letters give a reasonable short caption.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_bg",
+      "source": "BG",
+      "candidate": "Cúlra",
+      "disposition": "accept",
+      "accepted_wording": "Cúlra",
+      "reason": "Cúlra is the background noun and contrasts directly with Tulra; five letters.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_foreground_background_colour_palette",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Tulra %1$s, cúlra %2$s. Pailéad dathanna: %3$s.",
+      "disposition": "accept",
+      "accepted_wording": "Tulra %1$s, cúlra %2$s. Pailéad dathanna: %3$s.",
+      "reason": "Foreground/background nouns and their numbered colour values remain paired. Pailéad dathanna is a grammatical colour-palette noun phrase. Colon treats %3$s as an independent palette name/catalogue label, avoiding mutation or joining across the placeholder.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_pinch_and_pan_mode",
+      "source": "Pinch and pan mode",
+      "candidate": "Mód pinchála agus peanála",
+      "disposition": "accept",
+      "accepted_wording": "Mód pinchála agus peanála",
+      "reason": "The coordinated verbal-noun genitives pinchála and peanála modify mód consistently. They are understandable adapted UI loan terms, not an unrelated physical pin/fasten verb. Accept as project-consistent wording; canonical Irish gesture terminology remains less certain than ordinary Save labels.",
+      "confidence": "medium"
+    },
+    {
+      "locale": "ga",
+      "key": "ui_main23",
+      "source": "Main",
+      "candidate": "Príomh",
+      "disposition": "accept_with_correction",
+      "accepted_wording": "Príomhphailéad",
+      "reason": "Correct the bare prefix-like Príomh to the independently readable palette label Príomhphailéad. Príomh- combines with pailéad and lenites p. This expressly resolves Main as the main palette in the permitted catalogue context, not main menu/canvas.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "formats22_derived_exported",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "Chaidh %1$s às-phortadh. Tha atharraichean gun sàbhaladh fhathast san dealbh shlàn agad; sàbhail lethbhreac slàn dhen dealbh mus cuir thu rud eile na àite.",
+      "disposition": "accept",
+      "accepted_wording": "Chaidh %1$s às-phortadh. Tha atharraichean gun sàbhaladh fhathast san dealbh shlàn agad; sàbhail lethbhreac slàn dhen dealbh mus cuir thu rud eile na àite.",
+      "reason": "Completed às-phortadh is distinct from imperative sàbhail. Gun sàbhaladh fhathast retains the unsaved/still condition. Lethbhreac slàn requires a complete copy; mus cuir ... na àite orders saving before replacement. Dealbh covers drawing/image here without implying that export saved the full drawing.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_save_as",
+      "source": "Save as %1$s",
+      "candidate": "Sàbhail mar %1$s",
+      "disposition": "accept",
+      "accepted_wording": "Sàbhail mar %1$s",
+      "reason": "Sàbhail is the save imperative; mar introduces the target format and leaves %1$s intact.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_save_as_jpeg",
+      "source": "Save as JPEG…",
+      "candidate": "Sàbhail mar JPEG…",
+      "disposition": "accept",
+      "accepted_wording": "Sàbhail mar JPEG…",
+      "reason": "Sàbhail mar retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_save_as_jpeg_xl",
+      "source": "Save as JPEG XL…",
+      "candidate": "Sàbhail mar JPEG XL…",
+      "disposition": "accept",
+      "accepted_wording": "Sàbhail mar JPEG XL…",
+      "reason": "Sàbhail mar retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_save_as_png",
+      "source": "Save as PNG…",
+      "candidate": "Sàbhail mar PNG…",
+      "disposition": "accept",
+      "accepted_wording": "Sàbhail mar PNG…",
+      "reason": "Sàbhail mar retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_fg",
+      "source": "FG",
+      "candidate": "Beulaibh",
+      "disposition": "accept",
+      "accepted_wording": "Beulaibh",
+      "reason": "Beulaibh is intelligible as the foreground/front caption in this paired drawing UI and matches the existing full accessibility terminology; no invented abbreviation. Longer than FG, so linguistic acceptance is not a fit claim.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_bg",
+      "source": "BG",
+      "candidate": "Cùlaibh",
+      "disposition": "accept",
+      "accepted_wording": "Cùlaibh",
+      "reason": "Cùlaibh supplies the matching background/back caption, consistent with existing accessibility terminology. Linguistically acceptable; rendered compactness is unverified.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_foreground_background_colour_palette",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Beulaibh %1$s, cùlaibh %2$s. Paileid nan dathan: %3$s.",
+      "disposition": "accept",
+      "accepted_wording": "Beulaibh %1$s, cùlaibh %2$s. Paileid nan dathan: %3$s.",
+      "reason": "Beulaibh/cùlaibh remain attached to the correct numbered values. Paileid nan dathan is a grammatical palette-of-colours phrase. The colon separates an arbitrary palette name/catalogue label from Gaelic inflection.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_pinch_and_pan_mode",
+      "source": "Pinch and pan mode",
+      "candidate": "Modh sùmaidh le dà chorrag is panaidh",
+      "disposition": "accept_with_correction",
+      "accepted_wording": "Modh sùmaidh is panaidh le dà chorrag",
+      "reason": "Correct word order so le dà chorrag scopes naturally over both coordinated actions: sùmaidh is panaidh. Two-finger zoom and pan is a valid functional description of this mode, not a literal squeeze/spread instruction. It preserves mode meaning and avoids Prìnich (pin/fasten); it would not suffice alone as detailed gesture training.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "gd",
+      "key": "ui_main23",
+      "source": "Main",
+      "candidate": "Prìomh",
+      "disposition": "accept_with_correction",
+      "accepted_wording": "Prìomh phaileid",
+      "reason": "Correct bare Prìomh to Prìomh phaileid, an explicit main-palette label. Prìomh is prenominal and lenites p. The palette/catalogue interpretation is a reasonable stated context, not a claim of a discovered call site.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "formats22_derived_exported",
+      "source": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "candidate": "Allforiwyd %1$s. Mae newidiadau heb eu cadw yn eich lluniad llawn o hyd; cadwch gopi llawn o'r ddelwedd cyn ei ddisodli.",
+      "disposition": "accept",
+      "accepted_wording": "Allforiwyd %1$s. Mae newidiadau heb eu cadw yn eich lluniad llawn o hyd; cadwch gopi llawn o'r ddelwedd cyn ei ddisodli.",
+      "reason": "Allforiwyd reports export, while cadwch instructs saving. Heb eu cadw agrees with plural newidiadau; o hyd retains still. Cadwch gopi has the expected soft mutation, and o'r ddelwedd mutates feminine delwedd. Ei ddisodli is masculine and can refer back to lluniad, the full drawing, rather than feminine delwedd; this preserves replacement of the drawing.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_save_as",
+      "source": "Save as %1$s",
+      "candidate": "Cadw fel %1$s",
+      "disposition": "accept",
+      "accepted_wording": "Cadw fel %1$s",
+      "reason": "Cadw is the ordinary verbal-noun UI command for Save; fel introduces the format and preserves %1$s.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_save_as_jpeg",
+      "source": "Save as JPEG…",
+      "candidate": "Cadw fel JPEG…",
+      "disposition": "accept",
+      "accepted_wording": "Cadw fel JPEG…",
+      "reason": "Cadw fel retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_save_as_jpeg_xl",
+      "source": "Save as JPEG XL…",
+      "candidate": "Cadw fel JPEG XL…",
+      "disposition": "accept",
+      "accepted_wording": "Cadw fel JPEG XL…",
+      "reason": "Cadw fel retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_save_as_png",
+      "source": "Save as PNG…",
+      "candidate": "Cadw fel PNG…",
+      "disposition": "accept",
+      "accepted_wording": "Cadw fel PNG…",
+      "reason": "Cadw fel retains Save as rather than Export; the standard format identifier and U+2026 ellipsis are unchanged.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_fg",
+      "source": "FG",
+      "candidate": "Blaendir",
+      "disposition": "accept",
+      "accepted_wording": "Blaendir",
+      "reason": "Blaendir is the foreground noun, clear without inventing initials. Eight letters warrant a later fit check, not a linguistic hold.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_bg",
+      "source": "BG",
+      "candidate": "Cefndir",
+      "disposition": "accept",
+      "accepted_wording": "Cefndir",
+      "reason": "Cefndir is the matching background noun. Full-word meaning is clear; no rendered-fit certification.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_foreground_background_colour_palette",
+      "source": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "candidate": "Blaendir %1$s, cefndir %2$s. Palet lliwiau: %3$s.",
+      "disposition": "accept",
+      "accepted_wording": "Blaendir %1$s, cefndir %2$s. Palet lliwiau: %3$s.",
+      "reason": "Blaendir/cefndir preserve the two distinct colour roles. Palet lliwiau is the colour-palette noun phrase, and the colon safely allows an independent name/catalogue label in %3$s.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_pinch_and_pan_mode",
+      "source": "Pinch and pan mode",
+      "candidate": "Modd pinsio a phanio",
+      "disposition": "accept",
+      "accepted_wording": "Modd pinsio a phanio",
+      "reason": "Modd plus coordinated verbal nouns describes the mode naturally. A causes aspirate mutation of panio to phanio; pinsio names the pinch gesture, so both gesture components survive.",
+      "confidence": "high_for_stated_context"
+    },
+    {
+      "locale": "cy",
+      "key": "ui_main23",
+      "source": "Main",
+      "candidate": "Prif",
+      "disposition": "accept_with_correction",
+      "accepted_wording": "Prif balet",
+      "reason": "Correct bare Prif to Prif balet for an independent main-palette catalogue label. Prenominal prif causes soft mutation p→b. This is a normal grammatical construction; exact published phrase matching is unnecessary.",
+      "confidence": "high_for_stated_context"
+    }
+  ]
+}
