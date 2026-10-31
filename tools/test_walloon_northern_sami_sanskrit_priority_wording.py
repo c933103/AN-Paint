@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as E
 import translation_catalogues as c
-from current_localization_contracts import fixture
+from current_localization_contracts import fixture, residual_rows, require_residual_or_previous, RESIDUAL_KEYS
 from walloon_northern_sami_sanskrit_priority_expectations import require_fixture_binding, require_edited_resource as bound_require_edited_resource
 from test_slovak_slovenian_catalan_priority_wording import token_contract
 
@@ -42,7 +42,9 @@ class WalloonNorthernSamiSanskritPriorityWordingTest(unittest.TestCase):
    self.assertEqual(HOLD_COUNTS[tag],len(data['holds']))
    for identity in data['holds']:
     key=identity.split('/')[1];self.assertNotIn(key,data['values'])
-    if key in data['original_catalogue']:self.assertEqual(resource(self.local[tag][key]),data['original_catalogue'][key])
+    if (tag,key) in residual_rows():
+     require_residual_or_previous(E.parse(ROOT/data['catalogue_path']).getroot(),tag,key,data['original_catalogue'].get(key,{}).get('value'))
+    elif key in data['original_catalogue']:self.assertEqual(resource(self.local[tag][key]),data['original_catalogue'][key])
     else:self.assertNotIn(key,self.local[tag])
 
  def test_disposition_contract_rejects_status_value_attributes_and_context_mutations(self):
@@ -89,8 +91,10 @@ class WalloonNorthernSamiSanskritPriorityWordingTest(unittest.TestCase):
  def test_unrelated_resources_and_attributes_remain_exact(self):
   for tag,data in DATA.items():
    for key,row in data['original_catalogue'].items():
-    if key not in data['values']:self.assertEqual(resource(self.local[tag][key]),row)
-   self.assertEqual(set(self.local[tag]),set(data['original_catalogue'])|set(data['values']))
+    if key not in data['values']:
+     if (tag,key) in residual_rows():require_residual_or_previous(E.parse(ROOT/data['catalogue_path']).getroot(),tag,key,row['value'])
+     else:self.assertEqual(resource(self.local[tag][key]),row)
+   self.assertEqual(set(self.local[tag]),set(data['original_catalogue'])|set(data['values'])|RESIDUAL_KEYS.get(tag,set()))
 
  def test_full_tokens_newlines_and_android_syntax(self):
   for tag,data in DATA.items():
@@ -277,7 +281,8 @@ class WalloonNorthernSamiSanskritPriorityWordingTest(unittest.TestCase):
    for key,row in data['context'].items():
     with self.subTest(tag=tag,key=key):
      self.assertEqual(resource(self.en[key]),row['source'])
-     self.assertEqual(row['reviewed_value'],resource(self.local[tag][key])['value'])
+     if (tag,key) in residual_rows():require_residual_or_previous(E.parse(ROOT/data['catalogue_path']).getroot(),tag,key,row['reviewed_value'])
+     else:self.assertEqual(row['reviewed_value'],resource(self.local[tag][key])['value'])
      self.assertEqual(row['reviewed_attributes'],self.local[tag][key].attrib)
      if row['type']=='plurals':self.assertEqual(row['reviewed_children_attributes'],resource(self.local[tag][key])['children_attributes'])
    self.assertEqual({'wa':345,'se':345,'sa':345}[tag],len(data['context'])+len(data['values']))

@@ -54,6 +54,13 @@ def require_edited_resource(tag, key, element, data, bound_fixture, require_fixt
     if key not in data['values']:
         raise ValueError('Outside exact reviewed edit set')
     row = data['values'][key]
+    from current_localization_contracts import residual_rows, RESIDUAL_KEYS
+    successor = residual_rows().get((tag, key)) if key in RESIDUAL_KEYS.get(tag, ()) else None
+    if successor is not None:
+        if row['type'] != 'string' or successor['previous_target'] != row['reviewed_value'] or successor['source'] != row['source']['value']:
+            raise ValueError('Exact edited successor predecessor/source differs')
+        require_resource_shape(element, 'string', {'value': successor['target'], 'attributes': successor['attributes']})
+        return
     expected = {'value': row['reviewed_value'], 'attributes': row['reviewed_attributes']}
     if row['type'] == 'plurals':
         expected['children_attributes'] = row['reviewed_children_attributes']

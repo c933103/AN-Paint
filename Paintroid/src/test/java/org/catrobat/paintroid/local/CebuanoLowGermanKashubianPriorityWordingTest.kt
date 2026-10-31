@@ -76,7 +76,7 @@ class CebuanoLowGermanKashubianPriorityWordingTest {
         return locale.getJSONObject("values").optJSONObject(key)
             ?: locale.getJSONObject("context").getJSONObject(key)
     }
-    private fun expected(tag: String, key: String) = row(tag,key).getString("display")
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.successor(tag,key,row(tag,key).getString("display"))
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
 
@@ -135,17 +135,26 @@ class CebuanoLowGermanKashubianPriorityWordingTest {
             assertEquals("string",entry.getString("type"))
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("Held $tag/$key",0,id)
-            assertEquals("Held current or English fallback $tag/$key",entry.getString("display"),activity.getString(id))
+            val text=PriorityWordingExpectations.residual(tag,key,entry.getString("display"))
+            assertEquals("$tag held/successor/$key",text,activity.getString(id))
+            val tokens=pattern.findAll(text).toList()
+            if(tokens.isNotEmpty()) {
+                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
+                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
+                    "d"->21001L;"f"->12.75;else->"argument 100%"
+                }
+                assertEquals("$tag/$key successor arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
+            }
         }
         if(tag!="ceb") {
-            assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
                 activity.getString(R.string.ui_foreground_background_colour_palette))
-            assertEquals("Foreground foreground 100%, background background 100%. palette 100% colour palette.",
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground foreground 100%, background background 100%. palette 100% colour palette.","foreground 100%","background 100%","palette 100%"),
                 ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
-            assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
             if(tag!="ceb") {
-                assertEquals("FG",ui(R.string.ui_fg))
-                assertEquals("BG",ui(R.string.ui_bg))
+                assertEquals(PriorityWordingExpectations.residual(tag,"ui_fg","FG"),ui(R.string.ui_fg))
+                assertEquals(PriorityWordingExpectations.residual(tag,"ui_bg","BG"),ui(R.string.ui_bg))
             }
         }
     }

@@ -26,6 +26,16 @@ internal object PriorityWordingExpectations {
     }
     fun hasResidual(tag: String,key: String)=residuals.containsKey(tag to key)
 
+    /** Existing-value successors require the exact historical compiled display. */
+    fun successor(tag: String,key: String,previous: String): String {
+        val row=residuals[tag to key] ?: return previous
+        require(!row.isNull("previous_target")) { "$tag/$key is not an existing-value successor" }
+        require(previous==RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,row.getString("previous_target"))) {
+            "$tag/$key previous display differs"
+        }
+        return RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,row.getString("target"))
+    }
+
     /** Only exact reviewed successors replace an English fallback expectation. */
     fun residual(tag: String,key: String,previous: String,vararg args: Any): String {
         val row=residuals[tag to key] ?: return previous
