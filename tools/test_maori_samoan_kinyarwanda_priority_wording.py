@@ -2,7 +2,7 @@
 from copy import deepcopy
 import json,re,unittest,xml.etree.ElementTree as E
 import translation_catalogues as c
-from current_localization_contracts import fixture,require_string
+from current_localization_contracts import fixture,require_string,require_residual_or_previous
 from mi_sm_rw_priority_scope import SCOPE,PREVIOUS,HELD
 from maori_samoan_kinyarwanda_priority_expectations import require_fixture_binding
 FIXTURE='maori_samoan_kinyarwanda_priority_wording.json'
@@ -68,7 +68,10 @@ class MaoriSamoanKinyarwandaPriorityWordingTest(unittest.TestCase):
  def test_each_precise_present_or_absent_hold_remains_exact(self):
   for tag,loc in self.locales.items():
    for identity,row in loc['held'].items():
-    with self.subTest(tag=tag,identity=identity):require_entry(self.xml[tag],identity,row);require_entry(self.en,identity,row,'source')
+    with self.subTest(tag=tag,identity=identity):
+     if row['target'] is None:require_residual_or_previous(E.fromstring(self.xml[tag]),tag,identity.split('/')[1])
+     else:require_entry(self.xml[tag],identity,row)
+     require_entry(self.en,identity,row,'source')
  def test_every_changed_scalar_and_plural_child_rejects_corruption(self):
   for tag,loc in self.locales.items():
    for identity,row in loc['values'].items():

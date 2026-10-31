@@ -1107,8 +1107,9 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
         import basque_frisian_uzbek_priority_expectations as uz
         import sorani_uyghur_tatar_priority_expectations as ckb
         import kazakh_tajik_pashto_priority_expectations as kk_tg
+        import sindhi_nigerian_pidgin_tok_pisin_priority_expectations as pidgin
         rows = residual_rows()
-        for tag, module, count in [('fy', uz, 11), ('uz-Latn', uz, 10), ('ckb', ckb, 11), ('kk', kk_tg, 7), ('tg', kk_tg, 10)]:
+        for tag, module, count in [('fy', uz, 11), ('uz-Latn', uz, 10), ('ckb', ckb, 11), ('kk', kk_tg, 7), ('tg', kk_tg, 10), ('pcm', pidgin, 11), ('tpi', pidgin, 11)]:
             data = module.bound_fixture(tag)
             original = ET.parse(ROOT / data['catalogue_path']).getroot()
             module.require_catalogue(tag, original)
@@ -1138,7 +1139,7 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
         rows = residual_rows()
         english = ET.parse(catalogues.RES/'values/strings.xml').getroot()
         roots = {tag: ET.parse(catalogues.catalogue_paths()[tag]).getroot() for tag, _ in rows}
-        self.assertEqual(462, sum(r['previous_target'] is None for r in rows.values()))
+        self.assertEqual(560, sum(r['previous_target'] is None for r in rows.values()))
         self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg'), ('xh','ui_free_form_select'),('xh','ui_palette'),('xh','ui_preview'),('xh','ui_rotate'),('sr-Cyrl','ui_discard'),('sr-Latn','ui_discard')},
                          {identity for identity,r in rows.items() if r['previous_target'] is not None})
         for (tag,key),row in rows.items():
@@ -1146,6 +1147,56 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
                 require_string(ET.tostring(english,encoding='unicode'),key,row['source'],{'attributes':row['attributes']})
                 require_residual_or_previous(roots[tag],tag,key,row['previous_target'])
                 self.assertEqual([],catalogues.android_string_errors(row['target']))
+
+    def test_new_kinyarwanda_gesture_hold_remains_absent_and_unaccepted(self):
+        from current_localization_contracts import residual_rows, require_residual_or_previous
+        held = fixture('reviewed_residuals_20261030.json')['new_holds']
+        self.assertEqual(1, len(held))
+        row = held[0]
+        self.assertEqual(('rw', 'ui_pinch_and_pan_mode', 'hold_absent', None),
+                         (row['locale'], row['key'], row['disposition'], row['target']))
+        self.assertEqual('Pinch and pan mode', row['source'])
+        self.assertTrue(row['reason'])
+        self.assertNotIn((row['locale'], row['key']), residual_rows())
+        root = ET.parse(catalogues.catalogue_paths()['rw']).getroot()
+        require_residual_or_previous(root, row['locale'], row['key'])
+        ET.SubElement(root, 'string', name=row['key']).text = 'unaccepted gesture'
+        with self.assertRaises(ValueError):
+            require_residual_or_previous(root, row['locale'], row['key'])
+
+    def test_empty_option_successors_reject_residual_shape_source_and_predecessor_mutations(self):
+        from copy import deepcopy
+        from unittest.mock import patch
+        from current_localization_contracts import residual_rows
+        from language_option_additions import SECOND_ADDITIONS_PATH
+        from somali_wolof_haitian_creole_priority_expectations import require_priority_option_successor
+        from maori_samoan_kinyarwanda_priority_expectations import require_empty_option_successor
+        options = {row['tag']: row for row in json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']}
+        rows = residual_rows()
+        for tag in ('ht', 'so', 'wo', 'mi'):
+            check = require_empty_option_successor if tag == 'mi' else require_priority_option_successor
+            original = ET.parse(catalogues.catalogue_paths()[tag]).getroot()
+            check(options[tag], ET.tostring(original, encoding='unicode'))
+            keys = {key for locale, key in rows if locale == tag}
+            self.assertEqual(11, len(keys))
+            for key in keys:
+                for mutation in ('missing', 'duplicate', 'type', 'value', 'attribute', 'child', 'tail', 'unreviewed'):
+                    root = deepcopy(original); node = root.find(f"./string[@name='{key}']")
+                    if mutation == 'missing': root.remove(node)
+                    elif mutation == 'duplicate': root.append(deepcopy(node))
+                    elif mutation == 'type': node.tag = 'plurals'
+                    elif mutation == 'value': node.text += ' forged'
+                    elif mutation == 'attribute': node.set('formatted', 'false')
+                    elif mutation == 'child': ET.SubElement(node, 'b')
+                    elif mutation == 'tail': node.tail = 'unreviewed'
+                    else: node.set('name', 'unreviewed')
+                    with self.subTest(tag=tag, key=key, mutation=mutation), self.assertRaises(ValueError):
+                        check(options[tag], ET.tostring(root, encoding='unicode'))
+                for field in ('source', 'previous_target'):
+                    changed = deepcopy(rows); changed[(tag, key)][field] = 'forged'
+                    with patch('current_localization_contracts.residual_rows', return_value=changed):
+                        with self.subTest(tag=tag, key=key, mutation=field), self.assertRaises(ValueError):
+                            check(options[tag], ET.tostring(original, encoding='unicode'))
 
     def test_unchanged_main_acceptances_have_zero_presence_and_no_regional_credit(self):
         data = fixture('reviewed_residuals_20261030.json')

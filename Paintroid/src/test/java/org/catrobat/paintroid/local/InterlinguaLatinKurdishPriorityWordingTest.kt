@@ -138,7 +138,16 @@ class InterlinguaLatinKurdishPriorityWordingTest {
         for(key in held.keys().asSequence()) if(held.isNull(key)) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag held/$key",0,id)
-            assertEquals("$tag held/$key",PriorityWordingExpectations.residual(tag,key,defaultSource(key)),activity.getString(id))
+            val text=PriorityWordingExpectations.residual(tag,key,defaultSource(key))
+            assertEquals("$tag held/successor/$key",text,activity.getString(id))
+            val tokens=pattern.findAll(text).toList()
+            if(tokens.isNotEmpty()) {
+                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
+                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
+                    "d"->21001L;"f"->12.75;else->"argument 100%"
+                }
+                assertEquals("$tag/$key successor arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
+            }
         }
     }
 

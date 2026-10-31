@@ -148,6 +148,16 @@ RESIDUAL_KEYS = {tag: _RESIDUAL_COMMON | extra for tag, extra in {
     'fy': {'ui_bg', 'ui_discard', 'ui_fg', 'ui_main23', 'ui_pinch_and_pan_mode'},
     'ast': {'ui_pinch_and_pan_mode'},
     'oc': {'ui_bg', 'ui_fg', 'ui_pinch_and_pan_mode'},
+    'ht': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode'},
+    'pcm': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode'},
+    'so': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode'},
+    'wo': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode'},
+    'rw': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23'},
+    'mi': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode'},
+    'la': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode'},
+    'ia': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode'},
+    'tpi': {'ui_bg', 'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode'},
+
 }.items()}
 
 
@@ -155,7 +165,7 @@ def residual_rows():
     data = fixture('reviewed_residuals_20261030.json')
     rows = {(r['locale'], r['key']): r for r in data['decisions']}
     expected = {(tag, key) for tag, keys in RESIDUAL_KEYS.items() for key in keys}
-    if data.get('schema_version') != 1 or len(data['decisions']) != 471 or set(rows) != expected:
+    if data.get('schema_version') != 1 or len(data['decisions']) != 569 or set(rows) != expected:
         raise ValueError('Exact reviewed residual scope differs')
     return rows
 

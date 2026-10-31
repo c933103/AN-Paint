@@ -10,6 +10,7 @@ from language_option_additions import SECOND_ADDITIONS_PATH, require_untranslate
 from pidgin_tok_pisin_option_successors import require_pidgin_option_successor
 import translation_catalogues as catalogues
 from sindhi_nigerian_pidgin_tok_pisin_priority_expectations import bound_fixture
+from current_localization_contracts import RESIDUAL_KEYS
 ROOT=Path(__file__).resolve().parents[1]
 TAGS=('pcm','tpi')
 
@@ -21,7 +22,7 @@ class PidginTokPisinOptionSuccessorsTest(unittest.TestCase):
     def test_exact_empty_history_gets_only_complete_reviewed_additions(self):
         for tag in TAGS:
             root=require_pidgin_option_successor(self.old[tag],self.xml(tag))
-            self.assertEqual(345,len(root))
+            self.assertEqual(345+len(RESIDUAL_KEYS[tag]),len(root))
             with self.assertRaises(ValueError):require_untranslated_option(self.old[tag],self.xml(tag))
     def test_wrong_options_and_history_fields_are_rejected(self):
         for tag in TAGS:

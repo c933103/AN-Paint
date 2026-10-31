@@ -135,6 +135,25 @@ class MaoriSamoanKinyarwandaPriorityWordingTest {
             }
         }
         }
+        // Historical absent holds resolve only to exact reviewed successors; RW gesture and SM stay fallback.
+        val held=fixture.getJSONObject(tag).getJSONObject("held")
+        val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
+        for(identity in held.keys()) {
+            val (kind,key)=identity.split('/');val row=held.getJSONObject(identity)
+            assertEquals("string",kind);assertTrue(row.isNull("target"))
+            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
+            assertNotEquals("$tag held/$key",0,id)
+            val text=PriorityWordingExpectations.residual(tag,key,row.getString("source"))
+            assertEquals("$tag held/successor/$key",text,activity.getString(id))
+            val tokens=pattern.findAll(text).toList()
+            if(tokens.isNotEmpty()) {
+                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
+                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
+                    "d"->21001L;"f"->12.75;else->"argument 100%"
+                }
+                assertEquals("$tag/$key successor arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
+            }
+        }
     }
 
     @Test fun realCropDialogSelectionCountsAllEdgesAndRepeatedUnitsStayAtomic() = forEachLocale(listOf("mi","sm","rw")) { tag,activity ->
