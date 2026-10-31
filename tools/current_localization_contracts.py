@@ -167,6 +167,15 @@ RESIDUAL_KEYS = {tag: _RESIDUAL_COMMON | extra for tag, extra in {
     'se': {'ui_pinch_and_pan_mode', 'ui_your_current_image_has_unsaved_changes', 'ui_main23', 'ui_fg', 'ui_drawing_canvas_pinch_and_move_two_fingers_to', 'ui_ellipse', 'ui_fit_image', 'ui_bg'},
     'sa': {'ui_pinch_and_pan_mode', 'ui_main23', 'ui_fg', 'ui_drawing_canvas_pinch_and_move_two_fingers_to', 'ui_fit_image', 'ui_bg'},
 
+    'ary': {'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode', 'ui_bg'},
+    'tok': {'ui_fg', 'ui_tool_categories', 'ui_share_explanation34', 'ui_not_enough_memory_to_inspect_this_image', 'ui_autosave_is_paused_to_protect_that_draft_use', 'ui_crop_preview_drag_an_edge_or_corner_drag', 'ui_not_enough_memory_to_finish_opening_this_image', 'ui_fit_image', 'ui_a_separate_recovery_copy_has_been_kept_use', 'ui_main23', 'save20_destination_error', 'ui_tap_to_type_a_number', 'formats22_ascii_description', 'ui_pinch_and_pan_mode', 'ui_colour_palette_tap_for_foreground_hold_for_background', 'commons_svg_original_size_unavailable', 'ui_bg'},
+    'sm': {'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode', 'ui_bg'},
+    'nds': {'ui_fg', 'ui_drawing_canvas_pinch_and_move_two_fingers_to', 'ui_fit_image', 'ui_main23', 'ui_save_a5d0d9', 'ui_pinch_and_pan_mode', 'ui_bg'},
+    'eu-ES': {'ui_pinch_and_pan_mode'},
+    'ca-ES-valencia': {'ui_main23', 'ui_pinch_and_pan_mode'},
+    'ps': {'ui_pinch_and_pan_mode', 'ui_fg', 'ui_drawing_canvas_pinch_and_move_two_fingers_to', 'ui_bg'},
+    'sd': {'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode', 'ui_bg'},
+    'ug': {'ui_fg', 'ui_fit_image', 'ui_main23', 'ui_pinch_and_pan_mode', 'ui_bg'},
 }.items()}
 
 
@@ -174,7 +183,7 @@ def residual_rows():
     data = fixture('reviewed_residuals_20261030.json')
     rows = {(r['locale'], r['key']): r for r in data['decisions']}
     expected = {(tag, key) for tag, keys in RESIDUAL_KEYS.items() for key in keys}
-    if data.get('schema_version') != 1 or len(data['decisions']) != 676 or set(rows) != expected:
+    if data.get('schema_version') != 1 or len(data['decisions']) != 781 or set(rows) != expected:
         raise ValueError('Exact reviewed residual scope differs')
     return rows
 

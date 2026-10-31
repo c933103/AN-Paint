@@ -12,7 +12,8 @@ class MoroccanArabicMongolianTokiPonaFamilyAdditions(unittest.TestCase):
         self.assertEqual(10,len(pairs))
         for tag,key in pairs:
             row=additions.current_row(tag,key)
-            self.assertEqual(row['target'],additions.require_addition(tag,key,row['source']))
+            from current_localization_contracts import residual_rows
+            self.assertEqual(residual_rows().get((tag,key),row)['target'],additions.require_addition(tag,key,row['source']))
             for mode in ('historical','already-present','previous','previous-attributes','source','source-attributes','target-attributes','type','changed','empty','alias'):
                 bad=deepcopy(row);args={}
                 if mode=='historical':args['historical_value']='forged'

@@ -135,7 +135,7 @@ class MaoriSamoanKinyarwandaPriorityWordingTest {
             }
         }
         }
-        // Historical absent holds resolve only to exact reviewed successors; RW gesture and SM stay fallback.
+        // Historical absent holds resolve only to exact reviewed successors; RW gesture stays fallback.
         val held=fixture.getJSONObject(tag).getJSONObject("held")
         val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
         for(identity in held.keys()) {

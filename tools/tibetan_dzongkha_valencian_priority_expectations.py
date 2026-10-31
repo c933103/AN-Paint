@@ -49,9 +49,9 @@ def decode_android(raw):
 
 
 def inherited_held_display(tag, key, previous, parent_root=None, direct_root=None):
-    """Seven current Catalan successors are inherited, never Valencian presence/review."""
+    """Exact direct successors precede parent inheritance, without changing historical fixtures."""
     from current_localization_contracts import RESIDUAL_KEYS, residual_rows, require_residual_or_previous
-    if tag != 'ca-ES-valencia' or key not in RESIDUAL_KEYS['ca']:
+    if tag != 'ca-ES-valencia' or key not in RESIDUAL_KEYS['ca-ES-valencia']:
         return previous
     data = bound_fixture(tag)
     if (key in data['original_catalogue'] or key in data['values']
@@ -59,6 +59,16 @@ def inherited_held_display(tag, key, previous, parent_root=None, direct_root=Non
         raise ValueError('Exact historical Valencian fallback differs')
     if direct_root is None:
         direct_root = E.parse(ROOT / data['catalogue_path']).getroot()
+    direct_row = residual_rows().get((tag,key))
+    if direct_row is not None:
+        english = E.parse(ROOT / 'Paintroid/src/main/res/values/strings.xml').find(f"./string[@name='{key}']")
+        if direct_row['source'] != english.text or direct_row['previous_target'] is not None:
+            raise ValueError('Exact direct successor source/predecessor differs')
+        nodes=direct_root.findall(f"./*[@name='{key}']")
+        if len(nodes)!=1:raise ValueError('Exact direct successor identity differs')
+        require_resource_shape(nodes[0], 'string', {'value':direct_row['target'], 'attributes':direct_row['attributes']})
+        require_residual_or_previous(direct_root,tag,key)
+        return decode_android(direct_row['target'])
     if direct_root.findall(f"./*[@name='{key}']"):
         raise ValueError('Inherited Catalan successor must remain directly absent in Valencian')
     row = residual_rows()[('ca', key)]

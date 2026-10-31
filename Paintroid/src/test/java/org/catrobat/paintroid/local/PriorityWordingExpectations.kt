@@ -30,7 +30,13 @@ internal object PriorityWordingExpectations {
     fun successor(tag: String,key: String,previous: String): String {
         val row=residuals[tag to key] ?: return previous
         require(!row.isNull("previous_target")) { "$tag/$key is not an existing-value successor" }
-        require(previous==RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,row.getString("previous_target"))) {
+        val rawPrevious=row.getString("previous_target")
+        val priorDisplay=if(rawPrevious.startsWith("@string/")) {
+            require(tag=="nds" && key=="ui_save_a5d0d9" && rawPrevious=="@string/ui_save") { "Unreviewed predecessor alias" }
+            val historical=JSONObject(File("../tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/nds.json").readText())
+            historical.getJSONObject("context").getJSONObject(key).getString("display")
+        } else RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,rawPrevious)
+        require(previous==priorDisplay) {
             "$tag/$key previous display differs"
         }
         return RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,row.getString("target"))
