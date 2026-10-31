@@ -1,0 +1,73 @@
+{
+  "source_commit": "c120c378ee1edc54193b6358b8a1cc5d59d05559",
+  "source_tree": "a05f9c3648f884470e2694006d64b68ace65f1a8",
+  "reviewed_head": "aad55c3a2c362cd2ae183e18d122cd31c9b56e44",
+  "run_id": 41182178793,
+  "run_url": "https://github.com/c933103/AN-Paint/actions/runs/41182178793",
+  "event": "push",
+  "attempt": 1,
+  "status": "completed",
+  "conclusion": "success",
+  "completed_at": "2026-10-31T08:29:27Z",
+  "jobs": [
+    {
+      "id": 124481655861,
+      "name": "Build APK and corresponding source",
+      "conclusion": "success"
+    },
+    {
+      "id": 124481655971,
+      "name": "Exact-script resource generation",
+      "conclusion": "success"
+    },
+    {
+      "id": 124481656002,
+      "name": "Regression tests and lint",
+      "conclusion": "success"
+    },
+    {
+      "id": 124482764870,
+      "name": "Position dialog API 35",
+      "conclusion": "success"
+    },
+    {
+      "id": 124482764884,
+      "name": "Core emulator API 35",
+      "conclusion": "success"
+    },
+    {
+      "id": 124485523739,
+      "name": "Emulator API 35",
+      "conclusion": "success"
+    }
+  ],
+  "host_summary": [
+    "2026-10-31T07:52:00.2386365Z BUILD SUCCESSFUL in 27s",
+    "2026-10-31T08:11:09.8965968Z Ran 2075 tests in 1148.002s",
+    "2026-10-31T08:11:09.8966343Z OK (skipped=2)",
+    "2026-10-31T08:26:07.0044850Z BUILD SUCCESSFUL in 14m 56s",
+    "2026-10-31T08:27:04.8813225Z BUILD SUCCESSFUL in 56s",
+    "2026-10-31T08:29:15.8089264Z BUILD SUCCESSFUL in 2m 10s"
+  ],
+  "host_skips": {
+    "progress_indices": [
+      935,
+      938
+    ],
+    "tests": [
+      "test_ico_container.IcoContainerTest.test_adam7_fixture_pixels_match_independent_pillow_decoder",
+      "test_ico_container.IcoContainerTest.test_export_opens_with_independent_pillow_ico_decoder"
+    ],
+    "reason": "Optional Pillow unavailable on hosted runner; both tests executed successfully in full local normal and optimized suites"
+  },
+  "local_host_tests_each_mode": 2075,
+  "local_skips": 0,
+  "app_union": {
+    "declared": 49,
+    "eligible": 49,
+    "completed": 49,
+    "excluded": 0,
+    "suppressed": 0
+  },
+  "release": false
+}
