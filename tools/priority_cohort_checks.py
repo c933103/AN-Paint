@@ -87,6 +87,9 @@ def require_catalogue(tag, root, data, bound_fixture, require_fixture_binding, r
                 raise ValueError('Exact catalogue successor predecessor differs')
             # Retain the catalogue's strict tail/child/type checks for additions too.
             require_resource_shape(node, 'string', {'value': row['target'], 'attributes': row['attributes']})
+        elif (tag, key) == ('ps', 'ui_discard'):
+            from legacy_discard_disposition import require_successor
+            require_successor(tag, key, node, data['original_catalogue'][key])
         elif key in data['values']:
             row = data['values'][key]
             value = {'value': row['reviewed_value'], 'attributes': row['reviewed_attributes']}

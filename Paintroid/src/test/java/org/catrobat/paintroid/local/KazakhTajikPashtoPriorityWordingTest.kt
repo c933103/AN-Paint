@@ -135,7 +135,7 @@ class KazakhTajikPashtoPriorityWordingTest {
             assertEquals("string",entry.getString("type"))
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("Held $tag/$key",0,id)
-            assertEquals("Held current or English fallback $tag/$key",PriorityWordingExpectations.residual(tag,key,entry.getString("display")),activity.getString(id))
+            assertEquals("Held current or English fallback $tag/$key",if(tag=="ps" && key=="ui_discard") LegacyDiscardExpectations.successor(tag,key,entry.getString("display")) else PriorityWordingExpectations.residual(tag,key,entry.getString("display")),activity.getString(id))
         }
         run {
             assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
