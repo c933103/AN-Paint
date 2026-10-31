@@ -97,7 +97,7 @@ def synthetic_colour_ime_observations(method):
                              initial_native_field_activation='not-tested', initial_full_hex_visibility='not-accepted',
                              display=geometry(bounds=(0, 0, 640, 320)), state=state(), simultaneous_ime_field_footer_fit='not-accepted'))
     observations.append(dict(kind='colour-2x-synthetic-ime-activation',
-                             strategy='View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)',
+                             strategy='View.requestFocus + InputMethodManager.showSoftInput(0)',
                              focus_request_returned=True, field_focused=True, ime_request_returned=False, state=state(),
                              initial_native_field_activation='not-tested', initial_full_hex_visibility='not-accepted'))
     ime(True)
