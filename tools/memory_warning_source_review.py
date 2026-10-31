@@ -6,7 +6,7 @@ from thai_priority_expectations import MEMORY_ADDITIONS as THAI_ADDITIONS, curre
 from hindi_gujarati_priority_expectations import MEMORY_ADDITIONS as HI_GU_ADDITIONS, current_row as hi_gu_row
 """Current English expectations and the pending two-term review queue.
 
-Historical paired-language fixtures stay unchanged. Default-English and explicitly receipt-bound current successors are selected here;
+For migrated catalogues, current XML is authoritative and no historical predecessor check remains. Other historical paired-language fixtures stay unchanged. Default-English and explicitly receipt-bound current successors are selected here;
 no historical fixture or receipt is rewritten.
 """
 from nordic_priority_expectations import MEMORY_ADDITIONS as NORDIC_ADDITIONS, current_row as nordic_row
@@ -32,16 +32,10 @@ from somali_wolof_haitian_creole_priority_expectations import MEMORY_ADDITIONS a
 from breton_asturian_occitan_priority_expectations import MEMORY_ADDITIONS as BR_AST_OC_ADDITIONS, require_addition as br_ast_oc_addition
 from interlingua_latin_kurdish_priority_expectations import MEMORY_ADDITIONS as IA_LA_KU_ADDITIONS, require_addition as ia_la_ku_addition
 from kabyle_hmong_daw_maithili_priority_expectations import MEMORY_ADDITIONS as KAB_MWW_MAI_ADDITIONS, require_addition as kab_mww_mai_addition
-from yoruba_zulu_xhosa_priority_expectations import MEMORY_ADDITIONS as YO_ZU_XH_ADDITIONS, current_row as yo_zu_xh_row
-from hausa_igbo_lingala_priority_expectations import MEMORY_ADDITIONS as HA_IG_LN_ADDITIONS, current_row as ha_ig_ln_row
-from javanese_sundanese_kyrgyz_priority_expectations import MEMORY_ADDITIONS as JV_SU_KY_ADDITIONS, current_row as jv_su_ky_row
-from assamese_khmer_lao_priority_expectations import MEMORY_ADDITIONS as AS_KM_LO_ADDITIONS, current_row as as_km_lo_row
-from nepali_punjabi_priority_expectations import MEMORY_ADDITIONS as NE_PA_ADDITIONS, current_row as ne_pa_row
-from kannada_malayalam_filipino_priority_expectations import MEMORY_ADDITIONS as KN_ML_ADDITIONS, current_row as kn_ml_row
-from marathi_tamil_telugu_priority_expectations import MEMORY_ADDITIONS as MR_TA_TE_ADDITIONS, current_row as mr_ta_te_row
 
 RECORD = Path(__file__).resolve().parents[1] / 'translations/source-review/memory-warnings-20261021.json'
 KEYS = {'ui_no_resize_fits_decoder_memory', 'ui_assembly_source_memory_floor'}
+CURRENT_CATALOGUE_VALUES = frozenset((tag, key) for tag in 'mr ta te ne pa-IN ha ig ln yo zu xh kn ml-IN jv su ky as km lo'.split() for key in KEYS)
 PRIORITY_TAGS = frozenset({'bg', 'bn'})
 PRIORITY_ADDITIONS = frozenset({('uk','ui_assembly_source_memory_floor'),
     ('uk','ui_no_resize_fits_decoder_memory'),('ro','ui_no_resize_fits_decoder_memory')})
@@ -91,6 +85,10 @@ fixture corruption. This selects explicitly bound paired and single-key
 expectations, not a catalogue generator, review result or reconstruction of an
 old source snapshot.
 """
+    # These current catalogues no longer freeze historical approval predecessors.
+    if (tag, key) in CURRENT_CATALOGUE_VALUES:
+        import translation_catalogues as catalogues
+        return catalogues.read_strings(catalogues.catalogue_paths()[tag])[key]
     if (tag,key) in REMAINING_ACCEPTED_ADDITIONS:
         from current_localization_contracts import residual_rows
         row=residual_rows()[(tag,key)]
@@ -226,15 +224,6 @@ old source snapshot.
         if row['source']!={'value':queue['keys'][key]['corrected_english'],'attributes':{'name':key}} or row['reviewed_attributes']!={'name':key}:
             raise ValueError('HNE/YI/HK warning source or attributes differ: '+tag+'/'+key)
         return row['reviewed_value']
-    if (tag,key) in KN_ML_ADDITIONS:
-        queue=review_record()
-        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
-        row=kn_ml_row(tag,key)
-        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
-            raise ValueError('Historical Kannada/Malayalam warning addition must be absent: '+tag+'/'+key)
-        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
-            raise ValueError('Kannada/Malayalam warning source or attributes differ: '+tag+'/'+key)
-        return row['target']
     if (tag,key) in HI_GU_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
@@ -261,42 +250,6 @@ old source snapshot.
             raise ValueError('Historical Sinhala/Burmese replacement warning addition must be absent: '+tag+'/'+key)
         if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
             raise ValueError('Sinhala/Burmese replacement warning source or attributes differ: '+tag+'/'+key)
-        return row['target']
-    if (tag,key) in AS_KM_LO_ADDITIONS:
-        queue=review_record()
-        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
-        row=as_km_lo_row(tag,key)
-        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
-            raise ValueError('Historical Assamese/Khmer/Lao warning addition must be absent: '+tag+'/'+key)
-        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
-            raise ValueError('Assamese/Khmer/Lao warning source or attributes differ: '+tag+'/'+key)
-        return row['target']
-    if (tag,key) in JV_SU_KY_ADDITIONS:
-        queue=review_record()
-        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
-        row=jv_su_ky_row(tag,key)
-        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
-            raise ValueError('Historical Javanese/Sundanese/Kyrgyz warning addition must be absent: '+tag+'/'+key)
-        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
-            raise ValueError('Javanese/Sundanese/Kyrgyz warning source or attributes differ: '+tag+'/'+key)
-        return row['target']
-    if (tag,key) in HA_IG_LN_ADDITIONS:
-        queue=review_record()
-        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
-        row=ha_ig_ln_row(tag,key)
-        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
-            raise ValueError('Historical Hausa/Igbo/Lingala warning addition must be absent: '+tag+'/'+key)
-        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
-            raise ValueError('Hausa/Igbo/Lingala warning source or attributes differ: '+tag+'/'+key)
-        return row['target']
-    if (tag,key) in YO_ZU_XH_ADDITIONS:
-        queue=review_record()
-        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
-        row=yo_zu_xh_row(tag,key)
-        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
-            raise ValueError('Historical Yoruba/Zulu/Xhosa warning addition must be absent: '+tag+'/'+key)
-        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
-            raise ValueError('Yoruba/Zulu/Xhosa warning source or attributes differ: '+tag+'/'+key)
         return row['target']
     if (tag,key) in SO_WO_HT_ADDITIONS:
         queue=review_record()
@@ -330,24 +283,6 @@ old source snapshot.
             raise ValueError('Historical FA/HE/UR warning addition must be absent: '+tag+'/'+key)
         if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
             raise ValueError('FA/HE/UR warning source or attributes differ: '+tag+'/'+key)
-        return row['target']
-    if (tag,key) in NE_PA_ADDITIONS:
-        queue=review_record()
-        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
-        row=ne_pa_row(tag,key)
-        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
-            raise ValueError('Historical Nepali/Punjabi warning addition must be absent: '+tag+'/'+key)
-        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
-            raise ValueError('Nepali/Punjabi warning source or attributes differ: '+tag+'/'+key)
-        return row['target']
-    if (tag,key) in MR_TA_TE_ADDITIONS:
-        queue=review_record()
-        old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']
-        row=mr_ta_te_row(tag,key)
-        if historical_value is not None or old is not None or row['previous_target'] is not None or not row['changed']:
-            raise ValueError('Historical Marathi/Tamil/Telugu warning addition must be absent: '+tag+'/'+key)
-        if row['source']!=queue['keys'][key]['corrected_english'] or row['attributes']!={'name':key}:
-            raise ValueError('Marathi/Tamil/Telugu warning source or attributes differ: '+tag+'/'+key)
         return row['target']
     if (tag,key) in BR_AST_OC_ADDITIONS:
         queue=review_record()

@@ -112,3 +112,33 @@ the surviving Basque/Frisian/Uzbek (LTR) and Sorani/Uyghur/Tatar (RTL) instances
 - These removed methods had no clipping, geometry or screenshot assertions. No
   rendered-layout coverage is claimed. Five non-identical cohort variants and
   all other product/locale tests are untouched.
+
+
+## Retiring translation approval-history machinery (seven priority cohorts)
+
+Canonical Android XML now owns current wording for Marathi/Tamil/Telugu,
+Nepali/Punjabi, Hausa/Igbo/Lingala, Yoruba/Zulu/Xhosa, Kannada/Malayalam/Filipino,
+Javanese/Sundanese/Kyrgyz and Assamese/Khmer/Lao. This does **not** certify
+linguistic correctness or establish new translation acceptance.
+
+The seven `tools/fixtures/current_localization/*_priority_wording.json` mirrors,
+matching Python expectation/read-only review-test modules and matching Kotlin
+cohort classes are recoverable at commit
+`0acbc50da25a7ef3b4b55de0a6b25290e60f9fe8`, unchanged paths. All 28 removed
+file blob identities were checked against that immutable remote tree. No archive
+payload is copied into the active tree.
+
+| Removed responsibility | Current responsibility / reason for retirement |
+| --- | --- |
+| 65 cohort Python methods enforcing accepted copies, changed/retained partitions, predecessor text, edit counts and priority statuses | Review and source history preserve prior decisions. These are intentionally no longer active text-freeze rules. Current catalogue structure, duplicate identities, escapes, placeholders and plural shape remain in `TranslationCatalogueTests` / `translation_catalogues.validate_all`. |
+| Six empty-option successor mutation methods | Historical absence is still in the original option record. Current catalogues are structurally validated; an old empty catalogue no longer demands a complete successor snapshot after every edit. |
+| Seven JVM full-catalogue equality methods | Retired copied approval text, not replaced with self-equality. The existing `AppLanguageResourceRoutingTest` gains one all-offered-language public selection/wrap and compiled resolution/typed formatting check using configuration contexts, not Activities per string. Existing fixed malformed-template, percent/Unicode, alias and fallback-plural cases remain. |
+| 82 JVM consumer methods | Exact normalized bodies survive outside these seven classes. Locale-independent tool, memory, crop, animation, save/cancel, alignment and undo behavior does not need one copy per translation batch. |
+| Seven cohort crop-plural variants | Generic compiled plural checks cover counts 0/1/2/3/21/101 for all offered languages. Existing crop-dialog tests retain actual inclusion/None/cancel/accessibility behavior. Copied per-locale full text and hard-coded CLDR expectations are intentionally retired, not claimed as preserved. |
+| Filipino return-to-drawing method | The same previous-tool, two zoom→drawing cycles, BRUSH restoration, unchanged pixels and dirty state survive `BretonAsturianOccitanPriorityWordingTest.returnToDrawingRestoresThePreviousToolWithoutRedrawing`; `PaintDocument.historySnapshot()` contains both undo and redo lists, preserving those state invariants; the survivor’s `forEachEditor` waits for startup, drains completion and destroys the Activity. Generic routing includes Filipino. Its copied full caption is retired. |
+| Shared SVG/memory/tagged-colour fixture successors | Current XML replaces the seven review loaders. Tagged-colour runtime checks retain sRGB/PNG and exclusion of misleading BMP/GIF labels for every offered language; existing nonretired exact/parent/fallback cases remain. |
+| Command references, percent labels and Save alias/action distinctions | One current-resource semantic test preserves command references, existing bounded ellipsis handling, canvas.png, literal `(%)`/formatted=false, aliases and distinct Save actions. No full translated sentence is copied. |
+
+Production/resource/workflow files are unchanged. Normal focused tests and
+required hosted compilation remain mandatory; no all-language layout or new
+linguistic approval claim follows from structural/compiled coverage.
