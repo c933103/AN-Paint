@@ -7,7 +7,7 @@ from current_localization_contracts import fixture
 ROOT=Path(__file__).resolve().parents[1]
 FAMILY='kazakh_tajik_pashto_priority_wording'
 TAGS=('kk', 'tg', 'ps')
-FIXTURE_DIGESTS={'kk': 'a05aee725e328651f5c4b99ef914eac87cfce66164c86321670867f51192f88a', 'tg': '09c024a834247ba88b66b071d3da4ac2674292a51b34e1dd28dc55481278058b', 'ps': 'c145556500748c12377fc99248939c3021b21306b7ba2974f019f4225030dea4'}
+FIXTURE_DIGESTS={'kk': '2389f9f52a2fea46f51ec0e4632dd6372a57c95e6eb33537dfb16ab8dceed518', 'tg': 'e39aabaf59cc7a45ab048d27864a6deb54f23a92fbe73ae8e8427c66f44d1be4', 'ps': 'a3b86ad52e69ed663beff081664a590338240b46f95ddd906b7e5e83ae203092'}
 SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory',
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 
