@@ -1,0 +1,92 @@
+{
+  "schema": "third-nine-primary-review-preservation/v1",
+  "preservation_date_utc": "2026-10-31",
+  "original_review_date_utc": "2026-10-30",
+  "purpose": "Preserve unique primary review fields and confidence evidence from three original independent linguistic companions; not a reconstruction, split, re-encoding or retry of the optional combined pending-wording envelope.",
+  "destination_directory": "verification/translations/2026-10-30/third-nine-primary-review-evidence/",
+  "records": [
+    {
+      "file": "ht-pcm-so-33-independent-review.json",
+      "original_full_file_sha256": "7cd292ee3cf4fe66b703b7081d8212f7370dc31734eb1a2ddc508d17d076fc0f",
+      "original_full_file_bytes": 52741,
+      "publication_sha256": "0ca3dc7e28fbbc88b6c1aa44913ce7e377fa705474d277822c6edb563afb1136",
+      "publication_git_blob_sha1": "6ecc75a421a1a33a123900536b49ab328434438b",
+      "publication_bytes": 52585,
+      "review_row_array": "rows",
+      "review_rows": 33,
+      "canonical_review_rows_sha256": "c4907fd09f326d1886b0cf517056476359b5691d6fbef46c01dfe8599323aa93",
+      "all_original_review_row_fields_preserved_exactly": true,
+      "acceptance_receipt": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6531903812",
+      "public_sanitization": [
+        "reviewer coordination description replaced by neutral independent-model attribution",
+        "input_path reduced to basename",
+        "source_baseline.readonly_path omitted",
+        "reported PR field names normalized without changing PR/head values",
+        "source_baseline.equivalence_basis and limits[1] neutrally restated with original verification qualification retained"
+      ]
+    },
+    {
+      "file": "la-ia-tpi-independent-review.json",
+      "original_full_file_sha256": "86b14ae409324ea5568b7460d0617c2c078f60424277d34d4c3571e817852d36",
+      "original_full_file_bytes": 42877,
+      "publication_sha256": "5301ecd8d7d774471d9432d40c59db824ac70f8d58726694c7ed7000bc8e453f",
+      "publication_git_blob_sha1": "11010ca99fff55099a7c09b27fea2ea83bbd8cbd",
+      "publication_bytes": 42748,
+      "review_row_array": "entries",
+      "review_rows": 33,
+      "canonical_review_rows_sha256": "708118600d4c213b6f784d45a0fc05eab5b1bc378e190e69584fb597423807fb",
+      "all_original_review_row_fields_preserved_exactly": true,
+      "acceptance_receipt": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6531942027",
+      "public_sanitization": [
+        "source_draft reduced to basename",
+        "source_checkout local path omitted",
+        "source_provenance neutrally restated with original reported-only remote-equivalence qualification retained"
+      ]
+    },
+    {
+      "file": "wo-rw-mi-33-independent-review.json",
+      "original_full_file_sha256": "48ad1c1f71eaec2e8344dba5dc0c6e037ac73b4f4c09fe9f2a0dc1b2ada8fb89",
+      "original_full_file_bytes": 58075,
+      "publication_sha256": "15a46e72751410781ddab8812f91ff8c3e18c769af5aabaddea5826302273d1f",
+      "publication_git_blob_sha1": "450341ae416ccdbee66568e1ea5ce0108f818b6c",
+      "publication_bytes": 57963,
+      "review_row_array": "rows",
+      "review_rows": 33,
+      "canonical_review_rows_sha256": "637392a32a04802fb9fa3b2b8627294415e79dd7856c8e13e493c77b5bd13a21",
+      "all_original_review_row_fields_preserved_exactly": true,
+      "acceptance_receipt": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6531961390",
+      "public_sanitization": [
+        "reviewer internal identity replaced by neutral independent-model attribution",
+        "input_file reduced to basename",
+        "source_checkout local path omitted",
+        "source_commit_provenance neutrally restated without upgrading verification",
+        "limits[0] internal delegation mechanics omitted; substantive review/test/write limits preserved"
+      ]
+    }
+  ],
+  "semantic_verification": {
+    "original_review_rows": 99,
+    "all_original_row_fields_preserved_exactly": true,
+    "unique_locale_key_pairs": 99,
+    "accepted_rows_matching_frozen_98_targets_and_confidence": 98,
+    "accepted_confidence_counts": {
+      "high": 66,
+      "medium": 19,
+      "medium-high": 13
+    },
+    "held_rows": 1,
+    "held_identity": {
+      "locale": "rw",
+      "key": "ui_pinch_and_pan_mode"
+    },
+    "source_and_target_spellings_rationales_backtranslations_caveats_references_and_artifact_checks_preserved": true
+  },
+  "limits": [
+    "These are historical original review snapshots, not new wording acceptance or current source-state assertions.",
+    "Final acceptance remains governed by the linked public receipts and subsequent exact-source implementations.",
+    "Original reported-only PR242 provenance qualifications remain; this preservation does not retroactively upgrade those original reviews.",
+    "Independent model linguistic review is not native-human, Android compilation, installed UI or whole-language certification.",
+    "The optional frozen14-file consolidated archive remains incomplete; its pending operation and frozen artifacts are untouched.",
+    "No application/source/test/workflow edit, project test execution, merge or release is part of this preservation."
+  ]
+}

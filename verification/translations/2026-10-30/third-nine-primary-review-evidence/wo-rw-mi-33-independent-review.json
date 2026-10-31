@@ -1,0 +1,1036 @@
+{
+  "schema_version": 1,
+  "title": "Independent bounded wording review: Wolof, Kinyarwanda, Māori P0/P1 gaps",
+  "review_date": "2026-10-30",
+  "reviewer": "Independent model linguistic reviewer; no native-speaker certification",
+  "input_file": "wo-rw-mi-33-gap-proposals.json",
+  "input_sha256": "7500bdfb863cf1c5f71fbce9a8c11c06d344c59619920a7dcf776206dfd93d14",
+  "source_commit": "1aeed6e3860067c9224dfc6129ee0672c7917a01",
+  "source_commit_provenance": "Supplied PR #242 production baseline; no new remote verification during this original review. Five exact local resource/manifest hashes matched the draft and were unchanged during that review.",
+  "scope": "All 33 submitted missing direct entries: 11 per locale, 5 P0 plus 6 P1 each. No existing translations were rewritten or independently certified.",
+  "counts": {
+    "corrected": 6,
+    "accepted_unchanged": 26,
+    "held": 1
+  },
+  "by_locale": {
+    "wo": {
+      "corrected": 3,
+      "accepted_unchanged": 8
+    },
+    "rw": {
+      "accepted_unchanged": 10,
+      "held": 1
+    },
+    "mi": {
+      "corrected": 3,
+      "accepted_unchanged": 8
+    }
+  },
+  "tiers": {
+    "P0": 15,
+    "P1": 18
+  },
+  "decision_meanings": {
+    "accepted_unchanged": "Submitted wording accepted unchanged in this bounded independent review.",
+    "corrected": "Exact replacement supplied and accepted as this reviewer’s bounded wording recommendation.",
+    "held": "Neither original nor candidate accepted for integration; exact candidate is provided for the specific unresolved wording decision."
+  },
+  "limits": [
+    "No production or index changes, GitHub writes, new repository tests, builds, CI or runtime checks were performed in this original review.",
+    "No native-speaker certification. Confidence and material unresolved wording uncertainty are explicit.",
+    "No UI-fit, TalkBack, truncation, or visual-legibility claim. Full swatch labels and descriptive mode/fit labels remain unmeasured.",
+    "XML parsing, Unicode, placeholder, ellipsis and key-completeness checks below are review-artifact checks, not Android compilation or application test results.",
+    "A short lexical reference check supplemented independent language judgment. Existing strings are terminology context, not accepted evidence of their correctness."
+  ],
+  "lexical_reference_notes": [
+    {
+      "url": "https://maoridictionary.co.nz/search?keywords=whakauru",
+      "use": "Primary dictionary senses support the Insert-image ambiguity, not a complete UI translation."
+    },
+    {
+      "url": "https://maoridictionary.co.nz/search?keywords=tirohanga",
+      "use": "Primary dictionary supports tirohanga as view."
+    },
+    {
+      "url": "https://paekupu.co.nz/words/wordlist/hangarau/maori-to-english",
+      "use": "Indexed primary lexicon result supports topa as zoom/zoom tool. Direct page open returned HTTP 403; no full-page access or sentence certification claimed."
+    }
+  ],
+  "artifact_checks": {
+    "rows": 33,
+    "unique_locale_key_pairs": 33,
+    "source_values_match_local_english": true,
+    "all_keys_absent_from_local_target_catalogues": true,
+    "source_placeholder_multisets_match_all_reviewed_values": true,
+    "all_reviewed_fragments_parse": true,
+    "all_reviewed_values_nfc": true,
+    "all_9_format_specific_save_as_labels_retain_U_2026": true,
+    "accepted_unchanged_values_byte_match_draft_xml": true,
+    "review_accepted_fragment_count": 32,
+    "held_candidate_count": 1,
+    "source_hashes_before": {
+      "Paintroid/src/main/res/values/strings.xml": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "translations/string-importance.json": "9b5bfb6d25f2ad034158816d943b94feed8296ad4117c2176f09a95dad506879",
+      "Paintroid/src/main/res/values-b+wo/strings.xml": "43e98c8b6bb70473189d5ddc47a50085937aa0995f1a39fbc4b7b856bb2c3c12",
+      "Paintroid/src/main/res/values-b+rw/strings.xml": "cfd8d75beb9a2404a35f5e2dd4c0b66cb7f8eda98d0b0303333620225b354044",
+      "Paintroid/src/main/res/values-b+mi/strings.xml": "76960dc503b900ac5303b2a085c10af1a6932f2bf8b4bba28cfa571691172193"
+    },
+    "source_hashes_after": {
+      "Paintroid/src/main/res/values/strings.xml": "743bd9f04c391fb8e94dfb72f81fb24bbe2e3eb36f1584f35821687a1b96a261",
+      "translations/string-importance.json": "9b5bfb6d25f2ad034158816d943b94feed8296ad4117c2176f09a95dad506879",
+      "Paintroid/src/main/res/values-b+wo/strings.xml": "43e98c8b6bb70473189d5ddc47a50085937aa0995f1a39fbc4b7b856bb2c3c12",
+      "Paintroid/src/main/res/values-b+rw/strings.xml": "cfd8d75beb9a2404a35f5e2dd4c0b66cb7f8eda98d0b0303333620225b354044",
+      "Paintroid/src/main/res/values-b+mi/strings.xml": "76960dc503b900ac5303b2a085c10af1a6932f2bf8b4bba28cfa571691172193"
+    },
+    "source_hashes_unchanged": true
+  },
+  "rows": [
+    {
+      "locale": "wo",
+      "tier": "P0",
+      "identity": "string/formats22_derived_exported",
+      "key": "formats22_derived_exported",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "original_proposed_display": "Génne nañu %1$s. Sa dessin bi bépp am na ba léegi ay coppite yu dencagul; dencal duppi nataal bi bépp bala ngay wuutal dessin bi.",
+      "original_proposed_raw_xml": "<string name=\"formats22_derived_exported\">\"Génne nañu %1$s. Sa dessin bi bépp am na ba léegi ay coppite yu dencagul; dencal duppi nataal bi bépp bala ngay wuutal dessin bi.\"</string>",
+      "decision": "corrected",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Génne nañu %1$s. Sa dessin bi bépp am na ba léegi ay coppite yu ñu dencagul; dencal duppi nataal bi bépp bala ngay wuutal dessin bi.",
+      "reviewed_raw_xml": "<string name=\"formats22_derived_exported\">\"Génne nañu %1$s. Sa dessin bi bépp am na ba léegi ay coppite yu ñu dencagul; dencal duppi nataal bi bépp bala ngay wuutal dessin bi.\"</string>",
+      "reviewed_backtranslation": "%1$s has been exported. Your whole drawing still has changes that have not yet been saved; save a copy of the whole image before replacing the drawing.",
+      "rationale": "Add the impersonal subject ñu in the relative clause yu ñu dencagul so the changes are what has not yet been saved, rather than leaving the save verb without its intended agent. Preserve completed export, the whole drawing, still-unsaved changes, the whole-image copy, and saving before replacement. The final dessin bi resolves it to the drawing, not the derived output.",
+      "confidence": "medium",
+      "remaining_uncertainty": "The borrowed dessin and copy phrase duppi nataal follow project terminology; idiomatic polish is not claimed to be native-certified.",
+      "placeholder_check": {
+        "source": [
+          "%1$s"
+        ],
+        "reviewed": [
+          "%1$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P0",
+      "identity": "string/ui_save_as",
+      "key": "ui_save_as",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "Save as %1$s",
+      "original_proposed_display": "Denc ni %1$s",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as\">\"Denc ni %1$s\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Denc ni %1$s",
+      "reviewed_raw_xml": "<string name=\"ui_save_as\">\"Denc ni %1$s\"</string>",
+      "reviewed_backtranslation": "Save as %1$s",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains the numbered format placeholder %1$s. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [
+          "%1$s"
+        ],
+        "reviewed": [
+          "%1$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P0",
+      "identity": "string/ui_save_as_jpeg",
+      "key": "ui_save_as_jpeg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "Save as JPEG…",
+      "original_proposed_display": "Denc ni JPEG…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_jpeg\">\"Denc ni JPEG…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Denc ni JPEG…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_jpeg\">\"Denc ni JPEG…\"</string>",
+      "reviewed_backtranslation": "Save as JPEG…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains JPEG and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P0",
+      "identity": "string/ui_save_as_jpeg_xl",
+      "key": "ui_save_as_jpeg_xl",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "Save as JPEG XL…",
+      "original_proposed_display": "Denc ni JPEG XL…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_jpeg_xl\">\"Denc ni JPEG XL…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Denc ni JPEG XL…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_jpeg_xl\">\"Denc ni JPEG XL…\"</string>",
+      "reviewed_backtranslation": "Save as JPEG XL…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains JPEG XL, its internal space, and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P0",
+      "identity": "string/ui_save_as_png",
+      "key": "ui_save_as_png",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "Save as PNG…",
+      "original_proposed_display": "Denc ni PNG…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_png\">\"Denc ni PNG…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Denc ni PNG…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_png\">\"Denc ni PNG…\"</string>",
+      "reviewed_backtranslation": "Save as PNG…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains PNG and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P1",
+      "identity": "string/ui_bg",
+      "key": "ui_bg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "BG",
+      "original_proposed_display": "Ginnaaw",
+      "original_proposed_raw_xml": "<string name=\"ui_bg\">\"Ginnaaw\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Ginnaaw",
+      "reviewed_raw_xml": "<string name=\"ui_bg\">\"Ginnaaw\"</string>",
+      "reviewed_backtranslation": "Background / back",
+      "rationale": "Accepted for the background/back colour-swatch caption. Its contrasting counterpart is distinct and the mapping is not reversed. A full local word is preferable to an invented abbreviation for this wording review.",
+      "confidence": "high",
+      "remaining_uncertainty": "Full-word compact-label legibility and fitting were not measured; acceptance is linguistic/semantic only.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P1",
+      "identity": "string/ui_fg",
+      "key": "ui_fg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "FG",
+      "original_proposed_display": "Kanam",
+      "original_proposed_raw_xml": "<string name=\"ui_fg\">\"Kanam\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Kanam",
+      "reviewed_raw_xml": "<string name=\"ui_fg\">\"Kanam\"</string>",
+      "reviewed_backtranslation": "Foreground / front",
+      "rationale": "Accepted for the foreground/front colour-swatch caption. Its contrasting counterpart is distinct and the mapping is not reversed. A full local word is preferable to an invented abbreviation for this wording review.",
+      "confidence": "high",
+      "remaining_uncertainty": "Full-word compact-label legibility and fitting were not measured; acceptance is linguistic/semantic only.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P1",
+      "identity": "string/ui_fit_image",
+      "key": "ui_fit_image",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "Fit image",
+      "original_proposed_display": "Dëppale nataal bi",
+      "original_proposed_raw_xml": "<string name=\"ui_fit_image\">\"Dëppale nataal bi\"</string>",
+      "decision": "corrected",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Dëppale seet bi ngir gis nataal bi bépp",
+      "reviewed_raw_xml": "<string name=\"ui_fit_image\">\"Dëppale seet bi ngir gis nataal bi bépp\"</string>",
+      "reviewed_backtranslation": "Adjust the view to see the whole image.",
+      "rationale": "Dëppale nataal bi alone is a vague match/adjust-image command. Make the image-fit viewing purpose explicit, following the already-present Fit-entire-canvas phrasing but naming the image rather than canvas. This avoids describing cropping, inserting an image, or changing its pixels.",
+      "confidence": "medium",
+      "remaining_uncertainty": "The view-fit interpretation is inferred from the English UI label and the existing fit resource family, not established by a live caller or runtime observation. seet bi is retained as the local project view term.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P1",
+      "identity": "string/ui_foreground_background_colour_palette",
+      "key": "ui_foreground_background_colour_palette",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "original_proposed_display": "Kanam %1$s, ginnaaw %2$s. Paletu melo yi: %3$s.",
+      "original_proposed_raw_xml": "<string name=\"ui_foreground_background_colour_palette\">\"Kanam %1$s, ginnaaw %2$s. Paletu melo yi: %3$s.\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Kanam %1$s, ginnaaw %2$s. Paletu melo yi: %3$s.",
+      "reviewed_raw_xml": "<string name=\"ui_foreground_background_colour_palette\">\"Kanam %1$s, ginnaaw %2$s. Paletu melo yi: %3$s.\"</string>",
+      "reviewed_backtranslation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+      "rationale": "Accepted: foreground remains %1$s, background remains %2$s, and the named colour palette remains %3$s. The colon naturally separates the arbitrary palette name without inflecting it. Terminology agrees with the two swatch labels; no role or placeholder is swapped.",
+      "confidence": "medium-high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [
+          "%1$s",
+          "%2$s",
+          "%3$s"
+        ],
+        "reviewed": [
+          "%1$s",
+          "%2$s",
+          "%3$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P1",
+      "identity": "string/ui_main23",
+      "key": "ui_main23",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "Main",
+      "original_proposed_display": "Li ëpp solo",
+      "original_proposed_raw_xml": "<string name=\"ui_main23\">\"Li ëpp solo\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Li ëpp solo",
+      "reviewed_raw_xml": "<string name=\"ui_main23\">\"Li ëpp solo\"</string>",
+      "reviewed_backtranslation": "The main / most important part",
+      "rationale": "Accepted as a standalone main/principal-section label: literally the most important part. It does not incorrectly turn Main into a Home destination. It is more explanatory than an established compact UI noun, but the intended main-section contrast is retained.",
+      "confidence": "medium",
+      "remaining_uncertainty": "Standalone tab-label register is a bounded reviewer judgment, not a claim of a standardized glossary entry.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "wo",
+      "tier": "P1",
+      "identity": "string/ui_pinch_and_pan_mode",
+      "key": "ui_pinch_and_pan_mode",
+      "catalogue_path": "Paintroid/src/main/res/values-b+wo/strings.xml",
+      "source_value": "Pinch and pan mode",
+      "original_proposed_display": "Anamu jegeññal ñaari baaraam ak toxal seet bi",
+      "original_proposed_raw_xml": "<string name=\"ui_pinch_and_pan_mode\">\"Anamu jegeññal ñaari baaraam ak toxal seet bi\"</string>",
+      "decision": "corrected",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Anamu màggal walla tuutal seet bi ak ñaari baaraam, ak toxal seet bi",
+      "reviewed_raw_xml": "<string name=\"ui_pinch_and_pan_mode\">\"Anamu màggal walla tuutal seet bi ak ñaari baaraam, ak toxal seet bi\"</string>",
+      "reviewed_backtranslation": "Mode for enlarging or reducing the view with two fingers, and moving the view.",
+      "rationale": "Replace the opaque finger-closing-only formulation with the effect of the two-finger pinch gesture: both zoom directions plus panning the view. Moving the view is explicit, not moving drawing pixels. Retain the ordinary mode, two-finger, zoom and view terminology already used in the drawing-canvas explanation; do not claim that its previous review certified that explanation.",
+      "confidence": "medium",
+      "remaining_uncertainty": "Two-finger zoom conveys the pinch interaction functionally instead of naming a literal squeeze. This is deliberately descriptive and longer; no visual-fit or native-idiom certification is claimed.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P0",
+      "identity": "string/formats22_derived_exported",
+      "key": "formats22_derived_exported",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "original_proposed_display": "Gusohora %1$s byarangiye. Igishushanyo cyawe cyose kiracyafite impinduka zitabitswe; bika kopi y’ishusho yose mbere yo gusimbuza igishushanyo.",
+      "original_proposed_raw_xml": "<string name=\"formats22_derived_exported\">\"Gusohora %1$s byarangiye. Igishushanyo cyawe cyose kiracyafite impinduka zitabitswe; bika kopi y’ishusho yose mbere yo gusimbuza igishushanyo.\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Gusohora %1$s byarangiye. Igishushanyo cyawe cyose kiracyafite impinduka zitabitswe; bika kopi y’ishusho yose mbere yo gusimbuza igishushanyo.",
+      "reviewed_raw_xml": "<string name=\"formats22_derived_exported\">\"Gusohora %1$s byarangiye. Igishushanyo cyawe cyose kiracyafite impinduka zitabitswe; bika kopi y’ishusho yose mbere yo gusimbuza igishushanyo.\"</string>",
+      "reviewed_backtranslation": "Exporting %1$s has finished. Your whole drawing still has unsaved changes; save a copy of the whole image before replacing the drawing.",
+      "rationale": "Accepted. The completed-export clause does not require noun-class agreement with arbitrary %1$s. Igishushanyo cyawe cyose, kiracyafite impinduka zitabitswe, kopi y’ishusho yose, and mbere yo gusimbuza igishushanyo preserve respectively the whole drawing, still-unsaved changes, complete-image copy, and saving before replacing the drawing. The last noun avoids an ambiguous it reference.",
+      "confidence": "medium-high",
+      "remaining_uncertainty": "This is an independent wording judgment on the submitted warning, not a native-speaker certificate.",
+      "placeholder_check": {
+        "source": [
+          "%1$s"
+        ],
+        "reviewed": [
+          "%1$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P0",
+      "identity": "string/ui_save_as",
+      "key": "ui_save_as",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "Save as %1$s",
+      "original_proposed_display": "Bika nka %1$s",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as\">\"Bika nka %1$s\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Bika nka %1$s",
+      "reviewed_raw_xml": "<string name=\"ui_save_as\">\"Bika nka %1$s\"</string>",
+      "reviewed_backtranslation": "Save as %1$s",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains the numbered format placeholder %1$s. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [
+          "%1$s"
+        ],
+        "reviewed": [
+          "%1$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P0",
+      "identity": "string/ui_save_as_jpeg",
+      "key": "ui_save_as_jpeg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "Save as JPEG…",
+      "original_proposed_display": "Bika nka JPEG…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_jpeg\">\"Bika nka JPEG…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Bika nka JPEG…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_jpeg\">\"Bika nka JPEG…\"</string>",
+      "reviewed_backtranslation": "Save as JPEG…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains JPEG and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P0",
+      "identity": "string/ui_save_as_jpeg_xl",
+      "key": "ui_save_as_jpeg_xl",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "Save as JPEG XL…",
+      "original_proposed_display": "Bika nka JPEG XL…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_jpeg_xl\">\"Bika nka JPEG XL…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Bika nka JPEG XL…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_jpeg_xl\">\"Bika nka JPEG XL…\"</string>",
+      "reviewed_backtranslation": "Save as JPEG XL…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains JPEG XL, its internal space, and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P0",
+      "identity": "string/ui_save_as_png",
+      "key": "ui_save_as_png",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "Save as PNG…",
+      "original_proposed_display": "Bika nka PNG…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_png\">\"Bika nka PNG…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Bika nka PNG…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_png\">\"Bika nka PNG…\"</string>",
+      "reviewed_backtranslation": "Save as PNG…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains PNG and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P1",
+      "identity": "string/ui_bg",
+      "key": "ui_bg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "BG",
+      "original_proposed_display": "Inyuma",
+      "original_proposed_raw_xml": "<string name=\"ui_bg\">\"Inyuma\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Inyuma",
+      "reviewed_raw_xml": "<string name=\"ui_bg\">\"Inyuma\"</string>",
+      "reviewed_backtranslation": "Background / back",
+      "rationale": "Accepted for the background/back colour-swatch caption. Its contrasting counterpart is distinct and the mapping is not reversed. A full local word is preferable to an invented abbreviation for this wording review.",
+      "confidence": "high",
+      "remaining_uncertainty": "Full-word compact-label legibility and fitting were not measured; acceptance is linguistic/semantic only.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P1",
+      "identity": "string/ui_fg",
+      "key": "ui_fg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "FG",
+      "original_proposed_display": "Imbere",
+      "original_proposed_raw_xml": "<string name=\"ui_fg\">\"Imbere\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Imbere",
+      "reviewed_raw_xml": "<string name=\"ui_fg\">\"Imbere\"</string>",
+      "reviewed_backtranslation": "Foreground / front",
+      "rationale": "Accepted for the foreground/front colour-swatch caption. Its contrasting counterpart is distinct and the mapping is not reversed. A full local word is preferable to an invented abbreviation for this wording review.",
+      "confidence": "high",
+      "remaining_uncertainty": "Full-word compact-label legibility and fitting were not measured; acceptance is linguistic/semantic only.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P1",
+      "identity": "string/ui_fit_image",
+      "key": "ui_fit_image",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "Fit image",
+      "original_proposed_display": "Huza ishusho n’umwanya ugaragara",
+      "original_proposed_raw_xml": "<string name=\"ui_fit_image\">\"Huza ishusho n’umwanya ugaragara\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Huza ishusho n’umwanya ugaragara",
+      "reviewed_raw_xml": "<string name=\"ui_fit_image\">\"Huza ishusho n’umwanya ugaragara\"</string>",
+      "reviewed_backtranslation": "Fit the image to the visible space",
+      "rationale": "Accepted: Huza ishusho n’umwanya ugaragara expresses fitting the image to the visible space, rather than joining another image, importing, cropping or overwriting. The visible-space complement usefully disambiguates huza.",
+      "confidence": "medium",
+      "remaining_uncertainty": "The view-fit interpretation is inferred from the English UI label and the existing fit resource family, not established by a live caller or runtime observation.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P1",
+      "identity": "string/ui_foreground_background_colour_palette",
+      "key": "ui_foreground_background_colour_palette",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "original_proposed_display": "Imbere %1$s, inyuma %2$s. Urubaho rw’amabara: %3$s.",
+      "original_proposed_raw_xml": "<string name=\"ui_foreground_background_colour_palette\">\"Imbere %1$s, inyuma %2$s. Urubaho rw’amabara: %3$s.\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Imbere %1$s, inyuma %2$s. Urubaho rw’amabara: %3$s.",
+      "reviewed_raw_xml": "<string name=\"ui_foreground_background_colour_palette\">\"Imbere %1$s, inyuma %2$s. Urubaho rw’amabara: %3$s.\"</string>",
+      "reviewed_backtranslation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+      "rationale": "Accepted: foreground remains %1$s, background remains %2$s, and the named colour palette remains %3$s. The colon naturally separates the arbitrary palette name without inflecting it. Terminology agrees with the two swatch labels; no role or placeholder is swapped.",
+      "confidence": "medium-high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [
+          "%1$s",
+          "%2$s",
+          "%3$s"
+        ],
+        "reviewed": [
+          "%1$s",
+          "%2$s",
+          "%3$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P1",
+      "identity": "string/ui_main23",
+      "key": "ui_main23",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "Main",
+      "original_proposed_display": "Ibanze",
+      "original_proposed_raw_xml": "<string name=\"ui_main23\">\"Ibanze\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Ibanze",
+      "reviewed_raw_xml": "<string name=\"ui_main23\">\"Ibanze\"</string>",
+      "reviewed_backtranslation": "Main / primary",
+      "rationale": "Accepted as a short primary/main tab label. Ibanze can stand as the nominal label here without inventing a Home-navigation meaning; an omitted head noun is normal in terse UI labels.",
+      "confidence": "medium",
+      "remaining_uncertainty": "Standalone tab-label register is a bounded reviewer judgment, not a claim of a standardized glossary entry.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "rw",
+      "tier": "P1",
+      "identity": "string/ui_pinch_and_pan_mode",
+      "key": "ui_pinch_and_pan_mode",
+      "catalogue_path": "Paintroid/src/main/res/values-b+rw/strings.xml",
+      "source_value": "Pinch and pan mode",
+      "original_proposed_display": "Uburyo bwo kwegeranya intoki ebyiri no kwimura ireba",
+      "original_proposed_raw_xml": "<string name=\"ui_pinch_and_pan_mode\">\"Uburyo bwo kwegeranya intoki ebyiri no kwimura ireba\"</string>",
+      "decision": "held",
+      "eligible_for_integration_as_wording_review_result": false,
+      "reviewed_display": "Uburyo bwo kwegeranya no gutandukanya intoki ebyiri ngo ishusho igaragare nini cyangwa nto, no kuyinyereza ureba ibindi bice byayo",
+      "reviewed_raw_xml": "<string name=\"ui_pinch_and_pan_mode\">\"Uburyo bwo kwegeranya no gutandukanya intoki ebyiri ngo ishusho igaragare nini cyangwa nto, no kuyinyereza ureba ibindi bice byayo\"</string>",
+      "reviewed_backtranslation": "Mode for bringing two fingers together and apart so that the image appears larger or smaller, and sliding it to see its other parts.",
+      "rationale": "Hold the original: it only describes bringing fingers together, omits an explicit zoom effect, and relies on ireba as a standalone noun for view, which I cannot substantiate sufficiently. The candidate replaces that noun with apparent-size and seeing-other-parts descriptions, including both gesture directions and pan. I am not confident enough in the naturalness of this long combined Kinyarwanda mode label to accept it as a final UI string.",
+      "confidence": "low for final idiomatic acceptance; medium for intended candidate meaning",
+      "remaining_uncertainty": "Specific unresolved question: whether the candidate reads naturally as view navigation rather than image manipulation. No credentialed/native certification or further source-code search is required by this review; a focused wording decision on the candidate would clear this hold.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": [],
+      "held_candidate_not_accepted": true
+    },
+    {
+      "locale": "mi",
+      "tier": "P0",
+      "identity": "string/formats22_derived_exported",
+      "key": "formats22_derived_exported",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "%1$s exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.",
+      "original_proposed_display": "Kua oti te kaweake i te %1$s. He huringa tonu kei tō tānga katoa kāore anō kia tiakina; tiakina he tārua o te atahanga katoa i mua i te whakakapi i te tānga.",
+      "original_proposed_raw_xml": "<string name=\"formats22_derived_exported\">\"Kua oti te kaweake i te %1$s. He huringa tonu kei tō tānga katoa kāore anō kia tiakina; tiakina he tārua o te atahanga katoa i mua i te whakakapi i te tānga.\"</string>",
+      "decision": "corrected",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Kua oti te kaweake: %1$s. Kei tō tānga katoa tonu ētahi huringa kāore anō kia tiakina; tiakina he tārua o te atahanga katoa i mua i te whakakapi i te tānga.",
+      "reviewed_raw_xml": "<string name=\"formats22_derived_exported\">\"Kua oti te kaweake: %1$s. Kei tō tānga katoa tonu ētahi huringa kāore anō kia tiakina; tiakina he tārua o te atahanga katoa i mua i te whakakapi i te tānga.\"</string>",
+      "reviewed_backtranslation": "Export is complete: %1$s. There are still some changes in your whole drawing that have not yet been saved; save a copy of the whole image before replacing the drawing.",
+      "rationale": "Use a label after a completed-export clause instead of placing the article te before arbitrary substituted text. Place huringa immediately before the not-yet-saved relative clause, making the unsaved changes explicit. Keep whole drawing, still, complete-image copy, and before replacing the drawing intact.",
+      "confidence": "medium-high",
+      "remaining_uncertainty": "tānga and atahanga retain the project drawing/image distinction. The change improves attachment and placeholder robustness; it is not a claim that the original article would be wrong for every substitution.",
+      "placeholder_check": {
+        "source": [
+          "%1$s"
+        ],
+        "reviewed": [
+          "%1$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P0",
+      "identity": "string/ui_save_as",
+      "key": "ui_save_as",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "Save as %1$s",
+      "original_proposed_display": "Tiaki hei %1$s",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as\">\"Tiaki hei %1$s\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Tiaki hei %1$s",
+      "reviewed_raw_xml": "<string name=\"ui_save_as\">\"Tiaki hei %1$s\"</string>",
+      "reviewed_backtranslation": "Save as %1$s",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains the numbered format placeholder %1$s. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [
+          "%1$s"
+        ],
+        "reviewed": [
+          "%1$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P0",
+      "identity": "string/ui_save_as_jpeg",
+      "key": "ui_save_as_jpeg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "Save as JPEG…",
+      "original_proposed_display": "Tiaki hei JPEG…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_jpeg\">\"Tiaki hei JPEG…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Tiaki hei JPEG…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_jpeg\">\"Tiaki hei JPEG…\"</string>",
+      "reviewed_backtranslation": "Save as JPEG…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains JPEG and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P0",
+      "identity": "string/ui_save_as_jpeg_xl",
+      "key": "ui_save_as_jpeg_xl",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "Save as JPEG XL…",
+      "original_proposed_display": "Tiaki hei JPEG XL…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_jpeg_xl\">\"Tiaki hei JPEG XL…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Tiaki hei JPEG XL…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_jpeg_xl\">\"Tiaki hei JPEG XL…\"</string>",
+      "reviewed_backtranslation": "Save as JPEG XL…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains JPEG XL, its internal space, and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P0",
+      "identity": "string/ui_save_as_png",
+      "key": "ui_save_as_png",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "Save as PNG…",
+      "original_proposed_display": "Tiaki hei PNG…",
+      "original_proposed_raw_xml": "<string name=\"ui_save_as_png\">\"Tiaki hei PNG…\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Tiaki hei PNG…",
+      "reviewed_raw_xml": "<string name=\"ui_save_as_png\">\"Tiaki hei PNG…\"</string>",
+      "reviewed_backtranslation": "Save as PNG…",
+      "rationale": "Accepted as a natural short Save-as action in this locale; retains PNG and the U+2026 ellipsis. The verb means save rather than export or save over, and the as construction preserves format selection.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P1",
+      "identity": "string/ui_bg",
+      "key": "ui_bg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "BG",
+      "original_proposed_display": "Papamuri",
+      "original_proposed_raw_xml": "<string name=\"ui_bg\">\"Papamuri\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Papamuri",
+      "reviewed_raw_xml": "<string name=\"ui_bg\">\"Papamuri\"</string>",
+      "reviewed_backtranslation": "Background",
+      "rationale": "Accepted for the background/back colour-swatch caption. Its contrasting counterpart is distinct and the mapping is not reversed. A full local word is preferable to an invented abbreviation for this wording review.",
+      "confidence": "high",
+      "remaining_uncertainty": "Full-word compact-label legibility and fitting were not measured; acceptance is linguistic/semantic only.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P1",
+      "identity": "string/ui_fg",
+      "key": "ui_fg",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "FG",
+      "original_proposed_display": "Papamua",
+      "original_proposed_raw_xml": "<string name=\"ui_fg\">\"Papamua\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Papamua",
+      "reviewed_raw_xml": "<string name=\"ui_fg\">\"Papamua\"</string>",
+      "reviewed_backtranslation": "Foreground",
+      "rationale": "Accepted for the foreground/front colour-swatch caption. Its contrasting counterpart is distinct and the mapping is not reversed. A full local word is preferable to an invented abbreviation for this wording review.",
+      "confidence": "high",
+      "remaining_uncertainty": "Full-word compact-label legibility and fitting were not measured; acceptance is linguistic/semantic only.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P1",
+      "identity": "string/ui_fit_image",
+      "key": "ui_fit_image",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "Fit image",
+      "original_proposed_display": "Whakauru atahanga",
+      "original_proposed_raw_xml": "<string name=\"ui_fit_image\">\"Whakauru atahanga\"</string>",
+      "decision": "corrected",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Whakaritea te tirohanga kia kitea te atahanga katoa",
+      "reviewed_raw_xml": "<string name=\"ui_fit_image\">\"Whakaritea te tirohanga kia kitea te atahanga katoa\"</string>",
+      "reviewed_backtranslation": "Adjust the view so that the whole image can be seen.",
+      "rationale": "Whakauru atahanga readily reads as Insert image. Use a viewing-purpose construction instead: adjust the view to reveal the whole image. It does not instruct the user to crop, import, resize image pixels, or replace content.",
+      "confidence": "medium-high",
+      "remaining_uncertainty": "The view-fit interpretation is inferred from the English UI label and the existing fit resource family, not established by a live caller or runtime observation. Descriptive length is unmeasured.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": [
+        "https://maoridictionary.co.nz/search?keywords=whakauru",
+        "https://maoridictionary.co.nz/search?keywords=tirohanga"
+      ]
+    },
+    {
+      "locale": "mi",
+      "tier": "P1",
+      "identity": "string/ui_foreground_background_colour_palette",
+      "key": "ui_foreground_background_colour_palette",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "Foreground %1$s, background %2$s. %3$s colour palette.",
+      "original_proposed_display": "Papamua %1$s, papamuri %2$s. Papa tae: %3$s.",
+      "original_proposed_raw_xml": "<string name=\"ui_foreground_background_colour_palette\">\"Papamua %1$s, papamuri %2$s. Papa tae: %3$s.\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Papamua %1$s, papamuri %2$s. Papa tae: %3$s.",
+      "reviewed_raw_xml": "<string name=\"ui_foreground_background_colour_palette\">\"Papamua %1$s, papamuri %2$s. Papa tae: %3$s.\"</string>",
+      "reviewed_backtranslation": "Foreground %1$s, background %2$s. Colour palette: %3$s.",
+      "rationale": "Accepted: foreground remains %1$s, background remains %2$s, and the named colour palette remains %3$s. The colon naturally separates the arbitrary palette name without inflecting it. Terminology agrees with the two swatch labels; no role or placeholder is swapped.",
+      "confidence": "medium-high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [
+          "%1$s",
+          "%2$s",
+          "%3$s"
+        ],
+        "reviewed": [
+          "%1$s",
+          "%2$s",
+          "%3$s"
+        ],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P1",
+      "identity": "string/ui_main23",
+      "key": "ui_main23",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "Main",
+      "original_proposed_display": "Matua",
+      "original_proposed_raw_xml": "<string name=\"ui_main23\">\"Matua\"</string>",
+      "decision": "accepted_unchanged",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Matua",
+      "reviewed_raw_xml": "<string name=\"ui_main23\">\"Matua\"</string>",
+      "reviewed_backtranslation": "Main / principal",
+      "rationale": "Accepted: Matua naturally conveys main/principal as a short tab or section label and does not incorrectly promise Home navigation.",
+      "confidence": "high",
+      "remaining_uncertainty": null,
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": []
+    },
+    {
+      "locale": "mi",
+      "tier": "P1",
+      "identity": "string/ui_pinch_and_pan_mode",
+      "key": "ui_pinch_and_pan_mode",
+      "catalogue_path": "Paintroid/src/main/res/values-b+mi/strings.xml",
+      "source_value": "Pinch and pan mode",
+      "original_proposed_display": "Aratau whakawhāiti matimati me te nuku i te tirohanga",
+      "original_proposed_raw_xml": "<string name=\"ui_pinch_and_pan_mode\">\"Aratau whakawhāiti matimati me te nuku i te tirohanga\"</string>",
+      "decision": "corrected",
+      "eligible_for_integration_as_wording_review_result": true,
+      "reviewed_display": "Aratau mō te topa mā ngā matimati e rua me te nuku i te tirohanga",
+      "reviewed_raw_xml": "<string name=\"ui_pinch_and_pan_mode\">\"Aratau mō te topa mā ngā matimati e rua me te nuku i te tirohanga\"</string>",
+      "reviewed_backtranslation": "Mode for zooming with two fingers and moving the view.",
+      "rationale": "Name zoom explicitly with topa and the two-finger interaction, then retain panning as nuku i te tirohanga. The draft only named narrowing the fingers and did not clearly state the zoom operation. The replacement covers zoom in/out without presenting image-pixel movement as the pan operation.",
+      "confidence": "medium-high",
+      "remaining_uncertainty": "Two-finger zoom is a functional description of pinch zoom, not a literal squeeze term. The indexed primary terminology evidence supports topa only; it does not certify this whole sentence or its UI fit.",
+      "placeholder_check": {
+        "source": [],
+        "reviewed": [],
+        "multiset_match": true
+      },
+      "xml_fragment_parse": "passed",
+      "nfc": "passed",
+      "android_quoting": "Outer double-quoted resource convention retained; no literal ASCII apostrophe or embedded double quote requiring additional escaping.",
+      "references": [
+        "https://paekupu.co.nz/words/wordlist/hangarau/maori-to-english",
+        "https://maoridictionary.co.nz/search?keywords=tirohanga"
+      ]
+    }
+  ]
+}
