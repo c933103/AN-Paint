@@ -7,7 +7,7 @@ from current_localization_contracts import fixture
 ROOT=Path(__file__).resolve().parents[1]
 FAMILY='basque_frisian_uzbek_priority_wording'
 TAGS=('eu-ES', 'fy', 'uz-Latn')
-FIXTURE_DIGESTS={'eu-ES': '08346eeead81a6ba6a6551b7b5b3263c1ff47f46215875d4818337a7878bd560', 'fy': '3606cab527b1823cc67d91fbde6ca7e739fac22a4776958399c1f85abccc1db3', 'uz-Latn': 'b095360f854d0e324215076d05169fa201c8c324636b1fa25cc636fe715910e5'}
+FIXTURE_DIGESTS={'eu-ES': '2519ddf5bfb67095b94a23df600e4d34d82aea7491ed5325f08a417f530f0a89', 'fy': '51b14daba8464bb861e79f1de856d6629f6ece9903c8e0a38a3f9d44513a2b2d', 'uz-Latn': '2dc82f3f2c33c57fd86d227981183a940991c6fe6d2dc067620623388a7efa17'}
 SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory',
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 

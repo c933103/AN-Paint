@@ -7,7 +7,7 @@ from current_localization_contracts import fixture
 ROOT=Path(__file__).resolve().parents[1]
 FAMILY='sindhi_nigerian_pidgin_tok_pisin_priority_wording'
 TAGS=('sd', 'pcm', 'tpi')
-FIXTURE_DIGESTS={'sd': '0dacb4cb426395ffc642334864f436d30539ec756e88ce713135f78fbda7be4a', 'pcm': '352b5a36fd6458f0d8bcc8b6c70a865c03f2f0878fb9c1b26877516197ca1172', 'tpi': 'dea5e76a084fba9ff5edcbefb9d1478d5329d9a03c7be2d0f047a05d0aa22417'}
+FIXTURE_DIGESTS={'sd': '7aa25c87bdc6c72b14aad8ff794ab3e397dfc109bd123b0e832c223ebc75fe37', 'pcm': 'fa2e23dab68bac9a435d53d95d9ba811476c7508b515ee058708aee0f9ec9a6d', 'tpi': '4a2315ba09baf7b03f7bfdc04ab56317c8350fcb88a7a38f1cf1f935f7bec4f2'}
 SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory',
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 

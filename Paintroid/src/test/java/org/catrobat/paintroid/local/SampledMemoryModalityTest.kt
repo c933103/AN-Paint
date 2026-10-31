@@ -31,7 +31,7 @@ class SampledMemoryModalityTest {
         .bufferedReader(Charsets.UTF_8).use { it.readText() }).getJSONObject("values")
     private fun tibetanWholeWarning(bytes: ByteArray = java.io.File("../tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/bo.json").readBytes()): String {
         val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete canonical Tibetan whole-value successor", "681547afa8a7d5502b182a33897ce6a2b6fc5dd1e7fbe27be0b7c101a624a0b9", digest)
+        assertEquals("Complete canonical Tibetan whole-value successor", "56294b702725366b1a149e64cd4f74f58106d83af999c425c431878351044904", digest)
         val row=JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject("values").getJSONObject("ui_sampled_resize_memory_explanation")
         assertEquals(historicalExpected.getString("bo"),row.getJSONObject("previous_target").getString("value"))
         assertEquals(historicalExpected.getString("default"),row.getJSONObject("source").getString("value"))

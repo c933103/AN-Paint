@@ -7,7 +7,7 @@ from current_localization_contracts import fixture
 ROOT=Path(__file__).resolve().parents[1]
 FAMILY='chhattisgarhi_yiddish_hong_kong_priority_wording'
 TAGS=('hne', 'yi', 'zh-HK')
-FIXTURE_DIGESTS={'hne': '4a9e73f5deaef33414aa3f20b8cfd40a8483439114d84198ea0db9360e2b7460', 'yi': '7db4fa3eea530afc621ef96f3e8867f22c8c29a018a8e68e0ceb6f946b3c26de', 'zh-HK': 'd251030aed22110f057a75cc955e42892e278b7f08abf5c6bb1673bb6027e776'}
+FIXTURE_DIGESTS={'hne': '9624c9413c62cef462bbcbd77fde8e03905ff0c847448d5687ec21a24da354a3', 'yi': '90a749c972b247e62acb374c599dbf09357bc1b04faf6f2e72d459e7a75da0b2', 'zh-HK': '32b3871932e80cbb740d973701b3503b860eb0a876bc45110f044c83444330d5'}
 SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory',
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 

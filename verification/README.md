@@ -54,3 +54,61 @@ remain active; routine CI does not require the historical files.
 New raw evidence belongs in CI artifacts or a dedicated evidence ref, with a
 short exact-source summary linked from the relevant PR. Normal CI must not
 fetch or reconstruct the historical archive.
+
+
+## Active priority contracts versus historical review bookkeeping
+
+The eight per-locale priority cohorts (Basque/Frisian/Uzbek; Cebuano/Low German/
+Kashubian; Chhattisgarhi/Yiddish/Hong Kong Chinese; Kazakh/Tajik/Pashto;
+Sindhi/Nigerian Pidgin/Tok Pisin; Sorani/Uyghur/Tatar; Tibetan/Dzongkha/Valencian;
+Walloon/Northern Sami/Sanskrit) retain current expected resources, not a second
+live copy of every historical review disposition.
+
+Original 24 fixtures remain recoverable at immutable commit
+[`f3d617d0`](https://github.com/c933103/AN-Paint/tree/f3d617d0ec83dcab20d9fd5287272207c17c8d51/tools/fixtures/current_localization),
+under the same family directories and locale filenames. No historical archive is
+fetched or reconstructed by CI, and no second 6 MB archive is added here.
+
+| Responsibility | Active coverage / archival disposition |
+| --- | --- |
+| Historical 8,184 `priority_rows` tier/decision records | Archived above; 6,178 edited values, 1,801 retained values and 205 absences map exactly to retained `values`, `original_catalogue` and held-absence contracts. All present historical value/attribute fields match those retained contracts. |
+| Accepted current wording, source, attributes, quantities, aliases and display | Every remaining fixture field is unchanged. All 6,451 edited-resource positive checks, retained-resource checks, complete compiled-value/formatting checks remain; distinct real consumer behavior is preserved as mapped below. |
+| Generic missing/text/attribute rejection | Each locale's string/plural and current-successor validation paths are exercised once: 54 representatives / 162 negative probes instead of 19,353 copies of the same three probes. This does not sample the positive wording checks. |
+| Fixture tampering | Existing coordinated fixture/target and source/predecessor corruption tests still reject altered fixture data through the shared digest validator. Eight repeated historical-disposition mutation methods are removed. |
+| Structural and special behavior | Existing duplicate/root/nested-child/plural-quantity/tail checks and finite successor, script, sampled-warning and option-specific cases are retained. |
+
+The 24 active fixture payloads shrink from 6,051,757 to 4,333,287 bytes by removing
+historical disposition duplication, not by minifying previously formatted data.
+This is a bounded reduction in active data and redundant test work, not a claim
+that the broader translation/test expansion has been resolved. Required CI and
+all app behavior remain unchanged; measured affected-run timings belong in the
+exact-source PR evidence, not an unqualified speedup claim.
+
+
+### Repeated animation integration checks
+
+The six removed instances of
+`realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting`
+are in `CebuanoLowGermanKashubianPriorityWordingTest`,
+`ChhattisgarhiYiddishHongKongPriorityWordingTest`,
+`KazakhTajikPashtoPriorityWordingTest`,
+`SindhiNigerianPidginTokPisinPriorityWordingTest`,
+`TibetanDzongkhaValencianPriorityWordingTest` and
+`WalloonNorthernSamiSanskritPriorityWordingTest`. Their bodies are identical to
+the surviving Basque/Frisian/Uzbek (LTR) and Sorani/Uyghur/Tatar (RTL) instances.
+
+- All 24 locales retain complete compiled checks for `formats22_at_least_frames`,
+  `formats22_animation_message`, `formats22_animation_still`,
+  `formats22_animation_title` and `formats22_open_still`, including typed `ui()`
+  formatting arguments. The source fixtures and every accepted value are intact.
+- The two representative methods retain the actual scanner, thread worker,
+  arbitrary exact counts 2/21 and lower-bound count 21, complete dialog text,
+  no selection before a decision, cancellation, staged-file deletion and worker
+  shutdown. Removing six repeated instances avoids 54 dialog/scanner executions.
+- `ImportSelectionTitleTest` independently retains exact GIF/WebP, capped/lower-
+  bound GIF, APNG poster/default-image distinctions, uncertain 0/1 states,
+  cancellation/dismissal, selected-file ownership transfer, single confirmation,
+  queued-disposal and default/fallback/localized consumer behavior.
+- These removed methods had no clipping, geometry or screenshot assertions. No
+  rendered-layout coverage is claimed. Five non-identical cohort variants and
+  all other product/locale tests are untouched.

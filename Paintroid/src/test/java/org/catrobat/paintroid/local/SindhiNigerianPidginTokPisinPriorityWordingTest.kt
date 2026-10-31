@@ -43,7 +43,7 @@ class SindhiNigerianPidginTokPisinPriorityWordingTest {
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
     private fun sdPcmTpiBoundFixture(tag: String): JSONObject {
-        val expected=mapOf("sd" to "f840cd827e87041fc42ef8ae5b4b748b860ca62262e79952307dd89b48f28076", "pcm" to "93c36a02dec7c0e1a4e29fbe510077e86fe082dd264c72bca27db764e7aff595", "tpi" to "8f35d511a03521cf92d8f035b1c9cc5548dd7c9abfb0f21234934484e3ab3f11")
+        val expected=mapOf("sd" to "e4ee8b86958733647c2c99d6a9584c0bc359ad518a70fa50bb74b8cd064ca815", "pcm" to "7420157c4b55993d389992d499e61f954088f9f4dbcc64ea526aa21d27fb836c", "tpi" to "8755958e111d5f9cdd2720aeb1a178106e46cae0029771a115417cc4ded87385")
         val bytes=File("../tools/fixtures/current_localization/sindhi_nigerian_pidgin_tok_pisin_priority_wording/$tag.json").readBytes()
         val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
         assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
@@ -203,33 +203,6 @@ class SindhiNigerianPidginTokPisinPriorityWordingTest {
         }
     }
 
-    @Test fun realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting() = forEachLocale { tag,activity ->
-        val worker=Executors.newSingleThreadExecutor();var selection:ImportSelection?=null
-        val files=mutableListOf<File>()
-        try {
-            for((count,exact) in listOf(2 to true,21 to true,21 to false)) {
-                val bytes=ByteArrayOutputStream().apply {
-                    write(Base64.getDecoder().decode("R0lGODlhAQABAIAAAAAAAP///w=="))
-                    repeat(count) { write(Base64.getDecoder().decode("LAAAAAABAAEAAAICRAEA")) }
-                    if(!exact) repeat(100_001) { write(byteArrayOf(0x21,0xfe.toByte(),1,0x78,0)) }
-                    write(0x3b)
-                }.toByteArray()
-                val file=File.createTempFile("priority-animation-",".gif",activity.cacheDir).apply {writeBytes(bytes)};files.add(file)
-                assertEquals(AnimationInfo("GIF",count,exact,false),AnimationInfo.inspect(file))
-                var selected=0;var cancelled=0;var failure:Throwable?=null
-                selection=ImportSelection(activity,worker,{0L},{selected++},{cancelled++},{failure=it})
-                selection.start(file,"source.gif");worker.submit {}.get(10,TimeUnit.SECONDS);shadowOf(Looper.getMainLooper()).idle()
-                assertNull(failure);val shown=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                val countText=if(exact) count.toString() else formatted(tag,"formats22_at_least_frames",count)
-                assertEquals(formatted(tag,"formats22_animation_message","GIF",countText)+"\n\n"+expected(tag,"formats22_animation_still"),shadowOf(shown).message.toString())
-                assertEquals(expected(tag,"formats22_animation_title"),shadowOf(shown).title.toString())
-                assertEquals(expected(tag,"formats22_open_still"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertTrue(file.exists());assertEquals(0,selected)
-                shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-                assertEquals(1,cancelled);assertEquals(0,selected);assertNull(failure);assertFalse(file.exists())
-            }
-        } finally {selection?.dispose();worker.shutdownNow();assertTrue(worker.awaitTermination(10,TimeUnit.SECONDS));files.forEach {it.delete()} }
-    }
 
     @Test fun nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy() = forEachLocale() { tag,activity ->
         val mib=1024L*1024

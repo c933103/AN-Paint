@@ -9,7 +9,7 @@ from current_localization_contracts import fixture
 ROOT=Path(__file__).resolve().parents[1]
 FAMILY='walloon_northern_sami_sanskrit_priority_wording'
 TAGS=('wa', 'se', 'sa')
-FIXTURE_DIGESTS={'wa': '724d1cb184d4bb88419c46171e95fb911e4f663115e2e3346580138321e60aa1', 'se': '22eb17ef5b4e177b6b6c50c3329b67b2dfd1c41b15116a5ed95e73bdb0704acf', 'sa': 'cdcb5061867b8970e2793535717fa3bb270c77fb86728621d4ad61e0e3c0847f'}
+FIXTURE_DIGESTS={'wa': '3954ea87b25d3321de003fe866f87bc21f08ddb6fc1ae0aaa82e9afa930e795b', 'se': 'ad3f3102e90140c419e8867539b0b22da247ebaf568866d76683f797767c043d', 'sa': 'dfa3b81c73526133596c413d2b6e8fe97b8f19323b5c30a8f469ee4444b31ed2'}
 SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory',
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 
