@@ -86,6 +86,20 @@ class CzechExtendedWordingTest {
         (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
             (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
 
+    @Test fun dormantManualResolvesCzechParagraphsThroughTheSelectedResources() {
+        // This key is not the active Help dialog. Check compiled selection and escapes,
+        // not a second full-text approval mirror or a claim of installed layout coverage.
+        val value = ui(R.string.ui_the_arrow_on_the_left_directly_below_the)
+        val paragraphs = value.split("\n\n")
+        assertEquals(10, paragraphs.size)
+        assertTrue(paragraphs.first().startsWith("Vyberte kartu Zobrazení"))
+        assertTrue(paragraphs[2].contains(czech.getString(R.string.ui_draw_again)))
+        assertTrue(paragraphs[7].contains(czech.getString(R.string.commons_blank_maps)))
+        assertTrue(paragraphs[8].contains("připojené obrázky se mohou posunout a vyplnit mezeru"))
+        assertTrue(paragraphs.last().endsWith("Kopírovat vše, Další podmínky a Hotovo."))
+        assertFalse(value.contains("\\n"))
+    }
+
     @Test fun allTwelveCommonsFailuresUseTheActualDispatcherAndKeepProviderDetailVerbatim() {
         val gallery = MediaGalleryActivity()
         val cases = listOf(

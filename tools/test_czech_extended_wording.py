@@ -69,4 +69,21 @@ class CzechExtendedWordingTests(unittest.TestCase):
                     'ui_save_png', 'ui_edit_in_paint', 'ui_menu_file', 'ui_about_credits23'):
             self.assertIn(s[key], value, key)
 
+    def test_legacy_manual_keeps_current_routes_and_conditional_safety_boundaries(self):
+        text = self.strings['ui_the_arrow_on_the_left_directly_below_the']
+        paragraphs = text.split(r'\n\n')
+        self.assertEqual(10, len(paragraphs))
+        labels = {k: v.strip('"') for k, v in self.strings.items()}
+        for key in ('ui_draw_again', 'commons_blank_maps', 'ui_assembly_exact_position',
+                    'ui_unplace', 'ui_show_all', 'ui_edit_in_paint', 'ui_magnifier33'):
+            self.assertIn(labels[key].rstrip('…'), text, key)
+        for paragraph, parts in {
+            1: ['průhledné oblasti odhalují stávající plátno', 'bílé pozadí', 'Původní zdrojové soubory zůstanou beze změny'],
+            3: ['aniž změní aktuální cíl příkazu Uložit', 'nebo označí kresbu za uloženou'],
+            8: ['počínaje nulou', 'ponechá ostatní obrázky na místě', 'dovoluje překrývání',
+                'Později importované obrázky se vykreslí navrchu', 'připojené obrázky se mohou posunout a vyplnit mezeru']
+        }.items():
+            for part in parts:
+                self.assertIn(part, paragraphs[paragraph])
+
 if __name__ == '__main__': unittest.main()
