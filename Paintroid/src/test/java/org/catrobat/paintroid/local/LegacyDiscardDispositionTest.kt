@@ -29,7 +29,7 @@ internal object LegacyDiscardExpectations {
 @Config(sdk=[33])
 class LegacyDiscardDispositionTest {
     @Test fun refinedPashtoAndUnchangedBasqueResolveExactlyInSelectedLocale() {
-        val app=RuntimeEnvironment.getApplication<android.app.Application>()
+        val app=RuntimeEnvironment.getApplication()
         val previousTag=AppLanguage.selectedTag(app)
         val previousResources=PaintApplication.currentResources
         val previousLocale=Locale.getDefault()
