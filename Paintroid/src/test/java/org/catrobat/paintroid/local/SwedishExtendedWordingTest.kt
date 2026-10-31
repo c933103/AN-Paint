@@ -6,6 +6,7 @@ import android.app.AlertDialog
 import android.app.LocaleManager
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Rect
 import android.os.LocaleList
@@ -83,6 +84,11 @@ class SwedishExtendedWordingTest {
         PaintApplication.currentResources = previousResources
         Locale.setDefault(previousLocale)
     }
+    private val manual by lazy {
+        JSONObject(File("../tools/fixtures/current_localization/swedish_legacy_manual_successor.json").readText())
+    }
+    private fun manualDisplay(field: String)=manual.getString(field).replace("\\n", "\n").replace("\\'", "'")
+
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
     private fun expected(key: String) = fixture.getJSONObject("values").getJSONObject(key).getString("sv")
         .removeSurrounding("\"").replace("\\n", "\n").replace("\\'", "'")
@@ -259,5 +265,36 @@ class SwedishExtendedWordingTest {
             try { assertTrue(worker.awaitTermination(10, TimeUnit.SECONDS)) }
             finally { controller.pause().stop().destroy() }
         }
+    }
+
+    // Dormant manual: complete compiled values, not an active Help-dialog claim.
+    @Test fun completeSwedishManualResolvesWithoutEnglishFallback() {
+        assertEquals("sv",AppLanguage.selectedTag(swedish))
+        val actual=swedish.getString(R.string.ui_the_arrow_on_the_left_directly_below_the)
+        assertEquals(manualDisplay("swedish"),actual)
+        assertEquals(10,actual.split("\n\n").size)
+        assertNotEquals(manualDisplay("source"),actual)
+        assertNotEquals(actual,swedish.getString(R.string.ui_help23))
+        assertEquals("Huvud",swedish.getString(R.string.ui_main23))
+        assertTrue(actual.contains("Fästa bilder kan flyttas för att fylla luckan."))
+        assertTrue(actual.contains("befintliga ritytan"))
+        assertTrue(actual.contains("Visa > Förstoringsglas kan du aktivera"))
+    }
+
+    @Test fun completeDefaultManualCompilesIncludingLiteralPercentAndParagraphs() {
+        // An unmatched language isolates values/, rather than an existing regional
+        // English catalogue with its separately retained historical translation.
+        val app=RuntimeEnvironment.getApplication()
+        val context=app.createConfigurationContext(Configuration(app.resources.configuration).apply {
+            setLocale(Locale("zz"))
+        })
+        val actual=context.getString(R.string.ui_the_arrow_on_the_left_directly_below_the)
+        assertEquals(manualDisplay("source"),actual)
+        assertEquals(10,actual.split("\n\n").size)
+        assertTrue(actual.contains("100%"))
+        assertTrue(actual.contains("that tab's controls"))
+        assertNotEquals(manualDisplay("previous_source"),actual)
+        assertTrue(actual.contains("selection edits can be undone"))
+        assertFalse(actual.contains("one undoable selection edit"))
     }
 }
