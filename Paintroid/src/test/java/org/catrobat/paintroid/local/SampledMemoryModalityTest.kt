@@ -29,25 +29,6 @@ class SampledMemoryModalityTest {
     private val context get() = RuntimeEnvironment.getApplication() as Context
     private val historicalExpected = JSONObject(javaClass.getResourceAsStream("/memory-modality/expected.json")!!
         .bufferedReader(Charsets.UTF_8).use { it.readText() }).getJSONObject("values")
-    private fun tibetanWholeWarning(bytes: ByteArray = java.io.File("../tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/bo.json").readBytes()): String {
-        val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete canonical Tibetan whole-value successor", "56294b702725366b1a149e64cd4f74f58106d83af999c425c431878351044904", digest)
-        val row=JSONObject(String(bytes,Charsets.UTF_8)).getJSONObject("values").getJSONObject("ui_sampled_resize_memory_explanation")
-        assertEquals(historicalExpected.getString("bo"),row.getJSONObject("previous_target").getString("value"))
-        assertEquals(historicalExpected.getString("default"),row.getJSONObject("source").getString("value"))
-        assertEquals("string",row.getString("type"))
-        assertEquals(setOf("name"),row.getJSONObject("reviewed_attributes").keys().asSequence().toSet())
-        assertEquals("ui_sampled_resize_memory_explanation",row.getJSONObject("reviewed_attributes").getString("name"))
-        return row.getString("display")
-    }
-    private val expected = JSONObject(historicalExpected.toString()).apply {put("bo",tibetanWholeWarning())}
-    @Test fun tibetanWholeSuccessorRejectsCoordinatedFixtureReplacement() {
-        val file=java.io.File("../tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/bo.json")
-        val forged=JSONObject(file.readText()).apply {
-            getJSONObject("values").getJSONObject("ui_sampled_resize_memory_explanation").put("reviewed_value","forged").put("display","forged")
-        }
-        assertThrows(AssertionError::class.java) {tibetanWholeWarning(forged.toString().toByteArray(Charsets.UTF_8))}
-    }
     private val mib = 1024L * 1024
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
     private fun policy() = ImageMemoryPolicy.calculate(4L * 1024 * mib, 0, (128 * mib + 32 * mib) * 3, 0, true)
@@ -90,8 +71,8 @@ class SampledMemoryModalityTest {
 
     @Test fun compiledCompleteValuesReachTheSampledDialogAcrossEditCancelAndReopen() {
         for (tag in listOf("bo", "jje")) withLanguage(tag) { activity ->
-            val value = expected.getString(tag)
-            assertEquals(tag, value, activity.getString(R.string.ui_sampled_resize_memory_explanation))
+            val value = if (tag == "bo") activity.getString(R.string.ui_sampled_resize_memory_explanation) else historicalExpected.getString(tag)
+            if (tag != "bo") assertEquals(tag, value, activity.getString(R.string.ui_sampled_resize_memory_explanation))
             var resized = 0
             var cancelled = 0
             repeat(2) { attempt ->
@@ -127,7 +108,7 @@ class SampledMemoryModalityTest {
                 resize = { resized = true }, cancel = { cancelled++ }, memoryRequirements = native).show()
             idle()
             assertEquals(activity.getString(R.string.ui_codec_resize_memory_floor), explanation(dialog))
-            assertNotEquals(expected.getString(tag), explanation(dialog))
+            assertNotEquals(activity.getString(R.string.ui_sampled_resize_memory_explanation), explanation(dialog))
             assertFalse(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             idle()

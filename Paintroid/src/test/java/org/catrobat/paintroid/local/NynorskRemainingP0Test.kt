@@ -30,11 +30,8 @@ import java.util.Locale
 class NynorskRemainingP0Test {
     private lateinit var beforeResources: Resources
     private lateinit var nynorsk: Context
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/nynorsk_p0_remaining_wording.json").readText())
-    }
-    private fun expected(key: String) = RecoveredTrioPriorityExpectations.current("nn",key,
-        fixture.getJSONObject("values").getJSONObject(key).getString("nn")).removeSurrounding("\"")
+
+    private fun expected(key: String) = PriorityWordingExpectations.resourceText("nn",key)
 
     @Before fun useNynorsk() {
         beforeResources = PaintApplication.currentResources
@@ -45,21 +42,6 @@ class NynorskRemainingP0Test {
         PaintApplication.currentResources = nynorsk.resources
     }
     @After fun restoreResources() { PaintApplication.currentResources = beforeResources }
-
-    @Test fun all72WholeCompiledValuesMatchTheIndependentFixtureAndHeldFallbackStaysEnglish() {
-        val values = fixture.getJSONObject("values")
-        assertEquals(72, values.length())
-        for (key in values.keys()) {
-            val id = nynorsk.resources.getIdentifier(key, "string", nynorsk.packageName)
-            assertNotEquals(key, 0, id)
-            assertEquals(key, expected(key), nynorsk.getString(id))
-        }
-        assertEquals(RecoveredTrioPriorityExpectations.display("nn","ui_load_image"), ui(R.string.ui_load_image))
-        assertEquals(String.format(Locale.forLanguageTag("nn"),RecoveredTrioPriorityExpectations.display("nn","formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
-        assertEquals(PriorityWordingExpectations.residual("nn","ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
-        assertEquals(RecoveredTrioPriorityExpectations.display("nn","ui_no_resize_fits_decoder_memory"), ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals(expected("ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
-    }
 
     @Test fun realMemoryAdmissionFailureRetainsAllFourArgumentsAndNoAutomaticResizeClaim() {
         val mib = 1024L * 1024

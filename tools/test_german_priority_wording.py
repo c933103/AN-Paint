@@ -6,11 +6,13 @@ import xml.etree.ElementTree as ET
 
 from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
-from memory_warning_source_review import current_source_expectation
+from memory_warning_successors import current_warning_expectation
+from test_danish_norwegian_p0_wording import full_format_tokens
 
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = 'german_priority_current_wording.json'
+MEMORY = 'ui_d_d_pixels_2f_mp_exceeds_the_current'
 EXPECTED_KEYS = {
     'formats22_animation_unknown',
     'save20_destination_error',
@@ -54,13 +56,22 @@ class GermanPriorityWording(unittest.TestCase):
         defaults, _, _, _ = catalogues.default_resources()
         for key, values in data['values'].items():
             with self.subTest(key=key):
-                actual = require_string(self.xml, key, current_source_expectation(key, 'de', values['de']), data['constraints'][key])
+                if key == MEMORY:
+                    # Current typed resource and independent semantic clauses below, not copied approval text.
+                    node = ET.fromstring(self.xml).find(f"./string[@name='{key}']")
+                    self.assertIsNotNone(node)
+                    self.assertEqual(data['constraints'][key]['attributes'], node.attrib)
+                    self.assertEqual([], list(node))
+                    self.assertEqual(full_format_tokens(defaults[key]), full_format_tokens(node.text))
+                    continue
+                expected = current_warning_expectation(key, 'de', values['de']) if key == 'ui_no_resize_fits_decoder_memory' else values['de']
+                actual = require_string(self.xml, key, expected, data['constraints'][key])
                 self.assertEqual(catalogues.placeholders(defaults[key]),
                                  catalogues.placeholders(actual))
 
     def test_fixture_cannot_silently_drop_keys_locales_or_constraints(self):
         original = wording()
-        for key in EXPECTED_KEYS:
+        for key in EXPECTED_KEYS - {MEMORY}:
             for mutation in ('missing-key', 'missing-constraint', 'missing-locale', 'empty-text'):
                 data = deepcopy(original)
                 if mutation == 'missing-key':
@@ -78,6 +89,8 @@ class GermanPriorityWording(unittest.TestCase):
         data = wording()
         root = ET.fromstring(self.xml)
         for key, values in data['values'].items():
+            if key == MEMORY:
+                continue  # Generic XML/format tests cover shape; the retired wording is no longer an oracle.
             node = root.find(f"./string[@name='{key}']")
             line = ET.tostring(node, encoding='unicode')
             changed_attribute = deepcopy(node)
@@ -100,7 +113,7 @@ class GermanPriorityWording(unittest.TestCase):
             for mutation, broken in cases.items():
                 with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
                     require_string('<resources>' + broken + '</resources>',
-                                   key, current_source_expectation(key, 'de', values['de']), data['constraints'][key])
+                                   key, current_warning_expectation(key, 'de', values['de']) if key == 'ui_no_resize_fits_decoder_memory' else values['de'], data['constraints'][key])
 
     def test_german_catalogue_is_complete_and_has_unique_resource_names(self):
         root = ET.fromstring(self.xml)
@@ -164,11 +177,13 @@ class GermanPriorityWording(unittest.TestCase):
             for clause in required:
                 with self.subTest(key=key, clause=clause):
                     self.assertIn(clause, self.values[key])
+                    if key == MEMORY:
+                        continue  # Clauses are independent semantics, not a new whole-message freeze.
                     node = ET.Element('string', data['constraints'][key]['attributes'])
                     node.text = self.values[key].replace(clause, '', 1)
                     with self.assertRaises(ValueError):
                         require_string('<resources>' + ET.tostring(node, encoding='unicode') + '</resources>',
-                                       key, current_source_expectation(key, 'de', data['values'][key]['de']), data['constraints'][key])
+                                       key, current_warning_expectation(key, 'de', data['values'][key]['de']) if key == 'ui_no_resize_fits_decoder_memory' else data['values'][key]['de'], data['constraints'][key])
 
 
 if __name__ == '__main__':

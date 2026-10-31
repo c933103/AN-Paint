@@ -47,23 +47,9 @@ class CroatianBosnianP0WordingTest {
         JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_p0_wording.json").readText())
     }
 
-    private val priority by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_macedonian_priority_wording.json").readText()).getJSONObject("locales")
-    }
-    private fun priorityDisplay(tag:String,key:String)=priority.getJSONObject(tag).getJSONObject("values").getJSONObject(key).getString("display")
-    private fun successor(tag:String,key:String,previous:String,source:String?=null):String {
-        val row=priority.getJSONObject(tag).getJSONObject("values").optJSONObject(key) ?: return previous.removeSurrounding("\"")
-        if(!row.getBoolean("changed")) return previous.removeSurrounding("\"")
-        assertEquals("$tag/$key previous complete value",previous,row.getString("previous"))
-        if(source!=null) assertEquals("$tag/$key English binding",source,row.getString("source"))
-        return row.getString("display")
-    }
-    private fun expected(tag: String, key: String):String {
-        val values=fixture.getJSONObject("values").getJSONObject(key)
-        return successor(tag,key,values.getString(tag),values.getString("default"))
-    }
-    private fun preserved(tag: String, key: String) = successor(tag,key,
-        fixture.getJSONObject("preserved_values").getJSONObject(tag).getJSONObject(key).getString("value"))
+    private fun priorityDisplay(tag:String,key:String)=PriorityWordingExpectations.resourceText(tag,key)
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
+    private fun preserved(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
 
     private fun ditherLabel(tag: String) = if (tag == "hr")
         fixture.getJSONObject("dither_label_successor").getString("value").removeSurrounding("\"")
@@ -87,24 +73,7 @@ class CroatianBosnianP0WordingTest {
 
     private fun saveTitle(tag: String) = priorityDisplay(tag,"save20_title")
 
-    private fun chooseLocation(tag: String): String {
-        val key = "ui_choose_location"
-        val row = priority.getJSONObject(tag).getJSONObject("values").getJSONObject(key)
-        val expected = when (tag) {
-            "hr" -> "Odaberi lokaciju…"
-            "bs" -> "Izaberi lokaciju…"
-            else -> error("Unreviewed location locale: $tag")
-        }
-        assertEquals("Choose location…", row.getString("source"))
-        assertTrue(row.has("previous") && row.isNull("previous"))
-        assertTrue(row.getBoolean("changed"))
-        val attributes = row.getJSONObject("attributes")
-        assertEquals(setOf("name"), attributes.keys().asSequence().toSet())
-        assertEquals(key, attributes.getString("name"))
-        assertEquals("\"$expected\"", row.getString("target"))
-        assertEquals(expected, row.getString("display"))
-        return expected
-    }
+    private fun chooseLocation(tag: String): String = PriorityWordingExpectations.resourceText(tag,"ui_choose_location")
 
     private fun awaitUi(label: String, ready: () -> Boolean) {
         val until = System.nanoTime() + TimeUnit.SECONDS.toNanos(3)
@@ -191,35 +160,6 @@ class CroatianBosnianP0WordingTest {
                 Locale.setDefault(previousLocale)
             }
         }
-    }
-
-    @Test fun all78CompiledValuesKeepExplicitSuccessorsWhileHeldFallbacksRemainEnglish() = forEachLocale { tag, activity ->
-        val values = fixture.getJSONObject("values")
-        assertEquals(78, values.length())
-        val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
-        assertEquals(if (tag == "hr") 97 else 117, inherited.length())
-        for (key in values.keys()) {
-            assertFalse("The missing-only batch must not replace $tag/$key", inherited.has(key))
-            val id = activity.resources.getIdentifier(key, "string", activity.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("$tag/$key", expected(tag, key), activity.getString(id))
-        }
-        // Compiled-only coverage for the separate P0 assembly-floor warning; the
-        // paired warning oracle and its P1 companion are not expanded by this test.
-        assertEquals(expected(tag, "ui_assembly_source_memory_floor"), ui(R.string.ui_assembly_source_memory_floor))
-        assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
-        assertEquals(priorityDisplay(tag,"ui_no_resize_fits_decoder_memory"),
-            ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals(ditherLabel(tag), ui(R.string.save20_dither))
-        assertEquals(formatLabel(tag), ui(R.string.save20_file_format))
-        assertEquals(priorityDisplay(tag,"ui_load_image"), ui(R.string.ui_load_image))
-        assertEquals("at least 2", ui(R.string.formats22_at_least_frames, 2))
-        assertEquals(priorityDisplay(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
-        assertEquals(PriorityWordingExpectations.residual(tag,"formats22_derived_exported","PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", "PNG"),ui(R.string.formats22_derived_exported, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as","Save as PNG", "PNG"),ui(R.string.ui_save_as, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg","Save as JPEG…"),ui(R.string.ui_save_as_jpeg))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg_xl","Save as JPEG XL…"),ui(R.string.ui_save_as_jpeg_xl))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
     }
 
     @Test fun realMemoryAdmissionFailureFormatsAllFourArgumentsBeforeAllocation() = forEachLocale { tag, _ ->

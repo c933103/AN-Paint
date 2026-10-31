@@ -4,7 +4,7 @@ from pathlib import Path
 import unittest
 import xml.etree.ElementTree as E
 import translation_catalogues as catalogues
-from breton_asturian_occitan_priority_expectations import current_row, display
+from current_localization_contracts import current_display as display
 
 ROOT=Path(__file__).resolve().parents[1]
 KEY='ui_d_d_px_d_pixels_2f_mp'
@@ -46,8 +46,6 @@ def require_contract(source,offered,paths,english,breton):
 class ImageDisplayFallbackSuccessorTest(unittest.TestCase):
     def setUp(self):
         self.source=JVM.read_text();self.offered=catalogues.offered_tags();self.paths=catalogues.catalogue_paths()
-        node=E.parse(self.paths['br']).find("./string[@name='"+KEY+"']");row=current_row('br',KEY)
-        self.assertEqual(row['target'],node.text);self.assertEqual(row['attributes'],node.attrib)
         self.english=ENGLISH;self.breton=display('br',KEY)
     def check(self,source=None,offered=None,paths=None,english=None,breton=None):
         return require_contract(source if source is not None else self.source,

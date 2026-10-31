@@ -9,6 +9,7 @@ import json
 import re
 import unittest
 import xml.etree.ElementTree as ET
+from current_localization_contracts import current_display
 
 ROOT = Path(__file__).resolve().parents[1]
 METHOD = 'yiddishUsesItsWholeCatalogueAcrossRealPickerSwitchesAndRotation'
@@ -59,8 +60,7 @@ def require_probe(source, yiddish, english):
 
 class YiddishResourcePackagingTest(unittest.TestCase):
     def controls(self):
-        fixture=json.loads((ROOT/'tools/fixtures/current_localization/chhattisgarhi_yiddish_hong_kong_priority_wording/yi.json').read_text())
-        yi={k:fixture['values'][k]['display'] for k in ('ui_save','save20_unsupported_image_colour')}
+        yi={k:current_display('yi',k) for k in ('ui_save','save20_unsupported_image_colour')}
         en={e.get('name'):e.text for e in ET.parse(ROOT/'Paintroid/src/main/res/values-en-rUS/strings.xml').getroot()}
         return yi,en
 

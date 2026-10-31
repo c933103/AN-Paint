@@ -164,7 +164,7 @@ class ImportSelectionTitleTest {
     @Test fun nynorskAnimationWarningsRetainUncertainAndMixedCountSemanticsInRealDialogs() {
         language("nn")
         val lowerBound = String.format(Locale.forLanguageTag("nn"),
-            RecoveredTrioPriorityExpectations.display("nn","formats22_at_least_frames"),2)
+            PriorityWordingExpectations.resourceText("nn","formats22_at_least_frames"),2)
         assertEquals(lowerBound,ui(R.string.formats22_at_least_frames,2))
         var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
         cancel(warning("Opna stillbilete", "Dette GIF-biletet er for komplekst til å stadfesta om det har fleire biletruter. AN Paint opnar berre eit stillbilete og tek ikkje vare på nokon animasjon.", "Opna stillbilete"), file)
@@ -181,19 +181,17 @@ class ImportSelectionTitleTest {
         assertTrue("Confirmed import transfers ownership rather than deleting the original staged file", file.exists())
     }
 
-    @Test fun danishAndNorwegianAnimationWarningsUseReviewedBodiesAndKeepRealDecisionSemantics() {
-        val values = NordicPriorityExpectations.project(JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText()))
-            .getJSONObject("values")
+    @Test fun danishAndNorwegianAnimationWarningsKeepCurrentBodiesAndRealDecisionSemantics() {
         for (tag in listOf("da", "no")) {
             language(tag)
-            fun expected(key: String) = values.getJSONObject(key).getString(tag).removeSurrounding("\"")
+            fun expected(key: String) = PriorityWordingExpectations.resourceText(tag,key)
             fun formatted(key: String, vararg arguments: Any) = String.format(Locale.forLanguageTag(tag), expected(key), *arguments)
             val open = expected("formats22_open_still")
             val animated = expected("formats22_animation_title")
             var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
             cancel(warning(open, formatted("formats22_animation_unknown", "GIF"), open), file)
             val lowerBound = String.format(Locale.forLanguageTag(tag),
-                NordicPriorityExpectations.display(tag, "formats22_at_least_frames"), 2)
+                PriorityWordingExpectations.resourceText(tag, "formats22_at_least_frames"), 2)
             assertEquals(lowerBound, ui(R.string.formats22_at_least_frames, 2))
             file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
             cancel(warning(animated, formatted("formats22_animation_message", "GIF", lowerBound) +
@@ -212,20 +210,17 @@ class ImportSelectionTitleTest {
     }
 
     @Test fun catalanAndRomanianAnimationWarningsKeepMixedCountsAndRealImportDecisions() {
-        val values = JSONObject(File("../tools/fixtures/current_localization/catalan_romanian_import_wording.json").readText())
-            .getJSONObject("values")
         for (tag in listOf("ca", "ro")) {
             language(tag)
             assertEquals(tag, AppLanguage.selectedTag(activity))
-            fun expected(key: String) = SkSlCaPriorityExpectations.current(
-                tag, key, values.getJSONObject(key).getString(tag)).removeSurrounding("\"")
+            fun expected(key: String) = PriorityWordingExpectations.resourceText(tag, key)
             fun formatted(key: String, vararg arguments: Any) = String.format(Locale.forLanguageTag(tag), expected(key), *arguments)
             val open = expected("formats22_open_still")
             val animated = expected("formats22_animation_title")
             var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
             cancel(warning(open, formatted("formats22_animation_unknown", "GIF"), open), file)
             val countText = String.format(
-                Locale.forLanguageTag(tag), SkSlCaPriorityExpectations.display(tag, "formats22_at_least_frames"), 2)
+                Locale.forLanguageTag(tag), PriorityWordingExpectations.resourceText(tag, "formats22_at_least_frames"), 2)
             assertEquals(countText, ui(R.string.formats22_at_least_frames, 2))
             file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
             cancel(warning(animated, formatted("formats22_animation_message", "GIF", countText) +

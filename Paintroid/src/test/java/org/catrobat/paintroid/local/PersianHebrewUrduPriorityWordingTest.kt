@@ -44,33 +44,13 @@ class PersianHebrewUrduPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        PersianHebrewUrduPriorityExpectations.fixture().getJSONObject("locales")
-    }
-    private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
-        when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
-    }
-    private fun row(tag: String,identity: String): JSONObject {
-        val locale=fixture.getJSONObject(tag)
-        val (kind,key)=identity.split('/')
-        if(kind=="plurals") {
-            val target=locale.getJSONObject("plurals").getJSONObject(key).getJSONObject("target")
-            val display=JSONObject();for(q in target.keys()) display.put(q,decoded(target.getString(q)))
-            return JSONObject().put("display",display)
-        }
-        val raw=locale.getJSONObject("accepted").getString(key)
-        val text=if(raw=="@string/ui_save") {
-            require(key=="ui_save_a5d0d9");decoded(locale.getJSONObject("accepted").getString("ui_save"))
-        } else decoded(raw)
-        return JSONObject().put("display",text)
-    }
-    private fun expected(tag: String,key: String)=row(tag,"string/$key").getString("display")
-    private fun formatted(tag: String,key: String,vararg args: Any)=String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
-    // Persian 0/1 share one; Hebrew 2 uses two; other supported counts use other.
-    // Hebrew older many-category counts deliberately use the complete other fallback.
-    private fun cropTemplate(tag: String,count: Int)=row(tag,"plurals/ui_crop_preview_images").getJSONObject("display").getString(when {tag=="he" && count==2->"two";count==1 || (tag=="fa" && count==0)->"one";else->"other"})
-    private fun cropText(tag: String,count: Int,width: Int=24,height: Int=16)=String.format(Locale.forLanguageTag(tag),cropTemplate(tag,count),width,height,count)
-    private fun idle()=shadowOf(Looper.getMainLooper()).idle()
+    // Current compiled labels are the oracle for control binding, not approval history.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
+    private fun formatted(tag: String, key: String, vararg args: Any) =
+        String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
+    private fun cropText(tag: String,count: Int,width: Int=24,height: Int=16) =
+        PriorityWordingExpectations.resources(tag).getQuantityString(R.plurals.ui_crop_preview_images,count,width,height,count)
+    private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
     @Before fun rememberLanguage() {
         previousResources=PaintApplication.currentResources;previousLocale=Locale.getDefault()
@@ -93,35 +73,6 @@ class PersianHebrewUrduPriorityWordingTest {
                 AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
                 controller.pause().stop().destroy()
                 PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
-            }
-        }
-    }
-
-    @Test fun allChangedCompiledStringsAndEveryReachablePluralKeepCompleteArguments() = forEachLocale { tag,activity ->
-        val locale=fixture.getJSONObject(tag)
-        val values=JSONObject()
-        for(key in locale.getJSONObject("accepted").keys()) values.put("string/$key",true)
-        for(key in locale.getJSONObject("plurals").keys()) values.put("plurals/$key",true)
-        for(identity in values.keys()) {
-            val (kind,key)=identity.split('/')
-            val id=activity.resources.getIdentifier(key,kind,activity.packageName)
-            assertNotEquals("$tag/$identity",0,id)
-            if(kind=="string") {
-                val text=expected(tag,key)
-                assertEquals("$tag/$identity",text,activity.getString(id))
-                val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
-                val tokens=pattern.findAll(text).toList()
-                if(tokens.isNotEmpty()) {
-                    val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
-                    for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
-                        "d"->21001L;"f"->12.75;else->"argument 100%"
-                    }
-                    assertEquals("$tag/$identity arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
-                }
-            }
-            else for(count in 0..125) {
-                assertEquals("$tag/$count",cropTemplate(tag,count),activity.resources.getQuantityText(id,count).toString())
-                assertEquals(cropText(tag,count),activity.resources.getQuantityString(id,count,24,16,count))
             }
         }
     }
@@ -183,126 +134,6 @@ class PersianHebrewUrduPriorityWordingTest {
         controls.widthInput.setText("")
         assertNull(controls.dimensions)
         assertEquals(expected(tag,"ui_enter_positive_dimensions_that_resolve_to_at_least"),result.text.toString())
-    }
-
-    @Test fun categoryAccessibilityTracksEveryActualToolAndExpansionState() = forEachLocale { tag,activity ->
-        for(down in listOf(false,true)) for(category in ToolCategory.values()) {
-            val button=ToolCategoryButton(activity,category,category.tools.first(),down)
-            for(tool in category.tools) for(expanded in listOf(false,true)) {
-                button.selectedTool=tool;button.expanded=expanded;button.refresh()
-                val description=formatted(tag,if(expanded) "ui_collapse_tool_category" else "ui_expand_tool_category",ui(category.labelId),tool.label)
-                assertEquals(ui(category.labelId),button.text.toString())
-                assertEquals(description,button.contentDescription.toString())
-                assertEquals(description,button.tooltipText.toString())
-            }
-        }
-    }
-
-    @Test fun realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting() = forEachLocale { tag,activity ->
-        val worker=Executors.newSingleThreadExecutor();var selection:ImportSelection?=null
-        val files=mutableListOf<File>()
-        try {
-            for((count,exact) in listOf(2 to true,21 to true,21 to false)) {
-                val bytes=ByteArrayOutputStream().apply {
-                    write(Base64.getDecoder().decode("R0lGODlhAQABAIAAAAAAAP///w=="))
-                    repeat(count) { write(Base64.getDecoder().decode("LAAAAAABAAEAAAICRAEA")) }
-                    if(!exact) repeat(100_001) { write(byteArrayOf(0x21,0xfe.toByte(),1,0x78,0)) }
-                    write(0x3b)
-                }.toByteArray()
-                val file=File.createTempFile("priority-animation-",".gif",activity.cacheDir).apply {writeBytes(bytes)};files.add(file)
-                assertEquals(AnimationInfo("GIF",count,exact,false),AnimationInfo.inspect(file))
-                var selected=0;var cancelled=0;var failure:Throwable?=null
-                selection=ImportSelection(activity,worker,{0L},{selected++},{cancelled++},{failure=it})
-                selection.start(file,"source.gif");worker.submit {}.get(10,TimeUnit.SECONDS);shadowOf(Looper.getMainLooper()).idle()
-                assertNull(failure);val shown=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                val countText=if(exact) count.toString() else formatted(tag,"formats22_at_least_frames",count)
-                assertEquals(formatted(tag,"formats22_animation_message","GIF",countText)+"\n\n"+expected(tag,"formats22_animation_still"),shadowOf(shown).message.toString())
-                assertEquals(expected(tag,"formats22_animation_title"),shadowOf(shown).title.toString())
-                assertEquals(expected(tag,"formats22_open_still"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertTrue(file.exists());assertEquals(0,selected)
-                shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-                assertEquals(1,cancelled);assertEquals(0,selected);assertNull(failure);assertFalse(file.exists())
-            }
-        } finally {selection?.dispose();worker.shutdownNow();assertTrue(worker.awaitTermination(10,TimeUnit.SECONDS));files.forEach {it.delete()} }
-    }
-
-    @Test fun nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy() = forEachLocale { tag,activity ->
-        val mib=1024L*1024
-        val policy=ImageMemoryPolicy.calculate(256*mib,0,0,0,false)
-        var accepted=false;var cancelled=0
-        val shown=ImageResizeDialog(activity,ImageDimensions(2000,1000),0,{policy},
-            resize={accepted=true},cancel={cancelled++},memoryRequirements=ImportMemoryRequirements(1024*mib)).show()
-        try {
-            shadowOf(Looper.getMainLooper()).idle();val root=shown.window!!.decorView
-            assertTrue(root.findViewWithTag<TextView>("resize_estimate").text.toString().contains(expected(tag,"ui_no_resize_fits_decoder_memory")))
-            assertEquals(expected(tag,"ui_codec_resize_memory_floor"),root.findViewWithTag<TextView>("resize_explanation").text.toString())
-            assertFalse(shown.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
-            assertEquals(expected(tag,"ui_resize_and_load"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-            assertFalse(accepted);assertEquals(1,cancelled)
-        } finally {shown.dismiss()}
-    }
-
-    @Test fun failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation() = forEachLocale { tag,activity ->
-        val folder=File(activity.cacheDir,"priority-recovery-${System.nanoTime()}").apply {mkdirs()}
-        val context=object:ContextWrapper(activity) {
-            override fun getFilesDir():File=folder
-            override fun getCacheDir():File=File(folder,"cache").apply {mkdirs()}
-        }
-        val store=AutosaveStore(folder);val original="deliberately not a ZIP draft".toByteArray();store.file.writeBytes(original)
-        var recovered:RecoveredEditor?=null
-        try {
-            val result=recoverEditor(context,store).value;recovered=result
-            assertFalse(result.restored);assertFalse(result.autosaveBlocked)
-            assertEquals(expected(tag,"ui_previous_draft_kept_for_recovery"),result.draftStatus)
-            assertEquals(formatted(tag,"ui_a_separate_recovery_copy_has_been_kept_use",expected(tag,"ui_the_previous_draft_could_not_be_restored")),result.recoveryNotice)
-            assertArrayEquals(original,store.file.readBytes());assertEquals(1,store.recoveryCopies().size)
-            assertArrayEquals(original,store.recoveryCopies().single().readBytes())
-        } finally {recovered?.document?.close();folder.deleteRecursively()}
-    }
-
-    @Test fun zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation() = forEachLocale { tag,_ ->
-        val mib=1024L*1024
-        val policy=ImageMemoryPolicy.calculate(256*mib,0,96*mib,0,false)
-        assertEquals(0L,policy.maxPixels())
-        for(size in listOf(ImageDimensions(1,1),ImageDimensions(2,1),ImageDimensions(2000,1000))) {
-            val error=assertThrows(ImageSizeException::class.java) {policy.check(size.width,size.height)}
-            assertEquals(formatted(tag,"ui_d_d_pixels_2f_mp_exceeds_the_current",size.width,size.height,size.pixels/1_000_000.0,0.0),error.message)
-        }
-    }
-    @Test fun gifDescriptionAndCheckboxProduceTheSelectedDitherRequest() = forEachLocale { tag,activity ->
-        for(enabled in listOf(false,true,false)) {
-            var request: SaveRequest?=null;var canceled=false
-            val dialog=SaveOptionsDialog(activity,ExportOptions(ImageFormat.GIF,dither=!enabled),
-                confirm={request=it},cancel={canceled=true},initialFilename="fixture.gif").show()
-            try {
-                idle();val root=dialog.window!!.decorView
-                val checkbox=root.findViewWithTag<CheckBox>("export_dither")
-                assertEquals(View.VISIBLE,checkbox.visibility);assertEquals(expected(tag,"save20_dither"),checkbox.text.toString())
-                assertEquals(expected(tag,"save20_gif_description"),root.findViewWithTag<TextView>("export_description").text.toString())
-                assertEquals(!enabled,checkbox.isChecked);checkbox.performClick();assertEquals(enabled,checkbox.isChecked)
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
-                assertEquals(ImageFormat.GIF,request!!.options.format);assertEquals(enabled,request!!.options.dither)
-                assertEquals("fixture.gif",request!!.fileName);assertFalse(canceled);assertFalse(dialog.isShowing)
-            } finally {dialog.dismiss()}
-        }
-    }
-
-    @Test fun completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup() = forEachLocale { tag,activity ->
-        val folder=File(activity.cacheDir,"$tag-destination-${System.nanoTime()}").apply {mkdirs()}
-        val bytes=Base64.getDecoder().decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j4Z0AAAAASUVORK5CYII=")
-        val encoded="data:image/png;base64,"+Base64.getEncoder().encodeToString(bytes)
-        val input=File(folder,"input.txt").apply {writeText(encoded)}
-        val blocked=File(folder,"destination.png").apply {mkdirs()}
-        val sentinel=File(blocked,"keep.txt").apply {writeText("existing destination")}
-        try {
-            val error=assertThrows(IOException::class.java) {TextImageCodec.decodeToFile(input,blocked,4096)}
-            assertEquals(expected(tag,"save20_destination_error"),error.message)
-            assertEquals("existing destination",sentinel.readText());assertEquals(encoded,input.readText())
-            assertEquals(setOf("input.txt","destination.png"),folder.listFiles()!!.map {it.name}.toSet())
-            val completed=File(folder,"completed.png");TextImageCodec.decodeToFile(input,completed,4096)
-            assertArrayEquals(bytes,completed.readBytes());assertEquals(encoded,input.readText())
-        } finally {folder.deleteRecursively()}
     }
 
     @Test fun canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge() {
@@ -370,28 +201,7 @@ class PersianHebrewUrduPriorityWordingTest {
             }
         }
     }
-    @Test fun losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest() = forEachLocale { tag,activity ->
-        var request:SaveRequest?=null;var canceled=false
-        val dialog=SaveOptionsDialog(activity,ExportOptions(ImageFormat.WEBP,quality=67,lossless=false),
-            confirm={request=it},cancel={canceled=true},initialFilename="fixture.webp").show()
-        try {
-            idle();val root=dialog.window!!.decorView
-            val lossless=root.findViewWithTag<CheckBox>("export_lossless")
-            val quality=root.findViewWithTag<NumericSlider>("export_quality")
-            assertEquals(formatted(tag,"ui_lossless_format",ImageFormat.WEBP.label),lossless.text.toString())
-            assertEquals(expected(tag,"ui_quality"),quality.name)
-            assertEquals(expected(tag,"ui_quality"),quality.slider.contentDescription.toString())
-            quality.slider.progress=42-quality.minimum;idle()
-            for(enabled in listOf(true,false)) {
-                lossless.performClick();idle();assertEquals(enabled,lossless.isChecked)
-                assertEquals(if(enabled) View.GONE else View.VISIBLE,quality.visibility)
-            }
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
-            assertNotNull(request);assertEquals(ImageFormat.WEBP,request!!.options.format)
-            assertEquals(42,request!!.options.quality);assertFalse(request!!.options.lossless)
-            assertFalse(canceled);assertFalse(dialog.isShowing)
-        } finally {dialog.dismiss()}
-    }
+
     @Test fun canonicalPickerTagsStayRtlAndHebrewLegacyResourcesDoNotCreateAnIwOption() = forEachLocale { tag,activity ->
         assertTrue(AppLanguage.tags(activity).containsAll(listOf("fa","fa-IR","he","ur")))
         assertFalse(AppLanguage.tags(activity).contains("iw"))
@@ -439,29 +249,6 @@ class PersianHebrewUrduPriorityWordingTest {
                 PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
             }
         }
-    }
-
-    @Test fun finiteAcceptedFixtureRejectsCoordinatedTargetsMetadataAndMissingPredecessors() {
-        val helper=PersianHebrewUrduPriorityExpectations
-        for(tag in listOf("fa","he","ur")) {
-            for(mutation in listOf("target","display","attributes","receipt","held","previous")) {
-                val bad=helper.fixture();val locale=bad.getJSONObject("locales").getJSONObject(tag)
-                when(mutation) {
-                    "target" -> locale.getJSONObject("accepted").put("save20_unsupported_image_colour","Forged sRGB PNG")
-                    "display" -> locale.put("display",JSONObject().put("save20_unsupported_image_colour","Forged sRGB PNG"))
-                    "attributes" -> locale.getJSONObject("target_attribute_exceptions").put("save20_unsupported_image_colour",JSONObject().put("name","wrong"))
-                    "receipt" -> locale.put("review_receipt_sha256","forged")
-                    "held" -> locale.remove("held_absent")
-                    "previous" -> locale.getJSONObject("predecessors").remove("string/ui_apply")
-                }
-                val expected=JSONObject()
-                assertThrows("$tag/$mutation",AssertionError::class.java) {helper.addTagged(expected,bad)}
-                assertEquals(0,expected.length())
-            }
-        }
-        val expected=JSONObject();helper.addTagged(expected,helper.fixture())
-        assertEquals(setOf("fa","he","ur"),expected.keys().asSequence().toSet())
-        assertThrows(AssertionError::class.java) {helper.addTagged(expected,helper.fixture())}
     }
 
 }

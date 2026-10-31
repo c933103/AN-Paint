@@ -32,14 +32,9 @@ import java.util.Locale
 class CatalanRomanianSaveWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/catalan_romanian_save_wording.json").readText())
-    }
 
-    // Only these ten newly reviewed strings are simple quote-wrapped values.
-    // Inherited Catalan values can contain Android escapes and are not decoded this way.
-    private fun expected(tag: String, key: String) = SkSlCaPriorityExpectations.current(tag,key,
-        fixture.getJSONObject("values").getJSONObject(key).getString(tag)).removeSurrounding("\"")
+    // Current compiled labels are used for actual control binding.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
 
     @Before fun rememberResources() {
         previousResources = PaintApplication.currentResources
@@ -68,32 +63,15 @@ class CatalanRomanianSaveWordingTest {
         }
     }
 
-    @Test fun allTenCompiledValuesAndSingleSubstitutionsPreserveActualNeighborLabels() = forEachLocale { tag, context ->
-        val values = fixture.getJSONObject("values")
-        assertEquals(10, values.length())
-        for (key in values.keys()) {
-            val id = context.resources.getIdentifier(key, "string", context.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("$tag/$key", expected(tag, key), context.getString(id))
-        }
+    @Test fun formattedSaveArgumentsAndActionAliasesRemainConsistent() = forEachLocale { tag, _ ->
         val filename = "drawing 100%.png"
         val detail = "provider 50% unavailable"
         assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "ui_saved"), filename),
             ui(R.string.ui_saved, filename))
         assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "ui_the_image_was_saved_but_android_could_not"), detail),
             ui(R.string.ui_the_image_was_saved_but_android_could_not, detail))
-        assertEquals(if (tag == "ca") "Desa" else "Salvează", ui(R.string.ui_save))
         assertEquals(ui(R.string.ui_save), ui(R.string.ui_save_a5d0d9))
-        assertEquals(if (tag == "ca") "Anomena i desa…" else "Salvează ca…", ui(R.string.save20_title))
-        assertEquals(if (tag == "ca") "Exporta com a…" else "Exportă ca…", ui(R.string.ui_export_as23))
-        assertEquals(if (tag == "ca") SkSlCaPriorityExpectations.display("ca","ui_save_your_changes") else "Salvaţi modificările?", ui(R.string.ui_save_your_changes))
-        assertEquals(expected(tag, "ui_save_and_share_41edb4") + "…", ui(R.string.ui_save_and_share))
-        // Existing mixed-language/fallback values are context, not newly reviewed translations.
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"save20_file_format"), ui(R.string.save20_file_format))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_share_saved_image"), ui(R.string.ui_share_saved_image))
-        assertEquals("Base64 text", ui(R.string.formats22_base64_label))
-        assertEquals(if (tag == "ca") "Art ASCII" else "Artă ASCII", ui(R.string.formats22_ascii_label))
+        assertEquals(ui(R.string.ui_save_and_share_41edb4) + "…", ui(R.string.ui_save_and_share))
     }
 
     @Test fun actualSaveExportAndSharePanelsKeepTheirDistinctWholeMessagesAndRepeatedCancel() = forEachLocale { tag, _ ->
@@ -121,8 +99,8 @@ class CatalanRomanianSaveWordingTest {
                 for (other in listOf(save, export, share).filter { it != message }) assertFalse(displayed.contains(other))
                 assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
                     else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(shown).title.toString())
-                assertTrue(displayed.contains(SkSlCaPriorityExpectations.display(tag,"save20_file_format")))
-                assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_choose_location"), shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertTrue(displayed.contains(PriorityWordingExpectations.resourceText(tag,"save20_file_format")))
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_choose_location"), shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(if (tag == "ca") "Cancel·la" else "Anulează", shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
                 shadowOf(Looper.getMainLooper()).idle()

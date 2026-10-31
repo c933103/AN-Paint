@@ -48,12 +48,18 @@ and its ordering/clean/incremental behavior. See [translation runtime boundaries
 
 ## Local commands
 
-Run relevant focused tests first, then the current host suite:
+Run affected host modules locally, then rely on the existing exact-source CI
+for the full host/JVM/lint and current-platform checks. For example:
 
 ```sh
-python3 -m unittest discover -s tools -p 'test_*.py' -v
-python3 -O -m unittest discover -s tools -p 'test_*.py'
+PYTHONPATH=tools python3 -m unittest test_translations -v
 ```
+
+Choose modules affected by the change; this example is not an additional gate.
+Do not routinely repeat the whole host suite in both normal and optimized Python.
+Use an optimized-mode focused check only when the change specifically affects
+assertion-independent validation. Do not add benchmark or duplicate review runs
+merely to restate an existing passing exact-source result.
 
 Use the repository Gradle wrapper with the installed SDK/toolchain for
 `:Paintroid:testDebugUnitTest`, lint and APK compilation. The workflow is the

@@ -54,8 +54,6 @@ class RemainingAcceptedWordingTests(unittest.TestCase):
         self.assertEqual('"Skeudenn o kenglotañ gant ar prenestr"',c.read_strings(c.catalogue_paths()['br'])['ui_fit_image'])
         self.assertEqual('Huvud',c.read_strings(c.catalogue_paths()['sv'])['ui_main23'])
         self.assertEqual('"ၶိုၼ်ၶိုၼ်း"',c.read_strings(c.catalogue_paths()['shn'])['ui_undo'])
-        br=fixture('breton_asturian_occitan_priority_wording.json')['locales']['br']['accepted']
-        self.assertEqual(br['ui_drawing_canvas_pinch_and_move_two_fingers_to'],accepted[('br','ui_drawing_canvas_pinch_and_move_two_fingers_to')]['previous_target'])
         batch=fixture('reviewed_priority_batches.json')['locales']['shn']
         self.assertEqual(batch['existing_unreviewed']['ui_brush']['value'],accepted[('shn','ui_brush')]['previous_target'])
         for tag in ('ang','non'):

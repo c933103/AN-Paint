@@ -1,19 +1,9 @@
-"""157 bounded Croatian/Bosnian current reviewed whole values; not native, complete-locale or runtime acceptance."""
-from current_localization_contracts import RESIDUAL_KEYS, require_residual_or_previous
-from collections import Counter
-from copy import deepcopy
-import json
-import hashlib
+"""Current action, format, script and numeric-locale regressions; approval history is archived."""
 import re
 import unittest
-from unittest.mock import patch
-import xml.etree.ElementTree as ET
-
-from current_localization_contracts import fixture, require_string, require_wording_shape, require_string_root
-import memory_warning_source_review as warnings
-from memory_warning_successors import accepted_warning, successors
 import translation_catalogues as catalogues
-import hr_bs_mk_priority_expectations as current
+from current_localization_contracts import current_display
+
 
 KEYS = frozenset({
     'formats22_animation_message', 'formats22_animation_poster', 'formats22_animation_still',
@@ -51,300 +41,13 @@ KEYS = frozenset({
     'ui_there_is_not_enough_memory_for_this_operation', 'ui_this_location_is_not_writable',
     'ui_unexpected_data_in_the_undo_cache', 'ui_your_current_image_has_unsaved_changes'
 })
-TAGS = {'default', 'hr', 'bs'}
-HOLDS = {'formats22_derived_exported', 'ui_save_as', 'ui_save_as_jpeg',
-         'ui_save_as_jpeg_xl', 'ui_save_as_png'}
-
-
-# Keep this stricter parser local to the reviewed family. Generic catalogue
-# accounting permits literal percent signs in formatted=false resources and
-# deliberately excludes non-argument tokens; neither rule can hide added tokens
-# in these exact, source-bound values.
-FULL_FORMAT_TOKEN = re.compile(
-    r'%(?:(?:\d+)\$)?[-#+ 0,(<]*(?:\d+)?(?:\.\d+)?'
-    r'(?:[tT][A-Za-z]|[bBhHsScCdoxXeEfgGaA%n])')
-
-
-def full_format_tokens(value):
-    """Parse indexed/unindexed and non-argument tokens; reject any leftover %."""
-    if '%' in FULL_FORMAT_TOKEN.sub('', value):
-        raise ValueError('Invalid or unescaped format token')
-    return Counter(FULL_FORMAT_TOKEN.findall(value))
-
-
-def display_value(value):
-    return value[1:-1] if value.startswith('"') and value.endswith('"') else value
-
-
-def require_reviewed_string(xml, key, expected, constraints, source):
-    """Keep complete text and full token inventory, even with formatted=false."""
-    value = require_string(xml, key, expected, constraints)
-    if full_format_tokens(value) != full_format_tokens(source):
-        raise ValueError(key + ': complete format-token inventory differs')
-    return value
-
-
-REVIEW_BINDING = {
-    'source_commit': '0ebd41d4d9b665213c776f5a0479a29ecabdd243',
-    'source_tree': 'bc5e10affc54ba2e0788c749b4b78968379596ba',
-    'accepted_pairs_sha256': 'ecf526badf05941ed1a11be43af7e6192fda51828861fce34b385c991e2011dc',
-}
-
-
-SUCCESSOR_REVIEW = {'review_commit': '71c32e5ec94613e3e3ba6e7b79e18526953a59e3',
- 'review_path': 'records/localization-review/2026-10-26/hr-bs-p0/r03-dither-label-review/review.json',
- 'review_sha256': '1e0e5ffbc24347724514e7119a94f5f4ed654c4bab5e10b6514668fd383063bd',
- 'locale': 'hr',
- 'superseded_gif': 'save20_gif_description',
- 'newly_reviewed_label': 'save20_dither',
- 'historical_gif_value': '"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između '
-                         'boja (opcija je označena „Zamućivanje“). Animirane GIF slike otvaraju se '
-                         'kao prvi kadar animacije."',
- 'historical_dither_value': '"Zamućivanje"',
- 'unchanged_inherited_values': 214,
- 'unchanged_prior_reviewed_values': 155,
- 'current_unique_reviewed_values': 157,
- 'accepted_pair_sha256': '664335172ab32ab385869a99507d51f3278f30c9525c5e080d000a6b76010e19',
- 'terminology_qualification': 'Moderate-confidence technical clarity for Dithering boja; not '
-                              'preferred native terminology certification.'}
-HISTORICAL_GIF = '"Statična slika s najviše 256 boja. Dithering ublažava prijelaze između boja (opcija je označena „Zamućivanje“). Animirane GIF slike otvaraju se kao prvi kadar animacije."'
-
-
-def reviewed_pairs_digest(data):
-    pairs = [{'locale': tag, 'key': key, 'source': data['values'][key]['default'],
-              'value': data['values'][key][tag], 'attributes': data['constraints'][key][tag]['attributes']}
-             for tag in ('hr', 'bs') for key in sorted(KEYS)]
-    return hashlib.sha256(json.dumps(pairs,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
-
-
-# Independently derived from the frozen original 215-value preservation record,
-# removing only the separately reviewed Croatian label.
-PRESERVED_214_SHA256 = 'e03d27a14f25aafb61d64d2b98ecb62fc87baff0f1d61ef70a27b390cc20e8f8'
-
-def successor_pair_digest(data):
-    label = data['dither_label_successor']
-    pairs = [
-        {'identity': 'string/save20_dither', 'attributes': label['constraints']['attributes'],
-         'accepted_xml_text': label['value']},
-        {'identity': 'string/save20_gif_description',
-         'attributes': data['constraints']['save20_gif_description']['hr']['attributes'],
-         'accepted_xml_text': data['values']['save20_gif_description']['hr']},
-    ]
-    return hashlib.sha256(json.dumps(pairs, ensure_ascii=False, sort_keys=True,
-                                    separators=(',', ':')).encode()).hexdigest()
-
-
-def require_review_binding(data):
-    if data.get('review_binding') != REVIEW_BINDING:
-        raise ValueError('Independent original review binding differs')
-    if data.get('review_successors') != SUCCESSOR_REVIEW:
-        raise ValueError('Immutable atomic successor review metadata differs')
-    label = data.get('dither_label_successor', {})
-    if (label.get('locale'), label.get('key'), label.get('source')) != ('hr', 'save20_dither', 'Dither colours'):
-        raise ValueError('Successor label scope/source differs')
-    if label.get('constraints') != {'attributes': {'name': 'save20_dither'},
-        'placeholders': {}, 'child_elements': 0, 'formatted': True, 'escaped_newline_count': 0}:
-        raise ValueError('Successor complete label constraints differ')
-    if successor_pair_digest(data) != SUCCESSOR_REVIEW['accepted_pair_sha256']:
-        raise ValueError('Independently reviewed atomic pair differs')
-    preserved_digest = hashlib.sha256(json.dumps(data['preserved_values'], ensure_ascii=False,
-        sort_keys=True, separators=(',', ':')).encode()).hexdigest()
-    if preserved_digest != PRESERVED_214_SHA256:
-        raise ValueError('214 independently pinned inherited values/attributes differ')
-    historical = deepcopy(data)
-    # Reconstruct only the superseded old reviewed value from an independent
-    # literal; never trust editable fixture metadata to define its own history.
-    historical['values']['save20_gif_description']['hr'] = HISTORICAL_GIF
-    if reviewed_pairs_digest(historical) != REVIEW_BINDING['accepted_pairs_sha256']:
-        raise ValueError('Original 156-pair acceptance / 155 unchanged values differ')
-
-
-
 
 class CroatianBosnianP0Tests(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.data = require_wording_shape(fixture('croatian_bosnian_p0_wording.json'), KEYS, TAGS)
-        require_review_binding(cls.data)
-        cls.xml = {tag: (catalogues.RES / folder / 'strings.xml').read_text(encoding='utf-8')
-                   for tag, folder in [('default', 'values'), ('hr', 'values-hr'), ('bs', 'values-bs')]}
-        cls.roots = {tag: ET.fromstring(xml) for tag, xml in cls.xml.items()}
-
-    def test_exact_78_key_P0_family_and_complete_values_attributes_and_tokens(self):
-        self.assertEqual(78, len(KEYS))
-        self.assertTrue({'save20_file_format', 'ui_save_your_changes'}.isdisjoint(KEYS))
-        tiers = json.loads((catalogues.DATA / 'string-importance.json').read_text())['tiers']
-        self.assertTrue({'string/' + k for k in KEYS}.issubset(next(t['keys'] for t in tiers if t['id'] == 'P0')))
-        for key in KEYS:
-            self.assertEqual(TAGS, set(self.data['constraints'][key]))
-            source = self.data['values'][key]['default']
-            for tag in TAGS:
-                with self.subTest(key=key, tag=tag):
-                    require_reviewed_string(self.xml[tag], key, current.current_value(tag,key,self.data['values'][key][tag],self.data['constraints'][key][tag]['attributes'],source),
-                                            self.data['constraints'][key][tag], source)
-                    self.assertEqual(self.roots['default'].find(f"./string[@name='{key}']").attrib,
-                                     self.roots[tag].find(f"./string[@name='{key}']").attrib)
-        for tag in ('hr', 'bs'):
-            for key in ('ui_history_unavailable34', 'ui_share_explanation34'):
-                self.assertEqual('false', self.roots[tag].find(f"./string[@name='{key}']").get('formatted'))
-
-    def test_every_value_rejects_missing_duplicate_empty_truncated_markup_attributes_type_and_placeholder(self):
-        for tag in ('hr', 'bs'):
-            for key in KEYS:
-                original = self.roots[tag].find(f"./string[@name='{key}']")
-                for mutation in ('missing', 'duplicate', 'empty', 'truncate', 'markup', 'attribute', 'wrong-type', 'placeholder'):
-                    root = ET.Element('resources');node = deepcopy(original)
-                    if mutation != 'missing':root.append(node)
-                    if mutation == 'duplicate':root.append(deepcopy(node))
-                    elif mutation == 'empty':node.text = ''
-                    elif mutation == 'truncate':node.text = node.text[:-1]
-                    elif mutation == 'markup':ET.SubElement(node, 'b').text, node.text = node.text, None
-                    elif mutation == 'attribute':node.set('translatable', 'false')
-                    elif mutation == 'wrong-type':node.tag = 'plurals'
-                    elif mutation == 'placeholder':node.text += ' %9$s'
-                    with self.subTest(tag=tag, key=key, mutation=mutation), self.assertRaises(ValueError):
-                        require_reviewed_string(ET.tostring(root, encoding='unicode'), key,
-                            self.data['values'][key][tag], self.data['constraints'][key][tag],
-                            self.data['values'][key]['default'])
-
-    def test_full_format_tokens_reject_changed_index_type_precision_width_flags_and_literals(self):
-        key = 'ui_d_d_pixels_2f_mp_exceeds_the_current'
-        tokens = {'%1$d': 1, '%2$d': 1, '%3$.2f': 1, '%4$.2f': 1}
-        for tag in TAGS:
-            expected = self.data['values'][key][tag]
-            self.assertEqual(tokens, catalogues.placeholders(expected))
-            self.assertEqual(tokens, full_format_tokens(expected))
-            mutations = [expected.replace('%3$.2f', replacement) for replacement in
-                         ('%3$.3f', '%9$.2f', '%3$.2d', '%.2f', '%3$f', '%3$2f', '%3$-10.2f', '%3$', '%3$.f', '%q')]
-            mutations += [expected + token for token in (' %9$s', ' %n', ' %%', ' %')]
-            for changed in mutations:
-                node = ET.Element('string', self.data['constraints'][key][tag]['attributes']);node.text = changed
-                root = ET.Element('resources');root.append(node)
-                # Use changed as the expected text so rejection exercises the
-                # independent token/syntax guard, not just full-text inequality.
-                with self.subTest(tag=tag, value=changed), self.assertRaises(ValueError):
-                    require_reviewed_string(ET.tostring(root, encoding='unicode'), key, changed,
-                        self.data['constraints'][key][tag], self.data['values'][key]['default'])
-
-    def test_formatted_false_rejects_unindexed_non_argument_and_malformed_tokens_with_refreshed_expected(self):
-        # Recognize both indexed and unindexed syntax, with precision, width,
-        # flags, date/time and non-argument tokens; do not silently skip any %.
-        recognized = ('%s', '%1$s', '%.2f', '%3$-10.2f', '%tY', '%1$tY', '%%', '%n')
-        self.assertEqual(Counter(recognized), full_format_tokens(' '.join(recognized)))
-        suffixes = (' %s', ' %d', ' %.2f', ' %1$s', ' %%', ' %n',
-                    ' %', ' %q', ' %1$', ' %.', ' %3$.', ' %3$.f', ' %t')
-        for tag in ('hr', 'bs'):
-            for key in ('ui_history_unavailable34', 'ui_share_explanation34'):
-                constraints = self.data['constraints'][key][tag]
-                self.assertEqual('false', constraints['attributes']['formatted'])
-                source = self.data['values'][key]['default']
-                self.assertEqual(Counter(), full_format_tokens(source))
-                for suffix in suffixes:
-                    changed = self.data['values'][key][tag] + suffix
-                    node = ET.Element('string', constraints['attributes']);node.text = changed
-                    root = ET.Element('resources');root.append(node)
-                    # A matching changed expectation must not bypass the
-                    # source token contract, even when Android formatting is off.
-                    with self.subTest(tag=tag, key=key, suffix=suffix), self.assertRaises(ValueError):
-                        require_reviewed_string(ET.tostring(root, encoding='unicode'),
-                            key, changed, constraints, source)
-
-    def test_all_214_prior_values_and_catalogue_identity_stay_unchanged(self):
-        self.assertEqual({'hr', 'bs'}, set(self.data['preserved_values']))
-        from test_translations import SCOPED_TAGS
-        for tag, count in [('hr', 97), ('bs', 117)]:
-            preserved = self.data['preserved_values'][tag]
-            self.assertEqual(count, len(preserved));self.assertFalse(set(preserved) & KEYS)
-            for key, expected in preserved.items():
-                with self.subTest(tag=tag, key=key):
-                    require_string_root(self.roots[tag], key, current.current_value(tag,key,expected['value'],expected['attributes']), {'attributes': expected['attributes']})
-            self.assertEqual(count + 78 + (1 if tag == 'hr' else 0) + len(current.added_keys(tag)) + len(RESIDUAL_KEYS.get(tag,set())), len(self.roots[tag]))
-            self.assertNotIn(tag, SCOPED_TAGS)
-            self.assertEqual('Format slike', self.roots[tag].find("./string[@name='save20_file_format']").text)
-        self.assertTrue({'hr', 'bs'} <= set(catalogues.offered_tags()))
-        self.assertEqual(59, len(SCOPED_TAGS))
-        self.assertEqual(112, len(set(catalogues.offered_tags()) - SCOPED_TAGS))
-
-    def test_atomic_successor_complete_label_and_gif_with_157_current_values(self):
-        label = self.data['dither_label_successor']
-        require_reviewed_string(self.xml['hr'], 'save20_dither', label['value'],
-                                label['constraints'], label['source'])
-        self.assertEqual(label['source'], self.roots['default'].find("./string[@name='save20_dither']").text)
-        self.assertNotIn('save20_dither', self.data['preserved_values']['hr'])
-        self.assertIn('save20_dither', self.data['preserved_values']['bs'])
-        self.assertEqual(157, len(KEYS) * 2 + 1)
-        self.assertEqual(214, sum(map(len, self.data['preserved_values'].values())))
-        self.assertNotIn('Zamućivanje', self.data['values']['save20_gif_description']['hr'])
-
-    def test_atomic_pair_rejects_half_updates_refreshed_metadata_and_every_label_mutation(self):
-        for key in ('save20_dither', 'save20_gif_description'):
-            data = deepcopy(self.data)
-            if key == 'save20_dither':
-                data['dither_label_successor']['value'] = SUCCESSOR_REVIEW['historical_dither_value']
-            else:
-                data['values'][key]['hr'] = HISTORICAL_GIF
-            with self.subTest(half=key), self.assertRaises(ValueError): require_review_binding(data)
-            data['review_successors']['accepted_pair_sha256'] = successor_pair_digest(data)
-            with self.assertRaises(ValueError): require_review_binding(data)
-        for field in SUCCESSOR_REVIEW:
-            data = deepcopy(self.data); data['review_successors'][field] = 'forged'
-            with self.subTest(metadata=field), self.assertRaises(ValueError): require_review_binding(data)
-        label = self.data['dither_label_successor']
-        original = self.roots['hr'].find("./string[@name='save20_dither']")
-        for mutation in ('missing', 'duplicate', 'empty', 'truncate', 'markup', 'attribute', 'wrong-type', 'placeholder'):
-            root = ET.Element('resources'); node = deepcopy(original)
-            if mutation != 'missing': root.append(node)
-            if mutation == 'duplicate': root.append(deepcopy(node))
-            elif mutation == 'empty': node.text = ''
-            elif mutation == 'truncate': node.text = node.text[:-1]
-            elif mutation == 'markup': ET.SubElement(node, 'b').text, node.text = node.text, None
-            elif mutation == 'attribute': node.set('translatable', 'false')
-            elif mutation == 'wrong-type': node.tag = 'plurals'
-            elif mutation == 'placeholder': node.text += ' %9$s'
-            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
-                require_reviewed_string(ET.tostring(root, encoding='unicode'), 'save20_dither',
-                                        label['value'], label['constraints'], label['source'])
-        for field in ('value', 'locale', 'key', 'source'):
-            data = deepcopy(self.data); data['dither_label_successor'][field] += ' changed'
-            with self.subTest(label_field=field), self.assertRaises(ValueError): require_review_binding(data)
-        data = deepcopy(self.data)
-        data['dither_label_successor']['constraints']['attributes']['formatted'] = 'false'
-        with self.assertRaises(ValueError): require_review_binding(data)
-
-    def test_all_preserved_value_and_attribute_mutations_are_rejected(self):
-        for tag in ('hr', 'bs'):
-            for key, record in self.data['preserved_values'][tag].items():
-                data = deepcopy(self.data)
-                data['preserved_values'][tag][key]['value'] += ' changed'
-                with self.subTest(refreshed_preservation=(tag, key)), self.assertRaises(ValueError):
-                    require_review_binding(data)
-                for attribute in (False, True):
-                    root = ET.Element('resources')
-                    node = ET.SubElement(root, 'string', record['attributes']); node.text = record['value']
-                    if attribute: node.set('translatable', 'false')
-                    else: node.text += ' changed'
-                    with self.subTest(tag=tag, key=key, attribute=attribute), self.assertRaises(ValueError):
-                        require_string(ET.tostring(root, encoding='unicode'), key, record['value'],
-                                       {'attributes': record['attributes']})
-
-    def test_five_holds_each_and_unreviewed_neighbor_fallbacks_remain_absent(self):
-        self.assertEqual(HOLDS, set(self.data['held_absent']))
-        neighbors = {'ui_no_resize_fits_decoder_memory', 'formats22_at_least_frames',
-                     'ui_load_image', 'ui_choose_location', 'ui_image_assembly'}
-        for tag in ('hr', 'bs'):
-            for key in HOLDS | neighbors:
-                node=self.roots[tag].find(f"./string[@name='{key}']")
-                if key in current.added_keys(tag):
-                    self.assertEqual(current.row(tag,key)['target'],node.text)
-                else:require_residual_or_previous(self.roots[tag],tag,key)
-        self.assertEqual(current.row("hr","save20_title")["target"],self.roots["hr"].find("./string[@name='save20_title']").text)
-        self.assertEqual('at least %1$d', self.roots['default'].find("./string[@name='formats22_at_least_frames']").text)
-        self.assertEqual('Load image…', self.roots['default'].find("./string[@name='ui_load_image']").text)
 
     def test_recovery_compositions_retain_actual_labels_and_literal_filenames(self):
         for tag in ('hr', 'bs'):
-            value = lambda key: current.current_display(tag,key)
-            prior = lambda key: current.current_display(tag,key)
+            value = lambda key: current_display(tag,key)
+            prior = lambda key: current_display(tag,key)
             recovery = value('ui_recovery_copy_exported_extract_canvas_png_from_the')
             for literal in (prior('ui_menu_file'), prior('ui_load_image'), 'canvas.png', 'ZIP'):
                 self.assertIn(literal, recovery)
@@ -357,8 +60,8 @@ class CroatianBosnianP0Tests(unittest.TestCase):
 
     def test_save_share_and_error_composition_keeps_command_and_punctuation_contracts(self):
         for tag in ('hr', 'bs'):
-            value = lambda key: current.current_display(tag,key)
-            prior = lambda key: current.current_display(tag,key)
+            value = lambda key: current_display(tag,key)
+            prior = lambda key: current_display(tag,key)
             for key in ('ui_export_did_not_save23', 'ui_export_explanation23', 'ui_save_explanation23', 'ui_share_explanation34'):
                 self.assertIn(prior('ui_save'), value(key))
             self.assertIn(prior('save20_title'), value('ui_export_did_not_save23'))
@@ -376,57 +79,12 @@ class CroatianBosnianP0Tests(unittest.TestCase):
         self.assertEqual(len(captions),len(set(captions)));self.assertEqual(set(tags),set(captions))
         self.assertTrue({'hr','bs'} <= set(tags))
 
-    def test_single_P0_warnings_have_no_paired_acceptance_or_rewritten_history(self):
-        key = 'ui_assembly_source_memory_floor';other = 'ui_no_resize_fits_decoder_memory'
-        self.assertEqual({(tag, key) for tag in ('nn', 'da', 'no', 'ca', 'ro', 'sk', 'sl', 'sr-Cyrl', 'sr-Latn', 'hr', 'bs')}, warnings.SINGLE_KEY_EXPECTATIONS)
-        self.assertEqual({'tags': ['hr', 'bs'], 'key': key, 'historical_value': None,
-                          'unreviewed_companion': other}, self.data['single_warning_scope'])
-        self.assertEqual(120, len(successors()));self.assertEqual(60, len({tag for tag,k in successors()}))
-        queue = warnings.review_record()
-        for tag in ('hr', 'bs'):
-            old = next(row for row in queue['options'] if row['tag'] == tag)
-            for term in (key, other):
-                self.assertIsNone(old['terms'][term]['value'])
-                with self.assertRaises(ValueError):accepted_warning(term, tag)
-            self.assertEqual(self.data['values'][key][tag], warnings.current_source_expectation(key, tag, None))
-            self.assertEqual(current.row(tag,other)['target'],warnings.current_source_expectation(other, tag, None))
-            with self.assertRaises(ValueError):warnings.current_source_expectation(key, tag, 'invented history')
-            changed = deepcopy(queue);next(row for row in changed['options'] if row['tag'] == tag)['terms'][key]['value'] = 'invented history'
-            with patch.object(warnings, 'review_record', return_value=changed), self.assertRaises(ValueError):
-                warnings.current_source_expectation(key, tag, None)
-            changed = deepcopy(self.data);changed['values'][key]['default'] += ' changed'
-            with patch.object(warnings, 'fixture', return_value=changed), self.assertRaises(ValueError):
-                warnings.current_source_expectation(key, tag, None)
-
-    def test_matching_fixture_and_xml_changes_cannot_refresh_review_acceptance(self):
-        for tag in ('hr', 'bs'):
-            for key in KEYS:
-                data=deepcopy(self.data);root=deepcopy(self.roots[tag]);node=root.find(f"./string[@name='{key}']")
-                changed=data['values'][key][tag] + ' changed'
-                data['values'][key][tag]=changed;node.text=changed
-                # This deliberately passes the ordinary matching-text check;
-                # independently pinned review evidence must still reject it.
-                require_string(ET.tostring(root,encoding='unicode'),key,changed,data['constraints'][key][tag])
-                with self.subTest(tag=tag,key=key),self.assertRaises(ValueError):require_review_binding(data)
-                data['review_binding']['accepted_pairs_sha256']=reviewed_pairs_digest(data)
-                with self.assertRaises(ValueError):require_review_binding(data)
-        for field in ('source_commit','source_tree'):
-            data=deepcopy(self.data);data['review_binding'][field]='forged'
-            with self.assertRaises(ValueError):require_review_binding(data)
-
-    def test_family_scope_corruption_and_current_catalogue_validation(self):
-        for mutation in ('missing-key', 'extra-key', 'wrong-locale', 'empty-value', 'missing-constraint'):
-            data = deepcopy(self.data);key = next(iter(KEYS))
-            if mutation == 'missing-key':data['values'].pop(key)
-            elif mutation == 'extra-key':data['values']['not_reviewed'] = data['values'][key]
-            elif mutation == 'wrong-locale':data['values'][key]['unreviewed'] = 'arbitrary'
-            elif mutation == 'empty-value':data['values'][key]['hr'] = ''
-            else:data['constraints'].pop(key)
-            with self.subTest(mutation=mutation), self.assertRaises(ValueError):require_wording_shape(data, KEYS, TAGS)
-        for tag in ('hr', 'bs'):
-            self.assertEqual([], catalogues.validate_catalogue(tag, require_complete=False))
-            names = [(node.tag, node.get('name')) for node in self.roots[tag]]
-            self.assertEqual(len(names), len(set(names)))
+    def test_dither_description_names_the_actual_operation_not_blurring(self):
+        for tag, operation in (('hr', 'Dithering'), ('bs', 'Miješanje boja')):
+            self.assertIn(operation.lower(), current_display(tag, 'save20_dither').lower())
+            self.assertIn(operation.lower(), current_display(tag, 'save20_gif_description').lower())
+        self.assertNotIn('Zamućivanje', current_display('hr', 'save20_gif_description'))
 
 
-if __name__ == '__main__':unittest.main()
+if __name__ == '__main__':
+    unittest.main()

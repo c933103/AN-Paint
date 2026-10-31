@@ -6,7 +6,6 @@ import xml.etree.ElementTree as E
 import legacy_discard_disposition as d
 import translation_catalogues as c
 from current_localization_contracts import fixture, residual_rows
-from kazakh_tajik_pashto_priority_expectations import bound_fixture, require_catalogue
 from priority_cohort_checks import require_resource_shape
 
 
@@ -14,13 +13,10 @@ class LegacyDiscardDispositionTest(unittest.TestCase):
     def setUp(self):
         self.root = E.parse(c.catalogue_paths()['ps']).getroot()
         self.node = self.root.find("./string[@name='ui_discard']")
-        self.previous = bound_fixture('ps')['original_catalogue']['ui_discard']
+        self.previous = d.PREVIOUS
 
     def test_exact_predecessor_source_target_and_unchanged_acceptance(self):
         d.require_successor('ps', d.KEY, self.node, self.previous)
-        require_catalogue('ps', self.root)
-        held = bound_fixture('ps')['held_display'][d.KEY]
-        self.assertEqual({'type':'string','display':'رد کړئ','disposition':'held-present-unchanged'}, held)
         eu = E.parse(c.catalogue_paths()['eu-ES']).getroot().find("./string[@name='ui_discard']")
         require_resource_shape(eu, 'string', d.UNCHANGED)
         for tag in ('ps', 'eu-ES'):

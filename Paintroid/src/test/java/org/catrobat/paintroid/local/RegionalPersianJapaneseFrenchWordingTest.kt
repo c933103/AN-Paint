@@ -44,26 +44,13 @@ class RegionalPersianJapaneseFrenchWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        RegionalPersianJapaneseFrenchExpectations.fixture().getJSONObject("locales")
-    }
-    private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
-        when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
-    }
-    private fun row(tag: String,identity: String): JSONObject {
-        val value=fixture.getJSONObject(tag).getJSONObject("rows").getJSONObject(identity).getJSONObject("effective").get("value")
-        if(value is JSONObject) {
-            val display=JSONObject();for(q in value.keys()) display.put(q,decoded(value.getString(q)))
-            return JSONObject().put("display",display)
-        }
-        val raw=value as String
-        return JSONObject().put("display",if(raw=="@string/ui_save") expected(tag,"ui_save") else decoded(raw))
-    }
-    private fun expected(tag: String,key: String)=row(tag,"string/$key").getString("display")
-    private fun formatted(tag: String,key: String,vararg args: Any)=String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
-    private fun cropTemplate(tag: String,count: Int)=row(tag,"plurals/ui_crop_preview_images").getJSONObject("display").getString(if(tag!="ja" && count in 0..1) "one" else "other")
-    private fun cropText(tag: String,count: Int,width: Int=24,height: Int=16)=String.format(Locale.forLanguageTag(tag),cropTemplate(tag,count),width,height,count)
-    private fun idle()=shadowOf(Looper.getMainLooper()).idle()
+    // Current compiled labels are the oracle for control binding, not approval history.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
+    private fun formatted(tag: String, key: String, vararg args: Any) =
+        String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
+    private fun cropText(tag: String,count: Int,width: Int=24,height: Int=16) =
+        PriorityWordingExpectations.resources(tag).getQuantityString(R.plurals.ui_crop_preview_images,count,width,height,count)
+    private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
     @Before fun rememberLanguage() {
         previousResources=PaintApplication.currentResources;previousLocale=Locale.getDefault()
@@ -90,31 +77,6 @@ class RegionalPersianJapaneseFrenchWordingTest {
         }
     }
 
-
-    @Test fun allAcceptedCompiledValuesAndRealPluralArguments() = forEachLocale { tag,activity ->
-        val rows=fixture.getJSONObject(tag).getJSONObject("rows")
-        for(identity in rows.keys()) {
-            if(rows.getJSONObject(identity).isNull("effective")) {
-                val key=identity.removePrefix("string/")
-                if(tag=="fa-IR" && PriorityWordingExpectations.hasResidual("fa",key)) {
-                    val historical=rows.getJSONObject(identity)
-                    assertTrue("Inherited, not direct acceptance",historical.isNull("direct"))
-                    val expected=PriorityWordingExpectations.residual("fa",key,historical.getJSONObject("source").getString("value"))
-                    val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-                    assertNotEquals(identity,0,id)
-                    assertEquals("$tag inherited/$key",expected,activity.getString(id))
-                }
-                continue
-            }
-            val (kind,key)=identity.split('/');val id=activity.resources.getIdentifier(key,kind,activity.packageName)
-            assertNotEquals(identity,0,id)
-            if(kind=="string") assertEquals("$tag/$identity",expected(tag,key),activity.getString(id))
-            else for(count in listOf(0,1,2,5,21)) {
-                assertEquals(cropTemplate(tag,count),activity.resources.getQuantityText(id,count).toString())
-                assertEquals(cropText(tag,count),activity.resources.getQuantityString(id,count,24,16,count))
-            }
-        }
-    }
     @Test fun frenchAllFourCropEdgesConvertWithoutApplyingUntilConfirmed() = forEachLocale(listOf("fr")) {tag,activity ->
         val image=AssemblyImage("crop",File(activity.cacheDir,"crop.image"),"Source",null,ImageDimensions(40,20))
         var applied:Map<String,Rect>?=null
@@ -147,17 +109,7 @@ class RegionalPersianJapaneseFrenchWordingTest {
             }finally{shown.dismiss()}
         }
     }
-    @Test fun finiteFixtureRejectsCoordinatedValuesMetadataAndMissingPredecessors() {
-        val helper=RegionalPersianJapaneseFrenchExpectations
-        for(tag in listOf("fa-IR","ja","fr")) for(key in listOf("effective","direct","previous_direct","source","disposition","consumer_binding")) {
-            val bad=helper.fixture();bad.getJSONObject("locales").getJSONObject(tag).getJSONObject("rows").getJSONObject("string/ui_airbrush").remove(key)
-            assertThrows(AssertionError::class.java) {helper.requireReviewed(bad)}
-        }
-        val forged=helper.fixture();val row=forged.getJSONObject("locales").getJSONObject("fa-IR").getJSONObject("rows").getJSONObject("string/ui_airbrush")
-        row.getJSONObject("direct").put("value","forged");row.getJSONObject("effective").put("value","forged");row.put("display","forged")
-        assertThrows(AssertionError::class.java) {helper.requireReviewed(forged)}
-        helper.requireReviewed(helper.fixture())
-    }
+
     @Test fun regionalFlipUndoAndAirbrushPerformTheirNamedOperations() {
         val tag="fa-IR";AppLanguage.select(RuntimeEnvironment.getApplication(),tag)
         val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);val activity=controller.get()

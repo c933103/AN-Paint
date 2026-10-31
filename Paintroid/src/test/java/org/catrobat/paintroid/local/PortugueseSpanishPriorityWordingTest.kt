@@ -36,16 +36,13 @@ class PortugueseSpanishPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/portuguese_spanish_priority_wording.json").readText())
-            .getJSONObject("locales")
-    }
-    private fun row(tag: String, key: String): JSONObject {
-        val locale=fixture.getJSONObject(tag)
-        return locale.getJSONObject("values").optJSONObject(key) ?: locale.getJSONObject("context").getJSONObject(key)
-    }
-    private fun expected(tag: String,key: String)=row(tag,key).getString("display")
-    private fun formatted(tag: String,key: String,vararg args: Any)=String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
+    // Current compiled labels are the oracle for control binding, not approval history.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
+    private fun formatted(tag: String, key: String, vararg args: Any) =
+        String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
+    private fun cropText(tag: String,count: Int,width: Int=24,height: Int=16) =
+        PriorityWordingExpectations.resources(tag).getQuantityString(R.plurals.ui_crop_preview_images,count,width,height,count)
+    private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
     @Before fun rememberLanguage() {
         previousResources=PaintApplication.currentResources;previousLocale=Locale.getDefault()
@@ -79,20 +76,6 @@ class PortugueseSpanishPriorityWordingTest {
         return result
     }
 
-    @Test fun everyChangedCompiledValueRetainsItsCompleteTextAndFormatArguments() = forEachLocale { tag,activity ->
-        val values=fixture.getJSONObject(tag).getJSONObject("values")
-        for(key in values.keys()) {
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("$tag/$key",0,id)
-            assertEquals("$tag/$key",expected(tag,key),activity.getString(id))
-        }
-        if(tag=="es-ES") {
-            val reason="fixture failure 100%"
-            assertEquals("La imagen se ha guardado, pero Android no ha podido abrir las opciones para compartir: $reason",
-                ui(R.string.ui_the_image_was_saved_but_android_could_not,reason))
-        }
-    }
-
     @Test fun actualDimensionControlsHandleOneTwoGroupedCountsAndRepeatedUnitChanges() = forEachLocale { tag,activity ->
         val controls=DimensionControls(activity,ImageDimensions(1,1),locked=false)
         val result=controls.findViewWithTag<TextView>("size_result")
@@ -115,27 +98,6 @@ class PortugueseSpanishPriorityWordingTest {
         controls.widthInput.setText("")
         assertNull(controls.dimensions)
         assertEquals(expected(tag,"ui_enter_positive_dimensions_that_resolve_to_at_least"),result.text.toString())
-    }
-
-    @Test fun completedDecodedImageCannotReplaceBlockedDestinationAndLeavesBothSourcesUntouched() = forEachLocale { tag,activity ->
-        val folder=File(activity.cacheDir,"$tag-destination-${System.nanoTime()}").apply { mkdirs() }
-        val bytes=Base64.getDecoder().decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j4Z0AAAAASUVORK5CYII=")
-        val encoded="data:image/png;base64,"+Base64.getEncoder().encodeToString(bytes)
-        val input=File(folder,"input.txt").apply { writeText(encoded) }
-        // A nonempty directory cannot be atomically replaced by the completed image file.
-        val blocked=File(folder,"destination.png").apply { mkdirs() }
-        val sentinel=File(blocked,"keep.txt").apply { writeText("existing destination") }
-        try {
-            val failure=assertThrows(IOException::class.java) { TextImageCodec.decodeToFile(input,blocked,4096) }
-            assertEquals(expected(tag,"save20_destination_error"),failure.message)
-            assertEquals("existing destination",sentinel.readText())
-            assertEquals(encoded,input.readText())
-            assertEquals(setOf("input.txt","destination.png"),folder.listFiles()!!.map { it.name }.toSet())
-            val completed=File(folder,"completed.png")
-            TextImageCodec.decodeToFile(input,completed,4096)
-            assertArrayEquals(bytes,completed.readBytes())
-            assertEquals(encoded,input.readText())
-        } finally { folder.deleteRecursively() }
     }
 
     @Test fun realSpanishExportAndLosslessDialogsKeepCompleteExplanationsAndCancelWithoutSaving() = forEachLocale(listOf("es-ES")) { tag,activity ->

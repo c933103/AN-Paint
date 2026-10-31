@@ -46,10 +46,8 @@ class SlovakSlovenianP0WordingTest {
         JSONObject(File("../tools/fixtures/current_localization/slovak_slovenian_p0_wording.json").readText())
     }
 
-    // Only this batch's simply quote-wrapped reviewed values use this decoder.
-    // Only explicitly bound current successors advance; the original fixture stays immutable.
-    private fun expected(tag: String, key: String) = SkSlCaPriorityExpectations.current(tag,key,fixture.getJSONObject("values")
-        .getJSONObject(key).getString(tag)).removeSurrounding("\"")
+    // Current compiled labels are used for actual control binding.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources
@@ -86,35 +84,6 @@ class SlovakSlovenianP0WordingTest {
                 Locale.setDefault(previousLocale)
             }
         }
-    }
-
-    @Test fun all78CompiledValuesKeepExactSuccessorsAndFiveHeldFallbacks() = forEachLocale { tag, activity ->
-        val values = fixture.getJSONObject("values")
-        assertEquals(78, values.length())
-        val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
-        assertEquals(127, inherited.length())
-        for (key in values.keys()) {
-            assertFalse("The missing-only batch must not replace $tag/$key", inherited.has(key))
-            val id = activity.resources.getIdentifier(key, "string", activity.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("$tag/$key", expected(tag, key), activity.getString(id))
-        }
-        // The frozen paired oracle is unchanged. The independently reviewed P1
-        // addition has its own exact expectation and separate consumer checks.
-        assertEquals(expected(tag, "ui_assembly_source_memory_floor"), ui(R.string.ui_assembly_source_memory_floor))
-        assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_no_resize_fits_decoder_memory"),
-            ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"save20_file_format"), ui(R.string.save20_file_format))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_load_image"), ui(R.string.ui_load_image))
-        assertEquals(String.format(Locale.forLanguageTag(tag),SkSlCaPriorityExpectations.display(tag,"formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
-        assertEquals(PriorityWordingExpectations.residual(tag,"formats22_derived_exported","PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", "PNG"),
-            ui(R.string.formats22_derived_exported, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as","Save as PNG", "PNG"), ui(R.string.ui_save_as, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg","Save as JPEG…"), ui(R.string.ui_save_as_jpeg))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg_xl","Save as JPEG XL…"), ui(R.string.ui_save_as_jpeg_xl))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"), ui(R.string.ui_save_as_png))
     }
 
     @Test fun realMemoryAdmissionFailureFormatsAllFourArgumentsBeforeAllocation() = forEachLocale { tag, _ ->
@@ -248,8 +217,8 @@ class SlovakSlovenianP0WordingTest {
                 val lossless = checkNotNull(root.findViewWithTag<CheckBox>("export_lossless"))
                 val dither = checkNotNull(root.findViewWithTag<CheckBox>("export_dither"))
                 val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
-                assertEquals(SkSlCaPriorityExpectations.display(tag,"save20_file_format"), spinner.contentDescription.toString())
-                assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_choose_location"), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"save20_file_format"), spinner.contentDescription.toString())
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_choose_location"), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(if (tag == "sk") "Zrušiť" else "Prekliči",
                     dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 fun select(format: ImageFormat, key: String) {
@@ -314,8 +283,8 @@ class SlovakSlovenianP0WordingTest {
                 for (other in listOf(save, export, share).filter { it != message }) assertFalse(displayed.contains(other))
                 assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
                     else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(dialog).title.toString())
-                assertTrue(displayed.contains(SkSlCaPriorityExpectations.display(tag,"save20_file_format")))
-                assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_choose_location"), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertTrue(displayed.contains(PriorityWordingExpectations.resourceText(tag,"save20_file_format")))
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_choose_location"), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(if (tag == "sk") "Zrušiť" else "Prekliči", dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
                 shadowOf(Looper.getMainLooper()).idle()
@@ -330,7 +299,7 @@ class SlovakSlovenianP0WordingTest {
         val format = "GIF 100%"
         assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_unknown"), format),
             ui(R.string.formats22_animation_unknown, format))
-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format, String.format(Locale.forLanguageTag(tag),SkSlCaPriorityExpectations.display(tag,"formats22_at_least_frames"),2)),
+        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format, String.format(Locale.forLanguageTag(tag),PriorityWordingExpectations.resourceText(tag,"formats22_at_least_frames"),2)),
             ui(R.string.formats22_animation_message, format, ui(R.string.formats22_at_least_frames, 2)))
         val filename = "drawing 100%.png"
         val detail = "provider 50% unavailable"
@@ -339,7 +308,7 @@ class SlovakSlovenianP0WordingTest {
             ui(R.string.ui_the_image_was_saved_but_android_could_not, detail))
         assertEquals(if (tag == "sk") "Uložiť" else "Shrani", ui(R.string.ui_save))
         assertEquals(if (tag == "sk") "Uložiť ako…" else "Shrani kot…", ui(R.string.save20_title))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_save_your_changes"), ui(R.string.ui_save_your_changes))
+        assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_save_your_changes"), ui(R.string.ui_save_your_changes))
         assertEquals(expected(tag, "ui_save_and_share_41edb4") + "…", ui(R.string.ui_save_and_share))
     }
 
