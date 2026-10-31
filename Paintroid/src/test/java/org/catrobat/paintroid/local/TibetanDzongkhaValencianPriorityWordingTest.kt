@@ -79,9 +79,13 @@ class TibetanDzongkhaValencianPriorityWordingTest {
     private fun expected(tag: String, key: String) = row(tag,key).getString("display")
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
-    // Parent fallback changes do not grant direct Valencian presence or wording acceptance.
+    // Direct Valencian decisions take precedence over prior Catalan inheritance.
     private fun heldDisplay(tag: String, key: String, previous: String, vararg args: Any) =
-        if(tag=="ca-ES-valencia") PriorityWordingExpectations.residual("ca",key,previous,*args) else previous
+        if(tag=="ca-ES-valencia" && key=="ui_main23") {
+            require(previous=="Principal") { "Historical inherited Main differs" }
+            PriorityWordingExpectations.residual(tag,key,"Main",*args)
+        } else if(PriorityWordingExpectations.hasResidual(tag,key)) PriorityWordingExpectations.residual(tag,key,previous,*args)
+        else if(tag=="ca-ES-valencia") PriorityWordingExpectations.residual("ca",key,previous,*args) else previous
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources

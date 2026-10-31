@@ -76,7 +76,7 @@ class KazakhTajikPashtoPriorityWordingTest {
         return locale.getJSONObject("values").optJSONObject(key)
             ?: locale.getJSONObject("context").getJSONObject(key)
     }
-    private fun expected(tag: String, key: String) = row(tag,key).getString("display")
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.successor(tag,key,row(tag,key).getString("display"))
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
 

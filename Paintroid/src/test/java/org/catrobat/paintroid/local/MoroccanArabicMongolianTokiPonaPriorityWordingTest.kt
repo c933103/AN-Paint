@@ -77,7 +77,7 @@ class MoroccanArabicMongolianTokiPonaPriorityWordingTest {
             require(tag=="mn-Cyrl-MN" && key=="ui_draw26" && raw=="@string/ui_drawing23") { "Only the exact retained MN Draw alias is reviewed" }
             return expected(tag,"ui_drawing23")
         }
-        return decoded(raw)
+        return PriorityWordingExpectations.successor(tag,key,decoded(raw))
     }
     private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
         when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
@@ -133,16 +133,22 @@ class MoroccanArabicMongolianTokiPonaPriorityWordingTest {
                 assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
             }
         }
-        // Absent ARY/TOK holds retain default source; existing MN holds remain unchanged without acceptance.
+        // Exact ARY/TOK successors replace former fallback; existing MN holds remain unchanged.
         val held=locale.getJSONObject("held")
         for(key in held.keys().asSequence()) if(held.isNull(key)) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag held/$key",0,id)
-            assertEquals("$tag held/$key",defaultSource(key),activity.getString(id))
+            val text=PriorityWordingExpectations.residual(tag,key,defaultSource(key))
+            assertEquals("$tag held/successor/$key",text,activity.getString(id))
+            val tokens=pattern.findAll(text).toList()
+            if(tokens.isNotEmpty()) {
+                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
+                assertEquals("$tag successor arguments/$key",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
+            }
         }
     }
 
-    @Test fun heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording() = forEachLocale(listOf("ary","tok")) { tag,activity ->
+    @Test fun reviewedPaletteDoesNotSubstituteAmericanEnglishRegionalWording() = forEachLocale(listOf("ary","tok")) { tag,activity ->
         val key="ui_foreground_background_colour_palette"
         val held=fixture.getJSONObject(tag).getJSONObject("held")
         assertTrue("$tag explicitly held",held.has(key))
@@ -155,7 +161,7 @@ class MoroccanArabicMongolianTokiPonaPriorityWordingTest {
         }).resources
         assertEquals(americanText,american.getString(R.string.ui_foreground_background_colour_palette))
         assertNotEquals(defaultText,americanText)
-        assertEquals("$tag must use default not US",defaultText,activity.getString(R.string.ui_foreground_background_colour_palette))
+        assertEquals("$tag reviewed palette not US",PriorityWordingExpectations.residual(tag,key,defaultText),activity.getString(R.string.ui_foreground_background_colour_palette))
     }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->

@@ -46,6 +46,11 @@ def require_addition(tag,key,english,historical_value=None,already_present=False
     if (not row['changed'] or row['type']!='string' or row['source']!=english or row['source_attributes']!={'name':key} or row['attributes']!={'name':key}
             or not isinstance(row['target'],str) or not row['target'] or row['target'].startswith('@')):
         raise ValueError('Exact family source/type/attributes/addition differs: '+tag+'/'+key)
+    from current_localization_contracts import residual_rows
+    successor=residual_rows().get((tag,key))
+    if successor is not None:
+        if successor['previous_target']!=row['target'] or successor['source']!=english or successor['attributes']!=row['attributes']:raise ValueError('Exact family successor differs')
+        return successor['target']
     return row['target']
 
 

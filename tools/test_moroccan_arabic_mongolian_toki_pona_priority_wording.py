@@ -3,7 +3,7 @@ from collections import Counter
 from copy import deepcopy
 import json,re,unittest,xml.etree.ElementTree as ET
 from unittest.mock import patch
-from current_localization_contracts import fixture
+from current_localization_contracts import fixture, residual_rows, require_residual_or_previous
 from test_danish_norwegian_p0_wording import FULL_FORMAT_TOKEN
 import translation_catalogues as catalogues
 from moroccan_arabic_mongolian_toki_pona_priority_expectations import NAME,TAGS,current_row,display,_display,require_fixture_binding
@@ -4171,11 +4171,20 @@ def require_current(data,roots,english):
     for tag,loc in data['locales'].items():
         root=roots[tag]
         if root.tag!='resources' or root.attrib or (root.text or '').strip():raise ValueError('Malformed catalogue root')
-        if len(root)!=len(loc['catalogue_identities']) or {e.tag+'/'+e.get('name')for e in root}!=set(loc['catalogue_identities']):raise ValueError('Actual exact catalogue differs')
-        for key,target in loc['accepted'].items():require_complete(root,key,data['sources'][key],target,loc['target_attribute_exceptions'].get(key,{'name':key}))
+        successors={key:row for (locale,key),row in residual_rows().items() if locale==tag}
+        identities=set(loc['catalogue_identities'])|{'string/'+key for key in successors}
+        if len(root)!=len(identities) or {e.tag+'/'+e.get('name')for e in root}!=identities:raise ValueError('Actual exact catalogue differs')
+        for key,target in loc['accepted'].items():
+            if key in successors:
+                row=successors[key]
+                if row['previous_target']!=target or row['source']!=data['sources'][key]['source']:raise ValueError('Exact existing successor binding differs')
+                require_residual_or_previous(root,tag,key,target)
+                require_complete(root,key,data['sources'][key],row['target'],row['attributes'])
+            else:require_complete(root,key,data['sources'][key],target,loc['target_attribute_exceptions'].get(key,{'name':key}))
         for key,previous in loc['held'].items():
             if previous is None:
-                if root.findall(f"./string[@name='{key}']"):raise ValueError('Absent hold changed')
+                require_residual_or_previous(root,tag,key)
+                if key in successors:require_complete(root,key,data['sources'][key],successors[key]['target'],successors[key]['attributes'])
             else:require_complete(root,key,{'type':previous['type'],'source':previous['target']},previous['target'],previous['attributes'])
         for key,row in loc['outside_review'].items():require_complete(root,key,{'type':row['type'],'source':row['target']},row['target'],row['attributes'])
     return data

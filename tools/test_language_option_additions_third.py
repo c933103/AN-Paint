@@ -64,7 +64,8 @@ class OctoberLanguageOptionTests(unittest.TestCase):
             path=ROOT/row['catalogue']
             if row['tag']=='ary':
                 require_reviewed_ary_option(row,path.read_text())
-                self.assertEqual(348,len(ET.parse(path).getroot()))
+                # 348 historical reviewed entries plus eleven exact accepted additions.
+                self.assertEqual(359,len(ET.parse(path).getroot()))
                 self.assertEqual([],c.validate_catalogue('ary'))
                 continue
             require_untranslated_option(row,path.read_text())
