@@ -13,7 +13,8 @@ extended to the changed paragraphs.
 
 The complete draft and paragraph-level source evidence are in
 [PR56](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6542623537).
-The final independent review additionally corrects Swedish expand wording,
+The [final independent review](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6542767503)
+additionally corrects Swedish expand wording,
 options-panel placement and the Magnifier enable/settings description. This is
 bounded static-source and AI-language review, not native-human, installed UI-fit,
 TalkBack or whole-language certification. The existing Main label remains held.
@@ -22,7 +23,10 @@ TalkBack or whole-language certification. The existing Main label remains held.
 absent Swedish predecessor and the complete newly reviewed pair. The finite
 successor validator requires the exact identity, predecessor, source, target and
 child-free resource attributes. The original Swedish held fixture is preserved.
-Host mutations reject stale source, missing/duplicate source, wrong identity,
+The existing Swedish host module reuses the shared strict resource-shape validator;
+the compiled checks reuse the existing Swedish class and language lifecycle. No
+new per-language helper or test class is added. Host mutations reject stale
+source, missing/duplicate source, wrong identity,
 predecessor, attributes, text, markup, placeholders and resource tail corruption.
 Compiled tests check all ten paragraphs in actual selected Swedish and isolate
 the default resource separately from regional English catalogues. These tests
