@@ -1,9 +1,0 @@
-# Bounded fa-IR / Japanese / French current wording
-
-Stacked review base2246fd72e8d31f13676e92c16c40506e4c1bdd4c221. Seven exact existing-resource revisions only: fa-IR Airbrush, vertical flip, Undo, Keep editing, quality percentage (formatted=false); French two four-edge crop descriptions. No Japanese wording change, regional additions, generic-fa edits, or shared checkpoint changes.
-
-Full357-row packets perlocale, source/consumer binding and independent receipt are durable at evidence commit1c4dd2ab3f4963a93b9fccf70735fc514f2de4e7, verification/fa-ir-ja-fr-priority-20261029/full-reviewed-packets.tar.xz (SHA2566cdc84617197e348b1d5d58ba9a37582056c756843e1896cf4d81724e3ab8f1a). Receipt SHA25667e145be019193fc8aad402109bbabdca47c5a8f91809076185988a4fcc4dbcd.
-
-Eight held rows perlocale remain unchanged.303 inherited generic-fa values are exact carries with zero duplicate review credit and no direct regional acceptance.30 rows perlocale lack direct references in the bounded packet scan;22 nonheld rows receive wording-only assessment, not runtime proof or global unreachability. Japanese349 unchanged, French347 unchanged, fa-IR41 unchanged values assessed independently. No native-human or complete-language certification.
-
-Finite current fixture binds accepted typed source/direct/effective values, predecessors, attributes, provenance and limits independently in Python and JVM. Corruption tests reject coordinated fixture/resource replacement, metadata changes, missing predecessor, wrong parent and direct override. Real consumer tests exercise French crop unit-switch descriptions/geometry/cancel/apply, fa-IR vertical flip/Undo/airbrush, dirty-document negative preservation and export quality slider. Full compiled values/plurals are also checked. Tests are not rendered RTL/native-reader acceptance. Execution status is reported in PR/evidence, not inferred from these test definitions.
