@@ -1,0 +1,39 @@
+CurrentLocalizationContractTests (unittest.loader._FailedTest.CurrentLocalizationContractTests) ... ERROR
+test_memory_warning_source_review (unittest.loader._FailedTest.test_memory_warning_source_review) ... ERROR
+test_memory_warning_successors (unittest.loader._FailedTest.test_memory_warning_successors) ... ERROR
+
+======================================================================
+ERROR: CurrentLocalizationContractTests (unittest.loader._FailedTest.CurrentLocalizationContractTests)
+----------------------------------------------------------------------
+AttributeError: module 'test_current_localization_contracts' has no attribute 'CurrentLocalizationContractTests'. Did you mean: 'CurrentLocalizationContracts'?
+
+======================================================================
+ERROR: test_memory_warning_source_review (unittest.loader._FailedTest.test_memory_warning_source_review)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_memory_warning_source_review
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/bbca2890f602/priority-history-retirement-20261031/tools/test_memory_warning_source_review.py", line 9, in <module>
+    from memory_warning_source_review import SERBIAN_DELTA_ADDITIONS, NORDIC_ADDITIONS, NN_BE_SQ_ADDITIONS, HR_BS_MK_ADDITIONS, EXACT_SCRIPT_ADDITIONS, EU_FY_UZ_ADDITIONS, GA_GD_CY_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, HI_GU_ADDITIONS, THAI_ADDITIONS, SI_MY_ADDITIONS, MR_TA_TE_ADDITIONS, KEYS, current_source_expectation, review_record, KA_HY_AZ_ADDITIONS, GL_ADDITIONS, SO_WO_HT_ADDITIONS, KK_TG_PS_ADDITIONS, BR_AST_OC_ADDITIONS, CEB_NDS_CSB_ADDITIONS, IA_LA_KU_ADDITIONS, MI_SM_RW_ADDITIONS, WA_SE_SA_ADDITIONS, KAB_MWW_MAI_ADDITIONS, SD_PCM_TPI_ADDITIONS, CKB_UG_TT_ADDITIONS, ARY_MN_TOK_ADDITIONS, BO_DZ_VAL_ADDITIONS, HNE_YI_HK_ADDITIONS
+ImportError: cannot import name 'YO_ZU_XH_ADDITIONS' from 'memory_warning_source_review' (/workspace/scratch/bbca2890f602/priority-history-retirement-20261031/tools/memory_warning_source_review.py). Did you mean: 'SO_WO_HT_ADDITIONS'?
+
+
+======================================================================
+ERROR: test_memory_warning_successors (unittest.loader._FailedTest.test_memory_warning_successors)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_memory_warning_successors
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/bbca2890f602/priority-history-retirement-20261031/tools/test_memory_warning_successors.py", line 10, in <module>
+    from memory_warning_source_review import REMAINING_ACCEPTED_ADDITIONS, SERBIAN_DELTA_ADDITIONS, FA_HE_UR_ADDITIONS, NORDIC_ADDITIONS, NN_BE_SQ_ADDITIONS, HR_BS_MK_ADDITIONS, EXACT_SCRIPT_ADDITIONS, EU_FY_UZ_ADDITIONS, GA_GD_CY_ADDITIONS, YO_ZU_XH_ADDITIONS, HA_IG_LN_ADDITIONS, JV_SU_KY_ADDITIONS, AS_KM_LO_ADDITIONS, NE_PA_ADDITIONS, KN_ML_ADDITIONS, HI_GU_ADDITIONS, THAI_ADDITIONS, SI_MY_ADDITIONS, MR_TA_TE_ADDITIONS, PRIORITY_TAGS, PRIORITY_ADDITIONS, SK_SL_CA_ADDITIONS, SINGLE_KEY_EXPECTATIONS, current_source_expectation, review_record, KA_HY_AZ_ADDITIONS, GL_ADDITIONS, SO_WO_HT_ADDITIONS, KK_TG_PS_ADDITIONS, BR_AST_OC_ADDITIONS, CEB_NDS_CSB_ADDITIONS, IA_LA_KU_ADDITIONS, MI_SM_RW_ADDITIONS, WA_SE_SA_ADDITIONS, KAB_MWW_MAI_ADDITIONS, SD_PCM_TPI_ADDITIONS, CKB_UG_TT_ADDITIONS, ARY_MN_TOK_ADDITIONS, BO_DZ_VAL_ADDITIONS, HNE_YI_HK_ADDITIONS
+ImportError: cannot import name 'YO_ZU_XH_ADDITIONS' from 'memory_warning_source_review' (/workspace/scratch/bbca2890f602/priority-history-retirement-20261031/tools/memory_warning_source_review.py). Did you mean: 'SO_WO_HT_ADDITIONS'?
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+FAILED (errors=3)
