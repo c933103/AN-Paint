@@ -1,0 +1,1300 @@
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/AfrikaansRetainedPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/AfrikaansRetainedPriorityWordingTest.kt
+index bbb8d2b64e..d2a7b3b47b 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/AfrikaansRetainedPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/AfrikaansRetainedPriorityWordingTest.kt
+@@ -76,24 +76,9 @@ class AfrikaansRetainedPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("af"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("af"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAfrikaansCompleteValueAndPresentHoldKeepsItsDistinctScope() = forEachLocale { tag,activity ->
+         val locale=fixture
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/AssameseKhmerLaoPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/AssameseKhmerLaoPriorityWordingTest.kt
+index 3709f122d4..e17d138aee 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/AssameseKhmerLaoPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/AssameseKhmerLaoPriorityWordingTest.kt
+@@ -75,24 +75,9 @@ class AssameseKhmerLaoPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("as","km","lo"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("as","km","lo"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedAssameseKhmerLaoCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/BasqueFrisianUzbekPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/BasqueFrisianUzbekPriorityWordingTest.kt
+index d822142f54..730dfc1e96 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/BasqueFrisianUzbekPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/BasqueFrisianUzbekPriorityWordingTest.kt
+@@ -90,24 +90,9 @@ class BasqueFrisianUzbekPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("eu-ES","fy","uz-Latn"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("eu-ES","fy","uz-Latn"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun reviewedResidualsDecodeOuterAndroidQuotesBeforeFormatting() {
+         assertEquals("Voz kechish",PriorityWordingExpectations.residual("uz-Latn","ui_discard","Discard"))
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/BretonAsturianOccitanPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/BretonAsturianOccitanPriorityWordingTest.kt
+index 79ef0d20e2..670b5bb9f4 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/BretonAsturianOccitanPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/BretonAsturianOccitanPriorityWordingTest.kt
+@@ -97,24 +97,9 @@ class BretonAsturianOccitanPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("br","ast","oc"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("br","ast","oc"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedBretonAsturianOccitanCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CebuanoLowGermanKashubianPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CebuanoLowGermanKashubianPriorityWordingTest.kt
+index 2683c9f03b..e1b22dca67 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CebuanoLowGermanKashubianPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CebuanoLowGermanKashubianPriorityWordingTest.kt
+@@ -90,24 +90,9 @@ class CebuanoLowGermanKashubianPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("ceb","nds","csb"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("ceb","nds","csb"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/ChhattisgarhiYiddishHongKongPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/ChhattisgarhiYiddishHongKongPriorityWordingTest.kt
+index 6b995645c6..0781545d52 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/ChhattisgarhiYiddishHongKongPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/ChhattisgarhiYiddishHongKongPriorityWordingTest.kt
+@@ -93,24 +93,9 @@ class ChhattisgarhiYiddishHongKongPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("hne","yi","zh-HK"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("hne","yi","zh-HK"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/CroatianBosnianMacedonianPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/CroatianBosnianMacedonianPriorityWordingTest.kt
+index af436e3d4c..48d7755b2d 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/CroatianBosnianMacedonianPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/CroatianBosnianMacedonianPriorityWordingTest.kt
+@@ -63,24 +63,9 @@ class CroatianBosnianMacedonianPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("hr","bs","mk"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("hr","bs","mk"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/HausaIgboLingalaPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/HausaIgboLingalaPriorityWordingTest.kt
+index 4dc5ee7fa7..88ed4c345a 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/HausaIgboLingalaPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/HausaIgboLingalaPriorityWordingTest.kt
+@@ -69,24 +69,9 @@ class HausaIgboLingalaPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("ha","ig","ln"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("ha","ig","ln"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedHausaIgboLingalaCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/HindiGujaratiPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/HindiGujaratiPriorityWordingTest.kt
+index 8cfb79e01a..2039b552ce 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/HindiGujaratiPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/HindiGujaratiPriorityWordingTest.kt
+@@ -67,24 +67,9 @@ class HindiGujaratiPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("hi","gu"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("hi","gu"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedHindiGujaratiCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/InterlinguaLatinKurdishPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/InterlinguaLatinKurdishPriorityWordingTest.kt
+index 1333e17579..43a4c4363c 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/InterlinguaLatinKurdishPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/InterlinguaLatinKurdishPriorityWordingTest.kt
+@@ -95,24 +95,9 @@ class InterlinguaLatinKurdishPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("ia","la","ku"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("ia","la","ku"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedInterlinguaLatinKurdishCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/JavaneseSundaneseKyrgyzPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/JavaneseSundaneseKyrgyzPriorityWordingTest.kt
+index 2153bb0988..d772a41cd1 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/JavaneseSundaneseKyrgyzPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/JavaneseSundaneseKyrgyzPriorityWordingTest.kt
+@@ -75,24 +75,9 @@ class JavaneseSundaneseKyrgyzPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("jv","su","ky"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("jv","su","ky"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedJavaneseSundaneseKyrgyzCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/KabyleHmongDawMaithiliPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/KabyleHmongDawMaithiliPriorityWordingTest.kt
+index 0cb95f9c3c..123e462e36 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/KabyleHmongDawMaithiliPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/KabyleHmongDawMaithiliPriorityWordingTest.kt
+@@ -95,24 +95,9 @@ class KabyleHmongDawMaithiliPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("kab","mww","mai"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("kab","mww","mai"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedKabyleHmongDawMaithiliCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/KannadaMalayalamFilipinoPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/KannadaMalayalamFilipinoPriorityWordingTest.kt
+index cf22790d7e..2c2a32fe5f 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/KannadaMalayalamFilipinoPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/KannadaMalayalamFilipinoPriorityWordingTest.kt
+@@ -75,24 +75,9 @@ class KannadaMalayalamFilipinoPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("kn","ml-IN","fil"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("kn","ml-IN","fil"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedKannadaMalayalamFilipinoCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/KazakhTajikPashtoPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/KazakhTajikPashtoPriorityWordingTest.kt
+index 30f1a27dd3..bff11a5887 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/KazakhTajikPashtoPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/KazakhTajikPashtoPriorityWordingTest.kt
+@@ -90,24 +90,9 @@ class KazakhTajikPashtoPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("kk","tg","ps"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("kk","tg","ps"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/LatinSiniticPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/LatinSiniticPriorityWordingTest.kt
+index 5755950965..400a970fc2 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/LatinSiniticPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/LatinSiniticPriorityWordingTest.kt
+@@ -114,24 +114,9 @@ class LatinSiniticPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("yue-Latn","hak-Latn-TW","nan-Latn-TW"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("yue-Latn","hak-Latn-TW","nan-Latn-TW"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("rows")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/MarathiTamilTeluguPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/MarathiTamilTeluguPriorityWordingTest.kt
+index 57b4e70896..97c0bb6729 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/MarathiTamilTeluguPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/MarathiTamilTeluguPriorityWordingTest.kt
+@@ -68,24 +68,9 @@ class MarathiTamilTeluguPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("mr","ta","te"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("mr","ta","te"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedMarathiTamilTeluguCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/MoroccanArabicMongolianTokiPonaPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/MoroccanArabicMongolianTokiPonaPriorityWordingTest.kt
+index 79b8587351..23588db3dd 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/MoroccanArabicMongolianTokiPonaPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/MoroccanArabicMongolianTokiPonaPriorityWordingTest.kt
+@@ -95,24 +95,9 @@ class MoroccanArabicMongolianTokiPonaPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("ary","mn-Cyrl-MN","tok"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("ary","mn-Cyrl-MN","tok"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedMoroccanArabicMongolianTokiPonaCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/NepaliPunjabiPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/NepaliPunjabiPriorityWordingTest.kt
+index 008f9eb170..380bfe586c 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/NepaliPunjabiPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/NepaliPunjabiPriorityWordingTest.kt
+@@ -72,24 +72,9 @@ class NepaliPunjabiPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("ne","pa-IN"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("ne","pa-IN"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedNepaliPunjabiCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/NordicPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/NordicPriorityWordingTest.kt
+index d4edeb08f8..dbacdc1f51 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/NordicPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/NordicPriorityWordingTest.kt
+@@ -72,24 +72,9 @@ class NordicPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("da","is","no"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("da","is","no"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedNordicCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/NorthKoreanAustralianPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/NorthKoreanAustralianPriorityWordingTest.kt
+index 1263c84174..810b7cd3c9 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/NorthKoreanAustralianPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/NorthKoreanAustralianPriorityWordingTest.kt
+@@ -130,24 +130,9 @@ class NorthKoreanAustralianPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("ko-KP","en-AU"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("ko-KP","en-AU"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedNorthKoreanAustralianCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/NynorskPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/NynorskPriorityWordingTest.kt
+index e18ce50847..b33c91ce9c 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/NynorskPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/NynorskPriorityWordingTest.kt
+@@ -72,24 +72,9 @@ class NynorskPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("nn"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("nn"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedNordicCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/PriorityWordingExpectations.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/PriorityWordingExpectations.kt
+index 8f18dcba54..0814d97131 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/PriorityWordingExpectations.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/PriorityWordingExpectations.kt
+@@ -1,6 +1,15 @@
+ /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
+ package org.catrobat.paintroid.local
+ 
++import android.app.Activity
++import android.content.res.Resources
++import org.catrobat.paintroid.R
++import org.catrobat.paintroid.classic.AppLanguage
++import org.catrobat.paintroid.classic.PaintApplication
++import org.junit.Assert.assertEquals
++import org.robolectric.Robolectric
++import org.robolectric.shadows.ShadowAlertDialog
++import java.util.Locale
+ import org.json.JSONObject
+ import java.io.File
+ 
+@@ -51,4 +60,30 @@ internal object PriorityWordingExpectations {
+         // Reuse the existing raw-resource/display boundary before substituting arguments.
+         return formatted(RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,row.getString("target")))
+     }
++
++    /** Shared unchanged activity lifecycle; callers retain their own locale scope and assertions. */
++    fun forEachLocale(
++        tags: List<String>,
++        previousResources: Resources,
++        previousLocale: Locale,
++        previousTag: String,
++        check: (String, Activity) -> Unit
++    ) {
++        for(tag in tags) {
++            val controller=Robolectric.buildActivity(Activity::class.java)
++            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
++            try {
++                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
++                assertEquals(tag,AppLanguage.selectedTag(activity))
++                // ui() must format using the selected resource locale, not the process default.
++                Locale.setDefault(Locale.US)
++                check(tag,activity)
++            } finally {
++                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
++                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
++                controller.pause().stop().destroy()
++                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
++            }
++        }
++    }
+ }
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianPriorityDeltaWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianPriorityDeltaWordingTest.kt
+index caca859a89..222246679b 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianPriorityDeltaWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SerbianPriorityDeltaWordingTest.kt
+@@ -58,24 +58,9 @@ class SerbianPriorityDeltaWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("sr-Cyrl","sr-Latn"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("sr-Cyrl","sr-Latn"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject("locales").getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/SindhiNigerianPidginTokPisinPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/SindhiNigerianPidginTokPisinPriorityWordingTest.kt
+index ece745d2e0..245ce805de 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SindhiNigerianPidginTokPisinPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SindhiNigerianPidginTokPisinPriorityWordingTest.kt
+@@ -90,24 +90,9 @@ class SindhiNigerianPidginTokPisinPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("sd","pcm","tpi"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("sd","pcm","tpi"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/SinhalaBurmeseZhuangPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/SinhalaBurmeseZhuangPriorityWordingTest.kt
+index 5e2da8c91d..7c76983e4b 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SinhalaBurmeseZhuangPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SinhalaBurmeseZhuangPriorityWordingTest.kt
+@@ -68,24 +68,9 @@ class SinhalaBurmeseZhuangPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("si","my"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("si","my"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedSinhalaBurmeseReplacementCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/SlovakSlovenianCatalanPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/SlovakSlovenianCatalanPriorityWordingTest.kt
+index 447f23072a..3599d76e8a 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SlovakSlovenianCatalanPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SlovakSlovenianCatalanPriorityWordingTest.kt
+@@ -64,24 +64,9 @@ class SlovakSlovenianCatalanPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("sk","sl","ca"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("sk","sl","ca"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/SomaliWolofHaitianCreolePriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/SomaliWolofHaitianCreolePriorityWordingTest.kt
+index 5fb82d221d..ada83aab1d 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SomaliWolofHaitianCreolePriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SomaliWolofHaitianCreolePriorityWordingTest.kt
+@@ -85,24 +85,9 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("so","wo","ht"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("so","wo","ht"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedSomaliWolofHaitianCreoleCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/SoraniUyghurTatarPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/SoraniUyghurTatarPriorityWordingTest.kt
+index c0aa90504e..214ccd5330 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/SoraniUyghurTatarPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/SoraniUyghurTatarPriorityWordingTest.kt
+@@ -90,24 +90,9 @@ class SoraniUyghurTatarPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("ckb","ug","tt-Cyrl"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("ckb","ug","tt-Cyrl"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/ThaiReplacementPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/ThaiReplacementPriorityWordingTest.kt
+index f1b380873e..3f814fedd6 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/ThaiReplacementPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/ThaiReplacementPriorityWordingTest.kt
+@@ -66,24 +66,9 @@ class ThaiReplacementPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("th"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("th"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedThaiReplacementCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/TibetanDzongkhaValencianPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/TibetanDzongkhaValencianPriorityWordingTest.kt
+index 041563f4f4..914e712bae 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/TibetanDzongkhaValencianPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/TibetanDzongkhaValencianPriorityWordingTest.kt
+@@ -97,24 +97,9 @@ class TibetanDzongkhaValencianPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("bo","dz","ca-ES-valencia"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("bo","dz","ca-ES-valencia"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/UkrainianLithuanianRomanianPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/UkrainianLithuanianRomanianPriorityWordingTest.kt
+index a76fd2d6f0..931be8664d 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/UkrainianLithuanianRomanianPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/UkrainianLithuanianRomanianPriorityWordingTest.kt
+@@ -64,24 +64,9 @@ class UkrainianLithuanianRomanianPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("uk","lt","ro"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("uk","lt","ro"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/WalloonNorthernSamiSanskritPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/WalloonNorthernSamiSanskritPriorityWordingTest.kt
+index 678f6e9deb..546f509bb2 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/WalloonNorthernSamiSanskritPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/WalloonNorthernSamiSanskritPriorityWordingTest.kt
+@@ -90,24 +90,9 @@ class WalloonNorthernSamiSanskritPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("wa","se","sa"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("wa","se","sa"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
+         val values=fixture.getJSONObject(tag).getJSONObject("values")
+diff --git a/Paintroid/src/test/java/org/catrobat/paintroid/local/YorubaZuluXhosaPriorityWordingTest.kt b/Paintroid/src/test/java/org/catrobat/paintroid/local/YorubaZuluXhosaPriorityWordingTest.kt
+index 2d087b12f3..f2a174a3ee 100644
+--- a/Paintroid/src/test/java/org/catrobat/paintroid/local/YorubaZuluXhosaPriorityWordingTest.kt
++++ b/Paintroid/src/test/java/org/catrobat/paintroid/local/YorubaZuluXhosaPriorityWordingTest.kt
+@@ -69,24 +69,9 @@ class YorubaZuluXhosaPriorityWordingTest {
+         PaintApplication.currentResources = previousResources
+         Locale.setDefault(previousLocale)
+     }
+-    private fun forEachLocale(tags: List<String> = listOf("yo","zu","xh"), check: (String,Activity)->Unit) {
+-        for(tag in tags) {
+-            val controller=Robolectric.buildActivity(Activity::class.java)
+-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+-            try {
+-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+-                assertEquals(tag,AppLanguage.selectedTag(activity))
+-                // ui() must format using the selected resource locale, not the process default.
+-                Locale.setDefault(Locale.US)
+-                check(tag,activity)
+-            } finally {
+-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+-                controller.pause().stop().destroy()
+-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+-            }
+-        }
+-    }
++    private fun forEachLocale(tags: List<String> = listOf("yo","zu","xh"), check: (String,Activity)->Unit) =
++        PriorityWordingExpectations.forEachLocale(
++            tags, previousResources, previousLocale, previousTag, check)
+ 
+     @Test fun everyReviewedYorubaZuluXhosaCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
+         val locale=fixture.getJSONObject(tag)
+diff --git a/tools/assamese_khmer_lao_priority_expectations.py b/tools/assamese_khmer_lao_priority_expectations.py
+index 4d2c5269a9..e1eded2cc3 100644
+--- a/tools/assamese_khmer_lao_priority_expectations.py
++++ b/tools/assamese_khmer_lao_priority_expectations.py
+@@ -1,5 +1,6 @@
+ """Bounded current expectations; complete original evidence stays on its immutable ref."""
+ from current_localization_contracts import fixture
++import priority_cohort_checks as _cohort_checks
+ 
+ NAME='assamese_khmer_lao_priority_wording.json'
+ TAGS=frozenset({'as','km','lo'})
+@@ -9,16 +10,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in TAGS for key in ('commons_svg_origi
+ 
+ 
+ def current_row(tag,key):
+-    data=fixture(NAME)
+-    if tag not in TAGS:raise ValueError('Outside exact reviewed locale set')
+-    locale=data['locales'][tag];source=data['sources'][key]
+-    if key not in locale['accepted']:raise ValueError('No accepted complete value')
+-    previous=locale['predecessors'].get(key)
+-    return {'source':source['source'],'target':locale['accepted'][key],
+-            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
+-            'previous_target':previous['target'] if previous else None,
+-            'previous_attributes':previous['attributes'] if previous else None,
+-            'changed':key in locale['changed'],'type':source['type']}
++    return _cohort_checks.current_row(tag, key, NAME, TAGS, fixture)
+ 
+ 
+ def display(tag,key):
+diff --git a/tools/hausa_igbo_lingala_priority_expectations.py b/tools/hausa_igbo_lingala_priority_expectations.py
+index 9f06b314d8..201a5ad8a7 100644
+--- a/tools/hausa_igbo_lingala_priority_expectations.py
++++ b/tools/hausa_igbo_lingala_priority_expectations.py
+@@ -1,5 +1,6 @@
+ """Bounded current expectations; complete original evidence stays on its immutable ref."""
+ from current_localization_contracts import fixture, RESIDUAL_KEYS, require_residual_or_previous
++import priority_cohort_checks as _cohort_checks
+ 
+ NAME='hausa_igbo_lingala_priority_wording.json'
+ TAGS=frozenset({'ha','ig','ln'})
+@@ -9,16 +10,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in TAGS for key in ('commons_svg_origi
+ 
+ 
+ def current_row(tag,key):
+-    data=fixture(NAME)
+-    if tag not in TAGS:raise ValueError('Outside exact reviewed locale set')
+-    locale=data['locales'][tag];source=data['sources'][key]
+-    if key not in locale['accepted']:raise ValueError('No accepted complete value')
+-    previous=locale['predecessors'].get(key)
+-    return {'source':source['source'],'target':locale['accepted'][key],
+-            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
+-            'previous_target':previous['target'] if previous else None,
+-            'previous_attributes':previous['attributes'] if previous else None,
+-            'changed':key in locale['changed'],'type':source['type']}
++    return _cohort_checks.current_row(tag, key, NAME, TAGS, fixture)
+ 
+ 
+ def display(tag,key):
+diff --git a/tools/javanese_sundanese_kyrgyz_priority_expectations.py b/tools/javanese_sundanese_kyrgyz_priority_expectations.py
+index 1e4321ef47..22369495b4 100644
+--- a/tools/javanese_sundanese_kyrgyz_priority_expectations.py
++++ b/tools/javanese_sundanese_kyrgyz_priority_expectations.py
+@@ -1,5 +1,6 @@
+ """Bounded current expectations; complete original evidence stays on its immutable ref."""
+ from current_localization_contracts import fixture
++import priority_cohort_checks as _cohort_checks
+ 
+ NAME='javanese_sundanese_kyrgyz_priority_wording.json'
+ TAGS=frozenset({'jv','su','ky'})
+@@ -9,16 +10,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in TAGS for key in ('commons_svg_origi
+ 
+ 
+ def current_row(tag,key):
+-    data=fixture(NAME)
+-    if tag not in TAGS:raise ValueError('Outside exact reviewed locale set')
+-    locale=data['locales'][tag];source=data['sources'][key]
+-    if key not in locale['accepted']:raise ValueError('No accepted complete value')
+-    previous=locale['predecessors'].get(key)
+-    return {'source':source['source'],'target':locale['accepted'][key],
+-            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
+-            'previous_target':previous['target'] if previous else None,
+-            'previous_attributes':previous['attributes'] if previous else None,
+-            'changed':key in locale['changed'],'type':source['type']}
++    return _cohort_checks.current_row(tag, key, NAME, TAGS, fixture)
+ 
+ 
+ def display(tag,key):
+diff --git a/tools/kannada_malayalam_filipino_priority_expectations.py b/tools/kannada_malayalam_filipino_priority_expectations.py
+index 98c495b727..01a8e77fe9 100644
+--- a/tools/kannada_malayalam_filipino_priority_expectations.py
++++ b/tools/kannada_malayalam_filipino_priority_expectations.py
+@@ -1,6 +1,7 @@
+ """Bounded current expectations; complete original evidence stays on its immutable ref."""
+ import re
+ from current_localization_contracts import fixture
++import priority_cohort_checks as _cohort_checks
+ 
+ NAME='kannada_malayalam_filipino_priority_wording.json'
+ TAGS=frozenset({'kn','ml-IN','fil'})
+@@ -11,16 +12,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in ADDITION_TAGS for key in ('commons_
+ 
+ 
+ def current_row(tag,key):
+-    data=fixture(NAME)
+-    if tag not in TAGS:raise ValueError('Outside exact reviewed locale set')
+-    locale=data['locales'][tag];source=data['sources'][key]
+-    if key not in locale['accepted']:raise ValueError('No accepted complete value')
+-    previous=locale['predecessors'].get(key)
+-    return {'source':source['source'],'target':locale['accepted'][key],
+-            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
+-            'previous_target':previous['target'] if previous else None,
+-            'previous_attributes':previous['attributes'] if previous else None,
+-            'changed':key in locale['changed'],'type':source['type']}
++    return _cohort_checks.current_row(tag, key, NAME, TAGS, fixture)
+ 
+ 
+ def display(tag,key):
+diff --git a/tools/marathi_tamil_telugu_priority_expectations.py b/tools/marathi_tamil_telugu_priority_expectations.py
+index f2fb2d759a..8810e70eb8 100644
+--- a/tools/marathi_tamil_telugu_priority_expectations.py
++++ b/tools/marathi_tamil_telugu_priority_expectations.py
+@@ -1,5 +1,6 @@
+ """Bounded current expectations; complete original evidence stays on its immutable ref."""
+ from current_localization_contracts import fixture
++import priority_cohort_checks as _cohort_checks
+ 
+ NAME='marathi_tamil_telugu_priority_wording.json'
+ TAGS=frozenset({'mr','ta','te'})
+@@ -9,16 +10,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in TAGS for key in ('commons_svg_origi
+ 
+ 
+ def current_row(tag,key):
+-    data=fixture(NAME)
+-    if tag not in TAGS:raise ValueError('Outside exact reviewed locale set')
+-    locale=data['locales'][tag];source=data['sources'][key]
+-    if key not in locale['accepted']:raise ValueError('No accepted complete value')
+-    previous=locale['predecessors'].get(key)
+-    return {'source':source['source'],'target':locale['accepted'][key],
+-            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
+-            'previous_target':previous['target'] if previous else None,
+-            'previous_attributes':previous['attributes'] if previous else None,
+-            'changed':key in locale['changed'],'type':source['type']}
++    return _cohort_checks.current_row(tag, key, NAME, TAGS, fixture)
+ 
+ 
+ def display(tag,key):
+diff --git a/tools/nepali_punjabi_priority_expectations.py b/tools/nepali_punjabi_priority_expectations.py
+index eae04d9b1f..1be32dd8c5 100644
+--- a/tools/nepali_punjabi_priority_expectations.py
++++ b/tools/nepali_punjabi_priority_expectations.py
+@@ -1,5 +1,6 @@
+ """Bounded current expectations; complete original evidence stays on its immutable ref."""
+ from current_localization_contracts import fixture
++import priority_cohort_checks as _cohort_checks
+ 
+ NAME='nepali_punjabi_priority_wording.json'
+ TAGS=frozenset({'ne','pa-IN'})
+@@ -9,16 +10,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in TAGS for key in ('commons_svg_origi
+ 
+ 
+ def current_row(tag,key):
+-    data=fixture(NAME)
+-    if tag not in TAGS:raise ValueError('Outside exact reviewed locale set')
+-    locale=data['locales'][tag];source=data['sources'][key]
+-    if key not in locale['accepted']:raise ValueError('No accepted complete value')
+-    previous=locale['predecessors'].get(key)
+-    return {'source':source['source'],'target':locale['accepted'][key],
+-            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
+-            'previous_target':previous['target'] if previous else None,
+-            'previous_attributes':previous['attributes'] if previous else None,
+-            'changed':key in locale['changed'],'type':source['type']}
++    return _cohort_checks.current_row(tag, key, NAME, TAGS, fixture)
+ 
+ 
+ def display(tag,key):
+diff --git a/tools/priority_cohort_checks.py b/tools/priority_cohort_checks.py
+index c19982a433..49c712d685 100644
+--- a/tools/priority_cohort_checks.py
++++ b/tools/priority_cohort_checks.py
+@@ -100,3 +100,16 @@ def require_catalogue(tag, root, data, bound_fixture, require_fixture_binding, r
+             old = data['original_catalogue'][key]
+             require_resource_shape(node, 'plurals' if isinstance(old['value'], dict) else 'string', old)
+     return root
++
++
++def current_row(tag, key, name, tags, fixture):
++    data=fixture(name)
++    if tag not in tags:raise ValueError('Outside exact reviewed locale set')
++    locale=data['locales'][tag];source=data['sources'][key]
++    if key not in locale['accepted']:raise ValueError('No accepted complete value')
++    previous=locale['predecessors'].get(key)
++    return {'source':source['source'],'target':locale['accepted'][key],
++            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
++            'previous_target':previous['target'] if previous else None,
++            'previous_attributes':previous['attributes'] if previous else None,
++            'changed':key in locale['changed'],'type':source['type']}
+diff --git a/tools/yoruba_zulu_xhosa_priority_expectations.py b/tools/yoruba_zulu_xhosa_priority_expectations.py
+index a4b48bc0a6..2401ff7bd9 100644
+--- a/tools/yoruba_zulu_xhosa_priority_expectations.py
++++ b/tools/yoruba_zulu_xhosa_priority_expectations.py
+@@ -1,5 +1,6 @@
+ """Bounded current expectations; complete original evidence stays on its immutable ref."""
+ from current_localization_contracts import fixture, RESIDUAL_KEYS, require_residual_or_previous
++import priority_cohort_checks as _cohort_checks
+ 
+ NAME='yoruba_zulu_xhosa_priority_wording.json'
+ TAGS=frozenset({'yo','zu','xh'})
+@@ -9,16 +10,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in TAGS for key in ('commons_svg_origi
+ 
+ 
+ def current_row(tag,key):
+-    data=fixture(NAME)
+-    if tag not in TAGS:raise ValueError('Outside exact reviewed locale set')
+-    locale=data['locales'][tag];source=data['sources'][key]
+-    if key not in locale['accepted']:raise ValueError('No accepted complete value')
+-    previous=locale['predecessors'].get(key)
+-    return {'source':source['source'],'target':locale['accepted'][key],
+-            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
+-            'previous_target':previous['target'] if previous else None,
+-            'previous_attributes':previous['attributes'] if previous else None,
+-            'changed':key in locale['changed'],'type':source['type']}
++    return _cohort_checks.current_row(tag, key, NAME, TAGS, fixture)
+ 
+ 
+ def display(tag,key):
