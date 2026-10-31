@@ -79,7 +79,7 @@ class BretonAsturianOccitanPriorityWordingTest {
             require(key=="ui_save_a5d0d9" && raw=="@string/ui_save") { "Only the exact inherited Save alias is reviewed" }
             return expected(tag,"ui_save")
         }
-        return decoded(raw)
+        return PriorityWordingExpectations.successor(tag,key,decoded(raw))
     }
     private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
         when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }

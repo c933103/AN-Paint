@@ -97,7 +97,11 @@ class ExactScriptPriorityTests(unittest.TestCase):
             for key,h in d['held'].items():
                 root=self.root(tag);node=root.find("./*[@name='"+key+"']")
                 if h['previous'] is None:
-                    self.assertIsNone(node);E.SubElement(root,'string',{'name':key}).text='forged'
+                    from current_localization_contracts import residual_rows
+                    if (tag,key) in residual_rows():
+                        self.assertIsNotNone(node);node.text='forged'
+                    else:
+                        self.assertIsNone(node);E.SubElement(root,'string',{'name':key}).text='forged'
                 else:
                     self.assertIsNotNone(node);root.remove(node)
                 with self.assertRaises(ValueError):g.require_catalogue(tag,root)

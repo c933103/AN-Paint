@@ -77,6 +77,13 @@ def review_record():
 
 
 def current_source_expectation(key, tag, historical_value):
+    if (tag,key) in {('ang','ui_no_resize_fits_decoder_memory'),('non','ui_assembly_source_memory_floor'),('shn','ui_no_resize_fits_decoder_memory')}:
+        from current_localization_contracts import residual_rows
+        row=residual_rows()[(tag,key)]
+        old=next(o for o in review_record()['options'] if o['tag']==tag)['terms'][key]['value']
+        if historical_value is not None or old is not None or row['previous_target'] is not None or row['source']!=review_record()['keys'][key]['corrected_english']:
+            raise ValueError('Exact sparse memory-warning predecessor/source differs')
+        return row['target']
     """Keep historical evidence; select only explicitly bound current expectations.
 
 Reject a changed historical English pair instead of letting the correction hide

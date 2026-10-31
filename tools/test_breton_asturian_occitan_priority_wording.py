@@ -1918,7 +1918,12 @@ def require_current(data,roots,english):
         successors=RESIDUAL_KEYS.get(tag,set())
         identities=set(loc['catalogue_identities'])|{'string/'+key for key in successors}
         if len(root)!=len(identities) or {e.tag+'/'+e.get('name')for e in root}!=identities:raise ValueError('Actual exact catalogue differs')
-        for key,target in loc['accepted'].items():require_complete(root,key,data['sources'][key],target,loc['target_attribute_exceptions'].get(key,{'name':key}))
+        for key,target in loc['accepted'].items():
+            if (tag,key) in residual_rows():
+                require_residual_or_previous(root,tag,key,target)
+                row=residual_rows()[(tag,key)]
+                require_complete(root,key,data['sources'][key],row['target'],row['attributes'])
+            else:require_complete(root,key,data['sources'][key],target,loc['target_attribute_exceptions'].get(key,{'name':key}))
         for key,previous in loc['held'].items():
             if previous is None:
                 require_residual_or_previous(root,tag,key)

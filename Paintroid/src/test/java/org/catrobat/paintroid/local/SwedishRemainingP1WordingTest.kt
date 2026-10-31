@@ -88,7 +88,7 @@ class SwedishRemainingP1WordingTest {
             val expected = currentExpectedMessage(key, values.getJSONObject(key).getString("sv")).replace("\\n", "\n")
             assertEquals("Complete Swedish resource $key", expected, swedish.getString(id))
         }
-        assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+        assertEquals(PriorityWordingExpectations.residual("sv","ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
             swedish.getString(R.string.ui_foreground_background_colour_palette))
     }
 

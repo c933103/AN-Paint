@@ -97,7 +97,7 @@ class ExactScriptPriorityWordingTest {
             ?: locale.getJSONObject("held").getJSONObject(key)
         return requireRow(tag,key,supplied)
     }
-    private fun expected(tag: String,key: String)=row(tag,key).getString("compiled_display")
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.residual(tag,key,row(tag,key).getString("compiled_display"))
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
 
@@ -166,13 +166,13 @@ class ExactScriptPriorityWordingTest {
             assertEquals("string",entry.getString("type"))
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("Held $tag/$key",0,id)
-            assertEquals("Held current or English fallback $tag/$key",entry.getString("compiled_display"),activity.getString(id))
+            assertEquals("Held current or English fallback $tag/$key",expected(tag,key),activity.getString(id))
         }
-        val palette=held.getJSONObject("ui_foreground_background_colour_palette").getString("compiled_display")
+        val palette=expected(tag,"ui_foreground_background_colour_palette")
         assertEquals(palette,activity.getString(R.string.ui_foreground_background_colour_palette))
         assertEquals(String.format(Locale.forLanguageTag(tag),palette,"foreground 100%","background 100%","palette 100%"),
             ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
-        assertEquals(held.getJSONObject("ui_save_as_png").getString("compiled_display"),ui(R.string.ui_save_as_png))
+        assertEquals(expected(tag,"ui_save_as_png"),ui(R.string.ui_save_as_png))
         assertEquals(expected(tag,"ui_fg"),ui(R.string.ui_fg))
         assertEquals(expected(tag,"ui_bg"),ui(R.string.ui_bg))
     }
