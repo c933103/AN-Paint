@@ -1,0 +1,52 @@
+{
+  "prior_head": "3c1204f42b129c1497d0d8120c84000dc18e664a",
+  "prior_run": 41218353683,
+  "prior_run_state": [
+    {
+      "id": 41218353683,
+      "name": "Android build and checks",
+      "status": "completed",
+      "conclusion": "cancelled",
+      "run_number": 966,
+      "jobs_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/41218353683/jobs",
+      "logs_url": "https://api.github.com/repos/c933103/AN-Paint/actions/runs/41218353683/logs",
+      "workflow_id": 354972367
+    }
+  ],
+  "regression_job": 124587621109,
+  "regression_status": "failure",
+  "python": {
+    "tests": 1529,
+    "seconds": 257.06,
+    "errors": 1,
+    "skipped": 2
+  },
+  "jvm": {
+    "status": "not executed; Kotlin test compilation failed",
+    "errors": [
+      "RuntimeEnvironment.getApplication does not accept type arguments (two call sites)",
+      "SampledMemoryModalityTest stale expected identifier"
+    ]
+  },
+  "review_finding": "P1: test_valencian_variant_packaging read removed TibetanDzongkhaValencianPriorityWordingTest",
+  "correction": {
+    "head": "74dfc11cefb10edb51180fe84af8c8ea2bb8b65f",
+    "tree": "879586bacd6091e830a558b3eaad7c744037e0d4",
+    "verified_leaves": 1470,
+    "verified_deleted": 147,
+    "changed_files": 211
+  },
+  "focused": {
+    "modules": [
+      "test_valencian_variant_packaging",
+      "test_sampled_memory_modality"
+    ],
+    "tests": 8,
+    "seconds": 0.146,
+    "status": "pass"
+  },
+  "remaining_removed_class_references_in_python": 0,
+  "current_run": 41219486029,
+  "current_status": "pending/running; not qualified",
+  "automatic_review": "current-head automatic code review running; no manual duplicate request"
+}
