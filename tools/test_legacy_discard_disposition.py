@@ -1,67 +1,25 @@
-"""Exact later acceptance, preserving the original held evidence unchanged."""
-from copy import deepcopy
+"""Current Discard action semantics, not a historical approval/predecessor adapter."""
 import unittest
-from unittest.mock import patch
-import xml.etree.ElementTree as E
-import legacy_discard_disposition as d
-import translation_catalogues as c
-from current_localization_contracts import fixture, residual_rows
-from priority_cohort_checks import require_resource_shape
+import translation_catalogues as catalogues
+from current_localization_contracts import decode_display
 
 
 class LegacyDiscardDispositionTest(unittest.TestCase):
-    def setUp(self):
-        self.root = E.parse(c.catalogue_paths()['ps']).getroot()
-        self.node = self.root.find("./string[@name='ui_discard']")
-        self.previous = d.PREVIOUS
-
-    def test_exact_predecessor_source_target_and_unchanged_acceptance(self):
-        d.require_successor('ps', d.KEY, self.node, self.previous)
-        eu = E.parse(c.catalogue_paths()['eu-ES']).getroot().find("./string[@name='ui_discard']")
-        require_resource_shape(eu, 'string', d.UNCHANGED)
+    def test_discard_names_the_same_change_action_not_save_or_keep_editing(self):
         for tag in ('ps', 'eu-ES'):
-            self.assertNotIn((tag,d.KEY), residual_rows()) # Frozen PR247 packet is unchanged.
-        for value in ('Discard', self.node.text, eu.text):
-            self.assertFalse(c.placeholders(value))
-            self.assertEqual([], c.android_string_errors(value))
-            self.assertEqual([], c.format_string_errors(value, True))
-        self.assertEqual('"'+self.node.text+'"', self.root.find("./string[@name='ui_discard_changes23']").text)
-
-    def test_rejects_wrong_identity_predecessor_and_attributes(self):
-        for tag,key in (('eu-ES',d.KEY),('ps','ui_discard_changes23'),('en',d.KEY)):
-            with self.assertRaises(ValueError):d.require_successor(tag,key,self.node,self.previous)
-        for previous in (None, {}, {'value':'forged','attributes':{'name':d.KEY}},
-                         {'value':'رد کړئ','attributes':{'name':d.KEY,'formatted':'false'}}):
-            with self.assertRaises(ValueError):d.require_successor('ps',d.KEY,self.node,previous)
-
-    def test_rejects_all_target_shape_corruption(self):
-        for mode in ('missing','type','text','placeholder','attribute','child','tail','old'):
-            node = deepcopy(self.node)
-            if mode=='missing':node=None
-            elif mode=='type':node.tag='plurals'
-            elif mode=='text':node.text+=' forged'
-            elif mode=='placeholder':node.text+='%1$s'
-            elif mode=='attribute':node.set('formatted','false')
-            elif mode=='child':E.SubElement(node,'b')
-            elif mode=='tail':node.tail='forged'
-            else:node.text=self.previous['value']
-            with self.subTest(mode=mode),self.assertRaises(ValueError):
-                d.require_successor('ps',d.KEY,node,self.previous)
-
-    def test_rejects_source_corruption_missing_duplicate_and_attributes(self):
-        original=E.parse(d.ROOT/'Paintroid/src/main/res/values/strings.xml')
-        for mode in ('missing','duplicate','type','text','placeholder','attributes','child'):
-            tree=deepcopy(original);root=tree.getroot();node=root.find("./string[@name='ui_discard']")
-            if mode=='missing':root.remove(node)
-            elif mode=='duplicate':root.append(deepcopy(node))
-            elif mode=='type':node.tag='plurals'
-            elif mode=='text':node.text='Abandon'
-            elif mode=='placeholder':node.text+='%1$s'
-            elif mode=='attributes':node.set('formatted','false')
-            else:E.SubElement(node,'b')
-            with patch.object(d.E,'parse',return_value=tree):
-                with self.subTest(mode=mode),self.assertRaises(ValueError):
-                    d.require_successor('ps',d.KEY,self.node,self.previous)
+            strings = catalogues.read_strings(catalogues.catalogue_paths()[tag])
+            value = decode_display(strings['ui_discard'])
+            with self.subTest(tag=tag):
+                self.assertEqual(decode_display(strings['ui_discard_changes23']), value)
+                self.assertNotEqual(decode_display(strings['ui_save']), value)
+                self.assertNotEqual(decode_display(strings['ui_keep_editing23']), value)
+                self.assertFalse(catalogues.placeholders(value))
+                self.assertEqual([], catalogues.android_string_errors(strings['ui_discard']))
+                self.assertEqual([], catalogues.format_string_errors(value, True))
+        # The old generic rejection term did not name discarding the changes.
+        self.assertNotEqual('رد کړئ', decode_display(
+            catalogues.read_strings(catalogues.catalogue_paths()['ps'])['ui_discard']))
 
 
-if __name__=='__main__':unittest.main()
+if __name__ == '__main__':
+    unittest.main()

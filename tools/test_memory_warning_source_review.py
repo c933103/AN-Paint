@@ -1,5 +1,5 @@
-from memory_warning_source_review import CURRENT_CATALOGUE_TAGS, KEYS, current_source_expectation, review_record
 """Source wording and review-queue structure, not linguistic or runtime approval."""
+from memory_warning_source_review import CURRENT_CATALOGUE_TAGS, KEYS, current_source_expectation, review_record
 from collections import Counter
 from copy import deepcopy
 import unittest
@@ -107,7 +107,7 @@ class MemoryWarningSourceReviewTests(unittest.TestCase):
         for key in KEYS:
             old = self.data['keys'][key]['old_english']
             self.assertEqual(EXPECTED[key], current_source_expectation(key, 'default', old))
-            for tag in ('unknown-tag', 'ain-Kana', 'ain-Latn', 'jje', 'vi-Hani'):
+            for tag in ('unknown-tag', 'ain-Kana', 'jje', 'vi-Hani'):
                 with self.assertRaises(ValueError):
                     current_source_expectation(key, tag, old)
             with self.assertRaises(ValueError):

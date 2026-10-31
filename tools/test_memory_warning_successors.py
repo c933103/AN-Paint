@@ -1,5 +1,5 @@
-from memory_warning_source_review import CURRENT_CATALOGUE_TAGS, KEYS, current_source_expectation, review_record
 """Shared exact-successor guard tests, not fresh linguistic or runtime approval."""
+from memory_warning_source_review import CURRENT_CATALOGUE_TAGS, KEYS, current_source_expectation, review_record
 from copy import deepcopy
 import json
 from pathlib import Path

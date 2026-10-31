@@ -7,7 +7,7 @@ import unicodedata
 import xml.etree.ElementTree as ET
 import translation_catalogues as catalogues
 from current_localization_contracts import fixture, require_string, require_wording_shape, require_locale_scope, CURRENT_CATALOGUE_TAGS
-from exact_script_priority_expectations import require_addition as exact_script_addition, decode_display
+from current_localization_contracts import decode_display
 from test_translations import SCOPED_TAGS
 from language_option_additions import ADDED_TAGS
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,7 +24,7 @@ EXPECTED_KEYS = {
         'ui_the_arrow_on_the_left_directly_below_the'},
 }
 
-FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'tt-Latn'}}
+FAMILY_EXTRA_TAGS = {FAMILIES[0]: {'cs', 'sv'}, FAMILIES[1]: {'cs', 'sv'}, FAMILIES[2]: {'am', 'cs', 'pl', 'sv', 'bg', 'bn'}}
 
 def wording_tags(name):
     tags = {'hu'} if name == FAMILIES[3] else {'default'} | SCOPED_TAGS | FAMILY_EXTRA_TAGS.get(name, set())
@@ -33,22 +33,17 @@ def wording_tags(name):
 def wording_fixture(name):
     data = fixture(name)
     if name == FAMILIES[2]:
-        for key in EXPECTED_KEYS[name]:
-            row = exact_script_addition('tt-Latn', key, None, data['values'][key]['default'], already_present='tt-Latn' in data['values'][key])
-            data['values'][key]['tt-Latn'] = row['reviewed_value']
-    if name == FAMILIES[2]:
         for values in data['values'].values():
             for tag in CURRENT_CATALOGUE_TAGS:
                 values.pop(tag, None)
     return require_wording_shape(data, EXPECTED_KEYS[name], wording_tags(name))
 
 TAGGED_COLOUR_KEY = 'save20_unsupported_image_colour'
-TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn', 'tt-Latn'}
+TAGGED_COLOUR_EXTRA_TAGS = {'am', 'cs', 'pl', 'sv', 'bg', 'bn'}
 
 def current_tagged_colour_data():
     data = json.loads((ROOT / 'Paintroid/src/test/resources/tagged-colour/expected.json').read_text())
     english = catalogues.read_strings(catalogues.RES/'values/strings.xml')[TAGGED_COLOUR_KEY]
-    data['tt-Latn'] = exact_script_addition('tt-Latn', TAGGED_COLOUR_KEY, None, english, already_present='tt-Latn' in data)['compiled_display']
     return {tag: value for tag, value in data.items() if tag not in CURRENT_CATALOGUE_TAGS}
 
 def tagged_colour_expectations(data):
@@ -65,9 +60,6 @@ def tagged_colour_expectations(data):
             raise ValueError('Bounded tagged-colour value differs: ' + tag)
     if data['am'] != decode_display(fixture('amharic_priority.json')['values'][TAGGED_COLOUR_KEY]['expected']):
         raise ValueError('Amharic tagged-colour value differs')
-    english = catalogues.read_strings(catalogues.RES/'values/strings.xml')[TAGGED_COLOUR_KEY]
-    if data['tt-Latn'] != exact_script_addition('tt-Latn', TAGGED_COLOUR_KEY, None, english)['compiled_display']:
-        raise ValueError('Exact-script tagged-colour value differs')
     return data
 
 def require_tagged_colour_resolution(data, strings, offered, english):
@@ -195,19 +187,16 @@ class CurrentLocalizationContracts(unittest.TestCase):
                         with self.subTest(family=name, key=key, tag=tag):
                             require_string(xml[tag], key, expected, data['constraints'][key])
 
-    def test_whole_message_families_have_exact_localized_scope_and_no_english_filled_fallbacks(self):
-            xml = {tag: ET.parse(path).getroot() for tag, path in paths().items()}
+    def test_bounded_message_families_have_unique_current_definitions(self):
+            roots = {tag: ET.parse(path).getroot() for tag, path in paths().items()}
             for name in FAMILIES[:3]:
                 data = wording_fixture(name)
                 for key, values in data['values'].items():
                     self.assertEqual(wording_tags(name), set(values))
-                    for tag, root in xml.items():
-                        if name == FAMILIES[2] and tag in CURRENT_CATALOGUE_TAGS: continue
+                    for tag in values:
                         with self.subTest(key=key, tag=tag):
-                            from current_localization_contracts import residual_rows, require_residual_or_previous
-                            if tag not in values and (tag,key) in residual_rows():
-                                require_residual_or_previous(root,tag,key)
-                            else:self.assertEqual(int(tag in values), len(root.findall(f"./string[@name='{key}']")))
+                            self.assertEqual(1, len(roots[tag].findall(f"./string[@name='{key}']")))
+            # Other locales may gain translations without updating approval history.
 
     def test_metadata_english_identity_and_language_specific_normalization(self):
             data = wording_fixture(FAMILIES[0])
@@ -261,56 +250,5 @@ class CurrentLocalizationContracts(unittest.TestCase):
                 xml = '<resources><string name="'+key+'">'+expected.replace(control, '')+'</string></resources>'
                 with self.assertRaises(ValueError):
                     require_string(xml, key, expected, data['constraints'][key])
-
-class ReviewedResidualSuccessorTests(unittest.TestCase):
-    def test_complete_reviewed_successors_and_predecessors(self):
-            from current_localization_contracts import residual_rows, require_residual_or_previous
-            rows = residual_rows()
-            english = ET.parse(catalogues.RES/'values/strings.xml').getroot()
-            roots = {tag: ET.parse(catalogues.catalogue_paths()[tag]).getroot() for tag, _ in rows}
-            self.assertEqual(1485, sum(r['previous_target'] is None for r in rows.values()))
-            self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg'), ('xh','ui_free_form_select'),('xh','ui_palette'),('xh','ui_preview'),('xh','ui_rotate'),('sr-Cyrl','ui_discard'),('sr-Latn','ui_discard')} | {('csb', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('mww', 'ui_zoom_out'), ('yi', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('wa', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('se', 'ui_your_current_image_has_unsaved_changes'), ('sa', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('se', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('se', 'ui_ellipse'), ('mww', 'ui_drawing_canvas_pinch_and_move_two_fingers_to')},
-                             {identity for identity,r in rows.items() if r['previous_target'] is not None} - {('br', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('shn', 'ui_brush')} - {('tok', 'save20_destination_error'), ('tok', 'ui_share_explanation34'), ('tok', 'ui_colour_palette_tap_for_foreground_hold_for_background'), ('tok', 'formats22_ascii_description'), ('tok', 'ui_autosave_is_paused_to_protect_that_draft_use'), ('tok', 'ui_not_enough_memory_to_finish_opening_this_image'), ('tok', 'commons_svg_original_size_unavailable'), ('tok', 'ui_tool_categories'), ('tok', 'ui_crop_preview_drag_an_edge_or_corner_drag'), ('ps', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('tok', 'ui_not_enough_memory_to_inspect_this_image'), ('nds', 'ui_save_a5d0d9'), ('tok', 'ui_a_separate_recovery_copy_has_been_kept_use'), ('nds', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('tok', 'ui_tap_to_type_a_number')})
-            for (tag,key),row in rows.items():
-                with self.subTest(tag=tag,key=key):
-                    require_string(ET.tostring(english,encoding='unicode'),key,row['source'],{'attributes':row['attributes']})
-                    require_residual_or_previous(roots[tag],tag,key,row['previous_target'])
-                    self.assertEqual([],catalogues.android_string_errors(row['target']))
-
-    def test_new_kinyarwanda_gesture_hold_remains_absent_and_unaccepted(self):
-            from current_localization_contracts import residual_rows, require_residual_or_previous
-            held = fixture('reviewed_residuals_20261030.json')['new_holds']
-            self.assertEqual(1, len(held))
-            row = held[0]
-            self.assertEqual(('rw', 'ui_pinch_and_pan_mode', 'hold_absent', None),
-                             (row['locale'], row['key'], row['disposition'], row['target']))
-            self.assertEqual('Pinch and pan mode', row['source'])
-            self.assertTrue(row['reason'])
-            self.assertNotIn((row['locale'], row['key']), residual_rows())
-            root = ET.parse(catalogues.catalogue_paths()['rw']).getroot()
-            require_residual_or_previous(root, row['locale'], row['key'])
-            ET.SubElement(root, 'string', name=row['key']).text = 'unaccepted gesture'
-            with self.assertRaises(ValueError):
-                require_residual_or_previous(root, row['locale'], row['key'])
-
-    def test_each_successor_rejects_missing_duplicate_wrong_type_and_full_message_corruption(self):
-            from current_localization_contracts import residual_rows, require_residual_or_previous
-            from copy import deepcopy
-            for (tag,key),row in residual_rows().items():
-                for mutation in ('missing','duplicate','type','truncate','argument','markup','attribute','predecessor'):
-                    root=ET.Element('resources');node=ET.SubElement(root,'string',row['attributes']);node.text=row['target']
-                    if mutation=='missing':root.remove(node)
-                    elif mutation=='duplicate':root.append(deepcopy(node))
-                    elif mutation=='type':node.tag='plurals'
-                    elif mutation=='truncate':node.text=node.text[:-1]
-                    elif mutation=='argument':node.text+=' %9$s'
-                    elif mutation=='markup':ET.SubElement(node,'b').text='extra'
-                    elif mutation=='attribute':node.set('translatable','false')
-                    elif row['previous_target'] is None:root.remove(node)
-                    else:node.text=row['previous_target']
-                    with self.subTest(tag=tag,key=key,mutation=mutation),self.assertRaises(ValueError):
-                        require_residual_or_previous(root,tag,key,row['previous_target'])
-            with self.assertRaises(ValueError):
-                require_residual_or_previous(ET.fromstring('<resources><string name="ui_save_as">unreviewed</string></resources>'),'eu-ES','ui_save_as')
 
 if __name__ == '__main__': unittest.main()

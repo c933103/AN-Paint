@@ -118,80 +118,11 @@ class TaggedColourImportTest {
         } finally { controller.pause().stop().destroy() }
     }
 
-    private fun exactScriptBoundFixture(tag: String): JSONObject {
-        require(tag in listOf("tt-Latn","ain-Latn","mn-Mong"))
-        val data=JSONObject(File("../tools/fixtures/exact_script_priority_wording/$tag.json").readText(Charsets.UTF_8))
-        assertEquals(1,data.getInt("schema_version"))
-        assertEquals(tag,data.getString("locale"))
-        assertEquals("Paintroid/src/main/res/values-b+${tag.replace('-', '+')}/strings.xml",data.getString("catalogue_path"))
-        return data
-    }
-
-    private fun exactScriptSameJson(expected: Any?, actual: Any?) {
-        when(expected) {
-            is JSONObject -> {
-                assertTrue(actual is JSONObject);val other=actual as JSONObject
-                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
-                for(key in expected.keys()) exactScriptSameJson(expected.get(key),other.get(key))
-            }
-            is org.json.JSONArray -> {
-                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
-                assertEquals(expected.length(),other.length())
-                for(i in 0 until expected.length()) exactScriptSameJson(expected.get(i),other.get(i))
-            }
-            else -> assertEquals(expected,actual)
-        }
-    }
-
-    private fun addExactScript(expected: JSONObject, supplied: JSONObject) {
-        val key="save20_unsupported_image_colour"
-        assertEquals(setOf("tt-Latn"),supplied.keys().asSequence().toSet())
-        for(tag in listOf("tt-Latn")) {
-            val current=exactScriptBoundFixture(tag).getJSONObject("rows").getJSONObject(key)
-            val row=supplied.getJSONObject(tag).getJSONObject("rows").getJSONObject(key)
-            exactScriptSameJson(current,row)
-            assertEquals("string",row.getString("type"))
-            assertEquals("edited",row.getString("decision"))
-            assertEquals("This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",row.getJSONObject("source").getString("value"))
-            assertFalse(expected.has(tag));assertTrue(row.isNull("previous_target"))
-            expected.put(tag,row.getString("compiled_display"))
-        }
-    }
-    private fun exactScriptExpectations()=JSONObject().apply {
-        for(tag in listOf("tt-Latn")) put(tag,exactScriptBoundFixture(tag))
-    }
-    @Test fun exactScriptTaggedRejectsCoordinatedFixtureAndPredecessorMutations() {
-        val key="save20_unsupported_image_colour"
-        for(tag in listOf("tt-Latn")) for(mutation in listOf("coordinated","source","previous","attributes","presence")) {
-            val data=exactScriptExpectations()
-            val expected=JSONObject()
-            val row=data.getJSONObject(tag).getJSONObject("rows").getJSONObject(key)
-            when(mutation) {
-                "coordinated" -> {row.put("reviewed_value","forged");row.put("reviewed_display","forged");row.put("compiled_display","forged")}
-                "source" -> row.getJSONObject("source").put("value","forged")
-                "previous" -> row.put("previous_target","forged")
-                "attributes" -> row.getJSONObject("attributes").put("formatted","false")
-                "presence" -> expected.put(tag,"forged")
-            }
-            assertThrows("$tag/$mutation",AssertionError::class.java) { addExactScript(expected,data) }
-        }
-    }
-
-    @Test fun exactScriptTaggedIgnoresUnrelatedFixtureMetadata() {
-        val data=exactScriptExpectations()
-        data.getJSONObject("tt-Latn").put("limits","Caller note does not redefine the tagged message")
-        val expected=JSONObject()
-        addExactScript(expected,data)
-        assertEquals(exactScriptBoundFixture("tt-Latn").getJSONObject("rows")
-            .getJSONObject("save20_unsupported_image_colour").getString("compiled_display"),expected.getString("tt-Latn"))
-    }
-
     @Test fun everyOfferedLanguageResolvesItsScopedMessageOrExplicitEnglishFallback() {
         val expected = javaClass.getResourceAsStream("/tagged-colour/expected.json")!!
             .bufferedReader().use { JSONObject(it.readText()) }
         // Current catalogues use semantic assertions, not copied approval-history text.
-        val currentCatalogues = setOf("ary", "as", "ast", "az", "be", "bo", "br", "bs", "ca", "ca-ES-valencia", "ceb", "ckb", "csb", "cy", "da", "de", "dz", "el", "en-AU", "es-ES", "eu-ES", "fa", "fa-IR", "fr", "fy", "ga", "gd", "gl", "gu", "ha", "he", "hi", "hne", "hr", "ht", "hy", "ia", "ig", "is", "it", "ja", "jv", "ka", "kab", "kk", "km", "kn", "ko-KP", "ku", "ky", "la", "ln", "lo", "lt", "mai", "mi", "mk", "ml-IN", "mn-Cyrl-MN", "mr", "mww", "my", "nds", "ne", "nl", "nn", "no", "oc", "pa-IN", "pcm", "ps", "pt-PT", "ro", "rw", "sa", "sd", "se", "si", "sk", "sl", "sm", "so", "sq", "sr-Cyrl", "sr-Latn", "su", "ta", "te", "tg", "th", "tok", "tpi", "tr", "tt-Cyrl", "ug", "uk", "ur", "uz-Latn", "wa", "wo", "xh", "yi", "yo", "za", "zh-HK", "zu")
-        addExactScript(expected,exactScriptExpectations())
+        val currentCatalogues = setOf("tt-Latn", "ary", "as", "ast", "az", "be", "bo", "br", "bs", "ca", "ca-ES-valencia", "ceb", "ckb", "csb", "cy", "da", "de", "dz", "el", "en-AU", "es-ES", "eu-ES", "fa", "fa-IR", "fr", "fy", "ga", "gd", "gl", "gu", "ha", "he", "hi", "hne", "hr", "ht", "hy", "ia", "ig", "is", "it", "ja", "jv", "ka", "kab", "kk", "km", "kn", "ko-KP", "ku", "ky", "la", "ln", "lo", "lt", "mai", "mi", "mk", "ml-IN", "mn-Cyrl-MN", "mr", "mww", "my", "nds", "ne", "nl", "nn", "no", "oc", "pa-IN", "pcm", "ps", "pt-PT", "ro", "rw", "sa", "sd", "se", "si", "sk", "sl", "sm", "so", "sq", "sr-Cyrl", "sr-Latn", "su", "ta", "te", "tg", "th", "tok", "tpi", "tr", "tt-Cyrl", "ug", "uk", "ur", "uz-Latn", "wa", "wo", "xh", "yi", "yo", "za", "zh-HK", "zu")
         val expectedFallbacks = AppLanguage.tags(context).count { it !in currentCatalogues && !expected.has(it) }
         var fallbacks = 0
         for (tag in AppLanguage.tags(context)) {

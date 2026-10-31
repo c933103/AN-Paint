@@ -51,7 +51,7 @@ class SwedishRemainingP1WordingTests(unittest.TestCase):
         self.assertEqual(14, len(self.data['source_semantics_only']))
         self.assertTrue(SOURCE_ONLY <= self.data['values'].keys())
         self.assertEqual(HELD, self.data['withheld']['key'])
-        contracts.require_residual_or_previous(ET.fromstring(self.xml['sv']), 'sv', HELD)
+        self.assertIn(HELD, self.strings)  # Current palette semantics are checked by SwedishExtendedWordingTests.
         contracts.require_string(self.xml['default'], HELD, self.data['withheld']['default'])
         previous = contracts.fixture('swedish_priority_current_wording.json')
         self.assertFalse(set(previous['values']) & set(self.data['values']))

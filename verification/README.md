@@ -209,3 +209,49 @@ obligation review. Genuine native layout/font, provider, format and consumer
 regressions must remain. Upstream catalogue/licence inputs have separate
 provenance/build responsibilities. This batch does not declare project-wide
 cleanup, linguistic acceptance or translation completion.
+
+## Cross-cutting approval-payload retirement
+
+The next coherent stage removes the six exact-script/Latin-Sinitic catalogue
+mirrors, residual successor and reviewed-priority packets, and unconsumed
+wording-provenance packet.
+Original paths, wording and historical decisions remain recoverable in immutable
+[develop 0ae074295045aaa794c755b5ff548067ccbfdfa5](https://github.com/c933103/AN-Paint/tree/0ae074295045aaa794c755b5ff548067ccbfdfa5).
+Routine tests neither fetch that history nor reconstruct predecessor snapshots.
+No substitute per-language miniature approval catalogue is introduced.
+
+| Retired responsibility | Retained responsibility |
+| --- | --- |
+| Six complete accepted/held/raw/display/plural mirrors and their JSON/cache mutation tests | Canonical XML owns current wording; generic catalogue XML/escaping/placeholder/plural checks and real all-offered `AppLanguage.select`/`wrap` boundary tests remain. Exact approved sentences are intentionally no longer frozen. |
+| Residual row counts, predecessor/source coordinates, packet review links and successor adapters | Immutable source/review history preserves acceptance decisions. Current source structure and independently specified product semantics remain active; adding a legitimate translation does not require an approval-table successor. |
+| Four reconstructed device-language caption histories in the script routing test | All 28 public requested-tag/resource-tag/preference/platform/locale routing observations and fixed Save/File script boundaries remain. Those four old device-caption literal comparisons retire, not the real route. |
+| Full compiled equality loops in the two script families | All 25 actual consumer methods remain, with current compiled labels used only as control-binding expectations. Native tooltip corruption/accessibility/layout, menu state, pixels, undo, memory admission and cancellation assertions are preserved. Their setup/teardown/lifecycle blocks are unchanged. |
+| NAN Latin complete-warning mirror/digest mutation adapter | Real batch-crop selection/trim/reset/cancel/reopen and independent POJ combining-dot glyph/raster/layout checks remain. NAN captions bind to the current compiled plural; generic independent formatting boundaries remain. |
+| RemainingAcceptedWording catalogue equality, per-option copied successor captions, and isolated residual brush/palette approved-caption assertions | All 21 additional-option identity/name/platform round trips, generic all-offered selection/formatting and existing actual editor/palette consumers remain; historical literal approval equality is explicitly retired. Registration records no longer force current catalogues to remain empty or incomplete. |
+
+Nine JSON packets totaling **3,185,528 bytes** are retired. All host fixture
+JSON falls from **95 files / 5,275,735 bytes** to **86 / 2,090,207 bytes**;
+current-localization JSON falls from **84 / 2,639,587** to **81 / 2,066,409**.
+Host discovery falls from **1,529 to 1,464** methods (zero import errors);
+declared JVM test methods fall from **1,160 to 1,144**. These are source/data
+counts, not a timing or hosted execution claim.
+
+The method-level responsibility/preservation map and focused/hosted evidence
+belong to this stage's PR and evidence ref. No production resources or workflow
+are changed. Hosted compilation remains necessary; static preservation is not a
+compile/runtime pass. Remaining bounded feature/delta fixtures and upstream
+licence/catalogue inputs have separate obligations and are not silently removed.
+
+### Current offered-option source coverage
+
+A cheap inventory of unchanged develop `0ae074295045` using the existing
+`translation_catalogues` readers finds **171 offered options and 171 exact
+canonical catalogues**, against **716 translatable string keys and one plural
+resource**. **60 catalogues contain every key directly; 111 lack one or more.**
+This includes English variants. Six options (`chr`, `nch`, `nhe`, `nhw`, `quy`,
+`zgh`) contain no direct translatable string keys; Czech lacks only
+`ui_the_arrow_on_the_left_directly_below_the`. Runtime inheritance/fallback is
+not counted as direct presence. This inventory supersedes stale source-coverage
+counts, not the scope or acceptance status of historical reviews. Direct keys,
+nonempty values or differences from English do **not** establish linguistic
+correctness, fluency, full UI/layout coverage or translation completion.

@@ -16,7 +16,6 @@ import android.widget.TextView
 import android.widget.Spinner
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -44,60 +43,8 @@ class ExactScriptPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private fun exactScriptBoundFixture(tag: String): JSONObject {
-        require(tag in listOf("tt-Latn","ain-Latn","mn-Mong"))
-        val data=JSONObject(File("../tools/fixtures/exact_script_priority_wording/$tag.json").readText(Charsets.UTF_8))
-        assertEquals(1,data.getInt("schema_version"))
-        assertEquals(tag,data.getString("locale"))
-        assertEquals("Paintroid/src/main/res/values-b+${tag.replace('-', '+')}/strings.xml",data.getString("catalogue_path"))
-        return data
-    }
-
-    private fun exactScriptSameJson(expected: Any?, actual: Any?) {
-        when(expected) {
-            is JSONObject -> {
-                assertTrue(actual is JSONObject);val other=actual as JSONObject
-                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
-                for(key in expected.keys()) exactScriptSameJson(expected.get(key),other.get(key))
-            }
-            is org.json.JSONArray -> {
-                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
-                assertEquals(expected.length(),other.length())
-                for(i in 0 until expected.length()) exactScriptSameJson(expected.get(i),other.get(i))
-            }
-            else -> assertEquals(expected,actual)
-        }
-    }
-
-    private val fixture by lazy {
-        JSONObject().apply {
-            for(tag in listOf("tt-Latn","ain-Latn","mn-Mong")) put(tag,exactScriptBoundFixture(tag))
-        }
-    }
-    // The checked-in readable fixture is the oracle, not a fingerprint or the app resource.
-    // Fresh reads ensure caller-owned JSONObject mutations cannot redefine expectations.
-    private fun currentRow(tag: String,key: String): JSONObject {
-        val current=exactScriptBoundFixture(tag)
-        return current.getJSONObject("rows").optJSONObject(key)
-            ?: current.getJSONObject("held").getJSONObject(key)
-    }
-    private fun requireRow(tag: String,key: String,supplied: JSONObject): JSONObject {
-        exactScriptSameJson(currentRow(tag,key),supplied)
-        return supplied
-    }
-    private fun requireCurrentFixture(tag: String,supplied: JSONObject) {
-        val current=exactScriptBoundFixture(tag)
-        assertEquals(current.keys().asSequence().toSet(),supplied.keys().asSequence().toSet())
-        for(field in listOf("schema_version","locale","catalogue_path","priority_identities","rows","held"))
-            exactScriptSameJson(current.get(field),supplied.get(field))
-    }
-    private fun row(tag: String, key: String): JSONObject {
-        val locale=fixture.getJSONObject(tag)
-        val supplied=locale.getJSONObject("rows").optJSONObject(key)
-            ?: locale.getJSONObject("held").getJSONObject(key)
-        return requireRow(tag,key,supplied)
-    }
-    private fun expected(tag: String,key: String)=PriorityWordingExpectations.residual(tag,key,row(tag,key).getString("compiled_display"))
+    // Current compiled label checks control binding, not historical wording approval.
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
 
@@ -138,43 +85,6 @@ class ExactScriptPriorityWordingTest {
                 PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
             }
         }
-    }
-
-    @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
-        val values=fixture.getJSONObject(tag).getJSONObject("rows")
-        val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
-        val context=fixture.getJSONObject(tag).getJSONObject("held")
-        val allKeys=(values.keys().asSequence()+context.keys().asSequence()).toSet()
-        for(key in allKeys) {
-            if(row(tag,key).getString("type")!="string")continue
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("$tag/$key",0,id)
-            val text=expected(tag,key)
-            assertEquals("$tag/$key",text,activity.getString(id))
-            val tokens=pattern.findAll(text).toList()
-            if(tokens.isNotEmpty()) {
-                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
-                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
-                    "d"->21001L;"f"->12.75;else->"argument 100%"
-                }
-                assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
-            }
-        }
-        val held=fixture.getJSONObject(tag).getJSONObject("held")
-        for(key in held.keys()) {
-            val entry=held.getJSONObject(key)
-            assertEquals("string",entry.getString("type"))
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("Held $tag/$key",0,id)
-            assertEquals("Held current or English fallback $tag/$key",expected(tag,key),activity.getString(id))
-        }
-        val palette=expected(tag,"ui_foreground_background_colour_palette")
-        assertEquals(palette,activity.getString(R.string.ui_foreground_background_colour_palette))
-        assertEquals(String.format(Locale.forLanguageTag(tag),palette,"foreground 100%","background 100%","palette 100%"),
-            ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
-        assertEquals(expected(tag,"ui_save_as_png"),ui(R.string.ui_save_as_png))
-        assertEquals(expected(tag,"ui_fg"),ui(R.string.ui_fg))
-        assertEquals(expected(tag,"ui_bg"),ui(R.string.ui_bg))
     }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->
@@ -374,19 +284,6 @@ class ExactScriptPriorityWordingTest {
         } finally {shown.dismiss()}
     }
 
-    @Test fun compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany() = forEachLocale { tag,activity ->
-        val row=row(tag,"ui_crop_preview_images")
-        val values=row.getJSONObject("compiled_display")
-        val rules=android.icu.text.PluralRules.forLocale(Locale.forLanguageTag(tag))
-        for(count in listOf(0,1,2,4,6,9,14,16,19,21001)) {
-            val selected=rules.select(count.toDouble())
-            val quantity=if(values.has(selected)) selected else "other"
-            // Test actual API output against this exact resource shape, not borrowed CLDR categories.
-            val text=values.getString(quantity)
-            assertEquals(String.format(Locale.forLanguageTag(tag),text,24,16,count),
-                uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,24,16,count))
-        }
-    }
     @Test fun canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge() {
         fun descendants(view: View): List<View> = listOf(view) + if(view is android.view.ViewGroup)
             (0 until view.childCount).flatMap {descendants(view.getChildAt(it))} else emptyList()
@@ -500,7 +397,7 @@ class ExactScriptPriorityWordingTest {
             }
         }
     }
-    @Test fun imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels() {
+    @Test fun imageAssemblyMenuUsesCurrentCompanionAndKeepsCurrentPixels() {
         for(tag in listOf("tt-Latn","ain-Latn","mn-Mong")) {
             AppLanguage.select(RuntimeEnvironment.getApplication(),tag)
             val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);val activity=controller.get()
@@ -519,36 +416,6 @@ class ExactScriptPriorityWordingTest {
                 controller.pause().stop().destroy();AppLanguage.select(RuntimeEnvironment.getApplication(),previousTag)
                 PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
             }
-        }
-    }
-
-    @Test fun readersRejectCallerOwnedCoordinatedRawDisplayAndScopeMutants() {
-        for(tag in listOf("tt-Latn","ain-Latn","mn-Mong")) {
-            val original=exactScriptBoundFixture(tag)
-            requireCurrentFixture(tag,original)
-            val key="ui_save"
-            val mutated=JSONObject(original.getJSONObject("rows").getJSONObject(key).toString())
-            mutated.put("reviewed_value","forged").put("reviewed_display","forged").put("compiled_display","forged")
-            var rejected=false
-            try { requireRow(tag,key,mutated) } catch(error: AssertionError) { rejected=true }
-            assertTrue("Standalone coordinated mutation $tag",rejected)
-            original.getJSONObject("rows").put(key,mutated)
-            rejected=false
-            try { requireCurrentFixture(tag,original) } catch(error: AssertionError) { rejected=true }
-            assertTrue("Whole supplied fixture mutation $tag",rejected)
-        }
-    }
-    @Test fun cachedRowMutationCannotChangeACompiledExpectation() {
-        for(tag in listOf("tt-Latn","ain-Latn","mn-Mong")) {
-            val key="ui_save";val rows=fixture.getJSONObject(tag).getJSONObject("rows")
-            val original=JSONObject(rows.getJSONObject(key).toString())
-            expected(tag,key) // check the unmodified readable expectation before mutation
-            try {
-                rows.getJSONObject(key).put("reviewed_value","forged").put("compiled_display","forged")
-                var rejected=false
-                try { expected(tag,key) } catch(error: AssertionError) { rejected=true }
-                assertTrue("Cached mutable row must not redefine oracle $tag",rejected)
-            } finally { rows.put(key,original) }
         }
     }
 
