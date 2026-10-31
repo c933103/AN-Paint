@@ -38,14 +38,9 @@ class ValencianVariantPackagingTest(unittest.TestCase):
         self.assertIn('Aquesta imatge fa servir', (res/'values-ca/strings.xml').read_text())
         self.assertIn('Esta imatge utilitza', (res/OLD/'strings.xml').read_text())
 
-    def test_sdk33_dispatch_is_not_mistaken_for_cldr48_catalogue_categories(self):
-        source = (ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/TibetanDzongkhaValencianPriorityWordingTest.kt').read_text()
-        method=source.split('fun compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany()',1)[1]
-        self.assertIn('@Config(sdk = [33])', source)
-        self.assertIn('val quantity=if(tag=="ca-ES-valencia" && count==1) "one" else "other"', method)
-        self.assertIn('quantity,rules.select(count.toDouble())', method)
-        self.assertIn('1_000_000,2_000_000',method)
-        # The canonical many branch remains accepted and available for newer ICU.
+    def test_canonical_variant_retains_all_plural_categories_for_newer_icu(self):
+        # The per-cohort SDK33 copied plural oracle is retired. Keep the actual
+        # packaging input's many branch available to newer platform ICU versions.
         import xml.etree.ElementTree as E
         root=E.parse(ROOT/'Paintroid/src/main/res'/OLD/'strings.xml').getroot()
         plural=next(e for e in root if e.get('name')=='ui_crop_preview_images')

@@ -108,7 +108,7 @@ class SampledMemoryModalityTest {
                 resize = { resized = true }, cancel = { cancelled++ }, memoryRequirements = native).show()
             idle()
             assertEquals(activity.getString(R.string.ui_codec_resize_memory_floor), explanation(dialog))
-            assertNotEquals(expected.getString(tag), explanation(dialog))
+            assertNotEquals(activity.getString(R.string.ui_sampled_resize_memory_explanation), explanation(dialog))
             assertFalse(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             idle()

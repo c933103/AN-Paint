@@ -17,14 +17,14 @@ import java.io.File
 internal object PriorityWordingExpectations {
     /** Resolve the current compiled label for an actual consumer-binding assertion. */
     fun resources(tag: String): Resources {
-        val context = org.robolectric.RuntimeEnvironment.getApplication<android.app.Application>()
+        val context = org.robolectric.RuntimeEnvironment.getApplication()
         val configuration = android.content.res.Configuration(context.resources.configuration)
         configuration.setLocale(AppLanguage.resourceLocale(Locale.forLanguageTag(tag)))
         return context.createConfigurationContext(configuration).resources
     }
     fun resourceText(tag: String,key: String): String {
         val resources = resources(tag)
-        val id = resources.getIdentifier(key,"string",org.robolectric.RuntimeEnvironment.getApplication<android.app.Application>().packageName)
+        val id = resources.getIdentifier(key,"string",org.robolectric.RuntimeEnvironment.getApplication().packageName)
         require(id != 0) { "Missing compiled string $key" }
         return resources.getString(id)
     }
