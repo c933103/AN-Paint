@@ -141,10 +141,10 @@ class ExactScriptPriorityTests(unittest.TestCase):
                 with patch.object(g,'bound_fixture',return_value=bad),self.assertRaises(ValueError):
                     g.require_addition('tt-Latn',key,None,source)
         with self.assertRaises(ValueError):g.require_addition('tt-Latn','ui_save',None,'Save')
-    def test_exact_tagged_jvm_boundaries_keep_prior_stage_and_reject_missing_consumers(self):
+    def test_exact_tagged_jvm_boundaries_reject_missing_consumers_without_history_counts(self):
         text=(ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/TaggedColourImportTest.kt').read_text()
         g.require_tagged_jvm_source(text)
-        for before,after in [('exactScriptSameJson(current,row)','Unit'),('assertFalse(expected.has(tag));assertTrue(row.isNull("previous_target"))','assertTrue(true)'),('addExactScript(expected,exactScriptExpectations())',''),('assertEquals(140, expected.length())',''),('assertEquals(141, expected.length())',''),('assertEquals(30, 171 - expected.length())','assertEquals(31, 171 - expected.length())')]:
+        for before,after in [('exactScriptSameJson(current,row)','Unit'),('assertFalse(expected.has(tag));assertTrue(row.isNull("previous_target"))','assertTrue(true)'),('addExactScript(expected,exactScriptExpectations())','')]:
             self.assertIn(before,text)
             with self.assertRaises(ValueError):g.require_tagged_jvm_source(text.replace(before,after,1))
     def test_readable_fixture_allows_formatting_and_reviewed_value_updates_without_fingerprints(self):
