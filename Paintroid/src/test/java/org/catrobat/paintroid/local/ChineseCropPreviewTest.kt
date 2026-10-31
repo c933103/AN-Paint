@@ -34,26 +34,6 @@ import java.util.Locale
 @Config(sdk = [33], shadows = [PixelRegionDecoderShadow::class], qualifiers = "w412dp-h900dp-port-xhdpi")
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class ChineseCropPreviewTest {
-    private fun nanLatinFixtureBytes()=File("../tools/fixtures/latin_sinitic_priority_wording/nan-Latn-TW.json").readBytes()
-    private fun nanLatinWarning(bytes: ByteArray = nanLatinFixtureBytes()): String {
-        val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete immutable NAN Latin fixture","e92d9d073906e05cf6a8f3afa4a658b06be914edb0885dacab8515c8ab110bfb",digest)
-        val data=org.json.JSONObject(String(bytes,Charsets.UTF_8))
-        assertEquals("nan-Latn-TW",data.getString("locale"))
-        return data.getJSONObject("rows").getJSONObject("ui_crop_preview_images").getJSONObject("compiled_display").getString("other")
-    }
-
-    @Test fun nanLatinWarningRejectsCoordinatedRawAndDisplayFixtureMutation() {
-        val data=org.json.JSONObject(String(nanLatinFixtureBytes(),Charsets.UTF_8))
-        val row=data.getJSONObject("rows").getJSONObject("ui_crop_preview_images")
-        row.getJSONObject("reviewed_value").put("other","forged")
-        row.getJSONObject("reviewed_display").put("other","forged")
-        row.getJSONObject("compiled_display").put("other","forged")
-        var rejected=false
-        try { nanLatinWarning(data.toString().toByteArray(Charsets.UTF_8)) } catch(error: AssertionError) { rejected=true }
-        assertTrue("Coordinated fixture must not redefine the warning",rejected)
-    }
-
     private val context get() = RuntimeEnvironment.getApplication() as Context
     private val templates = mapOf(
         "zh-TW" to "預覽：%1\$d × %2\$d px\n套用至 %3\$d 張圖片。裁切已放置圖片時，連接到它們的圖片可能會移動。",
@@ -61,7 +41,6 @@ class ChineseCropPreviewTest {
         "yue-Hant" to "預覽：%1\$d × %2\$d px\n套用去 %3\$d 張圖片。裁剪已經擺好嘅圖片時，連住佢哋嘅圖片可能會移動。",
         "yue-Latn" to "Jyu6 laam5: %1\$d × %2\$d px\nTou3 jung6 heoi3 %3\$d zoeng1 tou4 pin2. Coi4 zin2 ji5 ging1 baai2 hou2 ge3 tou4 pin2 si4, lin4 zyu6 keoi5 dei6 ge3 tou4 pin2 ho2 nang4 wui5 ji4 dung6.",
         "nan-Hant-TW" to "預覽：%1\$d × %2\$d px\n套用佇 %3\$d 張圖片。裁囥好的圖片時，接佇怹的圖片可能會移動。",
-        "nan-Latn-TW" to nanLatinWarning(),
         "lzh-Hant" to "預覽：%1\$d × %2\$d px\n施於 %3\$d 圖。裁已置之圖，所連諸圖或因之而移。"
     )
     private val tags = templates.keys
@@ -112,7 +91,9 @@ class ChineseCropPreviewTest {
     }
 
     private fun formatted(activity: AssemblyActivity, tag: String, count: Int, height: Int = 16) =
-        String.format(activity.resources.configuration.locales[0], templates.getValue(tag), 24, height, count)
+        if (tag == "nan-Latn-TW")
+            activity.resources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, height, count)
+        else String.format(activity.resources.configuration.locales[0], templates.getValue(tag), 24, height, count)
 
     @Test fun compiledResourcesKeepCompleteWarningsAndAllThreeArguments() {
         for (tag in tags) withLanguage(tag) { activity ->

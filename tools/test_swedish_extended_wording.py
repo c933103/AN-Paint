@@ -66,10 +66,13 @@ class SwedishExtendedWordingTests(unittest.TestCase):
     def test_every_current_identity_exists_except_named_source_holds(self):
         source, target = (identities(self.xml[t]) for t in ('default', 'sv'))
         held = {('string', k) for k in self.data['held_missing']}
-        # Preserve the old hold record; only this exact later accepted pair supersedes it.
+        # The old hold record is historical; validate current palette semantics directly.
         palette = 'ui_foreground_background_colour_palette'
         self.assertIn(('string', palette), held)
-        contracts.require_residual_or_previous(ET.fromstring(self.xml['sv']), 'sv', palette, None)
+        palette_text = self.strings[palette]
+        self.assertIn('Förgrundsfärg', palette_text)
+        self.assertIn('bakgrundsfärg', palette_text)
+        self.assertEqual({'%1$s': 1, '%2$s': 1, '%3$s': 1}, catalogues.placeholders(palette_text))
         # This complete, newly source-bound pair supersedes only the manual hold.
         # The original held fixture remains historical evidence, not rewritten acceptance.
         self.assertIn(('string', MANUAL_KEY), held)

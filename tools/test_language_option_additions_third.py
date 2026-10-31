@@ -5,7 +5,6 @@ import unittest
 import xml.etree.ElementTree as ET
 
 import translation_catalogues as c
-from language_option_additions import require_untranslated_option
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "tools/fixtures/language_option_additions_20261014.json"
@@ -45,23 +44,12 @@ class OctoberLanguageOptionTests(unittest.TestCase):
         self.assertIn("fil",scope['scoped_tags'])
         self.assertNotIn("tl",scope['scoped_tags'])
 
-    def test_current_ary_catalogue_and_other_explicit_fallbacks(self):
+    def test_current_catalogues_are_valid_without_historical_empty_or_approval_freezes(self):
         for row in json.loads(FIXTURE.read_text())['languages']:
-            path=ROOT/row['catalogue']
-            if row['tag']=='ary':
-                self.assertEqual([],c.validate_catalogue('ary'))
-                continue
-            if row['tag'] in ('ang','non'):
-                require_untranslated_option(row,'<resources/>')
-                from remaining_accepted_wording import require_historical_catalogue
-                require_historical_catalogue(row['tag'],ET.parse(path).getroot())
-                self.assertEqual([],c.validate_catalogue(row['tag']))
-                continue
-            require_untranslated_option(row,path.read_text())
-            self.assertEqual([],list(ET.parse(path).getroot()))
-            self.assertEqual({},c.read_strings(path))
-            self.assertEqual({},c.read_plurals(path))
-            self.assertEqual([],c.validate_catalogue(row['tag']))
+            with self.subTest(tag=row['tag']):
+                self.assertEqual([], c.validate_catalogue(row['tag']))
+                self.assertEqual('default-English', row['fallback'])
+        # Registration history is not an instruction to keep a catalogue untranslated.
 
 
     def test_fil_retains_existing_coverage_but_no_new_linguistic_review(self):

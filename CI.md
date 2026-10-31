@@ -10,9 +10,11 @@ Normal CI does not reconstruct old source snapshots or require inverse adapters.
 Current source/test discovery and per-run APK/source binding remain required.
 
 Localization status remains scoped: earlier withdrawn review conclusions are
-not restored by this migration. The compact 59-locale wording fixtures preserve
-current regression expectations and explicitly retain the 112 open fallbacks;
-matching them does not certify fluency or complete linguistic review.
+not restored by cleanup. Canonical resources, generic structural/formatting
+checks and actual consumer regressions replace retired catalogue approval
+mirrors. Direct source-key coverage and runtime fallback checks do not certify
+fluency or complete linguistic review; see the current inventory in
+[the verification index](verification/README.md).
 
 ## What runs
 

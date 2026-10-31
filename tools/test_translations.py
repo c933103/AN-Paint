@@ -147,6 +147,12 @@ class TranslationCatalogueTests(unittest.TestCase):
                 self.assertIn(phrase, value)
         self.assertNotEqual(current_display('si', 'ui_undo'), current_display('si', 'ui_cancel'))
 
+    def test_current_display_preserves_android_escaping_and_mongolian_spaces(self):
+        from current_localization_contracts import decode_display
+        self.assertEqual('line\nnext', decode_display(r'line\nnext'))
+        self.assertEqual('a\\b', decode_display(r'a\\b'))
+        self.assertEqual('ᠮᠣᠩᠭᠣᠯ\u202fᠤᠨ', decode_display('ᠮᠣᠩᠭᠣᠯ\u202fᠤᠨ'))
+
     def test_normalization_messages_use_canonical_crowdin_catalogues(self):
         keys = {
             "ui_normalize_width_intro", "ui_normalize_height_intro",

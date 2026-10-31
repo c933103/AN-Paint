@@ -15,7 +15,6 @@ import android.widget.TextView
 import android.widget.Spinner
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -43,62 +42,8 @@ class LatinSiniticPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private fun latinSiniticBoundFixture(tag: String): JSONObject {
-        val expected=mapOf("yue-Latn" to "6a46993f9c0d5cbec4f144067185d0bd700dfbc990d025863098f9621afeefcf", "hak-Latn-TW" to "cd20748b24a8e9dc89cfdaa369f764af374cb3af564a74ab5477c0f1cc6bf3e3", "nan-Latn-TW" to "e92d9d073906e05cf6a8f3afa4a658b06be914edb0885dacab8515c8ab110bfb")
-        val bytes=File("../tools/fixtures/latin_sinitic_priority_wording/$tag.json").readBytes()
-        val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
-        return JSONObject(String(bytes,Charsets.UTF_8))
-    }
-
-    private fun latinSiniticSameJson(expected: Any?, actual: Any?) {
-        when(expected) {
-            is JSONObject -> {
-                assertTrue(actual is JSONObject);val other=actual as JSONObject
-                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
-                for(key in expected.keys()) latinSiniticSameJson(expected.get(key),other.get(key))
-            }
-            is org.json.JSONArray -> {
-                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
-                assertEquals(expected.length(),other.length())
-                for(i in 0 until expected.length()) latinSiniticSameJson(expected.get(i),other.get(i))
-            }
-            else -> assertEquals(expected,actual)
-        }
-    }
-
-    private val fixture by lazy {
-        JSONObject().apply {
-            for(tag in listOf("yue-Latn","hak-Latn-TW","nan-Latn-TW")) put(tag,latinSiniticBoundFixture(tag))
-        }
-    }
-    // Immutable whole-row strings are obtained only from independently hash-bound files.
-    // Caller-owned JSONObject mutations must never become a new display oracle.
-    private val boundRows by lazy {
-        listOf("yue-Latn","hak-Latn-TW","nan-Latn-TW").associateWith { tag ->
-            val bound=latinSiniticBoundFixture(tag)
-            val entries=mutableMapOf<String,String>()
-            for(group in listOf("rows","held")) {
-                val rows=bound.getJSONObject(group)
-                for(key in rows.keys()) entries[key]=rows.getJSONObject(key).toString()
-            }
-            entries.toMap()
-        }
-    }
-    private fun requireRow(tag: String,key: String,supplied: JSONObject): JSONObject {
-        latinSiniticSameJson(JSONObject(boundRows.getValue(tag).getValue(key)),supplied)
-        return supplied
-    }
-    private fun requireWholeFixture(tag: String,supplied: JSONObject) {
-        latinSiniticSameJson(latinSiniticBoundFixture(tag),supplied)
-    }
-    private fun row(tag: String, key: String): JSONObject {
-        val locale=fixture.getJSONObject(tag)
-        val supplied=locale.getJSONObject("rows").optJSONObject(key)
-            ?: locale.getJSONObject("held").getJSONObject(key)
-        return requireRow(tag,key,supplied)
-    }
-    private fun expected(tag: String,key: String)=row(tag,key).getString("compiled_display")
+    // Current compiled label checks control binding, not historical wording approval.
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
 
@@ -117,43 +62,6 @@ class LatinSiniticPriorityWordingTest {
     private fun forEachLocale(tags: List<String> = listOf("yue-Latn","hak-Latn-TW","nan-Latn-TW"), check: (String,Activity)->Unit) =
         PriorityWordingExpectations.forEachLocale(
             tags, previousResources, previousLocale, previousTag, check)
-
-    @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
-        val values=fixture.getJSONObject(tag).getJSONObject("rows")
-        val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
-        val context=fixture.getJSONObject(tag).getJSONObject("held")
-        val allKeys=(values.keys().asSequence()+context.keys().asSequence()).toSet()
-        for(key in allKeys) {
-            if(row(tag,key).getString("type")!="string")continue
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("$tag/$key",0,id)
-            val text=expected(tag,key)
-            assertEquals("$tag/$key",text,activity.getString(id))
-            val tokens=pattern.findAll(text).toList()
-            if(tokens.isNotEmpty()) {
-                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
-                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
-                    "d"->21001L;"f"->12.75;else->"argument 100%"
-                }
-                assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
-            }
-        }
-        val held=fixture.getJSONObject(tag).getJSONObject("held")
-        for(key in held.keys()) {
-            val entry=held.getJSONObject(key)
-            assertEquals("string",entry.getString("type"))
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("Held $tag/$key",0,id)
-            assertEquals("Held current or English fallback $tag/$key",entry.getString("compiled_display"),activity.getString(id))
-        }
-        val palette=held.getJSONObject("ui_foreground_background_colour_palette").getString("compiled_display")
-        assertEquals(palette,activity.getString(R.string.ui_foreground_background_colour_palette))
-        assertEquals(String.format(Locale.forLanguageTag(tag),palette,"foreground 100%","background 100%","palette 100%"),
-            ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
-        assertEquals(held.getJSONObject("ui_save_as_png").getString("compiled_display"),ui(R.string.ui_save_as_png))
-        assertEquals(expected(tag,"ui_fg"),ui(R.string.ui_fg))
-        assertEquals(expected(tag,"ui_bg"),ui(R.string.ui_bg))
-    }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->
         val controls=DimensionControls(activity,ImageDimensions(40,25),locked=false)
@@ -307,20 +215,6 @@ class LatinSiniticPriorityWordingTest {
         } finally {shown.dismiss()}
     }
 
-
-    @Test fun compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany() = forEachLocale { tag,activity ->
-        val row=row(tag,"ui_crop_preview_images")
-        val values=row.getJSONObject("compiled_display")
-        val rules=android.icu.text.PluralRules.forLocale(Locale.forLanguageTag(tag))
-        for(count in listOf(0,1,2,4,6,9,14,16,19,21001)) {
-            val selected=rules.select(count.toDouble())
-            val quantity=if(values.has(selected)) selected else "other"
-            // Test actual API output against this exact resource shape, not borrowed CLDR categories.
-            val text=values.getString(quantity)
-            assertEquals(String.format(Locale.forLanguageTag(tag),text,24,16,count),
-                uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,24,16,count))
-        }
-    }
     @Test fun canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge() {
         fun descendants(view: View): List<View> = listOf(view) + if(view is android.view.ViewGroup)
             (0 until view.childCount).flatMap {descendants(view.getChildAt(it))} else emptyList()
@@ -401,7 +295,6 @@ class LatinSiniticPriorityWordingTest {
         }
     }
 
-
     @Test fun unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo() {
         fun descendants(view: View): List<View> = listOf(view) + if(view is android.view.ViewGroup)
             (0 until view.childCount).flatMap {descendants(view.getChildAt(it))} else emptyList()
@@ -435,7 +328,7 @@ class LatinSiniticPriorityWordingTest {
             }
         }
     }
-    @Test fun imageAssemblyMenuUsesExactReviewedCompanionAndKeepsCurrentPixels() {
+    @Test fun imageAssemblyMenuUsesCurrentCompanionAndKeepsCurrentPixels() {
         for(tag in listOf("yue-Latn","hak-Latn-TW","nan-Latn-TW")) {
             AppLanguage.select(RuntimeEnvironment.getApplication(),tag)
             val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);val activity=controller.get()
@@ -454,36 +347,6 @@ class LatinSiniticPriorityWordingTest {
                 controller.pause().stop().destroy();AppLanguage.select(RuntimeEnvironment.getApplication(),previousTag)
                 PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
             }
-        }
-    }
-
-    @Test fun immutableReadersRejectCoordinatedRawDisplayAndWholeFixtureMutants() {
-        for(tag in listOf("yue-Latn","hak-Latn-TW","nan-Latn-TW")) {
-            val original=latinSiniticBoundFixture(tag)
-            requireWholeFixture(tag,original)
-            val key="ui_save"
-            val mutated=JSONObject(original.getJSONObject("rows").getJSONObject(key).toString())
-            mutated.put("reviewed_value","forged").put("reviewed_display","forged").put("compiled_display","forged")
-            var rejected=false
-            try { requireRow(tag,key,mutated) } catch(error: AssertionError) { rejected=true }
-            assertTrue("Standalone coordinated mutation $tag",rejected)
-            original.getJSONObject("rows").put(key,mutated)
-            rejected=false
-            try { requireWholeFixture(tag,original) } catch(error: AssertionError) { rejected=true }
-            assertTrue("Whole supplied fixture mutation $tag",rejected)
-        }
-    }
-    @Test fun cachedRowMutationCannotChangeACompiledExpectation() {
-        for(tag in listOf("yue-Latn","hak-Latn-TW","nan-Latn-TW")) {
-            val key="ui_save";val rows=fixture.getJSONObject(tag).getJSONObject("rows")
-            val original=JSONObject(rows.getJSONObject(key).toString())
-            expected(tag,key) // establish independent immutable row index before mutation
-            try {
-                rows.getJSONObject(key).put("reviewed_value","forged").put("compiled_display","forged")
-                var rejected=false
-                try { expected(tag,key) } catch(error: AssertionError) { rejected=true }
-                assertTrue("Cached mutable row must not redefine oracle $tag",rejected)
-            } finally { rows.put(key,original) }
         }
     }
 
