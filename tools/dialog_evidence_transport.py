@@ -469,7 +469,7 @@ def verify_large_colour_ime(method, observations):
 
     retained(identity, False)
     activation = one(observations, 'colour-2x-synthetic-ime-activation')
-    require(activation.get('strategy') == 'View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)'
+    require(activation.get('strategy') == 'View.requestFocus + InputMethodManager.showSoftInput(0)'
             and activation.get('focus_request_returned') is True and activation.get('field_focused') is True
             and type(activation.get('ime_request_returned')) is bool,
             'Explicit synthetic focus/IME activation required; request return is not rendered IME evidence')

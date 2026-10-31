@@ -432,12 +432,16 @@ class ColourViewportDeviceTest {
             onMain {
                 // Fixture activation, not a claim of native initial field reachability.
                 // The original failed full-line tap cohort is preserved separately.
+                // An implicit request can be declined by the IME in fullscreen
+                // landscape. Explicit (0), not SHOW_FORCED, establishes this
+                // synthetic lifecycle precondition without changing IME options.
+                // Native window visibility remains the required success oracle.
                 val focused=field.requestFocus()
                 field.setSelection(2,5)
                 val requested=activity.getSystemService(InputMethodManager::class.java)
-                    .showSoftInput(field,InputMethodManager.SHOW_IMPLICIT)
+                    .showSoftInput(field,0)
                 evidence.observe(JSONObject().put("kind","colour-2x-synthetic-ime-activation")
-                    .put("strategy","View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)")
+                    .put("strategy","View.requestFocus + InputMethodManager.showSoftInput(0)")
                     .put("focus_request_returned",focused).put("field_focused",field.hasFocus())
                     .put("ime_request_returned",requested).put("state",state())
                     .put("initial_native_field_activation","not-tested").put("initial_full_hex_visibility","not-accepted"))
