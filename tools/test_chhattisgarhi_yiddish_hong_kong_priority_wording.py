@@ -7,7 +7,7 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as E
 import translation_catalogues as c
-from current_localization_contracts import fixture
+from current_localization_contracts import fixture, residual_rows, require_residual_or_previous, RESIDUAL_KEYS
 from chhattisgarhi_yiddish_hong_kong_priority_expectations import require_fixture_binding, require_edited_resource as bound_require_edited_resource
 from test_slovak_slovenian_catalan_priority_wording import token_contract
 
@@ -42,7 +42,9 @@ class ChhattisgarhiYiddishHongKongPriorityWordingTest(unittest.TestCase):
    self.assertEqual(HOLD_COUNTS[tag],len(data['holds']))
    for identity in data['holds']:
     key=identity.split('/')[1];self.assertNotIn(key,data['values'])
-    if key in data['original_catalogue']:self.assertEqual(resource(self.local[tag][key]),data['original_catalogue'][key])
+    if (tag,key) in residual_rows():
+     require_residual_or_previous(E.parse(ROOT/data['catalogue_path']).getroot(),tag,key,data['original_catalogue'].get(key,{}).get('value'))
+    elif key in data['original_catalogue']:self.assertEqual(resource(self.local[tag][key]),data['original_catalogue'][key])
     else:self.assertNotIn(key,self.local[tag])
 
  def test_disposition_contract_rejects_status_value_attributes_and_context_mutations(self):
@@ -89,8 +91,10 @@ class ChhattisgarhiYiddishHongKongPriorityWordingTest(unittest.TestCase):
  def test_unrelated_resources_and_attributes_remain_exact(self):
   for tag,data in DATA.items():
    for key,row in data['original_catalogue'].items():
-    if key not in data['values']:self.assertEqual(resource(self.local[tag][key]),row)
-   self.assertEqual(set(self.local[tag]),set(data['original_catalogue'])|set(data['values']))
+    if key not in data['values']:
+     if (tag,key) in residual_rows():require_residual_or_previous(E.parse(ROOT/data['catalogue_path']).getroot(),tag,key,row['value'])
+     else:self.assertEqual(resource(self.local[tag][key]),row)
+   self.assertEqual(set(self.local[tag]),set(data['original_catalogue'])|set(data['values'])|RESIDUAL_KEYS.get(tag,set()))
 
  def test_full_tokens_newlines_and_android_syntax(self):
   for tag,data in DATA.items():
@@ -277,12 +281,13 @@ class ChhattisgarhiYiddishHongKongPriorityWordingTest(unittest.TestCase):
    for key,row in data['context'].items():
     with self.subTest(tag=tag,key=key):
      self.assertEqual(resource(self.en[key]),row['source'])
-     self.assertEqual(row['reviewed_value'],resource(self.local[tag][key])['value'])
+     if (tag,key) in residual_rows():require_residual_or_previous(E.parse(ROOT/data['catalogue_path']).getroot(),tag,key,row['reviewed_value'])
+     else:self.assertEqual(row['reviewed_value'],resource(self.local[tag][key])['value'])
      self.assertEqual(row['reviewed_attributes'],self.local[tag][key].attrib)
      if row['type']=='plurals':self.assertEqual(row['reviewed_children_attributes'],resource(self.local[tag][key])['children_attributes'])
    self.assertEqual({'hne':348,'yi':348,'zh-HK':348}[tag],len(data['context'])+len(data['values']))
 
- def test_jvm_named_lookups_and_unreviewed_fg_bg_oracles_bind_actual_source(self):
+ def test_jvm_named_lookups_and_fg_bg_successors_bind_actual_source(self):
   import re
   path=ROOT/'Paintroid/src/test/java/org/catrobat/paintroid/local/ChhattisgarhiYiddishHongKongPriorityWordingTest.kt'
   text=path.read_text()
@@ -293,8 +298,9 @@ class ChhattisgarhiYiddishHongKongPriorityWordingTest(unittest.TestCase):
    for key,value in [('ui_fg','FG'),('ui_bg','BG')]:
     node=self.local[tag].get(key)
     if node is None:node=self.en[key]
-    self.assertEqual(value,node.text)
+    row=residual_rows().get((tag,key))
+    self.assertEqual(row['target'] if row else value,node.text)
     self.assertNotIn(key,data['values'])
-    self.assertIn('assertEquals("'+value+'",ui(R.string.'+key+'))',text)
+    self.assertIn('PriorityWordingExpectations.residual(tag,"'+key+'","'+value+'")',text)
 
 if __name__=='__main__':unittest.main()

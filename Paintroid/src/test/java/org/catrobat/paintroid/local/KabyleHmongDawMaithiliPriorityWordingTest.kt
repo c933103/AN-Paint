@@ -77,7 +77,7 @@ class KabyleHmongDawMaithiliPriorityWordingTest {
             require(key=="ui_save_a5d0d9" && raw=="@string/ui_save") { "Only the exact inherited Save alias is reviewed" }
             return expected(tag,"ui_save")
         }
-        return decoded(raw)
+        return PriorityWordingExpectations.successor(tag,key,decoded(raw))
     }
     private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
         when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
@@ -138,7 +138,16 @@ class KabyleHmongDawMaithiliPriorityWordingTest {
         for(key in held.keys().asSequence()) if(held.isNull(key)) {
             val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag held/$key",0,id)
-            assertEquals("$tag held/$key",defaultSource(key),activity.getString(id))
+            val text=PriorityWordingExpectations.residual(tag,key,defaultSource(key))
+            assertEquals("$tag held/successor/$key",text,activity.getString(id))
+            val tokens=pattern.findAll(text).toList()
+            if(tokens.isNotEmpty()) {
+                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
+                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
+                    "d"->21001L;"f"->12.75;else->"argument 100%"
+                }
+                assertEquals("$tag/$key successor arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
+            }
         }
     }
 
@@ -155,7 +164,7 @@ class KabyleHmongDawMaithiliPriorityWordingTest {
         }).resources
         assertEquals(americanText,american.getString(R.string.ui_foreground_background_colour_palette))
         assertNotEquals(defaultText,americanText)
-        assertEquals("$tag must use default not US",defaultText,activity.getString(R.string.ui_foreground_background_colour_palette))
+        assertEquals("$tag successor binds default not US",PriorityWordingExpectations.residual(tag,key,defaultText),activity.getString(R.string.ui_foreground_background_colour_palette))
     }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->

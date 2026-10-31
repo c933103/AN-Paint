@@ -1139,8 +1139,8 @@ class ReviewedResidualSuccessorTests(unittest.TestCase):
         rows = residual_rows()
         english = ET.parse(catalogues.RES/'values/strings.xml').getroot()
         roots = {tag: ET.parse(catalogues.catalogue_paths()[tag]).getroot() for tag, _ in rows}
-        self.assertEqual(560, sum(r['previous_target'] is None for r in rows.values()))
-        self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg'), ('xh','ui_free_form_select'),('xh','ui_palette'),('xh','ui_preview'),('xh','ui_rotate'),('sr-Cyrl','ui_discard'),('sr-Latn','ui_discard')},
+        self.assertEqual(658, sum(r['previous_target'] is None for r in rows.values()))
+        self.assertEqual({('gl','ui_discard'),('gl','ui_bg'),('gl','ui_fg'), ('xh','ui_free_form_select'),('xh','ui_palette'),('xh','ui_preview'),('xh','ui_rotate'),('sr-Cyrl','ui_discard'),('sr-Latn','ui_discard')} | {('csb', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('mww', 'ui_zoom_out'), ('yi', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('wa', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('se', 'ui_your_current_image_has_unsaved_changes'), ('sa', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('se', 'ui_drawing_canvas_pinch_and_move_two_fingers_to'), ('se', 'ui_ellipse'), ('mww', 'ui_drawing_canvas_pinch_and_move_two_fingers_to')},
                          {identity for identity,r in rows.items() if r['previous_target'] is not None})
         for (tag,key),row in rows.items():
             with self.subTest(tag=tag,key=key):
