@@ -26,6 +26,8 @@ _ORIGINAL_FIXTURE = fixture
 
 
 def _immutable_residual_data(data):
+    if type(data.get('schema_version')) is not int or data['schema_version'] != 1:
+        raise ValueError('Residual schema_version must be integer 1')
     entries = []
     required = {'locale', 'key', 'target', 'previous_target', 'source', 'attributes'}
     for r in data['decisions']:

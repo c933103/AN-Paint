@@ -34,6 +34,20 @@ class ResidualParseReuseTests(unittest.TestCase):
                 path.write_text(text.replace('"schema_version": 1,','"schema_version": 1, "schema_version": 1,',1))
                 with self.assertRaisesRegex(ValueError,'Duplicate fixture key'):c.residual_rows()
 
+    def test_schema_is_exact_integer_one_before_any_cached_result(self):
+        data=c.fixture('reviewed_residuals_20261030.json')
+        for value in (True, False, 1.0, 1.5, '1', None, [], {}, 0, 2):
+            changed={**data,'schema_version':value}
+            text=json.dumps(changed,ensure_ascii=False)
+            with self.subTest(value=value):
+                # Both paths reject before caching, not merely downstream scope checks.
+                with self.assertRaisesRegex(ValueError,'integer 1'):c._residual_text(text)
+                with patch.object(c,'fixture',return_value=changed),self.assertRaisesRegex(ValueError,'integer 1'):
+                    c.residual_rows()
+        missing=dict(data);missing.pop('schema_version')
+        with self.assertRaisesRegex(ValueError,'integer 1'):c._residual_text(json.dumps(missing))
+        self.assertEqual(1520,len(c.residual_rows()))
+
     def test_mocked_loader_and_malformed_rows_are_not_hidden_by_cache(self):
         c.residual_rows()
         data=c.fixture('reviewed_residuals_20261030.json')

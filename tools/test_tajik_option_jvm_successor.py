@@ -6,6 +6,7 @@ import unittest
 import xml.etree.ElementTree as E
 from kazakh_tajik_pashto_priority_expectations import bound_fixture, require_edited_resource
 from language_option_additions import SECOND_ADDITIONS_PATH
+from current_localization_contracts import require_residual_or_previous
 import translation_catalogues as catalogues
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -46,6 +47,9 @@ class TajikOptionJvmSuccessorTest(unittest.TestCase):
                     self.assertIsNotNone(node,tag)
                     self.assertEqual(row['attributes'],dict(node.attrib),tag)
                     self.assertEqual(row['value'],node.text,tag)
+                elif tag == 'yua' and key in ('ui_brush', 'ui_save'):
+                    # Exact later missing-value decisions; other Yucatec keys still fall back.
+                    require_residual_or_previous(E.parse(paths[tag]).getroot(), tag, key, None)
                 else:
                     self.assertNotIn(key,values,tag+'/'+key)
                     self.assertEqual(defaults[key],values.get(key,defaults[key]),tag+'/'+key)

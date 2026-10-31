@@ -26,7 +26,11 @@ class SwedishExtendedWordingTests(unittest.TestCase):
     def test_every_current_identity_exists_except_named_source_holds(self):
         source, target = (identities(self.xml[t]) for t in ('default', 'sv'))
         held = {('string', k) for k in self.data['held_missing']}
-        self.assertEqual(held, source - target)
+        # Preserve the old hold record; only this exact later accepted pair supersedes it.
+        palette = 'ui_foreground_background_colour_palette'
+        self.assertIn(('string', palette), held)
+        contracts.require_residual_or_previous(ET.fromstring(self.xml['sv']), 'sv', palette, None)
+        self.assertEqual(held - {('string', palette)}, source - target)
         self.assertFalse(target - source)
         self.assertEqual(['ui_main23'], self.data['present_held'])
         self.assertEqual('Huvud', self.strings['ui_main23'])

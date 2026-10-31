@@ -146,7 +146,7 @@ class BretonAsturianOccitanPriorityWordingTest {
         }
     }
 
-    @Test fun heldDefaultFallbackDoesNotSubstituteAmericanEnglishRegionalWording() = forEachLocale(listOf("br")) { tag,activity ->
+    @Test fun historicalHoldUsesExactSuccessorWithoutSubstitutingAmericanEnglishRegionalWording() = forEachLocale(listOf("br")) { tag,activity ->
         val key="ui_foreground_background_colour_palette"
         val held=fixture.getJSONObject(tag).getJSONObject("held")
         assertTrue("$tag explicitly held",held.has(key))
@@ -159,7 +159,10 @@ class BretonAsturianOccitanPriorityWordingTest {
         }).resources
         assertEquals(americanText,american.getString(R.string.ui_foreground_background_colour_palette))
         assertNotEquals(defaultText,americanText)
-        assertEquals("$tag must use default not US",defaultText,activity.getString(R.string.ui_foreground_background_colour_palette))
+        val successor=expected(tag,key)
+        assertNotEquals("Breton later acceptance is not the old fallback",defaultText,successor)
+        assertNotEquals(americanText,successor)
+        assertEquals("$tag exact later successor, not US",successor,activity.getString(R.string.ui_foreground_background_colour_palette))
     }
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->
