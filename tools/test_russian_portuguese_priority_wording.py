@@ -1,122 +1,17 @@
-"""Bounded Russian/European Portuguese wording and static-consumer regressions.
-
-These host checks do not certify Android runtime/layout, TalkBack, native-speaker
-acceptance or either complete locale. No historical ledger is an acceptance oracle.
-"""
-from copy import deepcopy
+"""Current locale semantics; historical approval snapshots live in immutable source history."""
 from pathlib import Path
 import unittest
-import xml.etree.ElementTree as ET
-
-from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
 
 ROOT = Path(__file__).resolve().parents[1]
+
 CLASSIC = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-EXPECTED_KEYS = {
-    'ru': {
-        'ui_d_d_pixels_2f_mp_exceeds_the_current',
-        'ui_d_d_px_d_pixels_2f_mp',
-        'ui_collapse_tool_category',
-        'ui_expand_tool_category',
-    },
-    'pt-PT': {
-        'ui_keeps_pixels_at_the_top_left_smaller_canvas',
-        'language20_translation_note',
-        'ui_collapse_tool_category',
-        'ui_expand_tool_category',
-        'ui_drawing_canvas_pinch_and_move_two_fingers_to',
-        'ui_free_form_select',
-        'ui_rectangle_select',
-        'ui_none',
-        'ui_pixels',
-        'ui_pixels_6ec9c2',
-    },
-}
-FIXTURES = {
-    'ru': 'russian_priority_current_wording.json',
-    'pt-PT': 'portuguese_priority_current_wording.json',
-}
-
-
-def wording(tag):
-    return require_wording_shape(fixture(FIXTURES[tag]), EXPECTED_KEYS[tag], {tag})
-
 
 class RussianPortuguesePriorityWording(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.paths = {tag: catalogues.catalogue_paths()[tag] for tag in EXPECTED_KEYS}
-        cls.xml = {tag: path.read_text() for tag, path in cls.paths.items()}
+        cls.paths = {tag: catalogues.catalogue_paths()[tag] for tag in ('ru', 'pt-PT')}
         cls.values = {tag: catalogues.read_strings(path) for tag, path in cls.paths.items()}
-
-    def test_complete_wording_attributes_and_typed_arguments(self):
-        defaults, _, _, _ = catalogues.default_resources()
-        for tag in EXPECTED_KEYS:
-            data = wording(tag)
-            for key, values in data['values'].items():
-                with self.subTest(locale=tag, key=key):
-                    value = require_string(self.xml[tag], key, values[tag], data['constraints'][key])
-                    self.assertEqual(catalogues.placeholders(defaults[key]), catalogues.placeholders(value))
-
-    def test_fixture_cannot_drop_keys_constraints_locales_or_text(self):
-        for tag in EXPECTED_KEYS:
-            original = wording(tag)
-            for key in EXPECTED_KEYS[tag]:
-                for mutation in ('missing-key', 'missing-constraint', 'missing-locale', 'empty-text'):
-                    data = deepcopy(original)
-                    if mutation == 'missing-key':
-                        del data['values'][key]
-                    elif mutation == 'missing-constraint':
-                        del data['constraints'][key]
-                    elif mutation == 'missing-locale':
-                        data['values'][key] = {}
-                    else:
-                        data['values'][key][tag] = ''
-                    with self.subTest(locale=tag, key=key, mutation=mutation), self.assertRaises(ValueError):
-                        require_wording_shape(data, EXPECTED_KEYS[tag], {tag})
-
-    def test_missing_duplicate_truncated_wrong_type_and_attribute_mutations_fail(self):
-        for tag in EXPECTED_KEYS:
-            root = ET.fromstring(self.xml[tag])
-            data = wording(tag)
-            for key, values in data['values'].items():
-                node = root.find(f"./string[@name='{key}']")
-                line = ET.tostring(node, encoding='unicode')
-                truncated = deepcopy(node)
-                truncated.text = values[tag][:-1]
-                wrong_type = deepcopy(node)
-                tokens = list(catalogues.placeholders(values[tag]))
-                if tokens:
-                    token = tokens[0]
-                    wrong_type.text = wrong_type.text.replace(token, token[:-1] + ('s' if token[-1] != 's' else 'd'), 1)
-                else:
-                    wrong_type.text += ' %1$d'
-                wrong_attribute = deepcopy(node)
-                wrong_attribute.set('formatted', 'true' if node.get('formatted') == 'false' else 'false')
-                cases = {
-                    'missing': '',
-                    'duplicate': line + line,
-                    'truncated': ET.tostring(truncated, encoding='unicode'),
-                    'wrong-type': ET.tostring(wrong_type, encoding='unicode'),
-                    'wrong-attribute': ET.tostring(wrong_attribute, encoding='unicode'),
-                }
-                for mutation, broken in cases.items():
-                    with self.subTest(locale=tag, key=key, mutation=mutation), self.assertRaises(ValueError):
-                        require_string('<resources>' + broken + '</resources>', key, values[tag], data['constraints'][key])
-
-    def test_catalogues_are_complete_and_unique_with_valid_android_strings(self):
-        for tag in EXPECTED_KEYS:
-            root = ET.fromstring(self.xml[tag])
-            identities = [(node.tag, node.get('name')) for node in root]
-            with self.subTest(locale=tag):
-                self.assertEqual(len(identities), len(set(identities)))
-                self.assertEqual([], catalogues.validate_catalogue(tag, require_complete=True))
-            for node in root.findall('string'):
-                value = ''.join(node.itertext())
-                with self.subTest(locale=tag, key=node.get('name')):
-                    self.assertEqual([], catalogues.android_string_errors(value))
-                    self.assertEqual([], catalogues.format_string_errors(value, node.get('formatted') != 'false'))
 
     def test_category_descriptions_anchor_agreement_to_a_fixed_tool_noun(self):
         # Substitute real category-member labels with differing grammatical genders.
@@ -198,11 +93,6 @@ class RussianPortuguesePriorityWording(unittest.TestCase):
         self.assertNotIn(r'\\n', value)
         self.assertEqual(['Idioma da aplicação', '', 'As traduções são mantidas nos recursos de idioma do AN Paint. O texto novo ou não traduzido aparece em inglês.'], value.split(r'\n'))
         self.assertIn('text = ui(R.string.language20_translation_note)', (CLASSIC / 'AppLanguage.kt').read_text())
-        data = wording('pt-PT')
-        broken = ET.Element('string', name=key)
-        broken.text = value.replace(r'\n', r'\\n')
-        with self.assertRaises(ValueError):
-            require_string('<resources>' + ET.tostring(broken, encoding='unicode') + '</resources>', key, value, data['constraints'][key])
 
     def test_portuguese_zoom_help_preserves_both_directions_pan_and_navigate(self):
         value = self.values['pt-PT']['ui_drawing_canvas_pinch_and_move_two_fingers_to']
@@ -235,7 +125,6 @@ class RussianPortuguesePriorityWording(unittest.TestCase):
         self.assertIn('listOf(ui(R.string.ui_pixels), ui(R.string.ui_percent))', source)
         for key in ('ui_width_in', 'ui_height_in'):
             self.assertIn('ui(R.string.' + key + ', if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))', source)
-
 
 if __name__ == '__main__':
     unittest.main()

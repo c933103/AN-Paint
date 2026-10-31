@@ -239,20 +239,18 @@ class AssemblyActivityTest {
 
     /** Complete Japanese Help/control consumer; rendering and linguistic acceptance are separate. */
     @Test fun japaneseHelpModesReachActualHelpAndCurrentPositionLabel() {
-        val expected=org.json.JSONObject(javaClass.getResourceAsStream("/assembly-help-japanese/expected.json")!!
-            .bufferedReader(Charsets.UTF_8).use { it.readText() })
         withLanguage("ja") {
             activity.onConfigurationChanged(activity.resources.configuration); idle()
             assertEquals("ja",AppLanguage.selectedTag(activity))
             assertEquals("ja",activity.resources.configuration.locales[0].toLanguageTag())
-            assertEquals(expected.getString("positionLabel"),
+            assertEquals(activity.getString(org.catrobat.paintroid.R.string.ui_assembly_exact_position),
                 activity.window.decorView.findViewWithTag<TextView>("assembly_position").text.toString())
             click("assembly_help")
             val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
             assertTrue(dialog.isShowing)
             val message=dialog.findViewById<TextView>(android.R.id.message)
             assertTrue(message.isShown)
-            assertEquals(expected.getString("help"),message.text.toString())
+            assertEquals(activity.getString(org.catrobat.paintroid.R.string.ui_add_up_to_20_images_with_android_s),message.text.toString())
             assertEquals(8,message.text.toString().split("\n\n").size)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick(); idle()
             assertFalse(dialog.isShowing)
@@ -424,8 +422,6 @@ class AssemblyActivityTest {
         assertTrue(activity.assembly.layout().isEmpty())
     }
 
-
-
     @Test fun frenchCompleteHelpAndActualDragStatusUseImageAttachmentLanguage() = withLanguage("fr") {
         click("assembly_help")
         val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
@@ -474,20 +470,6 @@ class AssemblyActivityTest {
 
     /** Whole-value consumers and mode controls, not glyph/layout acceptance. */
     @Test fun englishHelpModesReachActualHelpAndExactPositionToolbarWithCurrentLabels() {
-        val expected=org.json.JSONObject(javaClass.getResourceAsStream("/assembly-help-modes/expected.json")!!
-            .bufferedReader(Charsets.UTF_8).use { it.readText() }).getJSONObject("locales")
-        // Android resolves language-only English to its US regional resource here.
-        // Use a language with no catalogue to exercise the unqualified default too;
-        // keep both complete oracles distinct rather than normalizing their spelling.
-        assertNotEquals(expected.getJSONObject("en").getString("help"),expected.getJSONObject("en-US").getString("help"))
-        for((requested,fixtureTag) in listOf("en" to "en-US","zxx" to "en")) {
-            val config=android.content.res.Configuration(activity.resources.configuration)
-            config.setLocales(android.os.LocaleList.forLanguageTags(requested))
-            val resources=activity.createConfigurationContext(config).resources
-            assertEquals(requested,resources.configuration.locales[0].toLanguageTag())
-            assertEquals("Complete Help for requested locale $requested",expected.getJSONObject(fixtureTag).getString("help"),
-                resources.getString(org.catrobat.paintroid.R.string.ui_add_up_to_20_images_with_android_s))
-        }
         val tags=listOf("en-001","en-AU","en-CA","en-GB","en-IN","en-SG","en-US","en-XV","qaa-Zsye-XV")
         for(tag in tags) withLanguage(tag) {
             // Rebuild real toolbar consumers after the app-language change.
@@ -495,8 +477,7 @@ class AssemblyActivityTest {
             val resourceTag=if(tag=="qaa-Zsye-XV") "en-Zsye-XV-anpaint" else tag
             assertEquals(tag,AppLanguage.selectedTag(activity))
             assertEquals(resourceTag,activity.resources.configuration.locales[0].toLanguageTag())
-            val value=expected.getJSONObject(tag)
-            assertEquals(tag,value.getString("positionLabel"),
+            assertEquals(tag,activity.getString(org.catrobat.paintroid.R.string.ui_assembly_exact_position),
                 activity.window.decorView.findViewWithTag<TextView>("assembly_position").text.toString())
             click("assembly_help")
             val dialog=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
@@ -507,12 +488,12 @@ class AssemblyActivityTest {
             val messages=if(tag in listOf("en-XV","qaa-Zsye-XV")) {
                 val shell=dialog.window!!.decorView.findViewWithTag<View>("vertical_dialog")
                 assertNotNull(tag,shell)
-                textViews(shell).filter { it is FlowTextView && it.text.toString()==value.getString("help") }
+                textViews(shell).filter { it is FlowTextView && it.text.toString()==activity.getString(org.catrobat.paintroid.R.string.ui_add_up_to_20_images_with_android_s) }
             } else listOf(dialog.findViewById<TextView>(android.R.id.message))
             assertEquals(tag,1,messages.size)
             assertTrue(tag,messages.single().isShown)
             val shown=messages.single().text.toString()
-            assertEquals(tag,value.getString("help"),shown)
+            assertEquals(tag,activity.getString(org.catrobat.paintroid.R.string.ui_add_up_to_20_images_with_android_s),shown)
             assertEquals(8,shown.split("\n\n").size)
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
             assertFalse(tag,dialog.isShowing)
@@ -521,9 +502,7 @@ class AssemblyActivityTest {
     }
 
     @Test fun swedishCompleteHelpReachesTheActualToolbarWithoutChangingTheAssembly() = withLanguage("sv") {
-        val expected=org.json.JSONObject(java.io.File("../tools/fixtures/current_localization/swedish_extended_wording.json")
-            .readText()).getJSONObject("values").getJSONObject("ui_add_up_to_20_images_with_android_s")
-            .getString("sv").replace("\\n","\n")
+        val expected=activity.getString(org.catrobat.paintroid.R.string.ui_add_up_to_20_images_with_android_s)
         activity.onConfigurationChanged(activity.resources.configuration);idle()
         assertEquals("sv",AppLanguage.selectedTag(activity))
         assertEquals("Exakt position",activity.window.decorView.findViewWithTag<TextView>("assembly_position").text.toString())

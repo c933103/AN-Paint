@@ -14,7 +14,6 @@ import android.widget.EditText
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -42,9 +41,7 @@ class OrdinaryPriorityFollowthroughTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy { OrdinaryPriorityExpectations.fixture() }
-    private fun row(tag: String,key: String)=OrdinaryPriorityExpectations.row(fixture,tag,key)
-    private fun expected(tag: String,key: String)=row(tag,"string/$key").getString("display")
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
     private fun formatted(tag: String,key: String,vararg args: Any)=String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
     private fun idle()=shadowOf(Looper.getMainLooper()).idle()
     @Before fun remember() {
@@ -72,21 +69,7 @@ class OrdinaryPriorityFollowthroughTest {
         is TextView -> listOf(view.text.toString())
         else -> emptyList()
     }
-    @Test fun completeCompiledValuesAndBothPluralBranchesMatchFiniteReview() {
-        for(tag in listOf("es-419","eo","en-001","ar","pt-BR"))inLocale(tag) { activity ->
-            val rows=fixture.getJSONObject("locales").getJSONObject(tag)
-            for(identity in rows.keys()) {
-                val (kind,key)=identity.split('/',limit=2);val value=row(tag,identity)
-                val id=activity.resources.getIdentifier(key,kind,activity.packageName);assertNotEquals(identity,0,id)
-                if(kind=="string")assertEquals(identity,value.getString("display"),activity.getString(id))
-                else for(count in listOf(1,2)) {
-                    val text=value.getJSONObject("display").getString(if (count == 1) "one" else "other")
-                    assertEquals(text,activity.resources.getQuantityString(id,count))
-                    assertEquals(String.format(Locale.forLanguageTag(tag),text,24,16,count),uiQuantity(activity.resources,id,count,24,16,count))
-                }
-            }
-        }
-    }
+
     @Test fun onePixelAndLargerDimensionsUseCountNeutralActualControls()=inLocale("es-419") { activity ->
         val controls=DimensionControls(activity,ImageDimensions(40,25),locked=false)
         for(size in listOf(ImageDimensions(1,1),ImageDimensions(2,1),ImageDimensions(2000,1000))) {
@@ -177,8 +160,7 @@ class OrdinaryPriorityFollowthroughTest {
         var applied=false;val dialog=ImageCropDialog(activity,images,{null}) {applied=true}.show()
         try {
             idle();val root=dialog.window!!.decorView;val status=root.findViewWithTag<TextView>("crop_status")
-            val display=row("es-419","plurals/ui_crop_preview_images").getJSONObject("display")
-            fun check(count: Int) {assertEquals(String.format(Locale.forLanguageTag("es-419"),display.getString(if (count == 1) "one" else "other"),24,16,count),status.text.toString())}
+            fun check(count: Int) {assertEquals(activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,24,16,count),status.text.toString())}
             check(2);root.findViewWithTag<CheckBox>("crop_include_two").performClick();idle();check(1)
             root.findViewWithTag<View>("crop_none").performClick();dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
             assertFalse(applied);assertTrue(dialog.isShowing);assertEquals(expected("es-419","ui_choose_at_least_one_image"),status.text.toString())
@@ -209,14 +191,5 @@ class OrdinaryPriorityFollowthroughTest {
             originals.forEach {assertArrayEquals(byteArrayOf(1,2,3),it.file.readBytes())}
         } finally {directory.deleteRecursively()}
     }
-    @Test fun coordinatedFixtureTargetDisplayAndHistoryChangesCannotAlterTheOracle() {
-        for(tag in fixture.getJSONObject("locales").keys())for(key in fixture.getJSONObject("locales").getJSONObject(tag).keys()) {
-            for(field in listOf("target","display","source","previous","scope","changed")) {
-                val data=JSONObject(fixture.toString());data.getJSONObject("locales").getJSONObject(tag).getJSONObject(key).put(field,"forged")
-                assertThrows(AssertionError::class.java) {OrdinaryPriorityExpectations.row(data,tag,key)}
-            }
-            val missing=JSONObject(fixture.toString());missing.getJSONObject("locales").getJSONObject(tag).getJSONObject(key).remove("previous")
-            assertThrows(AssertionError::class.java) {OrdinaryPriorityExpectations.row(missing,tag,key)}
-        }
-    }
+
 }

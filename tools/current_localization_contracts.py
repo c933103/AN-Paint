@@ -22,37 +22,6 @@ def fixture(name):
     return _parse_fixture((FIXTURES / name).read_text())
 
 
-def require_wording_shape(data, expected_keys, expected_tags):
-    if data.get('schema_version') != 1 or set(data.get('values',{})) != set(expected_keys):
-        raise ValueError('Current message family/key inventory differs')
-    if set(data.get('constraints',{})) != set(expected_keys):
-        raise ValueError('Current message constraints are incomplete')
-    for key,values in data['values'].items():
-        if set(values) != set(expected_tags) or not all(isinstance(v,str) and v for v in values.values()):
-            raise ValueError('Current message locale inventory is empty or differs: '+key)
-    return data
-
-
-def require_locale_scope(data, expected_scoped_tags, offered_tags):
-    """Require the explicit, disjoint current scope; absence never implies review."""
-    if data.get('schema_version') != 1 or data.get('default_tag') != 'default':
-        raise ValueError('Current locale scope schema differs')
-    groups = []
-    for field in ('scoped_tags', 'fallback_tags'):
-        tags = data.get(field)
-        if (not isinstance(tags, list) or not tags or
-                not all(isinstance(tag, str) and tag for tag in tags) or
-                len(tags) != len(set(tags))):
-            raise ValueError('Missing, empty or duplicate locale scope: '+field)
-        groups.append(set(tags))
-    scoped, fallback = groups
-    if scoped != set(expected_scoped_tags) or scoped & fallback:
-        raise ValueError('Reviewed scope differs or overlaps fallback scope')
-    if len(offered_tags) != len(set(offered_tags)) or scoped | fallback != set(offered_tags):
-        raise ValueError('Explicit locale scope does not match current picker')
-    return scoped, fallback
-
-
 def require_string(xml, key, expected, constraints=None):
     """Validate one complete Android string, rejecting missing/duplicate definitions."""
     return require_string_root(ET.fromstring(xml), key, expected, constraints)
@@ -91,10 +60,6 @@ def require_string_root(root, key, expected, constraints=None):
     if any(part in value.casefold() for part in constraints.get('forbidden_casefold_substrings', [])):
         raise ValueError(f'{key}: forbidden wording')
     return value
-
-
-# Current XML owns these catalogues; immutable review history is not a text freeze.
-CURRENT_CATALOGUE_TAGS = frozenset(['tt-Latn', 'ain-Latn', 'mn-Mong', 'yue-Latn', 'hak-Latn-TW', 'nan-Latn-TW', 'ary', 'as', 'ast', 'az', 'be', 'bo', 'br', 'bs', 'ca', 'ca-ES-valencia', 'ceb', 'ckb', 'csb', 'cy', 'da', 'de', 'dz', 'el', 'en-AU', 'es-ES', 'eu-ES', 'fa', 'fa-IR', 'fil', 'fr', 'fy', 'ga', 'gd', 'gl', 'gu', 'ha', 'he', 'hi', 'hne', 'hr', 'ht', 'hy', 'ia', 'ig', 'is', 'it', 'ja', 'jv', 'ka', 'kab', 'kk', 'km', 'kn', 'ko-KP', 'ku', 'ky', 'la', 'ln', 'lo', 'lt', 'mai', 'mi', 'mk', 'ml-IN', 'mn-Cyrl-MN', 'mr', 'mww', 'my', 'nds', 'ne', 'nl', 'nn', 'no', 'oc', 'pa-IN', 'pcm', 'ps', 'pt-PT', 'ro', 'rw', 'sa', 'sd', 'se', 'si', 'sk', 'sl', 'sm', 'so', 'sq', 'sr-Cyrl', 'sr-Latn', 'su', 'ta', 'te', 'tg', 'th', 'tok', 'tpi', 'tr', 'tt-Cyrl', 'ug', 'uk', 'ur', 'uz-Latn', 'wa', 'wo', 'xh', 'yi', 'yo', 'za', 'zh-HK', 'zu'])
 
 
 def decode_display(raw):

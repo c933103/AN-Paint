@@ -5,7 +5,9 @@ import re
 import unittest
 
 import translation_catalogues as catalogues
-from current_localization_contracts import CURRENT_CATALOGUE_TAGS
+
+# Existing fixed script/alias corpus; not a partition of approved translations.
+FIXED_SCRIPT_BOUNDARY_TAGS = frozenset(('ain-Kana', 'ain-Latn', 'hak-Hant-TW', 'hak-Latn-TW', 'ko-Kore-KR', 'lzh-Hant', 'mn-Mong', 'mnc-Mong', 'nan-Hant-TW', 'nan-Latn-TW', 'qaa-Zsye-XV', 'tt-Latn', 'vi-Hani', 'wuu-Hans', 'yue-Hant', 'yue-Latn', 'ko-KR', 'vi', 'ar', 'en-GB'))
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt'
@@ -60,7 +62,7 @@ class ExactScriptResourceRoutingContracts(unittest.TestCase):
             expected = {'ko-Kore-KR': 'ko-Kore-KR-anpaint',
                         'qaa-Zsye-XV': 'en-Zsye-XV-anpaint'}.get(tag, tag)
             self.assertEqual(expected, row['resource_tag'])
-            if tag in CURRENT_CATALOGUE_TAGS - {'tt-Latn', 'ain-Latn', 'mn-Mong', 'yue-Latn', 'hak-Latn-TW', 'nan-Latn-TW'}:
+            if tag not in FIXED_SCRIPT_BOUNDARY_TAGS:
                 continue  # Public route remains checked; copied approval text is retired.
             keys = ('ui_save', 'ui_menu_file') if tag == 'tt-Latn' else ('ui_save', 'ui_menu_file', 'language20_device_default')
             self.assertEqual({key: strings.get(key, defaults[key]).strip('"') for key in keys},

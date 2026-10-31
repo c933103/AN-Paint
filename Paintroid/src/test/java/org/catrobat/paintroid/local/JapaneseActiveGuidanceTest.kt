@@ -93,9 +93,6 @@ class JapaneseActiveGuidanceTest {
         val dialog = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
         val shown = dialog.findViewById<TextView>(android.R.id.message).text.toString()
         assertEquals(ui(R.string.ui_add_up_to_20_images_with_android_s), shown)
-        val expected = org.json.JSONObject(javaClass.getResourceAsStream("/assembly-help-japanese/expected.json")!!
-            .bufferedReader(Charsets.UTF_8).use { it.readText() }).getString("help")
-        assertEquals(expected, shown)
         // Exact position is a separate paragraph; retain the complete Help contract.
         assertEquals(8, shown.split("\n\n").size)
         assertTrue(shown.contains("下部のトレイには、サムネイル、ファイル名、トリミングと［同じ幅］または［同じ高さ］の調整を反映した画像寸法が表示されます。提供元からファイル更新日時を取得できる場合は、その日時も表示されます。"))

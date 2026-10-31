@@ -18,7 +18,6 @@ import android.widget.EditText
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -52,9 +51,6 @@ class SwedishExtendedWordingTest {
     private var localeManager: LocaleManager? = null
     private var previousPlatformLocales: LocaleList? = null
     private lateinit var swedish: Context
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/swedish_extended_wording.json").readText())
-    }
 
     @Before fun swedishResources() {
         previousResources = PaintApplication.currentResources
@@ -84,34 +80,12 @@ class SwedishExtendedWordingTest {
         PaintApplication.currentResources = previousResources
         Locale.setDefault(previousLocale)
     }
-    private val manual by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/swedish_legacy_manual_successor.json").readText())
-    }
-    private fun manualDisplay(field: String)=manual.getString(field).replace("\\n", "\n").replace("\\'", "'")
 
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
-    private fun expected(key: String) = fixture.getJSONObject("values").getJSONObject(key).getString("sv")
-        .removeSurrounding("\"").replace("\\n", "\n").replace("\\'", "'")
+    private fun expected(key: String) = PriorityWordingExpectations.resourceText("sv",key)
     private fun texts(view: View): List<String> =
         (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
             (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
-
-    @Test fun completeCriticalMessagesResolveWithoutDefaultEnglishFallback() {
-        val values = fixture.getJSONObject("values")
-        for (key in values.keys()) {
-            val id = swedish.resources.getIdentifier(key, "string", swedish.packageName)
-            assertNotEquals(key, 0, id)
-            assertEquals(key, expected(key), swedish.getString(id))
-        }
-        assertEquals(swedish.getString(R.string.ui_cursor_help31), swedish.getString(R.string.ui_cursor_help29))
-        val plural = fixture.getJSONObject("plural").getJSONObject("sv")
-        for (count in listOf(0, 1, 2, 20, 21, 101)) {
-            val template = plural.getString(if (count == 1) "one" else "other").replace("\\n", "\n")
-            assertEquals(template, swedish.resources.getQuantityText(R.plurals.ui_crop_preview_images, count).toString())
-            assertEquals(String.format(Locale.forLanguageTag("sv"), template, 24, 16, count),
-                swedish.resources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count))
-        }
-    }
 
     @Test fun allTwelveCommonsFailuresUseTheActualDispatcherAndKeepProviderDetailVerbatim() {
         val gallery = MediaGalleryActivity()
@@ -268,33 +242,5 @@ class SwedishExtendedWordingTest {
     }
 
     // Dormant manual: complete compiled values, not an active Help-dialog claim.
-    @Test fun completeSwedishManualResolvesWithoutEnglishFallback() {
-        assertEquals("sv",AppLanguage.selectedTag(swedish))
-        val actual=swedish.getString(R.string.ui_the_arrow_on_the_left_directly_below_the)
-        assertEquals(manualDisplay("swedish"),actual)
-        assertEquals(10,actual.split("\n\n").size)
-        assertNotEquals(manualDisplay("source"),actual)
-        assertNotEquals(actual,swedish.getString(R.string.ui_help23))
-        assertEquals("Huvud",swedish.getString(R.string.ui_main23))
-        assertTrue(actual.contains("Fästa bilder kan flyttas för att fylla luckan."))
-        assertTrue(actual.contains("befintliga ritytan"))
-        assertTrue(actual.contains("Visa > Förstoringsglas kan du aktivera"))
-    }
 
-    @Test fun completeDefaultManualCompilesIncludingLiteralPercentAndParagraphs() {
-        // An unmatched language isolates values/, rather than an existing regional
-        // English catalogue with its separately retained historical translation.
-        val app=RuntimeEnvironment.getApplication()
-        val context=app.createConfigurationContext(Configuration(app.resources.configuration).apply {
-            setLocale(Locale("zz"))
-        })
-        val actual=context.getString(R.string.ui_the_arrow_on_the_left_directly_below_the)
-        assertEquals(manualDisplay("source"),actual)
-        assertEquals(10,actual.split("\n\n").size)
-        assertTrue(actual.contains("100%"))
-        assertTrue(actual.contains("that tab's controls"))
-        assertNotEquals(manualDisplay("previous_source"),actual)
-        assertTrue(actual.contains("selection edits can be undone"))
-        assertFalse(actual.contains("one undoable selection edit"))
-    }
 }

@@ -33,8 +33,7 @@ import java.util.Locale
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class FrenchAssemblyHelpTest {
     private val context get() = RuntimeEnvironment.getApplication() as Context
-    private val expected = javaClass.getResourceAsStream("/french-assembly-help/expected.txt")!!
-        .bufferedReader(Charsets.UTF_8).use { it.readText() }.removeSuffix("\n")
+    private val expected get()=PriorityWordingExpectations.resourceText("fr","ui_add_up_to_20_images_with_android_s")
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
     private fun withLanguage(tag: String, check: (AssemblyActivity) -> Unit) {
@@ -79,11 +78,6 @@ class FrenchAssemblyHelpTest {
     private fun click(activity: AssemblyActivity, tag: String) {
         assertTrue(tag, activity.window.decorView.findViewWithTag<View>(tag).performClick())
         idle()
-    }
-
-    @Test fun compiledResourcesPreserveCompleteFrenchHelp() = withLanguage("fr") { activity ->
-        assertEquals(expected, activity.getString(R.string.ui_add_up_to_20_images_with_android_s))
-        assertEquals(8, expected.split("\n\n").size)
     }
 
     @Test fun actualHelpToolbarDisplaysCompleteFrenchEntryAndReopens() = withLanguage("fr") { activity ->

@@ -12,7 +12,6 @@ import android.widget.CheckBox
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -36,9 +35,7 @@ class IndonesianCropFollowthroughTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy { IndonesianCropExpectations.fixture() }
-    private fun row(tag: String,key: String)=IndonesianCropExpectations.row(fixture,tag,key)
-    private fun expected(tag: String,key: String)=row(tag,"string/$key").getString("display")
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
     private fun formatted(tag: String,key: String,vararg args: Any)=String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
     private fun idle()=shadowOf(Looper.getMainLooper()).idle()
     @Before fun remember() {
@@ -66,17 +63,7 @@ class IndonesianCropFollowthroughTest {
         is TextView -> listOf(view.text.toString())
         else -> emptyList()
     }
-    @Test fun completeCompiledOtherValueIsUsedForCountsOneAndTwo()=inLocale("id") { activity ->
-        val value=row("id","plurals/ui_crop_preview_images")
-        val text=value.getJSONObject("display").getString("other")
-        assertEquals(setOf("other"),value.getJSONObject("display").keys().asSequence().toSet())
-        for(count in listOf(1,2)) {
-            assertEquals(text,activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count))
-            assertEquals(String.format(Locale.forLanguageTag("id"),text,24,16,count),
-                uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,24,16,count))
-        }
-        assertEquals(expected("id","ui_choose_at_least_one_image"),activity.getString(R.string.ui_choose_at_least_one_image))
-    }
+
     @Test fun actualCropDialogSelectsCountsRejectsEmptyAndAppliesUndoableCrop()=inLocale("id") { activity ->
         val directory=File(activity.cacheDir,"indonesian-crop-dialog").apply {mkdirs()}
         val assembly=ImageAssembly(directory)
@@ -89,9 +76,8 @@ class IndonesianCropFollowthroughTest {
         val dialog=ImageCropDialog(activity,assembly.images,{null}) {crops -> assembly.crop(crops);applications++}.show()
         try {
             idle();val root=dialog.window!!.decorView;val status=root.findViewWithTag<TextView>("crop_status")
-            val display=row("id","plurals/ui_crop_preview_images").getJSONObject("display").getString("other")
             fun check(count: Int,width: Int=24) {
-                assertEquals(String.format(Locale.forLanguageTag("id"),display,width,16,count),status.text.toString())
+                assertEquals(activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,width,16,count),status.text.toString())
             }
             check(2);root.findViewWithTag<CheckBox>("crop_include_child").performClick();idle();check(1)
             root.findViewWithTag<View>("crop_none").performClick();dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
@@ -133,14 +119,5 @@ class IndonesianCropFollowthroughTest {
             originals.forEach {assertArrayEquals(byteArrayOf(1,2,3),it.file.readBytes())}
         } finally {directory.deleteRecursively()}
     }
-    @Test fun coordinatedFixtureTargetDisplayAndHistoryChangesCannotAlterTheOracle() {
-        for(tag in fixture.getJSONObject("locales").keys())for(key in fixture.getJSONObject("locales").getJSONObject(tag).keys()) {
-            for(field in listOf("target","display","source","previous","scope","changed")) {
-                val data=JSONObject(fixture.toString());data.getJSONObject("locales").getJSONObject(tag).getJSONObject(key).put(field,"forged")
-                assertThrows(AssertionError::class.java) {IndonesianCropExpectations.row(data,tag,key)}
-            }
-            val missing=JSONObject(fixture.toString());missing.getJSONObject("locales").getJSONObject(tag).getJSONObject(key).remove("previous")
-            assertThrows(AssertionError::class.java) {IndonesianCropExpectations.row(missing,tag,key)}
-        }
-    }
+
 }

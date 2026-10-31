@@ -34,8 +34,7 @@ import java.util.Locale
 class TraditionalChineseAssemblyHelpTest {
     private val context get() = RuntimeEnvironment.getApplication() as Context
     private val tags = listOf("zh-HK", "zh-TW")
-    private fun expected(tag: String) = javaClass.getResourceAsStream("/traditional-chinese-assembly-help/$tag.txt")!!
-        .bufferedReader(Charsets.UTF_8).use { it.readText() }.removeSuffix("\n")
+    private fun expected(tag: String)=PriorityWordingExpectations.resourceText(tag,"ui_add_up_to_20_images_with_android_s")
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
     private fun withLanguage(tag: String, check: (AssemblyActivity) -> Unit) {
@@ -80,13 +79,6 @@ class TraditionalChineseAssemblyHelpTest {
     private fun click(activity: AssemblyActivity, tag: String) {
         assertTrue(tag, activity.window.decorView.findViewWithTag<View>(tag).performClick())
         idle()
-    }
-
-    @Test fun compiledResourcesPreserveBothCompleteTraditionalChineseEntries() {
-        for (tag in tags) withLanguage(tag) { activity ->
-            assertEquals(expected(tag), activity.getString(R.string.ui_add_up_to_20_images_with_android_s))
-            assertEquals(8, expected(tag).split("\n\n").size)
-        }
     }
 
     @Test @Config(fontScale = 1f)

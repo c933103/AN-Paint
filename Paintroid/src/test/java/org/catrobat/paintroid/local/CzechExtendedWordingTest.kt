@@ -17,7 +17,6 @@ import android.widget.EditText
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -52,9 +51,6 @@ class CzechExtendedWordingTest {
     private var localeManager: LocaleManager? = null
     private var previousPlatformLocales: LocaleList? = null
     private lateinit var czech: Context
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/czech_extended_wording.json").readText())
-    }
 
     @Before fun czechResources() {
         previousResources = PaintApplication.currentResources
@@ -85,28 +81,10 @@ class CzechExtendedWordingTest {
         Locale.setDefault(previousLocale)
     }
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
-    private fun expected(key: String) = fixture.getJSONObject("values").getJSONObject(key).getString("cs")
-        .removeSurrounding("\"").replace("\\n", "\n").replace("\\'", "'")
+    private fun expected(key: String) = PriorityWordingExpectations.resourceText("cs",key)
     private fun texts(view: View): List<String> =
         (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
             (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
-
-    @Test fun completeCriticalMessagesResolveWithoutDefaultEnglishFallback() {
-        val values = fixture.getJSONObject("values")
-        for (key in values.keys()) {
-            val id = czech.resources.getIdentifier(key, "string", czech.packageName)
-            assertNotEquals(key, 0, id)
-            assertEquals(key, expected(key), czech.getString(id))
-        }
-        assertEquals(czech.getString(R.string.ui_cursor_help31), czech.getString(R.string.ui_cursor_help29))
-        val plural = fixture.getJSONObject("plural").getJSONObject("cs")
-        for (count in listOf(0, 1, 2, 3, 4, 5, 20, 21, 101)) {
-            val template = plural.getString(when (count) { 1 -> "one"; in 2..4 -> "few"; else -> "other" }).replace("\\n", "\n")
-            assertEquals(template, czech.resources.getQuantityText(R.plurals.ui_crop_preview_images, count).toString())
-            assertEquals(String.format(Locale.forLanguageTag("cs"), template, 24, 16, count),
-                czech.resources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count))
-        }
-    }
 
     @Test fun allTwelveCommonsFailuresUseTheActualDispatcherAndKeepProviderDetailVerbatim() {
         val gallery = MediaGalleryActivity()

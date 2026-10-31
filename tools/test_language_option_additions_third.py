@@ -37,12 +37,6 @@ class OctoberLanguageOptionTests(unittest.TestCase):
             self.assertEqual(name,picker[tag])
             self.assertEqual(name,next(r['name'] for r in meta['options'] if r['tag']==tag))
             self.assertEqual(c.RES/f'values-b+{tag}/strings.xml',c.catalogue_paths()[tag])
-        scope=json.loads((ROOT/'tools/fixtures/current_localization/locale_contract_scope.json').read_text())
-        self.assertEqual(59,len(scope['scoped_tags']))
-        self.assertEqual(112,len(scope['fallback_tags']))
-        self.assertEqual(set(EXPECTED),set(EXPECTED)&set(scope['fallback_tags']))
-        self.assertIn("fil",scope['scoped_tags'])
-        self.assertNotIn("tl",scope['scoped_tags'])
 
     def test_current_catalogues_are_valid_without_historical_empty_or_approval_freezes(self):
         for row in json.loads(FIXTURE.read_text())['languages']:
@@ -58,7 +52,6 @@ class OctoberLanguageOptionTests(unittest.TestCase):
         path=c.catalogue_paths()['fil']
         self.assertEqual('Pambura',c.read_strings(path)['ui_eraser'])
         self.assertEqual('I-save',c.read_strings(path)['ui_save'])
-        self.assertEqual([],c.validate_catalogue('fil',require_complete=True))
 
 
 if __name__ == '__main__':

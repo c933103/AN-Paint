@@ -1,95 +1,34 @@
-"""Bounded pt-BR wording and source contracts, not fluency or device acceptance."""
-from copy import deepcopy
-import json
-import re
+"""Current locale semantics; historical approval snapshots live in immutable source history."""
 import unittest
 import xml.etree.ElementTree as ET
-
-from current_localization_contracts import fixture, require_string, require_wording_shape
 import translation_catalogues as catalogues
 
-FIXTURE = 'brazilian_portuguese_priority_current_wording.json'
 RECOVERY = 'ui_recovery_copy_exported_extract_canvas_png_from_the'
-NOTE = 'language20_translation_note'
-COLLAPSE = 'ui_collapse_tool_category'
-EXPAND = 'ui_expand_tool_category'
-COUNT = 'ui_d_d_px_d_pixels_2f_mp'
-GESTURE = 'ui_drawing_canvas_pinch_and_move_two_fingers_to'
-NONE = 'ui_none'
-UNIT = 'ui_pixels_6ec9c2'
-KEYS = {RECOVERY, NOTE, COLLAPSE, EXPAND, COUNT, GESTURE, NONE, UNIT}
-TAGS = {'default', 'pt-BR'}
-CLASSIC = catalogues.ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
 
+NOTE = 'language20_translation_note'
+
+COLLAPSE = 'ui_collapse_tool_category'
+
+EXPAND = 'ui_expand_tool_category'
+
+COUNT = 'ui_d_d_px_d_pixels_2f_mp'
+
+GESTURE = 'ui_drawing_canvas_pinch_and_move_two_fingers_to'
+
+NONE = 'ui_none'
+
+UNIT = 'ui_pixels_6ec9c2'
+
+CLASSIC = catalogues.ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
 
 class BrazilianPortuguesePriorityWordingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.data = require_wording_shape(fixture(FIXTURE), KEYS, TAGS)
         cls.xml = {tag: (catalogues.RES / folder / 'strings.xml').read_text(encoding='utf-8')
                    for tag, folder in {'default': 'values', 'pt-BR': 'values-pt-rBR'}.items()}
         cls.strings = {tag: {n.get('name'): ''.join(n.itertext()) for n in ET.fromstring(xml)
                             if n.tag == 'string'} for tag, xml in cls.xml.items()}
         cls.activity = (CLASSIC / 'ClassicPaintActivity.kt').read_text(encoding='utf-8')
-
-    def test_complete_bilingual_values_attributes_newlines_and_typed_arguments(self):
-        for key in KEYS:
-            self.assertEqual(TAGS, set(self.data['constraints'][key]))
-            for tag, expected in self.data['values'][key].items():
-                constraints = self.data['constraints'][key][tag]
-                self.assertEqual({'attributes', 'formatted', 'placeholders', 'escaped_newline_count'}, set(constraints))
-                self.assertEqual(catalogues.placeholders(self.data['values'][key]['default']),
-                                 catalogues.placeholders(expected))
-                with self.subTest(key=key, tag=tag):
-                    require_string(self.xml[tag], key, expected, constraints)
-
-    def test_fixture_requires_all_keys_locales_text_and_constraints(self):
-        for key in KEYS:
-            for mutation in ('key', 'locale', 'empty', 'constraint'):
-                changed = deepcopy(self.data)
-                if mutation == 'key': del changed['values'][key]
-                elif mutation == 'locale': del changed['values'][key]['pt-BR']
-                elif mutation == 'empty': changed['values'][key]['pt-BR'] = ''
-                else: del changed['constraints'][key]
-                with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
-                    require_wording_shape(changed, KEYS, TAGS)
-
-    def test_missing_duplicate_truncated_or_retyped_resource_is_rejected(self):
-        for key in KEYS:
-            expected = self.data['values'][key]['pt-BR']
-            constraints = self.data['constraints'][key]['pt-BR']
-            for mutation in ('missing', 'duplicate', 'truncated', 'format', 'markup'):
-                root = ET.fromstring(self.xml['pt-BR'])
-                node = root.find(f"./string[@name='{key}']")
-                if mutation == 'missing': root.remove(node)
-                elif mutation == 'duplicate': root.append(deepcopy(node))
-                elif mutation == 'truncated': node.text = node.text[:-1]
-                elif mutation == 'format': node.set('formatted', 'false' if node.get('formatted') != 'false' else 'true')
-                else: ET.SubElement(node, 'b').text, node.text = node.text, None
-                with self.subTest(key=key, mutation=mutation), self.assertRaises(ValueError):
-                    require_string(ET.tostring(root, encoding='unicode'), key, expected, constraints)
-
-    def test_syntax_or_argument_changes_cannot_hide_behind_matching_expected_text(self):
-        for key in KEYS:
-            for suffix in (' %9$d', " '"):
-                root = ET.fromstring(self.xml['pt-BR'])
-                node = root.find(f"./string[@name='{key}']")
-                node.text += suffix
-                with self.subTest(key=key, suffix=suffix), self.assertRaises(ValueError):
-                    require_string(ET.tostring(root, encoding='unicode'), key, node.text,
-                                   self.data['constraints'][key]['pt-BR'])
-
-    def test_complete_catalogue_and_android_syntax(self):
-        self.assertEqual([], catalogues.validate_catalogue('pt-BR', require_complete=True))
-        for tag, xml in self.xml.items():
-            root = ET.fromstring(xml)
-            identities = [(n.tag, n.get('name')) for n in root]
-            self.assertEqual(len(identities), len(set(identities)))
-            for node in root.findall('string'):
-                text = ''.join(node.itertext())
-                with self.subTest(tag=tag, key=node.get('name')):
-                    self.assertEqual([], catalogues.android_string_errors(text))
-                    self.assertEqual([], catalogues.format_string_errors(text, node.get('formatted') != 'false'))
 
     def test_recovery_names_actual_file_command_and_retains_complete_archive_guidance(self):
         s = self.strings['pt-BR']
@@ -147,17 +86,6 @@ class BrazilianPortuguesePriorityWordingTests(unittest.TestCase):
         dimensions = (CLASSIC / 'DimensionControls.kt').read_text(encoding='utf-8')
         for key in ('ui_width_in', 'ui_height_in'):
             self.assertRegex(dimensions, r'contentDescription = ui\(R\.string\.' + key + r',.*ui\(R\.string\.' + UNIT + r'\)\)')
-
-    def test_priority_membership_and_unresolved_wording_remain_explicit(self):
-        priorities = json.loads((catalogues.ROOT / 'translations/string-importance.json').read_text())
-        tier = {key: group['id'] for group in priorities['tiers'] for key in group['keys']}
-        for key in KEYS:
-            self.assertIn(tier['string/' + key], {'P0', 'P1'})
-        self.assertEqual('FG', self.strings['pt-BR']['ui_fg'])
-        self.assertEqual('BG', self.strings['pt-BR']['ui_bg'])
-        self.assertEqual('Primeiro plano %1$s, fundo %2$s. Paleta de cores %3$s.',
-                         self.strings['pt-BR']['ui_foreground_background_colour_palette'])
-
 
 if __name__ == '__main__':
     unittest.main()

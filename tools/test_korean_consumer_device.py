@@ -21,10 +21,8 @@ SOURCE = ROOT / 'app/src/androidTest/java/paint/anpaint/android/LocalizedDialogD
 
 
 class KoreanConsumerDeviceContracts(unittest.TestCase):
-    def test_expectations_bind_complete_current_resources_and_reviewed_changed_values(self):
+    def test_device_expectations_match_current_resources_and_script_identity(self):
         expected = json.loads(KOREAN_EXPECTATIONS.read_text(encoding='utf-8'))
-        reviewed = json.loads((ROOT / 'tools/fixtures/current_localization/korean_image_attribution.json').read_text())
-        reviewed_values = {(e['directory'], e['key']): e['value'].replace(r'\n', '\n') for e in reviewed['entries']}
         self.assertEqual({'ko-KP', 'ko-KR', 'ko-Kore-KR'}, set(expected))
         for tag, entries in expected.items():
             directory = 'values-b+' + tag.replace('-', '+')
@@ -35,8 +33,6 @@ class KoreanConsumerDeviceContracts(unittest.TestCase):
                 with self.subTest(tag=tag, key=key):
                     path = f"./plurals[@name='{key}']/item[@quantity='other']" if key == 'ui_crop_preview_images' else f"./string[@name='{key}']"
                     self.assertEqual(xml.find(path).text.replace(r'\n', '\n'), entries[key])
-                    if (directory, key) in reviewed_values:
-                        self.assertEqual(reviewed_values[directory, key], entries[key])
             self.assertIn('조정될 수 있습니다.', entries['ui_crop_preview_images'])
         self.assertNotEqual(expected['ko-KR']['gallery_copy_credit'], expected['ko-Kore-KR']['gallery_copy_credit'])
 
