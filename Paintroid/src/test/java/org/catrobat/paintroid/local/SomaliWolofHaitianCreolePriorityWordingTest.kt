@@ -123,7 +123,7 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
                 assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
             }
         }
-        // Absent catalogues resolve the default values/ source, not the en-US spelling override.
+        // Exact reviewed successors replace historical holds; all others retain default-source fallback.
         // The full source texts and held-absence sets are independently pinned by host tests.
         val defaultEnglish = reviewFixture.getJSONObject("sources")
         val held=locale.getJSONArray("held_absent")
@@ -131,18 +131,27 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
         for(index in 0 until held.length()) {
             val key=held.getString(index);val id=activity.resources.getIdentifier(key,"string",activity.packageName)
             assertNotEquals("$tag held/$key",0,id)
-            assertEquals("$tag held/$key",decoded(defaultEnglish.getJSONObject(key).getString("source")),activity.getString(id))
+            val text=PriorityWordingExpectations.residual(tag,key,decoded(defaultEnglish.getJSONObject(key).getString("source")))
+            assertEquals("$tag held/successor/$key",text,activity.getString(id))
+            val tokens=pattern.findAll(text).toList()
+            if(tokens.isNotEmpty()) {
+                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
+                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
+                    "d"->21001L;"f"->12.75;else->"argument 100%"
+                }
+                assertEquals("$tag/$key successor arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
+            }
         }
         run {
-            assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.",
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground %1\$s, background %2\$s. %3\$s colour palette."),
                 activity.getString(R.string.ui_foreground_background_colour_palette))
-            assertEquals("Foreground foreground 100%, background background 100%. palette 100% colour palette.",
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_foreground_background_colour_palette","Foreground foreground 100%, background background 100%. palette 100% colour palette.","foreground 100%","background 100%","palette 100%"),
                 ui(R.string.ui_foreground_background_colour_palette,"foreground 100%","background 100%","palette 100%"))
-            assertEquals("Save as PNG…",ui(R.string.ui_save_as_png))
+            assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
         }
     }
 
-    @Test fun absentHeldValuesUseDefaultEnglishRatherThanRegionalAmericanOverrides() = forEachLocale { tag,activity ->
+    @Test fun reviewedSuccessorsRemainBoundToDefaultEnglishRatherThanRegionalAmericanOverrides() = forEachLocale { tag,activity ->
         val key = "ui_foreground_background_colour_palette"
         val source = decoded(reviewFixture.getJSONObject("sources").getJSONObject(key).getString("source"))
         val american = activity.createConfigurationContext(android.content.res.Configuration(activity.resources.configuration).apply {
@@ -151,7 +160,7 @@ class SomaliWolofHaitianCreolePriorityWordingTest {
         assertEquals("Foreground %1\$s, background %2\$s. %3\$s colour palette.", source)
         assertEquals("Foreground %1\$s, background %2\$s. %3\$s color palette.", american)
         assertNotEquals("$tag regional English is not the default source oracle", american, source)
-        assertEquals("$tag exact default fallback", source,
+        assertEquals("$tag exact source-bound successor", PriorityWordingExpectations.residual(tag,key,source),
             activity.getString(R.string.ui_foreground_background_colour_palette))
     }
 

@@ -52,12 +52,24 @@ def require_empty_option_successor(historical_row, xml):
     require_untranslated_option(historical_row,'<resources/>')
     loc=require_fixture_binding(fixture(NAME))['locales'][tag]
     if loc['context'] or len(loc['values'])!=348:raise ValueError('Exact empty predecessor scope differs')
+    from current_localization_contracts import residual_rows, require_residual_or_previous
+    from priority_cohort_checks import require_resource_shape
+    successors={'string/'+key:row for (locale_tag,key),row in residual_rows().items() if locale_tag==tag}
     root=ET.fromstring(xml)
     if root.tag!='resources' or root.attrib or (root.text or '').strip():raise ValueError('Malformed catalogue')
     identities=[n.tag+'/'+n.get('name','') for n in root]
-    if len(identities)!=len(set(identities)) or set(identities)!=set(loc['values']):raise ValueError('Exact accepted identity set differs')
+    if len(identities)!=len(set(identities)) or set(identities)!=set(loc['values'])|set(successors):raise ValueError('Exact accepted identity set differs')
     for node in root:
-        row=loc['values'][node.tag+'/'+node.get('name')]
+        identity=node.tag+'/'+node.get('name');key=node.get('name')
+        if identity in successors:
+            row=successors[identity];previous=loc['held'][identity]
+            if (row['previous_target'] is not None or previous['target'] is not None
+                    or row['source']!=previous['source'] or row['attributes']!=previous['source_attributes']):
+                raise ValueError('Exact residual source/predecessor differs')
+            require_residual_or_previous(root,tag,key)
+            require_resource_shape(node,'string',{'value':row['target'],'attributes':row['attributes']})
+            continue
+        row=loc['values'][identity]
         if row['previous_target'] is not None or row['previous_attributes'] is not None:raise ValueError('Exact absence differs')
         if node.attrib!=row['attributes'] or (node.tail or '').strip():raise ValueError('Exact attributes/tail differ')
         if node.tag=='string':

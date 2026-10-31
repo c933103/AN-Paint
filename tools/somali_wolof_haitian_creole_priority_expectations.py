@@ -92,12 +92,25 @@ def require_priority_option_successor(historical_row,xml):
         raise ValueError('Exact empty predecessor successor scope differs')
     if len(locale['changed'])!=count or set(locale['changed'])!=set(accepted) or locale['previous_targets']!={key:None for key in accepted}:
         raise ValueError('Exact additions must bind every explicit null predecessor')
+    from current_localization_contracts import residual_rows, require_residual_or_previous
+    from priority_cohort_checks import require_resource_shape
+    successors={key:row for (locale_tag,key),row in residual_rows().items() if locale_tag==tag}
     root=ET.fromstring(xml)
     if root.tag!='resources' or root.attrib or (root.text or '').strip() or (root.tail or '').strip():raise ValueError('Malformed current catalogue')
-    if len(root)!=count or {n.tag+'/'+n.get('name','')for n in root}!=set(locale['catalogue_identities']):raise ValueError('Exact accepted typed identity set differs')
+    if len(root)!=count+len(successors) or {n.tag+'/'+n.get('name','')for n in root}!=set(locale['catalogue_identities'])|{'string/'+key for key in successors}:raise ValueError('Exact accepted typed identity set differs')
     english={node.get('name'):node for node in ET.parse(root_path/'Paintroid/src/main/res/values/strings.xml').getroot()}
     for node in root:
-        key=node.get('name');expected=accepted[key];source=data['sources'][key];original=english[key]
+        key=node.get('name');source=data['sources'][key];original=english[key]
+        if key in successors:
+            row=successors[key]
+            if (key in accepted or row['previous_target'] is not None or source['type']!='string'
+                    or row['source']!=source['source'] or row['attributes']!=source['attributes']
+                    or row['source']!=original.text or row['attributes']!=original.attrib):
+                raise ValueError('Exact residual source/predecessor differs')
+            require_residual_or_previous(root,tag,key)
+            require_resource_shape(node,'string',{'value':row['target'],'attributes':row['attributes']})
+            continue
+        expected=accepted[key]
         source_value={n.get('quantity'):n.text for n in original} if original.tag=='plurals' else original.text
         if source!={'type':original.tag,'source':source_value,'attributes':original.attrib}:raise ValueError('Complete English source binding differs')
         if node.tag!=source['type'] or node.attrib!=locale['target_attribute_exceptions'].get(key,{'name':key}):raise ValueError('Exact target type or attributes differ')
