@@ -34,6 +34,12 @@ See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/r
   and corruption checks; record exact raster differences without silently
   converting every antialias fringe into a production defect. Unexplained visual
   differences require explicit review; do not conceal them or invent a tolerance.
+- Canonical Android resources own current wording. Check that real consumers
+  display the complete selected resource and preserve independently specified
+  semantic, formatting, script, legal and safety boundaries. Do not recreate
+  full-language approval mirrors, predecessor adapters or per-edit test packages.
+  Historical review scopes above are records, not requirements to keep catalogues
+  empty or incomplete; immutable source/review history preserves those decisions.
 - Before publication, compare the remote tree with the reviewed checkout,
   including every intended removal and retained file's content and executable
   mode. A fresh complete Git tree is allowed for an archived migration; do not

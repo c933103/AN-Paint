@@ -37,6 +37,20 @@ The intended end state is a complete catalogue for every language offered by
 View → Languages and Android's App languages page. English fallback is only a
 temporary migration condition until the applicable catalogue work has been independently checked; no current progress is accepted.
 
+## Current source coverage and historical registration records
+
+At develop `25f678d2a784ffe096a0eeaf92494c02637e6cc7` (31 October 2026),
+all 171 offered options have exact canonical catalogues. Against 716 translatable
+strings and one plural resource, 60 catalogues contain every key directly and
+111 lack one or more. This is source-key coverage, not linguistic acceptance or
+layout certification; the withdrawal of earlier review conclusions still applies.
+
+The dated addition sections below describe registration-time state. Their old
+empty/partial status and review scopes are historical records, not requirements
+to reject legitimate new translations or keep a catalogue incomplete. Canonical
+XML owns current wording. Immutable source/review history preserves approvals;
+do not add complete wording mirrors, predecessor adapters or per-edit packages.
+
 ## Six language options added on 12 October 2026
 
 The first addition brought the inventory to 146 choices. Hausa (`ha`), Igbo (`ig`), Lingala (`ln`),
@@ -176,23 +190,27 @@ character transliteration of Standard Chinese.
 
 ## Validation
 
-`tools/translation_catalogues.py` reads the canonical XML directly. Run:
+`tools/translation_catalogues.py` reads the canonical XML directly. For a
+focused structural check, run:
 
 ```sh
 python3 tools/translation_catalogues.py
-python3 tools/translation_catalogues.py --complete
-python3 -m unittest discover -s tools -p 'test_translations.py'
 ```
 
-The first command checks catalogue/resource structure and format placeholders.
-`--complete` additionally requires every translatable source key and plural
-resource in every offered non-English locale. These are structural checks only. Key coverage does not establish semantic
+This checks catalogue/resource structure and format placeholders. The optional
+`--complete` mode reports missing translatable keys across offered catalogues;
+it is not a routine CI requirement that every locale stay complete as English
+source keys evolve. These are structural checks only. Key coverage does not establish semantic
 correctness, completed review, or acceptance of the original conversation work.
 All earlier progress remains withdrawn pending full recheck.
 
-Then run the normal Android unit/lint checks and inspect both orientations, short
-screens, large font sizes, dialogs, accessibility labels and RTL layouts as
-applicable.
+When changing host validation logic, run its affected test modules instead of
+repeating whole normal/optimized aggregates; for example,
+`PYTHONPATH=tools python3 -m unittest test_translations`. Use the existing
+exact-source CI for required Android unit/lint/device checks. Inspect both
+orientations, short screens, large font sizes, dialogs, accessibility labels and
+RTL layouts when the changed behavior creates that risk, not as another full
+cycle for every wording edit. See `CI.md`.
 
 `TranslationReadinessTest` covers layout/resource behavior under RTL conditions.
 `AppLanguageTest` covers persisted app-language choice, localized numeric entry,

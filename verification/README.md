@@ -255,3 +255,47 @@ not counted as direct presence. This inventory supersedes stale source-coverage
 counts, not the scope or acceptance status of historical reviews. Direct keys,
 nonempty values or differences from English do **not** establish linguistic
 correctness, fluency, full UI/layout coverage or translation completion.
+
+## Final approval/feature-payload retirement
+
+This final mapped stage retires the remaining priority/orphan, full AssemblyHelp
+and feature approval copies, rather than moving their literals into Python or
+another fixture format. All prior paths and bytes remain recoverable in immutable
+[develop 25f678d2a784ffe096a0eeaf92494c02637e6cc7](https://github.com/c933103/AN-Paint/tree/25f678d2a784ffe096a0eeaf92494c02637e6cc7).
+No application resource, production code, workflow or new test framework changes.
+
+| Retired machinery | Surviving independent obligation / intentional limit |
+| --- | --- |
+| 39 priority/orphan approval packets and their held/predecessor/value mutation wrappers; three orphan Python scope tables | Canonical XML, generic all-offered structure/escaping/plural/typed-placeholder checks, real selection/wrap routing and the existing independent semantic regressions. Exact historical approved wording is intentionally no longer an executable freeze. |
+| 23 AssemblyHelp packets, six JVM full-prose mirrors and the remaining whole-Help SHA oracles | Current control-caption bindings, source-language distinctions between snap/exact-position, overlap/origin/zero/movement, conditional attached/gap movement, own aspect ratio, memory branches, crop/normalization/undoable replacement/provider timestamp; genuine Tibetan instrumental, Hakka reading/script and existing narrow language regressions. Real geometry, help UI, crop, vertical/font and cancellation consumers remain. Repeated translated paragraph mutations retire, not become a translated clause database. |
+| 19 feature packets | One unchanged font contract plus five reduced constraint-only packets retain independent protocol/legal identifiers, financial-credit prohibition, typed placeholders/formatted flags, live-label references, NFC and special-codepoint contracts. Actual provider/privacy/clipboard/redirect/disconnection/native cleanup, progress, crop and save/export consumers remain. Other packets contained only copied wording/history and retire. |
+| Historical 59/112 approval partitions, empty/partial/full-catalogue status freezes and per-edit successor adapters | All 171 offered options still receive current structural checks and efficient public selection/wrap formatting boundaries. Registry identity/name/platform/fallback inputs remain. Direct coverage is reported, not a requirement to remain untranslated or to duplicate an approved catalogue. |
+| Four memory-warning queue/successor packets (258,315 bytes) and their historical adapters | Independent import-current-limit versus combined estimated-assembly predicates, remedies, scalar formatting and real admission/recovery consumers; fixed memory-modality boundary inputs remain. Outstanding linguistic review and withdrawn acceptance status remain documented in `translations/source-review/README.md`; retirement grants no acceptance. |
+| Twelve duplicated Croatian/Bosnian, Slovak/Slovenian and Catalan/Romanian consumer methods | Byte-identical memory-admission, failed-draft exact-byte recovery, dirty/bitmap/floating-selection recovery and atomic-encoding/file-ownership methods remain in `SerbianP0WordingTest` for both scripts. Unique Croatian layout/panel/dither consumers remain. Removed setup variants were not all textually identical; the retained methods do not depend on those focus/font differences. |
+| Copied compiled approval equality and repeated gallery loops | Current selected compiled resources bind real controls; independent formatter/script boundaries and actual dialog/menu/state/bitmap/history/provider failures remain. Current-to-current binding is not claimed as independent wording approval. The direct Android unsupported-`zxx` full-Help comparison intentionally retires; offered English routing and malformed/missing-template boundaries remain, not that exact unsupported route. |
+
+The retained eleven host fixture JSON files are genuine constraint/font,
+registry and small crop/Hakka contextual inputs, not full current catalogues.
+Upstream GIMP/Krita/LibreOffice/MediaWiki/Android catalogue and licence inputs
+retain source attribution/import provenance responsibilities and are not current
+wording oracles. Fixed script, memory-modality and vertical-notice boundary
+resources remain independently specified inputs.
+
+Exact file/data counts, method identities, focused checks and hosted execution
+results are recorded with this stage's PR/evidence receipt. Declaration or
+discovery reductions are not runtime results. No additional full normal/optimized
+local aggregate or benchmark is needed. Earlier hosted timing varied and the
+last actual-develop regression job was slower despite less test work; no reliable
+overall wall-clock speedup is claimed. Linguistic completeness and unrelated
+application-test optimization are not implied by completing this mapped cleanup.
+
+Final source inventory for this stage: host fixture JSON falls **86 / 2,090,207
+bytes → 11 / 47,965 bytes**; current-localization alone **81 / 2,066,409 →
+6 / 24,167**. Four separately located memory-history JSON packets remove another
+**258,315 bytes**; three orphan Python scope tables remove **269,664 bytes**.
+Host test discovery is **1,464 → 1,018**, with zero import errors; declared JVM
+`@Test` methods are **1,144 → 1,112**. The latter is not the hosted execution
+count because SDK variants can execute a method more than once. Across touched
+Kotlin files, 115 of 123 retained method bodies are byte-identical; eight change
+current-resource binding or retire copied mirrors, and all retained setup/teardown
+bodies are unchanged. Actual hosted results remain required for qualification.

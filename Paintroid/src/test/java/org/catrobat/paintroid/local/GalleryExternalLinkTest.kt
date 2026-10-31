@@ -20,7 +20,6 @@ import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.IllustrationSource
 import org.catrobat.paintroid.classic.MediaGalleryActivity
 import org.catrobat.paintroid.classic.PaintApplication
-import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -68,22 +67,6 @@ class GalleryExternalLinkTest {
         assertFalse(activity.downloading)
         assertFalse(activity.isFinishing)
         assertFalse(activity.isDestroyed)
-    }
-
-    @Test fun everyPickerLocaleResolvesItsCompleteMessageOrExplicitEnglishFallback()=withLanguageState {
-        val fixture=JSONObject(File("../tools/fixtures/current_localization/gallery_external_link_current_wording.json").readText())
-        val expected=fixture.getJSONObject("values").getJSONObject("gallery_external_link_no_handler")
-        val scope=JSONObject(File("../tools/fixtures/current_localization/locale_contract_scope.json").readText())
-        val fallback=scope.getJSONArray("fallback_tags").let { array ->
-            (0 until array.length()).map { array.getString(it) }.toSet()
-        }
-        for(tag in AppLanguage.tags(context)) {
-            AppLanguage.select(context,tag)
-            val selected=AppLanguage.wrap(context)
-            val raw=if(expected.has(tag)) expected.getString(tag) else expected.getString("default")
-            val message=raw.replace("\\'", "'").replace("\\\"", "\"")
-            assertEquals("Whole compiled message for $tag",message,selected.getString(R.string.gallery_external_link_no_handler))
-        }
     }
 
     @Test fun missingHandlerFromActualTermsClickShowsLinkExplanationForEveryProvider() {

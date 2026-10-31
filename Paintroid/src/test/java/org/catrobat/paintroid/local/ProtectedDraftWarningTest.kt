@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import org.json.JSONObject
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.AutosaveStore
@@ -52,12 +51,7 @@ import java.util.concurrent.TimeUnit
 @LooperMode(LooperMode.Mode.PAUSED)
 class ProtectedDraftWarningTest {
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val serbianFixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/serbian_p0_wording.json").readText())
-    }
-    private val croatianBosnianFixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/croatian_bosnian_p0_wording.json").readText())
-    }
+
     private val original="Unreadable previous draft that must not be replaced 作品".toByteArray(Charsets.UTF_8)
     private fun idle()=shadowOf(Looper.getMainLooper()).idle()
     private fun worker(activity: ClassicPaintActivity)=ReflectionHelpers.getField<ExecutorService>(activity,"worker")
@@ -103,10 +97,6 @@ class ProtectedDraftWarningTest {
             val warning=shadowOf(notice).message.toString()
             assertEquals(activity.getString(R.string.ui_autosave_is_paused_to_protect_that_draft_use,reason),warning)
             if (tag in listOf("sr-Cyrl", "sr-Latn")) {
-                val reviewed = serbianFixture.getJSONObject("values")
-                    .getJSONObject("ui_autosave_is_paused_to_protect_that_draft_use")
-                    .getString(tag).removeSurrounding("\"")
-                assertEquals(String.format(Locale.forLanguageTag(tag), reviewed, reason), warning)
                 assertEquals(Locale.forLanguageTag(tag).script, activity.resources.configuration.locales[0].script)
                 assertTrue(warning.contains(activity.getString(R.string.save20_file_format)))
                 if (tag == "sr-Cyrl") {
@@ -116,8 +106,6 @@ class ProtectedDraftWarningTest {
             }
             if (tag in listOf("hr", "bs")) {
                 val key = "ui_autosave_is_paused_to_protect_that_draft_use"
-                val historical = croatianBosnianFixture.getJSONObject("values").getJSONObject(key)
-                val previous = historical.getString(tag)
                 val reviewed = PriorityWordingExpectations.resourceText(tag,key)
                 assertEquals(String.format(Locale.forLanguageTag(tag), reviewed, reason), warning)
                 assertEquals(tag, activity.resources.configuration.locales[0].language)

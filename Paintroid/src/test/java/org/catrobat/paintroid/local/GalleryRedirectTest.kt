@@ -18,7 +18,6 @@ import org.catrobat.paintroid.classic.IllustrationPage
 import org.catrobat.paintroid.classic.IllustrationSource
 import org.catrobat.paintroid.classic.MediaGalleryActivity
 import org.catrobat.paintroid.classic.PaintApplication
-import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -50,8 +49,7 @@ class GalleryRedirectTest {
     private val catrobat="https://catrobat.org/wp-content/uploads/2025/01/Needle_Yellow.png"
     private val commons="https://upload.wikimedia.org/wikipedia/commons/a/a1/Example.png"
     private val messageId=R.string.ui_the_gallery_redirected_outside_its_supported_hosts
-    private val wording by lazy {JSONObject(File("../tools/fixtures/current_localization/gallery_redirect_current_wording.json").readText())
-        .getJSONObject("values").getJSONObject("ui_the_gallery_redirected_outside_its_supported_hosts")}
+
     private fun status(activity: MediaGalleryActivity)=activity.window.decorView.findViewWithTag<TextView>("gallery_status")
     private fun await(done: ()->Boolean) {
         val deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(10)
@@ -121,7 +119,7 @@ class GalleryRedirectTest {
         select(activity,source);await {!activity.downloading}
         assertEquals(listOf(source),opened)
         assertTrue(redirect.disconnected);assertFalse(redirect.streamOpened)
-        assertRejected(activity,wording.getString(tag))
+        assertRejected(activity,activity.getString(messageId))
         assertFalse(status(activity).text.toString().contains("fixture-query-value"))
         assertFalse(status(activity).text.toString().contains(target))
     }
@@ -204,18 +202,7 @@ class GalleryRedirectTest {
         assertEquals(Activity.RESULT_CANCELED,shadowOf(activity).resultCode)
         assertNull(shadowOf(activity).resultIntent)
     }
-    @Test fun everyPickerLocaleResolvesItsCompleteMessageOrExplicitEnglishFallback()=withLanguageState {
-        val fixture=JSONObject(File("../tools/fixtures/current_localization/gallery_redirect_current_wording.json").readText())
-        val expected=fixture.getJSONObject("values").getJSONObject("ui_the_gallery_redirected_outside_its_supported_hosts")
-        val scope=JSONObject(File("../tools/fixtures/current_localization/locale_contract_scope.json").readText())
-        val fallback=scope.getJSONArray("fallback_tags").let {array ->(0 until array.length()).map {array.getString(it)}.toSet()}
-        for(tag in AppLanguage.tags(context)) {
-            AppLanguage.select(context,tag)
-            val raw=if(expected.has(tag)) expected.getString(tag) else expected.getString("default")
-            assertEquals("Whole compiled redirect message for $tag",raw.replace("\\'", "'").replace("\\\"", "\""),
-                AppLanguage.wrap(context).getString(messageId))
-        }
-    }
+
     private fun withLanguageState(check: ()->Unit) {
         val preferences=context.getSharedPreferences("app-language",Context.MODE_PRIVATE)
         val oldTag=preferences.getString("language-tag",null)

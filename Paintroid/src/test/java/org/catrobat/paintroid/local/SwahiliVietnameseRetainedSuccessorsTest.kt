@@ -13,7 +13,6 @@ import android.widget.CheckBox
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -40,14 +39,9 @@ class SwahiliVietnameseRetainedSuccessorsTest {
     private lateinit var previousLocale: Locale
     private lateinit var previousResources: Resources
     private val app get()=RuntimeEnvironment.getApplication() as Context
-    private val fixture by lazy { JSONObject(File("../tools/fixtures/current_localization/swahili_vietnamese_retained_successors.json").readText()).getJSONObject("locales") }
-    private fun row(tag: String,identity: String)=fixture.getJSONObject(tag).getJSONObject("rows").getJSONObject(identity)
-    private fun expected(tag: String,key: String)=row(tag,"string/$key").getString("target").replace("\\n","\n")
-    private fun plural(tag: String,count: Int): String {
-        val quantity=if(tag=="sw" && count==1) "one" else "other"
-        val text=row(tag,"plurals/ui_crop_preview_images").getJSONObject("target").getString(quantity).replace("\\n","\n")
-        return String.format(Locale.forLanguageTag(tag),text,24,16,count)
-    }
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
+    private fun plural(tag: String,count: Int)=PriorityWordingExpectations.resources(tag)
+        .getQuantityString(R.plurals.ui_crop_preview_images,count,24,16,count)
     @Before fun rememberLanguage() {
         previousTag=AppLanguage.selectedTag(app);previousLocale=Locale.getDefault();previousResources=PaintApplication.currentResources
     }

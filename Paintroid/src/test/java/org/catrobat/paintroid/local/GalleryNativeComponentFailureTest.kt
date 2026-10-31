@@ -21,7 +21,6 @@ import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
 import org.json.JSONArray
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -384,32 +383,4 @@ class GalleryNativeComponentFailureTest {
         }
     }
 
-    @Test fun everyPickerLocaleResolvesTheWholeNeutralReasonOrExplicitEnglishFallback() {
-        val key="gallery_image_component_unavailable"
-        val fixture=JSONObject(File("../tools/fixtures/current_localization/gallery_native_component_current_wording.json").readText())
-        val expected=fixture.getJSONObject("values").getJSONObject(key)
-        val scope=JSONObject(File("../tools/fixtures/current_localization/locale_contract_scope.json").readText())
-        fun tags(values: JSONArray)=(0 until values.length()).map {values.getString(it)}.toSet()
-        val scoped=tags(scope.getJSONArray("scoped_tags"));val fallback=tags(scope.getJSONArray("fallback_tags"))
-        val offered=AppLanguage.tags(context)
-        assertEquals(59,scoped.size);assertEquals(112,fallback.size);assertEquals(171,offered.size)
-        assertTrue(scoped.intersect(fallback).isEmpty());assertEquals(scoped+fallback,offered.toSet())
-        assertEquals(listOf("cs", "sv"), tags(fixture.getJSONArray("additional_reviewed_tags")).toList())
-        assertEquals(scoped+"cs"+"sv"+"default",expected.keys().asSequence().toSet())
-        val constraints=fixture.getJSONObject("constraints").getJSONObject(key)
-        assertEquals(0,constraints.getInt("child_elements"));assertEquals(0,constraints.getJSONObject("placeholders").length())
-        assertEquals(0,constraints.getInt("escaped_newline_count"))
-        assertEquals("A required image component is unavailable. The image was not imported.",expected.getString("default"))
-        for(tag in offered) {
-            AppLanguage.select(context,tag)
-            val selected=AppLanguage.wrap(context)
-            val raw=expected.getString(if(expected.has(tag)) tag else "default")
-            val message=raw.replace("\\'","'").replace("\\\"","\"")
-            assertEquals("Complete neutral native-component reason for $tag",message,
-                selected.getString(R.string.gallery_image_component_unavailable))
-            assertTrue(message.isNotBlank())
-        }
-        // Exact fixture/resource agreement preserves the bounded wording contract; it
-        // does not certify linguistic fluency or whole-language acceptance of any locale.
-    }
 }

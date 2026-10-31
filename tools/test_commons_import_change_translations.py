@@ -4,11 +4,9 @@ import pathlib
 import unittest
 
 import translation_catalogues as catalogues
-from test_translations import SCOPED_TAGS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-MANIFEST = ROOT / 'tools/fixtures/current_localization/commons_import_current_wording.json'
 KEYS = {
     'commons_import_svg_changes':
         'AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.',
@@ -24,33 +22,13 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         for value in KEYS.values():
             self.assertEqual({}, catalogues.placeholders(value))
 
-    def test_separate_manifest_has_exact_scope_and_published_values(self):
-        manifest = json.loads(MANIFEST.read_text())
-        self.assertEqual(KEYS, manifest['source_messages'])
-        translated = set(manifest['translations'])
-        blocked = set(manifest['blocked_scoped_locales'])
-        self.assertFalse(translated & blocked)
-        self.assertEqual(['cs', 'sv'], manifest['additional_reviewed_tags'])
-        self.assertEqual(set(SCOPED_TAGS) | {'cs', 'sv'}, translated | blocked)
-        unscoped = set(catalogues.offered_tags()) - set(SCOPED_TAGS) - {'cs', 'sv'}
-        self.assertEqual(110, len(unscoped))
-        self.assertEqual(unscoped, set(manifest['remaining_other_offered_locales']))
-        paths = catalogues.catalogue_paths()
-        for tag, expected in manifest['translations'].items():
-            with self.subTest(tag=tag):
-                self.assertEqual(set(KEYS), set(expected))
-                actual = catalogues.read_strings(paths[tag])
-                self.assertEqual(expected, {key: actual[key] for key in KEYS})
-        for tag, path in paths.items():
-            if tag not in translated:
-                with self.subTest(fallback=tag):
-                    self.assertFalse(set(KEYS) & set(catalogues.read_strings(path)),
-                                     'Do not insert English-filled unreviewed overrides')
 
     def test_all_published_notes_preserve_literals_and_formatting(self):
-        manifest = json.loads(MANIFEST.read_text())
-        for tag, messages in manifest['translations'].items():
-            for key, value in messages.items():
+        paths = {'default': catalogues.RES / 'values/strings.xml', **catalogues.catalogue_paths()}
+        for tag, path in paths.items():
+            messages = catalogues.read_strings(path)
+            for key in set(KEYS) & set(messages):
+                value = messages[key]
                 with self.subTest(tag=tag, key=key):
                     self.assertEqual(1, value.count('AN Paint'))
                     self.assertEqual(1, value.count('background=#FFFFFF'))

@@ -17,7 +17,6 @@ import android.widget.TextView
 import android.widget.Spinner
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -49,20 +48,7 @@ class AfrikaansRetainedPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/afrikaans_retained_priority_wording.json").readText())
-    }
-    private fun expected(tag: String, key: String): String {
-        val raw=fixture.getJSONObject("accepted").getString(key)
-        if(raw.startsWith("@string/")) {
-            require(tag=="af" && key=="ui_save_a5d0d9" && raw=="@string/ui_save")
-            return expected(tag,"ui_save")
-        }
-        return decoded(raw)
-    }
-    private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
-        when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
-    }
+    private fun expected(tag: String,key: String) = PriorityWordingExpectations.resourceText(tag,key)
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
 
@@ -80,32 +66,6 @@ class AfrikaansRetainedPriorityWordingTest {
         PriorityWordingExpectations.forEachLocale(
             tags, previousResources, previousLocale, previousTag, check)
 
-    @Test fun everyAcceptedAfrikaansCompleteValueAndPresentHoldKeepsItsDistinctScope() = forEachLocale { tag,activity ->
-        val locale=fixture
-        val values=locale.getJSONObject("accepted")
-        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList()
-        val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
-        for(key in keys) {
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("$tag/$key",0,id)
-            val text=expected(tag,key)
-            assertEquals("$tag/$key",text,activity.getString(id))
-            val tokens=pattern.findAll(text).toList()
-            if(tokens.isNotEmpty()) {
-                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
-                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
-                    "d"->21001L;"f"->12.75;else->"argument 100%"
-                }
-                assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
-            }
-        }
-        val held=fixture.getJSONObject("held_present")
-        for(key in held.keys()) {
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertEquals(decoded(held.getJSONObject(key).getString("value")),activity.getString(id))
-        }
-    }
-
     @Test fun memoryAdmissionStopsBeforeAllocationWithAllFourArguments() = forEachLocale { tag,_ ->
         val mib=1024L*1024;val policy=ImageMemoryPolicy.calculate(256*mib,0,96*mib,0,false)
         assertEquals(0L,policy.maxPixels())
@@ -122,11 +82,8 @@ class AfrikaansRetainedPriorityWordingTest {
         try {
             val root=shown.window!!.decorView;shadowOf(Looper.getMainLooper()).idle()
             assertEquals(expected(tag,"ui_image_shown_in_crop_preview"),root.findViewWithTag<View>("crop_preview_image").contentDescription.toString())
-            val values=fixture.getJSONObject("accepted").getJSONObject("ui_crop_preview_images")
             fun check(count: Int) {
-                val quantity=if(values.has("one") && (count==1)) "one" else "other"
-                val pattern=decoded(values.getString(quantity))
-                val text=String.format(Locale.forLanguageTag(tag),pattern,24,16,count)
+                val text=activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,24,16,count)
                 assertEquals(text,root.findViewWithTag<TextView>("crop_status").text.toString())
                 assertEquals(text,uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,24,16,count))
             }

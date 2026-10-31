@@ -43,27 +43,10 @@ class SerbianP0WordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/serbian_p0_wording.json").readText())
-    }
-
-    // This bounded fixture remains an independent label oracle for its real consumers.
-    private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
-        .getJSONObject(key).getString(tag).removeSurrounding("\"")
-
-    private fun preserved(tag: String, key: String) = fixture.getJSONObject("preserved_values")
-        .getJSONObject(tag).getJSONObject(key).getString("value").removeSurrounding("\"")
-
-    private fun added(tag: String, key: String): String = PriorityWordingExpectations.resourceText(tag,key)
-
-    private fun formatLabel(tag: String): String {
-        if (tag != "sr-Cyrl") return preserved(tag, "save20_file_format")
-        val successor = fixture.getJSONObject("format_label_successor")
-        assertEquals("sr-Cyrl", successor.getString("locale"))
-        assertEquals("save20_file_format", successor.getString("key"))
-        assertEquals("save20_file_format", successor.getJSONObject("attributes").getString("name"))
-        return successor.getString("value").removeSurrounding("\"")
-    }
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
+    private fun preserved(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
+    private fun added(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
+    private fun formatLabel(tag: String)=PriorityWordingExpectations.resourceText(tag,"save20_file_format")
 
     private fun awaitUi(label: String, ready: () -> Boolean) {
         val until = System.nanoTime() + TimeUnit.SECONDS.toNanos(3)
