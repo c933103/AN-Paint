@@ -1,0 +1,17 @@
+2026-10-31T13:48:26.0072559Z ======================================================================
+2026-10-31T13:48:26.0073441Z ERROR: test_exact_tagged_jvm_boundaries_keep_prior_stage_and_reject_missing_consumers (test_exact_script_priority_wording.ExactScriptPriorityTests)
+2026-10-31T13:48:26.0074283Z ----------------------------------------------------------------------
+2026-10-31T13:48:26.0074685Z Traceback (most recent call last):
+2026-10-31T13:48:26.0075576Z   File "/home/runner/work/AN-Paint/AN-Paint/tools/test_exact_script_priority_wording.py", line 146, in test_exact_tagged_jvm_boundaries_keep_prior_stage_and_reject_missing_consumers
+2026-10-31T13:48:26.0076469Z     g.require_tagged_jvm_source(text)
+2026-10-31T13:48:26.0077134Z   File "/home/runner/work/AN-Paint/AN-Paint/tools/exact_script_priority_expectations.py", line 300, in require_tagged_jvm_source
+2026-10-31T13:48:26.0077971Z     if text.count(fragment)!=1:raise ValueError('Finite tagged consumer/binding differs')
+2026-10-31T13:48:26.0078514Z ValueError: Finite tagged consumer/binding differs
+2026-10-31T13:48:26.0078777Z 
+2026-10-31T13:48:26.0078962Z ----------------------------------------------------------------------
+2026-10-31T13:48:26.0079356Z Ran 2000 tests in 1171.243s
+2026-10-31T13:48:26.0079544Z 
+2026-10-31T13:48:26.0079791Z FAILED (errors=1, skipped=2)
+2026-10-31T13:48:26.0080078Z {
+2026-10-31T13:48:26.0080277Z   "success": true,
+
