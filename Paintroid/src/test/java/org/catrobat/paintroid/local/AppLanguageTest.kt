@@ -182,9 +182,10 @@ class AppLanguageTest {
                 assertEquals("Tokples bilong app\n\nOl trenslesen i stap long ol tokples risos bilong AN Paint. Nupela teks o teks i no trenslet yet bai kamap long Inglis.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
-                assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+                assertEquals(PriorityWordingExpectations.residual(tag,"ui_brush","Brush"),wrapped.getString(R.string.ui_brush))
                 // Only these independently reviewed Save labels replace the fallback.
                 val save = when(tag) {
+                    "yua" -> "Táabsaj"
                     "qug" -> "Wakaychina"
                     "quh" -> "Jallch'ay"
                     "quz" -> "Waqaychay"
@@ -226,6 +227,16 @@ class AppLanguageTest {
                 assertEquals("حفظ",wrapped.getString(R.string.ui_save))
                 assertEquals("لغة التطبيق\n\nالترجمات كتتراجع وتتحدّث فموارد اللغات ديال AN Paint. النص الجديد ولا اللي ما تترجمش كيبان بالإنجليزية.",
                     wrapped.getString(R.string.language20_translation_note))
+            } else if(tag=="ang") {
+                assertEquals("Gewrit",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Brush",wrapped.getString(R.string.ui_brush))
+                assertEquals("Healdan",wrapped.getString(R.string.ui_save))
+                assertEquals("Weorctoles gereord\n\nAwendinga sind gehealdene on AN Paint-gereordgewritum. Niwe oþþe unawend gewrit biþ on Engliscum gereorde ætywed.",wrapped.getString(R.string.language20_translation_note))
+            } else if(tag=="non") {
+                assertEquals("Rit",wrapped.getString(R.string.ui_menu_file))
+                assertEquals("Bursti",wrapped.getString(R.string.ui_brush))
+                assertEquals("Varðveita",wrapped.getString(R.string.ui_save))
+                assertEquals("Mál verkfæris\n\nÞýðingar eru varðveittar í málritum AN Paint. Nýtt eða óþýtt rit birtisk á ensku.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))

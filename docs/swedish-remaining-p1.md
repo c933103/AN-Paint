@@ -9,9 +9,12 @@ An independent model-based review accepted each complete English/Swedish pair:
 review only. These distinctions are retained in the current wording fixture.
 The final import warning uses “bilddata som Base64-text”.
 
-The legacy `ui_foreground_background_colour_palette` remains absent and falls
-back to English: no current caller establishes whether `%3$s` is an action,
-state or descriptor. This is the single remaining direct P1 presence gap.
+The original palette hold is superseded by the separate [historical-contract
+acceptance](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6534365330).
+`ui_foreground_background_colour_palette` now uses the accepted complete target
+`Förgrundsfärg %1$s, bakgrundsfärg %2$s. %3$s färgpaletten.` The historical caller
+supplies left-arrow/collapse or right-arrow/expand as the third argument. This
+closes the direct P1 presence gap, not current-runtime or whole-language acceptance.
 The pre-existing `ui_main23` uncertainty is unchanged. Presence, structural
 parity and bounded model review do not certify native-speaker acceptance,
 whole-Swedish completeness, installed layout or TalkBack behavior. Earlier
@@ -30,7 +33,7 @@ original-image retention, canvas/image crop bounds, foreground/background
 gestures and the actual navigation names in guidance.
 
 `SwedishRemainingP1WordingTest` checks all compiled accepted resources and the
-held English fallback. It exercises numeric-entry errors, cancel/apply behavior
+separately accepted palette successor. It exercises numeric-entry errors, cancel/apply behavior
 and the distinct foreground/background edit targets. Authored tests are not
 executed results: the PR reports local host checks and exact-source hosted JVM,
 lint, APK/resource and API35 results separately.

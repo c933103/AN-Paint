@@ -45,13 +45,13 @@ class SwedishRemainingP1WordingTests(unittest.TestCase):
         manifest = json.loads((catalogues.ROOT / 'translations/string-importance.json').read_text())
         p1 = {key.removeprefix('string/') for tier in manifest['tiers']
               if tier['id'] == 'P1' for key in tier['keys']}
-        self.assertEqual({HELD}, p1 - self.strings.keys())
+        self.assertEqual(set(), p1 - self.strings.keys())
         self.assertTrue(set(self.data['values']) <= p1)
         self.assertEqual(SOURCE_ONLY, set(self.data['source_semantics_only']))
         self.assertEqual(14, len(self.data['source_semantics_only']))
         self.assertTrue(SOURCE_ONLY <= self.data['values'].keys())
         self.assertEqual(HELD, self.data['withheld']['key'])
-        self.assertNotIn(HELD, self.strings)
+        contracts.require_residual_or_previous(ET.fromstring(self.xml['sv']), 'sv', HELD)
         contracts.require_string(self.xml['default'], HELD, self.data['withheld']['default'])
         previous = contracts.fixture('swedish_priority_current_wording.json')
         self.assertFalse(set(previous['values']) & set(self.data['values']))

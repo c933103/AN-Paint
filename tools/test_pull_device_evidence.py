@@ -178,8 +178,10 @@ class PullEvidenceTest(unittest.TestCase):
             root = Path(directory)
             adb = root / 'adb'
             pid_file = root / 'client.pid'
+            # Publish readiness only after the complete PID is closed, before signalling.
             adb.write_text('#!' + sys.executable + '\nimport os,time\n'
-                           f'open({str(pid_file)!r}, "w").write(str(os.getpid()))\n'
+                           f'with open({str(pid_file)+".tmp"!r}, "w") as ready: ready.write(str(os.getpid()))\n'
+                           f'os.replace({str(pid_file)+".tmp"!r}, {str(pid_file)!r})\n'
                            'time.sleep(30)\n')
             adb.chmod(0o700)
             command = [sys.executable, str(Path(pull.__file__)), '--adb', str(adb),

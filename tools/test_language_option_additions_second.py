@@ -75,7 +75,13 @@ class FurtherLanguageOptionTests(unittest.TestCase):
         self.assertEqual(6, sum(len(v['unchanged']) for v in BATCHES['locales'].values()))
         for tag, loc in BATCHES['locales'].items():
             actual = reviewed_batch_values(catalogues.catalogue_paths()[tag].read_text())
-            self.assertEqual({**loc['existing_unreviewed'], **loc['accepted']}, actual, tag)
+            from current_localization_contracts import residual_rows
+            expected={**loc['existing_unreviewed'], **loc['accepted']}
+            for (locale,key),row in residual_rows().items():
+                if locale!=tag:continue
+                self.assertEqual(expected.get(key,{}).get('value'),row['previous_target'])
+                expected[key]={'value':row['target'],'attributes':row['attributes']}
+            self.assertEqual(expected, actual, tag)
             self.assertEqual(set(loc['accepted']), set(loc['added']) | set(loc['updated']) | set(loc['unchanged']))
             for key, row in loc['accepted'].items():
                 self.assertEqual([], catalogues.android_string_errors(row['value']), tag+'/'+key)

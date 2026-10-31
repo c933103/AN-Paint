@@ -72,6 +72,13 @@ SINGLE_KEY_EXPECTATIONS = frozenset(
     (tag, 'ui_assembly_source_memory_floor') for tag in SINGLE_KEY_FIXTURES)
 
 
+REMAINING_ACCEPTED_ADDITIONS = frozenset({
+    ('ang', 'ui_no_resize_fits_decoder_memory'),
+    ('non', 'ui_assembly_source_memory_floor'),
+    ('shn', 'ui_no_resize_fits_decoder_memory'),
+})
+
+
 def review_record():
     return json.loads(RECORD.read_text(encoding='utf-8'))
 
@@ -84,6 +91,13 @@ fixture corruption. This selects explicitly bound paired and single-key
 expectations, not a catalogue generator, review result or reconstruction of an
 old source snapshot.
 """
+    if (tag,key) in REMAINING_ACCEPTED_ADDITIONS:
+        from current_localization_contracts import residual_rows
+        row=residual_rows()[(tag,key)]
+        old=next(o for o in review_record()['options'] if o['tag']==tag)['terms'][key]['value']
+        if historical_value is not None or old is not None or row['previous_target'] is not None or row['source']!=review_record()['keys'][key]['corrected_english']:
+            raise ValueError('Exact sparse memory-warning predecessor/source differs')
+        return row['target']
     if (tag,key) in SERBIAN_DELTA_ADDITIONS:
         queue=review_record()
         old=next(o for o in queue['options'] if o['tag']==tag)['terms'][key]['value']

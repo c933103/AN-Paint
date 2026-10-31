@@ -224,7 +224,11 @@ def require_catalogue(tag,root,data=None):
     for key,held in data['held'].items():
         previous=held['previous']
         if previous is None:
-            if key in by_name:raise ValueError('Held absence changed')
+            from current_localization_contracts import require_residual_or_previous, residual_rows
+            require_residual_or_previous(root,tag,key)
+            successor=residual_rows().get((tag,key))
+            if successor is not None:
+                require_shape(by_name.get(key),{'type':'string','value':successor['target'],'attributes':successor['attributes'],'children_attributes':{}})
         else:require_shape(by_name.get(key),previous)
     return root
 
@@ -264,7 +268,7 @@ def require_jvm_source(text):
         'exactScriptSameJson(currentRow(tag,key),supplied)',
         'exactScriptSameJson(current.get(field),supplied.get(field))',
         'return requireRow(tag,key,supplied)',
-        'private fun expected(tag: String,key: String)=row(tag,key).getString("compiled_display")',
+        'private fun expected(tag: String,key: String)=PriorityWordingExpectations.residual(tag,key,row(tag,key).getString("compiled_display"))',
         'val quantity=if(values.has(selected)) selected else "other"',
         'assertEquals(expected(tag,"ui_fg"),ui(R.string.ui_fg))',
         'assertEquals(expected(tag,"ui_bg"),ui(R.string.ui_bg))',

@@ -68,6 +68,12 @@ class OctoberLanguageOptionTests(unittest.TestCase):
                 self.assertEqual(359,len(ET.parse(path).getroot()))
                 self.assertEqual([],c.validate_catalogue('ary'))
                 continue
+            if row['tag'] in ('ang','non'):
+                require_untranslated_option(row,'<resources/>')
+                from remaining_accepted_wording import require_historical_catalogue
+                require_historical_catalogue(row['tag'],ET.parse(path).getroot())
+                self.assertEqual([],c.validate_catalogue(row['tag']))
+                continue
             require_untranslated_option(row,path.read_text())
             self.assertEqual([],list(ET.parse(path).getroot()))
             self.assertEqual({},c.read_strings(path))
