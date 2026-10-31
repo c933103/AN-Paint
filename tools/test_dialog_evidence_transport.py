@@ -210,6 +210,8 @@ class LargeColourImeLifecycleContractTest(unittest.TestCase):
             lambda r: r['observations'].remove(observation(r, 'colour-2x-synthetic-ime-activation')),
             lambda r: r['observations'].append(copy.deepcopy(observation(r, 'colour-2x-synthetic-ime-activation'))),
             lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(strategy='native tap'),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(strategy='View.requestFocus + InputMethodManager.showSoftInput(SHOW_IMPLICIT)'),
+            lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(strategy='View.requestFocus + InputMethodManager.showSoftInput(SHOW_FORCED)'),
             lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(focus_request_returned=False),
             lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(field_focused=False),
             lambda r: observation(r, 'colour-2x-synthetic-ime-activation').update(ime_request_returned=1),

@@ -139,6 +139,9 @@ class ColourViewportContractTest(unittest.TestCase):
                          'assertNotNull(finalField.error)', 'commits==1 && closes==3',
                          'preview==android.graphics.Color.RED', '"simultaneous_ime_field_footer_fit","not-accepted"'):
             self.assertIn(required, body)
+        self.assertIn('.showSoftInput(field,0)', body)
+        self.assertNotIn('.showSoftInput(field,InputMethodManager.SHOW_IMPLICIT)', body)
+        self.assertNotIn('.showSoftInput(field,InputMethodManager.SHOW_FORCED)', body)
         self.assertNotIn('rootWindowInsets', body)
         self.assertNotIn('tap("2x hex field"', body)
         self.assertLess(body.index('evidence.capture("colour-2x-initial")'), body.index('field.requestFocus()'))
