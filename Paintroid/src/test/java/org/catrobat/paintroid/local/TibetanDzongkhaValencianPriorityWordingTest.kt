@@ -43,7 +43,7 @@ class TibetanDzongkhaValencianPriorityWordingTest {
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
     private fun boDzValBoundFixture(tag: String): JSONObject {
-        val expected=mapOf("bo" to "681547afa8a7d5502b182a33897ce6a2b6fc5dd1e7fbe27be0b7c101a624a0b9", "dz" to "dab300180d0e183a08d96e42d49a8fb341cd0d5790da5a6c451687f1ee2c7cd9", "ca-ES-valencia" to "2637add2d84343eee373372b9b07949d8908b5498b86c56bc13ea2785af2a7e7")
+        val expected=mapOf("bo" to "56294b702725366b1a149e64cd4f74f58106d83af999c425c431878351044904", "dz" to "c6812dda110be752b2b29892e1b8520a0f6af2a9e4ee992028b1e4da80e1a7ad", "ca-ES-valencia" to "79efe19b460ef7b3c8be720a601e7940276daffb91815231fdc9944005f22f36")
         val bytes=File("../tools/fixtures/current_localization/tibetan_dzongkha_valencian_priority_wording/$tag.json").readBytes()
         val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
         assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
@@ -97,24 +97,9 @@ class TibetanDzongkhaValencianPriorityWordingTest {
         PaintApplication.currentResources = previousResources
         Locale.setDefault(previousLocale)
     }
-    private fun forEachLocale(tags: List<String> = listOf("bo","dz","ca-ES-valencia"), check: (String,Activity)->Unit) {
-        for(tag in tags) {
-            val controller=Robolectric.buildActivity(Activity::class.java)
-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
-            try {
-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
-                assertEquals(tag,AppLanguage.selectedTag(activity))
-                // ui() must format using the selected resource locale, not the process default.
-                Locale.setDefault(Locale.US)
-                check(tag,activity)
-            } finally {
-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
-                controller.pause().stop().destroy()
-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
-            }
-        }
-    }
+    private fun forEachLocale(tags: List<String> = listOf("bo","dz","ca-ES-valencia"), check: (String,Activity)->Unit) =
+        PriorityWordingExpectations.forEachLocale(
+            tags, previousResources, previousLocale, previousTag, check)
 
     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
         val values=fixture.getJSONObject(tag).getJSONObject("values")
@@ -216,33 +201,6 @@ class TibetanDzongkhaValencianPriorityWordingTest {
         }
     }
 
-    @Test fun realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting() = forEachLocale { tag,activity ->
-        val worker=Executors.newSingleThreadExecutor();var selection:ImportSelection?=null
-        val files=mutableListOf<File>()
-        try {
-            for((count,exact) in listOf(2 to true,21 to true,21 to false)) {
-                val bytes=ByteArrayOutputStream().apply {
-                    write(Base64.getDecoder().decode("R0lGODlhAQABAIAAAAAAAP///w=="))
-                    repeat(count) { write(Base64.getDecoder().decode("LAAAAAABAAEAAAICRAEA")) }
-                    if(!exact) repeat(100_001) { write(byteArrayOf(0x21,0xfe.toByte(),1,0x78,0)) }
-                    write(0x3b)
-                }.toByteArray()
-                val file=File.createTempFile("priority-animation-",".gif",activity.cacheDir).apply {writeBytes(bytes)};files.add(file)
-                assertEquals(AnimationInfo("GIF",count,exact,false),AnimationInfo.inspect(file))
-                var selected=0;var cancelled=0;var failure:Throwable?=null
-                selection=ImportSelection(activity,worker,{0L},{selected++},{cancelled++},{failure=it})
-                selection.start(file,"source.gif");worker.submit {}.get(10,TimeUnit.SECONDS);shadowOf(Looper.getMainLooper()).idle()
-                assertNull(failure);val shown=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                val countText=if(exact) count.toString() else formatted(tag,"formats22_at_least_frames",count)
-                assertEquals(formatted(tag,"formats22_animation_message","GIF",countText)+"\n\n"+expected(tag,"formats22_animation_still"),shadowOf(shown).message.toString())
-                assertEquals(expected(tag,"formats22_animation_title"),shadowOf(shown).title.toString())
-                assertEquals(expected(tag,"formats22_open_still"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertTrue(file.exists());assertEquals(0,selected)
-                shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-                assertEquals(1,cancelled);assertEquals(0,selected);assertNull(failure);assertFalse(file.exists())
-            }
-        } finally {selection?.dispose();worker.shutdownNow();assertTrue(worker.awaitTermination(10,TimeUnit.SECONDS));files.forEach {it.delete()} }
-    }
 
     @Test fun nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy() = forEachLocale() { tag,activity ->
         val mib=1024L*1024

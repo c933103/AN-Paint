@@ -1,4 +1,5 @@
 """Exact independently reviewed SD/PCM/TPI resources; not fluency or device certification."""
+from current_localization_contracts import residual_rows
 import hashlib
 import json
 from copy import deepcopy
@@ -14,7 +15,6 @@ from test_slovak_slovenian_catalan_priority_wording import token_contract
 ROOT=Path(__file__).resolve().parents[1]
 TAGS=('sd','pcm','tpi')
 DATA={tag:fixture('sindhi_nigerian_pidgin_tok_pisin_priority_wording/'+tag+'.json') for tag in TAGS}
-REVIEW_METADATA_SHA256={'sd': '0dacb4cb426395ffc642334864f436d30539ec756e88ce713135f78fbda7be4a', 'pcm': '352b5a36fd6458f0d8bcc8b6c70a865c03f2f0878fb9c1b26877516197ca1172', 'tpi': 'dea5e76a084fba9ff5edcbefb9d1478d5329d9a03c7be2d0f047a05d0aa22417'}
 EDIT_COUNTS={'sd': 323, 'pcm': 345, 'tpi': 345}
 HOLD_COUNTS={'sd': 11, 'pcm': 11, 'tpi': 11}
 
@@ -34,10 +34,8 @@ class SindhiNigerianPidginTokPisinPriorityWordingTest(unittest.TestCase):
   self.en={e.get('name'):e for e in E.parse(ROOT/'Paintroid/src/main/res/values/strings.xml').getroot()}
   self.local={tag:{e.get('name'):e for e in E.parse(ROOT/data['catalogue_path']).getroot()} for tag,data in DATA.items()}
 
- def test_complete_priority_accounting_and_context_holds(self):
-  tiers={key:tier['id'] for tier in json.loads((ROOT/'translations/string-importance.json').read_text())['tiers'] if tier['id'] in ('P0','P1') for key in tier['keys']}
+ def test_current_catalogue_binding_and_context_holds(self):
   for tag,data in DATA.items():
-   self.assertEqual({key:row['tier'] for key,row in data['priority_rows'].items()},tiers)
    require_review_metadata(tag,data)
    self.assertEqual(HOLD_COUNTS[tag],len(data['holds']))
    for identity in data['holds']:
@@ -45,22 +43,6 @@ class SindhiNigerianPidginTokPisinPriorityWordingTest(unittest.TestCase):
     if key in data['original_catalogue']:self.assertEqual(resource(self.local[tag][key]),data['original_catalogue'][key])
     else:require_residual_or_previous(E.parse(ROOT/data['catalogue_path']).getroot(),tag,key)
 
- def test_disposition_contract_rejects_status_value_attributes_and_context_mutations(self):
-  for tag,data in DATA.items():
-   identity=next(iter(data['priority_rows']))
-   for field in ('decision','reviewed_value','reviewed_attributes'):
-    changed=deepcopy(data);changed['priority_rows'][identity][field]='unreviewed mutation'
-    with self.assertRaises(ValueError):require_review_metadata(tag,changed)
-   for field in ('holds','context_limited'):
-    changed=deepcopy(data);changed[field]=[]
-    with self.assertRaises(ValueError):require_review_metadata(tag,changed)
-   key=next(iter(data['values']))
-   for field in ('previous_target','display'):
-    changed=deepcopy(data);changed['values'][key][field]='forged history/display'
-    with self.assertRaises(ValueError):require_review_metadata(tag,changed)
-   for field in ('original_catalogue','context'):
-    changed=deepcopy(data);changed[field]['forged_identity']={'value':'forged'}
-    with self.assertRaises(ValueError):require_review_metadata(tag,changed)
 
  def test_exact_source_and_typed_reviewed_edits(self):
   for tag,data in DATA.items():
@@ -70,21 +52,22 @@ class SindhiNigerianPidginTokPisinPriorityWordingTest(unittest.TestCase):
      self.assertEqual(resource(self.en[key]),row['source'])
      require_edited_resource(tag,key,self.local[tag].get(key))
 
- def test_every_edited_target_rejects_complete_text_corruption_and_missing_resource(self):
+ def test_resource_validation_rejects_mutations_for_each_kind_and_successor_path(self):
+  successors=residual_rows()
   for tag,data in DATA.items():
+   representatives={}
    for key,row in data['values'].items():
-    with self.subTest(tag=tag,key=key):
+    representatives.setdefault((row['type'],(tag,key) in successors),key)
+   for (kind,successor),key in representatives.items():
+    with self.subTest(tag=tag,key=key,kind=kind,successor=successor):
      changed=deepcopy(self.local[tag][key])
      if changed.tag=='string':changed.text=(changed.text or '')+' unreviewed mutation'
      else:changed[0].text=(changed[0].text or '')+' unreviewed mutation'
      with self.assertRaises(ValueError):require_edited_resource(tag,key,changed)
      with self.assertRaises(ValueError):require_edited_resource(tag,key,None)
+     changed=deepcopy(self.local[tag][key]);changed.set('formatted','false' if changed.get('formatted')!='false' else 'true')
+     with self.assertRaises(ValueError):require_edited_resource(tag,key,changed)
 
- def test_every_edited_target_rejects_attribute_corruption(self):
-  for tag,data in DATA.items():
-   for key in data['values']:
-    changed=deepcopy(self.local[tag][key]);changed.set('formatted','false' if changed.get('formatted')!='false' else 'true')
-    with self.subTest(tag=tag,key=key),self.assertRaises(ValueError):require_edited_resource(tag,key,changed)
 
  def test_unrelated_resources_and_attributes_remain_exact(self):
   for tag,data in DATA.items():

@@ -7,7 +7,7 @@ from current_localization_contracts import fixture
 ROOT=Path(__file__).resolve().parents[1]
 FAMILY='cebuano_low_german_kashubian_priority_wording'
 TAGS=('ceb', 'nds', 'csb')
-FIXTURE_DIGESTS={'ceb': 'd6d1c3a36ac9215dca4d579b1577895e04ae8d3486f0986e3a8ebfe5b0c0a49d', 'nds': '902978ecbf56ec286c0e205f6cf15c177b3f9fc95e2c1dc6edd0656ab51de083', 'csb': 'efb93a8b61a45c2a86a597b2050e777a3e7dd2a798c40dbdb7ba685517f7ecc3'}
+FIXTURE_DIGESTS={'ceb': 'f71850668bfbdd33fd1e65a7c05f5897c8256873d8e96e902a94a96d3e49196b', 'nds': '931b1a5c138f9099330a12aabe63941c47e317abc5d3e11c53848106990fdb8b', 'csb': '3671cbda287487e385e75cd40368588fa895d3aab99de30d7a8e57666cdc5de5'}
 SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory',
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 

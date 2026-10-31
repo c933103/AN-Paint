@@ -43,7 +43,7 @@ class SoraniUyghurTatarPriorityWordingTest {
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
     private fun ckbUgTtBoundFixture(tag: String): JSONObject {
-        val expected=mapOf("ckb" to "272560d87a77afd5d1dd144d299ee86a8d8b3e79a1770b90bea3b634627be65f", "ug" to "a8c128eead2b04cb88a6324068cb2a127a2c2ca076f51fb3c372f6f391ac3bab", "tt-Cyrl" to "bf6e296497aa10dd5f53cd02be0c072c4733b831f134313b96db5752694ff73f")
+        val expected=mapOf("ckb" to "a708e9f78a84386a601e1b68d55ac4057cb5a450e7f72577a00b375bd3b0806f", "ug" to "4110353522a52589ea13e1ecc8b471e9fc00e4ce9063812a7708966defa5982c", "tt-Cyrl" to "59878042f6e7bdd383ac5211921f2e5ecd8648059fb1ac0171583130febfcd22")
         val bytes=File("../tools/fixtures/current_localization/sorani_uyghur_tatar_priority_wording/$tag.json").readBytes()
         val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
         assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
@@ -90,24 +90,9 @@ class SoraniUyghurTatarPriorityWordingTest {
         PaintApplication.currentResources = previousResources
         Locale.setDefault(previousLocale)
     }
-    private fun forEachLocale(tags: List<String> = listOf("ckb","ug","tt-Cyrl"), check: (String,Activity)->Unit) {
-        for(tag in tags) {
-            val controller=Robolectric.buildActivity(Activity::class.java)
-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
-            try {
-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
-                assertEquals(tag,AppLanguage.selectedTag(activity))
-                // ui() must format using the selected resource locale, not the process default.
-                Locale.setDefault(Locale.US)
-                check(tag,activity)
-            } finally {
-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
-                controller.pause().stop().destroy()
-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
-            }
-        }
-    }
+    private fun forEachLocale(tags: List<String> = listOf("ckb","ug","tt-Cyrl"), check: (String,Activity)->Unit) =
+        PriorityWordingExpectations.forEachLocale(
+            tags, previousResources, previousLocale, previousTag, check)
 
     @Test fun everyAcceptedAndHeldCompiledValueKeepsExactIndependentDisplayAndArguments() = forEachLocale { tag,activity ->
         val values=fixture.getJSONObject(tag).getJSONObject("values")

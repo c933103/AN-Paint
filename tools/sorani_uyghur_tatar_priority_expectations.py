@@ -7,7 +7,7 @@ from current_localization_contracts import fixture
 ROOT=Path(__file__).resolve().parents[1]
 FAMILY='sorani_uyghur_tatar_priority_wording'
 TAGS=('ckb', 'ug', 'tt-Cyrl')
-FIXTURE_DIGESTS={'ckb': 'f456b1c81dc9187f31de3cd8b171a23c0efba913930ec74f214d2ab017a8dc44', 'ug': '425709d70742277f411ea1263e9fc67b308c2a63ffeb60a337f894f870215070', 'tt-Cyrl': '3f0762c727270bb751cb0812d2b10919f9cf901ce344e057da525f40f67be6dc'}
+FIXTURE_DIGESTS={'ckb': 'ee3f601926b06c8e050e6500b7222ea26407e754601ef994d51a5a6056a0e519', 'ug': '8b25a0b4ac3dc1e1090362c8bbe326c3c3125713373b89f081a9a49004c6225d', 'tt-Cyrl': '2cf0a4a9e846004da633e19479a8614c572435aa355d668e2d004edbec7283d1'}
 SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory',
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 

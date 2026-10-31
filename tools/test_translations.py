@@ -81,6 +81,38 @@ class TranslationCatalogueTests(unittest.TestCase):
                     [], translations.validate_catalogue(tag, require_complete=True), tag,
                 )
 
+    def test_priority_messages_reference_current_commands_and_keep_resource_semantics(self):
+        # Approval history is not a text freeze. These are current product contracts.
+        tags = "mr ta te ne pa-IN ha ig ln yo zu xh kn ml-IN fil jv su ky as km lo".split()
+        for tag in tags:
+            root = ET.parse(translations.catalogue_paths()[tag]).getroot()
+            nodes = {n.get("name"): n for n in root if n.tag == "string"}
+            def text(key):
+                value = "".join(nodes[key].itertext())
+                if value.startswith("@string/"):
+                    return text(value[len("@string/"):])
+                if value.startswith('"') and value.endswith('"'):
+                    value = value[1:-1]
+                return re.sub(r"\\(.)", lambda m: {"n": "\n", "t": "\t", "r": "\r"}.get(m[1], m[1]), value)
+            with self.subTest(tag=tag):
+                for key, commands in {
+                    "ui_autosave_is_paused_to_protect_that_draft_use": ["ui_menu_file", "ui_export_recovery_copy", "save20_title", "save20_file_format"],
+                    "ui_recovery_copy_exported_extract_canvas_png_from_the": ["ui_menu_file", "ui_load_image"],
+                    "ui_paste_hint34": ["ui_draw26", "ui_category_insert", "ui_other_images34"],
+                }.items():
+                    for command in commands:
+                        caption = text(command)
+                        if tag in ("ha", "ig", "ln", "yo", "zu", "xh") or (tag, key, command) == ("fil", "ui_recovery_copy_exported_extract_canvas_png_from_the", "ui_load_image"):
+                            caption = caption.removesuffix("…")
+                        self.assertIn(caption, text(key))
+                self.assertIn("canvas.png", text("ui_recovery_copy_exported_extract_canvas_png_from_the"))
+                self.assertIn("(%)", text("ui_quality"))
+                self.assertEqual("false", nodes["ui_quality"].get("formatted"))
+                if tag in ("mr", "ne", "fil", "jv", "ky", "km", "lo"):
+                    self.assertEqual(text("ui_save"), text("ui_save_a5d0d9"))
+                if tag in ("ha", "ig", "ln", "yo", "zu", "xh"):
+                    self.assertNotEqual(text("ui_save"), text("ui_save_a5d0d9"))
+
     def test_normalization_messages_use_canonical_crowdin_catalogues(self):
         keys = {
             "ui_normalize_width_intro", "ui_normalize_height_intro",

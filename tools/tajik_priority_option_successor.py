@@ -7,7 +7,7 @@ from language_option_additions import SECOND_ADDITIONS_PATH, require_untranslate
 
 ROOT=Path(__file__).resolve().parents[1]
 FIXTURE=ROOT/'tools/fixtures/current_localization/kazakh_tajik_pashto_priority_wording/tg.json'
-FIXTURE_SHA256='8e751faa510cd5cc1e0b01ad7cd8938a1b8ec1be7741276ab8e2f11d3e9f05cd'
+FIXTURE_SHA256='80753300ee2423eecf383f14c76a7f77d4cb17fb4c3b53226c4cc717c78782bb'
 TAJIK_OPTION_STATUS='bounded-priority-model-review; incomplete catalogue; no native-human/layout certification'
 
 def resource(e):

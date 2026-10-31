@@ -7,6 +7,8 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.LocaleList
 import org.catrobat.paintroid.R
+import org.catrobat.paintroid.classic.ui
+import org.catrobat.paintroid.classic.uiQuantity
 import org.catrobat.paintroid.classic.AppLanguage
 import org.catrobat.paintroid.classic.PaintApplication
 import org.catrobat.paintroid.classic.TextDirection
@@ -56,6 +58,36 @@ class AppLanguageResourceRoutingTest {
             else putBoolean("platform-initialized",previousInitialized!!)
         }.commit()
         PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+    }
+
+    @Test @Config(sdk=[33])
+    fun everyOfferedLanguageResolvesCompiledBoundariesWithoutPerStringActivities() {
+        val contracts=listOf(
+            R.string.ui_width_in to arrayOf<Any>("unit 100%"),
+            R.string.formats22_at_least_frames to arrayOf<Any>(21001),
+            R.string.formats22_animation_message to arrayOf<Any>("GIF", "21"),
+            R.string.ui_d_d_px_d_pixels_2f_mp to arrayOf<Any>(640,480,307200L,0.3072))
+        for(tag in AppLanguage.tags(context)) {
+            val locale=AppLanguage.resourceLocale(Locale.forLanguageTag(tag))
+            AppLanguage.select(context,tag)
+            assertEquals(tag,AppLanguage.selectedTag(context))
+            val resources=AppLanguage.wrap(context).resources
+            assertEquals(tag,locale,resources.configuration.locales[0])
+            // Independent of process-default language, with no Activity per value.
+            Locale.setDefault(Locale.US)
+            PaintApplication.currentResources=resources
+            assertTrue(tag,resources.getString(R.string.ui_save).isNotEmpty())
+            for((id,args) in contracts) {
+                val template=resources.getString(id)
+                assertEquals("$tag/${resources.getResourceEntryName(id)}",
+                    String.format(locale,template,*args),ui(id,*args))
+            }
+            for(count in listOf(0,1,2,3,21,101)) {
+                val template=resources.getQuantityString(R.plurals.ui_crop_preview_images,count)
+                assertEquals("$tag/crop/$count",String.format(locale,template,24,16,count),
+                    uiQuantity(resources,R.plurals.ui_crop_preview_images,count,24,16,count))
+            }
+        }
     }
 
     @Test fun onlyTheTwoSpecialCataloguesUseInternalResourceVariants() {

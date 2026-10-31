@@ -1,6 +1,15 @@
 /* AN Paint contributors, 2026. GNU AGPL-3.0-or-later. */
 package org.catrobat.paintroid.local
 
+import android.app.Activity
+import android.content.res.Resources
+import org.catrobat.paintroid.R
+import org.catrobat.paintroid.classic.AppLanguage
+import org.catrobat.paintroid.classic.PaintApplication
+import org.junit.Assert.assertEquals
+import org.robolectric.Robolectric
+import org.robolectric.shadows.ShadowAlertDialog
+import java.util.Locale
 import org.json.JSONObject
 import java.io.File
 
@@ -50,5 +59,31 @@ internal object PriorityWordingExpectations {
         require(previous==formatted(row.getString("source"))) { "$tag/$key previous fallback differs" }
         // Reuse the existing raw-resource/display boundary before substituting arguments.
         return formatted(RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,row.getString("target")))
+    }
+
+    /** Shared unchanged activity lifecycle; callers retain their own locale scope and assertions. */
+    fun forEachLocale(
+        tags: List<String>,
+        previousResources: Resources,
+        previousLocale: Locale,
+        previousTag: String,
+        check: (String, Activity) -> Unit
+    ) {
+        for(tag in tags) {
+            val controller=Robolectric.buildActivity(Activity::class.java)
+            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
+            try {
+                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
+                assertEquals(tag,AppLanguage.selectedTag(activity))
+                // ui() must format using the selected resource locale, not the process default.
+                Locale.setDefault(Locale.US)
+                check(tag,activity)
+            } finally {
+                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
+                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
+                controller.pause().stop().destroy()
+                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
+            }
+        }
     }
 }

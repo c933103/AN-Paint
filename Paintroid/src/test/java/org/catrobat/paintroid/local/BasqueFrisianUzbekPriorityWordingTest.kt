@@ -43,7 +43,7 @@ class BasqueFrisianUzbekPriorityWordingTest {
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
     private fun euFyUzBoundFixture(tag: String): JSONObject {
-        val expected=mapOf("eu-ES" to "35e92a9d308dead05df3d598c691b5b6f46198c18187cc0ebb9bc9403598fa28", "fy" to "646c0baf4a6099f620999d51d1c6da4e67a172eb1b13d3fe37944d8541e36e8b", "uz-Latn" to "346a56385a885c7752399e35bcc195e7f699f569b802305298d4ef2929a3d1d6")
+        val expected=mapOf("eu-ES" to "f8ac4b2651c28c054246727316ba971f95b344b6c5eac44619f11ba90b7b0df3", "fy" to "76efeb2aa73b0e5944c6d06a8c9e8d2a1dc4dc87b5bf06829c7b81c569cdf5da", "uz-Latn" to "af7c285c390e5ea7fdb09c8f7bb18bc97f4e67f87228bc554521d0782d94a029")
         val bytes=File("../tools/fixtures/current_localization/basque_frisian_uzbek_priority_wording/$tag.json").readBytes()
         val digest=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
         assertEquals("Complete canonical fixture $tag",expected.getValue(tag),digest)
@@ -90,24 +90,9 @@ class BasqueFrisianUzbekPriorityWordingTest {
         PaintApplication.currentResources = previousResources
         Locale.setDefault(previousLocale)
     }
-    private fun forEachLocale(tags: List<String> = listOf("eu-ES","fy","uz-Latn"), check: (String,Activity)->Unit) {
-        for(tag in tags) {
-            val controller=Robolectric.buildActivity(Activity::class.java)
-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
-            try {
-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
-                assertEquals(tag,AppLanguage.selectedTag(activity))
-                // ui() must format using the selected resource locale, not the process default.
-                Locale.setDefault(Locale.US)
-                check(tag,activity)
-            } finally {
-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
-                controller.pause().stop().destroy()
-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
-            }
-        }
-    }
+    private fun forEachLocale(tags: List<String> = listOf("eu-ES","fy","uz-Latn"), check: (String,Activity)->Unit) =
+        PriorityWordingExpectations.forEachLocale(
+            tags, previousResources, previousLocale, previousTag, check)
 
     @Test fun reviewedResidualsDecodeOuterAndroidQuotesBeforeFormatting() {
         assertEquals("Voz kechish",PriorityWordingExpectations.residual("uz-Latn","ui_discard","Discard"))

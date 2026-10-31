@@ -100,3 +100,16 @@ def require_catalogue(tag, root, data, bound_fixture, require_fixture_binding, r
             old = data['original_catalogue'][key]
             require_resource_shape(node, 'plurals' if isinstance(old['value'], dict) else 'string', old)
     return root
+
+
+def current_row(tag, key, name, tags, fixture):
+    data=fixture(name)
+    if tag not in tags:raise ValueError('Outside exact reviewed locale set')
+    locale=data['locales'][tag];source=data['sources'][key]
+    if key not in locale['accepted']:raise ValueError('No accepted complete value')
+    previous=locale['predecessors'].get(key)
+    return {'source':source['source'],'target':locale['accepted'][key],
+            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
+            'previous_target':previous['target'] if previous else None,
+            'previous_attributes':previous['attributes'] if previous else None,
+            'changed':key in locale['changed'],'type':source['type']}

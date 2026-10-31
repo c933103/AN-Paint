@@ -7,7 +7,7 @@ from current_localization_contracts import fixture
 ROOT=Path(__file__).resolve().parents[1]
 FAMILY='tibetan_dzongkha_valencian_priority_wording'
 TAGS=('bo', 'dz', 'ca-ES-valencia')
-FIXTURE_DIGESTS={'bo': '80168ffc78a88fb3de1ac1a9b0753bfca01bef916633827e88398231c76acd27', 'dz': '031887b9934680ba595fea935ec9aaf89e35bab92e9d66a837d031b78c6e25ed', 'ca-ES-valencia': 'ae8d8cee0386817fcc6a52b0b00abc1abcb720ce288217273243803671310b6d'}
+FIXTURE_DIGESTS={'bo': '361d8dec09fbcfc24ada5929560eb3cc1faa46bcea72ab6e1890066dde8ff2c9', 'dz': '808ac8fae6095a533e9f7dee8f9935207764934766202cabec542fae2d5d8c2d', 'ca-ES-valencia': '7a1bb1dfaa72a5bb7189deae19dd223efb517b8a139f440440e50f6dc20b1ce8'}
 SHARED_KEYS=frozenset({'ui_assembly_source_memory_floor','ui_no_resize_fits_decoder_memory',
     'commons_svg_original_size_too_large','commons_svg_original_size_unavailable','save20_unsupported_image_colour'})
 
