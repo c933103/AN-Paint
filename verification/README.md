@@ -142,3 +142,11 @@ payload is copied into the active tree.
 Production/resource/workflow files are unchanged. Normal focused tests and
 required hosted compilation remain mandatory; no all-language layout or new
 linguistic approval claim follows from structural/compiled coverage.
+
+The first hosted retirement run exposed one remaining exact-script source guard
+that pinned historical tagged-colour counts 140/141/30. Those three count
+fragments and their mutation cases are also retired; actual Tatar binding,
+coordinated-row rejection, `addExactScript` and missing-consumer guards remain.
+A source-wide search found no other Python count/source guards for that retired
+bookkeeping. The original failed run is retained; a corrected head requires its
+own CI/review rather than a waiver or same-source retry.
