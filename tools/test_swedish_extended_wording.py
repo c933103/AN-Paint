@@ -8,6 +8,7 @@ import unittest
 import xml.etree.ElementTree as ET
 import current_localization_contracts as contracts
 import translation_catalogues as catalogues
+import swedish_legacy_manual as manual
 
 
 def identities(xml):
@@ -30,7 +31,12 @@ class SwedishExtendedWordingTests(unittest.TestCase):
         palette = 'ui_foreground_background_colour_palette'
         self.assertIn(('string', palette), held)
         contracts.require_residual_or_previous(ET.fromstring(self.xml['sv']), 'sv', palette, None)
-        self.assertEqual(held - {('string', palette)}, source - target)
+        # This complete, newly source-bound pair supersedes only the manual hold.
+        # The original held fixture remains historical evidence, not rewritten acceptance.
+        self.assertIn(('string', manual.KEY), held)
+        manual.require_successor('sv', manual.KEY,
+                                 ET.fromstring(self.xml['sv']).find(f"./string[@name='{manual.KEY}']"), None)
+        self.assertEqual(held - {('string', palette), ('string', manual.KEY)}, source - target)
         self.assertFalse(target - source)
         self.assertEqual(['ui_main23'], self.data['present_held'])
         self.assertEqual('Huvud', self.strings['ui_main23'])
