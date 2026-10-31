@@ -58,6 +58,10 @@ fetch or reconstruct the historical archive.
 
 ## Active priority contracts versus historical review bookkeeping
 
+The following staged records describe their own immutable source revisions.
+The family-wide catalogue retirement below supersedes their statements about
+which copied wording fixtures remain active; it does not change their evidence.
+
 The eight per-locale priority cohorts (Basque/Frisian/Uzbek; Cebuano/Low German/
 Kashubian; Chhattisgarhi/Yiddish/Hong Kong Chinese; Kazakh/Tajik/Pashto;
 Sindhi/Nigerian Pidgin/Tok Pisin; Sorani/Uyghur/Tatar; Tibetan/Dzongkha/Valencian;
@@ -150,3 +154,58 @@ coordinated-row rejection, `addExactScript` and missing-consumer guards remain.
 A source-wide search found no other Python count/source guards for that retired
 bookkeeping. The original failed run is retained; a corrected head requires its
 own CI/review rather than a waiver or same-source retry.
+
+
+## Family-wide catalogue-mirror retirement
+
+The remaining 47 full-catalogue/cohort JSON mirrors are retired together, not
+replaced with smaller copies of the same approved sentences. Their exact original
+paths and Git blob identities remain recoverable at immutable
+[develop 5367fe1e9703593bf464e1dd7f1aab2eab750868](https://github.com/c933103/AN-Paint/tree/5367fe1e9703593bf464e1dd7f1aab2eab750868).
+The same source preserves removed helper/test implementations. No archive
+payload is copied, fetched or reconstructed by routine CI.
+
+This covers the eight per-locale families above and the remaining top-level
+catalogue cohorts (Breton/Asturian/Occitan; Croatian/Bosnian/Macedonian; Galician/
+Dutch/German; Georgian/Armenian/Azerbaijani; Hindi/Gujarati; Interlingua/Latin/
+Kurdish; Irish/Gaelic/Welsh; Italian/Greek/Turkish; Kabyle/Hmong Daw/Maithili;
+Maori/Samoan/Kinyarwanda; Moroccan Arabic/Mongolian/Toki Pona; Nordic;
+North Korean/Australian; Nynorsk/Belarusian/Albanian; Persian/Hebrew/Urdu;
+Portuguese/Spanish; regional Persian/Japanese/French; Serbian; Sinhala/Burmese/
+Zhuang; Slovak/Slovenian/Catalan; Somali/Wolof/Haitian Creole; Thai; Ukrainian/
+Lithuanian/Romanian).
+
+| Retired responsibility | Surviving product responsibility |
+| --- | --- |
+| Complete accepted/held/source/predecessor/display copies, counts and digest mutation checks | Canonical resource XML and immutable review/source history own current wording and historical decisions. These approval freezes are intentionally retired, not claimed as equivalent runtime coverage. |
+| Repeated catalogue-wide token, XML and plural probes | Existing `translation_catalogues.validate_all` / `TranslationCatalogueTests` cover current catalogue structure, duplicate identities, Android escaping, placeholders and plural shape. |
+| Per-cohort full compiled-value equality loops | Existing `AppLanguageResourceRoutingTest.everyOfferedLanguageResolvesCompiledBoundariesWithoutPerStringActivities` exercises real selection/wrap for every offered tag, with restored application/locale state; existing fixed `LocaleTextBoundaryTest` cases retain independent format/Unicode/fallback boundaries. This is not direct-translation-presence, linguistic or all-language layout certification. |
+| 203 repeated cohort consumer bodies | Exact normalized bodies survive in the existing representative tests; the per-method evidence map identifies each survivor. Locale-specific copied approval labels are retired; actual control bindings use current compiled labels. |
+| 52 cohort variants | Operations/state assertions map to existing representatives after inspecting locale lists, helper behavior and assertions. The 20-image crop sequence and Nordic unit-button bindings are explicitly preserved rather than sampled away. Copied per-locale plural/text oracles are retired. |
+| 57 cohort approval/history/adapter methods | Intentionally retired; tests of deleted JSON adapters are not new product regressions requiring replacement machinery. |
+| Distinct real consumers | Eight existing representative classes retain 46 methods: Belarusian/Albanian (7), Georgian/Armenian/Azerbaijani (6), Italian/Greek/Turkish (6), North Korean/Australian (9), Persian/Hebrew/Urdu (5), Portuguese/Spanish (4), regional Persian/Japanese/French (4), Sinhala/Burmese/Zhuang (5). Existing exact-script/Latin-Sinitic and other real-consumer suites remain. |
+| Additional TaggedColour and sampled-warning history mutations | Removed adapter-only corruption checks; all-offered sRGB/PNG/not-BMP-or-GIF semantics and actual importer/memory/state failures remain. |
+| Old bounded P0/save successor comparisons | Pure approval loops are retired instead of converted into resource-to-itself assertions. Actual save/import/recovery/dialog/cancel/file-ownership and independent argument/alias relations remain. Bounded fixture payloads outside the 47 mirrors are unchanged. |
+| Current wording semantics | Existing generic host tests retain command references, distinct actions, percent formatting, conditional crop semantics and attribution concepts. A proposed copied exact-label table was rejected: historical approval alone is not an independent executable obligation. Metadata/copy-credit/Hungarian constraints keep their original locale scope. |
+
+The cohort source changes reduce 358 declared methods to 46 in eight existing
+classes. Across all affected Kotlin files, declared `@Test` methods fall from
+1,501 to 1,160; this is a source count, not a hosted execution count.
+The 47 mirrors account for 12,484,429 bytes. Current-localization fixtures fall
+from 131 / 15,124,016 bytes to 84 / 2,639,587 bytes, including the separately
+merged Swedish manual successor. No production resource, workflow or new test
+package/framework is added.
+
+Focused validation, exact remote-source identity, hosted case counts and any
+observed timing differences belong to this batch's PR/evidence receipt. Local
+Android compilation is unavailable; static scans are not compilation. No
+duplicate full normal/optimized aggregate or benchmark run is required.
+
+### Remaining bounded scope
+
+Cross-cutting residual/review adapters, exact-script and Latin-Sinitic approval
+payloads, and bounded feature/delta fixtures still need their own product-
+obligation review. Genuine native layout/font, provider, format and consumer
+regressions must remain. Upstream catalogue/licence inputs have separate
+provenance/build responsibilities. This batch does not declare project-wide
+cleanup, linguistic acceptance or translation completion.

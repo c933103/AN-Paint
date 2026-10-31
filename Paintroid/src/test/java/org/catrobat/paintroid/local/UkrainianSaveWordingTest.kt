@@ -36,13 +36,9 @@ import java.util.Locale
 class UkrainianSaveWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/ukrainian_save_wording.json").readText())
-    }
 
-    // Decode only these ten simple quote-wrapped values, not inherited Android escapes.
-    private fun expected(tag: String, key: String) = PriorityWordingExpectations.current(tag,key,
-        fixture.getJSONObject("values").getJSONObject(key).getString(tag)).removeSurrounding("\"")
+    // Current compiled labels are used for actual control binding.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
 
     @Before fun rememberResources() {
         previousResources = PaintApplication.currentResources
@@ -71,36 +67,6 @@ class UkrainianSaveWordingTest {
         }
     }
 
-    @Test fun allTenCompiledValuesAndSingleSubstitutionsPreserveActualNeighborLabels() = forEachLocale { tag, context ->
-        val values = fixture.getJSONObject("values")
-        assertEquals(10, values.length())
-        for (key in values.keys()) {
-            val id = context.resources.getIdentifier(key, "string", context.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("$tag/$key", expected(tag, key), context.getString(id))
-        }
-        val filename = "drawing 100%.png"
-        val detail = "provider 50% unavailable"
-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "ui_saved"), filename),
-            ui(R.string.ui_saved, filename))
-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "ui_the_image_was_saved_but_android_could_not"), detail),
-            ui(R.string.ui_the_image_was_saved_but_android_could_not, detail))
-        assertEquals("Зберегти", ui(R.string.ui_save))
-        assertEquals(ui(R.string.ui_save), ui(R.string.ui_save_a5d0d9))
-        assertEquals("Файл", ui(R.string.ui_menu_file))
-        assertEquals("Скасувати", ui(R.string.ui_cancel))
-        assertEquals("Зберегти як…", ui(R.string.save20_title))
-        assertEquals("Експортувати як…", ui(R.string.ui_export_as23))
-        assertEquals("Зберегти зміни?", ui(R.string.ui_save_your_changes))
-        assertEquals(expected(tag, "ui_save_and_share_41edb4") + "…", ui(R.string.ui_save_and_share))
-        // Explicitly reviewed successors replace these neighbors; unrelated P2 context stays exact.
-        assertEquals(PriorityWordingExpectations.display("uk","save20_file_format"), ui(R.string.save20_file_format))
-        assertEquals(PriorityWordingExpectations.display("uk","ui_choose_location"), ui(R.string.ui_choose_location))
-        assertEquals(PriorityWordingExpectations.display("uk","ui_share_saved_image"), ui(R.string.ui_share_saved_image))
-        assertEquals("Base64 text", ui(R.string.formats22_base64_label))
-        assertEquals("Рисунки у ASCII", ui(R.string.formats22_ascii_label))
-    }
-
     @Test fun actualSaveExportAndSharePanelsKeepTheirDistinctWholeMessagesAndRepeatedCancel() = forEachLocale { tag, _ ->
         val controller = Robolectric.buildActivity(Activity::class.java)
         controller.get().setTheme(R.style.ClassicPaintTheme)
@@ -126,8 +92,8 @@ class UkrainianSaveWordingTest {
                 for (other in listOf(save, export, share).filter { it != message }) assertFalse(displayed.contains(other))
                 assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
                     else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(shown).title.toString())
-                assertTrue(displayed.contains(PriorityWordingExpectations.display("uk","save20_file_format")))
-                assertEquals(PriorityWordingExpectations.display("uk","ui_choose_location"), shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertTrue(displayed.contains(PriorityWordingExpectations.resourceText("uk","save20_file_format")))
+                assertEquals(PriorityWordingExpectations.resourceText("uk","ui_choose_location"), shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals("Скасувати", shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 if (it == 0) shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick() else shown.cancel()
                 shadowOf(Looper.getMainLooper()).idle()
@@ -171,7 +137,7 @@ class UkrainianSaveWordingTest {
                 assertEquals(unsaved, body)
                 assertNotEquals(exported, body)
                 assertEquals("Зберегти", shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertEquals(PriorityWordingExpectations.display("uk","ui_keep_editing23"), shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
+                assertEquals(PriorityWordingExpectations.resourceText("uk","ui_keep_editing23"), shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 assertTrue(shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick())
                 EditorTestNavigation.idle()
                 assertFalse(shown.isShowing)

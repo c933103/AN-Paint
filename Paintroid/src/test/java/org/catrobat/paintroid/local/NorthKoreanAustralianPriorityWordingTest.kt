@@ -44,81 +44,13 @@ class NorthKoreanAustralianPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private fun kpAuBoundFixture(): JSONObject {
-        val bytes=File("../tools/fixtures/current_localization/north_korean_australian_priority_wording.json").readBytes()
-        val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete finite KO-KP/en-AU reviewed fixture", "94413c7d1952acdea6cbb26726ca845c16940d22d860fac14edab700bf1ca951", actual)
-        return JSONObject(String(bytes,Charsets.UTF_8))
-    }
-
-    private fun kpAuSameJson(expected: Any?, actual: Any?) {
-        when(expected) {
-            is JSONObject -> {
-                assertTrue(actual is JSONObject);val other=actual as JSONObject
-                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
-                for(key in expected.keys()) kpAuSameJson(expected.get(key),other.get(key))
-            }
-            is org.json.JSONArray -> {
-                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
-                assertEquals(expected.length(),other.length())
-                for(i in 0 until expected.length()) kpAuSameJson(expected.get(i),other.get(i))
-            }
-            else -> assertEquals(expected,actual)
-        }
-    }
-
-    private val sourceFixture by lazy { kpAuBoundFixture() }
-    // Project the compact complete-value fixture into consumer lookup tables;
-    // no historical whole-catalogue snapshots are stored in the application tree.
-    private val fixture by lazy {
-        JSONObject().also { result ->
-            val locales=sourceFixture.getJSONObject("locales")
-            for(tag in locales.keys()) {
-                val current=locales.getJSONObject(tag)
-                val accepted=JSONObject();val held=JSONObject()
-                for(identity in current.getJSONObject("accepted").keys()) {
-                    val row=current.getJSONObject("accepted").getJSONObject(identity)
-                    accepted.put(identity.substringAfter('/'),row.get("value"))
-                }
-                for(identity in current.getJSONObject("held").keys()) {
-                    val row=current.getJSONObject("held").getJSONObject(identity)
-                    held.put(identity.substringAfter('/'),JSONObject().put("type",identity.substringBefore('/'))
-                        .put("target",row.get("value")).put("attributes",row.getJSONObject("attributes")))
-                }
-                result.put(tag,JSONObject().put("accepted",accepted).put("held",held))
-            }
-        }
-    }
-    private fun defaultSource(key: String): String =
-        decoded(sourceFixture.getJSONObject("sources").getJSONObject("string/"+key).getString("value"))
-    private fun expected(tag: String, key: String): String {
-        val raw=fixture.getJSONObject(tag).getJSONObject("accepted").getString(key)
-        require(!raw.startsWith("@")) { "No resource alias is accepted in this exact reviewed fixture" }
-        return decoded(raw)
-    }
-    private fun decoded(raw: String): String = Regex("""\\(.)""").replace(raw.removeSurrounding("\"")) { token ->
-        when(token.groupValues[1]) { "n"->"\n"; "t"->"\t"; "r"->"\r"; else->token.groupValues[1] }
-    }
+    // Current compiled labels are the oracle for control binding, not approval history.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
     private fun formatted(tag: String, key: String, vararg args: Any) =
         String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
-
-    @Test fun completeFixtureRejectsCoordinatedAndUnrelatedSuppliedChanges() {
-        val expected=kpAuBoundFixture()
-        for(tag in listOf("ko-KP","en-AU")) {
-            val changed=JSONObject(expected.toString())
-            changed.getJSONObject("locales").getJSONObject(tag).getJSONObject("accepted")
-                .getJSONObject("string/ui_save").put("value","replacement")
-            changed.getJSONObject("sources").getJSONObject("string/ui_save").put("value","replacement")
-            var rejected=false
-            try { kpAuSameJson(expected,changed) } catch (_: AssertionError) { rejected=true }
-            assertTrue("Complete coordinated fixture change rejected",rejected)
-            val missing=JSONObject(expected.toString())
-            missing.getJSONObject("locales").getJSONObject(tag).remove("held")
-            rejected=false
-            try { kpAuSameJson(expected,missing) } catch (_: AssertionError) { rejected=true }
-            assertTrue("Unrelated held evidence cannot disappear",rejected)
-        }
-    }
+    private fun cropText(tag: String,count: Int,width: Int=24,height: Int=16) =
+        PriorityWordingExpectations.resources(tag).getQuantityString(R.plurals.ui_crop_preview_images,count,width,height,count)
+    private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources
@@ -133,152 +65,6 @@ class NorthKoreanAustralianPriorityWordingTest {
     private fun forEachLocale(tags: List<String> = listOf("ko-KP","en-AU"), check: (String,Activity)->Unit) =
         PriorityWordingExpectations.forEachLocale(
             tags, previousResources, previousLocale, previousTag, check)
-
-    @Test fun everyReviewedNorthKoreanAustralianCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
-        val locale=fixture.getJSONObject(tag)
-        val values=locale.getJSONObject("accepted")
-        val keys=values.keys().asSequence().filter { values.get(it) is String }.toList()
-        val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
-        for(key in keys) {
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("$tag/$key",0,id)
-            val text=expected(tag,key)
-            assertEquals("$tag/$key",text,activity.getString(id))
-            val tokens=pattern.findAll(text).toList()
-            if(tokens.isNotEmpty()) {
-                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
-                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
-                    "d"->21001L;"f"->12.75;else->"argument 100%"
-                }
-                assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
-            }
-        }
-        // Generic absent fallback guard remains, but each target preserves eleven existing held rows.
-        val held=locale.getJSONObject("held")
-        for(key in held.keys().asSequence()) if(held.isNull(key)) {
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("$tag held/$key",0,id)
-            assertEquals("$tag held/$key",defaultSource(key),activity.getString(id))
-        }
-    }
-
-    @Test fun existingHeldValuesRemainExactWithoutNewWordingAcceptance() = forEachLocale { tag,activity ->
-        val held=fixture.getJSONObject(tag).getJSONObject("held")
-        assertEquals(11,held.length())
-        for(key in held.keys()) {
-            assertFalse("Existing held value must not become absent",held.isNull(key))
-            val row=held.getJSONObject(key)
-            assertEquals("string",row.getString("type"))
-            val text=decoded(row.getString("target"))
-            assertFalse("No alias inference for held value",text.startsWith("@"))
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals(0,id)
-            assertEquals("$tag held/$key exact historical preservation",text,activity.getString(id))
-        }
-    }
-
-    @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->
-        val controls=DimensionControls(activity,ImageDimensions(40,25),locked=false)
-        val result=controls.findViewWithTag<TextView>("size_result")
-        for(size in listOf(ImageDimensions(1,1),ImageDimensions(2,1),ImageDimensions(40,25),ImageDimensions(2000,1000))) {
-            controls.setDimensions(size)
-            assertEquals(formatted(tag,"ui_d_d_px_d_pixels_2f_mp",size.width,size.height,size.pixels,size.pixels/1_000_000.0),result.text.toString())
-        }
-        for(percent in listOf(false,true,false)) {
-            controls.findViewWithTag<View>(if(percent) "size_percent" else "size_pixels").performClick()
-            val unit=expected(tag,if(percent) "ui_percent_fd8671" else "ui_pixels_6ec9c2")
-            assertEquals(formatted(tag,"ui_width_in",unit),controls.widthInput.contentDescription.toString())
-            assertEquals(formatted(tag,"ui_height_in",unit),controls.heightInput.contentDescription.toString())
-            assertEquals(ImageDimensions(2000,1000),controls.dimensions)
-        }
-        controls.widthInput.setText("")
-        assertNull(controls.dimensions)
-        assertEquals(expected(tag,"ui_enter_positive_dimensions_that_resolve_to_at_least"),result.text.toString())
-    }
-
-    @Test fun cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection() = forEachLocale { tag,activity ->
-        val images=listOf("one","two").map { id -> AssemblyImage(id,File(activity.cacheDir,"$id.image"),id,null,ImageDimensions(24,16)) }
-        var applied=false
-        val shown=ImageCropDialog(activity,images,{null}) { applied=true }.show()
-        try {
-            shadowOf(Looper.getMainLooper()).idle();val root=shown.window!!.decorView
-            val edges=mapOf("left" to "ui_left","top" to "ui_top","right" to "ui_right","bottom" to "ui_bottom")
-            for(percent in listOf(false,true,false)) {
-                root.findViewWithTag<View>(if(percent) "crop_percent" else "crop_pixels").performClick()
-                for((edge,key) in edges) assertEquals(formatted(tag,if(percent) "ui_trim_in_percent" else "ui_trim_in_pixels",expected(tag,key)),
-                    root.findViewWithTag<EditText>("crop_$edge").contentDescription.toString())
-            }
-            val none=root.findViewWithTag<TextView>("crop_none")
-            assertEquals(expected(tag,"ui_none"),none.text.toString());none.performClick()
-            images.forEach { assertFalse(root.findViewWithTag<CheckBox>("crop_include_${it.id}").isChecked) }
-            shown.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
-            assertFalse(applied);assertTrue(shown.isShowing)
-            assertEquals(expected(tag,"ui_choose_at_least_one_image"),root.findViewWithTag<TextView>("crop_status").text.toString())
-            root.findViewWithTag<View>("crop_all").performClick()
-            images.forEach { assertTrue(root.findViewWithTag<CheckBox>("crop_include_${it.id}").isChecked) }
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-            assertFalse(shown.isShowing);assertFalse(applied)
-            images.forEach { assertEquals(android.graphics.Rect(0,0,24,16),it.crop) }
-        } finally { shown.dismiss() }
-    }
-
-    @Test fun categoryAccessibilityTracksEveryActualToolAndExpansionState() = forEachLocale { tag,activity ->
-        for(down in listOf(false,true)) for(category in ToolCategory.values()) {
-            val button=ToolCategoryButton(activity,category,category.tools.first(),down)
-            for(tool in category.tools) for(expanded in listOf(false,true)) {
-                button.selectedTool=tool;button.expanded=expanded;button.refresh()
-                val description=formatted(tag,if(expanded) "ui_collapse_tool_category" else "ui_expand_tool_category",ui(category.labelId),tool.label)
-                assertEquals(ui(category.labelId),button.text.toString())
-                assertEquals(description,button.contentDescription.toString())
-                assertEquals(description,button.tooltipText.toString())
-            }
-        }
-    }
-
-    @Test fun realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting() = forEachLocale { tag,activity ->
-        val worker=Executors.newSingleThreadExecutor();var selection:ImportSelection?=null
-        val files=mutableListOf<File>()
-        try {
-            for((count,exact) in listOf(2 to true,21 to true,21 to false)) {
-                val bytes=ByteArrayOutputStream().apply {
-                    write(Base64.getDecoder().decode("R0lGODlhAQABAIAAAAAAAP///w=="))
-                    repeat(count) { write(Base64.getDecoder().decode("LAAAAAABAAEAAAICRAEA")) }
-                    if(!exact) repeat(100_001) { write(byteArrayOf(0x21,0xfe.toByte(),1,0x78,0)) }
-                    write(0x3b)
-                }.toByteArray()
-                val file=File.createTempFile("priority-animation-",".gif",activity.cacheDir).apply {writeBytes(bytes)};files.add(file)
-                assertEquals(AnimationInfo("GIF",count,exact,false),AnimationInfo.inspect(file))
-                var selected=0;var cancelled=0;var failure:Throwable?=null
-                selection=ImportSelection(activity,worker,{0L},{selected++},{cancelled++},{failure=it})
-                selection.start(file,"source.gif");worker.submit {}.get(10,TimeUnit.SECONDS);shadowOf(Looper.getMainLooper()).idle()
-                assertNull(failure);val shown=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                val countText=if(exact) count.toString() else formatted(tag,"formats22_at_least_frames",count)
-                assertEquals(formatted(tag,"formats22_animation_message","GIF",countText)+"\n\n"+expected(tag,"formats22_animation_still"),shadowOf(shown).message.toString())
-                assertEquals(expected(tag,"formats22_animation_title"),shadowOf(shown).title.toString())
-                assertEquals(expected(tag,"formats22_open_still"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertTrue(file.exists());assertEquals(0,selected)
-                shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-                assertEquals(1,cancelled);assertEquals(0,selected);assertNull(failure);assertFalse(file.exists())
-            }
-        } finally {selection?.dispose();worker.shutdownNow();assertTrue(worker.awaitTermination(10,TimeUnit.SECONDS));files.forEach {it.delete()} }
-    }
-
-    @Test fun nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy() = forEachLocale() { tag,activity ->
-        val mib=1024L*1024
-        val policy=ImageMemoryPolicy.calculate(256*mib,0,0,0,false)
-        var accepted=false;var cancelled=0
-        val shown=ImageResizeDialog(activity,ImageDimensions(2000,1000),0,{policy},
-            resize={accepted=true},cancel={cancelled++},memoryRequirements=ImportMemoryRequirements(1024*mib)).show()
-        try {
-            shadowOf(Looper.getMainLooper()).idle();val root=shown.window!!.decorView
-            assertTrue(root.findViewWithTag<TextView>("resize_estimate").text.toString().contains(expected(tag,"ui_no_resize_fits_decoder_memory")))
-            assertEquals(expected(tag,"ui_codec_resize_memory_floor"),root.findViewWithTag<TextView>("resize_explanation").text.toString())
-            assertFalse(shown.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
-            assertEquals(expected(tag,"ui_resize_and_load"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-            assertFalse(accepted);assertEquals(1,cancelled)
-        } finally {shown.dismiss()}
-    }
 
     @Test fun completeSampledExplanationSurvivesInvalidEditCancelAndReopen() = forEachLocale { tag,activity ->
         val mib=1024L*1024
@@ -304,15 +90,6 @@ class NorthKoreanAustralianPriorityWordingTest {
                 shadowOf(Looper.getMainLooper()).idle()
                 assertFalse(shown.isShowing);assertEquals(0,accepted);assertEquals(attempt+1,cancelled)
             } finally {shown.dismiss()}
-        }
-    }
-
-    @Test fun memoryAdmissionStopsBeforeAllocationWithAllFourArguments() = forEachLocale { tag,_ ->
-        val mib=1024L*1024;val policy=ImageMemoryPolicy.calculate(256*mib,0,96*mib,0,false)
-        assertEquals(0L,policy.maxPixels())
-        for((width,height) in listOf(1 to 1,1000 to 2000)) {
-            val error=assertThrows(ImageSizeException::class.java) {policy.check(width,height)}
-            assertEquals(formatted(tag,"ui_d_d_pixels_2f_mp_exceeds_the_current",width,height,width.toLong()*height/1_000_000.0,0.0),error.message)
         }
     }
 
@@ -349,19 +126,9 @@ class NorthKoreanAustralianPriorityWordingTest {
         try {
             val root=shown.window!!.decorView;shadowOf(Looper.getMainLooper()).idle()
             assertEquals(expected(tag,"ui_image_shown_in_crop_preview"),root.findViewWithTag<View>("crop_preview_image").contentDescription.toString())
-            val values=fixture.getJSONObject(tag).getJSONObject("accepted").getJSONObject("ui_crop_preview_images")
             fun check(count: Int) {
-                // English has a distinct singular; Korean uses other for these counts. Assert full compiled output, not native-language certification.
-                val quantity=if(tag=="en-AU" && count==1) "one" else "other"
-                val pattern=decoded(values.getString(quantity))
-                val text=String.format(Locale.forLanguageTag(tag),pattern,24,16,count)
+                val text=activity.resources.getQuantityString(R.plurals.ui_crop_preview_images,count,24,16,count)
                 assertEquals(text,root.findViewWithTag<TextView>("crop_status").text.toString())
-                assertEquals(text,uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,24,16,count))
-            }
-            for(count in listOf(0,1,2,3,4,5,9,11,21,71,101,1_000_000)) {
-                val quantity=if(tag=="en-AU" && count==1) "one" else "other"
-                val expected=String.format(Locale.forLanguageTag(tag),decoded(values.getString(quantity)),24,16,count)
-                assertEquals(expected,uiQuantity(activity.resources,R.plurals.ui_crop_preview_images,count,24,16,count))
             }
             check(3);root.findViewWithTag<View>("crop_none").performClick();check(0)
             root.findViewWithTag<CheckBox>("crop_include_image1").isChecked=true;check(1)

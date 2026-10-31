@@ -64,19 +64,6 @@ class FifthReviewedSuccessors(unittest.TestCase):
             with self.subTest(tag=tag, key=key, mutation='wrong predecessor'), self.assertRaises(ValueError):
                 check(original, 'forged predecessor')
 
-    def test_existing_decisions_bind_immutable_historical_values(self):
-        ary = fixture('moroccan_arabic_mongolian_toki_pona_priority_wording.json')
-        for (tag, key) in EXISTING:
-            row = residual_rows()[(tag, key)]
-            if tag == 'tok':
-                self.assertEqual(ary['locales'][tag]['accepted'][key], row['previous_target'])
-                self.assertEqual(ary['sources'][key]['source'], row['source'])
-            else:
-                family = 'cebuano_low_german_kashubian' if tag == 'nds' else 'kazakh_tajik_pashto'
-                old = fixture(f'{family}_priority_wording/{tag}.json')
-                previous = old['values'].get(key, old['context'].get(key))
-                self.assertEqual(previous['reviewed_value'], row['previous_target'])
-                self.assertEqual(previous['source']['value'], row['source'])
 
 
 if __name__ == '__main__':

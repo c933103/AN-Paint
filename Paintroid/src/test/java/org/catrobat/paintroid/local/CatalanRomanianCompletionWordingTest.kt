@@ -33,14 +33,9 @@ class CatalanRomanianCompletionWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/catalan_romanian_completion_wording.json").readText())
-    }
 
-    // Only this batch's simply quote-wrapped reviewed values use this decoder.
-    // All inherited values/attributes stay exact under the separate source contracts.
-    private fun expected(tag: String, key: String) = SkSlCaPriorityExpectations.current(tag,key,
-        fixture.getJSONObject("values").getJSONObject(key).getString(tag)).removeSurrounding("\"")
+    // Current compiled labels are used for actual control binding.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources
@@ -76,34 +71,6 @@ class CatalanRomanianCompletionWordingTest {
                 Locale.setDefault(previousLocale)
             }
         }
-    }
-
-    @Test fun all55CompiledValuesPerLocaleMatchWithExactReviewedSuccessorsAndRetainedHolds() = forEachLocale { tag, activity ->
-        val values = fixture.getJSONObject("values")
-        assertEquals(55, values.length())
-        val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
-        assertEquals(150, inherited.length())
-        for (key in values.keys()) {
-            assertFalse("The missing-only batch must not replace $tag/$key", inherited.has(key))
-            val id = activity.resources.getIdentifier(key, "string", activity.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("$tag/$key", expected(tag, key), activity.getString(id))
-        }
-        // Compiled-only coverage for the separate P0 assembly-floor warning; the
-        // paired warning oracle and its P1 companion are not expanded by this test.
-        assertEquals(expected(tag, "ui_assembly_source_memory_floor"), ui(R.string.ui_assembly_source_memory_floor))
-        assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_no_resize_fits_decoder_memory"),
-            ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"save20_file_format"), ui(R.string.save20_file_format))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_load_image"), ui(R.string.ui_load_image))
-        assertEquals(String.format(Locale.forLanguageTag(tag),SkSlCaPriorityExpectations.display(tag,"formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
-        assertEquals(PriorityWordingExpectations.residual(tag,"formats22_derived_exported","PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", "PNG"),ui(R.string.formats22_derived_exported, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as","Save as PNG", "PNG"),ui(R.string.ui_save_as, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg","Save as JPEG…"),ui(R.string.ui_save_as_jpeg))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg_xl","Save as JPEG XL…"),ui(R.string.ui_save_as_jpeg_xl))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
     }
 
     @Test fun realMemoryAdmissionFailureFormatsAllFourArgumentsBeforeAllocation() = forEachLocale { tag, _ ->

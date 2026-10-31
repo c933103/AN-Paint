@@ -986,3 +986,24 @@ def require_residual_or_previous(root, tag, key, previous_target=None):
         return require_string_root(root, key, previous_target, {'attributes': {'name': key}})
     if root.findall(f"./*[@name='{key}']"):
         raise ValueError('Unreviewed historical absence changed: ' + tag + '/' + key)
+
+
+# Current XML owns these catalogues; immutable review history is not a text freeze.
+CURRENT_CATALOGUE_TAGS = frozenset(['ary', 'as', 'ast', 'az', 'be', 'bo', 'br', 'bs', 'ca', 'ca-ES-valencia', 'ceb', 'ckb', 'csb', 'cy', 'da', 'de', 'dz', 'el', 'en-AU', 'es-ES', 'eu-ES', 'fa', 'fa-IR', 'fil', 'fr', 'fy', 'ga', 'gd', 'gl', 'gu', 'ha', 'he', 'hi', 'hne', 'hr', 'ht', 'hy', 'ia', 'ig', 'is', 'it', 'ja', 'jv', 'ka', 'kab', 'kk', 'km', 'kn', 'ko-KP', 'ku', 'ky', 'la', 'ln', 'lo', 'lt', 'mai', 'mi', 'mk', 'ml-IN', 'mn-Cyrl-MN', 'mr', 'mww', 'my', 'nds', 'ne', 'nl', 'nn', 'no', 'oc', 'pa-IN', 'pcm', 'ps', 'pt-PT', 'ro', 'rw', 'sa', 'sd', 'se', 'si', 'sk', 'sl', 'sm', 'so', 'sq', 'sr-Cyrl', 'sr-Latn', 'su', 'ta', 'te', 'tg', 'th', 'tok', 'tpi', 'tr', 'tt-Cyrl', 'ug', 'uk', 'ur', 'uz-Latn', 'wa', 'wo', 'xh', 'yi', 'yo', 'za', 'zh-HK', 'zu'])
+
+
+def current_display(tag, key):
+    """Read current canonical text for semantic assertions, not an expected-value oracle."""
+    from exact_script_priority_expectations import decode_display
+    import translation_catalogues as catalogues
+    path = catalogues.RES / 'values/strings.xml' if tag == 'default' else catalogues.catalogue_paths()[tag]
+    strings = catalogues.read_strings(path)
+    seen = set()
+    while True:
+        if key in seen or key not in strings:
+            raise ValueError('Missing or cyclic current resource reference: ' + key)
+        seen.add(key)
+        value = strings[key]
+        if not value.startswith('@string/'):
+            return decode_display(value)
+        key = value[len('@string/'):]

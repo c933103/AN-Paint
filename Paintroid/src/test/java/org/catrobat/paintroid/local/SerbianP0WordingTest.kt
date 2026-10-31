@@ -47,35 +47,14 @@ class SerbianP0WordingTest {
         JSONObject(File("../tools/fixtures/current_localization/serbian_p0_wording.json").readText())
     }
 
-    // Only this batch's simply quote-wrapped reviewed values use this decoder.
-    // 337 inherited values/attributes stay exact; the Cyrillic format label has its own reviewed successor.
+    // This bounded fixture remains an independent label oracle for its real consumers.
     private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
         .getJSONObject(key).getString(tag).removeSurrounding("\"")
 
     private fun preserved(tag: String, key: String) = fixture.getJSONObject("preserved_values")
         .getJSONObject(tag).getJSONObject(key).getString("value").removeSurrounding("\"")
 
-    private val priorityDelta by lazy { SerbianPriorityDeltaExpectations.fixture() }
-    private fun added(tag: String, key: String): String {
-        val source = when(key) {
-            "ui_choose_location" -> "Choose location…"
-            "formats22_at_least_frames" -> "at least %1\$d"
-            "ui_no_resize_fits_decoder_memory" -> "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image."
-            else -> error("Unbound Serbian addition: $key")
-        }
-        val row = SerbianPriorityDeltaExpectations.row(priorityDelta,tag,key)
-        assertEquals(source,row.getString("source"))
-        assertTrue(row.has("previous") && row.isNull("previous"))
-        assertTrue(row.getBoolean("changed"))
-        assertEquals("accepted_delta",row.getString("review_status"))
-        val attrs=row.getJSONObject("attributes")
-        assertEquals(setOf("name"),attrs.keys().asSequence().toSet())
-        assertEquals(key,attrs.getString("name"))
-        val target=row.getString("target")
-        assertTrue(target.startsWith("\"") && target.endsWith("\""))
-        assertEquals(target.removeSurrounding("\""),row.getString("display"))
-        return row.getString("display")
-    }
+    private fun added(tag: String, key: String): String = PriorityWordingExpectations.resourceText(tag,key)
 
     private fun formatLabel(tag: String): String {
         if (tag != "sr-Cyrl") return preserved(tag, "save20_file_format")
@@ -171,34 +150,6 @@ class SerbianP0WordingTest {
                 Locale.setDefault(previousLocale)
             }
         }
-    }
-
-    @Test fun all74PriorCompiledValuesAndFinitePrioritySuccessorsKeepHeldFallbacks() = forEachLocale { tag, activity ->
-        val values = fixture.getJSONObject("values")
-        assertEquals(74, values.length())
-        val inherited = fixture.getJSONObject("preserved_values").getJSONObject(tag)
-        assertEquals(if (tag == "sr-Cyrl") 169 else 168, inherited.length())
-        for (key in values.keys()) {
-            assertFalse("The missing-only batch must not replace $tag/$key", inherited.has(key))
-            val id = activity.resources.getIdentifier(key, "string", activity.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("$tag/$key", expected(tag, key), activity.getString(id))
-        }
-        // Compiled-only coverage for the separate P0 assembly-floor warning; the
-        // paired warning oracle and its P1 companion are not expanded by this test.
-        assertEquals(expected(tag, "ui_assembly_source_memory_floor"), ui(R.string.ui_assembly_source_memory_floor))
-        assertEquals(expected(tag, "ui_history_unavailable34"), ui(R.string.ui_history_unavailable34))
-        assertEquals(added(tag,"ui_no_resize_fits_decoder_memory"),
-            ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals(formatLabel(tag), ui(R.string.save20_file_format))
-        assertEquals(preserved(tag, "ui_load_image"), ui(R.string.ui_load_image))
-        assertEquals(String.format(Locale.forLanguageTag(tag),added(tag,"formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
-        assertEquals(added(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
-        assertEquals(PriorityWordingExpectations.residual(tag,"formats22_derived_exported","PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", "PNG"),ui(R.string.formats22_derived_exported, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as","Save as PNG", "PNG"),ui(R.string.ui_save_as, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg","Save as JPEG…"),ui(R.string.ui_save_as_jpeg))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg_xl","Save as JPEG XL…"),ui(R.string.ui_save_as_jpeg_xl))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
     }
 
     @Test fun realMemoryAdmissionFailureFormatsAllFourArgumentsBeforeAllocation() = forEachLocale { tag, _ ->

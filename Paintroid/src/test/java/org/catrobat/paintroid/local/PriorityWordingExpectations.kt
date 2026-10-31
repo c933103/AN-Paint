@@ -13,44 +13,26 @@ import java.util.Locale
 import org.json.JSONObject
 import java.io.File
 
-/** Finite forward bindings; historical fixtures are never edited or reconstructed. */
+/** Shared consumer resource/lifecycle support; bounded residual bindings remain below. */
 internal object PriorityWordingExpectations {
-    private val locales by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/ukrainian_lithuanian_romanian_priority_wording.json").readText()).getJSONObject("locales")
+    /** Resolve the current compiled label for an actual consumer-binding assertion. */
+    fun resources(tag: String): Resources {
+        val context = org.robolectric.RuntimeEnvironment.getApplication<android.app.Application>()
+        val configuration = android.content.res.Configuration(context.resources.configuration)
+        configuration.setLocale(AppLanguage.resourceLocale(Locale.forLanguageTag(tag)))
+        return context.createConfigurationContext(configuration).resources
     }
-    fun current(tag: String,key: String,previous: String): String {
-        val row=locales.optJSONObject(tag)?.getJSONObject("values")?.optJSONObject(key) ?: return previous
-        if(row.isNull("previous_target")) return previous
-        require(previous==row.getString("previous_target")) { "$tag/$key previous accepted value differs" }
-        return row.getString("target")
-    }
-    fun display(tag: String,key: String): String {
-        val data=locales.getJSONObject(tag)
-        return (data.getJSONObject("values").optJSONObject(key) ?: data.getJSONObject("context").getJSONObject(key)).getString("display")
+    fun resourceText(tag: String,key: String): String {
+        val resources = resources(tag)
+        val id = resources.getIdentifier(key,"string",org.robolectric.RuntimeEnvironment.getApplication<android.app.Application>().packageName)
+        require(id != 0) { "Missing compiled string $key" }
+        return resources.getString(id)
     }
 
     private val residuals by lazy {
         val rows=JSONObject(File("../tools/fixtures/current_localization/reviewed_residuals_20261030.json").readText()).getJSONArray("decisions")
         (0 until rows.length()).map { rows.getJSONObject(it) }.associateBy { it.getString("locale") to it.getString("key") }
     }
-    fun hasResidual(tag: String,key: String)=residuals.containsKey(tag to key)
-
-    /** Existing-value successors require the exact historical compiled display. */
-    fun successor(tag: String,key: String,previous: String): String {
-        val row=residuals[tag to key] ?: return previous
-        require(!row.isNull("previous_target")) { "$tag/$key is not an existing-value successor" }
-        val rawPrevious=row.getString("previous_target")
-        val priorDisplay=if(rawPrevious.startsWith("@string/")) {
-            require(tag=="nds" && key=="ui_save_a5d0d9" && rawPrevious=="@string/ui_save") { "Unreviewed predecessor alias" }
-            val historical=JSONObject(File("../tools/fixtures/current_localization/cebuano_low_german_kashubian_priority_wording/nds.json").readText())
-            historical.getJSONObject("context").getJSONObject(key).getString("display")
-        } else RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,rawPrevious)
-        require(previous==priorDisplay) {
-            "$tag/$key previous display differs"
-        }
-        return RecoveredTrioPriorityExpectations.compiledDisplay(tag,key,row.getString("target"))
-    }
-
     /** Only exact reviewed successors replace an English fallback expectation. */
     fun residual(tag: String,key: String,previous: String,vararg args: Any): String {
         val row=residuals[tag to key] ?: return previous

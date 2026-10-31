@@ -11,7 +11,6 @@ import xml.etree.ElementTree as ET
 
 import current_localization_contracts as contracts
 import translation_catalogues as catalogues
-from north_korean_australian_priority_expectations import current_kp_attribution_entries
 from test_assembly_help_pr8 import code_locations, kotlin_block
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -99,13 +98,13 @@ class KoreanImageAttributionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.fixture = contracts.fixture('korean_image_attribution.json')
-        cls.entries = current_kp_attribution_entries(cls.fixture['entries'])
+        cls.entries = [e for e in cls.fixture['entries'] if (e['directory'], e['key']) not in {(KP,k) for k in ('gallery_credit_could_not_save','gallery_credit_too_large','legacy_credits_unreadable')}]
         cls.xml = {d: (RES / d / 'strings.xml').read_text(encoding='utf-8') for d in DIRECTORIES}
         cls.kp = {node.get('name'): node.text or '' for node in ET.fromstring(cls.xml[KP])
                   if node.tag == 'string'}
 
     def test_exact_scope_has_no_missing_duplicate_or_extra_entries(self):
-        expected = {(KP, key, 'other' if key == CROP else None) for key in KP_KEYS}
+        expected = {(KP, key, 'other' if key == CROP else None) for key in KP_KEYS - {'gallery_credit_could_not_save','gallery_credit_too_large','legacy_credits_unreadable'}}
         expected |= {(d, key, 'other' if key == CROP else None)
                      for d in DIRECTORIES[1:] for key in (ASSEMBLY, CROP)}
         self.assertEqual(1, self.fixture['schema_version'])

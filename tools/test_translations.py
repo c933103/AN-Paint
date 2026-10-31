@@ -113,6 +113,40 @@ class TranslationCatalogueTests(unittest.TestCase):
                 if tag in ("ha", "ig", "ln", "yo", "zu", "xh"):
                     self.assertNotEqual(text("ui_save"), text("ui_save_a5d0d9"))
 
+    def test_migrated_priority_commands_actions_and_format_labels(self):
+        from current_localization_contracts import current_display
+        for tag in 'br ast oc ia la ku kab mww mai ary mn-Cyrl-MN tok so wo ht hr bs mk'.split():
+            def text(key): return current_display(tag, key)
+            with self.subTest(tag=tag):
+                for key, commands in {
+                    'ui_autosave_is_paused_to_protect_that_draft_use': ['ui_menu_file', 'ui_export_recovery_copy', 'save20_title', 'save20_file_format'],
+                    'ui_recovery_copy_exported_extract_canvas_png_from_the': ['ui_menu_file', 'ui_load_image'],
+                    'ui_paste_hint34': ['ui_draw26', 'ui_category_insert', 'ui_other_images34'],
+                }.items():
+                    for command in commands:
+                        self.assertIn(text(command).removesuffix('…'), text(key))
+                self.assertIn('canvas.png', text('ui_recovery_copy_exported_extract_canvas_png_from_the'))
+                if tag not in ('hr', 'bs', 'mk'):
+                    self.assertIn('(%)', text('ui_quality'))
+                    node = ET.parse(translations.catalogue_paths()[tag]).find("string[@name='ui_quality']")
+                    self.assertEqual('false', node.get('formatted'))
+                if tag in ('br', 'ast', 'oc'):
+                    self.assertEqual(text('ui_save'), text('ui_save_a5d0d9'))
+                if tag in ('hr', 'bs', 'mk'):
+                    self.assertEqual(3, len({text('ui_save'), text('ui_discard_changes23'), text('ui_keep_editing23')}))
+
+    def test_priority_semantic_boundaries_survive_catalogue_retirement(self):
+        from current_localization_contracts import current_display
+        for key in ('gallery_credit_could_not_save', 'gallery_credit_too_large', 'legacy_credits_unreadable'):
+            self.assertIn('저작자·출처·리용허가', current_display('ko-KP', key))
+        for key, noun in [('ui_width_in', 'Breidd'), ('ui_height_in', 'Hæð')]:
+            for unit, word in [('ui_pixels_6ec9c2', 'mynddílum'), ('ui_percent_fd8671', 'prósentum')]:
+                self.assertEqual(noun + ' í ' + word, current_display('is', key).replace('%1$s', current_display('is', unit)))
+        for tag, phrase in [('el', 'μπορεί να μετακινήσει'), ('tr', 'yerini değiştirebilir')]:
+            for value in translations.read_plurals(translations.catalogue_paths()[tag])['ui_crop_preview_images'].values():
+                self.assertIn(phrase, value)
+        self.assertNotEqual(current_display('si', 'ui_undo'), current_display('si', 'ui_cancel'))
+
     def test_normalization_messages_use_canonical_crowdin_catalogues(self):
         keys = {
             "ui_normalize_width_intro", "ui_normalize_height_intro",

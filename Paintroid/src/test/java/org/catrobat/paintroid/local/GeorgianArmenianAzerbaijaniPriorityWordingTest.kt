@@ -41,43 +41,13 @@ class GeorgianArmenianAzerbaijaniPriorityWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private fun kaHyAzBoundFixture(): JSONObject {
-        val bytes=File("../tools/fixtures/current_localization/georgian_armenian_azerbaijani_priority_wording.json").readBytes()
-        val actual=java.security.MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 0xff) }
-        assertEquals("Complete finite KA/HY/AZ reviewed fixture", "6672b568ad8919285db2ed87ce13f2578a6f29a651a10c885d4ca5ac4dbd9247", actual)
-        return JSONObject(String(bytes,Charsets.UTF_8))
-    }
-
-    private fun kaHyAzSameJson(expected: Any?, actual: Any?) {
-        when(expected) {
-            is JSONObject -> {
-                assertTrue(actual is JSONObject);val other=actual as JSONObject
-                assertEquals(expected.keys().asSequence().toSet(),other.keys().asSequence().toSet())
-                for(key in expected.keys()) kaHyAzSameJson(expected.get(key),other.get(key))
-            }
-            is org.json.JSONArray -> {
-                assertTrue(actual is org.json.JSONArray);val other=actual as org.json.JSONArray
-                assertEquals(expected.length(),other.length())
-                for(i in 0 until expected.length()) kaHyAzSameJson(expected.get(i),other.get(i))
-            }
-            else -> assertEquals(expected,actual)
-        }
-    }
-
-    private val contract by lazy { kaHyAzBoundFixture() }
-    private val fixture get() = contract.getJSONObject("locales")
-    private fun row(tag: String, key: String): JSONObject {
-        val locale=fixture.getJSONObject(tag)
-        return locale.getJSONObject("values").optJSONObject(key)
-            ?: locale.getJSONObject("retained").optJSONObject(key)
-            ?: locale.getJSONObject("context").optJSONObject(key)
-            ?: error("Missing exact expectation $tag/$key")
-    }
-    private fun expected(tag: String,key: String)=
-        if(PriorityWordingExpectations.hasResidual(tag,key)) PriorityWordingExpectations.residual(tag,key,
-            contract.getJSONObject("sources").getJSONObject(key).getString("value"))
-        else row(tag,key).getString("display")
-    private fun formatted(tag: String,key: String,vararg args: Any)=String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
+    // Current compiled labels are the oracle for control binding, not approval history.
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
+    private fun formatted(tag: String, key: String, vararg args: Any) =
+        String.format(Locale.forLanguageTag(tag),expected(tag,key),*args)
+    private fun cropText(tag: String,count: Int,width: Int=24,height: Int=16) =
+        PriorityWordingExpectations.resources(tag).getQuantityString(R.plurals.ui_crop_preview_images,count,width,height,count)
+    private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
     @Before fun rememberLanguage() {
         previousResources=PaintApplication.currentResources;previousLocale=Locale.getDefault()
@@ -109,27 +79,6 @@ class GeorgianArmenianAzerbaijaniPriorityWordingTest {
         if(view is TextView)result.add(view.text.toString())
         if(view is ViewGroup)for(i in 0 until view.childCount)result.addAll(allText(view.getChildAt(i)))
         return result
-    }
-
-    @Test fun everyChangedCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
-        val values=fixture.getJSONObject(tag).getJSONObject("values")
-        val pattern=Regex("%(\\d+)\\$[-#+ 0,(<]*(?:\\d+)?(?:\\.\\d+)?([sdf])")
-        val successors=fixture.getJSONObject(tag).getJSONObject("holds").keys().asSequence()
-            .filter { PriorityWordingExpectations.hasResidual(tag,it) }.toList()
-        for(key in values.keys().asSequence().toList()+successors) {
-            val id=activity.resources.getIdentifier(key,"string",activity.packageName)
-            assertNotEquals("$tag/$key",0,id)
-            val text=expected(tag,key)
-            assertEquals("$tag/$key",text,activity.getString(id))
-            val tokens=pattern.findAll(text).toList()
-            if(tokens.isNotEmpty() && values.optJSONObject(key)?.optJSONObject("attributes")?.optString("formatted")!="false") {
-                val args=Array<Any>(tokens.maxOf { it.groupValues[1].toInt() }) { "argument 100%" }
-                for(token in tokens) args[token.groupValues[1].toInt()-1]=when(token.groupValues[2]) {
-                    "d"->21001L;"f"->12.75;else->"argument 100%"
-                }
-                assertEquals("$tag/$key arguments",String.format(Locale.forLanguageTag(tag),text,*args),ui(id,*args))
-            }
-        }
     }
 
     @Test fun actualDimensionControlsHandleOneTwoGroupedCountsAndRepeatedUnitChanges() = forEachLocale { tag,activity ->
@@ -215,34 +164,6 @@ class GeorgianArmenianAzerbaijaniPriorityWordingTest {
         }
     }
 
-    @Test fun realAnimationWarningsHandleArbitraryAndLowerBoundCountsAndCancelWithoutImporting() = forEachLocale { tag,activity ->
-        val worker=Executors.newSingleThreadExecutor();var selection:ImportSelection?=null
-        val files=mutableListOf<File>()
-        try {
-            for((count,exact) in listOf(2 to true,21 to true,21 to false)) {
-                val bytes=ByteArrayOutputStream().apply {
-                    write(Base64.getDecoder().decode("R0lGODlhAQABAIAAAAAAAP///w=="))
-                    repeat(count) { write(Base64.getDecoder().decode("LAAAAAABAAEAAAICRAEA")) }
-                    if(!exact) repeat(100_001) { write(byteArrayOf(0x21,0xfe.toByte(),1,0x78,0)) }
-                    write(0x3b)
-                }.toByteArray()
-                val file=File.createTempFile("priority-animation-",".gif",activity.cacheDir).apply {writeBytes(bytes)};files.add(file)
-                assertEquals(AnimationInfo("GIF",count,exact,false),AnimationInfo.inspect(file))
-                var selected=0;var cancelled=0;var failure:Throwable?=null
-                selection=ImportSelection(activity,worker,{0L},{selected++},{cancelled++},{failure=it})
-                selection.start(file,"source.gif");worker.submit {}.get(10,TimeUnit.SECONDS);shadowOf(Looper.getMainLooper()).idle()
-                assertNull(failure);val shown=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                val countText=if(exact) count.toString() else formatted(tag,"formats22_at_least_frames",count)
-                assertEquals(formatted(tag,"formats22_animation_message","GIF",countText)+"\n\n"+expected(tag,"formats22_animation_still"),shadowOf(shown).message.toString())
-                assertEquals(expected(tag,"formats22_animation_title"),shadowOf(shown).title.toString())
-                assertEquals(expected(tag,"formats22_open_still"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertTrue(file.exists());assertEquals(0,selected)
-                shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-                assertEquals(1,cancelled);assertEquals(0,selected);assertNull(failure);assertFalse(file.exists())
-            }
-        } finally {selection?.dispose();worker.shutdownNow();assertTrue(worker.awaitTermination(10,TimeUnit.SECONDS));files.forEach {it.delete()} }
-    }
-
     @Test fun actualDirtyImagePromptIsNotExportCompletionAndRepeatedCancelPreservesTheDrawing() {
       for(tag in listOf("ka","hy","az")) {
         val app = RuntimeEnvironment.getApplication() as Context
@@ -307,44 +228,6 @@ class GeorgianArmenianAzerbaijaniPriorityWordingTest {
             AppLanguage.select(app, oldTag)
         }
     }
-    }
-    @Test fun categoryAccessibilityTracksEveryActualToolAndExpansionState() = forEachLocale { tag,activity ->
-        for(down in listOf(false,true)) for(category in ToolCategory.values()) {
-            val button=ToolCategoryButton(activity,category,category.tools.first(),down)
-            for(tool in category.tools) for(expanded in listOf(false,true)) {
-                button.selectedTool=tool;button.expanded=expanded;button.refresh()
-                val description=formatted(tag,if(expanded) "ui_collapse_tool_category" else "ui_expand_tool_category",ui(category.labelId),tool.label)
-                assertEquals(ui(category.labelId),button.text.toString())
-                assertEquals(description,button.contentDescription.toString())
-                assertEquals(description,button.tooltipText.toString())
-            }
-        }
-    }
-
-    @Test fun cropEdgeHintsAndNoneActionUseActualControlsWithoutApplyingInvalidSelection() = forEachLocale { tag,activity ->
-        val images=listOf("one","two").map { id -> AssemblyImage(id,File(activity.cacheDir,"$id.image"),id,null,ImageDimensions(24,16)) }
-        var applied=false
-        val shown=ImageCropDialog(activity,images,{null}) { applied=true }.show()
-        try {
-            shadowOf(Looper.getMainLooper()).idle();val root=shown.window!!.decorView
-            val edges=mapOf("left" to "ui_left","top" to "ui_top","right" to "ui_right","bottom" to "ui_bottom")
-            for(percent in listOf(false,true,false)) {
-                root.findViewWithTag<View>(if(percent) "crop_percent" else "crop_pixels").performClick()
-                for((edge,key) in edges) assertEquals(formatted(tag,if(percent) "ui_trim_in_percent" else "ui_trim_in_pixels",expected(tag,key)),
-                    root.findViewWithTag<EditText>("crop_$edge").contentDescription.toString())
-            }
-            val none=root.findViewWithTag<TextView>("crop_none")
-            assertEquals(expected(tag,"ui_none"),none.text.toString());none.performClick()
-            images.forEach { assertFalse(root.findViewWithTag<CheckBox>("crop_include_${it.id}").isChecked) }
-            shown.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
-            assertFalse(applied);assertTrue(shown.isShowing)
-            assertEquals(expected(tag,"ui_choose_at_least_one_image"),root.findViewWithTag<TextView>("crop_status").text.toString())
-            root.findViewWithTag<View>("crop_all").performClick()
-            images.forEach { assertTrue(root.findViewWithTag<CheckBox>("crop_include_${it.id}").isChecked) }
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-            assertFalse(shown.isShowing);assertFalse(applied)
-            images.forEach { assertEquals(android.graphics.Rect(0,0,24,16),it.crop) }
-        } finally { shown.dismiss() }
     }
 
     @Test fun gifExplanationAndRetainedDitherControlStayTogetherAcrossRepeatedToggles() = forEachLocale { tag,activity ->

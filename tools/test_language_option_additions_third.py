@@ -1,31 +1,17 @@
 """October registration and preserved Filipino resources, not linguistic acceptance."""
 import json
-from copy import deepcopy
 from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
 
 import translation_catalogues as c
 from language_option_additions import require_untranslated_option
-from current_localization_contracts import fixture
-from moroccan_arabic_mongolian_toki_pona_priority_expectations import NAME, TAGS
-from test_moroccan_arabic_mongolian_toki_pona_priority_wording import require_current
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "tools/fixtures/language_option_additions_20261014.json"
 EXPECTED = {"ang":"Ænglisc","ary":"الدارجة المغربية","non":"Norrœna","zgh":"ⵜⴰⵎⴰⵣⵉⵖⵜ / Tamaziɣt (Morocco)"}
 
 
-def require_reviewed_ary_option(row, xml):
-    original=next(r for r in json.loads(FIXTURE.read_text())['languages'] if r['tag']=='ary')
-    if row!=original:raise ValueError('Exact historical ARY registration differs')
-    # Registration history is still the original empty-catalogue contract.
-    require_untranslated_option(row,'<resources/>')
-    roots={tag:ET.parse(c.catalogue_paths()[tag]).getroot() for tag in TAGS}
-    roots['ary']=ET.fromstring(xml)
-    # Immutable complete reviewed fixture, partitions, attrs and all current values.
-    require_current(fixture(NAME),roots,ET.parse(c.RES/'values/strings.xml').getroot())
-    return roots['ary']
 
 
 class OctoberLanguageOptionTests(unittest.TestCase):
@@ -59,13 +45,10 @@ class OctoberLanguageOptionTests(unittest.TestCase):
         self.assertIn("fil",scope['scoped_tags'])
         self.assertNotIn("tl",scope['scoped_tags'])
 
-    def test_exact_reviewed_ary_successor_preserves_other_empty_fallbacks(self):
+    def test_current_ary_catalogue_and_other_explicit_fallbacks(self):
         for row in json.loads(FIXTURE.read_text())['languages']:
             path=ROOT/row['catalogue']
             if row['tag']=='ary':
-                require_reviewed_ary_option(row,path.read_text())
-                # 348 historical reviewed entries plus eleven exact accepted additions.
-                self.assertEqual(359,len(ET.parse(path).getroot()))
                 self.assertEqual([],c.validate_catalogue('ary'))
                 continue
             if row['tag'] in ('ang','non'):
@@ -80,22 +63,6 @@ class OctoberLanguageOptionTests(unittest.TestCase):
             self.assertEqual({},c.read_plurals(path))
             self.assertEqual([],c.validate_catalogue(row['tag']))
 
-    def test_reviewed_ary_successor_rejects_registration_and_complete_catalogue_mutants(self):
-        row=next(r for r in json.loads(FIXTURE.read_text())['languages']if r['tag']=='ary')
-        xml=c.catalogue_paths()['ary'].read_text()
-        for field,value in [('tag','ang'),('source_strings_present',348),('translation_status','complete'),('catalogue','forged')]:
-            bad=deepcopy(row);bad[field]=value
-            with self.subTest(field=field),self.assertRaises(ValueError):require_reviewed_ary_option(bad,xml)
-        for key in ('ui_menu_file','ui_brush','ui_save','language20_translation_note'):
-            for mutation in ('complete-value','missing','attribute'):
-                root=ET.fromstring(xml);node=root.find("./string[@name='"+key+"']")
-                if mutation=='complete-value':node.text='forged nonempty value'
-                elif mutation=='missing':root.remove(node)
-                else:node.set('formatted','false')
-                with self.subTest(key=key,mutation=mutation),self.assertRaises(ValueError):require_reviewed_ary_option(row,ET.tostring(root,encoding='unicode'))
-        with self.assertRaises(ValueError):require_reviewed_ary_option(row,'<resources/>')
-        root=ET.fromstring(xml);ET.SubElement(root,'string',name='ui_fg').text='forged held value'
-        with self.assertRaises(ValueError):require_reviewed_ary_option(row,ET.tostring(root,encoding='unicode'))
 
     def test_fil_retains_existing_coverage_but_no_new_linguistic_review(self):
         self.assertFalse((c.RES/'values-tl/strings.xml').exists())

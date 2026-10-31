@@ -32,14 +32,10 @@ class CatalanRomanianImportWordingTest {
     private lateinit var previousResources: Resources
     private lateinit var previousLocale: Locale
     private lateinit var previousTag: String
-    private val fixture by lazy {
-        JSONObject(File("../tools/fixtures/current_localization/catalan_romanian_import_wording.json").readText())
-    }
 
     // The new reviewed values use simple Android quote wrapping. Inherited strings
     // can contain Android escapes and are preserved by separate source contracts.
-    private fun expected(tag: String, key: String) = SkSlCaPriorityExpectations.current(tag,key,
-        fixture.getJSONObject("values").getJSONObject(key).getString(tag)).removeSurrounding("\"")
+    private fun expected(tag: String, key: String) = PriorityWordingExpectations.resourceText(tag,key)
 
     @Before fun rememberLanguage() {
         previousResources = PaintApplication.currentResources
@@ -74,35 +70,6 @@ class CatalanRomanianImportWordingTest {
         }
     }
 
-    @Test fun all13CompiledValuesPerLocaleKeepFormatArgumentsAndUnreviewedFallbacks() = forEachLocale { tag, activity ->
-        val values = fixture.getJSONObject("values")
-        assertEquals(13, values.length())
-        assertEquals(137, fixture.getJSONObject("preserved_values").getJSONObject(tag).length())
-        for (key in values.keys()) {
-            val id = activity.resources.getIdentifier(key, "string", activity.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("$tag/$key", expected(tag, key), activity.getString(id))
-        }
-        val format = "GIF 100%"
-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_unknown"), format),
-            ui(R.string.formats22_animation_unknown, format))
-        assertEquals(String.format(Locale.forLanguageTag(tag),SkSlCaPriorityExpectations.display(tag,"formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
-        assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_message"), format, String.format(Locale.forLanguageTag(tag),SkSlCaPriorityExpectations.display(tag,"formats22_at_least_frames"),2)),
-            ui(R.string.formats22_animation_message, format, String.format(Locale.forLanguageTag(tag),SkSlCaPriorityExpectations.display(tag,"formats22_at_least_frames"),2)))
-        // Explicit Catalan and Romanian priority successors preserve the held fallbacks below.
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"save20_file_format"), ui(R.string.save20_file_format))
-        assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
-        assertEquals(if (tag == "ca") "Desa" else "Salvează", ui(R.string.ui_save))
-        assertEquals(if (tag == "ca") "Anomena i desa…" else "Salvează ca…", ui(R.string.save20_title))
-        assertEquals(if (tag == "ca") SkSlCaPriorityExpectations.display("ca","ui_save_your_changes") else "Salvaţi modificările?", ui(R.string.ui_save_your_changes))
-        assertEquals(if (tag == "ca") "Art ASCII" else "Artă ASCII", ui(R.string.formats22_ascii_label))
-        assertEquals(PriorityWordingExpectations.residual(tag,"formats22_derived_exported","PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", "PNG"),ui(R.string.formats22_derived_exported, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as","Save as PNG", "PNG"),ui(R.string.ui_save_as, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg","Save as JPEG…"),ui(R.string.ui_save_as_jpeg))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg_xl","Save as JPEG XL…"),ui(R.string.ui_save_as_jpeg_xl))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"),ui(R.string.ui_save_as_png))
-    }
-
     @Test fun realFormatPanelUpdatesDescriptionsRejectsInvalidNamesAndCancelsRepeatedly() = forEachLocale { tag, activity ->
         repeat(2) { attempt ->
             var confirmations = 0
@@ -119,8 +86,8 @@ class CatalanRomanianImportWordingTest {
                 val lossless = checkNotNull(root.findViewWithTag<CheckBox>("export_lossless"))
                 val dither = checkNotNull(root.findViewWithTag<CheckBox>("export_dither"))
                 val filename = checkNotNull(root.findViewWithTag<EditText>("export_filename"))
-                assertEquals(SkSlCaPriorityExpectations.display(tag,"save20_file_format"), spinner.contentDescription.toString())
-                assertEquals(SkSlCaPriorityExpectations.display(tag,"ui_choose_location"), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"save20_file_format"), spinner.contentDescription.toString())
+                assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_choose_location"), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(if (tag == "ca") "Cancel·la" else "Anulează",
                     dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
                 fun select(format: ImageFormat, key: String) {

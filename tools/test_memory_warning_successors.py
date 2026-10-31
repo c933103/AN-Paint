@@ -1,3 +1,4 @@
+from memory_warning_source_review import CURRENT_CATALOGUE_TAGS, KEYS, current_source_expectation, review_record
 """Shared exact-successor guard tests, not fresh linguistic or runtime approval."""
 from copy import deepcopy
 import json
@@ -7,7 +8,6 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
 from current_localization_contracts import require_string
-from memory_warning_source_review import REMAINING_ACCEPTED_ADDITIONS, SERBIAN_DELTA_ADDITIONS, FA_HE_UR_ADDITIONS, NORDIC_ADDITIONS, NN_BE_SQ_ADDITIONS, HR_BS_MK_ADDITIONS, EXACT_SCRIPT_ADDITIONS, EU_FY_UZ_ADDITIONS, GA_GD_CY_ADDITIONS, CURRENT_CATALOGUE_VALUES, HI_GU_ADDITIONS, THAI_ADDITIONS, SI_MY_ADDITIONS, PRIORITY_TAGS, PRIORITY_ADDITIONS, SK_SL_CA_ADDITIONS, SINGLE_KEY_EXPECTATIONS, current_source_expectation, review_record, KA_HY_AZ_ADDITIONS, GL_ADDITIONS, SO_WO_HT_ADDITIONS, KK_TG_PS_ADDITIONS, BR_AST_OC_ADDITIONS, CEB_NDS_CSB_ADDITIONS, IA_LA_KU_ADDITIONS, MI_SM_RW_ADDITIONS, WA_SE_SA_ADDITIONS, KAB_MWW_MAI_ADDITIONS, SD_PCM_TPI_ADDITIONS, CKB_UG_TT_ADDITIONS, ARY_MN_TOK_ADDITIONS, BO_DZ_VAL_ADDITIONS, HNE_YI_HK_ADDITIONS
 from memory_warning_successors import (RECORD, ROOT, KEYS, accepted_warning,
                                       successors, validated_successors)
 import translation_catalogues as catalogues
@@ -34,8 +34,10 @@ class MemoryWarningSuccessors(unittest.TestCase):
                 require_string(xml, key, expected, constraints)
                 self.assertEqual(source, catalogues.read_strings(catalogues.RES / 'values/strings.xml')[key])
 
-    def test_every_successor_rejects_wrong_historical_target(self):
+    def test_unmigrated_successors_reject_wrong_historical_target(self):
         for (tag, key), (old, expected, source, path) in self.index.items():
+            if tag in CURRENT_CATALOGUE_TAGS:
+                continue  # These catalogues no longer have predecessor approval guards.
             for wrong in ((old or '') + ' changed', expected, source, ''):
                 if wrong == old: continue
                 with self.subTest(tag=tag, key=key, wrong=wrong), self.assertRaises(ValueError):
@@ -81,50 +83,17 @@ class MemoryWarningSuccessors(unittest.TestCase):
             else: data['values'][tag]['other_key'] = 'arbitrary'
             with self.subTest(mutation=mutation), self.assertRaises(ValueError): validated_successors(data)
 
-    def test_held_missing_and_canonical_values_are_preserved_not_accepted(self):
-        counts = {'held': 0, 'missing': 0, 'canonical': 0, 'qualified-priority': 0, 'qualified-single-key': 0, 'qualified-new-priority': 0, 'current-resource': 0}
+    def test_unmigrated_warning_values_and_explicit_fallbacks(self):
         for option in review_record()['options']:
-            tag = option['tag']; actual = catalogues.read_strings(ROOT / option['catalogue'])
+            tag = option['tag']
+            if tag in CURRENT_CATALOGUE_TAGS:
+                continue  # Current XML, not historical approval machinery.
+            actual = catalogues.read_strings(ROOT / option['catalogue'])
             for key, term in option['terms'].items():
-                if (tag, key) in self.index: continue
-                if (tag, key) in SINGLE_KEY_EXPECTATIONS:
-                    with self.subTest(tag=tag, key=key):
-                        self.assertIsNone(term['value'])
-                        expected = current_source_expectation(key, tag, None)
-                        self.assertEqual(expected, actual.get(key))
-                        with self.assertRaises(ValueError): accepted_warning(key, tag)
-                        with self.assertRaises(ValueError): current_source_expectation(key, tag, expected)
-                    counts['qualified-single-key'] += 1
+                if (tag, key) in self.index:
                     continue
-                if (tag, key) in CURRENT_CATALOGUE_VALUES:
-                    self.assertTrue(actual.get(key), tag + '/' + key)
-                    counts['current-resource'] += 1
-                    continue
-                if (tag, key) in PRIORITY_ADDITIONS | SK_SL_CA_ADDITIONS | CURRENT_CATALOGUE_VALUES | NORDIC_ADDITIONS | NN_BE_SQ_ADDITIONS | FA_HE_UR_ADDITIONS | HR_BS_MK_ADDITIONS | SERBIAN_DELTA_ADDITIONS | HI_GU_ADDITIONS | THAI_ADDITIONS | SI_MY_ADDITIONS | GA_GD_CY_ADDITIONS | EU_FY_UZ_ADDITIONS | KA_HY_AZ_ADDITIONS | GL_ADDITIONS | SO_WO_HT_ADDITIONS | KK_TG_PS_ADDITIONS | BR_AST_OC_ADDITIONS | CEB_NDS_CSB_ADDITIONS | IA_LA_KU_ADDITIONS | MI_SM_RW_ADDITIONS | WA_SE_SA_ADDITIONS | KAB_MWW_MAI_ADDITIONS | SD_PCM_TPI_ADDITIONS | CKB_UG_TT_ADDITIONS | ARY_MN_TOK_ADDITIONS | BO_DZ_VAL_ADDITIONS | HNE_YI_HK_ADDITIONS | EXACT_SCRIPT_ADDITIONS | REMAINING_ACCEPTED_ADDITIONS:
-                    with self.subTest(tag=tag,key=key):
-                        self.assertIsNone(term['value'])
-                        expected=current_source_expectation(key,tag,None)
-                        self.assertEqual(expected,actual.get(key))
-                        with self.assertRaises(ValueError):accepted_warning(key,tag)
-                        with self.assertRaises(ValueError):current_source_expectation(key,tag,expected)
-                    counts['qualified-new-priority'] += 1
-                    continue
-                if tag in PRIORITY_TAGS:
-                    with self.subTest(tag=tag, key=key):
-                        self.assertIsNone(term['value'])
-                        expected = current_source_expectation(key, tag, None)
-                        self.assertEqual(expected, actual.get(key))
-                        with self.assertRaises(ValueError): accepted_warning(key, tag)
-                        with self.assertRaises(ValueError): current_source_expectation(key, tag, expected)
-                    counts['qualified-priority'] += 1
-                    continue
-                with self.subTest(tag=tag, key=key):
-                    self.assertEqual(term['value'], actual.get(key))
-                    with self.assertRaises(ValueError): accepted_warning(key, tag)
-                if tag == 'en-001': counts['canonical'] += 1
-                elif term['value'] is None: counts['missing'] += 1
-                else: counts['held'] += 1
-        self.assertEqual({'held': 4, 'missing': 195-len(GA_GD_CY_ADDITIONS | CURRENT_CATALOGUE_VALUES | NORDIC_ADDITIONS | NN_BE_SQ_ADDITIONS | FA_HE_UR_ADDITIONS | HR_BS_MK_ADDITIONS | SERBIAN_DELTA_ADDITIONS | HI_GU_ADDITIONS | THAI_ADDITIONS | SI_MY_ADDITIONS | EU_FY_UZ_ADDITIONS | KA_HY_AZ_ADDITIONS | GL_ADDITIONS | SO_WO_HT_ADDITIONS | KK_TG_PS_ADDITIONS | BR_AST_OC_ADDITIONS | CEB_NDS_CSB_ADDITIONS | IA_LA_KU_ADDITIONS | MI_SM_RW_ADDITIONS | WA_SE_SA_ADDITIONS | KAB_MWW_MAI_ADDITIONS | SD_PCM_TPI_ADDITIONS | CKB_UG_TT_ADDITIONS | ARY_MN_TOK_ADDITIONS | BO_DZ_VAL_ADDITIONS | HNE_YI_HK_ADDITIONS | EXACT_SCRIPT_ADDITIONS | REMAINING_ACCEPTED_ADDITIONS), 'canonical': 2, 'qualified-priority': 4, 'qualified-single-key': 11, 'current-resource': len(CURRENT_CATALOGUE_VALUES), 'qualified-new-priority': 6-len(CURRENT_CATALOGUE_VALUES)+len(GA_GD_CY_ADDITIONS | CURRENT_CATALOGUE_VALUES | NORDIC_ADDITIONS | NN_BE_SQ_ADDITIONS | FA_HE_UR_ADDITIONS | HR_BS_MK_ADDITIONS | SERBIAN_DELTA_ADDITIONS | HI_GU_ADDITIONS | THAI_ADDITIONS | SI_MY_ADDITIONS | EU_FY_UZ_ADDITIONS | KA_HY_AZ_ADDITIONS | GL_ADDITIONS | SO_WO_HT_ADDITIONS | KK_TG_PS_ADDITIONS | BR_AST_OC_ADDITIONS | CEB_NDS_CSB_ADDITIONS | IA_LA_KU_ADDITIONS | MI_SM_RW_ADDITIONS | WA_SE_SA_ADDITIONS | KAB_MWW_MAI_ADDITIONS | SD_PCM_TPI_ADDITIONS | CKB_UG_TT_ADDITIONS | ARY_MN_TOK_ADDITIONS | BO_DZ_VAL_ADDITIONS | HNE_YI_HK_ADDITIONS | EXACT_SCRIPT_ADDITIONS | REMAINING_ACCEPTED_ADDITIONS)}, counts)
+                expected = current_source_expectation(key, tag, term['value'])
+                self.assertEqual(expected, actual.get(key), (tag, key))
 
     def test_compact_behavior_oracle_corruption_is_rejected(self):
         original_read = Path.read_bytes

@@ -179,6 +179,8 @@ class ExactScriptPriorityWordingTest {
 
     @Test fun dimensionControlsKeepFullCountAndComposedUnitsAcrossUnitAndSizeChanges() = forEachLocale { tag,activity ->
         val controls=DimensionControls(activity,ImageDimensions(40,25),locked=false)
+        assertEquals(activity.getString(R.string.ui_pixels),controls.findViewWithTag<TextView>("size_pixels").text.toString())
+        assertEquals(activity.getString(R.string.ui_percent),controls.findViewWithTag<TextView>("size_percent").text.toString())
         val result=controls.findViewWithTag<TextView>("size_result")
         for(size in listOf(ImageDimensions(1,1),ImageDimensions(2,1),ImageDimensions(40,25),ImageDimensions(2000,1000))) {
             controls.setDimensions(size)
@@ -372,7 +374,6 @@ class ExactScriptPriorityWordingTest {
         } finally {shown.dismiss()}
     }
 
-
     @Test fun compiledCropPluralUsesCompleteReviewedQuantityForOneTwoAndMany() = forEachLocale { tag,activity ->
         val row=row(tag,"ui_crop_preview_images")
         val values=row.getJSONObject("compiled_display")
@@ -465,7 +466,6 @@ class ExactScriptPriorityWordingTest {
             }
         }
     }
-
 
     @Test fun unlockedScalingCanShrinkAndEnlargeAxesIndependentlyAndUndo() {
         fun descendants(view: View): List<View> = listOf(view) + if(view is android.view.ViewGroup)

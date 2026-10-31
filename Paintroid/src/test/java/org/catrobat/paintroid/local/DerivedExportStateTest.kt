@@ -196,7 +196,7 @@ class DerivedExportStateTest {
                 idle()
                 activity.onBackPressed(); idle()
                 val unsaved = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                assertEquals(if (tag == "ca") SkSlCaPriorityExpectations.display("ca","ui_save_your_changes") else "Salvaţi modificările?", shadowOf(unsaved).title.toString())
+                assertEquals(if (tag == "ca") PriorityWordingExpectations.resourceText("ca","ui_save_your_changes") else "Salvaţi modificările?", shadowOf(unsaved).title.toString())
                 assertEquals(if (tag == "ca") "La imatge actual té canvis sense desar."
                     else "Imaginea curentă are modificări nesalvate.", shadowOf(unsaved).message.toString())
                 unsaved.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()

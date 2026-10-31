@@ -1,10 +1,9 @@
-"""Finite Tajik option expectations and reviewed partial/fallback resources."""
+"""Public option identity/roundtrip and bounded partial/fallback resource checks."""
 import json
 from pathlib import Path
 import re
 import unittest
 import xml.etree.ElementTree as E
-from kazakh_tajik_pashto_priority_expectations import bound_fixture, require_edited_resource
 from language_option_additions import SECOND_ADDITIONS_PATH
 from current_localization_contracts import require_residual_or_previous
 import translation_catalogues as catalogues
@@ -18,16 +17,8 @@ class TajikOptionJvmSuccessorTest(unittest.TestCase):
         start=text.index('fun furtherOptionsIncludingPrincipalVarietiesKeepTheirExactIdentityAndFallback()')
         return text[start:text.index('\n    @Test',start)]
 
-    def test_tajik_branch_uses_exact_four_complete_reviewed_displays(self):
-        data=bound_fixture('tg');catalogue=E.parse(ROOT/data['catalogue_path'])
-        section=self.section();branch=re.split(r'} else(?: if \(tag == "[^"]+"\))? \{',section.split('} else if (tag == "tg") {')[1])[0]
-        self.assertEqual(4,branch.count('assertEquals('))
-        for key in KEYS:
-            require_edited_resource('tg',key,catalogue.find("./string[@name='"+key+"']"))
-            expected='assertEquals('+json.dumps(data['values'][key]['display'],ensure_ascii=False)+',wrapped.getString(R.string.'+key+'))'
-            self.assertIn(expected,branch)
 
-    def test_exact_combined_successors_preserve_partial_and_remaining_fallbacks(self):
+    def test_registered_options_preserve_explicit_partial_and_remaining_fallbacks(self):
         rows=json.loads(SECOND_ADDITIONS_PATH.read_text())['languages']
         tags={r['tag'] for r in rows}
         successors={'as','so','wo','ht','tg','mi','sm','sa','pcm','tpi'}

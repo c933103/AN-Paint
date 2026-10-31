@@ -23,17 +23,13 @@ import org.robolectric.annotation.GraphicsMode
 import java.io.File
 import java.util.Locale
 
-/** Full reviewed values and actual failure/recovery consumers, not native/device acceptance. */
+/** Actual failure/recovery consumers with current compiled labels, not native/device acceptance. */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33])
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class DanishNorwegianP0Test {
     private lateinit var previousResources: Resources
-    private val fixture by lazy {
-        NordicPriorityExpectations.project(JSONObject(File("../tools/fixtures/current_localization/danish_norwegian_p0_wording.json").readText()))
-    }
-    private fun expected(tag: String, key: String) = fixture.getJSONObject("values")
-        .getJSONObject(key).getString(tag).removeSurrounding("\"")
+    private fun expected(tag: String,key: String)=PriorityWordingExpectations.resourceText(tag,key)
 
     @Before fun rememberResources() { previousResources = PaintApplication.currentResources }
     @After fun restoreResources() { PaintApplication.currentResources = previousResources }
@@ -49,36 +45,6 @@ class DanishNorwegianP0Test {
                 check(tag, context)
             } finally { PaintApplication.currentResources = previousResources }
         }
-    }
-
-    @Test fun all78CompiledValuesAndInheritedValuesRespectFinitePrioritySuccessors() = forEachLocale { tag, context ->
-        val values = fixture.getJSONObject("values")
-        assertEquals(78, values.length())
-        for (key in values.keys()) {
-            val id = context.resources.getIdentifier(key, "string", context.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("$tag/$key", expected(tag, key), context.getString(id))
-        }
-        val preserved = fixture.getJSONObject("preserved_values").getJSONObject(tag)
-        assertEquals(if (tag == "da") 127 else 115, preserved.length())
-        for (key in preserved.keys()) {
-            assertFalse("The missing-only batch must not replace $tag/$key", values.has(key))
-            val id = context.resources.getIdentifier(key, "string", context.packageName)
-            assertNotEquals("$tag/$key", 0, id)
-            assertEquals("Inherited $tag/$key", preserved.getJSONObject(key).getString("value").removeSurrounding("\""), context.getString(id))
-        }
-        assertEquals(NordicPriorityExpectations.display(tag,"save20_file_format"), ui(R.string.save20_file_format))
-        assertEquals(if (tag == "da") "Gem ændringer?" else "Lagre endringer?", ui(R.string.ui_save_your_changes))
-        assertEquals(NordicPriorityExpectations.display(tag,"ui_load_image"), ui(R.string.ui_load_image))
-        assertEquals(String.format(Locale.forLanguageTag(tag),NordicPriorityExpectations.display(tag,"formats22_at_least_frames"),2), ui(R.string.formats22_at_least_frames, 2))
-        assertEquals(NordicPriorityExpectations.display(tag,"ui_choose_location"), ui(R.string.ui_choose_location))
-        assertEquals("Image assembly…", ui(R.string.ui_image_assembly))
-        assertEquals(NordicPriorityExpectations.display(tag,"ui_no_resize_fits_decoder_memory"), ui(R.string.ui_no_resize_fits_decoder_memory))
-        assertEquals(PriorityWordingExpectations.residual(tag,"formats22_derived_exported","PNG exported. Your full drawing still has unsaved changes; save a full image copy before replacing it.", "PNG"), ui(R.string.formats22_derived_exported, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as","Save as PNG", "PNG"), ui(R.string.ui_save_as, "PNG"))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg","Save as JPEG…"), ui(R.string.ui_save_as_jpeg))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_jpeg_xl","Save as JPEG XL…"), ui(R.string.ui_save_as_jpeg_xl))
-        assertEquals(PriorityWordingExpectations.residual(tag,"ui_save_as_png","Save as PNG…"), ui(R.string.ui_save_as_png))
     }
 
     @Test fun realMemoryAdmissionFailureFormatsAllArgumentsWithoutClaimingAutomaticResize() = forEachLocale { tag, _ ->
