@@ -1,0 +1,12 @@
+ERROR: test_signal_reaps_the_owned_hung_adb_client_without_promotion (test_pull_device_evidence.PullEvidenceTest.test_signal_reaps_the_owned_hung_adb_client_without_promotion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/bbca2890f602/remaining-accepted-final-20261031/tools/test_pull_device_evidence.py", line 195, in test_signal_reaps_the_owned_hung_adb_client_without_promotion
+    client = int(pid_file.read_text())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
+
+----------------------------------------------------------------------
+Ran 2082 tests in 1854.856s
+
+FAILED (errors=1)
