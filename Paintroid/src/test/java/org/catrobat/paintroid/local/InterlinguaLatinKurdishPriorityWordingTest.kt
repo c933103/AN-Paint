@@ -95,24 +95,9 @@ class InterlinguaLatinKurdishPriorityWordingTest {
         PaintApplication.currentResources = previousResources
         Locale.setDefault(previousLocale)
     }
-    private fun forEachLocale(tags: List<String> = listOf("ia","la","ku"), check: (String,Activity)->Unit) {
-        for(tag in tags) {
-            val controller=Robolectric.buildActivity(Activity::class.java)
-            val activity=controller.get();activity.setTheme(R.style.ClassicPaintTheme);controller.setup()
-            try {
-                AppLanguage.select(activity,tag);AppLanguage.refresh(activity)
-                assertEquals(tag,AppLanguage.selectedTag(activity))
-                // ui() must format using the selected resource locale, not the process default.
-                Locale.setDefault(Locale.US)
-                check(tag,activity)
-            } finally {
-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
-                AppLanguage.select(activity,previousTag);AppLanguage.refresh(activity)
-                controller.pause().stop().destroy()
-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
-            }
-        }
-    }
+    private fun forEachLocale(tags: List<String> = listOf("ia","la","ku"), check: (String,Activity)->Unit) =
+        PriorityWordingExpectations.forEachLocale(
+            tags, previousResources, previousLocale, previousTag, check)
 
     @Test fun everyReviewedInterlinguaLatinKurdishCompiledValueKeepsCompleteUnicodeNewlinesAndPercentArguments() = forEachLocale { tag,activity ->
         val locale=fixture.getJSONObject(tag)

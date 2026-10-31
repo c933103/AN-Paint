@@ -1,5 +1,6 @@
 """Bounded current expectations; complete original evidence stays on its immutable ref."""
 from current_localization_contracts import fixture, RESIDUAL_KEYS, require_residual_or_previous
+import priority_cohort_checks as _cohort_checks
 
 NAME='hausa_igbo_lingala_priority_wording.json'
 TAGS=frozenset({'ha','ig','ln'})
@@ -9,16 +10,7 @@ SVG_ADDITIONS=frozenset((tag,key) for tag in TAGS for key in ('commons_svg_origi
 
 
 def current_row(tag,key):
-    data=fixture(NAME)
-    if tag not in TAGS:raise ValueError('Outside exact reviewed locale set')
-    locale=data['locales'][tag];source=data['sources'][key]
-    if key not in locale['accepted']:raise ValueError('No accepted complete value')
-    previous=locale['predecessors'].get(key)
-    return {'source':source['source'],'target':locale['accepted'][key],
-            'attributes':locale['target_attribute_exceptions'].get(key,{'name':key}),
-            'previous_target':previous['target'] if previous else None,
-            'previous_attributes':previous['attributes'] if previous else None,
-            'changed':key in locale['changed'],'type':source['type']}
+    return _cohort_checks.current_row(tag, key, NAME, TAGS, fixture)
 
 
 def display(tag,key):
