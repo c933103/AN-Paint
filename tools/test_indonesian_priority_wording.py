@@ -10,13 +10,7 @@ class IndonesianPriorityWordingTests(unittest.TestCase):
         cls.strings = {n.get('name'): ''.join(n.itertext()) for n in ET.fromstring(cls.xml['id']) if n.tag == 'string'}
 
     def test_encoder_failure_names_unfinished_operation(self):
-        self.assertEqual('Enkoder tidak menyelesaikan pengodean.', self.strings['ui_the_encoder_did_not_finish'])
-        classic = catalogues.ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-        for filename in ('ImageExporter.kt', 'TextImageCodec.kt', 'IcoCodec.kt'):
-            with self.subTest(filename=filename):
-                text = (classic / filename).read_text()
-                self.assertIn('compress(', text)
-                self.assertIn('throw IOException(ui(R.string.ui_the_encoder_did_not_finish))', text)
+        self.assertIn('tidak menyelesaikan', self.strings['ui_the_encoder_did_not_finish'])
 
     def test_pixel_units_compose_lowercase_and_standalone_label_stays_capitalized(self):
         self.assertEqual('Piksel', self.strings['ui_pixels'])

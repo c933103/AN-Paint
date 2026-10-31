@@ -124,17 +124,4 @@ class BrazilianPortuguesePriorityWordingTest {
         }
     }
 
-    @Test fun completeRecoveryFallbackAndGestureMessagesSurviveResourceCompilation() {
-        assertEquals("Arquivo", ui(R.string.ui_menu_file))
-        assertEquals("Abrir imagem…", ui(R.string.ui_load_image))
-        assertEquals("Cópia de recuperação exportada. Extraia canvas.png do ZIP e abra essa imagem com " +
-            "Arquivo > Abrir imagem. O ZIP também contém as configurações do rascunho e qualquer seleção flutuante.",
-            ui(R.string.ui_recovery_copy_exported_extract_canvas_png_from_the))
-        assertEquals("Idioma do aplicativo\n\nAs traduções são mantidas nos recursos de idioma do AN Paint. " +
-            "Textos novos ou não traduzidos aparecem em inglês.", ui(R.string.language20_translation_note))
-        assertEquals("Tela de desenho. Afaste dois dedos para ampliar e aproxime-os para reduzir o zoom. " +
-            "Arraste os dois dedos juntos para deslocar a visualização. " +
-            "No modo Navegar, também é possível deslocar a visualização com um dedo.",
-            ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to))
-    }
 }

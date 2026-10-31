@@ -60,38 +60,30 @@ class AppLanguageTest {
                 assertEquals("Berkas",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Kuas",wrapped.getString(R.string.ui_brush))
                 assertEquals("Simpen",wrapped.getString(R.string.ui_save))
-                assertEquals("Basa aplikasi\n\nTarjamahan dirawat dina sumber daya basa AN Paint. Téks anyar atawa anu can ditarjamahkeun némbongan dina basa Inggris.",wrapped.getString(R.string.language20_translation_note))
             } else if (tag == "ha") {
                 assertEquals("Fayil",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Goga",wrapped.getString(R.string.ui_brush))
                 assertEquals("Ajiye",wrapped.getString(R.string.ui_save))
-                assertEquals("Harshen manhaja\n\nAna kula da fassarori a kayan harsunan AN Paint. Sabon rubutu ko wanda ba a fassara ba yana bayyana da Turanci.",wrapped.getString(R.string.language20_translation_note))
             } else if (tag == "ig") {
                 assertEquals("Faịlụ",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brọsh agba",wrapped.getString(R.string.ui_brush))
                 assertEquals("Chekwaa",wrapped.getString(R.string.ui_save))
-                assertEquals("Asụsụ ngwa\n\nA na-elekọta ntụgharị asụsụ n’ihe asụsụ AN Paint. Ederede ọhụrụ ma ọ bụ a na-atụgharịghị na-apụta na Bekee.",wrapped.getString(R.string.language20_translation_note))
             } else if (tag == "ln") {
                 assertEquals("Fisyé",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Pɛnsɔ",wrapped.getString(R.string.ui_brush))
                 assertEquals("Bomba",wrapped.getString(R.string.ui_save))
-                assertEquals("Lokótá ya appli\n\nBabongolaka makomi na ba ressources ya minɔkɔ ya AN Paint. Makomi ya sika to oyo ebongolami naino te emonanaka na Lingɛlɛ́sa.",wrapped.getString(R.string.language20_translation_note))
             } else if (tag == "yo") {
                 assertEquals("Fáìlì",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Fẹ́lẹ́",wrapped.getString(R.string.ui_brush))
                 assertEquals("Fipamọ́",wrapped.getString(R.string.ui_save))
-                assertEquals("Èdè ápù\n\nA ń tọ́jú àwọn ìtumọ̀ nínú àwọn ohun àmúlò èdè AN Paint. Ọ̀rọ̀ tuntun tàbí tí a kò tíì túmọ̀ máa ń hàn ní Gẹ̀ẹ́sì.",wrapped.getString(R.string.language20_translation_note))
             } else if (tag == "zu") {
                 assertEquals("Ifayela",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Ibhulashi",wrapped.getString(R.string.ui_brush))
                 assertEquals("Londoloza",wrapped.getString(R.string.ui_save))
-                assertEquals("Ulimi lwe-app\n\nUkuhumusha kugcinwa ezinsizeni zolimi ze-AN Paint. Umbhalo omusha noma ongakahunyushwa uvela ngesiNgisi.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
                 assertEquals("Save",wrapped.getString(R.string.ui_save))
-                assertTrue(wrapped.getString(R.string.language20_translation_note)
-                    .contains("New or untranslated text appears in English."))
             }
             if(android.os.Build.VERSION.SDK_INT>=33) {
                 val manager=context.getSystemService(LocaleManager::class.java)!!
@@ -155,24 +147,18 @@ class AppLanguageTest {
                 assertEquals("ملف",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("فرشاة",wrapped.getString(R.string.ui_brush))
                 assertEquals("حفظ",wrapped.getString(R.string.ui_save))
-                assertEquals("لغة التطبيق\n\nالترجمات كتتراجع وتتحدّث فموارد اللغات ديال AN Paint. النص الجديد ولا اللي ما تترجمش كيبان بالإنجليزية.",
-                    wrapped.getString(R.string.language20_translation_note))
             } else if(tag=="ang") {
                 assertEquals("Gewrit",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
                 assertEquals("Healdan",wrapped.getString(R.string.ui_save))
-                assertEquals("Weorctoles gereord\n\nAwendinga sind gehealdene on AN Paint-gereordgewritum. Niwe oþþe unawend gewrit biþ on Engliscum gereorde ætywed.",wrapped.getString(R.string.language20_translation_note))
             } else if(tag=="non") {
                 assertEquals("Rit",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Bursti",wrapped.getString(R.string.ui_brush))
                 assertEquals("Varðveita",wrapped.getString(R.string.ui_save))
-                assertEquals("Mál verkfæris\n\nÞýðingar eru varðveittar í málritum AN Paint. Nýtt eða óþýtt rit birtisk á ensku.",wrapped.getString(R.string.language20_translation_note))
             } else {
                 assertEquals("File",wrapped.getString(R.string.ui_menu_file))
                 assertEquals("Brush",wrapped.getString(R.string.ui_brush))
                 assertEquals("Save",wrapped.getString(R.string.ui_save))
-                assertTrue(wrapped.getString(R.string.language20_translation_note)
-                    .contains("New or untranslated text appears in English."))
             }
             if(android.os.Build.VERSION.SDK_INT>=33)
                 assertEquals(tag,context.getSystemService(LocaleManager::class.java)!!

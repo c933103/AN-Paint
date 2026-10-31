@@ -17,10 +17,9 @@ class KoreanPriorityWordingTests(unittest.TestCase):
 
     def test_export_guidance_binds_actual_save_and_save_as_commands(self):
         s = self.strings
-        self.assertEqual('저장', s['ui_save'])
-        self.assertEqual('다른 이름으로 저장…', s['save20_title'])
-        self.assertEqual('내보내기가 완료되었습니다. 계속하기 전에 ' + s['ui_save'] + ' 또는 ' +
-                         s['save20_title'].removesuffix('…') + '을 사용해 현재 이미지를 저장하세요.', s['ui_export_did_not_save23'])
+        warning = s['ui_export_did_not_save23']
+        self.assertIn(s['ui_save'], warning)
+        self.assertIn(s['save20_title'].removesuffix('…') + '을', warning)
 
     def test_foreground_and_background_labels_keep_their_roles(self):
         self.assertEqual(('전경색', '배경색'), tuple(self.strings[k] for k in ('ui_foreground_colour', 'ui_background_colour')))

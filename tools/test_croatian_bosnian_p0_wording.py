@@ -1,9 +1,6 @@
 """Current action, format, script and numeric-locale regressions; approval history is archived."""
-import re
 import unittest
-import translation_catalogues as catalogues
 from current_localization_contracts import current_display
-
 
 KEYS = frozenset({
     'formats22_animation_message', 'formats22_animation_poster', 'formats22_animation_still',
@@ -71,20 +68,11 @@ class CroatianBosnianP0Tests(unittest.TestCase):
                 self.assertFalse(value(key).endswith(('.', ':', '…')))
             for key in KEYS:self.assertNotRegex(value(key), r'[\u0400-\u04ff]')
 
-    def test_numeric_locale_caption_table_covers_entire_runtime_loop(self):
-        source = (catalogues.ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt').read_text()
-        tags = re.findall(r'"([A-Za-z0-9-]+)"', source.split('private val tags=listOf(',1)[1].split(')',1)[0])
-        table = source.split('val captions=mapOf(',1)[1].split('for(tag in tags)',1)[0]
-        captions = re.findall(r'"([A-Za-z0-9-]+)"\s+to\s+\(',table)
-        self.assertEqual(len(captions),len(set(captions)));self.assertEqual(set(tags),set(captions))
-        self.assertTrue({'hr','bs'} <= set(tags))
-
     def test_dither_description_names_the_actual_operation_not_blurring(self):
         for tag, operation in (('hr', 'Dithering'), ('bs', 'Miješanje boja')):
             self.assertIn(operation.lower(), current_display(tag, 'save20_dither').lower())
             self.assertIn(operation.lower(), current_display(tag, 'save20_gif_description').lower())
         self.assertNotIn('Zamućivanje', current_display('hr', 'save20_gif_description'))
-
 
 if __name__ == '__main__':
     unittest.main()

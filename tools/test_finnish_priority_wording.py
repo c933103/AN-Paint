@@ -10,13 +10,8 @@ class FinnishPriorityWordingTests(unittest.TestCase):
         cls.strings = {n.get('name'): ''.join(n.itertext()) for n in ET.fromstring(cls.xml['fi']) if n.tag == 'string'}
 
     def test_encoder_failure_names_unfinished_operation(self):
-        self.assertEqual('Kooderi ei suorittanut koodausta loppuun.', self.strings['ui_the_encoder_did_not_finish'])
-        classic = catalogues.ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-        for filename in ('ImageExporter.kt', 'TextImageCodec.kt', 'IcoCodec.kt'):
-            with self.subTest(filename=filename):
-                text = (classic / filename).read_text()
-                self.assertIn('compress(', text)
-                self.assertIn('throw IOException(ui(R.string.ui_the_encoder_did_not_finish))', text)
+        self.assertIn('ei suorittanut', self.strings['ui_the_encoder_did_not_finish'])
+        self.assertIn('loppuun', self.strings['ui_the_encoder_did_not_finish'])
 
     def test_unit_compositions_and_standalone_labels(self):
         self.assertEqual(('Pikselit', 'Prosentti'), (self.strings['ui_pixels'], self.strings['ui_percent']))

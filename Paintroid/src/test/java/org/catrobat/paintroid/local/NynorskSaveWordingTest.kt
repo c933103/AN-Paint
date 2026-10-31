@@ -49,23 +49,6 @@ class NynorskSaveWordingTest {
         Locale.setDefault(beforeLocale)
     }
 
-    @Test fun allEightCompleteCompiledValuesPreserveTheFilenameArgumentAndActionNames() {
-        assertEquals("Vil du lagra endringane?", ui(R.string.ui_save_your_changes))
-        assertEquals("Biletet du arbeider med, har endringar som ikkje er lagra.", ui(R.string.ui_your_current_image_has_unsaved_changes))
-        assertEquals("Eksportfila er oppretta. Bruk «Lagra» eller «Lagra som…» til å lagra biletet du arbeider med, før du held fram.", ui(R.string.ui_export_did_not_save23))
-        assertEquals("Kunne ikkje lagra biletet", ui(R.string.ui_could_not_save_image))
-        assertEquals("teikning 100%.png er lagra", ui(R.string.ui_saved, "teikning 100%.png"))
-        assertEquals(export, ui(R.string.ui_export_explanation23))
-        assertEquals(save, ui(R.string.ui_save_explanation23))
-        assertEquals(share, ui(R.string.ui_share_explanation34))
-        assertEquals("Lagra", ui(R.string.ui_save))
-        assertEquals("Lagra", ui(R.string.ui_save_a5d0d9))
-        assertEquals("Lagra som…", ui(R.string.save20_title))
-        assertEquals("Eksporter som…", ui(R.string.ui_export_as23))
-        // This neighbor now has its own bounded P0 review; unrelated fallback stays explicit.
-        assertEquals("Lagra og del", ui(R.string.ui_save_and_share_41edb4))
-    }
-
     @Test fun actualSaveExportAndSharePanelsShowDistinctWholeMessagesAndCancelWithoutSaving() {
         val controller = Robolectric.buildActivity(Activity::class.java)
         controller.get().setTheme(R.style.ClassicPaintTheme)

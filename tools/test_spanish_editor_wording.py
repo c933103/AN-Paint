@@ -1,13 +1,6 @@
 """Current resource semantics; historical approval snapshots are not active text freezes."""
-import re
 import unittest
-import xml.etree.ElementTree as ET
 import translation_catalogues as catalogues
-
-
-from current_localization_contracts import current_display
-from test_danish_norwegian_p0_wording import full_format_tokens
-
 
 MEMORY = "ui_d_d_pixels_2f_mp_exceeds_the_current"
 CANVAS = "ui_drawing_canvas_pinch_and_move_two_fingers_to"
@@ -20,18 +13,11 @@ class SpanishEditorWordingTests(unittest.TestCase):
         cls.xml = {'es-ES': path.read_text()}
         cls.strings = {'es-ES': catalogues.read_strings(path)}
 
-    def test_memory_warning_preserves_every_safety_clause(self):
+    def test_memory_warning_does_not_claim_automatic_resize(self):
         value = self.strings['es-ES'][MEMORY]
-        self.assertTrue(value.startswith('Una imagen de %1$d × %2$d px (%3$.2f MP) supera '))
-        clauses = (
-            'el límite seguro de edición actual de %4$.2f MP.',
-            'AN Paint mantiene la imagen completa en memoria y reserva espacio para transformaciones y selecciones.',
-            'La memoria disponible determina este límite.',
-            'La operación se detuvo antes de asignar el mapa de bits sobredimensionado.',
-            'No se aplicó ningún cambio de tamaño automático.',
-        )
-        for clause in clauses:
-            self.assertIn(clause, value)
+        self.assertIn('memoria', value)
+        self.assertIn('No se aplicó', value)
+        self.assertIn('automático', value)
 
     def test_feminine_and_masculine_tool_names_have_an_explicit_grammatical_head(self):
         strings = self.strings['es-ES']
@@ -48,19 +34,13 @@ class SpanishEditorWordingTests(unittest.TestCase):
                         f'Pincel. Herramienta seleccionada: {tool_name}. {action} herramientas y opciones',
                         composed)
 
-    def test_image_list_gender_and_bidirectional_zoom_keep_navigation_instruction(self):
+    def test_image_list_choices_keep_feminine_agreement(self):
         strings = self.strings['es-ES']
         self.assertEqual(('Todas', 'Ninguna'), (strings['ui_all'], strings['ui_none']))
-        self.assertEqual(
-            'Lienzo de dibujo. Pellizca y mueve dos dedos para hacer zoom y desplazar. '
-            'El modo Navegar también permite desplazar con un dedo.', strings[CANVAS])
 
     def test_save_alias_and_distinct_unsaved_change_choices_are_preserved(self):
         strings = self.strings['es-ES']
         self.assertEqual('@string/ui_save', strings['ui_save_a5d0d9'])
-        self.assertEqual('Guardar', strings['ui_save'])
-        self.assertEqual('Descartar cambios', strings['ui_discard_changes23'])
-        self.assertEqual('Seguir editando', strings['ui_keep_editing23'])
         self.assertEqual(3, len({strings[key] for key in
                                 ('ui_save', 'ui_discard_changes23', 'ui_keep_editing23')}))
 

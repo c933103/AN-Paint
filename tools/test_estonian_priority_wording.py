@@ -25,11 +25,6 @@ class EstonianPriorityWordingTests(unittest.TestCase):
         classic = catalogues.ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
         activity = (classic / 'ClassicPaintActivity.kt').read_text()
         self.assertIn('ui(R.string.ui_export_did_not_save23)', activity)
-        self.assertIn('text = ui(R.string.language20_translation_note)', (classic / 'AppLanguage.kt').read_text())
-        self.assertIn('ui(R.string.ui_d_d_px_d_pixels_2f_mp, width, height, pixels, pixels / 1_000_000.0)', (classic / 'ImageImport.kt').read_text())
-        dimensions = (classic / 'DimensionControls.kt').read_text()
-        for dimension in ('width', 'height'):
-            self.assertIn(f'{dimension}Input.contentDescription = ui(R.string.ui_{dimension}_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))', dimensions)
 
     def test_save_alias_and_foreground_background_roles_stay_distinct(self):
         self.assertEqual('@string/ui_save', self.strings['ui_save_a5d0d9'])

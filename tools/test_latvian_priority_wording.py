@@ -9,16 +9,6 @@ class LatvianPriorityWordingTests(unittest.TestCase):
         cls.xml = {tag: (catalogues.RES / path / 'strings.xml').read_text() for tag, path in [('default', 'values'), ('lv', 'values-b+lv')]}
         cls.strings = {n.get('name'): ''.join(n.itertext()) for n in ET.fromstring(cls.xml['lv']) if n.tag == 'string'}
 
-    def test_consumer_shapes_keep_selected_names_and_argument_contracts(self):
-        classic = catalogues.ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-        self.assertIn('text = ui(R.string.language20_translation_note)', (classic / 'AppLanguage.kt').read_text())
-        self.assertIn('ui(R.string.ui_d_d_px_d_pixels_2f_mp, width, height, pixels, pixels / 1_000_000.0)', (classic / 'ImageImport.kt').read_text())
-        dimensions = (classic / 'DimensionControls.kt').read_text()
-        for dimension in ('width', 'height'):
-            self.assertIn(f'{dimension}Input.contentDescription = ui(R.string.ui_{dimension}_in, if (percent) ui(R.string.ui_percent_fd8671) else ui(R.string.ui_pixels_6ec9c2))', dimensions)
-        self.assertIn('ui(category.labelId),selectedTool.label)', (classic / 'ToolCategoryButton.kt').read_text())
-        self.assertIn('ui(R.string.formats22_animation_message,info.format,frames)', (classic / 'ImportSelection.kt').read_text())
-
     def test_complete_category_sentences_support_both_tool_genders(self):
         for category, tool, expected_prefix in [('Zīmēšana', 'Zīmulis', 'Zīmēšana. Atlasītais rīks: Zīmulis.'), ('Zīmēšana', 'Ota', 'Zīmēšana. Atlasītais rīks: Ota.'), ('Atlase', 'Brīvformas atlase', 'Atlase. Atlasītais rīks: Brīvformas atlase.')]:
             for key, action in [('ui_expand_tool_category', 'Izvērst'), ('ui_collapse_tool_category', 'Sakļaut')]:

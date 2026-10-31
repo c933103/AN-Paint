@@ -299,3 +299,63 @@ count because SDK variants can execute a method more than once. Across touched
 Kotlin files, 115 of 123 retained method bodies are byte-identical; eight change
 current-resource binding or retire copied mirrors, and all retained setup/teardown
 bodies are unchanged. Actual hosted results remain required for qualification.
+
+## Residual sufficiency correction
+
+The earlier "final mapped" description was too broad as a sufficiency claim.
+Retiring whole catalogues and JSON approval packets did not remove smaller copied
+sentences, source-spelling assertions or every repeated locale consumer. The
+measured byte reductions remain valid; they do not prove that every remaining
+test is justified or that routine verification is proportionate.
+
+A subsequent current-source audit found full recovery/language-note comparisons
+in Greek, Portuguese and Dutch host tests and in several compiled locale tests.
+These are approval copies even without JSON. It also found repeated consumer
+bodies in the Latin-Sinitic and other priority classes. The residual correction
+retires copied prose and source-spelling guards only where actual behavior is
+already covered, preserves independent semantic/grammar/format/script/legal
+constraints and retains any source binding whose runtime replacement is not
+established. Whole sentences must not merely become near-complete clause tables.
+
+The Latin-Sinitic consumer class repeats the stronger ExactScript representative:
+real category accessibility, dimension controls, crop, animation cancellation,
+memory admission, draft preservation, dither, canvas/editor state and scaling.
+Distinct POJ glyph/raster, native script/layout, selection routing and fixed
+format boundaries remain elsewhere. Equivalent method text is not by itself
+proof: locale loops, memory budgets, focus and teardown must be checked. Three
+Belarusian duplicates map to existing ExactScript or Italian/Greek consumers.
+The initial exact-body subset of 17 executions totaled only 4.7 seconds in the
+already-produced actual-develop artifact; maintenance reduction is the principal
+claim, not a large pipeline speedup.
+
+PR256's dormant Czech manual host test owns direct-entry, paragraph-escape and
+navigation/safety wording checks. Its per-edit JVM method retires entirely:
+ordinary AAPT compiles the resource and the existing all-offered public
+select/wrap test covers Czech routing. This dormant key has no distinct runtime
+consumer or new formatter path needing another Activity-backed wording case.
+PR257 added only two resources, no test/helper/fixture package. Both used a single
+automatic ready-triggered Codex review. These demonstrate better recurrence
+control, not proof that all future wording changes require new test cases.
+
+### Remaining pipeline cost — audit only
+
+The workflow still runs all jobs for resource-only pull requests and again on
+`develop` pushes, with separate concurrency groups. PR256's existing observations
+were 42m04s for the PR run and 22m19s for the subsequent push (combined elapsed
+observations, not CPU time or a controlled benchmark). Avoiding equivalent-source
+rebuilds needs a separate plan for exact tree/parents, required-check applicability,
+trusted artifact/source identity and genuinely changed combined sources. This
+correction does not change workflow triggers, gates, caching or release policy.
+
+The default suite also includes `AdvancedColourLayoutDiagnosticTest`, which
+records screenshots/geometry explicitly without fit acceptance; its prior actual
+case-time sum was 18.808 seconds. Existing positive viewport/device regressions
+must be distinguished from that diagnostic before changing its default execution.
+Heavier actual UI/state/layout tests are not automatically redundant because
+translation work originally motivated them. These remaining cost questions are
+not claimed solved by the residual source cleanup, and no new benchmark suite or
+replacement audit framework is introduced.
+
+Residual source inventory: host discovery 1,019 → 1,014 with zero import errors;
+declared JVM test methods 1,113 → 1,093. These are declarations/discovery, not
+hosted execution counts or a speedup prediction. No production wording changes.

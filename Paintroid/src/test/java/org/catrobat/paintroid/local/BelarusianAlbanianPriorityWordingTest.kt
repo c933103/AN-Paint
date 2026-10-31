@@ -108,23 +108,6 @@ class BelarusianAlbanianPriorityWordingTest {
         } finally {dialog.dismiss()}
     }
 
-    @Test fun nativeWorkingMemoryFloorKeepsCancelAndRejectsAnImpossibleCopy() = forEachLocale { tag,activity ->
-        val mib=1024L*1024
-        val policy=ImageMemoryPolicy.calculate(256*mib,0,0,0,false)
-        var accepted=false;var cancelled=0
-        val shown=ImageResizeDialog(activity,ImageDimensions(2000,1000),0,{policy},
-            resize={accepted=true},cancel={cancelled++},memoryRequirements=ImportMemoryRequirements(1024*mib)).show()
-        try {
-            shadowOf(Looper.getMainLooper()).idle();val root=shown.window!!.decorView
-            assertTrue(root.findViewWithTag<TextView>("resize_estimate").text.toString().contains(expected(tag,"ui_no_resize_fits_decoder_memory")))
-            assertEquals(expected(tag,"ui_codec_resize_memory_floor"),root.findViewWithTag<TextView>("resize_explanation").text.toString())
-            assertFalse(shown.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
-            assertEquals(expected(tag,"ui_resize_and_load"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-            assertFalse(accepted);assertEquals(1,cancelled)
-        } finally {shown.dismiss()}
-    }
-
     @Test fun zeroBudgetRejectsSingleAndManyPixelsBeforeAllocation() = forEachLocale { tag,_ ->
         val mib=1024L*1024
         val policy=ImageMemoryPolicy.calculate(256*mib,0,96*mib,0,false)
@@ -133,40 +116,6 @@ class BelarusianAlbanianPriorityWordingTest {
             val error=assertThrows(ImageSizeException::class.java) {policy.check(size.width,size.height)}
             assertEquals(formatted(tag,"ui_d_d_pixels_2f_mp_exceeds_the_current",size.width,size.height,size.pixels/1_000_000.0,0.0),error.message)
         }
-    }
-    @Test fun gifDescriptionAndCheckboxProduceTheSelectedDitherRequest() = forEachLocale { tag,activity ->
-        for(enabled in listOf(false,true,false)) {
-            var request: SaveRequest?=null;var canceled=false
-            val dialog=SaveOptionsDialog(activity,ExportOptions(ImageFormat.GIF,dither=!enabled),
-                confirm={request=it},cancel={canceled=true},initialFilename="fixture.gif").show()
-            try {
-                idle();val root=dialog.window!!.decorView
-                val checkbox=root.findViewWithTag<CheckBox>("export_dither")
-                assertEquals(View.VISIBLE,checkbox.visibility);assertEquals(expected(tag,"save20_dither"),checkbox.text.toString())
-                assertEquals(expected(tag,"save20_gif_description"),root.findViewWithTag<TextView>("export_description").text.toString())
-                assertEquals(!enabled,checkbox.isChecked);checkbox.performClick();assertEquals(enabled,checkbox.isChecked)
-                dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
-                assertEquals(ImageFormat.GIF,request!!.options.format);assertEquals(enabled,request!!.options.dither)
-                assertEquals("fixture.gif",request!!.fileName);assertFalse(canceled);assertFalse(dialog.isShowing)
-            } finally {dialog.dismiss()}
-        }
-    }
-
-    @Test fun completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup() = forEachLocale { tag,activity ->
-        val folder=File(activity.cacheDir,"$tag-destination-${System.nanoTime()}").apply {mkdirs()}
-        val bytes=Base64.getDecoder().decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j4Z0AAAAASUVORK5CYII=")
-        val encoded="data:image/png;base64,"+Base64.getEncoder().encodeToString(bytes)
-        val input=File(folder,"input.txt").apply {writeText(encoded)}
-        val blocked=File(folder,"destination.png").apply {mkdirs()}
-        val sentinel=File(blocked,"keep.txt").apply {writeText("existing destination")}
-        try {
-            val error=assertThrows(IOException::class.java) {TextImageCodec.decodeToFile(input,blocked,4096)}
-            assertEquals(expected(tag,"save20_destination_error"),error.message)
-            assertEquals("existing destination",sentinel.readText());assertEquals(encoded,input.readText())
-            assertEquals(setOf("input.txt","destination.png"),folder.listFiles()!!.map {it.name}.toSet())
-            val completed=File(folder,"completed.png");TextImageCodec.decodeToFile(input,completed,4096)
-            assertArrayEquals(bytes,completed.readBytes());assertEquals(encoded,input.readText())
-        } finally {folder.deleteRecursively()}
     }
 
     @Test fun canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge() {
