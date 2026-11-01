@@ -1,9 +1,7 @@
 """Current action, format, script and numeric-locale regressions; approval history is archived."""
-import re
 import unittest
 import translation_catalogues as catalogues
 from current_localization_contracts import current_display
-
 
 KEYS = frozenset({
     'formats22_animation_message', 'formats22_animation_poster', 'formats22_animation_still',
@@ -77,27 +75,11 @@ class SerbianP0Tests(unittest.TestCase):
                 if tag == 'sr-Latn':self.assertNotRegex(value(key), r'[\u0400-\u04ff]')
                 else:self.assertRegex(value(key), r'[\u0400-\u04ff]')
 
-    def test_numeric_locale_caption_table_covers_the_entire_runtime_loop(self):
-        source = (catalogues.ROOT / 'Paintroid/src/test/java/org/catrobat/paintroid/local/NumericDisplayLocaleTest.kt').read_text()
-        loop = source.split('private val tags=listOf(', 1)[1].split(')', 1)[0]
-        tags = re.findall(r'"([^"\n]+)"', loop)
-        table = source.split('val captions=mapOf(', 1)[1].split('for(tag in tags)', 1)[0]
-        caption_tags = re.findall(r'"([A-Za-z0-9-]+)"\s+to\s+\(', table)
-        self.assertEqual(len(tags), len(set(tags)))
-        self.assertEqual(len(caption_tags), len(set(caption_tags)))
-        self.assertEqual(set(tags), set(caption_tags))
-        for tag in ('sr-Cyrl', 'sr-Latn'):
-            expected = ('"' + tag + '" to ("Current safe editing budget: 25,7 MiB · up to 2,25 MP before decoder overhead" to')
-            self.assertIn(expected, table)
-        # The unchanged P1 text falls back to English, but numeric formatting uses Serbian.
-        self.assertIn('Current safe editing budget: 17,2 MiB · up to 1,50 MP before decoder overhead', table)
-
     def test_format_selection_label_is_distinct_from_filename(self):
         for tag in ('sr-Cyrl', 'sr-Latn'):
             self.assertNotEqual(current_display(tag, 'save20_file_name'),
                                 current_display(tag, 'save20_file_format'))
         self.assertEqual('Format slike', current_display('sr-Latn', 'save20_file_format'))
-
 
 if __name__ == '__main__':
     unittest.main()

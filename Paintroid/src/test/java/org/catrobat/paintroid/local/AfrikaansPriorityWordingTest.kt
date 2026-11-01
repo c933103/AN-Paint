@@ -78,11 +78,11 @@ class AfrikaansPriorityWordingTest {
             val shown = AppLanguage.showPicker(activity) { }
             dialog = shown
             shadowOf(Looper.getMainLooper()).idle()
-            val expected = "App-taal\n\nVertalings word in AN Paint se taalhulpbronne onderhou. Nuwe of onvertaalde teks verskyn in Engels."
+            val expected = afrikaans.getString(R.string.language20_translation_note)
             val all = textViews(shown.window!!.decorView).map { it.text.toString() }
             assertTrue(all.contains(expected))
             assertFalse(all.any { it.contains("bevat al AN Paint se") })
-            assertEquals("Kanselleer", shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
+            assertEquals(afrikaans.getString(R.string.ui_cancel), shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
             shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
             shadowOf(Looper.getMainLooper()).idle()
             assertFalse(shown.isShowing)
@@ -141,9 +141,8 @@ class AfrikaansPriorityWordingTest {
     @Test fun compiledSharingWarningPreservesCompletedSaveAndErrorArgument() {
         // Resource-format contract only; this does not exercise an Android share provider.
         val detail = "provider detail: % / ’"
-        assertEquals("Die beeld is gestoor, maar Android kon nie die deelopsies oopmaak nie: " + detail,
+        assertEquals(String.format(Locale.forLanguageTag("af"), afrikaans.getString(R.string.ui_the_image_was_saved_but_android_could_not), detail),
             afrikaans.getString(R.string.ui_the_image_was_saved_but_android_could_not, detail))
-        assertEquals("Deel gestoorde beeld", afrikaans.getString(R.string.ui_share_saved_image))
     }
 
     @Test fun failedPngAndDerivedEncodersReportIncompleteEncodingAndKeepSourcePixels() {

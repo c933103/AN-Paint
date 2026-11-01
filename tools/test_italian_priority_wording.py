@@ -52,8 +52,6 @@ class ItalianPriorityWording(unittest.TestCase):
                                          '. ' + action + ' strumenti e opzioni', rendered)
                         self.assertNotIn(label + ' selezionato', rendered)
         self.assertTrue({'Matita', 'Linea', 'Ellisse', 'Selezione rettangolare'} <= seen)
-        self.assertIn('R.string.ui_collapse_tool_category else R.string.ui_expand_tool_category,'
-                      'ui(category.labelId),selectedTool.label)', source)
 
     def test_destination_file_fallback_scope_and_bidirectional_gestures(self):
         destination = self.values['save20_destination_error']
@@ -66,21 +64,10 @@ class ItalianPriorityWording(unittest.TestCase):
         self.assertIn('muovile insieme per spostarla.', gesture)
         self.assertIn('La modalità ' + self.values['ui_navigate'] +
                       ' consente anche lo spostamento con un dito.', gesture)
-        source = (CLASSIC / 'PaintCanvas.kt').read_text()
-        self.assertIn('zoomAt(zoom*span/pinchSpan,pinchFocus.x,pinchFocus.y)', source)
-        self.assertIn('panX+=focus.x-pinchFocus.x;panY+=focus.y-pinchFocus.y', source)
-        self.assertIn('panning = tool == PaintTool.ZOOM', source)
 
     def test_save_alias_remains_distinct_from_discard_and_keep_editing(self):
         self.assertEqual('@string/ui_save', self.values['ui_save_a5d0d9'])
-        self.assertEqual('Salva', self.values['ui_save'])
-        self.assertEqual('Scarta le modifiche', self.values['ui_discard_changes23'])
-        self.assertEqual('Continua a modificare', self.values['ui_keep_editing23'])
-        source = (CLASSIC / 'ClassicPaintActivity.kt').read_text()
-        self.assertIn('.setPositiveButton(ui(R.string.ui_save_a5d0d9)) '
-                      '{ _, _ -> afterSave = action; requestSave(false) }', source)
-        self.assertIn('if(target==null) showSaveOptions(ImageFormat.PNG)', source)
-        self.assertIn('else {exportOptions=target.options;isExporting=false;shareAfterSave=false;writeImage(target.uri)}', source)
+        self.assertEqual(3, len({self.values[k] for k in ('ui_save', 'ui_discard_changes23', 'ui_keep_editing23')}))
 
 if __name__ == '__main__':
     unittest.main()

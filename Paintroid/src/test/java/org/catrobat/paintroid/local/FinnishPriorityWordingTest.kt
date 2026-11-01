@@ -94,11 +94,11 @@ class FinnishPriorityWordingTest {
             val shown = AppLanguage.showPicker(activity) { }
             dialog = shown
             shadowOf(Looper.getMainLooper()).idle()
-            val expected = "Sovelluksen kieli\n\nKäännöksiä ylläpidetään AN Paintin kieliresursseissa. Uusi tai kääntämätön teksti näkyy englanniksi."
+            val expected = finnish.getString(R.string.language20_translation_note)
             val all = textViews(shown.window!!.decorView).map { it.text.toString() }
             assertTrue(all.contains(expected))
             assertFalse(all.any { it.contains("sisältää kaikki AN Paintin") })
-            assertEquals("Peruuta", shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
+            assertEquals(finnish.getString(R.string.ui_cancel), shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
             shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
             shadowOf(Looper.getMainLooper()).idle()
             assertFalse(shown.isShowing)

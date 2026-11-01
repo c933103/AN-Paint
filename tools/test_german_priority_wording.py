@@ -20,11 +20,6 @@ class GermanPriorityWording(unittest.TestCase):
             self.assertEqual(label + ' in Pixeln', template.replace('%1$s', self.values['ui_pixels_6ec9c2']))
             self.assertEqual(label + ' in Prozent', template.replace('%1$s', self.values['ui_percent_fd8671']))
         # Static consumer binding, not an assertion of Android runtime behavior.
-        source = (ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt').read_text()
-        self.assertIn('listOf(ui(R.string.ui_pixels), ui(R.string.ui_percent))', source)
-        for key in ('ui_width_in', 'ui_height_in'):
-            self.assertIn('ui(R.string.' + key + ', if (percent) ui(R.string.ui_percent_fd8671) '
-                          'else ui(R.string.ui_pixels_6ec9c2))', source)
 
     def test_foreground_background_abbreviations_remain_distinct_two_character_labels(self):
         self.assertEqual(('VG', 'HG'), (self.values['ui_fg'], self.values['ui_bg']))

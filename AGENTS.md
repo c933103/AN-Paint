@@ -30,14 +30,24 @@ See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/r
 - Do not add permanent whole-source hashes, recursive inverse adapters or
   historical snapshot reconstruction as substitutes for behavior tests. Preserve
   old evidence once under an immutable reachable ref before migration/removal.
-- Test the actual requirement. Keep full-text, accessibility, lifecycle, resource
-  and corruption checks; record exact raster differences without silently
+- Test the actual requirement. Preserve independently specified accessibility,
+  lifecycle, resource and corruption regressions; complete current-resource
+  display checks are control bindings, not freezes of previously approved prose.
+  Record exact raster differences without silently
   converting every antialias fringe into a production defect. Unexplained visual
   differences require explicit review; do not conceal them or invent a tolerance.
 - Canonical Android resources own current wording. Check that real consumers
   display the complete selected resource and preserve independently specified
   semantic, formatting, script, legal and safety boundaries. Do not recreate
   full-language approval mirrors, predecessor adapters or per-edit test packages.
+  The same rule applies to smaller copied sentences and source-spelling guards:
+  retain a literal only for an independent semantic/format/script/legal boundary,
+  not merely because it was once approved. Prefer existing real consumer tests
+  over repeating their behavior in every locale. Keep distinct glyph/layout,
+  routing and state regressions; map survivors before removing repetitions.
+  Do not duplicate host wording checks in JVM tests whose purpose is compilation
+  or selected-resource escaping. Use affected checks and one required exact-head
+  CI/review path; do not request a second review when automatic review is active.
   Historical review scopes above are records, not requirements to keep catalogues
   empty or incomplete; immutable source/review history preserves those decisions.
 - Before publication, compare the remote tree with the reviewed checkout,

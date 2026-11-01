@@ -103,14 +103,13 @@ class LatvianPriorityWordingTest {
         var dialog: AlertDialog? = null
         try {
             val selected = AppLanguage.selectedTag(activity)
-            val expected = "Lietotnes valoda\n\nTulkojumi tiek uzturēti AN Paint valodu resursos. Jauns vai netulkots teksts tiek rādīts angļu valodā."
+            val expected = latvian.getString(R.string.language20_translation_note)
             var selectionChanged = false
             val shown = AppLanguage.showPicker(activity) { selectionChanged = true }
             dialog = shown
             fun texts(view: View): List<String> =
                 (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
                     (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
-            assertEquals(expected, ui(R.string.language20_translation_note))
             assertTrue(texts(shown.window!!.decorView).contains(expected))
             shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
             shadowOf(Looper.getMainLooper()).idle()

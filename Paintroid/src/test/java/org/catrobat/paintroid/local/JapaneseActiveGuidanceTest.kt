@@ -70,19 +70,14 @@ class JapaneseActiveGuidanceTest {
         Locale.setDefault(previousLocale)
     }
 
-    @Test fun pendingDraftLabelUsesANaturalPendingSaveStatus() {
-        assertEquals("下書きの保存待ち", ui(R.string.ui_draft_pending))
-    }
-
     @Test fun actualLanguagePickerShowsMaintenanceAndEnglishFallbackWithoutChangingSelection() {
-        val expected = "アプリの言語\n\n翻訳は AN Paint の言語リソースで管理されています。新しいテキストや未翻訳のテキストは英語で表示されます。"
+        val expected = activity.getString(R.string.language20_translation_note)
         val dialog = AppLanguage.showPicker(activity) {}
         fun visibleTexts(view: View): List<String> {
             val own = if (view is TextView) listOf(view.text.toString()) else emptyList()
             return own + if (view is ViewGroup)
                 (0 until view.childCount).flatMap { visibleTexts(view.getChildAt(it)) } else emptyList()
         }
-        assertEquals(expected, ui(R.string.language20_translation_note))
         assertTrue(visibleTexts(dialog.window!!.decorView).contains(expected))
         dialog.dismiss()
         assertEquals("ja", AppLanguage.selectedTag(activity))

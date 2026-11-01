@@ -11,13 +11,12 @@ class SwedishPriorityWordingTests(unittest.TestCase):
 
     def test_actual_command_names_in_recovery_and_export_guidance(self):
         s = self.strings
-        self.assertEqual(('Arkiv', 'Spara', 'Spara som…', 'Öppna bild…'), tuple(s[k] for k in ('ui_menu_file', 'ui_save', 'save20_title', 'ui_load_image')))
         for key in ('ui_a_separate_recovery_copy_has_been_kept_use', 'ui_autosave_is_paused_to_protect_that_draft_use'):
             self.assertIn(s['ui_export_recovery_copy'].removesuffix('…'), s[key])
-        self.assertIn('Arkiv > Öppna bild', s['ui_recovery_copy_exported_extract_canvas_png_from_the'])
+        self.assertIn(s['ui_menu_file'] + ' > ' + s['ui_load_image'].removesuffix('…'), s['ui_recovery_copy_exported_extract_canvas_png_from_the'])
         self.assertIn('canvas.png', s['ui_recovery_copy_exported_extract_canvas_png_from_the'])
-        self.assertIn('Spara eller Spara som', s['ui_export_did_not_save23'])
-        self.assertIn('Filformat: PNG / JPEG', s['ui_autosave_is_paused_to_protect_that_draft_use'])
+        self.assertIn(s['ui_save'] + ' eller ' + s['save20_title'].removesuffix('…'), s['ui_export_did_not_save23'])
+        self.assertIn(s['save20_file_format'] + ': PNG / JPEG', s['ui_autosave_is_paused_to_protect_that_draft_use'])
 
     def test_frame_counts_include_the_localized_lower_bound(self):
         for count in (2, 21, 101):
@@ -30,8 +29,7 @@ class SwedishPriorityWordingTests(unittest.TestCase):
         self.assertIn('om den innehåller flera bildrutor', self.strings['formats22_animation_unknown'])
 
     def test_fixed_tool_and_action_meanings_are_distinct(self):
-        expected = {'ui_line': 'Linje', 'ui_watercolor': 'Akvarell', 'ui_outline': 'Kontur', 'ui_solid_fill': 'Enfärgad fyllning', 'ui_keep_editing23': 'Fortsätt redigera', 'ui_swap23': 'Byt plats på färgerna'}
-        for key, value in expected.items(): self.assertEqual(value, self.strings[key])
+        self.assertNotEqual(self.strings['ui_outline'], self.strings['ui_solid_fill'])
         self.assertNotEqual(self.strings['ui_keep_editing23'], self.strings['ui_cancel'])
         self.assertIn('osparade ändringar', self.strings['ui_your_current_image_has_unsaved_changes'])
 
