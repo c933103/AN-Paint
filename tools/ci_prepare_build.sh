@@ -18,7 +18,12 @@ def command(*args):
 
 sdk = pathlib.Path(os.environ['ANDROID_HOME'])
 packages = {}
-for p in sorted(sdk.glob('**/package.xml')):
+# Enumerate installed package roots, not every NDK/emulator source directory.
+package_patterns = ('platforms/*/package.xml', 'build-tools/*/package.xml',
+    'ndk/*/package.xml', 'cmake/*/package.xml', 'cmdline-tools/*/package.xml',
+    'emulator/package.xml', 'platform-tools/package.xml', 'tools/package.xml',
+    'system-images/*/*/*/package.xml')
+for p in sorted({p for pattern in package_patterns for p in sdk.glob(pattern)}):
     revision = next((e for e in ET.parse(p).iter() if e.tag.rsplit('}', 1)[-1] == 'revision'), None)
     packages[str(p.relative_to(sdk))] = dict(sha256=digest(p),
         revision={part.tag.rsplit('}', 1)[-1]: part.text for part in revision} if revision is not None else {})
@@ -30,7 +35,10 @@ if inventory.exists():
         relative = pathlib.Path(dependency['group'])/dependency['name']/dependency['version']
         files = sorted(p for p in (cache/relative).glob('*/*') if p.is_file())
         rows.append(dict(**dependency, files={str(p.relative_to(cache)): digest(p) for p in files}))
-native = {str(p): p.read_text() for p in pathlib.Path('Paintroid/build').glob('*-source/**/.anpaint-revision') if p.stat().st_size <= 4096}
+marker_patterns = ('*-source/.anpaint-revision', '*-source/*/.anpaint-revision',
+                   '*-source/third_party/*/.anpaint-revision')
+native = {str(p): p.read_text() for pattern in marker_patterns
+          for p in pathlib.Path('Paintroid/build').glob(pattern) if p.stat().st_size <= 4096}
 record = dict(native_revision_inputs=native, commit=command('git', 'rev-parse', 'HEAD'),
     tree=command('git', 'rev-parse', 'HEAD^{tree}'),
     run_id=os.environ['GITHUB_RUN_ID'], attempt=os.environ['GITHUB_RUN_ATTEMPT'],
