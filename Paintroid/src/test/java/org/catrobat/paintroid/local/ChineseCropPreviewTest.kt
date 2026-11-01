@@ -202,7 +202,7 @@ class ChineseCropPreviewTest {
         // Reopening uses the same current complete message, with no retained draft.
         click(activity, "assembly_batch_crop")
         val reopened = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        assertEquals(formatted(activity, tag, initialCount),
+        assertEquals(formatted(activity, initialCount),
             reopened.window!!.decorView.findViewWithTag<TextView>("crop_status").text.toString())
         reopened.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
         assertFalse(reopened.isShowing)
