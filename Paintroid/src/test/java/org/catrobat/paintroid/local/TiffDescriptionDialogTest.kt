@@ -102,42 +102,20 @@ class TiffDescriptionDialogTest {
         assertEquals(0, cancellations)
     }
 
-    private fun expected(tag: String) = when (tag) {
-        "pt-BR" -> PORTUGUESE
-        "ceb" -> CEBUANO
-        else -> ENGLISH
-    }
-
-    @Test fun sevenEnglishVariantsUseQualifiedDescriptionForBothCompressionChoices() {
-        for (tag in listOf("en-001", "en-AU", "en-CA", "en-GB", "en-IN", "en-SG", "en-US")) {
-            for (compressed in listOf(false, true)) {
-                val dialog = open(tag, compressed)
-                assertTiff(dialog, ENGLISH, compressed)
-                assertEquals("Lossless compression (Deflate)", dialog.compression().text.toString())
-                confirm(dialog, compressed)
-            }
-        }
-    }
-
-    @Test fun brazilianPortugueseUsesQualifiedDescriptionForBothCompressionChoices() {
-        for (compressed in listOf(false, true)) {
-            val dialog = open("pt-BR", compressed)
-            assertTiff(dialog, PORTUGUESE, compressed)
-            assertEquals("Compressão sem perdas (Deflate)", dialog.compression().text.toString())
-            confirm(dialog, compressed)
-        }
-    }
+    // Independent selected resources bound to the actual dialog controls.
+    private fun expected(tag: String) = PriorityWordingExpectations.resources(tag)
+        .getString(R.string.formats22_tiff_description)
 
     @Test fun welshMissingDescriptionFallsBackToQualifiedEnglishForBothChoices() {
         for (compressed in listOf(false, true)) {
             val dialog = open("cy", compressed)
-            assertTiff(dialog, ENGLISH, compressed)
+            assertTiff(dialog, expected("en-GB"), compressed)
             confirm(dialog, compressed)
         }
     }
 
     @Test fun verticalEnglishAndEmojiFixturesKeepTheQualifiedDescription() {
-        for ((tag, text) in listOf("en-XV" to ENGLISH, "qaa-Zsye-XV" to "💾 $ENGLISH")) {
+        for ((tag, text) in listOf("en-XV" to expected("en-XV"), "qaa-Zsye-XV" to expected("qaa-Zsye-XV"))) {
             for (compressed in listOf(false, true)) {
                 val dialog = open(tag, compressed)
                 assertNotNull(dialog.window!!.decorView.findViewWithTag<View>("vertical_save_form"))
@@ -185,37 +163,6 @@ class TiffDescriptionDialogTest {
         }
     }
 
-    @Test fun cyrillicMongolianC023KeepsQualifiedDescriptionWhenTogglingAndConfirming() {
-        for (initial in listOf(false, true)) {
-            val dialog = open("mn-Cyrl-MN", initial)
-            assertTiff(dialog, MONGOLIAN_C023, initial)
-            assertEquals(MONGOLIAN_C023, ui(R.string.formats22_tiff_description))
-            assertEquals("Алдагдалгүй шахалт (Deflate)", dialog.compression().text.toString())
-            dialog.compression().performClick(); idle()
-            assertTiff(dialog, MONGOLIAN_C023, !initial)
-            confirm(dialog, !initial)
-        }
-    }
-
-    @Test fun cyrillicMongolianC023RestoresDescriptionAfterFormatSwitchAndBothCancelRoutes() {
-        for (compressed in listOf(false, true)) for (cancelEvent in listOf(false, true)) {
-            val dialog = open("mn-Cyrl-MN", compressed)
-            assertTiff(dialog, MONGOLIAN_C023, compressed)
-            EditorTestNavigation.format(dialog.format(), ImageFormat.DIB)
-            assertEquals(View.GONE, dialog.compression().visibility)
-            assertEquals(ui(R.string.formats22_dib_description), dialog.description().text.toString())
-            assertNotEquals(MONGOLIAN_C023, dialog.description().text.toString())
-            EditorTestNavigation.format(dialog.format(), ImageFormat.TIFF)
-            assertTiff(dialog, MONGOLIAN_C023, compressed)
-            if (cancelEvent) dialog.cancel()
-            else assertTrue(dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick())
-            idle()
-            assertFalse(dialog.isShowing)
-            assertTrue(requests.isEmpty())
-            assertEquals(1, cancellations)
-        }
-    }
-
     @Test fun cebuanoDescriptionFitsTheActualPortraitDialog() = renderCebuano("portrait", 760, 1640)
 
     @Test @Config(qualifiers = "w900dp-h412dp-land-xhdpi")
@@ -228,18 +175,18 @@ class TiffDescriptionDialogTest {
             root.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
                 View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.AT_MOST))
             root.layout(0, 0, root.measuredWidth, root.measuredHeight)
-            assertTiff(dialog, CEBUANO, compressed)
+            assertTiff(dialog, expected("ceb"), compressed)
             val description = dialog.description()
             val layout = checkNotNull(description.layout)
             assertTrue(layout.lineCount > 0)
-            assertEquals(CEBUANO.length, layout.getLineEnd(layout.lineCount - 1))
+            assertEquals(expected("ceb").length, layout.getLineEnd(layout.lineCount - 1))
             for (line in 0 until layout.lineCount) {
                 assertEquals(0, layout.getEllipsisCount(line))
                 assertTrue(layout.getLineLeft(line) >= 0f)
                 assertTrue(layout.getLineRight(line) <= description.width - description.compoundPaddingLeft - description.compoundPaddingRight)
             }
             assertTrue(layout.height <= description.height - description.compoundPaddingTop - description.compoundPaddingBottom)
-            assertEquals(CEBUANO, description.createAccessibilityNodeInfo().text.toString())
+            assertEquals(expected("ceb"), description.createAccessibilityNodeInfo().text.toString())
             description.requestRectangleOnScreen(Rect(0, 0, description.width, description.height), true)
             idle()
             val bounds = Rect()
@@ -259,13 +206,4 @@ class TiffDescriptionDialogTest {
         }
     }
 
-    companion object {
-        private const val CEBUANO = "Motipig og usa ka panid sa RGB. Ang pag-compress mahimong makapakunhod sa gidak-on sa file. " +
-            "Dili kini mousab sa mga pixel. Palonga ang pag-compress aron matipigan ang TIFF nga wala gi-compress."
-        private const val MONGOLIAN_C023 = "Нэг RGB хуудсыг хадгална. Шахалт нь пикселийг өөрчлөхгүйгээр файлын хэмжээг багасгаж магадгүй; шахалтгүй TIFF хадгалахын тулд унтраана."
-        private const val ENGLISH = "Saves one RGB page. Compression may reduce file size without changing " +
-            "pixels; turn it off for uncompressed TIFF."
-        private const val PORTUGUESE = "Salva uma página RGB. A compressão pode reduzir o tamanho do arquivo " +
-            "sem alterar os pixels; desative-a para criar um TIFF sem compressão."
-    }
 }

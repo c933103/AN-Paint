@@ -2,10 +2,11 @@
 
 Repeated approved prose and synthetic sentence mutations are historical evidence.
 Shared source-language mode/safety assertions live in test_assembly_help_modes;
-existing memory/dimensions tests retain the independently specified narrow clauses.
+historical per-PR clause tables are not active wording oracles.
 """
 import unittest
 import assembly_help_checks as help_checks
+from current_localization_contracts import current_display
 
 DIRECTORIES = ('values-hu', 'values-pt-rBR', 'values-b+lzh+Hant', 'values-b+yue+Latn', 'values-zh-rCN', 'values-b+nan+Latn+TW', 'values-b+lv', 'values-ms', 'values-b+mn+Cyrl+MN', 'values-b+yue+Hant', 'values-ru', 'values-tr', 'values-lt', 'values-b+nan+Hant+TW', 'values-nl', 'values-vi', 'values-sw', 'values-fi', 'values-b+fil', 'values-b+hak+Hant+TW', 'values-b+hak+Latn+TW', 'values-b+jje', 'values-in', 'values-b+eo', 'values-b+es+419', 'values-b+et', 'values-b+ceb', 'values-b+dz', 'values-el')
 CAPTIONS = ('ui_about_credits23',
@@ -50,9 +51,22 @@ class AssemblyHelpFollowonTests(unittest.TestCase):
             with self.subTest(locale=directory):
                 help_checks.check_current_help(self, directory, [(None, key) for key in keys])
 
+        # Only the bindings previously required by the retired Wuu/Nôm wrappers.
+        for tag, keys, quotes in (
+            ('wuu-Hans', ('ui_same_width', 'ui_same_height'), ('', '')),
+            ('vi-Hani', ('ui_assembly_exact_position', 'ui_same_width', 'ui_same_height', 'ui_remove'), ('「', '」')),
+        ):
+            value = current_display(tag, help_checks.KEY)
+            for key in keys:
+                with self.subTest(locale=tag, caption=key):
+                    self.assertIn(quotes[0] + current_display(tag, key) + quotes[1], value)
+
     def test_hakka_latin_help_keeps_script_and_specific_corrected_readings(self):
         text, _ = help_checks.current_help('values-b+hak+Latn+TW')
-        self.assertNotRegex(text, r'[㐀-鿿𠀀-𲎯]')
+        for directory in ('values-b+hak+Latn+TW', 'values-b+nan+Latn+TW'):
+            latin, _ = help_checks.current_help(directory)
+            with self.subTest(script=directory):
+                self.assertNotRegex(latin, r'[㐀-鿿𠀀-𲎯]')
         self.assertIn('chha̍t hâ-lòi', text)
         self.assertNotIn('chhet hâ-lòi', text)
         self.assertIn('fat thu” ya-he “Siông-thùng', text)

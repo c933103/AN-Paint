@@ -23,23 +23,15 @@ class CzechPriorityDraftWordingTests(unittest.TestCase):
             for tool in ('Štětec','Tužka','Kreslení','Volný výběr'):
                 self.assertIn('vybraný nástroj: '+tool,self.strings['cs'][key].replace('%1$s','Kreslení').replace('%2$s',tool))
 
-    def test_memory_safety_clauses_cannot_be_lost(self):
-        clauses=(
-            '%1$d × %2$d pixelů (%3$.2f MP) překračuje aktuální bezpečný limit pro úpravy %4$.2f MP.',
-            'AN Paint uchovává v paměti celý obrázek a vyhrazuje místo pro transformace a výběry.',
-            'Tento limit závisí na dostupné paměti.',
-            'Operace byla zastavena před vyhrazením paměti pro příliš velkou bitmapu.',
-            'K automatické změně velikosti nedošlo.',
-        )
-        value=self.strings['cs'][MEMORY]
-        for clause in clauses:
-            self.assertIn(clause, value)
-        for key,required in {
-            'ui_sampled_resize_memory_explanation':['Skutečná spotřeba paměti se může lišit.','Menší kopie ztrácí detaily.','Původní soubor zůstane beze změny.'],
-            'ui_assembly_source_memory_floor':['Zavřete jiné dokumenty nebo připravte menší zdrojový obrázek a zkuste to znovu.', 'a to i při nejmenší velikosti výstupu.','Samotné zmenšení rozměrů sestavy při aktuálních limitech nestačí.','Sestava zůstala beze změny.'],
-            'ui_the_full_image_and_working_buffers_exceed_the':['nebo jim Android nemohl vyhradit paměť.','změňte velikost kopie.','Původní soubor zůstane beze změny.'],
-        }.items():
-            for clause in required:self.assertIn(clause,self.strings['cs'][key])
+    def test_memory_modality_and_original_ownership_distinctions(self):
+        strings = self.strings['cs']
+        self.assertIn('K automatické změně velikosti nedošlo', strings[MEMORY])
+        sampled = strings['ui_sampled_resize_memory_explanation']
+        for distinction in ('může lišit', 'kopie ztrácí detaily', 'Původní soubor zůstane beze změny'):
+            self.assertIn(distinction, sampled)
+        self.assertIn('Samotné zmenšení', strings['ui_assembly_source_memory_floor'])
+        self.assertIn('Sestava zůstala beze změny', strings['ui_assembly_source_memory_floor'])
+        self.assertIn('nebo jim Android', strings['ui_the_full_image_and_working_buffers_exceed_the'])
 
     def test_recovery_save_export_and_sharing_remain_distinct(self):
         strings=self.strings['cs']

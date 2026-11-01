@@ -244,13 +244,12 @@ licence/catalogue inputs have separate obligations and are not silently removed.
 
 ### Current offered-option source coverage
 
-A cheap inventory of unchanged develop `0ae074295045` using the existing
-`translation_catalogues` readers finds **171 offered options and 171 exact
-canonical catalogues**, against **716 translatable string keys and one plural
-resource**. **60 catalogues contain every key directly; 111 lack one or more.**
-This includes English variants. Six options (`chr`, `nch`, `nhe`, `nhw`, `quy`,
-`zgh`) contain no direct translatable string keys; Czech lacks only
-`ui_the_arrow_on_the_left_directly_below_the`. Runtime inheritance/fallback is
+A cheap inventory of develop `047ebee9800fb` on 1 November 2026 using existing
+`string_importance.py --all-locales --json` finds **171 offered options**, against
+**716 translatable string keys and one plural resource**. **61 catalogues contain
+every key directly; 110 lack one or more.** This includes English variants.
+Czech is now direct-complete; Kinyarwanda and Yoruba have all current P0/P1 keys
+but lack 357 and 361 P2/P3 entries respectively. Runtime inheritance/fallback is
 not counted as direct presence. This inventory supersedes stale source-coverage
 counts, not the scope or acceptance status of historical reviews. Direct keys,
 nonempty values or differences from English do **not** establish linguistic
@@ -347,10 +346,10 @@ rebuilds needs a separate plan for exact tree/parents, required-check applicabil
 trusted artifact/source identity and genuinely changed combined sources. This
 correction does not change workflow triggers, gates, caching or release policy.
 
-The default suite also includes `AdvancedColourLayoutDiagnosticTest`, which
-records screenshots/geometry explicitly without fit acceptance; its prior actual
-case-time sum was 18.808 seconds. Existing positive viewport/device regressions
-must be distinguished from that diagnostic before changing its default execution.
+The audit found `AdvancedColourLayoutDiagnosticTest` in the default suite,
+recording screenshots/geometry explicitly without fit acceptance; its prior
+actual case-time sum was 18.808 seconds. Its disposition and existing positive
+viewport/device survivors are recorded in the whole-inventory correction below.
 Heavier actual UI/state/layout tests are not automatically redundant because
 translation work originally motivated them. These remaining cost questions are
 not claimed solved by the residual source cleanup, and no new benchmark suite or
@@ -359,3 +358,46 @@ replacement audit framework is introduced.
 Residual source inventory: host discovery 1,019 → 1,014 with zero import errors;
 declared JVM test methods 1,113 → 1,093. These are declarations/discovery, not
 hosted execution counts or a speedup prediction. No production wording changes.
+
+## Whole-inventory approval and repeated-work correction
+
+The next audit covered all 156 host modules and 164 JVM classes, rather than
+assuming that remaining files were justified by earlier fixture retirement.
+Its [immutable architecture and obligation record](https://github.com/c933103/AN-Paint/tree/4eff25d29206e989026e1ffb771dd62692a888d8/verification/translation-test-efficiency-20261031/residual-sufficiency/architecture)
+found inline Commons/TIFF/Help mirrors, whole paragraphs reconstructed as clauses,
+old PR-scope partitions and test-source mutation adapters. These are still
+approval machinery even when no large JSON catalogue remains.
+
+The prior 1,014 Python count meant discovered methods (1,012 passed/two skipped);
+1,445 JVM executions represented 1,093 identities plus 352 SDK repetitions.
+Neither counted inner work: one Commons method performed 3,078 formatted-message
+comparisons, and two TIFF methods opened 78 dialogs. Counts alone cannot justify
+or measure the suite. The actual-develop regression job took 26m32s versus
+23m33s for the same tested tree on another worker; no causal speedup is claimed.
+
+| Retired responsibility | Retained responsibility |
+| --- | --- |
+| Inline approved Commons/TIFF/crop/Help/save prose, fixed translated/fallback partitions and historical locale scope | Current resources own wording. Actual provider failures, privacy, byte-exact untrusted details, clipboard/state, compression toggles, cancellation, crop/history and selected-resource UI bindings remain. Fixed protocol, grammar, script and plural-category boundaries are independent obligations, not complete approval sentences. |
+| Repeated all-locale wording/dialog Cartesian products | Existing public all-offered routing/format boundaries and representative real consumer paths remain. Genuine glyph/layout breadth and distinct CLDR integer categories are not removed just to reduce counts. |
+| Locale-only repetitions of save panels, zero-budget admission, recovery, picker cancellation, encoder failures and mapped editor state transitions | Stronger existing mode/cancel, byte-preservation, floating-selection, callback and accessibility representatives remain. Different decoder/resident-pressure branches, Czech native minus versus Swedish U+2212, native/RTL/vertical fit and actual script/grammar boundaries remain distinct. Unproven overlaps are retained rather than called equivalent. |
+| Mapped Kotlin-source spellings and mutation tests of those spellings | Existing actual consumer assertions cover the mapped behavior. Unmapped caption TextWatcher/bypass, picker first right-to-left column, pre-API26 tooltip and OS-driven gallery recreation guards remain explicitly structural, not falsely described as runtime proof. |
+| Colour diagnostic capture and mandatory reproduction of known clipped-ink defects | Actual viewport/control/installed pointer and IME acceptance remain. The existing vertical method keeps its independent pixel comparator and ten ordinary containment cases; the other routing/deadline/accessibility methods remain. Historical diagnostic source and artifacts stay recoverable. |
+
+Original source, expectations and diagnostics are recoverable at immutable
+[develop 047ebee9800fb93ed54cc8dd73d53a5dc46fcb98](https://github.com/c933103/AN-Paint/tree/047ebee9800fb93ed54cc8dd73d53a5dc46fcb98).
+No approval payload is copied into another archive in the application tree.
+Evidence-transport/process-integrity, release tooling, actual host production
+execution, font/licence and independent script/format/state regressions are not
+discarded to meet a target count. This correction does not change CI triggers,
+required gates, caching or release behavior; equivalent-source pipeline reuse
+still requires its separate fail-closed identity plan.
+
+Source inventory for this batch: host discovery **1,014 → 838** methods and
+**156 → 130** modules; JVM declarations **1,093 → 1,041** across **164 → 154**
+test classes. Host JSON is **11 / 47,965 bytes → 10 / 44,613 bytes**; JVM JSON
+is **4 / 25,549 bytes → 2 / 8,145 bytes**. These are source counts, not hosted
+execution totals. Source-loop accounting removes 160 repeated SVG gallery
+attempts, 100 TIFF dialog openings, 60 save-panel openings and 3,078 HTTP formatter
+comparisons; actual timing must come from the required run, not these counts.
+Affected host checks pass without another full or optimized local aggregate;
+hosted compilation/runtime review remains required for the final source.

@@ -86,37 +86,6 @@ class CzechExtendedWordingTest {
         (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
             (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
 
-    @Test fun allTwelveCommonsFailuresUseTheActualDispatcherAndKeepProviderDetailVerbatim() {
-        val gallery = MediaGalleryActivity()
-        val cases = listOf(
-            CommonsAttribution.HttpException(503) to "Metadata Commons: HTTP 503",
-            CommonsAttribution.ResponseLimitException() to expected("commons_metadata_response_too_large"),
-            CommonsAttribution.QueryFailureException() to expected("commons_metadata_query_failed"),
-            CommonsImportFailure.NotFilePage() to expected("commons_metadata_not_file_page"),
-            CommonsImportFailure.AmbiguousFile() to expected("commons_metadata_ambiguous_file"),
-            CommonsImportFailure.MetadataUnavailable() to expected("commons_metadata_unavailable"),
-            CommonsImportFailure.MetadataOriginalMismatch() to expected("commons_metadata_original_mismatch"),
-            CommonsImportFailure.InvalidAttributionPage() to expected("commons_metadata_invalid_page"),
-            CommonsImportFailure.FieldTooLarge() to expected("commons_metadata_field_too_large"),
-            CommonsImportFailure.CacheFailed() to expected("commons_metadata_cache_failed"),
-            CommonsImportFailure.DownloadOriginalMismatch() to expected("commons_download_original_mismatch"),
-            CommonsImportFailure.PngEncodeFailed() to expected("commons_svg_png_encode_failed")
-        )
-        assertEquals(12, cases.size)
-        fun reason(error: Exception): String? = ReflectionHelpers.callInstanceMethod(gallery, "commonsMetadataReason",
-            ClassParameter.from(Exception::class.java, error))
-        for ((error, wording) in cases) {
-            assertEquals(wording, reason(error))
-            assertEquals("Údaje o autorství obrázku se nepodařilo zkopírovat: $wording",
-                ui(R.string.commons_credit_copy_failed_reason, reason(error)!!))
-        }
-        val provider = "  Provider 50%: %1\$s · détails\nTry again.  "
-        assertEquals(provider, reason(IOException(provider)))
-        assertEquals("Údaje o autorství obrázku se nepodařilo zkopírovat: $provider",
-            ui(R.string.commons_credit_copy_failed_reason, reason(IOException(provider))!!))
-        assertNull(reason(IOException()))
-    }
-
     @Test fun cropSelectionChangesQuantityAndCancelNeverAppliesThePreview() {
         val controller = Robolectric.buildActivity(Activity::class.java)
         controller.get().setTheme(R.style.ClassicPaintTheme)
@@ -130,8 +99,9 @@ class CzechExtendedWordingTest {
                 val status = dialog.window!!.decorView.findViewWithTag<TextView>("crop_status")
                 fun full(count: Int): String {
                     val noun = when (count) { 1 -> "obrázek"; in 2..4 -> "obrázky"; else -> "obrázků" }
-                    return "Náhled: 24 × 16 px\nPoužít na $count $noun. " +
-                        "Ořez umístěných obrázků může posunout obrázky, které jsou k nim připojené."
+                    val value = PaintApplication.currentResources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count)
+                    assertTrue(value.contains("$count $noun."))
+                    return value
                 }
                 assertEquals(full(5), status.text.toString())
                 for (unchecked in 5 downTo 2) {
@@ -206,44 +176,4 @@ class CzechExtendedWordingTest {
         } finally { controller.pause().stop().destroy(); directory.deleteRecursively() }
     }
 
-    @Test fun pageChooserUsesCzechControlsAndRangeErrorsWithoutSelectingOnCancel() {
-        val controller = Robolectric.buildActivity(Activity::class.java)
-        controller.get().setTheme(R.style.ClassicPaintTheme)
-        val activity = controller.setup().get()
-        val worker = Executors.newSingleThreadExecutor()
-        var selected = 0; var cancelled = 0; var failure: Throwable? = null
-        var selection: ImportSelection? = null
-        try {
-            for (kind in listOf("PDF", "TIFF")) {
-                selection = ImportSelection(activity, worker, { 0L }, { selected++ }, { cancelled++ }, { failure = it })
-                // Isolate the real chooser from decoding/network; no staged file is supplied.
-                ReflectionHelpers.setField(selection, "name", "mapa.$kind")
-                ReflectionHelpers.callInstanceMethod<Unit>(selection, "showPages",
-                    ClassParameter.from(String::class.java, kind), ClassParameter.from(Int::class.javaPrimitiveType!!, 3))
-                val dialog = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                assertEquals("Vybrat stránku", shadowOf(dialog).title.toString())
-                assertTrue(texts(dialog.window!!.decorView).contains("$kind · mapa.$kind\nPočet stránek: 3. Vyberte jednu stránku k úpravě jako obrázek."))
-                assertEquals("Otevřít stránku", dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertEquals("Předchozí stránka", dialog.window!!.decorView.findViewWithTag<View>("import_previous_page").contentDescription)
-                assertEquals("Další stránka", dialog.window!!.decorView.findViewWithTag<View>("import_next_page").contentDescription)
-                val field = dialog.window!!.decorView.findViewWithTag<EditText>("import_page_number")
-                assertEquals("Číslo stránky", field.contentDescription)
-                for (invalid in listOf("0", "4", "")) {
-                    field.setText(invalid); idle()
-                    assertEquals("Zadejte číslo stránky od 1 do 3.",
-                        dialog.window!!.decorView.findViewWithTag<TextView>("import_page_status").text.toString())
-                    assertFalse(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
-                }
-                field.setText("2"); idle()
-                assertTrue(dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
-                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
-                assertFalse(dialog.isShowing); assertEquals(0, selected); assertNull(failure)
-            }
-            assertEquals(2, cancelled)
-        } finally {
-            selection?.dispose(); worker.shutdownNow()
-            try { assertTrue(worker.awaitTermination(10, TimeUnit.SECONDS)) }
-            finally { controller.pause().stop().destroy() }
-        }
-    }
 }

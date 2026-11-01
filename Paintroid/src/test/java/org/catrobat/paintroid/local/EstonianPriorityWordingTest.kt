@@ -86,30 +86,4 @@ class EstonianPriorityWordingTest {
         assertEquals("100 × 100 px · Pikslite arv: 10\u00a0000 (0,01 MP)", result.text.toString())
     }
 
-    @Test fun actualPickerShowsCompleteTitleAndFallbackGuidanceWithoutChangingSelection() {
-        val controller = Robolectric.buildActivity(Activity::class.java)
-        controller.get().setTheme(R.style.ClassicPaintTheme)
-        val activity = controller.setup().get()
-        var dialog: AlertDialog? = null
-        try {
-            val selected = AppLanguage.selectedTag(activity)
-            val expected = estonian.getString(R.string.language20_translation_note)
-            var selectionChanged = false
-            val shown = AppLanguage.showPicker(activity) { selectionChanged = true }
-            dialog = shown
-            fun texts(view: View): List<String> =
-                (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
-                    (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
-            assertTrue(texts(shown.window!!.decorView).contains(expected))
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
-            shadowOf(Looper.getMainLooper()).idle()
-            assertFalse(shown.isShowing)
-            assertFalse(selectionChanged)
-            assertEquals(selected, AppLanguage.selectedTag(activity))
-        } finally {
-            dialog?.dismiss()
-            controller.pause().stop().destroy()
-        }
-    }
-
 }

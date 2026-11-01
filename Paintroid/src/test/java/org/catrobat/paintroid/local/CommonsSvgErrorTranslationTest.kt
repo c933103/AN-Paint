@@ -37,80 +37,6 @@ class CommonsSvgErrorTranslationTest {
     private val source="https://upload.wikimedia.org/wikipedia/commons/a/ab/Size_test.svg"
     private val page="https://commons.wikimedia.org/wiki/File:Size_test.svg"
     private val context get()=RuntimeEnvironment.getApplication() as Context
-    private val tags=listOf("bg","bn","en-US","fr","ja","ar","hak-Hant-TW","hak-Latn-TW","bo","dz","vi-Hani","ain-Latn","ain-Kana","jje","mn-Mong","mnc-Mong","ryu","am","ast","gu","th")
-
-    // Independent reviewed wording oracles for later exact catalogue additions; model review is not native certification.
-    private val addedReasons=mapOf(
-        "th" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG ไม่ได้ระบุขนาดดั้งเดิมที่ใช้งานได้ ไม่ได้ใช้ขนาดผืนผ้าใบแทน",
-            R.string.commons_svg_original_size_too_large to "ขนาดดั้งเดิมของ SVG เกินขีดจำกัดขนาดบิตแมปของ Android ไม่ได้ปรับขนาดภาพ"
-        ),
-        // Exact AST and recovered GU values retain complete independent wording oracles.
-        "gu" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVGમાં વાપરી શકાય તેવું મૂળ માપ આપેલું નથી. તેના બદલે કેન્વાસ પર આધારિત માપ વાપરવામાં આવ્યું નથી.",
-            R.string.commons_svg_original_size_too_large to "SVGનું મૂળ માપ Androidની બિટમૅપ પરિમાણ મર્યાદા કરતાં વધારે છે. માપ બદલવામાં આવ્યું નથી."
-        ),
-        "ast" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "El SVG nun declara un tamañu orixinal utilizable. Nun se sustituyó por un tamañu basáu nel llenzu.",
-            R.string.commons_svg_original_size_too_large to "El tamañu orixinal del SVG supera les dimensiones de mapa de bits d’Android. Nun se camudó’l tamañu."
-        ),
-        "am" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG ጥቅም ላይ ሊውል የሚችል ዋና መጠን አይገልጽም። በምትኩ በስዕል ሰሌዳው ላይ የተመሠረተ መጠን አልተተካም።",
-            R.string.commons_svg_original_size_too_large to "የSVG ዋና መጠን ከAndroid የቢትማፕ ልኬቶች ገደብ ይበልጣል። መጠኑ አልተቀየረም።"
-        ),
-        "bg" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG не задава използваем оригинален размер. Не е заменен с размер, базиран на канавата.",
-            R.string.commons_svg_original_size_too_large to "Оригиналният размер на SVG надвишава допустимите размери за растерно изображение в Android. Не е приложено мащабиране."
-        ),
-        "bn" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG-তে ব্যবহারযোগ্য কোনো মূল আকার উল্লেখ করা নেই। এর বদলে ক্যানভাসভিত্তিক কোনো আকার ব্যবহার করা হয়নি।",
-            R.string.commons_svg_original_size_too_large to "SVG-এর মূল আকার Android বিটম্যাপের মাত্রার সীমা ছাড়িয়ে গেছে। আকার পরিবর্তন করা হয়নি।"
-        ),
-        "hak-Hant-TW" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG 無提供做得用个原本大細。無用照畫布大細決定个大細來取代。",
-            R.string.commons_svg_original_size_too_large to "SVG 个原本大細超出 Android 點陣圖个尺寸上限。並未調大細。"
-        ),
-        "hak-Latn-TW" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG mò thì-kiûng cho-tet yung ke ngièn-pún thai-se. Mò yung cheu fa-pu thai-se kiet-thin ke thai-se lòi chhí-thoi.",
-            R.string.commons_svg_original_size_too_large to "SVG ke ngièn-pún thai-se chhêu chhut Android tiám chhṳn thù ke chhak-chhun song han. Pin vi thiàu thai-se."
-        ),
-        "vi-Hani" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG 空 朱 別 戟 𡱩 㭲 𣎏 体 用. 空 用 戟 𡱩 豫 𨕭 椌 𡳒 抵 𠊝 替.",
-            R.string.commons_svg_original_size_too_large to "戟 𡱩 㭲 𧵑 SVG 越 過 界限 戟 𡱩 bitmap 𧵑 Android. 空 𢷮 戟 𡱩."
-        ),
-        "bo" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG ནང་སྤྱོད་རུང་བའི་ཐོག་མའི་ཆེ་ཆུང་བཀོད་མེད། རས་གཞིའི་ཆེ་ཆུང་གཞིར་བཟུང་བའི་ཆེ་ཆུང་ཚབ་ཏུ་མ་སྤྱད།",
-            R.string.commons_svg_original_size_too_large to "SVG ཡི་ཐོག་མའི་ཆེ་ཆུང་ནི་ Android གྱི་ bitmap ཆེ་ཆུང་གི་ཚད་ལས་བརྒལ་ཡོད། ཆེ་ཆུང་མ་བསྒྱུར།"
-        ),
-        "dz" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG ནང་ལུ་ ལག་ལེན་འཐབ་བཏུབ་མི་ཚད་ངོ་མ་ གསལ་བཀོད་འབད་དེ་མེད། འབྲི་གཞི་གི་ཚད་ལུ་གཞི་བཞག་སྟེ་བཟོ་མི་ཚད་ཅིག་ ཚབ་སྦེ་ལག་ལེན་མ་འཐབ།",
-            R.string.commons_svg_original_size_too_large to "SVG གི་ཚད་ངོ་མ་འདི་ Android གི་ bitmap ཚད་ཀྱི་ཁྱབ་ཁོངས་ལས་བརྒལ་ཡོད། ཚད་བསྒྱུར་མ་འབད།"
-        ),
-        "ain-Kana" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG オㇿ タ アヌイェ ホㇱキ ポロル アナㇰ イサㇺ ヘネ アエイワンケ エアイカㇷ゚ ヘネ キ. カㇺピソ コㇿ ポロル アニ アカㇻ ポロル アニ ホㇱキ ポロル アイタサレ カ ソモ キ.",
-            R.string.commons_svg_original_size_too_large to "SVG コㇿ ホㇱキ ポロル アナㇰ Android Bitmap コㇿ パラル ネワ リル アアヌ エアㇱカイ パㇰノ カス. ノカ コㇿ ポロル アシンナレ カ ソモ キ."
-        ),
-        "ain-Latn" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG or ta a=nuye hoski pororu anak isam hene a=eywanke eaykap hene ki. Kampiso kor pororu ani a=kar pororu ani hoski pororu a=itasare ka somo ki.",
-            R.string.commons_svg_original_size_too_large to "SVG kor hoski pororu anak Android Bitmap kor pararu newa riru a=anu easkay pakno kasu. Noka kor pororu a=sinnare ka somo ki."
-        ),
-        "jje" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG에 적어진 쓸 수 있는 원래 크기가 엇수다. 캔버스 크기를 기준으로 헌 크기를 대신 쓰지 아니허엿수다.",
-            R.string.commons_svg_original_size_too_large to "SVG의 원래 크기가 Android 비트맵 크기 한도를 넘엇수다. 크기 조절은 아니 허엿수다."
-        ),
-        "mn-Mong" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG ᠨᠢ ᠠᠰᠢᠭᠯᠠᠵᠤ ᠪᠣᠯᠬᠤ ᠠᠩᠬᠠᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠵᠢᠭᠠᠭ᠎ᠠ ᠦᠭᠡᠢ᠃ ᠲᠡᠭᠦᠨ ᠦ ᠣᠷᠣᠨ ᠳᠤ ᠵᠢᠷᠤᠭ ᠤᠨ ᠲᠠᠯᠪᠠᠢ ᠶᠢᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠳᠦ ᠦᠨᠳᠦᠰᠦᠯᠡᠭᠰᠡᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠰᠢᠭᠯᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ᠃",
-            R.string.commons_svg_original_size_too_large to "SVG ᠵᠢᠷᠤᠭ ᠤᠨ ᠠᠩᠬᠠᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ Android ᠤᠨ bitmap ᠵᠢᠷᠤᠭ ᠤᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠶᠢᠨ ᠬᠢᠵᠠᠭᠠᠷ ᠠᠴᠠ ᠬᠡᠲᠦᠷᠡᠪᠡ᠃ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠶᠢ ᠥᠭᠡᠷᠡᠴᠢᠯᠡᠭᠰᠡᠨ ᠦᠭᠡᠢ᠃"
-        ),
-        "mnc-Mong" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVG ᡩᡝ ᠠᡵᠠᡥᠠ ᠪᠠᡳᡨᠠᠯᠠᠮᡝ ᠮᡠᡨᡝᡵᡝ ᡩᠠ ᡴᡝᠮᡠᠨ ᠠᡴᡡ. ᠨᡳᡵᡠᡵᡝ ᠪᠠ ᡳ ᡴᡝᠮᡠᠨ ᡳ ᠰᠣᠩᡴᠣᡳ ᡨᠣᡴᡨᠣᠪᡠᡥᠠ ᡴᡝᠮᡠᠨ ᠪᡝ ᡩᠠ ᡴᡝᠮᡠᠨ ᡳ ᡶᡠᠨᡩᡝ ᠪᠠᡳᡨᠠᠯᠠᡥᠠᡴᡡ.",
-            R.string.commons_svg_original_size_too_large to "SVG ᡳ ᡩᠠ ᡴᡝᠮᡠᠨ Android ᡳ bitmap ᡳ ᡴᡝᠮᡠᠨ ᡳ ᡩᠠᠯᠪᠠ ᠪᡝ ᡩᠠᠪᠠᠯᡳᡥᠠ. ᠠᠮᠪᠠ ᠠᠵᡳᡤᡝ ᠪᡝ ᡥᠠᠯᠠᡥᠠᡴᡡ."
-        ),
-        "ryu" to mapOf(
-            R.string.commons_svg_original_size_unavailable to "SVGんかいや、ちかーりーる元ぬサイズぬ 書かっとーいびらん。キャンバスぬサイズっし ちわみたるサイズや、元ぬサイズぬ代わりんかい ちかやびらんたん。",
-            R.string.commons_svg_original_size_too_large to "SVGぬ元ぬサイズや、Androidぬビットマップぬ寸法ぬ上限やか まぎさいびーん。サイズけーゆしや さびらんたん。"
-        )
-    )
 
     private class Connection(url: URL,svg: String): HttpURLConnection(url) {
         private val input=ByteArrayInputStream(svg.toByteArray(Charsets.UTF_8))
@@ -176,15 +102,9 @@ class CommonsSvgErrorTranslationTest {
         assertFalse(retained.accepted)
     }
 
-    private fun checkSizeFailure(svg: String,key: Int,english: String) {
-        for(tag in tags) withGallery(tag) {activity ->
+    private fun checkSizeFailure(svg: String,key: Int) {
+        withGallery("fr") {activity ->
             val reason=activity.getString(key)
-            if(tag == "en-US")
-                assertEquals("Independent source oracle, including explicit incomplete-catalogue fallback",english,reason)
-            else assertNotEquals("This representative exact catalogue must resolve its translation",english,reason)
-            addedReasons[tag]?.get(key)?.let {
-                assertEquals("The selected exact catalogue must supply its reviewed wording",it,reason)
-            }
             val expected=activity.getString(R.string.ui_could_not_load_gallery_image,reason)
             var requests=0
             activity.openConnection={url ->
@@ -200,14 +120,12 @@ class CommonsSvgErrorTranslationTest {
 
     @Test fun unspecifiedOriginalSizeShowsItsLocalizedReasonThroughTheActualGallery() {
         checkSizeFailure("""<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 40 24"/>""",
-            R.string.commons_svg_original_size_unavailable,
-            "The SVG does not declare a usable original size. No canvas-based size was substituted.")
+            R.string.commons_svg_original_size_unavailable)
     }
 
     @Test fun overflowingOriginalSizeShowsItsLocalizedReasonWithoutResizing() {
         checkSizeFailure("""<svg xmlns="http://www.w3.org/2000/svg" width="2147483648" height="1"/>""",
-            R.string.commons_svg_original_size_too_large,
-            "The original SVG size exceeds Android bitmap dimensions. No resizing was applied.")
+            R.string.commons_svg_original_size_too_large)
     }
 
     @Test fun unrelatedExternalDiagnosticsStillPassThroughUnchanged() = withGallery("fr") {activity ->
@@ -223,7 +141,7 @@ class CommonsSvgErrorTranslationTest {
         configuration.setLocale(java.util.Locale.forLanguageTag("qtz"))
         val resources=app.createConfigurationContext(configuration).resources
         assertEquals("qtz",resources.configuration.locales[0].language)
-        assertEquals("The SVG does not declare a usable original size. No canvas-based size was substituted.",resources.getString(R.string.commons_svg_original_size_unavailable))
-        assertEquals("The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",resources.getString(R.string.commons_svg_original_size_too_large))
+        assertEquals(PriorityWordingExpectations.resources("en-GB").getString(R.string.commons_svg_original_size_unavailable),resources.getString(R.string.commons_svg_original_size_unavailable))
+        assertEquals(PriorityWordingExpectations.resources("en-GB").getString(R.string.commons_svg_original_size_too_large),resources.getString(R.string.commons_svg_original_size_too_large))
     }
 }

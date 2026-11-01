@@ -96,32 +96,6 @@ class LatvianPriorityWordingTest {
         assertEquals("100 × 100 px · Pikseļu skaits: 10\u00a0000 (0,01 MP)", result.text.toString())
     }
 
-    @Test fun actualPickerShowsCompleteTitleAndFallbackGuidanceWithoutChangingSelection() {
-        val controller = Robolectric.buildActivity(Activity::class.java)
-        controller.get().setTheme(R.style.ClassicPaintTheme)
-        val activity = controller.setup().get()
-        var dialog: AlertDialog? = null
-        try {
-            val selected = AppLanguage.selectedTag(activity)
-            val expected = latvian.getString(R.string.language20_translation_note)
-            var selectionChanged = false
-            val shown = AppLanguage.showPicker(activity) { selectionChanged = true }
-            dialog = shown
-            fun texts(view: View): List<String> =
-                (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
-                    (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
-            assertTrue(texts(shown.window!!.decorView).contains(expected))
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
-            shadowOf(Looper.getMainLooper()).idle()
-            assertFalse(shown.isShowing)
-            assertFalse(selectionChanged)
-            assertEquals(selected, AppLanguage.selectedTag(activity))
-        } finally {
-            dialog?.dismiss()
-            controller.pause().stop().destroy()
-        }
-    }
-
     @Test fun actualCategoryControlsKeepAgreementForEveryToolAndExpansion() {
         assertEquals("Zīmulis", PaintTool.PENCIL.label)
         assertEquals("Ota", PaintTool.BRUSH.label)
@@ -165,11 +139,12 @@ class LatvianPriorityWordingTest {
                 shadowOf(Looper.getMainLooper()).idle()
                 assertNull(failure)
                 val shown = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                val countText = if (exact) count.toString() else "vismaz $count"
-                val expected = "Kadru skaits šajā GIF attēlā: $countText. AN Paint rediģē nekustīgus attēlus un nesaglabā animāciju.\n\nTiks importēts tikai pirmais kadrs. Saglabāšana izveido nekustīgu attēlu."
-                assertEquals("Animēts attēls", shadowOf(shown).title.toString())
+                val countText = if (exact) count.toString() else latvian.getString(R.string.formats22_at_least_frames, count)
+                val expected = latvian.getString(R.string.formats22_animation_message, "GIF", countText) + "\n\n" +
+                    latvian.getString(R.string.formats22_animation_still)
+                assertEquals(latvian.getString(R.string.formats22_animation_title), shadowOf(shown).title.toString())
                 assertEquals(expected, shadowOf(shown).message.toString())
-                assertEquals("Atvērt nekustīgu attēlu", shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(latvian.getString(R.string.formats22_open_still), shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(0, selected)
                 assertTrue(file.exists())
                 shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
@@ -202,10 +177,10 @@ class LatvianPriorityWordingTest {
             EditorTestNavigation.click(activity, "menu_Color")
             val root = activity.window.decorView
             val swatch = root.findViewWithTag<View>("colour_FF0000")
-            assertEquals("Krāsa #FF0000. Pieskarieties, lai izvēlētos priekšplāna krāsu; turiet nospiestu, lai izvēlētos fona krāsu.", swatch.contentDescription.toString())
+            assertEquals(activity.getString(R.string.ui_colour_tap_foreground_hold_background, "FF0000"), swatch.contentDescription.toString())
             fun descriptions(view: View): List<String> = listOfNotNull(view.contentDescription?.toString()) +
                 (if (view is ViewGroup) (0 until view.childCount).flatMap { descriptions(view.getChildAt(it)) } else emptyList())
-            assertTrue(descriptions(root).contains("Krāsu palete. Pieskarieties krāsai, lai izvēlētos priekšplāna krāsu; turiet to nospiestu, lai izvēlētos fona krāsu. Ritiniet, lai skatītu vairāk krāsu."))
+            assertTrue(descriptions(root).contains(activity.getString(R.string.ui_colour_palette_tap_for_foreground_hold_for_background)))
             val bitmap = activity.document.bitmap
             val pixels = IntArray(bitmap.width * bitmap.height)
             bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)

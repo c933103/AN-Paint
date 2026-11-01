@@ -84,7 +84,7 @@ class ImportSelectionTitleTest {
         return file
     }
 
-    private fun warning(title: String, message: String, positive: String = "Open still image"): AlertDialog {
+    private fun warning(title: String, message: String, positive: String = PaintApplication.currentResources.getString(R.string.formats22_open_still)): AlertDialog {
         val dialog = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
         assertTrue(dialog.isShowing)
         assertEquals(title, shadowOf(dialog).title.toString())
@@ -119,7 +119,7 @@ class ImportSelectionTitleTest {
         )
         for ((bytes, info) in fixtures) {
             val file = begin(bytes, info)
-            val dialog = warning("Open still image", ui(R.string.formats22_animation_unknown, info.format))
+            val dialog = warning(PaintApplication.currentResources.getString(R.string.formats22_open_still), ui(R.string.formats22_animation_unknown, info.format))
             cancel(dialog, file, dismiss = info.frameCount == 1)
         }
     }
@@ -127,7 +127,7 @@ class ImportSelectionTitleTest {
     @Test fun exactGifAndWebpKeepTheConfirmedTitleAndOpenFirstImageExactlyOnce() {
         for ((format, encoded) in listOf("GIF" to GIF, "WebP" to WEBP)) {
             val file = begin(decode(encoded), AnimationInfo(format, 3, true, false))
-            val dialog = warning("Animated image", confirmedMessage(format, "3"))
+            val dialog = warning(PaintApplication.currentResources.getString(R.string.formats22_animation_title), confirmedMessage(format, "3"))
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             worker.drain(); worker.drain()
             assertEquals(1, selectedCalls)
@@ -143,35 +143,34 @@ class ImportSelectionTitleTest {
 
     @Test fun provenLowerBoundKeepsConfirmedTitleAndAtLeastCount() {
         val file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
-        cancel(warning("Animated image", confirmedMessage("GIF", ui(R.string.formats22_at_least_frames, 2))), file)
+        cancel(warning(PaintApplication.currentResources.getString(R.string.formats22_animation_title), confirmedMessage("GIF", ui(R.string.formats22_at_least_frames, 2))), file)
     }
 
     @Test fun bothApngDefaultImageOutcomesKeepConfirmedTitleAndTheirOwnBody() {
         for ((poster, encoded) in listOf(false to APNG, true to APNG_POSTER)) {
             val file = begin(decode(encoded), AnimationInfo("APNG", 3, true, poster))
-            cancel(warning("Animated image", confirmedMessage("APNG", "3", poster)), file)
+            cancel(warning(PaintApplication.currentResources.getString(R.string.formats22_animation_title), confirmedMessage("APNG", "3", poster)), file)
         }
     }
 
     @Test fun brazilianPortugueseUsesTheExistingNeutralAndConfirmedTitles() {
         language("pt-BR")
         var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
-        cancel(warning("Abrir imagem estática", ui(R.string.formats22_animation_unknown, "GIF"), "Abrir imagem estática"), file)
+        cancel(warning(PaintApplication.currentResources.getString(R.string.formats22_open_still), ui(R.string.formats22_animation_unknown, "GIF"), PaintApplication.currentResources.getString(R.string.formats22_open_still)), file)
         file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
-        cancel(warning("Imagem animada", confirmedMessage("APNG", "3", true), "Abrir imagem estática"), file)
+        cancel(warning(PaintApplication.currentResources.getString(R.string.formats22_animation_title), confirmedMessage("APNG", "3", true), PaintApplication.currentResources.getString(R.string.formats22_open_still)), file)
     }
 
     @Test fun nynorskAnimationWarningsRetainUncertainAndMixedCountSemanticsInRealDialogs() {
         language("nn")
         val lowerBound = String.format(Locale.forLanguageTag("nn"),
             PriorityWordingExpectations.resourceText("nn","formats22_at_least_frames"),2)
-        assertEquals(lowerBound,ui(R.string.formats22_at_least_frames,2))
         var file = begin(cappedGif(0), AnimationInfo("GIF", 0, false, false))
-        cancel(warning("Opna stillbilete", "Dette GIF-biletet er for komplekst til å stadfesta om det har fleire biletruter. AN Paint opnar berre eit stillbilete og tek ikkje vare på nokon animasjon.", "Opna stillbilete"), file)
+        cancel(warning(PaintApplication.currentResources.getString(R.string.formats22_open_still), PaintApplication.currentResources.getString(R.string.formats22_animation_unknown, "GIF"), PaintApplication.currentResources.getString(R.string.formats22_open_still)), file)
         file = begin(cappedGif(2), AnimationInfo("GIF", 2, false, false))
-        cancel(warning("Animert bilete", "Dette GIF-biletet har $lowerBound biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nBerre den første biletruta vert importert. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete"), file)
+        cancel(warning(PaintApplication.currentResources.getString(R.string.formats22_animation_title), confirmedMessage("GIF", lowerBound), PaintApplication.currentResources.getString(R.string.formats22_open_still)), file)
         file = begin(decode(APNG_POSTER), AnimationInfo("APNG", 3, true, true))
-        val dialog = warning("Animert bilete", "Dette APNG-biletet har 3 biletruter. AN Paint redigerer stillbilete og tek ikkje vare på animasjon.\n\nDette PNG-biletet har eit eige standardbilete. Det vert importert i staden for dei animerte biletrutene. Ved lagring vert det laga eit stillbilete.", "Opna stillbilete")
+        val dialog = warning(PaintApplication.currentResources.getString(R.string.formats22_animation_title), confirmedMessage("APNG", "3", true), PaintApplication.currentResources.getString(R.string.formats22_open_still))
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
         worker.drain(); worker.drain()
         assertEquals(1, selectedCalls); assertEquals(0, selected!!.pageIndex)
@@ -242,9 +241,8 @@ class ImportSelectionTitleTest {
         // nch is offered and has no animation-warning keys; Old English is now partially translated.
         language("nch")
         val file = begin(cappedPng(), AnimationInfo("PNG", 0, false, false))
-        val message = "This PNG is too complex to confirm whether it contains multiple frames. " +
-            "AN Paint will open only a still image and will not preserve any animation."
-        cancel(warning("Open still image", message), file)
+        val message = PriorityWordingExpectations.resources("en-GB").getString(R.string.formats22_animation_unknown, "PNG")
+        cancel(warning(PaintApplication.currentResources.getString(R.string.formats22_open_still), message), file)
     }
 
     @Test fun ordinarySingleFrameInputsStillBypassTheWarning() {
@@ -262,7 +260,7 @@ class ImportSelectionTitleTest {
 
     @Test fun uncertainOpenStillTransfersTheFirstImageExactlyOnce() {
         val file = begin(cappedGif(1), AnimationInfo("GIF", 1, false, false))
-        val dialog = warning("Open still image", ui(R.string.formats22_animation_unknown, "GIF"))
+        val dialog = warning(PaintApplication.currentResources.getString(R.string.formats22_open_still), ui(R.string.formats22_animation_unknown, "GIF"))
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
         worker.drain(); worker.drain()
         assertEquals(1, selectedCalls)
@@ -276,7 +274,7 @@ class ImportSelectionTitleTest {
 
     @Test fun disposalAfterUncertainApprovalSuppressesQueuedSelection() {
         val file = begin(cappedGif(1), AnimationInfo("GIF", 1, false, false))
-        val dialog = warning("Open still image", ui(R.string.formats22_animation_unknown, "GIF"))
+        val dialog = warning(PaintApplication.currentResources.getString(R.string.formats22_open_still), ui(R.string.formats22_animation_unknown, "GIF"))
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
         selection!!.dispose()
         worker.drain()

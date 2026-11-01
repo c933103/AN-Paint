@@ -235,30 +235,6 @@ class ExactScriptPriorityWordingTest {
         } finally {shown.dismiss()}
     }
 
-    @Test fun memoryAdmissionStopsBeforeAllocationWithAllFourArguments() = forEachLocale { tag,_ ->
-        val mib=1024L*1024;val policy=ImageMemoryPolicy.calculate(256*mib,0,96*mib,0,false)
-        assertEquals(0L,policy.maxPixels())
-        val error=assertThrows(ImageSizeException::class.java) {policy.check(1000,2000)}
-        assertEquals(formatted(tag,"ui_d_d_pixels_2f_mp_exceeds_the_current",1000,2000,2.0,0.0),error.message)
-    }
-
-    @Test fun failedDraftRecoveryKeepsExactBytesBeforeClaimingPreservation() = forEachLocale { tag,activity ->
-        val folder=File(activity.cacheDir,"priority-recovery-${System.nanoTime()}").apply {mkdirs()}
-        val context=object:ContextWrapper(activity) {
-            override fun getFilesDir():File=folder
-            override fun getCacheDir():File=File(folder,"cache").apply {mkdirs()}
-        }
-        val store=AutosaveStore(folder);val original="deliberately not a ZIP draft".toByteArray();store.file.writeBytes(original)
-        var recovered:RecoveredEditor?=null
-        try {
-            val result=recoverEditor(context,store).value;recovered=result
-            assertFalse(result.restored);assertFalse(result.autosaveBlocked)
-            assertEquals(expected(tag,"ui_previous_draft_kept_for_recovery"),result.draftStatus)
-            assertEquals(formatted(tag,"ui_a_separate_recovery_copy_has_been_kept_use",expected(tag,"ui_the_previous_draft_could_not_be_restored")),result.recoveryNotice)
-            assertArrayEquals(original,store.file.readBytes());assertEquals(1,store.recoveryCopies().size)
-            assertArrayEquals(original,store.recoveryCopies().single().readBytes())
-        } finally {recovered?.document?.close();folder.deleteRecursively()}
-    }
     @Test fun gifDitherDescriptionAndCheckboxStayPairedWithoutSavingOnCancel() = forEachLocale { tag,activity ->
         var saved=false;var cancelled=0
         val shown=SaveOptionsDialog(activity,ExportOptions(format=ImageFormat.GIF,dither=true),

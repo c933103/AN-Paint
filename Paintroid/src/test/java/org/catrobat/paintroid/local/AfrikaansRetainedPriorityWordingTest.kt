@@ -66,15 +66,6 @@ class AfrikaansRetainedPriorityWordingTest {
         PriorityWordingExpectations.forEachLocale(
             tags, previousResources, previousLocale, previousTag, check)
 
-    @Test fun memoryAdmissionStopsBeforeAllocationWithAllFourArguments() = forEachLocale { tag,_ ->
-        val mib=1024L*1024;val policy=ImageMemoryPolicy.calculate(256*mib,0,96*mib,0,false)
-        assertEquals(0L,policy.maxPixels())
-        for((width,height) in listOf(1 to 1,1000 to 2000)) {
-            val error=assertThrows(ImageSizeException::class.java) {policy.check(width,height)}
-            assertEquals(formatted(tag,"ui_d_d_pixels_2f_mp_exceeds_the_current",width,height,width.toLong()*height/1_000_000.0,0.0),error.message)
-        }
-    }
-
     @Test fun completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts() = forEachLocale { tag,activity ->
         val images=(1..3).map {i->AssemblyImage("image$i",File(activity.cacheDir,"$tag-$i.image"),"$i.png",null,ImageDimensions(24,16))}
         var applied=false

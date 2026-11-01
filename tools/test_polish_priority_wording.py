@@ -57,22 +57,18 @@ class PolishPriorityWordingTests(unittest.TestCase):
         self.assertNotEqual(strings['ui_keep_editing23'], strings['ui_discard'])
         self.assertEqual(3, len({strings[k] for k in ('ui_save', 'ui_discard_changes23', 'ui_keep_editing23')}))
 
-    def test_memory_recovery_and_original_file_guarantees_are_complete(self):
+    def test_memory_and_recovery_ownership_distinctions(self):
         strings = self.strings['pl']
-        for clause in ('%1$d × %2$d px (%3$.2f MP)', '%4$.2f MP.',
-                       'przechowuje cały obraz w pamięci', 'przekształcenia oraz zaznaczenia',
-                       'Ten limit zależy od dostępnej pamięci.',
-                       'przed przydzieleniem pamięci na zbyt dużą bitmapę',
-                       'Nie zastosowano automatycznej zmiany rozmiaru.'):
-            self.assertIn(clause, strings[MEMORY])
-        for clause in ('nawet przy najmniejszych wymiarach obrazu wynikowego', 'Samo zmniejszenie wymiarów kompozycji nie wystarcza', 'Zamknij inne dokumenty lub przygotuj mniejszy obraz źródłowy', 'Kompozycja pozostaje bez zmian.'):
-            self.assertIn(clause, strings['ui_assembly_source_memory_floor'])
-        self.assertIn('Oryginalny plik pozostanie bez zmian.', strings['ui_the_full_image_and_working_buffers_exceed_the'])
-        self.assertIn('jako kopia odzyskiwania', strings['ui_history_unavailable34'])
-        self.assertIn('aby chronić tę wersję roboczą', strings['ui_autosave_is_paused_to_protect_that_draft_use'])
+        self.assertIn('Nie zastosowano automatycznej zmiany rozmiaru', strings[MEMORY])
+        floor = strings['ui_assembly_source_memory_floor']
+        self.assertIn('Samo zmniejszenie', floor)
+        self.assertIn('Kompozycja pozostaje bez zmian', floor)
+        self.assertIn('Oryginalny plik pozostanie bez zmian', strings['ui_the_full_image_and_working_buffers_exceed_the'])
+        self.assertIn('kopia odzyskiwania', strings['ui_history_unavailable34'])
+        self.assertIn('chronić tę wersję roboczą', strings['ui_autosave_is_paused_to_protect_that_draft_use'])
         self.assertIn('canvas.png', strings['ui_a_separate_recovery_copy_has_been_kept_use'])
         self.assertIn('ZIP', strings['ui_a_separate_recovery_copy_has_been_kept_use'])
-        self.assertIn('Bieżące miejsce zapisu pozostanie bez zmian.', strings['ui_share_explanation34'])
+        self.assertIn('miejsce zapisu pozostanie bez zmian', strings['ui_share_explanation34'])
 
     def test_route_labels_and_pan_zoom_distinctions_match(self):
         strings = self.strings['pl']

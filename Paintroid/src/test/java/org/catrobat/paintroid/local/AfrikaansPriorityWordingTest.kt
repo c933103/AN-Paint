@@ -155,7 +155,7 @@ class AfrikaansPriorityWordingTest {
                 val error = assertThrows(IOException::class.java) {
                     ImageExporter.encode(source, file, ExportOptions(format), 64L * 1024 * 1024)
                 }
-                assertEquals("Die enkodeerder het nie die enkodering voltooi nie.", error.message)
+                assertEquals(afrikaans.getString(R.string.ui_the_encoder_did_not_finish), error.message)
                 assertNotNull(CommonsPngFailureShadow.rejectedBitmap)
                 assertFalse(source.isRecycled)
                 assertEquals(Color.MAGENTA, source.getPixel(0, 0))

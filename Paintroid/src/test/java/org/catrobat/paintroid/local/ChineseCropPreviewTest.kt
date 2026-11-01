@@ -35,15 +35,6 @@ import java.util.Locale
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class ChineseCropPreviewTest {
     private val context get() = RuntimeEnvironment.getApplication() as Context
-    private val templates = mapOf(
-        "zh-TW" to "預覽：%1\$d × %2\$d px\n套用至 %3\$d 張圖片。裁切已放置圖片時，連接到它們的圖片可能會移動。",
-        "zh-CN" to "预览：%1\$d × %2\$d px\n应用到 %3\$d 张图片。裁剪已放置图片时，连接到它们的图片可能会移动。",
-        "yue-Hant" to "預覽：%1\$d × %2\$d px\n套用去 %3\$d 張圖片。裁剪已經擺好嘅圖片時，連住佢哋嘅圖片可能會移動。",
-        "yue-Latn" to "Jyu6 laam5: %1\$d × %2\$d px\nTou3 jung6 heoi3 %3\$d zoeng1 tou4 pin2. Coi4 zin2 ji5 ging1 baai2 hou2 ge3 tou4 pin2 si4, lin4 zyu6 keoi5 dei6 ge3 tou4 pin2 ho2 nang4 wui5 ji4 dung6.",
-        "nan-Hant-TW" to "預覽：%1\$d × %2\$d px\n套用佇 %3\$d 張圖片。裁囥好的圖片時，接佇怹的圖片可能會移動。",
-        "lzh-Hant" to "預覽：%1\$d × %2\$d px\n施於 %3\$d 圖。裁已置之圖，所連諸圖或因之而移。"
-    )
-    private val tags = templates.keys
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
 
     private fun withLanguage(tag: String, check: (AssemblyActivity) -> Unit) {
@@ -90,22 +81,8 @@ class ChineseCropPreviewTest {
         idle()
     }
 
-    private fun formatted(activity: AssemblyActivity, tag: String, count: Int, height: Int = 16) =
-        if (tag == "nan-Latn-TW")
-            activity.resources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, height, count)
-        else String.format(activity.resources.configuration.locales[0], templates.getValue(tag), 24, height, count)
-
-    @Test fun compiledResourcesKeepCompleteWarningsAndAllThreeArguments() {
-        for (tag in tags) withLanguage(tag) { activity ->
-            // Chinese has only other; include zero, singular, plural and cap boundaries.
-            for (count in listOf(0, 1, 2, 3, 20, 21, 101)) {
-                assertEquals(tag + "/" + count, templates.getValue(tag),
-                    activity.resources.getQuantityText(R.plurals.ui_crop_preview_images, count).toString())
-                assertEquals(tag + "/" + count, formatted(activity, tag, count),
-                    activity.resources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count))
-            }
-        }
-    }
+    private fun formatted(activity: AssemblyActivity, count: Int, height: Int = 16) =
+        activity.resources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, height, count)
 
     @Test fun taiwanWarningSurvivesActualBatchCropSelectionTrimResetCancelAndReopen() =
         checkActualBatchCrop("zh-TW")
@@ -195,7 +172,7 @@ class ChineseCropPreviewTest {
         if (tag.startsWith("nan-")) checkTaiwaneseGlyphs(status, tag)
         fun check(count: Int, height: Int = 16) {
             idle()
-            val expected = formatted(activity, tag, count, height)
+            val expected = formatted(activity, count, height)
             assertEquals(tag + "/" + count, expected, status.text.toString())
             if (tag.startsWith("nan-")) {
                 val layout = status.layout
@@ -225,7 +202,7 @@ class ChineseCropPreviewTest {
         // Reopening uses the same current complete message, with no retained draft.
         click(activity, "assembly_batch_crop")
         val reopened = ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
-        assertEquals(formatted(activity, tag, initialCount),
+        assertEquals(formatted(activity, initialCount),
             reopened.window!!.decorView.findViewWithTag<TextView>("crop_status").text.toString())
         reopened.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
         assertFalse(reopened.isShowing)

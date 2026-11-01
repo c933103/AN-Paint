@@ -85,60 +85,8 @@ class FinnishPriorityWordingTest {
         assertFalse(result.text.toString().contains("1 pikseliä"))
     }
 
-    @Test fun actualLanguagePickerExplainsEnglishFallbackWithoutCompletenessClaim() {
-        val controller = Robolectric.buildActivity(Activity::class.java)
-        controller.get().setTheme(R.style.ClassicPaintTheme)
-        val activity = controller.setup().get()
-        var dialog: AlertDialog? = null
-        try {
-            val shown = AppLanguage.showPicker(activity) { }
-            dialog = shown
-            shadowOf(Looper.getMainLooper()).idle()
-            val expected = finnish.getString(R.string.language20_translation_note)
-            val all = textViews(shown.window!!.decorView).map { it.text.toString() }
-            assertTrue(all.contains(expected))
-            assertFalse(all.any { it.contains("sisältää kaikki AN Paintin") })
-            assertEquals(finnish.getString(R.string.ui_cancel), shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
-            shadowOf(Looper.getMainLooper()).idle()
-            assertFalse(shown.isShowing)
-        } finally {
-            dialog?.dismiss()
-            controller.pause().stop().destroy()
-        }
-    }
-
     private fun textViews(view: View): List<TextView> =
         (if (view is TextView) listOf(view) else emptyList()) +
             (if (view is ViewGroup) (0 until view.childCount).flatMap { textViews(view.getChildAt(it)) } else emptyList())
 
-    @Test fun failedPngAndDerivedEncodersReportIncompleteEncodingAndKeepSourcePixels() {
-        val directory = File(finnish.cacheDir, "finnish-encoder-${System.nanoTime()}").apply { mkdirs() }
-        val source = Bitmap.createBitmap(2, 2, Bitmap.Config.ARGB_8888).apply { eraseColor(Color.MAGENTA) }
-        try {
-            for (format in listOf(ImageFormat.PNG, ImageFormat.BASE64, ImageFormat.ICO)) {
-                val file = File(directory, "output.${format.extension}").apply { writeText("previous") }
-                CommonsPngFailureShadow.reject = true
-                val error = assertThrows(IOException::class.java) {
-                    ImageExporter.encode(source, file, ExportOptions(format), 64L * 1024 * 1024)
-                }
-                assertEquals("Kooderi ei suorittanut koodausta loppuun.", error.message)
-                assertNotNull(CommonsPngFailureShadow.rejectedBitmap)
-                assertFalse(source.isRecycled)
-                assertEquals(Color.MAGENTA, source.getPixel(0, 0))
-                if (format != ImageFormat.PNG) assertEquals("previous", file.readText())
-                assertEquals(listOf(file.name), directory.listFiles()!!.map { it.name })
-                file.delete()
-                CommonsPngFailureShadow.resetFailure()
-            }
-            // A successful real PNG encode remains possible with the failure injection disabled.
-            val png = File(directory, "success.png")
-            ImageExporter.encode(source, png, ExportOptions(ImageFormat.PNG), 64L * 1024 * 1024)
-            assertTrue(png.length() > 8)
-            assertArrayEquals(byteArrayOf(-119, 80, 78, 71, 13, 10, 26, 10), png.readBytes().copyOf(8))
-        } finally {
-            source.recycle()
-            directory.deleteRecursively()
-        }
-    }
 }

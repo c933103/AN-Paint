@@ -76,64 +76,6 @@ class SwedishPriorityWordingTest {
         }
     }
 
-    @Test fun pickerExplainsFallbackAndCancelKeepsTheSelectedLanguage() {
-        val controller = Robolectric.buildActivity(Activity::class.java)
-        controller.get().setTheme(R.style.ClassicPaintTheme)
-        val activity = controller.setup().get()
-        var dialog: AlertDialog? = null
-        try {
-            val selected = AppLanguage.selectedTag(activity)
-            var changed = false
-            val shown = AppLanguage.showPicker(activity) { changed = true }; dialog = shown
-            val expected = "Appens språk\n\nÖversättningarna underhålls i AN Paints språkresurser. Ny eller oöversatt text visas på engelska."
-            assertTrue(texts(shown.window!!.decorView).contains(expected))
-            assertEquals("Appens språk", ui(R.string.language20_app_language))
-            assertEquals("Använd enhetens språk", ui(R.string.language20_device_default))
-            shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
-            assertFalse(shown.isShowing); assertFalse(changed)
-            assertEquals(selected, AppLanguage.selectedTag(activity))
-        } finally {
-            dialog?.dismiss(); controller.pause().stop().destroy()
-        }
-    }
-
-    @Test fun saveExportAndShareShowDistinctCompleteGuidanceOnRepeatedOpenAndCancel() {
-        val controller = Robolectric.buildActivity(Activity::class.java)
-        controller.get().setTheme(R.style.ClassicPaintTheme)
-        val activity = controller.setup().get()
-        var shown: AlertDialog? = null
-        var confirmed = 0; var cancelled = 0
-        try {
-            val cases = listOf(
-                Triple(false, false, "Välj ett bildformat och dess komprimeringsinställningar. Spara återanvänder detta filnamn, denna plats, detta format och dessa inställningar."),
-                Triple(false, true, "Exportera en ikon, Base64-text eller ASCII-konst. Exporten ändrar varken den aktuella bilden eller platsen som används av Spara."),
-                Triple(true, true, "Spara en kopia på önskad plats och välj sedan en app att dela den med. Den aktuella platsen som används av Spara förblir oförändrad.")
-            )
-            repeat(2) {
-                for ((share, export, expected) in cases) {
-                    val dialog = SaveOptionsDialog(activity, ExportOptions(), share = share,
-                        confirm = { confirmed++ }, cancel = { cancelled++ }, initialFilename = "test.png", export = export).show()
-                    shown = dialog
-                    assertTrue(texts(dialog.window!!.decorView).contains(expected))
-                    val formats = dialog.window!!.decorView.findViewWithTag<Spinner>("export_format")
-                    assertEquals("Filformat", formats.contentDescription.toString())
-                    if (export) {
-                        EditorTestNavigation.format(formats, ImageFormat.ASCII_ART)
-                        assertTrue(texts(dialog.window!!.decorView).contains("Skriver vanlig text med ljusa och mörka tecken. Visa texten med ett typsnitt med fast teckenbredd. Detta är en visuell återgivning som inte kan öppnas igen som originalbilden."))
-                    } else {
-                        EditorTestNavigation.format(formats, ImageFormat.GIF)
-                        assertTrue(texts(dialog.window!!.decorView).contains("Stillbild med upp till 256 färger. Färgutjämning ger mjukare färgövergångar. När en animerad GIF-fil öppnas visas endast den första bildrutan."))
-                    }
-                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
-                    assertFalse(dialog.isShowing); assertEquals(0, confirmed)
-                }
-            }
-            assertEquals(6, cancelled)
-        } finally {
-            shown?.dismiss(); controller.pause().stop().destroy()
-        }
-    }
-
     @Test fun actualAnimationWarningsKeepExactAndLowerBoundCountsAndCancelWithoutImporting() {
         val controller = Robolectric.buildActivity(Activity::class.java)
         controller.get().setTheme(R.style.ClassicPaintTheme)
@@ -157,11 +99,12 @@ class SwedishPriorityWordingTest {
                 worker.submit {}.get(10, TimeUnit.SECONDS); idle()
                 assertNull(failure)
                 val shown = checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                val countText = if (exact) count.toString() else "minst $count"
-                val expected = "Den här GIF-filen innehåller $countText bildrutor. AN Paint redigerar stillbilder och bevarar inte animeringar.\n\nEndast den första bildrutan importeras. När du sparar skapas en stillbild."
-                assertEquals("Animerad bild", shadowOf(shown).title.toString())
+                val countText = if (exact) count.toString() else swedish.getString(R.string.formats22_at_least_frames, count)
+                val expected = swedish.getString(R.string.formats22_animation_message, "GIF", countText) + "\n\n" +
+                    swedish.getString(R.string.formats22_animation_still)
+                assertEquals(swedish.getString(R.string.formats22_animation_title), shadowOf(shown).title.toString())
                 assertEquals(expected, shadowOf(shown).message.toString())
-                assertEquals("Öppna stillbild", shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
+                assertEquals(swedish.getString(R.string.formats22_open_still), shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
                 assertEquals(0, selected); assertTrue(file.exists())
                 shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick(); idle()
                 assertEquals(1, cancelled); assertEquals(0, selected); assertNull(failure)

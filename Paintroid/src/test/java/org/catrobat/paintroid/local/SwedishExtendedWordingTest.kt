@@ -90,7 +90,7 @@ class SwedishExtendedWordingTest {
     @Test fun allTwelveCommonsFailuresUseTheActualDispatcherAndKeepProviderDetailVerbatim() {
         val gallery = MediaGalleryActivity()
         val cases = listOf(
-            CommonsAttribution.HttpException(503) to "Commons-metadata: HTTP 503",
+            CommonsAttribution.HttpException(503) to PaintApplication.currentResources.getString(R.string.commons_metadata_http_error, "503"),
             CommonsAttribution.ResponseLimitException() to expected("commons_metadata_response_too_large"),
             CommonsAttribution.QueryFailureException() to expected("commons_metadata_query_failed"),
             CommonsImportFailure.NotFilePage() to expected("commons_metadata_not_file_page"),
@@ -108,13 +108,9 @@ class SwedishExtendedWordingTest {
             ClassParameter.from(Exception::class.java, error))
         for ((error, wording) in cases) {
             assertEquals(wording, reason(error))
-            assertEquals("Bildens erkännande kunde inte kopieras: $wording",
-                ui(R.string.commons_credit_copy_failed_reason, reason(error)!!))
         }
         val provider = "  Provider 50%: %1\$s · détails\nTry again.  "
         assertEquals(provider, reason(IOException(provider)))
-        assertEquals("Bildens erkännande kunde inte kopieras: $provider",
-            ui(R.string.commons_credit_copy_failed_reason, reason(IOException(provider))!!))
         assertNull(reason(IOException()))
     }
 
@@ -130,8 +126,12 @@ class SwedishExtendedWordingTest {
             repeat(2) {
                 val dialog = ImageCropDialog(activity, images, { null }, { applied++ }).show()
                 val status = dialog.window!!.decorView.findViewWithTag<TextView>("crop_status")
-                fun full(count: Int) = "Förhandsvisning: 24 × 16 px\nVerkställ för $count ${if (count == 1) "bild" else "bilder"}. " +
-                    "Om placerade bilder beskärs kan bilder som är fästa vid dem flyttas."
+                fun full(count: Int): String {
+                    val noun = if (count == 1) "bild" else "bilder"
+                    val value = PaintApplication.currentResources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count)
+                    assertTrue(value.contains("$count $noun."))
+                    return value
+                }
                 assertEquals(full(2), status.text.toString())
                 val second = dialog.window!!.decorView.findViewWithTag<CheckBox>("crop_include_sv-2")
                 second.isChecked = false; idle()
