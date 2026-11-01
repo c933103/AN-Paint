@@ -71,6 +71,18 @@ interpretation. There is no chain of reused evidence. A stale security marker
 also makes reuse ineligible even when its gate is disabled; do not request more
 reviews merely to make this optimization eligible.
 
+If GitHub's run `pull_requests` is exactly empty, the alternative proof requires
+both independently fetched exact-head and actual-merge commit associations to
+contain only the same immutable PR ID/number, repository, head SHA/ref and develop
+base; the run's head branch must match. Both lists are race-rechecked. This proves
+unique-head-plus-merge association, **not** a historical direct run-to-PR link.
+Nonempty conflicting run associations never use this alternative. The same
+independently fetched tested ordered parents/tree and original artifact-byte
+checks remain mandatory, so a run tested against another base cannot qualify.
+Missing or ambiguous associations still select full fallback. PR261 exposed the
+empty-run-list limitation and correctly executed its complete post-merge jobs;
+that historical execution is not retroactively described as reuse.
+
 Only the preflight job gains `actions: read`, alongside its `contents: read`,
 matching the existing composition job's same-repository read capability. Global
 permissions stay `contents: read`: no new credential, writes, secrets, external

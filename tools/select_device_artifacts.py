@@ -112,7 +112,8 @@ def verify_trusted_producers(before, tested, current):
 
 
 def qualify_equivalent_run(*, repository, merge, tested_merge, pull_requests,
-                           run, jobs, push_before, now, workflow_id):
+                           run, jobs, push_before, now, workflow_id,
+                           head_associations=None, merge_associations=None):
     """Narrow ordinary-merge policy; unsupported or missing facts fail closed.
 
     Inputs are GitHub REST repository/PR/run/job and Git commit objects. Job
@@ -159,9 +160,29 @@ def qualify_equivalent_run(*, repository, merge, tested_merge, pull_requests,
             and run.get('head_repository', {}).get('id') == repo_id,
             'Run workflow/head/repository association differs')
     associated = run.get('pull_requests')
-    require(isinstance(associated, list) and len(associated) == 1
-            and associated[0].get('number') == number and associated[0].get('id') == pr['id'],
-            'Run does not independently identify this PR')
+    association_proof = 'direct-run-pr'
+    if associated == []:
+        # Some GitHub PR runs expose an empty association even after merging.
+        # This is a unique-head + actual-merge proof, not historical run->PR linkage.
+        ref = pr.get('head', {}).get('ref')
+        require(isinstance(ref, str) and ref and run.get('head_branch') == ref,
+                'Run and PR head branches differ')
+        for rows in (head_associations, merge_associations):
+            require(isinstance(rows, list) and len(rows) == 1,
+                    'Unique head and merge PR associations required')
+            row = rows[0]
+            require(row.get('id') == pr['id'] and row.get('number') == number
+                    and row.get('head', {}).get('sha') == head
+                    and row.get('head', {}).get('ref') == ref
+                    and row.get('head', {}).get('repo', {}).get('id') == repo_id
+                    and row.get('base', {}).get('ref') == 'develop'
+                    and row.get('base', {}).get('repo', {}).get('id') == repo_id,
+                    'Head/merge association identity differs')
+        association_proof = 'unique-head-and-merge-pr'
+    else:
+        require(isinstance(associated, list) and len(associated) == 1
+                and associated[0].get('number') == number and associated[0].get('id') == pr['id'],
+                'Run does not independently identify this PR')
     require(isinstance(jobs, list) and len({job.get('id') for job in jobs}) == len(jobs),
             'Missing or duplicate job identities')
     names = [job.get('name') for job in jobs]
@@ -188,6 +209,7 @@ def qualify_equivalent_run(*, repository, merge, tested_merge, pull_requests,
                 checkout=tested_sha, tree=tree, pull_request=number,
                 run_id=run_id, run_attempt=1, build_variant='debug', device_sdk=35,
                 executed_jobs=sorted(EQUIVALENT_JOBS),
+                association_proof=association_proof,
                 prior_completed_at=completed_at.isoformat().replace('+00:00', 'Z'),
                 merged_at=pr['merged_at'], checked_at=now,
                 policy='immediate-merge-prior-environment-v1')

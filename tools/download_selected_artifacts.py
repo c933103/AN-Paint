@@ -134,6 +134,8 @@ def preflight(fetch, graphql, checkout, event, environ, root, now):
                       + head, 'workflow_runs')
     require(len(runs) == 1, 'Ambiguous or superseded prior run')
     run = fetch(prefix + '/actions/runs/' + str(runs[0]['id']))
+    head_associations = (fetch(prefix + '/commits/' + head + '/pulls?per_page=100')
+                         if run.get('pull_requests') == [] else None)
     run_path = prefix + '/actions/runs/' + str(run['id'])
     jobs = collection(fetch, run_path + '/jobs?filter=all', 'jobs')
     artifacts = collection(fetch, run_path + '/artifacts', 'artifacts')
@@ -143,7 +145,8 @@ def preflight(fetch, graphql, checkout, event, environ, root, now):
     tested = fetch(prefix + '/git/commits/' + original)
     qualified = qualify_equivalent_run(repository=repository, merge=merge, tested_merge=tested,
         pull_requests=[pr], run=run, jobs=jobs, push_before=event['before'], now=now,
-        workflow_id=workflow['id'])
+        workflow_id=workflow['id'], head_associations=head_associations,
+        merge_associations=associations)
     # Bounded list read: a full page is conservatively ambiguous, never truncated acceptance.
     comments = fetch(prefix + '/issues/' + str(pr['number']) + '/comments?per_page=100')
     require(isinstance(comments, list) and len(comments) < 100, 'Review inventory exceeds bound')
@@ -216,6 +219,9 @@ def preflight(fetch, graphql, checkout, event, environ, root, now):
     require(fetch(prefix + '/git/ref/heads/develop')['object']['sha'] == merge_sha,
             'Develop advanced during verification')
     require(policy() == original_policy
+            and fetch(prefix + '/commits/' + merge_sha + '/pulls?per_page=100') == associations
+            and (head_associations is None or
+                 fetch(prefix + '/commits/' + head + '/pulls?per_page=100') == head_associations)
             and fetch(prefix + '/pulls/' + str(pr['number'])) == pr
             and fetch(prefix + '/issues/' + str(pr['number']) + '/comments?per_page=100') == comments
             and collection(fetch, prefix + '/actions/workflows/android.yml/runs?event=pull_request&head_sha=' + head,
