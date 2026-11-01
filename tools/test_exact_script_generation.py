@@ -90,7 +90,11 @@ class ExactScriptGenerationProbeTests(unittest.TestCase):
         self.assertIn('python3 tools/verify_exact_script_generation.py', job)
         self.assertIn('if: always()', job)
         self.assertIn('build/reports/exact-script-generation/', job)
-        self.assertNotIn('needs:', job)
+        # Only the evidence decision precedes this job; build/regression remain independent.
+        self.assertIn('    needs: prior-evidence\n', job)
+        self.assertIn("always() && needs.prior-evidence.outputs.reused != 'true'", job)
+        self.assertNotIn('needs: build', job)
+        self.assertNotIn('needs: checks', job)
         self.assertNotIn('continue-on-error', job)
 
     def test_full_matrix_pr_label_reuses_the_existing_android_jobs(self):

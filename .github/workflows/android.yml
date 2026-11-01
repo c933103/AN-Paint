@@ -28,7 +28,37 @@ defaults:
   run:
     shell: bash
 jobs:
+  prior-evidence:
+    name: Verify recent same-tree PR evidence
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-22.04
+    timeout-minutes: 12
+    outputs:
+      reused: ${{ steps.verify.outputs.reused }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Verify original run, source, review and artifact identities
+        id: verify
+        timeout-minutes: 11
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/download_selected_artifacts.py --equivalence-preflight
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          archive: true
+          name: prior-evidence-link-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: build/reports/prior-evidence.json
+
   checks:
+    needs: prior-evidence
+    if: ${{ always() && needs.prior-evidence.outputs.reused != 'true' }}
     name: Regression tests and lint
     runs-on: ubuntu-22.04
     # 78 minutes of explicit phase caps plus 6 for checkout/cache/evidence overhead.
@@ -96,6 +126,14 @@ jobs:
       - name: Report native compiler cache statistics
         if: always()
         run: if command -v ccache >/dev/null; then ccache --show-stats; fi
+      - name: Record observed prior-run environment
+        if: ${{ !cancelled() }}
+        timeout-minutes: 1
+        run: |
+          if ! timeout --kill-after=5s 45s bash tools/ci_prepare_build.sh --record-inputs build/reports/ci-phases/observed-inputs.json; then
+            rm -f build/reports/ci-phases/observed-inputs.json
+            echo 'Optional prior-environment observation unavailable; future reuse will fall back.'
+          fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -110,6 +148,8 @@ jobs:
             build/reports/profile/
 
   exact-script-resources:
+    needs: prior-evidence
+    if: ${{ always() && needs.prior-evidence.outputs.reused != 'true' }}
     name: Exact-script resource generation
     runs-on: ubuntu-22.04
     timeout-minutes: 20
@@ -129,6 +169,14 @@ jobs:
       - name: Check clean and incremental resource graph in a disposable worktree
         timeout-minutes: 10
         run: python3 tools/verify_exact_script_generation.py
+      - name: Record observed prior-run environment
+        if: ${{ !cancelled() }}
+        timeout-minutes: 1
+        run: |
+          if ! timeout --kill-after=5s 45s bash tools/ci_prepare_build.sh --record-inputs build/reports/exact-script-generation/observed-inputs.json; then
+            rm -f build/reports/exact-script-generation/observed-inputs.json
+            echo 'Optional prior-environment observation unavailable; future reuse will fall back.'
+          fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -139,6 +187,8 @@ jobs:
           path: build/reports/exact-script-generation/
 
   build:
+    needs: prior-evidence
+    if: ${{ always() && needs.prior-evidence.outputs.reused != 'true' }}
     name: Build APK and corresponding source
     runs-on: ubuntu-22.04
     # Aggregate hard stop including cold universal build and evidence/test-APK work.
@@ -211,6 +261,14 @@ jobs:
           path: |
             build/reports/ci-phases/
             build/reports/profile/
+      - name: Record observed prior-run environment
+        if: ${{ !cancelled() }}
+        timeout-minutes: 1
+        run: |
+          if ! timeout --kill-after=5s 45s bash tools/ci_prepare_build.sh --record-inputs build/delivery/observed-inputs.json; then
+            rm -f build/delivery/observed-inputs.json
+            echo 'Optional prior-environment observation unavailable; future reuse will fall back.'
+          fi
       - name: Record build identity and extract matching source
         run: |
           python3 - <<'PY'
@@ -301,6 +359,14 @@ jobs:
           TEST_API: ${{ matrix.api }}
           APP_TEST_GROUP: core
         run: bash tools/ci_emulator.sh
+      - name: Record observed prior-run environment
+        if: ${{ !cancelled() }}
+        timeout-minutes: 1
+        run: |
+          if ! timeout --kill-after=5s 45s bash tools/ci_prepare_build.sh --record-inputs build/reports/android-api-${{ matrix.api }}/observed-inputs.json; then
+            rm -f build/reports/android-api-${{ matrix.api }}/observed-inputs.json
+            echo 'Optional prior-environment observation unavailable; future reuse will fall back.'
+          fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -350,6 +416,14 @@ jobs:
           TEST_API: ${{ matrix.api }}
           APP_TEST_GROUP: position
         run: bash tools/ci_emulator.sh
+      - name: Record observed prior-run environment
+        if: ${{ !cancelled() }}
+        timeout-minutes: 1
+        run: |
+          if ! timeout --kill-after=5s 45s bash tools/ci_prepare_build.sh --record-inputs build/reports/android-api-${{ matrix.api }}/observed-inputs.json; then
+            rm -f build/reports/android-api-${{ matrix.api }}/observed-inputs.json
+            echo 'Optional prior-environment observation unavailable; future reuse will fall back.'
+          fi
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -364,8 +438,8 @@ jobs:
       contents: read
       actions: read
     name: Emulator API ${{ matrix.api }}
-    needs: [device, position]
-    if: ${{ always() && (inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) }}
+    needs: [prior-evidence, device, position]
+    if: ${{ always() && needs.prior-evidence.outputs.reused != 'true' && (inputs.device_tests != 'none' || inputs.build_type == 'release' || (github.event_name == 'push' && startsWith(github.event.head_commit.message, 'Release '))) }}
     runs-on: ubuntu-22.04
     timeout-minutes: 8
     strategy:

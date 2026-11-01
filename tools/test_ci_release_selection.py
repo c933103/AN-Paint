@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import tempfile
 import unittest
 
 
@@ -47,8 +48,9 @@ DEVICE_GATES = {
 
 
 def evaluate(expression, *, event='pull_request', labels=(), build_type=None,
-             device_tests=None, message=''):
+             device_tests=None, message='', reused=None):
     replacements = {
+        'needs.prior-evidence.outputs.reused': 'reused',
         'github.event.pull_request.labels.*.name': 'labels',
         'github.event.head_commit.message': 'message',
         'github.event_name': 'event',
@@ -69,7 +71,7 @@ def evaluate(expression, *, event='pull_request', labels=(), build_type=None,
         'startsWith': lambda value, prefix: value.casefold().startswith(prefix.casefold()),
     }
     values = dict(event=event, labels=labels, build_type=build_type,
-                  device_tests=device_tests, message=message, **functions)
+                  device_tests=device_tests, message=message, reused=reused, **functions)
     for node in ast.walk(parsed):
         if not isinstance(node, allowed):
             raise AssertionError(f'Unmodelled expression syntax: {type(node).__name__}')
@@ -126,7 +128,7 @@ class ReleaseSelectionContracts(unittest.TestCase):
 
     def test_union_runs_after_dependency_failures_but_requires_both_successes(self):
         union = DEVICE_JOBS['device-union']
-        self.assertEqual(one(r'^    needs: (.+)$', union), '[device, position]')
+        self.assertEqual(one(r'^    needs: (.+)$', union), '[prior-evidence, device, position]')
         self.assertIn('always()', DEVICE_GATES['device-union'])
         guard = step(union, '- name: Require both complete emulator jobs')
         self.assertIn('CORE_RESULT: ${{ needs.device.result }}', guard)
@@ -138,6 +140,27 @@ class ReleaseSelectionContracts(unittest.TestCase):
                     result = subprocess.run(['bash', '-c', command], capture_output=True, text=True,
                                             env={'CORE_RESULT': core, 'POSITION_RESULT': position}, timeout=5)
                     self.assertEqual(result.returncode == 0, core == position == 'success')
+
+    def test_only_verified_equivalence_suppresses_full_roots_and_union(self):
+        gates = [one(r'^    if: (.+)$', job(name))
+                 for name in ('checks', 'exact-script-resources', 'build', 'device-union')]
+        for value in (None, '', 'false', 'failure'):
+            for gate in gates: self.assertTrue(evaluate(gate, event='push', reused=value))
+        for gate in gates: self.assertFalse(evaluate(gate, event='push', reused='true'))
+        preflight = job('prior-evidence')
+        self.assertIn('permissions:\n      contents: read\n      actions: read', preflight)
+        self.assertIn('--equivalence-preflight', preflight)
+        self.assertNotIn('continue-on-error', preflight)
+        observation = step(job('checks'), '- name: Record observed prior-run environment')
+        command = observation.split('        run: |\n', 1)[1]
+        command = '\n'.join(line.removeprefix('          ') for line in command.splitlines())
+        self.assertIn('timeout --kill-after=5s 45s', command)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); (root/'tools').mkdir()
+            (root/'tools/ci_prepare_build.sh').write_text('mkdir -p "$(dirname "$2")"; echo stale > "$2"; exit 7\n')
+            result = subprocess.run(['bash','-e','-c',command],cwd=root,capture_output=True,text=True,timeout=5)
+            self.assertEqual(result.returncode, 0)
+            self.assertFalse((root/'build/reports/ci-phases/observed-inputs.json').exists())
 
     def test_label_alone_cannot_trigger_or_publish_or_expand_permissions(self):
         triggers = WORKFLOW.split('\nenv:\n', 1)[0]

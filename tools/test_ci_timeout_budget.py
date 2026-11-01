@@ -51,7 +51,9 @@ def regression_budget(workflow):
     outer = int(one(r'^    timeout-minutes: (\d+)$', checks))
     declared = re.findall(r'^        timeout-minutes: (\d+)$', checks, re.M)
     expected = dict(zip(names, (2, 8, 31, 25, 6, 6)))
-    if len(declared) != len(phases) or phases != expected:
+    observed = step_minutes(checks, 'Record observed prior-run environment')
+    # Its one-minute ceiling is inside the existing six-minute overhead reserve.
+    if len(declared) != len(phases) + 1 or phases != expected or observed != 1:
         raise ValueError('Every regression phase must keep one explicit finite cap')
     if outer != sum(phases.values()) + 6 or outer != 84:
         raise ValueError('Regression job must reserve overhead within a finite aggregate cap')
