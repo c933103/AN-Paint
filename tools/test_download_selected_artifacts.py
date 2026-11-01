@@ -122,6 +122,7 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
 
     def test_preflight_binds_independent_metadata_before_accepting_original_artifacts(self):
         m, review = equivalence_metadata(), review_metadata()
+        m['run']['pull_requests'] = []
         prefix = '/repos/c933103/AN-Paint'; original = m['tested_merge']['sha']
         groups = [('build', 'apk-and-source-'), ('tests', 'instrumentation-apks-'),
                   ('regression', 'regression-and-lint-'), ('exact', 'exact-script-generation-'),
@@ -139,7 +140,8 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
             prefix+'/git/trees/'+'f'*40+'?recursive=1': dict(truncated=False, tree=[
                 dict(type='blob', mode='100644', path='tools/policy.py', sha='f'*40),
                 dict(type='blob', mode='100644', path='Paintroid/src/main/res/values-fr/strings.xml', sha='a'*40)]),
-            prefix+'/commits/'+'c'*40+'/pulls?per_page=100': [dict(number=7)],
+            prefix+'/commits/'+'c'*40+'/pulls?per_page=100': copy.deepcopy(m['pull_requests']),
+            prefix+'/commits/'+'b'*40+'/pulls?per_page=100': copy.deepcopy(m['pull_requests']),
             prefix+'/pulls/7': m['pull_requests'][0], prefix+'/actions/workflows/android.yml': dict(id=40),
             prefix+'/actions/workflows/android.yml/runs?event=pull_request&head_sha='+'b'*40+'&per_page=100&page=1': dict(total_count=1, workflow_runs=[m['run']]),
             prefix+'/actions/runs/30': m['run'],
@@ -173,6 +175,7 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
                 result = preflight(lambda url:copy.deepcopy(endpoints[url]), lambda node:copy.deepcopy(review['graphql']),
                     checkout, {'before':'a'*40}, env, checkout/'prior', m['now'])
                 self.assertEqual(result['checkout'], original)
+                self.assertEqual(result['association_proof'], 'unique-head-and-merge-pr')
                 self.assertEqual(transfer.call_count, 6); verify.assert_called_once()
                 self.assertEqual(verify.call_args.args[-1]['GITHUB_SHA'], original)
                 self.assertNotEqual(result['merge'], original)
@@ -183,7 +186,9 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
                     preflight(lambda url:copy.deepcopy(endpoints[url]), lambda node:review['graphql'],
                               checkout, {'before':'a'*40}, env, checkout/'unused', m['now'])
                 current_tree[0]['sha'] = 'f'*40
-                for endpoint in (prefix+'/actions/workflows/android.yml/runs?event=pull_request&head_sha='+'b'*40+'&per_page=100&page=1', prefix+'/issues/7/comments?per_page=100'):
+                for endpoint in (prefix+'/actions/workflows/android.yml/runs?event=pull_request&head_sha='+'b'*40+'&per_page=100&page=1', prefix+'/issues/7/comments?per_page=100',
+                                 prefix+'/commits/'+'c'*40+'/pulls?per_page=100',
+                                 prefix+'/commits/'+'b'*40+'/pulls?per_page=100'):
                     shutil.rmtree(checkout/'prior')
                     reads = {}
                     def changed(url):

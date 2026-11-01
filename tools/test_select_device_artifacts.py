@@ -41,10 +41,10 @@ def equivalence_metadata():
     commit = lambda sha: dict(sha=sha, tree=dict(sha=tree), parents=[dict(sha=base), dict(sha=head)])
     repo = dict(id=10, full_name='c933103/AN-Paint')
     pr = dict(id=20, number=7, merged=True, state='closed', merge_commit_sha=merged,
-              base=dict(ref='develop', repo=repo), head=dict(sha=head, repo=repo), labels=[],
+              base=dict(ref='develop', repo=repo), head=dict(sha=head, ref='translation/example', repo=repo), labels=[],
               merged_at='2026-11-01T12:00:00Z')
     run = dict(id=30, run_attempt=1, event='pull_request', status='completed', conclusion='success',
-               workflow_id=40, path='.github/workflows/android.yml', head_sha=head,
+               workflow_id=40, path='.github/workflows/android.yml', head_sha=head, head_branch='translation/example',
                repository=repo, head_repository=repo, pull_requests=[dict(id=20, number=7)],
                run_started_at='2026-11-01T10:00:00Z', updated_at='2026-11-01T11:00:00Z')
     jobs = [dict(id=i, name=name, run_id=30, head_sha=head, run_attempt=1,
@@ -206,6 +206,30 @@ class SelectDeviceArtifactsTest(unittest.TestCase):
         self.assertEqual(result['executed_jobs'], sorted(EQUIVALENT_JOBS))
         data['jobs'].append(dict(data['jobs'][0], id=8, name='Verify recent same-tree PR evidence'))
         self.assertEqual(qualify_equivalent_run(**data)['run_attempt'], 1)
+        self.assertEqual(result['association_proof'], 'direct-run-pr')
+        data['run']['pull_requests'] = []
+        data['head_associations'] = copy.deepcopy(data['pull_requests'])
+        data['merge_associations'] = copy.deepcopy(data['pull_requests'])
+        self.assertEqual(qualify_equivalent_run(**data)['association_proof'], 'unique-head-and-merge-pr')
+        for field in ('head_associations', 'merge_associations'):
+            for mutate in (
+                lambda d: d.update({field: []}),
+                lambda d: d[field].append(copy.deepcopy(d[field][0])),
+                lambda d: d[field][0].update(id=99),
+                lambda d: d[field][0].update(number=99),
+                lambda d: d[field][0]['head'].update(sha='f'*40),
+                lambda d: d[field][0]['head'].update(ref='another-branch'),
+                lambda d: d[field][0]['head'].update(repo=dict(id=99)),
+                lambda d: d[field][0]['base'].update(ref='other'),
+                lambda d: d[field][0]['base'].update(repo=dict(id=99)),
+                lambda d: d['run'].update(head_branch='another-branch'),
+                lambda d: d['run'].update(pull_requests=[dict(id=99, number=7)]),
+                lambda d: d['run'].update(pull_requests=None),
+                lambda d: d['tested_merge']['parents'][0].update(sha='f'*40),
+            ):
+                changed = copy.deepcopy(data); mutate(changed)
+                with self.subTest(field=field, mutation=mutate), self.assertRaises(ValueError):
+                    qualify_equivalent_run(**changed)
 
     def test_equivalence_rejects_wrong_repo_pr_merge_parents_tree_labels_or_workflow(self):
         mutations = [
