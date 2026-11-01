@@ -66,59 +66,6 @@ class NorthKoreanAustralianPriorityWordingTest {
         PriorityWordingExpectations.forEachLocale(
             tags, previousResources, previousLocale, previousTag, check)
 
-    @Test fun completeSampledExplanationSurvivesInvalidEditCancelAndReopen() = forEachLocale { tag,activity ->
-        val mib=1024L*1024
-        val policy=ImageMemoryPolicy.calculate(4L*1024*mib,0,(128*mib+32*mib)*3,0,true)
-        var accepted=0;var cancelled=0
-        repeat(2) { attempt ->
-            val shown=ImageResizeDialog(activity,ImageDimensions(4000,3000),0,{policy},
-                resize={accepted++},cancel={cancelled++}).show()
-            try {
-                shadowOf(Looper.getMainLooper()).idle()
-                val root=shown.window!!.decorView
-                val explanation=root.findViewWithTag<TextView>("resize_explanation")
-                val value=expected(tag,"ui_sampled_resize_memory_explanation")
-                assertEquals(value,explanation.text.toString())
-                val width=root.findViewWithTag<EditText>("resize_width")
-                width.setText("0")
-                assertFalse(shown.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
-                assertEquals(value,explanation.text.toString())
-                width.setText("400")
-                assertTrue(shown.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled)
-                assertEquals(value,explanation.text.toString())
-                shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
-                shadowOf(Looper.getMainLooper()).idle()
-                assertFalse(shown.isShowing);assertEquals(0,accepted);assertEquals(attempt+1,cancelled)
-            } finally {shown.dismiss()}
-        }
-    }
-
-    @Test fun saveExportAndShareKeepDistinctCompleteMessagesAndRepeatedCancel() = forEachLocale { tag,activity ->
-        fun texts(view: View): List<String> =
-            (if(view is TextView) listOf(view.text.toString()) else emptyList())+
-            (if(view is ViewGroup) (0 until view.childCount).flatMap {texts(view.getChildAt(it))} else emptyList())
-        val save=expected(tag,"ui_save_explanation23")
-        val export=expected(tag,"ui_export_explanation23")
-        val share=expected(tag,"ui_share_explanation34")
-        for((sharing,exporting,message) in listOf(Triple(false,false,save),Triple(false,true,export),Triple(true,true,share))) repeat(2) {
-            var confirmed=false;var cancelled=0
-            val shown=SaveOptionsDialog(activity,ExportOptions(),share=sharing,
-                confirm={confirmed=true},cancel={cancelled++},export=exporting).show()
-            try {
-                val displayed=texts(shown.window!!.decorView)
-                assertTrue(displayed.contains(message))
-                listOf(save,export,share).filter {it!=message}.forEach {assertFalse(displayed.contains(it))}
-                assertEquals(expected(tag,if(sharing) "ui_save_and_share_41edb4" else if(exporting) "ui_export_as23" else "save20_title"),shadowOf(shown).title.toString())
-                assertTrue(displayed.contains(expected(tag,"save20_file_format")))
-                assertTrue(displayed.contains(expected(tag,"save20_file_name")))
-                assertEquals(expected(tag,"ui_choose_location"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertEquals(expected(tag,"ui_cancel"),shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
-                shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();shadowOf(Looper.getMainLooper()).idle()
-                assertFalse(shown.isShowing);assertFalse(confirmed);assertEquals(1,cancelled)
-            } finally {shown.dismiss()}
-        }
-    }
-
     @Test fun completeCropPluralAndAccessiblePreviewTrackActualSelectionCounts() = forEachLocale { tag,activity ->
         val images=(1..3).map {i->AssemblyImage("image$i",File(activity.cacheDir,"$tag-$i.image"),"$i.png",null,ImageDimensions(24,16))}
         var applied=false

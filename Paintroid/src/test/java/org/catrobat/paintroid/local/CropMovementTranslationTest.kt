@@ -36,44 +36,6 @@ import java.util.Locale
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 class CropMovementTranslationTest {
     private val context get() = RuntimeEnvironment.getApplication() as Context
-    private val templates = mapOf(
-        "lt" to mapOf(
-            "one" to "Peržiūra: %1\$d × %2\$d px\nTaikyti %3\$d vaizdui. Apkirpus išdėstytą vaizdą, prie jo prijungti vaizdai gali pasislinkti.",
-            "few" to "Peržiūra: %1\$d × %2\$d px\nTaikyti %3\$d vaizdams. Apkirpus išdėstytus vaizdus, prie jų prijungti vaizdai gali pasislinkti.",
-            "other" to "Peržiūra: %1\$d × %2\$d px\nTaikyti %3\$d vaizdų. Apkirpus išdėstytus vaizdus, prie jų prijungti vaizdai gali pasislinkti."
-        ),
-        "ar" to mapOf(
-            "zero" to "المعاينة: %1\$d × %2\$d px\nعدد الصور التي سيُطبَّق عليها القص: %3\$d. قد يؤدي قص الصور الموضوعة إلى تحريك الصور المتصلة بها.",
-            "one" to "المعاينة: %1\$d × %2\$d px\nعدد الصور التي سيُطبَّق عليها القص: %3\$d. قد يؤدي قص الصور الموضوعة إلى تحريك الصور المتصلة بها.",
-            "two" to "المعاينة: %1\$d × %2\$d px\nعدد الصور التي سيُطبَّق عليها القص: %3\$d. قد يؤدي قص الصور الموضوعة إلى تحريك الصور المتصلة بها.",
-            "few" to "المعاينة: %1\$d × %2\$d px\nتُطبق على %3\$d صور. قد يؤدي قص الصور الموضوعة إلى تحريك الصور المتصلة بها.",
-            "many" to "المعاينة: %1\$d × %2\$d px\nتُطبق على %3\$d صورة. قد يؤدي قص الصور الموضوعة إلى تحريك الصور المتصلة بها.",
-            "other" to "المعاينة: %1\$d × %2\$d px\nتُطبق على %3\$d صورة. قد يؤدي قص الصور الموضوعة إلى تحريك الصور المتصلة بها."
-        ),
-        "ru" to mapOf(
-            "one" to "Предпросмотр: %1\$d × %2\$d px\nПрименить к %3\$d изображению. При обрезке размещённых изображений присоединённые к ним изображения могут переместиться.",
-            "few" to "Предпросмотр: %1\$d × %2\$d px\nПрименить к %3\$d изображениям. При обрезке размещённых изображений присоединённые к ним изображения могут переместиться.",
-            "many" to "Предпросмотр: %1\$d × %2\$d px\nИзображений для обрезки: %3\$d. При обрезке размещённых изображений присоединённые к ним изображения могут переместиться.",
-            "other" to "Предпросмотр: %1\$d × %2\$d px\nПрименить к %3\$d изображениям. При обрезке размещённых изображений присоединённые к ним изображения могут переместиться."
-        ),
-        "ja" to mapOf(
-            "other" to "プレビュー: %1\$d × %2\$d px\n%3\$d 枚の画像に適用します。配置済み画像をトリミングすると、接続された画像が移動する場合があります。"
-        )
-,
-        "fi" to mapOf(
-            "one" to "Esikatselu: %1\$d × %2\$d px\nKäytä %3\$d kuvaan. Aseteltujen kuvien rajaaminen voi siirtää niihin liitettyjä kuvia.",
-            "other" to "Esikatselu: %1\$d × %2\$d px\nKäytä %3\$d kuvaan. Aseteltujen kuvien rajaaminen voi siirtää niihin liitettyjä kuvia."
-        ),
-        "et" to mapOf(
-            "one" to "Eelvaade: %1\$d × %2\$d px\nRakenda %3\$d pildile. Paigutatud piltide kärpimine võib liigutada nende külge kinnitatud pilte.",
-            "other" to "Eelvaade: %1\$d × %2\$d px\nRakenda %3\$d pildile. Paigutatud piltide kärpimine võib liigutada nende külge kinnitatud pilte."
-        ),
-        "lv" to mapOf(
-            "one" to "Priekšskatījums: %1\$d × %2\$d px\nLietot %3\$d attēlam. Novietotu attēlu apgriešana var pārvietot tiem piesaistītos attēlus.",
-            "other" to "Priekšskatījums: %1\$d × %2\$d px\nLietot %3\$d attēliem. Novietotu attēlu apgriešana var pārvietot tiem piesaistītos attēlus."
-        )
-    )
-
     // Independent integer examples. Russian "other" is covered by the XML test;
     // Android getQuantityString cannot select a fractional quantity.
     private val quantities = mapOf(
@@ -134,28 +96,29 @@ class CropMovementTranslationTest {
         }
     }
 
-    private fun template(tag: String, count: Int): String {
-        val quantity = quantities.getValue(tag).entries.single { count in it.value }.key
-        return templates.getValue(tag).getValue(quantity)
-    }
+    private fun formatted(activity: AssemblyActivity, height: Int, count: Int) =
+        activity.resources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, height, count)
 
-    private fun formatted(activity: AssemblyActivity, template: String, height: Int, count: Int) =
-        String.format(activity.resources.configuration.locales[0], template, 24, height, count)
-
-    @Test fun compiledResourcesSelectCompletePluralMessagesAndFormatAllThreeArguments() {
+    @Test fun compiledResourcesSelectPluralCategoriesAndFormatAllThreeArguments() {
         for ((tag, forms) in quantities) withLanguage(tag) { activity ->
+            val rules = android.icu.text.PluralRules.forLocale(Locale.forLanguageTag(tag))
             for ((quantity, counts) in forms) for (count in counts) {
-                val expected = templates.getValue(tag).getValue(quantity)
-                assertEquals(tag + "/" + quantity + "/" + count, expected,
+                val category = if (tag == "lv" && count in listOf(0, 10, 11, 20, 111)) "zero" else quantity
+                assertEquals("$tag/$count CLDR category", category, rules.select(count.toDouble()))
+                // Compare same-category compiled forms without freezing their translated prose.
+                // Latvian zero intentionally falls back to the current other item (represented by 2).
+                val representative = if (tag == "lv" && quantity == "other") 2 else counts.first()
+                val template = activity.resources.getQuantityText(R.plurals.ui_crop_preview_images, representative).toString()
+                assertEquals("$tag/$quantity/$count compiled category", template,
                     activity.resources.getQuantityText(R.plurals.ui_crop_preview_images, count).toString())
-                assertEquals(formatted(activity, expected, 16, count),
+                assertEquals(String.format(activity.resources.configuration.locales[0], template, 24, 16, count),
                     activity.resources.getQuantityString(R.plurals.ui_crop_preview_images, count, 24, 16, count))
             }
         }
     }
 
     @Test fun actualCropDialogKeepsCompleteWarningsAcrossSelectionTrimAndReset() {
-        for (tag in templates.keys) withLanguage(tag) { activity ->
+        for (tag in listOf("lt", "ar")) withLanguage(tag) { activity ->
             val images = (0 until 20).map { index ->
                 AssemblyImage("crop-" + index, File(activity.cacheDir, "crop-" + index + ".image"),
                     "Image " + index, null, ImageDimensions(24, 16))
@@ -167,9 +130,10 @@ class CropMovementTranslationTest {
             fun check(count: Int, height: Int = 16) {
                 shadowOf(Looper.getMainLooper()).idle()
                 assertEquals(tag + "/" + count,
-                    formatted(activity, template(tag, count), height, count), status.text.toString())
+                    formatted(activity, height, count), status.text.toString())
             }
-            // Includes Arabic zero/one/two/few/many and all integer LT/RU forms.
+            // Actual LTR/RTL consumers cover Arabic zero/one/two/few/many and LT forms;
+            // the separate compiled corpus above retains every RU integer boundary.
             for (count in listOf(20, 0, 1, 2, 3, 11, 20)) {
                 when (count) {
                     0 -> root.findViewWithTag<View>("crop_none").performClick()

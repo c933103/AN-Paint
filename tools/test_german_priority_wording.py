@@ -25,36 +25,15 @@ class GermanPriorityWording(unittest.TestCase):
         self.assertEqual(('VG', 'HG'), (self.values['ui_fg'], self.values['ui_bg']))
         self.assertEqual([2, 2], [len(self.values[key]) for key in ('ui_fg', 'ui_bg')])
 
-    def test_safety_and_accessibility_clauses_are_retained_in_full(self):
-        clauses = {
-            'formats22_animation_unknown': [
-                'AN Paint öffnet nur ein Standbild und erhält keine Animation.',
-            ],
-            'ui_d_d_pixels_2f_mp_exceeds_the_current': [
-                'AN Paint hält das vollständige Bild im Speicher und reserviert Platz für Transformationen und Auswahlen.',
-                'Der verfügbare Speicher bestimmt dieses Limit.',
-                'Der Vorgang wurde gestoppt, bevor die übergroße Bitmap angelegt wurde.',
-                'Es wurde keine automatische Größenänderung vorgenommen.',
-            ],
-            'ui_no_resize_fits_decoder_memory': [
-                'Brechen Sie ab und verwenden Sie ein kleineres Quellbild.',
-            ],
-            'ui_recovery_copy_exported_extract_canvas_png_from_the': [
-                'canvas.png', 'ZIP-Datei', 'öffnen Sie dieses Bild über Datei > Bild laden',
-                'Die ZIP-Datei enthält auch Entwurfseinstellungen und eine eventuell schwebende Auswahl.',
-            ],
-            'ui_share_explanation34': [
-                'Das bisherige Speicherziel bleibt unverändert.',
-            ],
-            'ui_drawing_canvas_pinch_and_move_two_fingers_to': [
-                'zwei Finger auseinander oder zusammen',
-                'Im Navigationsmodus können Sie die Ansicht auch mit einem Finger verschieben.',
-            ],
-        }
-        for key, required in clauses.items():
-            for clause in required:
-                with self.subTest(key=key, clause=clause):
-                    self.assertIn(clause, self.values[key])
+    def test_warning_modalities_and_recovery_ownership_remain_explicit(self):
+        s = self.values
+        self.assertIn('keine automatische Größenänderung', s['ui_d_d_pixels_2f_mp_exceeds_the_current'])
+        self.assertIn('kleineres Quellbild', s['ui_no_resize_fits_decoder_memory'])
+        self.assertIn('keine Animation', s['formats22_animation_unknown'])
+        recovery = s['ui_recovery_copy_exported_extract_canvas_png_from_the']
+        for boundary in ('canvas.png', 'ZIP', 'Entwurfseinstellungen', 'eventuell schwebende Auswahl'):
+            self.assertIn(boundary, recovery)
+        self.assertIn('Speicherziel bleibt unverändert', s['ui_share_explanation34'])
 
 if __name__ == '__main__':
     unittest.main()

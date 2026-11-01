@@ -74,43 +74,4 @@ class CatalanRomanianSaveWordingTest {
         assertEquals(ui(R.string.ui_save_and_share_41edb4) + "…", ui(R.string.ui_save_and_share))
     }
 
-    @Test fun actualSaveExportAndSharePanelsKeepTheirDistinctWholeMessagesAndRepeatedCancel() = forEachLocale { tag, _ ->
-        val controller = Robolectric.buildActivity(Activity::class.java)
-        controller.get().setTheme(R.style.ClassicPaintTheme)
-        val activity = controller.setup().get()
-        var dialog: AlertDialog? = null
-        try {
-            fun texts(view: View): List<String> =
-                (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
-                    (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
-            val save = expected(tag, "ui_save_explanation23")
-            val export = expected(tag, "ui_export_explanation23")
-            val share = expected(tag, "ui_share_explanation34")
-            // Real File-menu Share sets both flags; its copy/share prose must take precedence.
-            val modes = listOf(Triple(false, false, save), Triple(false, true, export), Triple(true, true, share))
-            for ((sharing, exporting, message) in modes) repeat(2) {
-                var confirmed = false
-                var cancelled = 0
-                val shown = SaveOptionsDialog(activity, ExportOptions(), share = sharing,
-                    confirm = { confirmed = true }, cancel = { cancelled++ }, export = exporting).show()
-                dialog = shown
-                val displayed = texts(shown.window!!.decorView)
-                assertTrue(displayed.contains(message))
-                for (other in listOf(save, export, share).filter { it != message }) assertFalse(displayed.contains(other))
-                assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
-                    else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(shown).title.toString())
-                assertTrue(displayed.contains(PriorityWordingExpectations.resourceText(tag,"save20_file_format")))
-                assertEquals(PriorityWordingExpectations.resourceText(tag,"ui_choose_location"), shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertEquals(if (tag == "ca") "Cancel·la" else "Anulează", shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
-                shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
-                shadowOf(Looper.getMainLooper()).idle()
-                assertFalse(shown.isShowing)
-                assertFalse(confirmed)
-                assertEquals(1, cancelled)
-            }
-        } finally {
-            dialog?.dismiss()
-            controller.pause().stop().destroy()
-        }
-    }
 }

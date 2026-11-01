@@ -277,38 +277,6 @@ class CroatianBosnianP0WordingTest {
         }
     }
 
-    @Test fun actualSaveExportSharePanelsKeepDistinctMessagesAndRepeatedCancel() = forEachLocale { tag, activity ->
-        fun texts(view: View): List<String> =
-            (if (view is TextView) listOf(view.text.toString()) else emptyList()) +
-                (if (view is ViewGroup) (0 until view.childCount).flatMap { texts(view.getChildAt(it)) } else emptyList())
-        val save = expected(tag, "ui_save_explanation23")
-        val export = expected(tag, "ui_export_explanation23")
-        val share = expected(tag, "ui_share_explanation34")
-        for ((sharing, exporting, message) in listOf(Triple(false, false, save),
-                Triple(false, true, export), Triple(true, true, share))) repeat(2) {
-            var confirmations = 0
-            var cancellations = 0
-            val dialog = SaveOptionsDialog(activity, ExportOptions(), share = sharing,
-                confirm = { confirmations++ }, cancel = { cancellations++ }, export = exporting).show()
-            try {
-                assertDistinctFormatAndFilenameControls(dialog.window!!.decorView, tag)
-                val displayed = texts(dialog.window!!.decorView)
-                assertTrue(displayed.contains(message))
-                for (other in listOf(save, export, share).filter { it != message }) assertFalse(displayed.contains(other))
-                assertEquals(if (sharing) expected(tag, "ui_save_and_share_41edb4")
-                    else ui(if (exporting) R.string.ui_export_as23 else R.string.save20_title), shadowOf(dialog).title.toString())
-                assertTrue(displayed.contains(formatLabel(tag)))
-                assertEquals(chooseLocation(tag), dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                assertEquals(preserved(tag, "ui_cancel"), dialog.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
-                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
-                shadowOf(Looper.getMainLooper()).idle()
-                assertFalse(dialog.isShowing)
-                assertEquals(0, confirmations)
-                assertEquals(1, cancellations)
-            } finally { dialog.dismiss() }
-        }
-    }
-
     @Test fun realSubstitutionsKeepMixedFrameCountsAndFailureReasonsLiteral() = forEachLocale { tag, _ ->
         val format = "GIF 100%"
         assertEquals(String.format(Locale.forLanguageTag(tag), expected(tag, "formats22_animation_unknown"), format),

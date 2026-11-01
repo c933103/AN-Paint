@@ -50,6 +50,14 @@ See the [individual recheck register](https://github.com/c933103/AN-Paint/blob/r
   CI/review path; do not request a second review when automatic review is active.
   Historical review scopes above are records, not requirements to keep catalogues
   empty or incomplete; immutable source/review history preserves those decisions.
+- Audit test work by obligation and inner loops, not only file/fixture bytes or
+  JUnit method counts. Inline maps and near-complete clause lists can recreate
+  retired approval catalogues. A locale-by-status or repeated-dialog Cartesian
+  product needs a distinct routing, formatting, glyph/layout or state reason;
+  do not replay the same consumer merely to compare another approved sentence.
+  Keep capture-only diagnostics and expected historical defects distinct from
+  acceptance. An unmapped structural guard may remain explicitly structural;
+  a similarly named runtime test is not evidence that it covers the same path.
 - Before publication, compare the remote tree with the reviewed checkout,
   including every intended removal and retained file's content and executable
   mode. A fresh complete Git tree is allowed for an archived migration; do not

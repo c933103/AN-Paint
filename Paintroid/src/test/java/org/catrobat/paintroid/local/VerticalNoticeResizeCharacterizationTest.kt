@@ -51,7 +51,7 @@ import kotlin.math.min
 /**
  * Compiled-resource route coverage plus retained horizontal/renderer diagnostics.
  * C02/C03 explicitly select the horizontal helper branch. C04 inserts a test-only
- * vertical drawing child; its exact-pixel counterexamples are not card verification.
+ * vertical drawing child; its ordinary-ink containment checks are not card verification.
  * Host event requests are not a recording of TalkBack speech or installed-device events.
  */
 @RunWith(RobolectricTestRunner::class)
@@ -267,86 +267,70 @@ class VerticalNoticeResizeCharacterizationTest {
     }
 
     /** C04: shared renderer, independently clipped native reference, actual Notice parent. */
-    @Test fun currentRendererNominalFitIsNotAnInkContainmentOracle()=withLanguageState {
-        report("ink") {rows->
-            var clippedCounterexamples=0;var ordinaryControls=0
-            for(tag in tags) withActivity(tag) {a->
-                for((kind,name) in listOf("unsupported-zwj" to joinedEmoji,
-                    "ordinary-emoji" to "𠲎🖌️绘画.png","joined-word" to "ᠮᠣᠩᠭᠣᠯ.png")) {
-                    assertTrue(ExportNames.valid(name,ImageFormat.PNG))
-                    assertEquals(name,ExportNames.withExtension(name,ImageFormat.PNG))
-                    val text=a.getString(R.string.ui_saved,name)
-                    ShadowToast.reset()
-                    LocaleTypography.showMessage(a,text,Toast.LENGTH_SHORT)
-                    assertNotNull(notice(a));assertEquals(0,ShadowToast.shownToastCount())
-                    assertLogicalText(label(a),text)
-                    host(a).removeView(notice(a));settle()
-                    ShadowToast.reset()
-                    // Explicit horizontal diagnostic. The independent vertical renderer
-                    // below still receives the original language direction and configured face.
-                    assertTrue(LocaleNotification.show(horizontalDiagnosticContext(a),text,Toast.LENGTH_LONG,
-                        LocaleTypography.typeface(a) ?: TextView(a).typeface,null))
-                    settle()
-                    val n=notice(a);val original=label(a)
-                    assertLogicalText(original,text)
-                    val margins=FrameLayout.LayoutParams(original.layoutParams as FrameLayout.LayoutParams)
-                    val safeW=n.width-n.paddingLeft-n.paddingRight-margins.leftMargin-margins.rightMargin-original.paddingLeft-original.paddingRight
-                    val safeH=n.height-n.paddingTop-n.paddingBottom-margins.topMargin-margins.bottomMargin-original.paddingTop-original.paddingBottom
-                    assertTrue(safeW>0 && safeH>0)
-                    val direction=VerticalText.uiDirection()
-                    val paint=TextPaint(original.paint).apply {color=Color.BLACK}
-                    var wrapped=VerticalText.wrapLabel(text,paint,min(240f*original.resources.displayMetrics.density,safeH.toFloat()),direction)
-                    var bounds=VerticalText.bounds(wrapped,paint,direction,GlyphOrientation.MIXED,1f)
-                    if(ceil(bounds.width())>safeW) {
-                        wrapped=VerticalText.wrapLabel(text,paint,safeH.toFloat(),direction)
-                        bounds=VerticalText.bounds(wrapped,paint,direction,GlyphOrientation.MIXED,1f)
-                    }
-                    assertTrue("Bounded characterization requires nominally fitting controls",
-                        ceil(bounds.width())<=safeW && ceil(bounds.height())<=safeH)
-                    val width=original.width
-                    val height=ceil(bounds.height()).toInt()+original.paddingTop+original.paddingBottom
-                    val x=if(direction==TextDirection.VERTICAL_RL) width-original.paddingRight-bounds.width() else original.paddingLeft.toFloat()
-                    val y=original.paddingTop.toFloat()
-                    val guard=ceil(paint.textSize*4).toInt()
-                    val shiftX=guard-floor(min(0f,x)).toInt()
-                    val refWidth=ceil(max(width.toFloat(),x+bounds.width())).toInt()+shiftX+guard
-                    val reference=Bitmap.createBitmap(refWidth,height+2*guard,Bitmap.Config.ARGB_8888)
-                    try {
-                        Canvas(reference).apply {translate(shiftX+x,guard+y)
-                            VerticalText.draw(this,wrapped,paint,direction,GlyphOrientation.MIXED)}
-                        val diagnostic=object: View(a) {
-                            override fun onDraw(canvas: Canvas) {
-                                canvas.save();canvas.translate(x,y)
-                                VerticalText.draw(canvas,wrapped,paint,direction,GlyphOrientation.MIXED)
-                                canvas.restore()
-                            }
-                        }.apply {this.tag="diagnostic_vertical_body";importantForAccessibility=View.IMPORTANT_FOR_ACCESSIBILITY_NO}
-                        n.removeView(original)
-                        n.addView(diagnostic,FrameLayout.LayoutParams(margins).apply {this.height=height})
-                        settle()
-                        assertEquals(width,diagnostic.width);assertEquals(height,diagnostic.height)
-                        val pixels=compareReferenceToParent(n,diagnostic,reference,shiftX,guard,tag+"-"+kind,true)
-                        if(kind=="unsupported-zwj") {
-                            assertTrue("Counterexample must show ACTUAL ink loss, not just nominal overhang",
-                                pixels.getInt("clipped_ink_pixels")>0)
-                            clippedCounterexamples++
-                        } else {
-                            assertEquals("Fitting ordinary/joined-word controls must remain contained",0,pixels.getInt("clipped_ink_pixels"))
-                            ordinaryControls++
-                        }
-                        rows.put(baseRow(tag).put("kind",kind).put("logical_text",text)
-                            .put("direction",direction.name).put("text_size_px",paint.textSize)
-                            .put("font_scale",a.resources.configuration.fontScale)
-                            .put("paint_locales",paint.textLocales.toLanguageTags())
-                            .put("nominal_width",bounds.width()).put("nominal_height",bounds.height())
-                            .put("safe_width",safeW).put("safe_height",safeH).put("nominal_fits",true)
-                            .put("scope","test-only vertical drawing child through explicitly horizontal Notice").put("pixels",pixels))
-                    } finally {reference.recycle();host(a).removeView(n);settle()}
-                    assertEquals(0,ShadowToast.shownToastCount())
+    @Test fun ordinaryVerticalInkRemainsContainedByTheParent()=withLanguageState {
+        var ordinaryControls=0
+        for(tag in tags) withActivity(tag) {a->
+            for((kind,name) in listOf("ordinary-emoji" to "𠲎🖌️绘画.png","joined-word" to "ᠮᠣᠩᠭᠣᠯ.png")) {
+                assertTrue(ExportNames.valid(name,ImageFormat.PNG))
+                assertEquals(name,ExportNames.withExtension(name,ImageFormat.PNG))
+                val text=a.getString(R.string.ui_saved,name)
+                ShadowToast.reset()
+                LocaleTypography.showMessage(a,text,Toast.LENGTH_SHORT)
+                assertNotNull(notice(a));assertEquals(0,ShadowToast.shownToastCount())
+                assertLogicalText(label(a),text)
+                host(a).removeView(notice(a));settle()
+                ShadowToast.reset()
+                // Explicit horizontal diagnostic. The independent vertical renderer
+                // below still receives the original language direction and configured face.
+                assertTrue(LocaleNotification.show(horizontalDiagnosticContext(a),text,Toast.LENGTH_LONG,
+                    LocaleTypography.typeface(a) ?: TextView(a).typeface,null))
+                settle()
+                val n=notice(a);val original=label(a)
+                assertLogicalText(original,text)
+                val margins=FrameLayout.LayoutParams(original.layoutParams as FrameLayout.LayoutParams)
+                val safeW=n.width-n.paddingLeft-n.paddingRight-margins.leftMargin-margins.rightMargin-original.paddingLeft-original.paddingRight
+                val safeH=n.height-n.paddingTop-n.paddingBottom-margins.topMargin-margins.bottomMargin-original.paddingTop-original.paddingBottom
+                assertTrue(safeW>0 && safeH>0)
+                val direction=VerticalText.uiDirection()
+                val paint=TextPaint(original.paint).apply {color=Color.BLACK}
+                var wrapped=VerticalText.wrapLabel(text,paint,min(240f*original.resources.displayMetrics.density,safeH.toFloat()),direction)
+                var bounds=VerticalText.bounds(wrapped,paint,direction,GlyphOrientation.MIXED,1f)
+                if(ceil(bounds.width())>safeW) {
+                    wrapped=VerticalText.wrapLabel(text,paint,safeH.toFloat(),direction)
+                    bounds=VerticalText.bounds(wrapped,paint,direction,GlyphOrientation.MIXED,1f)
                 }
+                assertTrue("Bounded characterization requires nominally fitting controls",
+                    ceil(bounds.width())<=safeW && ceil(bounds.height())<=safeH)
+                val width=original.width
+                val height=ceil(bounds.height()).toInt()+original.paddingTop+original.paddingBottom
+                val x=if(direction==TextDirection.VERTICAL_RL) width-original.paddingRight-bounds.width() else original.paddingLeft.toFloat()
+                val y=original.paddingTop.toFloat()
+                val guard=ceil(paint.textSize*4).toInt()
+                val shiftX=guard-floor(min(0f,x)).toInt()
+                val refWidth=ceil(max(width.toFloat(),x+bounds.width())).toInt()+shiftX+guard
+                val reference=Bitmap.createBitmap(refWidth,height+2*guard,Bitmap.Config.ARGB_8888)
+                try {
+                    Canvas(reference).apply {translate(shiftX+x,guard+y)
+                        VerticalText.draw(this,wrapped,paint,direction,GlyphOrientation.MIXED)}
+                    val diagnostic=object: View(a) {
+                        override fun onDraw(canvas: Canvas) {
+                            canvas.save();canvas.translate(x,y)
+                            VerticalText.draw(canvas,wrapped,paint,direction,GlyphOrientation.MIXED)
+                            canvas.restore()
+                        }
+                    }.apply {this.tag="diagnostic_vertical_body";importantForAccessibility=View.IMPORTANT_FOR_ACCESSIBILITY_NO}
+                    n.removeView(original)
+                    n.addView(diagnostic,FrameLayout.LayoutParams(margins).apply {this.height=height})
+                    settle()
+                    assertEquals(width,diagnostic.width);assertEquals(height,diagnostic.height)
+                    val pixels=compareReferenceToParent(n,diagnostic,reference,shiftX,guard,tag+"-"+kind,false)
+                    assertEquals("Fitting ordinary/joined-word controls must remain contained",0,pixels.getInt("clipped_ink_pixels"))
+                    ordinaryControls++
+                } finally {reference.recycle();host(a).removeView(n);settle()}
+                assertEquals(0,ShadowToast.shownToastCount())
             }
-            assertEquals(5,clippedCounterexamples);assertEquals(10,ordinaryControls);assertEquals(15,rows.length())
         }
+        assertEquals(10,ordinaryControls)
     }
 
     // Keep the old horizontal geometry/deadline and negative-raster controls

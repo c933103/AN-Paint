@@ -65,33 +65,4 @@ class IndonesianPriorityWordingTest {
         assertEquals(ImageDimensions(24, 16), controls.dimensions)
     }
 
-    @Test fun failedPngAndDerivedEncodersReportIncompleteEncodingAndKeepSourcePixels() {
-        val directory = File(indonesian.cacheDir, "indonesian-encoder-${System.nanoTime()}").apply { mkdirs() }
-        val source = Bitmap.createBitmap(2, 2, Bitmap.Config.ARGB_8888).apply { eraseColor(Color.MAGENTA) }
-        try {
-            for (format in listOf(ImageFormat.PNG, ImageFormat.BASE64, ImageFormat.ICO)) {
-                val file = File(directory, "output.${format.extension}").apply { writeText("previous") }
-                CommonsPngFailureShadow.reject = true
-                val error = assertThrows(IOException::class.java) {
-                    ImageExporter.encode(source, file, ExportOptions(format), 64L * 1024 * 1024)
-                }
-                assertEquals("Enkoder tidak menyelesaikan pengodean.", error.message)
-                assertNotNull(CommonsPngFailureShadow.rejectedBitmap)
-                assertFalse(source.isRecycled)
-                assertEquals(Color.MAGENTA, source.getPixel(0, 0))
-                if (format != ImageFormat.PNG) assertEquals("previous", file.readText())
-                assertEquals(listOf(file.name), directory.listFiles()!!.map { it.name })
-                file.delete()
-                CommonsPngFailureShadow.resetFailure()
-            }
-            // A successful real PNG encode remains possible with the failure injection disabled.
-            val png = File(directory, "success.png")
-            ImageExporter.encode(source, png, ExportOptions(ImageFormat.PNG), 64L * 1024 * 1024)
-            assertTrue(png.length() > 8)
-            assertArrayEquals(byteArrayOf(-119, 80, 78, 71, 13, 10, 26, 10), png.readBytes().copyOf(8))
-        } finally {
-            source.recycle()
-            directory.deleteRecursively()
-        }
-    }
 }

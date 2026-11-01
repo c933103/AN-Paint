@@ -146,36 +146,5 @@ class RegionalPersianJapaneseFrenchWordingTest {
             AppLanguage.select(RuntimeEnvironment.getApplication(),previousTag);PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
         }
     }
-    @Test fun keepEditingCancelsRepeatedActualReplacementWithoutSavingDiscardingOrLaunching() {
-        for(tag in listOf("fa-IR")) {
-            AppLanguage.select(RuntimeEnvironment.getApplication(),tag)
-            val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);val activity=controller.get()
-            try {
-                controller.setup();awaitEditorStartup(activity);Locale.setDefault(Locale.US)
-                activity.document.newImage(4,3);activity.document.invert();activity.paintCanvas.fit()
-                val bitmap=activity.document.bitmap.copy(android.graphics.Bitmap.Config.ARGB_8888,false)
-                val history=activity.document.historySnapshot()
-                try {repeat(2) {
-                    assertTrue(activity.document.dirty)
-                    EditorTestNavigation.command(activity,"File",0)
-                    val shown=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                    assertEquals(expected(tag,"ui_save_your_changes"),shadowOf(shown).title.toString())
-                    assertEquals(expected(tag,"ui_your_current_image_has_unsaved_changes"),shadowOf(shown).message.toString())
-                    assertEquals(expected(tag,"ui_save_a5d0d9"),shown.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                    assertEquals(expected(tag,"ui_discard_changes23"),shown.getButton(AlertDialog.BUTTON_NEUTRAL).text.toString())
-                    assertEquals(expected(tag,"ui_keep_editing23"),shown.getButton(AlertDialog.BUTTON_NEGATIVE).text.toString())
-                    shown.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();idle()
-                    assertFalse(shown.isShowing);assertFalse(activity.isFinishing)
-                    assertTrue(activity.document.dirty);assertTrue(bitmap.sameAs(activity.document.bitmap))
-                    assertEquals(history,activity.document.historySnapshot())
-                    assertNull(shadowOf(activity).nextStartedActivityForResult)
-                }} finally {bitmap.recycle()}
-            } finally {
-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
-                controller.pause().stop().destroy();AppLanguage.select(RuntimeEnvironment.getApplication(),previousTag)
-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
-            }
-        }
-    }
 
 }

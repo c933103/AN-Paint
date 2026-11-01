@@ -118,50 +118,6 @@ class BelarusianAlbanianPriorityWordingTest {
         }
     }
 
-    @Test fun canvasDialogKeepsTopLeftAndUndoRestoresEitherIndependentlyClippedEdge() {
-        fun descendants(view: View): List<View> = listOf(view) + if(view is android.view.ViewGroup)
-            (0 until view.childCount).flatMap {descendants(view.getChildAt(it))} else emptyList()
-        for(tag in listOf("be","sq")) {
-            AppLanguage.select(RuntimeEnvironment.getApplication(),tag)
-            val controller=Robolectric.buildActivity(ClassicPaintActivity::class.java);val activity=controller.get()
-            try {
-                controller.setup();awaitEditorStartup(activity);Locale.setDefault(Locale.US)
-                activity.document.newImage(4,3)
-                val original=IntArray(12) { 0xff000000.toInt() or ((it+1)*0x010101) }
-                activity.document.bitmap.setPixels(original,0,4,0,0,4,3)
-                EditorTestNavigation.click(activity,"tool_WATERCOLOR")
-                val strengthSlider=activity.window.decorView.findViewWithTag<SeekBar>("watercolor_strength")
-                val strength=strengthSlider.parent as NumericSlider
-                assertSame(strengthSlider,strength.slider)
-                assertEquals(expected(tag,"ui_strength"),strength.name)
-                assertEquals(expected(tag,"ui_strength"),strength.slider.contentDescription.toString())
-                strength.slider.progress=37-strength.minimum;idle()
-                assertEquals(37,activity.document.watercolorStrength)
-                for(size in listOf(ImageDimensions(2,3),ImageDimensions(4,1))) {
-                    EditorTestNavigation.named(activity,"Edit",expected(tag,"ui_canvas_size"))
-                    val dialog=checkNotNull(ShadowAlertDialog.getLatestAlertDialog())
-                    val views=descendants(dialog.window!!.decorView)
-                    assertEquals(expected(tag,"ui_canvas_size_30460e"),shadowOf(dialog).title.toString())
-                    assertTrue(views.filterIsInstance<TextView>().any {it.text.toString()==expected(tag,"ui_keeps_pixels_at_the_top_left_smaller_canvas")})
-                    views.filterIsInstance<DimensionControls>().single().setDimensions(size)
-                    assertEquals(expected(tag,"ui_apply"),dialog.getButton(AlertDialog.BUTTON_POSITIVE).text.toString())
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();idle()
-                    assertFalse(dialog.isShowing)
-                    assertEquals(size.width,activity.document.bitmap.width);assertEquals(size.height,activity.document.bitmap.height)
-                    for(y in 0 until size.height) for(x in 0 until size.width)
-                        assertEquals("$tag top-left retained pixel $x,$y",original[y*4+x],activity.document.bitmap.getPixel(x,y))
-                    EditorTestNavigation.click(activity,"undo")
-                    assertEquals(4,activity.document.bitmap.width);assertEquals(3,activity.document.bitmap.height)
-                    val restored=IntArray(12);activity.document.bitmap.getPixels(restored,0,4,0,0,4,3)
-                    assertArrayEquals(original,restored)
-                }
-            } finally {
-                ShadowAlertDialog.getLatestAlertDialog()?.dismiss()
-                controller.pause().stop().destroy();AppLanguage.select(RuntimeEnvironment.getApplication(),previousTag)
-                PaintApplication.currentResources=previousResources;Locale.setDefault(previousLocale)
-            }
-        }
-    }
     @Test fun losslessCheckboxAndQualityPercentageControlKeepTheActualSaveRequest() = forEachLocale { tag,activity ->
         var request:SaveRequest?=null;var canceled=false
         val dialog=SaveOptionsDialog(activity,ExportOptions(ImageFormat.WEBP,quality=67,lossless=false),

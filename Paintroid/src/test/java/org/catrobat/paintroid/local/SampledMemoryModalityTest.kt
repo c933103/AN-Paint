@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.TextView
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.*
-import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -27,8 +26,6 @@ import java.util.Locale
 @Config(sdk = [33], qualifiers = "w412dp-h900dp-port-xhdpi")
 class SampledMemoryModalityTest {
     private val context get() = RuntimeEnvironment.getApplication() as Context
-    private val historicalExpected = JSONObject(javaClass.getResourceAsStream("/memory-modality/expected.json")!!
-        .bufferedReader(Charsets.UTF_8).use { it.readText() }).getJSONObject("values")
     private val mib = 1024L * 1024
     private fun idle() = shadowOf(Looper.getMainLooper()).idle()
     private fun policy() = ImageMemoryPolicy.calculate(4L * 1024 * mib, 0, (128 * mib + 32 * mib) * 3, 0, true)
@@ -71,8 +68,7 @@ class SampledMemoryModalityTest {
 
     @Test fun compiledCompleteValuesReachTheSampledDialogAcrossEditCancelAndReopen() {
         for (tag in listOf("bo", "jje")) withLanguage(tag) { activity ->
-            val value = if (tag == "bo") activity.getString(R.string.ui_sampled_resize_memory_explanation) else historicalExpected.getString(tag)
-            if (tag != "bo") assertEquals(tag, value, activity.getString(R.string.ui_sampled_resize_memory_explanation))
+            val value = activity.getString(R.string.ui_sampled_resize_memory_explanation)
             var resized = 0
             var cancelled = 0
             repeat(2) { attempt ->

@@ -10,7 +10,6 @@ KEY='ui_help23'
 
 class HelpCommonsProviderTest(unittest.TestCase):
 
-
     def test_help_uses_live_provider_caption_without_requiring_approval_scope(self):
         paths = {'default': catalogues.RES/'values/strings.xml', **catalogues.catalogue_paths()}
         for tag, path in paths.items():
@@ -35,11 +34,11 @@ class HelpCommonsProviderTest(unittest.TestCase):
         self.assertEqual(1, strings[KEY].count('「' + caption + '」'))
         self.assertIn('版圖 𥧪', strings['commons_svg_png_encode_failed'])
 
-
     def test_default_lists_actual_device_and_four_provider_choices(self):
         strings = catalogues.read_strings(catalogues.RES / 'values/strings.xml')
-        self.assertIn('Draw > Insert > Other images contains device files, Catrobat, '
-                      'Irasutoya, Openclipart and “Wikimedia Commons · Blank maps…”.', strings[KEY])
+        self.assertIn(' > '.join(strings[key] for key in ('ui_draw26', 'ui_category_insert', 'ui_other_images34')), strings[KEY])
+        for provider_name in ('Catrobat', 'Irasutoya', 'Openclipart', strings['commons_blank_maps']):
+            self.assertIn(provider_name, strings[KEY])
         provider = (JAVA / 'IllustrationSource.kt').read_text()
         entries = re.findall(r'^    ([A-Z]+)\("https://', provider, re.M)
         self.assertEqual(['CATROBAT', 'IRASUTOYA', 'OPENCLIPART', 'COMMONS'], entries)

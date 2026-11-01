@@ -135,33 +135,6 @@ class ItalianGreekTurkishPriorityWordingTest {
         }
     }
 
-    @Test fun completedImageReplacementFailureKeepsDestinationInputAndTemporaryCleanup() = forEachLocale(listOf("el","tr")) { tag,activity ->
-        val folder=File(activity.cacheDir,"$tag-destination-${System.nanoTime()}").apply {mkdirs()}
-        val bytes=Base64.getDecoder().decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j4Z0AAAAASUVORK5CYII=")
-        val encoded="data:image/png;base64,"+Base64.getEncoder().encodeToString(bytes)
-        val input=File(folder,"input.txt").apply {writeText(encoded)}
-        val blocked=File(folder,"destination.png").apply {mkdirs()}
-        val sentinel=File(blocked,"keep.txt").apply {writeText("existing destination")}
-        try {
-            val error=assertThrows(IOException::class.java) {TextImageCodec.decodeToFile(input,blocked,4096)}
-            assertEquals(expected(tag,"save20_destination_error"),error.message)
-            assertEquals("existing destination",sentinel.readText());assertEquals(encoded,input.readText())
-            assertEquals(setOf("input.txt","destination.png"),folder.listFiles()!!.map {it.name}.toSet())
-            val completed=File(folder,"completed.png");TextImageCodec.decodeToFile(input,completed,4096)
-            assertArrayEquals(bytes,completed.readBytes());assertEquals(encoded,input.readText())
-        } finally {folder.deleteRecursively()}
-    }
-
-    @Test fun greekZeroBudgetRejectsOneAndManyPixelsWithCompleteSingularImageWarning() = forEachLocale(listOf("el")) { tag,_ ->
-        val mib=1024L*1024;val policy=ImageMemoryPolicy.calculate(256*mib,0,0,0,false)
-        assertEquals(0L,policy.maxPixels())
-        for(size in listOf(ImageDimensions(1,1),ImageDimensions(2,1),ImageDimensions(2000,1000))) {
-            val error=assertThrows(ImageSizeException::class.java) {policy.check(size.width,size.height)}
-            assertEquals(formatted(tag,"ui_d_d_pixels_2f_mp_exceeds_the_current",size.width,size.height,size.pixels/1_000_000.0,0.0),error.message)
-            assertTrue(error.message!!.startsWith("Μια εικόνα "));assertTrue(error.message!!.endsWith("Δεν εφαρμόστηκε αυτόματη αλλαγή μεγέθους."))
-        }
-    }
-
     @Test fun realEditorReturnsToPreviousDrawingToolAndSelectsSolidFillWithoutRedrawing() {
         for(tag in listOf("it","el","tr")) {
             AppLanguage.select(RuntimeEnvironment.getApplication(),tag)

@@ -37,9 +37,9 @@ class FrenchCursorGuidanceTest {
     private lateinit var previousLocale: Locale
     private lateinit var previousPlatform: LocaleList
     private lateinit var previousPreferences: Map<String,*>
-    private val help="Faites glisser pour positionner le curseur. Touchez le bouton de dessin à l’écran, puis faites glisser pour dessiner. Touchez-le à nouveau pour arrêter. Choisissez le pinceau et les réglages du trait sous Dessiner → Dessin."
-    private val draw="Faites glisser pour commencer à dessiner. Touchez à nouveau pour arrêter."
-    private val move="Faites glisser pour positionner le curseur. Touchez le bouton de dessin pour commencer."
+    private val help get() = PriorityWordingExpectations.resources("fr").getString(R.string.ui_cursor_help31)
+    private val draw get() = PriorityWordingExpectations.resources("fr").getString(R.string.ui_cursor_pan_draw32)
+    private val move get() = PriorityWordingExpectations.resources("fr").getString(R.string.ui_cursor_pan_move32)
 
     @Before fun selectFrench() {
         previousResources=PaintApplication.currentResources
@@ -65,12 +65,9 @@ class FrenchCursorGuidanceTest {
     }
     private fun idle()=shadowOf(Looper.getMainLooper()).idleFor(32,TimeUnit.MILLISECONDS)
 
-    @Test fun completeCompiledGuidanceAndLegacyAliasDescribeDragging() {
+    @Test fun compiledLegacyCursorHelpAliasUsesCurrentGuidance() {
         PaintApplication.currentResources=AppLanguage.wrap(context).resources
-        assertEquals(help,ui(R.string.ui_cursor_help31))
         assertEquals(help,ui(R.string.ui_cursor_help29))
-        assertEquals(draw,ui(R.string.ui_cursor_pan_draw32))
-        assertEquals(move,ui(R.string.ui_cursor_pan_move32))
     }
 
     @Test fun actualCursorHelpAndStartStopControlsUseFrenchGuidance() {

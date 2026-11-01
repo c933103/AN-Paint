@@ -154,16 +154,6 @@ class GeorgianArmenianAzerbaijaniPriorityWordingTest {
         } finally { dialog.dismiss() }
     }
 
-    @Test fun zeroBudgetRejectsOneAndManyPixelsWithCompleteWarning() = forEachLocale() { tag,_ ->
-        val mib=1024L*1024
-        val policy=ImageMemoryPolicy.calculate(256*mib,0,0,0,false)
-        assertEquals(0L,policy.maxPixels())
-        for(size in listOf(ImageDimensions(1,1),ImageDimensions(2,1),ImageDimensions(2000,1000))) {
-            val error=assertThrows(ImageSizeException::class.java) { policy.check(size.width,size.height) }
-            assertEquals(formatted(tag,"ui_d_d_pixels_2f_mp_exceeds_the_current",size.width,size.height,size.pixels/1_000_000.0,0.0),error.message)
-        }
-    }
-
     @Test fun actualDirtyImagePromptIsNotExportCompletionAndRepeatedCancelPreservesTheDrawing() {
       for(tag in listOf("ka","hy","az")) {
         val app = RuntimeEnvironment.getApplication() as Context

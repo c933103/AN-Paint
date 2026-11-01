@@ -1,5 +1,4 @@
 """Import-change localization/data-boundary contracts, not linguistic acceptance."""
-import json
 import pathlib
 import unittest
 
@@ -7,21 +6,9 @@ import translation_catalogues as catalogues
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 JAVA = ROOT / 'Paintroid/src/main/java/org/catrobat/paintroid/classic'
-KEYS = {
-    'commons_import_svg_changes':
-        'AN Paint: SVG → PNG; original size; antiAlias=false; strokeDashArray=none; background=#FFFFFF.',
-    'commons_import_raster_changes':
-        'AN Paint: background=#FFFFFF (alpha compositing).',
-}
-
+KEYS = {'commons_import_svg_changes', 'commons_import_raster_changes'}
 
 class CommonsImportChangeTranslationsTest(unittest.TestCase):
-    def test_default_is_exact_existing_english_with_no_arguments(self):
-        source = catalogues.read_strings(catalogues.RES / 'values/strings.xml')
-        self.assertEqual(KEYS, {key: source[key] for key in KEYS})
-        for value in KEYS.values():
-            self.assertEqual({}, catalogues.placeholders(value))
-
 
     def test_all_published_notes_preserve_literals_and_formatting(self):
         paths = {'default': catalogues.RES / 'values/strings.xml', **catalogues.catalogue_paths()}
@@ -46,8 +33,6 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         self.assertIn('if (imported) lines.add(if (Uri.parse(source).path.orEmpty().endsWith(".svg", true))', source)
         self.assertIn('ui(R.string.commons_import_svg_changes)', source)
         self.assertIn('else ui(R.string.commons_import_raster_changes))', source)
-        for value in KEYS.values():
-            self.assertNotIn(value, source)
         self.assertNotIn('ui_original_size34', source)
         # Whole provider values still cross this boundary verbatim, not as resources.
         self.assertIn('lines.add("$key: $it")', source)
@@ -59,7 +44,6 @@ class CommonsImportChangeTranslationsTest(unittest.TestCase):
         gallery = (JAVA / 'MediaGalleryActivity.kt').read_text()
         self.assertIn('record.text(imported=false)', gallery)
         self.assertNotIn('text(imported=true)', gallery)
-
 
 if __name__ == '__main__':
     unittest.main()

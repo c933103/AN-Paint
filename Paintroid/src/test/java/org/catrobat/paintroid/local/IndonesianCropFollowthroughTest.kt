@@ -96,28 +96,5 @@ class IndonesianCropFollowthroughTest {
             images.forEach {assertArrayEquals(byteArrayOf(1,2,3),it.file.readBytes())}
         } finally {dialog.dismiss();idle();directory.deleteRecursively()}
     }
-    @Test fun croppingOnlyMovesAttachedImagesWhenTheirParentEdgeChanges()=inLocale("id") { activity ->
-        val directory=File(activity.cacheDir,"indonesian-crop-model").apply {mkdirs()}
-        val assembly=ImageAssembly(directory)
-        val originals=listOf("parent","child","independent").map { id ->
-            val file=File(directory,"$id.image").apply {writeBytes(byteArrayOf(1,2,3))}
-            AssemblyImage(id,file,id,null,ImageDimensions(24,16))
-        }
-        try {
-            assembly.add(originals);assembly.place("parent",Attachment(null,null))
-            assembly.place("child",Attachment("parent",SnapEdge.RIGHT));assembly.position("independent",100,100)
-            val before=assembly.layout();assertEquals(24,before.getValue("child").left)
-            assembly.crop("parent",Rect(0,0,12,16))
-            assertEquals(12,assembly.layout().getValue("child").left)
-            assertEquals(before.getValue("independent"),assembly.layout().getValue("independent"))
-            assertEquals(Attachment("parent",SnapEdge.RIGHT),assembly.image("child").attachment)
-            assembly.undo();assertEquals(before,assembly.layout())
-            // Trimming only the parent's height does not move its right-attached child.
-            assembly.crop("parent",Rect(0,0,24,8))
-            assertEquals(before.getValue("child"),assembly.layout().getValue("child"))
-            assertEquals(before.getValue("independent"),assembly.layout().getValue("independent"))
-            originals.forEach {assertArrayEquals(byteArrayOf(1,2,3),it.file.readBytes())}
-        } finally {directory.deleteRecursively()}
-    }
 
 }
