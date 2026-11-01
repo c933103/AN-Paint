@@ -156,6 +156,14 @@ def preflight(fetch, graphql, checkout, event, environ, root, now):
     editor = graphql(comment['node_id'])
     review = verify_exact_head_review(head=head, pull_request=pr['number'], comment=comment,
         graphql=editor, merged_at=pr['merged_at'])
+    # List and singleton endpoints can differ in incidental app/pin metadata.
+    # Validate both independently, bind their trust fields, then compare the
+    # singleton with the same endpoint on the final race check.
+    singleton = fetch(prefix + '/issues/comments/' + str(comment['id']))
+    require(verify_exact_head_review(head=head, pull_request=pr['number'], comment=singleton,
+                graphql=editor, merged_at=pr['merged_at']) == review
+            and singleton.get('created_at') == comment.get('created_at'),
+            'Review endpoints disagree on trusted identity or timestamps')
     groups = {
         'build': ('Build APK and corresponding source', 'apk-and-source-'),
         'tests': ('Build APK and corresponding source', 'instrumentation-apks-'),
@@ -230,7 +238,7 @@ def preflight(fetch, graphql, checkout, event, environ, root, now):
             and collection(fetch, run_path + '/jobs?filter=all', 'jobs') == jobs
             and collection(fetch, run_path + '/artifacts', 'artifacts') == artifacts,
             'Prior run metadata changed during verification')
-    require(fetch(prefix + '/issues/comments/' + str(comment['id'])) == comment
+    require(fetch(prefix + '/issues/comments/' + str(comment['id'])) == singleton
             and graphql(comment['node_id']) == editor,
             'Review changed during verification')
     require((timestamp(now) + timedelta(seconds=time.monotonic() - began) - timestamp(pr['merged_at'])).total_seconds() <= 3600,

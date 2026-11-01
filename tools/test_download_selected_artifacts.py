@@ -148,8 +148,9 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
             prefix+'/actions/runs/30/jobs?filter=all&per_page=100&page=1': dict(total_count=6, jobs=m['jobs']),
             prefix+'/actions/runs/30/artifacts?per_page=100&page=1': dict(total_count=6, artifacts=artifacts),
             prefix+'/issues/7/comments?per_page=100': [review['comment']],
-            prefix+'/issues/comments/50': review['comment'],
+            prefix+'/issues/comments/50': dict(copy.deepcopy(review['comment']), pin=None),
             prefix+'/git/ref/heads/develop': dict(object=dict(sha='c'*40))}
+        review['comment']['performed_via_github_app']['client_id'] = 'incidental-public-client-id'
         env = dict(GITHUB_REPOSITORY='c933103/AN-Paint', GITHUB_EVENT_NAME='push',
             GITHUB_REF='refs/heads/develop', GITHUB_SHA='c'*40, GITHUB_RUN_ATTEMPT='1', BUILD_VARIANT='debug')
         jobs = dict(build='build', regression='checks', exact='exact-script-resources', core='device', position='position')
@@ -179,6 +180,21 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
                 self.assertEqual(transfer.call_count, 6); verify.assert_called_once()
                 self.assertEqual(verify.call_args.args[-1]['GITHUB_SHA'], original)
                 self.assertNotEqual(result['merge'], original)
+                singleton_path = prefix+'/issues/comments/50'
+                original_singleton = copy.deepcopy(endpoints[singleton_path])
+                for mutation in (
+                    lambda c: c.update(id=51),
+                    lambda c: c.update(created_at='2026-11-01T09:00:00Z'),
+                    lambda c: c.update(body=c['body']+' changed'),
+                    lambda c: c['performed_via_github_app'].update(id=99),
+                    lambda c: c['user'].update(id=99),
+                ):
+                    changed_comment = copy.deepcopy(original_singleton); mutation(changed_comment)
+                    endpoints[singleton_path] = changed_comment
+                    with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                        preflight(lambda url:copy.deepcopy(endpoints[url]), lambda node:copy.deepcopy(review['graphql']),
+                                  checkout, {'before':'a'*40}, env, checkout/'unused', m['now'])
+                endpoints[singleton_path] = original_singleton
                 # Code or Markdown changes cannot hide behind the resource-only exception.
                 current_tree = endpoints[prefix+'/git/trees/'+'e'*40+'?recursive=1']['tree']
                 current_tree[0]['sha'] = 'a'*40
@@ -188,7 +204,7 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
                 current_tree[0]['sha'] = 'f'*40
                 for endpoint in (prefix+'/actions/workflows/android.yml/runs?event=pull_request&head_sha='+'b'*40+'&per_page=100&page=1', prefix+'/issues/7/comments?per_page=100',
                                  prefix+'/commits/'+'c'*40+'/pulls?per_page=100',
-                                 prefix+'/commits/'+'b'*40+'/pulls?per_page=100'):
+                                 prefix+'/commits/'+'b'*40+'/pulls?per_page=100', singleton_path):
                     shutil.rmtree(checkout/'prior')
                     reads = {}
                     def changed(url):
@@ -196,9 +212,10 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
                         value = copy.deepcopy(endpoints[url])
                         if url == endpoint and reads[url] > 1:
                             if isinstance(value, list): value.append(dict(id=999, body='new summary'))
-                            else:
+                            elif 'workflow_runs' in value:
                                 value['workflow_runs'].append(dict(m['run'], id=99, conclusion='failure'))
                                 value['total_count'] = 2
+                            else: value['body'] += ' edited during verification'
                         return value
                     with self.assertRaises(ValueError):
                         preflight(changed, lambda node:copy.deepcopy(review['graphql']), checkout,
