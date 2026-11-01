@@ -71,6 +71,13 @@ interpretation. There is no chain of reused evidence. A stale security marker
 also makes reuse ineligible even when its gate is disabled; do not request more
 reviews merely to make this optimization eligible.
 
+Review-list and singleton-comment representations are independently validated
+against the same GraphQL body/author/editor, trusted app/bot and exact-head marker.
+Their validated identity and timestamps must agree; each endpoint is then
+race-rechecked against its own initial response. Incidental list/singleton schema
+differences are not treated as edits, but real trust-field changes still reject.
+PR263's full post-merge fallback remains recorded as executed, not reused.
+
 If GitHub's run `pull_requests` is exactly empty, the alternative proof requires
 both independently fetched exact-head and actual-merge commit associations to
 contain only the same immutable PR ID/number, repository, head SHA/ref and develop
