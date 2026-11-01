@@ -48,6 +48,57 @@ verifies that native-source/bundling graph. Production translations are not edit
 The same resource probe now verifies the generated canonical fallback catalogue
 and its ordering/clean/incremental behavior. See [translation runtime boundaries](TRANSLATION_RUNTIME.md).
 
+## Immediate-merge translation-resource evidence reuse (bounded policy)
+
+The separate **Verify recent same-tree PR evidence** preflight never skips PR
+qualification. PRs, releases, dispatches, reruns and unsupported cases still execute
+all normal jobs. Only an ordinary same-repository two-parent develop merge
+changing existing `Paintroid/src/main/res/values*/strings.xml` bytes may accept its already executed, successful debug/API35 PR run: exact parent pair and
+source tree, attempt one, completed within 24 hours before merge, and verified
+within one hour after merge. The original tested checkout/run identities remain
+unchanged. Skipped jobs are **not** reported as newly executed successes.
+
+Before accepting that prior experiment, preflight independently checks GitHub PR,
+commit/tree, workflow/job and artifact records; every tracked path/mode and every
+other blob unchanged (including code, scripts, other resources and Markdown); exact-head Codex app/bot review and editor provenance;
+API archive digests; matching corresponding-source/APK/test APK bytes; and the
+existing complete core/position composition validator. It rechecks mutable
+metadata before accepting. Missing, ambiguous, expired, changed or inaccessible
+facts choose normal full execution. Initial eligibility also requires an explicitly
+unprotected develop branch and empty repository/inherited ruleset inventory,
+rechecked before acceptance; any added policy selects full fallback, not a guessed
+interpretation. There is no chain of reused evidence. A stale security marker
+also makes reuse ineligible even when its gate is disabled; do not request more
+reviews merely to make this optimization eligible.
+
+Only the preflight job gains `actions: read`, alongside its `contents: read`,
+matching the existing composition job's same-repository read capability. Global
+permissions stay `contents: read`: no new credential, writes, secrets, external
+repository access, protected-setting changes or release reuse. The introducing
+policy change necessarily runs the full fallback because its producers differ
+from its first parent. This is not general same-tree code-PR reuse; any non-translation
+change takes the full path. The initial qualifier pattern is conservative: regional
+folder spellings with additional hyphens also fall back rather than widening the
+exception implicitly. GraphQL review-editor access is not assumed: if the
+existing token cannot establish it, reuse stays ineligible. No artificial PR or
+extra benchmark run is needed merely to demonstrate reuse.
+
+Observed runner image, Java, Android package revisions/checksums, cached dependency
+artifact hashes for resolved coordinates (not unique selected-file proof), native
+revision markers and wrapper input are retained with the original evidence. This is a
+bounded acceptance of that **prior environment**, not proof a new runner or mutable
+SDK/Maven inputs would reproduce it today. Content-pinned definitions remain
+unchanged; this policy adds no supply-chain pinning retrofit. Missing provenance
+also selects full fallback. Native source ZIP bytes are preserved by the verified
+artifact/source hashes and unchanged native fetch/build producers; upstream native
+archives are not independently reconstructed. Optional observation failures or
+its internal 45-second timeout remove its record without changing original test
+or build exit behavior. The one-minute observation step fits within the
+existing regression overhead reserve; original phase and job caps are unchanged.
+The linkage receipt points to original run/artifact IDs and distinguishes reuse
+from execution; existing release consumers still require their original exact
+push/commit/variant evidence and cannot use this receipt.
+
 ## Local commands
 
 Run affected host modules locally, then rely on the existing exact-source CI

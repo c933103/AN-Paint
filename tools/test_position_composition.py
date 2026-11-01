@@ -6,13 +6,15 @@ import os
 from pathlib import Path
 import re
 import shlex
+import shutil
+import zipfile
 import subprocess
 import tempfile
 import unittest
 
 from app_instrumentation_matrix import (POSITION_SHARDS, coverage_paths, report_paths,
                                          verify_reports)
-from compose_device_reports import compose, record, sha256
+from compose_device_reports import compose, record, sha256, verify_reuse_artifacts, verify_source_bundle
 from test_app_instrumentation_matrix import SOURCE, receipts
 from test_ci_timeout_budget import (ROOT, SHELL, RUNNER, WORKFLOW, body, controlled_model,
                                    job, one, shell_timeout, step_minutes)
@@ -40,6 +42,67 @@ def fixture(root, sdk):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(json.dumps(reports[phase]))
     return prebuilt
+
+
+def reuse_fixture(root):
+    prebuilt = fixture(root, 35)
+    checkout = root/'checkout'
+    shutil.copytree(SOURCE, checkout/'app/src/androidTest')
+    subprocess.run(['git', 'init', '-q', str(checkout)], check=True)
+    subprocess.run(['git', '-C', str(checkout), 'add', '.'], check=True)
+    archive = prebuilt/'build/delivery/AN-Paint-source.zip'
+    with zipfile.ZipFile(archive, 'w') as bundle:
+        bundle.writestr('AN-Paint/', b'')
+        for path in sorted((checkout/'app').rglob('*')):
+            if path.is_file(): bundle.write(path, 'AN-Paint/'+path.relative_to(checkout).as_posix())
+        bundle.writestr('AN-Paint/Paintroid/build/tiff-source/source.c', 'native')
+    build_path = prebuilt/'build/delivery/build-info.json'
+    build = json.loads(build_path.read_text()); build['source_sha256'] = sha256(archive)
+    build_path.write_text(json.dumps(build))
+    for group in ('core', 'position'):
+        record(SOURCE, prebuilt, root/group, 35, group, ENV)
+    return checkout, prebuilt, root/'core', root/'position'
+
+
+class ReuseArtifactTest(unittest.TestCase):
+    def test_original_identity_bytes_and_bundle_are_required(self):
+        faults = ('none', 'apk', 'test-apk', 'source', 'commit', 'attempt')
+        for fault in faults:
+            with self.subTest(fault=fault), tempfile.TemporaryDirectory() as directory:
+                args = reuse_fixture(Path(directory)); checkout, prebuilt, core, position = args
+                env = dict(ENV)
+                stale = core/'composed-device-identity.json'; stale.write_text('{"success":true}')
+                if fault == 'apk': (prebuilt/'app/build/outputs/apk/debug/app-debug.apk').write_bytes(b'changed')
+                if fault == 'test-apk': (prebuilt/'app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk').write_bytes(b'changed')
+                if fault == 'source':
+                    with zipfile.ZipFile(prebuilt/'build/delivery/AN-Paint-source.zip', 'a') as bundle:
+                        bundle.writestr('AN-Paint/foreign.txt', 'foreign')
+                if fault == 'commit': env['GITHUB_SHA'] = 'b'*40
+                if fault == 'attempt': env['GITHUB_RUN_ATTEMPT'] = '2'
+                if fault == 'none':
+                    result = verify_reuse_artifacts(*args, env)
+                    self.assertEqual(result['original_identity']['commit'], ENV['GITHUB_SHA'])
+                else:
+                    with self.assertRaises(ValueError): verify_reuse_artifacts(*args, env)
+                    self.assertFalse(stale.exists())
+
+    def test_source_bundle_rejects_missing_modified_extra_traversal_duplicate_and_links(self):
+        for fault in ('missing', 'modified', 'extra', 'traversal', 'duplicate', 'symlink'):
+            with self.subTest(fault=fault), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory); checkout = root/'checkout'; checkout.mkdir()
+                (checkout/'file').write_text('tracked')
+                subprocess.run(['git', 'init', '-q', str(checkout)], check=True)
+                subprocess.run(['git', '-C', str(checkout), 'add', '.'], check=True)
+                archive = root/'source.zip'
+                with zipfile.ZipFile(archive, 'w') as bundle:
+                    if fault != 'missing': bundle.writestr('AN-Paint/file', 'wrong' if fault == 'modified' else 'tracked')
+                    if fault == 'extra': bundle.writestr('AN-Paint/extra', 'x')
+                    if fault == 'traversal': bundle.writestr('AN-Paint/../escape', 'x')
+                    if fault == 'duplicate': bundle.writestr('AN-Paint/./file', 'tracked')
+                    if fault == 'symlink':
+                        entry = zipfile.ZipInfo('AN-Paint/Paintroid/build/tiff-source/link')
+                        entry.external_attr = 0o120777 << 16; bundle.writestr(entry, 'file')
+                with self.assertRaises(ValueError): verify_source_bundle(checkout, archive)
 
 
 class PositionCompositionTest(unittest.TestCase):
@@ -154,7 +217,7 @@ run_position_regression
                          f'APP_TEST_GROUP: {group}',f'--group {group}',f'name: emulator-{group}-api-'):
                 self.assertIn(text,block)
             self.assertNotIn('continue-on-error',block)
-        for text in ('name: Emulator API ${{ matrix.api }}','needs: [device, position]',
+        for text in ('name: Emulator API ${{ matrix.api }}','needs: [prior-evidence, device, position]',
                      'always() &&','test "$CORE_RESULT" = success && test "$POSITION_RESULT" = success',
                      '--core-root build/reports/android-api-${{ matrix.api }}',
                      '--position-root build/reports/position-api-${{ matrix.api }}',
