@@ -143,23 +143,15 @@ class AppLanguageTest {
             assertEquals(tag,AppLanguage.selectedTag(wrapped))
             assertEquals(tag,wrapped.resources.configuration.locales[0].toLanguageTag())
             assertEquals("$name [$tag]",AppLanguage.name(tag))
-            if(tag=="ary") {
-                assertEquals("ملف",wrapped.getString(R.string.ui_menu_file))
-                assertEquals("فرشاة",wrapped.getString(R.string.ui_brush))
-                assertEquals("حفظ",wrapped.getString(R.string.ui_save))
-            } else if(tag=="ang") {
-                assertEquals("Gewrit",wrapped.getString(R.string.ui_menu_file))
-                assertEquals("Brush",wrapped.getString(R.string.ui_brush))
-                assertEquals("Healdan",wrapped.getString(R.string.ui_save))
-            } else if(tag=="non") {
-                assertEquals("Rit",wrapped.getString(R.string.ui_menu_file))
-                assertEquals("Bursti",wrapped.getString(R.string.ui_brush))
-                assertEquals("Varðveita",wrapped.getString(R.string.ui_save))
-            } else {
-                assertEquals("File",wrapped.getString(R.string.ui_menu_file))
-                assertEquals("Brush",wrapped.getString(R.string.ui_brush))
-                assertEquals("Save",wrapped.getString(R.string.ui_save))
+            // Compare the public selection route with Android's explicit locale resolution.
+            // Localized values may replace fallback without changing this routing contract.
+            val expectedConfiguration=Configuration(context.resources.configuration).apply {
+                setLocale(Locale.forLanguageTag(tag))
             }
+            val expectedResources=context.createConfigurationContext(expectedConfiguration).resources
+            for(id in listOf(R.string.ui_menu_file,R.string.ui_brush,R.string.ui_save))
+                assertEquals("$tag/${expectedResources.getResourceEntryName(id)}",
+                    expectedResources.getString(id),wrapped.getString(id))
             if(android.os.Build.VERSION.SDK_INT>=33)
                 assertEquals(tag,context.getSystemService(LocaleManager::class.java)!!
                     .applicationLocales[0].toLanguageTag())
