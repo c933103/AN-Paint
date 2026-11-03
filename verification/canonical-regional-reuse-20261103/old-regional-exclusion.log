@@ -1,0 +1,21 @@
+test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) ... ERROR
+
+======================================================================
+ERROR: test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 209, in test_preflight_binds_independent_metadata_before_accepting_original_artifacts
+    result = preflight(lambda url:copy.deepcopy(endpoints[url]),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workspace>/ci-canonical-regional-reuse-mutations/old-regional-exclusion/download_selected_artifacts.py", line 137, in preflight
+    verify_trusted_producers(before[0], current[0], current[0])
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/select_device_artifacts.py", line 106, in verify_trusted_producers
+    require(before == tested == current, 'Executable evidence producers changed')
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/select_device_artifacts.py", line 92, in require
+    raise ValueError(message)
+ValueError: Executable evidence producers changed
+
+----------------------------------------------------------------------
+Ran 1 test in 0.063s
+
+FAILED (errors=1)

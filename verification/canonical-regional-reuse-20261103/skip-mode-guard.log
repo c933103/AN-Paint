@@ -1,0 +1,91 @@
+test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) ... 
+  test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (mutation=<function DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts.<locals>.<lambda> at 0x7f1228e9f920>) ... FAIL
+  test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (mutation=<function DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts.<locals>.<lambda> at 0x7f1228e9f9c0>) ... ERROR
+  test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (mutation=<function DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts.<locals>.<lambda> at 0x7f1228e9fa60>) ... ERROR
+  test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (mutation=<function DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts.<locals>.<lambda> at 0x7f1228ce3100>) ... ERROR
+
+======================================================================
+ERROR: test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (mutation=<function DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts.<locals>.<lambda> at 0x7f1228e9f9c0>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 237, in test_preflight_binds_independent_metadata_before_accepting_original_artifacts
+    preflight(lambda url:copy.deepcopy(endpoints[url]),
+  File "<workspace>/ci-canonical-regional-reuse-mutations/skip-mode-guard/download_selected_artifacts.py", line 199, in preflight
+    download(repo, selected[group], root/group,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 180, in downloaded
+    p.parent.mkdir(parents=True); p.write_bytes(b'test APK'); return
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/tmp/tmp2i3_qap7/unused/tests/app/build/outputs/apk/androidTest/debug'
+
+======================================================================
+ERROR: test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (mutation=<function DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts.<locals>.<lambda> at 0x7f1228e9fa60>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 237, in test_preflight_binds_independent_metadata_before_accepting_original_artifacts
+    preflight(lambda url:copy.deepcopy(endpoints[url]),
+  File "<workspace>/ci-canonical-regional-reuse-mutations/skip-mode-guard/download_selected_artifacts.py", line 199, in preflight
+    download(repo, selected[group], root/group,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 180, in downloaded
+    p.parent.mkdir(parents=True); p.write_bytes(b'test APK'); return
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/tmp/tmp2i3_qap7/unused/tests/app/build/outputs/apk/androidTest/debug'
+
+======================================================================
+ERROR: test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (mutation=<function DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts.<locals>.<lambda> at 0x7f1228ce3100>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 237, in test_preflight_binds_independent_metadata_before_accepting_original_artifacts
+    preflight(lambda url:copy.deepcopy(endpoints[url]),
+  File "<workspace>/ci-canonical-regional-reuse-mutations/skip-mode-guard/download_selected_artifacts.py", line 199, in preflight
+    download(repo, selected[group], root/group,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 180, in downloaded
+    p.parent.mkdir(parents=True); p.write_bytes(b'test APK'); return
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/tmp/tmp2i3_qap7/unused/tests/app/build/outputs/apk/androidTest/debug'
+
+======================================================================
+FAIL: test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (mutation=<function DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts.<locals>.<lambda> at 0x7f1228e9f920>)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 236, in test_preflight_binds_independent_metadata_before_accepting_original_artifacts
+    with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.477s
+
+FAILED (failures=1, errors=3)

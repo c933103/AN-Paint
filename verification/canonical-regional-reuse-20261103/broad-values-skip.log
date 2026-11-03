@@ -1,0 +1,66 @@
+test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) ... 
+  test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (path='Paintroid/src/main/res/values-night/strings.xml') ... FAIL
+  test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (path='Paintroid/src/main/res/values-arbitrary/strings.xml') ... ERROR
+  test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (path='Paintroid/src/main/res/values-ch/strings.xml') ... ERROR
+
+======================================================================
+ERROR: test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (path='Paintroid/src/main/res/values-arbitrary/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 224, in test_preflight_binds_independent_metadata_before_accepting_original_artifacts
+    preflight(lambda url:copy.deepcopy(endpoints[url]),
+  File "<workspace>/ci-canonical-regional-reuse-mutations/broad-values-skip/download_selected_artifacts.py", line 199, in preflight
+    download(repo, selected[group], root/group,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 180, in downloaded
+    p.parent.mkdir(parents=True); p.write_bytes(b'test APK'); return
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/tmp/tmpu0ktu8d3/unused/tests/app/build/outputs/apk/androidTest/debug'
+
+======================================================================
+ERROR: test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (path='Paintroid/src/main/res/values-ch/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 224, in test_preflight_binds_independent_metadata_before_accepting_original_artifacts
+    preflight(lambda url:copy.deepcopy(endpoints[url]),
+  File "<workspace>/ci-canonical-regional-reuse-mutations/broad-values-skip/download_selected_artifacts.py", line 199, in preflight
+    download(repo, selected[group], root/group,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 180, in downloaded
+    p.parent.mkdir(parents=True); p.write_bytes(b'test APK'); return
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1311, in mkdir
+    os.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/tmp/tmpu0ktu8d3/unused/tests/app/build/outputs/apk/androidTest/debug'
+
+======================================================================
+FAIL: test_preflight_binds_independent_metadata_before_accepting_original_artifacts (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_preflight_binds_independent_metadata_before_accepting_original_artifacts) (path='Paintroid/src/main/res/values-night/strings.xml')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<workspace>/ci-canonical-regional-reuse-20261103/tools/test_download_selected_artifacts.py", line 223, in test_preflight_binds_independent_metadata_before_accepting_original_artifacts
+    with self.subTest(path=path), self.assertRaises(ValueError):
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.584s
+
+FAILED (failures=1, errors=2)

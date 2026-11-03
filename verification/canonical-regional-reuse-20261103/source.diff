@@ -1,0 +1,149 @@
+diff --git a/CI.md b/CI.md
+index 3b3786c..e18c13b 100644
+--- a/CI.md
++++ b/CI.md
+@@ -96,9 +96,13 @@ permissions stay `contents: read`: no new credential, writes, secrets, external
+ repository access, protected-setting changes or release reuse. The introducing
+ policy change necessarily runs the full fallback because its producers differ
+ from its first parent. This is not general same-tree code-PR reuse; any non-translation
+-change takes the full path. The initial qualifier pattern is conservative: regional
+-folder spellings with additional hyphens also fall back rather than widening the
+-exception implicitly. GraphQL review-editor access is not assumed: if the
++change takes the full path. The exception is limited to existing picker-backed
++canonical catalogues and the default strings source, using the unchanged resolver
++and picker as
++trusted producers. Regional spellings such as `values-fa-rIR` and BCP-47
++`values-b+` catalogues follow the same path rule. Noncanonical resource folders,
++non-picker catalogues, added/deleted paths and mode changes still fall back.
++GraphQL review-editor access is not assumed: if the
+ existing token cannot establish it, reuse stays ineligible. No artificial PR or
+ extra benchmark run is needed merely to demonstrate reuse.
+ 
+diff --git a/tools/download_selected_artifacts.py b/tools/download_selected_artifacts.py
+index 3a78547..c2f7f3f 100644
+--- a/tools/download_selected_artifacts.py
++++ b/tools/download_selected_artifacts.py
+@@ -75,6 +75,15 @@ def download(repo, artifact, root, runner=subprocess.run, *, kind="reports"):
+         extract(archive, root)
+ 
+ 
++def canonical_translation_paths():
++    """Only picker-backed canonical catalogues and the default strings source."""
++    from translation_catalogues import ROOT, catalogue_paths, offered_tags
++    offered = set(offered_tags())
++    return {path.relative_to(ROOT).as_posix()
++            for tag, path in catalogue_paths().items() if tag in offered} | {
++                'Paintroid/src/main/res/values/strings.xml'}
++
++
+ def preflight(fetch, graphql, checkout, event, environ, root, now):
+     """Independently qualify prior evidence; exceptions always mean normal execution."""
+     from select_device_artifacts import (collection, qualify_equivalent_run, require,
+@@ -108,16 +117,18 @@ def preflight(fetch, graphql, checkout, event, environ, root, now):
+             'Not an immediate two-parent merge')
+     base, head = [p['sha'] for p in merge['parents']]
+ 
++    translation_paths = canonical_translation_paths()
++
+     def producers(tree):
+         data = fetch(prefix + '/git/trees/' + tree + '?recursive=1')
+         require(data.get('truncated') is False, 'Incomplete Git tree')
+         rows = [x for x in data['tree'] if x['type'] != 'tree']
+         require(rows and all(x['type'] == 'blob' and x['mode'] in ('100644', '100755') for x in rows),
+                 'Unsupported tracked input mode')
+-        # Narrow initial policy, not an open-ended executable-script inventory.
+-        # Only existing canonical translation strings.xml bytes may change.
+-        immutable = {x['path']: x['sha'] for x in rows if not re.fullmatch(
+-            r'Paintroid/src/main/res/values(?:-[A-Za-z0-9+]+)?/strings[.]xml', x['path'])}
++        # The picker and canonical resolver are immutable producers themselves.
++        # Paths/modes must still match exactly: no added catalogue exemption.
++        immutable = {x['path']: x['sha'] for x in rows
++                     if x['path'] not in translation_paths}
+         return immutable, {x['path']: x['mode'] for x in rows}
+ 
+     before = producers(fetch(prefix + '/git/commits/' + base)['tree']['sha'])
+diff --git a/tools/test_download_selected_artifacts.py b/tools/test_download_selected_artifacts.py
+index 0e44487..cbf2bf2 100644
+--- a/tools/test_download_selected_artifacts.py
++++ b/tools/test_download_selected_artifacts.py
+@@ -14,7 +14,7 @@ import unittest
+ from unittest.mock import patch
+ import zipfile
+ 
+-from download_selected_artifacts import download, extract, preflight, equivalence_main
++from download_selected_artifacts import download, extract, preflight, equivalence_main, canonical_translation_paths
+ from select_device_artifacts import select
+ from test_select_device_artifacts import ARGS, metadata, equivalence_metadata, review_metadata
+ 
+@@ -120,6 +120,22 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
+                 with self.assertRaises(ValueError): extract(io.BytesIO(data), root)
+                 self.assertFalse(root.exists())
+ 
++    def test_canonical_path_scope_uses_picker_and_preferred_catalogue(self):
++        with tempfile.TemporaryDirectory() as directory:
++            checkout = Path(directory); res = checkout/'Paintroid/src/main/res'
++            for folder in ('values', 'values-fa-rIR', 'values-b+ch', 'values-ch',
++                           'values-night', 'values-arbitrary', 'values-es'):
++                target = res/folder/'strings.xml'
++                target.parent.mkdir(parents=True); target.write_text('<resources/>')
++            (res/'values/app_language_tags.xml').write_text(
++                '<resources><string-array name="tags"><item>fa-IR</item>'
++                '<item>ch</item></string-array></resources>')
++            with patch('translation_catalogues.ROOT', checkout), patch('translation_catalogues.RES', res):
++                self.assertEqual(canonical_translation_paths(), {
++                    'Paintroid/src/main/res/values/strings.xml',
++                    'Paintroid/src/main/res/values-fa-rIR/strings.xml',
++                    'Paintroid/src/main/res/values-b+ch/strings.xml'})
++
+     def test_preflight_binds_independent_metadata_before_accepting_original_artifacts(self):
+         m, review = equivalence_metadata(), review_metadata()
+         m['run']['pull_requests'] = []
+@@ -180,6 +196,48 @@ class DownloadSelectedArtifactsTest(unittest.TestCase):
+                 self.assertEqual(transfer.call_count, 6); verify.assert_called_once()
+                 self.assertEqual(verify.call_args.args[-1]['GITHUB_SHA'], original)
+                 self.assertNotEqual(result['merge'], original)
++                # Regional and BCP-47 canonical paths pass the COMPLETE preflight,
++                # including unchanged review, provenance and artifact validation.
++                base_tree = endpoints[prefix+'/git/trees/'+'f'*40+'?recursive=1']['tree']
++                current_tree = endpoints[prefix+'/git/trees/'+'e'*40+'?recursive=1']['tree']
++                resource_path = current_tree[1]['path']
++                for path in ('Paintroid/src/main/res/values-fa-rIR/strings.xml',
++                             'Paintroid/src/main/res/values-b+ch/strings.xml'):
++                    base_tree[1]['path'] = current_tree[1]['path'] = path
++                    shutil.rmtree(checkout/'prior')
++                    before_downloads, before_verifies = transfer.call_count, verify.call_count
++                    result = preflight(lambda url:copy.deepcopy(endpoints[url]),
++                        lambda node:copy.deepcopy(review['graphql']), checkout,
++                        {'before':'a'*40}, env, checkout/'prior', m['now'])
++                    self.assertEqual(result['checkout'], original)
++                    self.assertEqual(transfer.call_count-before_downloads, 6)
++                    self.assertEqual(verify.call_count-before_verifies, 1)
++                # Noncanonical paths and genuine producer changes remain immutable.
++                for path in ('Paintroid/src/main/res/values-night/strings.xml',
++                             'Paintroid/src/main/res/values-arbitrary/strings.xml',
++                             'Paintroid/src/main/res/values-ch/strings.xml',
++                             'Paintroid/src/main/res/values-fa-rIR/other.xml',
++                             'Paintroid/src/main/res/values/app_language_tags.xml',
++                             'tools/translation_catalogues.py', 'tools/policy.py', 'CI.md'):
++                    base_tree[1]['path'] = current_tree[1]['path'] = path
++                    with self.subTest(path=path), self.assertRaises(ValueError):
++                        preflight(lambda url:copy.deepcopy(endpoints[url]),
++                            lambda node:copy.deepcopy(review['graphql']), checkout,
++                            {'before':'a'*40}, env, checkout/'unused', m['now'])
++                base_tree[1]['path'] = current_tree[1]['path'] = resource_path
++                # Existing canonical resource bytes may change; paths or modes may not.
++                initial_tree = copy.deepcopy(current_tree)
++                for mutation in (lambda rows: rows[1].update(mode='100755'),
++                                 lambda rows: rows[1].update(path='Paintroid/src/main/res/values-fa-rIR/strings.xml'),
++                                 lambda rows: rows.pop(),
++                                 lambda rows: rows.append(dict(type='blob', mode='100644',
++                                     path='Paintroid/src/main/res/values-b+ch/strings.xml', sha='b'*40))):
++                    mutation(current_tree)
++                    with self.subTest(mutation=mutation), self.assertRaises(ValueError):
++                        preflight(lambda url:copy.deepcopy(endpoints[url]),
++                            lambda node:copy.deepcopy(review['graphql']), checkout,
++                            {'before':'a'*40}, env, checkout/'unused', m['now'])
++                    current_tree[:] = copy.deepcopy(initial_tree)
+                 singleton_path = prefix+'/issues/comments/50'
+                 original_singleton = copy.deepcopy(endpoints[singleton_path])
+                 for mutation in (
