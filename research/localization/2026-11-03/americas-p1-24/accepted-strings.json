@@ -1,0 +1,1362 @@
+{
+  "title": "Accepted Americas localization batch: 24 original P1 strings",
+  "integrated_commit": "6da0cbf0e3b171b4d83adcf8a22988809def93d0",
+  "integrated_tree": "11d6839cae91cdcbb35f0be550cf3726ac596dcf",
+  "source_baseline": "4e767622bf91b18663b68dab6086a37d13c71cdc",
+  "source_intake": {
+    "artifact": "reviewed-americas24-current4e76762-intake-1635.json",
+    "sha256": "dee1c3e5955c63a802c604df38a0dc16c3a44a0aaeb5ff79dabe684d2eebb13a"
+  },
+  "counts": {
+    "total": 24,
+    "P0": 0,
+    "P1": 24,
+    "by_locale": {
+      "ch": 3,
+      "chr": 7,
+      "nhe": 4,
+      "nch": 5,
+      "nhw": 5
+    }
+  },
+  "raw_convention": "Every raw/value is XML-parsed Android text. CH ASCII apostrophes have exactly one backslash; display removes that escape once. NHE raw > is literal greater-than, XML-escape once on emission. Never use an XML-source-body value as raw.",
+  "rows": [
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_show_all",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Show all",
+      "attributes": {
+        "name": "ui_show_all"
+      },
+      "raw": "ᏂᎦᏓ ᎯᎪᎵᏯ",
+      "display": "ᏂᎦᏓ ᎯᎪᎵᏯ",
+      "raw_sha256": "db2af8da43c816325a5fad51b13b9ab91a7fa7c609134909b1b1f08a4fc59126",
+      "backtranslation": "View all.",
+      "placeholders": [],
+      "confidence": "Moderate own-source functional composition; no native/layout certification.",
+      "candidate": {
+        "artifact": "chr-visible-controls7-v3-1622.json",
+        "sha256": "21e1f7f178529b45e083174c33d8bf6e5a1ca72dcde7b933b1c9f069a1786357"
+      },
+      "independent_review": {
+        "artifact": "review-chr-visible-controls7-v3-independent-1624.json",
+        "sha256": "419713f4b6ac02a5d8803240c2aa7700b7d105f762ce91c92a6ac9705931bbe9"
+      },
+      "independent_semantic_review": "All + exact technical view command fits assembly view bounds including placement targets; changes zoom/pan only, not pixel data, visible control state or layout source.",
+      "value": "ᏂᎦᏓ ᎯᎪᎵᏯ",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 101,
+          "exact_line": "            button(ui(R.string.ui_show_all),\"assembly_fit\") { board.fit(); info.text=ui(R.string.ui_shows_the_whole_assembly_image_and_output_sizes) },button(ui(R.string.ui_clear_all),\"assembly_clear\") { assembly.clear() })",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L101",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "content_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+        }
+      ],
+      "caller_scope": "One live AssemblyActivity:101 button, tag assembly_fit. Calls AssemblyCanvas.fit, which computes zoom/pan from assembly layout bounds plus target-placement rectangles. It reveals the complete assembly viewport; no image pixels are resized and no hidden editor controls or toolbox are revealed. Status then uses the separate whole-assembly/output-sizes explanation.",
+      "source_evidence": {
+        "artifact": "chr-visible-controls-primary-v2-1622.json",
+        "sha256": "650d27ec68a0c264c7e4cebd8f8aef3bbeabf5c02375f16bff663b62df9dcc8c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-visible-controls-callers-1619.json",
+        "sha256": "25323737a08e817d7672b263a61960812a93e3486e6bdca8847e7444c063a030"
+      },
+      "source_entry_ids": [
+        "OU_p11_all_of_them",
+        "10627_129129_1592081"
+      ],
+      "explicit_limits": "No unresolved material scope gap: all is the assembly bounds, including target-placement outlines; no pixel changes.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_show_controls",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Show controls",
+      "attributes": {
+        "name": "ui_show_controls"
+      },
+      "raw": "ᎠᎯᎸᏍᏗ: ᎯᎪᎵᏯ",
+      "display": "ᎠᎯᎸᏍᏗ: ᎯᎪᎵᏯ",
+      "raw_sha256": "fdade0b26da37ab77705d3681d034c518e0efcbee1c955408da15f62031fd81a",
+      "backtranslation": "Controls: view/show.",
+      "placeholders": [],
+      "confidence": "Moderate own-source functional composition; no native/layout certification.",
+      "candidate": {
+        "artifact": "chr-visible-controls7-v3-1622.json",
+        "sha256": "21e1f7f178529b45e083174c33d8bf6e5a1ca72dcde7b933b1c9f069a1786357"
+      },
+      "independent_review": {
+        "artifact": "review-chr-visible-controls7-v3-independent-1624.json",
+        "sha256": "419713f4b6ac02a5d8803240c2aa7700b7d105f762ce91c92a6ac9705931bbe9"
+      },
+      "independent_semantic_review": "Control category plus exact technical display command, with unpluralized noun permitted by own style-guide noun convention. Actual exit-fullscreen action restores root/rails/sidebar-toggle while retaining sidebar expansion. Does not promise all tools expanded.",
+      "value": "ᎠᎯᎸᏍᏗ: ᎯᎪᎵᏯ",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1583,
+          "exact_line": "        if(fullscreen) workspace.addView(button(ui(R.string.ui_show_controls),\"leave_fullscreen\") {fullscreen=false;syncFullscreen()},FrameLayout.LayoutParams(-2,if(VerticalText.uiVertical(this@ClassicPaintActivity)) -2 else dp(48),Gravity.TOP or Gravity.END))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1583",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "caller_scope": "One live ClassicPaintActivity:1583 leave_fullscreen button. Its action sets fullscreen=false and invokes syncFullscreen. Editor root children, rails and sidebar toggle become visible; syncPanels restores the saved sidebar-expanded state. This is UI control visibility, not an artwork object, image selection, or enlargement of the toolbox.",
+      "source_evidence": {
+        "artifact": "chr-visible-controls-primary-v2-1622.json",
+        "sha256": "650d27ec68a0c264c7e4cebd8f8aef3bbeabf5c02375f16bff663b62df9dcc8c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-visible-controls-callers-1619.json",
+        "sha256": "25323737a08e817d7672b263a61960812a93e3486e6bdca8847e7444c063a030"
+      },
+      "source_entry_ids": [
+        "4835_39274_1590980",
+        "10627_129129_1592081"
+      ],
+      "explicit_limits": "Bare control noun denotes the control collection/category. It does not promise every toolbox panel is expanded; sidebar state is preserved.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_show_editor_controls",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Show editor controls",
+      "attributes": {
+        "name": "ui_show_editor_controls"
+      },
+      "raw": "ᎠᎯᎸᏍᏗ (ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ): ᎯᎪᎵᏯ",
+      "display": "ᎠᎯᎸᏍᏗ (ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ): ᎯᎪᎵᏯ",
+      "raw_sha256": "a25271a34511de29da74e8444f83b786787bcc97071719bc9e9dc366df6abeef",
+      "backtranslation": "Controls (editor): view/show.",
+      "placeholders": [],
+      "confidence": "Moderate own-source functional composition; no native/layout certification.",
+      "candidate": {
+        "artifact": "chr-visible-controls7-v3-1622.json",
+        "sha256": "21e1f7f178529b45e083174c33d8bf6e5a1ca72dcde7b933b1c9f069a1786357"
+      },
+      "independent_review": {
+        "artifact": "review-chr-visible-controls7-v3-independent-1624.json",
+        "sha256": "419713f4b6ac02a5d8803240c2aa7700b7d105f762ce91c92a6ac9705931bbe9"
+      },
+      "independent_semantic_review": "Parenthetical editor names actual program sense in own TBX. No productive genitive/plural morphology asserted. Catalogue-only source semantics; no live route invented.",
+      "value": "ᎠᎯᎸᏍᏗ (ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ): ᎯᎪᎵᏯ",
+      "actual_callers": [],
+      "caller_scope": "No direct reference in any of the 104 exact-verified production Kotlin/Java files or non-strings main resource XML. UiText.getIdentifier only resolves generated fallback/contract names for an already supplied resource ID, not these English labels. Catalogue-only source meaning: reveal the editor-program controls. No current caller reachability or exact interaction is invented.",
+      "source_evidence": {
+        "artifact": "chr-visible-controls-primary-v2-1622.json",
+        "sha256": "650d27ec68a0c264c7e4cebd8f8aef3bbeabf5c02375f16bff663b62df9dcc8c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-visible-controls-callers-1619.json",
+        "sha256": "25323737a08e817d7672b263a61960812a93e3486e6bdca8847e7444c063a030"
+      },
+      "source_entry_ids": [
+        "4835_39274_1590980",
+        "11075_49381_1591057",
+        "10627_129129_1592081"
+      ],
+      "explicit_limits": "No live caller found. Parenthetical editor scopes the program controls rather than creating unsupported genitive morphology.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_hide_editor_controls",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Hide editor controls",
+      "attributes": {
+        "name": "ui_hide_editor_controls"
+      },
+      "raw": "ᎠᎯᎸᏍᏗ (ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ): ᎤᎾᏓᏡᎬᎢ ᎲᏍᎦᎸᎦ",
+      "display": "ᎠᎯᎸᏍᏗ (ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ): ᎤᎾᏓᏡᎬᎢ ᎲᏍᎦᎸᎦ",
+      "raw_sha256": "b959ba88354cf4bef0d20ec352bef169171d6b47175ae4682f3d23381829d491",
+      "backtranslation": "Controls (editor): hide the group.",
+      "placeholders": [],
+      "confidence": "Moderate own-source functional composition; no native/layout certification.",
+      "candidate": {
+        "artifact": "chr-visible-controls7-v3-1622.json",
+        "sha256": "21e1f7f178529b45e083174c33d8bf6e5a1ca72dcde7b933b1c9f069a1786357"
+      },
+      "independent_review": {
+        "artifact": "review-chr-visible-controls7-v3-independent-1624.json",
+        "sha256": "419713f4b6ac02a5d8803240c2aa7700b7d105f762ce91c92a6ac9705931bbe9"
+      },
+      "independent_semantic_review": "V3 adds exact collection-as-whole noun GROUP before singular hide-it imperative. The group is explicitly the editor controls, so hide acts on the collection rather than silently giving an individual predicate a plural object. Catalogue-only, not a claim of current fullscreen callback.",
+      "value": "ᎠᎯᎸᏍᏗ (ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ): ᎤᎾᏓᏡᎬᎢ ᎲᏍᎦᎸᎦ",
+      "actual_callers": [],
+      "caller_scope": "No direct reference in any of the 104 exact-verified production Kotlin/Java files or non-strings main resource XML. Catalogue-only source meaning: hide the editor-program controls. No claim that it is the live fullscreen-menu action, nor that hiding changes artwork.",
+      "source_evidence": {
+        "artifact": "chr-visible-controls-primary-v2-1622.json",
+        "sha256": "650d27ec68a0c264c7e4cebd8f8aef3bbeabf5c02375f16bff663b62df9dcc8c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-visible-controls-callers-1619.json",
+        "sha256": "25323737a08e817d7672b263a61960812a93e3486e6bdca8847e7444c063a030"
+      },
+      "source_entry_ids": [
+        "4835_39274_1590980",
+        "11075_49381_1591057",
+        "OU_p347_hide",
+        "3517_59553_1772897"
+      ],
+      "explicit_limits": "No live caller found. Overt group noun supplies the singular object of hide it. The controls/editor heading identifies which group; no inferred plural-object predicate is required. Scoped label plus command remains an authored composition.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_expand_toolbox",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Expand toolbox",
+      "attributes": {
+        "name": "ui_expand_toolbox"
+      },
+      "raw": "ᎦᏓᏅᏗ ᎧᏁᏌᎢ: ᏗᏓᏁᏍᏙᏗ",
+      "display": "ᎦᏓᏅᏗ ᎧᏁᏌᎢ: ᏗᏓᏁᏍᏙᏗ",
+      "raw_sha256": "0ebed4a4f238aec1aa184b9932371f166bf2a5c3032a457fe191a7bd76a77450",
+      "backtranslation": "Toolbox: expand/reveal its contents.",
+      "placeholders": [],
+      "confidence": "Moderate own-source functional composition; no native/layout certification.",
+      "candidate": {
+        "artifact": "chr-visible-controls7-v3-1622.json",
+        "sha256": "21e1f7f178529b45e083174c33d8bf6e5a1ca72dcde7b933b1c9f069a1786357"
+      },
+      "independent_review": {
+        "artifact": "review-chr-visible-controls7-v3-independent-1624.json",
+        "sha256": "419713f4b6ac02a5d8803240c2aa7700b7d105f762ce91c92a6ac9705931bbe9"
+      },
+      "independent_semantic_review": "Own tool-box noun extended transparently to software tool container. Exact TBX expand is disclosure of subordinate contents, matching tabPanelHost. No image resize or zoom meaning.",
+      "value": "ᎦᏓᏅᏗ ᎧᏁᏌᎢ: ᏗᏓᏁᏍᏙᏗ",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 537,
+          "exact_line": "        sidebarToggle.contentDescription=if(sidebarExpanded) ui(R.string.ui_collapse_toolbox) else ui(R.string.ui_expand_toolbox)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L537",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "caller_scope": "Live contentDescription on sidebarToggle at ClassicPaintActivity:537 when sidebarExpanded=false. Toggle click at :597 inverts sidebarExpanded. syncPanels exposes tabPanelHost when sidebarExpanded && !fullscreen. It expands the toolbox disclosure; it does not zoom artwork, enlarge bitmap dimensions, or return from fullscreen.",
+      "source_evidence": {
+        "artifact": "chr-visible-controls-primary-v2-1622.json",
+        "sha256": "650d27ec68a0c264c7e4cebd8f8aef3bbeabf5c02375f16bff663b62df9dcc8c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-visible-controls-callers-1619.json",
+        "sha256": "25323737a08e817d7672b263a61960812a93e3486e6bdca8847e7444c063a030"
+      },
+      "source_entry_ids": [
+        "OU_p748_tool_box",
+        "965_317875_1591081"
+      ],
+      "explicit_limits": "Toolbox is a general container metaphor and expand is extended from outline/folder disclosure to this grouped tab panel. No exact software-toolbox term is claimed.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_collapse_toolbox",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Collapse toolbox",
+      "attributes": {
+        "name": "ui_collapse_toolbox"
+      },
+      "raw": "ᎦᏓᏅᏗ ᎧᏁᏌᎢ: ᎲᏍᎦᏢᎦ",
+      "display": "ᎦᏓᏅᏗ ᎧᏁᏌᎢ: ᎲᏍᎦᏢᎦ",
+      "raw_sha256": "f943de61afb3a3abb8cc941ed5a91603aacf65f75b22576a1efc9b2673ba0b83",
+      "backtranslation": "Toolbox: collapse.",
+      "placeholders": [],
+      "confidence": "Moderate own-source functional composition; no native/layout certification.",
+      "candidate": {
+        "artifact": "chr-visible-controls7-v3-1622.json",
+        "sha256": "21e1f7f178529b45e083174c33d8bf6e5a1ca72dcde7b933b1c9f069a1786357"
+      },
+      "independent_review": {
+        "artifact": "review-chr-visible-controls7-v3-independent-1624.json",
+        "sha256": "419713f4b6ac02a5d8803240c2aa7700b7d105f762ce91c92a6ac9705931bbe9"
+      },
+      "independent_semantic_review": "Own tool-box noun plus exact TBX collapse for reducing displayed subordinate content. Preserves distinct hide/collapse spelling and actual toggle-state inverse. No deletion of tools or artwork.",
+      "value": "ᎦᏓᏅᏗ ᎧᏁᏌᎢ: ᎲᏍᎦᏢᎦ",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 537,
+          "exact_line": "        sidebarToggle.contentDescription=if(sidebarExpanded) ui(R.string.ui_collapse_toolbox) else ui(R.string.ui_expand_toolbox)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L537",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "caller_scope": "Live contentDescription on sidebarToggle at ClassicPaintActivity:537 when sidebarExpanded=true. Toggle click at :597 closes tabPanelHost by setting visibility GONE through syncPanels, retaining the sidebar toggle/tabs. It collapses the toolbox disclosure, not deletion of tools or artwork and not a fullscreen command.",
+      "source_evidence": {
+        "artifact": "chr-visible-controls-primary-v2-1622.json",
+        "sha256": "650d27ec68a0c264c7e4cebd8f8aef3bbeabf5c02375f16bff663b62df9dcc8c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-visible-controls-callers-1619.json",
+        "sha256": "25323737a08e817d7672b263a61960812a93e3486e6bdca8847e7444c063a030"
+      },
+      "source_entry_ids": [
+        "OU_p748_tool_box",
+        "4733_34105_1590947"
+      ],
+      "explicit_limits": "General toolbox noun is applied to the software tool container. The exact TBX collapse spelling is retained; it is not silently replaced with the distinct hide imperative.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_full_text_copied",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Full text copied",
+      "attributes": {
+        "name": "ui_full_text_copied"
+      },
+      "raw": "ᎬᏩᏃᏍᏓ ᎠᎪᎵᏰᏗ: ᏗᏟᎶᏍᏔᏅᎯ (ᎠᏍᏆᏛᎯ)",
+      "display": "ᎬᏩᏃᏍᏓ ᎠᎪᎵᏰᏗ: ᏗᏟᎶᏍᏔᏅᎯ (ᎠᏍᏆᏛᎯ)",
+      "raw_sha256": "0c652a39e3f54002ceebcd8153b57e41f1fa9ef4de6c679ce263e92f8f668823",
+      "backtranslation": "Whole text: Copy (done).",
+      "placeholders": [],
+      "confidence": "Moderate own-source functional composition; no native/layout certification.",
+      "candidate": {
+        "artifact": "chr-visible-controls7-v3-1622.json",
+        "sha256": "21e1f7f178529b45e083174c33d8bf6e5a1ca72dcde7b933b1c9f069a1786357"
+      },
+      "independent_review": {
+        "artifact": "review-chr-visible-controls7-v3-independent-1624.json",
+        "sha256": "419713f4b6ac02a5d8803240c2aa7700b7d105f762ce91c92a6ac9705931bbe9"
+      },
+      "independent_semantic_review": "Own whole adjective precedes exact technical text noun, and Copy action is explicitly marked done with own OU form. Matches ClipData.newPlainText(title,text) immediately before toast, independent of selection/scroll. Not all application notices, image pixels or exported file.",
+      "value": "ᎬᏩᏃᏍᏓ ᎠᎪᎵᏰᏗ: ᏗᏟᎶᏍᏔᏅᎯ (ᎠᏍᏆᏛᎯ)",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+          "line": 102,
+          "exact_line": "            LocaleTypography.showMessage(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT,button)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L102",
+          "git_blob_sha": "7692e27f3b50068ae732526e24fbade1103f30d8",
+          "content_sha256": "fc9f51c4da1ddecba2340a2a79fdfe3d88495d10b209974de642241cff66619e"
+        }
+      ],
+      "caller_scope": "One live toast at LegalInfo:102 after ClipboardManager.setPrimaryClip(ClipData.newPlainText(title,text)) at :101. The whole supplied text is copied, regardless of scroll position or text selection. termsDialog serves About, complete bundled legal/licence/credits notices, and combined codec notices (:67-82, :105-124). It does not mean selected bitmap content was copied, a file was exported, or all notices across every dialog were copied together.",
+      "source_evidence": {
+        "artifact": "chr-visible-controls-primary-v2-1622.json",
+        "sha256": "650d27ec68a0c264c7e4cebd8f8aef3bbeabf5c02375f16bff663b62df9dcc8c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-visible-controls-callers-1619.json",
+        "sha256": "25323737a08e817d7672b263a61960812a93e3486e6bdca8847e7444c063a030"
+      },
+      "source_entry_ids": [
+        "OU_p797_whole",
+        "5203_120859_1592033",
+        "11991_39848_1590985",
+        "OU_p151_done"
+      ],
+      "explicit_limits": "Copy is the named completed action, not an invented past tense or standalone command. Done explicitly marks status. No claim of copying every other notice or exporting a file.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_enter_a_number_from_to",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Enter a number from %1$s to %2$s.",
+      "attributes": {
+        "name": "ui_enter_a_number_from_to"
+      },
+      "raw": "Xictequihui nomeroh: %1$s ≤ nomeroh ≤ %2$s.",
+      "display": "Xictequihui nomeroh: %1$s ≤ nomeroh ≤ %2$s.",
+      "raw_sha256": "0bbf4dfff460b7f0d5403d8a73cbadb706f55ebd67d06ddf93df22ceeadeb10e",
+      "backtranslation": "Use a number: lower bound ≤ number ≤ upper bound.",
+      "placeholders": [
+        "%1$s",
+        "%2$s"
+      ],
+      "confidence": "Moderate source/compositional functional instruction; mathematical notation in prose. No native/layout certificate.",
+      "candidate": {
+        "artifact": "nhe-numeric4-1621.json",
+        "sha256": "e7899566413309b90a17b25c53cb01cb26bc720f5df7edcfef0712cff3468e9c"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-numeric4-independent-1626.json",
+        "sha256": "6ef6a96da5c735324e15ff5dbabc517945818a77603af7bd9f64c394e2596eb1"
+      },
+      "independent_semantic_review": "Own use-number instruction plus inclusive mathematical interval keeps exact minimum/maximum slots. Actual parser is integer, but this generic error neither promises fractions nor loses an explicit integer requirement from this English source; separate whole-number prompt remains untranslated.",
+      "value": "Xictequihui nomeroh: %1$s ≤ nomeroh ≤ %2$s.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt",
+          "line": 74,
+          "exact_line": "                if(n==null || n !in minimum..maximum) input.error=ui(R.string.ui_enter_a_number_from_to, minimum, maximum)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L74"
+        }
+      ],
+      "caller_scope": "NumericSlider error after toIntOrNull or an out-of-range Int. %1$s is minimum and %2$s maximum, both Int arguments rendered as strings. Both boundaries are inclusive. This generic error retains the generic English number wording; the separate whole-number dialog prompt remains a held gap. It does not assert that fractions are accepted or replace integer parsing.",
+      "source_evidence": {
+        "artifact": "nhe-numeric-primary-1621.json",
+        "sha256": "d3a08ba7d638fd58076f0d74d19e6deda8922fd94eada2567e9ac2d554e750e3"
+      },
+      "caller_evidence": null,
+      "source_entry_ids": [
+        "number",
+        "use_command"
+      ],
+      "explicit_limits": null,
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_enter_a_positive_size",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Enter a positive size.",
+      "attributes": {
+        "name": "ui_enter_a_positive_size"
+      },
+      "raw": "Ihuexca: xictequihui nomeroh > 0.",
+      "display": "Ihuexca: xictequihui nomeroh > 0.",
+      "raw_sha256": "96a0054a45893171c7d2298c6d8dbee9ad297b64bfb9bfd6f2ca81e1c071c752",
+      "backtranslation": "Size: use a number greater than 0.",
+      "placeholders": [],
+      "confidence": "Moderate source/compositional functional instruction; mathematical notation in prose. No native/layout certificate.",
+      "candidate": {
+        "artifact": "nhe-numeric4-1621.json",
+        "sha256": "e7899566413309b90a17b25c53cb01cb26bc720f5df7edcfef0712cff3468e9c"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-numeric4-independent-1626.json",
+        "sha256": "6ef6a96da5c735324e15ff5dbabc517945818a77603af7bd9f64c394e2596eb1"
+      },
+      "independent_semantic_review": "Spatial size + use-number >0 retains generic source condition. Percentage mode allows positive fractions and resolves against largest selected-axis placement; no typed >=1 constraint, integer-only restriction or budget success introduced.",
+      "value": "Ihuexca: xictequihui nomeroh > 0.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+          "line": 42,
+          "exact_line": "                val target=value() ?: throw IllegalArgumentException(ui(R.string.ui_enter_a_positive_size))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L42"
+        }
+      ],
+      "caller_scope": "NormalizeImagesDialog value() must parse finite >0 input. Pixel mode requires numerical whole values; percentage mode permits positive decimals; percentage is relative to the current largest placed dimension of the selected axis. The result rounds into 1..Int.MAX_VALUE. This deliberately generic positive-size prompt retains source specificity rather than incorrectly requiring typed ≥1 or disallowing decimal percentages. No upper size, source cap, RAM fit or successful normalization is promised.",
+      "source_evidence": {
+        "artifact": "nhe-numeric-primary-1621.json",
+        "sha256": "d3a08ba7d638fd58076f0d74d19e6deda8922fd94eada2567e9ac2d554e750e3"
+      },
+      "caller_evidence": null,
+      "source_entry_ids": [
+        "number",
+        "use_command",
+        "size"
+      ],
+      "explicit_limits": null,
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_use_1_1024_pixels",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Use 1–1024 pixels.",
+      "attributes": {
+        "name": "ui_use_1_1024_pixels"
+      },
+      "raw": "Xictequihui nomeroh: 1 ≤ nomeroh ≤ 1024 px.",
+      "display": "Xictequihui nomeroh: 1 ≤ nomeroh ≤ 1024 px.",
+      "raw_sha256": "5cb83170a4916042582e3bf6ef63f3ce420efdb3b9cfe39c871b18d0277e4f34",
+      "backtranslation": "Use a number: 1 ≤ number ≤ 1024 pixels.",
+      "placeholders": [],
+      "confidence": "Moderate source/compositional functional instruction; mathematical notation in prose. No native/layout certificate.",
+      "candidate": {
+        "artifact": "nhe-numeric4-1621.json",
+        "sha256": "e7899566413309b90a17b25c53cb01cb26bc720f5df7edcfef0712cff3468e9c"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-numeric4-independent-1626.json",
+        "sha256": "6ef6a96da5c735324e15ff5dbabc517945818a77603af7bd9f64c394e2596eb1"
+      },
+      "independent_semantic_review": "Inclusive range and px explicitly remain in the error for Float text size. Fractions allowed. Not bitmap dimensions or a memory estimate.",
+      "value": "Xictequihui nomeroh: 1 ≤ nomeroh ≤ 1024 px.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 103,
+          "exact_line": "                pixels==null || pixels !in 1f..1024f -> size.error=ui(R.string.ui_use_1_1024_pixels)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L103"
+        }
+      ],
+      "caller_scope": "TextStyleDialog text size is parsed by uiNumber, converted to Float and accepted within inclusive 1f..1024f. Decimal keyboard is enabled. Fractions such as 1.5 px are allowed. This is font size, not integer bitmap width/height, memory budget or percentage. Mathematical bounds preserve both endpoints without adding whole/integer.",
+      "source_evidence": {
+        "artifact": "nhe-numeric-primary-1621.json",
+        "sha256": "d3a08ba7d638fd58076f0d74d19e6deda8922fd94eada2567e9ac2d554e750e3"
+      },
+      "caller_evidence": null,
+      "source_entry_ids": [
+        "number",
+        "use_command"
+      ],
+      "explicit_limits": null,
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_enter_positive_dimensions_that_resolve_to_at_least",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Enter positive dimensions that resolve to at least 1 pixel.",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions_that_resolve_to_at_least"
+      },
+      "raw": "Ipatlauhca huan ihuahcapanyo: xictequihui nomeroh > 0. Ixcopincayotl tlen ticnequi: ipatlauhca ≥ 1 px huan ihuahcapanyo ≥ 1 px.",
+      "display": "Ipatlauhca huan ihuahcapanyo: xictequihui nomeroh > 0. Ixcopincayotl tlen ticnequi: ipatlauhca ≥ 1 px huan ihuahcapanyo ≥ 1 px.",
+      "raw_sha256": "ae299f3d97d9762bf0e791443a7835568f9214ce6e95e2a550930b50ddfb78b0",
+      "backtranslation": "Width and height: use numbers greater than 0. The image you want: width at least 1 pixel and height at least 1 pixel.",
+      "placeholders": [],
+      "confidence": "Moderate source/compositional functional instruction; mathematical notation in prose. No native/layout certificate.",
+      "candidate": {
+        "artifact": "nhe-numeric4-1621.json",
+        "sha256": "e7899566413309b90a17b25c53cb01cb26bc720f5df7edcfef0712cff3468e9c"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-numeric4-independent-1626.json",
+        "sha256": "6ef6a96da5c735324e15ff5dbabc517945818a77603af7bd9f64c394e2596eb1"
+      },
+      "independent_semantic_review": "Entered width/height >0 are followed by desired-image width and height each >=1px. Target-image topic plus explicit pixel units distinguishes resolved output from entered percentages. This functional restriction does not assert every positive input is valid, that input already uses pixels, or that consumer memory/source checks pass.",
+      "value": "Ipatlauhca huan ihuahcapanyo: xictequihui nomeroh > 0. Ixcopincayotl tlen ticnequi: ipatlauhca ≥ 1 px huan ihuahcapanyo ≥ 1 px.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+          "line": 75,
+          "exact_line": "    private fun showResult() { result.text = target?.describe() ?: ui(R.string.ui_enter_positive_dimensions_that_resolve_to_at_least) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L75"
+        }
+      ],
+      "caller_scope": "DimensionControls first requires finite raw numbers >0, with whole numerical pixel values but decimal percentages allowed; it converts percentages against original per-axis bases, rounds and accepts only 1..Int.MAX_VALUE on each axis. The first clause addresses entered width/height values >0. The second explicitly describes the desired image in px and requires ≥1 separately on width and height, preserving the resolved-output distinction without telling the user to enter ≥1 percent. This is an authored functional paraphrase: it does not introduce an unattested verb for resolve/convert. It neither promises that every positive input works nor claims raw values are already px. Aspect locking may update the opposite field before both are validated; separate consumer memory/source limits remain outside this prompt.",
+      "source_evidence": {
+        "artifact": "nhe-numeric-primary-1621.json",
+        "sha256": "d3a08ba7d638fd58076f0d74d19e6deda8922fd94eada2567e9ac2d554e750e3"
+      },
+      "caller_evidence": null,
+      "source_entry_ids": [
+        "number",
+        "use_command",
+        "width",
+        "height",
+        "image",
+        "want",
+        "prefixes"
+      ],
+      "explicit_limits": null,
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_delete_selection",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Delete selection",
+      "attributes": {
+        "name": "ui_delete_selection"
+      },
+      "raw": "Xijquixti cati tijtapejpenijtoc",
+      "display": "Xijquixti cati tijtapejpenijtoc",
+      "raw_sha256": "81a0881df30ec7e3fd04fae94e00d3aea3b27afcb44d6b7e75f8f6ab2ab95dab",
+      "backtranslation": "Remove what you have selected.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "Remove what you have selected is explicit about affected content rather than selection marks alone. Current erasure uses mask/bounds and background SRC, while already floating content is discarded. Neither transparency, whole-file deletion nor clipboard transfer is claimed.",
+      "value": "Xijquixti cati tijtapejpenijtoc",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 850,
+          "text": "            command(ui(R.string.ui_delete_selection),R.drawable.classic_delete) {if(!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first))},",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L850"
+        }
+      ],
+      "caller_scope": [
+        "ClassicPaintActivity850 invokes document.deleteSelection; false means there was no selection and produces the separate select-area prerequisite.",
+        "PaintDocument373–377: nonfloating selection checkpoints and erases the selected canvas pixels; floating selection is discarded without erasing underlying canvas again. Both clear the selection and mark edited.",
+        "PaintDocument313–317 fills with current background using SRC. It draws the mask path when present, otherwise the selection rectangle. Thus removal is not merely deselection, not always a bounding-box clear, and not necessarily transparency.",
+        "The object is selected content. No clipboard write, whole-file removal, physical destruction or irreversibility is promised. Floating content may have originated from a pasted image; generic selected-what wording covers it."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "remove",
+        "selected-and-task"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. ",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_remove",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Remove",
+      "attributes": {
+        "name": "ui_remove"
+      },
+      "raw": "Xijquixti",
+      "display": "Xijquixti",
+      "raw_sha256": "bfb222fd2eab8dab4be1b21cab78950db8d8afbf9250b388cbcc57b7ddbbeef1",
+      "backtranslation": "Remove it.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "Remove-it is the selected assembly item command. The selected object is supplied by this action context and not a new unspecified diagnostic. It covers tray and placed items without promising no reflow or deletion of original external files.",
+      "value": "Xijquixti",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 100,
+          "text": "            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100"
+        }
+      ],
+      "caller_scope": [
+        "AssemblyActivity100 requires a selected image and calls assembly.remove(it); its neighboring Unplace command is distinct.",
+        "ImageAssembly122 removes only the selected id after detached(id) restructures attachments. Remaining item placements may reflow; the candidate does not promise unchanged arrangement.",
+        "ImageAssembly233–243 writes the updated state, preserves bounded undo/redo state, and prunes only internal .image copies no longer retained by current or history states. This is not a command to delete the original external source file.",
+        "A nonplaced tray item is removable too. Therefore remove is not reduced to unplace or to clearing the entire assembly."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "remove"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. ",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_please_wait_for_the_current_operation",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Please wait for the current operation.",
+      "attributes": {
+        "name": "ui_please_wait_for_the_current_operation"
+      },
+      "raw": "Ximochiya hasta tamis ni tequit.",
+      "display": "Ximochiya hasta tamis ni tequit.",
+      "raw_sha256": "cbb04aa03a48f27400eb9bce7ad92a7d479505ae7883284c81a1018efc9117b3",
+      "backtranslation": "Wait until this task ends.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "Wait until this task ends identifies the blocking operation without saving-only cause, brief-duration promise, successful completion or automatic retry. Own future intransitive end form is independently attested in until frame.",
+      "value": "Ximochiya hasta tamis ni tequit.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 170,
+          "text": "                text=startupFailure ?: ui(R.string.ui_please_wait_for_the_current_operation);contentDescription=text;setTextColor(ink)",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L170"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 549,
+          "text": "        setOnClickListener { if (!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation)) }",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L549"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 555,
+          "text": "        setOnClickListener {if(!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation))}",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L555"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1444,
+          "text": "            else R.string.ui_please_wait_for_the_current_operation));return}",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1444"
+        }
+      ],
+      "caller_scope": [
+        "Four exact references: ClassicPaintActivity170 startup loading label,549 ordinary button busy guard,555 panel button busy guard,1444 legacy-credit attach busy guard.",
+        "Startup recovery/loading and generic operations can hold busy. beginIo/endIo1420–1421 track outstanding operations. No saving-only condition is inferred.",
+        "At1443–1444 autosaving has its separate draft-saving retry string, while other busy operations use this generic current-operation warning.",
+        "The candidate asks to wait until this task ends. It gives no short-duration promise, automatic retry instruction, success assertion or save-state claim."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "wait",
+        "until-end",
+        "selected-and-task"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. ",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_choose_at_least_one_image",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Choose at least one image.",
+      "attributes": {
+        "name": "ui_choose_at_least_one_image"
+      },
+      "raw": "Xijtapejpeni se o más ixkopinali.",
+      "display": "Xijtapejpeni se o más ixkopinali.",
+      "raw_sha256": "bad3578677b66731589dcf37b2e8cc6a1d3b82e68bb471d0b19e153d27f01995",
+      "backtranslation": "Choose one or more images.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "One-or-more is an authored disjunctive quantitative composition supported separately by own one-or-two and counted-more uses. It expresses the nonempty minimum and does not impose exactly one. Selection command is independently derived within each variety from own plural choose and own work singular/plural contrast.",
+      "value": "Xijtapejpeni se o más ixkopinali.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 155,
+          "text": "        require(ids.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+          "git_blob_sha": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L155"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+          "line": 145,
+          "text": "                require(selected.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+          "git_blob_sha": "a21c5d9a32794df26907f6765d52f0d409e2953a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L145"
+        }
+      ],
+      "caller_scope": [
+        "ImageCropDialog145 checks selected.isNotEmpty before computing and applying crop rectangles. A batch user can untick every checkbox or use None; one or more checked images satisfy the guard.",
+        "ImageCropDialog127–137 allows multiple included images. Its one-image route begins selected and has no checkbox controls. The wording does not impose exactly one or an unlimited number.",
+        "ImageAssembly155 repeats the same nonempty guard in crop(ids:Set<String>,margins). No production invocation of that overload was found in the 104-file scan; current AssemblyActivity280 calls the map overload via ImageCropDialog. The guard itself is still a direct resource reference.",
+        "This is selection of existing image items for crop application, not choosing a spatial area, opening a file-picker or selecting already-placed images only."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "choose-plural",
+        "work-singular",
+        "work-plural",
+        "or-count",
+        "more-count",
+        "image-noun"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. ",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_tap_an_image_first",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Tap an image first.",
+      "attributes": {
+        "name": "ui_tap_an_image_first"
+      },
+      "raw": "Achtohui xijtapejpeni se ixkopinali.",
+      "display": "Achtohui xijtapejpeni se ixkopinali.",
+      "raw_sha256": "3997b66bcff6ace8345274cc2a24426807438b8763df3a4872a93483a51d9b65",
+      "backtranslation": "First choose an image.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "First choose an image preserves the actual no-selected-item prerequisite for Unplace/Remove. Explicit functional omission: does not translate the physical tap gesture. Multiple actual tap, long-press and drag selection routes support this bounded instruction; no new import, placement or area-selection requirement.",
+      "value": "Achtohui xijtapejpeni se ixkopinali.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 99,
+          "text": "            button(ui(R.string.ui_unplace),\"assembly_unplace\") { selected?.let { assembly.unplace(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L99"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 100,
+          "text": "            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100"
+        }
+      ],
+      "caller_scope": [
+        "AssemblyActivity99–100 emits this only when selected is null before Unplace or Remove.",
+        "Tray card click at143 sets selected=item.id and board.select; long press144–150 also selects. AssemblyCanvas172 selects an existing placed image on tap; beginImageDrag118–121 also calls onSelect.",
+        "The authored First choose an image captures the shared state prerequisite across valid selection routes. It deliberately omits the physical tap gesture instead of inventing a tap/touch sense.",
+        "It does not ask to choose a pixel region, import a new image, select every image, place the item first or choose a particular file type."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "choose-plural",
+        "work-singular",
+        "work-plural",
+        "first-before-command",
+        "image-noun"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. Functional selection prerequisite; literal tap gesture deliberately omitted, with no invented touch verb.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_delete_selection",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Delete selection",
+      "attributes": {
+        "name": "ui_delete_selection"
+      },
+      "raw": "Xijquixti catli tijtlapejpenijtoc",
+      "display": "Xijquixti catli tijtlapejpenijtoc",
+      "raw_sha256": "ac6ff1fcdadb612d165d2108f07d4edf75d8fb26e7e60f76a1515e1753aff084",
+      "backtranslation": "Remove what you have selected.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "Remove what you have selected is explicit about affected content rather than selection marks alone. Current erasure uses mask/bounds and background SRC, while already floating content is discarded. Neither transparency, whole-file deletion nor clipboard transfer is claimed.",
+      "value": "Xijquixti catli tijtlapejpenijtoc",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 850,
+          "text": "            command(ui(R.string.ui_delete_selection),R.drawable.classic_delete) {if(!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first))},",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L850"
+        }
+      ],
+      "caller_scope": [
+        "ClassicPaintActivity850 invokes document.deleteSelection; false means there was no selection and produces the separate select-area prerequisite.",
+        "PaintDocument373–377: nonfloating selection checkpoints and erases the selected canvas pixels; floating selection is discarded without erasing underlying canvas again. Both clear the selection and mark edited.",
+        "PaintDocument313–317 fills with current background using SRC. It draws the mask path when present, otherwise the selection rectangle. Thus removal is not merely deselection, not always a bounding-box clear, and not necessarily transparency.",
+        "The object is selected content. No clipboard write, whole-file removal, physical destruction or irreversibility is promised. Floating content may have originated from a pasted image; generic selected-what wording covers it."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "remove",
+        "selected-and-task"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. ",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_remove",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Remove",
+      "attributes": {
+        "name": "ui_remove"
+      },
+      "raw": "Xijquixti",
+      "display": "Xijquixti",
+      "raw_sha256": "bfb222fd2eab8dab4be1b21cab78950db8d8afbf9250b388cbcc57b7ddbbeef1",
+      "backtranslation": "Remove it.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "Remove-it is the selected assembly item command. The selected object is supplied by this action context and not a new unspecified diagnostic. It covers tray and placed items without promising no reflow or deletion of original external files.",
+      "value": "Xijquixti",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 100,
+          "text": "            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100"
+        }
+      ],
+      "caller_scope": [
+        "AssemblyActivity100 requires a selected image and calls assembly.remove(it); its neighboring Unplace command is distinct.",
+        "ImageAssembly122 removes only the selected id after detached(id) restructures attachments. Remaining item placements may reflow; the candidate does not promise unchanged arrangement.",
+        "ImageAssembly233–243 writes the updated state, preserves bounded undo/redo state, and prunes only internal .image copies no longer retained by current or history states. This is not a command to delete the original external source file.",
+        "A nonplaced tray item is removable too. Therefore remove is not reduced to unplace or to clearing the entire assembly."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "remove"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. ",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_please_wait_for_the_current_operation",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Please wait for the current operation.",
+      "attributes": {
+        "name": "ui_please_wait_for_the_current_operation"
+      },
+      "raw": "Ximochiya hasta tlamis ni tequitl.",
+      "display": "Ximochiya hasta tlamis ni tequitl.",
+      "raw_sha256": "d64577ea42a0965fc51c4d038d8fc854422645f2f5e5e8beb2242219e3223f0f",
+      "backtranslation": "Wait until this task ends.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "Wait until this task ends identifies the blocking operation without saving-only cause, brief-duration promise, successful completion or automatic retry. Own future intransitive end form is independently attested in until frame.",
+      "value": "Ximochiya hasta tlamis ni tequitl.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 170,
+          "text": "                text=startupFailure ?: ui(R.string.ui_please_wait_for_the_current_operation);contentDescription=text;setTextColor(ink)",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L170"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 549,
+          "text": "        setOnClickListener { if (!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation)) }",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L549"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 555,
+          "text": "        setOnClickListener {if(!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation))}",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L555"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1444,
+          "text": "            else R.string.ui_please_wait_for_the_current_operation));return}",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1444"
+        }
+      ],
+      "caller_scope": [
+        "Four exact references: ClassicPaintActivity170 startup loading label,549 ordinary button busy guard,555 panel button busy guard,1444 legacy-credit attach busy guard.",
+        "Startup recovery/loading and generic operations can hold busy. beginIo/endIo1420–1421 track outstanding operations. No saving-only condition is inferred.",
+        "At1443–1444 autosaving has its separate draft-saving retry string, while other busy operations use this generic current-operation warning.",
+        "The candidate asks to wait until this task ends. It gives no short-duration promise, automatic retry instruction, success assertion or save-state claim."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "wait",
+        "until-end",
+        "selected-and-task"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. ",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_choose_at_least_one_image",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Choose at least one image.",
+      "attributes": {
+        "name": "ui_choose_at_least_one_image"
+      },
+      "raw": "Xijtlapejpeni se o más tlaixkopintli.",
+      "display": "Xijtlapejpeni se o más tlaixkopintli.",
+      "raw_sha256": "75a1a79c671ebbef891f8aa6d91923988bbbdb8e1366cbdc6ff8e514a54d8849",
+      "backtranslation": "Choose one or more images.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "One-or-more is an authored disjunctive quantitative composition supported separately by own one-or-two and counted-more uses. It expresses the nonempty minimum and does not impose exactly one. Selection command is independently derived within each variety from own plural choose and own work singular/plural contrast.",
+      "value": "Xijtlapejpeni se o más tlaixkopintli.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 155,
+          "text": "        require(ids.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+          "git_blob_sha": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L155"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+          "line": 145,
+          "text": "                require(selected.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+          "git_blob_sha": "a21c5d9a32794df26907f6765d52f0d409e2953a",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L145"
+        }
+      ],
+      "caller_scope": [
+        "ImageCropDialog145 checks selected.isNotEmpty before computing and applying crop rectangles. A batch user can untick every checkbox or use None; one or more checked images satisfy the guard.",
+        "ImageCropDialog127–137 allows multiple included images. Its one-image route begins selected and has no checkbox controls. The wording does not impose exactly one or an unlimited number.",
+        "ImageAssembly155 repeats the same nonempty guard in crop(ids:Set<String>,margins). No production invocation of that overload was found in the 104-file scan; current AssemblyActivity280 calls the map overload via ImageCropDialog. The guard itself is still a direct resource reference.",
+        "This is selection of existing image items for crop application, not choosing a spatial area, opening a file-picker or selecting already-placed images only."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "choose-plural",
+        "work-singular",
+        "work-plural",
+        "or-count",
+        "more-count",
+        "image-noun"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. ",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_tap_an_image_first",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Tap an image first.",
+      "attributes": {
+        "name": "ui_tap_an_image_first"
+      },
+      "raw": "Achtihui xijtlapejpeni se tlaixkopintli.",
+      "display": "Achtihui xijtlapejpeni se tlaixkopintli.",
+      "raw_sha256": "1a861c187d033a6e647d856f6588f0b0e2bb93446a9248421f1af641b12ab86b",
+      "backtranslation": "First choose an image.",
+      "placeholders": [],
+      "confidence": "Moderate own-variety functional/compositional; native/layout unverified.",
+      "candidate": {
+        "artifact": "nahua-action-labels10-author-1625.json",
+        "sha256": "5ea65637a989872c72d3e992f079775f912709f78ff3b1dcf24b17c0704d6c26"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-action10-independent-1632.json",
+        "sha256": "a5c08e003d9fe097417c1aabdced978058ba9e636f95d3309b254e485291dea3"
+      },
+      "independent_semantic_review": "First choose an image preserves the actual no-selected-item prerequisite for Unplace/Remove. Explicit functional omission: does not translate the physical tap gesture. Multiple actual tap, long-press and drag selection routes support this bounded instruction; no new import, placement or area-selection requirement.",
+      "value": "Achtihui xijtlapejpeni se tlaixkopintli.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 99,
+          "text": "            button(ui(R.string.ui_unplace),\"assembly_unplace\") { selected?.let { assembly.unplace(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L99"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 100,
+          "text": "            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/4e767622bf91b18663b68dab6086a37d13c71cdc/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100"
+        }
+      ],
+      "caller_scope": [
+        "AssemblyActivity99–100 emits this only when selected is null before Unplace or Remove.",
+        "Tray card click at143 sets selected=item.id and board.select; long press144–150 also selects. AssemblyCanvas172 selects an existing placed image on tap; beginImageDrag118–121 also calls onSelect.",
+        "The authored First choose an image captures the shared state prerequisite across valid selection routes. It deliberately omits the physical tap gesture instead of inventing a tap/touch sense.",
+        "It does not ask to choose a pixel region, import a new image, select every image, place the item first or choose a particular file type."
+      ],
+      "source_evidence": {
+        "artifact": "nahua-action-labels10-primary-1625.json",
+        "sha256": "10bd5906ec591c8a85e01810baa5cd4d3f6eb4d6ad4a835ebad70d71d5344b6e"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-action-labels10-callers-1625.json",
+        "sha256": "459bda0cd43c6cbce1003c3273013e5bf1dadd74765efdedb8824aeae90dcbb7"
+      },
+      "source_entry_ids": [
+        "choose-plural",
+        "work-singular",
+        "work-plural",
+        "first-before-command",
+        "image-noun"
+      ],
+      "explicit_limits": "Own-variety composed GUI use, not source-attested whole UI wording. Functional selection prerequisite; literal tap gesture deliberately omitted, with no invented touch verb.",
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_android_blocked_the_file_picker",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Android blocked the file picker: %1$s",
+      "attributes": {
+        "name": "ui_android_blocked_the_file_picker"
+      },
+      "raw": "Android ti ha sedi na u ma\\'usa i ramienta para un atyik dokumentu: %1$s",
+      "display": "Android ti ha sedi na u ma'usa i ramienta para un atyik dokumentu: %1$s",
+      "raw_sha256": "0f425379f39b293e6b933ceabd81cc1678347a299f27d1b2d99e4dbe477e34bd",
+      "backtranslation": "Android did not allow the tool for choosing a file to be used: %1$s",
+      "placeholders": [
+        "%1$s"
+      ],
+      "confidence": "Moderate authored own-source functional composition; independent semantic/linguistic review pending.",
+      "candidate": {
+        "artifact": "ch-import-errors5-v2-1627.json",
+        "sha256": "a1f987cda686974f3151ac060ad1f7d2b6c5e2922a27fd7603b0bcb483645642"
+      },
+      "independent_review": {
+        "artifact": "review-ch-import-errors5-v2-independent-1633.json",
+        "sha256": "d2e27df155d907e0e7eb6794bba5052c79f55b11bb43460003d593b1fed085f4"
+      },
+      "independent_semantic_review": "Negated sedi plus a finite irrealis passive means Android did not permit the chooser tool to be used. The two-argument, non-control use of sedi is explicitly supported by Chung. The purpose clause identifies a tool for selecting documents/files rather than a human picker. This preserves a launch block without inventing a permission type, permanent ban, deleted file or failed decoder. The one detail slot is unchanged. Primary calls in ClassicPaintActivity:1101 and AssemblyActivity:195 catch SecurityException. LegacyImageCreditsActivity:120 handles the ACTION_CREATE_DOCUMENT launch and supplies either error.message or a localized fallback. The nested ACTION_GET_CONTENT fallback is inside the ActivityNotFoundException handler and does not reach its sibling SecurityException catch; v2 metadata correctly limits that claim.",
+      "value": "Android ti ha sedi na u ma\\'usa i ramienta para un atyik dokumentu: %1$s",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 195,
+          "text": "} catch (error: SecurityException) { message(ui(R.string.ui_android_blocked_the_file_picker, error.message)) }"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1101,
+          "text": "} catch (e: SecurityException) { afterSave = null; message(ui(R.string.ui_android_blocked_the_file_picker, e.message)) }"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 120,
+          "text": "is SecurityException -> ui(R.string.ui_android_blocked_the_file_picker,"
+        }
+      ],
+      "caller_scope": "SecurityException from the primary startActivityForResult call in ClassicPaintActivity/AssemblyActivity launchPicker, or the legacy-credit ACTION_CREATE_DOCUMENT launch. Current caller intents use ACTION_OPEN_DOCUMENT or ACTION_CREATE_DOCUMENT. The secondary ACTION_GET_CONTENT fallback sits inside the ActivityNotFoundException handler and catches only ActivityNotFoundException; this packet does not claim that a SecurityException raised there reaches the sibling SecurityException handler. Error detail remains verbatim in one %1$s slot; no invented security cause or permanent-block diagnosis.",
+      "source_evidence": {
+        "artifact": "ch-import-errors-sources-1625.json",
+        "sha256": "578ea581fc8f377519fbf10a34e3287a4cde8cd505e87323c334469b7447d05b"
+      },
+      "caller_evidence": {
+        "artifact": "ch-import-errors-callers-1625.json",
+        "sha256": "ff0ca4c98b4861e231382786400555c15305625eab76b3077d59f68c8ef62bbb"
+      },
+      "source_entry_ids": [
+        "choose-tool-file",
+        "blocked-permission"
+      ],
+      "explicit_limits": null,
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_the_picker_returned_no_file_please_choose_the",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "The picker returned no file. Please choose the file again.",
+      "attributes": {
+        "name": "ui_the_picker_returned_no_file_please_choose_the"
+      },
+      "raw": "Tåya\\' dokumentu ni marisibi ginin i ramienta para un atyik dokumentu. Put fabot, atyik ta\\'lu i dokumentu.",
+      "display": "Tåya' dokumentu ni marisibi ginin i ramienta para un atyik dokumentu. Put fabot, atyik ta'lu i dokumentu.",
+      "raw_sha256": "dcce11751e95c271356fa8f5c036b8ce137fb83fc0b7bd52717c2e3264ef9c9f",
+      "backtranslation": "No file was received from the tool for choosing a file. Please choose the file again.",
+      "placeholders": [],
+      "confidence": "Moderate authored own-source functional composition; independent semantic/linguistic review pending.",
+      "candidate": {
+        "artifact": "ch-import-errors5-v2-1627.json",
+        "sha256": "a1f987cda686974f3151ac060ad1f7d2b6c5e2922a27fd7603b0bcb483645642"
+      },
+      "independent_review": {
+        "artifact": "review-ch-import-errors5-v2-independent-1633.json",
+        "sha256": "d2e27df155d907e0e7eb6794bba5052c79f55b11bb43460003d593b1fed085f4"
+      },
+      "independent_semantic_review": "The negative existential is restricted by the received-relative and source phrase, so it says no file was received from the selecting tool, not that no file exists or was deleted. Productive ma-passive is suitable with an unspecified receiving agent. The final polite imperative preserves selection of the file again without promising success or demanding a different file. Singular/default document form is suitable here; it does not assert an exact cardinality of one. ClassicPaintActivity.kt:1251 follows the RESULT_OK gate and tests data?.data ?: data?.clipData?.getItemAt(0)?.uri for null. This precedes the open/import/save/export switch, so the wording must remain generic to a selected file rather than image decoding.",
+      "value": "Tåya\\' dokumentu ni marisibi ginin i ramienta para un atyik dokumentu. Put fabot, atyik ta\\'lu i dokumentu.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1251,
+          "text": "if (uri == null) { message(ui(R.string.ui_the_picker_returned_no_file_please_choose_the)); afterSave = null; return }"
+        }
+      ],
+      "caller_scope": "RESULT_OK flow yielded neither data URI nor first clip URI, including open/import/save/export destination routes. Singular requested file and explicit retry retained; not an assertion that an existing file was deleted or cancelled by the user.",
+      "source_evidence": {
+        "artifact": "ch-import-errors-sources-1625.json",
+        "sha256": "578ea581fc8f377519fbf10a34e3287a4cde8cd505e87323c334469b7447d05b"
+      },
+      "caller_evidence": {
+        "artifact": "ch-import-errors-callers-1625.json",
+        "sha256": "ff0ca4c98b4861e231382786400555c15305625eab76b3077d59f68c8ef62bbb"
+      },
+      "source_entry_ids": [
+        "choose-tool-file",
+        "received-not-deleted",
+        "retry"
+      ],
+      "explicit_limits": null,
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_the_picker_returned_no_files",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "The picker returned no files.",
+      "attributes": {
+        "name": "ui_the_picker_returned_no_files"
+      },
+      "raw": "Tåya\\' dokumentu siha ni manmarisibi ginin i ramienta para un atyik dokumentu siha.",
+      "display": "Tåya' dokumentu siha ni manmarisibi ginin i ramienta para un atyik dokumentu siha.",
+      "raw_sha256": "6f2182dac71261e7143894a8fd837f9ab882f5f9226da708f6b08b141e1a41e4",
+      "backtranslation": "No files were received from the tool for choosing files.",
+      "placeholders": [],
+      "confidence": "Moderate authored own-source functional composition; independent semantic/linguistic review pending.",
+      "candidate": {
+        "artifact": "ch-import-errors5-v2-1627.json",
+        "sha256": "a1f987cda686974f3151ac060ad1f7d2b6c5e2922a27fd7603b0bcb483645642"
+      },
+      "independent_review": {
+        "artifact": "review-ch-import-errors5-v2-independent-1633.json",
+        "sha256": "d2e27df155d907e0e7eb6794bba5052c79f55b11bb43460003d593b1fed085f4"
+      },
+      "independent_semantic_review": "Plural siha plus the realis plural passive man-ma-risibi is grammatically supported. It preserves no files received from the multi-file selecting tool. It adds no retry instruction and no unsupported-file, cancellation or deletion diagnosis. The existential scopes over the received files rather than making a claim about disk contents. AssemblyActivity.kt:201 tests an empty URI list for ADD_IMAGES and RESULT_OK before importImages. The launcher requests multiple selection; this is not a stream or decode failure.",
+      "value": "Tåya\\' dokumentu siha ni manmarisibi ginin i ramienta para un atyik dokumentu siha.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 201,
+          "text": "if (uris.isEmpty()) message(ui(R.string.ui_the_picker_returned_no_files)) else importImages(uris.distinct())"
+        }
+      ],
+      "caller_scope": "Multi-selection ADD_IMAGES success result yields an empty URI list. Plural files/selection retained; no added retry, unsupported-file diagnosis or promise that imports succeeded.",
+      "source_evidence": {
+        "artifact": "ch-import-errors-sources-1625.json",
+        "sha256": "578ea581fc8f377519fbf10a34e3287a4cde8cd505e87323c334469b7447d05b"
+      },
+      "caller_evidence": {
+        "artifact": "ch-import-errors-callers-1625.json",
+        "sha256": "ff0ca4c98b4861e231382786400555c15305625eab76b3077d59f68c8ef62bbb"
+      },
+      "source_entry_ids": [
+        "choose-tool-file",
+        "received-not-deleted"
+      ],
+      "explicit_limits": null,
+      "decision": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ADOPTED_AND_INTEGRATED_AT_6da0cbf"
+    }
+  ],
+  "verification_limits": [
+    "All24 moderate source/compositional wording only, not native/glyph/layout/screen-reader/runtime certification.",
+    "CHR show/hide editor controls are semantic-only dormant slots; no invented live route. Overt group supplies singular hide object.",
+    "NHE interval prompts retain actual range/percent/rounding scope; no blanket integer requirement or memory-success promise. Mathematical comparisons are embedded in own-language instructions.",
+    "CH picker diagnostics distinguish permission block, missing single URI with retry, and empty multi-URI result; no data-loss/decode diagnosis.",
+    "The two functional first-select-image prompts intentionally omit a physical tap gesture; they name the actual missing-selection prerequisite.",
+    "Independent source/compositional review and source identity checks do not certify native idiom, layout, accessibility or runtime behavior.",
+    "The dedicated evidence commit does not change application resources."
+  ]
+}
