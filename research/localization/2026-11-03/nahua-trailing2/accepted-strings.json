@@ -1,0 +1,242 @@
+{
+  "title": "Accepted Central and Western Huasteca trailing-history-data diagnostics",
+  "integration_commit": "4fb1461a9186f057845c0acecfbfd1063afd8da4",
+  "integration_tree": "7129acb11f9be05faa42eb5c57dfe922bc8326aa",
+  "original_intake": {
+    "artifact": "reviewed-nahua-cache-trailing2-current6da0cbf-adoption-intake-1648.json",
+    "sha256": "ed9ea7f87e0577a507dec516d9a9032981bcc60090878bbd8185d3afa534585a"
+  },
+  "derivative_note": "Sanitized integrated-status derivative. Original immutable intake hash refers to the pre-adoption review artifact, not these derivative bytes.",
+  "raw_convention": "Exact XML-parsed Android raw/value/display copied unchanged from the author1148, independent1155 and held7 packets; XML-escape once.",
+  "rows": [
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "key": "ui_unexpected_data_in_the_undo_cache",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Unexpected data in the undo cache.",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "raw": "Cati AN Paint quiajoctoc para “Undo” (.rgba): AN Paint quipojqui nochi pixels cati monequi. Pero teipa quipanti seyoc byte.",
+      "value": "Cati AN Paint quiajoctoc para “Undo” (.rgba): AN Paint quipojqui nochi pixels cati monequi. Pero teipa quipanti seyoc byte.",
+      "display": "Cati AN Paint quiajoctoc para “Undo” (.rgba): AN Paint quipojqui nochi pixels cati monequi. Pero teipa quipanti seyoc byte.",
+      "raw_sha256": "0cf548ea9bc56db1969b78e152a87e14ee8660ac89d435b84e902e37a3b3534a",
+      "placeholders": [],
+      "backtranslation": "What AN Paint has stored for “Undo” (.rgba): AN Paint read all the pixels required. But afterward it found another byte.",
+      "status": "ADOPTED_AND_INTEGRATED",
+      "candidate": {
+        "artifact": "nahua-cache-trailing2-author-1148.json",
+        "sha256": "7efa69c9881751a91dc8bd055664fc3d782532fe3bcd86d71e5b8ad50936104d"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-final-diagnostics3-independent-1155.json",
+        "sha256": "669925e8232893154f3373593fafbea6f3bc7edb8802bc59087dfb7cbfd7f959"
+      },
+      "source_pins": [
+        {
+          "artifact": "nahua-cache-trailing-primary-1148.json",
+          "sha256": "ebb4a08cf55afbf2ceff0c8466f133a7ee0c9c3db6adc417c5b382149e7d9f3c"
+        }
+      ],
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 97,
+          "exact_line": "            if (input.read() != -1) throw IOException(ui(R.string.ui_unexpected_data_in_the_undo_cache))",
+          "git_blob": "ad69e51d04f7342927f3040929332eb3bcaa7d34",
+          "url": "https://github.com/c933103/AN-Paint/blob/6da0cbf0e3b171b4d83adcf8a22988809def93d0/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L97"
+        }
+      ],
+      "caller_scope": "The sole emitter follows complete reading of all required decompressed pixel bytes in this invocation and observes at least one additional decompressed byte. This is not a general unexpected-data predicate. The null validation pass makes no pixel writes; the second non-null read may already have written pixels before this same final probe.",
+      "reviewed_resolution_of_prior_objection": "Names the completed required pixel-data read and a subsequently found additional byte, instead of only describing material as extra or unneeded. The entire predicate is bound to the one EOF probe in this caller.",
+      "primary_linguistic_reason": "The completed reading predicate, total required pixel-data object, and subsequent found-byte predicate together express the exact surplus-data condition. The preceding storage clause and exact Undo anchor identify the internal history payload. This is materially more explicit than the held generic extra/unneeded-material candidate.",
+      "unresolved_for_root_adoption": [
+        "Root adoption/hold release still required. Exact unexpectedness is conveyed by required pixel payload already read, but another byte found, rather than a stand-alone unexpected adjective.",
+        "Pixel/byte are technical loans and reading/finding digital data are authored extensions; no native usability claim.",
+        "Undo topic is current English fallback, so its exact label dependency must remain guarded."
+      ],
+      "retained_semantic_limits": [
+        "Required pixels means the exact payload required by entry.width and entry.height, not user wishes or a claim that artwork was complete.",
+        "The byte was observed by the post-payload probe; another byte is an existential observed item, not a claim that exactly one excess byte exists in total.",
+        "No assertion that unread bytes remain after the probe. No successful restoration, pixel-setting, preservation, source integrity, repair, deletion or future retry promise.",
+        "Own source morphology and relative retained. Digital reading/finding and technical unit nouns are authored extensions.",
+        "Undo is an exact fallback action-name anchor used to identify the internal history snapshot. .rgba remains an exact internal suffix; no user-visible path or new filename introduced.",
+        "Reading pixels here is reading their required encoded payload. The validation pass need not decode them into integers or set pixels. This wording must not be glossed as a successful restored canvas.",
+        "The same .rgba history is used by undo, redo, cancelGesture and fill rollback. The purpose anchor does not assert the user invoked Undo."
+      ],
+      "conditional_label_dependencies": [
+        {
+          "locale": "nch",
+          "resource": "ui_undo",
+          "exact_display": "Undo",
+          "source": "English fallback; direct value absent",
+          "guard_head": "6da0cbf0e3b171b4d83adcf8a22988809def93d0",
+          "condition": "Re-review quoted topic if localized Undo label changes; .rgba is a fixed internal suffix, not a user-selected path.",
+          "binding": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+            "git_blob_sha": "4a0ae9a9b13dccdf4da4869fed865f3721efc8f8",
+            "content_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1",
+            "lines": "12-13",
+            "url": "https://github.com/c933103/AN-Paint/blob/6da0cbf0e3b171b4d83adcf8a22988809def93d0/Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt#L12-L13"
+          },
+          "default_source": {
+            "artifact": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "current_catalogue": {
+            "file": {
+              "artifact": "current-nch-6da0cbf-1638.json",
+              "sha256": "3ba336fa8440774151a84c5c62a1b5669b9b0d5e0488721f98e798102a0d44b5"
+            },
+            "git_blob": "21f5001907bd0324d30f1cfc66ae3346caf01669"
+          }
+        }
+      ],
+      "original_and_current_absence_verified": true,
+      "caller_proof_addendum": {
+        "artifact": "review-nahua-cache-trailing2-caller-proof-current6da0cbf-1648.json",
+        "sha256": "454e1c6b9227e124b0e03edf96f4a2613b83a6c3682860d8c4a70281899b36e7"
+      },
+      "linguistic_confidence": "Moderate own-source functional composition; no native-speaker, whole-software-phrase, naturalness, layout or runtime certificate.",
+      "historical_replaced_raw": "Cati AN Paint quiajoctoc (.rgba): onca seyoc tamanti cati amo monequi.",
+      "current_catalogue": {
+        "file": {
+          "artifact": "current-nch-6da0cbf-1638.json",
+          "sha256": "3ba336fa8440774151a84c5c62a1b5669b9b0d5e0488721f98e798102a0d44b5"
+        },
+        "git_blob": "21f5001907bd0324d30f1cfc66ae3346caf01669"
+      },
+      "current_checks": {
+        "head": "6da0cbf0e3b171b4d83adcf8a22988809def93d0",
+        "exact_original_P0_identity": true,
+        "target_absent": true,
+        "same_raw_absent_under_other_keys": true,
+        "ui_undo_absent_and_default_exact_Undo": true,
+        "raw_value_display_and_backtranslation_equal_author_review_and_held7": true,
+        "raw_sha256_recomputed": true,
+        "XML_escape_once_roundtrip": true,
+        "zero_format_slots": true
+      },
+      "integration_commit": "4fb1461a9186f057845c0acecfbfd1063afd8da4"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "key": "ui_unexpected_data_in_the_undo_cache",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Unexpected data in the undo cache.",
+      "attributes": {
+        "name": "ui_unexpected_data_in_the_undo_cache"
+      },
+      "raw": "Catli AN Paint quiajoctoc para “Undo” (.rgba): AN Paint quipojqui nochi pixels catli monequi. Pero teipa quipanti seyoc byte.",
+      "value": "Catli AN Paint quiajoctoc para “Undo” (.rgba): AN Paint quipojqui nochi pixels catli monequi. Pero teipa quipanti seyoc byte.",
+      "display": "Catli AN Paint quiajoctoc para “Undo” (.rgba): AN Paint quipojqui nochi pixels catli monequi. Pero teipa quipanti seyoc byte.",
+      "raw_sha256": "7a32e67d4cfc6e03be4856b17f8020fe2bc43257a8a14e71dc47cdf25c3b3769",
+      "placeholders": [],
+      "backtranslation": "What AN Paint has stored for “Undo” (.rgba): AN Paint read all the pixels required. But afterward it found another byte.",
+      "status": "ADOPTED_AND_INTEGRATED",
+      "candidate": {
+        "artifact": "nahua-cache-trailing2-author-1148.json",
+        "sha256": "7efa69c9881751a91dc8bd055664fc3d782532fe3bcd86d71e5b8ad50936104d"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-final-diagnostics3-independent-1155.json",
+        "sha256": "669925e8232893154f3373593fafbea6f3bc7edb8802bc59087dfb7cbfd7f959"
+      },
+      "source_pins": [
+        {
+          "artifact": "nahua-cache-trailing-primary-1148.json",
+          "sha256": "ebb4a08cf55afbf2ceff0c8466f133a7ee0c9c3db6adc417c5b382149e7d9f3c"
+        }
+      ],
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 97,
+          "exact_line": "            if (input.read() != -1) throw IOException(ui(R.string.ui_unexpected_data_in_the_undo_cache))",
+          "git_blob": "ad69e51d04f7342927f3040929332eb3bcaa7d34",
+          "url": "https://github.com/c933103/AN-Paint/blob/6da0cbf0e3b171b4d83adcf8a22988809def93d0/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L97"
+        }
+      ],
+      "caller_scope": "The sole emitter follows complete reading of all required decompressed pixel bytes in this invocation and observes at least one additional decompressed byte. This is not a general unexpected-data predicate. The null validation pass makes no pixel writes; the second non-null read may already have written pixels before this same final probe.",
+      "reviewed_resolution_of_prior_objection": "Names the completed required pixel-data read and a subsequently found additional byte, instead of only describing material as extra or unneeded. The entire predicate is bound to the one EOF probe in this caller.",
+      "primary_linguistic_reason": "The completed reading predicate, total required pixel-data object, and subsequent found-byte predicate together express the exact surplus-data condition. The preceding storage clause and exact Undo anchor identify the internal history payload. This is materially more explicit than the held generic extra/unneeded-material candidate.",
+      "unresolved_for_root_adoption": [
+        "Root adoption/hold release still required. Exact unexpectedness is conveyed by required pixel payload already read, but another byte found, rather than a stand-alone unexpected adjective.",
+        "Pixel/byte are technical loans and reading/finding digital data are authored extensions; no native usability claim.",
+        "Undo topic is current English fallback, so its exact label dependency must remain guarded."
+      ],
+      "retained_semantic_limits": [
+        "Required pixels means the exact payload required by entry.width and entry.height, not user wishes or a claim that artwork was complete.",
+        "The byte was observed by the post-payload probe; another byte is an existential observed item, not a claim that exactly one excess byte exists in total.",
+        "No assertion that unread bytes remain after the probe. No successful restoration, pixel-setting, preservation, source integrity, repair, deletion or future retry promise.",
+        "Own source morphology and relative retained. Digital reading/finding and technical unit nouns are authored extensions.",
+        "Undo is an exact fallback action-name anchor used to identify the internal history snapshot. .rgba remains an exact internal suffix; no user-visible path or new filename introduced.",
+        "Reading pixels here is reading their required encoded payload. The validation pass need not decode them into integers or set pixels. This wording must not be glossed as a successful restored canvas.",
+        "The same .rgba history is used by undo, redo, cancelGesture and fill rollback. The purpose anchor does not assert the user invoked Undo."
+      ],
+      "conditional_label_dependencies": [
+        {
+          "locale": "nhw",
+          "resource": "ui_undo",
+          "exact_display": "Undo",
+          "source": "English fallback; direct value absent",
+          "guard_head": "6da0cbf0e3b171b4d83adcf8a22988809def93d0",
+          "condition": "Re-review quoted topic if localized Undo label changes; .rgba is a fixed internal suffix, not a user-selected path.",
+          "binding": {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+            "git_blob_sha": "4a0ae9a9b13dccdf4da4869fed865f3721efc8f8",
+            "content_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1",
+            "lines": "12-13",
+            "url": "https://github.com/c933103/AN-Paint/blob/6da0cbf0e3b171b4d83adcf8a22988809def93d0/Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt#L12-L13"
+          },
+          "default_source": {
+            "artifact": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "current_catalogue": {
+            "file": {
+              "artifact": "current-nhw-6da0cbf-1638.json",
+              "sha256": "381ae46e54e176d5234d40d63ffe78d238d820c72982638e178ee4f2acad20d9"
+            },
+            "git_blob": "efdb431b0b19b0331b8dbeea38d59c13fe28e02c"
+          }
+        }
+      ],
+      "original_and_current_absence_verified": true,
+      "caller_proof_addendum": {
+        "artifact": "review-nahua-cache-trailing2-caller-proof-current6da0cbf-1648.json",
+        "sha256": "454e1c6b9227e124b0e03edf96f4a2613b83a6c3682860d8c4a70281899b36e7"
+      },
+      "linguistic_confidence": "Moderate own-source functional composition; no native-speaker, whole-software-phrase, naturalness, layout or runtime certificate.",
+      "historical_replaced_raw": "Catli AN Paint quiajoctoc (.rgba): onca seyoc tlamantli catli amo monequi.",
+      "current_catalogue": {
+        "file": {
+          "artifact": "current-nhw-6da0cbf-1638.json",
+          "sha256": "381ae46e54e176d5234d40d63ffe78d238d820c72982638e178ee4f2acad20d9"
+        },
+        "git_blob": "efdb431b0b19b0331b8dbeea38d59c13fe28e02c"
+      },
+      "current_checks": {
+        "head": "6da0cbf0e3b171b4d83adcf8a22988809def93d0",
+        "exact_original_P0_identity": true,
+        "target_absent": true,
+        "same_raw_absent_under_other_keys": true,
+        "ui_undo_absent_and_default_exact_Undo": true,
+        "raw_value_display_and_backtranslation_equal_author_review_and_held7": true,
+        "raw_sha256_recomputed": true,
+        "XML_escape_once_roundtrip": true,
+        "zero_format_slots": true
+      },
+      "integration_commit": "4fb1461a9186f057845c0acecfbfd1063afd8da4"
+    }
+  ],
+  "limits": [
+    "Static source proof only. No test/build, Android execution, rendered UI, glyph/layout or runtime certificate.",
+    "The source condition is excess decompressed payload, not detection of every raw compressed-file suffix, concatenated stream or every corruption condition.",
+    "Current correctness is bounded to the exact104 verified production source files and retained comparison chain. Future emitter/caller/resource-label changes require recheck.",
+    "No new independent linguistic/native-naturalness certification. Exact linguistic acceptance and primary evidence are inherited from the pinned1155 review; retained primary PDF/text pins were independently rehashed here, not newly raster-viewed."
+  ],
+  "adoption_note": "These two original P0 strings were adopted and integrated unchanged. Other held strings are outside this evidence record."
+}
