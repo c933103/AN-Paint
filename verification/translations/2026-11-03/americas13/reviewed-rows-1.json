@@ -1,0 +1,508 @@
+{
+  "note": "Source/compositional review only, not native, layout, runtime or hosted CI certification.",
+  "rows": [
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_a_separate_recovery_copy_has_been_kept_use",
+      "english": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "raw": "%1$s AN Paint quiajoctoc iyoca cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali para AN Paint huelis quipatas ihuexca sinta monequi.",
+      "display": "%1$s AN Paint quiajoctoc iyoca cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali para AN Paint huelis quipatas ihuexca sinta monequi.",
+      "backtranslation": "%1$s AN Paint has stored separately what it stored by itself earlier. With “File → Save what AN Paint stored by itself (ZIP)…”, save this ZIP. Extract canvas.png from inside this ZIP. Then use “File → Load image…” with that image so AN Paint can change its dimensions if needed.",
+      "caller": "EditorDraftRecovery.kt:36–40; AutosaveStore.kt:99–117; ClassicPaintActivity.kt:1152–1163,1266–1306",
+      "confidence": "Moderate, own-variety source-supported functional composition; independent review pending.",
+      "limits": [
+        "No native-speaker or layout/runtime certification. Digital extensions and lexical locality limits retained.",
+        "No content-integrity, repaired-data, complete-history or guaranteed-usability promise.",
+        "Control labels are exact adopted values/fallbacks. Save as is intentionally displayed by its actual localized label, not renamed from English.",
+        "Floating technical anchor retained; no invented native floating/selection term."
+      ],
+      "review_receipt": {
+        "file": "review-nahua-recovery-instructions6-independent-1033.json",
+        "sha256": "d40074c26cc1878ec153e443d8d07659e9e7f1043980f04a3939684be05396ef"
+      },
+      "current_guard_receipt": {
+        "file": "review-nahua-recovery-instructions6-current10c69cc-1034.json",
+        "sha256": "5bb8e31b8fbd3d618abe50bee1bad4d11a1d4774b2ce5a00b6007c076410d1b0"
+      },
+      "exact_menu_dependencies": [
+        {
+          "locale": "nch",
+          "key": "ui_menu_file",
+          "raw": "File",
+          "display": "File",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        },
+        {
+          "locale": "nch",
+          "key": "ui_load_image",
+          "raw": "Load image…",
+          "display": "Load image…",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        },
+        {
+          "locale": "nch",
+          "key": "ui_export_recovery_copy",
+          "raw": "Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…",
+          "display": "Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…",
+          "fallback": false,
+          "source_locale": "nch",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nch-10c69cc-1034.json",
+            "sha256": "2c6910cb9ccbe3d379d66da8e9ed6ed48c6ca4185796c1b7d9be37801ec450db"
+          },
+          "source_git_blob_sha": "fb69911e9000e426c6381ccaad60e507e3b1ecb8"
+        },
+        {
+          "locale": "nch",
+          "key": "ui_save",
+          "raw": "Xicajocui",
+          "display": "Xicajocui",
+          "fallback": false,
+          "source_locale": "nch",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nch-10c69cc-1034.json",
+            "sha256": "2c6910cb9ccbe3d379d66da8e9ed6ed48c6ca4185796c1b7d9be37801ec450db"
+          },
+          "source_git_blob_sha": "fb69911e9000e426c6381ccaad60e507e3b1ecb8"
+        }
+      ],
+      "raw_sha256": "7c776673aee9f0a53a231d1fca936261648f1f080c687ca19a45377bb5842bb4"
+    },
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_autosave_is_paused_to_protect_that_draft_use",
+      "english": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "raw": "%1$s Amantzi AN Paint amo quiajocui iselti para quimocuitahuis cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Ica “File → Xicajocui…” (Quenicatza AN Paint quiajocuis: PNG / JPEG), xicajocui cati tijchihua amantzi.",
+      "display": "%1$s Amantzi AN Paint amo quiajocui iselti para quimocuitahuis cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Ica “File → Xicajocui…” (Quenicatza AN Paint quiajocuis: PNG / JPEG), xicajocui cati tijchihua amantzi.",
+      "backtranslation": "%1$s Now AN Paint is not storing by itself, in order to protect what it stored by itself earlier. With “File → Save what AN Paint stored by itself (ZIP)…”, save this ZIP. With “File → Save…” (How AN Paint will store: PNG / JPEG), save what you are making now.",
+      "caller": "EditorDraftRecovery.kt:41–45; ClassicPaintActivity.kt:1104–1127,1152–1163,1589–1625",
+      "confidence": "Moderate, own-variety source-supported functional composition; independent review pending.",
+      "limits": [
+        "No native-speaker or layout/runtime certification. Digital extensions and lexical locality limits retained.",
+        "No content-integrity, repaired-data, complete-history or guaranteed-usability promise.",
+        "Control labels are exact adopted values/fallbacks. Save as is intentionally displayed by its actual localized label, not renamed from English.",
+        "Floating technical anchor retained; no invented native floating/selection term."
+      ],
+      "review_receipt": {
+        "file": "review-nahua-recovery-instructions6-independent-1033.json",
+        "sha256": "d40074c26cc1878ec153e443d8d07659e9e7f1043980f04a3939684be05396ef"
+      },
+      "current_guard_receipt": {
+        "file": "review-nahua-recovery-instructions6-current10c69cc-1034.json",
+        "sha256": "5bb8e31b8fbd3d618abe50bee1bad4d11a1d4774b2ce5a00b6007c076410d1b0"
+      },
+      "exact_menu_dependencies": [
+        {
+          "locale": "nch",
+          "key": "ui_menu_file",
+          "raw": "File",
+          "display": "File",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        },
+        {
+          "locale": "nch",
+          "key": "ui_export_recovery_copy",
+          "raw": "Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…",
+          "display": "Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…",
+          "fallback": false,
+          "source_locale": "nch",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nch-10c69cc-1034.json",
+            "sha256": "2c6910cb9ccbe3d379d66da8e9ed6ed48c6ca4185796c1b7d9be37801ec450db"
+          },
+          "source_git_blob_sha": "fb69911e9000e426c6381ccaad60e507e3b1ecb8"
+        },
+        {
+          "locale": "nch",
+          "key": "save20_title",
+          "raw": "Xicajocui…",
+          "display": "Xicajocui…",
+          "fallback": false,
+          "source_locale": "nch",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nch-10c69cc-1034.json",
+            "sha256": "2c6910cb9ccbe3d379d66da8e9ed6ed48c6ca4185796c1b7d9be37801ec450db"
+          },
+          "source_git_blob_sha": "fb69911e9000e426c6381ccaad60e507e3b1ecb8"
+        },
+        {
+          "locale": "nch",
+          "key": "save20_file_format",
+          "raw": "Quenicatza AN Paint quiajocuis",
+          "display": "Quenicatza AN Paint quiajocuis",
+          "fallback": false,
+          "source_locale": "nch",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nch-10c69cc-1034.json",
+            "sha256": "2c6910cb9ccbe3d379d66da8e9ed6ed48c6ca4185796c1b7d9be37801ec450db"
+          },
+          "source_git_blob_sha": "fb69911e9000e426c6381ccaad60e507e3b1ecb8"
+        },
+        {
+          "locale": "nch",
+          "key": "ui_save",
+          "raw": "Xicajocui",
+          "display": "Xicajocui",
+          "fallback": false,
+          "source_locale": "nch",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nch-10c69cc-1034.json",
+            "sha256": "2c6910cb9ccbe3d379d66da8e9ed6ed48c6ca4185796c1b7d9be37801ec450db"
+          },
+          "source_git_blob_sha": "fb69911e9000e426c6381ccaad60e507e3b1ecb8"
+        }
+      ],
+      "raw_sha256": "9238dcca0532114145afc530fbf19a3da2dcf9a03bba697bd9045b65369bb3f6"
+    },
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "english": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "raw": "AN Paint quiajoctoc cati quiajoctoc iselti achtohuiya (ZIP). Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tajcuiloli cati quiijtohua quenicatza eltoya cati AN Paint quiajoctoc iselti. Sinta onca floating.png, quipiya ixkopinali cati AN Paint hueli quipata iyoca (floating selection).",
+      "display": "AN Paint quiajoctoc cati quiajoctoc iselti achtohuiya (ZIP). Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tajcuiloli cati quiijtohua quenicatza eltoya cati AN Paint quiajoctoc iselti. Sinta onca floating.png, quipiya ixkopinali cati AN Paint hueli quipata iyoca (floating selection).",
+      "backtranslation": "AN Paint has saved what it stored by itself earlier (ZIP). Extract canvas.png from inside this ZIP. Then use “File → Load image…” with that image. Also in this ZIP is draft.json (metadata): written information that tells how what AN Paint stored by itself was. If floating.png is present, it contains image content that AN Paint can change separately (floating selection).",
+      "caller": "ClassicPaintActivity.kt:1402–1409; AutosaveStore.kt:119–165; PaintDocument.kt:289–345",
+      "confidence": "Moderate, own-variety source-supported functional composition; independent review pending.",
+      "limits": [
+        "No native-speaker or layout/runtime certification. Digital extensions and lexical locality limits retained.",
+        "No content-integrity, repaired-data, complete-history or guaranteed-usability promise.",
+        "Control labels are exact adopted values/fallbacks. Save as is intentionally displayed by its actual localized label, not renamed from English.",
+        "Floating technical anchor retained; no invented native floating/selection term."
+      ],
+      "review_receipt": {
+        "file": "review-nahua-recovery-instructions6-independent-1033.json",
+        "sha256": "d40074c26cc1878ec153e443d8d07659e9e7f1043980f04a3939684be05396ef"
+      },
+      "current_guard_receipt": {
+        "file": "review-nahua-recovery-instructions6-current10c69cc-1034.json",
+        "sha256": "5bb8e31b8fbd3d618abe50bee1bad4d11a1d4774b2ce5a00b6007c076410d1b0"
+      },
+      "exact_menu_dependencies": [
+        {
+          "locale": "nch",
+          "key": "ui_menu_file",
+          "raw": "File",
+          "display": "File",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        },
+        {
+          "locale": "nch",
+          "key": "ui_load_image",
+          "raw": "Load image…",
+          "display": "Load image…",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        }
+      ],
+      "raw_sha256": "88ad3b17409c3d27587f4230397040011d40596f353bd892900150ced23e20f8"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "ui_a_separate_recovery_copy_has_been_kept_use",
+      "english": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "raw": "%1$s AN Paint quiajoctoc iyoca catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli para AN Paint huelis quipatlas ihuexca sintla monequi.",
+      "display": "%1$s AN Paint quiajoctoc iyoca catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli para AN Paint huelis quipatlas ihuexca sintla monequi.",
+      "backtranslation": "%1$s AN Paint has stored separately what it stored by itself earlier. With “File → Save what AN Paint stored by itself (ZIP)…”, save this ZIP. Extract canvas.png from inside this ZIP. Then use “File → Load image…” with that image so AN Paint can change its dimensions if needed.",
+      "caller": "EditorDraftRecovery.kt:36–40; AutosaveStore.kt:99–117; ClassicPaintActivity.kt:1152–1163,1266–1306",
+      "confidence": "Moderate, own-variety source-supported functional composition; independent review pending.",
+      "limits": [
+        "No native-speaker or layout/runtime certification. Digital extensions and lexical locality limits retained.",
+        "No content-integrity, repaired-data, complete-history or guaranteed-usability promise.",
+        "Control labels are exact adopted values/fallbacks. Save as is intentionally displayed by its actual localized label, not renamed from English.",
+        "Floating technical anchor retained; no invented native floating/selection term."
+      ],
+      "review_receipt": {
+        "file": "review-nahua-recovery-instructions6-independent-1033.json",
+        "sha256": "d40074c26cc1878ec153e443d8d07659e9e7f1043980f04a3939684be05396ef"
+      },
+      "current_guard_receipt": {
+        "file": "review-nahua-recovery-instructions6-current10c69cc-1034.json",
+        "sha256": "5bb8e31b8fbd3d618abe50bee1bad4d11a1d4774b2ce5a00b6007c076410d1b0"
+      },
+      "exact_menu_dependencies": [
+        {
+          "locale": "nhw",
+          "key": "ui_menu_file",
+          "raw": "File",
+          "display": "File",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        },
+        {
+          "locale": "nhw",
+          "key": "ui_load_image",
+          "raw": "Load image…",
+          "display": "Load image…",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        },
+        {
+          "locale": "nhw",
+          "key": "ui_export_recovery_copy",
+          "raw": "Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…",
+          "display": "Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…",
+          "fallback": false,
+          "source_locale": "nhw",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nhw-10c69cc-1034.json",
+            "sha256": "4133184ebce0df6bea84aa88fa3d34e2168e176bda44e4d3abf26b5b2bb61851"
+          },
+          "source_git_blob_sha": "66819290c4f595386875e7835493d122af3f8e2b"
+        },
+        {
+          "locale": "nhw",
+          "key": "ui_save",
+          "raw": "Xicajocui",
+          "display": "Xicajocui",
+          "fallback": false,
+          "source_locale": "nhw",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nhw-10c69cc-1034.json",
+            "sha256": "4133184ebce0df6bea84aa88fa3d34e2168e176bda44e4d3abf26b5b2bb61851"
+          },
+          "source_git_blob_sha": "66819290c4f595386875e7835493d122af3f8e2b"
+        }
+      ],
+      "raw_sha256": "0b3414a025b6eaa75258efa4d99014dcf2b4a99d124db518a28a8f2367050fd6"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "ui_autosave_is_paused_to_protect_that_draft_use",
+      "english": "%1$s Autosave is paused to protect that draft. Use “File → Export recovery copy…” to keep it, and “File → Save as…” (File format: PNG / JPEG) to save your current work.",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "raw": "%1$s Amantzi AN Paint amo quiajocui iseltzi para quimocuitlahuis catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Ica “File → Xicajocui…” (Quenicatza AN Paint quiajocuis: PNG / JPEG), xicajocui catli tijchihua amantzi.",
+      "display": "%1$s Amantzi AN Paint amo quiajocui iseltzi para quimocuitlahuis catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Ica “File → Xicajocui…” (Quenicatza AN Paint quiajocuis: PNG / JPEG), xicajocui catli tijchihua amantzi.",
+      "backtranslation": "%1$s Now AN Paint is not storing by itself, in order to protect what it stored by itself earlier. With “File → Save what AN Paint stored by itself (ZIP)…”, save this ZIP. With “File → Save…” (How AN Paint will store: PNG / JPEG), save what you are making now.",
+      "caller": "EditorDraftRecovery.kt:41–45; ClassicPaintActivity.kt:1104–1127,1152–1163,1589–1625",
+      "confidence": "Moderate, own-variety source-supported functional composition; independent review pending.",
+      "limits": [
+        "No native-speaker or layout/runtime certification. Digital extensions and lexical locality limits retained.",
+        "No content-integrity, repaired-data, complete-history or guaranteed-usability promise.",
+        "Control labels are exact adopted values/fallbacks. Save as is intentionally displayed by its actual localized label, not renamed from English.",
+        "Floating technical anchor retained; no invented native floating/selection term."
+      ],
+      "review_receipt": {
+        "file": "review-nahua-recovery-instructions6-independent-1033.json",
+        "sha256": "d40074c26cc1878ec153e443d8d07659e9e7f1043980f04a3939684be05396ef"
+      },
+      "current_guard_receipt": {
+        "file": "review-nahua-recovery-instructions6-current10c69cc-1034.json",
+        "sha256": "5bb8e31b8fbd3d618abe50bee1bad4d11a1d4774b2ce5a00b6007c076410d1b0"
+      },
+      "exact_menu_dependencies": [
+        {
+          "locale": "nhw",
+          "key": "ui_menu_file",
+          "raw": "File",
+          "display": "File",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        },
+        {
+          "locale": "nhw",
+          "key": "ui_export_recovery_copy",
+          "raw": "Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…",
+          "display": "Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…",
+          "fallback": false,
+          "source_locale": "nhw",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nhw-10c69cc-1034.json",
+            "sha256": "4133184ebce0df6bea84aa88fa3d34e2168e176bda44e4d3abf26b5b2bb61851"
+          },
+          "source_git_blob_sha": "66819290c4f595386875e7835493d122af3f8e2b"
+        },
+        {
+          "locale": "nhw",
+          "key": "save20_title",
+          "raw": "Xicajocui…",
+          "display": "Xicajocui…",
+          "fallback": false,
+          "source_locale": "nhw",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nhw-10c69cc-1034.json",
+            "sha256": "4133184ebce0df6bea84aa88fa3d34e2168e176bda44e4d3abf26b5b2bb61851"
+          },
+          "source_git_blob_sha": "66819290c4f595386875e7835493d122af3f8e2b"
+        },
+        {
+          "locale": "nhw",
+          "key": "save20_file_format",
+          "raw": "Quenicatza AN Paint quiajocuis",
+          "display": "Quenicatza AN Paint quiajocuis",
+          "fallback": false,
+          "source_locale": "nhw",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nhw-10c69cc-1034.json",
+            "sha256": "4133184ebce0df6bea84aa88fa3d34e2168e176bda44e4d3abf26b5b2bb61851"
+          },
+          "source_git_blob_sha": "66819290c4f595386875e7835493d122af3f8e2b"
+        },
+        {
+          "locale": "nhw",
+          "key": "ui_save",
+          "raw": "Xicajocui",
+          "display": "Xicajocui",
+          "fallback": false,
+          "source_locale": "nhw",
+          "source_snapshot": {
+            "file": "review-nahua-recovery-current-nhw-10c69cc-1034.json",
+            "sha256": "4133184ebce0df6bea84aa88fa3d34e2168e176bda44e4d3abf26b5b2bb61851"
+          },
+          "source_git_blob_sha": "66819290c4f595386875e7835493d122af3f8e2b"
+        }
+      ],
+      "raw_sha256": "7ea2fe8e10108b33a04007375c2153528840a575997d0f764fae88e4c269b8c6"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "english": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "raw": "AN Paint quiajoctoc catli quiajoctoc iseltzi achtihuiya (ZIP). Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tlajcuiloli catli quiijtohua quenicatza eltoya catli AN Paint quiajoctoc iseltzi. Sintla onca floating.png, quipiya tlaixkopintli catli AN Paint hueli quipatla iyoca (floating selection).",
+      "display": "AN Paint quiajoctoc catli quiajoctoc iseltzi achtihuiya (ZIP). Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tlajcuiloli catli quiijtohua quenicatza eltoya catli AN Paint quiajoctoc iseltzi. Sintla onca floating.png, quipiya tlaixkopintli catli AN Paint hueli quipatla iyoca (floating selection).",
+      "backtranslation": "AN Paint has saved what it stored by itself earlier (ZIP). Extract canvas.png from inside this ZIP. Then use “File → Load image…” with that image. Also in this ZIP is draft.json (metadata): written information that tells how what AN Paint stored by itself was. If floating.png is present, it contains image content that AN Paint can change separately (floating selection).",
+      "caller": "ClassicPaintActivity.kt:1402–1409; AutosaveStore.kt:119–165; PaintDocument.kt:289–345",
+      "confidence": "Moderate, own-variety source-supported functional composition; independent review pending.",
+      "limits": [
+        "No native-speaker or layout/runtime certification. Digital extensions and lexical locality limits retained.",
+        "No content-integrity, repaired-data, complete-history or guaranteed-usability promise.",
+        "Control labels are exact adopted values/fallbacks. Save as is intentionally displayed by its actual localized label, not renamed from English.",
+        "Floating technical anchor retained; no invented native floating/selection term."
+      ],
+      "review_receipt": {
+        "file": "review-nahua-recovery-instructions6-independent-1033.json",
+        "sha256": "d40074c26cc1878ec153e443d8d07659e9e7f1043980f04a3939684be05396ef"
+      },
+      "current_guard_receipt": {
+        "file": "review-nahua-recovery-instructions6-current10c69cc-1034.json",
+        "sha256": "5bb8e31b8fbd3d618abe50bee1bad4d11a1d4774b2ce5a00b6007c076410d1b0"
+      },
+      "exact_menu_dependencies": [
+        {
+          "locale": "nhw",
+          "key": "ui_menu_file",
+          "raw": "File",
+          "display": "File",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        },
+        {
+          "locale": "nhw",
+          "key": "ui_load_image",
+          "raw": "Load image…",
+          "display": "Load image…",
+          "fallback": true,
+          "source_locale": "en",
+          "source_snapshot": {
+            "file": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "source_git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+        }
+      ],
+      "raw_sha256": "7e952ead4b264f11ce8172414c50721952d5d38b0d0cfa18a2f242ccb84ce97f"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_recovered_image",
+      "english": "Recovered image",
+      "attributes": {
+        "name": "ui_recovered_image"
+      },
+      "raw": "Eʼelyaaígíí nináályá",
+      "display": "Eʼelyaaígíí nináályá",
+      "backtranslation": "The image was restored.",
+      "caller": "EditorDraftRecovery.kt71 and93 use this as a fallback filename if recovered draft or legacy preferences do not contain a name; it is not a button, imperative or a guarantee that a disk file was rewritten.",
+      "confidence": "Moderate-to-low authored own-source composition. Predicate exact, digital recovery extension new. Existing image noun contract retained.",
+      "limits": [
+        "Image recovery status does not assert full undo history restored, all settings/credits intact, source corruption repaired, user-file saved, or future recovery guaranteed.",
+        "Fallback filename may be a complete clause; no invented relative nominal suffix. Original caller uses text as a suggested label, not an instruction."
+      ],
+      "review_receipt": {
+        "file": "review-nv-recovered-image-copy2-independent-1017.json",
+        "sha256": "a251d804e00ff0cc58f078b424ce5884bca6be899af61a1ea9a43be738b223fe"
+      },
+      "exact_menu_dependencies": [],
+      "raw_sha256": "270626472ffa3fb70d5333d55b76c6097a55625c64550270b179ac68217b4be0"
+    }
+  ]
+}
