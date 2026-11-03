@@ -1,0 +1,728 @@
+{
+  "schema_version": 1,
+  "status": "Independent source and caller review only; recommend exact final 13 rows. No root adoption, integration, application edits, builds or runtime tests.",
+  "review_date_utc": "2026-11-03",
+  "scope": "Exactly the assigned 12 persisted image-assembly diagnostics plus one ZGH active-autosave retry diagnostic; no scope extension.",
+  "counts": {
+    "total": 13,
+    "accepted_unchanged": 12,
+    "accepted_revised": 1,
+    "held": 0
+  },
+  "current_source_guard": {
+    "repository": "c933103/AN-Paint",
+    "fresh_read_head": "10c69cc7615445aeff61f0ee4049f47be20fdd51",
+    "current_head": "55502e315abf764fb125db143d96481e6b761cbb",
+    "method": "Fresh exact-ref GitHub reads at 10c69cc, followed by exact compare to 55502e3. The only changed files are four Americas locales; all regional, English and caller blobs remain unchanged. All 13 locale keys are absent.",
+    "default_git_blob": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973",
+    "default_nodes": [
+      {
+        "key": "ui_could_not_store_the_assembly",
+        "xml": "<string name=\"ui_could_not_store_the_assembly\">Could not store the assembly.</string>"
+      },
+      {
+        "key": "ui_the_saved_assembly_could_not_be_opened",
+        "xml": "<string name=\"ui_the_saved_assembly_could_not_be_opened\">The saved assembly could not be opened: %1$s</string>"
+      },
+      {
+        "key": "ui_an_assembly_source_image_is_missing",
+        "xml": "<string name=\"ui_an_assembly_source_image_is_missing\">An assembly source image is missing.</string>"
+      },
+      {
+        "key": "ui_the_draft_is_saving_try_again_shortly",
+        "xml": "<string name=\"ui_the_draft_is_saving_try_again_shortly\">The draft is saving. Try again shortly.</string>"
+      }
+    ],
+    "locale_blobs": {
+      "qug": {
+        "path": "Paintroid/src/main/res/values-b+qug/strings.xml",
+        "git_blob": "a5e50dec64de035059d97093c9a3e8e249946ce4",
+        "sha256": "e1d83878b96265b2002f970e983a50c06da6873345a0b8b6915fc2267a045d0a"
+      },
+      "tdd": {
+        "path": "Paintroid/src/main/res/values-b+tdd/strings.xml",
+        "git_blob": "7e7c1aad77b86d378a447bcba3325876f7a38915",
+        "sha256": "9564fa09e51fe39c43be7e9f0a00a2afc6c793bedbc429db897ed976c1d356b7"
+      },
+      "zgh": {
+        "path": "Paintroid/src/main/res/values-b+zgh/strings.xml",
+        "git_blob": "da559fc966ac7c55f08297ac200b3a5c75a333fe",
+        "sha256": "d0d48dc9edb2ed80868a2a28955aac15c66cc0ef93d6ea4f9adae8f68ab9e86d"
+      },
+      "za": {
+        "path": "Paintroid/src/main/res/values-b+za/strings.xml",
+        "git_blob": "e97575cf4e2c966841c1783fa786dd8dd1efd761",
+        "sha256": "03e4938bc22d0c5fdb82a62facfcb0db779912dccbf9b8ec270063c8d0608b74"
+      }
+    },
+    "bridge": {
+      "repository_full_name": "c933103/AN-Paint",
+      "base": "10c69cc7615445aeff61f0ee4049f47be20fdd51",
+      "head": "55502e315abf764fb125db143d96481e6b761cbb",
+      "status": "ahead",
+      "ahead_by": 1,
+      "behind_by": 0,
+      "total_commits": 1,
+      "too_large": null,
+      "base_commit": {
+        "sha": "10c69cc7615445aeff61f0ee4049f47be20fdd51",
+        "url": "https://api.github.com/repos/c933103/AN-Paint/commits/10c69cc7615445aeff61f0ee4049f47be20fdd51",
+        "html_url": "https://github.com/c933103/AN-Paint/commit/10c69cc7615445aeff61f0ee4049f47be20fdd51"
+      },
+      "merge_base_commit": {
+        "sha": "10c69cc7615445aeff61f0ee4049f47be20fdd51",
+        "url": "https://api.github.com/repos/c933103/AN-Paint/commits/10c69cc7615445aeff61f0ee4049f47be20fdd51",
+        "html_url": "https://github.com/c933103/AN-Paint/commit/10c69cc7615445aeff61f0ee4049f47be20fdd51"
+      },
+      "files": [
+        {
+          "filename": "Paintroid/src/main/res/values-b+nch/strings.xml",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "previous_filename": null
+        },
+        {
+          "filename": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+          "status": "modified",
+          "additions": 5,
+          "deletions": 0,
+          "changes": 5,
+          "previous_filename": null
+        },
+        {
+          "filename": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+          "status": "modified",
+          "additions": 3,
+          "deletions": 0,
+          "changes": 3,
+          "previous_filename": null
+        },
+        {
+          "filename": "Paintroid/src/main/res/values-b+nv/strings.xml",
+          "status": "modified",
+          "additions": 2,
+          "deletions": 0,
+          "changes": 2,
+          "previous_filename": null
+        }
+      ]
+    },
+    "receipt": {
+      "path": "source-review-assembly13-current10c69.json",
+      "sha256": "65ecd3f7fa11d756f7cf35bce97fb4c67d3279c6930539522111e4bc37504de7"
+    }
+  },
+  "input_pins": [
+    {
+      "path": "candidate-qug-assemblystate3.json",
+      "sha256": "e3fda66ebf598b0820488d091c5f9b16db5531f622a9b3e6bc3cb8011f14db53"
+    },
+    {
+      "path": "candidate-tdd-assemblystate3.json",
+      "sha256": "6ef9d1f06b3e9ea5e532c3a1f5be0204f7f4f58dc04b3573b99a64637816ae1a"
+    },
+    {
+      "path": "candidate-zgh-assemblystate3.json",
+      "sha256": "6c3423c54effc1a60cf8a14c13ebd6aed391f5208878e90fa3dee1744a00bb3c"
+    },
+    {
+      "path": "candidate-za-assemblystate3.json",
+      "sha256": "c95738c00c015fe60475617b57757692208b532704597d74565336f8ffbe8344"
+    },
+    {
+      "path": "candidate-zgh-savingretry1.json",
+      "sha256": "b13b6014f9a1ab70939aee9b48e99c16c829e5db891ed4d8c8eb81c77e231b42"
+    }
+  ],
+  "guard_inputs": [
+    {
+      "path": "pending-regional-after-integrated24-102-index.json",
+      "sha256": "39ea4e7234d351811393f3ca2be23264d4844eeb5fcb97167f1470b67ed5c718"
+    },
+    {
+      "path": "intake-regional-reviewed24-current495605.json",
+      "sha256": "ac80175eb53be988c8becc8cc5a4594e5fb46b99892ad8a1258fb0d8069bf35c"
+    },
+    {
+      "path": "source-tdd-snapshot-digest-correction.json",
+      "sha256": "c0267f511ebabd18f13bc1c13954d44da21dd8bbb30052cf9e660bab924e711d"
+    },
+    {
+      "path": "source-review-assembly13-current10c69.json",
+      "sha256": "65ecd3f7fa11d756f7cf35bce97fb4c67d3279c6930539522111e4bc37504de7"
+    },
+    {
+      "path": "/tmp/current-priority-gaps-82e4ad5.json",
+      "sha256": "e5fc68ff54567080b95c5dfb60d8ddde6dabeaa576784b80e4f72a9c42697c2e"
+    },
+    {
+      "path": "/tmp/cohort-b-research/original-importance-e76a3a4.json",
+      "sha256": "9b5bfb6d25f2ad034158816d943b94feed8296ad4117c2176f09a95dad506879"
+    }
+  ],
+  "caller_review": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+      "git_blob": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+      "lines": "57–60,224–230",
+      "finding": "Construction of persisted ImageAssembly catches any Exception and formats saved-state opening failure with error.message. Imported-image batch addition catches an exception, discards newly staged items, and reports error.message or the store-assembly fallback. No candidate asserts success or physical deletion."
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+      "git_blob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+      "lines": "54–65,233–275",
+      "finding": "Editable image references, crop/normalization/placement and other metadata persist to AtomicFile project.json. Validation/write precede in-memory/history changes. The source-image guard requires canonical parent equal to the assembly directory AND isFile; it rejects an outside-directory reference even if that file exists. These messages concern persisted editable grouping state, not flattened PNG output or only nonexistent paths."
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+      "git_blob": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+      "lines": "924–926,1441–1446",
+      "finding": "editAction returns false when autosaving before action; attachLegacyImageCredit selects this retry message only when autosaving and returns before attachment. Ongoing automatic saving, wait and retry preserve both guards."
+    }
+  ],
+  "source_findings": {
+    "qug": {
+      "confidence": "Moderate source/compositional confidence; standardized Ecuador Kichwa sources, not exclusive Chimborazo usage certification.",
+      "sources": [
+        {
+          "url": "https://www.kichwa.net/wp-content/uploads/2011/03/diccionario_kichwa_castellano.pdf",
+          "access": "Primary indexed text freshly read; no failed local download used.",
+          "locations": [
+            "printed134 tantachiy grouping/union, distinct from social meeting",
+            "PDF page205 trabajo = llamkay/ruray",
+            "PDF pages128–129 shuyu;146 wakaychina;108 paskana;67 illana",
+            "PDF page27 past third -rka;page53 negated ability;page158 action -yta complement to ability"
+          ],
+          "finding": "Own lexical senses and action/object/negative-past morphology support the authored grouping/work/save/open/absence constructions."
+        },
+        {
+          "url": "https://www.kichwa.net/wp-content/uploads/2011/03/gramatica_kichwa.pdf",
+          "access": "Primary indexed grammar text freshly read.",
+          "locations": [
+            "PDF page23 genitive -pa",
+            "PDF pages33–34 nominalizers -y/-na and completed modifier -shka; plural -kuna"
+          ],
+          "finding": "Plural/genitive image grouping and pre-nominal completed work are compositionally grounded."
+        }
+      ]
+    },
+    "tdd": {
+      "confidence": "Moderate source/compositional confidence; primary dictionary pages were also visually inspected. Historical attestation is explicitly separate from fresh current software attestation.",
+      "sources": [
+        {
+          "url": "https://openresearch-repository.anu.edu.au/bitstreams/1b27afe2-adda-4fe2-95bf-5402206be010/download",
+          "sha256": "9a1b76d6f858591d7f39e8c8c7bd75e870f0a9aecf2356d99d9aa728ec25a071",
+          "title": "Luo 1999, A Dictionary of Dehong, Southwest China",
+          "locations": [
+            "printedxxi head-modifier compounds",
+            "printedxxv general inanimate an6, preverb modality, retained/progressive wai5, passive tuk5 usually adversative",
+            "printed38 kaan6 work;printed138 picture;printed209 tsum2 group versus tsum3 equipment/artwork classifier"
+          ],
+          "finding": "Candidate group is tsum2, not a guessed classifier. Modern own software positive passive supplies the benign saved-state context missing from an adversative-only reading of the older grammar."
+        },
+        {
+          "url": "https://github.com/wikimedia/mediawiki/blob/master/languages/i18n/tdd.json",
+          "git_blob": "7ef92444230c1e695c12064dd24e9b85eb9bd34f",
+          "sha256": "2c3ca79fc7156dff7d24690a377642211d64906c3963d30e8f7f0ba9a8649437",
+          "note": "Exact fresh blob identity and retained UTF-8 digest are separately pinned; master URL is the source location, not an immutable snapshot URL.",
+          "keys": [
+            "badaccess-groups",
+            "rcfilters-group-results-by-page",
+            "invalid-content-data",
+            "filecopyerror",
+            "postedit-confirmation-restored",
+            "postedit-confirmation-saved",
+            "difference-missing-revision",
+            "filenotfound",
+            "savearticle"
+          ],
+          "finding": "Independently reread own group, data, negative ability, save, positive passive and classifier forms; these selected relevant keys match the historical snapshot."
+        }
+      ],
+      "snapshot_correction": {
+        "historical_git_blob": "67f49f2a4ab6842043f7dfad924564b4a834d31d",
+        "historical_sha256": "324f51863002ab525163dce5c06769482e1b1ca58233517350795d62b57117d5",
+        "fresh_git_blob": "7ef92444230c1e695c12064dd24e9b85eb9bd34f",
+        "fresh_sha256": "2c3ca79fc7156dff7d24690a377642211d64906c3963d30e8f7f0ba9a8649437",
+        "finding": "blankarticle exists only in the retained historical snapshot and is historical relative/retained-state attestation. It is absent from fresh7ef924. Do not describe it as unchanged fresh evidence or assign historical324f digest to fresh7ef924. Original candidate is preserved unchanged."
+      }
+    },
+    "zgh": {
+      "confidence": "Moderate source/compositional confidence. One exact bound-state correction is required; active-save morphology is independently grounded rather than guessed.",
+      "sources": [
+        {
+          "url": "https://biblio.ircam.ma/pmb/uploads/publications/177.pdf",
+          "access": "Primary indexed text; full open failed, no scan claim.",
+          "locations": [
+            "printed151 tagrumma group and mathematical set"
+          ],
+          "finding": "Group noun is not restricted to human meetings."
+        },
+        {
+          "url": "https://biblio.ircam.ma/pmb/uploads/publications/197.pdf",
+          "access": "Primary indexed text.",
+          "locations": [
+            "printed54 and70 image/image-plural terminology",
+            "printed17 entry37 bound singular twlaft"
+          ],
+          "finding": "Own image noun and bound singular/plural forms."
+        },
+        {
+          "url": "https://github.com/common-voice/common-voice/blob/8064a3e44b80bbc177a9400dd6d68b11844bc13e/web/locales/common-voice/zgh/pages/datasets.ftl",
+          "git_blob": "6130fab11002f53f16f3f787274c50791bdefb44",
+          "finding": "Fresh pinned own-locale digital data grouping and bound group form."
+        },
+        {
+          "url": "https://fr.scribd.com/document/108911094/La-nouvelle-grammaire-de-l-amazighe-Centre-de-l-Amenagement-Linguistique-IRCAM",
+          "access": "Readable primary 2008 IRCAM grammar reproduction; only readable French rules used where legacy Tifinagh extraction is garbled.",
+          "locations": [
+            "printed44–46 bound state after prepositions and numerals, feminine initial-vowel deletion",
+            "printed86–87 singular i…n participle shared masculine/feminine"
+          ],
+          "finding": "Supports revised yat twlaft and saved-group participle."
+        },
+        {
+          "url": "https://biblio.ircam.ma/pmb/catalogue/doc_num.php?explnum_id=348",
+          "access": "Official primary publication indexed text; direct open cache miss, no scan claim.",
+          "finding": "Exact yat twlaft token span corroborates the required bound form after one."
+        },
+        {
+          "url": "https://www.scribd.com/document/471721658/manuel-pdf",
+          "title": "IRCAM Manuel de conjugaison de l’amazighe, 2012",
+          "access": "Fresh readable primary-manual reproduction, not raster certification.",
+          "locations": [
+            "printed118 hdu type12",
+            "printed19–20 type12 second-radical gemination;footnote17 ḍ→ṭṭ",
+            "printed48–49 type12 gnu incomplete third singular pattern",
+            "printed23 da/ar/la with incomplete durative/concomitant"
+          ],
+          "finding": "hdu → incomplete ḥṭṭu with i- gives iḥṭṭu. da and now mark the actual active autosave guard, not future or completed saving."
+        },
+        {
+          "url": "https://github.com/wikimedia/mediawiki/blob/master/languages/i18n/zgh.json",
+          "retained_sha256": "3822339ea1cbd3827ef6e7811258aa85e9b56a992a0e5b7053e622d16106ccf7",
+          "keys": [
+            "savearticle",
+            "savechanges",
+            "rcfilters-savedqueries-defaultlabel",
+            "pool-servererror",
+            "logentry-newusers-autocreate",
+            "usernameinprogress",
+            "userlogin-authpopup-retry",
+            "view-pool-error"
+          ],
+          "finding": "Own software save sense, saved participle, feminine absence, automatic manner, wait/retry and now."
+        },
+        {
+          "url": "https://github.com/wikimedia/mediawiki-extensions-MobileFrontend/blob/master/i18n/zgh.json",
+          "retained_sha256": "8b13b9a4b93b22ef696857689bb8fd39a3e570238dc6f67366e138df1b2aff58",
+          "key": "mobile-frontend-editor-error-loading",
+          "finding": "Own loading-error construction, applied compositionally to saved editable grouping."
+        }
+      ]
+    },
+    "za": {
+      "confidence": "Moderate source/compositional confidence; contextual paraphrases are accepted without claiming native or machine-reading terminology certification.",
+      "sources": [
+        {
+          "url": "https://www.guangximinzubao.cn/zw/s_282578/390970.html",
+          "finding": "Primary own-language inanimate buek grouping usage."
+        },
+        {
+          "url": "https://www.guangximinzubao.cn/sy/jxzw/412847.html",
+          "finding": "Primary official terminology entry102 uses soqgawq for data."
+        },
+        {
+          "url": "https://www.guangximinzubao.cn/szbzw/html/2013-06/19/content_3582.htm",
+          "finding": "Own completed gaenq relative ending haenx."
+        },
+        {
+          "url": "https://www.guangximinzubao.cn/szbzw/html/2017-12/27/content_24064.htm",
+          "finding": "Own head plus explicit actor/verb/haenx object relative."
+        },
+        {
+          "url": "https://www.guangximinzubao.cn/szbzw/html/2018-06/20/content_26157.htm",
+          "finding": "Own mbaw doz picture classifier."
+        },
+        {
+          "url": "https://www.guangximinzubao.cn/szbzw/page/21/2023-11/08/08/2023110808_pdf.pdf",
+          "finding": "Own mbaw doz used for digital/social-media image, not only paper."
+        },
+        {
+          "url": "https://www.guangximinzubao.cn/szbzw/page/21/2024-10/23/03/2024102303_pdf.pdf",
+          "finding": "Own yungh mbouj ndaej used for digital webpage unavailability."
+        },
+        {
+          "url": "https://www.researchgate.net/publication/300848712_6_Zhuang_A_Tai_language_with_some_Sinitic_characteristics_Postverbal_'can'_in_Zhuang_Cantonese_Vietnamese_and_Lao",
+          "title": "Sybesma 2008, Zhuang: A Tai language with some Sinitic characteristics",
+          "locations": [
+            "section3.3.2"
+          ],
+          "finding": "Author paper: patient plus transitive verb plus postverbal mbouj ndaej gives negative -able/unusable, unlike preverbal deontic reading."
+        },
+        {
+          "url": "https://github.com/wikimedia/mediawiki/blob/master/languages/i18n/za.json",
+          "retained_sha256": "5ca4b6c23550ce75633adffb357c452bcc58d726b727dee13de85ca4e1369f83",
+          "key": "postedit-confirmation-saved",
+          "finding": "Own digital saving verb rom."
+        }
+      ]
+    }
+  },
+  "rows": [
+    {
+      "locale": "qug",
+      "key": "ui_could_not_store_the_assembly",
+      "decision": "accepted_unchanged",
+      "raw": "Shuyukunapa tantachiy: AN Paint kay rurayta wakaychiyta mana usharkachu.",
+      "raw_sha256": "f64059f27fbca70cd3e6825a302387a6cb1b750dd0f25cfee95ed1075b402672",
+      "english": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "packet": "candidate-qug-assemblystate3.json",
+      "packet_sha256": "e3fda66ebf598b0820488d091c5f9b16db5531f622a9b3e6bc3cb8011f14db53",
+      "reason": "Image-grouping category plus preserved work describes editable persisted state. Own noun tantachiy and work noun ruray are attested; two action/object predicates and past negative ability are compositionally supported.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "qug",
+      "key": "ui_the_saved_assembly_could_not_be_opened",
+      "decision": "accepted_unchanged",
+      "raw": "Shuyukunapa tantachiy: AN Paint wakaychishka rurayta paskayta mana usharkachu: %1$s",
+      "raw_sha256": "78efc57dcae2c7092c8ff9cbffa8aa4c3edef28d00d857a4d6aaffcab30233b5",
+      "english": "The saved assembly could not be opened: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "packet": "candidate-qug-assemblystate3.json",
+      "packet_sha256": "e3fda66ebf598b0820488d091c5f9b16db5531f622a9b3e6bc3cb8011f14db53",
+      "reason": "Completed modifier wakaychishka before work and negative past ability to open retain stored editable-work scope; diagnostic slot is preserved.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "qug",
+      "key": "ui_an_assembly_source_image_is_missing",
+      "decision": "accepted_unchanged",
+      "raw": "Shuyukunapa tantachiy: shuk shuyu illan.",
+      "raw_sha256": "bf7bad529be300f3f4f27e4b6c4aaff81aa0d26fdfcffe5e86b37d3caa8cd2dc",
+      "english": "An assembly source image is missing.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "packet": "candidate-qug-assemblystate3.json",
+      "packet_sha256": "e3fda66ebf598b0820488d091c5f9b16db5531f622a9b3e6bc3cb8011f14db53",
+      "reason": "One image absent is scoped to the required constituents of the valid image grouping, including an invalid-location reference, without asserting physical deletion.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_could_not_store_the_assembly",
+      "decision": "accepted_unchanged",
+      "raw": "ᥓᥧᥛᥰ ᥙᥧᥒᥱ: AN Paint ᥟᥛᥱ ᥓᥣᥒ ᥔᥤᥛᥰ ᥑᥨᥝᥲ ᥛᥧᥢᥰ.",
+      "raw_sha256": "08e000f56b187e365e1937958457858b7da2b9ac2b88eb3058bfaa7dde8bb6e3",
+      "english": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "packet": "candidate-tdd-assemblystate3.json",
+      "packet_sha256": "6ef9d1f06b3e9ea5e532c3a1f5be0204f7f4f58dc04b3573b99a64637816ae1a",
+      "reason": "Own group noun tsum2, picture noun, negative ability and digital-save/data forms support an authored image-group data-saving diagnostic.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_the_saved_assembly_could_not_be_opened",
+      "decision": "accepted_unchanged",
+      "raw": "ᥓᥧᥛᥰ ᥙᥧᥒᥱ: ᥟᥛᥱ ᥓᥣᥒ ᥚᥧᥭᥱ ᥐᥣᥢ ᥟᥢ ᥗᥧᥐᥴ ᥔᥤᥛᥰ ᥝᥭᥳ: %1$s",
+      "raw_sha256": "d66864c8aa52fc9e5625db8a71897d985bd1896fc0126ac7981aaffe71cbdb07",
+      "english": "The saved assembly could not be opened: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "packet": "candidate-tdd-assemblystate3.json",
+      "packet_sha256": "6ef9d1f06b3e9ea5e532c3a1f5be0204f7f4f58dc04b3573b99a64637816ae1a",
+      "reason": "Work noun plus retained saved-state relative clause is supported by historical own-locale relative/retention usage, modern positive software passive and Luo morphology. Historical blankarticle evidence is not claimed present in the fresh snapshot.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "tdd",
+      "key": "ui_an_assembly_source_image_is_missing",
+      "decision": "accepted_unchanged",
+      "raw": "ᥓᥧᥛᥰ ᥙᥧᥒᥱ: ᥙᥧᥒᥱ ᥟᥢ ᥘᥫᥒ ᥟᥛᥱ ᥛᥤᥰ.",
+      "raw_sha256": "473f14bb5e4f92a7382f361daf121c79280dab807b9e094f2878e63674430b9a",
+      "english": "An assembly source image is missing.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "packet": "candidate-tdd-assemblystate3.json",
+      "packet_sha256": "6ef9d1f06b3e9ea5e532c3a1f5be0204f7f4f58dc04b3573b99a64637816ae1a",
+      "reason": "Own picture noun with an/leung individual-image classifier usage and existential negation identify one unavailable required constituent; classifier order is independently attested in own software usage.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_could_not_store_the_assembly",
+      "decision": "accepted_unchanged",
+      "raw": "ⵜⴰⴳⵔⵓⵎⵎⴰ ⵏ ⵜⵡⵍⴰⴼⵉⵏ: AN Paint ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵉⵃⴹⵓ ⵉⵙⴼⴽⴰ.",
+      "raw_sha256": "8bd601f836fcb17c7526d365e52e037f76c8be56529bb2bda58b392295f08bb5",
+      "english": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "packet": "candidate-zgh-assemblystate3.json",
+      "packet_sha256": "6c3423c54effc1a60cf8a14c13ebd6aed391f5208878e90fa3dee1744a00bb3c",
+      "reason": "Image-group category uses a documented nonhuman group/set noun, bound plural images and a save-data predicate, rather than PNG export or a human meeting.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_saved_assembly_could_not_be_opened",
+      "decision": "accepted_unchanged",
+      "raw": "ⵜⴰⴳⵔⵓⵎⵎⴰ ⵏ ⵜⵡⵍⴰⴼⵉⵏ: ⵓⵔ ⵉⵙⴰⴳⴰ ⵡⴰⴳⴰⵎ ⵏ ⵜⴳⵔⵓⵎⵎⴰ ⵉⵜⵜⵡⴰⵃⴹⴰⵏ: %1$s",
+      "raw_sha256": "fb253615ec335bea12811a9474486938c66cecf05ce6cb78ea970a44f032f776",
+      "english": "The saved assembly could not be opened: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "packet": "candidate-zgh-assemblystate3.json",
+      "packet_sha256": "6c3423c54effc1a60cf8a14c13ebd6aed391f5208878e90fa3dee1744a00bb3c",
+      "reason": "Own loading-error construction, bound-state group noun and shared-gender saved participle express unavailable loading of persisted group state; no completed-save claim is added.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_an_assembly_source_image_is_missing",
+      "decision": "accepted_revised",
+      "raw": "ⵜⴰⴳⵔⵓⵎⵎⴰ ⵏ ⵜⵡⵍⴰⴼⵉⵏ: ⵢⴰⵜ ⵜⵡⵍⴰⴼⵜ ⵓⵔ ⵜⵍⵍⵉ.",
+      "raw_sha256": "bb39b83aad491c1a9410a3deef4cc0a58efc16f3aaf3fd3980e7e6666590cfe2",
+      "english": "An assembly source image is missing.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "packet": "candidate-zgh-assemblystate3.json",
+      "packet_sha256": "6c3423c54effc1a60cf8a14c13ebd6aed391f5208878e90fa3dee1744a00bb3c",
+      "reason": "Revise only tawlaft to bound twlaft after yat. IRCAM grammar requires bound state after numerals; primary own-language publications attest yat twlaft and the singular bound form. Predicate remains singular feminine absence.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      },
+      "original_raw": "ⵜⴰⴳⵔⵓⵎⵎⴰ ⵏ ⵜⵡⵍⴰⴼⵉⵏ: ⵢⴰⵜ ⵜⴰⵡⵍⴰⴼⵜ ⵓⵔ ⵜⵍⵍⵉ.",
+      "original_raw_sha256": "3df51f5237c7045d1b2dad4ae69c316780bdeb235ce189244789125720998ae2",
+      "revision": "Delete only U+2D30 from initial ta- in tawlaft after yat; original nomination is not accepted unchanged."
+    },
+    {
+      "locale": "za",
+      "key": "ui_could_not_store_the_assembly",
+      "decision": "accepted_unchanged",
+      "raw": "Buek dozsiengq · Gij soqgawq rom mbouj ndaej.",
+      "raw_sha256": "5bc456ff5e3bcc458beb448d2574deefe5cedfff0803b5efc3e4744f627f509f",
+      "english": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "packet": "candidate-za-assemblystate3.json",
+      "packet_sha256": "c95738c00c015fe60475617b57757692208b532704597d74565336f8ffbe8344",
+      "reason": "Documented inanimate buek plus image group scopes the data-saving predicate. Postverbal mbouj ndaej after the patient and transitive verb gives inability/unavailability, not prohibition.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "za",
+      "key": "ui_the_saved_assembly_could_not_be_opened",
+      "decision": "accepted_unchanged",
+      "raw": "Buek dozsiengq · Gij soqgawq AN Paint gaenq rom haenx doeg mbouj ndaej: %1$s",
+      "raw_sha256": "68d2afb104b1d98d1b10c78d3e439fdd1d8daa4a6c495bfa30564ea0c5f4bc76",
+      "english": "The saved assembly could not be opened: %1$s",
+      "attributes": {
+        "name": "ui_the_saved_assembly_could_not_be_opened"
+      },
+      "packet": "candidate-za-assemblystate3.json",
+      "packet_sha256": "c95738c00c015fe60475617b57757692208b532704597d74565336f8ffbe8344",
+      "reason": "The head-data/actor/completed-save/haenx relative is grounded in own syntax. Reading saved grouping data is an appropriate functional paraphrase of loading and interpretation failure, not merely opening a PNG.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "za",
+      "key": "ui_an_assembly_source_image_is_missing",
+      "decision": "accepted_unchanged",
+      "raw": "Buek dozsiengq: Mbaw doz ndeu yungh mbouj ndaej.",
+      "raw_sha256": "8b8468839e2f31ef3baaf67d6f8c32f6e455c03278932704ce8fdb9f74918f7e",
+      "english": "An assembly source image is missing.",
+      "attributes": {
+        "name": "ui_an_assembly_source_image_is_missing"
+      },
+      "packet": "candidate-za-assemblystate3.json",
+      "packet_sha256": "c95738c00c015fe60475617b57757692208b532704597d74565336f8ffbe8344",
+      "reason": "Mbaw doz is attested for digital/social-media pictures, not only paper. Postverbal yungh mbouj ndaej expresses one unusable constituent and covers rejected outside-directory sources.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_draft_is_saving_try_again_shortly",
+      "decision": "accepted_unchanged",
+      "raw": "AN Paint ⴷⴰ ⵉⵃⵟⵟⵓ ⵜⴰⵡⵍⴰⴼⵜ ⵙ ⵓⵡⵔⵎⴰⵏ ⴷⵖⵉ. ⵔⴰⵊⴰ, ⴰⵔⵎ ⴷⴰⵖ.",
+      "raw_sha256": "6641e34c07b60c4176bfad7f896143a0711a90ddf2e6cbe5c9647d16711cc96a",
+      "english": "The draft is saving. Try again shortly.",
+      "attributes": {
+        "name": "ui_the_draft_is_saving_try_again_shortly"
+      },
+      "packet": "candidate-zgh-savingretry1.json",
+      "packet_sha256": "b13b6014f9a1ab70939aee9b48e99c16c829e5db891ed4d8c8eb81c77e231b42",
+      "reason": "IRCAM explicitly classifies hdu as type12; incomplete geminates the second radical with the explicit ḍ→ṭṭ alternation, giving iḥṭṭu. da plus now expresses an active process; automatic manner matches both autosaving callers, and wait/retry adds no duration or success promise.",
+      "guards": {
+        "original_P0_tier": true,
+        "original_P0_gap": true,
+        "current_locale_absent": true,
+        "canonical102_original_exactly_once": true,
+        "excluded_integrated24": true,
+        "english_matches": true,
+        "attributes_match": true,
+        "slots_match": true,
+        "plain_XML_safe": true,
+        "XML_roundtrip_exact": true
+      }
+    }
+  ],
+  "limits": [
+    "All final strings are authored compositions or functional paraphrases, not copied whole published sentences.",
+    "No native-speaker, layout, font-rendering, device or runtime certification is claimed or used as an acceptance gate.",
+    "Guard scripts only inspect review inputs and XML; no application tests, builds, source edits, integration or external publication occurred.",
+    "The exact revised ZGH row replaces its original nomination only in this review recommendation. Canonical102 and original packets are not mutated. Root owns adoption and must refresh guards if relevant source changes."
+  ],
+  "archive_reference": {
+    "path": "anpaint288-289-independent-audit/merged292-source.zip",
+    "sha256": "68c705d402d9662ac7879e1f175f360d12ff40b88cf10a855fb360f3aa66add1",
+    "role": "Historical caller cross-check only; actual callers were freshly read at exact10c69 and bridged unchanged to55502e3."
+  }
+}
