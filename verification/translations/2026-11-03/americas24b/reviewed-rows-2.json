@@ -1,0 +1,475 @@
+{
+  "note": "Source/compositional review, not native or runtime certification.",
+  "rows": [
+    {
+      "locale": "nhe",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_share_explanation34",
+      "english": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "raw": "AN Paint quicopina ixcopincayotl huan quiahcocui campa tictlapehpenqui. Teipan, pan Android, xictlapehpeni tlen tictequihuiz para tictitlaniz. AN Paint axquipatla campa quiahcocui quemman tictequihuia “Xicahcocui”.",
+      "display": "AN Paint quicopina ixcopincayotl huan quiahcocui campa tictlapehpenqui. Teipan, pan Android, xictlapehpeni tlen tictequihuiz para tictitlaniz. AN Paint axquipatla campa quiahcocui quemman tictequihuia “Xicahcocui”.",
+      "backtranslation": "AN Paint reproduces/copies the image and stores it where you chose. Then, in Android, choose what you will use in order to send it. AN Paint does not change where it stores it when you use “Save”.",
+      "caller": "The File menu passes share=true,export=true. It first encodes and writes the chosen destination, preserving the existing savedTarget; only then FileProvider/ACTION_SEND and Intent.createChooser are opened. User app selection and eventual delivery are not observed or guaranteed. Sharing allows all formats, so a copy can be a derived representation rather than a byte-identical editable document.",
+      "limits": [
+        "The app is described functionally as what you will use in Android to send it. The caller opens the Android app chooser after saving; no independent native app noun or imagined button name is used. Independent review must judge this contextual paraphrase.",
+        "The first clause describes the app producing and storing the copy; it is not an instruction to invoke Copy all or another manual copy step. Reproduction does not mean a byte-identical or editable-project copy.",
+        "The send clause expresses purpose and user choice, not completion, confirmed receipt or guaranteed delivery. The Save-destination non-change remains explicit."
+      ],
+      "confidence": "moderate; own-source functional composition with explicit technical anchors and bounded paraphrases",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING",
+      "review_receipt": {
+        "file": "review-nhe-save-guidance3-v2-independent-0916.json",
+        "sha256": "131bcb1bc9a94ea0235db02db8f5a75c519faea57d312c8a00e75425ba0befcb"
+      },
+      "current_label_authority": [
+        {
+          "key": "ui_menu_file",
+          "raw": "File",
+          "display": "File",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        },
+        {
+          "key": "ui_save",
+          "raw": "Xicahcocui",
+          "display": "Xicahcocui",
+          "source_locale": "nhe",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-nhe-9b655b-1022.json",
+              "sha256": "87d0247e7e6a3c2427e9daf74f5b9d42194f4932ad506fc59e89b72f71f1ebca"
+            },
+            "git_blob_sha": "ba11054a7e058d1b60265d623f688a8c880d74fc"
+          }
+        },
+        {
+          "key": "save20_title",
+          "raw": "Xicahcocui…",
+          "display": "Xicahcocui…",
+          "source_locale": "nhe",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-nhe-9b655b-1022.json",
+              "sha256": "87d0247e7e6a3c2427e9daf74f5b9d42194f4932ad506fc59e89b72f71f1ebca"
+            },
+            "git_blob_sha": "ba11054a7e058d1b60265d623f688a8c880d74fc"
+          }
+        },
+        {
+          "key": "ui_export_as23",
+          "raw": "Export as…",
+          "display": "Export as…",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        },
+        {
+          "key": "ui_export_recovery_copy",
+          "raw": "Xicahcocui tlen AN Paint quiahcoucqui icelti (ZIP)…",
+          "display": "Xicahcocui tlen AN Paint quiahcoucqui icelti (ZIP)…",
+          "source_locale": "nhe",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-nhe-9b655b-1022.json",
+              "sha256": "87d0247e7e6a3c2427e9daf74f5b9d42194f4932ad506fc59e89b72f71f1ebca"
+            },
+            "git_blob_sha": "ba11054a7e058d1b60265d623f688a8c880d74fc"
+          }
+        },
+        {
+          "key": "save20_file_format",
+          "raw": "Queniuhqui AN Paint quiahcocuiz",
+          "display": "Queniuhqui AN Paint quiahcocuiz",
+          "source_locale": "nhe",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-nhe-9b655b-1022.json",
+              "sha256": "87d0247e7e6a3c2427e9daf74f5b9d42194f4932ad506fc59e89b72f71f1ebca"
+            },
+            "git_blob_sha": "ba11054a7e058d1b60265d623f688a8c880d74fc"
+          }
+        },
+        {
+          "key": "ui_load_image",
+          "raw": "Xictlapo ixcopincayotl…",
+          "display": "Xictlapo ixcopincayotl…",
+          "source_locale": "nhe",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-nhe-9b655b-1022.json",
+              "sha256": "87d0247e7e6a3c2427e9daf74f5b9d42194f4932ad506fc59e89b72f71f1ebca"
+            },
+            "git_blob_sha": "ba11054a7e058d1b60265d623f688a8c880d74fc"
+          }
+        }
+      ],
+      "raw_sha256": "0347cbe406c466fc11f64bc4f42496165cc0bf4d295336d1de90dbdfb2014f0d"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_sampled_resize_memory_explanation",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "raw": "ᎠᏅᏓᏗᏍᏙ — ᎠᎦᏎᏍᏔᏅᎯ — ᎠᏠᏯᏍᏗᏍᎩ: (ᎬᏂᎨᏒ ᏄᏍᏛ — ᎠᏍᏓᏅᎿᏂᏙᎸ ᎠᎪᎵᏰᎢᏓᏍᏗ) + ᏗᎬᎭᎸᏓ ᏗᏍᏆᏂᎪᏙᏗ + ᎠᏱᎸᏍᏗ (ᏂᏓᏳᏓᎴᏅ ᎠᏍᏆᏂᎪᏙᏗ → ᏗᏟᎶᏍᏔᏅ — pixel — ᎦᏟᏌᏅᎯ; pixel — ᏎᏍᏗ: ᎠᏎᎲ ᎠᎦᏲᎳᏛᎯ) + (ᎦᏁᏟᏴᏓ ᎪᏪᎸ — ᎠᎪᏙᏗ). ᎠᏅᏓᏗᏍᏙ — ᎤᏙᎯᏳ ᎾᏍᎩ ᎨᏒ — ᎬᏗᏍᎬᎢ: ᏧᏓᎴᎾᎢ. ᎢᏳᏃ ᏗᏟᎶᏍᏔᏅ — pixel — ᏎᏍᏗ: ᎠᎦᏲᎳᏛᎯ → ᏂᏕᎬᎿᏅᎢ — ᎤᏲᎲᏎᎸ. ᏂᏓᏳᏓᎴᏅ ᎠᏍᏆᏂᎪᏙᏗ: ᎤᏠᏱ — ᏂᎦᏰᏙᎲ.",
+      "display": "ᎠᏅᏓᏗᏍᏙ — ᎠᎦᏎᏍᏔᏅᎯ — ᎠᏠᏯᏍᏗᏍᎩ: (ᎬᏂᎨᏒ ᏄᏍᏛ — ᎠᏍᏓᏅᎿᏂᏙᎸ ᎠᎪᎵᏰᎢᏓᏍᏗ) + ᏗᎬᎭᎸᏓ ᏗᏍᏆᏂᎪᏙᏗ + ᎠᏱᎸᏍᏗ (ᏂᏓᏳᏓᎴᏅ ᎠᏍᏆᏂᎪᏙᏗ → ᏗᏟᎶᏍᏔᏅ — pixel — ᎦᏟᏌᏅᎯ; pixel — ᏎᏍᏗ: ᎠᏎᎲ ᎠᎦᏲᎳᏛᎯ) + (ᎦᏁᏟᏴᏓ ᎪᏪᎸ — ᎠᎪᏙᏗ). ᎠᏅᏓᏗᏍᏙ — ᎤᏙᎯᏳ ᎾᏍᎩ ᎨᏒ — ᎬᏗᏍᎬᎢ: ᏧᏓᎴᎾᎢ. ᎢᏳᏃ ᏗᏟᎶᏍᏔᏅ — pixel — ᏎᏍᏗ: ᎠᎦᏲᎳᏛᎯ → ᏂᏕᎬᎿᏅᎢ — ᎤᏲᎲᏎᎸ. ᏂᏓᏳᏓᎴᏅ ᎠᏍᏆᏂᎪᏙᏗ: ᎤᏠᏱ — ᏂᎦᏰᏙᎲ.",
+      "backtranslation": "Memory estimation includes: existing drawing canvas + clipboard + process (source file → image pixel data; possibly reduced pixel count) + edit buffers. Actual memory use varies. If the copy/picture pixel count is reduced → details are lost. The source file remains the same.",
+      "caller": "ImageResizeDialog.kt34 chooses this explanation when !hasNativeWork. ClassicPaintActivity1299–1305 passes existing document residentPixels separately from incoming source dimensions. PaintDocument150–152 counts canvas, selection and clipboard. ImageImport27–38 and75–78 estimate sampled decoding plus edit buffers;148–181 decode and scale into a bitmap without rewriting source.",
+      "limits": [
+        "This is an authored category/arrow explanation, not an attested complete Cherokee sentence or native-style certificate.",
+        "No MS converter tool noun is used as an unattested convert verb. Source file -> pixel data states decoding direction functionally; reduced count states sampling intent rather than byte compression.",
+        "OU122 copy and picture share one form, also used by MS image. Original source and reduced copy are distinguished by explicit source-file versus pixel-count topics, not a newly invented copy noun.",
+        "The temporary buffer category is singular in the TBX, used generically here, not a claim there is exactly one allocation.",
+        "Remain and same are dictionary forms joined as a status heading; no future or past conjugation is invented.",
+        "No English-only explanation is substituted; pixel is an exact Microsoft Cherokee technical loan. No app test, build, Android layout, screen-reader or runtime verification was performed.",
+        "Sampling and output may both retain the full source dimensions: ImageResizeDialog39 accepts <=, not only <; budget can change during the prompt. V1 endpoint-reduction defense was insufficient and is withdrawn. V2 explicitly says possibly reduced and if reduced."
+      ],
+      "confidence": "Moderate-lower own-source functional composition; independent semantic review required, especially operation-notation scope and remains-same state.",
+      "status": "INDEPENDENTLY_REVIEWED_V2_ACCEPTED; ROOT_ADOPTION_PENDING",
+      "review_receipt": {
+        "file": "review-chr-sampled-memory1-v2-independent-0944.json",
+        "sha256": "e2d556ba1da02da0a957fd3fc030ffef48dd3efc32ecd1e46c74d5c959ed18ad"
+      },
+      "current_label_authority": [
+        {
+          "key": "ui_canvas_size_30460e",
+          "raw": "Canvas size",
+          "display": "Canvas size",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        },
+        {
+          "key": "save20_dither",
+          "raw": "Dither colours",
+          "display": "Dither colours",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        }
+      ],
+      "raw_sha256": "068b209dde9fdd456a90023f3360e28a4b86fab9e5e1ffc251ab5cc91cef92d7"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_draft_saved",
+      "english": "Draft saved",
+      "attributes": {
+        "name": "ui_draft_saved"
+      },
+      "raw": "Eʼelyaaígíí beʼelyaaígíí tʼáásahdii tʼáá bíniʼdii hashtʼeʼ siłtsooz.",
+      "display": "Eʼelyaaígíí beʼelyaaígíí tʼáásahdii tʼáá bíniʼdii hashtʼeʼ siłtsooz.",
+      "backtranslation": "A copy of the image is separately, automatically put away / in storage.",
+      "caller": "ClassicPaintActivity1626 sets this after autosave.write succeeds. AutosaveStore119–139 writes canvas PNG, matching metadata, optional floating selection and history to an atomic private draft, then flushes and syncs it. Shared status rail at ClassicPaintActivity689, not user-file Save destination or final-artwork success.",
+      "limits": [
+        "No exact whole published software sentence, speaker/layout/runtime certificate, or established Navajo draft technical noun is claimed.",
+        "Copy and separate automatic storage are expressed explicitly. Continuing work and intended recovery are functional properties of that auxiliary copy supported by the caller, not newly claimed lexical meanings of beʼelyaaígíí.",
+        "The row does not assert unfinished artwork, latest/current/clean state, manual export success, no manual file, permanent safety, or complete recoverability.",
+        "The 68/79-character texts are longer than v1; visual fit has not been tested under the research-only boundary.",
+        "Flat-sheet metaphor and program-autonomy extension remain authored and bounded to image-bearing autosave statuses; generic ui_save remains excluded."
+      ],
+      "confidence": "moderate-to-low authored functional composition; independent source and whole-construction review required",
+      "status": "INDEPENDENTLY_REVIEWED_UNCHANGED; ROOT_ADOPTION_PENDING",
+      "review_receipt": {
+        "file": "review-nv-copy-status2-v2-independent-0955.json",
+        "sha256": "e122a0ec3c585b57cd425f6908caa97d86fe82cfb61a31e7b303cd8cfd2ce390"
+      },
+      "current_label_authority": [],
+      "raw_sha256": "764f75bfe805cb64cf11683f51b1631d793e1864629ce3be4bbd1955a3e6efe1"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_draft_not_saved_yet",
+      "english": "Draft not saved yet",
+      "attributes": {
+        "name": "ui_draft_not_saved_yet"
+      },
+      "raw": "Eʼelyaaígíí beʼelyaaígíí tʼahdoo tʼáásahdii tʼáá bíniʼdii hashtʼeʼ siłtsooz da.",
+      "display": "Eʼelyaaígíí beʼelyaaígíí tʼahdoo tʼáásahdii tʼáá bíniʼdii hashtʼeʼ siłtsooz da.",
+      "backtranslation": "A copy of the image is not yet separately, automatically put away / in storage.",
+      "caller": "ClassicPaintActivity131 and EditorDraftRecovery32 initialize this before a successful automatic draft exists; restored and failure/pause states have separate resources. Shared status rail at ClassicPaintActivity689. It is not a user-file Save failure, missing source image, or statement that the artwork is unfinished.",
+      "limits": [
+        "No exact whole published software sentence, speaker/layout/runtime certificate, or established Navajo draft technical noun is claimed.",
+        "Copy and separate automatic storage are expressed explicitly. Continuing work and intended recovery are functional properties of that auxiliary copy supported by the caller, not newly claimed lexical meanings of beʼelyaaígíí.",
+        "The row does not assert unfinished artwork, latest/current/clean state, manual export success, no manual file, permanent safety, or complete recoverability.",
+        "The 68/79-character texts are longer than v1; visual fit has not been tested under the research-only boundary.",
+        "Flat-sheet metaphor and program-autonomy extension remain authored and bounded to image-bearing autosave statuses; generic ui_save remains excluded."
+      ],
+      "confidence": "moderate-to-low authored functional composition; independent source and whole-construction review required",
+      "status": "INDEPENDENTLY_REVIEWED_UNCHANGED; ROOT_ADOPTION_PENDING",
+      "review_receipt": {
+        "file": "review-nv-copy-status2-v2-independent-0955.json",
+        "sha256": "e122a0ec3c585b57cd425f6908caa97d86fe82cfb61a31e7b303cd8cfd2ce390"
+      },
+      "current_label_authority": [],
+      "raw_sha256": "37761212c6b7a20db7fed175d4958372d8e97df80333cb0e3708345735245b85"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "formats22_ascii_description",
+      "english": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "raw": "ᏗᎪᏪᎵᏍᎩᏊ: ᎪᏪᎸ — ᎤᏍᎪᏍᏗᏴ — ᏧᏓᎴᎾᎢ → ᏗᏟᎶᏍᏔᏅ — ᎢᏯᏓᏛᏁᎸ. ᎲᏓ: Monospace — ᏄᏍᏛ ᎠᏙᏪᎵᏍᎩ. ᏗᎪᏪᎵᏍᎩᏊ → ᎠᎴᏅᏗᏍᎬ — ᏗᏟᎶᏍᏔᏅ — ᎯᏍᏚᎢ: ᏰᎵ ᏂᎨᏒᎾ.",
+      "display": "ᏗᎪᏪᎵᏍᎩᏊ: ᎪᏪᎸ — ᎤᏍᎪᏍᏗᏴ — ᏧᏓᎴᎾᎢ → ᏗᏟᎶᏍᏔᏅ — ᎢᏯᏓᏛᏁᎸ. ᎲᏓ: Monospace — ᏄᏍᏛ ᎠᏙᏪᎵᏍᎩ. ᏗᎪᏪᎵᏍᎩᏊ → ᎠᎴᏅᏗᏍᎬ — ᏗᏟᎶᏍᏔᏅ — ᎯᏍᏚᎢ: ᏰᎵ ᏂᎨᏒᎾ.",
+      "backtranslation": "Plain text: character brightness differences make an image representation. Use a Monospace font. Plain text → original/base image → Open: impossible.",
+      "caller": "SaveOptionsDialog101 ASCII_ART explanation. TextImageCodec40–52 scales the bitmap to a character grid, and TextImageData167–184 maps displayed luma to sparse/dense marks. This exports an appearance in text, not a byte-encoded recoverable original image.",
+      "limits": [
+        "Authored compact noun/topic hierarchy and explicit arrows, not attested full prose or newly guessed finite grammar.",
+        "Character is singular source category used to describe the class of marks. Brightness difference names perceived glyph density/lightness rather than coloured foreground text, changing monitor settings, daylight or low physical weight. Selection is implemented by luma ramp; plain text contains no colour attributes.",
+        "Monospace is a technical family identifier supported by official Android documentation, not claimed Cherokee lexical attestation. Recommendation of fixed-advance font does not promise all glyph ink widths equal.",
+        "The final arrow starts from this plain-text rendition and targets original-image opening. It does not say the original source file was destroyed or cannot itself be opened, and does not claim universally impossible reconstruction by any external process.",
+        "The result is a visual representation. The compact output category supplies plain-text creation without an invented write conjugation.",
+        "No app/native/layout/runtime/font-environment certification. Independent semantic and linguistic review required."
+      ],
+      "confidence": "moderate-lower source/compositional nomination",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING",
+      "review_receipt": {
+        "file": "review-chr-ascii-description1-independent-0931.json",
+        "sha256": "197c5391737712ad7697d02393af6bf3e2f500b57cdeb03d8208abf5a65e2467"
+      },
+      "current_label_authority": [
+        {
+          "key": "ui_canvas_size_30460e",
+          "raw": "Canvas size",
+          "display": "Canvas size",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        },
+        {
+          "key": "save20_dither",
+          "raw": "Dither colours",
+          "display": "Dither colours",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        }
+      ],
+      "raw_sha256": "94f541cf056a39ea25ea825e82f7e74b46564ff49df5b746923463dc49cca223"
+    },
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "save20_lossy_quality_description",
+      "english": "Higher quality preserves more detail and usually makes a larger file.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "raw": "Ica se número cati más hueyi ipan Quality, AN Paint quiajocui más cati nesi ipan ixkopinali. Miyac huelta, pero amo nochipa, monequi más bytes para quiajocuis.",
+      "display": "Ica se número cati más hueyi ipan Quality, AN Paint quiajocui más cati nesi ipan ixkopinali. Miyac huelta, pero amo nochipa, monequi más bytes para quiajocuis.",
+      "backtranslation": "With a higher number in Quality, AN Paint stores more of what is visible in the image. Many times, but not always, more bytes are needed to store it.",
+      "caller": "SaveOptionsDialog102 shows this for JPEG and HEIC. The Quality control84 is a numeric slider1–100. ImageExporter uses that quality for JPEG compression or HEIC encoding, with HEIC lossless false. This paragraph compares quality settings, preserves visible-information detail and qualifies output byte growth.",
+      "limits": [
+        "These are authored functional software sentences, not quoted whole published sentences or native-speaker certification.",
+        "Quality is the exact compact English anchor from the current fallback Quality (%) control. The description concerns increasing its 1–100 numerical setting, not aesthetic worth or image width/height. Reconcile this anchor if the control is localized later.",
+        "The own-source comparative bigger/greater is adapted to a numerical value. No indigenous abstract quality noun or unattested increase-verb inflection is introduced.",
+        "More of what is visible is an authored functional rendering of image detail. The sentence concerns retention of existing visible information, not creation of detail, metadata, dimensions or artistic completion.",
+        "Miyac huelta is many times/often, not a mathematically attested majority quantifier. Explicit pero amo nochipa composes independently attested but/negation/always to exclude an invariant. Independent semantic review must assess the breadth of this rendering of usually.",
+        "bytes is a transparent technical unit, not an attested native lexical item. Bytes required to store the image describe output-file size, not the working-RAM budget.",
+        "No application edit, app test, build, Work launch/resumption, publication, integration, runtime check or layout certification occurred."
+      ],
+      "confidence": "Moderate own-source lexical/grammatical composition; numeric-comparative and frequency adequacy require independent review.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING",
+      "review_receipt": {
+        "file": "review-nahua-quality4-independent-0940.json",
+        "sha256": "a1e30614f167a7dbe80657c5afa582f3904c098fcc50917e3469aecd9c87a5d6"
+      },
+      "current_label_authority": [
+        {
+          "key": "ui_quality",
+          "raw": "Quality (%)",
+          "display": "Quality (%)",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        },
+        {
+          "key": "ui_lossless_format",
+          "raw": "Lossless %1$s",
+          "display": "Lossless %1$s",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        }
+      ],
+      "raw_sha256": "e59a54b33b0b44d9cd1bd80516beb8186d92bbb60b277bcc5b828cd920e074f0"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "save20_lossy_quality_description",
+      "english": "Higher quality preserves more detail and usually makes a larger file.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "raw": "Ica se número catli más hueyi ipan Quality, AN Paint quiajocui más catli nesi ipan tlaixkopintli. Miyac huelta, pero amo nochipa, monequi más bytes para quiajocuis.",
+      "display": "Ica se número catli más hueyi ipan Quality, AN Paint quiajocui más catli nesi ipan tlaixkopintli. Miyac huelta, pero amo nochipa, monequi más bytes para quiajocuis.",
+      "backtranslation": "With a higher number in Quality, AN Paint stores more of what is visible in the image. Many times, but not always, more bytes are needed to store it.",
+      "caller": "SaveOptionsDialog102 shows this for JPEG and HEIC. The Quality control84 is a numeric slider1–100. ImageExporter uses that quality for JPEG compression or HEIC encoding, with HEIC lossless false. This paragraph compares quality settings, preserves visible-information detail and qualifies output byte growth.",
+      "limits": [
+        "These are authored functional software sentences, not quoted whole published sentences or native-speaker certification.",
+        "Quality is the exact compact English anchor from the current fallback Quality (%) control. The description concerns increasing its 1–100 numerical setting, not aesthetic worth or image width/height. Reconcile this anchor if the control is localized later.",
+        "The own-source comparative bigger/greater is adapted to a numerical value. No indigenous abstract quality noun or unattested increase-verb inflection is introduced.",
+        "More of what is visible is an authored functional rendering of image detail. The sentence concerns retention of existing visible information, not creation of detail, metadata, dimensions or artistic completion.",
+        "Miyac huelta is many times/often, not a mathematically attested majority quantifier. Explicit pero amo nochipa composes independently attested but/negation/always to exclude an invariant. Independent semantic review must assess the breadth of this rendering of usually.",
+        "bytes is a transparent technical unit, not an attested native lexical item. Bytes required to store the image describe output-file size, not the working-RAM budget.",
+        "No application edit, app test, build, Work launch/resumption, publication, integration, runtime check or layout certification occurred."
+      ],
+      "confidence": "Moderate own-source lexical/grammatical composition; numeric-comparative and frequency adequacy require independent review.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING",
+      "review_receipt": {
+        "file": "review-nahua-quality4-independent-0940.json",
+        "sha256": "a1e30614f167a7dbe80657c5afa582f3904c098fcc50917e3469aecd9c87a5d6"
+      },
+      "current_label_authority": [
+        {
+          "key": "ui_quality",
+          "raw": "Quality (%)",
+          "display": "Quality (%)",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        },
+        {
+          "key": "ui_lossless_format",
+          "raw": "Lossless %1$s",
+          "display": "Lossless %1$s",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        }
+      ],
+      "raw_sha256": "945146c89225d3f2a4673d5005e1bb2a23a9de84b1d7c1f6526fda3acaadd2a4"
+    },
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "english": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "raw": "Ica se número cati más hueyi ipan Quality, miyac huelta, pero amo nochipa, monequi más bytes para AN Paint quiajocuis ixkopinali. Ica Lossless, AN Paint quiajocui sesen número RGB ipan ixkopinali huan amo quipata.",
+      "display": "Ica se número cati más hueyi ipan Quality, miyac huelta, pero amo nochipa, monequi más bytes para AN Paint quiajocuis ixkopinali. Ica Lossless, AN Paint quiajocui sesen número RGB ipan ixkopinali huan amo quipata.",
+      "backtranslation": "With a higher number in Quality, many times, but not always, more bytes are needed for AN Paint to store the image. With Lossless, AN Paint stores each RGB number in the image and does not change it.",
+      "caller": "SaveOptionsDialog103 default is visibly used for JPEG XL, WebP and AVIF. PNG selects the text but hides the explanation105. Lossless selection hides the quality slider89; the explanation remains. Each numerical colour value must remain unchanged, not all values equal. HeifCodec91 scopes AVIF to exact opaque RGB coding; no metadata, whole-file, animation or source-alpha guarantee.",
+      "limits": [
+        "These are authored functional software sentences, not quoted whole published sentences or native-speaker certification.",
+        "Quality is the exact compact English anchor from the current fallback Quality (%) control. The description concerns increasing its 1–100 numerical setting, not aesthetic worth or image width/height. Reconcile this anchor if the control is localized later.",
+        "The own-source comparative bigger/greater is adapted to a numerical value. No indigenous abstract quality noun or unattested increase-verb inflection is introduced.",
+        "More of what is visible is an authored functional rendering of image detail. The sentence concerns retention of existing visible information, not creation of detail, metadata, dimensions or artistic completion.",
+        "Miyac huelta is many times/often, not a mathematically attested majority quantifier. Explicit pero amo nochipa composes independently attested but/negation/always to exclude an invariant. Independent semantic review must assess the breadth of this rendering of usually.",
+        "bytes is a transparent technical unit, not an attested native lexical item. Bytes required to store the image describe output-file size, not the working-RAM budget.",
+        "No application edit, app test, build, Work launch/resumption, publication, integration, runtime check or layout certification occurred.",
+        "Lossless is the current exact compact fallback control anchor from Lossless %1$s. The dynamic format name is intentionally not duplicated in the prose.",
+        "RGB is uninflected technical notation for numerical red/green/blue components, not a native-word attestation. The whole clause distributes storage and unchangedness over each number of the current image.",
+        "The description concerns the current opaque editor image only, not alpha, external source profiles/bit depth, metadata, animation, or file-byte identity."
+      ],
+      "confidence": "Moderate own-source composition and exact caller-backed technical identifier; independent/root review required.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING",
+      "review_receipt": {
+        "file": "review-nahua-quality4-independent-0940.json",
+        "sha256": "a1e30614f167a7dbe80657c5afa582f3904c098fcc50917e3469aecd9c87a5d6"
+      },
+      "current_label_authority": [
+        {
+          "key": "ui_quality",
+          "raw": "Quality (%)",
+          "display": "Quality (%)",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        },
+        {
+          "key": "ui_lossless_format",
+          "raw": "Lossless %1$s",
+          "display": "Lossless %1$s",
+          "source_locale": "en",
+          "resource_pin": {
+            "retained_response": {
+              "file": "current-en-9b655b-1023.json",
+              "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+            },
+            "git_blob_sha": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+          }
+        }
+      ],
+      "raw_sha256": "c2af869125e90c30145e95c902f74483a5ef29cff5dd07fb7dba29e0327fdd18"
+    }
+  ]
+}
