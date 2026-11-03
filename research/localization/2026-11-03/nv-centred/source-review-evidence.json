@@ -1,0 +1,73 @@
+{
+  "status": "Integrated as a source-reviewed alignment-label adaptation; unmerged",
+  "checkpoint": "00a843f1a62d77b0d93798e40a70334cd3189179",
+  "locale": "nv",
+  "key": "ui_centred",
+  "tier": "P1",
+  "english": "Centred",
+  "candidate": "Ałnííʼ",
+  "attributes": {
+    "name": "ui_centred"
+  },
+  "placeholders": [],
+  "source": {
+    "authors": "Alfred Blackhorse, Steven Semken, Perry Charley (Diné College)",
+    "title": "A Navajo-English thesaurus of geological terms",
+    "year": 2003,
+    "url": "https://nmgs.nmt.edu/publications/guidebooks/downloads/54/54_p0103_p0107.pdf#page=4",
+    "printed_page": 104,
+    "pdf_page": 4,
+    "entry": "Geometrical Figures → (center): ałníí’",
+    "verification": "Fresh visual reread of original rendered PDF page104.png. Text extraction is broken by legacy fonts, not used for Unicode reconstruction.",
+    "pdf_sha256": "bc732357d30742b0a19bdffd257230e8ea384045646091c533a732a85d23532c"
+  },
+  "adaptation": "Noun/location label Center used for English state label Centred in alignment choices. Initial capitalization; typographic apostrophe transcribed U+02BC as in catalogue. No invented morphology. Independent semantic review required for noun-as-option transfer.",
+  "callers": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+      "lines": [
+        54,
+        78,
+        81,
+        82
+      ],
+      "semantics": "Middle option index1 maps directly to Paint.Align.CENTER. Horizontal choices are Left aligned/Centred/Right aligned; vertical choices Top aligned/Centred/Bottom aligned. Not centring the image on canvas or choosing geographical centre."
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/VerticalText.kt",
+      "lines": [
+        110,
+        112,
+        118
+      ],
+      "semantics": "CENTER offset = (full-length)/2. Horizontal lines centre in text bounds width; vertical columns centre in text bounds height. Position is direction-neutral."
+    }
+  ],
+  "absence": "Fresh exact-head full Navajo catalogue lacks ui_centred; exact-head manifest confirms P1; English node is name-only, no placeholders.",
+  "review_question": "Is primary geometric center term sufficient as the text-alignment option for both horizontal and vertical directions? No claim that the source directly attests software alignment or a centered participle.",
+  "limits": [
+    "No native speaker, Android runtime, glyph/layout or accessibility/TalkBack certification.",
+    "Surrounding alignment labels remain English fallback.",
+    "No prior held or uncertain action retried.",
+    "No hosted CI, merge or release.",
+    "Source is geometric center; software alignment option is a domain adaptation, not directly attested phrasing."
+  ],
+  "independent_review": "Independent review supports accepting Ałnííʼ as short center alignment-option adaptation; source attests geometric center noun, not full adjectival phrase. U+02BC consistent with existing resources, PDF itself doesn't establish codepoint.",
+  "review_attribution": "Independent reviewer result relayed by coordinator, 2026-11-03 22:33 UTC",
+  "integration": {
+    "parent": "00a843f1a62d77b0d93798e40a70334cd3189179",
+    "commit": "e9a086d28b731e685596db8f096034da6200764c",
+    "tree": "ccccc067cd6a5036ae7a9e18f515ff7c4f0ba94f",
+    "blob": "19297b8cca15bd7c7ad9d580c109277869181ccb",
+    "branch": "review/nv-bottom-2038-20261103",
+    "delta": "+1/-0; only ui_centred",
+    "counts": {
+      "direct_before": 126,
+      "direct_after": 127,
+      "P0": "67/92 unchanged",
+      "P1": "59/249 -> 60/249"
+    },
+    "checks": "All 126 prior nodes unchanged; unique keys; XML, attributes, placeholders, Android escaping/format, NFC/control passed. 18 existing helper tests passed in 2.067 seconds.",
+    "remote_verification": "All 1276 leaves and modes compared against immediate parent; only intended Navajo blob changed. Exact branch head and complete file readback verified."
+  }
+}
