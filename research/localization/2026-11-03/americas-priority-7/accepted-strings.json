@@ -1,0 +1,596 @@
+{
+  "title": "Accepted Americas seven revised strings",
+  "integration_commit": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+  "integration_tree": "780bca02ba4535bb3082ab066ca259474d197d54",
+  "source_baseline": "784e816c756e31f15ec6fb03bc2300b4350ed438",
+  "original_intake": {
+    "artifact": "reviewed-americas7-current784e816-intake-1718.json",
+    "sha256": "1487b93a3a62c86bacaae6141efc4b3a5257c4fb1a3dfc88f65274d4906a9ed0"
+  },
+  "derivative_note": "Sanitized integrated-status derivative. Original hashes identify immutable historical evidence; these bytes record later adoption and integration.",
+  "counts": {
+    "total": 7,
+    "P0": 4,
+    "P1": 3
+  },
+  "raw_convention": "XML-parsed Android text; XML-escape once. CH ASCII apostrophes retain exactly one Android backslash, removed once for display.",
+  "rows": [
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_edit_foreground",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Edit foreground…",
+      "attributes": {
+        "name": "ui_edit_foreground"
+      },
+      "raw": "Tulaika i kulot para un fa\\'tinas pinenta…",
+      "value": "Tulaika i kulot para un fa\\'tinas pinenta…",
+      "display": "Tulaika i kulot para un fa'tinas pinenta…",
+      "backtranslation": "Change the colour for you to make a drawing/picture…",
+      "placeholders": [],
+      "raw_sha256": "8d52307dee8491e7cd1d81d33686b2301d905df645bef85e290ec7c04ca311be",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "ch-edit-roles2-1706.json",
+        "sha256": "b249a49406f838806d9169604b185f59e489c393060a239c484bd4ed6926bb57"
+      },
+      "independent_review": {
+        "artifact": "review-ch-edit-roles2-independent-current784e816-1714.json",
+        "sha256": "20743b68ce67a790c018b2d215e3a963001f383d716810af3c99bdf6961b5d28"
+      },
+      "source_evidence": {
+        "artifact": "ch-edit-roles-sources-1706.json",
+        "sha256": "4cf8fad15e863d1505cf5012396eb47f706bc10d5e5097cd11f75abc9285e9cb"
+      },
+      "caller_evidence": {
+        "artifact": "ch-edit-roles-callers-1706.json",
+        "sha256": "9ec07d5be700b3d91215e3c27736505f332cf48042ba08c844f1cb25a6fd207e"
+      },
+      "actual_callers": [],
+      "caller_scope": "Zero exact key occurrences across all 104 identity-checked production Kotlin/Java files. No live rendering, click route, dialog or accessibility binding is asserted. Separate live resources ui_foreground_edit_colour and ui_background_edit_colour do not call these dormant keys. Literal absence does not exclude arbitrary external or future dynamic invocation.",
+      "independent_semantic_review": "The uninflected transitive imperative plus explicit colour object is independently supported by CNMI examples and Chung 15.2.1. The following role phrase exactly reuses the current adopted foreground name. The drawing/picture object selects fa'tinas make/construct and does not restrict the setting to creating a new file. Read as change the drawing-making colour, not edit a front layer, swap the two settings or recolour existing pixels.",
+      "confidence": "Moderate own-source functional role-label composition; dormant semantic-only resource, no live route.",
+      "limits": [
+        "Authored compositional wording, not an attested full software label or native-speaker certification. Ordinary CNMI vocabulary and generally applicable Chamorro grammar support the construction. Digital canvas and eraser senses remain disclosed analogies.",
+        "Drawing-making is a broad functional activity including strokes, text and solid fills, not just file creation."
+      ],
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_edit_background",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Edit background…",
+      "attributes": {
+        "name": "ui_edit_background"
+      },
+      "raw": "Tulaika i kulot para i brin, i iresa, yan i sanhalum hechura…",
+      "value": "Tulaika i kulot para i brin, i iresa, yan i sanhalum hechura…",
+      "display": "Tulaika i kulot para i brin, i iresa, yan i sanhalum hechura…",
+      "backtranslation": "Change the colour for the canvas, the eraser, and the interior of shapes…",
+      "placeholders": [],
+      "raw_sha256": "196568f46e32d6093c0337a0e7f5e5652f9018ad4b3183aacf193e84962773c0",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "ch-edit-roles2-1706.json",
+        "sha256": "b249a49406f838806d9169604b185f59e489c393060a239c484bd4ed6926bb57"
+      },
+      "independent_review": {
+        "artifact": "review-ch-edit-roles2-independent-current784e816-1714.json",
+        "sha256": "20743b68ce67a790c018b2d215e3a963001f383d716810af3c99bdf6961b5d28"
+      },
+      "source_evidence": {
+        "artifact": "ch-edit-roles-sources-1706.json",
+        "sha256": "4cf8fad15e863d1505cf5012396eb47f706bc10d5e5097cd11f75abc9285e9cb"
+      },
+      "caller_evidence": {
+        "artifact": "ch-edit-roles-callers-1706.json",
+        "sha256": "9ec07d5be700b3d91215e3c27736505f332cf48042ba08c844f1cb25a6fd207e"
+      },
+      "actual_callers": [],
+      "caller_scope": "Zero exact key occurrences across all 104 identity-checked production Kotlin/Java files. No live rendering, click route, dialog or accessibility binding is asserted. Separate live resources ui_foreground_edit_colour and ui_background_edit_colour do not call these dormant keys. Literal absence does not exclude arbitrary external or future dynamic invocation.",
+      "independent_semantic_review": "The same independently supported imperative acts on explicit colour, followed by the current adopted background-role name. The brin/iresa/sanhalum hechura list describes the alternate paint setting rather than a rear layer or UI theme. Yan coordinates the purpose group rather than ordering three operations. Some shapes use foreground fill, and not all background uses are enumerated; no all/only claim appears.",
+      "confidence": "Moderate own-source functional role-label composition; dormant semantic-only resource, no live route.",
+      "limits": [
+        "Authored compositional wording, not an attested full software label or native-speaker certification. Ordinary CNMI vocabulary and generally applicable Chamorro grammar support the construction. Digital canvas and eraser senses remain disclosed analogies.",
+        "Canvas/eraser/shape-interior is a descriptive grouping. Brin and iresa involve disclosed digital analogies; some shape fills use foreground. No all/only assertion. Opaque-text backing is a filled rectangle."
+      ],
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_enter_valid_dimensions",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Enter valid dimensions.",
+      "attributes": {
+        "name": "ui_enter_valid_dimensions"
+      },
+      "raw": "ᎠᏏᏉ ᎥᎧᏁᏉᏍᎬᎢ: ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ.",
+      "value": "ᎠᏏᏉ ᎥᎧᏁᏉᏍᎬᎢ: ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ.",
+      "display": "ᎠᏏᏉ ᎥᎧᏁᏉᏍᎬᎢ: ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ.",
+      "backtranslation": "Enter width and height again.",
+      "placeholders": [],
+      "raw_sha256": "b7118edfaf4803d0762f7bace17af5c2438df7ce5e4a184d3bebda58604eeb29",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-valid-dimensions1-v3a-1706.json",
+        "sha256": "568125683449feb47e74290bdf469470ce9d0e43734c5065c91bfb4c9e10469e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-valid-dimensions-v3a-independent-current4fb1461-1709.json",
+        "sha256": "1b29f2ae0a31e1b7354a39616ea72d9e74217b387c06e7adca44d5fe1b02253a"
+      },
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 311,
+          "exact_line": "            estimate.text = if (size == null) ui(R.string.ui_enter_valid_dimensions) else ui(R.string.ui_estimated_memory_current_working_budget, memoryLabel(renderer.estimatedBytes(size)), memoryLabel(ImageMemoryPolicy.forDevice(this).workingBytes.toDouble())) + if (renderer.fits(size)) ui(R.string.ui_fits_the_current_budget) else ui(R.string.ui_choose_a_smaller_size)",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L311"
+        }
+      ],
+      "caller_scope": "AssemblyActivity.kt311 chooses this instruction whenever sizing.dimensions, a cached target, is null. It need not prove that the currently displayed input strings are invalid. The re-entry instruction neither asserts invalid size nor promises a successful allocation or budget admission.",
+      "independent_semantic_review": {
+        "construction": "OU again + the unchanged TBX technical enter term introduce a compact action label. The colon specifies width and singular height as its objects. These are the actual paired dimension fields, not an OLAP dimension, a physical entrance or two target axes for normalization.",
+        "validity_word": "The raw does not explicitly contain an adjective meaning valid. Acceptance is for a context-bound corrective re-entry instruction, not a literal word-for-word translation or a proven finite Cherokee imperative sentence.",
+        "ordinary_parse_or_range_null": "For missing/unparseable entries, nonpositive values, fractional pixel-mode input, non-finite conversion, or rounded output outside 1..Int.MAX_VALUE, asking the user to enter the dimensions again is a relevant corrective instruction. It neither diagnoses both fields as bad nor promises that repeating unchanged unsupported input will pass.",
+        "cached_null_percent_switch": "For the preserved counterpath, current displayed percentage values may already be acceptable while target remains null. Re-entering the width/height is still an intelligible request to supply the pair again. The text no longer claims those current values are invalid. The source watcher calls read(width) on subsequent edits; this is static source support, not a runtime success guarantee.",
+        "processing_scope": "No non-null renderer.fits failure or rendering exception directly selects this key. Budget admission and processing use separate branches/messages, so this review does not generalize the instruction to those contexts.",
+        "again_scope": "The dialog starts from a non-null suggested pair and the null state follows input reading or persists from it. Again refers to supplying the field values anew; it does not require a claim about who originally typed the suggested values.",
+        "limits": "OU ale has both and/or senses. Here the named width and height fields support conjunction. Full idiom, imperative morphology, accessibility and layout remain uncertified."
+      },
+      "confidence": "Moderate functional re-entry instruction; explicit valid adjective is intentionally absent and invalidity is not asserted.",
+      "limits": [
+        "No native-speaker, grammatical-sentence, layout, accessibility or runtime certification.",
+        "No application tests or builds were run. Source/JSON integrity and PDF/TBX extraction only.",
+        "Candidate, earlier versions, historical review and hold addendum were not edited."
+      ],
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "superseded_assertion_hold": {
+        "artifact": "review-chr-valid-dimensions-addendum-current4fb1461-1704.json",
+        "sha256": "f324286eb9aae65c52d1f0c98ce7f9e358bc7ee31f23cf55f20d2de32db502be"
+      },
+      "current_head_reconciliation": {
+        "reviewed_head": "4fb1461a9186f057845c0acecfbfd1063afd8da4",
+        "new_bridge": {
+          "artifact": "compare-4fb1461-to-784e816-1708.json",
+          "sha256": "e1c40dcc30a3118c35005a2dc0017f18ca7937b5b66ae87e9002445f59af95ed"
+        },
+        "integrated23_excludes_key": true,
+        "fresh_current_absence": true
+      },
+      "integration_commit": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "key": "formats22_animation_unknown",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "attributes": {
+        "name": "formats22_animation_unknown"
+      },
+      "raw": "%1$s: ᏍᏓᏱ. ᎥᏍᎩᏅ ᎢᏳᏍᏗ, AN Paint: ᎦᏘᏅᏛᏙᏗ (ᏔᎵ ᎠᎴ ᎤᎪᏗ?) ᎦᎫᏍᏛᏍᎬ: ᏰᎵ ᏂᎨᏒᎾ. AN Paint ᎠᏍᏚᎢᏍᎬ: ᎾᏓᏅᏍᎬᎾ ᏗᏟᎶᏍᏔᏅ ᎤᏩᏌ ᎨᏎᏍᏗ; ᎠᏓᏅᏏᏙᎯ ᎤᏍᏆᏂᎪᏛ: ᏰᎵ ᏂᎨᏒᎾ ᎨᏎᏍᏗ.",
+      "value": "%1$s: ᏍᏓᏱ. ᎥᏍᎩᏅ ᎢᏳᏍᏗ, AN Paint: ᎦᏘᏅᏛᏙᏗ (ᏔᎵ ᎠᎴ ᎤᎪᏗ?) ᎦᎫᏍᏛᏍᎬ: ᏰᎵ ᏂᎨᏒᎾ. AN Paint ᎠᏍᏚᎢᏍᎬ: ᎾᏓᏅᏍᎬᎾ ᏗᏟᎶᏍᏔᏅ ᎤᏩᏌ ᎨᏎᏍᏗ; ᎠᏓᏅᏏᏙᎯ ᎤᏍᏆᏂᎪᏛ: ᏰᎵ ᏂᎨᏒᎾ ᎨᏎᏍᏗ.",
+      "display": "%1$s: ᏍᏓᏱ. ᎥᏍᎩᏅ ᎢᏳᏍᏗ, AN Paint: ᎦᏘᏅᏛᏙᏗ (ᏔᎵ ᎠᎴ ᎤᎪᏗ?) ᎦᎫᏍᏛᏍᎬ: ᏰᎵ ᏂᎨᏒᎾ. AN Paint ᎠᏍᏚᎢᏍᎬ: ᎾᏓᏅᏍᎬᎾ ᏗᏟᎶᏍᏔᏅ ᎤᏩᏌ ᎨᏎᏍᏗ; ᎠᏓᏅᏏᏙᎯ ᎤᏍᏆᏂᎪᏛ: ᏰᎵ ᏂᎨᏒᎾ ᎨᏎᏍᏗ.",
+      "backtranslation": "This %1$s is difficult. Therefore, AN Paint: frames (two or more?), confirming is impossible. For AN Paint opening: it will be only a static image; keeping animation will be impossible.",
+      "placeholders": [
+        "%1$s"
+      ],
+      "raw_sha256": "ad361c7c37768a8d7ab1ea94dffaeea85a11e3cd0380b05829caa2f03b228dab",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-animation-unknown1-v3-1704.json",
+        "sha256": "9d878abd699f54a313c93d547cf8affcb9d06fc81588d5b8a3f2c3c754e506b0"
+      },
+      "independent_review": {
+        "artifact": "review-chr-animation-unknown1-v3-independent-1715.json",
+        "sha256": "17f895ad5a3639b0b4ba1ffaa71ff62b0e44e2b06d1bbd87f4e014d67a96ff4d"
+      },
+      "source_evidence": {
+        "artifact": "chr-animation-unknown-v3-primary-1704.json",
+        "sha256": "aea83c563c9f4b241e8e85eb52d055ebd9ce31c7b522951e478b303705aa9465"
+      },
+      "caller_evidence": {
+        "artifact": "chr-animation-unknown-v3-callers-1704.json",
+        "sha256": "3a9ffcc643480077882d9f5d7168af6cbb2986bdba20da37c68dd70c5c610c1f"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 91,
+          "exact_line": "        val message=if(info.frameCount<2) ui(R.string.formats22_animation_unknown,info.format) else",
+          "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt#L91"
+        }
+      ],
+      "caller_scope": {
+        "direct": "ImportSelection.kt91 is the only main-source resource caller. The one typed argument is info.format; frameCount<2 selects this warning and does not append the known-animation first-frame/poster text.",
+        "upstream": "AnimationMetadata.java58-59 returns null for complete counts below two; bounded GIF/PNG/WebP scanning catches ScanLimit to return inexact counts. MAX_BLOCKS is100000. Thus uncertainty is specifically whether at least two frames exist, not just the exact count.",
+        "downstream": "ImportSelection94-95 offers positive Open still and negative Cancel. Positive goes to finishSelection(0); ImportedImage.decode returns a single Bitmap. Both ClassicPaintActivity.readImage and AssemblyActivity.importImages use ImportSelection.",
+        "source_identity": "All104 local production content SHA256 and Git blob identities rechecked. All28 resource-only bridges from9b655b through784e816 are contiguous; no production changes."
+      },
+      "independent_semantic_review": [
+        {
+          "topic": "Causal processing difficulty",
+          "finding": "The input-format topic plus sdayi (hard/difficult) is followed by vsgihnv iyusdi (therefore/for that reason). The explicit causal connection makes confirmation impossible because of the input difficulty. This is a functional paraphrase of too complex to confirm, not a source-attested software-complexity adjective."
+        },
+        {
+          "topic": "Unknown binary state",
+          "finding": "The exact authored topic asks frames (two or more?) before confirming: impossible. It is a polar threshold question, not the earlier unknown exact number. Neither existence of animation nor a minimum two-frame count is asserted. General tali is used rather than the human-noun numeral; ale is attested for or, ugodi for more. Punctuation carries the fragment question; this is not an independently attested embedded-interrogative construction."
+        },
+        {
+          "topic": "Prediction rather than instruction",
+          "finding": "The old imperative hisdui is absent. OU492 asduisgv names opening, and the overt AN Paint topic scopes the following result. OU36 has unchanged gesesdi twice with future be glosses. The static-image-only complement plus this copula supplies an actual future prediction, not a command. The future copula is not newly derived open morphology."
+        },
+        {
+          "topic": "Retention scope",
+          "finding": "Animation keeping is followed by impossible and the same future copula, within the semicolon continuation of the named app opening. This predicts no retained animation on that opening, not disabled Save, source deletion, a known still-only input or an impossibility for other software. No first animated frame claim is made."
+        },
+        {
+          "topic": "Construction evidence and confidence",
+          "finding": "The nominal topic and predicative complements make a coherent diagnostic-fragment reading. The static adjective precedes image, consistent with the style guide. Consortium29 provides an independent expression followed by gesesdi, but only as a metalinguistic future-tense entry. It does not prove that this exact impossible+future or image-only+future composition is native idiom. Acceptance is functional/source-compositional, not a claim of demonstrated native fluency."
+        }
+      ],
+      "confidence": {
+        "exact_identity_and_caller": "High within the pinned source snapshot.",
+        "functional_semantics": "Moderate; the prior imperative and mere-count defects are materially repaired.",
+        "native_idiom_and_full_copular_composition": "Moderate-low; lexical attestation does not certify the complete warning or complement selection."
+      },
+      "limits": [
+        "New raw is not approved by any predecessor review. All prior pins and held decisions remain untouched.",
+        "Not a native-certified or layout/runtime-validated translation. No claim that all possible future outputs or other programs cannot preserve animation.",
+        "The source can still contain animation; no known count, first-animated-frame guarantee, original-file deletion, or disabled-save assertion."
+      ],
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "metadata_corrections": [
+        "OU36 packet primary_reextracted_exact_context shows the neighboring gegesesdi row but omits the two exact gesesdi rows. The exact form itself is verified in the PDF and raster; this is an excerpt-completeness correction, not a raw change."
+      ],
+      "integration_commit": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P0",
+      "key": "save20_destination_error",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "The completed image could not replace its destination.",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "raw": "AN Paint quichihchiuhtoya ixcopincayotl. Campa monequi quiahcocuiz, axhuelqui quipatla tlen eltoya nopayoh ica ni ixcopincayotl.",
+      "value": "AN Paint quichihchiuhtoya ixcopincayotl. Campa monequi quiahcocuiz, axhuelqui quipatla tlen eltoya nopayoh ica ni ixcopincayotl.",
+      "display": "AN Paint quichihchiuhtoya ixcopincayotl. Campa monequi quiahcocuiz, axhuelqui quipatla tlen eltoya nopayoh ica ni ixcopincayotl.",
+      "backtranslation": "AN Paint had prepared the image. At the place where it needs to store it, it could not replace what was there with this image.",
+      "placeholders": [],
+      "raw_sha256": "14e9a570f76e3f33e1ee79eac4315ac77c5fa4b92ca5f1daf2268db90abf3bdf",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nahua-destination-replacement3-1706.json",
+        "sha256": "f0488cdb4eb9590a42716b00a50e8b6cbf415e6978f393960e209db8140e23db"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-destination-replacement3-independent-1715.json",
+        "sha256": "44d6bb79be4b9969cf049c25766621919d9d5845d964e790e1b3038b1a12f22e"
+      },
+      "source_evidence": {
+        "artifact": "nahua-destination-replacement-primary3-1706.json",
+        "sha256": "bbb1ff8506d9950f069564762f11e0fbdd40b9ee77d216bebd028175c35f63b8"
+      },
+      "caller_evidence": {
+        "artifact": "review-nahua-destination-replacement3-independent-1715.json",
+        "sha256": "44d6bb79be4b9969cf049c25766621919d9d5845d964e790e1b3038b1a12f22e"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 19,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "84059375f4005c22790ceb6d836817f3367fae3a",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt#L19"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 40,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt#L40"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 103,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L103"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 62,
+          "exact_line": "            if (!temporary.renameTo(destination)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "e22eb041a72c398f04aa21a9aeb89e2fb43cbcae",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt#L62"
+        }
+      ],
+      "caller_scope": [
+        {
+          "route": "ClassicPaintActivity.writeImage -> ImageExporter.encode -> BMP/GIF, DIB, ICO, Base64 or ASCII -> failed rename",
+          "evidence": "ClassicPaintActivity1363 creates an existing internal staging file with File.createTempFile;1364 calls ImageExporter. Its17-22 routes to each throwing export helper. The external output URI is not opened until1365 after encode returns. All four throw sites occur only after the temporary representation writer returns and closes.",
+          "past_target_existence": true,
+          "limits": "The old staging file may be empty. The target is not asserted to be the selected external URI."
+        },
+        {
+          "route": "ClassicPaintActivity.readImage -> ImportSelection.start -> normalize -> decodeToFile(file,file) -> failed rename",
+          "evidence": "ClassicPaintActivity1271 creates cached input,1273 fills it,1290 passes it to selection. ImportSelection53 normalizes it;32 passes identical source/destination. TextImageCodec16-18 reads source into temporary bytes,19-22 only checks a signature, then62 attempts replacement.",
+          "past_target_existence": true,
+          "limits": "Preparation may mean unwrapped encoded bytes, not complete pixel decoding."
+        },
+        {
+          "route": "AssemblyActivity.importImages -> ImportSelection.start -> normalize -> decodeToFile(file,file) -> failed rename",
+          "evidence": "Additional chain independently found. AssemblyActivity235 constructs path;243 successfully ImportFiles.copy writes it;260 passes it to selection. ImportFiles.copy20 opens destination.outputStream before writing. Normalization must then successfully open/read the same existing source before it reaches rename.",
+          "past_target_existence": true,
+          "limits": "Path construction alone does not prove existence; the successful copy and read do. This is separate from AssemblyActivity.makeOutput, which is correctly excluded."
+        }
+      ],
+      "independent_semantic_review": {
+        "locale": "nhe",
+        "key": "save20_destination_error",
+        "decision": "ACCEPT_BOUNDED_SOURCE_COMPOSITIONAL",
+        "raw_sha256": "14e9a570f76e3f33e1ee79eac4315ac77c5fa4b92ca5f1daf2268db90abf3bdf",
+        "forms": "quipatla; quichihchiuhtoya; campa monequi; quiahcocuiz; axhuelqui; tlen eltoya; nopayoh; ica ni ixcopincayotl",
+        "analysis": "Own Chicontepec dictionary PATLA short-vowel entry expressly describes removing a thing and placing another; YANCUILIA independently has old object + ica replacement. The completed preparation form comes from TLACUALTLAMI, prior to exhaustion of prepared food. CILCHILLI supplies axhuelqui plus bare object-marked verb. MAHMAQUILIA supplies an inanimate relative tlen eltoya with location, TLEN permits a headless what expression, and NOPAYOH locates it. Exact computer-storage third-person future is in DIZCOH; it is not borrowed from NCH/NHW. The locative topic and ica ni image distinguish old target from replacement.",
+        "common_meaning": "AN Paint had prepared the image. At its intended storage place it could not replace what had been there with this image. Explicit former-target object and substitute repair the omitted replacement role. Preparation is intentionally broader than encoding/full decode/artwork completion.",
+        "confidence": "Moderate source-grounded authored composition. No published whole sentence or native-human certification."
+      },
+      "confidence": "Moderate source-grounded authored composition. No published whole sentence or native-human certification.",
+      "limits": [
+        "Past target-object existence is scoped to inspected production callers, not guaranteed by generic renameTo API.",
+        "No assertion of nonempty old destination bytes, unchanged source, successful save, retained temporary output, permissions cause, retry outcome or user-selected external URI.",
+        "Preparation is broader than encoding and does not assert complete image decoding or artwork completion.",
+        "The composed relative + past inanimate existence + there is explicit target wording, but its application to a filesystem target is authored.",
+        "NCH/NHW third-person storage future is a disclosed adaptation of own first-person exact form; noun regional caveats retained.",
+        "No UI/layout/runtime or build/test validation performed."
+      ],
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "metadata_corrections": [
+        "Author packet lists only Classic import and export. Its production-route enumeration is incomplete: AssemblyActivity.importImages also reaches this diagnostic. This independent review supplies the missing route; it supports rather than contradicts the new past-target wording.",
+        "ImportFiles is an object in ImportSelection.kt, not a standalone ImportFiles.kt file."
+      ],
+      "integration_commit": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2"
+    },
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "key": "save20_destination_error",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "The completed image could not replace its destination.",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "raw": "AN Paint quisencajtoya ixkopinali. Campa monequi quiajocuis, amo huelqui quipata cati eltoya nopona ica ni ixkopinali.",
+      "value": "AN Paint quisencajtoya ixkopinali. Campa monequi quiajocuis, amo huelqui quipata cati eltoya nopona ica ni ixkopinali.",
+      "display": "AN Paint quisencajtoya ixkopinali. Campa monequi quiajocuis, amo huelqui quipata cati eltoya nopona ica ni ixkopinali.",
+      "backtranslation": "AN Paint had prepared the image. At the place where it needs to store it, it could not replace what was there with this image.",
+      "placeholders": [],
+      "raw_sha256": "ce46772f61d0784f24f316f38b558a935830ece33b46205d2444fcc6e7407050",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nahua-destination-replacement3-1706.json",
+        "sha256": "f0488cdb4eb9590a42716b00a50e8b6cbf415e6978f393960e209db8140e23db"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-destination-replacement3-independent-1715.json",
+        "sha256": "44d6bb79be4b9969cf049c25766621919d9d5845d964e790e1b3038b1a12f22e"
+      },
+      "source_evidence": {
+        "artifact": "nahua-destination-replacement-primary3-1706.json",
+        "sha256": "bbb1ff8506d9950f069564762f11e0fbdd40b9ee77d216bebd028175c35f63b8"
+      },
+      "caller_evidence": {
+        "artifact": "review-nahua-destination-replacement3-independent-1715.json",
+        "sha256": "44d6bb79be4b9969cf049c25766621919d9d5845d964e790e1b3038b1a12f22e"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 19,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "84059375f4005c22790ceb6d836817f3367fae3a",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt#L19"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 40,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt#L40"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 103,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L103"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 62,
+          "exact_line": "            if (!temporary.renameTo(destination)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "e22eb041a72c398f04aa21a9aeb89e2fb43cbcae",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt#L62"
+        }
+      ],
+      "caller_scope": [
+        {
+          "route": "ClassicPaintActivity.writeImage -> ImageExporter.encode -> BMP/GIF, DIB, ICO, Base64 or ASCII -> failed rename",
+          "evidence": "ClassicPaintActivity1363 creates an existing internal staging file with File.createTempFile;1364 calls ImageExporter. Its17-22 routes to each throwing export helper. The external output URI is not opened until1365 after encode returns. All four throw sites occur only after the temporary representation writer returns and closes.",
+          "past_target_existence": true,
+          "limits": "The old staging file may be empty. The target is not asserted to be the selected external URI."
+        },
+        {
+          "route": "ClassicPaintActivity.readImage -> ImportSelection.start -> normalize -> decodeToFile(file,file) -> failed rename",
+          "evidence": "ClassicPaintActivity1271 creates cached input,1273 fills it,1290 passes it to selection. ImportSelection53 normalizes it;32 passes identical source/destination. TextImageCodec16-18 reads source into temporary bytes,19-22 only checks a signature, then62 attempts replacement.",
+          "past_target_existence": true,
+          "limits": "Preparation may mean unwrapped encoded bytes, not complete pixel decoding."
+        },
+        {
+          "route": "AssemblyActivity.importImages -> ImportSelection.start -> normalize -> decodeToFile(file,file) -> failed rename",
+          "evidence": "Additional chain independently found. AssemblyActivity235 constructs path;243 successfully ImportFiles.copy writes it;260 passes it to selection. ImportFiles.copy20 opens destination.outputStream before writing. Normalization must then successfully open/read the same existing source before it reaches rename.",
+          "past_target_existence": true,
+          "limits": "Path construction alone does not prove existence; the successful copy and read do. This is separate from AssemblyActivity.makeOutput, which is correctly excluded."
+        }
+      ],
+      "independent_semantic_review": {
+        "locale": "nch",
+        "key": "save20_destination_error",
+        "decision": "ACCEPT_BOUNDED_SOURCE_COMPOSITIONAL",
+        "raw_sha256": "ce46772f61d0784f24f316f38b558a935830ece33b46205d2444fcc6e7407050",
+        "forms": "quipata; quisencajtoya; campa monequi; quiajocuis; amo huelqui; cati eltoya; nopona; ica ni ixkopinali",
+        "analysis": "The own Central Huasteca [nch] NT title was re-read. John2:14 uses quipatayayaj with named money and ica substitute; 2Tim1:14 supplies exact quipata. Luke14:30 has amo huelqui quitamilti, supporting the unsuffixed complement. 1Cor15:47 has exact quisencajtoya and Luke23:56/24:1 independently shows preparation of materials for later use. Mark2:26 supplies cati eltoya referring to bread, and Matt23:20 the headless cati eltoc nopona. Composing cati eltoya nopona is an ordinary tense/location substitution, not NHE transfer. Quiajocuis is a disclosed regular third-person adaptation from the own nicajocuis future with quiajocuij storage stem support, not claimed as a directly attested whole token.",
+        "common_meaning": "AN Paint had prepared the image. At its intended storage place it could not replace what had been there with this image. Explicit former-target object and substitute repair the omitted replacement role. Preparation is intentionally broader than encoding/full decode/artwork completion.",
+        "confidence": "Moderate source-grounded authored composition. No published whole sentence or native-human certification."
+      },
+      "confidence": "Moderate source-grounded authored composition. No published whole sentence or native-human certification.",
+      "limits": [
+        "Past target-object existence is scoped to inspected production callers, not guaranteed by generic renameTo API.",
+        "No assertion of nonempty old destination bytes, unchanged source, successful save, retained temporary output, permissions cause, retry outcome or user-selected external URI.",
+        "Preparation is broader than encoding and does not assert complete image decoding or artwork completion.",
+        "The composed relative + past inanimate existence + there is explicit target wording, but its application to a filesystem target is authored.",
+        "NCH/NHW third-person storage future is a disclosed adaptation of own first-person exact form; noun regional caveats retained.",
+        "No UI/layout/runtime or build/test validation performed."
+      ],
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "metadata_corrections": [
+        "Author packet lists only Classic import and export. Its production-route enumeration is incomplete: AssemblyActivity.importImages also reaches this diagnostic. This independent review supplies the missing route; it supports rather than contradicts the new past-target wording.",
+        "ImportFiles is an object in ImportSelection.kt, not a standalone ImportFiles.kt file."
+      ],
+      "integration_commit": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "key": "save20_destination_error",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "The completed image could not replace its destination.",
+      "attributes": {
+        "name": "save20_destination_error"
+      },
+      "raw": "AN Paint quisencajtoya tlaixkopintli. Campa monequi quiajocuis, amo huelqui quipatla catli eltoya nopona ica ni tlaixkopintli.",
+      "value": "AN Paint quisencajtoya tlaixkopintli. Campa monequi quiajocuis, amo huelqui quipatla catli eltoya nopona ica ni tlaixkopintli.",
+      "display": "AN Paint quisencajtoya tlaixkopintli. Campa monequi quiajocuis, amo huelqui quipatla catli eltoya nopona ica ni tlaixkopintli.",
+      "backtranslation": "AN Paint had prepared the image. At the place where it needs to store it, it could not replace what was there with this image.",
+      "placeholders": [],
+      "raw_sha256": "cf0533b40a010af7276ad31cdb2fca12ad3a198bc24e93aac4e60ca9918a2439",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nahua-destination-replacement3-1706.json",
+        "sha256": "f0488cdb4eb9590a42716b00a50e8b6cbf415e6978f393960e209db8140e23db"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-destination-replacement3-independent-1715.json",
+        "sha256": "44d6bb79be4b9969cf049c25766621919d9d5845d964e790e1b3038b1a12f22e"
+      },
+      "source_evidence": {
+        "artifact": "nahua-destination-replacement-primary3-1706.json",
+        "sha256": "bbb1ff8506d9950f069564762f11e0fbdd40b9ee77d216bebd028175c35f63b8"
+      },
+      "caller_evidence": {
+        "artifact": "review-nahua-destination-replacement3-independent-1715.json",
+        "sha256": "44d6bb79be4b9969cf049c25766621919d9d5845d964e790e1b3038b1a12f22e"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 19,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "84059375f4005c22790ceb6d836817f3367fae3a",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt#L19"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 40,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt#L40"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 103,
+          "exact_line": "            if (!temporary.renameTo(file)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L103"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 62,
+          "exact_line": "            if (!temporary.renameTo(destination)) throw IOException(ui(R.string.save20_destination_error))",
+          "git_blob_sha": "e22eb041a72c398f04aa21a9aeb89e2fb43cbcae",
+          "url": "https://github.com/c933103/AN-Paint/blob/784e816c756e31f15ec6fb03bc2300b4350ed438/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt#L62"
+        }
+      ],
+      "caller_scope": [
+        {
+          "route": "ClassicPaintActivity.writeImage -> ImageExporter.encode -> BMP/GIF, DIB, ICO, Base64 or ASCII -> failed rename",
+          "evidence": "ClassicPaintActivity1363 creates an existing internal staging file with File.createTempFile;1364 calls ImageExporter. Its17-22 routes to each throwing export helper. The external output URI is not opened until1365 after encode returns. All four throw sites occur only after the temporary representation writer returns and closes.",
+          "past_target_existence": true,
+          "limits": "The old staging file may be empty. The target is not asserted to be the selected external URI."
+        },
+        {
+          "route": "ClassicPaintActivity.readImage -> ImportSelection.start -> normalize -> decodeToFile(file,file) -> failed rename",
+          "evidence": "ClassicPaintActivity1271 creates cached input,1273 fills it,1290 passes it to selection. ImportSelection53 normalizes it;32 passes identical source/destination. TextImageCodec16-18 reads source into temporary bytes,19-22 only checks a signature, then62 attempts replacement.",
+          "past_target_existence": true,
+          "limits": "Preparation may mean unwrapped encoded bytes, not complete pixel decoding."
+        },
+        {
+          "route": "AssemblyActivity.importImages -> ImportSelection.start -> normalize -> decodeToFile(file,file) -> failed rename",
+          "evidence": "Additional chain independently found. AssemblyActivity235 constructs path;243 successfully ImportFiles.copy writes it;260 passes it to selection. ImportFiles.copy20 opens destination.outputStream before writing. Normalization must then successfully open/read the same existing source before it reaches rename.",
+          "past_target_existence": true,
+          "limits": "Path construction alone does not prove existence; the successful copy and read do. This is separate from AssemblyActivity.makeOutput, which is correctly excluded."
+        }
+      ],
+      "independent_semantic_review": {
+        "locale": "nhw",
+        "key": "save20_destination_error",
+        "decision": "ACCEPT_BOUNDED_SOURCE_COMPOSITIONAL",
+        "raw_sha256": "cf0533b40a010af7276ad31cdb2fca12ad3a198bc24e93aac4e60ca9918a2439",
+        "forms": "quipatla; quisencajtoya; campa monequi; quiajocuis; amo huelqui; catli eltoya; nopona; ica ni tlaixkopintli",
+        "analysis": "The own Western Huasteca [nhw] NT title and Tamazunchale/regional-variation note were re-read. John2:14 has quipatlayayaj plus object and ica substitute; 2Tim1:14 supplies exact quipatla. Luke14:30 gives amo huelqui quitlamilti; 1Cor15:47 gives quisencajtoya and Luke23:56/24:1 preparation of materials. Mark2:26 has catli eltoya for bread; Matt23:20 has headless catli eltoc nopona. The source explicitly selects nopona despite regional alternatives. Future quiajocuis is a disclosed regular person adaptation from own nicajocuis and quiajocuij, not borrowed from Central/Eastern.",
+        "common_meaning": "AN Paint had prepared the image. At its intended storage place it could not replace what had been there with this image. Explicit former-target object and substitute repair the omitted replacement role. Preparation is intentionally broader than encoding/full decode/artwork completion.",
+        "confidence": "Moderate source-grounded authored composition. No published whole sentence or native-human certification."
+      },
+      "confidence": "Moderate source-grounded authored composition. No published whole sentence or native-human certification.",
+      "limits": [
+        "Past target-object existence is scoped to inspected production callers, not guaranteed by generic renameTo API.",
+        "No assertion of nonempty old destination bytes, unchanged source, successful save, retained temporary output, permissions cause, retry outcome or user-selected external URI.",
+        "Preparation is broader than encoding and does not assert complete image decoding or artwork completion.",
+        "The composed relative + past inanimate existence + there is explicit target wording, but its application to a filesystem target is authored.",
+        "NCH/NHW third-person storage future is a disclosed adaptation of own first-person exact form; noun regional caveats retained.",
+        "No UI/layout/runtime or build/test validation performed."
+      ],
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "metadata_corrections": [
+        "Author packet lists only Classic import and export. Its production-route enumeration is incomplete: AssemblyActivity.importImages also reaches this diagnostic. This independent review supplies the missing route; it supports rather than contradicts the new past-target wording.",
+        "ImportFiles is an object in ImportSelection.kt, not a standalone ImportFiles.kt file."
+      ],
+      "integration_commit": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2"
+    }
+  ],
+  "limits": [
+    "Cherokee animation is moderate-low-confidence authored source composition, not proven native idiom. The question fragment and future copular complement are explicit review limits.",
+    "Nahua destination replacements refer to what was at the target and its substitute. Current callers support past target-object existence, not nonempty bytes, retention or a successful complete decode.",
+    "Cherokee dimensions is a non-assertive re-entry instruction. It does not diagnose the displayed numbers as invalid or fix the cached-target code path.",
+    "Chamorro edit-role labels are dormant semantic-only resource slots. Compact FG/BG labels remain outside this record.",
+    "No native-speaker, glyph, layout, accessibility or runtime certification."
+  ]
+}
