@@ -1,0 +1,941 @@
+{
+  "title": "Accepted thirteen P1 labels, with Cherokee Other images excluded",
+  "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e",
+  "integration_tree": "300676f728d02b949752468cc638579978313239",
+  "counts": {
+    "new_P0": 0,
+    "new_P1": 13,
+    "new_gap_fills": 13,
+    "replacements": 0
+  },
+  "original_intake": {
+    "artifact": "reviewed-americas13-current2300b05-intake-1826.json",
+    "sha256": "d3ba6bf843a7804668ea90bad93610f9dc5155e56132252415acb7a4beb7d0c3"
+  },
+  "raw_convention": "XML-parsed Android text, no added escaping in these rows. raw/display identical; XML-escape once.",
+  "rows": [
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_original_size34",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Original size",
+      "attributes": {
+        "name": "ui_original_size34",
+        "formatted": "false"
+      },
+      "raw": "ᎠᎴᏅᏗᏍᎬ ᎢᎩᏓ",
+      "display": "ᎠᎴᏅᏗᏍᎬ ᎢᎩᏓ",
+      "raw_sha256": "74fe15e2d94fd1cc771c4ca1383c1256b8f4608b59b00c409d4c32927fa3e230",
+      "placeholders": [],
+      "backtranslation": "Original/base size.",
+      "confidence": "Moderate source-supported authored composition; lexical identities and senses checked, whole phrase not source-attested or native-certified.",
+      "source_evidence": {
+        "artifact": "chr-image-choice-primary-1815.json",
+        "sha256": "bf40ccee89e40e57ee650c4e5f14bb07e33f9cb023afb0a4a2dca1f64d323a5c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-image-choice-callers-1815.json",
+        "sha256": "b9f52e7005f9bcba4e477c53e441e12db2807846270b01b9bb4542a0eff29a93"
+      },
+      "candidate": {
+        "artifact": "chr-image-choice6-1815.json",
+        "sha256": "5b343f00f7d6314cf7c88e67e60725d3d717fb72d6baa65dda65cc051de34b52"
+      },
+      "independent_review": {
+        "artifact": "review-chr-image-choice6-independent-1821.json",
+        "sha256": "6a011f4484d1d1076ee74fe2f9d696926460fb1db3abae7b46a238f326b2d91d"
+      },
+      "independent_findings": {
+        "key": "ui_original_size34",
+        "locale": "chr",
+        "tier": "P1",
+        "raw": "ᎠᎴᏅᏗᏍᎬ ᎢᎩᏓ",
+        "raw_sha256": "74fe15e2d94fd1cc771c4ca1383c1256b8f4608b59b00c409d4c32927fa3e230",
+        "attributes": {
+          "name": "ui_original_size34",
+          "formatted": "false"
+        },
+        "source_entry_ids": [
+          "OU_p494_original",
+          "OU_p647_size"
+        ],
+        "direct_callers": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "line": 758,
+            "exact_line": "                options.addView(button(ui(R.string.ui_original_size34),\"selection_original_size\") {",
+            "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L758",
+            "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+            "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+          }
+        ],
+        "backtranslation": "Original/base size.",
+        "decision": "ACCEPT_UNCHANGED",
+        "source_reading": "OU p494 gives base, original without a POS label; OU p647 explicitly gives the noun size. The phrase is an authored nominal control label, not an attested complete sentence.",
+        "caller_meaning": "ClassicPaintActivity 758–759 calls restoreSelectionSize; PaintDocument 415–420 restores the retained selection bitmap width and height about the current center. The caller then fits the view. This is not a 100% viewport control, file-byte size, DPI change, rotation reset, or undo-all promise.",
+        "limits": "Original/base plus size is a bounded contextual composition. The source does not establish an adjective paradigm or all finite agreement, and none is claimed."
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_share_saved_image",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Share saved image",
+      "attributes": {
+        "name": "ui_share_saved_image"
+      },
+      "raw": "ᎠᏯᏙᏍᏗᎢ: ᏗᏟᎶᏍᏔᏅ (ᎠᏍᏆᏂᎪᏗᏍᎬ: ᎠᏍᏆᏛᎯ)",
+      "display": "ᎠᏯᏙᏍᏗᎢ: ᏗᏟᎶᏍᏔᏅ (ᎠᏍᏆᏂᎪᏗᏍᎬ: ᎠᏍᏆᏛᎯ)",
+      "raw_sha256": "3eb108794469b1055cc8eea826d8f127c4922ce21f3b5b11945c896e879d50a8",
+      "placeholders": [],
+      "backtranslation": "Share: image (saving: done).",
+      "confidence": "Moderate source-supported authored composition; lexical identities and senses checked, whole phrase not source-attested or native-certified.",
+      "source_evidence": {
+        "artifact": "chr-image-choice-primary-1815.json",
+        "sha256": "bf40ccee89e40e57ee650c4e5f14bb07e33f9cb023afb0a4a2dca1f64d323a5c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-image-choice-callers-1815.json",
+        "sha256": "b9f52e7005f9bcba4e477c53e441e12db2807846270b01b9bb4542a0eff29a93"
+      },
+      "candidate": {
+        "artifact": "chr-image-choice6-1815.json",
+        "sha256": "5b343f00f7d6314cf7c88e67e60725d3d717fb72d6baa65dda65cc051de34b52"
+      },
+      "independent_review": {
+        "artifact": "review-chr-image-choice6-independent-1821.json",
+        "sha256": "6a011f4484d1d1076ee74fe2f9d696926460fb1db3abae7b46a238f326b2d91d"
+      },
+      "independent_findings": {
+        "key": "ui_share_saved_image",
+        "locale": "chr",
+        "tier": "P1",
+        "raw": "ᎠᏯᏙᏍᏗᎢ: ᏗᏟᎶᏍᏔᏅ (ᎠᏍᏆᏂᎪᏗᏍᎬ: ᎠᏍᏆᏛᎯ)",
+        "raw_sha256": "3eb108794469b1055cc8eea826d8f127c4922ce21f3b5b11945c896e879d50a8",
+        "attributes": {
+          "name": "ui_share_saved_image"
+        },
+        "source_entry_ids": [
+          "1801_111907_1591957",
+          "1294_64520_1591822",
+          "OU_p616_saving",
+          "OU_p151_done"
+        ],
+        "direct_callers": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "line": 1388,
+            "exact_line": "            startActivity(Intent.createChooser(send,ui(R.string.ui_share_saved_image)))",
+            "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1388",
+            "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+            "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+          }
+        ],
+        "backtranslation": "Share: image (saving: done).",
+        "decision": "ACCEPT_UNCHANGED",
+        "source_reading": "TBX share is a verb for making resources available to others; digital image is a singular noun. OU p616 saving and p151 done are the exact chosen forms. The adjacent saved/rescue-related family is not substituted, and the separate Save command is not mislabeled as a participle.",
+        "caller_meaning": "writeImage completes its stream copy before calling shareSavedImage. ClassicPaintActivity 1388 supplies this text to Intent.createChooser for ACTION_SEND with the saved image URI. The title identifies a saved object for prospective sharing, not completed sharing, automatic transmission, delivery, or receipt.",
+        "limits": "The parenthesized status qualifies the image and the saving operation. This is functional authored status composition, not a source-attested inflected phrase equivalent to saved image."
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_choose_at_least_one_image",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Choose at least one image.",
+      "attributes": {
+        "name": "ui_choose_at_least_one_image"
+      },
+      "raw": "ᏗᏟᎶᏍᏔᏅ: ᎠᏑᏰᏍᏗ (ᏭᏍᏗᎬᎢ: 1).",
+      "display": "ᏗᏟᎶᏍᏔᏅ: ᎠᏑᏰᏍᏗ (ᏭᏍᏗᎬᎢ: 1).",
+      "raw_sha256": "f5ed8974afcf4bd41afbd728126bf21995bbcbe3f91931fff34329a63830be5f",
+      "placeholders": [],
+      "backtranslation": "Image(s): select (minimum: 1).",
+      "confidence": "Moderate source-supported authored composition; lexical identities and senses checked, whole phrase not source-attested or native-certified.",
+      "source_evidence": {
+        "artifact": "chr-image-choice-primary-1815.json",
+        "sha256": "bf40ccee89e40e57ee650c4e5f14bb07e33f9cb023afb0a4a2dca1f64d323a5c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-image-choice-callers-1815.json",
+        "sha256": "b9f52e7005f9bcba4e477c53e441e12db2807846270b01b9bb4542a0eff29a93"
+      },
+      "candidate": {
+        "artifact": "chr-image-choice6-1815.json",
+        "sha256": "5b343f00f7d6314cf7c88e67e60725d3d717fb72d6baa65dda65cc051de34b52"
+      },
+      "independent_review": {
+        "artifact": "review-chr-image-choice6-independent-1821.json",
+        "sha256": "6a011f4484d1d1076ee74fe2f9d696926460fb1db3abae7b46a238f326b2d91d"
+      },
+      "independent_findings": {
+        "key": "ui_choose_at_least_one_image",
+        "locale": "chr",
+        "tier": "P1",
+        "raw": "ᏗᏟᎶᏍᏔᏅ: ᎠᏑᏰᏍᏗ (ᏭᏍᏗᎬᎢ: 1).",
+        "raw_sha256": "f5ed8974afcf4bd41afbd728126bf21995bbcbe3f91931fff34329a63830be5f",
+        "attributes": {
+          "name": "ui_choose_at_least_one_image"
+        },
+        "source_entry_ids": [
+          "1294_64520_1591822",
+          "13946_109605_1591943",
+          "8245_334528_1591942",
+          "OU_p454_minimum"
+        ],
+        "direct_callers": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+            "line": 155,
+            "exact_line": "        require(ids.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+            "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L155",
+            "git_blob_sha": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+            "content_sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+            "line": 145,
+            "exact_line": "                require(selected.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+            "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L145",
+            "git_blob_sha": "a21c5d9a32794df26907f6765d52f0d409e2953a",
+            "content_sha256": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193"
+          }
+        ],
+        "backtranslation": "Image: select (minimum: 1). In this checkbox context, image(s) is the intended counted category.",
+        "decision": "ACCEPT_UNCHANGED",
+        "source_reading": "TBX select is explicitly a verb for marking items and adding checks to checkboxes. OU p454 minimum is exact, with no POS label supplied. TBX image is singular metadata, not a claimed plural-attested noun; contextual number is handled without invented morphology.",
+        "caller_meaning": "ImageCropDialog 145 rejects an empty selected set before applying crop; its checkbox subset may contain several images. ImageAssembly 155 rejects an empty ID set. Minimum 1 preserves any nonempty subset, rather than exactly one, a maximum, or image dimensions.",
+        "limits": "Nominal category plus action and numerical minimum is an authored UI instruction. No new plural finite verb or native-human grammatical certification is claimed."
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_tap_an_image_first",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Tap an image first.",
+      "attributes": {
+        "name": "ui_tap_an_image_first"
+      },
+      "raw": "ᎢᎬᏱᎢ: ᏗᏟᎶᏍᏔᏅ — ᎤᏟᏍᏓ ᎠᏒᏂᎸ.",
+      "display": "ᎢᎬᏱᎢ: ᏗᏟᎶᏍᏔᏅ — ᎤᏟᏍᏓ ᎠᏒᏂᎸ.",
+      "raw_sha256": "4f1bd7a3ff7d3bc3a13f521675015783d654cc5a6d07640f159d6a30ecf6f7c7",
+      "placeholders": [],
+      "backtranslation": "First: image, tap.",
+      "confidence": "Moderate source-supported authored composition; lexical identities and senses checked, whole phrase not source-attested or native-certified.",
+      "source_evidence": {
+        "artifact": "chr-image-choice-primary-1815.json",
+        "sha256": "bf40ccee89e40e57ee650c4e5f14bb07e33f9cb023afb0a4a2dca1f64d323a5c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-image-choice-callers-1815.json",
+        "sha256": "b9f52e7005f9bcba4e477c53e441e12db2807846270b01b9bb4542a0eff29a93"
+      },
+      "candidate": {
+        "artifact": "chr-image-choice6-1815.json",
+        "sha256": "5b343f00f7d6314cf7c88e67e60725d3d717fb72d6baa65dda65cc051de34b52"
+      },
+      "independent_review": {
+        "artifact": "review-chr-image-choice6-independent-1821.json",
+        "sha256": "6a011f4484d1d1076ee74fe2f9d696926460fb1db3abae7b46a238f326b2d91d"
+      },
+      "independent_findings": {
+        "key": "ui_tap_an_image_first",
+        "locale": "chr",
+        "tier": "P1",
+        "raw": "ᎢᎬᏱᎢ: ᏗᏟᎶᏍᏔᏅ — ᎤᏟᏍᏓ ᎠᏒᏂᎸ.",
+        "raw_sha256": "4f1bd7a3ff7d3bc3a13f521675015783d654cc5a6d07640f159d6a30ecf6f7c7",
+        "attributes": {
+          "name": "ui_tap_an_image_first"
+        },
+        "source_entry_ids": [
+          "OU_p227_first",
+          "1294_64520_1591822",
+          "17513_648724_1653458"
+        ],
+        "direct_callers": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "line": 99,
+            "exact_line": "            button(ui(R.string.ui_unplace),\"assembly_unplace\") { selected?.let { assembly.unplace(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+            "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L99",
+            "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+            "content_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "line": 100,
+            "exact_line": "            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+            "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100",
+            "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+            "content_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+          }
+        ],
+        "backtranslation": "First: image, tap.",
+        "decision": "ACCEPT_UNCHANGED",
+        "source_reading": "OU p227 includes the exact first form in an adjective entry and a duplicate unqualified first entry. It is used as a separated step heading, not silently converted to an adjective describing which image. TBX tap is explicitly a verb for a brief fingertip or stylus press on a UI element.",
+        "caller_meaning": "AssemblyActivity 99–100 shows this when Unplace or Remove has no selected image. Board selection and thumbnail selection provide the prerequisite. It asks for a first action on an existing assembly image, not import, double-tap, or selecting the first image in list order.",
+        "limits": "Tap is retained as the exact UI action term, not a newly fabricated finite imperative. The punctuation carries the step-heading structure; the full sentence is not source-attested."
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_choose_a_smaller_size",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Choose a smaller size.",
+      "attributes": {
+        "name": "ui_choose_a_smaller_size"
+      },
+      "raw": "ᎢᎩᏓ (ᎦᏲᎵᎨ): ᎭᏑᏯᎩ.",
+      "display": "ᎢᎩᏓ (ᎦᏲᎵᎨ): ᎭᏑᏯᎩ.",
+      "raw_sha256": "40d4dd5a22e7375e3c8dc75b8e6a3de57989892128321ec0e7aab3040d347d96",
+      "placeholders": [],
+      "backtranslation": "Size (less): choose it.",
+      "confidence": "Moderate source-supported authored composition; lexical identities and senses checked, whole phrase not source-attested or native-certified.",
+      "source_evidence": {
+        "artifact": "chr-image-choice-primary-1815.json",
+        "sha256": "bf40ccee89e40e57ee650c4e5f14bb07e33f9cb023afb0a4a2dca1f64d323a5c"
+      },
+      "caller_evidence": {
+        "artifact": "chr-image-choice-callers-1815.json",
+        "sha256": "b9f52e7005f9bcba4e477c53e441e12db2807846270b01b9bb4542a0eff29a93"
+      },
+      "candidate": {
+        "artifact": "chr-image-choice6-1815.json",
+        "sha256": "5b343f00f7d6314cf7c88e67e60725d3d717fb72d6baa65dda65cc051de34b52"
+      },
+      "independent_review": {
+        "artifact": "review-chr-image-choice6-independent-1821.json",
+        "sha256": "6a011f4484d1d1076ee74fe2f9d696926460fb1db3abae7b46a238f326b2d91d"
+      },
+      "independent_findings": {
+        "key": "ui_choose_a_smaller_size",
+        "locale": "chr",
+        "tier": "P1",
+        "raw": "ᎢᎩᏓ (ᎦᏲᎵᎨ): ᎭᏑᏯᎩ.",
+        "raw_sha256": "40d4dd5a22e7375e3c8dc75b8e6a3de57989892128321ec0e7aab3040d347d96",
+        "attributes": {
+          "name": "ui_choose_a_smaller_size"
+        },
+        "source_entry_ids": [
+          "OU_p647_size",
+          "OU_p421_less",
+          "OU_p99_choose",
+          "14733_31389_1590935"
+        ],
+        "direct_callers": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "line": 311,
+            "exact_line": "            estimate.text = if (size == null) ui(R.string.ui_enter_valid_dimensions) else ui(R.string.ui_estimated_memory_current_working_budget, memoryLabel(renderer.estimatedBytes(size)), memoryLabel(ImageMemoryPolicy.forDevice(this).workingBytes.toDouble())) + if (renderer.fits(size)) ui(R.string.ui_fits_the_current_budget) else ui(R.string.ui_choose_a_smaller_size)",
+            "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L311",
+            "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+            "content_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8"
+          }
+        ],
+        "backtranslation": "Size (less): choose it.",
+        "decision": "ACCEPT_UNCHANGED",
+        "source_reading": "OU p647 explicitly supplies noun size; p421 supplies less, with no POS or complete comparative construction specified. OU p99 visually attests ᎭᏑᏯᎩ as the whole transitive command choose it (imperative), distinguishing the nearby choose him/her form. TBX independently attests the same choose form in a GUI-option sense.",
+        "caller_meaning": "AssemblyActivity 311 appends the warning to the current estimate when renderer.fits(sizing.dimensions) is false. DimensionControls exposes the current attempted geometric output dimensions; the creation button is disabled until a fitting size is chosen. The comparison anchor is that currently evaluated size.",
+        "limits": "The comparative less is explicitly scoped to size by the parenthesis, so it asks for a lesser size relative to the current unsuccessful attempt rather than an arbitrary absolute small category. It is prospective choice, not completed reduction. The complete comparative construction is authored, not attested; this contextual reading is the bounded acceptance basis."
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_type_text",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Type text",
+      "attributes": {
+        "name": "ui_type_text"
+      },
+      "raw": "Xiquijcuilo tlajkuiloli",
+      "display": "Xiquijcuilo tlajkuiloli",
+      "raw_sha256": "fdb8b80f2a9c68422de93beee0663be859c2a2e426da06c09a33a20dc96792c0",
+      "placeholders": [],
+      "backtranslation": "Write written text.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 35,
+          "end_line": 35,
+          "excerpt": "35:         val input=EditText(activity).apply { tag=\"text_content\";hint=ui(R.string.ui_type_text);setText(initial.text);inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE;filters=arrayOf(InputFilter.LengthFilter(8192));minLines=2 }",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L35"
+        }
+      ],
+      "caller_semantics": [
+        "Only TextStyleDialog35: hint in a multiline EditText initialized from previous text; 8192-character input limit and at least two lines.",
+        "Write written text is a functional invitation to enter textual content. It is not a drawing instruction, an immediate insertion action, or a claim that only a physical keyboard works."
+      ],
+      "confidence": "Moderate, own-variety source-compositional. No native-human or exact GUI certification.",
+      "source_evidence": {
+        "artifact": "nahua-text-controls8-primary-1817.json",
+        "sha256": "e7f0e9a57ac43194497c5ce054c8423c3dad7b1d3ae8f01f55afa805a6ccccdf"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-text-controls8-callers-1817.json",
+        "sha256": "a85a6c5ddbf41786c10abc5cf91de8eb93a5004c7555ee2e91276268260e0602"
+      },
+      "candidate": {
+        "artifact": "nahua-text-controls8-author-1817.json",
+        "sha256": "9d8ed2222ca26dfdea1f3ec1edb187cfd70829d19bbe77359efe8e7a7d63961f"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-text-controls8-independent-1823.json",
+        "sha256": "8d7b63e4bb6fb637fc928b0bffae921d85449c730444b99ceabcd6e3978d2964"
+      },
+      "independent_findings": {
+        "locale": "nch",
+        "tier": "P1",
+        "key": "ui_type_text",
+        "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+        "english": "Type text",
+        "attributes": {
+          "name": "ui_type_text"
+        },
+        "raw": "Xiquijcuilo tlajkuiloli",
+        "raw_sha256": "fdb8b80f2a9c68422de93beee0663be859c2a2e426da06c09a33a20dc96792c0",
+        "raw_xml": "<string name=\"ui_type_text\">Xiquijcuilo tlajkuiloli</string>",
+        "placeholders": [],
+        "backtranslation": "Write written text.",
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "original_P1_missing": true,
+        "current_absent": true,
+        "attributes_and_slots_match": true
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_add_text",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Add text",
+      "attributes": {
+        "name": "ui_add_text"
+      },
+      "raw": "Xijtali tlajkuiloli",
+      "display": "Xijtali tlajkuiloli",
+      "raw_sha256": "cb91095ab45b849417b48fbca6ae7039a44bd3d3ada006a737b9d5a40f1303bc",
+      "placeholders": [],
+      "backtranslation": "Place written text.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 99,
+          "end_line": 99,
+          "excerpt": "99:             .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99"
+        }
+      ],
+      "caller_semantics": [
+        "Only TextStyleDialog99: positive action validates size and spacing, passes the complete input and configured font/style to commit, and dismisses only if commit reports success.",
+        "ClassicPaintActivity1064–1071 calls document.text at the tapped canvas point. PaintDocument482–497 returns for blank text and otherwise computes glyph bounds, renders through VerticalText.draw, and marks the image edited.",
+        "Place written text describes the insertion operation. It does not imply clipboard paste, adding a text file, guaranteed success, a separate editable layer, or extra text appearing when input is blank."
+      ],
+      "confidence": "Moderate, own-variety source-compositional. No native-human or exact GUI certification.",
+      "source_evidence": {
+        "artifact": "nahua-text-controls8-primary-1817.json",
+        "sha256": "e7f0e9a57ac43194497c5ce054c8423c3dad7b1d3ae8f01f55afa805a6ccccdf"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-text-controls8-callers-1817.json",
+        "sha256": "a85a6c5ddbf41786c10abc5cf91de8eb93a5004c7555ee2e91276268260e0602"
+      },
+      "candidate": {
+        "artifact": "nahua-text-controls8-author-1817.json",
+        "sha256": "9d8ed2222ca26dfdea1f3ec1edb187cfd70829d19bbe77359efe8e7a7d63961f"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-text-controls8-independent-1823.json",
+        "sha256": "8d7b63e4bb6fb637fc928b0bffae921d85449c730444b99ceabcd6e3978d2964"
+      },
+      "independent_findings": {
+        "locale": "nch",
+        "tier": "P1",
+        "key": "ui_add_text",
+        "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+        "english": "Add text",
+        "attributes": {
+          "name": "ui_add_text"
+        },
+        "raw": "Xijtali tlajkuiloli",
+        "raw_sha256": "cb91095ab45b849417b48fbca6ae7039a44bd3d3ada006a737b9d5a40f1303bc",
+        "raw_xml": "<string name=\"ui_add_text\">Xijtali tlajkuiloli</string>",
+        "placeholders": [],
+        "backtranslation": "Place written text.",
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "original_P1_missing": true,
+        "current_absent": true,
+        "attributes_and_slots_match": true
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_place_text",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Place text",
+      "attributes": {
+        "name": "ui_place_text"
+      },
+      "raw": "Xijtali tlajkuiloli",
+      "display": "Xijtali tlajkuiloli",
+      "raw_sha256": "cb91095ab45b849417b48fbca6ae7039a44bd3d3ada006a737b9d5a40f1303bc",
+      "placeholders": [],
+      "backtranslation": "Place written text.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 98,
+          "end_line": 98,
+          "excerpt": "98:         val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L98"
+        }
+      ],
+      "caller_semantics": [
+        "Only TextStyleDialog98: title for the same configuration and insertion dialog. The tapped canvas point is already provided by PaintCanvas814 and ClassicPaintActivity201.",
+        "Using the same place-written-text wording for the title and positive button is intentional: both name the same insertion operation, while Type/Write remains distinct. No new click location, drag, or clipboard action is requested."
+      ],
+      "confidence": "Moderate, own-variety source-compositional. No native-human or exact GUI certification.",
+      "source_evidence": {
+        "artifact": "nahua-text-controls8-primary-1817.json",
+        "sha256": "e7f0e9a57ac43194497c5ce054c8423c3dad7b1d3ae8f01f55afa805a6ccccdf"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-text-controls8-callers-1817.json",
+        "sha256": "a85a6c5ddbf41786c10abc5cf91de8eb93a5004c7555ee2e91276268260e0602"
+      },
+      "candidate": {
+        "artifact": "nahua-text-controls8-author-1817.json",
+        "sha256": "9d8ed2222ca26dfdea1f3ec1edb187cfd70829d19bbe77359efe8e7a7d63961f"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-text-controls8-independent-1823.json",
+        "sha256": "8d7b63e4bb6fb637fc928b0bffae921d85449c730444b99ceabcd6e3978d2964"
+      },
+      "independent_findings": {
+        "locale": "nch",
+        "tier": "P1",
+        "key": "ui_place_text",
+        "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+        "english": "Place text",
+        "attributes": {
+          "name": "ui_place_text"
+        },
+        "raw": "Xijtali tlajkuiloli",
+        "raw_sha256": "cb91095ab45b849417b48fbca6ae7039a44bd3d3ada006a737b9d5a40f1303bc",
+        "raw_xml": "<string name=\"ui_place_text\">Xijtali tlajkuiloli</string>",
+        "placeholders": [],
+        "backtranslation": "Place written text.",
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "original_P1_missing": true,
+        "current_absent": true,
+        "attributes_and_slots_match": true
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_full_text_copied",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Full text copied",
+      "attributes": {
+        "name": "ui_full_text_copied"
+      },
+      "raw": "AN Paint quitalijtoc nochi tlajkuiloli ipan clipboard.",
+      "display": "AN Paint quitalijtoc nochi tlajkuiloli ipan clipboard.",
+      "raw_sha256": "35922f3844a9f78ef48a415524a48c4e1c088ed1aed5c04201d6f68a78b630be",
+      "placeholders": [],
+      "backtranslation": "AN Paint has placed all the written text in the clipboard.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+          "start_line": 102,
+          "end_line": 102,
+          "excerpt": "102:             LocaleTypography.showMessage(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT,button)",
+          "git_blob_sha": "7692e27f3b50068ae732526e24fbade1103f30d8",
+          "sha256": "fc9f51c4da1ddecba2340a2a79fdfe3d88495d10b209974de642241cff66619e",
+          "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L102"
+        }
+      ],
+      "caller_semantics": [
+        "Only LegalInfo102: status is emitted after ClipboardManager.setPrimaryClip(ClipData.newPlainText(title,text)) returns. The same full text parameter is shown in the legal body at91 and passed unchanged to the clipboard at101.",
+        "LegalInfo67–80 supplies the about text, a whole asset text, or joined codec-notice text. The claim is the complete body of the currently opened legal dialog, not the heading, selected text only, every legal document, or canvas contents.",
+        "Has placed all the written text in clipboard is an explicit functional result paraphrase of the completed clipboard-set operation. Clipboard is a retained English technical destination, not claimed to be an attested Nahua word.",
+        "No filesystem save, image creation, later paste success, cross-application availability, permanent retention, or clipboard history guarantee is stated. This is not a future promise or a new command."
+      ],
+      "confidence": "Moderate, own-variety source-compositional. Explicit English technical destination retained; not fully native clipboard vocabulary.",
+      "source_evidence": {
+        "artifact": "nahua-text-controls8-primary-1817.json",
+        "sha256": "e7f0e9a57ac43194497c5ce054c8423c3dad7b1d3ae8f01f55afa805a6ccccdf"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-text-controls8-callers-1817.json",
+        "sha256": "a85a6c5ddbf41786c10abc5cf91de8eb93a5004c7555ee2e91276268260e0602"
+      },
+      "candidate": {
+        "artifact": "nahua-text-controls8-author-1817.json",
+        "sha256": "9d8ed2222ca26dfdea1f3ec1edb187cfd70829d19bbe77359efe8e7a7d63961f"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-text-controls8-independent-1823.json",
+        "sha256": "8d7b63e4bb6fb637fc928b0bffae921d85449c730444b99ceabcd6e3978d2964"
+      },
+      "independent_findings": {
+        "locale": "nch",
+        "tier": "P1",
+        "key": "ui_full_text_copied",
+        "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+        "english": "Full text copied",
+        "attributes": {
+          "name": "ui_full_text_copied"
+        },
+        "raw": "AN Paint quitalijtoc nochi tlajkuiloli ipan clipboard.",
+        "raw_sha256": "35922f3844a9f78ef48a415524a48c4e1c088ed1aed5c04201d6f68a78b630be",
+        "raw_xml": "<string name=\"ui_full_text_copied\">AN Paint quitalijtoc nochi tlajkuiloli ipan clipboard.</string>",
+        "placeholders": [],
+        "backtranslation": "AN Paint has placed all the written text in the clipboard.",
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "original_P1_missing": true,
+        "current_absent": true,
+        "attributes_and_slots_match": true
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_type_text",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Type text",
+      "attributes": {
+        "name": "ui_type_text"
+      },
+      "raw": "Xiquijcuilo tlajkuiloli",
+      "display": "Xiquijcuilo tlajkuiloli",
+      "raw_sha256": "fdb8b80f2a9c68422de93beee0663be859c2a2e426da06c09a33a20dc96792c0",
+      "placeholders": [],
+      "backtranslation": "Write written text.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 35,
+          "end_line": 35,
+          "excerpt": "35:         val input=EditText(activity).apply { tag=\"text_content\";hint=ui(R.string.ui_type_text);setText(initial.text);inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE;filters=arrayOf(InputFilter.LengthFilter(8192));minLines=2 }",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L35"
+        }
+      ],
+      "caller_semantics": [
+        "Only TextStyleDialog35: hint in a multiline EditText initialized from previous text; 8192-character input limit and at least two lines.",
+        "Write written text is a functional invitation to enter textual content. It is not a drawing instruction, an immediate insertion action, or a claim that only a physical keyboard works."
+      ],
+      "confidence": "Moderate, own-variety source-compositional. No native-human or exact GUI certification.",
+      "source_evidence": {
+        "artifact": "nahua-text-controls8-primary-1817.json",
+        "sha256": "e7f0e9a57ac43194497c5ce054c8423c3dad7b1d3ae8f01f55afa805a6ccccdf"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-text-controls8-callers-1817.json",
+        "sha256": "a85a6c5ddbf41786c10abc5cf91de8eb93a5004c7555ee2e91276268260e0602"
+      },
+      "candidate": {
+        "artifact": "nahua-text-controls8-author-1817.json",
+        "sha256": "9d8ed2222ca26dfdea1f3ec1edb187cfd70829d19bbe77359efe8e7a7d63961f"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-text-controls8-independent-1823.json",
+        "sha256": "8d7b63e4bb6fb637fc928b0bffae921d85449c730444b99ceabcd6e3978d2964"
+      },
+      "independent_findings": {
+        "locale": "nhw",
+        "tier": "P1",
+        "key": "ui_type_text",
+        "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+        "english": "Type text",
+        "attributes": {
+          "name": "ui_type_text"
+        },
+        "raw": "Xiquijcuilo tlajkuiloli",
+        "raw_sha256": "fdb8b80f2a9c68422de93beee0663be859c2a2e426da06c09a33a20dc96792c0",
+        "raw_xml": "<string name=\"ui_type_text\">Xiquijcuilo tlajkuiloli</string>",
+        "placeholders": [],
+        "backtranslation": "Write written text.",
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "original_P1_missing": true,
+        "current_absent": true,
+        "attributes_and_slots_match": true
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_add_text",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Add text",
+      "attributes": {
+        "name": "ui_add_text"
+      },
+      "raw": "Xijtlali tlajkuiloli",
+      "display": "Xijtlali tlajkuiloli",
+      "raw_sha256": "2a5f74ae6cdae227e72fbbbe9ddb07b580eaea392ce5fd6d944c3c6691fe934d",
+      "placeholders": [],
+      "backtranslation": "Place written text.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 99,
+          "end_line": 99,
+          "excerpt": "99:             .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99"
+        }
+      ],
+      "caller_semantics": [
+        "Only TextStyleDialog99: positive action validates size and spacing, passes the complete input and configured font/style to commit, and dismisses only if commit reports success.",
+        "ClassicPaintActivity1064–1071 calls document.text at the tapped canvas point. PaintDocument482–497 returns for blank text and otherwise computes glyph bounds, renders through VerticalText.draw, and marks the image edited.",
+        "Place written text describes the insertion operation. It does not imply clipboard paste, adding a text file, guaranteed success, a separate editable layer, or extra text appearing when input is blank."
+      ],
+      "confidence": "Moderate, own-variety source-compositional. No native-human or exact GUI certification.",
+      "source_evidence": {
+        "artifact": "nahua-text-controls8-primary-1817.json",
+        "sha256": "e7f0e9a57ac43194497c5ce054c8423c3dad7b1d3ae8f01f55afa805a6ccccdf"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-text-controls8-callers-1817.json",
+        "sha256": "a85a6c5ddbf41786c10abc5cf91de8eb93a5004c7555ee2e91276268260e0602"
+      },
+      "candidate": {
+        "artifact": "nahua-text-controls8-author-1817.json",
+        "sha256": "9d8ed2222ca26dfdea1f3ec1edb187cfd70829d19bbe77359efe8e7a7d63961f"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-text-controls8-independent-1823.json",
+        "sha256": "8d7b63e4bb6fb637fc928b0bffae921d85449c730444b99ceabcd6e3978d2964"
+      },
+      "independent_findings": {
+        "locale": "nhw",
+        "tier": "P1",
+        "key": "ui_add_text",
+        "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+        "english": "Add text",
+        "attributes": {
+          "name": "ui_add_text"
+        },
+        "raw": "Xijtlali tlajkuiloli",
+        "raw_sha256": "2a5f74ae6cdae227e72fbbbe9ddb07b580eaea392ce5fd6d944c3c6691fe934d",
+        "raw_xml": "<string name=\"ui_add_text\">Xijtlali tlajkuiloli</string>",
+        "placeholders": [],
+        "backtranslation": "Place written text.",
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "original_P1_missing": true,
+        "current_absent": true,
+        "attributes_and_slots_match": true
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_place_text",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Place text",
+      "attributes": {
+        "name": "ui_place_text"
+      },
+      "raw": "Xijtlali tlajkuiloli",
+      "display": "Xijtlali tlajkuiloli",
+      "raw_sha256": "2a5f74ae6cdae227e72fbbbe9ddb07b580eaea392ce5fd6d944c3c6691fe934d",
+      "placeholders": [],
+      "backtranslation": "Place written text.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 98,
+          "end_line": 98,
+          "excerpt": "98:         val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L98"
+        }
+      ],
+      "caller_semantics": [
+        "Only TextStyleDialog98: title for the same configuration and insertion dialog. The tapped canvas point is already provided by PaintCanvas814 and ClassicPaintActivity201.",
+        "Using the same place-written-text wording for the title and positive button is intentional: both name the same insertion operation, while Type/Write remains distinct. No new click location, drag, or clipboard action is requested."
+      ],
+      "confidence": "Moderate, own-variety source-compositional. No native-human or exact GUI certification.",
+      "source_evidence": {
+        "artifact": "nahua-text-controls8-primary-1817.json",
+        "sha256": "e7f0e9a57ac43194497c5ce054c8423c3dad7b1d3ae8f01f55afa805a6ccccdf"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-text-controls8-callers-1817.json",
+        "sha256": "a85a6c5ddbf41786c10abc5cf91de8eb93a5004c7555ee2e91276268260e0602"
+      },
+      "candidate": {
+        "artifact": "nahua-text-controls8-author-1817.json",
+        "sha256": "9d8ed2222ca26dfdea1f3ec1edb187cfd70829d19bbe77359efe8e7a7d63961f"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-text-controls8-independent-1823.json",
+        "sha256": "8d7b63e4bb6fb637fc928b0bffae921d85449c730444b99ceabcd6e3978d2964"
+      },
+      "independent_findings": {
+        "locale": "nhw",
+        "tier": "P1",
+        "key": "ui_place_text",
+        "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+        "english": "Place text",
+        "attributes": {
+          "name": "ui_place_text"
+        },
+        "raw": "Xijtlali tlajkuiloli",
+        "raw_sha256": "2a5f74ae6cdae227e72fbbbe9ddb07b580eaea392ce5fd6d944c3c6691fe934d",
+        "raw_xml": "<string name=\"ui_place_text\">Xijtlali tlajkuiloli</string>",
+        "placeholders": [],
+        "backtranslation": "Place written text.",
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "original_P1_missing": true,
+        "current_absent": true,
+        "attributes_and_slots_match": true
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_full_text_copied",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Full text copied",
+      "attributes": {
+        "name": "ui_full_text_copied"
+      },
+      "raw": "AN Paint quitlalijtoc nochi tlajkuiloli ipan clipboard.",
+      "display": "AN Paint quitlalijtoc nochi tlajkuiloli ipan clipboard.",
+      "raw_sha256": "2cde56be65a4ef16ac79387d31f31f20c95bd52451f75175bf12b93d532f7af9",
+      "placeholders": [],
+      "backtranslation": "AN Paint has placed all the written text in the clipboard.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+          "start_line": 102,
+          "end_line": 102,
+          "excerpt": "102:             LocaleTypography.showMessage(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT,button)",
+          "git_blob_sha": "7692e27f3b50068ae732526e24fbade1103f30d8",
+          "sha256": "fc9f51c4da1ddecba2340a2a79fdfe3d88495d10b209974de642241cff66619e",
+          "url": "https://github.com/c933103/AN-Paint/blob/2300b05674441582628ff06cd11f190b540a363a/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L102"
+        }
+      ],
+      "caller_semantics": [
+        "Only LegalInfo102: status is emitted after ClipboardManager.setPrimaryClip(ClipData.newPlainText(title,text)) returns. The same full text parameter is shown in the legal body at91 and passed unchanged to the clipboard at101.",
+        "LegalInfo67–80 supplies the about text, a whole asset text, or joined codec-notice text. The claim is the complete body of the currently opened legal dialog, not the heading, selected text only, every legal document, or canvas contents.",
+        "Has placed all the written text in clipboard is an explicit functional result paraphrase of the completed clipboard-set operation. Clipboard is a retained English technical destination, not claimed to be an attested Nahua word.",
+        "No filesystem save, image creation, later paste success, cross-application availability, permanent retention, or clipboard history guarantee is stated. This is not a future promise or a new command."
+      ],
+      "confidence": "Moderate, own-variety source-compositional. Explicit English technical destination retained; not fully native clipboard vocabulary.",
+      "source_evidence": {
+        "artifact": "nahua-text-controls8-primary-1817.json",
+        "sha256": "e7f0e9a57ac43194497c5ce054c8423c3dad7b1d3ae8f01f55afa805a6ccccdf"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-text-controls8-callers-1817.json",
+        "sha256": "a85a6c5ddbf41786c10abc5cf91de8eb93a5004c7555ee2e91276268260e0602"
+      },
+      "candidate": {
+        "artifact": "nahua-text-controls8-author-1817.json",
+        "sha256": "9d8ed2222ca26dfdea1f3ec1edb187cfd70829d19bbe77359efe8e7a7d63961f"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-text-controls8-independent-1823.json",
+        "sha256": "8d7b63e4bb6fb637fc928b0bffae921d85449c730444b99ceabcd6e3978d2964"
+      },
+      "independent_findings": {
+        "locale": "nhw",
+        "tier": "P1",
+        "key": "ui_full_text_copied",
+        "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+        "english": "Full text copied",
+        "attributes": {
+          "name": "ui_full_text_copied"
+        },
+        "raw": "AN Paint quitlalijtoc nochi tlajkuiloli ipan clipboard.",
+        "raw_sha256": "2cde56be65a4ef16ac79387d31f31f20c95bd52451f75175bf12b93d532f7af9",
+        "raw_xml": "<string name=\"ui_full_text_copied\">AN Paint quitlalijtoc nochi tlajkuiloli ipan clipboard.</string>",
+        "placeholders": [],
+        "backtranslation": "AN Paint has placed all the written text in the clipboard.",
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "original_P1_missing": true,
+        "current_absent": true,
+        "attributes_and_slots_match": true
+      },
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "ec565ad91c11f27b2c4ab48b51e157fd9d39010e"
+    }
+  ],
+  "metadata_addenda": [
+    {
+      "locale": "nch",
+      "source_entry": "all",
+      "incorrect_locator": "Colossians 3:23",
+      "correct_locator": "Colossians 3:16, same PDF491/printed487",
+      "finding": "The cited verse 3:23 does not contain nochi. Verse 3:16 on the actual viewed page quantifies the whole verbal-content object with nochi. This directly supports all text without changing any raw candidate."
+    },
+    {
+      "locale": "nhw",
+      "source_entry": "all",
+      "incorrect_locator": "Colossians 3:23",
+      "correct_locator": "Colossians 4:7, same PDF504/printed498",
+      "finding": "The cited verse 3:23 does not contain nochi. Verse 4:7 on the actual viewed page uses nochi for all that happens, and its report to recipients. This supports an exhaustive quantifier, not an exact published phrase for whole written text. Whole-body scope comes from the caller."
+    }
+  ],
+  "specific_limits": [
+    "CHR compact headings use exact attested forms without invented agreement. Source image noun is marked singular, while independently checked guide supports contextual plural reference. Smaller-size is prospective and comparative to current attempted size.",
+    "NCH/NHW written-text noun locality/orthography limits retained. NCH book evidence is a retained hosted transcription, not a claimed inspected original-page scan. Both varieties own commands and completed-place forms independently checked.",
+    "Clipboard is an explicit English technical token in otherwise localized status. Full copied means the complete supplied legal/dialog body was placed into system clipboard, not saved to a file, all UI text copied, or transmission.",
+    "No native, runtime, layout, glyph or accessibility certification. No app source edits by authors/reviewers.",
+    "Other images candidate excluded for four English-fallback reference dependencies; no replacement or fallback override is included."
+  ],
+  "root_hold": {
+    "locale": "chr",
+    "key": "ui_other_images34",
+    "reason": "Four untranslated English-fallback resources reference the menu label, including two live callers. No menu change until independently reviewed guidance can stay synchronized. Ordinary prose occurrences are not menu references.",
+    "proof": {
+      "artifact": "chr-other-images-root-hold-proof-1826.json",
+      "sha256": "4b0eb062670ee7eb26bc92e69e445f9ac5e261dcda1ecc39a15fde9bbb2fd1f1"
+    }
+  },
+  "derivative_note": "Sanitized later integrated-status derivative. Original hashes identify immutable historical artifacts, not these derivative bytes. Independent review of the earlier6 was source-only; only5 Cherokee rows were adopted here."
+}
