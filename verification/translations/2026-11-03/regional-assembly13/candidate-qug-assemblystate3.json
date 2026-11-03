@@ -1,0 +1,95 @@
+{
+  "status": "NOMINATION ONLY. Three coherent original-P0 persisted image-assembly diagnostics, not flattened PNG output. Independent review and adoption required.",
+  "entries": {
+    "qug": {
+      "ui_could_not_store_the_assembly": "Shuyukunapa tantachiy: AN Paint kay rurayta wakaychiyta mana usharkachu.",
+      "ui_the_saved_assembly_could_not_be_opened": "Shuyukunapa tantachiy: AN Paint wakaychishka rurayta paskayta mana usharkachu: %1$s",
+      "ui_an_assembly_source_image_is_missing": "Shuyukunapa tantachiy: shuk shuyu illan."
+    }
+  },
+  "english": {
+    "ui_could_not_store_the_assembly": "Could not store the assembly.",
+    "ui_the_saved_assembly_could_not_be_opened": "The saved assembly could not be opened: %1$s",
+    "ui_an_assembly_source_image_is_missing": "An assembly source image is missing."
+  },
+  "attributes": {
+    "ui_could_not_store_the_assembly": {
+      "name": "ui_could_not_store_the_assembly"
+    },
+    "ui_the_saved_assembly_could_not_be_opened": {
+      "name": "ui_the_saved_assembly_could_not_be_opened"
+    },
+    "ui_an_assembly_source_image_is_missing": {
+      "name": "ui_an_assembly_source_image_is_missing"
+    }
+  },
+  "backtranslations": {
+    "ui_could_not_store_the_assembly": "Image grouping: AN Paint could not preserve this work.",
+    "ui_the_saved_assembly_could_not_be_opened": "Image grouping: AN Paint could not open the preserved work: %1$s",
+    "ui_an_assembly_source_image_is_missing": "Image grouping: one image is absent."
+  },
+  "functional_rationale": [
+    "Shuyukunapa tantachiy is an authored image-grouping category made from documented image + plural/genitive and the independently documented grouping/union noun. It is not claimed an established software project/assembly term. This category restricts the already supported work noun to the editable grouping, distinct from the PNG output diagnostics.",
+    "The work contains original-image references, crop/placement/normalization metadata and not merely a flattened picture. Naming the editable grouping as work retains this scope without substituting a generic draft noun. No temporary or unfinished restriction.",
+    "The source-image failure identifies one constituent image, not all images, the whole grouping, or a missing project.json. The exact guard includes a path outside the permitted assembly directory as well as a non-file; absent is relative to the valid expected source set, not a claim someone deleted the source.",
+    "Saved work in the opening error describes the existing stored grouping category; it does not assert that this attempt successfully saved, that every file is intact, or that reopening failed before all state was parsed."
+  ],
+  "sources": [
+    {
+      "url": "https://www.kichwa.net/wp-content/uploads/2011/03/diccionario_kichwa_castellano.pdf",
+      "access": "Fresh primary indexed text. Earlier direct download403 was not retried or bypassed; no local scan claim.",
+      "locations": [
+        "printed134 tantachiy noun grouping/union, with ordinary grouping and collection examples",
+        "earlier independently verified shuyu image, ruray work, wakaychina preserve/save, paskana open, illana be absent"
+      ],
+      "binding": "The grouping noun is independently lexical, not inferred solely from verb ending. Applying it to an editable group of digital images is authored composition. The image/source noun and save/open/absence predicates retain their previously reviewed senses."
+    },
+    {
+      "url": "https://www.kichwa.net/wp-content/uploads/2011/09/diccionario-kichwa-castellano-alki.pdf",
+      "access": "Fresh primary indexed entry; full PDF exceeds webopen size limit. No raster claim.",
+      "binding": "tantachiy noun grouping/congregation and tantachishka grouped, distinct from social meeting/congress tantanakuy. Corroborates the ordinary grouping noun, not a fixed digital-assembly phrase."
+    },
+    {
+      "url": "https://www.kichwa.net/wp-content/uploads/2011/03/gramatica_kichwa.pdf",
+      "binding": "Established own -kuna plural, -pa genitive, -shka completed modifier, -ta object, -y action nominal, -rka past and mana...chu ability negation. The genitive image-grouping composition and two action-object predicates remain authored."
+    }
+  ],
+  "callers": {
+    "archive_sha256": "68c705d402d9662ac7879e1f175f360d12ff40b88cf10a855fb360f3aa66add1",
+    "AssemblyActivity.kt59-60": "Construct ImageAssembly(image-assembly); any Exception gets could-not-open-saved-assembly with error.message. This is persisted editable state, not opening exported PNG.",
+    "AssemblyActivity.kt224-230": "finishBatch adds imported sources, catches exception, deletes newly staged items and reports error.message or could-not-store-assembly fallback. Wording adds no claimed physical-data loss or partial-write details.",
+    "ImageAssembly.kt233-255": "change validates then writes project state before committing in-memory state; AtomicFile project.json stores image identity/file/time/dimensions/crops/normalization/placement. Distinct from AssemblyActivity PNG saveOutput.",
+    "ImageAssembly.kt257-267": "Read project.json images array. Each source must have canonical parent equal to assembly directory and be a file at262, otherwise source-image-missing. Not solely a nonexistent-path check."
+  },
+  "guards": [
+    {
+      "key": "ui_could_not_store_the_assembly",
+      "originalP0": true,
+      "merged292_absent": true,
+      "slots_match": true
+    },
+    {
+      "key": "ui_the_saved_assembly_could_not_be_opened",
+      "originalP0": true,
+      "merged292_absent": true,
+      "slots_match": true
+    },
+    {
+      "key": "ui_an_assembly_source_image_is_missing",
+      "originalP0": true,
+      "merged292_absent": true,
+      "slots_match": true
+    }
+  ],
+  "latest_union_guard": "Original inventory and merged292 only; current successor and later adopted union require independent refresh.",
+  "review_questions": [
+    "Does own grouping/union noun with image genitive describe the editable grouping, not just a collection of flattened pictures?",
+    "Is repeated category plus saved work a clear distinction from flattened PNG output without needing the English feature label?",
+    "Does one image absent remain correctly scoped for a missing/invalid-location source and avoid implying all source data is gone?",
+    "Check genitive/plural and saved-work modifier order, current-tree absence and exact raw attrs/slots."
+  ],
+  "limits": [
+    "Moderate national Ecuador Kichwa composition only; no exclusive Chimborazo, native-speaker, layout or runtime certification.",
+    "Not a blanket generic project or draft noun approval. No application-source edits or tests."
+  ]
+}

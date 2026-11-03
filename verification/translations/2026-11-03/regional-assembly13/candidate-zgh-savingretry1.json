@@ -1,0 +1,78 @@
+{
+  "status": "One original-P0 current autosave/retry nomination, pending independent review and adoption. New primary conjugation evidence resolves the previously ungrounded incomplete-stem question; no application changes.",
+  "entries": {
+    "zgh": {
+      "ui_the_draft_is_saving_try_again_shortly": "AN Paint ⴷⴰ ⵉⵃⵟⵟⵓ ⵜⴰⵡⵍⴰⴼⵜ ⵙ ⵓⵡⵔⵎⴰⵏ ⴷⵖⵉ. ⵔⴰⵊⴰ, ⴰⵔⵎ ⴷⴰⵖ."
+    }
+  },
+  "english": {
+    "ui_the_draft_is_saving_try_again_shortly": "The draft is saving. Try again shortly."
+  },
+  "attributes": {
+    "ui_the_draft_is_saving_try_again_shortly": {
+      "name": "ui_the_draft_is_saving_try_again_shortly"
+    }
+  },
+  "backtranslations": {
+    "ui_the_draft_is_saving_try_again_shortly": "AN Paint is automatically saving the image now. Wait, try again."
+  },
+  "functional_rationale": [
+    "Explicit application actor, incomplete stem with da and now describe an active current process, not successful completion, merely not-yet-saved state, or inability to save. Automatic manner narrows it to the actual autosaving guard.",
+    "The image names the editable visible working result in this status, not a newly coined general draft noun or a promise all history will be saved. Wait+retry refers to the blocked action before it executes; it gives no exact duration or success guarantee."
+  ],
+  "sources": [
+    {
+      "url": "https://www.scribd.com/document/471721658/manuel-pdf",
+      "title": "IRCAM Manuel de conjugaison de l’amazighe,2012",
+      "authors": "Rachid Laabdelaoui, Abdallah Boumalk, El Mehdi Iazzi, Hamid Souifi, Khalid Ansar; collaboration Fatima Boukhris",
+      "locations": [
+        "printed118 alphabetical hdu entry assigned type12",
+        "printed19–20 incomplete formation and footnote17",
+        "printed48–49 type12 gnu conjugation"
+      ],
+      "access": "Fresh readable primary-manual reproduction with Unicode forms and French explanation. Original raster not inspected. Arabic replacement characters are not reconstructed or used.",
+      "binding": "hdu explicitly belongs to type12. That pattern geminates the second radical for the incomplete and prefixes i- for third singular masculine. Footnote17 explicitly maps tense/geminate ḍ to ṭṭ, yielding authored iḥṭṭu, not guessed ittḥḍu or mechanical ḍḍ. The manual licenses da/ar/la with nonfuture incomplete. Current now adverb disambiguates ongoing from habitual reading."
+    },
+    {
+      "url": "https://www.ircam.ma/fr/edition/manuel-de-conjugaison-amazighe",
+      "access": "Fresh official publisher page.",
+      "binding": "Confirms this manual covers Moroccan Amazigh forms and organizes verbs by explicit conjugation types, represented by model paradigms. Does not itself attest the proposed saving sentence."
+    },
+    {
+      "url": "https://github.com/wikimedia/mediawiki/blob/master/languages/i18n/zgh.json",
+      "sha256": "3822339ea1cbd3827ef6e7811258aa85e9b56a992a0e5b7053e622d16106ccf7",
+      "access": "Retained full primary own-locale JSON, exact relevant keys re-read.",
+      "keys": [
+        "savearticle",
+        "logentry-newusers-autocreate",
+        "usernameinprogress",
+        "userlogin-authpopup-retry",
+        "view-pool-error"
+      ],
+      "binding": "Own digital-save sense of hdu, automatic manner, wait imperative, exact try-again imperative, and current-time adverb. Combining that digital sense with the independently sourced incomplete paradigm is authored, not a directly attested full software sentence."
+    }
+  ],
+  "callers": {
+    "archive_sha256": "68c705d402d9662ac7879e1f175f360d12ff40b88cf10a855fb360f3aa66add1",
+    "ClassicPaintActivity.kt924-926": "editAction checks autosaving before calling action and returns false with this message.",
+    "ClassicPaintActivity.kt1441-1446": "attachLegacyImageCredit checks busy and selects this message when autosaving, returns before attaching credit. No claim the requested edit already happened."
+  },
+  "latest_union_guard": "Original inventory and merged292 only. Current successor union requires independent fresh absence check.",
+  "review_questions": [
+    "Verify hdu type12 plus ḍ→ṭṭ alternation and current incomplete actor agreement without neighboring-language inference.",
+    "Confirm da + incomplete + now marks the active autosave guard rather than a general habit.",
+    "Confirm contextual image working-state and wait+retry preserve both callers without promising success."
+  ],
+  "limits": [
+    "Moderate source/compositional nomination, not native-speaker, layout or runtime certification.",
+    "New manual morphology evidence is distinct from previously held unsourced incomplete guesses."
+  ],
+  "guards": [
+    {
+      "key": "ui_the_draft_is_saving_try_again_shortly",
+      "originalP0": true,
+      "merged292_absent": true,
+      "slots_match": true
+    }
+  ]
+}
