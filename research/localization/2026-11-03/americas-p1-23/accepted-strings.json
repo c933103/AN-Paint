@@ -1,0 +1,1518 @@
+{
+  "title": "Accepted Americas original-P1 batch23",
+  "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438",
+  "integration_tree": "a7ee295c16247e783c9b9e8d00dd079f73ee8a63",
+  "source_baseline": "4fb1461a9186f057845c0acecfbfd1063afd8da4",
+  "original_intake": {
+    "artifact": "reviewed-americas23-current4fb1461-intake-1705.json",
+    "sha256": "043a69593858d1b44caa81cd0c3a7b8c599164cf9e6f28c770ec05e4d7a39ad5"
+  },
+  "derivative_note": "Sanitized integrated-status derivative. Original SHA256 pins refer to immutable historical evidence, not these derivative bytes.",
+  "counts": {
+    "total": 23,
+    "P0": 0,
+    "P1": 23,
+    "by_locale": {
+      "ch": 2,
+      "chr": 9,
+      "nhe": 7,
+      "nv": 5
+    }
+  },
+  "raw_convention": "XML-parsed Android text. Escape XML exactly once. CH ASCII apostrophes retain exactly one backslash; display removes it once. NV U+02BC glottal marks are not escaped.",
+  "rows": [
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_android_could_not_decode_this_image",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Android could not decode this image.",
+      "attributes": {
+        "name": "ui_android_could_not_decode_this_image"
+      },
+      "raw": "Android ti siña ha fa\\'tinas un pinenta gi RAM ginin i sinahguan esti na dokumentu.",
+      "display": "Android ti siña ha fa'tinas un pinenta gi RAM ginin i sinahguan esti na dokumentu.",
+      "raw_sha256": "084c13ebf3c86f56441669a0f2244ab10f7061fe1fece44a8d5baa0cd2f7e61f",
+      "backtranslation": "Android could not make a picture in RAM from the contents of this file.",
+      "placeholders": [],
+      "value": "Android ti siña ha fa\\'tinas un pinenta gi RAM ginin i sinahguan esti na dokumentu.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "ch-import-data2-v3-1637.json",
+        "sha256": "b3735bf24bb98c620bab4f5b167548e30dbb8bfd8c15d93e59a7ee906e62f82b"
+      },
+      "independent_review": {
+        "artifact": "review-ch-import-data2-v3-independent-1643.json",
+        "sha256": "8ba5ea16e74ad1cd1800a26dc80004cb4e42df68a779e587d4bb74b330aacbbe"
+      },
+      "independent_semantic_review": {
+        "meaning": "Android was unable to construct a picture in RAM from the contents of this file. The contents-to-picture relation and RAM output location now identify the decoding transformation without relying on the ambiguous translåda gloss.",
+        "grammar": "Ha fa'tinas is a realis transitive predicate after ti siña; the output un pinenta is the attempted object, not a claim that a picture exists. Ginin supplies the input-material relation. Sinahguan with an overt file possessor takes no extra -n because the noun already ends in a consonant. The form of the demonstrative possessor matches ordinary contents-of-this-container composition.",
+        "caller": "ImageImport.kt:161-162 tries BitmapFactory.decodeFile on its prepared platform file and throws on a null Bitmap. The diagnostic precedes colour.convert and final orientation/resize output creation. It follows distinct dimensions/format and memory-budget checks. This wording does not diagnose insufficient RAM, promise that every file byte was decoded, or deny temporary/intermediate allocation.",
+        "hold_resolution": "Replaces the unsupported choice between linguistic and binary interpretation with an explicit, understandable source/result paraphrase. RAM is a location, not a claimed cause of failure."
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+          "line": 162,
+          "exact_line": "                ?: throw IOException(ui(R.string.ui_android_could_not_decode_this_image))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L162"
+        }
+      ],
+      "caller_scope": [
+        "Android actor retained.",
+        "Source is this file’s contents; output is one attempted in-memory decoded picture.",
+        "No natural-language interpretation, generic open failure, source deletion, insufficient-memory diagnosis, rendering-success promise or claim that no intermediate allocation occurred."
+      ],
+      "source_entry_ids": [
+        "file-contents",
+        "make-from-content",
+        "image-file-relation"
+      ],
+      "source_evidence": {
+        "artifact": "ch-import-data-sources-1637.json",
+        "sha256": "f4c5e69d3be3e4f51c8cc34fe169d7cba90f048d9cf001b4464c992056a99a43"
+      },
+      "caller_evidence": {
+        "artifact": "ch-import-data-callers-1637.json",
+        "sha256": "d0f296f14f05720210f9ef1222f4a5d8c3740bbbf4edf3b2410af08556addcb0"
+      },
+      "explicit_limits": [
+        "Android actor retained.",
+        "Source is this file’s contents; output is one attempted in-memory decoded picture.",
+        "No natural-language interpretation, generic open failure, source deletion, insufficient-memory diagnosis, rendering-success promise or claim that no intermediate allocation occurred."
+      ],
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "additional_caller_proof": {
+        "artifact": "review-ch-decoding-caller-recheck-current4fb1461-1704.json",
+        "sha256": "a4538117eed00e6b5acdbe803640ab334a80820febd1974946656adbe9d240af"
+      },
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_the_selected_provider_did_not_return_any_image",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "The selected provider did not return any image data.",
+      "attributes": {
+        "name": "ui_the_selected_provider_did_not_return_any_image"
+      },
+      "raw": "AN Paint ti ha risibi ni un påtti gi sinahguan i dokumentun pinenta ginin i ramienta ni ma\\'atyik para u nå\\'i AN Paint pinenta.",
+      "display": "AN Paint ti ha risibi ni un påtti gi sinahguan i dokumentun pinenta ginin i ramienta ni ma'atyik para u nå'i AN Paint pinenta.",
+      "raw_sha256": "ada071190905b132236e46439cfafeb92850d6041a545448c12483bef8a61d65",
+      "backtranslation": "AN Paint did not receive any portion of the contents of the image file from the selected tool for supplying AN Paint pictures.",
+      "placeholders": [],
+      "value": "AN Paint ti ha risibi ni un påtti gi sinahguan i dokumentun pinenta ginin i ramienta ni ma\\'atyik para u nå\\'i AN Paint pinenta.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "ch-import-data2-v3-1637.json",
+        "sha256": "b3735bf24bb98c620bab4f5b167548e30dbb8bfd8c15d93e59a7ee906e62f82b"
+      },
+      "independent_review": {
+        "artifact": "review-ch-import-data2-v3-independent-1643.json",
+        "sha256": "8ba5ea16e74ad1cd1800a26dc80004cb4e42df68a779e587d4bb74b330aacbbe"
+      },
+      "independent_semantic_review": {
+        "meaning": "AN Paint received no portion of the contents of the image file from the selected image-supplying tool. This now identifies the delivered content rather than generic information for/about a picture.",
+        "grammar": "Ti ha risibi with postverbal ni un påtti is negative concord, not cancelling double negation or a statement about one particular absent portion. Påtti gi marks the part/whole relation. Dokumentun pinenta uses the regular post-head noun-modifier linker. Sinahguan precedes its explicit file possessor with zero linker after a consonant. The ni ma'atyik relative and para u nå'i purpose clause retain the selected supplying tool.",
+        "caller": "ClassicPaintActivity.kt:1273-1274 already has a URI and temporary cache file, but openInputStream returns null, preventing the use/copy body. Thus no image-file content is received through this stream on this attempt. It does not test whether a file is empty, whether metadata exists, or whether returned bytes can be decoded.",
+        "hold_resolution": "Replaces the broad information-for-image object with portions of actual image-file contents. The assertion is failed receipt, not missing/deleted source data; the source remains distinct from picker and decoder."
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1274,
+          "exact_line": "                    ?: throw IOException(ui(R.string.ui_the_selected_provider_did_not_return_any_image))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1274"
+        }
+      ],
+      "caller_scope": [
+        "Any/no-portion negative concord explicitly means zero returned content.",
+        "Actual file contents are named; this does not merely report missing metadata about a picture.",
+        "Selected supplying tool remains separate from file picker and decoder.",
+        "No claim the source file is empty, missing, unsupported, permanently unavailable or deleted."
+      ],
+      "source_entry_ids": [
+        "file-contents",
+        "zero-portion",
+        "image-file-relation",
+        "retained-provider-role"
+      ],
+      "source_evidence": {
+        "artifact": "ch-import-data-sources-1637.json",
+        "sha256": "f4c5e69d3be3e4f51c8cc34fe169d7cba90f048d9cf001b4464c992056a99a43"
+      },
+      "caller_evidence": {
+        "artifact": "ch-import-data-callers-1637.json",
+        "sha256": "d0f296f14f05720210f9ef1222f4a5d8c3740bbbf4edf3b2410af08556addcb0"
+      },
+      "explicit_limits": [
+        "Any/no-portion negative concord explicitly means zero returned content.",
+        "Actual file contents are named; this does not merely report missing metadata about a picture.",
+        "Selected supplying tool remains separate from file picker and decoder.",
+        "No claim the source file is empty, missing, unsupported, permanently unavailable or deleted."
+      ],
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_enter_a_number_from_to",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Enter a number from %1$s to %2$s.",
+      "attributes": {
+        "name": "ui_enter_a_number_from_to"
+      },
+      "raw": "ᎲᏓ ᏎᏍᏗ: %1$s ≤ ᏎᏍᏗ ≤ %2$s.",
+      "display": "ᎲᏓ ᏎᏍᏗ: %1$s ≤ ᏎᏍᏗ ≤ %2$s.",
+      "raw_sha256": "dcf62c819625846f7ed532937bb2431e3d6b7f11c003f26dafeb62a43184d291",
+      "backtranslation": "Use a number: lower bound ≤ number ≤ upper bound.",
+      "placeholders": [
+        "%1$s",
+        "%2$s"
+      ],
+      "value": "ᎲᏓ ᏎᏍᏗ: %1$s ≤ ᏎᏍᏗ ≤ %2$s.",
+      "typed_slots": [
+        {
+          "placeholder": "%1$s",
+          "meaning": "inclusive minimum",
+          "actual_argument": "minimum: Int"
+        },
+        {
+          "placeholder": "%2$s",
+          "meaning": "inclusive maximum",
+          "actual_argument": "maximum: Int"
+        }
+      ],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "OU use is explicitly imperative and number is the unqualified number row, not counted-number morphology. The formula uses each supplied Int bound exactly once and preserves inclusive range. NumericSlider parses toIntOrNull, and its surrounding dialog separately asks for a whole number. This generic error must not be described as granting fractional acceptance.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt",
+          "line": 74,
+          "git_blob_sha": "9e068c4f8c0b114887e4677701fb6524b9bd796a",
+          "exact_line": "                if(n==null || n !in minimum..maximum) input.error=ui(R.string.ui_enter_a_number_from_to, minimum, maximum)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L74"
+        }
+      ],
+      "caller_scope": "NumericSlider:74 checks toIntOrNull and minimum..maximum inclusively. The two %s slots are Int bounds. This generic error preserves number without imposing a new integer noun or promising fractional acceptance; the separate dialog prompt explicitly mentions whole number. Pasted fractional syntax is retained by the input filter then rejected by this caller.",
+      "source_entry_ids": [
+        "OU_p769_use",
+        "OU_p485_number"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_enter_a_positive_size",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Enter a positive size.",
+      "attributes": {
+        "name": "ui_enter_a_positive_size"
+      },
+      "raw": "ᎢᎩᏓ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "display": "ᎢᎩᏓ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "raw_sha256": "741fd396ae6542fa07ce4d7a50ec079289264e4deb9385a85fbb2fc9b1ce84bc",
+      "backtranslation": "Size: use a number greater than zero.",
+      "placeholders": [],
+      "value": "ᎢᎩᏓ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "OU size is independently attested as a noun, unlike the TBX resize verb with the same spelling. Use plus number >0 gives the positive-size corrective instruction. NormalizeImagesDialog permits decimals only in percent mode, then rounds the axis target into 1..Int.MAX_VALUE. Positivity is a necessary condition, not a claim that any positive input will pass.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+          "line": 42,
+          "git_blob_sha": "0710ac70ecb0f1e3b794b2e843e9533210f57a5d",
+          "exact_line": "                val target=value() ?: throw IllegalArgumentException(ui(R.string.ui_enter_a_positive_size))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt#L42"
+        }
+      ],
+      "caller_scope": "NormalizeImagesDialog:42 displays when value() fails. Raw uiNumber must be finite and >0; pixel mode requires a whole numerical value, while percent mode permits decimals relative to the largest placed dimension on the selected axis. Resolved target rounds into 1..Int.MAX_VALUE. The generic positivity instruction does not claim >0 alone suffices or require typed percentage ≥1. No source-size cap or memory promise.",
+      "source_entry_ids": [
+        "OU_p769_use",
+        "OU_p485_number",
+        "OU_p647_size"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_use_1_1024_pixels",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Use 1–1024 pixels.",
+      "attributes": {
+        "name": "ui_use_1_1024_pixels"
+      },
+      "raw": "ᎲᏓ: 1–1024 px.",
+      "display": "ᎲᏓ: 1–1024 px.",
+      "raw_sha256": "2ce34448a973313ce2cba59911f4b345f6a1ba07345cd50a0d0421fa93195a78",
+      "backtranslation": "Use 1–1024 pixels.",
+      "placeholders": [],
+      "value": "ᎲᏓ: 1–1024 px.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "Exact use imperative plus 1–1024 px matches the text-size error. The code checks the converted Float within inclusive 1f..1024f and does not require a whole number. The en dash preserves the source range; no restriction on fractional fonts or line-spacing percent is introduced.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line": 103,
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "exact_line": "                pixels==null || pixels !in 1f..1024f -> size.error=ui(R.string.ui_use_1_1024_pixels)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L103"
+        }
+      ],
+      "caller_scope": "TextStyleDialog:103 checks a Float produced by uiNumber within inclusive 1f..1024f. Decimal keyboard enabled, fractional font sizes accepted. This is text pixel size, not bitmap whole-number dimensions or line-spacing percent. The exact numeric endpoints remain inclusive and no whole-number qualifier is added.",
+      "source_entry_ids": [
+        "OU_p769_use"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_enter_positive_dimensions",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Enter positive dimensions.",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions"
+      },
+      "raw": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "display": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "raw_sha256": "84ac7e2f98ef180848e6e0154ab3d5993d72ca975372402da98e0c26b60e6370",
+      "backtranslation": "Width: use a number greater than zero. Height: use a number greater than zero.",
+      "placeholders": [],
+      "value": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "Separate sourced width and singular height topics each require number >0. They do not form a ratio or an area comparison. This is the shared invalid-pair message in new/resize/canvas flows. It preserves the generic source instruction, without adding a source-size ceiling, equality requirement or successful-allocation claim.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1021,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "            if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1021"
+        }
+      ],
+      "caller_scope": "ClassicPaintActivity:1021 sets the width field error when the dimension pair is null in New, resize/stretch or canvas-size flow. Shared DimensionControls accepts positive finite whole-valued pixels or decimal percentages that resolve after rounding to 1..Int.MAX_VALUE for both axes. Both axes are required independently; equal values are not implied. The source generic positivity prompt is retained; budget checking is separate and no original-size cap is added.",
+      "source_entry_ids": [
+        "OU_p769_use",
+        "OU_p485_number",
+        "CONSORTIUM_p79_width",
+        "OU_p344_height"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_enter_positive_image_dimensions",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Enter positive image dimensions.",
+      "attributes": {
+        "name": "ui_enter_positive_image_dimensions"
+      },
+      "raw": "ᏗᏟᎶᏍᏔᏅ. ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "display": "ᏗᏟᎶᏍᏔᏅ. ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "raw_sha256": "5d64372838220124e190c7127218e716cacb49ffc1b6d42bf88e931884b654fd",
+      "backtranslation": "Image. Width: use a number greater than zero. Height: use a number greater than zero.",
+      "placeholders": [],
+      "value": "ᏗᏟᎶᏍᏔᏅ. ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "TBX pictorial image supplies the image topic; the width and height clauses preserve both independent positive Int requirements across all four callers. It does not assert that both entered fields are wrong. It adds no memory sufficiency, source cap, or constraint on upstream percentage syntax.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+          "line": 13,
+          "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+          "exact_line": "    init { require(width > 0 && height > 0) { ui(R.string.ui_enter_positive_image_dimensions) } }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L13"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+          "line": 43,
+          "git_blob_sha": "b77fec3a44bbb5703e2b5c446b937f12ddef26f7",
+          "exact_line": "        require(width > 0 && height > 0) { ui(R.string.ui_enter_positive_image_dimensions) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt#L43"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "line": 155,
+          "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320",
+          "exact_line": "        require(w > 0 && h > 0) { ui(R.string.ui_enter_positive_image_dimensions) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L155"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "line": 424,
+          "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320",
+          "exact_line": "        require(w > 0 && h > 0) { ui(R.string.ui_enter_positive_image_dimensions) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L424"
+        }
+      ],
+      "caller_scope": "Four live direct occurrences: ImageDimensions init, ImageMemoryPolicy.check, PaintDocument.blank and PaintDocument.resize. Each requires both Int width and height >0. The prompt names image and both positive axes; it neither says both are invalid nor adds a source cap, aspect lock or memory-sufficiency claim. Upstream percentage input is not constrained by the downstream integer pixel parameters.",
+      "source_entry_ids": [
+        "OU_p769_use",
+        "OU_p485_number",
+        "CONSORTIUM_p79_width",
+        "OU_p344_height",
+        "1294_64520_1591822"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_use_a_positive_target_dimension",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Use a positive target dimension.",
+      "attributes": {
+        "name": "ui_use_a_positive_target_dimension"
+      },
+      "raw": "ᎠᏕᎸᏓ ᎢᎩᏓ (px): ᎲᏓ ᏎᏍᏗ > 0.",
+      "display": "ᎠᏕᎸᏓ ᎢᎩᏓ (px): ᎲᏓ ᏎᏍᏗ > 0.",
+      "raw_sha256": "26b06acc23877fc3bea3b5d10edb790f75507fa6046539b952eadc5e19a8d151",
+      "backtranslation": "Desired size (pixels): use a number greater than zero.",
+      "placeholders": [],
+      "value": "ᎠᏕᎸᏓ ᎢᎩᏓ (px): ᎲᏓ ᏎᏍᏗ > 0.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "Desired size (px) names a single target scalar; the source desired entry is not labelled with a part of speech, so pre-nominal use is an authored composition supported only generally by the style guide. The px unit and singular model parameter exclude an area unit. The v2 removal of width/height slash eliminates the ratio risk. The model axis determines which dimension; this row need not claim that both axes are targets.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 26,
+          "git_blob_sha": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+          "exact_line": "        require(n.pixels > 0) { ui(R.string.ui_use_a_positive_target_dimension) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L26"
+        }
+      ],
+      "caller_scope": "ImageAssembly:26 checks singular ImageNormalization.pixels >0 for the chosen WIDTH or HEIGHT axis. Desired size (pixels) denotes that one chosen-axis value, not area or both axes. Axis is supplied by model and visible normalization-dialog context; no slash notation is used. This is the resolved target, not raw NormalizeImagesDialog percentage. Crop validity and scaled opposite-axis range checks follow separately. No source cap or ban on upscaling is added.",
+      "source_entry_ids": [
+        "OU_p769_use",
+        "OU_p485_number",
+        "OU_p141_desired",
+        "OU_p647_size"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_choose_dimensions_no_larger_than_the_original",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Choose dimensions no larger than the original.",
+      "attributes": {
+        "name": "ui_choose_dimensions_no_larger_than_the_original"
+      },
+      "raw": "ᎭᏑᏯᎩ ᎢᎩᏓ: ᎾᏯᏛᎥ ≤ ᎠᎴᏅᏗᏍᎬ ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ ≤ ᎠᎴᏅᏗᏍᎬ ᎢᎦᏘ.",
+      "display": "ᎭᏑᏯᎩ ᎢᎩᏓ: ᎾᏯᏛᎥ ≤ ᎠᎴᏅᏗᏍᎬ ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ ≤ ᎠᎴᏅᏗᏍᎬ ᎢᎦᏘ.",
+      "raw_sha256": "a439b6f39f445ef84350092eb3ca27f97bea4194ed0f9a3bf19e98982f7c4295",
+      "backtranslation": "Choose a size: width ≤ original width and height ≤ original height.",
+      "placeholders": [],
+      "value": "ᎭᏑᏯᎩ ᎢᎩᏓ: ᎾᏯᏛᎥ ≤ ᎠᎴᏅᏗᏍᎬ ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ ≤ ᎠᎴᏅᏗᏍᎬ ᎢᎦᏘ.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "TBX choose is a GUI selection verb, OU size is a noun, and OU original is base/original. Both explicit inequalities compare the same named axes and use ≤, preserving equality. IcoCodec rejects either oversized axis; ImportPlan requires both comparisons. No total-area shortcut, strict shrinking or original-file mutation is asserted.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 42,
+          "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+          "exact_line": "            throw IOException(ui(R.string.ui_choose_dimensions_no_larger_than_the_original))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt#L42"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+          "line": 31,
+          "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+          "exact_line": "            require(target.width <= source.width && target.height <= source.height) { ui(R.string.ui_choose_dimensions_no_larger_than_the_original) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L31"
+        }
+      ],
+      "caller_scope": "ImportPlan.create:31 requires target.width<=source.width and target.height<=source.height; IcoCodec.decode:41–42 rejects either target axis exceeding the selected ICO source. Positivity already holds through ImageDimensions. Each same-axis comparison allows equality; not total area, strict shrinking, aspect-ratio equality or original-file modification. Separate memory policy remains outside the row.",
+      "source_entry_ids": [
+        "14733_31389_1590935",
+        "OU_p647_size",
+        "OU_p494_original",
+        "CONSORTIUM_p79_width",
+        "OU_p344_height",
+        "OU_p14_and"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_enter_positive_dimensions_no_larger_than_the_original",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Enter positive dimensions no larger than the original.",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions_no_larger_than_the_original"
+      },
+      "raw": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᏳᎵᏍᏙᏗ (px): ᎾᏯᏛᎥ ≤ ᎠᎴᏅᏗᏍᎬ ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ ≤ ᎠᎴᏅᏗᏍᎬ ᎢᎦᏘ.",
+      "display": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᏳᎵᏍᏙᏗ (px): ᎾᏯᏛᎥ ≤ ᎠᎴᏅᏗᏍᎬ ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ ≤ ᎠᎴᏅᏗᏍᎬ ᎢᎦᏘ.",
+      "raw_sha256": "2c9ca8e33945d04a175a5a031717c501543b9774fff13630705c110a05d9385b",
+      "backtranslation": "Width: use a number greater than zero. Height: use a number greater than zero. Outcome (pixels): width ≤ original width and height ≤ original height.",
+      "placeholders": [],
+      "value": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᏳᎵᏍᏙᏗ (px): ᎾᏯᏛᎥ ≤ ᎠᎴᏅᏗᏍᎬ ᎾᏯᏛᎥ ᎠᎴ ᎢᎦᏘ ≤ ᎠᎴᏅᏗᏍᎬ ᎢᎦᏘ.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "Positive input requirements precede a distinct outcome (px) topic for the caps. This separates decimal percentage entry from rounded pixel output. ImageResizeDialog filters each resolved axis against the corresponding source axis; the constraints do not impose raw percentages ≤ pixel counts or an unrounded percentage ceiling. Memory admission is a separate branch.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 47,
+          "git_blob_sha": "15723c1171cac09c7bd67881175827b5f3f330dd",
+          "exact_line": "            estimate.text = if (size == null) ui(R.string.ui_enter_positive_dimensions_no_larger_than_the_original)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L47"
+        }
+      ],
+      "caller_scope": "ImageResizeDialog.target:39 requires non-null shared dimensions and both target axes ≤ corresponding source axis. Null at47 covers parsing, whole-pixel versus decimal-percent, rounded resolution/range failure, or exceeding either source axis. First two clauses address entered values; outcome (px) introduces comparisons for resolved axes, preventing raw percentages from being compared against source pixel counts. Equality is allowed independently; no memory-fit or file-change claim.",
+      "source_entry_ids": [
+        "OU_p769_use",
+        "OU_p485_number",
+        "CONSORTIUM_p79_width",
+        "OU_p344_height",
+        "OU_p14_and",
+        "OU_p496_outcome",
+        "OU_p494_original"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_enter_positive_dimensions_that_resolve_to_at_least",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Enter positive dimensions that resolve to at least 1 pixel.",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions_that_resolve_to_at_least"
+      },
+      "raw": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᏳᎵᏍᏙᏗ: ᎾᏯᏛᎥ ≥ 1 px ᎠᎴ ᎢᎦᏘ ≥ 1 px.",
+      "display": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᏳᎵᏍᏙᏗ: ᎾᏯᏛᎥ ≥ 1 px ᎠᎴ ᎢᎦᏘ ≥ 1 px.",
+      "raw_sha256": "865b475cc2ed7eddc8515ec2c960742e6eaafb2913f8178bd67ca13631c70fe0",
+      "backtranslation": "Width: use a number greater than zero. Height: use a number greater than zero. Outcome: width ≥ 1 pixel and height ≥ 1 pixel.",
+      "placeholders": [],
+      "value": "ᎾᏯᏛᎥ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᎦᏘ: ᎲᏓ ᏎᏍᏗ > 0. ᎢᏳᎵᏍᏙᏗ: ᎾᏯᏛᎥ ≥ 1 px ᎠᎴ ᎢᎦᏘ ≥ 1 px.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "chr-numeric-dimensions10-v2-1641.json",
+        "sha256": "f51aa89d8246e5cce0f6292fd318b9a3f7eb916c3e6d0a0271a79a8de2e1cd1e"
+      },
+      "independent_review": {
+        "artifact": "review-chr-numeric-dimensions10-v2-current6da0cbf-1647.json",
+        "sha256": "57a5930cd7e19ddaa172c4af7aaf8b3010599745c3881b7f1d5f6db978cbcc3c"
+      },
+      "independent_semantic_review": "Outcome is directly attested as outcome/effect and applies here as a computational topic, not the TBX query-record results sense. The two ≥1 px requirements apply to each rounded output axis, while the earlier >0 clauses apply to entered values. Shared DimensionControls separately requires whole-valued pixels or decimal percentages, finite resolution and Int range. No typed percentage ≥1 restriction or source cap is added.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+          "line": 75,
+          "git_blob_sha": "24c52925842a9f76f92e241e67b66a98d3c5433e",
+          "exact_line": "    private fun showResult() { result.text = target?.describe() ?: ui(R.string.ui_enter_positive_dimensions_that_resolve_to_at_least) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L75"
+        }
+      ],
+      "caller_scope": "DimensionControls:75 is the invalid-target readout. number:54 accepts finite positive values and requires numerical whole values only in pixel mode. pixels:55–57 converts percentages against original per-axis bases and rounds, requiring each resolved axis in 1..Int.MAX_VALUE. Explicit outcome ≥1px differs from typed >0. For example a positive percentage below1 may resolve validly on a sufficiently large base, while a smaller one may round to0. This is static source reasoning, not an executed parser test. The opposite aspect-locked field is derived separately; no RAM or original-size ceiling is promised.",
+      "source_entry_ids": [
+        "OU_p769_use",
+        "OU_p485_number",
+        "CONSORTIUM_p79_width",
+        "OU_p344_height",
+        "OU_p14_and",
+        "OU_p496_outcome"
+      ],
+      "source_evidence": {
+        "artifact": "chr-numeric-dimensions-primary-1640.json",
+        "sha256": "7c0a1c8aaf5f7ab3c002b980bd2c9e28d0a524cb61ee60a1c3dc0d0d309f3317"
+      },
+      "caller_evidence": {
+        "artifact": "chr-numeric-dimensions-callers-1640.json",
+        "sha256": "7cb9de48c8bb62ccb6c12e32e2f5a254bef201a7aa4902b5292ed7640a7c5d26"
+      },
+      "explicit_limits": "No material source gap claimed for this authored paraphrase. Exact whole-sentence idiom and device layout remain unverified; this is not native certification.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_remove",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Remove",
+      "attributes": {
+        "name": "ui_remove"
+      },
+      "raw": "Xicquixti",
+      "display": "Xicquixti",
+      "raw_sha256": "cb9a1ba1596fb77a92d7ea3007560d906f31f4c8889a5bab5abb3bf1dd242387",
+      "backtranslation": "Remove it.",
+      "placeholders": [],
+      "value": "Xicquixti",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nhe-action-prerequisites7-1640.json",
+        "sha256": "3d228af10f5176488509e053c8d146f8252c123e6da0c430d5b2280f7cbf7d4b"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-action-prerequisites7-independent-1654.json",
+        "sha256": "c549957a9f835f889cf4bfeb28ee5ea5b83959fac0bfd074971b87d40a21d4df"
+      },
+      "independent_semantic_review": {
+        "linguistic_reason": "QUĪXTIĀ (PDF426/printed411) has transitive removal from a container or other thing. The own TLACUĒCHŌLLI example (PDF490/printed475) has ma quiquixti, establishing the dependent quixti stem. XI1 (PDF601/printed586) plus C2 (PDF56/printed41) supports authored xi-c-quixti. It is an instruction to remove the contextually selected object, not a reported completed deletion.",
+        "caller_reason": "AssemblyActivity100 calls ImageAssembly.remove(selected id), whereas99 separately calls unplace. ImageAssembly89-122 detaches/restructures attachments, then removes the member from state. A selected unplaced tray member can also be removed. change233-235 persists the new state and preserves bounded undo; prune239-241 concerns internal copies absent from current/history states, not the original external input. The general remove extension fits the collection action without promising unchanged arrangement, permanent deletion or clearing all.",
+        "retained_limits": [
+          "Extension of ordinary removal to assembly membership is authored.",
+          "Does not state whether the source file survives, because that is not part of this short label."
+        ]
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 100,
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "exact_line": "            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100"
+        }
+      ],
+      "caller_scope": "AssemblyActivity100 calls assembly.remove for the selected id, including a nonplaced tray item. ImageAssembly122 removes that member after detaching/restructuring attachments; the separate Unplace action only changes placement. change233-235 writes assembly state and retains bounded undo/redo. prune239-241 only removes internal .image copies no longer retained in current/history states, not the original external source file. No unchanged-arrangement, permanent-delete or whole-assembly-clear promise.",
+      "source_entry_ids": [
+        "remove",
+        "remove-dependent-stem",
+        "imperative",
+        "object-prefix"
+      ],
+      "source_evidence": {
+        "artifact": "nhe-action-prerequisites-primary-1640.json",
+        "sha256": "02a217b0748daff94a46c30b2b67f83f7b0af93968229b79fb466af666c6e3ef"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-action-prerequisites-callers-1640.json",
+        "sha256": "682031c82e9a1c7c4039ab93f559ff8f3a11ec7bab489214cbcd6d3d3df06086"
+      },
+      "explicit_limits": "No native-speaker or runtime/layout certification; no published whole-GUI-phrase claim.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_tap_an_image_first",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Tap an image first.",
+      "attributes": {
+        "name": "ui_tap_an_image_first"
+      },
+      "raw": "Achtohui xictlapehpeni ce ixcopincayotl.",
+      "display": "Achtohui xictlapehpeni ce ixcopincayotl.",
+      "raw_sha256": "c26d14699c9bec7842594ec6eb9a02167839d2d74e5e5e98adc75f058ec37867",
+      "backtranslation": "First choose an image.",
+      "placeholders": [],
+      "value": "Achtohui xictlapehpeni ce ixcopincayotl.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nhe-action-prerequisites7-1640.json",
+        "sha256": "3d228af10f5176488509e053c8d146f8252c123e6da0c430d5b2280f7cbf7d4b"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-action-prerequisites7-independent-1654.json",
+        "sha256": "c549957a9f835f889cf4bfeb28ee5ea5b83959fac0bfd074971b87d40a21d4df"
+      },
+      "independent_semantic_review": {
+        "linguistic_reason": "ACHTOHUI2 sense2 (PDF22/printed7) is an action before another action, not the ordinal first object. TLAPEHPENIĀ sense1 (PDF530/printed515), CĀTLINYA (PDF81/printed66), and the dependent tlapehpeni stem in motlapehpenican (PDF399/printed384) support xi-c-tlapehpeni. The reflexive animal-foraging sense of the stem example is not transferred into this transitive command. ĪXCOPĪNCĀYŌTL (PDF264/printed249) supports image; ce marks an image.",
+        "caller_reason": "Both actual uses are null-selection guards before Unplace or Remove at AssemblyActivity99-100. Tray click143, long-click144-150 and canvas drag/tap selection118/172 supply the required selected image. First choose an image gives the necessary state prerequisite across those routes. It is not an instruction to import an image, choose a pixel region, select an ordinal first image, or place an image.",
+        "retained_limits": [
+          "The physical tap gesture is deliberately omitted. Accepted as functional selection guidance, not literal gesture equivalence.",
+          "No native-speaker or interactive discoverability validation."
+        ]
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 99,
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "exact_line": "            button(ui(R.string.ui_unplace),\"assembly_unplace\") { selected?.let { assembly.unplace(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L99"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 100,
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "exact_line": "            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100"
+        }
+      ],
+      "caller_scope": "AssemblyActivity99-100 emits only when selected==null before Unplace/Remove. Tray card click143 sets selection, long press144-150 also selects; AssemblyCanvas118 and172 select during drag/tap. First choose an image is the functional state prerequisite shared by these routes. Literal physical tap gesture deliberately omitted. It does not request a pixel region, new import, prior placement or exactly one allowable image in other contexts.",
+      "source_entry_ids": [
+        "first",
+        "select",
+        "select-dependent-stem",
+        "choose-things",
+        "imperative",
+        "object-prefix",
+        "image",
+        "one-or-many"
+      ],
+      "source_evidence": {
+        "artifact": "nhe-action-prerequisites-primary-1640.json",
+        "sha256": "02a217b0748daff94a46c30b2b67f83f7b0af93968229b79fb466af666c6e3ef"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-action-prerequisites-callers-1640.json",
+        "sha256": "682031c82e9a1c7c4039ab93f559ff8f3a11ec7bab489214cbcd6d3d3df06086"
+      },
+      "explicit_limits": "Functional selection prerequisite; physical tap is deliberately omitted. No native-speaker or runtime/layout certification; no published whole-GUI-phrase claim.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_choose_at_least_one_image",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Choose at least one image.",
+      "attributes": {
+        "name": "ui_choose_at_least_one_image"
+      },
+      "raw": "Xictlapehpeni ce zo miac ixcopincayotl.",
+      "display": "Xictlapehpeni ce zo miac ixcopincayotl.",
+      "raw_sha256": "2126f95d26833ce6c269ecda0d6b795206777ca8623fd98a33e1bc3d49a4d8df",
+      "backtranslation": "Choose one or multiple images.",
+      "placeholders": [],
+      "value": "Xictlapehpeni ce zo miac ixcopincayotl.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nhe-action-prerequisites7-1640.json",
+        "sha256": "3d228af10f5176488509e053c8d146f8252c123e6da0c430d5b2280f7cbf7d4b"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-action-prerequisites7-independent-1654.json",
+        "sha256": "c549957a9f835f889cf4bfeb28ee5ea5b83959fac0bfd074971b87d40a21d4df"
+      },
+      "independent_semantic_review": {
+        "linguistic_reason": "The imperative uses the independently verified transitive select morphology above. PDF500/printed485 TLAHTŌLPĀMITL explicitly uses ce zo miac tlahtolli for the one-or-many content of a sentence, while adjacent TLAHTŌLMĪLLI uses ome zo miac for the corresponding two-or-many lower bound. Thus ce zo miac is supported as a nonzero alternative, not a high-many threshold that excludes two. The same page attests miac ixcopincayotl without a noun plural suffix. The quimanextia ce zo miac construction also supplies a specific-object-marked verb with this numerical alternative. The GUI clause is productive composition, not an exact quotation.",
+        "caller_reason": "ImageCropDialog145 rejects only selected.isEmpty(), with independent checkboxes and All/None at127-137;147-148 applies the crop map to the chosen images. ImageAssembly155 has the same nonempty guard in crop(ids,margins), but the inspected Activity280 path calls the map overload through ImageCropDialog. One or multiple images states the nonempty requirement without claiming an unlimited maximum or exact-one restriction.",
+        "retained_limits": [
+          "Functional one-or-more formulation, not a separately attested technical at-least phrase.",
+          "The ids/margins overload is a verified source reference, not certified reachable runtime behavior."
+        ]
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+          "line": 155,
+          "git_blob_sha": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14",
+          "exact_line": "        require(ids.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt#L155"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+          "line": 145,
+          "git_blob_sha": "a21c5d9a32794df26907f6765d52f0d409e2953a",
+          "exact_line": "                require(selected.isNotEmpty()) { ui(R.string.ui_choose_at_least_one_image) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L145"
+        }
+      ],
+      "caller_scope": "ImageCropDialog145 rejects an empty selected set before applying crop rectangles, then147-148 computes a crop map for every checked image.127-137 supports multiple checkboxes and None. One or multiple existing image items satisfy the lower bound; no promise of unlimited image count or demand for exactly one. ImageAssembly155 repeats nonempty guard in crop(ids,margins); the current AssemblyActivity280 callback invokes the map overload through ImageCropDialog, so no runtime reachability claim for the other overload.",
+      "source_entry_ids": [
+        "select",
+        "select-dependent-stem",
+        "choose-things",
+        "imperative",
+        "object-prefix",
+        "image",
+        "one-or-many"
+      ],
+      "source_evidence": {
+        "artifact": "nhe-action-prerequisites-primary-1640.json",
+        "sha256": "02a217b0748daff94a46c30b2b67f83f7b0af93968229b79fb466af666c6e3ef"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-action-prerequisites-callers-1640.json",
+        "sha256": "682031c82e9a1c7c4039ab93f559ff8f3a11ec7bab489214cbcd6d3d3df06086"
+      },
+      "explicit_limits": "No native-speaker or runtime/layout certification; no published whole-GUI-phrase claim.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_please_wait_for_the_current_operation",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Please wait for the current operation.",
+      "attributes": {
+        "name": "ui_please_wait_for_the_current_operation"
+      },
+      "raw": "Ximochiya aztah tlami ni tequitl.",
+      "display": "Ximochiya aztah tlami ni tequitl.",
+      "raw_sha256": "c0d62ef328b3854ac1c355792ae269b18ed64d644bcae4ce41600c1359b02afb",
+      "backtranslation": "Wait until this task ends.",
+      "placeholders": [],
+      "value": "Ximochiya aztah tlami ni tequitl.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nhe-action-prerequisites7-1640.json",
+        "sha256": "3d228af10f5176488509e053c8d146f8252c123e6da0c430d5b2280f7cbf7d4b"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-action-prerequisites7-independent-1654.json",
+        "sha256": "c549957a9f835f889cf4bfeb28ee5ea5b83959fac0bfd074971b87d40a21d4df"
+      },
+      "independent_semantic_review": {
+        "linguistic_reason": "CHIYA sense2 (PDF110/printed95) directly attests ximochiya as the singular wait instruction. AZTAH sense2 (PDF54/printed39) defines the end boundary of ongoing work and uses a present-form event after aztah. TLAMI1 sense2 (PDF517/printed502) is intransitive ending of a task. NI3 (PDF354/printed339) and TEQUITL (PDF461/printed446) support this task. The composed clause therefore means wait until this task ends. Work/task is extended to the app operation; no tense or causative completion form has been invented.",
+        "caller_reason": "The four references cover startup170, regular/panel button guards549/555, and non-autosave legacy-credit attachment1444. Busy is not confined to saving. beginIo1420 and endIo1421 count work in flight, and the startup screen has its own busy state. The phrasing remains generic about the cause and tells the user to wait; it does not promise success, saving, a short duration, or automatic retry.",
+        "retained_limits": [
+          "The courteous English please is conveyed as a neutral instruction, not an independently attested politeness word.",
+          "This task refers to the current blocking work; it does not guarantee that one completion alone clears every concurrent busy cause."
+        ]
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 170,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "                text=startupFailure ?: ui(R.string.ui_please_wait_for_the_current_operation);contentDescription=text;setTextColor(ink)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L170"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 549,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "        setOnClickListener { if (!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation)) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L549"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 555,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "        setOnClickListener {if(!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation))}",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L555"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1444,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "            else R.string.ui_please_wait_for_the_current_operation));return}",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1444"
+        }
+      ],
+      "caller_scope": "Four direct references: startup loading at ClassicPaintActivity170; regular and panel button busy guards549/555; non-autosave legacy-credit attachment busy guard1444. This includes startup/recovery and general work, not only saving. beginIo/endIo1420-1421 count operations. Waiting until this task ends preserves blocking prerequisite without short-duration, success, retry or saved-state claims.",
+      "source_entry_ids": [
+        "wait",
+        "until",
+        "end",
+        "this",
+        "task"
+      ],
+      "source_evidence": {
+        "artifact": "nhe-action-prerequisites-primary-1640.json",
+        "sha256": "02a217b0748daff94a46c30b2b67f83f7b0af93968229b79fb466af666c6e3ef"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-action-prerequisites-callers-1640.json",
+        "sha256": "682031c82e9a1c7c4039ab93f559ff8f3a11ec7bab489214cbcd6d3d3df06086"
+      },
+      "explicit_limits": "No native-speaker or runtime/layout certification; no published whole-GUI-phrase claim.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_ready",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Ready",
+      "attributes": {
+        "name": "ui_ready"
+      },
+      "raw": "Hueli titequiti",
+      "display": "Hueli titequiti",
+      "raw_sha256": "b310add3a4cd08e50335906f6bcd57336cbd1542ed36989d59e6c26205641be1",
+      "backtranslation": "You can work.",
+      "placeholders": [],
+      "value": "Hueli titequiti",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nhe-action-prerequisites7-1640.json",
+        "sha256": "3d228af10f5176488509e053c8d146f8252c123e6da0c430d5b2280f7cbf7d4b"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-action-prerequisites7-independent-1654.json",
+        "sha256": "c549957a9f835f889cf4bfeb28ee5ea5b83959fac0bfd074971b87d40a21d4df"
+      },
+      "independent_semantic_review": {
+        "linguistic_reason": "HUELI sense2 (PDF217/printed202) is an ability auxiliary and explicitly allows absence of its own subject marking. TI4 sense1 (PDF466/printed451) plus TEQUITI (PDF461/printed446) supports ti-tequiti, you work. Hueli titequiti is an authored functional you can work label, not a dictionary adjective meaning Ready and not a perfective or saved-state report.",
+        "caller_reason": "ClassicPaintActivity651 initializes statusText in makeStatus. The full source additionally shows makeStatus at buildWorkspace456 and updateStatus synchronously at458. buildWorkspace runs on startup208, configuration changes511 and the language-picker callback870. updateStatus689-707 replaces the initializer with Working/Autosaving when busy or the ordinary tool/zoom/dimensions/draft status otherwise. Startup subsequently clears busy and updates status at229. This is a provisional generic readiness label, not the authoritative runtime busy-state branch, and no app readiness state is certified by this review.",
+        "retained_limits": [
+          "Accepted only as the functional intended Ready label.",
+          "No claim that this initializer is visibly displayed, that busy is already false when it is assigned, or that all operations/saving are complete."
+        ],
+        "metadata_correction": "Expand the author caller_scope beyond successful startup: configuration and language rebuilds also initialize the label, and buildWorkspace itself synchronously calls updateStatus before returning."
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 651,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "            statusText = label(ui(R.string.ui_ready), 11f).apply {tag=\"status_text\";maxLines=2}",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L651"
+        }
+      ],
+      "caller_scope": "Label initialization on every workspace build, including initial startup and configuration/language rebuilds. buildWorkspace synchronously calls updateStatus before returning. Functional ready label; not a statement that all asynchronous work has completed.",
+      "source_entry_ids": [
+        "ability",
+        "second-person",
+        "work"
+      ],
+      "source_evidence": {
+        "artifact": "nhe-action-prerequisites-primary-1640.json",
+        "sha256": "02a217b0748daff94a46c30b2b67f83f7b0af93968229b79fb466af666c6e3ef"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-action-prerequisites-callers-1640.json",
+        "sha256": "682031c82e9a1c7c4039ab93f559ff8f3a11ec7bab489214cbcd6d3d3df06086"
+      },
+      "explicit_limits": "Functional readiness paraphrase, not exact dictionary translation of Ready or operation-success state. No native-speaker or runtime/layout certification; no published whole-GUI-phrase claim.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_other_images34",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Other images",
+      "attributes": {
+        "name": "ui_other_images34",
+        "formatted": "false"
+      },
+      "raw": "Cequinoc ixcopincayotl",
+      "display": "Cequinoc ixcopincayotl",
+      "raw_sha256": "5a37eb31ec164556b48d089f49117d941f88e5ea6645e87d221d34e91efae666",
+      "backtranslation": "Other images.",
+      "placeholders": [],
+      "value": "Cequinoc ixcopincayotl",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nhe-action-prerequisites7-1640.json",
+        "sha256": "3d228af10f5176488509e053c8d146f8252c123e6da0c430d5b2280f7cbf7d4b"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-action-prerequisites7-independent-1654.json",
+        "sha256": "c549957a9f835f889cf4bfeb28ee5ea5b83959fac0bfd074971b87d40a21d4df"
+      },
+      "independent_semantic_review": {
+        "linguistic_reason": "CEQUĪNOC (PDF92/printed77) denotes other entities or things apart from another set. PDF56/printed41 C3 actually uses cequinoc tlahtolli for other words, supporting an inanimate noun construction without cequinoqueh. ĪXCOPĪNCĀYŌTL and the attested miac ixcopincayotl (PDF264 and500) support the image noun without a required plural suffix. Cequinoc ixcopincayotl is a bounded compositional other images label.",
+        "caller_reason": "ClassicPaintActivity305 labels the Insert-category button and897 titles showOtherImages.896-909 offers device and illustration providers; device calls launchOpen(true), while other choices launch the gallery. It names other image sources for insertion, not a guarantee that files have downloaded or a selection among existing assembly items. formatted=false remains exact.",
+        "retained_limits": [
+          "The whole label is authored; no exact published GUI label is claimed."
+        ]
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 305,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "            if(category==ToolCategory.INSERT) group.addView(panelButton(ui(R.string.ui_other_images34),\"insert_other_images\",android.R.drawable.ic_menu_gallery) {",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L305"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 897,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "        EditorDialogBuilder(this).setTitle(ui(R.string.ui_other_images34)).setItems(sources.toTypedArray()) {_,index ->",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L897"
+        }
+      ],
+      "caller_scope": "ClassicPaintActivity305 labels the Insert-category button invoking showOtherImages.897 is the chooser title.896-910 offers device or illustration providers; index0 launchOpen(true) imports/pastes rather than replaces current image, while other choices start MediaGalleryActivity. Other images names additional image sources, not current assembly members or a guarantee of any image already downloaded. Preserve formatted=false.",
+      "source_entry_ids": [
+        "other-plural",
+        "image",
+        "one-or-many"
+      ],
+      "source_evidence": {
+        "artifact": "nhe-action-prerequisites-primary-1640.json",
+        "sha256": "02a217b0748daff94a46c30b2b67f83f7b0af93968229b79fb466af666c6e3ef"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-action-prerequisites-callers-1640.json",
+        "sha256": "682031c82e9a1c7c4039ab93f559ff8f3a11ec7bab489214cbcd6d3d3df06086"
+      },
+      "explicit_limits": "No native-speaker or runtime/layout certification; no published whole-GUI-phrase claim.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_choose_location",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Choose location…",
+      "attributes": {
+        "name": "ui_choose_location"
+      },
+      "raw": "Xictlapehpeni campa ticahcocuiz…",
+      "display": "Xictlapehpeni campa ticahcocuiz…",
+      "raw_sha256": "882af0a109f13e6fe08068cbfdaaddedac1d635ef63196944e9f30814039b2b8",
+      "backtranslation": "Choose where you will save…",
+      "placeholders": [],
+      "value": "Xictlapehpeni campa ticahcocuiz…",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nhe-action-prerequisites7-1640.json",
+        "sha256": "3d228af10f5176488509e053c8d146f8252c123e6da0c430d5b2280f7cbf7d4b"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-action-prerequisites7-independent-1654.json",
+        "sha256": "c549957a9f835f889cf4bfeb28ee5ea5b83959fac0bfd074971b87d40a21d4df"
+      },
+      "independent_semantic_review": {
+        "linguistic_reason": "The select imperative uses the same own-source morphology. CĀNICA (PDF77/printed62) describes a word discriminating/identifying a location, which supports the select-location sense but is not a published UI action. CĀMPA (PDF75/printed60) gives where. DIZCOH (PDF192/printed177) explicitly has storage of work created on a computer and future quiahcocuiz/nicahcocuiz. TI4+C2 yields productive ti-c-ahcocui-z, you will save/store it. The subordinate clause supplies the intended destination.",
+        "caller_reason": "SaveOptionsDialog189 is the positive button shared by save, export and save-and-share.193-197 validates the filename and calls confirm; ClassicPaintActivity1114-1128 then invokes an ACTION_CREATE_DOCUMENT picker with the output MIME and proposed filename. Choose where you will save is therefore appropriately narrowed to an output destination. It does not mean GPS position, image coordinates, an import source, or a successful write. The ellipsis remains.",
+        "retained_limits": [
+          "Computer-work storage is directly attested; the full destination command and second-person substitution are authored.",
+          "Future saving is the intended operation after selection, not a promise that the write will succeed."
+        ]
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 189,
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "exact_line": "            .setPositiveButton(ui(R.string.ui_choose_location),null)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L189"
+        }
+      ],
+      "caller_scope": "SaveOptionsDialog189 is the common positive button for save, export and save-and-share options.193-197 validates proposed filename then confirms SaveRequest. ClassicPaintActivity1112-1128 stores chosen options and invokes chooseSaveLocation, an ACTION_CREATE_DOCUMENT picker with chosen MIME and proposed filename. Therefore choose where you will save is bounded to an output destination, not GPS, image position, open/import source or immediate successful saving. Ellipsis retained.",
+      "source_entry_ids": [
+        "select",
+        "select-dependent-stem",
+        "choose-things",
+        "choose-place",
+        "imperative",
+        "object-prefix",
+        "where",
+        "store-future",
+        "second-person"
+      ],
+      "source_evidence": {
+        "artifact": "nhe-action-prerequisites-primary-1640.json",
+        "sha256": "02a217b0748daff94a46c30b2b67f83f7b0af93968229b79fb466af666c6e3ef"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-action-prerequisites-callers-1640.json",
+        "sha256": "682031c82e9a1c7c4039ab93f559ff8f3a11ec7bab489214cbcd6d3d3df06086"
+      },
+      "explicit_limits": "No native-speaker or runtime/layout certification; no published whole-GUI-phrase claim.",
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nv",
+      "tier": "P1",
+      "key": "ui_please_try_again",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "Please try again.",
+      "attributes": {
+        "name": "ui_please_try_again"
+      },
+      "raw": "Nááná.",
+      "display": "Nááná.",
+      "raw_sha256": "78eeb176434764bf470b9ef5cda487c34176d0b0b2e3ad3613272b87611f42a5",
+      "backtranslation": "Again / repeat.",
+      "placeholders": [],
+      "value": "Nááná.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nv-small-actions6-1644.json",
+        "sha256": "d51cf98785b8842fd573847753dd9e38c5a8b245bc2b75bf51e76bdc068aef07"
+      },
+      "independent_review": {
+        "artifact": "review-nv-small-actions6-independent-1654.json",
+        "sha256": "772758695f542b271faafd5ad19a36d5609db319d8a98aadfc00343cf141cf3d"
+      },
+      "independent_semantic_review": "Wilson PDF25 printed36 explicitly presents nááná as a standalone interjection, distinct from bound náá-. The fallback follows a failed startup/edit, so the attempted operation supplies what to repeat. The short retry instruction is acceptable without separately translating please. This is not a history Redo authorization or a success claim.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 180,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "            lastIoError=error.message ?: ui(R.string.ui_please_try_again)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L180"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 939,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "            else ui(R.string.ui_could_not_complete_the_edit, error.message ?: ui(R.string.ui_please_try_again)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L939"
+        }
+      ],
+      "caller_scope": "Standalone retry instruction in generic failed-edit/startup exception message. The failed attempt supplies the action to repeat. No promise of success, no specific retry timer, no Undo/Redo history meaning.",
+      "source_entry_ids": [
+        "repeat"
+      ],
+      "source_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "caller_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "explicit_limits": [
+        "The ordinary politeness marker is not separately represented. This is an intentional short functional instruction, not source-attested full software prose.",
+        "No native-speaker, layout, glyph, screenreader or runtime certification."
+      ],
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nv",
+      "tier": "P1",
+      "key": "ui_please_wait_for_the_current_operation",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "Please wait for the current operation.",
+      "attributes": {
+        "name": "ui_please_wait_for_the_current_operation"
+      },
+      "raw": "Kʼad AN Paint naalnish. Tʼah.",
+      "display": "Kʼad AN Paint naalnish. Tʼah.",
+      "raw_sha256": "caa0382259322c6394b67e95825a8d93909e5155ecf5e7be995632a4c96f9b64",
+      "backtranslation": "Now AN Paint is working. Wait.",
+      "placeholders": [],
+      "value": "Kʼad AN Paint naalnish. Tʼah.",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nv-small-actions6-1644.json",
+        "sha256": "d51cf98785b8842fd573847753dd9e38c5a8b245bc2b75bf51e76bdc068aef07"
+      },
+      "independent_review": {
+        "artifact": "review-nv-small-actions6-independent-1654.json",
+        "sha256": "772758695f542b271faafd5ad19a36d5609db319d8a98aadfc00343cf141cf3d"
+      },
+      "independent_semantic_review": "Wilson PDF52 printed91 supports sentence-initial kʼad; Wall/Morgan PDF50 printed43 gives naalnish as third-person working; Wilson PDF70 printed126 gives tʼah as a wait interjection. Modern Navajo Language Academy examples use the working predicate for a car and cellphone, supporting the non-human subject extension. The app/current operation is made explicit with AN Paint and Now. No new person inflection, operation noun, duration or success guarantee is manufactured.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 170,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "                text=startupFailure ?: ui(R.string.ui_please_wait_for_the_current_operation);contentDescription=text;setTextColor(ink)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L170"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 549,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "        setOnClickListener { if (!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation)) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L549"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 555,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "        setOnClickListener {if(!busy) editAction(action) else message(ui(R.string.ui_please_wait_for_the_current_operation))}",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L555"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1444,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "            else R.string.ui_please_wait_for_the_current_operation));return}",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1444"
+        }
+      ],
+      "caller_scope": "Makes the current in-progress work reason explicit, rather than only saying Wait. Used while startup or another busy operation is in flight. Program is the subject; no finite form is newly inflected.",
+      "source_entry_ids": [
+        "now",
+        "working",
+        "wait"
+      ],
+      "source_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "caller_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "explicit_limits": [
+        "No completion or success claim, no estimated duration, no instruction to retry immediately, no implication user is working or that output is durable. Politeness and operation noun are expressed functionally by the current-work clause plus wait.",
+        "No native-speaker, layout, glyph, screenreader or runtime certification."
+      ],
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nv",
+      "tier": "P1",
+      "key": "ui_untitled",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "Untitled",
+      "attributes": {
+        "name": "ui_untitled"
+      },
+      "raw": "Bízhiʼ ádin",
+      "display": "Bízhiʼ ádin",
+      "raw_sha256": "206e41a0de7470920cfde1d940ab46e1a373d866daa335f91c62a4d68bd2d7c2",
+      "backtranslation": "Its name is absent / No name",
+      "placeholders": [],
+      "value": "Bízhiʼ ádin",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nv-small-actions6-1644.json",
+        "sha256": "d51cf98785b8842fd573847753dd9e38c5a8b245bc2b75bf51e76bdc068aef07"
+      },
+      "independent_review": {
+        "artifact": "review-nv-small-actions6-independent-1654.json",
+        "sha256": "772758695f542b271faafd5ad19a36d5609db319d8a98aadfc00343cf141cf3d"
+      },
+      "independent_semantic_review": "Wilson possessed NAME token bízhiʼ and ABSENT ádin are directly visible in PDF51/printed89 and PDF24/printed35. The latter exemplifies a possessed inanimate noun followed by the predicate. Their authored composition is acceptable for the default document-name label/stem in all six callers; it does not assert absent image data, lack of saved data or a blank canvas. Using this temporary label as an eventual filename is the ordinary default-name behavior and does not change the translation decision.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 81,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "    private var filename = ui(R.string.ui_untitled)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L81"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 138,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "        AppLanguage.refresh(this);filename=ui(R.string.ui_untitled);textSettings=TextSettings()",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L138"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1024,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "                if (fresh) { document.newImage(size.width,size.height);unrestoredCreditSessionToken=null; filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1024"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1127,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "            putExtra(Intent.EXTRA_TITLE,ExportNames.withExtension(proposedName.ifBlank {ui(R.string.ui_untitled)},exportOptions.format))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1127"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 29,
+          "git_blob_sha": "b8a97637df61f8e50694e4a9d65b924b3e0af4f5",
+          "exact_line": "    var filename=ui(R.string.ui_untitled)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt#L29"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 57,
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "exact_line": "            setText(ExportNames.withExtension(initialFilename.ifBlank {ui(R.string.ui_untitled)},format))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L57"
+        }
+      ],
+      "caller_scope": "Default unnamed-document label and filename stem at new image, recovery initialization and empty proposed-name fallback. Third-person possessed name plus sourced absence predicate.",
+      "source_entry_ids": [
+        "name",
+        "absent"
+      ],
+      "source_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "caller_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "explicit_limits": [
+        "Authored lexical composition, not an attested technical Untitled term. This is a default naming label, not a missing-file/data-loss diagnosis. It does not claim the image is blank, unsaved or not restored. Code may later use this label as an actual filename stem.",
+        "No native-speaker, layout, glyph, screenreader or runtime certification."
+      ],
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nv",
+      "tier": "P1",
+      "key": "ui_draw26",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "Draw",
+      "attributes": {
+        "name": "ui_draw26"
+      },
+      "raw": "Naashchʼąąʼ",
+      "display": "Naashchʼąąʼ",
+      "raw_sha256": "959660366e1f3ff6ba0833f1bb05777ecf1b277a86c5f6b3937dae9070e36382",
+      "backtranslation": "Drawing / painting / design",
+      "placeholders": [],
+      "value": "Naashchʼąąʼ",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nv-small-actions6-1644.json",
+        "sha256": "d51cf98785b8842fd573847753dd9e38c5a8b245bc2b75bf51e76bdc068aef07"
+      },
+      "independent_review": {
+        "artifact": "review-nv-small-actions6-independent-1654.json",
+        "sha256": "772758695f542b271faafd5ad19a36d5609db319d8a98aadfc00343cf141cf3d"
+      },
+      "independent_semantic_review": "Wall/Morgan PDF50 printed43 explicitly gives painting/drawing/design for exact naashchʼąąʼ. This provides the noun sense needed by the topic tab. Young/Morgan1972 PDF292 printed147 additionally lists the same spelling as decorated, but that does not invalidate the separately attested noun sense or make it a first-person draw command. Do not conflate the candidate with naʼashchʼąąʼ or infer person merely from its letters. Tab selection opens the drawing-tools sidebar and does not itself draw. The broader panel includes selection, insertion, text and erasing, which is a bounded drawing-workflow topic extension, not a claim every tool paints.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 830,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "        \"Draw\"->R.string.ui_draw26;\"File\"->R.string.ui_menu_file;\"Edit\"->R.string.ui_menu_edit",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L830"
+        }
+      ],
+      "caller_scope": "Draw is a ribbon tab heading selecting the drawing-tools sidebar, not a command that immediately paints a mark. Drawing-topic noun is used intentionally. The panel includes selection, shapes, insertion and other editing tools as well as brushes.",
+      "source_entry_ids": [
+        "drawing"
+      ],
+      "source_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "caller_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "explicit_limits": [
+        "No imperative is fabricated. Broader drawing-tools panel label, not claim all child tools are freehand brush tools. Same noun as current brush-category Drawing label but new broader caller scope.",
+        "No native-speaker, layout, glyph, screenreader or runtime certification."
+      ],
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_metadata_correction": "Wall/Morgan 1958 exact spelling has noun senses painting/drawing/design. Young/Morgan additionally gives decorated. No first-person characterization.",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    },
+    {
+      "locale": "nv",
+      "tier": "P1",
+      "key": "ui_menu_view",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "View",
+      "attributes": {
+        "name": "ui_menu_view"
+      },
+      "raw": "Díníʼį́į́ʼ",
+      "display": "Díníʼį́į́ʼ",
+      "raw_sha256": "2262c768003128d33334b2527cb88873ee56917200d23f5de87a05eb59b3e274",
+      "backtranslation": "Look [the viewing-controls tab]",
+      "placeholders": [],
+      "value": "Díníʼį́į́ʼ",
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nv-small-actions6-1644.json",
+        "sha256": "d51cf98785b8842fd573847753dd9e38c5a8b245bc2b75bf51e76bdc068aef07"
+      },
+      "independent_review": {
+        "artifact": "review-nv-small-actions6-independent-1654.json",
+        "sha256": "772758695f542b271faafd5ad19a36d5609db319d8a98aadfc00343cf141cf3d"
+      },
+      "independent_semantic_review": "Wilson PDF49 printed84 has a direct look instruction; Young/Morgan1972 PDF449 English-index printed51 also gives a Look! example. Modern Navajo Language Academy entry1837 explicitly glosses the selected whole token as second-person look in a reported instruction. Its normalized modern whole-token spelling includes final U+02BC, unlike the visible Wilson spelling. The category use is an authored action-oriented View heading, not an attested software noun or an assertion that merely choosing the tab changes the image. Zoom, grid, cursor, magnifier and fullscreen substantiate the topic. Language and help are incidental app placement. This bounded label extension is accepted; no lexicalization or native-reader endorsement is claimed.",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 831,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "exact_line": "        \"View\"->R.string.ui_menu_view;\"Color\"->R.string.ui_colour_tab23;else->R.string.ui_menu_help",
+          "url": "https://github.com/c933103/AN-Paint/blob/4fb1461a9186f057845c0acecfbfd1063afd8da4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L831"
+        }
+      ],
+      "caller_scope": "Exact sourced Look command used as functional View ribbon-tab label. Selecting the tab exposes controls for zoom/pan, grid, cursor, magnifier, language, fullscreen and help; it does not itself invoke a zoom or change image pixels.",
+      "source_entry_ids": [
+        "look_wilson",
+        "look_command"
+      ],
+      "source_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "caller_evidence": {
+        "artifact": "nv-small-actions6-primary-callers-1644.json",
+        "sha256": "13e46f6ecdc023c97dbc8737f139cdcbba1c4f0f317f3a2f39da945dc1cdbe31"
+      },
+      "explicit_limits": [
+        "The category application is authored, not an attested software noun/menu name. The selected spelling comes whole from modern primary entry1837 (including final U+02BC), not a manufactured suffix from Wilson. Language placement within the panel is app organization, not a claim Look means language. Independent review must judge the tab-topic transfer.",
+        "No native-speaker, layout, glyph, screenreader or runtime certification."
+      ],
+      "confidence": "Moderate own-source/compositional acceptance with the per-row independent findings and limits; no native, layout or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_metadata_correction": "Exact modern second-person look form used in a directive example, accepted as bounded action-oriented tab label; not a software-menu noun.",
+      "integration_commit": "784e816c756e31f15ec6fb03bc2300b4350ed438"
+    }
+  ],
+  "limits": [
+    "Source/compositional wording and static caller verification only. No native-speaker, glyph, layout, accessibility or runtime certification.",
+    "The separate Cherokee invalid-size assertion and Navajo Type text candidates are excluded.",
+    "NHE first-select intentionally omits the tap gesture. Ready is a transient initialized label, not proof all operations finished.",
+    "Navajo Draw uses an attested noun, not a first-person form. View is an attested directive applied to a controls-tab heading."
+  ]
+}
