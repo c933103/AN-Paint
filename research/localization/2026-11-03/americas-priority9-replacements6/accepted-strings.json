@@ -1,0 +1,927 @@
+{
+  "title": "Accepted nine original-P1 controls with six synchronized existing references",
+  "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+  "integration_tree": "32088c591daae84f010f021a8b1ca5da30972391",
+  "original_intake": {
+    "artifact": "reviewed-americas9-replacements6-current8c90570-intake-1809.json",
+    "sha256": "6e36c40e1cbe33e5ef0da21eb9f985f5ebcc21656ba6843481e8061bc10a7ade"
+  },
+  "counts": {
+    "new_P0": 0,
+    "new_P1": 9,
+    "new_gap_fills": 9,
+    "existing_guidance_replacements": 6,
+    "total_touched_strings": 15
+  },
+  "raw_convention": "raw, old_parsed_value and new_parsed_value are XML-parsed Android text. CH ASCII apostrophes retain exactly one Android backslash. XML-escape once on emission. Display removes Android backslash; no XML-body entity strings.",
+  "rows": [
+    {
+      "locale": "ch",
+      "key": "ui_fit",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Fit",
+      "attributes": {
+        "name": "ui_fit"
+      },
+      "raw": "Na\\'annuk todu",
+      "display": "Na'annuk todu",
+      "raw_utf8_sha256": "1963059614d65bd59e53c6b0c8a03bfc174f74752a6bf6c149a8bec0b786383f",
+      "placeholders": [],
+      "typed_slots": [],
+      "backtranslation": "Bring everything into view.",
+      "candidate": {
+        "artifact": "ch-view-scale3-gaps6-1801.json",
+        "sha256": "4677af933419599be525807c530e14738ed6ba7eeea2a91aaf6327db5ad6e526"
+      },
+      "independent_review": {
+        "artifact": "review-ch-view-scale3-independent-1808.json",
+        "sha256": "d401b2773f6033fef4413002f04256f51744f4e054235c8ea26cc1c59b49b7bb"
+      },
+      "source_evidence": {
+        "artifact": "ch-view-scale-sources-1801.json",
+        "sha256": "b12a4d53582e048d16f70719a5c646974e9c8597a8e8393820641520e829228a"
+      },
+      "caller_evidence": {
+        "artifact": "ch-view-scale-callers-1801.json",
+        "sha256": "70486990cfdaa5723f103aef0ab74609f947ae0fcfb40fc5ab115839700b5c0b"
+      },
+      "confidence": "Moderate authored source-supported functional wording; independent review pending.",
+      "limits": "The object is supplied by the shared viewport context. This repeats the meaning of the existing Show all translation without repeating its key. The Fit button also works during trim and floating-selection handling.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "ch",
+        "tier": "P1",
+        "key": "ui_fit",
+        "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+        "english": "Fit",
+        "attributes": {
+          "name": "ui_fit"
+        },
+        "raw": "Na\\'annuk todu",
+        "raw_utf8_sha256": "1963059614d65bd59e53c6b0c8a03bfc174f74752a6bf6c149a8bec0b786383f",
+        "value": "Na'annuk todu",
+        "display": "Na'annuk todu",
+        "placeholders": [],
+        "typed_slots": [],
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "confidence": "Moderate; authored functional composition",
+        "backtranslation": "Bring everything into view.",
+        "lexical_grammar_basis": "The CNMI transitive na'annuk denotes bringing into view, not enlarging. Todu can stand for everything. Chung affirmative transitive imperatives omit agreement.",
+        "caller_basis": "All three text uses invoke PaintCanvas.fit(): zoom controls, zoom-tool options, and trim options. The click wrapper only gates busy/autosaving and catches errors. fit() adjusts viewport zoom/pan, resets polygon tap bookkeeping, invalidates, and invokes status/autosave callbacks. It does not resize the bitmap or apply trim.",
+        "semantic_limits": [
+          "The short label obtains its object from the active drawing viewport. It is not a command to show all application controls or files.",
+          "A functional show-everything wording rather than a technical calque of Fit.",
+          "Bounds include the full bitmap, trim rectangle and any floating selection. On too-small views fit() returns without action."
+        ],
+        "checks": {
+          "original_P1_missing": true,
+          "absent_at_observed_head": true,
+          "English_and_attributes_exact": true,
+          "typed_slots_exact": true,
+          "literal_percent_preserved": true,
+          "single_backslash_before_each_ASCII_apostrophe": true,
+          "XML_escape_once_and_parse_roundtrip": true,
+          "raw_sha256_recomputed": true
+        }
+      }
+    },
+    {
+      "locale": "ch",
+      "key": "ui_fit_entire_canvas_in_view",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Fit entire canvas in view",
+      "attributes": {
+        "name": "ui_fit_entire_canvas_in_view"
+      },
+      "raw": "Na\\'annuk todu i brin",
+      "display": "Na'annuk todu i brin",
+      "raw_utf8_sha256": "97cfa99a2ac59d439217f7635dfeebea4635074aacc0651cac2738db236b6153",
+      "placeholders": [],
+      "typed_slots": [],
+      "backtranslation": "Bring the whole canvas into view.",
+      "candidate": {
+        "artifact": "ch-view-scale3-gaps6-1801.json",
+        "sha256": "4677af933419599be525807c530e14738ed6ba7eeea2a91aaf6327db5ad6e526"
+      },
+      "independent_review": {
+        "artifact": "review-ch-view-scale3-independent-1808.json",
+        "sha256": "d401b2773f6033fef4413002f04256f51744f4e054235c8ea26cc1c59b49b7bb"
+      },
+      "source_evidence": {
+        "artifact": "ch-view-scale-sources-1801.json",
+        "sha256": "b12a4d53582e048d16f70719a5c646974e9c8597a8e8393820641520e829228a"
+      },
+      "caller_evidence": {
+        "artifact": "ch-view-scale-callers-1801.json",
+        "sha256": "70486990cfdaa5723f103aef0ab74609f947ae0fcfb40fc5ab115839700b5c0b"
+      },
+      "confidence": "Moderate authored source-supported functional wording; independent review pending.",
+      "limits": "The entire canvas is included even when the fitted bounds also contain a floating selection or trim handles. No source resizing is commanded.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "ch",
+        "tier": "P1",
+        "key": "ui_fit_entire_canvas_in_view",
+        "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+        "english": "Fit entire canvas in view",
+        "attributes": {
+          "name": "ui_fit_entire_canvas_in_view"
+        },
+        "raw": "Na\\'annuk todu i brin",
+        "raw_utf8_sha256": "97cfa99a2ac59d439217f7635dfeebea4635074aacc0651cac2738db236b6153",
+        "value": "Na'annuk todu i brin",
+        "display": "Na'annuk todu i brin",
+        "placeholders": [],
+        "typed_slots": [],
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "confidence": "Moderate; authored functional composition",
+        "backtranslation": "Bring the whole canvas into view.",
+        "lexical_grammar_basis": "CNMI na'annuk is visibility-oriented; todu i names the whole definite object. Brin is material canvas in the dictionary, extended here to the application drawing surface. Chung supports todu before i and an uninflected transitive imperative.",
+        "caller_basis": "The exact key supplies FIT icon content description, tooltip/help wording and fit control content description. The only FIT icon invocation and all related text buttons invoke the same view-fitting method.",
+        "semantic_limits": [
+          "Digital canvas is an explicitly disclosed functional extension of material brin, not an attested software sense.",
+          "Whole canvas is guaranteed to be contained in computed fit bounds, which can additionally include trim handles or a floating selection; this is not a promise to remove those objects or resize them.",
+          "No source pixel resizing, crop application, or image-to-destination scaling is commanded."
+        ],
+        "checks": {
+          "original_P1_missing": true,
+          "absent_at_observed_head": true,
+          "English_and_attributes_exact": true,
+          "typed_slots_exact": true,
+          "literal_percent_preserved": true,
+          "single_backslash_before_each_ASCII_apostrophe": true,
+          "XML_escape_once_and_parse_roundtrip": true,
+          "raw_sha256_recomputed": true
+        }
+      }
+    },
+    {
+      "locale": "ch",
+      "key": "ui_magnification",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Magnification (%)",
+      "attributes": {
+        "name": "ui_magnification",
+        "formatted": "false"
+      },
+      "raw": "Mineddung i pinenta gi mostra (%)",
+      "display": "Mineddung i pinenta gi mostra (%)",
+      "raw_utf8_sha256": "a8072da0eec9ff632e083e8c5ab2eff39e7c453b27d730100e41492237a67bff",
+      "placeholders": [],
+      "typed_slots": [],
+      "backtranslation": "Size of the picture in the preview (%).",
+      "candidate": {
+        "artifact": "ch-view-scale3-gaps6-1801.json",
+        "sha256": "4677af933419599be525807c530e14738ed6ba7eeea2a91aaf6327db5ad6e526"
+      },
+      "independent_review": {
+        "artifact": "review-ch-view-scale3-independent-1808.json",
+        "sha256": "d401b2773f6033fef4413002f04256f51744f4e054235c8ea26cc1c59b49b7bb"
+      },
+      "source_evidence": {
+        "artifact": "ch-view-scale-sources-1801.json",
+        "sha256": "b12a4d53582e048d16f70719a5c646974e9c8597a8e8393820641520e829228a"
+      },
+      "caller_evidence": {
+        "artifact": "ch-view-scale-callers-1801.json",
+        "sha256": "70486990cfdaa5723f103aef0ab74609f947ae0fcfb40fc5ab115839700b5c0b"
+      },
+      "confidence": "Moderate authored source-supported functional wording; independent review pending.",
+      "limits": "Size-in-preview is a functional paraphrase for the relative lens magnification setting. This labels the displayed picture, not lens frame dimensions, source dimensions or the separate main-canvas zoom. (%) and formatted=false are unchanged.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "ch",
+        "tier": "P1",
+        "key": "ui_magnification",
+        "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+        "english": "Magnification (%)",
+        "attributes": {
+          "name": "ui_magnification",
+          "formatted": "false"
+        },
+        "raw": "Mineddung i pinenta gi mostra (%)",
+        "raw_utf8_sha256": "a8072da0eec9ff632e083e8c5ab2eff39e7c453b27d730100e41492237a67bff",
+        "value": "Mineddung i pinenta gi mostra (%)",
+        "display": "Mineddung i pinenta gi mostra (%)",
+        "placeholders": [],
+        "typed_slots": [],
+        "decision": "ACCEPT_RAW_UNCHANGED",
+        "confidence": "Moderate; authored picture-size-in-preview paraphrase",
+        "backtranslation": "Size of the picture in the preview (%).",
+        "lexical_grammar_basis": "CNMI mineddung is size/dimensions; pinenta is pictured/drawn content; mostra is a sample or representative part. The noun phrase makes picture content the possessor of size, with gi mostra locating it within the sample/preview. Chung supports following possessors, zero linker after consonant-final mineddung, and fused local gi with definite common nouns. The dictionary map example independently attests mineddung i followed by a possessor.",
+        "caller_basis": "Both exact usages are NumericSlider controls for previewMagnification, in cursor options and showDrawingSettings(preview=true), beside the magnified drawing-preview toggle. Range 100–400 maps to factor 1–4. Drawing clips to the existing lens, scales its drawing transform by max(main zoom,1) times previewMagnification and draws the unchanged bitmap. magnifierBounds() computes frame size independently of previewMagnification.",
+        "semantic_limits": [
+          "Mostra as digital preview is an authored functional extension, not a directly attested software term.",
+          "The label names size of pictured content within the preview, not size of the preview frame, source bitmap dimensions, or the main-canvas zoom slider.",
+          "The percentage is the relative lens multiplier. It is not an absolute one-source-pixel-to-screen-pixel ratio when main zoom exceeds one.",
+          "The phrase does not independently spell out the multiplier baseline; this limitation is compatible with the terse English label and both verified preview settings contexts. Do not reuse it for main-canvas zoom or bitmap resize without fresh review.",
+          "NumericSlider also uses the passed label in accessibility text and the numeric-entry dialog title. No runtime layout, glyph or accessibility behavior was exercised."
+        ],
+        "checks": {
+          "original_P1_missing": true,
+          "absent_at_observed_head": true,
+          "English_and_attributes_exact": true,
+          "typed_slots_exact": true,
+          "literal_percent_preserved": true,
+          "single_backslash_before_each_ASCII_apostrophe": true,
+          "XML_escape_once_and_parse_roundtrip": true,
+          "raw_sha256_recomputed": true
+        }
+      }
+    },
+    {
+      "locale": "nhe",
+      "key": "language20_app_language",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "App language",
+      "attributes": {
+        "name": "language20_app_language"
+      },
+      "raw": "Tlahtolli (AN Paint)",
+      "display": "Tlahtolli (AN Paint)",
+      "raw_sha256": "7776cdaf2c63577959e3111c0d81cf00e36480a7b60354e9a9cf8d6c84012d92",
+      "placeholders": [],
+      "backtranslation": "Language (AN Paint).",
+      "caller_scope": "AppLanguage181 title for app language chooser, subject to custom-title UI override.",
+      "candidate": {
+        "artifact": "nhe-language2-author-1804.json",
+        "sha256": "abe0df6ebcc36ad558e66bd186a012a73854df53351f5127d44c9f92dc9711ce"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-language2-independent-1807.json",
+        "sha256": "6ebcc244b718154ee4cda391a93c01f36320aac52342345762f2534801741f29"
+      },
+      "source_evidence": {
+        "artifact": "nhe-language2-primary-1804.json",
+        "sha256": "627f2c27b1d7e285831f6683fc2c32000e944ce44c57b874589a22b517d09672"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-language2-callers-1804.json",
+        "sha256": "e10495fae57a7d0626e2330608e823db7907a50adf0cf59c7e526d5ee3babdea"
+      },
+      "confidence": "Moderate own-source functional composition",
+      "limits": "Parentheses explicitly qualify the category by app name, not an inflected phrase. No global device-language change or universal translation guarantee.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "nhe",
+        "key": "language20_app_language",
+        "tier": "P1",
+        "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+        "raw": "Tlahtolli (AN Paint)",
+        "raw_sha256": "7776cdaf2c63577959e3111c0d81cf00e36480a7b60354e9a9cf8d6c84012d92",
+        "attributes": {
+          "name": "language20_app_language"
+        },
+        "placeholders": [],
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      }
+    },
+    {
+      "locale": "nhe",
+      "key": "language20_current",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "App language: %1$s",
+      "attributes": {
+        "name": "language20_current"
+      },
+      "raw": "Tlahtolli (AN Paint): %1$s",
+      "display": "Tlahtolli (AN Paint): %1$s",
+      "raw_sha256": "e6aba6d3e2595425015630d30818ba9f504aa66bfd9590f4be048ceb856cb220",
+      "placeholders": [
+        "%1$s"
+      ],
+      "backtranslation": "Language (AN Paint): %1$s.",
+      "caller_scope": "AppLanguage165 Settings row, supplied current app-language choice or device-default label.",
+      "candidate": {
+        "artifact": "nhe-language2-author-1804.json",
+        "sha256": "abe0df6ebcc36ad558e66bd186a012a73854df53351f5127d44c9f92dc9711ce"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-language2-independent-1807.json",
+        "sha256": "6ebcc244b718154ee4cda391a93c01f36320aac52342345762f2534801741f29"
+      },
+      "source_evidence": {
+        "artifact": "nhe-language2-primary-1804.json",
+        "sha256": "627f2c27b1d7e285831f6683fc2c32000e944ce44c57b874589a22b517d09672"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-language2-callers-1804.json",
+        "sha256": "e10495fae57a7d0626e2330608e823db7907a50adf0cf59c7e526d5ee3babdea"
+      },
+      "confidence": "Moderate own-source functional composition",
+      "limits": "Parentheses explicitly qualify the category by app name, not an inflected phrase. No global device-language change or universal translation guarantee.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "nhe",
+        "key": "language20_current",
+        "tier": "P1",
+        "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+        "raw": "Tlahtolli (AN Paint): %1$s",
+        "raw_sha256": "e6aba6d3e2595425015630d30818ba9f504aa66bfd9590f4be048ceb856cb220",
+        "attributes": {
+          "name": "language20_current"
+        },
+        "placeholders": [
+          "%1$s"
+        ],
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      }
+    },
+    {
+      "locale": "nch",
+      "key": "ui_load_image",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Load image…",
+      "attributes": {
+        "name": "ui_load_image"
+      },
+      "raw": "Xijtapo ixkopinali…",
+      "display": "Xijtapo ixkopinali…",
+      "raw_sha256": "a1cb5e685d44c5a041d047ce510a67e09a931b35861635ec398f7f449b6d3243",
+      "placeholders": [],
+      "backtranslation": "Open an image…",
+      "caller_semantics": [
+        "ClassicPaintActivity838 is the only direct emitter across all104 production files: File menu invokes confirmReplacement {launchOpen(false)}.",
+        "confirmReplacement1074–1079 applies pending edits and either continues if clean, or offers Save/Discard/Keep editing. The label does not claim existing edits have already been saved or replaced.",
+        "launchOpen1082–1090 requests ACTION_OPEN_DOCUMENT/CATEGORY_OPENABLE, generic MIME */* so mislabeled valid image providers remain usable; false selects OPEN_IMAGE. launchPicker1092–1101 falls back to ACTION_GET_CONTENT and reports picker failures.",
+        "handleActivityResult1175–1187 returns without opening on cancellation;1248–1252 resolves one returned URI and sends OPEN_IMAGE to readImage(uri,false). No second use of this label imports to a floating selection.",
+        "readImage1266–1297 copies/inspects input through ImportSelection. Format/page/frame choices and resize prompts may intervene. decodeImage1310–1333 replaces the canvas on the false-import branch after successful decoding. Opening does not promise original-size loading, retained animation, pixel identity, or success.",
+        "Open image is a functional counterpart to Load image in this sole menu flow. Ellipsis remains because further choices follow. It does not mean open an existing already-selected image in place or create a blank image."
+      ],
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 838,
+          "text": "ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/640b997c03347fee471be17ecde3e7a3ea115113/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L838"
+        }
+      ],
+      "candidate": {
+        "artifact": "nahua-load-share4-author-1757.json",
+        "sha256": "49e5090b7cc1ecc111258bb19c607d947f4091e8f4e6c29d7298a7b7deeba016"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "source_evidence": {
+        "artifact": "nahua-load-share4-primary-1757.json",
+        "sha256": "1270b5bb3e7d580d4730c526b7623fd7b6b75d6fa8b01c8b2aeaadcbbee6e857"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-load-share4-callers-1757.json",
+        "sha256": "b4123490b85a28c3d87286c50f67a765059af46d0524b0598db502a61f84bec1"
+      },
+      "confidence": "Moderate own-variety source-compositional. Open-command morphology is explicit productive analogy and must be independently reviewed; no native-speaker or UI/layout certificate.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "nch",
+        "key": "ui_load_image",
+        "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+        "raw": "Xijtapo ixkopinali…",
+        "raw_sha256": "a1cb5e685d44c5a041d047ce510a67e09a931b35861635ec398f7f449b6d3243",
+        "attributes": {
+          "name": "ui_load_image"
+        },
+        "placeholders": [],
+        "backtranslation": "Open an image…"
+      }
+    },
+    {
+      "locale": "nch",
+      "key": "ui_share_saved_image",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Share saved image",
+      "attributes": {
+        "name": "ui_share_saved_image"
+      },
+      "raw": "Xijtitani ixkopinali cati AN Paint quiajoctoc",
+      "display": "Xijtitani ixkopinali cati AN Paint quiajoctoc",
+      "raw_sha256": "021245b8162324333e7286b3fdeb43c678cac771600b0477d5d5a8f76f7ac751",
+      "placeholders": [],
+      "backtranslation": "Send the image that AN Paint has stored. [Share the already-saved image through Android’s chooser.]",
+      "caller_semantics": [
+        "ClassicPaintActivity1388 is the only direct emitter: title passed to Intent.createChooser(send,ui(...)).",
+        "Save and share menu842 uses showSaveOptions(format,true,export=true);1110–1122 sets shareAfterSave and invokes chooseSaveLocation after user confirmation. Cancellation clears shareAfterSave.",
+        "writeImage1354–1372 first encodes the snapshot to a temporary images file, writes bytes to the selected destination, obtains its name, then posts Saved and calls shareSavedImage(file,format). The shared stream is the already-created encoded cache file corresponding to that write.",
+        "shareSavedImage1380–1389 builds ACTION_SEND, MIME, EXTRA_STREAM, clipData and temporary read permission, then starts Android chooser. It does not transmit to a selected recipient itself. Chooser failure says image was saved but Android could not open share.",
+        "The relative clause says the program has stored the image, not that it has sent it. The directive asks the user to send via the chooser. No extra Save command, already-transmitted claim, automatic recipient, full-current-document-saved claim, or permanent-file guarantee is introduced."
+      ],
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1388,
+          "text": "startActivity(Intent.createChooser(send,ui(R.string.ui_share_saved_image)))",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/640b997c03347fee471be17ecde3e7a3ea115113/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1388"
+        }
+      ],
+      "candidate": {
+        "artifact": "nahua-load-share4-author-1757.json",
+        "sha256": "49e5090b7cc1ecc111258bb19c607d947f4091e8f4e6c29d7298a7b7deeba016"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "source_evidence": {
+        "artifact": "nahua-load-share4-primary-1757.json",
+        "sha256": "1270b5bb3e7d580d4730c526b7623fd7b6b75d6fa8b01c8b2aeaadcbbee6e857"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-load-share4-callers-1757.json",
+        "sha256": "b4123490b85a28c3d87286c50f67a765059af46d0524b0598db502a61f84bec1"
+      },
+      "confidence": "Moderate own-variety source-compositional. Open-command morphology is explicit productive analogy and must be independently reviewed; no native-speaker or UI/layout certificate.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "nch",
+        "key": "ui_share_saved_image",
+        "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+        "raw": "Xijtitani ixkopinali cati AN Paint quiajoctoc",
+        "raw_sha256": "021245b8162324333e7286b3fdeb43c678cac771600b0477d5d5a8f76f7ac751",
+        "attributes": {
+          "name": "ui_share_saved_image"
+        },
+        "placeholders": [],
+        "backtranslation": "Send the image that AN Paint has stored. [Share the already-saved image through Android’s chooser.]"
+      }
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_load_image",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Load image…",
+      "attributes": {
+        "name": "ui_load_image"
+      },
+      "raw": "Xijtlapo tlaixkopintli…",
+      "display": "Xijtlapo tlaixkopintli…",
+      "raw_sha256": "0c0bc062ee30ad058062623e2e7b0e4a48fab276ece654f82a1d72a82a7d922c",
+      "placeholders": [],
+      "backtranslation": "Open an image…",
+      "caller_semantics": [
+        "ClassicPaintActivity838 is the only direct emitter across all104 production files: File menu invokes confirmReplacement {launchOpen(false)}.",
+        "confirmReplacement1074–1079 applies pending edits and either continues if clean, or offers Save/Discard/Keep editing. The label does not claim existing edits have already been saved or replaced.",
+        "launchOpen1082–1090 requests ACTION_OPEN_DOCUMENT/CATEGORY_OPENABLE, generic MIME */* so mislabeled valid image providers remain usable; false selects OPEN_IMAGE. launchPicker1092–1101 falls back to ACTION_GET_CONTENT and reports picker failures.",
+        "handleActivityResult1175–1187 returns without opening on cancellation;1248–1252 resolves one returned URI and sends OPEN_IMAGE to readImage(uri,false). No second use of this label imports to a floating selection.",
+        "readImage1266–1297 copies/inspects input through ImportSelection. Format/page/frame choices and resize prompts may intervene. decodeImage1310–1333 replaces the canvas on the false-import branch after successful decoding. Opening does not promise original-size loading, retained animation, pixel identity, or success.",
+        "Open image is a functional counterpart to Load image in this sole menu flow. Ellipsis remains because further choices follow. It does not mean open an existing already-selected image in place or create a blank image."
+      ],
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 838,
+          "text": "ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/640b997c03347fee471be17ecde3e7a3ea115113/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L838"
+        }
+      ],
+      "candidate": {
+        "artifact": "nahua-load-share4-author-1757.json",
+        "sha256": "49e5090b7cc1ecc111258bb19c607d947f4091e8f4e6c29d7298a7b7deeba016"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "source_evidence": {
+        "artifact": "nahua-load-share4-primary-1757.json",
+        "sha256": "1270b5bb3e7d580d4730c526b7623fd7b6b75d6fa8b01c8b2aeaadcbbee6e857"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-load-share4-callers-1757.json",
+        "sha256": "b4123490b85a28c3d87286c50f67a765059af46d0524b0598db502a61f84bec1"
+      },
+      "confidence": "Moderate own-variety source-compositional. Open-command morphology is explicit productive analogy and must be independently reviewed; no native-speaker or UI/layout certificate.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "nhw",
+        "key": "ui_load_image",
+        "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+        "raw": "Xijtlapo tlaixkopintli…",
+        "raw_sha256": "0c0bc062ee30ad058062623e2e7b0e4a48fab276ece654f82a1d72a82a7d922c",
+        "attributes": {
+          "name": "ui_load_image"
+        },
+        "placeholders": [],
+        "backtranslation": "Open an image…"
+      }
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_share_saved_image",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Share saved image",
+      "attributes": {
+        "name": "ui_share_saved_image"
+      },
+      "raw": "Xijtitlani tlaixkopintli catli AN Paint quiajoctoc",
+      "display": "Xijtitlani tlaixkopintli catli AN Paint quiajoctoc",
+      "raw_sha256": "d7cd826444fafa7a47b545bf3ec2a95b720a1cad82145600d0f85450a4d433a1",
+      "placeholders": [],
+      "backtranslation": "Send the image that AN Paint has stored. [Share the already-saved image through Android’s chooser.]",
+      "caller_semantics": [
+        "ClassicPaintActivity1388 is the only direct emitter: title passed to Intent.createChooser(send,ui(...)).",
+        "Save and share menu842 uses showSaveOptions(format,true,export=true);1110–1122 sets shareAfterSave and invokes chooseSaveLocation after user confirmation. Cancellation clears shareAfterSave.",
+        "writeImage1354–1372 first encodes the snapshot to a temporary images file, writes bytes to the selected destination, obtains its name, then posts Saved and calls shareSavedImage(file,format). The shared stream is the already-created encoded cache file corresponding to that write.",
+        "shareSavedImage1380–1389 builds ACTION_SEND, MIME, EXTRA_STREAM, clipData and temporary read permission, then starts Android chooser. It does not transmit to a selected recipient itself. Chooser failure says image was saved but Android could not open share.",
+        "The relative clause says the program has stored the image, not that it has sent it. The directive asks the user to send via the chooser. No extra Save command, already-transmitted claim, automatic recipient, full-current-document-saved claim, or permanent-file guarantee is introduced."
+      ],
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1388,
+          "text": "startActivity(Intent.createChooser(send,ui(R.string.ui_share_saved_image)))",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/640b997c03347fee471be17ecde3e7a3ea115113/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1388"
+        }
+      ],
+      "candidate": {
+        "artifact": "nahua-load-share4-author-1757.json",
+        "sha256": "49e5090b7cc1ecc111258bb19c607d947f4091e8f4e6c29d7298a7b7deeba016"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "source_evidence": {
+        "artifact": "nahua-load-share4-primary-1757.json",
+        "sha256": "1270b5bb3e7d580d4730c526b7623fd7b6b75d6fa8b01c8b2aeaadcbbee6e857"
+      },
+      "caller_evidence": {
+        "artifact": "nahua-load-share4-callers-1757.json",
+        "sha256": "b4123490b85a28c3d87286c50f67a765059af46d0524b0598db502a61f84bec1"
+      },
+      "confidence": "Moderate own-variety source-compositional. Open-command morphology is explicit productive analogy and must be independently reviewed; no native-speaker or UI/layout certificate.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "new_gap_credit": 1,
+      "operation": "ADD_EXISTING_LOCALE_STRING",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "independent_row_findings": {
+        "locale": "nhw",
+        "key": "ui_share_saved_image",
+        "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+        "raw": "Xijtitlani tlaixkopintli catli AN Paint quiajoctoc",
+        "raw_sha256": "d7cd826444fafa7a47b545bf3ec2a95b720a1cad82145600d0f85450a4d433a1",
+        "attributes": {
+          "name": "ui_share_saved_image"
+        },
+        "placeholders": [],
+        "backtranslation": "Send the image that AN Paint has stored. [Share the already-saved image through Android’s chooser.]"
+      }
+    }
+  ],
+  "replacements": [
+    {
+      "locale": "nch",
+      "key": "ui_a_separate_recovery_copy_has_been_kept_use",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "old_parsed_value": "%1$s AN Paint quiajoctoc iyoca cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali para AN Paint huelis quipatas ihuexca sinta monequi.",
+      "new_parsed_value": "%1$s AN Paint quiajoctoc iyoca cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Xijtapo ixkopinali…” ica nopa ixkopinali para AN Paint huelis quipatas ihuexca sinta monequi.",
+      "old_raw": "%1$s AN Paint quiajoctoc iyoca cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali para AN Paint huelis quipatas ihuexca sinta monequi.",
+      "raw": "%1$s AN Paint quiajoctoc iyoca cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Xijtapo ixkopinali…” ica nopa ixkopinali para AN Paint huelis quipatas ihuexca sinta monequi.",
+      "old_display": "%1$s AN Paint quiajoctoc iyoca cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali para AN Paint huelis quipatas ihuexca sinta monequi.",
+      "display": "%1$s AN Paint quiajoctoc iyoca cati quiajoctoc iselti achtohuiya. Ica “File → Xicajocui cati AN Paint quiajoctoc iselti (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Xijtapo ixkopinali…” ica nopa ixkopinali para AN Paint huelis quipatas ihuexca sinta monequi.",
+      "old_attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "new_attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "old_raw_sha256": "7c776673aee9f0a53a231d1fca936261648f1f080c687ca19a45377bb5842bb4",
+      "raw_sha256": "a8ccd6a367d1e7cdcd08e480d6e5bffe512f0ffb253c4a3f04fa2c734dcc8b18",
+      "placeholders": [
+        "%1$s"
+      ],
+      "old_quote_occurrences": 1,
+      "new_quote_occurrences": 1,
+      "exact_substitution": {
+        "old": "Load image…",
+        "new": "Xijtapo ixkopinali…",
+        "occurrences": 1
+      },
+      "new_gap_credit": 0,
+      "operation": "REPLACE_EXISTING_VALUE_ONLY",
+      "candidate": {
+        "artifact": "nahua-load-label-guidance-replacement6-1757.json",
+        "sha256": "50bce763d8df2bb1dbea87de481609394b63c76ecf3b44654ec09743242141cc"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "conditional_dependency": {
+        "locale": "nch",
+        "key": "ui_load_image",
+        "raw": "Xijtapo ixkopinali…",
+        "same_batch_required": true
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "reason": "Mandatory menu-reference synchronization with this same locale’s newly nominated ui_load_image. Only the exact quoted label is replaced; the already-reviewed guidance remains otherwise byte-for-byte unchanged."
+    },
+    {
+      "locale": "nch",
+      "key": "ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "old_parsed_value": "AN Paint quiajoctoc cati quiajoctoc iselti achtohuiya (ZIP). Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tajcuiloli cati quiijtohua quenicatza eltoya cati AN Paint quiajoctoc iselti. Sinta onca floating.png, quipiya ixkopinali cati AN Paint hueli quipata iyoca (floating selection).",
+      "new_parsed_value": "AN Paint quiajoctoc cati quiajoctoc iselti achtohuiya (ZIP). Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Xijtapo ixkopinali…” ica nopa ixkopinali. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tajcuiloli cati quiijtohua quenicatza eltoya cati AN Paint quiajoctoc iselti. Sinta onca floating.png, quipiya ixkopinali cati AN Paint hueli quipata iyoca (floating selection).",
+      "old_raw": "AN Paint quiajoctoc cati quiajoctoc iselti achtohuiya (ZIP). Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tajcuiloli cati quiijtohua quenicatza eltoya cati AN Paint quiajoctoc iselti. Sinta onca floating.png, quipiya ixkopinali cati AN Paint hueli quipata iyoca (floating selection).",
+      "raw": "AN Paint quiajoctoc cati quiajoctoc iselti achtohuiya (ZIP). Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Xijtapo ixkopinali…” ica nopa ixkopinali. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tajcuiloli cati quiijtohua quenicatza eltoya cati AN Paint quiajoctoc iselti. Sinta onca floating.png, quipiya ixkopinali cati AN Paint hueli quipata iyoca (floating selection).",
+      "old_display": "AN Paint quiajoctoc cati quiajoctoc iselti achtohuiya (ZIP). Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa ixkopinali. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tajcuiloli cati quiijtohua quenicatza eltoya cati AN Paint quiajoctoc iselti. Sinta onca floating.png, quipiya ixkopinali cati AN Paint hueli quipata iyoca (floating selection).",
+      "display": "AN Paint quiajoctoc cati quiajoctoc iselti achtohuiya (ZIP). Xijquixti canvas.png ten ipan ni ZIP. Teipa, xijtequihui “File → Xijtapo ixkopinali…” ica nopa ixkopinali. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tajcuiloli cati quiijtohua quenicatza eltoya cati AN Paint quiajoctoc iselti. Sinta onca floating.png, quipiya ixkopinali cati AN Paint hueli quipata iyoca (floating selection).",
+      "old_attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "new_attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "old_raw_sha256": "88ad3b17409c3d27587f4230397040011d40596f353bd892900150ced23e20f8",
+      "raw_sha256": "eb238092ddcebb0245a94c1e35b132da8b63a8cefb138b7c7bea6502a8774cfb",
+      "placeholders": [],
+      "old_quote_occurrences": 1,
+      "new_quote_occurrences": 1,
+      "exact_substitution": {
+        "old": "Load image…",
+        "new": "Xijtapo ixkopinali…",
+        "occurrences": 1
+      },
+      "new_gap_credit": 0,
+      "operation": "REPLACE_EXISTING_VALUE_ONLY",
+      "candidate": {
+        "artifact": "nahua-load-label-guidance-replacement6-1757.json",
+        "sha256": "50bce763d8df2bb1dbea87de481609394b63c76ecf3b44654ec09743242141cc"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "conditional_dependency": {
+        "locale": "nch",
+        "key": "ui_load_image",
+        "raw": "Xijtapo ixkopinali…",
+        "same_batch_required": true
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "reason": "Mandatory menu-reference synchronization with this same locale’s newly nominated ui_load_image. Only the exact quoted label is replaced; the already-reviewed guidance remains otherwise byte-for-byte unchanged."
+    },
+    {
+      "locale": "nch",
+      "key": "save20_unsupported_image_colour",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "old_parsed_value": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "new_parsed_value": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Xijtapo ixkopinali…” ica nopa PNG.",
+      "old_raw": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "raw": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Xijtapo ixkopinali…” ica nopa PNG.",
+      "old_display": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "display": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Xijtapo ixkopinali…” ica nopa PNG.",
+      "old_attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "new_attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "old_raw_sha256": "364ba0031d0c75ee615df809d733a05dbb5e04a8437e55bcc13ab9d0177c47e1",
+      "raw_sha256": "c769955c4f201407658d6123ca91b80482771d5f78c55c7115cbd2fcb9ec100f",
+      "placeholders": [],
+      "old_quote_occurrences": 1,
+      "new_quote_occurrences": 1,
+      "exact_substitution": {
+        "old": "Load image…",
+        "new": "Xijtapo ixkopinali…",
+        "occurrences": 1
+      },
+      "new_gap_credit": 0,
+      "operation": "REPLACE_EXISTING_VALUE_ONLY",
+      "candidate": {
+        "artifact": "nahua-load-label-guidance-replacement6-1757.json",
+        "sha256": "50bce763d8df2bb1dbea87de481609394b63c76ecf3b44654ec09743242141cc"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "conditional_dependency": {
+        "locale": "nch",
+        "key": "ui_load_image",
+        "raw": "Xijtapo ixkopinali…",
+        "same_batch_required": true
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "reason": "Mandatory menu-reference synchronization with this same locale’s newly nominated ui_load_image. Only the exact quoted label is replaced; the already-reviewed guidance remains otherwise byte-for-byte unchanged."
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_a_separate_recovery_copy_has_been_kept_use",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "old_parsed_value": "%1$s AN Paint quiajoctoc iyoca catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli para AN Paint huelis quipatlas ihuexca sintla monequi.",
+      "new_parsed_value": "%1$s AN Paint quiajoctoc iyoca catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Xijtlapo tlaixkopintli…” ica nopa tlaixkopintli para AN Paint huelis quipatlas ihuexca sintla monequi.",
+      "old_raw": "%1$s AN Paint quiajoctoc iyoca catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli para AN Paint huelis quipatlas ihuexca sintla monequi.",
+      "raw": "%1$s AN Paint quiajoctoc iyoca catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Xijtlapo tlaixkopintli…” ica nopa tlaixkopintli para AN Paint huelis quipatlas ihuexca sintla monequi.",
+      "old_display": "%1$s AN Paint quiajoctoc iyoca catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli para AN Paint huelis quipatlas ihuexca sintla monequi.",
+      "display": "%1$s AN Paint quiajoctoc iyoca catli quiajoctoc iseltzi achtihuiya. Ica “File → Xicajocui catli AN Paint quiajoctoc iseltzi (ZIP)…”, xicajocui ni ZIP. Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Xijtlapo tlaixkopintli…” ica nopa tlaixkopintli para AN Paint huelis quipatlas ihuexca sintla monequi.",
+      "old_attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "new_attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "old_raw_sha256": "0b3414a025b6eaa75258efa4d99014dcf2b4a99d124db518a28a8f2367050fd6",
+      "raw_sha256": "f6c9e4ce03f6c43c26b9a38a28e9daac81fee6e8d0a59ef512f36ca519604e95",
+      "placeholders": [
+        "%1$s"
+      ],
+      "old_quote_occurrences": 1,
+      "new_quote_occurrences": 1,
+      "exact_substitution": {
+        "old": "Load image…",
+        "new": "Xijtlapo tlaixkopintli…",
+        "occurrences": 1
+      },
+      "new_gap_credit": 0,
+      "operation": "REPLACE_EXISTING_VALUE_ONLY",
+      "candidate": {
+        "artifact": "nahua-load-label-guidance-replacement6-1757.json",
+        "sha256": "50bce763d8df2bb1dbea87de481609394b63c76ecf3b44654ec09743242141cc"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "conditional_dependency": {
+        "locale": "nhw",
+        "key": "ui_load_image",
+        "raw": "Xijtlapo tlaixkopintli…",
+        "same_batch_required": true
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "reason": "Mandatory menu-reference synchronization with this same locale’s newly nominated ui_load_image. Only the exact quoted label is replaced; the already-reviewed guidance remains otherwise byte-for-byte unchanged."
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "old_parsed_value": "AN Paint quiajoctoc catli quiajoctoc iseltzi achtihuiya (ZIP). Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tlajcuiloli catli quiijtohua quenicatza eltoya catli AN Paint quiajoctoc iseltzi. Sintla onca floating.png, quipiya tlaixkopintli catli AN Paint hueli quipatla iyoca (floating selection).",
+      "new_parsed_value": "AN Paint quiajoctoc catli quiajoctoc iseltzi achtihuiya (ZIP). Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Xijtlapo tlaixkopintli…” ica nopa tlaixkopintli. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tlajcuiloli catli quiijtohua quenicatza eltoya catli AN Paint quiajoctoc iseltzi. Sintla onca floating.png, quipiya tlaixkopintli catli AN Paint hueli quipatla iyoca (floating selection).",
+      "old_raw": "AN Paint quiajoctoc catli quiajoctoc iseltzi achtihuiya (ZIP). Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tlajcuiloli catli quiijtohua quenicatza eltoya catli AN Paint quiajoctoc iseltzi. Sintla onca floating.png, quipiya tlaixkopintli catli AN Paint hueli quipatla iyoca (floating selection).",
+      "raw": "AN Paint quiajoctoc catli quiajoctoc iseltzi achtihuiya (ZIP). Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Xijtlapo tlaixkopintli…” ica nopa tlaixkopintli. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tlajcuiloli catli quiijtohua quenicatza eltoya catli AN Paint quiajoctoc iseltzi. Sintla onca floating.png, quipiya tlaixkopintli catli AN Paint hueli quipatla iyoca (floating selection).",
+      "old_display": "AN Paint quiajoctoc catli quiajoctoc iseltzi achtihuiya (ZIP). Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Load image…” ica nopa tlaixkopintli. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tlajcuiloli catli quiijtohua quenicatza eltoya catli AN Paint quiajoctoc iseltzi. Sintla onca floating.png, quipiya tlaixkopintli catli AN Paint hueli quipatla iyoca (floating selection).",
+      "display": "AN Paint quiajoctoc catli quiajoctoc iseltzi achtihuiya (ZIP). Xijquixti canvas.png tlen ipan ni ZIP. Teipa, xijtequihui “File → Xijtlapo tlaixkopintli…” ica nopa tlaixkopintli. Ipan ni ZIP nojquiya eltoc draft.json (metadata): tlajcuiloli catli quiijtohua quenicatza eltoya catli AN Paint quiajoctoc iseltzi. Sintla onca floating.png, quipiya tlaixkopintli catli AN Paint hueli quipatla iyoca (floating selection).",
+      "old_attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "new_attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "old_raw_sha256": "7e952ead4b264f11ce8172414c50721952d5d38b0d0cfa18a2f242ccb84ce97f",
+      "raw_sha256": "8dee31262ad4bc0439f875ed94de94587ea48adfed899d232f725e76d27d90da",
+      "placeholders": [],
+      "old_quote_occurrences": 1,
+      "new_quote_occurrences": 1,
+      "exact_substitution": {
+        "old": "Load image…",
+        "new": "Xijtlapo tlaixkopintli…",
+        "occurrences": 1
+      },
+      "new_gap_credit": 0,
+      "operation": "REPLACE_EXISTING_VALUE_ONLY",
+      "candidate": {
+        "artifact": "nahua-load-label-guidance-replacement6-1757.json",
+        "sha256": "50bce763d8df2bb1dbea87de481609394b63c76ecf3b44654ec09743242141cc"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "conditional_dependency": {
+        "locale": "nhw",
+        "key": "ui_load_image",
+        "raw": "Xijtlapo tlaixkopintli…",
+        "same_batch_required": true
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "reason": "Mandatory menu-reference synchronization with this same locale’s newly nominated ui_load_image. Only the exact quoted label is replaced; the already-reviewed guidance remains otherwise byte-for-byte unchanged."
+    },
+    {
+      "locale": "nhw",
+      "key": "save20_unsupported_image_colour",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "old_parsed_value": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "new_parsed_value": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Xijtlapo tlaixkopintli…” ica nopa PNG.",
+      "old_raw": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "raw": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Xijtlapo tlaixkopintli…” ica nopa PNG.",
+      "old_display": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "display": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Xijtlapo tlaixkopintli…” ica nopa PNG.",
+      "old_attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "new_attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "old_raw_sha256": "dd7a541367f0229e25302350306d0dfbd182c1e819c41fe9f9c58037f45e7943",
+      "raw_sha256": "c602a2ff762cbb8565ddd372e30484c50dac5acead33eb830f73b2acf22a1724",
+      "placeholders": [],
+      "old_quote_occurrences": 1,
+      "new_quote_occurrences": 1,
+      "exact_substitution": {
+        "old": "Load image…",
+        "new": "Xijtlapo tlaixkopintli…",
+        "occurrences": 1
+      },
+      "new_gap_credit": 0,
+      "operation": "REPLACE_EXISTING_VALUE_ONLY",
+      "candidate": {
+        "artifact": "nahua-load-label-guidance-replacement6-1757.json",
+        "sha256": "50bce763d8df2bb1dbea87de481609394b63c76ecf3b44654ec09743242141cc"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-load-share4-independent-1806.json",
+        "sha256": "fe7540aa5e38e44487b4b44b1fc7e7f325176c19353b7d31054a51d990d12144"
+      },
+      "conditional_dependency": {
+        "locale": "nhw",
+        "key": "ui_load_image",
+        "raw": "Xijtlapo tlaixkopintli…",
+        "same_batch_required": true
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "2300b05674441582628ff06cd11f190b540a363a",
+      "reason": "Mandatory menu-reference synchronization with this same locale’s newly nominated ui_load_image. Only the exact quoted label is replaced; the already-reviewed guidance remains otherwise byte-for-byte unchanged."
+    }
+  ],
+  "dependencies": [
+    "Each NCH/NHW Load label and its same-locale three quoted references must be adopted together; Share is not the quoted dependency.",
+    "Six replacements preserve every other character, node and attribute and earn no new-gap credit.",
+    "All unaffected resource nodes/attributes must remain unchanged; no new locale catalogue."
+  ],
+  "specific_limits": [
+    "CH Fit refers only to current viewport. Its actual bounds include bitmap, trim rectangle and floating selection; no source-pixel resizing. Magnification is preview lens multiplier, not absolute pixel scale/frame size.",
+    "NHE language noun polysemy and authored parenthesized app scope retained; custom title can replace visible title; no global device-language change or universal translation promise.",
+    "NCH/NHW Open imperative forms are independently supported own-variety analogies, not directly published commands. Share names stored output and user-operated chooser, not automatic transmission.",
+    "No native, layout, glyph, accessibility or runtime certification. No application changes by authors/reviewers."
+  ],
+  "derivative_note": "Sanitized later integrated-status derivative. Original hashes identify immutable historical evidence with different bytes. Replacement rows have zero new-gap credit and preserve every unrelated character and attribute."
+}
