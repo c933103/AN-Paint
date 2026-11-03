@@ -1,0 +1,64 @@
+{
+  "status": "Integrated as partial localization, not native/runtime certification",
+  "checkpoint": "d83a8b388200cfc6619b0da2e1ed30cb8aecd6bb",
+  "locale": "nv",
+  "key": "ui_height_in",
+  "tier": "P1",
+  "english": "Height in %1$s",
+  "candidate": "Deigo ánízáád (%1$s)",
+  "attributes": {
+    "name": "ui_height_in"
+  },
+  "placeholders": {
+    "%1$s": 1
+  },
+  "source": {
+    "authors": "Alfred Blackhorse, Steven Semken, Perry Charley (Diné College)",
+    "title": "A Navajo-English thesaurus of geological terms",
+    "year": 2003,
+    "url": "https://nmgs.nmt.edu/publications/guidebooks/downloads/54/54_p0103_p0107.pdf#page=5",
+    "printed_page": 105,
+    "pdf_page": 5,
+    "exact_entry": "Measurement → (height): deigo ánízáád",
+    "pdf_sha256": "bc732357d30742b0a19bdffd257230e8ea384045646091c533a732a85d23532c",
+    "method": "Actual PDF raster previously inspected, SHA256 rechecked. Extraction uses corrupt legacy glyph mapping, not used as Unicode source."
+  },
+  "source_scope": "Same attested height terminology as already reviewed ui_height, but a distinct untranslated P1 accessibility key. Not a newly discovered lexical item.",
+  "caller": {
+    "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+    "line": 82,
+    "purpose": "EditText contentDescription for target height",
+    "arguments": "localized ui_percent_fd8671 or ui_pixels_6ec9c2, not a numeric magnitude; both currently fall back to English",
+    "dimension": "Underlying target.height; percentage is relative to original.height, not viewport, font height or altitude"
+  },
+  "review_question": "Does the source-attested measurement label plus parenthetical unit preserve the full Height in <unit> relation as an accessibility label? It avoids composing an unsupported Navajo postposition for English in. Punctuation and ordering carry the unit relation; this is an authored UI-format adaptation, not an attested complete phrase.",
+  "expected_examples": [
+    "Deigo ánízáád (pixels)",
+    "Deigo ánízáád (percent)"
+  ],
+  "guards": "Fresh exact-head source confirms absence, P1, English and original name-only attributes; candidate XML, Android escaping/format, typed %1$s and NFC checks passed.",
+  "limits": [
+    "Unit words remain English fallback. This does not finish Navajo accessibility localization.",
+    "No native-speaker, TalkBack/TTS, runtime, glyph or layout verification.",
+    "The currently accepted visible label uses symbols px/%; this key instead receives spoken-unit words, so previous visible-label review alone is not acceptance.",
+    "No hosted CI, merge or release. No denied/uncertain operation retried."
+  ],
+  "independent_review": "Independent review accepted the candidate as partial localization: parentheses preserve label and spoken-unit distinction even when punctuation is unspoken, but English pixel/percent unit fallback and TalkBack behavior remain unverified. The full phrase is adaptation, not directly attested.",
+  "independent_review_attribution": "Independent reviewer result relayed by coordinator 2026-11-03 22:02 UTC",
+  "integration": {
+    "parent": "d83a8b388200cfc6619b0da2e1ed30cb8aecd6bb",
+    "commit": "00a843f1a62d77b0d93798e40a70334cd3189179",
+    "tree": "393f13a98ad14266be67b5f2191c4c76cb94e1f1",
+    "blob": "d9c3d2071390072817f8af1d80b23afaee00aba6",
+    "branch": "review/nv-bottom-2038-20261103",
+    "delta": "+1/-0, ui_height_in only",
+    "counts": {
+      "direct_before": 125,
+      "direct_after": 126,
+      "P0": "67/92 unchanged",
+      "P1": "58/249 -> 59/249"
+    },
+    "checks": "125 previous nodes preserved; unique addition, XML, attributes, typed placeholder, Android escaping/format, NFC/control checks passed; 18 existing helper tests passed in 7.298s",
+    "remote_verification": "1276 tree leaves checked; only canonical Navajo blob differs from c0d44d76 baseline, previous 125 nodes unchanged from immediate d83a8b38 parent; exact branch head and complete file readback verified."
+  }
+}
