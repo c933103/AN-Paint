@@ -1,0 +1,255 @@
+diff --git a/Paintroid/src/main/res/values-b+ch/strings.xml b/Paintroid/src/main/res/values-b+ch/strings.xml
+index d509fa9..10a4877 100644
+--- a/Paintroid/src/main/res/values-b+ch/strings.xml
++++ b/Paintroid/src/main/res/values-b+ch/strings.xml
+@@ -164,4 +164,10 @@
+     <string name="ui_font">Klåsin lettra</string>
+     <string name="ui_font_family">Klåsin lettra</string>
+     <string name="ui_bold">Potput</string>
++    <string name="ui_apply">Cho\'gui</string>
++    <string name="ui_left_aligned">Gi akakgui</string>
++    <string name="ui_right_aligned">Gi agapa\'</string>
++    <string name="ui_line_spacing" formatted="false">Distånsia gi entalu\' i råya siha (%)</string>
++    <string name="ui_bucket_fill">Na\'bula</string>
++    <string name="ui_solid_fill">Mana\'bula</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+chr/strings.xml b/Paintroid/src/main/res/values-b+chr/strings.xml
+index 0a6e8f2..154685b 100644
+--- a/Paintroid/src/main/res/values-b+chr/strings.xml
++++ b/Paintroid/src/main/res/values-b+chr/strings.xml
+@@ -98,4 +98,7 @@
+     <string name="ui_use_rrggbb">ᎲᏓ: #RRGGBB</string>
+     <string name="ui_use_50_300" formatted="false">ᎲᏓ: 50–300%.</string>
+     <string name="ui_reset_bw23">ᎬᎿᎨᎢ / ᎤᏁᎦ</string>
++    <string name="ui_save_as_jpeg">ᎯᏍᏆᏂᎪᏓ (JPEG)…</string>
++    <string name="ui_save_as_jpeg_xl">ᎯᏍᏆᏂᎪᏓ (JPEG XL)…</string>
++    <string name="ui_save_as_png">ᎯᏍᏆᏂᎪᏓ (PNG)…</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+nhe/strings.xml b/Paintroid/src/main/res/values-b+nhe/strings.xml
+index 03cf38b..acf3e16 100644
+--- a/Paintroid/src/main/res/values-b+nhe/strings.xml
++++ b/Paintroid/src/main/res/values-b+nhe/strings.xml
+@@ -67,4 +67,11 @@
+     <string name="ui_clear_image">Xicpohpohua ixcopincayotl</string>
+     <string name="ui_clear_all">Xicpohpohua nochi</string>
+     <string name="ui_your_current_image_has_unsaved_changes">Oncah tlen ticchiuhqui ipan ni ixcopincayotl huan axnicahcoucqui.</string>
++    <string name="ui_save_as_jpeg">Xicahcocui (JPEG)…</string>
++    <string name="ui_save_as_jpeg_xl">Xicahcocui (JPEG XL)…</string>
++    <string name="ui_save_as_png">Xicahcocui (PNG)…</string>
++    <string name="ui_copy_all">Xiccopina nochi</string>
++    <string name="ui_bold">Tilahuac</string>
++    <string name="ui_select_all">Xictlapehpeni nochi</string>
++    <string name="ui_delete_selection">Xicpohpohua tlen tictlapehpenqui</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+nhw/strings.xml b/Paintroid/src/main/res/values-b+nhw/strings.xml
+index bfefe93..70a4336 100644
+--- a/Paintroid/src/main/res/values-b+nhw/strings.xml
++++ b/Paintroid/src/main/res/values-b+nhw/strings.xml
+@@ -23,4 +23,11 @@
+     <string name="ui_other_images34" formatted="false">Sekinok tlaixkopintli</string>
+     <string name="ui_text">Tlajkuiloli</string>
+     <string name="ui_drawing23">Tlapalchiwali</string>
++    <string name="ui_reset_bw23">Yayahuic / chipahuac</string>
++    <string name="ui_use_colour">Xijtequihui</string>
++    <string name="ui_use_rrggbb">Xijtequihui #RRGGBB</string>
++    <string name="ui_use_50_300" formatted="false">Xijtequihui 50–300%.</string>
++    <string name="ui_cut">Xijtequi</string>
++    <string name="ui_redo">Sempa xijchihua</string>
++    <string name="ui_apply">Xijchihua</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+qug/strings.xml b/Paintroid/src/main/res/values-b+qug/strings.xml
+index 3dc5d25..f3b837a 100644
+--- a/Paintroid/src/main/res/values-b+qug/strings.xml
++++ b/Paintroid/src/main/res/values-b+qug/strings.xml
+@@ -89,4 +89,6 @@
+     <string name="ui_zoom_out">Uchillachina</string>
+     <string name="ui_discard">Shitana</string>
+     <string name="ui_height_in">Aksi (%1$s)</string>
++    <string name="ui_this_location_is_not_writable">Kaypi mana killkayta ushanchu.</string>
++    <string name="ui_the_selected_location_is_not_writable">Kaypi mana killkayta ushanchu.</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+quh/strings.xml b/Paintroid/src/main/res/values-b+quh/strings.xml
+index 5afdc79..2e23bd9 100644
+--- a/Paintroid/src/main/res/values-b+quh/strings.xml
++++ b/Paintroid/src/main/res/values-b+quh/strings.xml
+@@ -114,4 +114,22 @@
+     <string name="ui_resize_image">Pallaypata chhikanninta uqjinaychiy…</string>
+     <string name="ui_resize_image_ab28be">Pallaypata chhikanninta uqjinaychiy</string>
+     <string name="ui_resize_large_image">Jatun pallaypata chhikanninta uqjinaychiychu?</string>
++    <string name="ui_the_selected_location_is_not_writable">Mana aqllasqa k\'itipi qhilqayta atikunchu.</string>
++    <string name="ui_save_and_share">Jallch\'ay chaymanta rak\'inakuy…</string>
++    <string name="ui_save_and_share_41edb4">Jallch\'ay chaymanta rak\'inakuy</string>
++    <string name="ui_polygon">Chirurara</string>
++    <string name="ui_recovered_image">Kutichisqa pallay</string>
++    <string name="ui_autosave_paused_use_save">Pachanmanta jallch\'ay tatichisqa · Jallch\'ayta apaykachay</string>
++    <string name="ui_not_enough_memory_to_save_in_this_format">Kay layapi jallch\'anapaq mana aswan memoria kanchu. PNGwan jallch\'ayta p\'itwiy</string>
++    <string name="ui_the_image_was_saved_but_android_could_not">Pallayqa jallch\'asqa, ichaqa Androidqa mana rak\'inakuyta kichayta atikunchu: %1$s</string>
++    <string name="ui_draft_saved">Llank\'aypa kikinchasqan jallch\'asqa</string>
++    <string name="ui_draft_not_saved_yet">Llank\'aypa manaraq jallch\'asqa kikinchasqan</string>
++    <string name="ui_draft_restored">Llank\'aypa kikinchasqan kutichisqa</string>
++    <string name="ui_the_previous_draft_could_not_be_restored">Mana llank\'aypa ñawpaq kikinchasqanta kutichiyta atikunchu.</string>
++    <string name="ui_previous_draft_kept_for_recovery">Llank\'aypa ñawpaq kikinchasqan kutichinapaq jallch\'asqa</string>
++    <string name="ui_the_previous_draft_needs_more_memory_to_reopen">Llank\'aypa ñawpaq kikinchasqanta watiqmanta kichanapaq mana aswan memoria kanchu.</string>
++    <string name="ui_export_recovery_copy">Kutichinapaq kikinchasqata jawaman apachiy…</string>
++    <string name="ui_export_recovery_copy_144b8a">Kutichinapaq kikinchasqata jawaman apachiy</string>
++    <string name="ui_could_not_export_the_recovery_copy">Mana kutichinapaq kikinchasqata jawaman apachiyta atikunchu</string>
++    <string name="ui_the_previous_draft_could_not_be_preserved_separately">Mana llank\'aypa ñawpaq kikinchasqanta t\'aqasqata jallch\'ayta atikunchu.</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+quy/strings.xml b/Paintroid/src/main/res/values-b+quy/strings.xml
+index f77ac04..d3ab909 100644
+--- a/Paintroid/src/main/res/values-b+quy/strings.xml
++++ b/Paintroid/src/main/res/values-b+quy/strings.xml
+@@ -67,4 +67,18 @@
+     <string name="ui_your_current_image_has_unsaved_changes">Kunan kaq siqiykipiqa manaraq waqaychasqa allichasqakuna kan.</string>
+     <string name="ui_clear_image">Siqita pichay</string>
+     <string name="save20_file_format">Kipupa rikchaqnin</string>
++    <string name="ui_not_enough_memory_to_inspect_this_image">Kay siqita qawapayanapaq mana anchachu yuyaynin</string>
++    <string name="ui_keep_editing23">Allichachkay</string>
++    <string name="ui_place_text">Qillqata churay</string>
++    <string name="ui_draft_saved">Ñawpa qillqasqa waqaychasqa</string>
++    <string name="ui_save_and_share">Waqaychay hinaspa rakinakuy…</string>
++    <string name="ui_save_and_share_41edb4">Waqaychay hinaspa rakinakuy</string>
++    <string name="ui_draft_not_saved_yet">Manaraq waqaychasqa ñawpa qillqasqa</string>
++    <string name="ui_draft_restored">Ñawpa qillqasqa yapamanta allichasqa</string>
++    <string name="ui_recovered_image">Kutirichimusqa siqi</string>
++    <string name="ui_the_previous_draft_could_not_be_restored">Manam ñawpaq ñawpa qillqasqata yapamanta allichayta atikunchu.</string>
++    <string name="ui_previous_draft_kept_for_recovery">Ñawpaq ñawpa qillqasqa kutirichimunapaq waqaychasqa</string>
++    <string name="ui_the_previous_draft_needs_more_memory_to_reopen">Ñawpaq ñawpa qillqasqata yapamanta kichanapaq mana anchachu yuyaynin.</string>
++    <string name="ui_not_enough_memory_to_save_in_this_format">Kay rikchaqpi waqaychanapaq mana anchachu yuyaynin. PNGwan yapamanta ruray</string>
++    <string name="ui_the_image_was_saved_but_android_could_not">Siqiqa waqaychasqa, ichaqa Androidqa manam rakinakuyta kichayta atikunchu: %1$s</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+quz/strings.xml b/Paintroid/src/main/res/values-b+quz/strings.xml
+index 183c0fb..01cff71 100644
+--- a/Paintroid/src/main/res/values-b+quz/strings.xml
++++ b/Paintroid/src/main/res/values-b+quz/strings.xml
+@@ -112,4 +112,20 @@
+     <string name="ui_not_enough_memory_to_finish_opening_this_image">Kay siq\'ita kichayta tukunapaq mana aswan memoria kanchu</string>
+     <string name="ui_this_location_is_not_writable">Mana kaypi qillqayta atikunchu.</string>
+     <string name="ui_not_enough_memory_to_inspect_this_image">Kay siq\'ita qhawariykachanapaq mana aswan memoria kanchu</string>
++    <string name="ui_undo">Ruwaray</string>
++    <string name="ui_polygon">Askha ch\'ata</string>
++    <string name="ui_recovered_image">Kutichisqa siq\'i</string>
++    <string name="ui_autosave_failed_use_save">Mana pachanmanta waqaychayta atikunchu · Waqaychayta apaykachay</string>
++    <string name="ui_autosave_paused_use_save">Pachanmanta waqaychay tatichisqa · Waqaychayta apaykachay</string>
++    <string name="ui_draft_saved">Llank\'aypa kikinchasqan waqaychasqa</string>
++    <string name="ui_draft_not_saved_yet">Llank\'aypa manaraq waqaychasqa kikinchasqan</string>
++    <string name="ui_draft_restored">Llank\'aypa kikinchasqan kutichisqa</string>
++    <string name="ui_the_previous_draft_could_not_be_restored">Mana llank\'aypa ñawpa kikinchasqanta kutichiyta atikunchu.</string>
++    <string name="ui_previous_draft_kept_for_recovery">Llank\'aypa ñawpa kikinchasqan kutichinapaq waqaychasqa</string>
++    <string name="ui_the_previous_draft_needs_more_memory_to_reopen">Llank\'aypa ñawpa kikinchasqanta yapamanta kichanapaq mana aswan memoria kanchu.</string>
++    <string name="ui_not_enough_memory_to_save_in_this_format">Kay layapi waqaychanapaq mana aswan memoria kanchu. PNGwan ruwariy</string>
++    <string name="ui_export_recovery_copy">Kutichinapaq kikinchasqata hawaman apachiy…</string>
++    <string name="ui_export_recovery_copy_144b8a">Kutichinapaq kikinchasqata hawaman apachiy</string>
++    <string name="ui_could_not_export_the_recovery_copy">Mana kutichinapaq kikinchasqata hawaman apachiyta atikunchu</string>
++    <string name="ui_the_previous_draft_could_not_be_preserved_separately">Mana llank\'aypa ñawpa kikinchasqanta sapaq waqaychayta atikunchu.</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+tdd/strings.xml b/Paintroid/src/main/res/values-b+tdd/strings.xml
+index d39e68c..f297030 100644
+--- a/Paintroid/src/main/res/values-b+tdd/strings.xml
++++ b/Paintroid/src/main/res/values-b+tdd/strings.xml
+@@ -80,4 +80,6 @@
+     <string name="ui_numeric_slider_value">%1$s: %2$d</string>
+     <string name="ui_recovered_image">ᥙᥧᥒᥱ ᥟᥢ ᥗᥧᥐᥴ ᥝᥭᥳ ᥑᥪᥢᥰ</string>
+     <string name="ui_save_your_changes">ᥔᥤᥛᥰ ᥘᥩᥒ ᥘᥦᥐ ᥘᥣᥭ ᥓᥝᥲ ᥐᥝᥱ ᥞᥝᥱ?</string>
++    <string name="ui_this_location_is_not_writable">ᥖᥤ ᥘᥭᥳ ᥟᥛᥱ ᥓᥣᥒ ᥖᥦᥛᥲ ᥜᥣᥭᥱ.</string>
++    <string name="ui_the_selected_location_is_not_writable">ᥖᥤ ᥘᥭᥳ ᥟᥛᥱ ᥓᥣᥒ ᥖᥦᥛᥲ ᥜᥣᥭᥱ.</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+za/strings.xml b/Paintroid/src/main/res/values-b+za/strings.xml
+index cdb17f3..f9030dd 100644
+--- a/Paintroid/src/main/res/values-b+za/strings.xml
++++ b/Paintroid/src/main/res/values-b+za/strings.xml
+@@ -70,4 +70,7 @@
+     <string name="ui_px_724eb3">%1$s × %2$s px</string>
+     <string name="ui_numeric_slider_value">%1$s: %2$d</string>
+     <string name="ui_this_location_is_not_writable">Vwnzgen youq gizneix sij mbouj ndaej.</string>
++    <string name="ui_discard">Bwed</string>
++    <string name="ui_could_not_save_image">Vwnzgen rom mbouj ndaej</string>
++    <string name="ui_the_selected_location_is_not_writable">Vwnzgen youq gizneix sij mbouj ndaej.</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-b+zgh/strings.xml b/Paintroid/src/main/res/values-b+zgh/strings.xml
+index 65a4971..ac7d79d 100644
+--- a/Paintroid/src/main/res/values-b+zgh/strings.xml
++++ b/Paintroid/src/main/res/values-b+zgh/strings.xml
+@@ -59,4 +59,12 @@
+     <string name="ui_px_724eb3">%1$s × %2$s px</string>
+     <string name="ui_numeric_slider_value">%1$s: %2$d</string>
+     <string name="ui_saved">ⴰⴼⴰⵢⵍⵓ ⵉⵜⵜⵡⴰⵃⴹⴰⵏ: %1$s</string>
++    <string name="ui_width">ⵜⵉⵔⵉⵡⵜ (%1$s)</string>
++    <string name="ui_italic">ⵜⵉⵔⵔⴰ ⴽⵯⵏⴰⵏⵉⵏ</string>
++    <string name="ui_brush">ⴰⵙⴰⵎⵙ</string>
++    <string name="ui_category_brush">ⴰⵙⴰⵎⵙ</string>
++    <string name="ui_right">ⴰⵢⴼⴼⴰⵙ</string>
++    <string name="ui_right_aligned">ⴰⵙⵎⵉⵙⵉ ⵖⵔ ⵓⴼⴰⵙⵉ</string>
++    <string name="ui_discard">ⴼⵍ</string>
++    <string name="ui_menu_view">ⵙⴽⵏ</string>
+ </resources>
+diff --git a/Paintroid/src/main/res/values-fa-rIR/strings.xml b/Paintroid/src/main/res/values-fa-rIR/strings.xml
+index 2709a94..092e2ad 100644
+--- a/Paintroid/src/main/res/values-fa-rIR/strings.xml
++++ b/Paintroid/src/main/res/values-fa-rIR/strings.xml
+@@ -137,4 +137,65 @@ Generated by tools/reuse_upstream_translations.py. See translations/README.md. -
+     <string name="ui_the_selected_location_is_not_writable">"نوشتن در مکان انتخاب‌شده ممکن نیست."</string>
+     <string name="ui_the_trim_would_remove_the_entire_image">"این برش، کل تصویر را حذف می‌کند."</string>
+     <string name="ui_this_location_is_not_writable">"نوشتن در این مکان ممکن نیست."</string>
++    <string name="ui_choose_dimensions_no_larger_than_the_original">"ابعادی انتخاب کنید که از ابعاد اصلی بزرگ‌تر نباشد."</string>
++    <string name="ui_codec_resize_memory_floor">"این قالب باید پیش از تغییر اندازه، تصویر مبدأ یا کاشی‌های مبدأ را رمزگشایی کند. حتی خروجی کوچک‌تر نیز ممکن است از حافظهٔ در دسترس فراتر برود."</string>
++    <string name="ui_enter_positive_canvas_dimensions_within_android_s_coordinate">"ابعاد مثبت بوم را در محدودهٔ مختصات Android وارد کنید."</string>
++    <string name="ui_enter_positive_dimensions">"ابعاد مثبت وارد کنید."</string>
++    <string name="ui_enter_positive_dimensions_no_larger_than_the_original">"ابعاد مثبتی وارد کنید که از ابعاد اصلی بزرگ‌تر نباشد."</string>
++    <string name="ui_enter_positive_dimensions_that_resolve_to_at_least">"ابعاد مثبتی وارد کنید که به دست‌کم 1 پیکسل تبدیل شود."</string>
++    <string name="ui_enter_positive_image_dimensions">"ابعاد مثبت تصویر را وارد کنید."</string>
++    <string name="ui_enter_valid_dimensions">"ابعاد معتبر وارد کنید."</string>
++    <string name="ui_no_resize_fits_decoder_memory">"حتی در کوچک‌ترین اندازهٔ خروجی، بارگذاری این تصویر برای ویرایش با محدودیت‌های فعلی حافظه ممکن نیست. لغو کنید و از تصویر مبدأ کوچک‌تری استفاده کنید."</string>
++    <string name="ui_scales_the_image_unlock_the_ratio_to_stretch">"اندازهٔ تصویر را تغییر می‌دهد. برای کشیدن مستقل عرض و ارتفاع، قفل نسبت ابعاد را باز کنید."</string>
++    <string name="ui_selection_dimensions_are_too_large">"ابعاد بخش انتخاب‌شده بیش‌ازحد بزرگ است."</string>
++    <string name="ui_invalid_selection_outline">"خط دور بخش انتخاب‌شده نامعتبر است."</string>
++    <string name="ui_apply_crop">"اعمال برش"</string>
++    <string name="ui_could_not_apply_the_crop">"اعمال برش ممکن نشد."</string>
++    <string name="ui_crop">"برش %1$s"</string>
++    <string name="ui_crop_image">"بریدن تصویر"</string>
++    <string name="ui_crop_must_stay_inside_the_canvas">"برش باید درون بوم بماند."</string>
++    <string name="ui_crop_preview_drag_an_edge_or_corner_drag">"پیش‌نمایش برش. یک لبه یا گوشه را بکشید؛ برای جابه‌جایی برش، داخل آن را بکشید."</string>
++    <string name="ui_crop_to_selection">"برش به محدودهٔ انتخاب‌شده"</string>
++    <string name="ui_reset_crop">"بازنشانی برش"</string>
++    <string name="ui_the_crop_must_contain_at_least_one_pixel">"برش باید دست‌کم یک پیکسل داشته باشد."</string>
++    <string name="ui_the_crop_must_stay_inside_the_image">"برش باید درون تصویر بماند."</string>
++    <string name="ui_resize_and_load">"تغییر اندازه و بارگذاری"</string>
++    <string name="ui_resize_the_copy">"تغییر اندازهٔ نسخه"</string>
++    <string name="formats22_derived_exported">%1$s برون‌بری شد. نقاشی کامل شما هنوز تغییرات ذخیره‌نشده دارد؛ پیش از جایگزین کردن آن، یک نسخهٔ کامل از تصویر را ذخیره کنید.</string>
++    <string name="ui_save_as">ذخیره به‌صورت %1$s</string>
++    <string name="ui_save_as_jpeg">ذخیره با قالب JPEG…</string>
++    <string name="ui_save_as_jpeg_xl">ذخیره با قالب JPEG XL…</string>
++    <string name="ui_save_as_png">ذخیره با قالب PNG…</string>
++    <string name="ui_foreground_background_colour_palette">پیش‌زمینه %1$s، پس‌زمینه %2$s. تخته‌رنگ: %3$s.</string>
++    <string name="ui_pinch_and_pan_mode">حالت بزرگ‌نمایی با دو انگشت و جابه‌جایی نما</string>
++    <string name="save20_gif_description">"تصویر ثابت، با حداکثر 256 رنگ. پخش رنگ‌ها میان پیکسل‌ها، گذارهای رنگی را هموار می‌کند. از GIFهای متحرک، نخستین قاب باز می‌شود."</string>
++    <string name="colour_converter_unavailable">"مبدل رنگ تصویر راه‌اندازی نشد. تصویر وارد نشد."</string>
++    <string name="colour_invalid_metadata">"فرادادهٔ رنگ تصویر نامعتبر است یا پشتیبانی نمی‌شود."</string>
++    <string name="colour_truncated_metadata">"پروندهٔ تصویر در میان فرادادهٔ رنگ آن پایان می‌یابد."</string>
++    <string name="colour_unsupported_icc_model">"این تصویر از مدل رنگ ICC استفاده می‌کند که رمزگشای تصویر نمی‌تواند آن را تبدیل کند. ابتدا در برنامه‌ای با مدیریت رنگ، نسخه‌ای RGB برون‌بری کنید."</string>
++    <string name="commons_svg_original_size_too_large">"اندازهٔ اصلی SVG از محدودیت ابعاد بیت‌مپ Android فراتر می‌رود. هیچ تغییر اندازه‌ای اعمال نشد."</string>
++    <string name="commons_svg_original_size_unavailable">"SVG اندازهٔ اصلی قابل‌استفاده‌ای اعلام نمی‌کند. هیچ اندازه‌ای بر اساس بوم جایگزین نشد."</string>
++    <string name="formats22_import_limit">"این پرونده از محدودیت وارد کردن 512 MiB فراتر می‌رود. پروندهٔ کوچک‌تری انتخاب کنید."</string>
++    <string name="ui_android_blocked_the_file_picker">"Android انتخاب‌گر پرونده را مسدود کرد: %1$s"</string>
++    <string name="ui_android_could_not_decode_this_image">"Android نتوانست این تصویر را رمزگشایی کند."</string>
++    <string name="ui_android_could_not_find_a_file_picker_enable">"Android نتوانست انتخاب‌گر پرونده‌ای پیدا کند. برنامهٔ Files یا Documents را در تنظیمات Android فعال کنید، سپس دوباره تلاش کنید."</string>
++    <string name="ui_no_readable_image_data">"دادهٔ تصویری قابل‌خواندن وجود ندارد."</string>
++    <string name="ui_not_enough_memory_to_finish_opening_this_image">"حافظه برای تکمیل باز کردن این تصویر کافی نیست"</string>
++    <string name="ui_not_enough_memory_to_inspect_this_image">"حافظه برای بررسی این تصویر کافی نیست"</string>
++    <string name="ui_the_picker_returned_no_file_please_choose_the">"انتخاب‌گر هیچ پرونده‌ای برنگرداند. لطفاً پرونده را دوباره انتخاب کنید."</string>
++    <string name="ui_the_selected_provider_did_not_return_any_image">"ارائه‌دهندهٔ انتخاب‌شده هیچ دادهٔ تصویری برنگرداند."</string>
++    <string name="ui_choose_a_smaller_output_copy_the_source_images">"نسخهٔ خروجی کوچک‌تری انتخاب کنید. تصاویر مبدأ و تنظیمات برش در وضوح اصلی خود باقی می‌مانند."</string>
++    <string name="ui_choose_a_smaller_size">"اندازهٔ کوچک‌تری انتخاب کنید."</string>
++    <string name="ui_choose_at_least_one_image">"دست‌کم یک تصویر انتخاب کنید."</string>
++    <string name="ui_the_decoder_and_editing_buffers_need_about_the">"رمزگشا و بافرهای ویرایش به حدود %1$s نیاز دارند؛ بودجهٔ فعلی ویرایش ایمن %2$s است. نسخهٔ کوچک‌تری انتخاب کنید."</string>
++    <string name="ui_the_full_image_and_working_buffers_exceed_the">"کل تصویر و بافرهای کاری از بودجهٔ ایمن فعلی فراتر می‌روند، یا Android نتوانست آن‌ها را تخصیص دهد. برای ویرایش، اندازهٔ یک نسخه را تغییر دهید. پروندهٔ اصلی شما بدون تغییر می‌ماند."</string>
++    <string name="ui_too_large_for_the_current_budget_reduce_the">"برای بودجهٔ فعلی بیش‌ازحد بزرگ است. ابعاد را کاهش دهید یا لغو کنید و حافظه را آزاد کنید."</string>
++    <string name="ui_enter_a_trim_amount_for_every_edge">"مقدار برش را برای هر لبه وارد کنید."</string>
++    <string name="ui_enter_all_four_trim_amounts">"هر چهار مقدار برش را وارد کنید."</string>
++    <string name="ui_trim_amounts_must_be_zero_or_greater">"مقدارهای برش باید صفر یا بیشتر باشند."</string>
++    <string name="ui_trim_amounts_must_fit_inside_each_image_use">"مقدارهای برش باید درون هر تصویر جا بگیرند؛ از تعداد صحیح پیکسل یا درصد استفاده کنید."</string>
++    <string name="ui_enter_a_number_from_to">"عددی از %1$s تا %2$s وارد کنید."</string>
++    <string name="ui_enter_a_whole_number_from_to">"عددی صحیح از %1$s تا %2$s وارد کنید."</string>
++    <string name="ui_enter_a_positive_size">"اندازه‌ای مثبت وارد کنید."</string>
++    <string name="ui_use_a_positive_target_dimension">"از بُعد مقصد مثبت استفاده کنید."</string>
+ </resources>

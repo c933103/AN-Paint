@@ -1,0 +1,77 @@
+{
+  "scope": "Frozen coherent next PR: recovered112 + root-adopted35; later wording excluded",
+  "actual_parent": "79bfae14b8138d2464756cfb13f508635ed25765",
+  "synthetic_local_base": "31c6ac8833246e50041e8ceda26023058895c751",
+  "base_tree": "aff7631225f56f3c8036d62b6f80851f2e3b4129",
+  "tree": "6c17567438bdd321b8e04e151b7458ddc6244a69",
+  "original_importance_blob": "e76a3a440a8b169d31f5ab5d163a2695b0db93b1",
+  "original_missing_inventory_sha256": "e5fc68ff54567080b95c5dfb60d8ddde6dabeaa576784b80e4f72a9c42697c2e",
+  "counts": {
+    "P1": 84,
+    "P0": 63
+  },
+  "locales": {
+    "nhw": 7,
+    "nhe": 7,
+    "chr": 3,
+    "ch": 6,
+    "quy": 14,
+    "quh": 18,
+    "quz": 16,
+    "za": 3,
+    "zgh": 8,
+    "qug": 2,
+    "fa-IR": 61,
+    "tdd": 2
+  },
+  "coverage_kinds": {
+    "linguistic": 51,
+    "individually assessed regional linguistic addition": 61,
+    "source/compositional linguistic": 35
+  },
+  "leaves": 1276,
+  "changed_paths": [
+    "Paintroid/src/main/res/values-b+ch/strings.xml",
+    "Paintroid/src/main/res/values-b+chr/strings.xml",
+    "Paintroid/src/main/res/values-b+nhe/strings.xml",
+    "Paintroid/src/main/res/values-b+nhw/strings.xml",
+    "Paintroid/src/main/res/values-b+qug/strings.xml",
+    "Paintroid/src/main/res/values-b+quh/strings.xml",
+    "Paintroid/src/main/res/values-b+quy/strings.xml",
+    "Paintroid/src/main/res/values-b+quz/strings.xml",
+    "Paintroid/src/main/res/values-b+tdd/strings.xml",
+    "Paintroid/src/main/res/values-b+za/strings.xml",
+    "Paintroid/src/main/res/values-b+zgh/strings.xml",
+    "Paintroid/src/main/res/values-fa-rIR/strings.xml"
+  ],
+  "additions": 147,
+  "deletions": 0,
+  "checks": [
+    "147 unique original-missing P0/P1 identities",
+    "all absent in exact actual-parent tree",
+    "source attributes and typed placeholders match current English",
+    "all selected raw Android strings and decoded displays match reviewed manifests",
+    "all prior XML entries/attributes and original lines preserved",
+    "every untouched blob and all file modes preserved"
+  ],
+  "not_claimed": [
+    "native fluency",
+    "layout fit",
+    "Android compilation before hosted artifact inspection"
+  ],
+  "historical_outcomes": "Prior 108-row local pass does not qualify this147 candidate; recovered112 retained without preparation-script replay.",
+  "local_contracts": {
+    "command": "python3 -m unittest discover -s tools -p 'test_current_localization_contracts.py' -v",
+    "tests": 4,
+    "seconds": 1.144,
+    "result": "OK"
+  },
+  "diff_check": "git diff --cached --check: exit 0",
+  "adopted35_durable_blobs": {
+    "candidate": "46fe117f7f09a33307d4773bcad96551b2675d73",
+    "review": "474c703d9730d3dd7c7ebaa2c5acc41d0980c868"
+  },
+  "published_head": "db72d33ac3526cd6928c7f8a2d3de7a509006462",
+  "pr": "https://github.com/c933103/AN-Paint/pull/288",
+  "remote_verification": "All 1276 leaf blobs/types/modes match; actual parent and source branch read back before draft creation."
+}
