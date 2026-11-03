@@ -1,0 +1,1139 @@
+{
+  "title": "Accepted Americas thirteen original-P1 strings",
+  "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113",
+  "integration_tree": "23266056f3dc9867d79bf6faa42bb12f9b0095c7",
+  "source_baseline": "e582d2e361570bae04ed3056349facd6b5a2c564",
+  "original_intake": {
+    "artifact": "reviewed-americas13-currente582d2e-intake-1745.json",
+    "sha256": "4ce6041d793e3d4418ab207f61cda9c62cac5ce16e9c04ba650d4ca8ff9d1989"
+  },
+  "derivative_note": "Sanitized later integrated-status derivative. Original hashes identify immutable historical artifacts; derivative bytes differ.",
+  "counts": {
+    "total": 13,
+    "P0": 0,
+    "P1": 13,
+    "ch": 4,
+    "chr": 5,
+    "nhe": 4
+  },
+  "raw_convention": "XML-parsed Android text; XML-escape once. CH ASCII apostrophes exactly one backslash. All display spellings pinned.",
+  "rows": [
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "language20_settings",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Settings",
+      "attributes": {
+        "name": "language20_settings"
+      },
+      "raw": "Inatyik siha",
+      "value": "Inatyik siha",
+      "display": "Inatyik siha",
+      "raw_sha256": "c9fbb217c36f798f78f1cc2ccb32e430eba2e12036f91c34ad47d44ee60ae59d",
+      "backtranslation": "Options.",
+      "placeholders": [],
+      "typed_slots": [],
+      "source_ids": [
+        "options",
+        "grammar"
+      ],
+      "source_packet": {
+        "artifact": "ch-controls4-primary-1739.json",
+        "sha256": "6d6dc521dabaec9463718de060348e6f8f372c12e20e6f1a49819ae62bbe12ed"
+      },
+      "caller_packet": {
+        "artifact": "ch-controls4-callers-1739.json",
+        "sha256": "7fe4a3d9c53b4b19039ffcb34102f4d8e7deaf05c540e926202e586ab84c08e8"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt",
+          "git_blob_sha": "c307c0dc650dd3bb86c27d05679525d4e104bfb1",
+          "content_sha256": "225844396d57c3ddf25a482da3e6e6d28a21261644fd871cd1faab95f735e417",
+          "line": 164,
+          "exact_line": "        EditorDialogBuilder(activity).setTitle(ui(R.string.language20_settings))",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/AppLanguage.kt#L164"
+        }
+      ],
+      "caller_context_id": "settings",
+      "caller_scope": "Functional nominal heading over the current language setting; not an instruction or a new commitment.",
+      "confidence": "Moderate source-backed authored functional composition; not native-speaker or whole-phrase certification",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "candidate": {
+        "artifact": "ch-controls4-1739.json",
+        "sha256": "4a09a40b67f0ed2abf6b7446ed4c38addce41964587f7518410f408c3e47898f"
+      },
+      "independent_review": {
+        "artifact": "review-ch-controls4-independent-1742.json",
+        "sha256": "72286b7fb57abe8d53ae0d66c838e6ef89734bdaad9403f8c0f49d61072487ca"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_evidence": {
+        "artifact": "ch-controls4-primary-1739.json",
+        "sha256": "6d6dc521dabaec9463718de060348e6f8f372c12e20e6f1a49819ae62bbe12ed"
+      },
+      "caller_evidence": {
+        "artifact": "ch-controls4-callers-1739.json",
+        "sha256": "7fe4a3d9c53b4b19039ffcb34102f4d8e7deaf05c540e926202e586ab84c08e8"
+      },
+      "independent_findings": {
+        "linguistic_reason": "The primary inatyik entry explicitly includes the noun sense option, not only its separate verbal reading. Chung printed page111 permits postnominal plural siha. The resulting nominal heading is a functional paraphrase of Settings.",
+        "caller_reason": "AppLanguage.showSettings displays the current language as a selectable row leading to showPicker. Options is true of this actual setting container and makes no mutation or completion claim."
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-ch-e582d2e-1737.json",
+        "sha256": "9b0782366a9b5705c185b18874b446b5a63cb02e619853dca5298963bc57d55a",
+        "git_blob_sha": "f55cee467058fd3df1ac414e2af129faf2a822e1",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_place_text",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Place text",
+      "attributes": {
+        "name": "ui_place_text"
+      },
+      "raw": "Na\\'hålum tinige\\'",
+      "value": "Na\\'hålum tinige\\'",
+      "display": "Na'hålum tinige'",
+      "raw_sha256": "2f4f07c8628c37c43231b2e19829bff03d10ccdd9c69b0c6b1ae3815b053a340",
+      "backtranslation": "Insert text/writing.",
+      "placeholders": [],
+      "typed_slots": [],
+      "source_ids": [
+        "insert",
+        "text-and-numeric-entry",
+        "grammar"
+      ],
+      "source_packet": {
+        "artifact": "ch-controls4-primary-1739.json",
+        "sha256": "6d6dc521dabaec9463718de060348e6f8f372c12e20e6f1a49819ae62bbe12ed"
+      },
+      "caller_packet": {
+        "artifact": "ch-controls4-callers-1739.json",
+        "sha256": "7fe4a3d9c53b4b19039ffcb34102f4d8e7deaf05c540e926202e586ab84c08e8"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "content_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "line": 98,
+          "exact_line": "        val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L98"
+        }
+      ],
+      "caller_context_id": "place-text",
+      "caller_scope": "Title of composition/style dialog leading to document.text placement. It does not claim text was already placed, saved, typed by a keyboard or copied from clipboard.",
+      "confidence": "Moderate source-backed authored functional composition; not native-speaker or whole-phrase certification",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "candidate": {
+        "artifact": "ch-controls4-1739.json",
+        "sha256": "4a09a40b67f0ed2abf6b7446ed4c38addce41964587f7518410f408c3e47898f"
+      },
+      "independent_review": {
+        "artifact": "review-ch-controls4-independent-1742.json",
+        "sha256": "72286b7fb57abe8d53ae0d66c838e6ef89734bdaad9403f8c0f49d61072487ca"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_evidence": {
+        "artifact": "ch-controls4-primary-1739.json",
+        "sha256": "6d6dc521dabaec9463718de060348e6f8f372c12e20e6f1a49819ae62bbe12ed"
+      },
+      "caller_evidence": {
+        "artifact": "ch-controls4-callers-1739.json",
+        "sha256": "7fe4a3d9c53b4b19039ffcb34102f4d8e7deaf05c540e926202e586ab84c08e8"
+      },
+      "independent_findings": {
+        "linguistic_reason": "The primary na'hålum entry explicitly has the transitive insert sense, with picture and letter insertion examples. The primary tapblung entry supplies tinige'-ña as writing in an object expression. Removing the possessive suffix yields the writing/text noun used here; this is an authored composition, not a separately attested headword or software phrase. Chung printed pages117 and339 support the null indefinite article and bare transitive imperative. The source spelling hålum is intentional and not silently replaced by older app halom.",
+        "caller_reason": "The sole direct consumer is the title of TextStyleDialog. It gathers entered text and style, then its positive-button callback invokes document.text(x,y,...) through ClassicPaintActivity. Insert writing names that operation without claiming that placement already succeeded or that all text comes from a particular input mechanism."
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-ch-e582d2e-1737.json",
+        "sha256": "9b0782366a9b5705c185b18874b446b5a63cb02e619853dca5298963bc57d55a",
+        "git_blob_sha": "f55cee467058fd3df1ac414e2af129faf2a822e1",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_tap_an_image_first",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Tap an image first.",
+      "attributes": {
+        "name": "ui_tap_an_image_first"
+      },
+      "raw": "Patcha un pinenta fine\\'na.",
+      "value": "Patcha un pinenta fine\\'na.",
+      "display": "Patcha un pinenta fine'na.",
+      "raw_sha256": "9c1c0c58a6105c6407548e46dadcc0c358ef0265a4313a1a2dc345d6c831de1f",
+      "backtranslation": "Touch a picture first.",
+      "placeholders": [],
+      "typed_slots": [],
+      "source_ids": [
+        "touch-picture",
+        "first",
+        "grammar"
+      ],
+      "source_packet": {
+        "artifact": "ch-controls4-primary-1739.json",
+        "sha256": "6d6dc521dabaec9463718de060348e6f8f372c12e20e6f1a49819ae62bbe12ed"
+      },
+      "caller_packet": {
+        "artifact": "ch-controls4-callers-1739.json",
+        "sha256": "7fe4a3d9c53b4b19039ffcb34102f4d8e7deaf05c540e926202e586ab84c08e8"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "content_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8",
+          "line": 99,
+          "exact_line": "            button(ui(R.string.ui_unplace),\"assembly_unplace\") { selected?.let { assembly.unplace(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L99"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "content_sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8",
+          "line": 100,
+          "exact_line": "            button(ui(R.string.ui_remove),\"assembly_remove\") { selected?.let { assembly.remove(it) } ?: message(ui(R.string.ui_tap_an_image_first)) },",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L100"
+        }
+      ],
+      "caller_context_id": "first-image",
+      "caller_scope": "Shown only when Unplace/Remove requires an image and selected is null. The tray click and board selection supply that prerequisite; no deletion or placement is claimed by touching. Touch is not asserted to be the sole input method.",
+      "confidence": "Moderate source-backed authored functional composition; not native-speaker or whole-phrase certification",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "candidate": {
+        "artifact": "ch-controls4-1739.json",
+        "sha256": "4a09a40b67f0ed2abf6b7446ed4c38addce41964587f7518410f408c3e47898f"
+      },
+      "independent_review": {
+        "artifact": "review-ch-controls4-independent-1742.json",
+        "sha256": "72286b7fb57abe8d53ae0d66c838e6ef89734bdaad9403f8c0f49d61072487ca"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_evidence": {
+        "artifact": "ch-controls4-primary-1739.json",
+        "sha256": "6d6dc521dabaec9463718de060348e6f8f372c12e20e6f1a49819ae62bbe12ed"
+      },
+      "caller_evidence": {
+        "artifact": "ch-controls4-callers-1739.json",
+        "sha256": "7fe4a3d9c53b4b19039ffcb34102f4d8e7deaf05c540e926202e586ab84c08e8"
+      },
+      "independent_findings": {
+        "linguistic_reason": "Primary patcha is a transitive touching verb and pinenta is a picture noun. The transitive imperative with an un-marked singular indefinite object is supported by Chung printed pages117 and339. Primary fine'na explicitly expresses temporal first and occurs after an imperative in an attested example. The proposed sentence therefore expresses a prerequisite, not the first image by ordinal position.",
+        "caller_reason": "Both actual direct consumers are the Unplace and Remove branches when selected is null. Tray click sets selected and calls board.select; board onSelect also writes selected, and its touch-up branch selects the touched top image. The instruction supplies the prerequisite without claiming that touching deletes, unplaces, or saves anything."
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-ch-e582d2e-1737.json",
+        "sha256": "9b0782366a9b5705c185b18874b446b5a63cb02e619853dca5298963bc57d55a",
+        "git_blob_sha": "f55cee467058fd3df1ac414e2af129faf2a822e1",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_enter_a_whole_number_from_to",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Enter a whole number from %1$s to %2$s.",
+      "attributes": {
+        "name": "ui_enter_a_whole_number_from_to"
+      },
+      "raw": "Tugi\\' un numiru (0, 1, 2, 3, …) disdi %1$s asta %2$s.",
+      "value": "Tugi\\' un numiru (0, 1, 2, 3, …) disdi %1$s asta %2$s.",
+      "display": "Tugi' un numiru (0, 1, 2, 3, …) disdi %1$s asta %2$s.",
+      "raw_sha256": "86596f0482879cf20c37f6ba17e0f90a4a1500322381dbfbf22666e6b64da9d4",
+      "backtranslation": "Enter a number from the class0,1,2,3,… between the two supplied endpoints.",
+      "placeholders": [
+        "%1$s",
+        "%2$s"
+      ],
+      "typed_slots": [
+        "%1$s",
+        "%2$s"
+      ],
+      "source_ids": [
+        "text-and-numeric-entry",
+        "grammar"
+      ],
+      "source_packet": {
+        "artifact": "ch-controls4-primary-1739.json",
+        "sha256": "6d6dc521dabaec9463718de060348e6f8f372c12e20e6f1a49819ae62bbe12ed"
+      },
+      "caller_packet": {
+        "artifact": "ch-controls4-callers-1739.json",
+        "sha256": "7fe4a3d9c53b4b19039ffcb34102f4d8e7deaf05c540e926202e586ab84c08e8"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt",
+          "git_blob_sha": "9e068c4f8c0b114887e4677701fb6524b9bd796a",
+          "content_sha256": "6747cb4e72fc73908024be3afecd234b12195713bb3b88363b3f008748240125",
+          "line": 70,
+          "exact_line": "            val dialog=EditorDialogBuilder(context).setTitle(name).setMessage(ui(R.string.ui_enter_a_whole_number_from_to, minimum, maximum))",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L70"
+        }
+      ],
+      "caller_context_id": "whole-number",
+      "caller_scope": "Authored explicit nonnegative integer class avoids an unsupported mathematical whole-number noun. Every present NumericSlider minimum is nonnegative. Dynamic bounds remain inclusive and each slot appears once. Re-review if a negative-minimum caller is added.",
+      "confidence": "Moderate source-backed authored functional composition; not native-speaker or whole-phrase certification",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "candidate": {
+        "artifact": "ch-controls4-1739.json",
+        "sha256": "4a09a40b67f0ed2abf6b7446ed4c38addce41964587f7518410f408c3e47898f"
+      },
+      "independent_review": {
+        "artifact": "review-ch-controls4-independent-1742.json",
+        "sha256": "72286b7fb57abe8d53ae0d66c838e6ef89734bdaad9403f8c0f49d61072487ca"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_evidence": {
+        "artifact": "ch-controls4-primary-1739.json",
+        "sha256": "6d6dc521dabaec9463718de060348e6f8f372c12e20e6f1a49819ae62bbe12ed"
+      },
+      "caller_evidence": {
+        "artifact": "ch-controls4-callers-1739.json",
+        "sha256": "7fe4a3d9c53b4b19039ffcb34102f4d8e7deaf05c540e926202e586ab84c08e8"
+      },
+      "independent_findings": {
+        "linguistic_reason": "Primary tugi' is the write verb, and its numerical example directly attests numiru with the disdi...asta range construction. The indefinite un restricts the request to one number, rather than a request to write the entire range. The ordered unit-step enumeration explicitly identifies the nonnegative integer class and avoids inventing an unattested whole-number term. It is an authored explanatory addition, not a source quotation.",
+        "caller_reason": "The only resource consumer is NumericSlider's exact-entry dialog. Its callback parses with toIntOrNull and admits n only within minimum..maximum, an inclusive range. All production control minima are 0, 1, 40 or 100. The parenthetic class is immediately followed by both dynamic endpoints in their original order, each exactly once; it does not erase a boundary or say that every listed member is valid for every slider. The wording excludes fractions and is appropriate for all present nonnegative ranges."
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-ch-e582d2e-1737.json",
+        "sha256": "9b0782366a9b5705c185b18874b446b5a63cb02e619853dca5298963bc57d55a",
+        "git_blob_sha": "f55cee467058fd3df1ac414e2af129faf2a822e1",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_android_blocked_the_file_picker",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Android blocked the file picker: %1$s",
+      "attributes": {
+        "name": "ui_android_blocked_the_file_picker"
+      },
+      "raw": "Android — ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎠᏍᏚᎢᏍᎬ — ᎠᎵᏍᎪ: ᎥᏝ. %1$s",
+      "value": "Android — ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎠᏍᏚᎢᏍᎬ — ᎠᎵᏍᎪ: ᎥᏝ. %1$s",
+      "display": "Android — ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎠᏍᏚᎢᏍᎬ — ᎠᎵᏍᎪ: ᎥᏝ. %1$s",
+      "raw_sha256": "a4d25957ce68d04034a21d0278d5b64ae99b2e6f21a58749d2a264033c6fd2a2",
+      "source_xml_element": "<string name=\"ui_android_blocked_the_file_picker\">Android — ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎠᏍᏚᎢᏍᎬ — ᎠᎵᏍᎪ: ᎥᏝ. %1$s</string>",
+      "placeholders": [
+        "%1$s"
+      ],
+      "typed_slots": [
+        {
+          "placeholder": "%1$s",
+          "meaning": "SecurityException message; nullable in two launchers, local fallback in legacy credits",
+          "type": "String? supplied to generic string formatter"
+        }
+      ],
+      "backtranslation": "Android: file-picker opening permission: no. [Exception detail]",
+      "source_entry_ids": [
+        "31309_1598627_1653354",
+        "OU_p492_opening",
+        "OU_p508_permission",
+        "OU_p482_no"
+      ],
+      "source_evidence": {
+        "artifact": "chr-import-diagnostics-primary-1731.json",
+        "sha256": "172e2e04b715cdb0491446b6b39a28b01be0f3f1a4899453cb80b79739b8bb27"
+      },
+      "caller_evidence": {
+        "artifact": "chr-import-diagnostics-callers-v2-1734.json",
+        "sha256": "e98f515630997f39e45db404899f6d79cb1f12a4950562a9b00e7658dd5394e8"
+      },
+      "direct_caller_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 195,
+          "exact_line": "        } catch (error: SecurityException) { message(ui(R.string.ui_android_blocked_the_file_picker, error.message)) }",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L195"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1101,
+          "exact_line": "        } catch (e: SecurityException) { afterSave = null; message(ui(R.string.ui_android_blocked_the_file_picker, e.message)) }",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1101"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 120,
+          "exact_line": "                        is SecurityException -> ui(R.string.ui_android_blocked_the_file_picker,",
+          "git_blob_sha": "62218dd1a72f4f69aa19cd1ea20b5bd42b6e1574",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L120"
+        }
+      ],
+      "caller_contract": "Three production emitters are SecurityException launch catches: ClassicPaintActivity1101, AssemblyActivity195 and LegacyImageCreditsActivity120-121. The first two include ACTION_OPEN_DOCUMENT; the third is ACTION_CREATE_DOCUMENT for text credits. Wording must remain generic file picker, not image-only. Primary nested ACTION_GET_CONTENT fallback exceptions are not caught by the sibling catch; no claim that this resource covers that nested fallback. String slot is exception.message (nullable for the first two) or exception.message/localized fallback for legacy credits.",
+      "semantic_composition": "Permission is denied for opening the named UI element by Android. This is a compact nominal paraphrase of blocked launch; it does not assert a particular missing permission, permanent ban or missing app. General permission rather than TBX administrative permissions is intentional. All three callers and one string detail slot retained.",
+      "confidence": "Moderate source-compositional. Exact lexical and caller support; no native-fluency, accessibility or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "original_P1_verified": true,
+      "current_absence_verified_at": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "candidate": {
+        "artifact": "chr-import-diagnostics5-v2-1734.json",
+        "sha256": "df2e7f36ae4a23cd28b9ac0a6671b0dd27fcb634dbf87ce56afdf998ba6258aa"
+      },
+      "independent_review": {
+        "artifact": "review-chr-import-diagnostics5-v2-independent-1738.json",
+        "sha256": "5fa705cab76e6451c49fa9007d2617f12d99c1fc32a6dcbd96a9e816cf4fbf31"
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 195,
+          "exact_line": "        } catch (error: SecurityException) { message(ui(R.string.ui_android_blocked_the_file_picker, error.message)) }",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L195"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1101,
+          "exact_line": "        } catch (e: SecurityException) { afterSave = null; message(ui(R.string.ui_android_blocked_the_file_picker, e.message)) }",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1101"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt",
+          "line": 120,
+          "exact_line": "                        is SecurityException -> ui(R.string.ui_android_blocked_the_file_picker,",
+          "git_blob_sha": "62218dd1a72f4f69aa19cd1ea20b5bd42b6e1574",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyImageCreditsActivity.kt#L120"
+        }
+      ],
+      "caller_scope": "Three production emitters are SecurityException launch catches: ClassicPaintActivity1101, AssemblyActivity195 and LegacyImageCreditsActivity120-121. The first two include ACTION_OPEN_DOCUMENT; the third is ACTION_CREATE_DOCUMENT for text credits. Wording must remain generic file picker, not image-only. Primary nested ACTION_GET_CONTENT fallback exceptions are not caught by the sibling catch; no claim that this resource covers that nested fallback. String slot is exception.message (nullable for the first two) or exception.message/localized fallback for legacy credits.",
+      "independent_findings": {
+        "finding": {
+          "bounded_meaning": "Android does not permit this file-picker opening; exception detail follows.",
+          "lexical_and_grammar": "The exact file-picker technical noun denotes a UI element. OU opening is the opening activity form, distinct from there-is-an-opening forms. General permission plus standalone no supplies a topic/state paraphrase without inventing a finite blocked form. The punctuation does not require an unattested negated conjugation.",
+          "caller_fit": "PASS. Three SecurityException launch emitters. ClassicPaintActivity and AssemblyActivity use the nullable message; LegacyImageCreditsActivity uses the message or a localized fallback. That third caller launches ACTION_CREATE_DOCUMENT for text credits, so generic file picker is necessary. No missing-app, missing-file-result or image-only assertion. The nested ACTION_GET_CONTENT ActivityNotFoundException fallback is not asserted to be covered by its sibling SecurityException catch.",
+          "scope_control": "No particular manifest permission, permanent restriction or recovery instruction is added. Opening-permission:no is a functional description of the blocked launch, not a claim that the user can fix it by granting a named permission.",
+          "raw_decision": "ACCEPT_RAW_UNCHANGED"
+        }
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-chr-e582d2e-intake-1745.json",
+        "sha256": "8e21c1ab50fe12d51ec9ced4ab042d260a8b8525db329444177d617b7ca19724",
+        "git_blob_sha": "37d50f5a6f4f15314dcfe296cf42a50fc0553560",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_the_picker_returned_no_file_please_choose_the",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "The picker returned no file. Please choose the file again.",
+      "attributes": {
+        "name": "ui_the_picker_returned_no_file_please_choose_the"
+      },
+      "raw": "ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎢᏳᎵᏍᏙᏗ — ᎠᏍᏆᏂᎪᏙᏗ: ᎧᏂᎩᏛ. ᎠᏍᏆᏂᎪᏙᏗ — ᎠᏏᏉ ᎭᏑᏯᎩ.",
+      "value": "ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎢᏳᎵᏍᏙᏗ — ᎠᏍᏆᏂᎪᏙᏗ: ᎧᏂᎩᏛ. ᎠᏍᏆᏂᎪᏙᏗ — ᎠᏏᏉ ᎭᏑᏯᎩ.",
+      "display": "ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎢᏳᎵᏍᏙᏗ — ᎠᏍᏆᏂᎪᏙᏗ: ᎧᏂᎩᏛ. ᎠᏍᏆᏂᎪᏙᏗ — ᎠᏏᏉ ᎭᏑᏯᎩ.",
+      "raw_sha256": "024a13645a9b117947fb46c60391a02e59e497777c8058cf62d105e37e7455dc",
+      "source_xml_element": "<string name=\"ui_the_picker_returned_no_file_please_choose_the\">ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎢᏳᎵᏍᏙᏗ — ᎠᏍᏆᏂᎪᏙᏗ: ᎧᏂᎩᏛ. ᎠᏍᏆᏂᎪᏙᏗ — ᎠᏏᏉ ᎭᏑᏯᎩ.</string>",
+      "placeholders": [],
+      "typed_slots": [],
+      "backtranslation": "File picker outcome: file(s), none. File: choose again.",
+      "source_entry_ids": [
+        "31309_1598627_1653354",
+        "OU_p496_outcome",
+        "3340_53845_1591097",
+        "OU_p483_none",
+        "OU_p9_again",
+        "14733_31389_1590935",
+        "OU_p99_choose"
+      ],
+      "source_evidence": {
+        "artifact": "chr-import-diagnostics-primary-1731.json",
+        "sha256": "172e2e04b715cdb0491446b6b39a28b01be0f3f1a4899453cb80b79739b8bb27"
+      },
+      "caller_evidence": {
+        "artifact": "chr-import-diagnostics-callers-v2-1734.json",
+        "sha256": "e98f515630997f39e45db404899f6d79cb1f12a4950562a9b00e7658dd5394e8"
+      },
+      "direct_caller_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1251,
+          "exact_line": "        if (uri == null) { message(ui(R.string.ui_the_picker_returned_no_file_please_choose_the)); afterSave = null; return }",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1251"
+        }
+      ],
+      "caller_contract": "ClassicPaintActivity1250-1251, downstream of the RESULT_OK gate at1178: data.data or first clipData URI is null. The message precedes OPEN_IMAGE/IMPORT_IMAGE/SAVE_IMAGE/EXPORT_SOURCE/EXPORT_RECOVERY dispatch. It means no returned file reference, not an absent physical file or no image content. Preserve choose-the-file-again action, not choose a different file.",
+      "semantic_composition": "Outcome scopes none to what the picker returned. The exact choose imperative is directed at file again, without requiring a different file or adding an image-only constraint. Bare file with none admits zero returned file references, regardless of source-language singular/plural convention.",
+      "confidence": "Moderate source-compositional. Exact lexical and caller support; no native-fluency, accessibility or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "original_P1_verified": true,
+      "current_absence_verified_at": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "candidate": {
+        "artifact": "chr-import-diagnostics5-v2-1734.json",
+        "sha256": "df2e7f36ae4a23cd28b9ac0a6671b0dd27fcb634dbf87ce56afdf998ba6258aa"
+      },
+      "independent_review": {
+        "artifact": "review-chr-import-diagnostics5-v2-independent-1738.json",
+        "sha256": "5fa705cab76e6451c49fa9007d2617f12d99c1fc32a6dcbd96a9e816cf4fbf31"
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1251,
+          "exact_line": "        if (uri == null) { message(ui(R.string.ui_the_picker_returned_no_file_please_choose_the)); afterSave = null; return }",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1251"
+        }
+      ],
+      "caller_scope": "ClassicPaintActivity1250-1251, downstream of the RESULT_OK gate at1178: data.data or first clipData URI is null. The message precedes OPEN_IMAGE/IMPORT_IMAGE/SAVE_IMAGE/EXPORT_SOURCE/EXPORT_RECOVERY dispatch. It means no returned file reference, not an absent physical file or no image content. Preserve choose-the-file-again action, not choose a different file.",
+      "independent_findings": {
+        "finding": {
+          "bounded_meaning": "The file-picker result contains no file reference; choose the file again.",
+          "lexical_and_grammar": "Outcome/effect scopes none to the picker result. Exact TBX file plus OU none expresses a zero-item category. The exact GUI choose form is independently corroborated as choose it (imperative) on OU page99. OU again is used unchanged before that complete imperative.",
+          "caller_fit": "PASS. ClassicPaintActivity1178 rejects non-RESULT_OK before the URI extraction at1250. At1251, neither data.data nor the first clipData URI is available. The diagnostic precedes open/import/save/export dispatch and is not image-specific.",
+          "scope_control": "The repeat-selection action is retained once. It does not demand a different file and does not impose a one-retry maximum. No claim that a physical file is missing or its content empty.",
+          "raw_decision": "ACCEPT_RAW_UNCHANGED"
+        }
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-chr-e582d2e-intake-1745.json",
+        "sha256": "8e21c1ab50fe12d51ec9ced4ab042d260a8b8525db329444177d617b7ca19724",
+        "git_blob_sha": "37d50f5a6f4f15314dcfe296cf42a50fc0553560",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_the_picker_returned_no_files",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "The picker returned no files.",
+      "attributes": {
+        "name": "ui_the_picker_returned_no_files"
+      },
+      "raw": "ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎢᏳᎵᏍᏙᏗ — ᎠᏍᏆᏂᎪᏙᏗ: ᎧᏂᎩᏛ.",
+      "value": "ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎢᏳᎵᏍᏙᏗ — ᎠᏍᏆᏂᎪᏙᏗ: ᎧᏂᎩᏛ.",
+      "display": "ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎢᏳᎵᏍᏙᏗ — ᎠᏍᏆᏂᎪᏙᏗ: ᎧᏂᎩᏛ.",
+      "raw_sha256": "3b56b6e268864069cd4d5c3303caacecee3887b94fe4378e2dc3d302a5ea8260",
+      "source_xml_element": "<string name=\"ui_the_picker_returned_no_files\">ᎠᏍᏆᏂᎪᏙᏗ ᎠᏑᏰᏍᎩ — ᎢᏳᎵᏍᏙᏗ — ᎠᏍᏆᏂᎪᏙᏗ: ᎧᏂᎩᏛ.</string>",
+      "placeholders": [],
+      "typed_slots": [],
+      "backtranslation": "File picker outcome: file(s), none.",
+      "source_entry_ids": [
+        "31309_1598627_1653354",
+        "OU_p496_outcome",
+        "3340_53845_1591097",
+        "OU_p483_none"
+      ],
+      "source_evidence": {
+        "artifact": "chr-import-diagnostics-primary-1731.json",
+        "sha256": "172e2e04b715cdb0491446b6b39a28b01be0f3f1a4899453cb80b79739b8bb27"
+      },
+      "caller_evidence": {
+        "artifact": "chr-import-diagnostics-callers-v2-1734.json",
+        "sha256": "e98f515630997f39e45db404899f6d79cb1f12a4950562a9b00e7658dd5394e8"
+      },
+      "direct_caller_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 201,
+          "exact_line": "            if (uris.isEmpty()) message(ui(R.string.ui_the_picker_returned_no_files)) else importImages(uris.distinct())",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L201"
+        }
+      ],
+      "caller_contract": "AssemblyActivity199-201: ADD_IMAGES and RESULT_OK, empty URI list from clipData or data.data. MULTIPLE selection is requested at188. No retry action in the source, no stream open or decoding yet.",
+      "semantic_composition": "The same zero-file outcome phrase applies to the multi-file picker result. No explicit plural morphology is invented, and no retry action absent from English is added. The distinction from the single result is the latter's corrective action, not a contradictory count.",
+      "confidence": "Moderate source-compositional. Exact lexical and caller support; no native-fluency, accessibility or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "original_P1_verified": true,
+      "current_absence_verified_at": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "candidate": {
+        "artifact": "chr-import-diagnostics5-v2-1734.json",
+        "sha256": "df2e7f36ae4a23cd28b9ac0a6671b0dd27fcb634dbf87ce56afdf998ba6258aa"
+      },
+      "independent_review": {
+        "artifact": "review-chr-import-diagnostics5-v2-independent-1738.json",
+        "sha256": "5fa705cab76e6451c49fa9007d2617f12d99c1fc32a6dcbd96a9e816cf4fbf31"
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 201,
+          "exact_line": "            if (uris.isEmpty()) message(ui(R.string.ui_the_picker_returned_no_files)) else importImages(uris.distinct())",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L201"
+        }
+      ],
+      "caller_scope": "AssemblyActivity199-201: ADD_IMAGES and RESULT_OK, empty URI list from clipData or data.data. MULTIPLE selection is requested at188. No retry action in the source, no stream open or decoding yet.",
+      "independent_findings": {
+        "finding": {
+          "bounded_meaning": "The multiple-file picker result contains no file references.",
+          "lexical_and_grammar": "The shared outcome:file:none construction is a scoped zero-result expression. Cherokee noun number need not be mechanically pluralized; styleguide page18 supports unmarked nouns and number often expressed in verbs. No guessed plural prefix or finite return predicate is added.",
+          "caller_fit": "PASS. AssemblyActivity199-201 requires ADD_IMAGES and RESULT_OK and tests an empty URI list. Multiple selection is requested at188. This branch precedes reading or decoding.",
+          "scope_control": "No retry instruction is added to this source string. It is distinct from the single-file-result string by the latter's explicit retry action, without manufacturing a contradictory count.",
+          "raw_decision": "ACCEPT_RAW_UNCHANGED"
+        }
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-chr-e582d2e-intake-1745.json",
+        "sha256": "8e21c1ab50fe12d51ec9ced4ab042d260a8b8525db329444177d617b7ca19724",
+        "git_blob_sha": "37d50f5a6f4f15314dcfe296cf42a50fc0553560",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_the_selected_provider_did_not_return_any_image",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "The selected provider did not return any image data.",
+      "attributes": {
+        "name": "ui_the_selected_provider_did_not_return_any_image"
+      },
+      "raw": "ᎠᏑᏰᏓ ᏅᏓᏳᏓᎴᏅᎯ → AN Paint — ᎢᏳᎵᏍᏙᏗ — (ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ — ᎦᎸᏛᎢ): ᎧᏂᎩᏛ.",
+      "value": "ᎠᏑᏰᏓ ᏅᏓᏳᏓᎴᏅᎯ → AN Paint — ᎢᏳᎵᏍᏙᏗ — (ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ — ᎦᎸᏛᎢ): ᎧᏂᎩᏛ.",
+      "display": "ᎠᏑᏰᏓ ᏅᏓᏳᏓᎴᏅᎯ → AN Paint — ᎢᏳᎵᏍᏙᏗ — (ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ — ᎦᎸᏛᎢ): ᎧᏂᎩᏛ.",
+      "raw_sha256": "ec09ff8fcff7fdff476de3d6edecf956ae4a8bd8a78b93f390bc913a567ebedf",
+      "source_xml_element": "<string name=\"ui_the_selected_provider_did_not_return_any_image\">ᎠᏑᏰᏓ ᏅᏓᏳᏓᎴᏅᎯ → AN Paint — ᎢᏳᎵᏍᏙᏗ — (ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ — ᎦᎸᏛᎢ): ᎧᏂᎩᏛ.</string>",
+      "placeholders": [],
+      "typed_slots": [],
+      "backtranslation": "Chosen data source → AN Paint; outcome for image-file content: none.",
+      "source_entry_ids": [
+        "OU_p100_chosen",
+        "4707_114782_1591986",
+        "OU_p496_outcome",
+        "1294_64520_1591822",
+        "3340_53845_1591097",
+        "9084_152809_1590976",
+        "OU_p483_none"
+      ],
+      "source_evidence": {
+        "artifact": "chr-import-diagnostics-primary-1731.json",
+        "sha256": "172e2e04b715cdb0491446b6b39a28b01be0f3f1a4899453cb80b79739b8bb27"
+      },
+      "caller_evidence": {
+        "artifact": "chr-import-diagnostics-callers-v2-1734.json",
+        "sha256": "e98f515630997f39e45db404899f6d79cb1f12a4950562a9b00e7658dd5394e8"
+      },
+      "direct_caller_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1274,
+          "exact_line": "                    ?: throw IOException(ui(R.string.ui_the_selected_provider_did_not_return_any_image))",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1274"
+        }
+      ],
+      "caller_contract": "ClassicPaintActivity1271-1274: URI exists and a temporary cache file is created; contentResolver.openInputStream(uri) returns null and ImportFiles.copy never executes. No image-file payload is received through this attempted input stream. The test does not establish a zero-byte source file, metadata absence, corruption or a decoder failure. Source/provider can include a file URI supplied from another authorized in-app path, so functional selected data source is safer than an asserted external company.",
+      "semantic_composition": "The selected provider is functionally named as the chosen data source. The explicit source→AN Paint direction and outcome topic restrict none to supplied content. Image-file-content uses the TBX digital-media content sense; it does not claim missing metadata or that a zero-byte file was returned.",
+      "confidence": "Moderate source-compositional. Exact lexical and caller support; no native-fluency, accessibility or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "original_P1_verified": true,
+      "current_absence_verified_at": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "candidate": {
+        "artifact": "chr-import-diagnostics5-v2-1734.json",
+        "sha256": "df2e7f36ae4a23cd28b9ac0a6671b0dd27fcb634dbf87ce56afdf998ba6258aa"
+      },
+      "independent_review": {
+        "artifact": "review-chr-import-diagnostics5-v2-independent-1738.json",
+        "sha256": "5fa705cab76e6451c49fa9007d2617f12d99c1fc32a6dcbd96a9e816cf4fbf31"
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1274,
+          "exact_line": "                    ?: throw IOException(ui(R.string.ui_the_selected_provider_did_not_return_any_image))",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1274"
+        }
+      ],
+      "caller_scope": "ClassicPaintActivity1271-1274: URI exists and a temporary cache file is created; contentResolver.openInputStream(uri) returns null and ImportFiles.copy never executes. No image-file payload is received through this attempted input stream. The test does not establish a zero-byte source file, metadata absence, corruption or a decoder failure. Source/provider can include a file URI supplied from another authorized in-app path, so functional selected data source is safer than an asserted external company.",
+      "independent_findings": {
+        "finding": {
+          "bounded_meaning": "For the attempted chosen-source→AN Paint transfer, the image-file-content result is none.",
+          "lexical_and_grammar": "OU chosen is a complete source form, not the neighboring person-specific forms. The prenominal modifier is consistent with styleguide page15, while its use with source is disclosed composition. TBX source denotes a data-origin object. TBX content entry9084 is digital-media payload, not the same-spelled File Explorer Content view or general metadata.",
+          "caller_fit": "PASS. ClassicPaintActivity1273-1274 has an existing URI but contentResolver.openInputStream(uri) returns null, so the copy body is not entered. An attempted receiving route is exactly the narrow relation that source→AN Paint plus outcome states.",
+          "scope_control": "The arrow has source on the left and receiving app on the right. Outcome and the parenthesized image/file/content topic scope none to content received on that attempted route. This does not say every source object, file or datum is absent, destroyed, corrupt or zero-length. Source functionally represents the selected provider without falsely specifying an external company.",
+          "raw_decision": "ACCEPT_RAW_UNCHANGED"
+        }
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-chr-e582d2e-intake-1745.json",
+        "sha256": "8e21c1ab50fe12d51ec9ced4ab042d260a8b8525db329444177d617b7ca19724",
+        "git_blob_sha": "37d50f5a6f4f15314dcfe296cf42a50fc0553560",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "key": "ui_android_could_not_decode_this_image",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Android could not decode this image.",
+      "attributes": {
+        "name": "ui_android_could_not_decode_this_image"
+      },
+      "raw": "Android — (ᎯᎠ ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ — ᎦᎸᏛᎢ → bitmap): ᎤᏄᎸᎲᎦ.",
+      "value": "Android — (ᎯᎠ ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ — ᎦᎸᏛᎢ → bitmap): ᎤᏄᎸᎲᎦ.",
+      "display": "Android — (ᎯᎠ ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ — ᎦᎸᏛᎢ → bitmap): ᎤᏄᎸᎲᎦ.",
+      "raw_sha256": "dec69831330beb0077d2589ffab7a28f3b494039434a99e0a5774c03e72a8994",
+      "source_xml_element": "<string name=\"ui_android_could_not_decode_this_image\">Android — (ᎯᎠ ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ — ᎦᎸᏛᎢ → bitmap): ᎤᏄᎸᎲᎦ.</string>",
+      "placeholders": [],
+      "typed_slots": [],
+      "backtranslation": "Android: transforming the contents of this image file into a bitmap failed.",
+      "source_entry_ids": [
+        "OU_p740_this",
+        "1294_64520_1591822",
+        "3340_53845_1591097",
+        "9084_152809_1590976",
+        "13747_21789_1590880",
+        "124_53143_1591089"
+      ],
+      "source_evidence": {
+        "artifact": "chr-import-diagnostics-primary-1731.json",
+        "sha256": "172e2e04b715cdb0491446b6b39a28b01be0f3f1a4899453cb80b79739b8bb27"
+      },
+      "caller_evidence": {
+        "artifact": "chr-import-diagnostics-callers-v2-1734.json",
+        "sha256": "e98f515630997f39e45db404899f6d79cb1f12a4950562a9b00e7658dd5394e8"
+      },
+      "direct_caller_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+          "line": 162,
+          "exact_line": "                ?: throw IOException(ui(R.string.ui_android_could_not_decode_this_image))",
+          "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L162"
+        }
+      ],
+      "caller_contract": "ImageImport161-162: BitmapFactory.decodeFile returns null on the prepared platform file, and no Bitmap result is returned. withPlatformFile may use an intermediate BMP (DibCodec21-31), and withDecodeFile may use a prepared colour-input file (PlatformImageColour62-94). The byte/content-to-bitmap relation is supported, but not original-byte identity. This branch precedes colour.convert164 and orientation/resize output; it follows distinct format/dimension and memory-budget checks. It diagnoses no OOM, missing selection or unavailable provider stream.",
+      "semantic_composition": "Explicit content→bitmap transformation avoids using generic error or the ambiguous linguistic translation sense of decode. This image is the scope; file input may be prepared temporary data. The failure noun applies only to this transformation, not to Android generally. No memory-shortage cause, no later colour/orientation operation and no claim of byte-for-byte original identity.",
+      "confidence": "Moderate source-compositional. Exact lexical and caller support; no native-fluency, accessibility or runtime certification.",
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "original_P1_verified": true,
+      "current_absence_verified_at": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "candidate": {
+        "artifact": "chr-import-diagnostics5-v2-1734.json",
+        "sha256": "df2e7f36ae4a23cd28b9ac0a6671b0dd27fcb634dbf87ce56afdf998ba6258aa"
+      },
+      "independent_review": {
+        "artifact": "review-chr-import-diagnostics5-v2-independent-1738.json",
+        "sha256": "5fa705cab76e6451c49fa9007d2617f12d99c1fc32a6dcbd96a9e816cf4fbf31"
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+          "line": 162,
+          "exact_line": "                ?: throw IOException(ui(R.string.ui_android_could_not_decode_this_image))",
+          "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt#L162"
+        }
+      ],
+      "caller_scope": "ImageImport161-162: BitmapFactory.decodeFile returns null on the prepared platform file, and no Bitmap result is returned. withPlatformFile may use an intermediate BMP (DibCodec21-31), and withDecodeFile may use a prepared colour-input file (PlatformImageColour62-94). The byte/content-to-bitmap relation is supported, but not original-byte identity. This branch precedes colour.convert164 and orientation/resize output; it follows distinct format/dimension and memory-budget checks. It diagnoses no OOM, missing selection or unavailable provider stream.",
+      "independent_findings": {
+        "finding": {
+          "bounded_meaning": "Android failed at the transformation of this image-file content to a bitmap.",
+          "lexical_and_grammar": "OU this and exact TBX image/file/digital-content/bitmap/failure anchors are retained. Parentheses make the input→bitmap relation the subject of failure; Android is the actor/topic. This is authored technical notation, not an invented finite decode form or a claimed source sentence.",
+          "caller_fit": "PASS. ImageImport161-162 throws this message only when BitmapFactory.decodeFile returns null. withPlatformFile can prepare a BMP from DIB, and PlatformImageColour.withDecodeFile can prepare colour-input data. The relation remains content→bitmap without promising the bytes are the original untouched input.",
+          "scope_control": "No bitmap result from this transformation is implied. The wording does not assert general Android inability, later colour.convert failure, orientation/resize failure, absent picker/provider payload, diagnosed corruption, or OOM. The memory guard at149 is a separate branch.",
+          "raw_decision": "ACCEPT_RAW_UNCHANGED"
+        }
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-chr-e582d2e-intake-1745.json",
+        "sha256": "8e21c1ab50fe12d51ec9ced4ab042d260a8b8525db329444177d617b7ca19724",
+        "git_blob_sha": "37d50f5a6f4f15314dcfe296cf42a50fc0553560",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_type_text",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Type text",
+      "attributes": {
+        "name": "ui_type_text"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Xicchihua tlahcuiloliztli",
+      "value": "Xicchihua tlahcuiloliztli",
+      "display": "Xicchihua tlahcuiloliztli",
+      "raw_xml": "<string name=\"ui_type_text\">Xicchihua tlahcuiloliztli</string>",
+      "source_xml_element": "<string name=\"ui_type_text\">Xicchihua tlahcuiloliztli</string>",
+      "raw_sha256": "2e68e7794cee0470eb11443cef87defe5a6bb86bd2a972fa18af98248c3b55d1",
+      "backtranslation": "Create written text.",
+      "source_ids": [
+        "written-text",
+        "make",
+        "make-command",
+        "orthography"
+      ],
+      "sources": [
+        "https://www.nahuatlhuasteca.com/NahuatlSullivanDictionaryTlahtolxitlauhcayotl_Chicontepec_Veracru.pdf"
+      ],
+      "source_packet": {
+        "artifact": "nhe-text-controls-primary-1738.json",
+        "sha256": "6ce90cd51ba4454216b6fc7878eee8c5bfb80a172b445e723e8a798ce1430de2"
+      },
+      "caller_packet": {
+        "artifact": "nhe-text-controls-callers-1738.json",
+        "sha256": "eb103dc6eec8d97654f29098d0fa49947b05dc62e6c80faeb2a2578f1e5540a1"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 35,
+          "end_line": 35,
+          "excerpt": "35:         val input=EditText(activity).apply { tag=\"text_content\";hint=ui(R.string.ui_type_text);setText(initial.text);inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE;filters=arrayOf(InputFilter.LengthFilter(8192));minLines=2 }",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L35"
+        }
+      ],
+      "caller_count": 1,
+      "caller_scope": "TextStyleDialog35 is the multiline EditText hint, not a canvas tool label or a placement action. Its watcher89 updates the preview only. Functional invitation to compose readable text explicitly names written text. It does not prescribe physical keyboard input, paint on a surface, commit to the canvas, or copy anything.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "confidence": "Moderate source-supported authored functional composition; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "No exact full-GUI attestation, native-speaker certification, runtime/font/layout certification, app edits or adoption. Complete phrasing is authored; source identity and semantic components are pinned.",
+      "candidate": {
+        "artifact": "nhe-text-controls4-author-1738.json",
+        "sha256": "53435eb83ee49b842252cd3778dbf38c35ec7feb94c6e28d65979ce54a5ac0bc"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-text-controls4-independent-1744.json",
+        "sha256": "f10f33c7974bc0939c4556653494d50488b52bdf891b534b27f3da7391484a54"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_evidence": {
+        "artifact": "nhe-text-controls-primary-1738.json",
+        "sha256": "6ce90cd51ba4454216b6fc7878eee8c5bfb80a172b445e723e8a798ce1430de2"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-text-controls-callers-1738.json",
+        "sha256": "eb103dc6eec8d97654f29098d0fa49947b05dc62e6c80faeb2a2578f1e5540a1"
+      },
+      "independent_findings": {
+        "meaning": "Create written text.",
+        "reason": "The actual caller is the multiline composition-field hint, not a canvas action or the font selector. Xicchihua is attested in the own-source IUHQUINON example; the make/do construction takes the explicit written-text noun. The functional invitation accurately asks for composition without falsely requiring a physical keyboard or claiming insertion has happened."
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-nhe-e582d2e-text-1735.json",
+        "sha256": "d974598b3ca3b49cb862d27768eb353ba352c8caad3dd9455599184052407d35",
+        "git_blob_sha": "a35f572a95b20e1940c6f8f5fe3bd1cccf126448",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_add_text",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Add text",
+      "attributes": {
+        "name": "ui_add_text"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Xictlali tlahcuiloliztli",
+      "value": "Xictlali tlahcuiloliztli",
+      "display": "Xictlali tlahcuiloliztli",
+      "raw_xml": "<string name=\"ui_add_text\">Xictlali tlahcuiloliztli</string>",
+      "source_xml_element": "<string name=\"ui_add_text\">Xictlali tlahcuiloliztli</string>",
+      "raw_sha256": "e3c6bc267acaa1780beffb95a5c54021dceca669970380cca90fa7c6cac3b7c7",
+      "backtranslation": "Place the written text.",
+      "source_ids": [
+        "written-text",
+        "place",
+        "place-command",
+        "orthography"
+      ],
+      "sources": [
+        "https://www.nahuatlhuasteca.com/NahuatlSullivanDictionaryTlahtolxitlauhcayotl_Chicontepec_Veracru.pdf"
+      ],
+      "source_packet": {
+        "artifact": "nhe-text-controls-primary-1738.json",
+        "sha256": "6ce90cd51ba4454216b6fc7878eee8c5bfb80a172b445e723e8a798ce1430de2"
+      },
+      "caller_packet": {
+        "artifact": "nhe-text-controls-callers-1738.json",
+        "sha256": "eb103dc6eec8d97654f29098d0fa49947b05dc62e6c80faeb2a2578f1e5540a1"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 99,
+          "end_line": 99,
+          "excerpt": "99:             .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99"
+        }
+      ],
+      "caller_count": 1,
+      "caller_scope": "TextStyleDialog99 labels the positive insertion button. After numeric validation101-107, its callback runs ClassicPaintActivity1065-1070 and PaintDocument482-497, placing rendered text at the canvas position. Blank input is a no-op at485; a button label names the intended operation and is not a guaranteed success status. It adds actual text rendering, not merely more characters in the input field, a font, an image file, or clipboard content.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "confidence": "Moderate source-supported authored functional composition; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "No exact full-GUI attestation, native-speaker certification, runtime/font/layout certification, app edits or adoption. Complete phrasing is authored; source identity and semantic components are pinned.",
+      "candidate": {
+        "artifact": "nhe-text-controls4-author-1738.json",
+        "sha256": "53435eb83ee49b842252cd3778dbf38c35ec7feb94c6e28d65979ce54a5ac0bc"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-text-controls4-independent-1744.json",
+        "sha256": "f10f33c7974bc0939c4556653494d50488b52bdf891b534b27f3da7391484a54"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_evidence": {
+        "artifact": "nhe-text-controls-primary-1738.json",
+        "sha256": "6ce90cd51ba4454216b6fc7878eee8c5bfb80a172b445e723e8a798ce1430de2"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-text-controls-callers-1738.json",
+        "sha256": "eb103dc6eec8d97654f29098d0fa49947b05dc62e6c80faeb2a2578f1e5540a1"
+      },
+      "independent_findings": {
+        "meaning": "Place the written text.",
+        "reason": "Xictlali is an exact own-source command; TLALIA supplies the intended placement sense. The positive button validates size and spacing and then commits the rendered text through ClassicPaintActivity into PaintDocument. This labels the intended action rather than claiming success for blank/invalid input."
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-nhe-e582d2e-text-1735.json",
+        "sha256": "d974598b3ca3b49cb862d27768eb353ba352c8caad3dd9455599184052407d35",
+        "git_blob_sha": "a35f572a95b20e1940c6f8f5fe3bd1cccf126448",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_place_text",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Place text",
+      "attributes": {
+        "name": "ui_place_text"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Xictlali tlahcuiloliztli",
+      "value": "Xictlali tlahcuiloliztli",
+      "display": "Xictlali tlahcuiloliztli",
+      "raw_xml": "<string name=\"ui_place_text\">Xictlali tlahcuiloliztli</string>",
+      "source_xml_element": "<string name=\"ui_place_text\">Xictlali tlahcuiloliztli</string>",
+      "raw_sha256": "e3c6bc267acaa1780beffb95a5c54021dceca669970380cca90fa7c6cac3b7c7",
+      "backtranslation": "Place the written text.",
+      "source_ids": [
+        "written-text",
+        "place",
+        "place-command",
+        "orthography"
+      ],
+      "sources": [
+        "https://www.nahuatlhuasteca.com/NahuatlSullivanDictionaryTlahtolxitlauhcayotl_Chicontepec_Veracru.pdf"
+      ],
+      "source_packet": {
+        "artifact": "nhe-text-controls-primary-1738.json",
+        "sha256": "6ce90cd51ba4454216b6fc7878eee8c5bfb80a172b445e723e8a798ce1430de2"
+      },
+      "caller_packet": {
+        "artifact": "nhe-text-controls-callers-1738.json",
+        "sha256": "eb103dc6eec8d97654f29098d0fa49947b05dc62e6c80faeb2a2578f1e5540a1"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "start_line": 98,
+          "end_line": 98,
+          "excerpt": "98:         val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L98"
+        }
+      ],
+      "caller_count": 1,
+      "caller_scope": "TextStyleDialog98 is the placement dialog title. PaintCanvas814 calls onText at the selected position; ClassicPaintActivity201 and1064 connect that to this dialog. The title names the operation without claiming it already happened. The same phrase as Add text is deliberate because both name the same placement operation; the dialog offers composition/style controls before the button commits.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "confidence": "Moderate source-supported authored functional composition; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "No exact full-GUI attestation, native-speaker certification, runtime/font/layout certification, app edits or adoption. Complete phrasing is authored; source identity and semantic components are pinned.",
+      "candidate": {
+        "artifact": "nhe-text-controls4-author-1738.json",
+        "sha256": "53435eb83ee49b842252cd3778dbf38c35ec7feb94c6e28d65979ce54a5ac0bc"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-text-controls4-independent-1744.json",
+        "sha256": "f10f33c7974bc0939c4556653494d50488b52bdf891b534b27f3da7391484a54"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_evidence": {
+        "artifact": "nhe-text-controls-primary-1738.json",
+        "sha256": "6ce90cd51ba4454216b6fc7878eee8c5bfb80a172b445e723e8a798ce1430de2"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-text-controls-callers-1738.json",
+        "sha256": "eb103dc6eec8d97654f29098d0fa49947b05dc62e6c80faeb2a2578f1e5540a1"
+      },
+      "independent_findings": {
+        "meaning": "Place the written text.",
+        "reason": "This is the dialog title opened for a selected canvas position. The imperative names its operation without asserting completion. Reusing Add text wording is semantically justified because the dialog and its positive button concern the same placement operation."
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-nhe-e582d2e-text-1735.json",
+        "sha256": "d974598b3ca3b49cb862d27768eb353ba352c8caad3dd9455599184052407d35",
+        "git_blob_sha": "a35f572a95b20e1940c6f8f5fe3bd1cccf126448",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_full_text_copied",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Full text copied",
+      "attributes": {
+        "name": "ui_full_text_copied"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Niccopinqui nochi tlahcuiloliztli",
+      "value": "Niccopinqui nochi tlahcuiloliztli",
+      "display": "Niccopinqui nochi tlahcuiloliztli",
+      "raw_xml": "<string name=\"ui_full_text_copied\">Niccopinqui nochi tlahcuiloliztli</string>",
+      "source_xml_element": "<string name=\"ui_full_text_copied\">Niccopinqui nochi tlahcuiloliztli</string>",
+      "raw_sha256": "606a0068d314ff777b2d4a4a83602884b4db53a1ca36b89e5a382f7e6c645aa2",
+      "backtranslation": "I copied all of the written text.",
+      "source_ids": [
+        "written-text",
+        "copy-and-past",
+        "all",
+        "first-person",
+        "object",
+        "orthography"
+      ],
+      "sources": [
+        "https://www.nahuatlhuasteca.com/NahuatlSullivanDictionaryTlahtolxitlauhcayotl_Chicontepec_Veracru.pdf"
+      ],
+      "source_packet": {
+        "artifact": "nhe-text-controls-primary-1738.json",
+        "sha256": "6ce90cd51ba4454216b6fc7878eee8c5bfb80a172b445e723e8a798ce1430de2"
+      },
+      "caller_packet": {
+        "artifact": "nhe-text-controls-callers-1738.json",
+        "sha256": "eb103dc6eec8d97654f29098d0fa49947b05dc62e6c80faeb2a2578f1e5540a1"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+          "start_line": 102,
+          "end_line": 102,
+          "excerpt": "102:             LocaleTypography.showMessage(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT,button)",
+          "git_blob_sha": "7692e27f3b50068ae732526e24fbade1103f30d8",
+          "sha256": "fc9f51c4da1ddecba2340a2a79fdfe3d88495d10b209974de642241cff66619e",
+          "url": "https://github.com/c933103/AN-Paint/blob/e582d2e361570bae04ed3056349facd6b5a2c564/Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt#L102"
+        }
+      ],
+      "caller_count": 1,
+      "caller_scope": "LegalInfo100-102 copies the entire supplied text argument to the Android system clipboard with ClipData.newPlainText(title,text), then emits this status. Full means the whole legal-text body, not only the visible viewport or selected text, and not every file or image. The title is the clipboard label, not a promise that all heading/UI text was included in the payload. No persistence, export, save-file, sharing, or later paste promise is added.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "confidence": "Moderate source-supported authored functional composition; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "No exact full-GUI attestation, native-speaker certification, runtime/font/layout certification, app edits or adoption. Complete phrasing is authored; source identity and semantic components are pinned.",
+      "candidate": {
+        "artifact": "nhe-text-controls4-author-1738.json",
+        "sha256": "53435eb83ee49b842252cd3778dbf38c35ec7feb94c6e28d65979ce54a5ac0bc"
+      },
+      "independent_review": {
+        "artifact": "review-nhe-text-controls4-independent-1744.json",
+        "sha256": "f10f33c7974bc0939c4556653494d50488b52bdf891b534b27f3da7391484a54"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "source_evidence": {
+        "artifact": "nhe-text-controls-primary-1738.json",
+        "sha256": "6ce90cd51ba4454216b6fc7878eee8c5bfb80a172b445e723e8a798ce1430de2"
+      },
+      "caller_evidence": {
+        "artifact": "nhe-text-controls-callers-1738.json",
+        "sha256": "eb103dc6eec8d97654f29098d0fa49947b05dc62e6c80faeb2a2578f1e5540a1"
+      },
+      "independent_findings": {
+        "meaning": "I copied all of the written text.",
+        "reason": "The own-source COPINA copying/reproduction sense and listed past stem copinqui support ni-c-copinqui. NI1 and C2 support the first-person subject and specific third-person object; both adjacent c letters are retained. Nochi scopes the written-text object. LegalInfo copies the complete supplied body to the system clipboard before emitting the status; the wording does not promise saving, sharing, a later paste, or copying UI headings."
+      },
+      "current_head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+      "current_catalogue": {
+        "artifact": "current-nhe-e582d2e-text-1735.json",
+        "sha256": "d974598b3ca3b49cb862d27768eb353ba352c8caad3dd9455599184052407d35",
+        "git_blob_sha": "a35f572a95b20e1940c6f8f5fe3bd1cccf126448",
+        "direct_read_head": "e582d2e361570bae04ed3056349facd6b5a2c564"
+      },
+      "integration_commit": "640b997c03347fee471be17ecde3e7a3ea115113"
+    }
+  ],
+  "metadata_addenda": [
+    {
+      "field": "primary.OU_entries[].full_page_text_sha256 and style_evidence[].page_text_sha256",
+      "clarification": "Hashes reproduce with full pdftotext -layout extraction split at form-feed, excluding the delimiter. A standalone page extraction includes its final form-feed and therefore has a different byte hash. Source PDFs and page contents match."
+    },
+    {
+      "field": "primary.OU_entries[id=OU_p740_this].exact_context",
+      "clarification": "This field is an ordered selection of exact source lines, not one contiguous excerpt. All lines occur on page740; omitted intervening rows should be marked if republishing the excerpt as continuous. The exact this/these rows and raw candidate are unaffected."
+    },
+    "NOCHI sense 1 is not exclusively inanimate: its definition also includes people and animals. Its inanimate application here is supported; this precision does not require a candidate change.",
+    "Candidate author status remains unchanged in its immutable file. This receipt separately records independent linguistic acceptance.",
+    "The target catalogue header claiming translation has not started is stale and was not used as an absence guard."
+  ],
+  "specific_dependencies": [
+    "CH whole-number enumeration denotes the nonnegative integer class. All present NumericSlider controls have minima0,1,40 or100; review if negative ranges are added. Both inclusive endpoints remain restrictive.",
+    "CHR image-data diagnostics use explicitly authored directional notation, with none scoped to incoming payload and failure scoped to conversion into bitmap. The blocked picker remains generic because one caller exports text credits.",
+    "NHE written-text noun is source-defined for readable paper/computer content; Add/Place is insertion, Type is composition, copied status concerns complete legal/license text.",
+    "No native, UI/layout, glyph, accessibility or runtime certification."
+  ],
+  "excluded": "Yucatec reversal candidate remains held for RGB-complement ambiguity. Navajo held text/colour candidates, generic Save classifier gap and unknown PNG operation are outside this record. NHE font/family gaps are not additions."
+}
