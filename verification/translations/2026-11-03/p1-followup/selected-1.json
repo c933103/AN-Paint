@@ -1,0 +1,3552 @@
+{
+  "source_intake": "reviewed-americas-p1-19-after25-currenta721f04-intake-1430.json",
+  "rows": [
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "original_missing": true,
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_choose_dimensions_no_larger_than_the_original",
+      "english": "Choose dimensions no larger than the original.",
+      "attributes": {
+        "name": "ui_choose_dimensions_no_larger_than_the_original"
+      },
+      "value": "Atyik mineddung ni ti mås dångkulu ki i urihinåt na mineddung.",
+      "display": "Atyik mineddung ni ti mås dångkulu ki i urihinåt na mineddung.",
+      "raw": "Atyik mineddung ni ti mås dångkulu ki i urihinåt na mineddung.",
+      "raw_utf8_sha256": "8bdfe76faf0659d9356e7a64dbc17b35aea90b9970e76809986e36d8ae15406a",
+      "backtranslation": "Choose dimensions that are not greater than the original dimensions.",
+      "placeholders": [],
+      "source_ids": [
+        "cnmi-size-comparison",
+        "cnmi-original",
+        "cnmi-choose-height",
+        "cnmi-write-negation",
+        "chung-grammar"
+      ],
+      "caller_id": "original-upper-limit",
+      "limits": "No larger includes equality; the control compares width and height separately. No minimum or memory policy is invented.",
+      "confidence": "Moderate source-compositional author confidence; independent semantic review required.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "research_checks": {
+        "original_P1_missing": true,
+        "current_absent": true,
+        "english_attributes_exact": true,
+        "typed_slots_exact": true,
+        "single_android_apostrophe_escapes": true,
+        "display_and_XML_roundtrips": true,
+        "NFC": true
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Exact two emitters independently inspected: ImportPlan.create and IcoCodec.decode require each target axis <= its source axis. Equality is permitted. Own dictionary mineddung explicitly includes dimensions; negative greater-than preserves upper bound rather than area, bytes or memory. Authored numerical-selection transfer is moderate source confidence.",
+      "candidate": {
+        "path": "ch-size-validation4-1415.json",
+        "sha256": "666eca6f680126cd0588e2959a889cfae3308ecea4351331449c1b15b9075640"
+      },
+      "independent_review": {
+        "path": "review-ch-size-validation4-independent-1425.json",
+        "sha256": "4cb77cf3d996acad833398bf3c049b13f9b67cbd5007a3ad60ff886d3a45da49"
+      },
+      "source_packet": {
+        "path": "ch-size-validation-sources-1415.json",
+        "sha256": "a9b1335f23661f2cb6c78df6cfc7f86736e4545c37e328e849f19d8a3f35a997"
+      },
+      "actual_caller": {
+        "id": "original-upper-limit",
+        "files": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "lines": "12–16,27–39",
+            "sha256": "99aef5f92d7b1b48e8a7a00827b2b0930dc73352c15429d8b211dbf0787292b7",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+            "lines": "38–44",
+            "sha256": "a1ad195fd2e76115181e56d2b541ebde58de1a07687319ec65bd1994c63e74a3",
+            "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5"
+          }
+        ],
+        "semantics": "Both checks compare target.width <= source.width AND target.height <= source.height. Equality is allowed. ImageDimensions already requires positive Int axes. These comparisons are independent of following sample/decode/memory operations. Original denotes original decoded dimensions, not original file byte size. The ICO check likewise has a separate later budget error."
+      },
+      "component_intake": {
+        "path": "reviewed-ch-size4-currenta721f04-intake-1425.json",
+        "sha256": "a449e99d7614725c52d6b9722e31e4efd3b995fe2915af76ced0e7804a20ecee"
+      }
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "original_missing": true,
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_enter_positive_dimensions_no_larger_than_the_original",
+      "english": "Enter positive dimensions no larger than the original.",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions_no_larger_than_the_original"
+      },
+      "value": "Tugi' numiru siha ni mås ki seru para i mineddung. Ti debi na u mås dångkulu i mineddung ni humuyung ki i urihinåt na mineddung.",
+      "display": "Tugi' numiru siha ni mås ki seru para i mineddung. Ti debi na u mås dångkulu i mineddung ni humuyung ki i urihinåt na mineddung.",
+      "raw": "Tugi\\' numiru siha ni mås ki seru para i mineddung. Ti debi na u mås dångkulu i mineddung ni humuyung ki i urihinåt na mineddung.",
+      "raw_utf8_sha256": "249339be1ddd788490180dc5acf298cbfc6f0d36e28d0662097c7d0602e8399b",
+      "backtranslation": "Write numbers greater than zero for the dimensions. The resulting dimensions must not be greater than the original dimensions.",
+      "placeholders": [],
+      "source_ids": [
+        "cnmi-write-negation",
+        "cnmi-number",
+        "cnmi-zero-result",
+        "cnmi-size-comparison",
+        "cnmi-original",
+        "cnmi-result-verb",
+        "chung-grammar"
+      ],
+      "caller_id": "positive-original-limit",
+      "limits": "Positive applies to input; the upper limit applies to resulting dimensions, permitting fractional percentages. Does not add a 100% bound or falsely call this a memory failure.",
+      "confidence": "Moderate source-compositional author confidence; independent semantic review required.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "research_checks": {
+        "original_P1_missing": true,
+        "current_absent": true,
+        "english_attributes_exact": true,
+        "typed_slots_exact": true,
+        "single_android_apostrophe_escapes": true,
+        "display_and_XML_roundtrips": true,
+        "NFC": true
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "ImageResizeDialog.target applies both original-axis upper limits to DimensionControls result. Positive entered values are distinct from resulting pixel dimensions. Relative resulting-dimensions clause is supported by numeric-result humuyung usage, not a new technical verb. No false >=1% or <100% rule; equality allowed. Does not promise memory admission.",
+      "candidate": {
+        "path": "ch-size-validation4-1415.json",
+        "sha256": "666eca6f680126cd0588e2959a889cfae3308ecea4351331449c1b15b9075640"
+      },
+      "independent_review": {
+        "path": "review-ch-size-validation4-independent-1425.json",
+        "sha256": "4cb77cf3d996acad833398bf3c049b13f9b67cbd5007a3ad60ff886d3a45da49"
+      },
+      "source_packet": {
+        "path": "ch-size-validation-sources-1415.json",
+        "sha256": "a9b1335f23661f2cb6c78df6cfc7f86736e4545c37e328e849f19d8a3f35a997"
+      },
+      "actual_caller": {
+        "id": "positive-original-limit",
+        "files": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+            "lines": "29–58",
+            "sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+            "git_blob_sha": "15723c1171cac09c7bd67881175827b5f3f330dd"
+          }
+        ],
+        "semantics": "DimensionControls handles positive finite values and pixel conversion. target() at39 additionally requires both resulting axes <= source axes; line47 uses the target resource for either absent valid dimensions or a target larger on either axis. Memory policy follows a separate result path. Proposed wording therefore separates positive entered numbers from resulting dimensions. It does not promise that dimensions meeting this advice necessarily fit memory."
+      },
+      "component_intake": {
+        "path": "reviewed-ch-size4-currenta721f04-intake-1425.json",
+        "sha256": "a449e99d7614725c52d6b9722e31e4efd3b995fe2915af76ced0e7804a20ecee"
+      }
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "original_missing": true,
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_enter_positive_dimensions_that_resolve_to_at_least",
+      "english": "Enter positive dimensions that resolve to at least 1 pixel.",
+      "attributes": {
+        "name": "ui_enter_positive_dimensions_that_resolve_to_at_least"
+      },
+      "value": "Tugi' numiru siha ni mås ki seru para i mineddung. Gi risutta, debi di u guaha putlumenus 1 pixel gi finedda' yan putlumenus 1 pixel gi attura.",
+      "display": "Tugi' numiru siha ni mås ki seru para i mineddung. Gi risutta, debi di u guaha putlumenus 1 pixel gi finedda' yan putlumenus 1 pixel gi attura.",
+      "raw": "Tugi\\' numiru siha ni mås ki seru para i mineddung. Gi risutta, debi di u guaha putlumenus 1 pixel gi finedda\\' yan putlumenus 1 pixel gi attura.",
+      "raw_utf8_sha256": "1611245b862004c3728b5f98edddba9b09f8c5da4437fe5b6f0cf828785d78b5",
+      "backtranslation": "Write numbers greater than zero for the dimensions. In the result there must be at least 1 pixel in width and at least 1 pixel in height.",
+      "placeholders": [],
+      "source_ids": [
+        "cnmi-write-negation",
+        "cnmi-number",
+        "cnmi-zero-result",
+        "cnmi-size-comparison",
+        "cnmi-result-noun",
+        "cnmi-width",
+        "cnmi-choose-height",
+        "cnmi-region-minimum",
+        "cnmi-existence-excess",
+        "chung-grammar"
+      ],
+      "caller_id": "positive-result-minimum",
+      "limits": "Explicit resulting width and height avoid a one-pixel-area condition and avoid requiring entered percentages >=1. The sentence does not insist percentages are integers or state a rounding algorithm absent from English.",
+      "confidence": "Moderate source-compositional author confidence; independent semantic review required.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "research_checks": {
+        "original_P1_missing": true,
+        "current_absent": true,
+        "english_attributes_exact": true,
+        "typed_slots_exact": true,
+        "single_android_apostrophe_escapes": true,
+        "display_and_XML_roundtrips": true,
+        "NFC": true
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "DimensionControls accepts finite positive inputs; fractions permitted in percentage mode. It resolves and rounds each axis, requiring each resulting dimension >=1. Explicit result plus width and height is appropriate, not a total-area minimum or minimum entered percentage. Source does not enumerate all invalid-input causes either. Pixel is retained technical unit, not a claimed CNMI lexeme.",
+      "candidate": {
+        "path": "ch-size-validation4-1415.json",
+        "sha256": "666eca6f680126cd0588e2959a889cfae3308ecea4351331449c1b15b9075640"
+      },
+      "independent_review": {
+        "path": "review-ch-size-validation4-independent-1425.json",
+        "sha256": "4cb77cf3d996acad833398bf3c049b13f9b67cbd5007a3ad60ff886d3a45da49"
+      },
+      "source_packet": {
+        "path": "ch-size-validation-sources-1415.json",
+        "sha256": "a9b1335f23661f2cb6c78df6cfc7f86736e4545c37e328e849f19d8a3f35a997"
+      },
+      "actual_caller": {
+        "id": "positive-result-minimum",
+        "files": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+            "lines": "31–34,54–87",
+            "sha256": "f68a5eebf880c98fc3c8e102998658ceab32b6695e43363643245cd011098d0e",
+            "git_blob_sha": "24c52925842a9f76f92e241e67b66a98d3c5433e"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "lines": "1012–1027",
+            "sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+            "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+            "lines": "297–317",
+            "sha256": "c575443bff9a283c7033229d7dc42ef1bd79b9e566ba0079bda97882fa39b5a8",
+            "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+            "lines": "29–58",
+            "sha256": "47cb8f159e3309b63c7b9a1689087b8475c288b13d5a332b4a4553e12a7a382e",
+            "git_blob_sha": "15723c1171cac09c7bd67881175827b5f3f330dd"
+          }
+        ],
+        "semantics": "All three instantiations inspected: main new/resize/canvas dialog, import resize dialog, assembly output-size dialog. The helper accepts finite numeric input >0; pixel mode also demands integers, percent mode permits fractions. Percent values multiply the corresponding original axis and divide by100. Each result is rounded to Long and must fall in1..Int.MAX_VALUE; valid targets use roundToInt. Locked aspect may calculate the other field. showResult at75 displays this resource whenever target is null. The lower bound is per resulting axis, not 1% and not only total pixel area. Wording need not enumerate every invalid-input cause, as English does not; it must not imply ≥1 entered percentage."
+      },
+      "component_intake": {
+        "path": "reviewed-ch-size4-currenta721f04-intake-1425.json",
+        "sha256": "a449e99d7614725c52d6b9722e31e4efd3b995fe2915af76ced0e7804a20ecee"
+      }
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "original_missing": true,
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_selection_dimensions_are_too_large",
+      "english": "Selection dimensions are too large.",
+      "attributes": {
+        "name": "ui_selection_dimensions_are_too_large"
+      },
+      "value": "Mampus dångkulu i mineddong-ña i påtti ni ma'atyik.",
+      "display": "Mampus dångkulu i mineddong-ña i påtti ni ma'atyik.",
+      "raw": "Mampus dångkulu i mineddong-ña i påtti ni ma\\'atyik.",
+      "raw_utf8_sha256": "9ca83c1a79b472deb88de798e1eb0f5ec4ad5648267ffdd2549322f9c9bd4434",
+      "backtranslation": "The size/dimensions of the chosen part are too large.",
+      "placeholders": [],
+      "source_ids": [
+        "cnmi-size-comparison",
+        "cnmi-region-minimum",
+        "cnmi-selected",
+        "cnmi-existence-excess",
+        "chung-grammar"
+      ],
+      "caller_id": "selection-range-limit",
+      "limits": "Describes selected-part dimensions without asserting a memory shortage, source-file modification, or a newly discovered defect. Possessed mineddong-ña mirrors the dictionary example.",
+      "confidence": "Moderate source-compositional author confidence; independent semantic review required.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "research_checks": {
+        "original_P1_missing": true,
+        "current_absent": true,
+        "english_attributes_exact": true,
+        "typed_slots_exact": true,
+        "single_android_apostrophe_escapes": true,
+        "display_and_XML_roundtrips": true,
+        "NFC": true
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "PaintDocument.transformedSelectionImage checks output bounding-box dimensions before separate allocation guard. The candidate preserves source too-large diagnosis and selected-part referent, without claiming memory shortage or deleted source. Possessed mineddong-ña follows own dictionary example. Guard also rejects out-of-range low conversions, but normal creation/drag limits and recovery paths were inspected; no executed lower-bound defect is established here.",
+      "candidate": {
+        "path": "ch-size-validation4-1415.json",
+        "sha256": "666eca6f680126cd0588e2959a889cfae3308ecea4351331449c1b15b9075640"
+      },
+      "independent_review": {
+        "path": "review-ch-size-validation4-independent-1425.json",
+        "sha256": "4cb77cf3d996acad833398bf3c049b13f9b67cbd5007a3ad60ff886d3a45da49"
+      },
+      "source_packet": {
+        "path": "ch-size-validation-sources-1415.json",
+        "sha256": "a9b1335f23661f2cb6c78df6cfc7f86736e4545c37e328e849f19d8a3f35a997"
+      },
+      "actual_caller": {
+        "id": "selection-range-limit",
+        "files": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+            "lines": "289–305,342–380,406–420,461–464",
+            "sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+            "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SelectionGeometry.kt",
+            "lines": "9–60",
+            "sha256": "eb1948ebffab479174387dce1fbf11c4664ab37c8233fada811236f2654a0b19",
+            "git_blob_sha": "880fdf55d8b16c83858a7577f1b9a3761f2cb243"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+            "lines": "617–642",
+            "sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+            "git_blob_sha": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+            "lines": "54–68",
+            "sha256": "f6781d9a04961ed7b2b4a8cc52a8164001da9be8155d1ae7967905c84ef8326a",
+            "git_blob_sha": "b8a97637df61f8e50694e4a9d65b924b3e0af4f5"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AutosaveStore.kt",
+            "lines": "142–166",
+            "sha256": "db643208844218829b59c5a741ff83b4d8755499b21527fe7a0a8e585b647c9a",
+            "git_blob_sha": "3fdd7aff659a3a2cdf2b78ed16472b5850225567"
+          }
+        ],
+        "semantics": "transformedSelectionImage computes the ceil of rotated bounding-box width/height then requires both Long dimensions in1..Int.MAX_VALUE at354, before a separate allocationGuard and Bitmap.createBitmap. It is called by copySelection, indirectly cutSelection, and cropSelection. Ordinary selection creation intersects the canvas and rejects width/height<1; normal drag resizing clamps dimensions to1..Int.MAX_VALUE/4. RestoreFloatingSelection checks positive rectangle dimensions and finite rotation, while recovery supplies stored rectangle coordinates. The range guard remains a defensive output-dimension check, not a claim of a memory shortage. Its boolean condition also rejects zero/negative conversions; this inspection does not establish an executed reachable lower-bound defect or prove the guard is unreachable. Candidate retains the source too-large diagnostic without inventing a memory reason or a code-bug allegation."
+      },
+      "component_intake": {
+        "path": "reviewed-ch-size4-currenta721f04-intake-1425.json",
+        "sha256": "a449e99d7614725c52d6b9722e31e4efd3b995fe2915af76ced0e7804a20ecee"
+      }
+    },
+    {
+      "locale": "chr",
+      "key": "ui_magnification",
+      "tier": "P1",
+      "originalP1": true,
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Magnification (%)",
+      "attributes": {
+        "name": "ui_magnification",
+        "formatted": "false"
+      },
+      "placeholders": [],
+      "raw": "ᎠᎪᎵᏰᏗ ᎢᎩᏓ (%)",
+      "value": "ᎠᎪᎵᏰᏗ ᎢᎩᏓ (%)",
+      "display": "ᎠᎪᎵᏰᏗ ᎢᎩᏓ (%)",
+      "raw_sha256": "588eecb152416754f1da5a819f8b0e830d3c646f3fefa9d4581949f402ab9ab3",
+      "backtranslation": "View size (%), the enlargement factor for the contents of the drawing preview.",
+      "semantic_composition": "Authored property label, not an action or fixed preview-frame dimensions. Same meaning in both callers and in NumericSlider’s number-entry title. The number 100–400 modifies previewMagnification; overall rendered scale also depends on viewport zoom.",
+      "source_refs": "TBX10367 + OU647 noun; TBX1070/19687 property-label pattern",
+      "source_packet": {
+        "path": "chr-view-primary-1422.json",
+        "sha256": "7d00e8f2ef515f13c1b043b31e2377ba90360a35684ff5c6cac274c3afb55b12"
+      },
+      "caller_packet": {
+        "path": "chr-view-callers-1422.json",
+        "sha256": "fb05b085a477627229a45cd71e08facf527a0103cab310f8372d744e9a7bf4e9"
+      },
+      "caller_anchor_ids": [
+        "magnifier_controls",
+        "magnifier_fixed_frame_and_content",
+        "numeric_slider_labels"
+      ],
+      "direct_resource_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1544,
+          "exact_line": "        column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1563,
+          "exact_line": "            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {"
+        }
+      ],
+      "confidence": "moderate productive property paraphrase; apparent-content-size versus frame-size distinction requires independent review",
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "current_guard": {
+        "expected_absent": true,
+        "expected_old_raw": null,
+        "catalogue_git_blob_sha": "24e9a144b388703ec188b38ad1dda8b34a7fb7b9",
+        "catalogue_content_sha256": "0c2113e41e7625432f2342b3f9b64d852fd92e73ee72fb770306befe6de89ce1",
+        "catalogue_snapshot": {
+          "path": "current-chr-0965a3d-1252.json",
+          "sha256": "6f9bd6194435debed1acf9ba5550a7079b38df4b03a7ff0547cb7ced4d894aa0"
+        },
+        "verified_unchanged_through_head": "a721f04c59da0de9ca08af173d2bb2670ead5481"
+      },
+      "literal_percent_preserved": {
+        "formatted": "false",
+        "count": 1,
+        "not_a_formatter_argument": true
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Moderate contextual property paraphrase. Display-view noun + independently POS-tagged size noun, with attested technical noun+size order, describes apparent content size as a percentage. It does not mean fixed lens-frame dimensions. Both NumericSlider callers and number-entry title target previewMagnification; factor100% is not a claim of total 1:1 scale because drawMagnifiedPreview multiplies max(viewport zoom,1). No exact whole-phrase attestation claimed.",
+      "candidate": {
+        "path": "chr-view-actions7-1422.json",
+        "sha256": "9a0e21d8fa94d5ed84da5f742b06ae1175fa8bbe2a8ca6d36057f62a028c572d"
+      },
+      "independent_review": {
+        "path": "review-chr-view-actions7-independent-1428.json",
+        "sha256": "42e5e27c844275ff68ff510af738bcc68ab2d27bf877adacfd5085b2910af0a3"
+      },
+      "actual_callers": {
+        "magnifier_controls": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 1538,
+          "end_line": 1576,
+          "exact_lines": [
+            {
+              "line": 1538,
+              "text": "        },LinearLayout.LayoutParams(0,dp(48),1f))"
+            },
+            {
+              "line": 1539,
+              "text": "        column.addView(shapeRow)"
+            },
+            {
+              "line": 1540,
+              "text": "        column.addView(CheckBox(this).apply {"
+            },
+            {
+              "line": 1541,
+              "text": "            tag=\"cursor_magnifier_enabled\";text=ui(R.string.ui_show_magnified_drawing_preview);isChecked=paintCanvas.cursorMagnifier"
+            },
+            {
+              "line": 1542,
+              "text": "            setOnCheckedChangeListener {_,on ->paintCanvas.cursorMagnifier=on;paintCanvas.invalidate();scheduleAutosave()}"
+            },
+            {
+              "line": 1543,
+              "text": "        })"
+            },
+            {
+              "line": 1544,
+              "text": "        column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {"
+            },
+            {
+              "line": 1545,
+              "text": "            paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()"
+            },
+            {
+              "line": 1546,
+              "text": "        }.apply {tag=\"cursor_magnification\"})"
+            },
+            {
+              "line": 1547,
+              "text": "        column.addView(NumericSlider(this,ui(R.string.ui_cursor_marker_size31),(paintCanvas.cursorMarkerScale*100).toInt(),100,200) {"
+            },
+            {
+              "line": 1548,
+              "text": "            paintCanvas.cursorMarkerScale=it/100f;paintCanvas.invalidate();scheduleAutosave()"
+            },
+            {
+              "line": 1549,
+              "text": "        }.apply {tag=\"cursor_marker_size\"})"
+            },
+            {
+              "line": 1550,
+              "text": "        val content=if(VerticalText.uiVertical(this@ClassicPaintActivity)) {VerticalUi.panel(column);ColumnScrollView(this).apply {addView(column)}} else column"
+            },
+            {
+              "line": 1551,
+              "text": "        cursorOptionsHost.addView(content)"
+            },
+            {
+              "line": 1552,
+              "text": "    }"
+            },
+            {
+              "line": 1553,
+              "text": "    private fun showDrawingSettings(preview: Boolean) {"
+            },
+            {
+              "line": 1554,
+              "text": "        val column=LinearLayout(this).apply {orientation=LinearLayout.VERTICAL;setPadding(dp(18),dp(8),dp(18),dp(8))}"
+            },
+            {
+              "line": 1555,
+              "text": "        fun toggle(title: String,value: Boolean,controlTag: String?=null,change: (Boolean)->Unit) {"
+            },
+            {
+              "line": 1556,
+              "text": "            column.addView(CheckBox(this).apply {tag=controlTag;text=title;isChecked=value;setOnCheckedChangeListener {_,on -> change(on);paintCanvas.invalidate();scheduleAutosave()} })"
+            },
+            {
+              "line": 1557,
+              "text": "        }"
+            },
+            {
+              "line": 1558,
+              "text": "        if(preview) {"
+            },
+            {
+              "line": 1559,
+              "text": "            toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.activeMagnifier,\"magnifier_enabled\") {"
+            },
+            {
+              "line": 1560,
+              "text": "                paintCanvas.activeMagnifier=it"
+            },
+            {
+              "line": 1561,
+              "text": "                populateCursorOptions()"
+            },
+            {
+              "line": 1562,
+              "text": "            }"
+            },
+            {
+              "line": 1563,
+              "text": "            column.addView(NumericSlider(this,ui(R.string.ui_magnification),(paintCanvas.previewMagnification*100).toInt(),100,400) {"
+            },
+            {
+              "line": 1564,
+              "text": "                paintCanvas.previewMagnification=it/100f;paintCanvas.invalidate();scheduleAutosave()"
+            },
+            {
+              "line": 1565,
+              "text": "            }.apply {tag=\"preview_magnification\"})"
+            },
+            {
+              "line": 1566,
+              "text": "        } else {"
+            },
+            {
+              "line": 1567,
+              "text": "            toggle(ui(R.string.ui_smooth_freehand_strokes),document.strokeSmoothing) { document.strokeSmoothing=it }"
+            },
+            {
+              "line": 1568,
+              "text": "            toggle(ui(R.string.ui_smooth_pixel_edges_anti_aliasing),document.antialiasing) { document.antialiasing=it }"
+            },
+            {
+              "line": 1569,
+              "text": "            column.addView(label(ui(R.string.ui_pencil_crisp_adjustable_strokes)))"
+            },
+            {
+              "line": 1570,
+              "text": "        }"
+            },
+            {
+              "line": 1571,
+              "text": "        EditorDialogBuilder(this).setTitle(if(preview) ui(R.string.ui_magnified_preview_ea9209) else ui(R.string.ui_drawing_settings_d900c6))"
+            },
+            {
+              "line": 1572,
+              "text": "            .setView(ScrollView(this).apply {addView(column)}).setPositiveButton(ui(R.string.ui_done),null).show()"
+            },
+            {
+              "line": 1573,
+              "text": "    }"
+            },
+            {
+              "line": 1574,
+              "text": "    private fun syncFullscreen() {"
+            },
+            {
+              "line": 1575,
+              "text": "        if(!::root.isInitialized) return"
+            },
+            {
+              "line": 1576,
+              "text": "        for(i in 0 until root.childCount) root.getChildAt(i).let { it.visibility=if(fullscreen && it.tag!=\"workspace_overlay\") View.GONE else View.VISIBLE }"
+            }
+          ]
+        },
+        "magnifier_fixed_frame_and_content": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "git_blob_sha": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+          "content_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "start_line": 339,
+          "end_line": 373,
+          "exact_lines": [
+            {
+              "line": 339,
+              "text": "    internal fun magnifierBounds(): RectF {"
+            },
+            {
+              "line": 340,
+              "text": "        val d=resources.displayMetrics.density"
+            },
+            {
+              "line": 341,
+              "text": "        val size=min(120*d,min(contentWidth,contentHeight)*.45f)"
+            },
+            {
+              "line": 342,
+              "text": "        fun bounds(right: Boolean): RectF {"
+            },
+            {
+              "line": 343,
+              "text": "            val left=if(right) width-bar-size-8*d else rulerInset+8*d"
+            },
+            {
+              "line": 344,
+              "text": "            return RectF(left,rulerInset+8*d,left+size,rulerInset+8*d+size)"
+            },
+            {
+              "line": 345,
+              "text": "        }"
+            },
+            {
+              "line": 346,
+              "text": "        // Move only when the finger actually approaches the lens. Keep its"
+            },
+            {
+              "line": 347,
+              "text": "        // chosen corner between strokes instead of jumping at the screen centre."
+            },
+            {
+              "line": 348,
+              "text": "        if(down) {"
+            },
+            {
+              "line": 349,
+              "text": "            val occupied=RectF(bounds(previewOnRight)).apply {inset(-12*d,-12*d)}"
+            },
+            {
+              "line": 350,
+              "text": "            val alternative=RectF(bounds(!previewOnRight)).apply {inset(-12*d,-12*d)}"
+            },
+            {
+              "line": 351,
+              "text": "            if(occupied.contains(previewTouch.x,previewTouch.y) && !alternative.contains(previewTouch.x,previewTouch.y)) previewOnRight=!previewOnRight"
+            },
+            {
+              "line": 352,
+              "text": "        }"
+            },
+            {
+              "line": 353,
+              "text": "        return bounds(previewOnRight)"
+            },
+            {
+              "line": 354,
+              "text": "    }"
+            },
+            {
+              "line": 355,
+              "text": ""
+            },
+            {
+              "line": 356,
+              "text": "    private fun drawMagnifiedPreview(canvas: Canvas, point: PointF) {"
+            },
+            {
+              "line": 357,
+              "text": "        val d=resources.displayMetrics.density"
+            },
+            {
+              "line": 358,
+              "text": "        val r=magnifierBounds()"
+            },
+            {
+              "line": 359,
+              "text": "        if (r.width()<40*d) return"
+            },
+            {
+              "line": 360,
+              "text": "        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply { color=EditorColours.primary;strokeWidth=2*d;style=Paint.Style.STROKE }"
+            },
+            {
+              "line": 361,
+              "text": "        canvas.save();canvas.clipPath(Path().apply {addOval(r,Path.Direction.CW)});canvas.drawColor(EditorColours.surfaceDim)"
+            },
+            {
+              "line": 362,
+              "text": "        canvas.translate(r.centerX(),r.centerY());val factor=max(zoom,1f)*previewMagnification.coerceIn(1f,4f)"
+            },
+            {
+              "line": 363,
+              "text": "        canvas.scale(factor,factor);canvas.translate(-point.x,-point.y)"
+            },
+            {
+              "line": 364,
+              "text": "        canvas.drawRect(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat(),Paint().apply {color=Color.WHITE})"
+            },
+            {
+              "line": 365,
+              "text": "        // Explicit pixel bounds avoid Bitmap density scaling. The main canvas"
+            },
+            {
+              "line": 366,
+              "text": "        // uses the same bounds, so the lens scale is the actual enlargement."
+            },
+            {
+              "line": 367,
+              "text": "        canvas.drawBitmap(document.bitmap,null,Rect(0,0,document.bitmap.width,document.bitmap.height),bitmapDisplayPaint)"
+            },
+            {
+              "line": 368,
+              "text": "        document.selection?.takeIf { it.floating }?.let { it.draw(canvas,it.image,bitmapDisplayPaint) }"
+            },
+            {
+              "line": 369,
+              "text": "        // Keep the main viewport's marker geometry. Using factor here would"
+            },
+            {
+              "line": 370,
+              "text": "        // cancel the lens enlargement of the cursor while magnifying the ink."
+            },
+            {
+              "line": 371,
+              "text": "        if(supportsCursor()) cursorOverlay.draw(canvas,point,document.paint(tool),zoom,d,cursorDrawing,cursorMarkerScale,if(cursorShape==0) Paint.Cap.ROUND else Paint.Cap.SQUARE)"
+            },
+            {
+              "line": 372,
+              "text": "        canvas.restore();canvas.drawOval(r,p)"
+            },
+            {
+              "line": 373,
+              "text": "    }"
+            }
+          ]
+        },
+        "numeric_slider_labels": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt",
+          "git_blob_sha": "9e068c4f8c0b114887e4677701fb6524b9bd796a",
+          "content_sha256": "6747cb4e72fc73908024be3afecd234b12195713bb3b88363b3f008748240125",
+          "start_line": 50,
+          "end_line": 76,
+          "exact_lines": [
+            {
+              "line": 50,
+              "text": "    val number=FlowButton(context).apply {columnHeightDp=112}"
+            },
+            {
+              "line": 51,
+              "text": "    private fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()"
+            },
+            {
+              "line": 52,
+              "text": "    init {"
+            },
+            {
+              "line": 53,
+              "text": "        orientation=if(VerticalText.uiVertical(context)) HORIZONTAL else VERTICAL;isBaselineAligned=false"
+            },
+            {
+              "line": 54,
+              "text": "        number.isAllCaps=false;number.textSize=11f;number.setPadding(0,0,0,0);number.minWidth=0;number.minimumWidth=0"
+            },
+            {
+              "line": 55,
+              "text": "        addView(number,LayoutParams(if(VerticalText.uiVertical(context)) -2 else -1,if(VerticalText.uiVertical(context)) -2 else dp(44)))"
+            },
+            {
+              "line": 56,
+              "text": "        slider.max=maximum-minimum;slider.progress=value.coerceIn(minimum,maximum)-minimum"
+            },
+            {
+              "line": 57,
+              "text": "        slider.contentDescription=name;addView(slider,LayoutParams(if(VerticalText.uiVertical(context)) dp(100) else -1,dp(44)))"
+            },
+            {
+              "line": 58,
+              "text": "        fun display(n: Int) { number.text=ui(R.string.ui_numeric_slider_value,name,n);number.contentDescription=ui(R.string.ui_tap_to_type_a_number, name, n) }"
+            },
+            {
+              "line": 59,
+              "text": "        display(slider.progress+minimum)"
+            },
+            {
+              "line": 60,
+              "text": "        slider.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {"
+            },
+            {
+              "line": 61,
+              "text": "            override fun onProgressChanged(bar: SeekBar?,n: Int,user: Boolean) { display(n+minimum);changed(n+minimum) }"
+            },
+            {
+              "line": 62,
+              "text": "            override fun onStartTrackingTouch(bar: SeekBar?)=Unit"
+            },
+            {
+              "line": 63,
+              "text": "            override fun onStopTrackingTouch(bar: SeekBar?)=Unit"
+            },
+            {
+              "line": 64,
+              "text": "        })"
+            },
+            {
+              "line": 65,
+              "text": "        number.setOnClickListener {"
+            },
+            {
+              "line": 66,
+              "text": "            val input=EditText(context).apply {"
+            },
+            {
+              "line": 67,
+              "text": "                tag=\"numeric_input\";LocaleNumberInput.configure(this)"
+            },
+            {
+              "line": 68,
+              "text": "                setText((slider.progress+minimum).toString());selectAll();gravity=Gravity.CENTER"
+            },
+            {
+              "line": 69,
+              "text": "            }"
+            },
+            {
+              "line": 70,
+              "text": "            val dialog=EditorDialogBuilder(context).setTitle(name).setMessage(ui(R.string.ui_enter_a_whole_number_from_to, minimum, maximum))"
+            },
+            {
+              "line": 71,
+              "text": "                .setView(input).setPositiveButton(ui(R.string.ui_apply),null).setNegativeButton(ui(R.string.ui_cancel),null).create()"
+            },
+            {
+              "line": 72,
+              "text": "            dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {"
+            },
+            {
+              "line": 73,
+              "text": "                val n=input.text.toString().toIntOrNull()"
+            },
+            {
+              "line": 74,
+              "text": "                if(n==null || n !in minimum..maximum) input.error=ui(R.string.ui_enter_a_number_from_to, minimum, maximum)"
+            },
+            {
+              "line": 75,
+              "text": "                else { slider.progress=n-minimum;dialog.dismiss() }"
+            },
+            {
+              "line": 76,
+              "text": "            } };dialog.show()"
+            }
+          ]
+        }
+      },
+      "component_intake": {
+        "path": "reviewed-chr-view7-currenta721f04-intake-1428.json",
+        "sha256": "dc763554d9e6b88774f50c5d1cc115b45858cbce377f78033b42e7781624de56"
+      }
+    },
+    {
+      "locale": "chr",
+      "key": "ui_actual_size_100",
+      "tier": "P1",
+      "originalP1": true,
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Actual size (100%)",
+      "attributes": {
+        "name": "ui_actual_size_100",
+        "formatted": "false"
+      },
+      "placeholders": [],
+      "raw": "ᎠᎪᎵᏰᏗ ᎢᎩᏓ (100%)",
+      "value": "ᎠᎪᎵᏰᏗ ᎢᎩᏓ (100%)",
+      "display": "ᎠᎪᎵᏰᏗ ᎢᎩᏓ (100%)",
+      "raw_sha256": "efa35b5819259ca41147bc687b0592e17c34b3a8f638c92c0090cf035e790a04",
+      "backtranslation": "View size (100%), the 1:1 display scale.",
+      "semantic_composition": "Semantic-only catalogue label, retaining 100% as the decisive actual-size criterion and explicitly locating the size in the view. Does not say original file dimensions or restore pre-import pixels. No current consumer exists; analogous implemented button ui_100 calls zoomAt(1f), but is not falsely attributed to this key.",
+      "source_refs": "TBX10367 + OU647 noun; TBX1070/19687 property-label pattern",
+      "source_packet": {
+        "path": "chr-view-primary-1422.json",
+        "sha256": "7d00e8f2ef515f13c1b043b31e2377ba90360a35684ff5c6cac274c3afb55b12"
+      },
+      "caller_packet": {
+        "path": "chr-view-callers-1422.json",
+        "sha256": "fb05b085a477627229a45cd71e08facf527a0103cab310f8372d744e9a7bf4e9"
+      },
+      "caller_anchor_ids": [
+        "selection_and_zoom_options",
+        "fit_and_zoom_implementation"
+      ],
+      "direct_resource_occurrences": [],
+      "confidence": "moderate productive semantic paraphrase; no current caller",
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "current_guard": {
+        "expected_absent": true,
+        "expected_old_raw": null,
+        "catalogue_git_blob_sha": "24e9a144b388703ec188b38ad1dda8b34a7fb7b9",
+        "catalogue_content_sha256": "0c2113e41e7625432f2342b3f9b64d852fd92e73ee72fb770306befe6de89ce1",
+        "catalogue_snapshot": {
+          "path": "current-chr-0965a3d-1252.json",
+          "sha256": "6f9bd6194435debed1acf9ba5550a7079b38df4b03a7ff0547cb7ced4d894aa0"
+        },
+        "verified_unchanged_through_head": "a721f04c59da0de9ca08af173d2bb2670ead5481"
+      },
+      "caller_limit": "No production consumer found in the hash-verified 104 source files or scanned non-string main resources. No runtime exposure or bound callback claimed.",
+      "literal_percent_preserved": {
+        "formatted": "false",
+        "count": 1,
+        "not_a_formatter_argument": true
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Semantic-only dormant resource. View-size100% preserves normal 1:1 display-scale criterion, not pre-import source pixel recovery. The live analogous ui_100 action is not attributed to this resource. No live UI exposure claimed.",
+      "candidate": {
+        "path": "chr-view-actions7-1422.json",
+        "sha256": "9a0e21d8fa94d5ed84da5f742b06ae1175fa8bbe2a8ca6d36057f62a028c572d"
+      },
+      "independent_review": {
+        "path": "review-chr-view-actions7-independent-1428.json",
+        "sha256": "42e5e27c844275ff68ff510af738bcc68ab2d27bf877adacfd5085b2910af0a3"
+      },
+      "actual_callers": {
+        "selection_and_zoom_options": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 749,
+          "end_line": 775,
+          "exact_lines": [
+            {
+              "line": 749,
+              "text": "        options.removeAllViews()"
+            },
+            {
+              "line": 750,
+              "text": "        options.addView(label(tool.label, 12f).apply { typeface = Typeface.DEFAULT_BOLD })"
+            },
+            {
+              "line": 751,
+              "text": "        when (tool) {"
+            },
+            {
+              "line": 752,
+              "text": "            PaintTool.SELECT, PaintTool.LASSO -> {"
+            },
+            {
+              "line": 753,
+              "text": "                options.addView(label(ui(R.string.ui_corners_and_edges_resize_round_handle_rotates),11f))"
+            },
+            {
+              "line": 754,
+              "text": "                options.addView(label(\"\").apply { tag=\"selection_dimensions\" })"
+            },
+            {
+              "line": 755,
+              "text": "                options.addView(button(ui(R.string.ui_fit_selection34),\"selection_fit_canvas\") {"
+            },
+            {
+              "line": 756,
+              "text": "                    if(document.fitSelectionToCanvas()) paintCanvas.fit()"
+            },
+            {
+              "line": 757,
+              "text": "                })"
+            },
+            {
+              "line": 758,
+              "text": "                options.addView(button(ui(R.string.ui_original_size34),\"selection_original_size\") {"
+            },
+            {
+              "line": 759,
+              "text": "                    if(document.restoreSelectionSize()) paintCanvas.fit()"
+            },
+            {
+              "line": 760,
+              "text": "                })"
+            },
+            {
+              "line": 761,
+              "text": "                options.addView(CheckBox(this).apply {"
+            },
+            {
+              "line": 762,
+              "text": "                    tag=\"selection_lock_aspect\";text=ui(R.string.ui_lock_proportions);textSize=11f;isChecked=paintCanvas.lockSelectionAspect"
+            },
+            {
+              "line": 763,
+              "text": "                    setOnCheckedChangeListener { _,checked -> paintCanvas.lockSelectionAspect=checked;scheduleAutosave() }"
+            },
+            {
+              "line": 764,
+              "text": "                },LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 765,
+              "text": ""
+            },
+            {
+              "line": 766,
+              "text": "            }"
+            },
+            {
+              "line": 767,
+              "text": "            PaintTool.FILL -> addSlider(ui(R.string.ui_tolerance), document.tolerance.toInt(), 100) { document.tolerance = it.toFloat() }"
+            },
+            {
+              "line": 768,
+              "text": "            PaintTool.ZOOM -> {"
+            },
+            {
+              "line": 769,
+              "text": "                options.addView(label(ui(R.string.ui_pinch_to_zoom_drag_to_pan),12f))"
+            },
+            {
+              "line": 770,
+              "text": "                options.addView(button(ui(R.string.ui_draw_again), \"navigate_draw\") { chooseTool(drawingTool) },LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 771,
+              "text": "                options.addView(button(ui(R.string.ui_100), \"zoom_actual\") { paintCanvas.zoomAt(1f) },LinearLayout.LayoutParams(-1,dp(44)))"
+            },
+            {
+              "line": 772,
+              "text": "                options.addView(button(ui(R.string.ui_fit), \"zoom_fit\") { paintCanvas.fit() }, LinearLayout.LayoutParams(-1, dp(44)))"
+            },
+            {
+              "line": 773,
+              "text": "            }"
+            },
+            {
+              "line": 774,
+              "text": "            PaintTool.PENCIL -> addSlider(ui(R.string.ui_size_px),paintCanvas.pencilSize.toInt(),100,1,\"pencil_size\") {paintCanvas.pencilSize=it.toFloat()}"
+            },
+            {
+              "line": 775,
+              "text": "            PaintTool.TEXT -> options.addView(label(ui(R.string.ui_tap_canvas_to_type), 12f))"
+            }
+          ]
+        },
+        "fit_and_zoom_implementation": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "git_blob_sha": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+          "content_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "start_line": 176,
+          "end_line": 220,
+          "exact_lines": [
+            {
+              "line": 176,
+              "text": ""
+            },
+            {
+              "line": 177,
+              "text": "    private fun viewportBounds() = RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()).apply {"
+            },
+            {
+              "line": 178,
+              "text": "        trim?.let { union(RectF(it.rect)) }"
+            },
+            {
+              "line": 179,
+              "text": "        document.selection?.takeIf {it.floating}?.let {union(it.geometry.bounds())}"
+            },
+            {
+              "line": 180,
+              "text": "    }"
+            },
+            {
+              "line": 181,
+              "text": ""
+            },
+            {
+              "line": 182,
+              "text": "    fun fit() {"
+            },
+            {
+              "line": 183,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 184,
+              "text": "        if (width <= bar + 24 || height <= bar + 24) return"
+            },
+            {
+              "line": 185,
+              "text": "        val bounds = viewportBounds()"
+            },
+            {
+              "line": 186,
+              "text": "        // Leave touch space around the handles for dragging outwards."
+            },
+            {
+              "line": 187,
+              "text": "        val padding = if (trim == null && document.selection == null) 12f else max(40*resources.displayMetrics.density,min(contentWidth,contentHeight)*.12f)"
+            },
+            {
+              "line": 188,
+              "text": "        zoom = min((contentWidth-2*padding).coerceAtLeast(1f)/bounds.width(),(contentHeight-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)"
+            },
+            {
+              "line": 189,
+              "text": "        panX = rulerInset+(contentWidth-bounds.width()*zoom)/2-bounds.left*zoom"
+            },
+            {
+              "line": 190,
+              "text": "        panY = rulerInset+(contentHeight-bounds.height()*zoom)/2-bounds.top*zoom"
+            },
+            {
+              "line": 191,
+              "text": "        fitted = true; fitMode = true; invalidate(); onStatus()"
+            },
+            {
+              "line": 192,
+              "text": "    }"
+            },
+            {
+              "line": 193,
+              "text": ""
+            },
+            {
+              "line": 194,
+              "text": "    fun zoomAt(value: Float, x: Float = rulerInset+contentWidth / 2, y: Float = rulerInset+contentHeight / 2) {"
+            },
+            {
+              "line": 195,
+              "text": "        if (!value.isFinite() || value <= 0f) return"
+            },
+            {
+              "line": 196,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 197,
+              "text": "        val point = toImage(x, y)"
+            },
+            {
+              "line": 198,
+              "text": "        fitMode = false"
+            },
+            {
+              "line": 199,
+              "text": "        zoom = value.coerceIn(minimumZoom(), 32f)"
+            },
+            {
+              "line": 200,
+              "text": "        panX = x - point.x * zoom; panY = y - point.y * zoom"
+            },
+            {
+              "line": 201,
+              "text": "        clampPan(); invalidate(); onStatus()"
+            },
+            {
+              "line": 202,
+              "text": "    }"
+            },
+            {
+              "line": 203,
+              "text": ""
+            },
+            {
+              "line": 204,
+              "text": "    fun zoomStep(factor: Float) {"
+            },
+            {
+              "line": 205,
+              "text": "        val target = zoom*factor"
+            },
+            {
+              "line": 206,
+              "text": "        zoomAt(if (zoom < 1f && target >= 1f || zoom > 1f && target <= 1f) 1f else target)"
+            },
+            {
+              "line": 207,
+              "text": "    }"
+            },
+            {
+              "line": 208,
+              "text": "    fun minimumZoom(): Float = viewportBounds().let { bounds -> (min(contentWidth/bounds.width(),"
+            },
+            {
+              "line": 209,
+              "text": "        contentHeight/bounds.height())/8).coerceIn(.000000001f,.125f) }"
+            },
+            {
+              "line": 210,
+              "text": "    fun zoomForSlider(progress: Int): Float {"
+            },
+            {
+              "line": 211,
+              "text": "        val value = progress.coerceIn(0,1000)"
+            },
+            {
+              "line": 212,
+              "text": "        return if (value <= 500) exp(ln(minimumZoom().toDouble())*(1-value/500.0)).toFloat()"
+            },
+            {
+              "line": 213,
+              "text": "            else exp(ln(32.0)*(value-500)/500.0).toFloat()"
+            },
+            {
+              "line": 214,
+              "text": "    }"
+            },
+            {
+              "line": 215,
+              "text": "    fun sliderForZoom(): Int = (if (zoom <= 1f) 500*(1-ln(zoom.toDouble())/ln(minimumZoom().toDouble()))"
+            },
+            {
+              "line": 216,
+              "text": "        else 500+500*ln(zoom.toDouble())/ln(32.0)).roundToInt().coerceIn(0,1000)"
+            },
+            {
+              "line": 217,
+              "text": "    fun zoomLabel(): String = if (zoom >= .1f) ui(R.string.ui_zoom_percent_integer, (zoom * 100).roundToInt())"
+            },
+            {
+              "line": 218,
+              "text": "        else ui(R.string.ui_zoom_percent_fractional, zoom * 100)"
+            },
+            {
+              "line": 219,
+              "text": "    fun zoomStatusLabel(): String = zoomLabel()+if(cursorMode) \" · \"+ui(R.string.ui_cursor_position26,"
+            },
+            {
+              "line": 220,
+              "text": "        floor(cursor.x).toInt().coerceIn(0,document.bitmap.width-1),floor(cursor.y).toInt().coerceIn(0,document.bitmap.height-1)) else \"\""
+            }
+          ]
+        }
+      },
+      "component_intake": {
+        "path": "reviewed-chr-view7-currenta721f04-intake-1428.json",
+        "sha256": "dc763554d9e6b88774f50c5d1cc115b45858cbce377f78033b42e7781624de56"
+      }
+    },
+    {
+      "locale": "chr",
+      "key": "ui_fit",
+      "tier": "P1",
+      "originalP1": true,
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Fit",
+      "attributes": {
+        "name": "ui_fit"
+      },
+      "placeholders": [],
+      "raw": "ᏂᎦᏓ ᎯᎪᎵᏯ",
+      "value": "ᏂᎦᏓ ᎯᎪᎵᏯ",
+      "display": "ᏂᎦᏓ ᎯᎪᎵᏯ",
+      "raw_sha256": "db2af8da43c816325a5fad51b13b9ab91a7fa7c609134909b1b1f08a4fc59126",
+      "backtranslation": "View all of it.",
+      "semantic_composition": "Functional command for fitting complete drawing content in the viewport. Whole attested All of it + exact software View verb, not a noun used as a command. The object is contextual. No fit noun/verb is invented. All three consumers use view-only fit(), including trim controls where bounds may extend beyond the canvas.",
+      "source_refs": "OU11 all of it + TBX10627 View verb",
+      "source_packet": {
+        "path": "chr-view-primary-1422.json",
+        "sha256": "7d00e8f2ef515f13c1b043b31e2377ba90360a35684ff5c6cac274c3afb55b12"
+      },
+      "caller_packet": {
+        "path": "chr-view-callers-1422.json",
+        "sha256": "fb05b085a477627229a45cd71e08facf527a0103cab310f8372d744e9a7bf4e9"
+      },
+      "caller_anchor_ids": [
+        "status_zoom",
+        "selection_and_zoom_options",
+        "trim_fit",
+        "fit_and_zoom_implementation"
+      ],
+      "direct_resource_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 669,
+          "exact_line": "            else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}.apply {"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 772,
+          "exact_line": "                options.addView(button(ui(R.string.ui_fit), \"zoom_fit\") { paintCanvas.fit() }, LinearLayout.LayoutParams(-1, dp(44)))"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1055,
+          "exact_line": "        editDetails.addView(button(ui(R.string.ui_fit),\"trim_fit\") {paintCanvas.fit()},LinearLayout.LayoutParams(-1,dp(48)))"
+        }
+      ],
+      "confidence": "moderate productive scope + attested technical command",
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "current_guard": {
+        "expected_absent": true,
+        "expected_old_raw": null,
+        "catalogue_git_blob_sha": "24e9a144b388703ec188b38ad1dda8b34a7fb7b9",
+        "catalogue_content_sha256": "0c2113e41e7625432f2342b3f9b64d852fd92e73ee72fb770306befe6de89ce1",
+        "catalogue_snapshot": {
+          "path": "current-chr-0965a3d-1252.json",
+          "sha256": "6f9bd6194435debed1acf9ba5550a7079b38df4b03a7ff0547cb7ced4d894aa0"
+        },
+        "verified_unchanged_through_head": "a721f04c59da0de9ca08af173d2bb2670ead5481"
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Functional View all command accepted in three current view-only fit callers. TBX View is an actual display command, distinct from its noun; OU nigada explicitly includes all of it. Viewport bounds include whole bitmap and possible outlying trim/floating-selection geometry; command changes zoom/pan, not bitmap or selection dimensions.",
+      "candidate": {
+        "path": "chr-view-actions7-1422.json",
+        "sha256": "9a0e21d8fa94d5ed84da5f742b06ae1175fa8bbe2a8ca6d36057f62a028c572d"
+      },
+      "independent_review": {
+        "path": "review-chr-view-actions7-independent-1428.json",
+        "sha256": "42e5e27c844275ff68ff510af738bcc68ab2d27bf877adacfd5085b2910af0a3"
+      },
+      "actual_callers": {
+        "status_zoom": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 653,
+          "end_line": 676,
+          "exact_lines": [
+            {
+              "line": 653,
+              "text": "        } else row.gravity=Gravity.END"
+            },
+            {
+              "line": 654,
+              "text": "        val zoomRow = LinearLayout(this).apply {isBaselineAligned=false; gravity = Gravity.CENTER_VERTICAL; tag = \"zoom_controls\" }"
+            },
+            {
+              "line": 655,
+              "text": "        zoomRow.addView(actionIcon(EditIcon.MINUS, \"zoom_out\") { paintCanvas.zoomStep(1/1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))"
+            },
+            {
+              "line": 656,
+              "text": "        zoomSlider = ZoomSeekBar(this).apply {"
+            },
+            {
+              "line": 657,
+              "text": "            tag = \"zoom_slider\"; contentDescription = ui(R.string.ui_canvas_zoom); max = 1000"
+            },
+            {
+              "line": 658,
+              "text": "            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {"
+            },
+            {
+              "line": 659,
+              "text": "                override fun onProgressChanged(bar: SeekBar?, value: Int, fromUser: Boolean) {"
+            },
+            {
+              "line": 660,
+              "text": "                    if (fromUser && !syncingZoom && !busy) paintCanvas.zoomAt(paintCanvas.zoomForSlider(value))"
+            },
+            {
+              "line": 661,
+              "text": "                }"
+            },
+            {
+              "line": 662,
+              "text": "                override fun onStartTrackingTouch(bar: SeekBar?) = Unit"
+            },
+            {
+              "line": 663,
+              "text": "                override fun onStopTrackingTouch(bar: SeekBar?) = Unit"
+            },
+            {
+              "line": 664,
+              "text": "            })"
+            },
+            {
+              "line": 665,
+              "text": "        }"
+            },
+            {
+              "line": 666,
+              "text": "        zoomRow.addView(zoomSlider, LinearLayout.LayoutParams(dp(108), dp(44)))"
+            },
+            {
+              "line": 667,
+              "text": "        zoomRow.addView(actionIcon(EditIcon.PLUS, \"zoom_in\") { paintCanvas.zoomStep(1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))"
+            },
+            {
+              "line": 668,
+              "text": "        val fit=if(vertical) actionIcon(EditIcon.FIT,\"zoom_fit_view\") {paintCanvas.fit()}"
+            },
+            {
+              "line": 669,
+              "text": "            else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}.apply {"
+            },
+            {
+              "line": 670,
+              "text": "                maxLines=Int.MAX_VALUE; ellipsize=null; minWidth=dp(44); minimumWidth=dp(44)"
+            },
+            {
+              "line": 671,
+              "text": "                minHeight=dp(44); minimumHeight=dp(44)"
+            },
+            {
+              "line": 672,
+              "text": "            }"
+            },
+            {
+              "line": 673,
+              "text": "        fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)"
+            },
+            {
+              "line": 674,
+              "text": "        zoomRow.addView(fit,LinearLayout.LayoutParams(if(vertical) dp(44) else -2,if(vertical) dp(44) else -2))"
+            },
+            {
+              "line": 675,
+              "text": "        row.addView(zoomRow)"
+            },
+            {
+              "line": 676,
+              "text": "        (row as? ZoomStatusLayout)?.onCompactStatus={updateStatus()}"
+            }
+          ]
+        },
+        "selection_and_zoom_options": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 749,
+          "end_line": 775,
+          "exact_lines": [
+            {
+              "line": 749,
+              "text": "        options.removeAllViews()"
+            },
+            {
+              "line": 750,
+              "text": "        options.addView(label(tool.label, 12f).apply { typeface = Typeface.DEFAULT_BOLD })"
+            },
+            {
+              "line": 751,
+              "text": "        when (tool) {"
+            },
+            {
+              "line": 752,
+              "text": "            PaintTool.SELECT, PaintTool.LASSO -> {"
+            },
+            {
+              "line": 753,
+              "text": "                options.addView(label(ui(R.string.ui_corners_and_edges_resize_round_handle_rotates),11f))"
+            },
+            {
+              "line": 754,
+              "text": "                options.addView(label(\"\").apply { tag=\"selection_dimensions\" })"
+            },
+            {
+              "line": 755,
+              "text": "                options.addView(button(ui(R.string.ui_fit_selection34),\"selection_fit_canvas\") {"
+            },
+            {
+              "line": 756,
+              "text": "                    if(document.fitSelectionToCanvas()) paintCanvas.fit()"
+            },
+            {
+              "line": 757,
+              "text": "                })"
+            },
+            {
+              "line": 758,
+              "text": "                options.addView(button(ui(R.string.ui_original_size34),\"selection_original_size\") {"
+            },
+            {
+              "line": 759,
+              "text": "                    if(document.restoreSelectionSize()) paintCanvas.fit()"
+            },
+            {
+              "line": 760,
+              "text": "                })"
+            },
+            {
+              "line": 761,
+              "text": "                options.addView(CheckBox(this).apply {"
+            },
+            {
+              "line": 762,
+              "text": "                    tag=\"selection_lock_aspect\";text=ui(R.string.ui_lock_proportions);textSize=11f;isChecked=paintCanvas.lockSelectionAspect"
+            },
+            {
+              "line": 763,
+              "text": "                    setOnCheckedChangeListener { _,checked -> paintCanvas.lockSelectionAspect=checked;scheduleAutosave() }"
+            },
+            {
+              "line": 764,
+              "text": "                },LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 765,
+              "text": ""
+            },
+            {
+              "line": 766,
+              "text": "            }"
+            },
+            {
+              "line": 767,
+              "text": "            PaintTool.FILL -> addSlider(ui(R.string.ui_tolerance), document.tolerance.toInt(), 100) { document.tolerance = it.toFloat() }"
+            },
+            {
+              "line": 768,
+              "text": "            PaintTool.ZOOM -> {"
+            },
+            {
+              "line": 769,
+              "text": "                options.addView(label(ui(R.string.ui_pinch_to_zoom_drag_to_pan),12f))"
+            },
+            {
+              "line": 770,
+              "text": "                options.addView(button(ui(R.string.ui_draw_again), \"navigate_draw\") { chooseTool(drawingTool) },LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 771,
+              "text": "                options.addView(button(ui(R.string.ui_100), \"zoom_actual\") { paintCanvas.zoomAt(1f) },LinearLayout.LayoutParams(-1,dp(44)))"
+            },
+            {
+              "line": 772,
+              "text": "                options.addView(button(ui(R.string.ui_fit), \"zoom_fit\") { paintCanvas.fit() }, LinearLayout.LayoutParams(-1, dp(44)))"
+            },
+            {
+              "line": 773,
+              "text": "            }"
+            },
+            {
+              "line": 774,
+              "text": "            PaintTool.PENCIL -> addSlider(ui(R.string.ui_size_px),paintCanvas.pencilSize.toInt(),100,1,\"pencil_size\") {paintCanvas.pencilSize=it.toFloat()}"
+            },
+            {
+              "line": 775,
+              "text": "            PaintTool.TEXT -> options.addView(label(ui(R.string.ui_tap_canvas_to_type), 12f))"
+            }
+          ]
+        },
+        "trim_fit": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 1049,
+          "end_line": 1057,
+          "exact_lines": [
+            {
+              "line": 1049,
+              "text": "        editDetails.removeAllViews()"
+            },
+            {
+              "line": 1050,
+              "text": "        editDetails.addView(label(ui(R.string.ui_drag_out_to_expand_in_to_trim_drag),12f))"
+            },
+            {
+              "line": 1051,
+              "text": "        editDetails.addView(label(\"\").apply {tag=\"trim_dimensions\"})"
+            },
+            {
+              "line": 1052,
+              "text": "        fun finish() {editDetails.visibility=View.GONE;editCommands.visibility=View.VISIBLE;syncPanels()}"
+            },
+            {
+              "line": 1053,
+              "text": "        editDetails.addView(button(ui(R.string.ui_apply_bounds),\"trim_apply\") {paintCanvas.applyTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 1054,
+              "text": "        editDetails.addView(button(ui(R.string.ui_cancel),\"trim_cancel\") {paintCanvas.cancelTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 1055,
+              "text": "        editDetails.addView(button(ui(R.string.ui_fit),\"trim_fit\") {paintCanvas.fit()},LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 1056,
+              "text": "        if(VerticalText.uiVertical(this@ClassicPaintActivity)) VerticalUi.panel(editDetails)"
+            },
+            {
+              "line": 1057,
+              "text": "        syncPanels();updateStatus()"
+            }
+          ]
+        },
+        "fit_and_zoom_implementation": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "git_blob_sha": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+          "content_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "start_line": 176,
+          "end_line": 220,
+          "exact_lines": [
+            {
+              "line": 176,
+              "text": ""
+            },
+            {
+              "line": 177,
+              "text": "    private fun viewportBounds() = RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()).apply {"
+            },
+            {
+              "line": 178,
+              "text": "        trim?.let { union(RectF(it.rect)) }"
+            },
+            {
+              "line": 179,
+              "text": "        document.selection?.takeIf {it.floating}?.let {union(it.geometry.bounds())}"
+            },
+            {
+              "line": 180,
+              "text": "    }"
+            },
+            {
+              "line": 181,
+              "text": ""
+            },
+            {
+              "line": 182,
+              "text": "    fun fit() {"
+            },
+            {
+              "line": 183,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 184,
+              "text": "        if (width <= bar + 24 || height <= bar + 24) return"
+            },
+            {
+              "line": 185,
+              "text": "        val bounds = viewportBounds()"
+            },
+            {
+              "line": 186,
+              "text": "        // Leave touch space around the handles for dragging outwards."
+            },
+            {
+              "line": 187,
+              "text": "        val padding = if (trim == null && document.selection == null) 12f else max(40*resources.displayMetrics.density,min(contentWidth,contentHeight)*.12f)"
+            },
+            {
+              "line": 188,
+              "text": "        zoom = min((contentWidth-2*padding).coerceAtLeast(1f)/bounds.width(),(contentHeight-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)"
+            },
+            {
+              "line": 189,
+              "text": "        panX = rulerInset+(contentWidth-bounds.width()*zoom)/2-bounds.left*zoom"
+            },
+            {
+              "line": 190,
+              "text": "        panY = rulerInset+(contentHeight-bounds.height()*zoom)/2-bounds.top*zoom"
+            },
+            {
+              "line": 191,
+              "text": "        fitted = true; fitMode = true; invalidate(); onStatus()"
+            },
+            {
+              "line": 192,
+              "text": "    }"
+            },
+            {
+              "line": 193,
+              "text": ""
+            },
+            {
+              "line": 194,
+              "text": "    fun zoomAt(value: Float, x: Float = rulerInset+contentWidth / 2, y: Float = rulerInset+contentHeight / 2) {"
+            },
+            {
+              "line": 195,
+              "text": "        if (!value.isFinite() || value <= 0f) return"
+            },
+            {
+              "line": 196,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 197,
+              "text": "        val point = toImage(x, y)"
+            },
+            {
+              "line": 198,
+              "text": "        fitMode = false"
+            },
+            {
+              "line": 199,
+              "text": "        zoom = value.coerceIn(minimumZoom(), 32f)"
+            },
+            {
+              "line": 200,
+              "text": "        panX = x - point.x * zoom; panY = y - point.y * zoom"
+            },
+            {
+              "line": 201,
+              "text": "        clampPan(); invalidate(); onStatus()"
+            },
+            {
+              "line": 202,
+              "text": "    }"
+            },
+            {
+              "line": 203,
+              "text": ""
+            },
+            {
+              "line": 204,
+              "text": "    fun zoomStep(factor: Float) {"
+            },
+            {
+              "line": 205,
+              "text": "        val target = zoom*factor"
+            },
+            {
+              "line": 206,
+              "text": "        zoomAt(if (zoom < 1f && target >= 1f || zoom > 1f && target <= 1f) 1f else target)"
+            },
+            {
+              "line": 207,
+              "text": "    }"
+            },
+            {
+              "line": 208,
+              "text": "    fun minimumZoom(): Float = viewportBounds().let { bounds -> (min(contentWidth/bounds.width(),"
+            },
+            {
+              "line": 209,
+              "text": "        contentHeight/bounds.height())/8).coerceIn(.000000001f,.125f) }"
+            },
+            {
+              "line": 210,
+              "text": "    fun zoomForSlider(progress: Int): Float {"
+            },
+            {
+              "line": 211,
+              "text": "        val value = progress.coerceIn(0,1000)"
+            },
+            {
+              "line": 212,
+              "text": "        return if (value <= 500) exp(ln(minimumZoom().toDouble())*(1-value/500.0)).toFloat()"
+            },
+            {
+              "line": 213,
+              "text": "            else exp(ln(32.0)*(value-500)/500.0).toFloat()"
+            },
+            {
+              "line": 214,
+              "text": "    }"
+            },
+            {
+              "line": 215,
+              "text": "    fun sliderForZoom(): Int = (if (zoom <= 1f) 500*(1-ln(zoom.toDouble())/ln(minimumZoom().toDouble()))"
+            },
+            {
+              "line": 216,
+              "text": "        else 500+500*ln(zoom.toDouble())/ln(32.0)).roundToInt().coerceIn(0,1000)"
+            },
+            {
+              "line": 217,
+              "text": "    fun zoomLabel(): String = if (zoom >= .1f) ui(R.string.ui_zoom_percent_integer, (zoom * 100).roundToInt())"
+            },
+            {
+              "line": 218,
+              "text": "        else ui(R.string.ui_zoom_percent_fractional, zoom * 100)"
+            },
+            {
+              "line": 219,
+              "text": "    fun zoomStatusLabel(): String = zoomLabel()+if(cursorMode) \" · \"+ui(R.string.ui_cursor_position26,"
+            },
+            {
+              "line": 220,
+              "text": "        floor(cursor.x).toInt().coerceIn(0,document.bitmap.width-1),floor(cursor.y).toInt().coerceIn(0,document.bitmap.height-1)) else \"\""
+            }
+          ]
+        }
+      },
+      "component_intake": {
+        "path": "reviewed-chr-view7-currenta721f04-intake-1428.json",
+        "sha256": "dc763554d9e6b88774f50c5d1cc115b45858cbce377f78033b42e7781624de56"
+      }
+    },
+    {
+      "locale": "chr",
+      "key": "ui_fit_image",
+      "tier": "P1",
+      "originalP1": true,
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Fit image",
+      "attributes": {
+        "name": "ui_fit_image"
+      },
+      "placeholders": [],
+      "raw": "ᎬᏩᏃᏍᏓ ᏗᏟᎶᏍᏔᏅ ᎯᎪᎵᏯ",
+      "value": "ᎬᏩᏃᏍᏓ ᏗᏟᎶᏍᏔᏅ ᎯᎪᎵᏯ",
+      "display": "ᎬᏩᏃᏍᏓ ᏗᏟᎶᏍᏔᏅ ᎯᎪᎵᏯ",
+      "raw_sha256": "59af16eb78323bca09b7522ee939d52a7c95ec5454153b218a18b4b37a91c274",
+      "backtranslation": "View the whole image.",
+      "semantic_composition": "Functional viewport-fit command composition. Whole adjective + pictorial image noun + exact View verb. No current caller exists, so only English catalogue semantics are claimed. This is not Fit image to canvas (ui_fit_selection34), and must not be reused for selection-placement scaling.",
+      "source_refs": "OU797 adjective + TBX1294 pictorial image + TBX10627 View verb; style15",
+      "source_packet": {
+        "path": "chr-view-primary-1422.json",
+        "sha256": "7d00e8f2ef515f13c1b043b31e2377ba90360a35684ff5c6cac274c3afb55b12"
+      },
+      "caller_packet": {
+        "path": "chr-view-callers-1422.json",
+        "sha256": "fb05b085a477627229a45cd71e08facf527a0103cab310f8372d744e9a7bf4e9"
+      },
+      "caller_anchor_ids": [
+        "selection_and_zoom_options",
+        "selection_geometry_distinction"
+      ],
+      "direct_resource_occurrences": [],
+      "confidence": "moderate productive functional command; no current caller",
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "current_guard": {
+        "expected_absent": true,
+        "expected_old_raw": null,
+        "catalogue_git_blob_sha": "24e9a144b388703ec188b38ad1dda8b34a7fb7b9",
+        "catalogue_content_sha256": "0c2113e41e7625432f2342b3f9b64d852fd92e73ee72fb770306befe6de89ce1",
+        "catalogue_snapshot": {
+          "path": "current-chr-0965a3d-1252.json",
+          "sha256": "6f9bd6194435debed1acf9ba5550a7079b38df4b03a7ff0547cb7ced4d894aa0"
+        },
+        "verified_unchanged_through_head": "a721f04c59da0de9ca08af173d2bb2670ead5481"
+      },
+      "caller_limit": "No production consumer found in the hash-verified 104 source files or scanned non-string main resources. No runtime exposure or bound callback claimed.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Semantic-only dormant functional View whole image command. Whole adjective and pictorial-image noun verified independently. No runtime consumer or selection-to-canvas scaling route claimed. Must not substitute for separate ui_fit_selection34.",
+      "candidate": {
+        "path": "chr-view-actions7-1422.json",
+        "sha256": "9a0e21d8fa94d5ed84da5f742b06ae1175fa8bbe2a8ca6d36057f62a028c572d"
+      },
+      "independent_review": {
+        "path": "review-chr-view-actions7-independent-1428.json",
+        "sha256": "42e5e27c844275ff68ff510af738bcc68ab2d27bf877adacfd5085b2910af0a3"
+      },
+      "actual_callers": {
+        "selection_and_zoom_options": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 749,
+          "end_line": 775,
+          "exact_lines": [
+            {
+              "line": 749,
+              "text": "        options.removeAllViews()"
+            },
+            {
+              "line": 750,
+              "text": "        options.addView(label(tool.label, 12f).apply { typeface = Typeface.DEFAULT_BOLD })"
+            },
+            {
+              "line": 751,
+              "text": "        when (tool) {"
+            },
+            {
+              "line": 752,
+              "text": "            PaintTool.SELECT, PaintTool.LASSO -> {"
+            },
+            {
+              "line": 753,
+              "text": "                options.addView(label(ui(R.string.ui_corners_and_edges_resize_round_handle_rotates),11f))"
+            },
+            {
+              "line": 754,
+              "text": "                options.addView(label(\"\").apply { tag=\"selection_dimensions\" })"
+            },
+            {
+              "line": 755,
+              "text": "                options.addView(button(ui(R.string.ui_fit_selection34),\"selection_fit_canvas\") {"
+            },
+            {
+              "line": 756,
+              "text": "                    if(document.fitSelectionToCanvas()) paintCanvas.fit()"
+            },
+            {
+              "line": 757,
+              "text": "                })"
+            },
+            {
+              "line": 758,
+              "text": "                options.addView(button(ui(R.string.ui_original_size34),\"selection_original_size\") {"
+            },
+            {
+              "line": 759,
+              "text": "                    if(document.restoreSelectionSize()) paintCanvas.fit()"
+            },
+            {
+              "line": 760,
+              "text": "                })"
+            },
+            {
+              "line": 761,
+              "text": "                options.addView(CheckBox(this).apply {"
+            },
+            {
+              "line": 762,
+              "text": "                    tag=\"selection_lock_aspect\";text=ui(R.string.ui_lock_proportions);textSize=11f;isChecked=paintCanvas.lockSelectionAspect"
+            },
+            {
+              "line": 763,
+              "text": "                    setOnCheckedChangeListener { _,checked -> paintCanvas.lockSelectionAspect=checked;scheduleAutosave() }"
+            },
+            {
+              "line": 764,
+              "text": "                },LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 765,
+              "text": ""
+            },
+            {
+              "line": 766,
+              "text": "            }"
+            },
+            {
+              "line": 767,
+              "text": "            PaintTool.FILL -> addSlider(ui(R.string.ui_tolerance), document.tolerance.toInt(), 100) { document.tolerance = it.toFloat() }"
+            },
+            {
+              "line": 768,
+              "text": "            PaintTool.ZOOM -> {"
+            },
+            {
+              "line": 769,
+              "text": "                options.addView(label(ui(R.string.ui_pinch_to_zoom_drag_to_pan),12f))"
+            },
+            {
+              "line": 770,
+              "text": "                options.addView(button(ui(R.string.ui_draw_again), \"navigate_draw\") { chooseTool(drawingTool) },LinearLayout.LayoutParams(-1,dp(48)))"
+            },
+            {
+              "line": 771,
+              "text": "                options.addView(button(ui(R.string.ui_100), \"zoom_actual\") { paintCanvas.zoomAt(1f) },LinearLayout.LayoutParams(-1,dp(44)))"
+            },
+            {
+              "line": 772,
+              "text": "                options.addView(button(ui(R.string.ui_fit), \"zoom_fit\") { paintCanvas.fit() }, LinearLayout.LayoutParams(-1, dp(44)))"
+            },
+            {
+              "line": 773,
+              "text": "            }"
+            },
+            {
+              "line": 774,
+              "text": "            PaintTool.PENCIL -> addSlider(ui(R.string.ui_size_px),paintCanvas.pencilSize.toInt(),100,1,\"pencil_size\") {paintCanvas.pencilSize=it.toFloat()}"
+            },
+            {
+              "line": 775,
+              "text": "            PaintTool.TEXT -> options.addView(label(ui(R.string.ui_tap_canvas_to_type), 12f))"
+            }
+          ]
+        },
+        "selection_geometry_distinction": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320",
+          "content_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "start_line": 405,
+          "end_line": 422,
+          "exact_lines": [
+            {
+              "line": 405,
+              "text": "    /** Placement changes only the floating geometry; retain the full-resolution source pixels. */"
+            },
+            {
+              "line": 406,
+              "text": "    fun fitSelectionToCanvas(): Boolean {"
+            },
+            {
+              "line": 407,
+              "text": "        val s=selection ?: return false"
+            },
+            {
+              "line": 408,
+              "text": "        startMovingSelection()"
+            },
+            {
+              "line": 409,
+              "text": "        val factor=minOf(bitmap.width.toFloat()/s.image.width,bitmap.height.toFloat()/s.image.height)"
+            },
+            {
+              "line": 410,
+              "text": "        val w=s.image.width*factor;val h=s.image.height*factor"
+            },
+            {
+              "line": 411,
+              "text": "        s.rect.set((bitmap.width-w)/2,(bitmap.height-h)/2,(bitmap.width+w)/2,(bitmap.height+h)/2)"
+            },
+            {
+              "line": 412,
+              "text": "        s.rotation=0f;edited();return true"
+            },
+            {
+              "line": 413,
+              "text": "    }"
+            },
+            {
+              "line": 414,
+              "text": ""
+            },
+            {
+              "line": 415,
+              "text": "    fun restoreSelectionSize(): Boolean {"
+            },
+            {
+              "line": 416,
+              "text": "        val s=selection ?: return false"
+            },
+            {
+              "line": 417,
+              "text": "        startMovingSelection()"
+            },
+            {
+              "line": 418,
+              "text": "        val cx=s.rect.centerX();val cy=s.rect.centerY()"
+            },
+            {
+              "line": 419,
+              "text": "        s.rect.set(cx-s.image.width/2f,cy-s.image.height/2f,cx+s.image.width/2f,cy+s.image.height/2f)"
+            },
+            {
+              "line": 420,
+              "text": "        edited();return true"
+            },
+            {
+              "line": 421,
+              "text": "    }"
+            },
+            {
+              "line": 422,
+              "text": ""
+            }
+          ]
+        }
+      },
+      "component_intake": {
+        "path": "reviewed-chr-view7-currenta721f04-intake-1428.json",
+        "sha256": "dc763554d9e6b88774f50c5d1cc115b45858cbce377f78033b42e7781624de56"
+      }
+    },
+    {
+      "locale": "chr",
+      "key": "ui_fit_entire_canvas_in_view",
+      "tier": "P1",
+      "originalP1": true,
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Fit entire canvas in view",
+      "attributes": {
+        "name": "ui_fit_entire_canvas_in_view"
+      },
+      "placeholders": [],
+      "raw": "ᎬᏩᏃᏍᏓ ᎠᎪᎵᏰᎢᏓᏍᏗ ᎯᎪᎵᏯ",
+      "value": "ᎬᏩᏃᏍᏓ ᎠᎪᎵᏰᎢᏓᏍᏗ ᎯᎪᎵᏯ",
+      "display": "ᎬᏩᏃᏍᏓ ᎠᎪᎵᏰᎢᏓᏍᏗ ᎯᎪᎵᏯ",
+      "raw_sha256": "2b20c0a704d5cb41810c4c0e56b65bd7b6cad1ddb4b0e3f16c6febf07f8dcf2f",
+      "backtranslation": "View the whole canvas.",
+      "semantic_composition": "Expanded accessible command; whole adjective and canvas noun identify the complete drawing surface, while the exact View verb supplies display-only operation. Actual fit() also includes outlying trim/selection geometry when present. Wording does not promise cropping, pixel resampling, or changing document bounds.",
+      "source_refs": "OU797 whole adjective + OU83 canvas and TBX6232 drawing-canvas constituent + TBX10627; style15",
+      "source_packet": {
+        "path": "chr-view-primary-1422.json",
+        "sha256": "7d00e8f2ef515f13c1b043b31e2377ba90360a35684ff5c6cac274c3afb55b12"
+      },
+      "caller_packet": {
+        "path": "chr-view-callers-1422.json",
+        "sha256": "fb05b085a477627229a45cd71e08facf527a0103cab310f8372d744e9a7bf4e9"
+      },
+      "caller_anchor_ids": [
+        "status_zoom",
+        "fit_icon_label",
+        "fit_and_zoom_implementation"
+      ],
+      "direct_resource_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "line": 12,
+          "exact_line": "enum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 673,
+          "exact_line": "        fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)"
+        }
+      ],
+      "confidence": "moderate productive functional command",
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "current_guard": {
+        "expected_absent": true,
+        "expected_old_raw": null,
+        "catalogue_git_blob_sha": "24e9a144b388703ec188b38ad1dda8b34a7fb7b9",
+        "catalogue_content_sha256": "0c2113e41e7625432f2342b3f9b64d852fd92e73ee72fb770306befe6de89ce1",
+        "catalogue_snapshot": {
+          "path": "current-chr-0965a3d-1252.json",
+          "sha256": "6f9bd6194435debed1acf9ba5550a7079b38df4b03a7ff0547cb7ced4d894aa0"
+        },
+        "verified_unchanged_through_head": "a721f04c59da0de9ca08af173d2bb2670ead5481"
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Functional accessible View whole canvas command. Whole modifier plus canvas noun precedes unchanged technical View action. Actual action includes bitmap and optional outlying working geometry. No pixel resampling or dimension change asserted.",
+      "candidate": {
+        "path": "chr-view-actions7-1422.json",
+        "sha256": "9a0e21d8fa94d5ed84da5f742b06ae1175fa8bbe2a8ca6d36057f62a028c572d"
+      },
+      "independent_review": {
+        "path": "review-chr-view-actions7-independent-1428.json",
+        "sha256": "42e5e27c844275ff68ff510af738bcc68ab2d27bf877adacfd5085b2910af0a3"
+      },
+      "actual_callers": {
+        "status_zoom": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 653,
+          "end_line": 676,
+          "exact_lines": [
+            {
+              "line": 653,
+              "text": "        } else row.gravity=Gravity.END"
+            },
+            {
+              "line": 654,
+              "text": "        val zoomRow = LinearLayout(this).apply {isBaselineAligned=false; gravity = Gravity.CENTER_VERTICAL; tag = \"zoom_controls\" }"
+            },
+            {
+              "line": 655,
+              "text": "        zoomRow.addView(actionIcon(EditIcon.MINUS, \"zoom_out\") { paintCanvas.zoomStep(1/1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))"
+            },
+            {
+              "line": 656,
+              "text": "        zoomSlider = ZoomSeekBar(this).apply {"
+            },
+            {
+              "line": 657,
+              "text": "            tag = \"zoom_slider\"; contentDescription = ui(R.string.ui_canvas_zoom); max = 1000"
+            },
+            {
+              "line": 658,
+              "text": "            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {"
+            },
+            {
+              "line": 659,
+              "text": "                override fun onProgressChanged(bar: SeekBar?, value: Int, fromUser: Boolean) {"
+            },
+            {
+              "line": 660,
+              "text": "                    if (fromUser && !syncingZoom && !busy) paintCanvas.zoomAt(paintCanvas.zoomForSlider(value))"
+            },
+            {
+              "line": 661,
+              "text": "                }"
+            },
+            {
+              "line": 662,
+              "text": "                override fun onStartTrackingTouch(bar: SeekBar?) = Unit"
+            },
+            {
+              "line": 663,
+              "text": "                override fun onStopTrackingTouch(bar: SeekBar?) = Unit"
+            },
+            {
+              "line": 664,
+              "text": "            })"
+            },
+            {
+              "line": 665,
+              "text": "        }"
+            },
+            {
+              "line": 666,
+              "text": "        zoomRow.addView(zoomSlider, LinearLayout.LayoutParams(dp(108), dp(44)))"
+            },
+            {
+              "line": 667,
+              "text": "        zoomRow.addView(actionIcon(EditIcon.PLUS, \"zoom_in\") { paintCanvas.zoomStep(1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))"
+            },
+            {
+              "line": 668,
+              "text": "        val fit=if(vertical) actionIcon(EditIcon.FIT,\"zoom_fit_view\") {paintCanvas.fit()}"
+            },
+            {
+              "line": 669,
+              "text": "            else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}.apply {"
+            },
+            {
+              "line": 670,
+              "text": "                maxLines=Int.MAX_VALUE; ellipsize=null; minWidth=dp(44); minimumWidth=dp(44)"
+            },
+            {
+              "line": 671,
+              "text": "                minHeight=dp(44); minimumHeight=dp(44)"
+            },
+            {
+              "line": 672,
+              "text": "            }"
+            },
+            {
+              "line": 673,
+              "text": "        fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)"
+            },
+            {
+              "line": 674,
+              "text": "        zoomRow.addView(fit,LinearLayout.LayoutParams(if(vertical) dp(44) else -2,if(vertical) dp(44) else -2))"
+            },
+            {
+              "line": 675,
+              "text": "        row.addView(zoomRow)"
+            },
+            {
+              "line": 676,
+              "text": "        (row as? ZoomStatusLayout)?.onCompactStatus={updateStatus()}"
+            }
+          ]
+        },
+        "fit_icon_label": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "git_blob_sha": "4a0ae9a9b13dccdf4da4869fed865f3721efc8f8",
+          "content_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1",
+          "start_line": 12,
+          "end_line": 34,
+          "exact_lines": [
+            {
+              "line": 12,
+              "text": "enum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);"
+            },
+            {
+              "line": 13,
+              "text": "    val label: String get() = ui(labelId)"
+            },
+            {
+              "line": 14,
+              "text": "}"
+            },
+            {
+              "line": 15,
+              "text": ""
+            },
+            {
+              "line": 16,
+              "text": "class ActionButton(context: Context, val icon: EditIcon) : View(context) {"
+            },
+            {
+              "line": 17,
+              "text": "    var sideLayout=false"
+            },
+            {
+              "line": 18,
+              "text": "    private val glyph = CopyleftIcon(context, when (icon) {"
+            },
+            {
+              "line": 19,
+              "text": "        EditIcon.SAVE -> R.drawable.classic_save"
+            },
+            {
+              "line": 20,
+              "text": "        EditIcon.FIT -> R.drawable.classic_fit"
+            },
+            {
+              "line": 21,
+              "text": "        EditIcon.UNDO -> R.drawable.breeze_undo"
+            },
+            {
+              "line": 22,
+              "text": "        EditIcon.REDO -> R.drawable.breeze_redo"
+            },
+            {
+              "line": 23,
+              "text": "        EditIcon.CUT -> R.drawable.breeze_cut"
+            },
+            {
+              "line": 24,
+              "text": "        EditIcon.COPY -> R.drawable.breeze_copy"
+            },
+            {
+              "line": 25,
+              "text": "        EditIcon.PASTE -> R.drawable.breeze_paste"
+            },
+            {
+              "line": 26,
+              "text": "        EditIcon.SELECT_ALL -> R.drawable.breeze_select_all"
+            },
+            {
+              "line": 27,
+              "text": "        EditIcon.MINUS -> R.drawable.breeze_zoom_out"
+            },
+            {
+              "line": 28,
+              "text": "        EditIcon.PLUS -> R.drawable.breeze_zoom_in"
+            },
+            {
+              "line": 29,
+              "text": "        EditIcon.SIDEBAR -> R.drawable.breeze_down"
+            },
+            {
+              "line": 30,
+              "text": "    })"
+            },
+            {
+              "line": 31,
+              "text": "    private val collapseGlyph = if (icon == EditIcon.SIDEBAR) CopyleftIcon(context, R.drawable.breeze_up) else null"
+            },
+            {
+              "line": 32,
+              "text": "    init {"
+            },
+            {
+              "line": 33,
+              "text": "        isClickable = true; isFocusable = true; contentDescription = icon.label"
+            },
+            {
+              "line": 34,
+              "text": "        LocaleTooltip.set(this,icon.label)"
+            }
+          ]
+        },
+        "fit_and_zoom_implementation": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "git_blob_sha": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+          "content_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "start_line": 176,
+          "end_line": 220,
+          "exact_lines": [
+            {
+              "line": 176,
+              "text": ""
+            },
+            {
+              "line": 177,
+              "text": "    private fun viewportBounds() = RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()).apply {"
+            },
+            {
+              "line": 178,
+              "text": "        trim?.let { union(RectF(it.rect)) }"
+            },
+            {
+              "line": 179,
+              "text": "        document.selection?.takeIf {it.floating}?.let {union(it.geometry.bounds())}"
+            },
+            {
+              "line": 180,
+              "text": "    }"
+            },
+            {
+              "line": 181,
+              "text": ""
+            },
+            {
+              "line": 182,
+              "text": "    fun fit() {"
+            },
+            {
+              "line": 183,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 184,
+              "text": "        if (width <= bar + 24 || height <= bar + 24) return"
+            },
+            {
+              "line": 185,
+              "text": "        val bounds = viewportBounds()"
+            },
+            {
+              "line": 186,
+              "text": "        // Leave touch space around the handles for dragging outwards."
+            },
+            {
+              "line": 187,
+              "text": "        val padding = if (trim == null && document.selection == null) 12f else max(40*resources.displayMetrics.density,min(contentWidth,contentHeight)*.12f)"
+            },
+            {
+              "line": 188,
+              "text": "        zoom = min((contentWidth-2*padding).coerceAtLeast(1f)/bounds.width(),(contentHeight-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)"
+            },
+            {
+              "line": 189,
+              "text": "        panX = rulerInset+(contentWidth-bounds.width()*zoom)/2-bounds.left*zoom"
+            },
+            {
+              "line": 190,
+              "text": "        panY = rulerInset+(contentHeight-bounds.height()*zoom)/2-bounds.top*zoom"
+            },
+            {
+              "line": 191,
+              "text": "        fitted = true; fitMode = true; invalidate(); onStatus()"
+            },
+            {
+              "line": 192,
+              "text": "    }"
+            },
+            {
+              "line": 193,
+              "text": ""
+            },
+            {
+              "line": 194,
+              "text": "    fun zoomAt(value: Float, x: Float = rulerInset+contentWidth / 2, y: Float = rulerInset+contentHeight / 2) {"
+            },
+            {
+              "line": 195,
+              "text": "        if (!value.isFinite() || value <= 0f) return"
+            },
+            {
+              "line": 196,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 197,
+              "text": "        val point = toImage(x, y)"
+            },
+            {
+              "line": 198,
+              "text": "        fitMode = false"
+            },
+            {
+              "line": 199,
+              "text": "        zoom = value.coerceIn(minimumZoom(), 32f)"
+            },
+            {
+              "line": 200,
+              "text": "        panX = x - point.x * zoom; panY = y - point.y * zoom"
+            },
+            {
+              "line": 201,
+              "text": "        clampPan(); invalidate(); onStatus()"
+            },
+            {
+              "line": 202,
+              "text": "    }"
+            },
+            {
+              "line": 203,
+              "text": ""
+            },
+            {
+              "line": 204,
+              "text": "    fun zoomStep(factor: Float) {"
+            },
+            {
+              "line": 205,
+              "text": "        val target = zoom*factor"
+            },
+            {
+              "line": 206,
+              "text": "        zoomAt(if (zoom < 1f && target >= 1f || zoom > 1f && target <= 1f) 1f else target)"
+            },
+            {
+              "line": 207,
+              "text": "    }"
+            },
+            {
+              "line": 208,
+              "text": "    fun minimumZoom(): Float = viewportBounds().let { bounds -> (min(contentWidth/bounds.width(),"
+            },
+            {
+              "line": 209,
+              "text": "        contentHeight/bounds.height())/8).coerceIn(.000000001f,.125f) }"
+            },
+            {
+              "line": 210,
+              "text": "    fun zoomForSlider(progress: Int): Float {"
+            },
+            {
+              "line": 211,
+              "text": "        val value = progress.coerceIn(0,1000)"
+            },
+            {
+              "line": 212,
+              "text": "        return if (value <= 500) exp(ln(minimumZoom().toDouble())*(1-value/500.0)).toFloat()"
+            },
+            {
+              "line": 213,
+              "text": "            else exp(ln(32.0)*(value-500)/500.0).toFloat()"
+            },
+            {
+              "line": 214,
+              "text": "    }"
+            },
+            {
+              "line": 215,
+              "text": "    fun sliderForZoom(): Int = (if (zoom <= 1f) 500*(1-ln(zoom.toDouble())/ln(minimumZoom().toDouble()))"
+            },
+            {
+              "line": 216,
+              "text": "        else 500+500*ln(zoom.toDouble())/ln(32.0)).roundToInt().coerceIn(0,1000)"
+            },
+            {
+              "line": 217,
+              "text": "    fun zoomLabel(): String = if (zoom >= .1f) ui(R.string.ui_zoom_percent_integer, (zoom * 100).roundToInt())"
+            },
+            {
+              "line": 218,
+              "text": "        else ui(R.string.ui_zoom_percent_fractional, zoom * 100)"
+            },
+            {
+              "line": 219,
+              "text": "    fun zoomStatusLabel(): String = zoomLabel()+if(cursorMode) \" · \"+ui(R.string.ui_cursor_position26,"
+            },
+            {
+              "line": 220,
+              "text": "        floor(cursor.x).toInt().coerceIn(0,document.bitmap.width-1),floor(cursor.y).toInt().coerceIn(0,document.bitmap.height-1)) else \"\""
+            }
+          ]
+        }
+      },
+      "component_intake": {
+        "path": "reviewed-chr-view7-currenta721f04-intake-1428.json",
+        "sha256": "dc763554d9e6b88774f50c5d1cc115b45858cbce377f78033b42e7781624de56"
+      }
+    },
+    {
+      "locale": "chr",
+      "key": "ui_canvas_zoom",
+      "tier": "P1",
+      "originalP1": true,
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Canvas zoom",
+      "attributes": {
+        "name": "ui_canvas_zoom"
+      },
+      "placeholders": [],
+      "raw": "ᎠᎪᎵᏰᎢᏓᏍᏗ: ᎠᎪᎵᏰᏗ ᎢᎩᏓ",
+      "value": "ᎠᎪᎵᏰᎢᏓᏍᏗ: ᎠᎪᎵᏰᏗ ᎢᎩᏓ",
+      "display": "ᎠᎪᎵᏰᎢᏓᏍᏗ: ᎠᎪᎵᏰᏗ ᎢᎩᏓ",
+      "raw_sha256": "390e11cb7bcfce96da1dcb1663813544bfc00868c21ff52e7280c1684adf07a3",
+      "backtranslation": "Canvas: view size.",
+      "semantic_composition": "Accessible property/control label. A colon separates the canvas target from the authored display-view-size property. It deliberately distinguishes the displayed size from bitmap Canvas size. Initial label has no numeric slot; no gesture-only zoom noun is imported.",
+      "source_refs": "OU83 canvas + TBX6232 constituent; TBX10367 view noun + OU647 size noun; TBX1070/19687 property-label pattern",
+      "source_packet": {
+        "path": "chr-view-primary-1422.json",
+        "sha256": "7d00e8f2ef515f13c1b043b31e2377ba90360a35684ff5c6cac274c3afb55b12"
+      },
+      "caller_packet": {
+        "path": "chr-view-callers-1422.json",
+        "sha256": "fb05b085a477627229a45cd71e08facf527a0103cab310f8372d744e9a7bf4e9"
+      },
+      "caller_anchor_ids": [
+        "status_zoom",
+        "fit_and_zoom_implementation"
+      ],
+      "direct_resource_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 657,
+          "exact_line": "            tag = \"zoom_slider\"; contentDescription = ui(R.string.ui_canvas_zoom); max = 1000"
+        }
+      ],
+      "confidence": "moderate productive property paraphrase",
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "current_guard": {
+        "expected_absent": true,
+        "expected_old_raw": null,
+        "catalogue_git_blob_sha": "24e9a144b388703ec188b38ad1dda8b34a7fb7b9",
+        "catalogue_content_sha256": "0c2113e41e7625432f2342b3f9b64d852fd92e73ee72fb770306befe6de89ce1",
+        "catalogue_snapshot": {
+          "path": "current-chr-0965a3d-1252.json",
+          "sha256": "6f9bd6194435debed1acf9ba5550a7079b38df4b03a7ff0547cb7ced4d894aa0"
+        },
+        "verified_unchanged_through_head": "a721f04c59da0de9ca08af173d2bb2670ead5481"
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Contextual accessible property label Canvas: view size; target separated by colon. Exact own display-view noun and size noun avoid importing the gesture-only zoom term. Refers to viewport display scale rather than bitmap dimensions.",
+      "candidate": {
+        "path": "chr-view-actions7-1422.json",
+        "sha256": "9a0e21d8fa94d5ed84da5f742b06ae1175fa8bbe2a8ca6d36057f62a028c572d"
+      },
+      "independent_review": {
+        "path": "review-chr-view-actions7-independent-1428.json",
+        "sha256": "42e5e27c844275ff68ff510af738bcc68ab2d27bf877adacfd5085b2910af0a3"
+      },
+      "actual_callers": {
+        "status_zoom": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 653,
+          "end_line": 676,
+          "exact_lines": [
+            {
+              "line": 653,
+              "text": "        } else row.gravity=Gravity.END"
+            },
+            {
+              "line": 654,
+              "text": "        val zoomRow = LinearLayout(this).apply {isBaselineAligned=false; gravity = Gravity.CENTER_VERTICAL; tag = \"zoom_controls\" }"
+            },
+            {
+              "line": 655,
+              "text": "        zoomRow.addView(actionIcon(EditIcon.MINUS, \"zoom_out\") { paintCanvas.zoomStep(1/1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))"
+            },
+            {
+              "line": 656,
+              "text": "        zoomSlider = ZoomSeekBar(this).apply {"
+            },
+            {
+              "line": 657,
+              "text": "            tag = \"zoom_slider\"; contentDescription = ui(R.string.ui_canvas_zoom); max = 1000"
+            },
+            {
+              "line": 658,
+              "text": "            setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {"
+            },
+            {
+              "line": 659,
+              "text": "                override fun onProgressChanged(bar: SeekBar?, value: Int, fromUser: Boolean) {"
+            },
+            {
+              "line": 660,
+              "text": "                    if (fromUser && !syncingZoom && !busy) paintCanvas.zoomAt(paintCanvas.zoomForSlider(value))"
+            },
+            {
+              "line": 661,
+              "text": "                }"
+            },
+            {
+              "line": 662,
+              "text": "                override fun onStartTrackingTouch(bar: SeekBar?) = Unit"
+            },
+            {
+              "line": 663,
+              "text": "                override fun onStopTrackingTouch(bar: SeekBar?) = Unit"
+            },
+            {
+              "line": 664,
+              "text": "            })"
+            },
+            {
+              "line": 665,
+              "text": "        }"
+            },
+            {
+              "line": 666,
+              "text": "        zoomRow.addView(zoomSlider, LinearLayout.LayoutParams(dp(108), dp(44)))"
+            },
+            {
+              "line": 667,
+              "text": "        zoomRow.addView(actionIcon(EditIcon.PLUS, \"zoom_in\") { paintCanvas.zoomStep(1.5f) }, LinearLayout.LayoutParams(dp(40), dp(44)))"
+            },
+            {
+              "line": 668,
+              "text": "        val fit=if(vertical) actionIcon(EditIcon.FIT,\"zoom_fit_view\") {paintCanvas.fit()}"
+            },
+            {
+              "line": 669,
+              "text": "            else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}.apply {"
+            },
+            {
+              "line": 670,
+              "text": "                maxLines=Int.MAX_VALUE; ellipsize=null; minWidth=dp(44); minimumWidth=dp(44)"
+            },
+            {
+              "line": 671,
+              "text": "                minHeight=dp(44); minimumHeight=dp(44)"
+            },
+            {
+              "line": 672,
+              "text": "            }"
+            },
+            {
+              "line": 673,
+              "text": "        fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)"
+            },
+            {
+              "line": 674,
+              "text": "        zoomRow.addView(fit,LinearLayout.LayoutParams(if(vertical) dp(44) else -2,if(vertical) dp(44) else -2))"
+            },
+            {
+              "line": 675,
+              "text": "        row.addView(zoomRow)"
+            },
+            {
+              "line": 676,
+              "text": "        (row as? ZoomStatusLayout)?.onCompactStatus={updateStatus()}"
+            }
+          ]
+        },
+        "fit_and_zoom_implementation": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "git_blob_sha": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+          "content_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "start_line": 176,
+          "end_line": 220,
+          "exact_lines": [
+            {
+              "line": 176,
+              "text": ""
+            },
+            {
+              "line": 177,
+              "text": "    private fun viewportBounds() = RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()).apply {"
+            },
+            {
+              "line": 178,
+              "text": "        trim?.let { union(RectF(it.rect)) }"
+            },
+            {
+              "line": 179,
+              "text": "        document.selection?.takeIf {it.floating}?.let {union(it.geometry.bounds())}"
+            },
+            {
+              "line": 180,
+              "text": "    }"
+            },
+            {
+              "line": 181,
+              "text": ""
+            },
+            {
+              "line": 182,
+              "text": "    fun fit() {"
+            },
+            {
+              "line": 183,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 184,
+              "text": "        if (width <= bar + 24 || height <= bar + 24) return"
+            },
+            {
+              "line": 185,
+              "text": "        val bounds = viewportBounds()"
+            },
+            {
+              "line": 186,
+              "text": "        // Leave touch space around the handles for dragging outwards."
+            },
+            {
+              "line": 187,
+              "text": "        val padding = if (trim == null && document.selection == null) 12f else max(40*resources.displayMetrics.density,min(contentWidth,contentHeight)*.12f)"
+            },
+            {
+              "line": 188,
+              "text": "        zoom = min((contentWidth-2*padding).coerceAtLeast(1f)/bounds.width(),(contentHeight-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)"
+            },
+            {
+              "line": 189,
+              "text": "        panX = rulerInset+(contentWidth-bounds.width()*zoom)/2-bounds.left*zoom"
+            },
+            {
+              "line": 190,
+              "text": "        panY = rulerInset+(contentHeight-bounds.height()*zoom)/2-bounds.top*zoom"
+            },
+            {
+              "line": 191,
+              "text": "        fitted = true; fitMode = true; invalidate(); onStatus()"
+            },
+            {
+              "line": 192,
+              "text": "    }"
+            },
+            {
+              "line": 193,
+              "text": ""
+            },
+            {
+              "line": 194,
+              "text": "    fun zoomAt(value: Float, x: Float = rulerInset+contentWidth / 2, y: Float = rulerInset+contentHeight / 2) {"
+            },
+            {
+              "line": 195,
+              "text": "        if (!value.isFinite() || value <= 0f) return"
+            },
+            {
+              "line": 196,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 197,
+              "text": "        val point = toImage(x, y)"
+            },
+            {
+              "line": 198,
+              "text": "        fitMode = false"
+            },
+            {
+              "line": 199,
+              "text": "        zoom = value.coerceIn(minimumZoom(), 32f)"
+            },
+            {
+              "line": 200,
+              "text": "        panX = x - point.x * zoom; panY = y - point.y * zoom"
+            },
+            {
+              "line": 201,
+              "text": "        clampPan(); invalidate(); onStatus()"
+            },
+            {
+              "line": 202,
+              "text": "    }"
+            },
+            {
+              "line": 203,
+              "text": ""
+            },
+            {
+              "line": 204,
+              "text": "    fun zoomStep(factor: Float) {"
+            },
+            {
+              "line": 205,
+              "text": "        val target = zoom*factor"
+            },
+            {
+              "line": 206,
+              "text": "        zoomAt(if (zoom < 1f && target >= 1f || zoom > 1f && target <= 1f) 1f else target)"
+            },
+            {
+              "line": 207,
+              "text": "    }"
+            },
+            {
+              "line": 208,
+              "text": "    fun minimumZoom(): Float = viewportBounds().let { bounds -> (min(contentWidth/bounds.width(),"
+            },
+            {
+              "line": 209,
+              "text": "        contentHeight/bounds.height())/8).coerceIn(.000000001f,.125f) }"
+            },
+            {
+              "line": 210,
+              "text": "    fun zoomForSlider(progress: Int): Float {"
+            },
+            {
+              "line": 211,
+              "text": "        val value = progress.coerceIn(0,1000)"
+            },
+            {
+              "line": 212,
+              "text": "        return if (value <= 500) exp(ln(minimumZoom().toDouble())*(1-value/500.0)).toFloat()"
+            },
+            {
+              "line": 213,
+              "text": "            else exp(ln(32.0)*(value-500)/500.0).toFloat()"
+            },
+            {
+              "line": 214,
+              "text": "    }"
+            },
+            {
+              "line": 215,
+              "text": "    fun sliderForZoom(): Int = (if (zoom <= 1f) 500*(1-ln(zoom.toDouble())/ln(minimumZoom().toDouble()))"
+            },
+            {
+              "line": 216,
+              "text": "        else 500+500*ln(zoom.toDouble())/ln(32.0)).roundToInt().coerceIn(0,1000)"
+            },
+            {
+              "line": 217,
+              "text": "    fun zoomLabel(): String = if (zoom >= .1f) ui(R.string.ui_zoom_percent_integer, (zoom * 100).roundToInt())"
+            },
+            {
+              "line": 218,
+              "text": "        else ui(R.string.ui_zoom_percent_fractional, zoom * 100)"
+            },
+            {
+              "line": 219,
+              "text": "    fun zoomStatusLabel(): String = zoomLabel()+if(cursorMode) \" · \"+ui(R.string.ui_cursor_position26,"
+            },
+            {
+              "line": 220,
+              "text": "        floor(cursor.x).toInt().coerceIn(0,document.bitmap.width-1),floor(cursor.y).toInt().coerceIn(0,document.bitmap.height-1)) else \"\""
+            }
+          ]
+        }
+      },
+      "component_intake": {
+        "path": "reviewed-chr-view7-currenta721f04-intake-1428.json",
+        "sha256": "dc763554d9e6b88774f50c5d1cc115b45858cbce377f78033b42e7781624de56"
+      }
+    },
+    {
+      "locale": "chr",
+      "key": "ui_canvas_zoom_771f84",
+      "tier": "P1",
+      "originalP1": true,
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "Canvas zoom %1$s",
+      "attributes": {
+        "name": "ui_canvas_zoom_771f84"
+      },
+      "placeholders": [
+        "%1$s"
+      ],
+      "raw": "ᎠᎪᎵᏰᎢᏓᏍᏗ: ᎠᎪᎵᏰᏗ ᎢᎩᏓ %1$s",
+      "value": "ᎠᎪᎵᏰᎢᏓᏍᏗ: ᎠᎪᎵᏰᏗ ᎢᎩᏓ %1$s",
+      "display": "ᎠᎪᎵᏰᎢᏓᏍᏗ: ᎠᎪᎵᏰᏗ ᎢᎩᏓ %1$s",
+      "raw_sha256": "852fbad7b1e9a90d09e8adabefad6f61d04908243ff2746662202b49bb441195",
+      "backtranslation": "Canvas: view size %1$s, where the slot is the current formatted zoom percentage.",
+      "semantic_composition": "Same property label with current display ratio. Slot remains a String from zoomLabel(), which already includes a percent sign. No extra percent sign or numeric conversion is added. This is not a canvas-dimension count.",
+      "source_refs": "OU83 canvas + TBX6232 constituent; TBX10367 view noun + OU647 size noun; TBX1070/19687 property-label pattern",
+      "source_packet": {
+        "path": "chr-view-primary-1422.json",
+        "sha256": "7d00e8f2ef515f13c1b043b31e2377ba90360a35684ff5c6cac274c3afb55b12"
+      },
+      "caller_packet": {
+        "path": "chr-view-callers-1422.json",
+        "sha256": "fb05b085a477627229a45cd71e08facf527a0103cab310f8372d744e9a7bf4e9"
+      },
+      "caller_anchor_ids": [
+        "status_value",
+        "fit_and_zoom_implementation"
+      ],
+      "direct_resource_occurrences": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 711,
+          "exact_line": "            zoomSlider.contentDescription = ui(R.string.ui_canvas_zoom_771f84, paintCanvas.zoomLabel())"
+        }
+      ],
+      "confidence": "moderate productive property paraphrase",
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "current_guard": {
+        "expected_absent": true,
+        "expected_old_raw": null,
+        "catalogue_git_blob_sha": "24e9a144b388703ec188b38ad1dda8b34a7fb7b9",
+        "catalogue_content_sha256": "0c2113e41e7625432f2342b3f9b64d852fd92e73ee72fb770306befe6de89ce1",
+        "catalogue_snapshot": {
+          "path": "current-chr-0965a3d-1252.json",
+          "sha256": "6f9bd6194435debed1acf9ba5550a7079b38df4b03a7ff0547cb7ced4d894aa0"
+        },
+        "verified_unchanged_through_head": "a721f04c59da0de9ca08af173d2bb2670ead5481"
+      },
+      "typed_argument": {
+        "slot": "%1$s",
+        "type": "String",
+        "origin": "PaintCanvas.zoomLabel(): ui_zoom_percent_integer or ui_zoom_percent_fractional",
+        "content": "Current viewport display ratio, already including %; may include two decimals for very small zoom.",
+        "raw_slot_unchanged": true
+      },
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Same view-size property with exact String slot supplied by zoomLabel(). That value already includes percent and may be fractional. No added percentage marker or numerical-format conversion.",
+      "candidate": {
+        "path": "chr-view-actions7-1422.json",
+        "sha256": "9a0e21d8fa94d5ed84da5f742b06ae1175fa8bbe2a8ca6d36057f62a028c572d"
+      },
+      "independent_review": {
+        "path": "review-chr-view-actions7-independent-1428.json",
+        "sha256": "42e5e27c844275ff68ff510af738bcc68ab2d27bf877adacfd5085b2910af0a3"
+      },
+      "actual_callers": {
+        "status_value": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 707,
+          "end_line": 712,
+          "exact_lines": [
+            {
+              "line": 707,
+              "text": "        statusText.text = (if(VerticalText.uiVertical(this@ClassicPaintActivity)) filename+\"\\n\" else \"\") + shownStatus"
+            },
+            {
+              "line": 708,
+              "text": "        if (::zoomSlider.isInitialized) {"
+            },
+            {
+              "line": 709,
+              "text": "            syncingZoom = true; zoomSlider.progress = paintCanvas.sliderForZoom(); syncingZoom = false"
+            },
+            {
+              "line": 710,
+              "text": "            zoomSlider.isEnabled = !busy"
+            },
+            {
+              "line": 711,
+              "text": "            zoomSlider.contentDescription = ui(R.string.ui_canvas_zoom_771f84, paintCanvas.zoomLabel())"
+            },
+            {
+              "line": 712,
+              "text": "        }"
+            }
+          ]
+        },
+        "fit_and_zoom_implementation": {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt",
+          "git_blob_sha": "2acb01fa0a98a60dae67416ab3a6d8ccd8c0f35f",
+          "content_sha256": "785daa16cf1a58951f51fb330c1853ad10ee89904c17fbf06140502d8cf525e1",
+          "start_line": 176,
+          "end_line": 220,
+          "exact_lines": [
+            {
+              "line": 176,
+              "text": ""
+            },
+            {
+              "line": 177,
+              "text": "    private fun viewportBounds() = RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()).apply {"
+            },
+            {
+              "line": 178,
+              "text": "        trim?.let { union(RectF(it.rect)) }"
+            },
+            {
+              "line": 179,
+              "text": "        document.selection?.takeIf {it.floating}?.let {union(it.geometry.bounds())}"
+            },
+            {
+              "line": 180,
+              "text": "    }"
+            },
+            {
+              "line": 181,
+              "text": ""
+            },
+            {
+              "line": 182,
+              "text": "    fun fit() {"
+            },
+            {
+              "line": 183,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 184,
+              "text": "        if (width <= bar + 24 || height <= bar + 24) return"
+            },
+            {
+              "line": 185,
+              "text": "        val bounds = viewportBounds()"
+            },
+            {
+              "line": 186,
+              "text": "        // Leave touch space around the handles for dragging outwards."
+            },
+            {
+              "line": 187,
+              "text": "        val padding = if (trim == null && document.selection == null) 12f else max(40*resources.displayMetrics.density,min(contentWidth,contentHeight)*.12f)"
+            },
+            {
+              "line": 188,
+              "text": "        zoom = min((contentWidth-2*padding).coerceAtLeast(1f)/bounds.width(),(contentHeight-2*padding).coerceAtLeast(1f)/bounds.height()).coerceAtMost(32f)"
+            },
+            {
+              "line": 189,
+              "text": "        panX = rulerInset+(contentWidth-bounds.width()*zoom)/2-bounds.left*zoom"
+            },
+            {
+              "line": 190,
+              "text": "        panY = rulerInset+(contentHeight-bounds.height()*zoom)/2-bounds.top*zoom"
+            },
+            {
+              "line": 191,
+              "text": "        fitted = true; fitMode = true; invalidate(); onStatus()"
+            },
+            {
+              "line": 192,
+              "text": "    }"
+            },
+            {
+              "line": 193,
+              "text": ""
+            },
+            {
+              "line": 194,
+              "text": "    fun zoomAt(value: Float, x: Float = rulerInset+contentWidth / 2, y: Float = rulerInset+contentHeight / 2) {"
+            },
+            {
+              "line": 195,
+              "text": "        if (!value.isFinite() || value <= 0f) return"
+            },
+            {
+              "line": 196,
+              "text": "        resetPolygonTap()"
+            },
+            {
+              "line": 197,
+              "text": "        val point = toImage(x, y)"
+            },
+            {
+              "line": 198,
+              "text": "        fitMode = false"
+            },
+            {
+              "line": 199,
+              "text": "        zoom = value.coerceIn(minimumZoom(), 32f)"
+            },
+            {
+              "line": 200,
+              "text": "        panX = x - point.x * zoom; panY = y - point.y * zoom"
+            },
+            {
+              "line": 201,
+              "text": "        clampPan(); invalidate(); onStatus()"
+            },
+            {
+              "line": 202,
+              "text": "    }"
+            },
+            {
+              "line": 203,
+              "text": ""
+            },
+            {
+              "line": 204,
+              "text": "    fun zoomStep(factor: Float) {"
+            },
+            {
+              "line": 205,
+              "text": "        val target = zoom*factor"
+            },
+            {
+              "line": 206,
+              "text": "        zoomAt(if (zoom < 1f && target >= 1f || zoom > 1f && target <= 1f) 1f else target)"
+            },
+            {
+              "line": 207,
+              "text": "    }"
+            },
+            {
+              "line": 208,
+              "text": "    fun minimumZoom(): Float = viewportBounds().let { bounds -> (min(contentWidth/bounds.width(),"
+            },
+            {
+              "line": 209,
+              "text": "        contentHeight/bounds.height())/8).coerceIn(.000000001f,.125f) }"
+            },
+            {
+              "line": 210,
+              "text": "    fun zoomForSlider(progress: Int): Float {"
+            },
+            {
+              "line": 211,
+              "text": "        val value = progress.coerceIn(0,1000)"
+            },
+            {
+              "line": 212,
+              "text": "        return if (value <= 500) exp(ln(minimumZoom().toDouble())*(1-value/500.0)).toFloat()"
+            },
+            {
+              "line": 213,
+              "text": "            else exp(ln(32.0)*(value-500)/500.0).toFloat()"
+            },
+            {
+              "line": 214,
+              "text": "    }"
+            },
+            {
+              "line": 215,
+              "text": "    fun sliderForZoom(): Int = (if (zoom <= 1f) 500*(1-ln(zoom.toDouble())/ln(minimumZoom().toDouble()))"
+            },
+            {
+              "line": 216,
+              "text": "        else 500+500*ln(zoom.toDouble())/ln(32.0)).roundToInt().coerceIn(0,1000)"
+            },
+            {
+              "line": 217,
+              "text": "    fun zoomLabel(): String = if (zoom >= .1f) ui(R.string.ui_zoom_percent_integer, (zoom * 100).roundToInt())"
+            },
+            {
+              "line": 218,
+              "text": "        else ui(R.string.ui_zoom_percent_fractional, zoom * 100)"
+            },
+            {
+              "line": 219,
+              "text": "    fun zoomStatusLabel(): String = zoomLabel()+if(cursorMode) \" · \"+ui(R.string.ui_cursor_position26,"
+            },
+            {
+              "line": 220,
+              "text": "        floor(cursor.x).toInt().coerceIn(0,document.bitmap.width-1),floor(cursor.y).toInt().coerceIn(0,document.bitmap.height-1)) else \"\""
+            }
+          ]
+        }
+      },
+      "component_intake": {
+        "path": "reviewed-chr-view7-currenta721f04-intake-1428.json",
+        "sha256": "dc763554d9e6b88774f50c5d1cc115b45858cbce377f78033b42e7781624de56"
+      }
+    },
+    {
+      "locale": "nch",
+      "key": "ui_please_try_again",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Please try again.",
+      "attributes": {
+        "name": "ui_please_try_again"
+      },
+      "raw": "Sempa xijchihua.",
+      "value": "Sempa xijchihua.",
+      "display": "Sempa xijchihua.",
+      "xml": "<string name=\"ui_please_try_again\">Sempa xijchihua.</string>",
+      "raw_sha256": "7ee75d140fbdb6ac69ba4c01cb33329596e953220d45f97878daf4c74f37d981",
+      "placeholders": [],
+      "backtranslation": "Do it again. [Try the failed attempt again.]",
+      "caller": "Two fallback paths: startup recovery failure without an error message and generic edit failure without an error message. Instruction asks another attempt; not Save-only, memory-only, brush-only or Redo-history action.",
+      "caller_evidence": {
+        "path": "nahua-core-actions8-callers-1426.json",
+        "sha256": "91961147f481b537b1a96fc1c726c193dfbd0e0862c6f1dfe0d155133aa064e6"
+      },
+      "primary_evidence": {
+        "path": "nahua-core-actions8-primary-1426.json",
+        "sha256": "f1b574e2597e48f88e91f89cd745d392349e2bd3f1e775119629ecf2b8fae2aa"
+      },
+      "source_entry_ids": [
+        "again-and-do"
+      ],
+      "sources": [
+        "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf"
+      ],
+      "own_variety_only": true,
+      "current_absence_verified": true,
+      "confidence": "Moderate, source-grounded productive grammar and caller-bounded functional paraphrase; independent review pending.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "authored_extension": "Generic do-again instruction is assessed for these failure callers separately from history Redo. No explicit politeness particle or claim of success.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own Philemon20 independently supplies exact singular xijchihua and preverbal sempa plus another imperative, in each corpus separately. Authored do-again instruction is bounded to two error fallback emitters; no guaranteed success, history Redo or Save-only meaning. Polite English please is functionally omitted rather than falsely attested.",
+      "candidate": {
+        "path": "nahua-core-actions8-author-1426.json",
+        "sha256": "647c3f36ae774ec23b5314568225089665f278271edc03f6e30d0142854b0778"
+      },
+      "independent_review": {
+        "path": "review-nahua-core-actions8-independent-1430.json",
+        "sha256": "d94bbccc7475412d4b23aafd4cae780509b08381c3bff604abe2ce5b7af3a63a"
+      },
+      "component_intake": {
+        "path": "reviewed-nahua-core8-currenta721f04-intake-1430.json",
+        "sha256": "c6b72bbba694d27cc9728b12d04f801e60c149bbcd8a326af861fa092dec30ce"
+      }
+    },
+    {
+      "locale": "nch",
+      "key": "ui_draw_again",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Draw again",
+      "attributes": {
+        "name": "ui_draw_again"
+      },
+      "raw": "Sempa xitequiti",
+      "value": "Sempa xitequiti",
+      "display": "Sempa xitequiti",
+      "xml": "<string name=\"ui_draw_again\">Sempa xitequiti</string>",
+      "raw_sha256": "93fb74ea4415636e13f670c4d7d989079642fa6fc9c1bb0b77f61b74e4e1cf86",
+      "placeholders": [],
+      "backtranslation": "Work again. [Resume using the previous editing tool.]",
+      "caller": "ZOOM tool options button calls chooseTool(drawingTool). showToolOptions records every prior non-ZOOM tool, including selection, text and colour-picker tools. Return to work is intentionally broader than draw with a brush; no operation or stroke replay.",
+      "caller_evidence": {
+        "path": "nahua-core-actions8-callers-1426.json",
+        "sha256": "91961147f481b537b1a96fc1c726c193dfbd0e0862c6f1dfe0d155133aa064e6"
+      },
+      "primary_evidence": {
+        "path": "nahua-core-actions8-primary-1426.json",
+        "sha256": "f1b574e2597e48f88e91f89cd745d392349e2bd3f1e775119629ecf2b8fae2aa"
+      },
+      "source_entry_ids": [
+        "again-and-do",
+        "work-singular"
+      ],
+      "sources": [
+        "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf"
+      ],
+      "own_variety_only": true,
+      "current_absence_verified": true,
+      "confidence": "Moderate, source-grounded productive grammar and caller-bounded functional paraphrase; independent review pending.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "authored_extension": "Intentional resume-work paraphrase preserves return to any stored non-ZOOM tool; does not promise a brush or replay.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own singular Xitequiti and sempa verified separately in each NT. Functional resume-work wording fits previous non-ZOOM tool including selection/text/picker. Does not repeat a stroke, force brush mode or invoke history replay.",
+      "candidate": {
+        "path": "nahua-core-actions8-author-1426.json",
+        "sha256": "647c3f36ae774ec23b5314568225089665f278271edc03f6e30d0142854b0778"
+      },
+      "independent_review": {
+        "path": "review-nahua-core-actions8-independent-1430.json",
+        "sha256": "d94bbccc7475412d4b23aafd4cae780509b08381c3bff604abe2ce5b7af3a63a"
+      },
+      "component_intake": {
+        "path": "reviewed-nahua-core8-currenta721f04-intake-1430.json",
+        "sha256": "c6b72bbba694d27cc9728b12d04f801e60c149bbcd8a326af861fa092dec30ce"
+      }
+    },
+    {
+      "locale": "nch",
+      "key": "ui_untitled",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Untitled",
+      "attributes": {
+        "name": "ui_untitled"
+      },
+      "raw": "Amo quipiya se tokajyotl",
+      "value": "Amo quipiya se tokajyotl",
+      "display": "Amo quipiya se tokajyotl",
+      "xml": "<string name=\"ui_untitled\">Amo quipiya se tokajyotl</string>",
+      "raw_sha256": "eb5745eba0f98c4df12298e2a31d981387dc681c424c8cb1e66e3d25ce3f9443",
+      "placeholders": [],
+      "backtranslation": "It has no name. [Unnamed filename stem.]",
+      "caller": "Initial/recovered/new image filename and blank-name fallback before ExportNames.withExtension in Save/share/export picker. Authored unnamed statement is a nonblank filename-safe stem with no extension, slash, backslash, control character or trailing period. Not a title-input command and not a Save failure.",
+      "caller_evidence": {
+        "path": "nahua-core-actions8-callers-1426.json",
+        "sha256": "91961147f481b537b1a96fc1c726c193dfbd0e0862c6f1dfe0d155133aa064e6"
+      },
+      "primary_evidence": {
+        "path": "nahua-core-actions8-primary-1426.json",
+        "sha256": "f1b574e2597e48f88e91f89cd745d392349e2bd3f1e775119629ecf2b8fae2aa"
+      },
+      "source_entry_ids": [
+        "negative-possession",
+        "name_noun"
+      ],
+      "sources": [
+        "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf",
+        "https://es.scribd.com/document/388497276/Libro-Vocabulario-2016-NAHUATL"
+      ],
+      "own_variety_only": true,
+      "current_absence_verified": true,
+      "confidence": "Moderate, source-grounded productive grammar and caller-bounded functional paraphrase; independent review pending.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "authored_extension": "Unspecified software/image actor in present negative possession. Uses a name noun, not a person-only title. Safe stem remains unnamed semantically even when shown with generated extension.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own negative possession plus indefinite object verified, composed as no-name filename stem. No slash, backslash, control characters, extension or trailing period; current SaveOptionsDialog appends extension. NCH retains directly re-read Cruzhica tokajyotl noun with locality/mapping caveat. NHW Revelation2:17 independently uses name inscription on a stone, avoiding person-only title inference. No actual human name is missing.",
+      "candidate": {
+        "path": "nahua-core-actions8-author-1426.json",
+        "sha256": "647c3f36ae774ec23b5314568225089665f278271edc03f6e30d0142854b0778"
+      },
+      "independent_review": {
+        "path": "review-nahua-core-actions8-independent-1430.json",
+        "sha256": "d94bbccc7475412d4b23aafd4cae780509b08381c3bff604abe2ce5b7af3a63a"
+      },
+      "component_intake": {
+        "path": "reviewed-nahua-core8-currenta721f04-intake-1430.json",
+        "sha256": "c6b72bbba694d27cc9728b12d04f801e60c149bbcd8a326af861fa092dec30ce"
+      }
+    },
+    {
+      "locale": "nch",
+      "key": "ui_select_all",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Select all",
+      "attributes": {
+        "name": "ui_select_all"
+      },
+      "raw": "Xijtapejpeni nochi",
+      "value": "Xijtapejpeni nochi",
+      "display": "Xijtapejpeni nochi",
+      "xml": "<string name=\"ui_select_all\">Xijtapejpeni nochi</string>",
+      "raw_sha256": "ce9dcad8390461d96d58f0be54cbf1923f7c9c3b791b0b5082c6213275867837",
+      "placeholders": [],
+      "backtranslation": "Select all. [The whole current bitmap.]",
+      "caller": "Edit menu and EditIcon label. Classic selectAll chooses SELECT and selects RectF from zero to current bitmap width and height. CTRL+A shares that operation. Unrelated EditText.selectAll calls do not use this resource and are excluded.",
+      "caller_evidence": {
+        "path": "nahua-core-actions8-callers-1426.json",
+        "sha256": "91961147f481b537b1a96fc1c726c193dfbd0e0862c6f1dfe0d155133aa064e6"
+      },
+      "primary_evidence": {
+        "path": "nahua-core-actions8-primary-1426.json",
+        "sha256": "f1b574e2597e48f88e91f89cd745d392349e2bd3f1e775119629ecf2b8fae2aa"
+      },
+      "source_entry_ids": [
+        "choose-plural",
+        "work-singular",
+        "work-plural-all"
+      ],
+      "sources": [
+        "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf"
+      ],
+      "own_variety_only": true,
+      "current_absence_verified": true,
+      "confidence": "Moderate, source-grounded productive grammar and caller-bounded functional paraphrase; independent review pending.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "authored_extension": "Singular imperative derived only from own explicit plural form and own imperative singular/plural pair; whole bitmap supplies object of all.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own choice imperative verified as NCH Xijtapejpenica versus NHW Xijtlapejpenica, each with own singular/plural Xitequiti/Xitequitica contrast supporting productive removal of -ca. The source choice includes laws, so not a people-only selection verb. Own nochi includes whole-object scope. Current callback selects whole bitmap rectangle, not all files or text inputs.",
+      "candidate": {
+        "path": "nahua-core-actions8-author-1426.json",
+        "sha256": "647c3f36ae774ec23b5314568225089665f278271edc03f6e30d0142854b0778"
+      },
+      "independent_review": {
+        "path": "review-nahua-core-actions8-independent-1430.json",
+        "sha256": "d94bbccc7475412d4b23aafd4cae780509b08381c3bff604abe2ce5b7af3a63a"
+      },
+      "component_intake": {
+        "path": "reviewed-nahua-core8-currenta721f04-intake-1430.json",
+        "sha256": "c6b72bbba694d27cc9728b12d04f801e60c149bbcd8a326af861fa092dec30ce"
+      }
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_please_try_again",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Please try again.",
+      "attributes": {
+        "name": "ui_please_try_again"
+      },
+      "raw": "Sempa xijchihua.",
+      "value": "Sempa xijchihua.",
+      "display": "Sempa xijchihua.",
+      "xml": "<string name=\"ui_please_try_again\">Sempa xijchihua.</string>",
+      "raw_sha256": "7ee75d140fbdb6ac69ba4c01cb33329596e953220d45f97878daf4c74f37d981",
+      "placeholders": [],
+      "backtranslation": "Do it again. [Try the failed attempt again.]",
+      "caller": "Two fallback paths: startup recovery failure without an error message and generic edit failure without an error message. Instruction asks another attempt; not Save-only, memory-only, brush-only or Redo-history action.",
+      "caller_evidence": {
+        "path": "nahua-core-actions8-callers-1426.json",
+        "sha256": "91961147f481b537b1a96fc1c726c193dfbd0e0862c6f1dfe0d155133aa064e6"
+      },
+      "primary_evidence": {
+        "path": "nahua-core-actions8-primary-1426.json",
+        "sha256": "f1b574e2597e48f88e91f89cd745d392349e2bd3f1e775119629ecf2b8fae2aa"
+      },
+      "source_entry_ids": [
+        "again-and-do"
+      ],
+      "sources": [
+        "https://www.scriptureearth.org/data/nhw/PDF/00-WNTnhw-web.pdf"
+      ],
+      "own_variety_only": true,
+      "current_absence_verified": true,
+      "confidence": "Moderate, source-grounded productive grammar and caller-bounded functional paraphrase; independent review pending.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "authored_extension": "Generic do-again instruction is assessed for these failure callers separately from history Redo. No explicit politeness particle or claim of success.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own Philemon20 independently supplies exact singular xijchihua and preverbal sempa plus another imperative, in each corpus separately. Authored do-again instruction is bounded to two error fallback emitters; no guaranteed success, history Redo or Save-only meaning. Polite English please is functionally omitted rather than falsely attested.",
+      "candidate": {
+        "path": "nahua-core-actions8-author-1426.json",
+        "sha256": "647c3f36ae774ec23b5314568225089665f278271edc03f6e30d0142854b0778"
+      },
+      "independent_review": {
+        "path": "review-nahua-core-actions8-independent-1430.json",
+        "sha256": "d94bbccc7475412d4b23aafd4cae780509b08381c3bff604abe2ce5b7af3a63a"
+      },
+      "component_intake": {
+        "path": "reviewed-nahua-core8-currenta721f04-intake-1430.json",
+        "sha256": "c6b72bbba694d27cc9728b12d04f801e60c149bbcd8a326af861fa092dec30ce"
+      }
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_draw_again",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Draw again",
+      "attributes": {
+        "name": "ui_draw_again"
+      },
+      "raw": "Sempa xitequiti",
+      "value": "Sempa xitequiti",
+      "display": "Sempa xitequiti",
+      "xml": "<string name=\"ui_draw_again\">Sempa xitequiti</string>",
+      "raw_sha256": "93fb74ea4415636e13f670c4d7d989079642fa6fc9c1bb0b77f61b74e4e1cf86",
+      "placeholders": [],
+      "backtranslation": "Work again. [Resume using the previous editing tool.]",
+      "caller": "ZOOM tool options button calls chooseTool(drawingTool). showToolOptions records every prior non-ZOOM tool, including selection, text and colour-picker tools. Return to work is intentionally broader than draw with a brush; no operation or stroke replay.",
+      "caller_evidence": {
+        "path": "nahua-core-actions8-callers-1426.json",
+        "sha256": "91961147f481b537b1a96fc1c726c193dfbd0e0862c6f1dfe0d155133aa064e6"
+      },
+      "primary_evidence": {
+        "path": "nahua-core-actions8-primary-1426.json",
+        "sha256": "f1b574e2597e48f88e91f89cd745d392349e2bd3f1e775119629ecf2b8fae2aa"
+      },
+      "source_entry_ids": [
+        "again-and-do",
+        "work-singular"
+      ],
+      "sources": [
+        "https://www.scriptureearth.org/data/nhw/PDF/00-WNTnhw-web.pdf"
+      ],
+      "own_variety_only": true,
+      "current_absence_verified": true,
+      "confidence": "Moderate, source-grounded productive grammar and caller-bounded functional paraphrase; independent review pending.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "authored_extension": "Intentional resume-work paraphrase preserves return to any stored non-ZOOM tool; does not promise a brush or replay.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own singular Xitequiti and sempa verified separately in each NT. Functional resume-work wording fits previous non-ZOOM tool including selection/text/picker. Does not repeat a stroke, force brush mode or invoke history replay.",
+      "candidate": {
+        "path": "nahua-core-actions8-author-1426.json",
+        "sha256": "647c3f36ae774ec23b5314568225089665f278271edc03f6e30d0142854b0778"
+      },
+      "independent_review": {
+        "path": "review-nahua-core-actions8-independent-1430.json",
+        "sha256": "d94bbccc7475412d4b23aafd4cae780509b08381c3bff604abe2ce5b7af3a63a"
+      },
+      "component_intake": {
+        "path": "reviewed-nahua-core8-currenta721f04-intake-1430.json",
+        "sha256": "c6b72bbba694d27cc9728b12d04f801e60c149bbcd8a326af861fa092dec30ce"
+      }
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_untitled",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Untitled",
+      "attributes": {
+        "name": "ui_untitled"
+      },
+      "raw": "Amo quipiya se tocaitl",
+      "value": "Amo quipiya se tocaitl",
+      "display": "Amo quipiya se tocaitl",
+      "xml": "<string name=\"ui_untitled\">Amo quipiya se tocaitl</string>",
+      "raw_sha256": "8f389734ee0b12a289c2f258d2c759863f340859c48cd9c24d976c97ae6b4049",
+      "placeholders": [],
+      "backtranslation": "It has no name. [Unnamed filename stem.]",
+      "caller": "Initial/recovered/new image filename and blank-name fallback before ExportNames.withExtension in Save/share/export picker. Authored unnamed statement is a nonblank filename-safe stem with no extension, slash, backslash, control character or trailing period. Not a title-input command and not a Save failure.",
+      "caller_evidence": {
+        "path": "nahua-core-actions8-callers-1426.json",
+        "sha256": "91961147f481b537b1a96fc1c726c193dfbd0e0862c6f1dfe0d155133aa064e6"
+      },
+      "primary_evidence": {
+        "path": "nahua-core-actions8-primary-1426.json",
+        "sha256": "f1b574e2597e48f88e91f89cd745d392349e2bd3f1e775119629ecf2b8fae2aa"
+      },
+      "source_entry_ids": [
+        "negative-possession",
+        "name-inanimate"
+      ],
+      "sources": [
+        "https://www.scriptureearth.org/data/nhw/PDF/00-WNTnhw-web.pdf"
+      ],
+      "own_variety_only": true,
+      "current_absence_verified": true,
+      "confidence": "Moderate, source-grounded productive grammar and caller-bounded functional paraphrase; independent review pending.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "authored_extension": "Unspecified software/image actor in present negative possession. Uses a name noun, not a person-only title. Safe stem remains unnamed semantically even when shown with generated extension.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own negative possession plus indefinite object verified, composed as no-name filename stem. No slash, backslash, control characters, extension or trailing period; current SaveOptionsDialog appends extension. NCH retains directly re-read Cruzhica tokajyotl noun with locality/mapping caveat. NHW Revelation2:17 independently uses name inscription on a stone, avoiding person-only title inference. No actual human name is missing.",
+      "candidate": {
+        "path": "nahua-core-actions8-author-1426.json",
+        "sha256": "647c3f36ae774ec23b5314568225089665f278271edc03f6e30d0142854b0778"
+      },
+      "independent_review": {
+        "path": "review-nahua-core-actions8-independent-1430.json",
+        "sha256": "d94bbccc7475412d4b23aafd4cae780509b08381c3bff604abe2ce5b7af3a63a"
+      },
+      "component_intake": {
+        "path": "reviewed-nahua-core8-currenta721f04-intake-1430.json",
+        "sha256": "c6b72bbba694d27cc9728b12d04f801e60c149bbcd8a326af861fa092dec30ce"
+      }
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_select_all",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Select all",
+      "attributes": {
+        "name": "ui_select_all"
+      },
+      "raw": "Xijtlapejpeni nochi",
+      "value": "Xijtlapejpeni nochi",
+      "display": "Xijtlapejpeni nochi",
+      "xml": "<string name=\"ui_select_all\">Xijtlapejpeni nochi</string>",
+      "raw_sha256": "fd499988b2bbb9f07d683a60013df0d9aad83bc427b3dbbab7adf2b98f6c2ff4",
+      "placeholders": [],
+      "backtranslation": "Select all. [The whole current bitmap.]",
+      "caller": "Edit menu and EditIcon label. Classic selectAll chooses SELECT and selects RectF from zero to current bitmap width and height. CTRL+A shares that operation. Unrelated EditText.selectAll calls do not use this resource and are excluded.",
+      "caller_evidence": {
+        "path": "nahua-core-actions8-callers-1426.json",
+        "sha256": "91961147f481b537b1a96fc1c726c193dfbd0e0862c6f1dfe0d155133aa064e6"
+      },
+      "primary_evidence": {
+        "path": "nahua-core-actions8-primary-1426.json",
+        "sha256": "f1b574e2597e48f88e91f89cd745d392349e2bd3f1e775119629ecf2b8fae2aa"
+      },
+      "source_entry_ids": [
+        "choose-plural",
+        "work-singular",
+        "work-plural-all"
+      ],
+      "sources": [
+        "https://www.scriptureearth.org/data/nhw/PDF/00-WNTnhw-web.pdf"
+      ],
+      "own_variety_only": true,
+      "current_absence_verified": true,
+      "confidence": "Moderate, source-grounded productive grammar and caller-bounded functional paraphrase; independent review pending.",
+      "review_status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "authored_extension": "Singular imperative derived only from own explicit plural form and own imperative singular/plural pair; whole bitmap supplies object of all.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own choice imperative verified as NCH Xijtapejpenica versus NHW Xijtlapejpenica, each with own singular/plural Xitequiti/Xitequitica contrast supporting productive removal of -ca. The source choice includes laws, so not a people-only selection verb. Own nochi includes whole-object scope. Current callback selects whole bitmap rectangle, not all files or text inputs.",
+      "candidate": {
+        "path": "nahua-core-actions8-author-1426.json",
+        "sha256": "647c3f36ae774ec23b5314568225089665f278271edc03f6e30d0142854b0778"
+      },
+      "independent_review": {
+        "path": "review-nahua-core-actions8-independent-1430.json",
+        "sha256": "d94bbccc7475412d4b23aafd4cae780509b08381c3bff604abe2ce5b7af3a63a"
+      },
+      "component_intake": {
+        "path": "reviewed-nahua-core8-currenta721f04-intake-1430.json",
+        "sha256": "c6b72bbba694d27cc9728b12d04f801e60c149bbcd8a326af861fa092dec30ce"
+      }
+    }
+  ],
+  "note": "Selected review only; local prefixes stripped. Native-speaker, runtime and hosted CI unverified."
+}

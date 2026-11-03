@@ -1,0 +1,2321 @@
+{
+  "source_intake": "reviewed-americas-p1-25-currenta721f04-intake-1418.json",
+  "rows": [
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_colour",
+      "english": "Colour %1$s",
+      "attributes": {
+        "name": "ui_colour"
+      },
+      "raw": "ᎠᏑᏫᏓ %1$s",
+      "value": "ᎠᏑᏫᏓ %1$s",
+      "display": "ᎠᏑᏫᏓ %1$s",
+      "backtranslation": "Colour %1$s, where the slot is a literal #RRGGBB value.",
+      "placeholders": [
+        "%1$s"
+      ],
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 975,
+          "end_line": 984,
+          "exact_lines": [
+            {
+              "line": 975,
+              "text": "        parent.addView(label(ui(R.string.ui_saved_palette23)));parent.addView(row);refreshCustomPalette()"
+            },
+            {
+              "line": 976,
+              "text": "    }"
+            },
+            {
+              "line": 977,
+              "text": "    private fun refreshCustomPalette() {"
+            },
+            {
+              "line": 978,
+              "text": "        val palette=CustomColours(this)"
+            },
+            {
+              "line": 979,
+              "text": "        customPaletteCells.forEachIndexed {index,cell ->"
+            },
+            {
+              "line": 980,
+              "text": "            cell.colour=if(palette.has(index)) palette.colour(index) else null"
+            },
+            {
+              "line": 981,
+              "text": "            cell.contentDescription=cell.colour?.let {ui(R.string.ui_colour,String.format(java.util.Locale.ROOT,\"#%06X\",it and 0xffffff))}"
+            },
+            {
+              "line": 982,
+              "text": "                ?: ui(R.string.ui_empty_palette26,index+1)"
+            },
+            {
+              "line": 983,
+              "text": "        }"
+            },
+            {
+              "line": 984,
+              "text": "    }"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "git_blob_sha": "c03634eca7ec3b8ba92d4cd359bb1199498507ce",
+          "content_sha256": "7f1519d261aa399bfef4066349028dafff84dc438411565e0519feca0cb37eab",
+          "start_line": 123,
+          "end_line": 132,
+          "exact_lines": [
+            {
+              "line": 123,
+              "text": "        palette.addView(label(ui(R.string.ui_basic_colours)))"
+            },
+            {
+              "line": 124,
+              "text": "        val basics = intArrayOf(Color.BLACK, 0xff808080.toInt(),0xff800000.toInt(),0xff808000.toInt(),0xff008000.toInt(),0xff008080.toInt(),0xff000080.toInt(),0xff800080.toInt(),"
+            },
+            {
+              "line": 125,
+              "text": "            Color.WHITE,0xffc0c0c0.toInt(),Color.RED,Color.YELLOW,Color.GREEN,Color.CYAN,Color.BLUE,Color.MAGENTA) +"
+            },
+            {
+              "line": 126,
+              "text": "            (0 until 32).map { Color.HSVToColor(floatArrayOf((it % 8) * 45f, if (it < 16) .5f else 1f, if (it % 16 < 8) 1f else .65f)) }.toIntArray()"
+            },
+            {
+              "line": 127,
+              "text": "        fun swatch(colour: Int, tagName: String, select: () -> Int): View = View(activity).apply {"
+            },
+            {
+              "line": 128,
+              "text": "            tag = tagName; contentDescription = ui(R.string.ui_colour, String.format(Locale.ROOT, \"#%06X\", colour and 0xffffff))"
+            },
+            {
+              "line": 129,
+              "text": "            swatchBackground(this, colour); isFocusable = true; isClickable = true"
+            },
+            {
+              "line": 130,
+              "text": "            setOnClickListener { value.rgb(select()); sync() }"
+            },
+            {
+              "line": 131,
+              "text": "        }"
+            },
+            {
+              "line": 132,
+              "text": "        basics.toList().chunked(8).forEachIndexed { rowIndex, row ->"
+            }
+          ]
+        }
+      ],
+      "semantic_composition": "Noun/accessibility label. One digital colour, not an image or physical pigment. Repeated unaltered constituent ᎠᏑᏫᏓ in three Microsoft digital colour terms identifies the head noun. It is not copied from a coloured-person adjective.",
+      "independent_semantic_review": "Exact slot is one #RRGGBB string, not image title or colour count. Repeated unchanged own technical colour noun is supported by foreground/accent/profile entries. No adjective-to-noun conversion inferred.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_new_colour",
+      "english": "New colour",
+      "attributes": {
+        "name": "ui_new_colour"
+      },
+      "raw": "ᎢᏤᎢ ᎠᏑᏫᏓ",
+      "value": "ᎢᏤᎢ ᎠᏑᏫᏓ",
+      "display": "ᎢᏤᎢ ᎠᏑᏫᏓ",
+      "backtranslation": "New colour.",
+      "placeholders": [],
+      "caller_anchors": [],
+      "semantic_composition": "Noun phrase. Exact inanimate nonplural New + the attested digital-colour head noun. Microsoft adjective-before-noun guidance supports this productive composition. No create imperative is implied. No production caller found.",
+      "independent_semantic_review": "Own inanimate nonplural new plus colour noun with source adjective order. Entire source scan found no production reference; semantic-only resource, not a live dialog claim.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_edit_colour26",
+      "english": "Edit colour",
+      "attributes": {
+        "name": "ui_edit_colour26"
+      },
+      "raw": "ᎠᏑᏫᏓ ᎯᏁᏟᏴᎾ",
+      "value": "ᎠᏑᏫᏓ ᎯᏁᏟᏴᎾ",
+      "display": "ᎠᏑᏫᏓ ᎯᏁᏟᏴᎾ",
+      "backtranslation": "Change the colour.",
+      "placeholders": [],
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 986,
+          "end_line": 1010,
+          "exact_lines": [
+            {
+              "line": 986,
+              "text": "        val store=CustomColours(this)"
+            },
+            {
+              "line": 987,
+              "text": "        val index=slot ?: (0 until 16).firstOrNull {!store.has(it)}"
+            },
+            {
+              "line": 988,
+              "text": "        if(index==null) {"
+            },
+            {
+              "line": 989,
+              "text": "            val entries=store.entries()"
+            },
+            {
+              "line": 990,
+              "text": "            EditorDialogBuilder(this).setTitle(ui(R.string.ui_replace_palette23))"
+            },
+            {
+              "line": 991,
+              "text": "                .setItems(entries.map {String.format(java.util.Locale.ROOT,\"#%06X\",it.second and 0xffffff)}.toTypedArray()) {_,which ->addColour(entries[which].first)}"
+            },
+            {
+              "line": 992,
+              "text": "                .setNegativeButton(ui(R.string.ui_cancel),null).show()"
+            },
+            {
+              "line": 993,
+              "text": "            return"
+            },
+            {
+              "line": 994,
+              "text": "        }"
+            },
+            {
+              "line": 995,
+              "text": "        colourPreviewOriginal=document.foreground to document.background"
+            },
+            {
+              "line": 996,
+              "text": "        AdvancedColourDialog(this,if(slot!=null && store.has(slot)) store.colour(slot) else document.foreground,false,"
+            },
+            {
+              "line": 997,
+              "text": "            preview={document.foreground=it;updateColours(false)},paletteChanged={refreshCustomPalette()},"
+            },
+            {
+              "line": 998,
+              "text": "            closed={colourPreviewOriginal?.let {document.foreground=it.first;updateColours(false)};colourPreviewOriginal=null},"
+            },
+            {
+              "line": 999,
+              "text": "            initialMode=1,addingToPalette=true,replacingPaletteColour=store.has(index)) {colour ->"
+            },
+            {
+              "line": 1000,
+              "text": "                colourPreviewOriginal=null;store.replace(index,colour);refreshCustomPalette();setColour(colour,false)"
+            },
+            {
+              "line": 1001,
+              "text": "            }.show()"
+            },
+            {
+              "line": 1002,
+              "text": "    }"
+            },
+            {
+              "line": 1003,
+              "text": "    private fun editPaletteColour(index: Int) {"
+            },
+            {
+              "line": 1004,
+              "text": "        val store=CustomColours(this)"
+            },
+            {
+              "line": 1005,
+              "text": "        if(!store.has(index)) {addColour(index);return}"
+            },
+            {
+              "line": 1006,
+              "text": "        EditorDialogBuilder(this).setTitle(String.format(java.util.Locale.ROOT,\"#%06X\",store.colour(index) and 0xffffff))"
+            },
+            {
+              "line": 1007,
+              "text": "            .setItems(arrayOf(ui(R.string.ui_background_colour),ui(R.string.ui_edit_colour26),ui(R.string.ui_remove_palette23))) {_,action ->"
+            },
+            {
+              "line": 1008,
+              "text": "                when(action) {0->setColour(store.colour(index),true);1->addColour(index);2->{store.remove(index);refreshCustomPalette()}}"
+            },
+            {
+              "line": 1009,
+              "text": "            }.setNegativeButton(ui(R.string.ui_cancel),null).show()"
+            },
+            {
+              "line": 1010,
+              "text": "    }"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "git_blob_sha": "c03634eca7ec3b8ba92d4cd359bb1199498507ce",
+          "content_sha256": "7f1519d261aa399bfef4066349028dafff84dc438411565e0519feca0cb37eab",
+          "start_line": 314,
+          "end_line": 315,
+          "exact_lines": [
+            {
+              "line": 314,
+              "text": "        val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)"
+            },
+            {
+              "line": 315,
+              "text": "            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CustomColours.kt",
+          "git_blob_sha": "c03b4e89c99e3d4fd60a46a0f79c027444bad271",
+          "content_sha256": "f19124dfe414fe426f23089fe5c2459366c0e48c9f5f731ecd1d7feed29cf09a",
+          "start_line": 9,
+          "end_line": 21,
+          "exact_lines": [
+            {
+              "line": 9,
+              "text": "    private val prefs=context.getSharedPreferences(\"classic-custom-colours\",Context.MODE_PRIVATE)"
+            },
+            {
+              "line": 10,
+              "text": "    private val defaults=listOf(0xff5b67ff.toInt(),0xffffd700.toInt(),0xffc0c0c0.toInt(),0xffb87333.toInt())"
+            },
+            {
+              "line": 11,
+              "text": "    fun has(index: Int)=!prefs.getBoolean(\"removed_$index\",false) && (index<defaults.size || prefs.contains(\"colour_$index\"))"
+            },
+            {
+              "line": 12,
+              "text": "    fun colour(index: Int)=prefs.getInt(\"colour_$index\",defaults.getOrNull(index) ?: Color.WHITE) or Color.BLACK"
+            },
+            {
+              "line": 13,
+              "text": "    fun entries()=(0 until 16).filter {has(it)}.map {it to colour(it)}"
+            },
+            {
+              "line": 14,
+              "text": "    fun add(colour: Int): Boolean {"
+            },
+            {
+              "line": 15,
+              "text": "        if(entries().any {it.second==colour}) return true"
+            },
+            {
+              "line": 16,
+              "text": "        val index=(0 until 16).firstOrNull {!has(it)} ?: return false"
+            },
+            {
+              "line": 17,
+              "text": "        replace(index,colour);return true"
+            },
+            {
+              "line": 18,
+              "text": "    }"
+            },
+            {
+              "line": 19,
+              "text": "    fun replace(index: Int,colour: Int) {require(index in 0..15);prefs.edit().putInt(\"colour_$index\",colour or Color.BLACK).remove(\"removed_$index\").remove(\"next\").apply()}"
+            },
+            {
+              "line": 20,
+              "text": "    fun remove(index: Int) {require(index in 0..15);prefs.edit().remove(\"colour_$index\").putBoolean(\"removed_$index\",true).apply()}"
+            },
+            {
+              "line": 21,
+              "text": "}"
+            }
+          ]
+        }
+      ],
+      "semantic_composition": "Action/menu item and dialog title modifying the selected stored colour integer. Technical Change means modify a property value, exactly matching this caller. Attribute-before-Change model is independently attested in TBX resize. Does not use edit noun or invent a suffix.",
+      "independent_semantic_review": "Changes the stored palette colour value. Microsoft change property-value verb, with independently attested attribute-before-change pattern. No new morphology.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_add_colour26",
+      "english": "Add colour",
+      "attributes": {
+        "name": "ui_add_colour26"
+      },
+      "raw": "ᎯᏍᏆᏂᎪᏓ (ᎠᏑᏫᏓ)",
+      "value": "ᎯᏍᏆᏂᎪᏓ (ᎠᏑᏫᏓ)",
+      "display": "ᎯᏍᏆᏂᎪᏓ (ᎠᏑᏫᏓ)",
+      "backtranslation": "Save (colour), in the saved palette.",
+      "placeholders": [],
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 960,
+          "end_line": 1003,
+          "exact_lines": [
+            {
+              "line": 960,
+              "text": "    private fun makeCustomPalette(parent: LinearLayout) {"
+            },
+            {
+              "line": 961,
+              "text": "        val row=LinearLayout(this).apply {tag=\"saved_palette_row\";gravity=Gravity.CENTER_VERTICAL}"
+            },
+            {
+              "line": 962,
+              "text": "        val strip=LinearLayout(this)"
+            },
+            {
+              "line": 963,
+              "text": "        repeat(16) {index ->"
+            },
+            {
+              "line": 964,
+              "text": "            val cell=SavedColourCell(this).apply {tag=\"palette_custom_$index\";isFocusable=true"
+            },
+            {
+              "line": 965,
+              "text": "                setOnClickListener {if(!busy) {"
+            },
+            {
+              "line": 966,
+              "text": "                    val store=CustomColours(this@ClassicPaintActivity)"
+            },
+            {
+              "line": 967,
+              "text": "                    if(store.has(index)) setColour(store.colour(index),false) else addColour(index)"
+            },
+            {
+              "line": 968,
+              "text": "                }}"
+            },
+            {
+              "line": 969,
+              "text": "                setOnLongClickListener {if(!busy) editPaletteColour(index);true}"
+            },
+            {
+              "line": 970,
+              "text": "            }"
+            },
+            {
+              "line": 971,
+              "text": "            customPaletteCells.add(cell);strip.addView(cell,LinearLayout.LayoutParams(dp(40),dp(40)).apply {setMargins(dp(2),dp(2),dp(2),dp(2))})"
+            },
+            {
+              "line": 972,
+              "text": "        }"
+            },
+            {
+              "line": 973,
+              "text": "        row.addView(HorizontalScrollView(this).apply {addView(strip)},LinearLayout.LayoutParams(0,dp(44),1f))"
+            },
+            {
+              "line": 974,
+              "text": "        row.addView(panelButton(ui(R.string.ui_add_colour26),\"add_colour\",R.drawable.classic_palette) {addColour()},LinearLayout.LayoutParams(-2,toolHeight))"
+            },
+            {
+              "line": 975,
+              "text": "        parent.addView(label(ui(R.string.ui_saved_palette23)));parent.addView(row);refreshCustomPalette()"
+            },
+            {
+              "line": 976,
+              "text": "    }"
+            },
+            {
+              "line": 977,
+              "text": "    private fun refreshCustomPalette() {"
+            },
+            {
+              "line": 978,
+              "text": "        val palette=CustomColours(this)"
+            },
+            {
+              "line": 979,
+              "text": "        customPaletteCells.forEachIndexed {index,cell ->"
+            },
+            {
+              "line": 980,
+              "text": "            cell.colour=if(palette.has(index)) palette.colour(index) else null"
+            },
+            {
+              "line": 981,
+              "text": "            cell.contentDescription=cell.colour?.let {ui(R.string.ui_colour,String.format(java.util.Locale.ROOT,\"#%06X\",it and 0xffffff))}"
+            },
+            {
+              "line": 982,
+              "text": "                ?: ui(R.string.ui_empty_palette26,index+1)"
+            },
+            {
+              "line": 983,
+              "text": "        }"
+            },
+            {
+              "line": 984,
+              "text": "    }"
+            },
+            {
+              "line": 985,
+              "text": "    private fun addColour(slot: Int?=null) {"
+            },
+            {
+              "line": 986,
+              "text": "        val store=CustomColours(this)"
+            },
+            {
+              "line": 987,
+              "text": "        val index=slot ?: (0 until 16).firstOrNull {!store.has(it)}"
+            },
+            {
+              "line": 988,
+              "text": "        if(index==null) {"
+            },
+            {
+              "line": 989,
+              "text": "            val entries=store.entries()"
+            },
+            {
+              "line": 990,
+              "text": "            EditorDialogBuilder(this).setTitle(ui(R.string.ui_replace_palette23))"
+            },
+            {
+              "line": 991,
+              "text": "                .setItems(entries.map {String.format(java.util.Locale.ROOT,\"#%06X\",it.second and 0xffffff)}.toTypedArray()) {_,which ->addColour(entries[which].first)}"
+            },
+            {
+              "line": 992,
+              "text": "                .setNegativeButton(ui(R.string.ui_cancel),null).show()"
+            },
+            {
+              "line": 993,
+              "text": "            return"
+            },
+            {
+              "line": 994,
+              "text": "        }"
+            },
+            {
+              "line": 995,
+              "text": "        colourPreviewOriginal=document.foreground to document.background"
+            },
+            {
+              "line": 996,
+              "text": "        AdvancedColourDialog(this,if(slot!=null && store.has(slot)) store.colour(slot) else document.foreground,false,"
+            },
+            {
+              "line": 997,
+              "text": "            preview={document.foreground=it;updateColours(false)},paletteChanged={refreshCustomPalette()},"
+            },
+            {
+              "line": 998,
+              "text": "            closed={colourPreviewOriginal?.let {document.foreground=it.first;updateColours(false)};colourPreviewOriginal=null},"
+            },
+            {
+              "line": 999,
+              "text": "            initialMode=1,addingToPalette=true,replacingPaletteColour=store.has(index)) {colour ->"
+            },
+            {
+              "line": 1000,
+              "text": "                colourPreviewOriginal=null;store.replace(index,colour);refreshCustomPalette();setColour(colour,false)"
+            },
+            {
+              "line": 1001,
+              "text": "            }.show()"
+            },
+            {
+              "line": 1002,
+              "text": "    }"
+            },
+            {
+              "line": 1003,
+              "text": "    private fun editPaletteColour(index: Int) {"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "git_blob_sha": "c03634eca7ec3b8ba92d4cd359bb1199498507ce",
+          "content_sha256": "7f1519d261aa399bfef4066349028dafff84dc438411565e0519feca0cb37eab",
+          "start_line": 314,
+          "end_line": 330,
+          "exact_lines": [
+            {
+              "line": 314,
+              "text": "        val dialog = EditorDialogBuilder(activity).setTitle(if(addingToPalette) ui(if(replacingPaletteColour) R.string.ui_edit_colour26 else R.string.ui_add_colour26) else if (background) ui(R.string.ui_background_colour) else ui(R.string.ui_foreground_colour)).setView(dialogContent)"
+            },
+            {
+              "line": 315,
+              "text": "            .setNegativeButton(ui(R.string.ui_cancel)) {_,_->preview(original)}.setOnCancelListener {preview(original)}.setPositiveButton(ui(if(addingToPalette) {if(replacingPaletteColour) R.string.ui_save else R.string.ui_add_colour26} else R.string.ui_use_colour), null).create()"
+            },
+            {
+              "line": 316,
+              "text": "        fun resizeHorizontalWindow() {"
+            },
+            {
+              "line": 317,
+              "text": "            if(VerticalText.uiVertical(activity)) return"
+            },
+            {
+              "line": 318,
+              "text": "            val frame=Rect();activity.window.decorView.getWindowVisibleDisplayFrame(frame)"
+            },
+            {
+              "line": 319,
+              "text": "            val wide=activity.resources.configuration.orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE &&"
+            },
+            {
+              "line": 320,
+              "text": "                frame.width()>=dp(560)"
+            },
+            {
+              "line": 321,
+              "text": "            val width=if(wide) minOf(frame.width(),dp(900)) else ViewGroup.LayoutParams.WRAP_CONTENT"
+            },
+            {
+              "line": 322,
+              "text": "            if(dialog.window!!.attributes.width!=width) dialog.window!!.setLayout(width,ViewGroup.LayoutParams.WRAP_CONTENT)"
+            },
+            {
+              "line": 323,
+              "text": "        }"
+            },
+            {
+              "line": 324,
+              "text": "        val layoutListener=android.view.ViewTreeObserver.OnGlobalLayoutListener {resizeHorizontalWindow()}"
+            },
+            {
+              "line": 325,
+              "text": "        dialog.setOnShowListener {"
+            },
+            {
+              "line": 326,
+              "text": "            if(!VerticalText.uiVertical(activity)) activity.window.decorView.viewTreeObserver.addOnGlobalLayoutListener(layoutListener)"
+            },
+            {
+              "line": 327,
+              "text": "            resizeHorizontalWindow()"
+            },
+            {
+              "line": 328,
+              "text": "            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {"
+            },
+            {
+              "line": 329,
+              "text": "                if (fields.values.any { it.error != null }) return@setOnClickListener"
+            },
+            {
+              "line": 330,
+              "text": "                accepted=true;commit(value.colour or Color.BLACK);dialog.dismiss()"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/CustomColours.kt",
+          "git_blob_sha": "c03b4e89c99e3d4fd60a46a0f79c027444bad271",
+          "content_sha256": "f19124dfe414fe426f23089fe5c2459366c0e48c9f5f731ecd1d7feed29cf09a",
+          "start_line": 9,
+          "end_line": 21,
+          "exact_lines": [
+            {
+              "line": 9,
+              "text": "    private val prefs=context.getSharedPreferences(\"classic-custom-colours\",Context.MODE_PRIVATE)"
+            },
+            {
+              "line": 10,
+              "text": "    private val defaults=listOf(0xff5b67ff.toInt(),0xffffd700.toInt(),0xffc0c0c0.toInt(),0xffb87333.toInt())"
+            },
+            {
+              "line": 11,
+              "text": "    fun has(index: Int)=!prefs.getBoolean(\"removed_$index\",false) && (index<defaults.size || prefs.contains(\"colour_$index\"))"
+            },
+            {
+              "line": 12,
+              "text": "    fun colour(index: Int)=prefs.getInt(\"colour_$index\",defaults.getOrNull(index) ?: Color.WHITE) or Color.BLACK"
+            },
+            {
+              "line": 13,
+              "text": "    fun entries()=(0 until 16).filter {has(it)}.map {it to colour(it)}"
+            },
+            {
+              "line": 14,
+              "text": "    fun add(colour: Int): Boolean {"
+            },
+            {
+              "line": 15,
+              "text": "        if(entries().any {it.second==colour}) return true"
+            },
+            {
+              "line": 16,
+              "text": "        val index=(0 until 16).firstOrNull {!has(it)} ?: return false"
+            },
+            {
+              "line": 17,
+              "text": "        replace(index,colour);return true"
+            },
+            {
+              "line": 18,
+              "text": "    }"
+            },
+            {
+              "line": 19,
+              "text": "    fun replace(index: Int,colour: Int) {require(index in 0..15);prefs.edit().putInt(\"colour_$index\",colour or Color.BLACK).remove(\"removed_$index\").remove(\"next\").apply()}"
+            },
+            {
+              "line": 20,
+              "text": "    fun remove(index: Int) {require(index in 0..15);prefs.edit().remove(\"colour_$index\").putBoolean(\"removed_$index\",true).apply()}"
+            },
+            {
+              "line": 21,
+              "text": "}"
+            }
+          ]
+        }
+      ],
+      "semantic_composition": "Functional action equivalent, deliberately not claimed as literal Add. Exact attested Save menu-command name is retained as a command label with an explicit colour object category in parentheses. All verified uses lead to storing a chosen colour integer in the persistent custom palette; the main action can choose a replacement if all slots are occupied. Save remains true in both vacant and replacement paths and avoids a false guaranteed count increase. This is distinct from non-palette Use colour. It names the operation when opening its dialog and on its commit button; does not claim saving has already succeeded.",
+      "independent_semantic_review": "Functional Save (colour) fits all actual palette routes. Classic974 starts addColour; if full it asks which entry to replace, otherwise opens addingToPalette dialog. Advanced330 commits integer into Classic1000 CustomColours.replace; SharedPreferences stores it. This is intended operation, not success statement, and not non-palette Use colour. The word palette is supplied by actual adjacent palette heading, not asserted to occur in candidate.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_select_all",
+      "english": "Select all",
+      "attributes": {
+        "name": "ui_select_all"
+      },
+      "raw": "ᏂᎦᏓ ᎠᏑᏰᏍᏗ",
+      "value": "ᏂᎦᏓ ᎠᏑᏰᏍᏗ",
+      "display": "ᏂᎦᏓ ᎠᏑᏰᏍᏗ",
+      "backtranslation": "Select all of it.",
+      "placeholders": [],
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+          "git_blob_sha": "4a0ae9a9b13dccdf4da4869fed865f3721efc8f8",
+          "content_sha256": "8d98558bb91e64e995afd359a29e9fa27783800bfdf5ac70da1efabfd5cde5b1",
+          "start_line": 10,
+          "end_line": 13,
+          "exact_lines": [
+            {
+              "line": 10,
+              "text": "import org.catrobat.paintroid.R"
+            },
+            {
+              "line": 11,
+              "text": ""
+            },
+            {
+              "line": 12,
+              "text": "enum class EditIcon(private val labelId: Int) { SAVE(R.string.ui_save), FIT(R.string.ui_fit_entire_canvas_in_view), UNDO(R.string.ui_undo), REDO(R.string.ui_redo), CUT(R.string.ui_cut), COPY(R.string.ui_copy), PASTE(R.string.ui_paste), MINUS(R.string.ui_zoom_out), PLUS(R.string.ui_zoom_in), SELECT_ALL(R.string.ui_select_all), SIDEBAR(R.string.ui_toggle_toolbox);"
+            },
+            {
+              "line": 13,
+              "text": "    val label: String get() = ui(labelId)"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 844,
+          "end_line": 850,
+          "exact_lines": [
+            {
+              "line": 844,
+              "text": "            ui(R.string.ui_how_to_use) to {showHelp()},"
+            },
+            {
+              "line": 845,
+              "text": "            ui(R.string.ui_about_credits23) to {showAboutOptions()}"
+            },
+            {
+              "line": 846,
+              "text": "        ) + if(autosaveBlocked || autosave.recoveryCopies().isNotEmpty()) listOf(ui(R.string.ui_export_recovery_copy) to {requestRecoveryExport()}) else emptyList()).map {PanelCommand(it.first,it.second)}"
+            },
+            {
+              "line": 847,
+              "text": "        \"Edit\"->listOf("
+            },
+            {
+              "line": 848,
+              "text": "            command(ui(R.string.ui_select_all),R.drawable.breeze_select_all) {selectAll();selectTab(\"Edit\")},"
+            },
+            {
+              "line": 849,
+              "text": "            command(ui(R.string.ui_canvas_bounds),R.drawable.classic_bounds) {trimCanvas()},"
+            },
+            {
+              "line": 850,
+              "text": "            command(ui(R.string.ui_delete_selection),R.drawable.classic_delete) {if(!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first))},"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 1030,
+          "end_line": 1036,
+          "exact_lines": [
+            {
+              "line": 1030,
+              "text": "    private fun selectAll() {"
+            },
+            {
+              "line": 1031,
+              "text": "        chooseTool(PaintTool.SELECT)"
+            },
+            {
+              "line": 1032,
+              "text": "        document.select(RectF(0f,0f,document.bitmap.width.toFloat(),document.bitmap.height.toFloat()))"
+            },
+            {
+              "line": 1033,
+              "text": "    }"
+            },
+            {
+              "line": 1034,
+              "text": "    private fun undoEdit() {"
+            },
+            {
+              "line": 1035,
+              "text": "        val resizing = paintCanvas.trim != null"
+            },
+            {
+              "line": 1036,
+              "text": "        if (!paintCanvas.cancelPending()) document.undo()"
+            }
+          ]
+        }
+      ],
+      "semantic_composition": "Action label: all of the current bitmap, proven by select(RectF(0,0,width,height)). OU All of them expressly also glosses all of it. Select13946 marks material for subsequent action; the checkbox-only sense8245 is not the semantic support. Whole source forms retained without synthesizing an inflected plural imperative. This is a productive scope + fixed technical action label, not an attested complete phrase.",
+      "independent_semantic_review": "Actual selectAll selects RectF(0,0,current bitmap width,height). OU all of it + exact technical data-selection action, not checkbox-only sense or imagined plural inflection.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_copy_all",
+      "english": "Copy all",
+      "attributes": {
+        "name": "ui_copy_all"
+      },
+      "raw": "ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅᎯ",
+      "value": "ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅᎯ",
+      "display": "ᏂᎦᏓ ᏗᏟᎶᏍᏔᏅᎯ",
+      "backtranslation": "Copy all of it.",
+      "placeholders": [],
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegalInfo.kt",
+          "git_blob_sha": "7692e27f3b50068ae732526e24fbade1103f30d8",
+          "content_sha256": "fc9f51c4da1ddecba2340a2a79fdfe3d88495d10b209974de642241cff66619e",
+          "start_line": 100,
+          "end_line": 103,
+          "exact_lines": [
+            {
+              "line": 100,
+              "text": "        action(ui(R.string.ui_copy_all),\"terms_copy\") { button ->"
+            },
+            {
+              "line": 101,
+              "text": "            (activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(ClipData.newPlainText(title,text))"
+            },
+            {
+              "line": 102,
+              "text": "            LocaleTypography.showMessage(activity,ui(R.string.ui_full_text_copied),Toast.LENGTH_SHORT,button)"
+            },
+            {
+              "line": 103,
+              "text": "        }"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "content_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+          "start_line": 121,
+          "end_line": 132,
+          "exact_lines": [
+            {
+              "line": 121,
+              "text": "        body.addView(losslessBox);body.addView(slider);body.addView(ditherBox);body.addView(tiffCompressionBox);body.addView(iconControls);body.addView(asciiControls);body.addView(explanation)"
+            },
+            {
+              "line": 122,
+              "text": "        val creditsPanel=if(imageCredits.isBlank()) null else LinearLayout(activity).apply {"
+            },
+            {
+              "line": 123,
+              "text": "            orientation=LinearLayout.VERTICAL;tag=\"export_image_credits\""
+            },
+            {
+              "line": 124,
+              "text": "            val details=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;tag=\"export_credit_details\";visibility=View.GONE}"
+            },
+            {
+              "line": 125,
+              "text": "            details.addView(TextView(activity).apply {"
+            },
+            {
+              "line": 126,
+              "text": "                text=imageCredits;tag=\"export_credit_text\";setTextIsSelectable(true);textDirection=View.TEXT_DIRECTION_FIRST_STRONG"
+            },
+            {
+              "line": 127,
+              "text": "            })"
+            },
+            {
+              "line": 128,
+              "text": "            details.addView(Button(activity).apply {"
+            },
+            {
+              "line": 129,
+              "text": "                text=ui(R.string.ui_copy_all);tag=\"export_copy_credits\";isAllCaps=false"
+            },
+            {
+              "line": 130,
+              "text": "                setOnClickListener {GalleryCredits.copy(activity,imageCredits)}"
+            },
+            {
+              "line": 131,
+              "text": "            })"
+            },
+            {
+              "line": 132,
+              "text": "            addView(Button(activity).apply {"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "git_blob_sha": "3cc9b6af28dbf897d85d91d6e3f1b2a40c12cf4e",
+          "content_sha256": "8df17566502bcee5868bf9fa260857e59b2670e1c4037cef561cec4eab29a49b",
+          "start_line": 107,
+          "end_line": 111,
+          "exact_lines": [
+            {
+              "line": 107,
+              "text": "        action(ui(R.string.ui_copy_all),\"gallery_copy_credits\") {"
+            },
+            {
+              "line": 108,
+              "text": "            val credits=ImageCredit.text(documentCredits)"
+            },
+            {
+              "line": 109,
+              "text": "            if(credits.isBlank()) LocaleTypography.showMessage(this,ui(R.string.ui_no_gallery_images_have_been_inserted),Toast.LENGTH_SHORT)"
+            },
+            {
+              "line": 110,
+              "text": "            else GalleryCredits.copy(this,credits)"
+            },
+            {
+              "line": 111,
+              "text": "        }"
+            }
+          ]
+        }
+      ],
+      "semantic_composition": "Action label copying the full displayed legal text or collected credit text, not the drawing/bitmap and not just a page. Uses TBX11991 explicitly tagged Verb for duplicating data; do not replace with the similarly spelled noun image1294 or infer a completed tense from the shape of the published command token. OU11 supplies all of it. No new morphology.",
+      "independent_semantic_review": "Full legal text and image-credit text are passed unchanged to clipboard helper. Not image-copy or visible-page-only claim. Microsoft copy form explicitly tagged Verb; morphological shape alone is not evidence of completion tense.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_new_image",
+      "english": "New image",
+      "attributes": {
+        "name": "ui_new_image"
+      },
+      "raw": "ᎢᏤᎢ ᏗᏟᎶᏍᏔᏅ",
+      "value": "ᎢᏤᎢ ᏗᏟᎶᏍᏔᏅ",
+      "display": "ᎢᏤᎢ ᏗᏟᎶᏍᏔᏅ",
+      "backtranslation": "New image.",
+      "placeholders": [],
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 1013,
+          "end_line": 1028,
+          "exact_lines": [
+            {
+              "line": 1013,
+              "text": "        val column = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(20), dp(6), dp(20), dp(6)) }"
+            },
+            {
+              "line": 1014,
+              "text": "        val sizing = DimensionControls(this,ImageDimensions(document.bitmap.width,document.bitmap.height),locked = stretch)"
+            },
+            {
+              "line": 1015,
+              "text": "        column.addView(sizing)"
+            },
+            {
+              "line": 1016,
+              "text": "        if (!fresh) column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))"
+            },
+            {
+              "line": 1017,
+              "text": "        column.addView(label(ui(R.string.ui_current_safe_budget_2f_mp, ImageMemoryPolicy.forDevice(this).maxPixels(document.residentPixels) / 1_000_000.0), 12f))"
+            },
+            {
+              "line": 1018,
+              "text": "        val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()"
+            },
+            {
+              "line": 1019,
+              "text": "        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {"
+            },
+            {
+              "line": 1020,
+              "text": "            val size = sizing.dimensions"
+            },
+            {
+              "line": 1021,
+              "text": "            if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)"
+            },
+            {
+              "line": 1022,
+              "text": "            else editAction {"
+            },
+            {
+              "line": 1023,
+              "text": "                checkImageSize(size.width,size.height); paintCanvas.applyPending()"
+            },
+            {
+              "line": 1024,
+              "text": "                if (fresh) { document.newImage(size.width,size.height);unrestoredCreditSessionToken=null; filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)"
+            },
+            {
+              "line": 1025,
+              "text": "                paintCanvas.fit(); updateStatus(); dialog.dismiss()"
+            },
+            {
+              "line": 1026,
+              "text": "            }"
+            },
+            {
+              "line": 1027,
+              "text": "        } }; dialog.show()"
+            },
+            {
+              "line": 1028,
+              "text": "    }"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320",
+          "content_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "start_line": 217,
+          "end_line": 221,
+          "exact_lines": [
+            {
+              "line": 217,
+              "text": "        changed()"
+            },
+            {
+              "line": 218,
+              "text": "    }"
+            },
+            {
+              "line": 219,
+              "text": ""
+            },
+            {
+              "line": 220,
+              "text": "    fun newImage(w: Int, h: Int) = replace(blank(w, h, background))"
+            },
+            {
+              "line": 221,
+              "text": ""
+            }
+          ]
+        }
+      ],
+      "semantic_composition": "Fresh-image sizing dialog title, a noun phrase, not an assertion that a new image already exists. Exact nonplural inanimate New + pictorial graphic noun from TBX1294. The positive action checks dimensions before document.newImage creates the bitmap. OS-image sense6308 is excluded.",
+      "independent_semantic_review": "Noun-phrase title on dimension prompt before creation. Inanimate new + pictorial image sense, not OS image. Positive callback checks dimensions then creates bitmap; candidate claims no success.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_underline",
+      "english": "Underline",
+      "attributes": {
+        "name": "ui_underline"
+      },
+      "raw": "ᎠᏍᏓᏅᏅᎢ (ᎠᎪᎵᏰᏗ ᎭᏫᏂ)",
+      "value": "ᎠᏍᏓᏅᏅᎢ (ᎠᎪᎵᏰᏗ ᎭᏫᏂ)",
+      "display": "ᎠᏍᏓᏅᏅᎢ (ᎠᎪᎵᏰᏗ ᎭᏫᏂ)",
+      "backtranslation": "Line (under text).",
+      "placeholders": [],
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "content_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "start_line": 48,
+          "end_line": 53,
+          "exact_lines": [
+            {
+              "line": 48,
+              "text": "        fun check(text: String,tagName: String,value: Boolean)=CheckBox(activity).apply { this.text=text;tag=tagName;isChecked=value }"
+            },
+            {
+              "line": 49,
+              "text": "        val bold=check(ui(R.string.ui_bold),\"text_bold\",initial.bold);val italic=check(ui(R.string.ui_italic),\"text_italic\",initial.italic)"
+            },
+            {
+              "line": 50,
+              "text": "        val underline=check(ui(R.string.ui_underline),\"text_underline\",initial.underline);val strike=check(ui(R.string.ui_strikethrough),\"text_strike\",initial.strike)"
+            },
+            {
+              "line": 51,
+              "text": "        listOf(bold,italic,underline,strike).chunked(2).forEach { items ->"
+            },
+            {
+              "line": 52,
+              "text": "            val row=LinearLayout(activity);items.forEach { row.addView(it,LinearLayout.LayoutParams(0,dp(48),1f)) };body.addView(row)"
+            },
+            {
+              "line": 53,
+              "text": "        }"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "content_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "start_line": 73,
+          "end_line": 76,
+          "exact_lines": [
+            {
+              "line": 73,
+              "text": "            preview.pixels=(uiNumber(size.text.toString())?.toFloat() ?: 32f).coerceIn(1f,1024f)"
+            },
+            {
+              "line": 74,
+              "text": "            preview.foregroundColour=foreground;preview.backgroundColour=background"
+            },
+            {
+              "line": 75,
+              "text": "            preview.underline=underline.isChecked;preview.strike=strike.isChecked;preview.opaque=box.isChecked"
+            },
+            {
+              "line": 76,
+              "text": "            preview.direction=TextDirection.values()[direction.selectedItemPosition]"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "content_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "start_line": 103,
+          "end_line": 108,
+          "exact_lines": [
+            {
+              "line": 103,
+              "text": "                pixels==null || pixels !in 1f..1024f -> size.error=ui(R.string.ui_use_1_1024_pixels)"
+            },
+            {
+              "line": 104,
+              "text": "                percent==null || percent !in 50f..300f -> spacing.error=ui(R.string.ui_use_50_300)"
+            },
+            {
+              "line": 105,
+              "text": "                else -> {"
+            },
+            {
+              "line": 106,
+              "text": "                    val settings=TextSettings(input.text.toString(),pixels,font.selectedItemPosition,bold.isChecked,italic.isChecked,underline.isChecked,strike.isChecked,box.isChecked,align.selectedItemPosition,percent/100,TextDirection.values()[direction.selectedItemPosition],GlyphOrientation.values()[glyphs.selectedItemPosition])"
+            },
+            {
+              "line": 107,
+              "text": "                    if (commit(settings,catalog.faceForText(settings.font,settings.text,style()))) dialog.dismiss()"
+            },
+            {
+              "line": 108,
+              "text": "                }"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+          "content_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+          "start_line": 119,
+          "end_line": 123,
+          "exact_lines": [
+            {
+              "line": 119,
+              "text": "    override fun onDraw(canvas: Canvas) {"
+            },
+            {
+              "line": 120,
+              "text": "        super.onDraw(canvas);canvas.drawColor(EditorColours.surfaceContainer)"
+            },
+            {
+              "line": 121,
+              "text": "        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply {color=foregroundColour;textSize=pixels;typeface=face;isUnderlineText=underline;isStrikeThruText=strike}"
+            },
+            {
+              "line": 122,
+              "text": "        val bounds=VerticalText.bounds(value,p,direction,orientation,spacing)"
+            },
+            {
+              "line": 123,
+              "text": "        val margin=8*resources.displayMetrics.density"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 1063,
+          "end_line": 1069,
+          "exact_lines": [
+            {
+              "line": 1063,
+              "text": ""
+            },
+            {
+              "line": 1064,
+              "text": "    private fun showTextDialog(x: Float,y: Float) {"
+            },
+            {
+              "line": 1065,
+              "text": "        TextStyleDialog(this,textSettings,document.foreground,document.background) { settings,face ->"
+            },
+            {
+              "line": 1066,
+              "text": "            editAction {"
+            },
+            {
+              "line": 1067,
+              "text": "                document.text(x,y,settings.text,settings.size,face,settings.box,settings.underline,settings.strike,"
+            },
+            {
+              "line": 1068,
+              "text": "                    arrayOf(Paint.Align.LEFT,Paint.Align.CENTER,Paint.Align.RIGHT)[settings.alignment],settings.spacing,settings.direction,settings.glyphOrientation)"
+            },
+            {
+              "line": 1069,
+              "text": "                textSettings=settings;scheduleAutosave()"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320",
+          "content_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "start_line": 482,
+          "end_line": 488,
+          "exact_lines": [
+            {
+              "line": 482,
+              "text": "    fun text(x: Float,y: Float,text: String,size: Float,typeface: Typeface,opaque: Boolean,"
+            },
+            {
+              "line": 483,
+              "text": "        underline: Boolean=false,strike: Boolean=false,alignment: Paint.Align=Paint.Align.LEFT,spacing: Float=1f,"
+            },
+            {
+              "line": 484,
+              "text": "        direction: TextDirection=TextDirection.HORIZONTAL,glyphOrientation: GlyphOrientation=GlyphOrientation.MIXED) {"
+            },
+            {
+              "line": 485,
+              "text": "        if(text.isBlank()) return"
+            },
+            {
+              "line": 486,
+              "text": "        require(text.length<=8192 && size.isFinite() && size in 1f..1024f && spacing.isFinite() && spacing in .5f..3f)"
+            },
+            {
+              "line": 487,
+              "text": "        val p=Paint(Paint.ANTI_ALIAS_FLAG).apply {color=foreground;textSize=size;this.typeface=typeface;isUnderlineText=underline;isStrikeThruText=strike}"
+            },
+            {
+              "line": 488,
+              "text": "        val bounds=VerticalText.bounds(text,p,direction,glyphOrientation,spacing)"
+            }
+          ]
+        }
+      ],
+      "semantic_composition": "Descriptive checkbox-property label. OU singular graphical line noun + parenthetical text-under relation, ordered using source postposition guidance. TBX5203 text is human-language character data, not Text field type14695. Actual Paint.isUnderlineText is controlled, so a visible line below the text is the property being named; no fabricated underline imperative. Excludes imaginary typographic baseline and horizontal text-row senses. Parenthetical scope avoids pretending this is an attested lexicalized verb.",
+      "independent_semantic_review": "Checkbox controls isUnderlineText in preview and drawing. Authored descriptive property Line (text under), with exact graphical line noun and source postposition order. Not an invented imperative, text-row, or imaginary baseline. Names conventional underline property; does not certify screen position under every writing orientation.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "chr",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_untitled",
+      "english": "Untitled",
+      "attributes": {
+        "name": "ui_untitled"
+      },
+      "raw": "ᏂᏚᏙᎲᎾ",
+      "value": "ᏂᏚᏙᎲᎾ",
+      "display": "ᏂᏚᏙᎲᎾ",
+      "backtranslation": "Nameless / unnamed.",
+      "placeholders": [],
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "git_blob_sha": "b8a97637df61f8e50694e4a9d65b924b3e0af4f5",
+          "content_sha256": "f6781d9a04961ed7b2b4a8cc52a8164001da9be8155d1ae7967905c84ef8326a",
+          "start_line": 25,
+          "end_line": 31,
+          "exact_lines": [
+            {
+              "line": 25,
+              "text": ""
+            },
+            {
+              "line": 26,
+              "text": "internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveStore.Recovery<RecoveredEditor> = autosave.recover {"
+            },
+            {
+              "line": 27,
+              "text": "    var owner: PaintDocument?=null"
+            },
+            {
+              "line": 28,
+              "text": "    fun checkSize(w: Int,h: Int) {ImageMemoryPolicy.forDevice(context).check(w,h,owner?.residentPixels ?: 0)}"
+            },
+            {
+              "line": 29,
+              "text": "    var filename=ui(R.string.ui_untitled)"
+            },
+            {
+              "line": 30,
+              "text": "    var textSettings=TextSettings()"
+            },
+            {
+              "line": 31,
+              "text": "    var savedTarget: SavedTarget?=null"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 79,
+          "end_line": 83,
+          "exact_lines": [
+            {
+              "line": 79,
+              "text": "    private lateinit var toolDrawer: ScrollView"
+            },
+            {
+              "line": 80,
+              "text": "    private var portraitColours: View? = null"
+            },
+            {
+              "line": 81,
+              "text": "    private var filename = ui(R.string.ui_untitled)"
+            },
+            {
+              "line": 82,
+              "text": "    private var exportOptions=ExportOptions()"
+            },
+            {
+              "line": 83,
+              "text": "    private var savedTarget: SavedTarget? = null"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 136,
+          "end_line": 139,
+          "exact_lines": [
+            {
+              "line": 136,
+              "text": "    override fun onCreate(savedInstanceState: Bundle?) {"
+            },
+            {
+              "line": 137,
+              "text": "        super.onCreate(savedInstanceState)"
+            },
+            {
+              "line": 138,
+              "text": "        AppLanguage.refresh(this);filename=ui(R.string.ui_untitled);textSettings=TextSettings()"
+            },
+            {
+              "line": 139,
+              "text": "        autosave=AutosaveStore(filesDir)"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 1021,
+          "end_line": 1026,
+          "exact_lines": [
+            {
+              "line": 1021,
+              "text": "            if (size == null) sizing.widthInput.error = ui(R.string.ui_enter_positive_dimensions)"
+            },
+            {
+              "line": 1022,
+              "text": "            else editAction {"
+            },
+            {
+              "line": 1023,
+              "text": "                checkImageSize(size.width,size.height); paintCanvas.applyPending()"
+            },
+            {
+              "line": 1024,
+              "text": "                if (fresh) { document.newImage(size.width,size.height);unrestoredCreditSessionToken=null; filename = ui(R.string.ui_untitled);savedTarget=null } else document.resize(size.width,size.height,stretch)"
+            },
+            {
+              "line": 1025,
+              "text": "                paintCanvas.fit(); updateStatus(); dialog.dismiss()"
+            },
+            {
+              "line": 1026,
+              "text": "            }"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "start_line": 1125,
+          "end_line": 1129,
+          "exact_lines": [
+            {
+              "line": 1125,
+              "text": "            addCategory(Intent.CATEGORY_OPENABLE);type=exportOptions.format.mime"
+            },
+            {
+              "line": 1126,
+              "text": "            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)"
+            },
+            {
+              "line": 1127,
+              "text": "            putExtra(Intent.EXTRA_TITLE,ExportNames.withExtension(proposedName.ifBlank {ui(R.string.ui_untitled)},exportOptions.format))"
+            },
+            {
+              "line": 1128,
+              "text": "        },SAVE_IMAGE)"
+            },
+            {
+              "line": 1129,
+              "text": "    }"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "content_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+          "start_line": 29,
+          "end_line": 40,
+          "exact_lines": [
+            {
+              "line": 29,
+              "text": "object ExportNames {"
+            },
+            {
+              "line": 30,
+              "text": "    fun withExtension(name: String,format: ImageFormat): String {"
+            },
+            {
+              "line": 31,
+              "text": "        val trimmed=name.trim()"
+            },
+            {
+              "line": 32,
+              "text": "        val suffix=(ImageFormat.values().map {it.extension}+listOf(\".jpeg\",\".jpe\",\".jfif\",\".tiff\",\".pdf\"))"
+            },
+            {
+              "line": 33,
+              "text": "            .firstOrNull {trimmed.endsWith(it,true)}"
+            },
+            {
+              "line": 34,
+              "text": "        return (if(suffix==null) trimmed else trimmed.dropLast(suffix.length))+format.extension"
+            },
+            {
+              "line": 35,
+              "text": "    }"
+            },
+            {
+              "line": 36,
+              "text": "    fun valid(name: String,format: ImageFormat): Boolean {"
+            },
+            {
+              "line": 37,
+              "text": "        val stem=withExtension(name,format).removeSuffix(format.extension)"
+            },
+            {
+              "line": 38,
+              "text": "        return stem.isNotBlank() && stem!=\".\" && stem!=\"..\" && name.none {it=='/' || it=='\\\\' || it.isISOControl()}"
+            },
+            {
+              "line": 39,
+              "text": "    }"
+            },
+            {
+              "line": 40,
+              "text": "}"
+            }
+          ]
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "content_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+          "start_line": 54,
+          "end_line": 60,
+          "exact_lines": [
+            {
+              "line": 54,
+              "text": "        val filename=EditText(activity).apply {"
+            },
+            {
+              "line": 55,
+              "text": "            tag=\"export_filename\";setSingleLine(true)"
+            },
+            {
+              "line": 56,
+              "text": "            inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES"
+            },
+            {
+              "line": 57,
+              "text": "            setText(ExportNames.withExtension(initialFilename.ifBlank {ui(R.string.ui_untitled)},format))"
+            },
+            {
+              "line": 58,
+              "text": "            contentDescription=ui(R.string.save20_file_name)"
+            },
+            {
+              "line": 59,
+              "text": "            selectAll()"
+            },
+            {
+              "line": 60,
+              "text": "        }"
+            }
+          ]
+        }
+      ],
+      "semantic_composition": "Unchanged OU476 standalone nameless term used as a default filename stem for a new drawing or blank proposed filename. It does not label a person, assert unsaved status, remove a title, or command renaming. Source POS/number are unspecified; the record does not invent them. The caller separately appends the output extension. The raw contains no slash, control, dot-only name or extension.",
+      "independent_semantic_review": "Exact unqualified OU nameless entry as default filename stem. Unannotated POS/animacy/number remains a lexical limitation, not fabricated qualification. It does not assert unsaved state or unnamed person. App adds extension separately; stem passes source-character naming constraints.",
+      "candidate": {
+        "path": "chr-core-actions9-1350.json",
+        "sha256": "b644970aaa7cdf8dd198dc2d431da2b313351005bcc1a8941862feba2e39789e"
+      },
+      "source_packet": {
+        "path": "chr-core-actions-primary-1350.json",
+        "sha256": "ce29570c317079462fe64d4d5cb38d56cbd142b2067df6e93226f9299c73ddef"
+      },
+      "independent_review": {
+        "path": "review-chr-core-actions9-independent-1358.json",
+        "sha256": "dc79f161fa1916b5bab9d47a7de6b0172769c98ce4ebaf6ef3584d25a72cf2e5"
+      },
+      "parent_intake": {
+        "path": "reviewed-chr-core9-currenta721f04-intake-1358.json",
+        "sha256": "c77d979dc29bf8310b98f00abb77ebd15f4555b99afbaa7ccfc485785d517c80"
+      }
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_edit_colour26",
+      "english": "Edit colour",
+      "attributes": {
+        "name": "ui_edit_colour26"
+      },
+      "raw": "Xicpatla ixnezcayotl",
+      "value": "Xicpatla ixnezcayotl",
+      "display": "Xicpatla ixnezcayotl",
+      "backtranslation": "Change the colour",
+      "placeholders": [],
+      "caller": "ClassicPaintActivity1007 menu choice invokes addColour(index), which reopens an existing integer-valued palette slot. AdvancedColourDialog314 title when addingToPalette && replacingPaletteColour. Acceptance commits an Int at 330 and replaces the slot at ClassicPaintActivity1000. It is editing a colour property, not replacing the current image.",
+      "limits": "Change is a functional edit verb; this label opens the editor, not immediate irreversible replacement.",
+      "independent_semantic_review": "Exact own xicpatla is independently raster-attested in a song-change instruction. The short-a replacement/change sense matches palette Int replacement, not flattening. Property extension explicit; dialog title/command is not success.",
+      "candidate": {
+        "path": "nhe-core-actions8-v2-1406.json",
+        "sha256": "c7cca79a8de390219ce7ab7247aa5de39b187fb1892fb64b551dc03fb16e8f93"
+      },
+      "independent_review": {
+        "path": "review-nhe-core-actions8-v2-independent-1409.json",
+        "sha256": "98921d65631c095d354415e7fd5c6d853f97d841083aabe7cfc929eaeae5bfd4"
+      },
+      "source_packet": {
+        "path": "nhe-core-actions-primary-v2-1406.json",
+        "sha256": "206b8bba7bafdf893ab2a45f38ac7fb0c2f33af630168c28c998efac92a5d3d8"
+      },
+      "caller_packet": {
+        "path": "nhe-core-actions-callers-v2-1406.json",
+        "sha256": "e735354ace14cacc770b2063e17b0481271ad02e5546c61b7fe5e1249762446d"
+      },
+      "parent_intake": {
+        "path": "reviewed-nhe-core8v2-currenta721f04-intake-1409.json",
+        "sha256": "3f888872afe6c823803732e9086f2ef83709d235eba22adfc6346f46ccc92e31"
+      }
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_untitled",
+      "english": "Untitled",
+      "attributes": {
+        "name": "ui_untitled"
+      },
+      "raw": "Axquipiya tocaitl",
+      "value": "Axquipiya tocaitl",
+      "display": "Axquipiya tocaitl",
+      "backtranslation": "It has no name",
+      "placeholders": [],
+      "caller": "ClassicPaintActivity81/138 initializes the document filename;1024 sets it for a newly accepted blank image. EditorDraftRecovery29 default filename. SaveOptionsDialog57 and ClassicPaintActivity1127 insert it when the proposed filename is blank, then append the chosen extension.",
+      "limits": "Authored negative-possession label used as a default filename; it does not assert a file is unreadable or actually saved. No slash, colon, control or Android escape introduced.",
+      "independent_semantic_review": "Exact negative possession axquipiya independently seen with inanimate water bucket. TOCAITL definition names a person, but CINTLI names a nonhuman corncob using itocah; filename naming extension is explicit. Default stem adds no invalid path character and source app appends extension.",
+      "candidate": {
+        "path": "nhe-core-actions8-v2-1406.json",
+        "sha256": "c7cca79a8de390219ce7ab7247aa5de39b187fb1892fb64b551dc03fb16e8f93"
+      },
+      "independent_review": {
+        "path": "review-nhe-core-actions8-v2-independent-1409.json",
+        "sha256": "98921d65631c095d354415e7fd5c6d853f97d841083aabe7cfc929eaeae5bfd4"
+      },
+      "source_packet": {
+        "path": "nhe-core-actions-primary-v2-1406.json",
+        "sha256": "206b8bba7bafdf893ab2a45f38ac7fb0c2f33af630168c28c998efac92a5d3d8"
+      },
+      "caller_packet": {
+        "path": "nhe-core-actions-callers-v2-1406.json",
+        "sha256": "e735354ace14cacc770b2063e17b0481271ad02e5546c61b7fe5e1249762446d"
+      },
+      "parent_intake": {
+        "path": "reviewed-nhe-core8v2-currenta721f04-intake-1409.json",
+        "sha256": "3f888872afe6c823803732e9086f2ef83709d235eba22adfc6346f46ccc92e31"
+      }
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_please_try_again",
+      "english": "Please try again.",
+      "attributes": {
+        "name": "ui_please_try_again"
+      },
+      "raw": "Zampa xicchihua.",
+      "value": "Zampa xicchihua.",
+      "display": "Zampa xicchihua.",
+      "backtranslation": "Do it again.",
+      "placeholders": [],
+      "caller": "ClassicPaintActivity180 fallback for a startup exception without a message;939 fallback argument within Could not complete the edit for a non-size/non-memory exception.",
+      "limits": "Functional retry request, not automatic retry or success promise. English politeness is conveyed by a normal command, with no invented politeness particle. Existing ui_redo uses same action phrase without the final period but the resource identities/callers remain separate.",
+      "independent_semantic_review": "Own exact do command and again yield a functional retry request across startup and ordinary editing failures. No guarantee, automatic action, or invented politeness particle.",
+      "candidate": {
+        "path": "nhe-core-actions8-v2-1406.json",
+        "sha256": "c7cca79a8de390219ce7ab7247aa5de39b187fb1892fb64b551dc03fb16e8f93"
+      },
+      "independent_review": {
+        "path": "review-nhe-core-actions8-v2-independent-1409.json",
+        "sha256": "98921d65631c095d354415e7fd5c6d853f97d841083aabe7cfc929eaeae5bfd4"
+      },
+      "source_packet": {
+        "path": "nhe-core-actions-primary-v2-1406.json",
+        "sha256": "206b8bba7bafdf893ab2a45f38ac7fb0c2f33af630168c28c998efac92a5d3d8"
+      },
+      "caller_packet": {
+        "path": "nhe-core-actions-callers-v2-1406.json",
+        "sha256": "e735354ace14cacc770b2063e17b0481271ad02e5546c61b7fe5e1249762446d"
+      },
+      "parent_intake": {
+        "path": "reviewed-nhe-core8v2-currenta721f04-intake-1409.json",
+        "sha256": "3f888872afe6c823803732e9086f2ef83709d235eba22adfc6346f46ccc92e31"
+      }
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_draw26",
+      "english": "Draw",
+      "attributes": {
+        "name": "ui_draw26"
+      },
+      "raw": "Xicpa",
+      "value": "Xicpa",
+      "display": "Xicpa",
+      "backtranslation": "Paint [it]",
+      "placeholders": [],
+      "caller": "ClassicPaintActivity830 translates the Draw tab name;590-591 install it as ribbon text/contentDescription. The panel is registered at324; chooseTool732-736 selects it for non-ZOOM tools.",
+      "limits": "Functional Paint heading consistent with accepted ui_drawing23. The tab includes drawing, shape, selection and insertion tools; the heading names the overall paint workspace and does not claim a tab tap paints pixels or creates/clears a document.",
+      "independent_semantic_review": "Own PA1 applies colour to a thing, with exact xi- and c- source morphology. Paint is a functional overall-workspace title like existing Drawing category, not assertion that selecting tab changes pixels. Selection and insertion membership do not make ordinary Paint workspace heading false.",
+      "candidate": {
+        "path": "nhe-core-actions8-v2-1406.json",
+        "sha256": "c7cca79a8de390219ce7ab7247aa5de39b187fb1892fb64b551dc03fb16e8f93"
+      },
+      "independent_review": {
+        "path": "review-nhe-core-actions8-v2-independent-1409.json",
+        "sha256": "98921d65631c095d354415e7fd5c6d853f97d841083aabe7cfc929eaeae5bfd4"
+      },
+      "source_packet": {
+        "path": "nhe-core-actions-primary-v2-1406.json",
+        "sha256": "206b8bba7bafdf893ab2a45f38ac7fb0c2f33af630168c28c998efac92a5d3d8"
+      },
+      "caller_packet": {
+        "path": "nhe-core-actions-callers-v2-1406.json",
+        "sha256": "e735354ace14cacc770b2063e17b0481271ad02e5546c61b7fe5e1249762446d"
+      },
+      "parent_intake": {
+        "path": "reviewed-nhe-core8v2-currenta721f04-intake-1409.json",
+        "sha256": "3f888872afe6c823803732e9086f2ef83709d235eba22adfc6346f46ccc92e31"
+      }
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_draw_again",
+      "english": "Draw again",
+      "attributes": {
+        "name": "ui_draw_again"
+      },
+      "raw": "Zampa xitequiti",
+      "value": "Zampa xitequiti",
+      "display": "Zampa xitequiti",
+      "backtranslation": "Work again / resume working",
+      "placeholders": [],
+      "caller": "ClassicPaintActivity770 navigation-tool options button invokes chooseTool(drawingTool);732-745 return to Draw tab and prior non-ZOOM tool. drawingTool starts PENCIL but is updated for every non-ZOOM tool, including selection/text/eraser.",
+      "limits": "Deliberately broader than Paint again: resumes the previous editing tool. It is neither history Redo nor a command to replay a drawing, clear the image, or create a new canvas.",
+      "independent_semantic_review": "Own exact xitequiti and zampa accurately request resuming work. Actual chooseTool(drawingTool) restores any prior non-ZOOM tool. No history-redo, stroke replay or fresh-canvas assertion.",
+      "candidate": {
+        "path": "nhe-core-actions8-v2-1406.json",
+        "sha256": "c7cca79a8de390219ce7ab7247aa5de39b187fb1892fb64b551dc03fb16e8f93"
+      },
+      "independent_review": {
+        "path": "review-nhe-core-actions8-v2-independent-1409.json",
+        "sha256": "98921d65631c095d354415e7fd5c6d853f97d841083aabe7cfc929eaeae5bfd4"
+      },
+      "source_packet": {
+        "path": "nhe-core-actions-primary-v2-1406.json",
+        "sha256": "206b8bba7bafdf893ab2a45f38ac7fb0c2f33af630168c28c998efac92a5d3d8"
+      },
+      "caller_packet": {
+        "path": "nhe-core-actions-callers-v2-1406.json",
+        "sha256": "e735354ace14cacc770b2063e17b0481271ad02e5546c61b7fe5e1249762446d"
+      },
+      "parent_intake": {
+        "path": "reviewed-nhe-core8v2-currenta721f04-intake-1409.json",
+        "sha256": "3f888872afe6c823803732e9086f2ef83709d235eba22adfc6346f46ccc92e31"
+      }
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_menu_edit",
+      "english": "Edit",
+      "attributes": {
+        "name": "ui_menu_edit"
+      },
+      "raw": "Xicpatla",
+      "value": "Xicpatla",
+      "display": "Xicpatla",
+      "backtranslation": "Change [it]",
+      "placeholders": [],
+      "caller": "ClassicPaintActivity830 Edit menu/tab title;590-591 install ribbon label;848-860 group selection, dimensions, crop, flip/rotate/invert and clear commands.",
+      "limits": "Functional Edit category heading. Opening the menu alone does not execute any listed change.",
+      "independent_semantic_review": "Own change command is a broad Edit category heading. Menu includes transforms, crop, clear and selection, not only drawing. Opening category is not immediate edit.",
+      "candidate": {
+        "path": "nhe-core-actions8-v2-1406.json",
+        "sha256": "c7cca79a8de390219ce7ab7247aa5de39b187fb1892fb64b551dc03fb16e8f93"
+      },
+      "independent_review": {
+        "path": "review-nhe-core-actions8-v2-independent-1409.json",
+        "sha256": "98921d65631c095d354415e7fd5c6d853f97d841083aabe7cfc929eaeae5bfd4"
+      },
+      "source_packet": {
+        "path": "nhe-core-actions-primary-v2-1406.json",
+        "sha256": "206b8bba7bafdf893ab2a45f38ac7fb0c2f33af630168c28c998efac92a5d3d8"
+      },
+      "caller_packet": {
+        "path": "nhe-core-actions-callers-v2-1406.json",
+        "sha256": "e735354ace14cacc770b2063e17b0481271ad02e5546c61b7fe5e1249762446d"
+      },
+      "parent_intake": {
+        "path": "reviewed-nhe-core8v2-currenta721f04-intake-1409.json",
+        "sha256": "3f888872afe6c823803732e9086f2ef83709d235eba22adfc6346f46ccc92e31"
+      }
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_selected_colour23",
+      "english": "Selected color",
+      "attributes": {
+        "name": "ui_selected_colour23"
+      },
+      "raw": "Ni ixnezcayotl",
+      "value": "Ni ixnezcayotl",
+      "display": "Ni ixnezcayotl",
+      "backtranslation": "This colour",
+      "placeholders": [],
+      "caller": "AdvancedColourDialog211 labels the sample;215 draws current value.colour, initialized from the constructor initial Int at53 before any user action. The sample can hold existing/default colour initially and later a proposed edited colour.",
+      "limits": "Neutral demonstrative caption replaces the inaccurate past-user-choice implication. It identifies the displayed sample without asserting that the user selected it, that it has been committed, or that the canvas was recoloured.",
+      "independent_semantic_review": "V2 neutral This colour identifies the immediately associated sample. Actual value is initialized before user action, so v1 that-you-selected assertion was not accepted. Deictic NI3 explicitly covers objects; no saved/committed/past-user-choice claim.",
+      "candidate": {
+        "path": "nhe-core-actions8-v2-1406.json",
+        "sha256": "c7cca79a8de390219ce7ab7247aa5de39b187fb1892fb64b551dc03fb16e8f93"
+      },
+      "independent_review": {
+        "path": "review-nhe-core-actions8-v2-independent-1409.json",
+        "sha256": "98921d65631c095d354415e7fd5c6d853f97d841083aabe7cfc929eaeae5bfd4"
+      },
+      "source_packet": {
+        "path": "nhe-core-actions-primary-v2-1406.json",
+        "sha256": "206b8bba7bafdf893ab2a45f38ac7fb0c2f33af630168c28c998efac92a5d3d8"
+      },
+      "caller_packet": {
+        "path": "nhe-core-actions-callers-v2-1406.json",
+        "sha256": "e735354ace14cacc770b2063e17b0481271ad02e5546c61b7fe5e1249762446d"
+      },
+      "parent_intake": {
+        "path": "reviewed-nhe-core8v2-currenta721f04-intake-1409.json",
+        "sha256": "3f888872afe6c823803732e9086f2ef83709d235eba22adfc6346f46ccc92e31"
+      }
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_add_colour26",
+      "english": "Add colour",
+      "attributes": {
+        "name": "ui_add_colour26"
+      },
+      "raw": "Xicahcocui ixnezcayotl",
+      "value": "Xicahcocui ixnezcayotl",
+      "display": "Xicahcocui ixnezcayotl",
+      "backtranslation": "Store / save the colour",
+      "placeholders": [],
+      "caller": "ClassicPaintActivity974 opens the palette-storage flow.985-1001 choose an empty slot or obtain a user-selected replacement slot if full;1000 calls store.replace. AdvancedColourDialog314 is the add-mode title;315 the add-mode positive button;330 commits only after fields validate. CustomColours18 persists the colour Int in preferences for both insertion and replacement.",
+      "limits": "Functional Save colour wording deliberately covers storing in an empty slot and replacing an occupied slot. It does not claim palette count increases or that saving already occurred. Exact own-source command plus established colour noun; palette-settings storage is a bounded software extension of explicit computer-work storage in DIZCOH. The title/menu opens the flow, while confirmation performs storage.",
+      "independent_semantic_review": "V2 Store/save the colour fits both empty and replacement palette paths; primary exact storage imperative plus explicit computer-work storage supports bounded setting-value extension. CustomColours.replace writes SharedPreferences, unlike Use colour. V1 amount-increase verb was not accepted for full-palette path. No count increase or completed persistence claim.",
+      "candidate": {
+        "path": "nhe-core-actions8-v2-1406.json",
+        "sha256": "c7cca79a8de390219ce7ab7247aa5de39b187fb1892fb64b551dc03fb16e8f93"
+      },
+      "independent_review": {
+        "path": "review-nhe-core-actions8-v2-independent-1409.json",
+        "sha256": "98921d65631c095d354415e7fd5c6d853f97d841083aabe7cfc929eaeae5bfd4"
+      },
+      "source_packet": {
+        "path": "nhe-core-actions-primary-v2-1406.json",
+        "sha256": "206b8bba7bafdf893ab2a45f38ac7fb0c2f33af630168c28c998efac92a5d3d8"
+      },
+      "caller_packet": {
+        "path": "nhe-core-actions-callers-v2-1406.json",
+        "sha256": "e735354ace14cacc770b2063e17b0481271ad02e5546c61b7fe5e1249762446d"
+      },
+      "parent_intake": {
+        "path": "reviewed-nhe-core8v2-currenta721f04-intake-1409.json",
+        "sha256": "3f888872afe6c823803732e9086f2ef83709d235eba22adfc6346f46ccc92e31"
+      }
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_could_not_complete_the_operation",
+      "english": "Could not complete the operation.",
+      "attributes": {
+        "name": "ui_could_not_complete_the_operation"
+      },
+      "raw": "AN Paint amo huelqui quitamiltis ni tequit.",
+      "value": "AN Paint amo huelqui quitamiltis ni tequit.",
+      "display": "AN Paint amo huelqui quitamiltis ni tequit.",
+      "backtranslation": "AN Paint could not complete this work/task.",
+      "placeholders": [],
+      "caller": "The current attempted task could not be completed. Deliberately no Save, editing-only, bitmap-only, user-selected destination, or memory-only restriction.",
+      "authored_extensions": [
+        "AN Paint as an explicit third-person software actor.",
+        "General real-world verbs extended to the actual software task with no new grammar copied from another variety."
+      ],
+      "independent_semantic_review": "All13 direct-resource emitters scanned across this family. This key covers generic assembly workflow, metadata attachment, Android picker/URI export and clipboard publishing after a successful Save. Generic work/task completion is properly unrestricted; not Save or pixel-edit failure.",
+      "candidate": {
+        "path": "nahua-action-errors8-author-1407.json",
+        "sha256": "abb87245c1dab4f367bf0169c6696eb6017946017e03cdbbbc312c7b35c1d619"
+      },
+      "source_packet": {
+        "path": "nahua-action-errors8-primary-1407.json",
+        "sha256": "75b5663c8c7af9ad08d0c638018b012e2424934fc59ca0c586c66621020a9a34"
+      },
+      "caller_packet": {
+        "path": "nahua-action-errors8-callers-1407.json",
+        "sha256": "4de62c135d60cf36bad73ea531e24b8e8fe341d59a28cf1504c9db5a8f191be0"
+      },
+      "independent_review": {
+        "path": "review-nahua-action-errors8-independent-1412.json",
+        "sha256": "cb01a0f3f9cf12d171faa94fd331655a1c6dcb5a33f8ad1f1618a0141ffe70ab"
+      },
+      "parent_intake": {
+        "path": "reviewed-nahua-errors8-currenta721f04-intake-1412.json",
+        "sha256": "b724b88fb29ff336c255daad2ce9db37f48564272ee843844ff61c94b8766e3f"
+      }
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_could_not_complete_the_edit",
+      "english": "Could not complete the edit. %1$s",
+      "attributes": {
+        "name": "ui_could_not_complete_the_edit"
+      },
+      "raw": "AN Paint amo huelqui quitamiltis ni tequit ipan ixkopinali. %1$s",
+      "value": "AN Paint amo huelqui quitamiltis ni tequit ipan ixkopinali. %1$s",
+      "display": "AN Paint amo huelqui quitamiltis ni tequit ipan ixkopinali. %1$s",
+      "backtranslation": "AN Paint could not complete this work on the image. %1$s",
+      "placeholders": [
+        "%1$s"
+      ],
+      "caller": "Could not complete this work on the image; then the exact error detail. Work-on-the-image includes preparation, recovery, history, selection, metadata and editing without asserting that a particular pixel change was requested, partially completed, or rolled back.",
+      "authored_extensions": [
+        "AN Paint as an explicit third-person software actor.",
+        "General real-world verbs extended to the actual software task with no new grammar copied from another variety.",
+        "Work on the image is a broad functional paraphrase of edit, including startup and metadata callers. The composed noun phrase is not quoted from the source."
+      ],
+      "independent_semantic_review": "Two direct emitters include unexpected startup/recovery and editFailed non-OOM/non-size fallback. Broad work-on-image is functional and avoids asserting a requested or partially executed pixel edit. The error-detail String is kept verbatim as %1$s; no loaded-image success or rollback claim.",
+      "candidate": {
+        "path": "nahua-action-errors8-author-1407.json",
+        "sha256": "abb87245c1dab4f367bf0169c6696eb6017946017e03cdbbbc312c7b35c1d619"
+      },
+      "source_packet": {
+        "path": "nahua-action-errors8-primary-1407.json",
+        "sha256": "75b5663c8c7af9ad08d0c638018b012e2424934fc59ca0c586c66621020a9a34"
+      },
+      "caller_packet": {
+        "path": "nahua-action-errors8-callers-1407.json",
+        "sha256": "4de62c135d60cf36bad73ea531e24b8e8fe341d59a28cf1504c9db5a8f191be0"
+      },
+      "independent_review": {
+        "path": "review-nahua-action-errors8-independent-1412.json",
+        "sha256": "cb01a0f3f9cf12d171faa94fd331655a1c6dcb5a33f8ad1f1618a0141ffe70ab"
+      },
+      "parent_intake": {
+        "path": "reviewed-nahua-errors8-currenta721f04-intake-1412.json",
+        "sha256": "b724b88fb29ff336c255daad2ce9db37f48564272ee843844ff61c94b8766e3f"
+      }
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_could_not_place_the_image",
+      "english": "Could not place the image.",
+      "attributes": {
+        "name": "ui_could_not_place_the_image"
+      },
+      "raw": "AN Paint amo huelqui quitalis ixkopinali.",
+      "value": "AN Paint amo huelqui quitalis ixkopinali.",
+      "display": "AN Paint amo huelqui quitalis ixkopinali.",
+      "backtranslation": "AN Paint could not place the image.",
+      "placeholders": [],
+      "caller": "AN Paint could not place the image. No target, saved location, output creation or image modification is asserted.",
+      "authored_extensions": [
+        "AN Paint as an explicit third-person software actor.",
+        "General real-world verbs extended to the actual software task with no new grammar copied from another variety."
+      ],
+      "independent_semantic_review": "AssemblyCanvas.dropImage invokes assembly.place and reports exception through AssemblyActivity90 fallback. Placement covers initial or moved image attachment, not output-file destination. Own future place form exact.",
+      "candidate": {
+        "path": "nahua-action-errors8-author-1407.json",
+        "sha256": "abb87245c1dab4f367bf0169c6696eb6017946017e03cdbbbc312c7b35c1d619"
+      },
+      "source_packet": {
+        "path": "nahua-action-errors8-primary-1407.json",
+        "sha256": "75b5663c8c7af9ad08d0c638018b012e2424934fc59ca0c586c66621020a9a34"
+      },
+      "caller_packet": {
+        "path": "nahua-action-errors8-callers-1407.json",
+        "sha256": "4de62c135d60cf36bad73ea531e24b8e8fe341d59a28cf1504c9db5a8f191be0"
+      },
+      "independent_review": {
+        "path": "review-nahua-action-errors8-independent-1412.json",
+        "sha256": "cb01a0f3f9cf12d171faa94fd331655a1c6dcb5a33f8ad1f1618a0141ffe70ab"
+      },
+      "parent_intake": {
+        "path": "reviewed-nahua-errors8-currenta721f04-intake-1412.json",
+        "sha256": "b724b88fb29ff336c255daad2ce9db37f48564272ee843844ff61c94b8766e3f"
+      }
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_could_not_prepare_the_image",
+      "english": "Could not prepare the image.",
+      "attributes": {
+        "name": "ui_could_not_prepare_the_image"
+      },
+      "raw": "AN Paint amo huelqui quisencahuas ixkopinali.",
+      "value": "AN Paint amo huelqui quisencahuas ixkopinali.",
+      "display": "AN Paint amo huelqui quisencahuas ixkopinali.",
+      "backtranslation": "AN Paint could not prepare the image.",
+      "placeholders": [],
+      "caller": "AN Paint could not prepare the image. No output-exists, saved-output, filesystem placement, missing-original, resize, or success claim.",
+      "authored_extensions": [
+        "AN Paint as an explicit third-person software actor.",
+        "General real-world verbs extended to the actual software task with no new grammar copied from another variety."
+      ],
+      "independent_semantic_review": "PaintDocument.copyToCanvasFormat canonical bitmap.copy null branch raises this error. Replace and paste may request preparation. Own prepare sense and future form are separately directly evidenced; no prepared image exists/saved output/recovery implication.",
+      "candidate": {
+        "path": "nahua-action-errors8-author-1407.json",
+        "sha256": "abb87245c1dab4f367bf0169c6696eb6017946017e03cdbbbc312c7b35c1d619"
+      },
+      "source_packet": {
+        "path": "nahua-action-errors8-primary-1407.json",
+        "sha256": "75b5663c8c7af9ad08d0c638018b012e2424934fc59ca0c586c66621020a9a34"
+      },
+      "caller_packet": {
+        "path": "nahua-action-errors8-callers-1407.json",
+        "sha256": "4de62c135d60cf36bad73ea531e24b8e8fe341d59a28cf1504c9db5a8f191be0"
+      },
+      "independent_review": {
+        "path": "review-nahua-action-errors8-independent-1412.json",
+        "sha256": "cb01a0f3f9cf12d171faa94fd331655a1c6dcb5a33f8ad1f1618a0141ffe70ab"
+      },
+      "parent_intake": {
+        "path": "reviewed-nahua-errors8-currenta721f04-intake-1412.json",
+        "sha256": "b724b88fb29ff336c255daad2ce9db37f48564272ee843844ff61c94b8766e3f"
+      }
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "ui_could_not_complete_the_operation",
+      "english": "Could not complete the operation.",
+      "attributes": {
+        "name": "ui_could_not_complete_the_operation"
+      },
+      "raw": "AN Paint amo huelqui quitlamiltis ni tequitl.",
+      "value": "AN Paint amo huelqui quitlamiltis ni tequitl.",
+      "display": "AN Paint amo huelqui quitlamiltis ni tequitl.",
+      "backtranslation": "AN Paint could not complete this work/task.",
+      "placeholders": [],
+      "caller": "The current attempted task could not be completed. Deliberately no Save, editing-only, bitmap-only, user-selected destination, or memory-only restriction.",
+      "authored_extensions": [
+        "AN Paint as an explicit third-person software actor.",
+        "General real-world verbs extended to the actual software task with no new grammar copied from another variety."
+      ],
+      "independent_semantic_review": "All13 direct-resource emitters scanned across this family. This key covers generic assembly workflow, metadata attachment, Android picker/URI export and clipboard publishing after a successful Save. Generic work/task completion is properly unrestricted; not Save or pixel-edit failure.",
+      "candidate": {
+        "path": "nahua-action-errors8-author-1407.json",
+        "sha256": "abb87245c1dab4f367bf0169c6696eb6017946017e03cdbbbc312c7b35c1d619"
+      },
+      "source_packet": {
+        "path": "nahua-action-errors8-primary-1407.json",
+        "sha256": "75b5663c8c7af9ad08d0c638018b012e2424934fc59ca0c586c66621020a9a34"
+      },
+      "caller_packet": {
+        "path": "nahua-action-errors8-callers-1407.json",
+        "sha256": "4de62c135d60cf36bad73ea531e24b8e8fe341d59a28cf1504c9db5a8f191be0"
+      },
+      "independent_review": {
+        "path": "review-nahua-action-errors8-independent-1412.json",
+        "sha256": "cb01a0f3f9cf12d171faa94fd331655a1c6dcb5a33f8ad1f1618a0141ffe70ab"
+      },
+      "parent_intake": {
+        "path": "reviewed-nahua-errors8-currenta721f04-intake-1412.json",
+        "sha256": "b724b88fb29ff336c255daad2ce9db37f48564272ee843844ff61c94b8766e3f"
+      }
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "ui_could_not_complete_the_edit",
+      "english": "Could not complete the edit. %1$s",
+      "attributes": {
+        "name": "ui_could_not_complete_the_edit"
+      },
+      "raw": "AN Paint amo huelqui quitlamiltis ni tequitl ipan tlaixkopintli. %1$s",
+      "value": "AN Paint amo huelqui quitlamiltis ni tequitl ipan tlaixkopintli. %1$s",
+      "display": "AN Paint amo huelqui quitlamiltis ni tequitl ipan tlaixkopintli. %1$s",
+      "backtranslation": "AN Paint could not complete this work on the image. %1$s",
+      "placeholders": [
+        "%1$s"
+      ],
+      "caller": "Could not complete this work on the image; then the exact error detail. Work-on-the-image includes preparation, recovery, history, selection, metadata and editing without asserting that a particular pixel change was requested, partially completed, or rolled back.",
+      "authored_extensions": [
+        "AN Paint as an explicit third-person software actor.",
+        "General real-world verbs extended to the actual software task with no new grammar copied from another variety.",
+        "Work on the image is a broad functional paraphrase of edit, including startup and metadata callers. The composed noun phrase is not quoted from the source."
+      ],
+      "independent_semantic_review": "Two direct emitters include unexpected startup/recovery and editFailed non-OOM/non-size fallback. Broad work-on-image is functional and avoids asserting a requested or partially executed pixel edit. The error-detail String is kept verbatim as %1$s; no loaded-image success or rollback claim.",
+      "candidate": {
+        "path": "nahua-action-errors8-author-1407.json",
+        "sha256": "abb87245c1dab4f367bf0169c6696eb6017946017e03cdbbbc312c7b35c1d619"
+      },
+      "source_packet": {
+        "path": "nahua-action-errors8-primary-1407.json",
+        "sha256": "75b5663c8c7af9ad08d0c638018b012e2424934fc59ca0c586c66621020a9a34"
+      },
+      "caller_packet": {
+        "path": "nahua-action-errors8-callers-1407.json",
+        "sha256": "4de62c135d60cf36bad73ea531e24b8e8fe341d59a28cf1504c9db5a8f191be0"
+      },
+      "independent_review": {
+        "path": "review-nahua-action-errors8-independent-1412.json",
+        "sha256": "cb01a0f3f9cf12d171faa94fd331655a1c6dcb5a33f8ad1f1618a0141ffe70ab"
+      },
+      "parent_intake": {
+        "path": "reviewed-nahua-errors8-currenta721f04-intake-1412.json",
+        "sha256": "b724b88fb29ff336c255daad2ce9db37f48564272ee843844ff61c94b8766e3f"
+      }
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "ui_could_not_place_the_image",
+      "english": "Could not place the image.",
+      "attributes": {
+        "name": "ui_could_not_place_the_image"
+      },
+      "raw": "AN Paint amo huelqui quitlalis tlaixkopintli.",
+      "value": "AN Paint amo huelqui quitlalis tlaixkopintli.",
+      "display": "AN Paint amo huelqui quitlalis tlaixkopintli.",
+      "backtranslation": "AN Paint could not place the image.",
+      "placeholders": [],
+      "caller": "AN Paint could not place the image. No target, saved location, output creation or image modification is asserted.",
+      "authored_extensions": [
+        "AN Paint as an explicit third-person software actor.",
+        "General real-world verbs extended to the actual software task with no new grammar copied from another variety."
+      ],
+      "independent_semantic_review": "AssemblyCanvas.dropImage invokes assembly.place and reports exception through AssemblyActivity90 fallback. Placement covers initial or moved image attachment, not output-file destination. Own future place form exact.",
+      "candidate": {
+        "path": "nahua-action-errors8-author-1407.json",
+        "sha256": "abb87245c1dab4f367bf0169c6696eb6017946017e03cdbbbc312c7b35c1d619"
+      },
+      "source_packet": {
+        "path": "nahua-action-errors8-primary-1407.json",
+        "sha256": "75b5663c8c7af9ad08d0c638018b012e2424934fc59ca0c586c66621020a9a34"
+      },
+      "caller_packet": {
+        "path": "nahua-action-errors8-callers-1407.json",
+        "sha256": "4de62c135d60cf36bad73ea531e24b8e8fe341d59a28cf1504c9db5a8f191be0"
+      },
+      "independent_review": {
+        "path": "review-nahua-action-errors8-independent-1412.json",
+        "sha256": "cb01a0f3f9cf12d171faa94fd331655a1c6dcb5a33f8ad1f1618a0141ffe70ab"
+      },
+      "parent_intake": {
+        "path": "reviewed-nahua-errors8-currenta721f04-intake-1412.json",
+        "sha256": "b724b88fb29ff336c255daad2ce9db37f48564272ee843844ff61c94b8766e3f"
+      }
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "ui_could_not_prepare_the_image",
+      "english": "Could not prepare the image.",
+      "attributes": {
+        "name": "ui_could_not_prepare_the_image"
+      },
+      "raw": "AN Paint amo huelqui quisencahuas tlaixkopintli.",
+      "value": "AN Paint amo huelqui quisencahuas tlaixkopintli.",
+      "display": "AN Paint amo huelqui quisencahuas tlaixkopintli.",
+      "backtranslation": "AN Paint could not prepare the image.",
+      "placeholders": [],
+      "caller": "AN Paint could not prepare the image. No output-exists, saved-output, filesystem placement, missing-original, resize, or success claim.",
+      "authored_extensions": [
+        "AN Paint as an explicit third-person software actor.",
+        "General real-world verbs extended to the actual software task with no new grammar copied from another variety."
+      ],
+      "independent_semantic_review": "PaintDocument.copyToCanvasFormat canonical bitmap.copy null branch raises this error. Replace and paste may request preparation. Own prepare sense and future form are separately directly evidenced; no prepared image exists/saved output/recovery implication.",
+      "candidate": {
+        "path": "nahua-action-errors8-author-1407.json",
+        "sha256": "abb87245c1dab4f367bf0169c6696eb6017946017e03cdbbbc312c7b35c1d619"
+      },
+      "source_packet": {
+        "path": "nahua-action-errors8-primary-1407.json",
+        "sha256": "75b5663c8c7af9ad08d0c638018b012e2424934fc59ca0c586c66621020a9a34"
+      },
+      "caller_packet": {
+        "path": "nahua-action-errors8-callers-1407.json",
+        "sha256": "4de62c135d60cf36bad73ea531e24b8e8fe341d59a28cf1504c9db5a8f191be0"
+      },
+      "independent_review": {
+        "path": "review-nahua-action-errors8-independent-1412.json",
+        "sha256": "cb01a0f3f9cf12d171faa94fd331655a1c6dcb5a33f8ad1f1618a0141ffe70ab"
+      },
+      "parent_intake": {
+        "path": "reviewed-nahua-errors8-currenta721f04-intake-1412.json",
+        "sha256": "b724b88fb29ff336c255daad2ce9db37f48564272ee843844ff61c94b8766e3f"
+      }
+    }
+  ],
+  "note": "Selected review only; local prefixes stripped. Native-speaker, runtime and hosted CI unverified."
+}

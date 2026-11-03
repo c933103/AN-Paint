@@ -1,0 +1,516 @@
+{
+  "source_intake": "reviewed-americas-next-p1-16-currentc84c6bc-intake-1541.json",
+  "rows": [
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_could_not_complete_the_edit",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Could not complete the edit. %1$s",
+      "raw": "Axhuelqui nictlamiltia ni tequitl para nicpatlaz ixcopincayotl. %1$s",
+      "display": "Axhuelqui nictlamiltia ni tequitl para nicpatlaz ixcopincayotl. %1$s",
+      "attributes": {
+        "name": "ui_could_not_complete_the_edit"
+      },
+      "placeholders": [
+        "%1$s"
+      ],
+      "backtranslation": "I could not finish this task for changing the image. %1$s",
+      "confidence": "Moderate own-source functional/compositional candidate; independent review and root adoption pending.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Purpose-marked task for changing the image covers editor initialization/recovery as well as later tool, image, canvas, text and attribution operations. Completion is task-specific. Actual startup catches Exception/OOM before canvas installation, whereas editFailed distinguishes ImageSizeException/OOM. The wording does not assert an existing canvas, completed artwork, rollback or untouched pixels. Sole typed string slot remains the exception detail or localized retry.",
+      "candidate": {
+        "path": "nhe-action-errors3-1524.json",
+        "sha256": "f41699695f14f93e44e1b94d7132ee6cc5f548b05c51ea8664ced90a9060df8b"
+      },
+      "independent_review": {
+        "path": "review-nhe-action-errors3-independent-1531.json",
+        "sha256": "3fa0781781e655650aaf945d5b3f67215308b611f29ce17a36230eca57238e97"
+      },
+      "raw_sha256": "0901728c743bcc356f3a739ffab9449bb26e7191d15ff47d7a6aa7f112496e11",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 181,
+          "text": "startupFailure=ui(R.string.ui_could_not_complete_the_edit,lastIoError!!);showStartup();return",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L181"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 939,
+          "text": "else ui(R.string.ui_could_not_complete_the_edit, error.message ?: ui(R.string.ui_please_try_again)))",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L939"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-nhe-action-errors3-currentc1a125b-intake-1531.json",
+        "sha256": "0f7c91bb7ed7161f675af061570116395334968a8f8c1e90ef86a6f8bc568d09"
+      },
+      "source_provenance": {
+        "path": "nhe-action-errors-primary-1524.json",
+        "sha256": "2bb49609a47ba7961250df270aa6325311734298de0fb28e02883915fdd1fbc5"
+      },
+      "caller_provenance": {
+        "path": "nhe-action-errors-callers-1524.json",
+        "sha256": "9c53a3861316b0ae4e2ab0ff968215a59c79580b7a0c9c05f7f7a8e83e090288"
+      },
+      "root_adoption_status": "PENDING"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P1",
+      "key": "ui_could_not_place_the_image",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Could not place the image.",
+      "raw": "Axhuelqui nictlalia ixcopincayotl.",
+      "display": "Axhuelqui nictlalia ixcopincayotl.",
+      "attributes": {
+        "name": "ui_could_not_place_the_image"
+      },
+      "placeholders": [],
+      "backtranslation": "I could not place the image.",
+      "confidence": "Moderate own-source functional/compositional candidate; independent review and root adoption pending.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Place applies to assembly snap placement and repositioning of already placed images. The null-message fallback can follow placement, selection or status callback failure. It does not claim file insertion, import, clipboard paste, removal or rollback.",
+      "candidate": {
+        "path": "nhe-action-errors3-1524.json",
+        "sha256": "f41699695f14f93e44e1b94d7132ee6cc5f548b05c51ea8664ced90a9060df8b"
+      },
+      "independent_review": {
+        "path": "review-nhe-action-errors3-independent-1531.json",
+        "sha256": "3fa0781781e655650aaf945d5b3f67215308b611f29ce17a36230eca57238e97"
+      },
+      "raw_sha256": "2a1da12956a506ef13ddcad61bd0b74e65b83d1980fcd27e853dd63d781973c4",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 90,
+          "text": "tag = \"assembly_canvas\"; onError = { message(it.message ?: ui(R.string.ui_could_not_place_the_image)) }",
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt#L90"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-nhe-action-errors3-currentc1a125b-intake-1531.json",
+        "sha256": "0f7c91bb7ed7161f675af061570116395334968a8f8c1e90ef86a6f8bc568d09"
+      },
+      "source_provenance": {
+        "path": "nhe-action-errors-primary-1524.json",
+        "sha256": "2bb49609a47ba7961250df270aa6325311734298de0fb28e02883915fdd1fbc5"
+      },
+      "caller_provenance": {
+        "path": "nhe-action-errors-callers-1524.json",
+        "sha256": "9c53a3861316b0ae4e2ab0ff968215a59c79580b7a0c9c05f7f7a8e83e090288"
+      },
+      "root_adoption_status": "PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P1",
+      "key": "ui_colour_tab23",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "Color",
+      "raw": "Ałtah áátʼeełgo nidaashchʼąąʼígíí",
+      "display": "Ałtah áátʼeełgo nidaashchʼąąʼígíí",
+      "attributes": {
+        "name": "ui_colour_tab23"
+      },
+      "placeholders": [],
+      "backtranslation": "Colours: the full source category heading for various colours.",
+      "confidence": "Moderate source-supported contextual transfer; independent review required. No native/layout/runtime certificate.",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "The exact full bilingual source Colours category heading is used for the multi-colour controls tab, not parsed into a singular colour noun. Current Color panel contains foreground/background selectors and basic/custom palettes. Allcaps to sentence case and apostrophe normalization preserve the visible source. Length remains unmeasured; no native or layout claim.",
+      "candidate": {
+        "path": "nv-colour-labels3-gaps5-1530.json",
+        "sha256": "426510939d96a43014f8373c657ff09e4d6f3ea3a5890c63fc7d284a4735a838"
+      },
+      "independent_review": {
+        "path": "review-nv-colour3-independent-1535.json",
+        "sha256": "deb5c1a83f433b15353906a481bbc8541d6975d69c6a1371ebf11ea6be4a3117"
+      },
+      "raw_sha256": "207fb6c8109aeccc9ba877d715a20a3714878d04c4a4d85eead7c69eb8d3dc7a",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 831,
+          "text": "        \"View\"->R.string.ui_menu_view;\"Color\"->R.string.ui_colour_tab23;else->R.string.ui_menu_help",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L831"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-nv-colour3-currentc84c6bc-intake-1535.json",
+        "sha256": "bc5290dcf213f89ce3e602e2d5d41521c079173f1d50a65bc0726e72c8c0c8a5"
+      },
+      "source_provenance": {
+        "path": "nv-colour-labels8-primary-1530.json",
+        "sha256": "4a04f1830cd1d2a8f0bfa8f61199bc050522f730acdfe68a90584d7c3cf3d69c"
+      },
+      "caller_provenance": {
+        "path": "nv-colour-labels8-callers-1530.json",
+        "sha256": "be9f33825de995ea1aa49d4f1a117812fca8cfee129b938175e63e097d485a95"
+      },
+      "root_adoption_status": "PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "key": "ui_basic_colours",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Basic colours",
+      "raw": "Otdinåriu na kulot siha",
+      "display": "Otdinåriu na kulot siha",
+      "attributes": {
+        "name": "ui_basic_colours"
+      },
+      "placeholders": [],
+      "backtranslation": "Ordinary/common colours.",
+      "confidence": "Moderate authored functional category label. Basic means the built-in common set, not primary hues.",
+      "decision": "ACCEPT_UNCHANGED_WITH_DISCLOSED_CONTEXTUAL_CALQUE",
+      "independent_semantic_review": "Ordinary/common colours is a bounded functional label for the fixed predefined48 choice set, contrasted with user-saved colours. It does not claim primaryRGB, universal language colour categories, or completeness. Source noun and modifier+linker+plural syntax support the authored phrase.",
+      "candidate": {
+        "path": "ch-colour-roles5-manifest-1532.json",
+        "sha256": "ef511eba8eb51fff4a76631d8e5945d6bfa31063a7a0334dd6dfd15eeffd186e"
+      },
+      "independent_review": {
+        "path": "review-ch-colour5-independent-1537.json",
+        "sha256": "0f633b63201519c621ce4e33053a1efbfae822851fd6798f94a564f87e9a7aee"
+      },
+      "raw_sha256": "9e150f16e26e8ed365880184aa4975fcf95da4233305603f75d2076e2061924c",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt",
+          "line": 123,
+          "text": "        palette.addView(label(ui(R.string.ui_basic_colours)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/AdvancedColourDialog.kt#L123"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-ch-colour5-currentc84c6bc-intake-1537.json",
+        "sha256": "b834f2975eca64ced58f952ec337b28d01206bd98426dda68a9bcad475f00aad"
+      },
+      "source_provenance": {
+        "path": "ch-colour-roles-sources-1532.json",
+        "sha256": "f7b78edcafc6640f5e2deb92895f10e5ba332a68372ba817c940a5aa25bd6c10"
+      },
+      "caller_provenance": {
+        "path": "ch-colour-roles-callers-1532.json",
+        "sha256": "4a705ccf2c058d8896102088a2cf5d7c1428a57183540067da73844b9d0d4d96"
+      },
+      "root_adoption_status": "PENDING"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_apply",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Apply",
+      "raw": "Xijchihua",
+      "display": "Xijchihua",
+      "attributes": {
+        "name": "ui_apply"
+      },
+      "placeholders": [],
+      "backtranslation": "Do it / carry out the proposed operation.",
+      "confidence": "moderate own-variety functional/compositional; independent review required",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Exact own singular do-it imperative is a functional action label for the current placement, dimensions or numeric-slider proposal. All three callers execute validated changes; it is not mere acknowledgment or an assertion the change already succeeded.",
+      "candidate": {
+        "path": "nahua-selection5-author-1533.json",
+        "sha256": "e9494d3b56c8d79216427ece36da12d6199b300cd72ce3943298f6231f4d540f"
+      },
+      "independent_review": {
+        "path": "review-nahua-selection5-independent-1540.json",
+        "sha256": "978962192a2b262b55e39aaa387ffac53be1620e991a0d5687bc5a51b88d4395"
+      },
+      "raw_sha256": "9a64617575296920bdca9ade1054c2dc764a8acf39f07b6068d204f3d42b9b13",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt",
+          "line": 71,
+          "code": ".setPositiveButton(ui(R.string.ui_apply), null)",
+          "context_start": 68,
+          "semantics": "The shared builder is used by AssemblyPositionDialog.show. Its positive listener at30–40 validates nonnegative whole X/Y coordinates, invokes assembly.position at35, then dismisses. Failure keeps it open.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyPlacementDialog.kt#L71"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1018,
+          "code": "val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()",
+          "context_start": 1015,
+          "semantics": "The dimensions dialog positive listener at1019–1027 validates dimensions and safe image size, applies pending content, creates a blank image when fresh or resizes pixels/canvas otherwise, then fits, updates and dismisses. Do-it wording covers each proposed operation; no success is asserted in advance.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt",
+          "line": 71,
+          "code": ".setView(input).setPositiveButton(ui(R.string.ui_apply),null).setNegativeButton(ui(R.string.ui_cancel),null).create()",
+          "context_start": 68,
+          "semantics": "Validates the typed integer and range, assigns slider.progress and dismisses at72–76; the change listener at60–63 applies the new value. It does not merely acknowledge a message.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/NumericSlider.kt#L71"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-nahua-selection5-currentc84c6bc-intake-1540.json",
+        "sha256": "2b4b12896e66569fa1266e4a0d1fd217c69a5513146b4af2a7dc6de604d8b57c"
+      },
+      "source_provenance": {
+        "path": "nahua-selection5-primary-1533.json",
+        "sha256": "010309dc5a3815a1202485736e243dc1ad6b8badb0721d906102cb201cff8632"
+      },
+      "caller_provenance": {
+        "path": "nahua-selection5-callers-1533.json",
+        "sha256": "39c70e8155253e90a1a4c74190cf1f76f30053e90eca81625ef23b42af9c652c"
+      },
+      "root_adoption_status": "PENDING"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_select_an_area",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Select an area",
+      "raw": "Xijtapejpeni se parte ten nopa ixkopinali",
+      "display": "Xijtapejpeni se parte ten nopa ixkopinali",
+      "attributes": {
+        "name": "ui_select_an_area"
+      },
+      "placeholders": [],
+      "backtranslation": "Select a part of the image. [Choose a spatial region.]",
+      "confidence": "moderate own-variety functional/compositional; independent review required",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own choose command singular derived from plural via independently corroborated -ca. Source-attested part-of-the frame points to an image portion in SELECT/LASSO instruction while selection is absent. It is neither a point, a source file picker, nor a rectangle-only restriction. Select-all remains a valid separate route; the prompt does not require all pixels.",
+      "candidate": {
+        "path": "nahua-selection5-author-1533.json",
+        "sha256": "e9494d3b56c8d79216427ece36da12d6199b300cd72ce3943298f6231f4d540f"
+      },
+      "independent_review": {
+        "path": "review-nahua-selection5-independent-1540.json",
+        "sha256": "978962192a2b262b55e39aaa387ffac53be1620e991a0d5687bc5a51b88d4395"
+      },
+      "raw_sha256": "cbcbd49ed8b24e6d039ad46c4390c69371a3ae43023ea8e64a1d9c4f3921c207",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 715,
+          "code": "} ?: ui(R.string.ui_select_an_area)",
+          "context_start": 712,
+          "semantics": "Instruction in selection_dimensions while document.selection is null. The view is created for SELECT and LASSO at752–755 and otherwise shows selected width, height and rotation at713–715. This caption does not itself select anything.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L715"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-nahua-selection5-currentc84c6bc-intake-1540.json",
+        "sha256": "2b4b12896e66569fa1266e4a0d1fd217c69a5513146b4af2a7dc6de604d8b57c"
+      },
+      "source_provenance": {
+        "path": "nahua-selection5-primary-1533.json",
+        "sha256": "010309dc5a3815a1202485736e243dc1ad6b8badb0721d906102cb201cff8632"
+      },
+      "caller_provenance": {
+        "path": "nahua-selection5-callers-1533.json",
+        "sha256": "39c70e8155253e90a1a4c74190cf1f76f30053e90eca81625ef23b42af9c652c"
+      },
+      "root_adoption_status": "PENDING"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_select_an_area_first",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Select an area first.",
+      "raw": "Achtohui xijtapejpeni se parte ten nopa ixkopinali.",
+      "display": "Achtohui xijtapejpeni se parte ten nopa ixkopinali.",
+      "attributes": {
+        "name": "ui_select_an_area_first"
+      },
+      "placeholders": [],
+      "backtranslation": "First select a part of the image.",
+      "confidence": "moderate own-variety functional/compositional; independent review required",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own first-before-command construction preserves the prerequisite before delete, crop, cut or copy. All four actual callers reach this only when selection is absent; render/allocation errors throw separately. Part-of-image wording requests a spatial selection, not file selection, and makes no deletion, saving, successful crop or changed-state claim.",
+      "candidate": {
+        "path": "nahua-selection5-author-1533.json",
+        "sha256": "e9494d3b56c8d79216427ece36da12d6199b300cd72ce3943298f6231f4d540f"
+      },
+      "independent_review": {
+        "path": "review-nahua-selection5-independent-1540.json",
+        "sha256": "978962192a2b262b55e39aaa387ffac53be1620e991a0d5687bc5a51b88d4395"
+      },
+      "raw_sha256": "963b4e176ac4d19de42ffb10119543bc15696891c6adf6954f8a993a00edd732",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 850,
+          "code": "command(ui(R.string.ui_delete_selection),R.drawable.classic_delete) {if(!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first))},",
+          "context_start": 847,
+          "semantics": "Shown only when deleteSelection returns false for a null selection (PaintDocument373–376), before erasing selected canvas content. This is not file deletion.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L850"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 852,
+          "code": "command(ui(R.string.ui_crop_to_selection),R.drawable.classic_crop) {if(document.cropSelection()) paintCanvas.fit() else message(ui(R.string.ui_select_an_area_first))},",
+          "context_start": 849,
+          "semantics": "Shown only when cropSelection returns false because transformedSelectionImage has no selection (PaintDocument349–350,461–464). Allocation and render failures throw rather than taking this prompt path.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L852"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 917,
+          "code": "private fun cutSelection() { if (!document.cutSelection()) message(ui(R.string.ui_select_an_area_first)) }",
+          "context_start": 914,
+          "semantics": "Cut delegates to copySelection then deleteSelection (PaintDocument379–381). False means selection is absent; the message asks for that prerequisite.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L917"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 918,
+          "code": "private fun copySelection() { if (!document.copySelection()) message(ui(R.string.ui_select_an_area_first)) }",
+          "context_start": 915,
+          "semantics": "copySelection at367–370 returns false when transformedSelectionImage has no selection (349–350). The prompt asks for a region before copying it.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L918"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-nahua-selection5-currentc84c6bc-intake-1540.json",
+        "sha256": "2b4b12896e66569fa1266e4a0d1fd217c69a5513146b4af2a7dc6de604d8b57c"
+      },
+      "source_provenance": {
+        "path": "nahua-selection5-primary-1533.json",
+        "sha256": "010309dc5a3815a1202485736e243dc1ad6b8badb0721d906102cb201cff8632"
+      },
+      "caller_provenance": {
+        "path": "nahua-selection5-callers-1533.json",
+        "sha256": "39c70e8155253e90a1a4c74190cf1f76f30053e90eca81625ef23b42af9c652c"
+      },
+      "root_adoption_status": "PENDING"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_select_an_area",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Select an area",
+      "raw": "Xijtlapejpeni se parte tlen nopa tlaixkopintli",
+      "display": "Xijtlapejpeni se parte tlen nopa tlaixkopintli",
+      "attributes": {
+        "name": "ui_select_an_area"
+      },
+      "placeholders": [],
+      "backtranslation": "Select a part of the image. [Choose a spatial region.]",
+      "confidence": "moderate own-variety functional/compositional; independent review required",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own choose command singular derived from plural via independently corroborated -ca. Source-attested part-of-the frame points to an image portion in SELECT/LASSO instruction while selection is absent. It is neither a point, a source file picker, nor a rectangle-only restriction. Select-all remains a valid separate route; the prompt does not require all pixels.",
+      "candidate": {
+        "path": "nahua-selection5-author-1533.json",
+        "sha256": "e9494d3b56c8d79216427ece36da12d6199b300cd72ce3943298f6231f4d540f"
+      },
+      "independent_review": {
+        "path": "review-nahua-selection5-independent-1540.json",
+        "sha256": "978962192a2b262b55e39aaa387ffac53be1620e991a0d5687bc5a51b88d4395"
+      },
+      "raw_sha256": "2c29777977764da15512c56286c8805d99967cc7fe482f44a97b3a1d3e5d1528",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 715,
+          "code": "} ?: ui(R.string.ui_select_an_area)",
+          "context_start": 712,
+          "semantics": "Instruction in selection_dimensions while document.selection is null. The view is created for SELECT and LASSO at752–755 and otherwise shows selected width, height and rotation at713–715. This caption does not itself select anything.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L715"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-nahua-selection5-currentc84c6bc-intake-1540.json",
+        "sha256": "2b4b12896e66569fa1266e4a0d1fd217c69a5513146b4af2a7dc6de604d8b57c"
+      },
+      "source_provenance": {
+        "path": "nahua-selection5-primary-1533.json",
+        "sha256": "010309dc5a3815a1202485736e243dc1ad6b8badb0721d906102cb201cff8632"
+      },
+      "caller_provenance": {
+        "path": "nahua-selection5-callers-1533.json",
+        "sha256": "39c70e8155253e90a1a4c74190cf1f76f30053e90eca81625ef23b42af9c652c"
+      },
+      "root_adoption_status": "PENDING"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_select_an_area_first",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Select an area first.",
+      "raw": "Achtihui xijtlapejpeni se parte tlen nopa tlaixkopintli.",
+      "display": "Achtihui xijtlapejpeni se parte tlen nopa tlaixkopintli.",
+      "attributes": {
+        "name": "ui_select_an_area_first"
+      },
+      "placeholders": [],
+      "backtranslation": "First select a part of the image.",
+      "confidence": "moderate own-variety functional/compositional; independent review required",
+      "decision": "ACCEPT_UNCHANGED",
+      "independent_semantic_review": "Own first-before-command construction preserves the prerequisite before delete, crop, cut or copy. All four actual callers reach this only when selection is absent; render/allocation errors throw separately. Part-of-image wording requests a spatial selection, not file selection, and makes no deletion, saving, successful crop or changed-state claim.",
+      "candidate": {
+        "path": "nahua-selection5-author-1533.json",
+        "sha256": "e9494d3b56c8d79216427ece36da12d6199b300cd72ce3943298f6231f4d540f"
+      },
+      "independent_review": {
+        "path": "review-nahua-selection5-independent-1540.json",
+        "sha256": "978962192a2b262b55e39aaa387ffac53be1620e991a0d5687bc5a51b88d4395"
+      },
+      "raw_sha256": "50272b35eed792482a5f1bd8b4d035efcab3e0f8a7bfe79d3cb2034119723b8e",
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 850,
+          "code": "command(ui(R.string.ui_delete_selection),R.drawable.classic_delete) {if(!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first))},",
+          "context_start": 847,
+          "semantics": "Shown only when deleteSelection returns false for a null selection (PaintDocument373–376), before erasing selected canvas content. This is not file deletion.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L850"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 852,
+          "code": "command(ui(R.string.ui_crop_to_selection),R.drawable.classic_crop) {if(document.cropSelection()) paintCanvas.fit() else message(ui(R.string.ui_select_an_area_first))},",
+          "context_start": 849,
+          "semantics": "Shown only when cropSelection returns false because transformedSelectionImage has no selection (PaintDocument349–350,461–464). Allocation and render failures throw rather than taking this prompt path.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L852"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 917,
+          "code": "private fun cutSelection() { if (!document.cutSelection()) message(ui(R.string.ui_select_an_area_first)) }",
+          "context_start": 914,
+          "semantics": "Cut delegates to copySelection then deleteSelection (PaintDocument379–381). False means selection is absent; the message asks for that prerequisite.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L917"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 918,
+          "code": "private fun copySelection() { if (!document.copySelection()) message(ui(R.string.ui_select_an_area_first)) }",
+          "context_start": 915,
+          "semantics": "copySelection at367–370 returns false when transformedSelectionImage has no selection (349–350). The prompt asks for a region before copying it.",
+          "url": "https://github.com/c933103/AN-Paint/blob/c84c6bcaf87b54faf677537ba68d65ab77d70c62/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L918"
+        }
+      ],
+      "reviewed_family_intake": {
+        "path": "reviewed-nahua-selection5-currentc84c6bc-intake-1540.json",
+        "sha256": "2b4b12896e66569fa1266e4a0d1fd217c69a5513146b4af2a7dc6de604d8b57c"
+      },
+      "source_provenance": {
+        "path": "nahua-selection5-primary-1533.json",
+        "sha256": "010309dc5a3815a1202485736e243dc1ad6b8badb0721d906102cb201cff8632"
+      },
+      "caller_provenance": {
+        "path": "nahua-selection5-callers-1533.json",
+        "sha256": "39c70e8155253e90a1a4c74190cf1f76f30053e90eca81625ef23b42af9c652c"
+      },
+      "root_adoption_status": "PENDING"
+    }
+  ],
+  "note": "Selected review only; local prefixes stripped. Native-speaker, runtime and hosted CI unverified."
+}
