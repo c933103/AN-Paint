@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "subject": "Navajo lower-edge trim label",
+  "integration_commit": "c0d44d76a7761645e2e392d8e8e6e8b69232df76",
+  "reviewed_base_commit": "d46a352dcad645b71e0108b56ae63c70b9d63b13",
+  "reviewed_tree": "22e1b934f5c8de1fe45a828763683c3c8ad9d9d9",
+  "status": "Integrated on an unmerged dependent translation branch; bounded independent review accepted. Not release certification.",
+  "accepted_string": {
+    "locale": "nv",
+    "key": "ui_bottom",
+    "tier": "P1",
+    "english": "Bottom",
+    "value": "Bitłʼááh",
+    "raw_sha256": "a2cb6b263d766403c852f29564ec20ac8dcf7f27cfcb27b3177d75dad7911f95",
+    "attributes": {
+      "name": "ui_bottom"
+    },
+    "placeholders": []
+  },
+  "primary_source": {
+    "title": "Saad Ahaah Sinil / Dual Language, revised 1983, Martha Austin and Regina Lynch, Navajo Curriculum Center, Rough Rock Demonstration School",
+    "url": "https://files.eric.ed.gov/fulltext/ED232802.pdf",
+    "locator": "PDF page31 / printed25, Spatial Relationships, right column",
+    "pdf_sha256": "fc1738c613d0f392851dd140b320ef70f669e086672b3f075fd7f67924505421",
+    "independent_raster_sha256": "5f762b69670ff838511d1400ae797aab6ba42c56ab99d5084d362004af008908",
+    "author_full_raster_sha256": "5404d6d2f135b020efb2fb852d2ac1e5d9942a22f65d4e3427f98551cb45bd2b",
+    "author_detail_raster_sha256": "c6c3c4fb1cc5d3937f2285cbbc1b215710d6e308744a46558759e187d56a865e",
+    "finding": "The spatial-relationships entry directly pairs Bitłʼááh with Bottom. Author and reviewer separately viewed the source; reviewer independently rendered the page. Crossed ł and both acute accents verified; apostrophe normalized to U+02BC. No manufactured morphology."
+  },
+  "evidence_hashes": {
+    "author_packet_sha256": "34b655562a200f2ee0f4fa82d5bc72791797c627692edc7300413d9397446bd8",
+    "independent_review_sha256": "f36651a7410de6276b26e496a7d210c3db41983a598114c2f854343b0c8b0e3a",
+    "integration_intake_sha256": "6fbf1f947b72dee3d2ce44318988758b66d459aa0e9511d11eefd8fbb899291d"
+  },
+  "independent_review": {
+    "verdict": "ACCEPT bounded authored lower-edge label; not native-speaker or runtime certification",
+    "scope": "Independent remote fetches of relevant resource and caller blobs matched the clean local reviewed tree. The single exact production ui_bottom use was found in that local tree; no fresh complete remote tree audit claimed.",
+    "callers": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt",
+        "lines": "72,75,79,104,113-118",
+        "finding": "Only production exact ui_bottom reference in complete local tree is linkedMapOf bottom in numeric trim dialog. Fourth value is bottom trim amount; displayed amount is source height minus crop rect bottom. Label appears in TextView and is passed as %1$s into content descriptions."
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt",
+        "lines": "39-50",
+        "finding": "CropMargins bottom produces size.height-amount(bottom,size.height), confirming margin removed at lower edge, not alignment."
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+        "lines": "81-82",
+        "finding": "Distinct ui_bottom23 means Bottom aligned in vertical text alignment; excluded."
+      }
+    ],
+    "guards": "Candidate exact SHA confirmed; NFC and XML round trip passed; current Navajo key absent; source name attributes match; no placeholders introduced. Other resource catalogues are independent and untouched.",
+    "source_and_resource_identities": {
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt": {
+        "sha256": "70baad1440edf356b3a88b308b5259401800d5405fbc6e0d3849dbf5145eb193",
+        "git_blob": "a21c5d9a32794df26907f6765d52f0d409e2953a"
+      },
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageAssembly.kt": {
+        "sha256": "6b3f51341989a5c16cc3a58a66d10a5ff63db1e6fc0ff27fd928f4cc1ff8a231",
+        "git_blob": "a85aea3729582bc2ee0974f6c8bc6b7bfc7ece14"
+      },
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt": {
+        "sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1",
+        "git_blob": "9f73f9af872b928a81381e859f26def30ce5b294"
+      },
+      "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt": {
+        "sha256": "3976dfe5147077465fecc7117fde830d5773656efb7bd07ed4f4e64247e802e4",
+        "git_blob": "c6005810e1885d01a3dde088b40822e2cc64578e"
+      },
+      "Paintroid/src/main/res/values/strings.xml": {
+        "sha256": "679eca7c691219124da7d6757359f2dcab072946f7822a5adc497532cd9b8e01",
+        "git_blob": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973"
+      },
+      "Paintroid/src/main/res/values-b+nv/strings.xml": {
+        "sha256": "9a7b83123488384867ea7f19b0ebf77bed6c1222fc4d4e734c77b9fc079fd178",
+        "git_blob": "2aa847bc27df620513412f00bbe3bed677d66dcb"
+      }
+    }
+  },
+  "guidance_dependency": "No existing literal guidance reference to this trim caption requires replacement. Ordinary spatial bottom references and distinct ui_bottom23 text-alignment resource are outside this change.",
+  "accessibility_limit": "ui_trim_in_pixels and ui_trim_in_percent remain English fallback, yielding mixed Navajo edge-label and English trim-unit descriptions. These wrappers and screen-reader behavior are not certified or translated by this work.",
+  "limits": [
+    "No native-speaker certification.",
+    "No runtime, Android glyph/font, layout or accessibility certification.",
+    "No approval extends to Bottom aligned or other direction keys.",
+    "Existing device-language, credit-warning, uncertain PNG and other documented holds remain unchanged."
+  ],
+  "publication_scope": "Research-only evidence; no app resources, priority manifest, security tracker content or unrelated private data included."
+}
