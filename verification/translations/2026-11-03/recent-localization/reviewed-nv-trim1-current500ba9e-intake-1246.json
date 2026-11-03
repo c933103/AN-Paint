@@ -1,0 +1,93 @@
+{
+  "kind": "Immutable reviewed Navajo trim1 intake after 500ba9e",
+  "created_utc": "2026-11-03T12:46:00Z",
+  "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+  "head": "500ba9edfd71b279d24372ad02071b26e41993f1",
+  "tree": "20561e284e619f843dd89cf525e9113a677151ee",
+  "count": 1,
+  "rows": [
+    {
+      "locale": "nv",
+      "key": "ui_the_trim_would_remove_the_entire_image",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "The trim would remove the entire image.",
+      "attributes": {
+        "name": "ui_the_trim_would_remove_the_entire_image"
+      },
+      "raw": "Díígi átʼáo aniłgééshgo, eʼelyaaígíí ádin dooleeł.",
+      "value": "Díígi átʼáo aniłgééshgo, eʼelyaaígíí ádin dooleeł.",
+      "display": "Díígi átʼáo aniłgééshgo, eʼelyaaígíí ádin dooleeł.",
+      "typed_slots": [],
+      "placeholders": [],
+      "raw_sha256": "8f91808e6886cfc37e39103078644e0f03b285e5df80bbc36c5ef8185e84ef17",
+      "backtranslation": "When/as cutting it like this, the image will be gone.",
+      "functional_meaning": "The proposed trim settings would leave no image area. Subordinate cutting clause scopes the future absence to this proposed action, not an actual loss or an instruction to cut.",
+      "caller_scope": "CropMargins.rect validates one proposed crop rectangle and throws when width or height is nonpositive. ImageCropDialog uses this during live margin editing and before applying selected crops. The original is retained. The warning is neither a missing-source status nor an actual completed removal.",
+      "composition": [
+        {
+          "span": "Díígi átʼáo aniłgééshgo",
+          "meaning": "Authored addition of productive -go to the exact second-person like-this cutting clause. When/as cutting it like this, not a standalone command.",
+          "source_ids": [
+            "wilson_cut_like_this",
+            "wilson_go_subordination"
+          ]
+        },
+        {
+          "span": "eʼelyaaígíí ádin dooleeł",
+          "meaning": "The image will be absent/gone. Explicit future on a full stative predicate, not a bare current-absence assertion.",
+          "source_ids": [
+            "image_nominal",
+            "wilson_absence_stative",
+            "wilson_analytic_future",
+            "bogal_stative_future"
+          ]
+        }
+      ],
+      "status": "INDEPENDENTLY_ACCEPTED_UNCHANGED; ROOT_ADOPTION_PENDING",
+      "confidence": "Moderate source-based functional composition; productive subordination and prospective result, no whole-warning attestation.",
+      "limits": [
+        "The whole UI string is authored, not an attested source sentence.",
+        "The suffix -go is an authored productive grammatical composition, not an attested complete aniłgééshgo source quote. It marks when/as/while, without an only-if claim.",
+        "The standalone command and arrow of v1 are withdrawn. The input dialog supplies the proposed margin settings to like this; the future result does not claim an already absent image or destruction of the retained source.",
+        "No separate lexical trim noun is claimed. Generic cutting is narrowed to the current trim/margins interaction by the exact like-this clause and actual caller. Do not reuse as an unrelated clipboard Cut diagnostic.",
+        "No permanent deletion, source-file destruction, successful trim, multiple-image deletion, or currently missing image is asserted.",
+        "Absence of the proposed image means no remaining area, covering entire removal without adding an unsupported whole-image quantifier or plural absence form.",
+        "No native-speaker, layout, runtime, app-test or build certificate. No app/source/staging changes, Work launch/resume/delegation or publication."
+      ],
+      "checks": {
+        "original_P0_missing": true,
+        "remaining_original_P0": true,
+        "absent_at_5e31deb_snapshot": true,
+        "absent_at_c987803_snapshot": true,
+        "exact_English_attributes": true,
+        "zero_typed_slots": true,
+        "NFC": true,
+        "raw_value_display_identical": true,
+        "ASCII_apostrophe_absent": true,
+        "character_count": 50,
+        "absent_at_500ba9e_snapshot": true
+      },
+      "review": {
+        "path": "review-nv-trim-prospective1-v2-independent-1244.json",
+        "sha256": "8b61ce43e67b93fd9c1c9cb08d2982e06079152e371d3eacba3f9e861e90f072"
+      }
+    }
+  ],
+  "candidate": {
+    "path": "nv-trim-prospective1-v2-1242.json",
+    "sha256": "048632d5dbbd7703c246e8756826cfef83564fa122d625fc048ed7f647bb386d"
+  },
+  "independent_review": {
+    "path": "review-nv-trim-prospective1-v2-independent-1244.json",
+    "sha256": "8b61ce43e67b93fd9c1c9cb08d2982e06079152e371d3eacba3f9e861e90f072"
+  },
+  "current_catalogue": {
+    "path": "current-nv-500ba9e-1235.json",
+    "sha256": "12d7d278c2015d0a7164ec3615bafdd4758580be97accf33e0923bcaf184faab"
+  },
+  "source_provenance": "Exact primary source/raster pins and actual caller anchors are in immutable candidate; independent review rechecks 104 production identities and 11 resource-only bridges.",
+  "metadata_addendum": "Wilson CRUSH example says While, not When. It proves temporal subordinate action + future main clause, not causal relation itself; proposed-crop consequence is authored composition under the actual callers. Whole aniłgééshgo warning is not claimed attested.",
+  "excluded": "V1 command-arrow warning held and preserved. Uncertain PNG commit excluded and untouched; held validity diagnostics, assembly retention and other held successors excluded.",
+  "scope": "Original P0 new gap fill; no app changes, builds/tests, Work, publication or runtime/native/layout claim."
+}

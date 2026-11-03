@@ -1,0 +1,567 @@
+{
+  "kind": "Immutable three-row Chamorro original-P1 reviewed intake",
+  "head": "2f9dbf06e458aade1c29ae031c173c5a9aa92b58",
+  "tree": "512f60addcce911c6a5d669f30fa278608546baf",
+  "count": 3,
+  "status": "ROOT_ADOPTION_PENDING",
+  "raw_convention": "raw is Android XML-parsed text with exactly one backslash before each ASCII apostrophe; value/display are decoded text. Ellipsis is U+2026, matching English. XML-escape once at integration.",
+  "rows": [
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "original_missing": true,
+      "key": "ui_autosaving_draft",
+      "english": "Autosaving draft…",
+      "attributes": {
+        "name": "ui_autosaving_draft"
+      },
+      "value": "Mapopo'lu i kopia para cho'chu'…",
+      "display": "Mapopo'lu i kopia para cho'chu'…",
+      "raw": "Mapopo\\'lu i kopia para cho\\'chu\\'…",
+      "raw_utf8_sha256": "67650b643ca9dc01725058b080fab627240291a10a90c67846a88ed8f45226ed",
+      "placeholders": [],
+      "backtranslation": "The working copy is being saved…",
+      "source_ids": [
+        "cnmi-storage-progressive-part",
+        "cnmi-copy",
+        "cnmi-work-passive",
+        "chung-grammar"
+      ],
+      "source_entries": [
+        {
+          "id": "cnmi-storage-progressive-part",
+          "url": "https://natibunmarianas.org/p/",
+          "locator": "po'lu senses1/5 lines899-901; popo'lu in sense4 line900; påtti noun line534",
+          "observation": "Fresh primary page and exact entries read. po'lu includes storing/saving; popo'lu attests the progressive shape, although its example uses the assume sense. påtti denotes a part or portion. The progressive of saving and its ma-passive are authored grammatical compositions, not an exact published software phrase."
+        },
+        {
+          "id": "cnmi-copy",
+          "url": "https://natibunmarianas.org/k/",
+          "locator": "kopia noun entry and its kopia para purpose example",
+          "observation": "Direct open/find timed out. A successful targeted web search returned the primary K-page extract with kopia as copy and a purpose phrase. Primary extraction actually read; not a fresh successful page-open claim and not evidence of digital terminology by itself."
+        },
+        {
+          "id": "cnmi-work-passive",
+          "url": "https://natibunmarianas.org/m/",
+          "locator": "ma- sense1 line89; mahåyu lines276-277",
+          "observation": "Fresh primary entries read: ma- forms passive transitive verbs, and the mahåyu example supplies para cho'chu' for work. kopia para cho'chu' is an authored working-copy convention."
+        },
+        {
+          "id": "chung-grammar",
+          "url": "https://kumisionchamoru.guam.gov/wp-content/uploads/2024/07/chamorro_grammar_dr._sandra_chung.pdf",
+          "local_pdf": {
+            "path": "ch-grammar.pdf",
+            "sha256": "d0fb91f1c16df366a8e59b71e6468d70431f8fb7fc0bc6da062e0eb43bd84992"
+          },
+          "local_text": {
+            "path": "ch-grammar.txt",
+            "sha256": "775c23dc8eac0461b61f57867a2075a3b9e0837f4d8e1d01770a546d588ccb7f"
+          },
+          "observation": "Retained primary PDF/text independently read, not downloaded anew. Rasters for the five listed pages were actually viewed. Page212/PDF237 vowel-initial ma-passive rule was read as extracted text only.",
+          "pages": [
+            {
+              "printed": 11,
+              "pdf": 36,
+              "supports": "Productive progressive stressed-CV reduplication."
+            },
+            {
+              "printed": 117,
+              "pdf": 142,
+              "supports": "i definite and un singular indefinite article preceding adjective/noun; an actual un adjective na noun example."
+            },
+            {
+              "printed": 208,
+              "pdf": 233,
+              "supports": "ma-passive with implicit agent."
+            },
+            {
+              "printed": 339,
+              "pdf": 364,
+              "supports": "Affirmative imperative of transitive verbs without person-and-number agreement."
+            },
+            {
+              "printed": 536,
+              "pdf": 561,
+              "supports": "Postnominal ni relative clause, including an actual ni mapo'lu passive."
+            }
+          ],
+          "renders": [
+            {
+              "path": "ch-small-action-grammar-p36-1309.png",
+              "sha256": "30da36799d253339b33351b4767622d20deb2e84052daaa69c602b7d7df17daf"
+            },
+            {
+              "path": "ch-small-action-grammar-p142-1309.png",
+              "sha256": "ff99c0ce18cf2ee9a15d3648f7e4498cca8350b121e7aea063cdbb177dc1226c"
+            },
+            {
+              "path": "ch-passive-p233.png",
+              "sha256": "aea62c777e168c0be196df8c59310b3751f1d1e3d2f45034953b7a3a76ba8298"
+            },
+            {
+              "path": "ch-small-action-grammar-p364-1309.png",
+              "sha256": "0ee74e0843ebb445ecc9b14449fe60578af8d50fb94aa2ef1cec4c3876182383"
+            },
+            {
+              "path": "ch-small-action-grammar-p561-1309.png",
+              "sha256": "9c1b900bbae4da293a929192f98cccc480b100ec2beacc345af164c05f1072f2"
+            }
+          ]
+        }
+      ],
+      "caller": "Shown only when busy and autosaving. This is ongoing status, not a command or completed Save/export.; Draft saving is scheduled automatically after state changes, with delay unless stopped.; Autosaving flag and beginIo precede submission of the working-copy image, floating selection, metadata and history; completed/failure status is set separately.",
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "start_line": 689,
+          "end_line": 690,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L689-L690",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "excerpt": "        val normalStatus=ui(R.string.ui_px, paintCanvas.tool.label, paintCanvas.zoomStatusLabel(), document.bitmap.width, document.bitmap.height, draftStatus)\n        val shownStatus=if(busy) (if(autosaving) ui(R.string.ui_autosaving_draft) else ui(R.string.ui_working)) else normalStatus",
+          "meaning": "Shown only when busy and autosaving. This is ongoing status, not a command or completed Save/export."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "start_line": 1589,
+          "end_line": 1593,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1589-L1593",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "excerpt": "    private fun scheduleAutosave() {\n        if (!autosaveReady || autosaveBlocked || isDestroyed) return\n        draftGeneration++;draftStatus=ui(R.string.ui_draft_pending)\n        autosaveHandler.removeCallbacks(saveDraft)\n        autosaveHandler.postDelayed(saveDraft,if (stopped) 0 else 1500)",
+          "meaning": "Draft saving is scheduled automatically after state changes, with delay unless stopped."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "start_line": 1606,
+          "end_line": 1628,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1606-L1628",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "excerpt": "    private fun saveDraftIfReady() {\n        if (!autosaveReady || autosaveBlocked || isDestroyed || draftGeneration==savedDraftGeneration || draftGeneration==failedDraftGeneration) return\n        if (busy || paintCanvas.hasActiveGesture) { autosaveHandler.postDelayed(saveDraft,400);return }\n        val generation=draftGeneration\n        val image=document.bitmap\n        val floating=document.selection?.takeIf { it.floating }?.image\n        val metadata=draftMetadata()\n        val history=document.historySnapshot()\n        val creditSessions=creditAdoptionReceipts(metadata,history)\n        autosaving=true;beginIo()\n        autosave.submitWrite(worker) {\n            var error: Throwable?=null\n            try {\n                autosave.write(image,floating,metadata,history);savedDraftGeneration=generation\n                retireCreditSessions(creditSessions,metadata,history)\n                File(filesDir,\"classic-recovery.png\").delete()\n            } catch (e: Exception) { error=e } catch (e: OutOfMemoryError) { error=e }\n            val failure=error\n            runOnUiThread { if (!isDestroyed) {\n                autosaving=false\n                if (failure==null) { creditSessions.forEach {(token,revision) ->if(adoptedCreditSessions[token]==revision) adoptedCreditSessions.remove(token)};draftStatus=ui(R.string.ui_draft_saved);lastAutosaveError=null }\n                else { failedDraftGeneration=generation;lastAutosaveError=failure.message;draftStatus=ui(R.string.ui_autosave_failed_use_save) }\n                endIo()",
+          "meaning": "Autosaving flag and beginIo precede submission of the working-copy image, floating selection, metadata and history; completed/failure status is set separately."
+        }
+      ],
+      "linguistic_and_semantic_reasoning": "Mapopo'lu composes implicit-agent ma-passive with progressive popo'lu. The definite working-copy subject is the internal editable draft, not a completed artwork. The status is contextual: it identifies the active automated draft save without introducing a new adverb for automatic. It neither promises success nor asks the user to invoke Save.",
+      "confidence": "Moderate source-compositional confidence; a functional software paraphrase, not an exact published GUI string or native-speaker certification.",
+      "review_status": "AWAITING_INDEPENDENT_EXACT_RAW_REVIEW_AND_ROOT_ADOPTION",
+      "checks": {
+        "original_P1_missing": true,
+        "original_P0_missing": false,
+        "absent_at_observed_head": true,
+        "english_and_attributes_exact": true,
+        "no_format_slots": true,
+        "one_android_backslash_per_ascii_apostrophe": true,
+        "XML_text_roundtrip": true
+      },
+      "limits": [
+        "Length, Android layout, accessibility, rendering and runtime behavior were not tested.",
+        "CNMI dictionary and Chung own-Chamorro grammar scope; no neighboring-language terms or universal-variety claim."
+      ],
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "candidate": {
+        "path": "ch-small-action3-1310.json",
+        "sha256": "0edbbd5e84d404283849db1abdad0984f82f69f3492dc39cb028b9b90489464f"
+      },
+      "independent_review": {
+        "path": "review-ch-small-action3-independent-1320.json",
+        "sha256": "6168e9e6c7d70b7ae6147c3caa4d82dc1e2cc73028a0da9b480131de637028fe"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "original_missing": true,
+      "key": "ui_delete_selection",
+      "english": "Delete selection",
+      "attributes": {
+        "name": "ui_delete_selection"
+      },
+      "value": "Na'suha i påtti ni ma'atyik",
+      "display": "Na'suha i påtti ni ma'atyik",
+      "raw": "Na\\'suha i påtti ni ma\\'atyik",
+      "raw_utf8_sha256": "bbbe737f30c49f7710d0084741e0dff999f1fb90652fc69e64d6b84b850e70b1",
+      "placeholders": [],
+      "backtranslation": "Remove the part that was selected",
+      "source_ids": [
+        "cnmi-remove-linker-relative",
+        "cnmi-storage-progressive-part",
+        "cnmi-selected",
+        "cnmi-select-root",
+        "chung-grammar"
+      ],
+      "source_entries": [
+        {
+          "id": "cnmi-storage-progressive-part",
+          "url": "https://natibunmarianas.org/p/",
+          "locator": "po'lu senses1/5 lines899-901; popo'lu in sense4 line900; påtti noun line534",
+          "observation": "Fresh primary page and exact entries read. po'lu includes storing/saving; popo'lu attests the progressive shape, although its example uses the assume sense. påtti denotes a part or portion. The progressive of saving and its ma-passive are authored grammatical compositions, not an exact published software phrase."
+        },
+        {
+          "id": "cnmi-remove-linker-relative",
+          "url": "https://natibunmarianas.org/n/",
+          "locator": "na linker line89; na'suha line257; nai line296 and ni variant",
+          "observation": "Fresh primary entries read. na'suha supports removing or eliminating; na connects a preceding modifier with a noun; ni is a relative-clause conjunction variant. No saved-file deletion sense is added."
+        },
+        {
+          "id": "cnmi-selected",
+          "url": "https://natibunmarianas.org/i/",
+          "locator": "imperåo line212 and inigu' line417",
+          "observation": "Fresh primary examples directly contain ma'atyik in the sense was selected. The candidate reuses that passive word with påtti and ni. This is stronger than merely deriving it from the active verb."
+        },
+        {
+          "id": "cnmi-select-root",
+          "url": "https://natibunmarianas.org/a-2/",
+          "locator": "atyik line1570",
+          "observation": "Fresh primary active verb choose/select read; supports the semantic base of ma'atyik. No neighboring language or unverified software loan is used."
+        },
+        {
+          "id": "chung-grammar",
+          "url": "https://kumisionchamoru.guam.gov/wp-content/uploads/2024/07/chamorro_grammar_dr._sandra_chung.pdf",
+          "local_pdf": {
+            "path": "ch-grammar.pdf",
+            "sha256": "d0fb91f1c16df366a8e59b71e6468d70431f8fb7fc0bc6da062e0eb43bd84992"
+          },
+          "local_text": {
+            "path": "ch-grammar.txt",
+            "sha256": "775c23dc8eac0461b61f57867a2075a3b9e0837f4d8e1d01770a546d588ccb7f"
+          },
+          "observation": "Retained primary PDF/text independently read, not downloaded anew. Rasters for the five listed pages were actually viewed. Page212/PDF237 vowel-initial ma-passive rule was read as extracted text only.",
+          "pages": [
+            {
+              "printed": 11,
+              "pdf": 36,
+              "supports": "Productive progressive stressed-CV reduplication."
+            },
+            {
+              "printed": 117,
+              "pdf": 142,
+              "supports": "i definite and un singular indefinite article preceding adjective/noun; an actual un adjective na noun example."
+            },
+            {
+              "printed": 208,
+              "pdf": 233,
+              "supports": "ma-passive with implicit agent."
+            },
+            {
+              "printed": 339,
+              "pdf": 364,
+              "supports": "Affirmative imperative of transitive verbs without person-and-number agreement."
+            },
+            {
+              "printed": 536,
+              "pdf": 561,
+              "supports": "Postnominal ni relative clause, including an actual ni mapo'lu passive."
+            }
+          ],
+          "renders": [
+            {
+              "path": "ch-small-action-grammar-p36-1309.png",
+              "sha256": "30da36799d253339b33351b4767622d20deb2e84052daaa69c602b7d7df17daf"
+            },
+            {
+              "path": "ch-small-action-grammar-p142-1309.png",
+              "sha256": "ff99c0ce18cf2ee9a15d3648f7e4498cca8350b121e7aea063cdbb177dc1226c"
+            },
+            {
+              "path": "ch-passive-p233.png",
+              "sha256": "aea62c777e168c0be196df8c59310b3751f1d1e3d2f45034953b7a3a76ba8298"
+            },
+            {
+              "path": "ch-small-action-grammar-p364-1309.png",
+              "sha256": "0ee74e0843ebb445ecc9b14449fe60578af8d50fb94aa2ef1cec4c3876182383"
+            },
+            {
+              "path": "ch-small-action-grammar-p561-1309.png",
+              "sha256": "9c1b900bbae4da293a929192f98cccc480b100ec2beacc345af164c05f1072f2"
+            }
+          ]
+        }
+      ],
+      "caller": "Edit-menu action invokes deleteSelection; absent selection produces Select an area first.; For a nonfloating selection, erasure draws the background over the selected rectangle or mask.; Only the current selection is removed. Nonfloating selection gets a checkpoint and erasure; floating content is cleared. The document is marked edited. No saved-file deletion API is involved.",
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "start_line": 847,
+          "end_line": 852,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L847-L852",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "excerpt": "        \"Edit\"->listOf(\n            command(ui(R.string.ui_select_all),R.drawable.breeze_select_all) {selectAll();selectTab(\"Edit\")},\n            command(ui(R.string.ui_canvas_bounds),R.drawable.classic_bounds) {trimCanvas()},\n            command(ui(R.string.ui_delete_selection),R.drawable.classic_delete) {if(!document.deleteSelection()) message(ui(R.string.ui_select_an_area_first))},\n            command(ui(R.string.ui_canvas_size),R.drawable.classic_canvas_size) {dimensionsDialog(false,false)},\n            command(ui(R.string.ui_crop_to_selection),R.drawable.classic_crop) {if(document.cropSelection()) paintCanvas.fit() else message(ui(R.string.ui_select_an_area_first))},",
+          "meaning": "Edit-menu action invokes deleteSelection; absent selection produces Select an area first."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "start_line": 313,
+          "end_line": 316,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L313-L316",
+          "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320",
+          "content_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "excerpt": "    private fun eraseSelection(s: Selection) {\n        val canvas = Canvas(bitmap)\n        val p = Paint().apply { color = background; style = Paint.Style.FILL; xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC) }\n        if (s.mask != null) canvas.drawPath(s.mask, p) else canvas.drawRect(s.rect, p)",
+          "meaning": "For a nonfloating selection, erasure draws the background over the selected rectangle or mask."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt",
+          "start_line": 373,
+          "end_line": 377,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L373-L377",
+          "git_blob_sha": "3f996b19a97f4869009c9e19243b7b9949608320",
+          "content_sha256": "4b1e0df4588437a5713bf08088785b712b1a373711a57c236f41bbe79f7c35f5",
+          "excerpt": "    fun deleteSelection(): Boolean {\n        val s = selection ?: return false\n        if (!s.floating) { checkpoint(); eraseSelection(s) }\n        clearSelection(); edited(); return true\n    }",
+          "meaning": "Only the current selection is removed. Nonfloating selection gets a checkpoint and erasure; floating content is cleared. The document is marked edited. No saved-file deletion API is involved."
+        }
+      ],
+      "linguistic_and_semantic_reasoning": "Na'suha is an active transitive imperative. The object påtti is bounded by a ni + attested ma'atyik relative clause. It names removal of selected content, including floating content, rather than merely hiding the selection outline, clearing a whole file, cropping, or deleting the saved source.",
+      "confidence": "Moderate source-compositional confidence; a functional software paraphrase, not an exact published GUI string or native-speaker certification.",
+      "review_status": "AWAITING_INDEPENDENT_EXACT_RAW_REVIEW_AND_ROOT_ADOPTION",
+      "checks": {
+        "original_P1_missing": true,
+        "original_P0_missing": false,
+        "absent_at_observed_head": true,
+        "english_and_attributes_exact": true,
+        "no_format_slots": true,
+        "one_android_backslash_per_ascii_apostrophe": true,
+        "XML_text_roundtrip": true
+      },
+      "limits": [
+        "Length, Android layout, accessibility, rendering and runtime behavior were not tested.",
+        "CNMI dictionary and Chung own-Chamorro grammar scope; no neighboring-language terms or universal-variety claim."
+      ],
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "candidate": {
+        "path": "ch-small-action3-1310.json",
+        "sha256": "0edbbd5e84d404283849db1abdad0984f82f69f3492dc39cb028b9b90489464f"
+      },
+      "independent_review": {
+        "path": "review-ch-small-action3-independent-1320.json",
+        "sha256": "6168e9e6c7d70b7ae6147c3caa4d82dc1e2cc73028a0da9b480131de637028fe"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P1",
+      "original_missing": true,
+      "key": "ui_export_as23",
+      "english": "Export as…",
+      "attributes": {
+        "name": "ui_export_as23"
+      },
+      "value": "Po'lu un sahngi na kopia…",
+      "display": "Po'lu un sahngi na kopia…",
+      "raw": "Po\\'lu un sahngi na kopia…",
+      "raw_utf8_sha256": "6321f2c5b2441315e3e04d2daf7915eb640ce1017d4685e110e4374ccfd3e3c2",
+      "placeholders": [],
+      "backtranslation": "Save a separate copy…",
+      "source_ids": [
+        "cnmi-storage-progressive-part",
+        "cnmi-copy",
+        "cnmi-separate",
+        "cnmi-remove-linker-relative",
+        "chung-grammar"
+      ],
+      "source_entries": [
+        {
+          "id": "cnmi-storage-progressive-part",
+          "url": "https://natibunmarianas.org/p/",
+          "locator": "po'lu senses1/5 lines899-901; popo'lu in sense4 line900; påtti noun line534",
+          "observation": "Fresh primary page and exact entries read. po'lu includes storing/saving; popo'lu attests the progressive shape, although its example uses the assume sense. påtti denotes a part or portion. The progressive of saving and its ma-passive are authored grammatical compositions, not an exact published software phrase."
+        },
+        {
+          "id": "cnmi-copy",
+          "url": "https://natibunmarianas.org/k/",
+          "locator": "kopia noun entry and its kopia para purpose example",
+          "observation": "Direct open/find timed out. A successful targeted web search returned the primary K-page extract with kopia as copy and a purpose phrase. Primary extraction actually read; not a fresh successful page-open claim and not evidence of digital terminology by itself."
+        },
+        {
+          "id": "cnmi-remove-linker-relative",
+          "url": "https://natibunmarianas.org/n/",
+          "locator": "na linker line89; na'suha line257; nai line296 and ni variant",
+          "observation": "Fresh primary entries read. na'suha supports removing or eliminating; na connects a preceding modifier with a noun; ni is a relative-clause conjunction variant. No saved-file deletion sense is added."
+        },
+        {
+          "id": "cnmi-separate",
+          "url": "https://natibunmarianas.org/s/",
+          "locator": "sahngi sense2 lines166-167",
+          "observation": "Fresh primary separated/set-aside sense read. The candidate uses this sense, not sense1 strange/peculiar. un sahngi na kopia is authored article/adjective/linker/noun composition."
+        },
+        {
+          "id": "chung-grammar",
+          "url": "https://kumisionchamoru.guam.gov/wp-content/uploads/2024/07/chamorro_grammar_dr._sandra_chung.pdf",
+          "local_pdf": {
+            "path": "ch-grammar.pdf",
+            "sha256": "d0fb91f1c16df366a8e59b71e6468d70431f8fb7fc0bc6da062e0eb43bd84992"
+          },
+          "local_text": {
+            "path": "ch-grammar.txt",
+            "sha256": "775c23dc8eac0461b61f57867a2075a3b9e0837f4d8e1d01770a546d588ccb7f"
+          },
+          "observation": "Retained primary PDF/text independently read, not downloaded anew. Rasters for the five listed pages were actually viewed. Page212/PDF237 vowel-initial ma-passive rule was read as extracted text only.",
+          "pages": [
+            {
+              "printed": 11,
+              "pdf": 36,
+              "supports": "Productive progressive stressed-CV reduplication."
+            },
+            {
+              "printed": 117,
+              "pdf": 142,
+              "supports": "i definite and un singular indefinite article preceding adjective/noun; an actual un adjective na noun example."
+            },
+            {
+              "printed": 208,
+              "pdf": 233,
+              "supports": "ma-passive with implicit agent."
+            },
+            {
+              "printed": 339,
+              "pdf": 364,
+              "supports": "Affirmative imperative of transitive verbs without person-and-number agreement."
+            },
+            {
+              "printed": 536,
+              "pdf": 561,
+              "supports": "Postnominal ni relative clause, including an actual ni mapo'lu passive."
+            }
+          ],
+          "renders": [
+            {
+              "path": "ch-small-action-grammar-p36-1309.png",
+              "sha256": "30da36799d253339b33351b4767622d20deb2e84052daaa69c602b7d7df17daf"
+            },
+            {
+              "path": "ch-small-action-grammar-p142-1309.png",
+              "sha256": "ff99c0ce18cf2ee9a15d3648f7e4498cca8350b121e7aea063cdbb177dc1226c"
+            },
+            {
+              "path": "ch-passive-p233.png",
+              "sha256": "aea62c777e168c0be196df8c59310b3751f1d1e3d2f45034953b7a3a76ba8298"
+            },
+            {
+              "path": "ch-small-action-grammar-p364-1309.png",
+              "sha256": "0ee74e0843ebb445ecc9b14449fe60578af8d50fb94aa2ef1cec4c3876182383"
+            },
+            {
+              "path": "ch-small-action-grammar-p561-1309.png",
+              "sha256": "9c1b900bbae4da293a929192f98cccc480b100ec2beacc345af164c05f1072f2"
+            }
+          ]
+        }
+      ],
+      "caller": "Separate File commands: Save, Save as, Export as, and Save and share. Only this command sets export=true without share.; Only ICO, Base64 text and ASCII art are derived export formats.; With export=true and share=false, format filtering allows only derived formats and displays the separate export explanation.; The same resource is the non-share export dialog title; an ellipsis remains appropriate for a dialog-opening command.; Normal Save reuses savedTarget; export is not a request to change that target.; Export applies pending visible edits and writes output, but filename, savedTarget and document.markSaved are updated only when not exporting.",
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "start_line": 839,
+          "end_line": 842,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L839-L842",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "excerpt": "            ui(R.string.ui_save) to {requestSave(false)},\n            ui(R.string.save20_title) to {showSaveOptions(savedTarget?.options?.format ?: ImageFormat.PNG)},\n            ui(R.string.ui_export_as23) to {showSaveOptions(exportOptions.format,export=true)},\n            ui(R.string.ui_save_and_share) to {showSaveOptions(exportOptions.format,true,export=true)},",
+          "meaning": "Separate File commands: Save, Save as, Export as, and Save and share. Only this command sets export=true without share."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "start_line": 18,
+          "end_line": 23,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L18-L23",
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "content_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+          "excerpt": "    ICO(\"ICO\",\"image/vnd.microsoft.icon\",\".ico\"), BASE64(\"Base64 text\",\"text/plain\",\".txt\"),\n    ASCII_ART(\"ASCII art\",\"text/plain\",\".txt\");\n    val label: String get()=when(this) {BASE64->ui(R.string.formats22_base64_label);ASCII_ART->ui(R.string.formats22_ascii_label);else->displayLabel}\n    val supportsQuality: Boolean get() = this in listOf(JPEG,JPEG_XL,WEBP,HEIC,AVIF)\n    val canSaveLosslessly: Boolean get() = this in listOf(PNG,JPEG_XL,WEBP,AVIF,BMP,DIB,TIFF,BASE64)\n    val isDerivedExport: Boolean get() = this in listOf(ICO,BASE64,ASCII_ART)",
+          "meaning": "Only ICO, Base64 text and ASCII art are derived export formats."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "start_line": 49,
+          "end_line": 52,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L49-L52",
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "content_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+          "excerpt": "        val formats=ImageFormat.values().filter {share || it.isDerivedExport==export}\n        var format=initial.format.takeIf {it in formats} ?: formats.first();var quality=initial.quality.coerceIn(1,100);var lossless=initial.lossless\n        val body=LinearLayout(activity).apply {orientation=LinearLayout.VERTICAL;setPadding(24,12,24,12)}\n        body.addView(TextView(activity).apply {text=ui(when {share->R.string.ui_share_explanation34;export->R.string.ui_export_explanation23;else->R.string.ui_save_explanation23})})",
+          "meaning": "With export=true and share=false, format filtering allows only derived formats and displays the separate export explanation."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "start_line": 187,
+          "end_line": 190,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L187-L190",
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "content_sha256": "794a5efbbd4b6a88081c26bf97434176dfde188d79b9dd735630420607a35444",
+          "excerpt": "        dialog=EditorDialogBuilder(activity).setTitle(if(share) ui(R.string.ui_save_and_share_41edb4) else ui(if(export) R.string.ui_export_as23 else R.string.save20_title))\n            .setView(content)\n            .setPositiveButton(ui(R.string.ui_choose_location),null)\n            .setNegativeButton(ui(R.string.ui_cancel)) {_,_ -> cancel()}.setOnCancelListener {cancel()}.create()",
+          "meaning": "The same resource is the non-share export dialog title; an ellipsis remains appropriate for a dialog-opening command."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "start_line": 1104,
+          "end_line": 1108,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1104-L1108",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "excerpt": "    private fun requestSave(jpeg: Boolean) {\n        if(jpeg) {showSaveOptions(ImageFormat.JPEG);return}\n        val target=savedTarget\n        if(target==null) showSaveOptions(ImageFormat.PNG)\n        else {exportOptions=target.options;isExporting=false;shareAfterSave=false;writeImage(target.uri)}",
+          "meaning": "Normal Save reuses savedTarget; export is not a request to change that target."
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "start_line": 1354,
+          "end_line": 1373,
+          "url": "https://github.com/c933103/AN-Paint/blob/8100174b357b5b30384000f553e8806e0f1ca049/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1354-L1373",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d",
+          "excerpt": "    private fun writeImage(uri: Uri) {\n        paintCanvas.applyPending()\n        beginIo()\n        val snapshot=document.bitmap\n        val options=exportOptions;val exporting=isExporting;val sharing=shareAfterSave;shareAfterSave=false\n        worker.execute {\n            var encoded: File?=null\n            try {\n                val directory=File(cacheDir,\"images\").apply {mkdirs()}\n                val file=File.createTempFile(\"AN-Paint-\",options.format.extension,directory);encoded=file\n                ImageExporter.encode(snapshot,file,options,ImageMemoryPolicy.forDevice(this).workingBytes)\n                contentResolver.openOutputStream(uri,\"wt\")?.use {output -> file.inputStream().use {it.copyTo(output)}}\n                    ?: throw IOException(ui(R.string.ui_the_selected_location_is_not_writable))\n                val name=displayName(uri)\n                if(sharing) encoded=null\n                runOnUiThread {if(!isDestroyed) {\n                    if(!exporting) {filename=name;savedTarget=SavedTarget(uri,name,options);document.markSaved();scheduleAutosave()};endIo();LocaleTypography.showMessage(this,ui(R.string.ui_saved, name),Toast.LENGTH_SHORT)\n                    if(sharing) shareSavedImage(file,options.format)\n                    val action=afterSave;afterSave=null\n                    if(exporting && action!=null) message(ui(R.string.ui_export_did_not_save23)) else action?.invoke()",
+          "meaning": "Export applies pending visible edits and writes output, but filename, savedTarget and document.markSaved are updated only when not exporting."
+        }
+      ],
+      "linguistic_and_semantic_reasoning": "Active Po'lu imperative plus un + sahngi + na + kopia deliberately names making a separate output copy. The short label relies on the adjacent adopted explanation and actual format filter for ICO/Base64/ASCII detail. It is not a generic translation for every export action, not recovery-ZIP export, and not normal Save/Save as or a promise to save current edits to the existing target.",
+      "confidence": "Moderate source-compositional confidence; a functional software paraphrase, not an exact published GUI string or native-speaker certification.",
+      "review_status": "AWAITING_INDEPENDENT_EXACT_RAW_REVIEW_AND_ROOT_ADOPTION",
+      "checks": {
+        "original_P1_missing": true,
+        "original_P0_missing": false,
+        "absent_at_observed_head": true,
+        "english_and_attributes_exact": true,
+        "no_format_slots": true,
+        "one_android_backslash_per_ascii_apostrophe": true,
+        "XML_text_roundtrip": true
+      },
+      "limits": [
+        "Length, Android layout, accessibility, rendering and runtime behavior were not tested.",
+        "CNMI dictionary and Chung own-Chamorro grammar scope; no neighboring-language terms or universal-variety claim."
+      ],
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "candidate": {
+        "path": "ch-small-action3-1310.json",
+        "sha256": "0edbbd5e84d404283849db1abdad0984f82f69f3492dc39cb028b9b90489464f"
+      },
+      "independent_review": {
+        "path": "review-ch-small-action3-independent-1320.json",
+        "sha256": "6168e9e6c7d70b7ae6147c3caa4d82dc1e2cc73028a0da9b480131de637028fe"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING"
+    }
+  ],
+  "independent_review": {
+    "path": "review-ch-small-action3-independent-1320.json",
+    "sha256": "6168e9e6c7d70b7ae6147c3caa4d82dc1e2cc73028a0da9b480131de637028fe"
+  },
+  "sources": {
+    "path": "ch-small-action-sources-1310.json",
+    "sha256": "a8cd132d5f107fc82031f7e740d873e89894aa39ce96a1b5544f3b74599449f4"
+  },
+  "current_head_guard": {
+    "path": "ch-small-action3-current-head-addendum-1311.json",
+    "sha256": "1b3accd8c9e61d95e2e361dc977b6c9cc976908b608841e01a5abd451acc7d37"
+  },
+  "limits": [
+    "Autosaving is contextually automatic and explicitly progressive, not lexically automatic or completed.",
+    "Working copy is an authored technical convention, not evidence of a completed artwork.",
+    "Selected content only; no saved-file deletion implication.",
+    "Separate export output is a role-level distinction, never a guarantee of a physically distinct URI or preservation of previously saved file bytes."
+  ],
+  "scope": "No application changes; no tests/builds, Work or publication. No root adoption, native fluency or runtime certification claimed.",
+  "excluded": [
+    "All existing current resource entries",
+    "Uncertain NV formats22_animation_poster commit",
+    "All root-held successors"
+  ]
+}
