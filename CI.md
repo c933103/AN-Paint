@@ -96,9 +96,13 @@ permissions stay `contents: read`: no new credential, writes, secrets, external
 repository access, protected-setting changes or release reuse. The introducing
 policy change necessarily runs the full fallback because its producers differ
 from its first parent. This is not general same-tree code-PR reuse; any non-translation
-change takes the full path. The initial qualifier pattern is conservative: regional
-folder spellings with additional hyphens also fall back rather than widening the
-exception implicitly. GraphQL review-editor access is not assumed: if the
+change takes the full path. The exception is limited to existing picker-backed
+canonical catalogues and the default strings source, using the unchanged resolver
+and picker as
+trusted producers. Regional spellings such as `values-fa-rIR` and BCP-47
+`values-b+` catalogues follow the same path rule. Noncanonical resource folders,
+non-picker catalogues, added/deleted paths and mode changes still fall back.
+GraphQL review-editor access is not assumed: if the
 existing token cannot establish it, reuse stays ineligible. No artificial PR or
 extra benchmark run is needed merely to demonstrate reuse.
 

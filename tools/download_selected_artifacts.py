@@ -75,6 +75,15 @@ def download(repo, artifact, root, runner=subprocess.run, *, kind="reports"):
         extract(archive, root)
 
 
+def canonical_translation_paths():
+    """Only picker-backed canonical catalogues and the default strings source."""
+    from translation_catalogues import ROOT, catalogue_paths, offered_tags
+    offered = set(offered_tags())
+    return {path.relative_to(ROOT).as_posix()
+            for tag, path in catalogue_paths().items() if tag in offered} | {
+                'Paintroid/src/main/res/values/strings.xml'}
+
+
 def preflight(fetch, graphql, checkout, event, environ, root, now):
     """Independently qualify prior evidence; exceptions always mean normal execution."""
     from select_device_artifacts import (collection, qualify_equivalent_run, require,
@@ -108,16 +117,18 @@ def preflight(fetch, graphql, checkout, event, environ, root, now):
             'Not an immediate two-parent merge')
     base, head = [p['sha'] for p in merge['parents']]
 
+    translation_paths = canonical_translation_paths()
+
     def producers(tree):
         data = fetch(prefix + '/git/trees/' + tree + '?recursive=1')
         require(data.get('truncated') is False, 'Incomplete Git tree')
         rows = [x for x in data['tree'] if x['type'] != 'tree']
         require(rows and all(x['type'] == 'blob' and x['mode'] in ('100644', '100755') for x in rows),
                 'Unsupported tracked input mode')
-        # Narrow initial policy, not an open-ended executable-script inventory.
-        # Only existing canonical translation strings.xml bytes may change.
-        immutable = {x['path']: x['sha'] for x in rows if not re.fullmatch(
-            r'Paintroid/src/main/res/values(?:-[A-Za-z0-9+]+)?/strings[.]xml', x['path'])}
+        # The picker and canonical resolver are immutable producers themselves.
+        # Paths/modes must still match exactly: no added catalogue exemption.
+        immutable = {x['path']: x['sha'] for x in rows
+                     if x['path'] not in translation_paths}
         return immutable, {x['path']: x['mode'] for x in rows}
 
     before = producers(fetch(prefix + '/git/commits/' + base)['tree']['sha'])
