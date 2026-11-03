@@ -1,0 +1,281 @@
+{
+  "kind": "Immutable independently reviewed five-row replacement batch",
+  "created_utc": "2026-11-03T10:16:00Z",
+  "status": "ROOT_ADOPTION_PENDING; not yet integrated or published",
+  "count": 5,
+  "new_gap_fills": 0,
+  "replacement_count": 5,
+  "current_verified_head": "9740fd060deab83d83e48ee16164cd9c1feeafd5",
+  "scope": "Research only. Root owns source replacement and verification. No app/staging changes, tests/builds, Work or publication by author/reviewers.",
+  "purpose": "Three explicit image-attribution diagnoses (nhe/nch/nhw) and two sampled-memory possibility/conditional corrections (ch/nhe).",
+  "old_evidence_preserved": true,
+  "input_pins": [
+    {
+      "file": "nhe-legacy-credit-attribution1-v2-0950.json",
+      "sha256": "fb6d0f73e6b25c3a228340e87402faceaea611792d51d4909b13c8715f70a996"
+    },
+    {
+      "file": "review-nhe-legacy-credit-attribution1-v2-independent-0954.json",
+      "sha256": "d09d488e05c9601f5be61f90a277ec1fcb8fa66f1af663f4a019c3d7920543c4"
+    },
+    {
+      "file": "nahua-legacy-credit-attribution2-v2-1002.json",
+      "sha256": "f1c9de1e4da1863118ecd601a3462bf9a46627d685a4b3fc0d2a09190b662139"
+    },
+    {
+      "file": "review-nahua-legacy-credit-attribution2-v2-independent-1005.json",
+      "sha256": "ed7c5fcf921dc2659697308d5dcbd2065e1ccdd29f3a58d54af6552eb177be9c"
+    },
+    {
+      "file": "ch-sampled-memory1-v2-1010.json",
+      "sha256": "245580a7308bbc1793f630a8dce76b637a4118b7433f5f86e51c57e00531a572"
+    },
+    {
+      "file": "review-ch-sampled-memory1-v2-independent-1014.json",
+      "sha256": "61cdc43a9f447f3db6895a861b4e11b98aa472e4db78d1b9ef8421f6222ab1bd"
+    },
+    {
+      "file": "nhe-sampled-memory1-v2-1008.json",
+      "sha256": "3c3a5de2b71b64fb72669d811310967deae189be02d3b343770e839cffcbf85e"
+    },
+    {
+      "file": "review-nhe-sampled-memory1-v2-independent-1012.json",
+      "sha256": "e5407305eccc02ef49c77713ecbb6cfac5c967a6e9c2bfdffa63e3e642ea6ec4"
+    }
+  ],
+  "rows": [
+    {
+      "locale": "nhe",
+      "key": "legacy_credits_unreadable",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Some saved credits could not be read. Their stored copies have been kept.",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "raw": "AN Paint axhuelqui quipohua cequi tlahcuiloliztli tlen quimanextia acquiya quichiuhqui ixcopincayotl zo canin mocui ixcopincayotl. AN Paint nocca quipixtoc tlen quiahcoucqui achtohuiya.",
+      "display": "AN Paint axhuelqui quipohua cequi tlahcuiloliztli tlen quimanextia acquiya quichiuhqui ixcopincayotl zo canin mocui ixcopincayotl. AN Paint nocca quipixtoc tlen quiahcoucqui achtohuiya.",
+      "backtranslation": "AN Paint could not read some writing that indicates who made the image or where the image was obtained. AN Paint still keeps what it stored earlier.",
+      "caller": "LegacyImageCreditsActivity93 shows this only when ImageCreditArchive.contents unreadableSnapshots>0. ImageCreditArchive103–117 fails reading/parsing/validating a stored accepted-credit snapshot, leaves the original file untouched and increments unreadable. Readable credit records can coexist; no all-credits failure claim.",
+      "value": "AN Paint axhuelqui quipohua cequi tlahcuiloliztli tlen quimanextia acquiya quichiuhqui ixcopincayotl zo canin mocui ixcopincayotl. AN Paint nocca quipixtoc tlen quiahcoucqui achtohuiya.",
+      "placeholders": [],
+      "raw_sha256": "849f5cd23db26412cec7acc3c44d20a867ce666e22fc25bdea974c7c63b5cbb1",
+      "old_raw": "Oncah tlahcuiloliztli tlen AN Paint axhuelqui quipohua. AN Paint quiahcoucqui nopa tlahcuiloliztli.",
+      "old_raw_sha256": "cad9f051eb4d64412263d517b65de6808d033ef0c1d9b4711c761a1e4de743bf",
+      "current_old_value_verification": {
+        "head": "9740fd060deab83d83e48ee16164cd9c1feeafd5",
+        "resource_blob_sha": "2856588cce4016d5e42079d3cb3bdb58ab2fe257",
+        "retained_response": {
+          "file": "current-nhe-9740fd-1005.json",
+          "sha256": "cf740db733c86e6e3b4edd0ca5fad2483609dd50743e7f64755e27a782128fb9"
+        },
+        "old_raw_exact": true,
+        "attributes_exact": true
+      },
+      "candidate_pin": {
+        "file": "nhe-legacy-credit-attribution1-v2-0950.json",
+        "sha256": "fb6d0f73e6b25c3a228340e87402faceaea611792d51d4909b13c8715f70a996"
+      },
+      "independent_review": {
+        "file": "review-nhe-legacy-credit-attribution1-v2-independent-0954.json",
+        "sha256": "d09d488e05c9601f5be61f90a277ec1fcb8fa66f1af663f4a019c3d7920543c4"
+      },
+      "status": "INDEPENDENTLY_REVIEWED_UNCHANGED; ROOT_ADOPTION_PENDING",
+      "raw_convention": "XML-parsed Android source text; Android backslash escapes retained. XML-escape once at serialization.",
+      "semantic_limits": [
+        "Explicit attribution phrase reused exactly from independently reviewed own Chicontepec credit warnings2; no title-only bare-writing reference. Maker or source role covers authored credit/provenance text, not just a person name.",
+        "Some credit information may be unreadable; it does not infer that no accepted records can be displayed. CEQUI composition requires independent review for written-information quantification.",
+        "What was stored earlier remains kept refers to raw stored credit snapshots, including unreadable files. It does not assert successful parsing, restored display, newly made copies, repaired corruption or same-text deduplication.",
+        "Earlier bare-writing row and all its evidence remain preserved as superseded, not silently overwritten. This is a proposed replacement, not a new gap fill or disjointness claim.",
+        "Own functional software extension, not exact complete-sentence/native/layout/runtime certification."
+      ]
+    },
+    {
+      "locale": "nch",
+      "key": "legacy_credits_unreadable",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Some saved credits could not be read. Their stored copies have been kept.",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "raw": "Onca tajcuiloli cati AN Paint amo huelqui quipohuas. Nopa tajcuiloli quiijtohua ajquiya quichijqui ixkopinali o canque hualajqui ixkopinali. AN Paint quiajoctoc nopa tajcuiloli.",
+      "display": "Onca tajcuiloli cati AN Paint amo huelqui quipohuas. Nopa tajcuiloli quiijtohua ajquiya quichijqui ixkopinali o canque hualajqui ixkopinali. AN Paint quiajoctoc nopa tajcuiloli.",
+      "backtranslation": "There is written text that AN Paint could not read. That text says who made the image or where the image came from. AN Paint has kept that text.",
+      "caller": "LegacyImageCreditsActivity.kt:93 when archive.unreadableSnapshots>0. ImageCreditArchive.kt:103–117 catches reading/JSON/version/credit-record failures and leaves original snapshot untouched. Readable records can coexist. No pixel failure diagnosis.",
+      "value": "Onca tajcuiloli cati AN Paint amo huelqui quipohuas. Nopa tajcuiloli quiijtohua ajquiya quichijqui ixkopinali o canque hualajqui ixkopinali. AN Paint quiajoctoc nopa tajcuiloli.",
+      "placeholders": [],
+      "raw_sha256": "18fdfe3c614fcc8ca1bffa5f4b21f935c60d3aa2bc0c0cd03cbbf23af0fc7897",
+      "old_raw": "Onca tajcuiloli cati AN Paint amo huelqui quipohuas. AN Paint quiajoctoc nopa tajcuiloli.",
+      "old_raw_sha256": "29e9b2a5bf6649fad7b2141b874464a9733d1a8daaa5778cc0a663dbddcbe01a",
+      "current_old_value_verification": {
+        "head": "9740fd060deab83d83e48ee16164cd9c1feeafd5",
+        "resource_blob_sha": "1fdc3d532c793ba5711f526d24d83576f8c18af9",
+        "retained_response": {
+          "file": "current-nch-9740fd-1016.json",
+          "sha256": "1f854fb785e379372becbe06cfcd4eb5cb50fc0a1ce39a163598a69c6aa24815"
+        },
+        "old_raw_exact": true,
+        "attributes_exact": true
+      },
+      "candidate_pin": {
+        "file": "nahua-legacy-credit-attribution2-v2-1002.json",
+        "sha256": "f1c9de1e4da1863118ecd601a3462bf9a46627d685a4b3fc0d2a09190b662139"
+      },
+      "independent_review": {
+        "file": "review-nahua-legacy-credit-attribution2-v2-independent-1005.json",
+        "sha256": "ed7c5fcf921dc2659697308d5dcbd2065e1ccdd29f3a58d54af6552eb177be9c"
+      },
+      "status": "INDEPENDENTLY_REVIEWED_UNCHANGED; ROOT_ADOPTION_PENDING",
+      "raw_convention": "XML-parsed Android source text; Android backslash escapes retained. XML-escape once at serialization.",
+      "semantic_limits": "Explicit maker OR origin-source attribution replaces bare writing. Existential affected written material does not say all credits failed. Original retained-record clause means the previously stored material remains; no fresh Save, successful decoding, authorship verification, repair, or later usability promise. Origin movement language extended to source of a digital image. It does not label every free-form credit exclusively as maker/source content or coin a legal credit/copyright noun."
+    },
+    {
+      "locale": "nhw",
+      "key": "legacy_credits_unreadable",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Some saved credits could not be read. Their stored copies have been kept.",
+      "attributes": {
+        "name": "legacy_credits_unreadable"
+      },
+      "raw": "Onca tlajcuiloli catli AN Paint amo huelqui quipohuas. Nopa tlajcuiloli quiijtohua ajqueya quichijqui tlaixkopintli o canque hualajqui tlaixkopintli. AN Paint quiajoctoc nopa tlajcuiloli.",
+      "display": "Onca tlajcuiloli catli AN Paint amo huelqui quipohuas. Nopa tlajcuiloli quiijtohua ajqueya quichijqui tlaixkopintli o canque hualajqui tlaixkopintli. AN Paint quiajoctoc nopa tlajcuiloli.",
+      "backtranslation": "There is written text that AN Paint could not read. That text says who made the image or where the image came from. AN Paint has kept that text.",
+      "caller": "LegacyImageCreditsActivity.kt:93 when archive.unreadableSnapshots>0. ImageCreditArchive.kt:103–117 catches reading/JSON/version/credit-record failures and leaves original snapshot untouched. Readable records can coexist. No pixel failure diagnosis.",
+      "value": "Onca tlajcuiloli catli AN Paint amo huelqui quipohuas. Nopa tlajcuiloli quiijtohua ajqueya quichijqui tlaixkopintli o canque hualajqui tlaixkopintli. AN Paint quiajoctoc nopa tlajcuiloli.",
+      "placeholders": [],
+      "raw_sha256": "8323b62cd3f48c619196cf9e7fbe4736973ae0c194e4730ad50f50eee32ece8c",
+      "old_raw": "Onca tlajcuiloli catli AN Paint amo huelqui quipohuas. AN Paint quiajoctoc nopa tlajcuiloli.",
+      "old_raw_sha256": "ecaf5aade9f3c7222154bf397cf58a5560b434bb43c733334243c8a5e5f8a308",
+      "current_old_value_verification": {
+        "head": "9740fd060deab83d83e48ee16164cd9c1feeafd5",
+        "resource_blob_sha": "42134e76880793d41db55391a514f8ac05e7a09a",
+        "retained_response": {
+          "file": "current-nhw-9740fd-1016.json",
+          "sha256": "bfb820b715a81587588745b5b6bd7594adf99881e2bd7fb2f615185923de92d2"
+        },
+        "old_raw_exact": true,
+        "attributes_exact": true
+      },
+      "candidate_pin": {
+        "file": "nahua-legacy-credit-attribution2-v2-1002.json",
+        "sha256": "f1c9de1e4da1863118ecd601a3462bf9a46627d685a4b3fc0d2a09190b662139"
+      },
+      "independent_review": {
+        "file": "review-nahua-legacy-credit-attribution2-v2-independent-1005.json",
+        "sha256": "ed7c5fcf921dc2659697308d5dcbd2065e1ccdd29f3a58d54af6552eb177be9c"
+      },
+      "status": "INDEPENDENTLY_REVIEWED_UNCHANGED; ROOT_ADOPTION_PENDING",
+      "raw_convention": "XML-parsed Android source text; Android backslash escapes retained. XML-escape once at serialization.",
+      "semantic_limits": "Explicit maker OR origin-source attribution replaces bare writing. Existential affected written material does not say all credits failed. Original retained-record clause means the previously stored material remains; no fresh Save, successful decoding, authorship verification, repair, or later usability promise. Origin movement language extended to source of a digital image. It does not label every free-form credit exclusively as maker/source content or coin a legal credit/copyright noun."
+    },
+    {
+      "locale": "ch",
+      "key": "ui_sampled_resize_memory_explanation",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "raw": "Gi katkulasion, mana\\'danña\\' i RAM para i brin ni un usa på\\'gu yan i kopia ni mapo\\'lu para u mapega (clipboard), yan i tempuråriu na kåmpu gi RAM para u mababa i pinenta gi mineddung ni siña mås dikiki\\' (sampled decoding) yan para u matulaika i pinenta. Gi minagåhit, ti todu i tiempu parehu i RAM ni ma\\'usa. Yanggin mås dikiki\\' i mineddung i kopia, malingu palu na infutmasion gi kopia. Ti matulaika i urihinåt na dokumentu.",
+      "display": "Gi katkulasion, mana'danña' i RAM para i brin ni un usa på'gu yan i kopia ni mapo'lu para u mapega (clipboard), yan i tempuråriu na kåmpu gi RAM para u mababa i pinenta gi mineddung ni siña mås dikiki' (sampled decoding) yan para u matulaika i pinenta. Gi minagåhit, ti todu i tiempu parehu i RAM ni ma'usa. Yanggin mås dikiki' i mineddung i kopia, malingu palu na infutmasion gi kopia. Ti matulaika i urihinåt na dokumentu.",
+      "backtranslation": "The estimate includes RAM for the canvas you currently use and the copy stored for pasting (clipboard), and temporary RAM space for opening the image at dimensions that may be smaller (sampled decoding) and for changing the image. In reality, the RAM used is not always the same. If the dimensions of the copy are smaller, some information is lost in the copy. The original file is unchanged.",
+      "caller": "ImageResizeDialog34 chooses the sampled explanation for !hasNativeWork;39 accepts target dimensions <= source, including equality;40–45/58 recheck policy. ImageImport31–38 initializes sample1 and may preserve full source dimensions;28/75–78 include decode/edit/resident estimates;148–181 read/transform bitmap data without replacing source. See pinned current caller packet.",
+      "value": "Gi katkulasion, mana'danña' i RAM para i brin ni un usa på'gu yan i kopia ni mapo'lu para u mapega (clipboard), yan i tempuråriu na kåmpu gi RAM para u mababa i pinenta gi mineddung ni siña mås dikiki' (sampled decoding) yan para u matulaika i pinenta. Gi minagåhit, ti todu i tiempu parehu i RAM ni ma'usa. Yanggin mås dikiki' i mineddung i kopia, malingu palu na infutmasion gi kopia. Ti matulaika i urihinåt na dokumentu.",
+      "placeholders": [],
+      "raw_sha256": "a5dc402563c204d7f16dbf4d71c16b8e66ab1b7c88f3cbdf739698c7829f6f65",
+      "old_raw": "Gi katkulasion, mana\\'danña\\' i RAM para i brin ni un usa på\\'gu yan i kopia ni mapo\\'lu para u mapega (clipboard), yan i tempuråriu na kåmpu gi RAM para u mababa i pinenta gi mås dikiki\\' na mineddung (sampled decoding) yan para u matulaika i pinenta. Gi minagåhit, ti todu i tiempu parehu i RAM ni ma\\'usa. Malingu palu na infutmasion gi mås dikiki\\' na kopia. Ti matulaika i urihinåt na dokumentu.",
+      "old_raw_sha256": "d6b3aedbd8fa6b42ff7c3686d996c8a8d46c75322b768bd0207df1f9e65de420",
+      "current_old_value_verification": {
+        "head": "9740fd060deab83d83e48ee16164cd9c1feeafd5",
+        "resource_blob_sha": "b2147705f605c0fe88d2d0ef4bb418eea84667f9",
+        "retained_response": {
+          "file": "current-ch-9740fd-1005.json",
+          "sha256": "88014ff551759a67bd36a31975b04729dc19488c96cf2c6951506084044d0074"
+        },
+        "old_raw_exact": true,
+        "attributes_exact": true
+      },
+      "candidate_pin": {
+        "file": "ch-sampled-memory1-v2-1010.json",
+        "sha256": "245580a7308bbc1793f630a8dce76b637a4118b7433f5f86e51c57e00531a572"
+      },
+      "independent_review": {
+        "file": "review-ch-sampled-memory1-v2-independent-1014.json",
+        "sha256": "61cdc43a9f447f3db6895a861b4e11b98aa472e4db78d1b9ef8421f6222ab1bd"
+      },
+      "status": "INDEPENDENTLY_REVIEWED_UNCHANGED; ROOT_ADOPTION_PENDING",
+      "raw_convention": "XML-parsed Android source text; Android backslash escapes retained. XML-escape once at serialization.",
+      "semantic_limits": [
+        "Whole text remains an authored functional composition, not an attested whole Chamorro sentence or native-human/dialect/layout certification.",
+        "The smaller standard is implicit, anchored by the original size/copy context and supported by Chung575. It is pixel dimensions, not compressed bytes or viewport zoom.",
+        "siña with a comparative adjective is a possibility statement; it does not claim all current policies permit every target or that an allocation will succeed.",
+        "No CHR/NHE/NCH vocabulary or morphology was borrowed; cross-language corrections are semantic warnings only.",
+        "Retained historical source packet incorrectly characterized smaller opening dimensions as unconditional for this caller; that interpretation is superseded for this row only by these current caller facts.",
+        "No Work launch, application/staging edits, app tests/builds, runtime/layout test, publication, branch or external sharing. Research artifact integrity only."
+      ],
+      "review_metadata_addendum": [
+        "All prior absence/disjointness claims are historical and not current: this is a replacement of an existing exact-head row.",
+        "Modal smaller decoding and conditional smaller-output detail loss govern over earlier unqualified source notes; all other clauses unchanged."
+      ]
+    },
+    {
+      "locale": "nhe",
+      "key": "ui_sampled_resize_memory_explanation",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "raw": "AN Paint quiixnehuia quezqui RAM monequi. Quicempohua RAM para ixcopincayotl tlen namantzin eltoc (canvas), para tlen quiahcoucqui para quipepechoz (clipboard), huan RAM tlen motequihuia ce tlatoctzin quemman quitlapoa ixcopincayotl (sampled decoding: hueli quipatla ihuexca para ma eli maz cuecuetztzin) huan quemman quipatla ixcopincayotl. Itlapohual RAM tlen motequihuia axnochipa cencah. Tlan AN Paint quichihua ce ixcopincayotl ica ihuexca tlen maz cuecuetztzin (px), polihui cequi tlen neci. AN Paint axquipatla ixcopincayotl tlen achtohui (original file).",
+      "display": "AN Paint quiixnehuia quezqui RAM monequi. Quicempohua RAM para ixcopincayotl tlen namantzin eltoc (canvas), para tlen quiahcoucqui para quipepechoz (clipboard), huan RAM tlen motequihuia ce tlatoctzin quemman quitlapoa ixcopincayotl (sampled decoding: hueli quipatla ihuexca para ma eli maz cuecuetztzin) huan quemman quipatla ixcopincayotl. Itlapohual RAM tlen motequihuia axnochipa cencah. Tlan AN Paint quichihua ce ixcopincayotl ica ihuexca tlen maz cuecuetztzin (px), polihui cequi tlen neci. AN Paint axquipatla ixcopincayotl tlen achtohui (original file).",
+      "backtranslation": "AN Paint estimates how much RAM is needed. It counts together RAM for the current image (canvas), for what it stored for pasting (clipboard), and temporary RAM when opening an image (sampled decoding: it can change its dimensions to smaller ones) and when changing an image. The amount of RAM used is not always the same. If AN Paint makes an image with smaller pixel dimensions, some visible information is lost. AN Paint does not change the original image/file.",
+      "caller": "ImageResizeDialog.kt:34 displays this for non-native-memory prompts; target39 permits dimensions equal to source and refresh40–57 uses current policy each time. ImageImport.kt ImportPlan.create initializes sample=1 and may leave it at1. Therefore neither actual decoding reduction nor a smaller final target is universally asserted.",
+      "value": "AN Paint quiixnehuia quezqui RAM monequi. Quicempohua RAM para ixcopincayotl tlen namantzin eltoc (canvas), para tlen quiahcoucqui para quipepechoz (clipboard), huan RAM tlen motequihuia ce tlatoctzin quemman quitlapoa ixcopincayotl (sampled decoding: hueli quipatla ihuexca para ma eli maz cuecuetztzin) huan quemman quipatla ixcopincayotl. Itlapohual RAM tlen motequihuia axnochipa cencah. Tlan AN Paint quichihua ce ixcopincayotl ica ihuexca tlen maz cuecuetztzin (px), polihui cequi tlen neci. AN Paint axquipatla ixcopincayotl tlen achtohui (original file).",
+      "placeholders": [],
+      "raw_sha256": "353a45c596a5d0d7e12d151529b5452262c0f3e486eebbc55ec0d55e58acba1f",
+      "old_raw": "AN Paint quiixnehuia quezqui RAM monequi. Quicempohua RAM para ixcopincayotl tlen namantzin eltoc (canvas), para tlen quiahcoucqui para quipepechoz (clipboard), huan RAM tlen motequihuia ce tlatoctzin quemman quitlapoa ixcopincayotl ica ihuexca tlen maz cuecuetztzin (sampled decoding) huan quemman quipatla ixcopincayotl. Itlapohual RAM tlen motequihuia axnochipa cencah. Pan ixcopincayotl tlen AN Paint quichihua ica ihuexca tlen maz cuecuetztzin (px), polihui cequi tlen neci. AN Paint axquipatla ixcopincayotl tlen achtohui (original file).",
+      "old_raw_sha256": "9c4908dfde386441f61c5782341f68036a3574ce971cf05adec953a44ddfcadf",
+      "current_old_value_verification": {
+        "head": "9740fd060deab83d83e48ee16164cd9c1feeafd5",
+        "resource_blob_sha": "2856588cce4016d5e42079d3cb3bdb58ab2fe257",
+        "retained_response": {
+          "file": "current-nhe-9740fd-1005.json",
+          "sha256": "cf740db733c86e6e3b4edd0ca5fad2483609dd50743e7f64755e27a782128fb9"
+        },
+        "old_raw_exact": true,
+        "attributes_exact": true
+      },
+      "candidate_pin": {
+        "file": "nhe-sampled-memory1-v2-1008.json",
+        "sha256": "3c3a5de2b71b64fb72669d811310967deae189be02d3b343770e839cffcbf85e"
+      },
+      "independent_review": {
+        "file": "review-nhe-sampled-memory1-v2-independent-1012.json",
+        "sha256": "e5407305eccc02ef49c77713ecbb6cfac5c967a6e9c2bfdffa63e3e642ea6ec4"
+      },
+      "status": "INDEPENDENTLY_REVIEWED_UNCHANGED; ROOT_ADOPTION_PENDING",
+      "raw_convention": "XML-parsed Android source text; Android backslash escapes retained. XML-escape once at serialization.",
+      "semantic_limits": [
+        "Technical anchors RAM, canvas, clipboard, sampled decoding, px and original file retain exact software referents beside functional wording. They are not claimed Chicontepec dictionary terms.",
+        "The original file remains distinct from the smaller image produced. Estimate is not reported as measured actual use; actual amount can vary.",
+        "quicempohua applies counting-together to requirements, not simultaneous actual peak allocation of every independent intermediate. The caller uses maxima/reserves; the wording describes inclusion, not a literal arithmetic assertion that all buffers sum simultaneously.",
+        "maz cuecuetztzin combines own source degree and own small; not an attested whole collocation. Existing HUEXCA size convention and px establish dimension reduction, not quality/byte compression or zoom.",
+        "IXNEHUIA is own estimating without measurement; the source example is human planning, so applying it to software is an openly authored semantic extension. No literal machine cognition claim.",
+        "No source-file change, restoration guarantee, successful retry claim, native/layout/runtime certificate.",
+        "The v1 reduced-decoding assertion was too strong for sample=1. This v2 supersedes that assertion only; previous lexical evidence remains. Smaller-copy detail loss now explicitly conditional, including target==source paths.",
+        "HUELI can/may states possible capability, not an observed action or guarantee. TLAN1 conditional plus present quichihua is directly corroborated by the dictionary introduction."
+      ],
+      "review_metadata_addendum": [
+        "All prior absence/disjointness claims are historical and not current: this is a replacement of an existing exact-head row.",
+        "Modal smaller decoding and conditional smaller-output detail loss govern over earlier unqualified source notes; all other clauses unchanged.",
+        "HUELI printed202 defines animate subjects. Inanimate app use is separately supported by introduction PDF11/x tlamantli subjects and hueliz quichihuaz; do not claim things appear as subjects in the HUELI definition. Own para ma eli support added at PDF393/printed378 in final review."
+      ]
+    }
+  ],
+  "instructions": "Replace each exact old raw once in its existing canonical catalogue, retain attributes, verify one final key. Do not append duplicate resources, count as new translations, or revive old unqualified wording. Root separately decides adoption/integration.",
+  "confidence": "Source/compositional review only; no native/layout/runtime certification."
+}
