@@ -1,0 +1,86 @@
+{
+  "status": "Integrated on review branch; unmerged; source/AI review only",
+  "checkpoint": "c0d44d76a7761645e2e392d8e8e6e8b69232df76",
+  "branch": "review/nv-bottom-2038-20261103",
+  "locale": "nv",
+  "key": "ui_height",
+  "tier": "P1",
+  "english": "Height (%1$s)",
+  "candidate": "Deigo ánízáád (%1$s)",
+  "source": {
+    "authors": [
+      "Alfred Blackhorse",
+      "Steven Semken",
+      "Perry Charley"
+    ],
+    "title": "A Navajo-English thesaurus of geological terms",
+    "year": 2003,
+    "url": "https://nmgs.nmt.edu/publications/guidebooks/downloads/54/54_p0103_p0107.pdf",
+    "doi": "https://doi.org/10.56577/FFC-54.103",
+    "printed_page": 105,
+    "pdf_page": 5,
+    "exact_entry": "Measurement → (height): deigo ánízáád",
+    "verification": "Actual PDF raster visually inspected; extracted text has broken legacy font encoding and was not used to invent Unicode spelling.",
+    "pdf_sha256": "bc732357d30742b0a19bdffd257230e8ea384045646091c533a732a85d23532c"
+  },
+  "candidate_changes": "Only initial capitalization and unchanged parenthetical %1$s unit slot added. No authored grammar or technical neologism.",
+  "absence": "Fresh full Navajo strings.xml at exact checkpoint lacks ui_height; importance manifest explicitly includes string/ui_height in P1. English node has name attribute only.",
+  "consumers": [
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt",
+      "line": 79,
+      "semantics": "Vertical image/canvas dimension, unit % or px. Percent computed against original.height. Height accessibility separately uses untranslated ui_height_in."
+    },
+    {
+      "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/NormalizeImagesDialog.kt",
+      "lines": [
+        56,
+        61
+      ],
+      "semantics": "Accessibility label for normalize height input in pixel mode; percentage mode uses a different dedicated resource."
+    }
+  ],
+  "scan_verification": "131 main Kotlin/Java/non-values XML files from available local checkout matched every corresponding Git blob at exact checkpoint, with zero unmatched. Exact ui_height references occur only at the three listed lines (ui_height_in excluded).",
+  "limits": [
+    "Independent AI/source review is not native-speaker certification.",
+    "No Android runtime, glyph/layout or screenreader certification.",
+    "Hosted CI not run for this branch; not merged or released.",
+    "Separate ui_height_in accessibility wording remains English fallback.",
+    "Old held ellipse wording is not adopted; this term comes from the separate explicit primary-source Ellipse entry."
+  ],
+  "additional_source_lead": {
+    "key": "ui_ellipse",
+    "printed_page": 104,
+    "pdf_page": 4,
+    "entry": "Ellipse: názbąsgo heeneez; separate geometrical oval: hááhideeneez",
+    "note": "Both entries visually read in actual PDF. This is distinct primary evidence for the previously held ellipse question, not acceptance of its old unaccented candidate."
+  },
+  "independent_review_verbatim": "source Diné College Blackhorse, Semken & Charley 2003 PDF https://nmgs.nmt.edu/publications/guidebooks/downloads/54/54_p0103_p0107.pdf, rendered PDF pages 4–5, printed 104–105. Ellipse “názbąsgo heeneez”; Measurement (height) “deigo ánízáád”. English ui_height is Height (%1$s); caller passes px or percent and accessibility px, so unit placeholder remains. Planar ellipse addOval. No native speaker, runtime, layout review. Exact target capitalization only adapted.",
+  "independent_review_attribution": "Independent review findings relayed by coordinator, 2026-11-03 21:36 UTC",
+  "second_candidate": {
+    "key": "ui_ellipse",
+    "value": "Názbąsgo heeneez",
+    "tier": "P1",
+    "english": "Ellipse",
+    "source_printed_page": 104,
+    "source_pdf_page": 4,
+    "consumer": "PaintDocument.kt:30 binds ELLIPSE; PaintCanvas.kt:406–412 constructs arbitrary-width/height addOval geometry. No circle narrowing."
+  },
+  "integration": {
+    "parent": "c0d44d76a7761645e2e392d8e8e6e8b69232df76",
+    "commit": "d83a8b388200cfc6619b0da2e1ed30cb8aecd6bb",
+    "tree": "9c2a72cc088859627a65054f063482cc87122123",
+    "blob": "54c4c60d780bfac10a5666f3b2ec9f2501979543",
+    "branch": "review/nv-bottom-2038-20261103",
+    "delta": "+2/-0 in one resource file",
+    "tree_verification": "All 1276 leaves and modes compared with parent; only expected Navajo blob changed; exact branch file readback matched; branch head verified.",
+    "tests": {
+      "delta": "+2/-0 resource nodes",
+      "direct_resources_before": 123,
+      "direct_resources_after": 125,
+      "checks": "All previous nodes unchanged (attributes, text, children); unique keys; original P1; source attributes; placeholders; Android escaping; format; NFC/control; XML parse passed. Initial draft guard included indentation tails and failed; corrected guard compares node semantics, not inter-node indentation.",
+      "existing_helper_tests": "18 passed in 1.990 seconds",
+      "source_blob": "54c4c60d780bfac10a5666f3b2ec9f2501979543"
+    }
+  }
+}
