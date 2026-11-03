@@ -1,0 +1,435 @@
+{
+  "title": "Source and independent-review provenance",
+  "integration_commit": "3033900ebc156654208f44142ead1f5175e7cb4a",
+  "candidate": {
+    "artifact": "nv-type-text-explicit-successor1-1746.json",
+    "sha256": "172bc839d717acbef5aeac968d6d6c2b9ed939572d8eb473199cde8786e356c2"
+  },
+  "review": {
+    "artifact": "review-nv-type-text-explicit-successor1-independent-1751.json",
+    "sha256": "7eb9cb7729296fa81cf6aca3e714b154608cb97cb95e2ab56858564baed3f455"
+  },
+  "source_records": [
+    {
+      "id": "dodea2023",
+      "url": "https://dodea.mypearsonsupport.com/resources/summative-resources/DO1146462_DoDea_ELA_TS_Navajo_PBT_SP23.pdf",
+      "publisher": "DoDEA / Pearson; official 2023 Navajo ELA paper-based test administration script",
+      "location": "PDF page6, printed46, Instructions for Administering Each Unit; web-extracted lines187-190",
+      "selected_contiguous_source_span": "saad bikáá’ ánílééh",
+      "evidence": "Primary official PDF text opened and read with web, not a secondary translation. Adjacent lines place the written response in the designated response area. The same document uses name + bikáá’ ánílééh as a writing directive at PDF page5/printed45.",
+      "retrieval_limit": "Web PDF text readable. PDF screenshot returned Cache miss. A direct PDF download returned HTTP403 Forbidden; no retry or alternate route around that restriction. No binary/raster capture retained and no claim of visual verification for this modern source."
+    },
+    {
+      "id": "census2020",
+      "url": "https://www.census.gov/content/dam/Census/library/video/2020/Navajo_Transcript.pdf",
+      "publisher": "U.S. Census Bureau, Navajo Video Language Guide Transcript, 2020",
+      "evidence": "Official indexed source text uses bikáá’ ánílééh for entering names/telephone in an online questionnaire, with Next/Previous controls. This corroborates extending the writing construction to digital form entry; it is not the source of the entire candidate.",
+      "retrieval_limit": "Search-index text readable, but general PDF open text layer nearly empty; screenshot Cache miss and direct download HTTP403. No binary/raster verified."
+    },
+    {
+      "id": "wilson",
+      "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+      "publisher": "Garth A. Wilson, Conversational Navajo Dictionary; primary lexicographic work via mirror",
+      "pdf": {
+        "artifact": "nv-wilson.pdf",
+        "sha256": "caf359395a4e562cf49da9ae9f8816ef85e71296ea2a292c0d4aae63d656c20b"
+      },
+      "entries": [
+        "PDF21/printed28: active verb paradigm ordering, second slot is second-person singular.",
+        "PDF50/printed86: MAKE IT, TO, second-person ánílééh; exact whole token visually checked.",
+        "PDF71/printed129: WORD (noun), saad (bizaad); visually checked.",
+        "PDF72/printed130: WRITE ONE’S NAME directs the reader using ánílééh; visually checked."
+      ],
+      "visual_sources": [
+        {
+          "artifact": "p050.png",
+          "sha256": "d23c9b18836032711323d6355c94f59af060efe9ccd1d212d3f616436076f9e1"
+        },
+        {
+          "artifact": "p071.png",
+          "sha256": "9f79638eaf8278447ee170dc1d5132dee8f78eb124fdbf41dbdbfb2a9ce2960b"
+        },
+        {
+          "artifact": "nv-write-hi.png",
+          "sha256": "f30e01e6f514d89e80a78c79d73cbe4bc22eb2580c4074cedf876d148d0dd162"
+        }
+      ]
+    },
+    {
+      "id": "parcc2019_secondary_host_discovery_only",
+      "url": "https://manuals.plus/m/2db48347383beb5912f688218d84a9d8f1bdc4cc9c818f4a3501868c91866f7b.pdf",
+      "status": "DISCOVERY_CORROBORATION_NOT_REQUIRED_FOR_CANDIDATE",
+      "evidence": "Indexed computer-based script includes the same phrase in a response-box/scrollbar passage. Binary not retrieved and host is a mirror, so official DoDEA and Census material carry the substantive evidence instead."
+    }
+  ],
+  "review_decision_at_review": "ACCEPT_RAW_UNCHANGED",
+  "review_findings": [
+    "The exact lowercase span saad bikáá’ ánílééh occurs contiguously within the DoDEA response-writing sentence at PDF page6/printed46. The reported directive is followed by nididooniił; extracting the directive does not require an invented person prefix, suffix, content noun or argument order.",
+    "The source explicitly names linguistic content with saad. The adjacent response-area instructions and parallel name-writing directive resolve the intended writing construction. In this input-field hint, the field supplies the surface/target while the candidate itself supplies the words/text category. This repairs the precise earlier hold on implicit text rather than reviving Bikʼeʼíłchí.",
+    "Wilson printed28 defines the second paradigm position as second-person singular. Printed86 visibly has the whole token ánílééh in that position. The direct write-your-name example at printed130 independently supports directive use, while printed129 gives saad as WORD. The MAKE IT entry alone is not treated as proving the full writing construction.",
+    "Census official search-index text corroborates the same bikáá' ánílééh writing construction for names and telephone in a digital questionnaire with Next/Previous controls. This is corroboration only, not the source of the complete candidate.",
+    "Capitalizing initial s and normalizing U+2019 to U+02BC are the only transformations of the DoDEA selected span. All accents, vowel length and complete verb remain unchanged.",
+    "The sole live static caller is the multiline EditText hint at TextStyleDialog.kt35. Input changes update its preview. Add text and Place text are separate UI roles; only the positive callback later commits configured text through document.text. Writing/entering words is a bounded functional replacement for Type text here, without claiming physical keyboard use, completed placement, saving, or generic drawing."
+  ],
+  "source_verification": [
+    {
+      "id": "dodea2023",
+      "url": "https://dodea.mypearsonsupport.com/resources/summative-resources/DO1146462_DoDea_ELA_TS_Navajo_PBT_SP23.pdf",
+      "independent_access": "Official PDF text independently opened through the web tool. PDF page6 (zero-based5), printed46, line187 reproduced the exact original sentence; lines188-190 identify the response area. Page5/printed45 lines167-171 provide parallel name writing.",
+      "selected_span_matches_after_declared_normalization": true,
+      "quality_limit": "Text-layer evidence only. No modern PDF binary or raster inspected. The source elsewhere has extraction artifacts, but the selected span is coherent, contiguous and independently supported by dictionary token rasters. This bounded source-quality limit does not create a decisive hold for this candidate."
+    },
+    {
+      "id": "census2020",
+      "url": "https://www.census.gov/content/dam/Census/library/video/2020/Navajo_Transcript.pdf",
+      "independent_access": "Official indexed PDF result independently retrieved, reproducing the candidate packet excerpt and surrounding Next/Previous online-form instructions.",
+      "evidence_role": "Corroborates digital form entry only. No claim of inspecting its nearly empty PDF text layer, binary or raster in this review."
+    },
+    {
+      "id": "wilson",
+      "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+      "pdf": {
+        "artifact": "nv-wilson.pdf",
+        "sha256": "caf359395a4e562cf49da9ae9f8816ef85e71296ea2a292c0d4aae63d656c20b"
+      },
+      "independently_visually_inspected": [
+        {
+          "artifact": "p021.png",
+          "sha256": "adba7c5be5b0ad317e1af465de0b0f16a2c9b889fcd1ce4587907da70b598861"
+        },
+        {
+          "artifact": "p050.png",
+          "sha256": "d23c9b18836032711323d6355c94f59af060efe9ccd1d212d3f616436076f9e1"
+        },
+        {
+          "artifact": "p071.png",
+          "sha256": "9f79638eaf8278447ee170dc1d5132dee8f78eb124fdbf41dbdbfb2a9ce2960b"
+        },
+        {
+          "artifact": "nv-write-hi.png",
+          "sha256": "f30e01e6f514d89e80a78c79d73cbe4bc22eb2580c4074cedf876d148d0dd162"
+        }
+      ],
+      "findings": "Visible paradigm ordering, exact ánílééh token, WORD saad entry, and write-your-name directive verified. All candidate PDF/raster hashes recomputed and matched."
+    },
+    {
+      "id": "parcc2019_secondary_host_discovery_only",
+      "url": "https://manuals.plus/m/2db48347383beb5912f688218d84a9d8f1bdc4cc9c818f4a3501868c91866f7b.pdf",
+      "status": "NOT_OPENED_OR_RELIED_ON; not necessary to the decision"
+    }
+  ],
+  "access_restriction_observance": "Author-reported screenshot cache misses and direct-binary HTTP403 for modern PDFs were respected. This reviewer did not retry or reroute binary retrieval or attempt modern screenshots. Legitimately accessible official text/search and existing Wilson rasters were sufficient.",
+  "caller_review": {
+    "source_authority": {
+      "artifact": "review-nhe-pixel-cap1-v2-independent-1034.json",
+      "sha256": "bdcde2e2858701bd0a533d932b289b17a231bd101d38a3a5bcdfeacedb4e364e"
+    },
+    "all104_production_content_SHA256_and_Git_blob_IDs_independently_recomputed": true,
+    "verified_files_count": 104,
+    "direct_caller_occurrence_count": 1,
+    "relevant_verified_files": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+        "content_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+        "git_blob_sha": "9f73f9af872b928a81381e859f26def30ce5b294",
+        "content_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+      }
+    ],
+    "anchors": [
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+        "line_start": 35,
+        "line_end": 36,
+        "text": "        val input=EditText(activity).apply { tag=\"text_content\";hint=ui(R.string.ui_type_text);setText(initial.text);inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE;filters=arrayOf(InputFilter.LengthFilter(8192));minLines=2 }\n        body.addView(input)",
+        "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+        "line_start": 71,
+        "line_end": 73,
+        "text": "            val face=catalog.faceForText(font.selectedItemPosition,input.text.toString(),style());input.typeface=face;preview.face=face\n            preview.value=input.text.toString().ifBlank { ui(R.string.ui_aa_bb_0123) }\n            preview.pixels=(uiNumber(size.text.toString())?.toFloat() ?: 32f).coerceIn(1f,1024f)",
+        "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+        "line_start": 98,
+        "line_end": 108,
+        "text": "        val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })\n            .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()\n        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n            val pixels=uiNumber(size.text.toString())?.toFloat();val percent=uiNumber(spacing.text.toString())?.toFloat()\n            when {\n                pixels==null || pixels !in 1f..1024f -> size.error=ui(R.string.ui_use_1_1024_pixels)\n                percent==null || percent !in 50f..300f -> spacing.error=ui(R.string.ui_use_50_300)\n                else -> {\n                    val settings=TextSettings(input.text.toString(),pixels,font.selectedItemPosition,bold.isChecked,italic.isChecked,underline.isChecked,strike.isChecked,box.isChecked,align.selectedItemPosition,percent/100,TextDirection.values()[direction.selectedItemPosition],GlyphOrientation.values()[glyphs.selectedItemPosition])\n                    if (commit(settings,catalog.faceForText(settings.font,settings.text,style()))) dialog.dismiss()\n                }",
+        "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+      },
+      {
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "line_start": 1064,
+        "line_end": 1072,
+        "text": "    private fun showTextDialog(x: Float,y: Float) {\n        TextStyleDialog(this,textSettings,document.foreground,document.background) { settings,face ->\n            editAction {\n                document.text(x,y,settings.text,settings.size,face,settings.box,settings.underline,settings.strike,\n                    arrayOf(Paint.Align.LEFT,Paint.Align.CENTER,Paint.Align.RIGHT)[settings.alignment],settings.spacing,settings.direction,settings.glyphOrientation)\n                textSettings=settings;scheduleAutosave()\n            }\n        }.show()\n    }",
+        "local_file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+      }
+    ],
+    "caller_limits": [
+      "Only TextStyleDialog.kt35 multiline EditText hint. Not a noun Text, menu topic, drawing-tool label, output status, saved result, or language-selection label.",
+      "Typing updates text and preview. The positive Add text callback later creates TextSettings and commits through document.text at the chosen canvas coordinates. The hint does not claim that input is already on the canvas or saved.",
+      "No additional imperative insert/add/place morphology is claimed, and no destination, keyboard, language or physical-paper requirement is added."
+    ],
+    "resource_only_bridge_count": 31,
+    "resource_only_bridges": [
+      {
+        "artifact": "compare-9b655b-to-10c69cc-1031.json",
+        "sha256": "973d470545674fb3ad0c692070bcfddc4270c7d670d792c45822d33c6192b0dd",
+        "base": "9b655b230a0f4847f380b66167c29809025f25eb",
+        "head": "10c69cc7615445aeff61f0ee4049f47be20fdd51",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-10c69cc-to-55502e-1045.json",
+        "sha256": "4bc66e124e7bc5d9281e4205ec15677f59ef8f297ecba879243f9096365faef9",
+        "base": "10c69cc7615445aeff61f0ee4049f47be20fdd51",
+        "head": "55502e315abf764fb125db143d96481e6b761cbb",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-55502e-to-8a62219-1114.json",
+        "sha256": "e441c7a2337653e47107bff808102393287c6e2196ddb5bbc21832b15617a550",
+        "base": "55502e315abf764fb125db143d96481e6b761cbb",
+        "head": "8a62219384501413628f33e8ea75f3927d7e5839",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-8a62219-to-d0bde3f-1124.json",
+        "sha256": "15e4ae16af2cc103c5209bfe61f50451b1c7e02f0c9e89d7f4fc7f0d35ca182a",
+        "base": "8a62219384501413628f33e8ea75f3927d7e5839",
+        "head": "d0bde3f499680558797738983cf1e1fe9a97ec2e",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-d0bde3f-to-0513d89-1135.json",
+        "sha256": "f0a2c6b55cda6e00cffffee1f5f2503e3f94b402a1326b21dbb47fa0efb36d0e",
+        "base": "d0bde3f499680558797738983cf1e1fe9a97ec2e",
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-0513d89-to-2a76af3-1144.json",
+        "sha256": "d2dd7ba89e5c49401dff7d48ea08eb58d3d0507ef9dcb756d647a87bb9955abd",
+        "base": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "head": "2a76af34e56acfc173a188754100132eeea9bb0d",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-2a76af3-to-b67ced3-1153.json",
+        "sha256": "7002077132b511ed862bffca20baf7dbc34868ba9dd6c7534d4a5ecd9afc7399",
+        "base": "2a76af34e56acfc173a188754100132eeea9bb0d",
+        "head": "b67ced3b5d2c4e27857e8c4d2126959015dc83d5",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-b67ced3-to-5e31deb-1212.json",
+        "sha256": "1828083ea300243c0ee299823fceb5efab87132045ccc22b64823bd961bce456",
+        "base": "b67ced3b5d2c4e27857e8c4d2126959015dc83d5",
+        "head": "5e31deb665f221a521cecbe4f005ddf6498f604c",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-5e31deb-to-c987803-1228.json",
+        "sha256": "cfc5802977ee2e801237dc69168054a551d0213103402575cd8d9e48b0c662a7",
+        "base": "5e31deb665f221a521cecbe4f005ddf6498f604c",
+        "head": "c9878030a4cff8d6f112d4b47b2a4da90c60b58b",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-c987803-to-500ba9e-1235.json",
+        "sha256": "706dd3a89fa2d6ef9b84092c0cd398795984aadfcc495f3130503df259a96987",
+        "base": "c9878030a4cff8d6f112d4b47b2a4da90c60b58b",
+        "head": "500ba9edfd71b279d24372ad02071b26e41993f1",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-500ba9e-to-0965a3d-1249.json",
+        "sha256": "b165a51dc034935878f731a8d6b468f5e054f3844cd15127413df2473ead7e95",
+        "base": "500ba9edfd71b279d24372ad02071b26e41993f1",
+        "head": "0965a3d2112bc19d01c36ac3c44ed5bca853a008",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-0965a3d-to-8100174-1304.json",
+        "sha256": "8b4aaf2dd7cc08a0498bd6f9fb525d284a15a60bddc6881e7b5fc53c1ece94f2",
+        "base": "0965a3d2112bc19d01c36ac3c44ed5bca853a008",
+        "head": "8100174b357b5b30384000f553e8806e0f1ca049",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-8100174-to-2f9dbf0-1309.json",
+        "sha256": "69d6d98ce68b71f97cbc292b34c16b872b7710d584651c441c166cc7f0cc64c1",
+        "base": "8100174b357b5b30384000f553e8806e0f1ca049",
+        "head": "2f9dbf06e458aade1c29ae031c173c5a9aa92b58",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-2f9dbf0-to-7fdeccd-1325.json",
+        "sha256": "1492397d7d07d384317ef856ca9ae4ee118fad9ea3ae601e0021f33a927fd311",
+        "base": "2f9dbf06e458aade1c29ae031c173c5a9aa92b58",
+        "head": "7fdeccdb6125fea776f866d66d1be1c04f69417b",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-7fdeccd-to-0e212e2-1337.json",
+        "sha256": "f33a67bf538964f5795557be0d7b70277a0f0a80cb319f88811301a86d2d1da2",
+        "base": "7fdeccdb6125fea776f866d66d1be1c04f69417b",
+        "head": "0e212e2b936f3e92059f82c41e91ecb9fbd5b222",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-0e212e2-to-a721f04-1343.json",
+        "sha256": "9a1bd83d21e56b42274e1eb186c793aa2faa6fd0725d0d60a7ef21a834d9c446",
+        "base": "0e212e2b936f3e92059f82c41e91ecb9fbd5b222",
+        "head": "a721f04c59da0de9ca08af173d2bb2670ead5481",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-a721f04-to-e1fc6f1-1435.json",
+        "sha256": "0b0c5b1ef8de12c4b5bc2a2625a338eeaed998e1d98ecde792f4fe7417ae408b",
+        "base": "a721f04c59da0de9ca08af173d2bb2670ead5481",
+        "head": "e1fc6f1ea6a0eb0594ffdc53cbd40b13fa9efebb",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-e1fc6f1-to-e25a623-1442.json",
+        "sha256": "2acecdf2add7d62ec0c80d4824781dd7f33c81486f43f3430fa24fe1e99b94f2",
+        "base": "e1fc6f1ea6a0eb0594ffdc53cbd40b13fa9efebb",
+        "head": "e25a623103ce95840d2be06c00ad68af72b13ca7",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-e25a623-to-fcac82f-1449.json",
+        "sha256": "e1b73e1c9e6e9b6e8a1b641667a8c66388e331039a6c7049280a81b1eff372d2",
+        "base": "e25a623103ce95840d2be06c00ad68af72b13ca7",
+        "head": "fcac82f3b90aebd6f7da28cceb264a971bcc2612",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-fcac82f-to-c1a125b-1515.json",
+        "sha256": "e4ce7f0428e5d15d047fed4de0bfe23288f0fea9f469ce6cfbb73046bdd21184",
+        "base": "fcac82f3b90aebd6f7da28cceb264a971bcc2612",
+        "head": "c1a125bae67e73cfff204b73c1e9193777b1fd3a",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-c1a125b-to-c84c6bc-1532.json",
+        "sha256": "6ee7a8516e59a789d3ad0e1d1c97cefb3a7db77b432ad45aa0018383e883caf0",
+        "base": "c1a125bae67e73cfff204b73c1e9193777b1fd3a",
+        "head": "c84c6bcaf87b54faf677537ba68d65ab77d70c62",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-c84c6bc-to-582e59b-1546.json",
+        "sha256": "52d92a03c4bedb25fba719edcf44bb5fce04d0299ebffcdac872d9dac185459c",
+        "base": "c84c6bcaf87b54faf677537ba68d65ab77d70c62",
+        "head": "582e59b1a044097e318cb2fbacfd1ff402c29226",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-582e59b-to-05dd8ba-1552.json",
+        "sha256": "f1c4178270b4f2ccdbb415ccb4a70eae7b5043f5fbccefd66b0225db1f2d2cb9",
+        "base": "582e59b1a044097e318cb2fbacfd1ff402c29226",
+        "head": "05dd8ba4e461afaf6bf4836b06923d9d2a8c97fa",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-05dd8ba-to-457f7c8-1607.json",
+        "sha256": "25a02f5fe445db732fe3b5627ab887d03391b33fe86be9e5c3712c055d5aeb88",
+        "base": "05dd8ba4e461afaf6bf4836b06923d9d2a8c97fa",
+        "head": "457f7c82c3d3bcd77d9f10391527743079f7ea33",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-457f7c8-to-4e76762-1616.json",
+        "sha256": "aa65c43bc2f655dabc7653ba9851bf53a4c57056e41c77c478ced51ea33bc0a2",
+        "base": "457f7c82c3d3bcd77d9f10391527743079f7ea33",
+        "head": "4e767622bf91b18663b68dab6086a37d13c71cdc",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-4e76762-to-6da0cbf-1638.json",
+        "sha256": "a412b4d618a4b91a29737bc0ac0c88ea2a684f5b5dc49cc08251d185ce7df426",
+        "base": "4e767622bf91b18663b68dab6086a37d13c71cdc",
+        "head": "6da0cbf0e3b171b4d83adcf8a22988809def93d0",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-6da0cbf-to-4fb1461-1657.json",
+        "sha256": "02f5624ae9f011a755b96890800ab2cf311cecfee6e9011747139400744e57fe",
+        "base": "6da0cbf0e3b171b4d83adcf8a22988809def93d0",
+        "head": "4fb1461a9186f057845c0acecfbfd1063afd8da4",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-4fb1461-to-784e816-1708.json",
+        "sha256": "e1c40dcc30a3118c35005a2dc0017f18ca7937b5b66ae87e9002445f59af95ed",
+        "base": "4fb1461a9186f057845c0acecfbfd1063afd8da4",
+        "head": "784e816c756e31f15ec6fb03bc2300b4350ed438",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-784e816-to-29663fd-1722.json",
+        "sha256": "da53fc221f7ac3ace60c9deeef898783fcf73ae72e1bfeaca6bfc5178aee1088",
+        "base": "784e816c756e31f15ec6fb03bc2300b4350ed438",
+        "head": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-29663fd-to-e582d2e-1733.json",
+        "sha256": "a887e8c95fb9287206ab6d7fb8b9f9f6155c72b14100bb5fcfea2fe5a380b2ea",
+        "base": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+        "head": "e582d2e361570bae04ed3056349facd6b5a2c564",
+        "resource_only": true
+      },
+      {
+        "artifact": "compare-e582d2e-to-640b997-1749.json",
+        "sha256": "7e23f861793aa9dba99afac0ff4aa18faa025d2d09a4235687b204b943bdeb0a",
+        "base": "e582d2e361570bae04ed3056349facd6b5a2c564",
+        "head": "640b997c03347fee471be17ecde3e7a3ea115113",
+        "resource_only": true
+      }
+    ]
+  },
+  "historical_acceptance_limits": [
+    "Accept only locale nv, ui_type_text, exact raw Saad bikááʼ ánílééh and the stated multiline input-field caller. No acceptance for ui_add_text or ui_place_text.",
+    "This is source-and-caller-grounded functional UI adaptation, not a native-speaker endorsement or an attested published GUI translation.",
+    "No runtime, layout, glyph, accessibility or app-build certification was attempted. No root adoption, integration or completion credit is awarded here.",
+    "The earlier candidate and root hold remain immutable historical evidence. A separate root decision is still required to release the hold for this successor."
+  ],
+  "integration_bridge": {
+    "repository_full_name": "c933103/AN-Paint",
+    "base": "640b997c03347fee471be17ecde3e7a3ea115113",
+    "head": "3033900ebc156654208f44142ead1f5175e7cb4a",
+    "status": "ahead",
+    "ahead_by": 1,
+    "behind_by": 0,
+    "total_commits": 1,
+    "too_large": null,
+    "base_commit": {
+      "sha": "640b997c03347fee471be17ecde3e7a3ea115113",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/commits/640b997c03347fee471be17ecde3e7a3ea115113",
+      "html_url": "https://github.com/c933103/AN-Paint/commit/640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    "merge_base_commit": {
+      "sha": "640b997c03347fee471be17ecde3e7a3ea115113",
+      "url": "https://api.github.com/repos/c933103/AN-Paint/commits/640b997c03347fee471be17ecde3e7a3ea115113",
+      "html_url": "https://github.com/c933103/AN-Paint/commit/640b997c03347fee471be17ecde3e7a3ea115113"
+    },
+    "files": [
+      {
+        "filename": "Paintroid/src/main/res/values-b+nv/strings.xml",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      }
+    ]
+  },
+  "boundary": "Evidence only; not runtime, layout, glyph or native certification. No application changes."
+}

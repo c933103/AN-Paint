@@ -1,0 +1,144 @@
+{
+  "title": "Accepted Navajo explicit text-input successor",
+  "integration_commit": "3033900ebc156654208f44142ead1f5175e7cb4a",
+  "integration_tree": "8442d81bab35e3e77b7e30d0a688c64e113693a9",
+  "original_intake": {
+    "artifact": "reviewed-nv-text1-current640b997-intake-1753.json",
+    "sha256": "bd3d3be6becb627757367143b24307ef313c0233e435d4bb56077b44d7704239"
+  },
+  "counts": {
+    "P1": 1,
+    "replacements": 0
+  },
+  "rows": [
+    {
+      "locale": "nv",
+      "key": "ui_type_text",
+      "tier": "P1",
+      "originalP1": true,
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "Type text",
+      "attributes": {
+        "name": "ui_type_text"
+      },
+      "raw": "Saad bikááʼ ánílééh",
+      "value": "Saad bikááʼ ánílééh",
+      "display": "Saad bikááʼ ánílééh",
+      "raw_sha256": "9243fcc00df862060e606aca05fccf13ef233a80449dda35aa7130eae418b80d",
+      "placeholders": [],
+      "decision": "INDEPENDENTLY_ACCEPTED; ROOT_HOLD_AND_ADOPTION_PENDING",
+      "backtranslation": "Write words/text [on it].",
+      "functional_fit": "A direct instruction to enter written language in the text-content field. The word saad is overt linguistic content; this is not a generic mark/draw-on-surface instruction. It does not say typing with a physical keyboard, but functional writing/entering of words is the intended bounded extension.",
+      "composition": "Extract the complete reported command saad bikáá’ ánílééh from the official DoDEA instruction, capitalize its first letter, and normalize the postposition glottal to U+02BC. No verb morphemes, person inflection, content noun or argument order are invented.",
+      "argument_binding": "The primary full sentence says that some questions ask the addressee to write a response. The adjacent instructions locate that response in its assigned space. Thus saad is the words/content to be produced, not a surface that the user writes upon. The target of bikáá’ is the already-salient writing surface/space. Moving that command into the input-field hint lets the field supply only the target, not the missing semantic category text. The three-word command remains overtly about words.",
+      "person_and_spelling": "Wilson PDF50/printed86 places ánílééh second in the MAKE IT active paradigm, whose ordering is defined in PDF21/printed28. Wilson PDF72/printed130 uses the same complete token in a direct write-your-name instruction. Wilson PDF71/printed129 gives saad as WORD. Existing source rasters were visually inspected.",
+      "caller_classification": "LIVE_STATIC_CALLER",
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line_start": 35,
+          "line_end": 36,
+          "text": "        val input=EditText(activity).apply { tag=\"text_content\";hint=ui(R.string.ui_type_text);setText(initial.text);inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE;filters=arrayOf(InputFilter.LengthFilter(8192));minLines=2 }\n        body.addView(input)",
+          "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line_start": 71,
+          "line_end": 73,
+          "text": "            val face=catalog.faceForText(font.selectedItemPosition,input.text.toString(),style());input.typeface=face;preview.face=face\n            preview.value=input.text.toString().ifBlank { ui(R.string.ui_aa_bb_0123) }\n            preview.pixels=(uiNumber(size.text.toString())?.toFloat() ?: 32f).coerceIn(1f,1024f)",
+          "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line_start": 98,
+          "line_end": 108,
+          "text": "        val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })\n            .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()\n        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n            val pixels=uiNumber(size.text.toString())?.toFloat();val percent=uiNumber(spacing.text.toString())?.toFloat()\n            when {\n                pixels==null || pixels !in 1f..1024f -> size.error=ui(R.string.ui_use_1_1024_pixels)\n                percent==null || percent !in 50f..300f -> spacing.error=ui(R.string.ui_use_50_300)\n                else -> {\n                    val settings=TextSettings(input.text.toString(),pixels,font.selectedItemPosition,bold.isChecked,italic.isChecked,underline.isChecked,strike.isChecked,box.isChecked,align.selectedItemPosition,percent/100,TextDirection.values()[direction.selectedItemPosition],GlyphOrientation.values()[glyphs.selectedItemPosition])\n                    if (commit(settings,catalog.faceForText(settings.font,settings.text,style()))) dialog.dismiss()\n                }",
+          "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line_start": 1064,
+          "line_end": 1072,
+          "text": "    private fun showTextDialog(x: Float,y: Float) {\n        TextStyleDialog(this,textSettings,document.foreground,document.background) { settings,face ->\n            editAction {\n                document.text(x,y,settings.text,settings.size,face,settings.box,settings.underline,settings.strike,\n                    arrayOf(Paint.Align.LEFT,Paint.Align.CENTER,Paint.Align.RIGHT)[settings.alignment],settings.spacing,settings.direction,settings.glyphOrientation)\n                textSettings=settings;scheduleAutosave()\n            }\n        }.show()\n    }",
+          "local_file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "caller_limits": [
+        "Only TextStyleDialog.kt35 multiline EditText hint. Not a noun Text, menu topic, drawing-tool label, output status, saved result, or language-selection label.",
+        "Typing updates text and preview. The positive Add text callback later creates TextSettings and commits through document.text at the chosen canvas coordinates. The hint does not claim that input is already on the canvas or saved.",
+        "No additional imperative insert/add/place morphology is claimed, and no destination, keyboard, language or physical-paper requirement is added."
+      ],
+      "raw_guards": {
+        "NFC": true,
+        "raw_value_display_equal": true,
+        "XML_escape_once_roundtrip": true,
+        "U02BC_glottal": true,
+        "exact_English_attributes": true,
+        "zero_English_and_candidate_slots": true,
+        "absent_snapshot29663fd": true,
+        "current_head_qualification": "e582d2e current head is supplied by parent; retained compare29663fd-to-e582d2e changes resource files only. Parent reports NV delta adds Undo-damage wording only. This artifact does not pretend that compare output includes resource content."
+      },
+      "typed_slots": [],
+      "candidate": {
+        "artifact": "nv-type-text-explicit-successor1-1746.json",
+        "sha256": "172bc839d717acbef5aeac968d6d6c2b9ed939572d8eb473199cde8786e356c2"
+      },
+      "independent_review": {
+        "artifact": "review-nv-type-text-explicit-successor1-independent-1751.json",
+        "sha256": "7eb9cb7729296fa81cf6aca3e714b154608cb97cb95e2ab56858564baed3f455"
+      },
+      "source_evidence": {
+        "artifact": "nv-type-text-explicit-successor1-1746.json",
+        "sha256": "172bc839d717acbef5aeac968d6d6c2b9ed939572d8eb473199cde8786e356c2"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line_start": 35,
+          "line_end": 36,
+          "text": "        val input=EditText(activity).apply { tag=\"text_content\";hint=ui(R.string.ui_type_text);setText(initial.text);inputType=InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE;filters=arrayOf(InputFilter.LengthFilter(8192));minLines=2 }\n        body.addView(input)",
+          "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line_start": 71,
+          "line_end": 73,
+          "text": "            val face=catalog.faceForText(font.selectedItemPosition,input.text.toString(),style());input.typeface=face;preview.face=face\n            preview.value=input.text.toString().ifBlank { ui(R.string.ui_aa_bb_0123) }\n            preview.pixels=(uiNumber(size.text.toString())?.toFloat() ?: 32f).coerceIn(1f,1024f)",
+          "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt",
+          "line_start": 98,
+          "line_end": 108,
+          "text": "        val dialog=EditorDialogBuilder(activity).setTitle(ui(R.string.ui_place_text)).setView(ScrollView(activity).apply { addView(body) })\n            .setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()\n        dialog.setOnShowListener { dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {\n            val pixels=uiNumber(size.text.toString())?.toFloat();val percent=uiNumber(spacing.text.toString())?.toFloat()\n            when {\n                pixels==null || pixels !in 1f..1024f -> size.error=ui(R.string.ui_use_1_1024_pixels)\n                percent==null || percent !in 50f..300f -> spacing.error=ui(R.string.ui_use_50_300)\n                else -> {\n                    val settings=TextSettings(input.text.toString(),pixels,font.selectedItemPosition,bold.isChecked,italic.isChecked,underline.isChecked,strike.isChecked,box.isChecked,align.selectedItemPosition,percent/100,TextDirection.values()[direction.selectedItemPosition],GlyphOrientation.values()[glyphs.selectedItemPosition])\n                    if (commit(settings,catalog.faceForText(settings.font,settings.text,style()))) dialog.dismiss()\n                }",
+          "local_file_sha256": "2f56b8215d993e68b7672946c7876d7a9168b818842b04b2cca15285055ad0b1"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line_start": 1064,
+          "line_end": 1072,
+          "text": "    private fun showTextDialog(x: Float,y: Float) {\n        TextStyleDialog(this,textSettings,document.foreground,document.background) { settings,face ->\n            editAction {\n                document.text(x,y,settings.text,settings.size,face,settings.box,settings.underline,settings.strike,\n                    arrayOf(Paint.Align.LEFT,Paint.Align.CENTER,Paint.Align.RIGHT)[settings.alignment],settings.spacing,settings.direction,settings.glyphOrientation)\n                textSettings=settings;scheduleAutosave()\n            }\n        }.show()\n    }",
+          "local_file_sha256": "03c526ef144c31ecbecdd95c72cd2fd25801b3bdecae29c11969485d0339317d"
+        }
+      ],
+      "caller_scope": [
+        "Only TextStyleDialog.kt35 multiline EditText hint. Not a noun Text, menu topic, drawing-tool label, output status, saved result, or language-selection label.",
+        "Typing updates text and preview. The positive Add text callback later creates TextSettings and commits through document.text at the chosen canvas coordinates. The hint does not claim that input is already on the canvas or saved.",
+        "No additional imperative insert/add/place morphology is claimed, and no destination, keyboard, language or physical-paper requirement is added."
+      ],
+      "independent_semantic_findings": [
+        "The exact lowercase span saad bikáá’ ánílééh occurs contiguously within the DoDEA response-writing sentence at PDF page6/printed46. The reported directive is followed by nididooniił; extracting the directive does not require an invented person prefix, suffix, content noun or argument order.",
+        "The source explicitly names linguistic content with saad. The adjacent response-area instructions and parallel name-writing directive resolve the intended writing construction. In this input-field hint, the field supplies the surface/target while the candidate itself supplies the words/text category. This repairs the precise earlier hold on implicit text rather than reviving Bikʼeʼíłchí.",
+        "Wilson printed28 defines the second paradigm position as second-person singular. Printed86 visibly has the whole token ánílééh in that position. The direct write-your-name example at printed130 independently supports directive use, while printed129 gives saad as WORD. The MAKE IT entry alone is not treated as proving the full writing construction.",
+        "Census official search-index text corroborates the same bikáá' ánílééh writing construction for names and telephone in a digital questionnaire with Next/Previous controls. This is corroboration only, not the source of the complete candidate.",
+        "Capitalizing initial s and normalizing U+2019 to U+02BC are the only transformations of the DoDEA selected span. All accents, vowel length and complete verb remain unchanged.",
+        "The sole live static caller is the multiline EditText hint at TextStyleDialog.kt35. Input changes update its preview. Add text and Place text are separate UI roles; only the positive callback later commits configured text through document.text. Writing/entering words is a bounded functional replacement for Type text here, without claiming physical keyboard use, completed placement, saving, or generic drawing."
+      ],
+      "status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "3033900ebc156654208f44142ead1f5175e7cb4a"
+    }
+  ],
+  "raw_convention": "XML-parsed Android value, XML-escape once. U+02BC apostrophes; no Android apostrophe backslashes.",
+  "source_and_access_limits": "Author-reported screenshot cache misses and direct-binary HTTP403 for modern PDFs were respected. This reviewer did not retry or reroute binary retrieval or attempt modern screenshots. Legitimately accessible official text/search and existing Wilson rasters were sufficient.",
+  "note": "Sanitized integrated-status derivative; original immutable hashes identify different historical bytes. Prior ambiguous text hint remains superseded, not integrated."
+}
