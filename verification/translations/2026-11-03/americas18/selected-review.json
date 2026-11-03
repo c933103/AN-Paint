@@ -1,0 +1,2814 @@
+{
+  "source_intake_sha256": "23aa3c66f56d59d608fb2c4a05b59ee6f666fe5d5c3869f62d65614f11383c85",
+  "rows": [
+    {
+      "locale": "nv",
+      "key": "save20_file_format",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "File format",
+      "attributes": {
+        "name": "save20_file_format"
+      },
+      "raw": "Haʼátʼéegosh naaltsoos hashtʼeʼ siłtsooz dooleeł?",
+      "value": "Haʼátʼéegosh naaltsoos hashtʼeʼ siłtsooz dooleeł?",
+      "display": "Haʼátʼéegosh naaltsoos hashtʼeʼ siłtsooz dooleeł?",
+      "backtranslation": "How will the document/file be put away / be in storage?",
+      "placeholders": [],
+      "raw_sha256": "425951ab7f30b1f7b09a30744f7439354cc6b5af58f9f998d066a6d72cec1caa",
+      "candidate_pin": {
+        "file": "nv-file-format1-1111.json",
+        "sha256": "6368acf97d7409724fc0059748aed6e93790d9f02bbe7b113ce6ce210081a4d5"
+      },
+      "review_receipt": {
+        "file": "review-nv-format-storage2-independent-1120.json",
+        "sha256": "02485f2707f322a1b2ae23efe9af2c3731734a264a55fc3bef7714b437a089ad"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 62,
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "text": "body.addView(TextView(activity).apply {text=ui(R.string.save20_file_format)})"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 109,
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "text": "tag=\"export_format\";contentDescription=ui(R.string.save20_file_format)"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 171,
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "text": "field(ui(R.string.save20_file_format),body.findViewWithTag<Spinner>(\"export_format\"))"
+        }
+      ],
+      "caller_contract": "The only three resource uses are the visible caption at62, spinner accessibility description at109, and the same caption in vertical form at171. Line171 is NOT a validation error. The Save/Export/Share selector uses different format subsets: PNG/JPEG and other standard outputs vs ICO/Base64/ASCII derivatives; Share combines them. No hardcoded example subset is added.",
+      "source_and_caller_evidence": {
+        "source_entries": [
+          {
+            "id": "wilson_store",
+            "title": "Wilson1994, printed99 / retained PDF56, PUT IT AWAY",
+            "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+            "local": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson.pdf",
+              "sha256": "caf359395a4e562cf49da9ae9f8816ef85e71296ea2a292c0d4aae63d656c20b"
+            },
+            "visually_inspected": [
+              {
+                "path": "/tmp/cohort-a-20261102/nv-wilson-ocr/p056.png",
+                "sha256": "afd9b5cd4018968b78050944775eaf0ecf65eab28c394da6a01f374317d6aca6"
+              }
+            ],
+            "sense": "PUT IT AWAY tells the reader to put hashtʼeʼ before SET IT DOWN. This supplies a storage/safekeeping modifier, not rescue/salvation.",
+            "limits": "Combining the modifier with the complete positional state siłtsooz is an existing reviewed project composition, not verb conjugation generated from an imperative."
+          },
+          {
+            "id": "wall_store",
+            "title": "Wall and Morgan1958, printed52 / PDF59, nináádooltsos hashtʼeʼ",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Navajo-English_Dictionary.pdf",
+            "local": {
+              "path": "/tmp/cohort-a-20261102/nv-dictionary.pdf",
+              "sha256": "9b8006c3dee25988b3847cb293ad6f6df49d2b63b973a7c1ff47179075c0012b"
+            },
+            "visually_inspected": [
+              {
+                "path": "nv-flat-storage-crop.png",
+                "sha256": "4fdd971616286542927913bd03f27bc0dc00d3ec4459da53f11fa0a9a63a33f1"
+              },
+              {
+                "path": "nv-store-p59.png",
+                "sha256": "613ff5ab9837e593d00a43a506f790f7dbbcc5163dfaf03a34c3297c41f6d8d9"
+              }
+            ],
+            "sense": "The dictionary explicitly associates hashtʼeʼ with a flat flexible object put away for safekeeping. The source future/again form is not used as a new completed-save verb.",
+            "limits": "The candidate inherits the bounded whole-image/document-as-sheet metaphor. It is not valid for all Save callers."
+          },
+          {
+            "id": "ym_state",
+            "title": "Young and Morgan1972, The Navaho Language, dictionary printed7–8 / PDF152–153, entry21",
+            "url": "https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/North%20American/Na-Dene/Navajo%3B%20The%20Navaho%20Language%20%28Young%20%26%20Morgan%29.pdf",
+            "local": {
+              "path": "nv-young-morgan1972.pdf",
+              "sha256": "2970097782bd17e39122f23aad38efac7955d3b95f35a11bb0336bf71f06061a"
+            },
+            "visually_inspected": [
+              {
+                "path": "nv-state-exact-siltsooz-review-crop.png",
+                "sha256": "416c28f3bd6cf8518e6d9f2688e670a069308387850996f08d8f1f45b113a4e7"
+              },
+              {
+                "path": "nv-handling-store-p152.png",
+                "sha256": "e72d60c8a3ec7402146bde4ca08f6c66c8ff5100a39f01184561e5a277ac5a8a"
+              },
+              {
+                "path": "nv-handling-seek-p153.png",
+                "sha256": "c74a98f43bde53602d9744cdd996722db78f2502504bab326355adcd420a977e"
+              }
+            ],
+            "sense": "Exact complete singular flat-flexible-object positional predicate siłtsooz. It is a state of being situated, not an invented finite perfective Save command.",
+            "limits": "Barred ł is mandatory. The prior sitsooz omission was already rejected and is not revived."
+          },
+          {
+            "id": "nmped_digital",
+            "title": "New Mexico Public Education Department, Practice Readiness Assessment in Navajo, 2025 host path, PDF1 opening instructions",
+            "url": "https://web.ped.nm.gov/wp-content/uploads/2025/01/M_Y-Practice-Readiness-Assessment_Navajo.pdf",
+            "local": {
+              "path": "nv-nmped-readiness2025.pdf",
+              "sha256": "84a3f996643c5b1dbc53e63c256e7f04940c52cfc9e1a7a04c1fae62945ea54a"
+            },
+            "visually_inspected": [
+              {
+                "path": "nv-draft-nmped-p1-0910.png",
+                "sha256": "e31cf093789da34a75f0fbafebc198263760d0df73f09cf3486ccaed48c80325"
+              }
+            ],
+            "sense": "Own raster visibly has SharePoint íiyisíí bá siłtsoozígíí in instructions also naming a computer and Word document. This is primary modern use of the same positional stem in a digital-resource context.",
+            "limits": "It does not independently attest this UI sentence, automatic saving, or a draft noun. Draft Readiness Assessment Guidance and Tool remains an English footer. Do not equate that footer to an unverified Navajo draft translation."
+          },
+          {
+            "id": "court_document",
+            "title": "Navajo Nation court glossary D, printed48/PDF12, DOCUMENT",
+            "url": "https://courts.navajo-nsn.gov/Glossary/D.pdf",
+            "local": {
+              "path": "/tmp/cohort-a-20261102/nv-court-D.pdf",
+              "sha256": "a85e7e65e595f30be6a6e30be5060912041c7c2d9cc24facc3477f451a5a0a6c"
+            },
+            "raster": {
+              "path": "/tmp/cohort-a-20261102/nv-court-document-p12.png",
+              "sha256": "8b35816e1c913a24040c64a83ff13262ce3352576ba1a112114d92a3200d4612"
+            },
+            "exact_form": "Naaltsoos",
+            "sense": "Document/paper noun. Digital output-file extension is existing project convention, not directly this legal-domain source.",
+            "current_correspondence": "Current save20_file_name is Naaltsoos bízhiʼ. Existing reviewed output toast uses the same storage predicate for named image, icon and text output files.",
+            "prior_packet": {
+              "path": "nv-output-saved-state2-v2.json",
+              "sha256": "bc71a926775a2df11ef43ef8158a9dcda6292c2bcf783d1433be7940fc111ae4"
+            }
+          },
+          {
+            "id": "wilson_how",
+            "title": "Wilson1994 printed74/PDF44, HOW interrogatives",
+            "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+            "local": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson.pdf",
+              "sha256": "caf359395a4e562cf49da9ae9f8816ef85e71296ea2a292c0d4aae63d656c20b"
+            },
+            "raster": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson-ocr/p044.png",
+              "sha256": "fe60df1795373fbc2f894d0d6c4d087093581b3b49f749873993112536a88038"
+            },
+            "source_form": "haʼátʼéego (sh, shąʼ)?",
+            "authored_use": "Exact interrogative with source-listed sh ending and NFC/U+02BC normalization: Haʼátʼéegosh. Asks manner in this field, not a location question or whether Save succeeded.",
+            "limits": "The same head is how/why polysemous in community material. Independent review must assess manner reading in this concrete output-format selector; no new technical noun is claimed."
+          },
+          {
+            "id": "community_how_question",
+            "title": "Navajo Language Academy community lexicons: content questions and manner example",
+            "urls": [
+              "https://talkingdictionary.swarthmore.edu/navajo_questions/?entry=734",
+              "https://talkingdictionary.swarthmore.edu/navajo_conjunction/?entry=690"
+            ],
+            "observed": "Fresh primary-site indexed search text gives exact Ha’át’éegosh and identifies how/why plus content-question enclitic. Separate entry690 has a future manner question about returning to the main road. Speakers Lorene B. Legah and Sharon J. Nelson, respectively.",
+            "source_limits": "Direct question-page retrieval returned cache miss and ordinary HTTP503, not denial. No retained full HTML or direct live-page-byte identity claimed. Wilson directly viewed raster supplies the decisive interrogative and sh option; indexed community evidence is corroboration only."
+          },
+          {
+            "id": "analytic_future",
+            "title": "Elizabeth Bogal-Allbritten, The semantics of the future in Navajo, section3 PDF3–4",
+            "url": "https://elizabethba.wordpress.com/wp-content/uploads/2017/04/eba-festschrift-navajo.pdf",
+            "local": {
+              "path": "nv-bogal-future-1103.pdf",
+              "sha256": "20367ef3329b7ce77525413c78c834813a4a51dd2fbe33c614803a3074d11f0d"
+            },
+            "text": {
+              "path": "nv-bogal-future-1108.txt",
+              "sha256": "20b58c48e479fc1589caf81955fe9065bb741877c1be68bc3a02ccf6ebf1fe30"
+            },
+            "rasters": [
+              {
+                "path": "nv-bogal-future-p3-1110.png",
+                "sha256": "24dd4c5aab9b57d64ce81bd4b4945ef8e12fb561650b8e8ac5a3ac208f163c2c"
+              },
+              {
+                "path": "nv-bogal-future-p4-1110.png",
+                "sha256": "d5b6d2cc149ce0e0553cec643c84a952be0fe58890269b53def06f2facff8c0e"
+              }
+            ],
+            "exact_form": "dooleeł",
+            "sense": "Analytic future may follow stative predicates that do not vary by mode. The elicited example Nisneez dooleeł describes a future tall state.",
+            "authored_use": "Added after the unchanged complete positional-storage predicate. No new classified handling conjugation is generated. This is a question about a proposed output representation, not an assertion of completed storage or a promise of success.",
+            "limits": "The paper also discusses prediction and priority modality. It does not attest our complete software question. Source fieldwork2013–2015 used fluent/literate paid NLA consultants outside class hours."
+          }
+        ]
+      },
+      "independent_review_findings": {
+        "decision": "ACCEPT_UNCHANGED"
+      },
+      "author_limits": [
+        "Generic ui_save remains unresolved/excluded: this caption concerns a named output document, not arbitrary colour or credit commits.",
+        "Question is prospective and does not assert that a file already exists, that encoding/storage will succeed, or that manual Save/export targets change.",
+        "Manner versus why polysemy, question placement and format-caption adequacy require independent review. If too broad, hold rather than claim exact technical equivalence.",
+        "Current field context supplies the format category; no source-attested Navajo technical format noun or whole published GUI sentence is claimed.",
+        "No native-speaker, layout or runtime certificate."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nv-d0bde3f-1124.json",
+          "sha256": "c44e7ce9722a381bd322b23c4091aae54df15057c91e6b9a78bfdc8eeed7bd3c",
+          "git_blob_sha": "b2915e4d218c14a7520b64141201a06c19e66bb0",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nv",
+      "key": "ui_could_not_store_the_assembly",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "Could not store the assembly.",
+      "attributes": {
+        "name": "ui_could_not_store_the_assembly"
+      },
+      "raw": "Naaltsoos (project.json) · Hashtʼeʼ niníłtsóós: doo bííníshghah da.",
+      "value": "Naaltsoos (project.json) · Hashtʼeʼ niníłtsóós: doo bííníshghah da.",
+      "display": "Naaltsoos (project.json) · Hashtʼeʼ niníłtsóós: doo bííníshghah da.",
+      "backtranslation": "Document/file (project.json) · Store it: I cannot do it.",
+      "placeholders": [],
+      "raw_sha256": "ea99c9ebb0b5acbb4ab606c7ff3e544bf218e3f2eeac94c392f5eb17c15f1009",
+      "candidate_pin": {
+        "file": "nv-project-store-failure1-1113.json",
+        "sha256": "f9a8c8606172bb8100e9c6c3fa5170f71f5aa2d75882ae00156f94c1d5bc648b"
+      },
+      "review_receipt": {
+        "file": "review-nv-format-storage2-independent-1120.json",
+        "sha256": "02485f2707f322a1b2ae23efe9af2c3731734a264a55fc3bef7714b437a089ad"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 229,
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "text": "catch(error: Exception) {items.forEach {previews.remove(it.id)?.recycle();it.file.delete()};errors.add(error.message ?: ui(R.string.ui_could_not_store_the_assembly))}"
+        }
+      ],
+      "caller_contract": "AssemblyActivity229 fallback when assembly.add throws an Exception without message. Add validates then writes project.json and updates in-memory/history/UI state. The JSON document name identifies the editable assembly state, not a claim that physical JSON writing was the precise failed step. Validation, JSON construction, AtomicFile storage or later housekeeping/callback can throw. No assertion of absent project.json, unchanged state, source-file loss, or guaranteed rollback.",
+      "source_and_caller_evidence": {
+        "source_entries": {
+          "document": {
+            "id": "court_document",
+            "title": "Navajo Nation court glossary D, printed48/PDF12, DOCUMENT",
+            "url": "https://courts.navajo-nsn.gov/Glossary/D.pdf",
+            "local": {
+              "path": "/tmp/cohort-a-20261102/nv-court-D.pdf",
+              "sha256": "a85e7e65e595f30be6a6e30be5060912041c7c2d9cc24facc3477f451a5a0a6c"
+            },
+            "raster": {
+              "path": "/tmp/cohort-a-20261102/nv-court-document-p12.png",
+              "sha256": "8b35816e1c913a24040c64a83ff13262ce3352576ba1a112114d92a3200d4612"
+            },
+            "exact_form": "Naaltsoos",
+            "sense": "Document/paper noun. Digital output-file extension is existing project convention, not directly this legal-domain source.",
+            "current_correspondence": "Current save20_file_name is Naaltsoos bízhiʼ. Existing reviewed output toast uses the same storage predicate for named image, icon and text output files.",
+            "prior_packet": {
+              "path": "nv-output-saved-state2-v2.json",
+              "sha256": "bc71a926775a2df11ef43ef8158a9dcda6292c2bcf783d1433be7940fc111ae4"
+            }
+          },
+          "exact_storage_command": {
+            "packet": {
+              "path": "nv-save-image7-v2.json",
+              "sha256": "223e58ec38f23736b8ede7ea39d7f28e3ab84df3c3b532f4e323f69a25abd388"
+            },
+            "review": {
+              "path": "review-nv-save8-independent.json",
+              "sha256": "dbfea9d9bf601cfb87c8e59b03a7a591d2192270226c9fbdc4b69c25205a8f16"
+            },
+            "reconciliation": {
+              "path": "review-nv-save-image7-v2-reconciliation.json",
+              "sha256": "cb284a2ca957d63f02bd8ee9866d731f0a24805fde66db93b9f305f7036f5452"
+            },
+            "form": "Hashtʼeʼ niníłtsóós",
+            "new_extension": "Previously independently reviewed command used only for image-document saves. This new row extends the same document-sheet convention to the editable project.json state file, matching existing Naaltsoos(project.json) open diagnostic. It is not presented as already approved for JSON or arbitrary colour/text commits."
+          },
+          "exact_inability": {
+            "packet": {
+              "path": "nv-image-failure2-v2.json",
+              "sha256": "17e672243a8226e03c524fa198384568df45c17ed8b47f1bfcbb2a79f7606423"
+            },
+            "review": {
+              "path": "review-nv-image-failure2-independent.json",
+              "sha256": "3b554e12f42c4e2d85d9e1224f5183fc0cd1a4e009e8ab056cc626b5267cddc5"
+            },
+            "form": "doo bííníshghah da",
+            "sense": "Exact first-person inability after action-topic label. No new conjugation or negative morphology."
+          },
+          "existing_named_project_diagnostic": {
+            "path": "nv-assembly-file-errors3.json",
+            "sha256": "22a91e59001471e5bdf6d5676ce981323dae8a07f79d91e3b6b1d854eb4cec71"
+          }
+        }
+      },
+      "independent_review_findings": {
+        "decision": "ACCEPT_UNCHANGED"
+      },
+      "author_limits": [
+        "No PNG rendered-output claim; project.json identifies editable project state rather than image export.",
+        "The diagnostic is functional failed storage/update, not identification of a precise failing filesystem syscall or promise that no state changed.",
+        "Generic ui_save remains unresolved/excluded; the concrete named project document is not an arbitrary single-colour/value commit.",
+        "No source-attested whole software phrase or native/layout/runtime certificate."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nv-d0bde3f-1124.json",
+          "sha256": "c44e7ce9722a381bd322b23c4091aae54df15057c91e6b9a78bfdc8eeed7bd3c",
+          "git_blob_sha": "b2915e4d218c14a7520b64141201a06c19e66bb0",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nch",
+      "key": "save20_unsupported_image_colour",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "raw": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "value": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "display": "Ni ixkopinali quitequihuía se colour profile. AN Paint ayemo hueli quitequihuía nopa colour profile para quipatas sesen número RGB ipan ni ixkopinali. Achtohui xijtequihui seyoc cati ica hueli tijpata ixkopinali huan cati hueli quitequihuía nopa colour profile para quipatas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa ixkopinali (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "backtranslation": "This image uses a colour profile. AN Paint cannot yet use that profile to change each RGB number in this image. First use another tool with which you can edit an image and which can use that profile to change each RGB number: it must become an RGB number in sRGB. Save that image (PNG). Then, in AN Paint, use Load image… with that PNG.",
+      "placeholders": [],
+      "raw_sha256": "364ba0031d0c75ee615df809d733a05dbb5e04a8437e55bcc13ab9d0177c47e1",
+      "candidate_pin": {
+        "file": "nahua-colour2-author-1112.json",
+        "sha256": "c2fc1cde4869ad5ff0f217c0fb9fd5e6c1c50f0a9bb06628ebdf865d470e4de7"
+      },
+      "review_receipt": {
+        "file": "review-nahua-colour-ascii4-independent-1125.json",
+        "sha256": "5816a43164ce8f3e97356cd9dcc60d0d16fa7cea4507ffbf123e07a56aadf406"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 16,
+          "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour), error)"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 23,
+          "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour), error)"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+          "line": 115,
+          "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour),error)"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-colour2-primary-1112.json",
+          "sha256": "ca08b003f5121e0561897c631a70d37a48ad647be81221ad946fa2089a7de342"
+        },
+        "caller_packet": {
+          "path": "nahua-colour2-callers-1112.json",
+          "sha256": "690ca64f9db6e194b8d7385404089e82db67ceb331e1bf4fec39c0a78105f813"
+        },
+        "source_entry_ids": [
+          "present-use",
+          "not-yet-ability",
+          "result-state",
+          "another-tool",
+          "store-command",
+          "change-capability",
+          "use-command",
+          "again-and-sequence",
+          "change-future",
+          "number",
+          "each-numerical-unit",
+          "unchanged-each-number",
+          "first-step"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "The named image source profile is explicitly used to change every RGB numerical value into sRGB before writing PNG. This requires a source-profile-aware sample transformation, not merely assigning or renaming metadata.",
+          "The exact resource has three source emitters: PlatformImageColour.read catches LegacyColourMetadata.UnsupportedColour; DibCodec and IcoCodec catch the same type from RGB DIB paths. The guarded BMP V4/V5 and GIF ICCRGBG1 paths and packed/icon DIB checks were read directly. This does not generalize the resource to unrelated CMYK or other ICC diagnostics.",
+          "The alternative editor is defined by its ability to edit the image and use this profile. It is not an installed-app assertion or a guaranteed recovery from malformed metadata. Conversion may retain some channel numbers numerically; the instruction concerns transforming each sample under the source profile, not forcing every number to differ.",
+          "PNG is saved before the final AN Paint Load image action. No alpha conversion, perfect gamut preservation, corruption, automatic conversion, successful import or future implementation is promised.",
+          "The exact Load image… fallback is present in English and absent in both current locale catalogues. ClassicPaintActivity838 routes that control through confirmReplacement to launchOpen(false). Initial caller lines555–570 do not evidence this route; the preserved addendum supplies the correct location."
+        ],
+        "independent_source": {
+          "binding": "Central Huasteca [nch], La Liga Bíblica 2005, electronic 2009. Official URL title checked independently; no specific village attributed to this NT.",
+          "primary_url": "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf",
+          "noun": "ixkopinali is the retained whole Cruzhica/Xochiatipan noun in Hernández Beatriz 2016 printed64, read independently in retained hosted-primary transcription. Valiñas locality mapping underlies the existing NCH assignment; older indirect bibliography conflict remains disclosed. It is not asserted uniform with the NT orthography or across all NCH localities.",
+          "noun_transcription": {
+            "path": "/tmp/cohort-a-20261102/nch-public-mirror.txt",
+            "sha256": "25ae5d839d1147a777d508459f06d8c23207d96f77b581409d63a9d8c93c7f77"
+          },
+          "distinctions": "Central forms ayemo, quipata/quipatas, ipatajca, tajcuiloli, cati, quej, achtohui and quitapos retained. No Western tl cluster substitution or NHE morphology.",
+          "independent_reading": "Use, not-yet ability, desired result, every numerical unit, measured width and equality, light/dark appearance, written information and reproduction were independently checked in own retained source. Page180 column-interleaved extraction separates sesen and centavo; the viewed raster confirms one phrase.",
+          "authored_extensions": "Profile-aware RGB numerical conversion, software agency, a character place as a digital cell, scalar light/dark areas and original-image reconstruction are functional compositions, not attested full UI sentences."
+        },
+        "decision": "accepted",
+        "limits": "Moderate source-supported functional composition, not native-speaker, layout, Android formatting or runtime certification. Root adoption and application integration remain pending."
+      },
+      "author_limits": "No native/layout/runtime certification. Another tool is a functional editor description, not a promise of an installed app. Save is an instruction, not an exact label on unspecified external editor.",
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nch-d0bde3f-1124.json",
+          "sha256": "5d16acb67cafa83fb2ba69a1b76128e1ce7870636997b19a433ebca2463f7a63",
+          "git_blob_sha": "04c676792ccd5753d2f64f4506aa1b62974e2233",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": [
+        {
+          "quoted_display": "Load image…",
+          "matching_resource_keys": [
+            "ui_load_image"
+          ],
+          "matches": {
+            "ui_load_image": {
+              "display": "Load image…",
+              "English_fallback": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "locale": "nhw",
+      "key": "save20_unsupported_image_colour",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "raw": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "value": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "display": "Ni tlaixkopintli quitequihuía se colour profile. AN Paint ayamo hueli quitequihuía nopa colour profile para quipatlas sesen número RGB ipan ni tlaixkopintli. Achtihui xijtequihui seyoc catli ica hueli tijpatla tlaixkopintli huan catli hueli quitequihuía nopa colour profile para quipatlas sesen número RGB: ma eli número RGB ica sRGB. Xicajocui nopa tlaixkopintli (PNG). Teipa, ipan AN Paint, xijtequihui “Load image…” ica nopa PNG.",
+      "backtranslation": "This image uses a colour profile. AN Paint cannot yet use that profile to change each RGB number in this image. First use another tool with which you can edit an image and which can use that profile to change each RGB number: it must become an RGB number in sRGB. Save that image (PNG). Then, in AN Paint, use Load image… with that PNG.",
+      "placeholders": [],
+      "raw_sha256": "dd7a541367f0229e25302350306d0dfbd182c1e819c41fe9f9c58037f45e7943",
+      "candidate_pin": {
+        "file": "nahua-colour2-author-1112.json",
+        "sha256": "c2fc1cde4869ad5ff0f217c0fb9fd5e6c1c50f0a9bb06628ebdf865d470e4de7"
+      },
+      "review_receipt": {
+        "file": "review-nahua-colour-ascii4-independent-1125.json",
+        "sha256": "5816a43164ce8f3e97356cd9dcc60d0d16fa7cea4507ffbf123e07a56aadf406"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 16,
+          "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour), error)"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 23,
+          "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour), error)"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+          "line": 115,
+          "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour),error)"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-colour2-primary-1112.json",
+          "sha256": "ca08b003f5121e0561897c631a70d37a48ad647be81221ad946fa2089a7de342"
+        },
+        "caller_packet": {
+          "path": "nahua-colour2-callers-1112.json",
+          "sha256": "690ca64f9db6e194b8d7385404089e82db67ceb331e1bf4fec39c0a78105f813"
+        },
+        "source_entry_ids": [
+          "present-use",
+          "not-yet-ability",
+          "result-state",
+          "another-tool",
+          "store-command",
+          "change-capability",
+          "use-command",
+          "again-and-sequence",
+          "change-future",
+          "number",
+          "each-numerical-unit",
+          "unchanged-each-number",
+          "first-step"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "The named image source profile is explicitly used to change every RGB numerical value into sRGB before writing PNG. This requires a source-profile-aware sample transformation, not merely assigning or renaming metadata.",
+          "The exact resource has three source emitters: PlatformImageColour.read catches LegacyColourMetadata.UnsupportedColour; DibCodec and IcoCodec catch the same type from RGB DIB paths. The guarded BMP V4/V5 and GIF ICCRGBG1 paths and packed/icon DIB checks were read directly. This does not generalize the resource to unrelated CMYK or other ICC diagnostics.",
+          "The alternative editor is defined by its ability to edit the image and use this profile. It is not an installed-app assertion or a guaranteed recovery from malformed metadata. Conversion may retain some channel numbers numerically; the instruction concerns transforming each sample under the source profile, not forcing every number to differ.",
+          "PNG is saved before the final AN Paint Load image action. No alpha conversion, perfect gamut preservation, corruption, automatic conversion, successful import or future implementation is promised.",
+          "The exact Load image… fallback is present in English and absent in both current locale catalogues. ClassicPaintActivity838 routes that control through confirmReplacement to launchOpen(false). Initial caller lines555–570 do not evidence this route; the preserved addendum supplies the correct location."
+        ],
+        "independent_source": {
+          "binding": "Western Huasteca [nhw], La Liga Bíblica 2000, electronic 2009. Official title and PDF4 explicitly identify Tamazunchale, San Luis Potosí, and internal variation.",
+          "primary_url": "https://www.scriptureearth.org/data/nhw/PDF/00-WNTnhw-web.pdf",
+          "noun": "tlaixkopintli is the whole image noun in the INALI/UISLP Huasteca Potosina glossary. Independent inspection of retained PDF97/99 rasters supports the bilingual image-medium relation. Contributor village unspecified; no claim of universal Tamazunchale spelling.",
+          "noun_url": "https://site.inali.gob.mx/bicen/pdf/GLOSARIO_nahuatl_huasteca_potosina.pdf",
+          "distinctions": "Western forms ayamo, quipatla/quipatlas, ipatlajca, tlajcuiloli, catli, quen, achtihui and quitlapos retained. No Central or NHE morphological substitution.",
+          "independent_reading": "Own width/equality, use, not-yet ability, desired result, light/dark appearance, writing and reproduce forms checked separately. Page470 has hueli quipatla across a visual line break; independent raster confirms it despite interleaved extraction.",
+          "authored_extensions": "Technical conversion and character-cell wording remain authored functional compositions; the glossary noun and the NT do not certify a complete digital UI sentence."
+        },
+        "decision": "accepted",
+        "limits": "Moderate source-supported functional composition, not native-speaker, layout, Android formatting or runtime certification. Root adoption and application integration remain pending."
+      },
+      "author_limits": "No native/layout/runtime certification. Another tool is a functional editor description, not a promise of an installed app. Save is an instruction, not an exact label on unspecified external editor.",
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nhw-d0bde3f-1124.json",
+          "sha256": "8697f9132e320e9384d986756a0e0f9064cc51d1dfed0ef30f9d5bd104bcd18d",
+          "git_blob_sha": "d78f9f52580b6565fa0560b17d8dca302a277aaf",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": [
+        {
+          "quoted_display": "Load image…",
+          "matching_resource_keys": [
+            "ui_load_image"
+          ],
+          "matches": {
+            "ui_load_image": {
+              "display": "Load image…",
+              "English_fallback": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "locale": "nch",
+      "key": "formats22_ascii_description",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "raw": "AN Paint quiixcopina ixkopinali ica san tajcuiloli (ASCII). Nopa tajcuiloli quinextía campa achi chipahuac huan campa achi yayahuic ipan ixkopinali. Xijtequihui monospaced para tiquitas: sesen ASCII character quipiya se lugar. Ipatajca sesen lugar eltoc san se. Ni san se ixkopinali ica tajcuiloli; AN Paint amo huelis quitapos ni tajcuiloli sempa quej nopa ixkopinali cati achtohui.",
+      "value": "AN Paint quiixcopina ixkopinali ica san tajcuiloli (ASCII). Nopa tajcuiloli quinextía campa achi chipahuac huan campa achi yayahuic ipan ixkopinali. Xijtequihui monospaced para tiquitas: sesen ASCII character quipiya se lugar. Ipatajca sesen lugar eltoc san se. Ni san se ixkopinali ica tajcuiloli; AN Paint amo huelis quitapos ni tajcuiloli sempa quej nopa ixkopinali cati achtohui.",
+      "display": "AN Paint quiixcopina ixkopinali ica san tajcuiloli (ASCII). Nopa tajcuiloli quinextía campa achi chipahuac huan campa achi yayahuic ipan ixkopinali. Xijtequihui monospaced para tiquitas: sesen ASCII character quipiya se lugar. Ipatajca sesen lugar eltoc san se. Ni san se ixkopinali ica tajcuiloli; AN Paint amo huelis quitapos ni tajcuiloli sempa quej nopa ixkopinali cati achtohui.",
+      "backtranslation": "AN Paint reproduces the image using only written text (ASCII). That text shows where the image is lighter and where it is darker. Use monospaced to view it: each ASCII character has a place. The width of every place is the same. This is only an image made with text; AN Paint cannot open this text again as the original image.",
+      "placeholders": [],
+      "raw_sha256": "2ea36ecc89a9dd25bbceb59da0d225ef5f7856e48f6f9e5ad5201eb016e93593",
+      "candidate_pin": {
+        "file": "nahua-ascii2-author-v2-1116.json",
+        "sha256": "5cbb8cddcaeafc7918b797c95a02349b5cd4bda3bb810a923b485a0e2688ffc8"
+      },
+      "review_receipt": {
+        "file": "review-nahua-colour-ascii4-independent-1125.json",
+        "sha256": "5816a43164ce8f3e97356cd9dcc60d0d16fa7cea4507ffbf123e07a56aadf406"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 101,
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "text": "ImageFormat.ASCII_ART -> R.string.formats22_ascii_description"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-ascii2-primary-v2-1116.json",
+          "sha256": "af35b49a24b33180fad9811af5a1204c07c7437d2d2d9e82a07af6e59eadb997"
+        },
+        "caller_packet": {
+          "path": "nahua-ascii2-callers-v2-1116.json",
+          "sha256": "701f1c002b7167cd7162d5c16e6be78de240c33e76110ab001f17817e4cbc779"
+        },
+        "source_entry_ids": [
+          "width",
+          "equal",
+          "bright",
+          "dark",
+          "represent",
+          "see-purpose",
+          "place",
+          "each",
+          "scalar",
+          "use-command",
+          "reproduce",
+          "again-and-sequence",
+          "written-information",
+          "inanimate-contents",
+          "open-inability",
+          "original-first"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "The opening reproduction-with-written-text clause and the text-showing-light/dark-areas clause convey a tonal visual text rendition rather than a prose description, byte-identical copy, or colored font requirement.",
+          "Each ASCII character is given a place; the width of each place is the same. Equality is on allocated character cells/advance widths, not visible glyph strokes. The technical unit ASCII character includes punctuation and blank spaces, unlike an unsupported extension of alphabetic letter.",
+          "The direct codec uses a punctuation-and-space ramp, one byte per sampled cell, with luma and optional inversion. Candidate wording does not promise a particular dark/light glyph mapping when inversion is selected.",
+          "The final prohibition is reopening this derived text as the original image in AN Paint. Direct code writes reduced text and the text import decoder expects a decoded raster signature; no inverse reconstruction path was found. It does not state that the source bitmap was destroyed or cannot be edited.",
+          "ASCII character and monospaced are disclosed technical anchors, not claimed native nouns or whole source-attested terminology. monospaced is functionally explained by equal-width places. No wording revision is required for this disclosed-anchor candidate."
+        ],
+        "independent_source": {
+          "binding": "Central Huasteca [nch], La Liga Bíblica 2005, electronic 2009. Official URL title checked independently; no specific village attributed to this NT.",
+          "primary_url": "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf",
+          "noun": "ixkopinali is the retained whole Cruzhica/Xochiatipan noun in Hernández Beatriz 2016 printed64, read independently in retained hosted-primary transcription. Valiñas locality mapping underlies the existing NCH assignment; older indirect bibliography conflict remains disclosed. It is not asserted uniform with the NT orthography or across all NCH localities.",
+          "noun_transcription": {
+            "path": "/tmp/cohort-a-20261102/nch-public-mirror.txt",
+            "sha256": "25ae5d839d1147a777d508459f06d8c23207d96f77b581409d63a9d8c93c7f77"
+          },
+          "distinctions": "Central forms ayemo, quipata/quipatas, ipatajca, tajcuiloli, cati, quej, achtohui and quitapos retained. No Western tl cluster substitution or NHE morphology.",
+          "independent_reading": "Use, not-yet ability, desired result, every numerical unit, measured width and equality, light/dark appearance, written information and reproduction were independently checked in own retained source. Page180 column-interleaved extraction separates sesen and centavo; the viewed raster confirms one phrase.",
+          "authored_extensions": "Profile-aware RGB numerical conversion, software agency, a character place as a digital cell, scalar light/dark areas and original-image reconstruction are functional compositions, not attested full UI sentences."
+        },
+        "decision": "accepted",
+        "limits": "Moderate source-supported functional composition, not native-speaker, layout, Android formatting or runtime certification. Root adoption and application integration remain pending."
+      },
+      "author_limits": "ASCII character is a disclosed technical anchor rather than a newly invented Nahua noun. No native-speaker/layout/runtime certification.",
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nch-d0bde3f-1124.json",
+          "sha256": "5d16acb67cafa83fb2ba69a1b76128e1ce7870636997b19a433ebca2463f7a63",
+          "git_blob_sha": "04c676792ccd5753d2f64f4506aa1b62974e2233",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nhw",
+      "key": "formats22_ascii_description",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "raw": "AN Paint quiixcopina tlaixkopintli ica san tlajcuiloli (ASCII). Nopa tlajcuiloli quinextía campa achi chipahuac huan campa achi yayahuic ipan tlaixkopintli. Xijtequihui monospaced para tiquitas: sesen ASCII character quipiya se lugar. Ipatlajca sesen lugar eltoc san se. Ni san se tlaixkopintli ica tlajcuiloli; AN Paint amo huelis quitlapos ni tlajcuiloli sempa quen nopa tlaixkopintli catli achtihui.",
+      "value": "AN Paint quiixcopina tlaixkopintli ica san tlajcuiloli (ASCII). Nopa tlajcuiloli quinextía campa achi chipahuac huan campa achi yayahuic ipan tlaixkopintli. Xijtequihui monospaced para tiquitas: sesen ASCII character quipiya se lugar. Ipatlajca sesen lugar eltoc san se. Ni san se tlaixkopintli ica tlajcuiloli; AN Paint amo huelis quitlapos ni tlajcuiloli sempa quen nopa tlaixkopintli catli achtihui.",
+      "display": "AN Paint quiixcopina tlaixkopintli ica san tlajcuiloli (ASCII). Nopa tlajcuiloli quinextía campa achi chipahuac huan campa achi yayahuic ipan tlaixkopintli. Xijtequihui monospaced para tiquitas: sesen ASCII character quipiya se lugar. Ipatlajca sesen lugar eltoc san se. Ni san se tlaixkopintli ica tlajcuiloli; AN Paint amo huelis quitlapos ni tlajcuiloli sempa quen nopa tlaixkopintli catli achtihui.",
+      "backtranslation": "AN Paint reproduces the image using only written text (ASCII). That text shows where the image is lighter and where it is darker. Use monospaced to view it: each ASCII character has a place. The width of every place is the same. This is only an image made with text; AN Paint cannot open this text again as the original image.",
+      "placeholders": [],
+      "raw_sha256": "d2809fafb9ae7ae561828af1ccaade1bc0e3d5f02c4e9f7bf40fbb43487e7ce4",
+      "candidate_pin": {
+        "file": "nahua-ascii2-author-v2-1116.json",
+        "sha256": "5cbb8cddcaeafc7918b797c95a02349b5cd4bda3bb810a923b485a0e2688ffc8"
+      },
+      "review_receipt": {
+        "file": "review-nahua-colour-ascii4-independent-1125.json",
+        "sha256": "5816a43164ce8f3e97356cd9dcc60d0d16fa7cea4507ffbf123e07a56aadf406"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 101,
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "text": "ImageFormat.ASCII_ART -> R.string.formats22_ascii_description"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-ascii2-primary-v2-1116.json",
+          "sha256": "af35b49a24b33180fad9811af5a1204c07c7437d2d2d9e82a07af6e59eadb997"
+        },
+        "caller_packet": {
+          "path": "nahua-ascii2-callers-v2-1116.json",
+          "sha256": "701f1c002b7167cd7162d5c16e6be78de240c33e76110ab001f17817e4cbc779"
+        },
+        "source_entry_ids": [
+          "width",
+          "equal",
+          "bright",
+          "dark",
+          "represent",
+          "see-purpose",
+          "place",
+          "each",
+          "scalar",
+          "use-command",
+          "reproduce",
+          "again-and-sequence",
+          "written-information",
+          "inanimate-contents",
+          "open-inability",
+          "original-first"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "The opening reproduction-with-written-text clause and the text-showing-light/dark-areas clause convey a tonal visual text rendition rather than a prose description, byte-identical copy, or colored font requirement.",
+          "Each ASCII character is given a place; the width of each place is the same. Equality is on allocated character cells/advance widths, not visible glyph strokes. The technical unit ASCII character includes punctuation and blank spaces, unlike an unsupported extension of alphabetic letter.",
+          "The direct codec uses a punctuation-and-space ramp, one byte per sampled cell, with luma and optional inversion. Candidate wording does not promise a particular dark/light glyph mapping when inversion is selected.",
+          "The final prohibition is reopening this derived text as the original image in AN Paint. Direct code writes reduced text and the text import decoder expects a decoded raster signature; no inverse reconstruction path was found. It does not state that the source bitmap was destroyed or cannot be edited.",
+          "ASCII character and monospaced are disclosed technical anchors, not claimed native nouns or whole source-attested terminology. monospaced is functionally explained by equal-width places. No wording revision is required for this disclosed-anchor candidate."
+        ],
+        "independent_source": {
+          "binding": "Western Huasteca [nhw], La Liga Bíblica 2000, electronic 2009. Official title and PDF4 explicitly identify Tamazunchale, San Luis Potosí, and internal variation.",
+          "primary_url": "https://www.scriptureearth.org/data/nhw/PDF/00-WNTnhw-web.pdf",
+          "noun": "tlaixkopintli is the whole image noun in the INALI/UISLP Huasteca Potosina glossary. Independent inspection of retained PDF97/99 rasters supports the bilingual image-medium relation. Contributor village unspecified; no claim of universal Tamazunchale spelling.",
+          "noun_url": "https://site.inali.gob.mx/bicen/pdf/GLOSARIO_nahuatl_huasteca_potosina.pdf",
+          "distinctions": "Western forms ayamo, quipatla/quipatlas, ipatlajca, tlajcuiloli, catli, quen, achtihui and quitlapos retained. No Central or NHE morphological substitution.",
+          "independent_reading": "Own width/equality, use, not-yet ability, desired result, light/dark appearance, writing and reproduce forms checked separately. Page470 has hueli quipatla across a visual line break; independent raster confirms it despite interleaved extraction.",
+          "authored_extensions": "Technical conversion and character-cell wording remain authored functional compositions; the glossary noun and the NT do not certify a complete digital UI sentence."
+        },
+        "decision": "accepted",
+        "limits": "Moderate source-supported functional composition, not native-speaker, layout, Android formatting or runtime certification. Root adoption and application integration remain pending."
+      },
+      "author_limits": "ASCII character is a disclosed technical anchor rather than a newly invented Nahua noun. No native-speaker/layout/runtime certification.",
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nhw-d0bde3f-1124.json",
+          "sha256": "8697f9132e320e9384d986756a0e0f9064cc51d1dfed0ef30f9d5bd104bcd18d",
+          "git_blob_sha": "d78f9f52580b6565fa0560b17d8dca302a277aaf",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nv",
+      "key": "formats22_animation_message",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "attributes": {
+        "name": "formats22_animation_message"
+      },
+      "raw": "%1$s — eʼelyaaígíí: %2$s. AN Paint: eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá łahgo áshłééh. Hashtʼeʼ niníłtsóós → eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá.",
+      "value": "%1$s — eʼelyaaígíí: %2$s. AN Paint: eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá łahgo áshłééh. Hashtʼeʼ niníłtsóós → eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá.",
+      "display": "%1$s — eʼelyaaígíí: %2$s. AN Paint: eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá łahgo áshłééh. Hashtʼeʼ niníłtsóós → eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá.",
+      "backtranslation": "This format: image/frame count. AN Paint: I change only a motionless image. Store it → only a motionless image.",
+      "placeholders": [
+        "%1$s",
+        "%2$s"
+      ],
+      "raw_sha256": "df4a9a3dfde50d93e0a706d62564c7e3eef6055a24319d0e99d8d17563ed33db",
+      "candidate_pin": {
+        "file": "nv-animation-known-first2-1126.json",
+        "sha256": "21fec4bd6c1f12a84fde383055e10a6eec3e0aa7238ac5c9831eaa20c178cd05"
+      },
+      "review_receipt": {
+        "file": "review-nv-animation-known-first2-independent-1132.json",
+        "sha256": "7a61ff33a8dc8ce8a57da0b23bcc5dc916e8385a257909a74d22c9135f16105d"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 92,
+          "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+          "text": "ui(R.string.formats22_animation_message,info.format,frames)+\"\\n\\n\"+"
+        }
+      ],
+      "caller_contract": "ImportSelection known-multiple-frames branch appends either poster or first-frame notice; this candidate does not alter separate-PNG-default-image branch. Positive button calls finishSelection(0), ImportedImage decodes a bitmap, ImageExporter encodes one bitmap. No animation preservation is offered.",
+      "source_and_caller_evidence": {
+        "sources": {
+          "existing_component_packet": {
+            "path": "nv-decision-action4-0738.json",
+            "sha256": "99871b10bdc188b7bacc3fac13e69ff9163772455f16a8e67a93785bf7427645"
+          },
+          "independent_component_review": {
+            "path": "review-nv-decision-action4-independent-0743.json",
+            "sha256": "fc4b088c5574b160beeec179ddf18f28ae33bccec80a50dce0f031a9e588f8c1"
+          },
+          "relevant_exact_evidence": [
+            {
+              "id": "change_make",
+              "sources": [
+                "wilson1994"
+              ],
+              "locator": "printed p48/PDF31 CHANGE IT; printed p55/PDF34 DIFFERENT; printed p86/PDF50 MAKE IT",
+              "verified_forms": [
+                "łahgo",
+                "áshłééh",
+                "ánílééh"
+              ],
+              "finding": "Wilson explicitly directs putting łahgo before MAKE IT to express changing it, and gives a car-change example, so this is not a guessed DO verb or classifier choice. Its MAKE IT paradigm gives first-person áshłééh and second-person ánílééh.",
+              "visual_files": [
+                "nv-decision-wilson-p31-0722.png",
+                "nv-decision-wilson-p34-0728.png",
+                "nv-decision-wilson-p50-0722.png"
+              ]
+            },
+            {
+              "id": "still_motion",
+              "sources": [
+                "wall_morgan1958",
+                "young_morgan1972",
+                "jw_inanimate_motion"
+              ],
+              "locator": "Wall/Morgan printed p58/PDF65; Young/Morgan printed p146/PDF291 movement paradigm",
+              "verified_forms": [
+                "tʼáadoo nahaʼnání",
+                "nahaʼná"
+              ],
+              "finding": "Wall/Morgan explicitly gives the third-person motionless expression. Adjacent nahíʼnání is second-person keep still and is NOT used. Young/Morgan gives the moving paradigm; its local subentry is body motion, so that source alone does not prove image scope. The independent publisher’s earth-motion example supplies actual inanimate usage. Still/moving image content is a transparent digital extension, not temporal still/waiting.",
+              "visual_files": [
+                "nv-decision-wall-p65-0722.png",
+                "nv-decision-ym-p291-0730-hi.png"
+              ]
+            },
+            {
+              "id": "open_command",
+              "sources": [
+                "wilson1994",
+                "schaengold2004"
+              ],
+              "locator": "Wilson printed p93/PDF53 OPEN IT; Schaengold printed p51/PDF61 example28",
+              "verified_forms": [
+                "ąą ánílééh"
+              ],
+              "finding": "Explicitly supported opening command using adverb plus MAKE IT, independently viewed rather than merely copied from another proposed UI row. Physical opening to image-file opening is authored software extension.",
+              "visual_files": [
+                "/tmp/cohort-a-20261102/nv-open-crop.png",
+                "/tmp/cohort-a-20261102/nv-open-example-p61.png"
+              ]
+            }
+          ],
+          "source_urls": [
+            {
+              "id": "wilson1994",
+              "title": "Wilson, Conversational Navajo Dictionary (1994)",
+              "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+              "local_path": "/tmp/cohort-a-20261102/nv-wilson.pdf",
+              "sha256": "caf359395a4e562cf49da9ae9f8816ef85e71296ea2a292c0d4aae63d656c20b",
+              "access": "Existing downloaded primary PDF read locally; specified pages visually inspected in this pass except Chee, whose selectable text was checked."
+            },
+            {
+              "id": "wall_morgan1958",
+              "title": "Wall and Morgan, Navajo-English Dictionary (1958)",
+              "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Navajo-English_Dictionary.pdf",
+              "local_path": "/tmp/cohort-a-20261102/nv-dictionary.pdf",
+              "sha256": "9b8006c3dee25988b3847cb293ad6f6df49d2b63b973a7c1ff47179075c0012b",
+              "access": "Existing downloaded primary PDF read locally; specified pages visually inspected in this pass except Chee, whose selectable text was checked."
+            },
+            {
+              "id": "young_morgan1972",
+              "title": "Young and Morgan, The Navaho Language (1972)",
+              "url": "https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/North%20American/Na-Dene/Navajo%3B%20The%20Navaho%20Language%20%28Young%20%26%20Morgan%29.pdf",
+              "local_path": "nv-young-morgan1972.pdf",
+              "sha256": "2970097782bd17e39122f23aad38efac7955d3b95f35a11bb0336bf71f06061a",
+              "access": "Existing downloaded primary PDF read locally; specified pages visually inspected in this pass except Chee, whose selectable text was checked."
+            },
+            {
+              "id": "chee2024",
+              "title": "Melvatha R. Chee, Navajo Verbs in Child Speech (online 2024; print 2025)",
+              "url": "https://doi.org/10.1017/S0305000924000229",
+              "local_path": "nv-chee2024-verbs.pdf",
+              "sha256": "bbd9beb6b4e512140308da0dba8299953c935eee3d9977edaf848b9f565744c2",
+              "access": "Existing downloaded primary PDF read locally; specified pages visually inspected in this pass except Chee, whose selectable text was checked."
+            },
+            {
+              "id": "schaengold2004",
+              "title": "Schaengold, Bilingual Navajo: Mixed codes, bilingualism, and language maintenance (2004), dissertation",
+              "url": "https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=osu1092425886&disposition=inline",
+              "locator": "printed p51/PDF61, examples26–28",
+              "evidence": "Example28 is Naaltsoos ąą ánílééh!; it is an imperative opening a book. The surrounding discussion identifies adverbial expressions plus make as making an object that way. Example26 marks yes/no questions with Daʼ.",
+              "access": "Existing primary-source scan nv-open-example-p61.png visually inspected in this pass. Example is attributed to Young/Morgan on next page; corroborating grammatical discussion, not independent new fieldwork."
+            },
+            {
+              "id": "lds_abridgment",
+              "title": "Naaltsoos Mormon Wolyéhígíí Áłtsʼíísígo Baa Haneʼ",
+              "url": "https://www.churchofjesuschrist.org/study/scriptures/bofm-draft/explanation?lang=nav",
+              "locator": "numbered items2–3, especially item3",
+              "exact_short_excerpt": "Díí naʼasdzooígíí Moroni áłtsʼíísígo áyiilaa",
+              "evidence": "Published Navajo uses small+-go plus the perfective make verb for abridgment/reduction. This attests the resultative construction but not pixel resizing. The candidate takes the first-person imperfective form from Wilson, not by mechanically altering this perfective.",
+              "access": "Web open succeeded 2026-11-03T07:35Z."
+            },
+            {
+              "id": "jw_inanimate_motion",
+              "title": "Hashtʼe Ádíínílzinísh?, May2020 workbook p3",
+              "url": "https://www.jw.org/nv/Naaltsoos-b%C3%A1-Hooghan/jw-meeting-workbook/may-2020-mwb/Jesus-Beda%CA%BCiil%CA%BC%C4%B1%CC%81%CC%A8%C4%AFgo-Dahinii%CA%BCn%C3%A1-d%C3%B3%C3%B3-Nida%CA%BCniitin-May-4-10-2020-Hahgo-%C3%81%C5%82ah-N%C3%A1%CA%BC%C3%A1dleeh%C3%ADg%C3%AD%C3%AD/Hasht%CA%BCe-%C3%81d%C3%AD%C3%ADn%C3%ADlzin%C3%ADsh/",
+              "locator": "first paragraph disaster list",
+              "exact_short_excerpt": "Niʼ nahaʼná",
+              "evidence": "Earth/ground is the subject of this motion expression. This independently demonstrates non-body/inanimate use, so the grammatical verb is not restricted to human/animal bodies. Applying movement to depicted image content remains an authored digital extension.",
+              "access": "Primary publisher page content returned by web search 2026-11-03T07:35Z. Separate direct open of same publisher Psalm99 page timed out, not a denial. No timeout was treated as proof of content."
+            }
+          ],
+          "first_complete_modifier": {
+            "url": "https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/1?lang=nav",
+            "English_parallel": "https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/1?lang=eng",
+            "local_HTML": {
+              "path": "nv-first-book-primary-1125.html",
+              "sha256": "e175ce5eef05cf59530c983d45a94d831ddfe1a7ee43365a582f8d0efbc0523d"
+            },
+            "exact_heading": "Nephi Binaaltsoos Áłtséhígíí",
+            "English_heading": "The First Book of Nephi",
+            "authored_use": "Unchanged complete ordinal nominal modifier áłtséhígíí after image noun. Transfer from first book in sequence to first constituent image in animation remains authored. No guessed plural agreement or new conjugation.",
+            "verification": "Fresh primary web page and retained ordinary HTML both show exact h1; English parallel primary page directly read."
+          },
+          "first_dictionary": {
+            "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+            "local": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson.pdf",
+              "sha256": "caf359395a4e562cf49da9ae9f8816ef85e71296ea2a292c0d4aae63d656c20b"
+            },
+            "raster": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson-ocr/p038.png",
+              "sha256": "c6565a3c691b025c9cfbfeec41f3dc4b129ae09e47775e32c6176838619a56c4"
+            },
+            "locator": "PDF38/printed63 FIRST pronoun and adverb entries",
+            "form": "áłtsé",
+            "limit": "Base semantic corroboration only. Nominal complete form and postnominal position come from direct published title, not the adverb example."
+          },
+          "only": {
+            "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+            "raster": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson-ocr/p053.png",
+              "sha256": "e1a06aee8f3b277a9949b2afb1ee2eb050f32a81a67a6c4ffaacb3c81b5a62ad"
+            },
+            "locator": "PDF53/printed93 ONLY(SOLE)",
+            "form": "tʼéiyá",
+            "sense": "Exact only modifier, example after Harrison before following clause. Applied to image object/category. Do not substitute temporal still tʼahdii."
+          },
+          "image_Save": {
+            "candidate": {
+              "path": "nv-save-image7-v2.json",
+              "sha256": "223e58ec38f23736b8ede7ea39d7f28e3ab84df3c3b532f4e323f69a25abd388"
+            },
+            "review": {
+              "path": "review-nv-save8-independent.json",
+              "sha256": "dbfea9d9bf601cfb87c8e59b03a7a591d2192270226c9fbdc4b69c25205a8f16"
+            },
+            "reconciliation": {
+              "path": "review-nv-save-image7-v2-reconciliation.json",
+              "sha256": "cb284a2ca957d63f02bd8ee9866d731f0a24805fde66db93b9f305f7036f5452"
+            },
+            "form": "Hashtʼeʼ niníłtsóós",
+            "scope": "Image-document Save only, not generic colour/value Save."
+          },
+          "convention": "The arrow explicitly maps Save action to static-only output. It is authored compact UI notation, not a source-attested Navajo syntactic particle. No equation, reconstruction algorithm or failure predicate substituted."
+        },
+        "caller_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 77,
+            "text": "private fun finishSelection(page: Int) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 82,
+            "text": "val source=ImportedImage(staged,name,page)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 89,
+            "text": "private fun showAnimation(info: AnimationInfo) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 90,
+            "text": "val frames=if(info.frameCountExact) info.frameCount.toString() else ui(R.string.formats22_at_least_frames,info.frameCount)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 91,
+            "text": "val message=if(info.frameCount<2) ui(R.string.formats22_animation_unknown,info.format) else"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 92,
+            "text": "ui(R.string.formats22_animation_message,info.format,frames)+\"\\n\\n\"+"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 93,
+            "text": "ui(if(info.pngDefaultImageSeparate) R.string.formats22_animation_poster else R.string.formats22_animation_still)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 94,
+            "text": "dialog=EditorDialogBuilder(activity).setTitle(ui(if(info.frameCount<2) R.string.formats22_open_still else R.string.formats22_animation_title)).setMessage(message)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 95,
+            "text": ".setPositiveButton(ui(R.string.formats22_open_still)) {_,_->finishSelection(0)}"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 148,
+            "text": "fun decode(plan: ImportPlan,workingBytes: Long=ImageMemoryPolicy.forRuntime().workingBytes,residentPixels: Long=0): Bitmap {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 161,
+            "text": "val raw = withPlatformFile { platformFile -> colour.withDecodeFile(platformFile) { BitmapFactory.decodeFile(it.path,colour.options(plan.sample)) } }"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 166,
+            "text": "input.density = Bitmap.DENSITY_NONE"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 168,
+            "text": "if (rotation == 0 && !flip && input.width == plan.target.width && input.height == plan.target.height && input.isMutable && input.config == Bitmap.Config.ARGB_8888) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 171,
+            "text": "output = Bitmap.createBitmap(plan.target.width,plan.target.height,Bitmap.Config.ARGB_8888)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 179,
+            "text": "Canvas(output).drawBitmap(input,matrix,Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG))"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+            "git_blob_sha": "a092dfb769e9e7117955f6bcd532f90ec7d7ae06",
+            "line": 11,
+            "text": "fun encode(image: Bitmap,file: File,options: ExportOptions,budget: Long) {"
+          }
+        ]
+      },
+      "independent_review_findings": {
+        "reason": "The known-animation dialog ties the format label and image count to one staged source. The label-number form remains valid with an opaque at-least qualifier. The app-labelled first-person edit statement has a supported change verb and restricts its object to motionless pictures. Save action to static-only output directly communicates loss of animation without denying Save.",
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      },
+      "author_limits": [
+        "The first source image is not called the first selected file or first PDF page.",
+        "No claim the user already saved, that Save cannot execute, that animation content is itself absent, or that the original source file was destroyed.",
+        "The first sentence of first-frame notice is an instruction describing the only offered open choice; review whether adequate as functional import warning, not a formal passive conjugation.",
+        "Generic ui_save remains unresolved/excluded.",
+        "No native-speaker, screenreader/layout or runtime certification."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nv-d0bde3f-1124.json",
+          "sha256": "c44e7ce9722a381bd322b23c4091aae54df15057c91e6b9a78bfdc8eeed7bd3c",
+          "git_blob_sha": "b2915e4d218c14a7520b64141201a06c19e66bb0",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nv",
+      "key": "formats22_animation_still",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "Only the first frame will be imported. Saving creates a still image.",
+      "attributes": {
+        "name": "formats22_animation_still"
+      },
+      "raw": "Eʼelyaaígíí áłtséhígíí tʼéiyá ąą ánílééh. Hashtʼeʼ niníłtsóós → eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá.",
+      "value": "Eʼelyaaígíí áłtséhígíí tʼéiyá ąą ánílééh. Hashtʼeʼ niníłtsóós → eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá.",
+      "display": "Eʼelyaaígíí áłtséhígíí tʼéiyá ąą ánílééh. Hashtʼeʼ niníłtsóós → eʼelyaaígíí (tʼáadoo nahaʼnání) tʼéiyá.",
+      "backtranslation": "Open only the first image. Store it → only a motionless image.",
+      "placeholders": [],
+      "raw_sha256": "179a0590533df4ac443212af93eda77eec4f9ab75652b30537f347d30477e13d",
+      "candidate_pin": {
+        "file": "nv-animation-known-first2-1126.json",
+        "sha256": "21fec4bd6c1f12a84fde383055e10a6eec3e0aa7238ac5c9831eaa20c178cd05"
+      },
+      "review_receipt": {
+        "file": "review-nv-animation-known-first2-independent-1132.json",
+        "sha256": "7a61ff33a8dc8ce8a57da0b23bcc5dc916e8385a257909a74d22c9135f16105d"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 93,
+          "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+          "text": "ui(if(info.pngDefaultImageSeparate) R.string.formats22_animation_poster else R.string.formats22_animation_still)"
+        }
+      ],
+      "caller_contract": "ImportSelection known-multiple-frames branch appends either poster or first-frame notice; this candidate does not alter separate-PNG-default-image branch. Positive button calls finishSelection(0), ImportedImage decodes a bitmap, ImageExporter encodes one bitmap. No animation preservation is offered.",
+      "source_and_caller_evidence": {
+        "sources": {
+          "existing_component_packet": {
+            "path": "nv-decision-action4-0738.json",
+            "sha256": "99871b10bdc188b7bacc3fac13e69ff9163772455f16a8e67a93785bf7427645"
+          },
+          "independent_component_review": {
+            "path": "review-nv-decision-action4-independent-0743.json",
+            "sha256": "fc4b088c5574b160beeec179ddf18f28ae33bccec80a50dce0f031a9e588f8c1"
+          },
+          "relevant_exact_evidence": [
+            {
+              "id": "change_make",
+              "sources": [
+                "wilson1994"
+              ],
+              "locator": "printed p48/PDF31 CHANGE IT; printed p55/PDF34 DIFFERENT; printed p86/PDF50 MAKE IT",
+              "verified_forms": [
+                "łahgo",
+                "áshłééh",
+                "ánílééh"
+              ],
+              "finding": "Wilson explicitly directs putting łahgo before MAKE IT to express changing it, and gives a car-change example, so this is not a guessed DO verb or classifier choice. Its MAKE IT paradigm gives first-person áshłééh and second-person ánílééh.",
+              "visual_files": [
+                "nv-decision-wilson-p31-0722.png",
+                "nv-decision-wilson-p34-0728.png",
+                "nv-decision-wilson-p50-0722.png"
+              ]
+            },
+            {
+              "id": "still_motion",
+              "sources": [
+                "wall_morgan1958",
+                "young_morgan1972",
+                "jw_inanimate_motion"
+              ],
+              "locator": "Wall/Morgan printed p58/PDF65; Young/Morgan printed p146/PDF291 movement paradigm",
+              "verified_forms": [
+                "tʼáadoo nahaʼnání",
+                "nahaʼná"
+              ],
+              "finding": "Wall/Morgan explicitly gives the third-person motionless expression. Adjacent nahíʼnání is second-person keep still and is NOT used. Young/Morgan gives the moving paradigm; its local subentry is body motion, so that source alone does not prove image scope. The independent publisher’s earth-motion example supplies actual inanimate usage. Still/moving image content is a transparent digital extension, not temporal still/waiting.",
+              "visual_files": [
+                "nv-decision-wall-p65-0722.png",
+                "nv-decision-ym-p291-0730-hi.png"
+              ]
+            },
+            {
+              "id": "open_command",
+              "sources": [
+                "wilson1994",
+                "schaengold2004"
+              ],
+              "locator": "Wilson printed p93/PDF53 OPEN IT; Schaengold printed p51/PDF61 example28",
+              "verified_forms": [
+                "ąą ánílééh"
+              ],
+              "finding": "Explicitly supported opening command using adverb plus MAKE IT, independently viewed rather than merely copied from another proposed UI row. Physical opening to image-file opening is authored software extension.",
+              "visual_files": [
+                "/tmp/cohort-a-20261102/nv-open-crop.png",
+                "/tmp/cohort-a-20261102/nv-open-example-p61.png"
+              ]
+            }
+          ],
+          "source_urls": [
+            {
+              "id": "wilson1994",
+              "title": "Wilson, Conversational Navajo Dictionary (1994)",
+              "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+              "local_path": "/tmp/cohort-a-20261102/nv-wilson.pdf",
+              "sha256": "caf359395a4e562cf49da9ae9f8816ef85e71296ea2a292c0d4aae63d656c20b",
+              "access": "Existing downloaded primary PDF read locally; specified pages visually inspected in this pass except Chee, whose selectable text was checked."
+            },
+            {
+              "id": "wall_morgan1958",
+              "title": "Wall and Morgan, Navajo-English Dictionary (1958)",
+              "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Navajo-English_Dictionary.pdf",
+              "local_path": "/tmp/cohort-a-20261102/nv-dictionary.pdf",
+              "sha256": "9b8006c3dee25988b3847cb293ad6f6df49d2b63b973a7c1ff47179075c0012b",
+              "access": "Existing downloaded primary PDF read locally; specified pages visually inspected in this pass except Chee, whose selectable text was checked."
+            },
+            {
+              "id": "young_morgan1972",
+              "title": "Young and Morgan, The Navaho Language (1972)",
+              "url": "https://theswissbay.ch/pdf/Books/Linguistics/Mega%20linguistics%20pack/North%20American/Na-Dene/Navajo%3B%20The%20Navaho%20Language%20%28Young%20%26%20Morgan%29.pdf",
+              "local_path": "nv-young-morgan1972.pdf",
+              "sha256": "2970097782bd17e39122f23aad38efac7955d3b95f35a11bb0336bf71f06061a",
+              "access": "Existing downloaded primary PDF read locally; specified pages visually inspected in this pass except Chee, whose selectable text was checked."
+            },
+            {
+              "id": "chee2024",
+              "title": "Melvatha R. Chee, Navajo Verbs in Child Speech (online 2024; print 2025)",
+              "url": "https://doi.org/10.1017/S0305000924000229",
+              "local_path": "nv-chee2024-verbs.pdf",
+              "sha256": "bbd9beb6b4e512140308da0dba8299953c935eee3d9977edaf848b9f565744c2",
+              "access": "Existing downloaded primary PDF read locally; specified pages visually inspected in this pass except Chee, whose selectable text was checked."
+            },
+            {
+              "id": "schaengold2004",
+              "title": "Schaengold, Bilingual Navajo: Mixed codes, bilingualism, and language maintenance (2004), dissertation",
+              "url": "https://etd.ohiolink.edu/acprod/odb_etd/ws/send_file/send?accession=osu1092425886&disposition=inline",
+              "locator": "printed p51/PDF61, examples26–28",
+              "evidence": "Example28 is Naaltsoos ąą ánílééh!; it is an imperative opening a book. The surrounding discussion identifies adverbial expressions plus make as making an object that way. Example26 marks yes/no questions with Daʼ.",
+              "access": "Existing primary-source scan nv-open-example-p61.png visually inspected in this pass. Example is attributed to Young/Morgan on next page; corroborating grammatical discussion, not independent new fieldwork."
+            },
+            {
+              "id": "lds_abridgment",
+              "title": "Naaltsoos Mormon Wolyéhígíí Áłtsʼíísígo Baa Haneʼ",
+              "url": "https://www.churchofjesuschrist.org/study/scriptures/bofm-draft/explanation?lang=nav",
+              "locator": "numbered items2–3, especially item3",
+              "exact_short_excerpt": "Díí naʼasdzooígíí Moroni áłtsʼíísígo áyiilaa",
+              "evidence": "Published Navajo uses small+-go plus the perfective make verb for abridgment/reduction. This attests the resultative construction but not pixel resizing. The candidate takes the first-person imperfective form from Wilson, not by mechanically altering this perfective.",
+              "access": "Web open succeeded 2026-11-03T07:35Z."
+            },
+            {
+              "id": "jw_inanimate_motion",
+              "title": "Hashtʼe Ádíínílzinísh?, May2020 workbook p3",
+              "url": "https://www.jw.org/nv/Naaltsoos-b%C3%A1-Hooghan/jw-meeting-workbook/may-2020-mwb/Jesus-Beda%CA%BCiil%CA%BC%C4%B1%CC%81%CC%A8%C4%AFgo-Dahinii%CA%BCn%C3%A1-d%C3%B3%C3%B3-Nida%CA%BCniitin-May-4-10-2020-Hahgo-%C3%81%C5%82ah-N%C3%A1%CA%BC%C3%A1dleeh%C3%ADg%C3%AD%C3%AD/Hasht%CA%BCe-%C3%81d%C3%AD%C3%ADn%C3%ADlzin%C3%ADsh/",
+              "locator": "first paragraph disaster list",
+              "exact_short_excerpt": "Niʼ nahaʼná",
+              "evidence": "Earth/ground is the subject of this motion expression. This independently demonstrates non-body/inanimate use, so the grammatical verb is not restricted to human/animal bodies. Applying movement to depicted image content remains an authored digital extension.",
+              "access": "Primary publisher page content returned by web search 2026-11-03T07:35Z. Separate direct open of same publisher Psalm99 page timed out, not a denial. No timeout was treated as proof of content."
+            }
+          ],
+          "first_complete_modifier": {
+            "url": "https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/1?lang=nav",
+            "English_parallel": "https://www.churchofjesuschrist.org/study/scriptures/bofm/1-ne/1?lang=eng",
+            "local_HTML": {
+              "path": "nv-first-book-primary-1125.html",
+              "sha256": "e175ce5eef05cf59530c983d45a94d831ddfe1a7ee43365a582f8d0efbc0523d"
+            },
+            "exact_heading": "Nephi Binaaltsoos Áłtséhígíí",
+            "English_heading": "The First Book of Nephi",
+            "authored_use": "Unchanged complete ordinal nominal modifier áłtséhígíí after image noun. Transfer from first book in sequence to first constituent image in animation remains authored. No guessed plural agreement or new conjugation.",
+            "verification": "Fresh primary web page and retained ordinary HTML both show exact h1; English parallel primary page directly read."
+          },
+          "first_dictionary": {
+            "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+            "local": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson.pdf",
+              "sha256": "caf359395a4e562cf49da9ae9f8816ef85e71296ea2a292c0d4aae63d656c20b"
+            },
+            "raster": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson-ocr/p038.png",
+              "sha256": "c6565a3c691b025c9cfbfeec41f3dc4b129ae09e47775e32c6176838619a56c4"
+            },
+            "locator": "PDF38/printed63 FIRST pronoun and adverb entries",
+            "form": "áłtsé",
+            "limit": "Base semantic corroboration only. Nominal complete form and postnominal position come from direct published title, not the adverb example."
+          },
+          "only": {
+            "url": "https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf",
+            "raster": {
+              "path": "/tmp/cohort-a-20261102/nv-wilson-ocr/p053.png",
+              "sha256": "e1a06aee8f3b277a9949b2afb1ee2eb050f32a81a67a6c4ffaacb3c81b5a62ad"
+            },
+            "locator": "PDF53/printed93 ONLY(SOLE)",
+            "form": "tʼéiyá",
+            "sense": "Exact only modifier, example after Harrison before following clause. Applied to image object/category. Do not substitute temporal still tʼahdii."
+          },
+          "image_Save": {
+            "candidate": {
+              "path": "nv-save-image7-v2.json",
+              "sha256": "223e58ec38f23736b8ede7ea39d7f28e3ab84df3c3b532f4e323f69a25abd388"
+            },
+            "review": {
+              "path": "review-nv-save8-independent.json",
+              "sha256": "dbfea9d9bf601cfb87c8e59b03a7a591d2192270226c9fbdc4b69c25205a8f16"
+            },
+            "reconciliation": {
+              "path": "review-nv-save-image7-v2-reconciliation.json",
+              "sha256": "cb284a2ca957d63f02bd8ee9866d731f0a24805fde66db93b9f305f7036f5452"
+            },
+            "form": "Hashtʼeʼ niníłtsóós",
+            "scope": "Image-document Save only, not generic colour/value Save."
+          },
+          "convention": "The arrow explicitly maps Save action to static-only output. It is authored compact UI notation, not a source-attested Navajo syntactic particle. No equation, reconstruction algorithm or failure predicate substituted."
+        },
+        "caller_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 77,
+            "text": "private fun finishSelection(page: Int) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 82,
+            "text": "val source=ImportedImage(staged,name,page)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 89,
+            "text": "private fun showAnimation(info: AnimationInfo) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 90,
+            "text": "val frames=if(info.frameCountExact) info.frameCount.toString() else ui(R.string.formats22_at_least_frames,info.frameCount)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 91,
+            "text": "val message=if(info.frameCount<2) ui(R.string.formats22_animation_unknown,info.format) else"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 92,
+            "text": "ui(R.string.formats22_animation_message,info.format,frames)+\"\\n\\n\"+"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 93,
+            "text": "ui(if(info.pngDefaultImageSeparate) R.string.formats22_animation_poster else R.string.formats22_animation_still)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 94,
+            "text": "dialog=EditorDialogBuilder(activity).setTitle(ui(if(info.frameCount<2) R.string.formats22_open_still else R.string.formats22_animation_title)).setMessage(message)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+            "git_blob_sha": "d8d34518377f84c564cb508e4fa4f40d50f9b1d4",
+            "line": 95,
+            "text": ".setPositiveButton(ui(R.string.formats22_open_still)) {_,_->finishSelection(0)}"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 148,
+            "text": "fun decode(plan: ImportPlan,workingBytes: Long=ImageMemoryPolicy.forRuntime().workingBytes,residentPixels: Long=0): Bitmap {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 161,
+            "text": "val raw = withPlatformFile { platformFile -> colour.withDecodeFile(platformFile) { BitmapFactory.decodeFile(it.path,colour.options(plan.sample)) } }"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 166,
+            "text": "input.density = Bitmap.DENSITY_NONE"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 168,
+            "text": "if (rotation == 0 && !flip && input.width == plan.target.width && input.height == plan.target.height && input.isMutable && input.config == Bitmap.Config.ARGB_8888) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 171,
+            "text": "output = Bitmap.createBitmap(plan.target.width,plan.target.height,Bitmap.Config.ARGB_8888)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageImport.kt",
+            "git_blob_sha": "fedd81744f50a4ad1c37ce6aef35e255a95029b5",
+            "line": 179,
+            "text": "Canvas(output).drawBitmap(input,matrix,Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG))"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageExporter.kt",
+            "git_blob_sha": "a092dfb769e9e7117955f6bcd532f90ec7d7ae06",
+            "line": 11,
+            "text": "fun encode(image: Bitmap,file: File,options: ExportOptions,budget: Long) {"
+          }
+        ]
+      },
+      "independent_review_findings": {
+        "reason": "The complete first nominal modifier immediately follows image, and only immediately follows that noun phrase, so the ordinal scopes over the source image rather than over the opening action. The open command functionally describes the single positive choice in this warning, not an invented passive. The separate output-only diagnostic makes the consequence of saving explicit.",
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      },
+      "author_limits": [
+        "The first source image is not called the first selected file or first PDF page.",
+        "No claim the user already saved, that Save cannot execute, that animation content is itself absent, or that the original source file was destroyed.",
+        "The first sentence of first-frame notice is an instruction describing the only offered open choice; review whether adequate as functional import warning, not a formal passive conjugation.",
+        "Generic ui_save remains unresolved/excluded.",
+        "No native-speaker, screenreader/layout or runtime certification."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nv-d0bde3f-1124.json",
+          "sha256": "c44e7ce9722a381bd322b23c4091aae54df15057c91e6b9a78bfdc8eeed7bd3c",
+          "git_blob_sha": "b2915e4d218c14a7520b64141201a06c19e66bb0",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nch",
+      "key": "ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "raw": "AN Paint amo quipata campa eltoc sesen pixel. (0, 0) mocahua huejcapa, ipan iarraves nopa ixkopinali (canvas). Sinta tijpata ipatajca o ihuejcapanca para ma eli más pilquentzi, AN Paint quiquixtis san sesen pixel cati amo eltoc ipan nopa ixkopinali cati más pilquentzi: ipan inejmat o tatzinta. Ica “Undo”, AN Paint sempa quitalis sesen pixel cati quiquixti campa eltoya.",
+      "value": "AN Paint amo quipata campa eltoc sesen pixel. (0, 0) mocahua huejcapa, ipan iarraves nopa ixkopinali (canvas). Sinta tijpata ipatajca o ihuejcapanca para ma eli más pilquentzi, AN Paint quiquixtis san sesen pixel cati amo eltoc ipan nopa ixkopinali cati más pilquentzi: ipan inejmat o tatzinta. Ica “Undo”, AN Paint sempa quitalis sesen pixel cati quiquixti campa eltoya.",
+      "display": "AN Paint amo quipata campa eltoc sesen pixel. (0, 0) mocahua huejcapa, ipan iarraves nopa ixkopinali (canvas). Sinta tijpata ipatajca o ihuejcapanca para ma eli más pilquentzi, AN Paint quiquixtis san sesen pixel cati amo eltoc ipan nopa ixkopinali cati más pilquentzi: ipan inejmat o tatzinta. Ica “Undo”, AN Paint sempa quitalis sesen pixel cati quiquixti campa eltoya.",
+      "backtranslation": "AN Paint does not change where each pixel is. (0,0) remains at the top, on the left side of the image (canvas). If you change its width or height to make it smaller, AN Paint will remove only each pixel not within the smaller image: on the right or at the bottom. With Undo, AN Paint will put each removed pixel back where it was.",
+      "placeholders": [],
+      "raw_sha256": "d9675beb611b53bce3eaf4fc59ebee44ce0acf90bd93d782f0bd88abac6cd10e",
+      "candidate_pin": {
+        "file": "nahua-geometry2-author-1122.json",
+        "sha256": "28a8ff0db8c903116e8dc55974759e8d43dc5be02b093481e7d9fb2c237fec6a"
+      },
+      "review_receipt": {
+        "file": "review-nahua-geometry2-nhw-gif1-independent-1138.json",
+        "sha256": "036b4a8f3a9b28b96cb1dbab2a99409f20a5c9f47092e34d0c64be051ecd10d8"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1016,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "text": "if (!fresh) column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-geometry2-primary-1122.json",
+          "sha256": "32c97324b445c4a58572d29dcaf11820414c52c6a20d91d4400dc3b72c65c8c2"
+        },
+        "caller_packet": {
+          "path": "nahua-geometry2-callers-1122.json",
+          "sha256": "66bf95665fec80853378bea8cca6427131cc82c7db76fffbb5fb3449902886d2"
+        },
+        "source_entry_ids": [
+          "top-bottom-plane",
+          "left-spatial",
+          "right-inanimate",
+          "dimensions",
+          "restore-position",
+          "current-position",
+          "former-position",
+          "remove-inanimate",
+          "not-within",
+          "remain-location",
+          "smaller-physical",
+          "change-capability",
+          "change-capability",
+          "conditional",
+          "each"
+        ]
+      },
+      "independent_review_findings": {
+        "independent_decision": "accept_unchanged",
+        "limits": "Own left-side spatial form is extended from a human reference point to the canvas; right already has inanimate boat attestation and top/bottom cloth. No native/layout/runtime certificate."
+      },
+      "author_limits": "Own left-side spatial form is extended from a human reference point to the canvas; right already has inanimate boat attestation and top/bottom cloth. No native/layout/runtime certificate.",
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nch-d0bde3f-1124.json",
+          "sha256": "5d16acb67cafa83fb2ba69a1b76128e1ce7870636997b19a433ebca2463f7a63",
+          "git_blob_sha": "04c676792ccd5753d2f64f4506aa1b62974e2233",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": [
+        {
+          "quoted_display": "Undo",
+          "matching_resource_keys": [
+            "ui_undo"
+          ],
+          "matches": {
+            "ui_undo": {
+              "display": "Undo",
+              "English_fallback": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "raw": "AN Paint amo quipatla campa eltoc sesen pixel. (0, 0) mocahua huejcapa, ipan iopoch nopa tlaixkopintli (canvas). Sintla tijpatla ipatlajca o ihuejcapanca para ma eli más piltziquitetzi, AN Paint quiquixtis san sesen pixel catli amo eltoc ipan nopa tlaixkopintli catli más piltziquitetzi: ipan inejmac o tlatzintla. Ica “Undo”, AN Paint sempa quitlalis sesen pixel catli quiquixti campa eltoya.",
+      "value": "AN Paint amo quipatla campa eltoc sesen pixel. (0, 0) mocahua huejcapa, ipan iopoch nopa tlaixkopintli (canvas). Sintla tijpatla ipatlajca o ihuejcapanca para ma eli más piltziquitetzi, AN Paint quiquixtis san sesen pixel catli amo eltoc ipan nopa tlaixkopintli catli más piltziquitetzi: ipan inejmac o tlatzintla. Ica “Undo”, AN Paint sempa quitlalis sesen pixel catli quiquixti campa eltoya.",
+      "display": "AN Paint amo quipatla campa eltoc sesen pixel. (0, 0) mocahua huejcapa, ipan iopoch nopa tlaixkopintli (canvas). Sintla tijpatla ipatlajca o ihuejcapanca para ma eli más piltziquitetzi, AN Paint quiquixtis san sesen pixel catli amo eltoc ipan nopa tlaixkopintli catli más piltziquitetzi: ipan inejmac o tlatzintla. Ica “Undo”, AN Paint sempa quitlalis sesen pixel catli quiquixti campa eltoya.",
+      "backtranslation": "AN Paint does not change where each pixel is. (0,0) remains at the top, on the left side of the image (canvas). If you change its width or height to make it smaller, AN Paint will remove only each pixel not within the smaller image: on the right or at the bottom. With Undo, AN Paint will put each removed pixel back where it was.",
+      "placeholders": [],
+      "raw_sha256": "ca695fb9d621be014d1f763fecb552636c3bc84ab3d4b1571b124271fa9fded5",
+      "candidate_pin": {
+        "file": "nahua-geometry2-author-1122.json",
+        "sha256": "28a8ff0db8c903116e8dc55974759e8d43dc5be02b093481e7d9fb2c237fec6a"
+      },
+      "review_receipt": {
+        "file": "review-nahua-geometry2-nhw-gif1-independent-1138.json",
+        "sha256": "036b4a8f3a9b28b96cb1dbab2a99409f20a5c9f47092e34d0c64be051ecd10d8"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1016,
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "text": "if (!fresh) column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-geometry2-primary-1122.json",
+          "sha256": "32c97324b445c4a58572d29dcaf11820414c52c6a20d91d4400dc3b72c65c8c2"
+        },
+        "caller_packet": {
+          "path": "nahua-geometry2-callers-1122.json",
+          "sha256": "66bf95665fec80853378bea8cca6427131cc82c7db76fffbb5fb3449902886d2"
+        },
+        "source_entry_ids": [
+          "top-bottom-plane",
+          "left-spatial",
+          "right-inanimate",
+          "dimensions",
+          "restore-position",
+          "current-position",
+          "former-position",
+          "remove-inanimate",
+          "not-within",
+          "remain-location",
+          "smaller-physical",
+          "change-capability",
+          "change-capability",
+          "conditional",
+          "each"
+        ]
+      },
+      "independent_review_findings": {
+        "independent_decision": "accept_unchanged",
+        "limits": "Own left-side spatial form is extended from a human reference point to the canvas; right already has inanimate boat attestation and top/bottom cloth. No native/layout/runtime certificate."
+      },
+      "author_limits": "Own left-side spatial form is extended from a human reference point to the canvas; right already has inanimate boat attestation and top/bottom cloth. No native/layout/runtime certificate.",
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nhw-d0bde3f-1124.json",
+          "sha256": "8697f9132e320e9384d986756a0e0f9064cc51d1dfed0ef30f9d5bd104bcd18d",
+          "git_blob_sha": "d78f9f52580b6565fa0560b17d8dca302a277aaf",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": [
+        {
+          "quoted_display": "Undo",
+          "matching_resource_keys": [
+            "ui_undo"
+          ],
+          "matches": {
+            "ui_undo": {
+              "display": "Undo",
+              "English_fallback": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "locale": "nhw",
+      "key": "save20_gif_description",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "raw": "AN Paint quichihuas se tlaixkopintli catli amo moojolinía. Quipiyas hasta 256 tlamantli tlapali, amo más. Ica “Dither colours”, campa mopatla nopa tlapali ipan tlaixkopintli, nesi más alaxtic. Sintla GIF moojolinía, AN Paint quitlapos san nopa achtihui tlaixkopintli.",
+      "value": "AN Paint quichihuas se tlaixkopintli catli amo moojolinía. Quipiyas hasta 256 tlamantli tlapali, amo más. Ica “Dither colours”, campa mopatla nopa tlapali ipan tlaixkopintli, nesi más alaxtic. Sintla GIF moojolinía, AN Paint quitlapos san nopa achtihui tlaixkopintli.",
+      "display": "AN Paint quichihuas se tlaixkopintli catli amo moojolinía. Quipiyas hasta 256 tlamantli tlapali, amo más. Ica “Dither colours”, campa mopatla nopa tlapali ipan tlaixkopintli, nesi más alaxtic. Sintla GIF moojolinía, AN Paint quitlapos san nopa achtihui tlaixkopintli.",
+      "backtranslation": "AN Paint will make an image that does not move. It will have up to256 kinds of colour, no more. With Dither colours, where colour changes in the image, it appears smoother. If a GIF moves, AN Paint will open only the first image.",
+      "placeholders": [],
+      "raw_sha256": "f609cb9e14f28dfc35c5ce0c0aadfd635d5d0d63c6ab147dcc15be03da82e441",
+      "candidate_pin": {
+        "file": "nhw-gif1-author-1131.json",
+        "sha256": "6e6f0f4ad349057bdeaa3ad6248f06d7d3607975b387c7880810d6b8af29cc40"
+      },
+      "review_receipt": {
+        "file": "review-nahua-geometry2-nhw-gif1-independent-1138.json",
+        "sha256": "036b4a8f3a9b28b96cb1dbab2a99409f20a5c9f47092e34d0c64be051ecd10d8"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 95,
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "text": "ImageFormat.GIF -> R.string.save20_gif_description"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nhw-gif1-primary-1131.json",
+          "sha256": "50ddee6c4e066c6fab8d865e17471b6d93dbe07eed86a470a6352759079daf4a"
+        },
+        "caller_packet": {
+          "path": "nhw-gif1-callers-1131.json",
+          "sha256": "65d15d2045bad856a138216fe292f3e3887419c05de68d38e25f4c633a5549f5"
+        },
+        "source_entry_ids": [
+          "motion",
+          "first",
+          "make",
+          "change-in-appearance",
+          "upper-bound",
+          "no-more",
+          "visible",
+          "present-change",
+          "colours-kinds",
+          "colour-names",
+          "smooth",
+          "smooth-oil"
+        ]
+      },
+      "independent_review_findings": {
+        "independent_decision": "accept_unchanged",
+        "limits": "New OT sources are directly verified primary web text, not fresh raster/byte verified. No native/layout/runtime claim."
+      },
+      "author_limits": "New OT sources are directly verified primary web text, not fresh raster/byte verified. No native/layout/runtime claim.",
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nhw-d0bde3f-1124.json",
+          "sha256": "8697f9132e320e9384d986756a0e0f9064cc51d1dfed0ef30f9d5bd104bcd18d",
+          "git_blob_sha": "d78f9f52580b6565fa0560b17d8dca302a277aaf",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": [
+        {
+          "quoted_display": "Dither colours",
+          "matching_resource_keys": [
+            "save20_dither"
+          ],
+          "matches": {
+            "save20_dither": {
+              "display": "Dither colours",
+              "English_fallback": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "locale": "nch",
+      "key": "ui_assembly_source_memory_floor",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "raw": "AN Paint achtohui quipohua quesqui RAM monequis para ni tequit (assembly). Ica cati quipohua, monequi más RAM que cati AN Paint quicahuilía amantzi, masque ihuexca ixkopinali cati AN Paint quichihuas (output) elis san 1 × 1 px. Sinta san tijpata ihuexca ni tequit para ma eli más pilquentzi, noja monequi más RAM que cati AN Paint quicahuilía amantzi. Achtohui xijtzacua sesen seyoc cati tijtequihuía (document), o xijsencahua se ixkopinali ica ihuexca cati más pilquentzi (source image, px). Teipa sempa xijchihua ya ni. AN Paint amo quipatac ni tequit (assembly).",
+      "value": "AN Paint achtohui quipohua quesqui RAM monequis para ni tequit (assembly). Ica cati quipohua, monequi más RAM que cati AN Paint quicahuilía amantzi, masque ihuexca ixkopinali cati AN Paint quichihuas (output) elis san 1 × 1 px. Sinta san tijpata ihuexca ni tequit para ma eli más pilquentzi, noja monequi más RAM que cati AN Paint quicahuilía amantzi. Achtohui xijtzacua sesen seyoc cati tijtequihuía (document), o xijsencahua se ixkopinali ica ihuexca cati más pilquentzi (source image, px). Teipa sempa xijchihua ya ni. AN Paint amo quipatac ni tequit (assembly).",
+      "display": "AN Paint achtohui quipohua quesqui RAM monequis para ni tequit (assembly). Ica cati quipohua, monequi más RAM que cati AN Paint quicahuilía amantzi, masque ihuexca ixkopinali cati AN Paint quichihuas (output) elis san 1 × 1 px. Sinta san tijpata ihuexca ni tequit para ma eli más pilquentzi, noja monequi más RAM que cati AN Paint quicahuilía amantzi. Achtohui xijtzacua sesen seyoc cati tijtequihuía (document), o xijsencahua se ixkopinali ica ihuexca cati más pilquentzi (source image, px). Teipa sempa xijchihua ya ni. AN Paint amo quipatac ni tequit (assembly).",
+      "backtranslation": "AN Paint calculates beforehand how much RAM will be needed for this work (assembly). According to that calculation, more RAM is needed than AN Paint permits now, even if the output image is only1×1px. If you only make the assembly dimensions smaller, more RAM than currently permitted is still needed. First close each other document you are using, OR prepare a source image with smaller pixel dimensions. Then try this again. AN Paint did not change this assembly.",
+      "placeholders": [],
+      "raw_sha256": "e2d3b48dbd6d7b4cc4012ab3b6aeb6cc479f31002874b1820b84cca82bddf898",
+      "candidate_pin": {
+        "file": "nahua-memory6-author-1132.json",
+        "sha256": "0b0e70a7ff053138869edf098cee1d3386ba93d09dd060c149ee456730e4d0bf"
+      },
+      "review_receipt": {
+        "file": "review-nahua-memory6-independent-1138.json",
+        "sha256": "846f9f4ea6adbbe093670c079eb766db27759ae08250389fc3f06d19197c6dd0"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 300,
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "text": "message(ui(R.string.ui_assembly_source_memory_floor))"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-memory6-primary-1132.json",
+          "sha256": "f7b7fdfae2448f3c905c05536d2d3b5cc41a4c7338f98580709a095ea611f45a"
+        },
+        "caller_packet": {
+          "path": "nahua-memory6-callers-1132.json",
+          "sha256": "02eada068664232c8b014e45e9e333e515c9c0d5fb50dc9a75829bca0f657dc2"
+        },
+        "source_entry_ids": [
+          "predict-needed-amount",
+          "quantitative-insufficiency",
+          "normative-quantity",
+          "comparison-standard",
+          "reserve-for-purpose",
+          "stop-ongoing-action",
+          "protect-inanimate",
+          "close-command",
+          "prepare-command",
+          "whole-retained-object",
+          "use-resource",
+          "use-future",
+          "change-quantity",
+          "new-made-object",
+          "dimensions",
+          "conditional-and-concession",
+          "quantity-part",
+          "lost-or-lacking",
+          "chosen-state",
+          "change-capability",
+          "use-present",
+          "current",
+          "connectives",
+          "stored-state-purpose",
+          "unneeded-and-retry",
+          "use-future-first-condition",
+          "smaller-physical",
+          "each",
+          "own-original-and-autonomy",
+          "visible-content"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "Predictive cost counting is introduced with first/beforehand and future necessity, followed by according to that calculation. It is an estimated requirement, not completed allocation, measured physical peak, or a hard out-of-memory diagnosis.",
+          "The explicit 1 × 1 px output is accurate for AssemblyRenderer.suggested(), which returns null when fits(ImageDimensions(1,1)) fails. The subsequent conditional says that reducing dimensions alone still does not meet the currently permitted RAM amount.",
+          "Current permitted RAM is an application admission limit. The comparison does not confuse it with literal free RAM or storage capacity.",
+          "First close other used documents OR prepare a source image with smaller pixel dimensions, then repeat the action. The disjunction and temporal order are preserved; no successful retry is promised. The unchanged assembly sentence refers to the assembly content/layout, not a claim that output or a persisted draft exists."
+        ],
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      },
+      "author_limits": [
+        "Own Central/Western distinctions and noun provenance retained. Full technical prose is authored; no native-human gate or native/layout/runtime certificate.",
+        "Assembly and document are explicitly anchored technical referents. Closing/preparing advice does not perform the action, promise successful retry, or delete original images.",
+        "Cost-counting prediction is an estimate, not measured actual peak. RAM allowance is policy admission, not hard OOM or disk free space.",
+        "Capacity set apart is a reservation, not proof that all buffers already exist. Only NEW rejected-size bitmap creation is negated.",
+        "Sampled reduction is possible; lost detail is conditioned on a smaller copy. Original file is preserved."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nch-d0bde3f-1124.json",
+          "sha256": "5d16acb67cafa83fb2ba69a1b76128e1ce7870636997b19a433ebca2463f7a63",
+          "git_blob_sha": "04c676792ccd5753d2f64f4506aa1b62974e2233",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nch",
+      "key": "ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "raw": "Ihuexca ni ixkopinali: %1$d × %2$d px (%3$.2f MP). Para quimocuitahuis ni tequit, AN Paint quicahuilía san %4$.2f MP amantzi. Ya ni amo quiaxilía para ni ixkopinali. AN Paint quipixtoc nochi ixkopinali ipan RAM huan quiiyocacajtoc RAM para quipatas ixkopinali (transforms) huan para cati tijtapejpenijtoc (selections). AN Paint quicahuilía quej ni ica RAM cati hueli quitequihuis. AN Paint quicajtoc quichihua ni tequit; amo quichijqui se yancuic ixkopinali ipan RAM (bitmap) ica ni ihuexca. AN Paint amo quipatac iselti ihuexca ixkopinali.",
+      "value": "Ihuexca ni ixkopinali: %1$d × %2$d px (%3$.2f MP). Para quimocuitahuis ni tequit, AN Paint quicahuilía san %4$.2f MP amantzi. Ya ni amo quiaxilía para ni ixkopinali. AN Paint quipixtoc nochi ixkopinali ipan RAM huan quiiyocacajtoc RAM para quipatas ixkopinali (transforms) huan para cati tijtapejpenijtoc (selections). AN Paint quicahuilía quej ni ica RAM cati hueli quitequihuis. AN Paint quicajtoc quichihua ni tequit; amo quichijqui se yancuic ixkopinali ipan RAM (bitmap) ica ni ihuexca. AN Paint amo quipatac iselti ihuexca ixkopinali.",
+      "display": "Ihuexca ni ixkopinali: %1$d × %2$d px (%3$.2f MP). Para quimocuitahuis ni tequit, AN Paint quicahuilía san %4$.2f MP amantzi. Ya ni amo quiaxilía para ni ixkopinali. AN Paint quipixtoc nochi ixkopinali ipan RAM huan quiiyocacajtoc RAM para quipatas ixkopinali (transforms) huan para cati tijtapejpenijtoc (selections). AN Paint quicahuilía quej ni ica RAM cati hueli quitequihuis. AN Paint quicajtoc quichihua ni tequit; amo quichijqui se yancuic ixkopinali ipan RAM (bitmap) ica ni ihuexca. AN Paint amo quipatac iselti ihuexca ixkopinali.",
+      "backtranslation": "Size of this image: width×height px (requestedMP). To protect this work, AN Paint permits only permittedMP now. That allowance is not enough for this image. AN Paint keeps the whole image in RAM and has set aside RAM for image changes (transforms) and selected content (selections). It permits in this way according to usable RAM. AN Paint has stopped doing this operation; it did not create a NEW image/bitmap in RAM at these dimensions. AN Paint did not change the image size by itself.",
+      "placeholders": [
+        "%1$d",
+        "%2$d",
+        "%3$.2f",
+        "%4$.2f"
+      ],
+      "raw_sha256": "20b0ce01c06cc4f0de1a2838d11b51840dd5a43e2224a96f54538aa842b93482",
+      "candidate_pin": {
+        "file": "nahua-memory6-author-1132.json",
+        "sha256": "0b0e70a7ff053138869edf098cee1d3386ba93d09dd060c149ee456730e4d0bf"
+      },
+      "review_receipt": {
+        "file": "review-nahua-memory6-independent-1138.json",
+        "sha256": "846f9f4ea6adbbe093670c079eb766db27759ae08250389fc3f06d19197c6dd0"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+          "line": 46,
+          "git_blob_sha": "b77fec3a44bbb5703e2b5c446b937f12ddef26f7",
+          "text": "if (pixels > permitted) throw ImageSizeException(ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-memory6-primary-1132.json",
+          "sha256": "f7b7fdfae2448f3c905c05536d2d3b5cc41a4c7338f98580709a095ea611f45a"
+        },
+        "caller_packet": {
+          "path": "nahua-memory6-callers-1132.json",
+          "sha256": "02eada068664232c8b014e45e9e333e515c9c0d5fb50dc9a75829bca0f657dc2"
+        },
+        "source_entry_ids": [
+          "predict-needed-amount",
+          "quantitative-insufficiency",
+          "normative-quantity",
+          "comparison-standard",
+          "reserve-for-purpose",
+          "stop-ongoing-action",
+          "protect-inanimate",
+          "close-command",
+          "prepare-command",
+          "whole-retained-object",
+          "use-resource",
+          "use-future",
+          "change-quantity",
+          "new-made-object",
+          "dimensions",
+          "conditional-and-concession",
+          "quantity-part",
+          "lost-or-lacking",
+          "chosen-state",
+          "change-capability",
+          "use-present",
+          "current",
+          "connectives",
+          "stored-state-purpose",
+          "unneeded-and-retry",
+          "use-future-first-condition",
+          "smaller-physical",
+          "each",
+          "own-original-and-autonomy",
+          "visible-content"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "The exact ordered width, height, requested MP and permitted MP slots occur once each. The permitted MP amount and its insufficiency express the current safe editing ceiling rather than physical RAM exhaustion.",
+          "Whole-image retention in RAM and capacity set apart for transforms/selections remain explicit. The own-variety set-apart predicate has an abstract allotment source, so it supports a reservation without asserting that all future buffers are already allocated.",
+          "The cessation clause uses independently attested quicajtoc plus a finite ongoing-action predicate. Removing independent amo negation and substituting the doing-this-operation complement is bounded productive composition, not an unsupported new past stem.",
+          "Negated creation is limited to a NEW RAM bitmap at the attempted dimensions. This remains compatible with existing canvas/clipboard contents, metadata, or an assembly output already allocated earlier in a larger pipeline. It does not assert that every allocation or all current image data is absent.",
+          "The by-itself qualifier on the past size-change negation expresses no automatic resizing. It is not a guarantee that all dimensions stayed unchanged or that user-requested edits were rolled back. Admission refusal and no new target creation jointly express preallocation rejection."
+        ],
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      },
+      "author_limits": [
+        "Own Central/Western distinctions and noun provenance retained. Full technical prose is authored; no native-human gate or native/layout/runtime certificate.",
+        "Assembly and document are explicitly anchored technical referents. Closing/preparing advice does not perform the action, promise successful retry, or delete original images.",
+        "Cost-counting prediction is an estimate, not measured actual peak. RAM allowance is policy admission, not hard OOM or disk free space.",
+        "Capacity set apart is a reservation, not proof that all buffers already exist. Only NEW rejected-size bitmap creation is negated.",
+        "Sampled reduction is possible; lost detail is conditioned on a smaller copy. Original file is preserved."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nch-d0bde3f-1124.json",
+          "sha256": "5d16acb67cafa83fb2ba69a1b76128e1ce7870636997b19a433ebca2463f7a63",
+          "git_blob_sha": "04c676792ccd5753d2f64f4506aa1b62974e2233",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nch",
+      "key": "ui_sampled_resize_memory_explanation",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "raw": "AN Paint achtohui quipohua quesqui RAM monequis para ixkopinali cati tijtequihuía amantzi (canvas), para cati quiajoctoc (clipboard), para quitapos ixkopinali (sampled decoding), huan para quipatas ixkopinali (editing buffers). Ica sampled decoding, AN Paint hueli quipata ihuexca para ma eli más pilquentzi. Quesqui RAM AN Paint quitequihuía hueli mopata. Sinta AN Paint quichihua se ixkopinali ica ihuexca cati más pilquentzi (px), polihui se quentzi cati nesi. AN Paint amo quipata ixkopinali cati achtohui (original file).",
+      "value": "AN Paint achtohui quipohua quesqui RAM monequis para ixkopinali cati tijtequihuía amantzi (canvas), para cati quiajoctoc (clipboard), para quitapos ixkopinali (sampled decoding), huan para quipatas ixkopinali (editing buffers). Ica sampled decoding, AN Paint hueli quipata ihuexca para ma eli más pilquentzi. Quesqui RAM AN Paint quitequihuía hueli mopata. Sinta AN Paint quichihua se ixkopinali ica ihuexca cati más pilquentzi (px), polihui se quentzi cati nesi. AN Paint amo quipata ixkopinali cati achtohui (original file).",
+      "display": "AN Paint achtohui quipohua quesqui RAM monequis para ixkopinali cati tijtequihuía amantzi (canvas), para cati quiajoctoc (clipboard), para quitapos ixkopinali (sampled decoding), huan para quipatas ixkopinali (editing buffers). Ica sampled decoding, AN Paint hueli quipata ihuexca para ma eli más pilquentzi. Quesqui RAM AN Paint quitequihuía hueli mopata. Sinta AN Paint quichihua se ixkopinali ica ihuexca cati más pilquentzi (px), polihui se quentzi cati nesi. AN Paint amo quipata ixkopinali cati achtohui (original file).",
+      "backtranslation": "AN Paint calculates beforehand the RAM needed for the currently used image (canvas), stored content (clipboard), opening the image (sampled decoding), and changing the image (editing buffers). With sampled decoding, AN Paint can make its dimensions smaller. The amount of RAM actually used can change. If AN Paint makes an image with smaller pixel dimensions, some visible detail is missing. AN Paint does not change the original image file.",
+      "placeholders": [],
+      "raw_sha256": "6ba32e3d23c4d23725da5a5eb53a488e9e4f393a3a7174bda003239667bc08f9",
+      "candidate_pin": {
+        "file": "nahua-memory6-author-1132.json",
+        "sha256": "0b0e70a7ff053138869edf098cee1d3386ba93d09dd060c149ee456730e4d0bf"
+      },
+      "review_receipt": {
+        "file": "review-nahua-memory6-independent-1138.json",
+        "sha256": "846f9f4ea6adbbe093670c079eb766db27759ae08250389fc3f06d19197c6dd0"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 34,
+          "git_blob_sha": "15723c1171cac09c7bd67881175827b5f3f330dd",
+          "text": "body.addView(label(ui(if(memoryRequirements.hasNativeWork) R.string.ui_codec_resize_memory_floor else R.string.ui_sampled_resize_memory_explanation), \"resize_explanation\"))"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-memory6-primary-1132.json",
+          "sha256": "f7b7fdfae2448f3c905c05536d2d3b5cc41a4c7338f98580709a095ea611f45a"
+        },
+        "caller_packet": {
+          "path": "nahua-memory6-callers-1132.json",
+          "sha256": "02eada068664232c8b014e45e9e333e515c9c0d5fb50dc9a75829bca0f657dc2"
+        },
+        "source_entry_ids": [
+          "predict-needed-amount",
+          "quantitative-insufficiency",
+          "normative-quantity",
+          "comparison-standard",
+          "reserve-for-purpose",
+          "stop-ongoing-action",
+          "protect-inanimate",
+          "close-command",
+          "prepare-command",
+          "whole-retained-object",
+          "use-resource",
+          "use-future",
+          "change-quantity",
+          "new-made-object",
+          "dimensions",
+          "conditional-and-concession",
+          "quantity-part",
+          "lost-or-lacking",
+          "chosen-state",
+          "change-capability",
+          "use-present",
+          "current",
+          "connectives",
+          "stored-state-purpose",
+          "unneeded-and-retry",
+          "use-future-first-condition",
+          "smaller-physical",
+          "each",
+          "own-original-and-autonomy",
+          "visible-content"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "The estimate includes current canvas, retained clipboard contents, sampled opening/decoding and editing work buffers. Each technical referent is anchored; future RAM necessity and beforehand calculation avoid reporting completed allocation.",
+          "The capability statement says sampled decoding CAN reduce dimensions, not that it always does. ImportPlan starts at sample=1; ImageResizeDialog permits dimensions equal to the source. Those paths remain consistent with this wording.",
+          "Loss of some visible detail is conditioned on making a smaller pixel-dimension copy. It is not attached unconditionally to the sampled-decoding path or to the unchanged original file.",
+          "Actual RAM amount may change. The original-image-file clause is preservation of the external original, not a promise that temporary import/cache files persist. readImage copies provider input to a temporary file; cache deletion is distinct from modifying the external original."
+        ],
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      },
+      "author_limits": [
+        "Own Central/Western distinctions and noun provenance retained. Full technical prose is authored; no native-human gate or native/layout/runtime certificate.",
+        "Assembly and document are explicitly anchored technical referents. Closing/preparing advice does not perform the action, promise successful retry, or delete original images.",
+        "Cost-counting prediction is an estimate, not measured actual peak. RAM allowance is policy admission, not hard OOM or disk free space.",
+        "Capacity set apart is a reservation, not proof that all buffers already exist. Only NEW rejected-size bitmap creation is negated.",
+        "Sampled reduction is possible; lost detail is conditioned on a smaller copy. Original file is preserved."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nch-d0bde3f-1124.json",
+          "sha256": "5d16acb67cafa83fb2ba69a1b76128e1ce7870636997b19a433ebca2463f7a63",
+          "git_blob_sha": "04c676792ccd5753d2f64f4506aa1b62974e2233",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_assembly_source_memory_floor",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "raw": "AN Paint achtihui quipohua quesqui RAM monequis para ni tequitl (assembly). Ica catli quipohua, monequi más RAM que catli AN Paint quicahuilía amantzi, masque ihuexca tlaixkopintli catli AN Paint quichihuas (output) elis san 1 × 1 px. Sintla san tijpatla ihuexca ni tequitl para ma eli más piltziquitetzi, noja monequi más RAM que catli AN Paint quicahuilía amantzi. Achtihui xijtzacua sesen seyoc catli tijtequihuía (document), o xijsencahua se tlaixkopintli ica ihuexca catli más piltziquitetzi (source image, px). Teipa sempa xijchihua ya ni. AN Paint amo quipatlac ni tequitl (assembly).",
+      "value": "AN Paint achtihui quipohua quesqui RAM monequis para ni tequitl (assembly). Ica catli quipohua, monequi más RAM que catli AN Paint quicahuilía amantzi, masque ihuexca tlaixkopintli catli AN Paint quichihuas (output) elis san 1 × 1 px. Sintla san tijpatla ihuexca ni tequitl para ma eli más piltziquitetzi, noja monequi más RAM que catli AN Paint quicahuilía amantzi. Achtihui xijtzacua sesen seyoc catli tijtequihuía (document), o xijsencahua se tlaixkopintli ica ihuexca catli más piltziquitetzi (source image, px). Teipa sempa xijchihua ya ni. AN Paint amo quipatlac ni tequitl (assembly).",
+      "display": "AN Paint achtihui quipohua quesqui RAM monequis para ni tequitl (assembly). Ica catli quipohua, monequi más RAM que catli AN Paint quicahuilía amantzi, masque ihuexca tlaixkopintli catli AN Paint quichihuas (output) elis san 1 × 1 px. Sintla san tijpatla ihuexca ni tequitl para ma eli más piltziquitetzi, noja monequi más RAM que catli AN Paint quicahuilía amantzi. Achtihui xijtzacua sesen seyoc catli tijtequihuía (document), o xijsencahua se tlaixkopintli ica ihuexca catli más piltziquitetzi (source image, px). Teipa sempa xijchihua ya ni. AN Paint amo quipatlac ni tequitl (assembly).",
+      "backtranslation": "AN Paint calculates beforehand how much RAM will be needed for this work (assembly). According to that calculation, more RAM is needed than AN Paint permits now, even if the output image is only1×1px. If you only make the assembly dimensions smaller, more RAM than currently permitted is still needed. First close each other document you are using, OR prepare a source image with smaller pixel dimensions. Then try this again. AN Paint did not change this assembly.",
+      "placeholders": [],
+      "raw_sha256": "a15faa542847c0cb8ba350a84b4e6205446760daf5926081428e89f258515607",
+      "candidate_pin": {
+        "file": "nahua-memory6-author-1132.json",
+        "sha256": "0b0e70a7ff053138869edf098cee1d3386ba93d09dd060c149ee456730e4d0bf"
+      },
+      "review_receipt": {
+        "file": "review-nahua-memory6-independent-1138.json",
+        "sha256": "846f9f4ea6adbbe093670c079eb766db27759ae08250389fc3f06d19197c6dd0"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 300,
+          "git_blob_sha": "b214510eeda5a700e76f92c7a91b8a5fbe5a9008",
+          "text": "message(ui(R.string.ui_assembly_source_memory_floor))"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-memory6-primary-1132.json",
+          "sha256": "f7b7fdfae2448f3c905c05536d2d3b5cc41a4c7338f98580709a095ea611f45a"
+        },
+        "caller_packet": {
+          "path": "nahua-memory6-callers-1132.json",
+          "sha256": "02eada068664232c8b014e45e9e333e515c9c0d5fb50dc9a75829bca0f657dc2"
+        },
+        "source_entry_ids": [
+          "predict-needed-amount",
+          "quantitative-insufficiency",
+          "normative-quantity",
+          "comparison-standard",
+          "reserve-for-purpose",
+          "stop-ongoing-action",
+          "protect-inanimate",
+          "close-command",
+          "prepare-command",
+          "whole-retained-object",
+          "use-resource",
+          "use-future",
+          "change-quantity",
+          "new-made-object",
+          "dimensions",
+          "conditional-and-concession",
+          "quantity-part",
+          "lost-or-lacking",
+          "chosen-state",
+          "change-capability",
+          "use-present",
+          "current",
+          "connectives",
+          "stored-state-purpose",
+          "unneeded-and-retry",
+          "use-future-first-condition",
+          "smaller-physical",
+          "each",
+          "own-original-and-autonomy",
+          "visible-content"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "Predictive cost counting is introduced with first/beforehand and future necessity, followed by according to that calculation. It is an estimated requirement, not completed allocation, measured physical peak, or a hard out-of-memory diagnosis.",
+          "The explicit 1 × 1 px output is accurate for AssemblyRenderer.suggested(), which returns null when fits(ImageDimensions(1,1)) fails. The subsequent conditional says that reducing dimensions alone still does not meet the currently permitted RAM amount.",
+          "Current permitted RAM is an application admission limit. The comparison does not confuse it with literal free RAM or storage capacity.",
+          "First close other used documents OR prepare a source image with smaller pixel dimensions, then repeat the action. The disjunction and temporal order are preserved; no successful retry is promised. The unchanged assembly sentence refers to the assembly content/layout, not a claim that output or a persisted draft exists."
+        ],
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      },
+      "author_limits": [
+        "Own Central/Western distinctions and noun provenance retained. Full technical prose is authored; no native-human gate or native/layout/runtime certificate.",
+        "Assembly and document are explicitly anchored technical referents. Closing/preparing advice does not perform the action, promise successful retry, or delete original images.",
+        "Cost-counting prediction is an estimate, not measured actual peak. RAM allowance is policy admission, not hard OOM or disk free space.",
+        "Capacity set apart is a reservation, not proof that all buffers already exist. Only NEW rejected-size bitmap creation is negated.",
+        "Sampled reduction is possible; lost detail is conditioned on a smaller copy. Original file is preserved."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nhw-d0bde3f-1124.json",
+          "sha256": "8697f9132e320e9384d986756a0e0f9064cc51d1dfed0ef30f9d5bd104bcd18d",
+          "git_blob_sha": "d78f9f52580b6565fa0560b17d8dca302a277aaf",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "raw": "Ihuexca ni tlaixkopintli: %1$d × %2$d px (%3$.2f MP). Para quimocuitlahuis ni tequitl, AN Paint quicahuilía san %4$.2f MP amantzi. Ya ni amo quiaxilía para ni tlaixkopintli. AN Paint quipixtoc nochi tlaixkopintli ipan RAM huan quiiyocacajtoc RAM para quipatlas tlaixkopintli (transforms) huan para catli tijtlapejpenijtoc (selections). AN Paint quicahuilía quej ni ica RAM catli hueli quitequihuis. AN Paint quicajtoc quichihua ni tequitl; amo quichijqui se yancuic tlaixkopintli ipan RAM (bitmap) ica ni ihuexca. AN Paint amo quipatlac iseltzi ihuexca tlaixkopintli.",
+      "value": "Ihuexca ni tlaixkopintli: %1$d × %2$d px (%3$.2f MP). Para quimocuitlahuis ni tequitl, AN Paint quicahuilía san %4$.2f MP amantzi. Ya ni amo quiaxilía para ni tlaixkopintli. AN Paint quipixtoc nochi tlaixkopintli ipan RAM huan quiiyocacajtoc RAM para quipatlas tlaixkopintli (transforms) huan para catli tijtlapejpenijtoc (selections). AN Paint quicahuilía quej ni ica RAM catli hueli quitequihuis. AN Paint quicajtoc quichihua ni tequitl; amo quichijqui se yancuic tlaixkopintli ipan RAM (bitmap) ica ni ihuexca. AN Paint amo quipatlac iseltzi ihuexca tlaixkopintli.",
+      "display": "Ihuexca ni tlaixkopintli: %1$d × %2$d px (%3$.2f MP). Para quimocuitlahuis ni tequitl, AN Paint quicahuilía san %4$.2f MP amantzi. Ya ni amo quiaxilía para ni tlaixkopintli. AN Paint quipixtoc nochi tlaixkopintli ipan RAM huan quiiyocacajtoc RAM para quipatlas tlaixkopintli (transforms) huan para catli tijtlapejpenijtoc (selections). AN Paint quicahuilía quej ni ica RAM catli hueli quitequihuis. AN Paint quicajtoc quichihua ni tequitl; amo quichijqui se yancuic tlaixkopintli ipan RAM (bitmap) ica ni ihuexca. AN Paint amo quipatlac iseltzi ihuexca tlaixkopintli.",
+      "backtranslation": "Size of this image: width×height px (requestedMP). To protect this work, AN Paint permits only permittedMP now. That allowance is not enough for this image. AN Paint keeps the whole image in RAM and has set aside RAM for image changes (transforms) and selected content (selections). It permits in this way according to usable RAM. AN Paint has stopped doing this operation; it did not create a NEW image/bitmap in RAM at these dimensions. AN Paint did not change the image size by itself.",
+      "placeholders": [
+        "%1$d",
+        "%2$d",
+        "%3$.2f",
+        "%4$.2f"
+      ],
+      "raw_sha256": "8c0cc14696732d89cc7340841049d332cbfc08fb9fb6d5f95bc87d851691a752",
+      "candidate_pin": {
+        "file": "nahua-memory6-author-1132.json",
+        "sha256": "0b0e70a7ff053138869edf098cee1d3386ba93d09dd060c149ee456730e4d0bf"
+      },
+      "review_receipt": {
+        "file": "review-nahua-memory6-independent-1138.json",
+        "sha256": "846f9f4ea6adbbe093670c079eb766db27759ae08250389fc3f06d19197c6dd0"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+          "line": 46,
+          "git_blob_sha": "b77fec3a44bbb5703e2b5c446b937f12ddef26f7",
+          "text": "if (pixels > permitted) throw ImageSizeException(ui(R.string.ui_d_d_pixels_2f_mp_exceeds_the_current,"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-memory6-primary-1132.json",
+          "sha256": "f7b7fdfae2448f3c905c05536d2d3b5cc41a4c7338f98580709a095ea611f45a"
+        },
+        "caller_packet": {
+          "path": "nahua-memory6-callers-1132.json",
+          "sha256": "02eada068664232c8b014e45e9e333e515c9c0d5fb50dc9a75829bca0f657dc2"
+        },
+        "source_entry_ids": [
+          "predict-needed-amount",
+          "quantitative-insufficiency",
+          "normative-quantity",
+          "comparison-standard",
+          "reserve-for-purpose",
+          "stop-ongoing-action",
+          "protect-inanimate",
+          "close-command",
+          "prepare-command",
+          "whole-retained-object",
+          "use-resource",
+          "use-future",
+          "change-quantity",
+          "new-made-object",
+          "dimensions",
+          "conditional-and-concession",
+          "quantity-part",
+          "lost-or-lacking",
+          "chosen-state",
+          "change-capability",
+          "use-present",
+          "current",
+          "connectives",
+          "stored-state-purpose",
+          "unneeded-and-retry",
+          "use-future-first-condition",
+          "smaller-physical",
+          "each",
+          "own-original-and-autonomy",
+          "visible-content"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "The exact ordered width, height, requested MP and permitted MP slots occur once each. The permitted MP amount and its insufficiency express the current safe editing ceiling rather than physical RAM exhaustion.",
+          "Whole-image retention in RAM and capacity set apart for transforms/selections remain explicit. The own-variety set-apart predicate has an abstract allotment source, so it supports a reservation without asserting that all future buffers are already allocated.",
+          "The cessation clause uses independently attested quicajtoc plus a finite ongoing-action predicate. Removing independent amo negation and substituting the doing-this-operation complement is bounded productive composition, not an unsupported new past stem.",
+          "Negated creation is limited to a NEW RAM bitmap at the attempted dimensions. This remains compatible with existing canvas/clipboard contents, metadata, or an assembly output already allocated earlier in a larger pipeline. It does not assert that every allocation or all current image data is absent.",
+          "The by-itself qualifier on the past size-change negation expresses no automatic resizing. It is not a guarantee that all dimensions stayed unchanged or that user-requested edits were rolled back. Admission refusal and no new target creation jointly express preallocation rejection."
+        ],
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      },
+      "author_limits": [
+        "Own Central/Western distinctions and noun provenance retained. Full technical prose is authored; no native-human gate or native/layout/runtime certificate.",
+        "Assembly and document are explicitly anchored technical referents. Closing/preparing advice does not perform the action, promise successful retry, or delete original images.",
+        "Cost-counting prediction is an estimate, not measured actual peak. RAM allowance is policy admission, not hard OOM or disk free space.",
+        "Capacity set apart is a reservation, not proof that all buffers already exist. Only NEW rejected-size bitmap creation is negated.",
+        "Sampled reduction is possible; lost detail is conditioned on a smaller copy. Original file is preserved."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nhw-d0bde3f-1124.json",
+          "sha256": "8697f9132e320e9384d986756a0e0f9064cc51d1dfed0ef30f9d5bd104bcd18d",
+          "git_blob_sha": "d78f9f52580b6565fa0560b17d8dca302a277aaf",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "nhw",
+      "key": "ui_sampled_resize_memory_explanation",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "raw": "AN Paint achtihui quipohua quesqui RAM monequis para tlaixkopintli catli tijtequihuía amantzi (canvas), para catli quiajoctoc (clipboard), para quitlapos tlaixkopintli (sampled decoding), huan para quipatlas tlaixkopintli (editing buffers). Ica sampled decoding, AN Paint hueli quipatla ihuexca para ma eli más piltziquitetzi. Quesqui RAM AN Paint quitequihuía hueli mopatla. Sintla AN Paint quichihua se tlaixkopintli ica ihuexca catli más piltziquitetzi (px), polihui se quentzi catli nesi. AN Paint amo quipatla tlaixkopintli catli achtihui (original file).",
+      "value": "AN Paint achtihui quipohua quesqui RAM monequis para tlaixkopintli catli tijtequihuía amantzi (canvas), para catli quiajoctoc (clipboard), para quitlapos tlaixkopintli (sampled decoding), huan para quipatlas tlaixkopintli (editing buffers). Ica sampled decoding, AN Paint hueli quipatla ihuexca para ma eli más piltziquitetzi. Quesqui RAM AN Paint quitequihuía hueli mopatla. Sintla AN Paint quichihua se tlaixkopintli ica ihuexca catli más piltziquitetzi (px), polihui se quentzi catli nesi. AN Paint amo quipatla tlaixkopintli catli achtihui (original file).",
+      "display": "AN Paint achtihui quipohua quesqui RAM monequis para tlaixkopintli catli tijtequihuía amantzi (canvas), para catli quiajoctoc (clipboard), para quitlapos tlaixkopintli (sampled decoding), huan para quipatlas tlaixkopintli (editing buffers). Ica sampled decoding, AN Paint hueli quipatla ihuexca para ma eli más piltziquitetzi. Quesqui RAM AN Paint quitequihuía hueli mopatla. Sintla AN Paint quichihua se tlaixkopintli ica ihuexca catli más piltziquitetzi (px), polihui se quentzi catli nesi. AN Paint amo quipatla tlaixkopintli catli achtihui (original file).",
+      "backtranslation": "AN Paint calculates beforehand the RAM needed for the currently used image (canvas), stored content (clipboard), opening the image (sampled decoding), and changing the image (editing buffers). With sampled decoding, AN Paint can make its dimensions smaller. The amount of RAM actually used can change. If AN Paint makes an image with smaller pixel dimensions, some visible detail is missing. AN Paint does not change the original image file.",
+      "placeholders": [],
+      "raw_sha256": "785ea02d9963fbe1c353e066fa35c1402337a694bc7c5e152b3e861d628db830",
+      "candidate_pin": {
+        "file": "nahua-memory6-author-1132.json",
+        "sha256": "0b0e70a7ff053138869edf098cee1d3386ba93d09dd060c149ee456730e4d0bf"
+      },
+      "review_receipt": {
+        "file": "review-nahua-memory6-independent-1138.json",
+        "sha256": "846f9f4ea6adbbe093670c079eb766db27759ae08250389fc3f06d19197c6dd0"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 34,
+          "git_blob_sha": "15723c1171cac09c7bd67881175827b5f3f330dd",
+          "text": "body.addView(label(ui(if(memoryRequirements.hasNativeWork) R.string.ui_codec_resize_memory_floor else R.string.ui_sampled_resize_memory_explanation), \"resize_explanation\"))"
+        }
+      ],
+      "caller_contract": {},
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "nahua-memory6-primary-1132.json",
+          "sha256": "f7b7fdfae2448f3c905c05536d2d3b5cc41a4c7338f98580709a095ea611f45a"
+        },
+        "caller_packet": {
+          "path": "nahua-memory6-callers-1132.json",
+          "sha256": "02eada068664232c8b014e45e9e333e515c9c0d5fb50dc9a75829bca0f657dc2"
+        },
+        "source_entry_ids": [
+          "predict-needed-amount",
+          "quantitative-insufficiency",
+          "normative-quantity",
+          "comparison-standard",
+          "reserve-for-purpose",
+          "stop-ongoing-action",
+          "protect-inanimate",
+          "close-command",
+          "prepare-command",
+          "whole-retained-object",
+          "use-resource",
+          "use-future",
+          "change-quantity",
+          "new-made-object",
+          "dimensions",
+          "conditional-and-concession",
+          "quantity-part",
+          "lost-or-lacking",
+          "chosen-state",
+          "change-capability",
+          "use-present",
+          "current",
+          "connectives",
+          "stored-state-purpose",
+          "unneeded-and-retry",
+          "use-future-first-condition",
+          "smaller-physical",
+          "each",
+          "own-original-and-autonomy",
+          "visible-content"
+        ]
+      },
+      "independent_review_findings": {
+        "semantic_findings": [
+          "The estimate includes current canvas, retained clipboard contents, sampled opening/decoding and editing work buffers. Each technical referent is anchored; future RAM necessity and beforehand calculation avoid reporting completed allocation.",
+          "The capability statement says sampled decoding CAN reduce dimensions, not that it always does. ImportPlan starts at sample=1; ImageResizeDialog permits dimensions equal to the source. Those paths remain consistent with this wording.",
+          "Loss of some visible detail is conditioned on making a smaller pixel-dimension copy. It is not attached unconditionally to the sampled-decoding path or to the unchanged original file.",
+          "Actual RAM amount may change. The original-image-file clause is preservation of the external original, not a promise that temporary import/cache files persist. readImage copies provider input to a temporary file; cache deletion is distinct from modifying the external original."
+        ],
+        "decision": "ACCEPT_RAW_UNCHANGED"
+      },
+      "author_limits": [
+        "Own Central/Western distinctions and noun provenance retained. Full technical prose is authored; no native-human gate or native/layout/runtime certificate.",
+        "Assembly and document are explicitly anchored technical referents. Closing/preparing advice does not perform the action, promise successful retry, or delete original images.",
+        "Cost-counting prediction is an estimate, not measured actual peak. RAM allowance is policy admission, not hard OOM or disk free space.",
+        "Capacity set apart is a reservation, not proof that all buffers already exist. Only NEW rejected-size bitmap creation is negated.",
+        "Sampled reduction is possible; lost detail is conditioned on a smaller copy. Original file is preserved."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-nhw-d0bde3f-1124.json",
+          "sha256": "8697f9132e320e9384d986756a0e0f9064cc51d1dfed0ef30f9d5bd104bcd18d",
+          "git_blob_sha": "d78f9f52580b6565fa0560b17d8dca302a277aaf",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": []
+    },
+    {
+      "locale": "chr",
+      "key": "save20_unsupported_image_colour",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "english": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "raw": "ᏅᏓᏳᏓᎴᏅᎯ — ᏗᏟᎶᏍᏔᏅ — ᎠᏑᏫᏓ ᏄᏍᏗᏓᏅᎢ. AN Paint — pixel RGB — ᏧᎬᏩᎶᏗᏯ — ᎯᏁᏟᏴᎾ: Ꮭ ᎬᏙᏗ ᏱᎩ (ᏂᎨᏅᏓ). ᎢᎬᏱᎢ: ᏐᎢ ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ — ᎲᏓ. ᏅᏓᏳᏓᎴᏅᎯ — ᏗᏟᎶᏍᏔᏅ — ᎠᏑᏫᏓ ᏄᏍᏗᏓᏅᎢ — ᎲᏓ → pixel RGB — ᏧᎬᏩᎶᏗᏯ — ᎯᏁᏟᏴᎾ → sRGB. PNG — ᎯᏍᏆᏂᎪᏓ. ᎾᏉᏃ: AN Paint — “ᎯᏢᎦ…” — ᎲᏓ.",
+      "value": "ᏅᏓᏳᏓᎴᏅᎯ — ᏗᏟᎶᏍᏔᏅ — ᎠᏑᏫᏓ ᏄᏍᏗᏓᏅᎢ. AN Paint — pixel RGB — ᏧᎬᏩᎶᏗᏯ — ᎯᏁᏟᏴᎾ: Ꮭ ᎬᏙᏗ ᏱᎩ (ᏂᎨᏅᏓ). ᎢᎬᏱᎢ: ᏐᎢ ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ — ᎲᏓ. ᏅᏓᏳᏓᎴᏅᎯ — ᏗᏟᎶᏍᏔᏅ — ᎠᏑᏫᏓ ᏄᏍᏗᏓᏅᎢ — ᎲᏓ → pixel RGB — ᏧᎬᏩᎶᏗᏯ — ᎯᏁᏟᏴᎾ → sRGB. PNG — ᎯᏍᏆᏂᎪᏓ. ᎾᏉᏃ: AN Paint — “ᎯᏢᎦ…” — ᎲᏓ.",
+      "display": "ᏅᏓᏳᏓᎴᏅᎯ — ᏗᏟᎶᏍᏔᏅ — ᎠᏑᏫᏓ ᏄᏍᏗᏓᏅᎢ. AN Paint — pixel RGB — ᏧᎬᏩᎶᏗᏯ — ᎯᏁᏟᏴᎾ: Ꮭ ᎬᏙᏗ ᏱᎩ (ᏂᎨᏅᏓ). ᎢᎬᏱᎢ: ᏐᎢ ᎣᏍᏓ ᏗᎦᎧᎲᏍᎩ — ᎲᏓ. ᏅᏓᏳᏓᎴᏅᎯ — ᏗᏟᎶᏍᏔᏅ — ᎠᏑᏫᏓ ᏄᏍᏗᏓᏅᎢ — ᎲᏓ → pixel RGB — ᏧᎬᏩᎶᏗᏯ — ᎯᏁᏟᏴᎾ → sRGB. PNG — ᎯᏍᏆᏂᎪᏓ. ᎾᏉᏃ: AN Paint — “ᎯᏢᎦ…” — ᎲᏓ.",
+      "backtranslation": "Source image: colour profile. AN Paint: changing pixel RGB values is unavailable (not yet). First: use another editor. Use the source image colour profile → change pixel RGB values → sRGB. Save PNG. Then: in AN Paint use “Load image…”.",
+      "placeholders": [],
+      "raw_sha256": "6af99f3a9ae6e28bb4cd758b6806806edd312b3791b344ce31d64ae9c93d9fbf",
+      "candidate_pin": {
+        "file": "chr-colour-profile1-1136.json",
+        "sha256": "63a5396ad1f871c5a2209c49286ae5f9fe101f3e91568cfaf1e80ddc2eaad8d4"
+      },
+      "review_receipt": {
+        "file": "review-chr-colour-profile1-independent-1140.json",
+        "sha256": "5657329971b95a4438c68b8145a636ddd78bd483926bc0dde97d35f2653f4635"
+      },
+      "status": "INDEPENDENTLY_REVIEWED; ROOT_ADOPTION_PENDING",
+      "earlier_held_successor": false,
+      "actual_current_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 16,
+          "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour), error)"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 23,
+          "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour), error)"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+          "line": 115,
+          "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+          "text": "throw IOException(ui(R.string.save20_unsupported_image_colour),error)"
+        }
+      ],
+      "caller_contract": "Three actual throw mappings DibCodec16, IcoCodec23, PlatformImageColour115 catch LegacyColourMetadata.UnsupportedColour. RGB BMP V4/V5 unsupported colour space and GIF ICCRGBG1 cases. Source-profile-aware numerical RGB conversion, not generic profile reassignment. Classic838 exact Load action invokes confirmReplacement then launchOpen(false).",
+      "source_and_caller_evidence": {
+        "source_packet": {
+          "path": "chr-colour-profile-primary-1136.json",
+          "sha256": "f7655920b46b865afd365d993ed78fbecb40e41d6ec03c0339c497d279890d37"
+        },
+        "caller_anchors": [
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+            "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+            "line": 12,
+            "text": "private inline fun <T> readImage(block: () -> T): T = try { block() }"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+            "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+            "line": 13,
+            "text": "catch (error: PackedDib.InvalidImage) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+            "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+            "line": 14,
+            "text": "throw IOException(ui(R.string.ui_no_readable_image_data), error)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+            "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+            "line": 15,
+            "text": "} catch (error: LegacyColourMetadata.UnsupportedColour) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+            "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+            "line": 16,
+            "text": "throw IOException(ui(R.string.save20_unsupported_image_colour), error)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+            "git_blob_sha": "f62b68145b546789179fe260df10e9d2f7d9a49f",
+            "line": 17,
+            "text": "}"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+            "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+            "line": 19,
+            "text": "private inline fun <T> readImage(block: () -> T): T = try { block() }"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+            "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+            "line": 20,
+            "text": "catch (error: IcoContainer.InvalidImage) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+            "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+            "line": 21,
+            "text": "throw IOException(ui(R.string.ui_no_readable_image_data), error)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+            "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+            "line": 22,
+            "text": "} catch (error: LegacyColourMetadata.UnsupportedColour) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+            "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+            "line": 23,
+            "text": "throw IOException(ui(R.string.save20_unsupported_image_colour), error)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+            "git_blob_sha": "281298d3f318572b70de9a1798133fdff2f4d1b5",
+            "line": 24,
+            "text": "}"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 43,
+            "text": ""
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 44,
+            "text": "/** Returns a new bitmap when native conversion is necessary; never recycles input. */"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 45,
+            "text": "fun convert(input: Bitmap): Bitmap {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 46,
+            "text": "// An Ultra HDR JPEG contains a fully authored SDR base. Use that rendition"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 47,
+            "text": "// for this SDR editor; never leave a stale gain map on edited pixels."
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 48,
+            "text": "if (Build.VERSION.SDK_INT >= 34 && input.hasGainmap()) input.setGainmap(null)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 49,
+            "text": "return try { when {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 50,
+            "text": "cicp != null -> HeifCodec.convertCicp(input,cicp[0].toInt() and 255,cicp[1].toInt() and 255)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 51,
+            "text": "icc != null -> HeifCodec.convertIcc(input,icc)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 52,
+            "text": "pngGamma != null || pngChromaticities != null -> HeifCodec.convertPngColour(input,pngGamma ?: 0f,pngChromaticities)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 53,
+            "text": "else -> input"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 54,
+            "text": "} } catch (error: LinkageError) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 55,
+            "text": "// A damaged/unsupported native installation must become the normal"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 56,
+            "text": "// visible import error, rather than escaping the worker and leaving"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 57,
+            "text": "// the editor permanently busy. Never substitute unconverted pixels."
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 58,
+            "text": "throw IOException(ui(R.string.colour_converter_unavailable),error)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 112,
+            "text": "fun read(file: File): PlatformImageColour {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 113,
+            "text": "try { LegacyColourMetadata.check(file) }"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 114,
+            "text": "catch (error: LegacyColourMetadata.UnsupportedColour) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 115,
+            "text": "throw IOException(ui(R.string.save20_unsupported_image_colour),error)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 116,
+            "text": "} catch (error: IOException) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+            "git_blob_sha": "029c2b242b6629de09fce5904f72255fb7455473",
+            "line": 117,
+            "text": "throw IOException(ui(R.string.colour_invalid_metadata),error)"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 33,
+            "text": "if(first=='B' && second=='M') {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 37,
+            "text": "if(headerSize>=108) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 38,
+            "text": "if(headerSize!=108 && headerSize!=124) throw new UnsupportedColour();"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 39,
+            "text": "input.seek(14+56);long space=little(input);"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 40,
+            "text": "// BITMAPV4/V5: only explicit sRGB / Windows default sRGB needs no conversion."
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 41,
+            "text": "if(space!=0x73524742L && space!=0x57696e20L) throw new UnsupportedColour();"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 62,
+            "text": "// ICC.1:2010 Annex B.5 defines ICCRGBG1 with authentication code 012."
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 63,
+            "text": "// Reject that identifier even if its authentication/profile bytes are malformed."
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/LegacyColourMetadata.java",
+            "git_blob_sha": "8563f5a939e3a9876c879cd0866d8ea11703aa50",
+            "line": 64,
+            "text": "if(new String(id,0,8,StandardCharsets.US_ASCII).equals(\"ICCRGBG1\")) throw new UnsupportedColour();"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+            "line": 835,
+            "text": "private fun menuActions(name: String): List<PanelCommand> = when(name) {"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+            "line": 836,
+            "text": "\"File\"->(listOf<Pair<String,()->Unit>>("
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+            "line": 837,
+            "text": "ui(R.string.ui_new) to {confirmReplacement {dimensionsDialog(false,true)}},"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+            "line": 838,
+            "text": "ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},"
+          },
+          {
+            "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+            "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+            "line": 839,
+            "text": "ui(R.string.ui_save) to {requestSave(false)},"
+          }
+        ]
+      },
+      "independent_review_findings": {},
+      "author_limits": [
+        "The pipeline arrows and topic punctuation are authored UI notation, not source-attested Cherokee particles.",
+        "TBX change is a verb meaning modify property/attribute value; no converter noun is turned into a verb.",
+        "OU not-yet [W] provenance retained.",
+        "No guarantee gamut mapping is lossless; no ICC-only transport restriction; no claim unsupported profile is corruption.",
+        "No native-speaker/layout/runtime certificate."
+      ],
+      "current_guard": {
+        "head": "0513d89bd203dc42b4aa36159a89d4d716ac18dd",
+        "target_absent": true,
+        "original_P0": true,
+        "current_resource": {
+          "file": "current-chr-0513d89-1135.json",
+          "sha256": "cc8e07206137c62514e2c304c4ca2ad03056dc15d93b15c72bd422156b28ab22",
+          "git_blob_sha": "bc63c15396451172565d688d800a4f9455490a9e",
+          "unchanged_to_head_by_compare_chain": true
+        },
+        "English_attrs_and_typed_slots_exact": true,
+        "candidate_and_review_exact": true,
+        "raw_convention": "XML-parsed Android text; raw=value=display for this intake. XML-escape once.",
+        "dormant_semantic_only": false
+      },
+      "quoted_control_dependencies": [
+        {
+          "quoted_display": "ᎯᏢᎦ…",
+          "matching_resource_keys": [
+            "ui_load_image"
+          ],
+          "matches": {
+            "ui_load_image": {
+              "display": "ᎯᏢᎦ…",
+              "English_fallback": false
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "limits": "Source/compositional review only; no native-speaker, layout/screenreader, runtime or executable test certification."
+}
