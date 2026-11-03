@@ -1,0 +1,391 @@
+{
+  "note": "Source reviewed and locally integrated on a dependent branch; native fluency, runtime and layout unverified.",
+  "rows": [
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_sampled_resize_memory_explanation",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "raw": "Gi katkulasion, mana\\'danña\\' i RAM para i brin ni un usa på\\'gu yan i kopia ni mapo\\'lu para u mapega (clipboard), yan i tempuråriu na kåmpu gi RAM para u mababa i pinenta gi mås dikiki\\' na mineddung (sampled decoding) yan para u matulaika i pinenta. Gi minagåhit, ti todu i tiempu parehu i RAM ni ma\\'usa. Malingu palu na infutmasion gi mås dikiki\\' na kopia. Ti matulaika i urihinåt na dokumentu.",
+      "display": "Gi katkulasion, mana'danña' i RAM para i brin ni un usa på'gu yan i kopia ni mapo'lu para u mapega (clipboard), yan i tempuråriu na kåmpu gi RAM para u mababa i pinenta gi mås dikiki' na mineddung (sampled decoding) yan para u matulaika i pinenta. Gi minagåhit, ti todu i tiempu parehu i RAM ni ma'usa. Malingu palu na infutmasion gi mås dikiki' na kopia. Ti matulaika i urihinåt na dokumentu.",
+      "backtranslation": "The estimate includes RAM for the canvas you currently use and the copy stored for pasting (clipboard), and temporary RAM space for opening the image at smaller dimensions (sampled decoding) and for changing the image. In reality, the RAM used is not always the same. Some information is lost in the smaller copy. The original file is unchanged.",
+      "independent_reviews": [
+        {
+          "file": "review-ch-memory-guidance3-independent-0721.json",
+          "sha256": "b20b7b80cdf8a146125c255b3e65b5de58d57ea8fd6e5c2df04657f96d80b14a"
+        }
+      ],
+      "caller_summary": "ImageResizeDialog34 chooses this only when !memoryRequirements.hasNativeWork. ImageImport27–38 samples decode before exact-target scaling; ImportPlan28 and ImportMemoryRequirements75–84 include decoded working data, target edit buffers and resident pixels. PaintDocument150–152 includes current bitmap, floating selection and clipboard. Dialog58 invokes resize only after explicit acceptance. This text is not the native source-memory-floor explanation.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 34
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "The technical anchors clipboard and sampled decoding retain exact referents alongside complete functional explanations. Smaller dimensions here are pixels, not compressed-file byte size or viewport zoom. Actual RAM variation and detail loss are explicit; original file remains unchanged. Long explanation needs layout check only at authorized integration; no layout/native certification now."
+      },
+      "confidence": "Moderate source-backed authored functional wording, awaiting exact independent review",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_assembly_source_memory_floor",
+      "english": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "raw": "Makatkukula na mås meggai i RAM ni ha nisisita AN Paint para esti na dinanña\\' i pinenta siha ki i RAM ni ha sedi på\\'gu, maseha ma\\'usa i mås dikiki\\' na mineddung para i pinenta ni para u mafa\\'tinas. Yanggin un na\\'dikiki\\' ha\\' i mineddung i dinanña\\', trabiha mås meggai i RAM ni ha nisisita AN Paint ki i RAM ni ha sedi på\\'gu. Huchum i ottru na dokumentu siha pat pripåra un mås dikiki\\' na pinenta para u ma\\'usa gi dinanña\\' åntis di un chagi ta\\'lu. Ti matulaika i dinanña\\' i pinenta siha.",
+      "display": "Makatkukula na mås meggai i RAM ni ha nisisita AN Paint para esti na dinanña' i pinenta siha ki i RAM ni ha sedi på'gu, maseha ma'usa i mås dikiki' na mineddung para i pinenta ni para u mafa'tinas. Yanggin un na'dikiki' ha' i mineddung i dinanña', trabiha mås meggai i RAM ni ha nisisita AN Paint ki i RAM ni ha sedi på'gu. Huchum i ottru na dokumentu siha pat pripåra un mås dikiki' na pinenta para u ma'usa gi dinanña' åntis di un chagi ta'lu. Ti matulaika i dinanña' i pinenta siha.",
+      "backtranslation": "It is estimated that AN Paint needs more RAM for this composition of images than it permits now, even if the smallest dimensions are used for the image to be produced. If you make only the composition dimensions smaller, AN Paint still needs more RAM than it permits now. Close the other documents or prepare a smaller image to use in the composition before trying again. The composition of images is unchanged.",
+      "independent_reviews": [
+        {
+          "file": "review-ch-memory-guidance3-independent-0721.json",
+          "sha256": "b20b7b80cdf8a146125c255b3e65b5de58d57ea8fd6e5c2df04657f96d80b14a"
+        }
+      ],
+      "caller_summary": "AssemblyActivity297–301 shows this only when AssemblyRenderer.suggested returns null. AssemblyRenderer38–40 tests the one-pixel output; estimatedBytes23–35 still accounts for source decode work and resident pixels. No render call follows the null return. Separate actual OutOfMemoryError294 routes ui_not_enough_memory_for_this_operation_the_assembly and must not be conflated.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 300
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Estimate is explicit, and both required RAM versus currently permitted RAM and insufficient dimension-only reduction are retained. Smallest refers to output, not source dimensions. The suggested smaller source is a user-prepared input, no automatic resize or source modification. Closing documents does not mean deleting files; no guarantee retry will succeed. Maseha even-though is tagged Rota in primary CNMI dictionary; whole sentence is authored, not native-certified."
+      },
+      "confidence": "Moderate source-backed authored functional wording, awaiting exact independent review",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "english": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "attributes": {
+        "name": "ui_d_d_pixels_2f_mp_exceeds_the_current"
+      },
+      "raw": "%1$d × %2$d pixels (%3$.2f MP): mås ki %4$.2f MP, i mineddung ni ha sedi AN Paint på\\'gu para u såfu\\' i che\\'chu\\' an un tulaika i pinenta. Ha po\\'lu AN Paint enteru i pinenta gi RAM, yan ha risetba kåmpu para i tinilaika gi pinenta (transforms) yan i påtti ni ma\\'atyik. Ha katkula AN Paint esti na mineddung sigun i RAM ni siña ma\\'usa. Ha na\\'påra AN Paint i che\\'chu\\' åntis di u na\\'guaha kåmpu gi RAM para i mampus dångkulu na pinenta. Ti ha tulaika na maisa AN Paint i mineddung i pinenta.",
+      "display": "%1$d × %2$d pixels (%3$.2f MP): mås ki %4$.2f MP, i mineddung ni ha sedi AN Paint på'gu para u såfu' i che'chu' an un tulaika i pinenta. Ha po'lu AN Paint enteru i pinenta gi RAM, yan ha risetba kåmpu para i tinilaika gi pinenta (transforms) yan i påtti ni ma'atyik. Ha katkula AN Paint esti na mineddung sigun i RAM ni siña ma'usa. Ha na'påra AN Paint i che'chu' åntis di u na'guaha kåmpu gi RAM para i mampus dångkulu na pinenta. Ti ha tulaika na maisa AN Paint i mineddung i pinenta.",
+      "backtranslation": "%1$d × %2$d pixels (%3$.2f MP): more than %4$.2f MP, the size AN Paint permits now for the work to be safe when you change the image. AN Paint keeps the entire picture in RAM and reserves space for picture alterations (transforms) and the selected part. AN Paint computes this size according to the RAM that can be used. AN Paint stopped the operation before providing RAM space for the overly large picture. AN Paint did not change the image size by itself.",
+      "independent_reviews": [
+        {
+          "file": "review-ch-memory-cap1-independent-0723.json",
+          "sha256": "c23caaa9e7c1704585f8371b1976da2e0963af9903c23210801590026fbdb5c5"
+        }
+      ],
+      "caller_summary": "ImageMemoryPolicy42–47 compares width×height with maxPixels then throws ImageSizeException before calling any allocator. maxPixels38–40 accounts for resident pixels and12 bytes per editable pixel, plus platform-safe bitmap cap. calculate20–24 derives allowance from available system/heap/process estimates. ClassicPaintActivity938 distinguishes ImageSizeException from true OutOfMemoryError. PaintDocument156–157 and355–356 show guard preceding allocation. This wording must not be moved onto generic OOM paths.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageMemoryPolicy.kt",
+          "line": 46
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Safe is purpose/intention, not a guarantee admitted allocations cannot fail. Transform changes carry the exact invariant anchor transforms; selected part functionally denotes selections. Provide RAM space means bitmap allocation, not reserving ordinary disk storage. No automatic resizing is explicit without promising no user-requested or earlier changes. New whole clause composition, no native/layout/runtime certification."
+      },
+      "confidence": "Moderate-lower authored full-sentence technical wording, accepted within the disclosed source/compositional limits, not native or layout certification.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "formats22_pdf_raster_hint",
+      "english": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "raw": "Mafa\\'tinas un pinenta gi 144 dpi ginin kada påhina gi PDF. I tinige\\' yan i figura siha ni manmafa\\'tinas ginin råya yan kåbu\\' (vector) manmatulaika para pixels.",
+      "display": "Mafa'tinas un pinenta gi 144 dpi ginin kada påhina gi PDF. I tinige' yan i figura siha ni manmafa'tinas ginin råya yan kåbu' (vector) manmatulaika para pixels.",
+      "backtranslation": "A picture is made at 144 dpi from each page in the PDF. Text and figures made from lines and curves (vector) are converted into pixels.",
+      "independent_reviews": [
+        {
+          "file": "review-ch-final-warnings4-independent-0735.json",
+          "sha256": "70e17617013685fc0afaee0758054d4a80cbdcae0739fe7a4d9b032357ac358b"
+        }
+      ],
+      "caller_summary": "ImportSelection102 shows the explanation only for PDF. PdfCodec14–21 establishes 144 dpi/2 pixels per PDF point; decode63–85 renders a selected PDF page into ARGB_8888 pixels. The second sentence preserves loss of text/vector structure, not a claim text or vectors remain editable.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 102
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Lines and curves identify vector figures; vector remains an explicit invariant technical anchor. Physical page/line/curve senses are extended to PDF objects. The 144 dpi is the nominal import coordinate scale, not a claim later memory sampling cannot reduce output."
+      },
+      "confidence": "Moderate authored source-supported functional paraphrase; independent exact linguistic/caller review remains required.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "save20_invalid_name",
+      "english": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "raw": "Tugi\\' na\\'an i dokumentu sin / pat \\\\, yan sin simbulu gi Unicode ginin U+0000 asta U+001F pat ginin U+007F asta U+009F.",
+      "display": "Tugi' na'an i dokumentu sin / pat \\, yan sin simbulu gi Unicode ginin U+0000 asta U+001F pat ginin U+007F asta U+009F.",
+      "backtranslation": "Write a file name without / or backslash, and without Unicode symbols from U+0000 to U+001F or from U+007F to U+009F.",
+      "independent_reviews": [
+        {
+          "file": "review-ch-final-warnings4-independent-0735.json",
+          "sha256": "70e17617013685fc0afaee0758054d4a80cbdcae0739fe7a4d9b032357ac358b"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog194 assigns this exact field error when ExportNames.valid36–38 fails. That method rejects blank/dot stems plus either slash direction and every Kotlin ISO control character. The warning preserves the English restrictions and spells out the exact control ranges rather than restricting alphabetic letters.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 194
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "The complete ISO-control ranges are a precise technical functional paraphrase and may be longer than a familiar native control-character term, which the sources do not establish. Backslash must be escaped once for Android raw text, separately from JSON/XML serialization."
+      },
+      "confidence": "Moderate authored source-supported functional paraphrase; independent exact linguistic/caller review remains required.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "save20_unsupported_image_colour",
+      "english": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "attributes": {
+        "name": "save20_unsupported_image_colour"
+      },
+      "raw": "Guaha gi esti na pinenta infutmasion put håfa kumeke\\'ilek-ña kada numiru ni ma\\'usa para i kulot. AN Paint trabiha ti siña ha usa esti na infutmasion para u tulaika i pinenta. Åntis di un na\\'hålum i pinenta gi AN Paint, tulaika i pinenta para sRGB PNG gi un ramenta para un tulaika pinenta. Debi na u ma\\'usa esti na klåsin infutmasion gi ramenta para u fanmatulaika i kulot siha.",
+      "display": "Guaha gi esti na pinenta infutmasion put håfa kumeke'ilek-ña kada numiru ni ma'usa para i kulot. AN Paint trabiha ti siña ha usa esti na infutmasion para u tulaika i pinenta. Åntis di un na'hålum i pinenta gi AN Paint, tulaika i pinenta para sRGB PNG gi un ramenta para un tulaika pinenta. Debi na u ma'usa esti na klåsin infutmasion gi ramenta para u fanmatulaika i kulot siha.",
+      "backtranslation": "This image contains information about what each number used for colour means. AN Paint cannot yet use this information to convert the image. Before you bring the image into AN Paint, convert the image to sRGB PNG in an image-editing tool. This kind of information must be used in the tool to convert the colours.",
+      "independent_reviews": [
+        {
+          "file": "review-ch-final-warnings4-independent-0735.json",
+          "sha256": "70e17617013685fc0afaee0758054d4a80cbdcae0739fe7a4d9b032357ac358b"
+        }
+      ],
+      "caller_summary": "PlatformImageColour111–119 converts LegacyColourMetadata.UnsupportedColour into this IOException message. DibCodec and IcoCodec do the same. Therefore this is an unsupported source colour-interpretation warning during import, not a general palette error or failure to save. The user remedy preserves sRGB PNG, profile-aware conversion and completion before importing.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 23
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 16
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/PlatformImageColour.kt",
+          "line": 115
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Numerical colour interpretation functionally explains profile without inventing a native technical noun. The final sentence requires the editing tool to use that same kind of interpretation data for colour conversion, so the remedy does not collapse to changing colour or palette. Ramenta is an explicitly disclosed digital-tool extension."
+      },
+      "confidence": "Moderate authored source-supported functional paraphrase; independent exact linguistic/caller review remains required.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "english": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "raw": "Manmapo\\'lu i pixels gi lugåt-ñiha ginin i sanhilu\\' gi akakgui gi brin. An mana\\'dikiki\\' i brin, manmana\\'suha i pixels ni manggaigi gi sanhiyung i kåntu gi agapa\\' pat gi sanpapa\\'. An un usa “Undo”, para u fanmapo\\'lu ta\\'lu i pixels ni manmana\\'suha.",
+      "display": "Manmapo'lu i pixels gi lugåt-ñiha ginin i sanhilu' gi akakgui gi brin. An mana'dikiki' i brin, manmana'suha i pixels ni manggaigi gi sanhiyung i kåntu gi agapa' pat gi sanpapa'. An un usa “Undo”, para u fanmapo'lu ta'lu i pixels ni manmana'suha.",
+      "backtranslation": "The pixels are retained at their positions starting from the upper left of the canvas. When the canvas is made smaller, pixels located outside the right or lower edge are removed. When you use Undo, the removed pixels will be put back.",
+      "independent_reviews": [
+        {
+          "file": "review-ch-final-warnings4-independent-0735.json",
+          "sha256": "70e17617013685fc0afaee0758054d4a80cbdcae0739fe7a4d9b032357ac358b"
+        }
+      ],
+      "caller_summary": "ClassicPaintActivity1016 displays the row for existing-canvas dimensions with stretch=false. PaintDocument423–431 draws the bitmap unscaled at (0,0), clips at new right/bottom bounds and calls replace(next,true), which checkpoints history. undo230–244 restores dimensions and pixels. No arbitrary crop-anchor, stretch, or permanent loss is described.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1016
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Ginin the upper-left canvas position gives the reference anchor; their positions are retained, rather than relocating every pixel to one point. Undo is the actual fallback control label at this snapshot and is explicitly quoted. No new standalone Undo translation is nominated."
+      },
+      "confidence": "Moderate authored source-supported functional paraphrase; independent exact linguistic/caller review remains required.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "ui_the_undo_cache_is_damaged",
+      "english": "The undo cache is damaged.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "raw": "Cati AN Paint quiajoctoc (.rgba): ijtlakajtok.",
+      "display": "Cati AN Paint quiajoctoc (.rgba): ijtlakajtok.",
+      "backtranslation": "What AN Paint has stored (.rgba): it is damaged/corrupt.",
+      "independent_reviews": [
+        {
+          "file": "review-nahua-cache-damaged2-independent-0738.json",
+          "sha256": "4c57d9d30b64d8b49b75daaa1a85dcbede62d763f0d83f1b5d8134b5f420d9d5"
+        }
+      ],
+      "caller_summary": "RasterHistory60/62/81 checksum/header/dimension validation of the actual .rgba history snapshot; not corruption of all visible canvas pixels.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 60
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 62
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 81
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "The literal internal snapshot extension .rgba identifies affected storage category without an invented undo-cache noun, matching previously accepted bounded NHE cache convention. Exact own-variety predicates and spelling retained. NCH is dictionary broken/spoiled state; NHW is source corrupt mental-understanding state, with authored digital-information extension and lower confidence explicitly preserved. No native/layout/runtime certification; no claim every stored member is damaged."
+      },
+      "confidence": "moderate source/compositional for nch; moderate-lower abstract-information extension for nhw",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "ui_the_undo_cache_is_damaged",
+      "english": "The undo cache is damaged.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "raw": "Catli AN Paint quiajoctoc (.rgba): ijtlacajtoc.",
+      "display": "Catli AN Paint quiajoctoc (.rgba): ijtlacajtoc.",
+      "backtranslation": "What AN Paint has stored (.rgba): it is damaged/corrupt.",
+      "independent_reviews": [
+        {
+          "file": "review-nahua-cache-damaged2-independent-0738.json",
+          "sha256": "4c57d9d30b64d8b49b75daaa1a85dcbede62d763f0d83f1b5d8134b5f420d9d5"
+        }
+      ],
+      "caller_summary": "RasterHistory60/62/81 checksum/header/dimension validation of the actual .rgba history snapshot; not corruption of all visible canvas pixels.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 60
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 62
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 81
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "The literal internal snapshot extension .rgba identifies affected storage category without an invented undo-cache noun, matching previously accepted bounded NHE cache convention. Exact own-variety predicates and spelling retained. NCH is dictionary broken/spoiled state; NHW is source corrupt mental-understanding state, with authored digital-information extension and lower confidence explicitly preserved. No native/layout/runtime certification; no claim every stored member is damaged."
+      },
+      "confidence": "moderate source/compositional for nch; moderate-lower abstract-information extension for nhw",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_keep_editing23",
+      "english": "Keep editing",
+      "attributes": {
+        "name": "ui_keep_editing23"
+      },
+      "raw": "Tʼahdii łahgo áshłééh",
+      "display": "Tʼahdii łahgo áshłééh",
+      "backtranslation": "I am still changing it. [Self-choice: keep editing.]",
+      "independent_reviews": [
+        {
+          "file": "review-nv-decision-action4-independent-0743.json",
+          "sha256": "fc4b088c5574b160beeec179ddf18f28ae33bccec80a50dce0f031a9e588f8c1"
+        }
+      ],
+      "caller_summary": {
+        "key": "ui_keep_editing23",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+        "locator": "confirmReplacement, around line1079",
+        "finding": "The negative keep-editing button has null action, dismissing the replacement confirmation and preserving the current editor. It does not execute a new edit or claim anything saved."
+      },
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1079
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "First-person imperfective is deliberately the user’s selection voice, not an imperative or a claim of future completion. Temporal continuation preserves the current editing activity. New UI whole phrase, not source-attested software localization."
+      },
+      "confidence": "Source-supported authored composition. No native-speaker, runtime, or layout certification claimed.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_resize_large_image",
+      "english": "Resize large image?",
+      "attributes": {
+        "name": "ui_resize_large_image"
+      },
+      "raw": "Eʼelyaaígíí ntsaa. Daʼ áłtsʼíísígo áshłééh?",
+      "display": "Eʼelyaaígíí ntsaa. Daʼ áłtsʼíísígo áshłééh?",
+      "backtranslation": "The image is large. Do I make it small? [Self-choice: reduce the import dimensions.]",
+      "independent_reviews": [
+        {
+          "file": "review-nv-decision-action4-independent-0743.json",
+          "sha256": "fc4b088c5574b160beeec179ddf18f28ae33bccec80a50dce0f031a9e588f8c1"
+        }
+      ],
+      "caller_summary": {
+        "key": "ui_resize_large_image",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+        "locator": "show(), around lines25–66; target() constraints around line39",
+        "finding": "The resize-import dialog accepts dimensions no larger than source dimensions, checks memory budget, and loads the resized source only upon the positive action. This title can say make the image small as a reduction paraphrase. No enlarge, crop, overwrite, success, or automatic-save promise."
+      },
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 36
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Authored dimensional reduction using independently attested large/small statives, resultative -go+MAKE and first-person question. The current caller is reduction-only; if reused for enlargement this candidate must be reconsidered. The two clauses avoid inventing a relative-clause noun. Small is a functional reduction paraphrase, not an exact requested pixel count."
+      },
+      "confidence": "Source-supported authored composition. No native-speaker, runtime, or layout certification claimed.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    }
+  ]
+}

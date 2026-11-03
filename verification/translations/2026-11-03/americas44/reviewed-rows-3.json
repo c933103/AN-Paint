@@ -1,0 +1,438 @@
+{
+  "note": "Source reviewed and locally integrated on a dependent branch; native fluency, runtime and layout unverified.",
+  "rows": [
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "formats22_open_still",
+      "english": "Open still image",
+      "attributes": {
+        "name": "formats22_open_still"
+      },
+      "raw": "Eʼelyaaígíí (tʼáadoo nahaʼnání) ąą ánílééh",
+      "display": "Eʼelyaaígíí (tʼáadoo nahaʼnání) ąą ánílééh",
+      "backtranslation": "Open the image (motionless). [Open the static result, frame0.]",
+      "independent_reviews": [
+        {
+          "file": "review-nv-decision-action4-independent-0743.json",
+          "sha256": "fc4b088c5574b160beeec179ddf18f28ae33bccec80a50dce0f031a9e588f8c1"
+        }
+      ],
+      "caller_summary": {
+        "key": "formats22_open_still",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+        "locator": "showAnimation(), around lines88–97",
+        "finding": "The still button finishes selection with frame index0, both when a multiframe source is known and when animation status is unknown. This label describes the motionless imported result, NOT a claim that the source container lacks additional frames. The title also reuses the same key for frameCount<2."
+      },
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 94
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 95
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Parentheses bind the motionless descriptor to the explicitly named image/result. The exact motionless expression is attested; the parenthetical packaging and digital-image extension are authored. Do not read this as temporal still, a command that the user remain still, or a statement that every source frame is motionless. A source may contain animation while the imported frame is motionless."
+      },
+      "confidence": "Source-supported authored composition. No native-speaker, runtime, or layout certification claimed.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "formats22_animation_title",
+      "english": "Animated image",
+      "attributes": {
+        "name": "formats22_animation_title"
+      },
+      "raw": "Eʼelyaaígíí nahaʼná",
+      "display": "Eʼelyaaígíí nahaʼná",
+      "backtranslation": "The image moves. [Heading describing animated image content.]",
+      "independent_reviews": [
+        {
+          "file": "review-nv-decision-action4-independent-0743.json",
+          "sha256": "fc4b088c5574b160beeec179ddf18f28ae33bccec80a50dce0f031a9e588f8c1"
+        }
+      ],
+      "caller_summary": {
+        "key": "formats22_animation_title",
+        "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+        "locator": "showAnimation(), around lines88–97",
+        "finding": "Animated-image title is chosen for frameCount>=2. A source descriptor, not a command to move a layer and not a promise to play or import all frames."
+      },
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 94
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Complete finite third-person sentence used as heading, avoiding an invented adjective/nominalizer. It refers to motion within the represented image in the animation-import context. Actual animation may comprise changing frames without literal locomotion; this is the usual functional moving-picture extension and not technical frame-count terminology. Never reuse for the canvas Move tool."
+      },
+      "confidence": "Source-supported authored composition. No native-speaker, runtime, or layout certification claimed.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "save20_invalid_name",
+      "english": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "raw": "ᎠᏍᏆᏂᎪᏙᏗ ᏚᏙᎥᎢ — ᎭᏑᏯᎩ. ᎪᏪᎸ — /, \\\\, Unicode U+0000–U+001F, U+007F–U+009F: ᏂᏓᏓᏂᎸᎬᎾ.",
+      "display": "ᎠᏍᏆᏂᎪᏙᏗ ᏚᏙᎥᎢ — ᎭᏑᏯᎩ. ᎪᏪᎸ — /, \\, Unicode U+0000–U+001F, U+007F–U+009F: ᏂᏓᏓᏂᎸᎬᎾ.",
+      "backtranslation": "Choose a file name. Characters /, backslash, Unicode U+0000–U+001F and U+007F–U+009F are invalid.",
+      "independent_reviews": [
+        {
+          "file": "review-chr-filename-control1-independent-0743.json",
+          "sha256": "d1cd08c1a15467f1c2844307042509c8cb33168c103a2480c0ec4f02ad7d836e"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog194 puts this on the filename input after ExportNames.valid fails. The validator38 rejects both slash characters and Char.isISOControl; also blank and dot-only stems as in the unchanged English contract. This is not a file-picker command or permission grant.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 194
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Choose is an authored functional equivalent of supplying a filename in this existing editable-field error. Filename and invalid-character headings scope the listed symbols/ranges to names, not Unicode generally. Full ISO ranges are technical identifiers in place of a coined control-character noun, matching reviewed CH warning convention. Both slash directions explicit. No universal promise any unlisted name is valid; blank/dot-only names still handled by existing validator. The actual display includes one backslash; raw has two for Android escaping. No native/layout/runtime certification."
+      },
+      "confidence": "moderate source/compositional nomination with explicit technical-code and context limits",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "save20_lossy_quality_description",
+      "english": "Higher quality preserves more detail and usually makes a larger file.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "raw": "ᎢᏲᏍᏓ — ᎤᏟ ᎢᏲᏍᏛ → ᏂᏕᎬᎿᏅᎢ — ᏗᎦᏂᏴᎯ ᏂᎬᏁᎸ: ᎤᎪᏗ. ᎤᏠᏱᎭ — ᎠᏍᏆᏂᎪᏙᏗ — byte — ᏎᏍᏗ: ᎤᎪᏗ.",
+      "display": "ᎢᏲᏍᏓ — ᎤᏟ ᎢᏲᏍᏛ → ᏂᏕᎬᎿᏅᎢ — ᏗᎦᏂᏴᎯ ᏂᎬᏁᎸ: ᎤᎪᏗ. ᎤᏠᏱᎭ — ᎠᏍᏆᏂᎪᏙᏗ — byte — ᏎᏍᏗ: ᎤᎪᏗ.",
+      "backtranslation": "Better quality → more retained details. Usually the file has a greater number of bytes.",
+      "independent_reviews": [
+        {
+          "file": "review-chr-quality-descriptions2-v2-reconciliation-0753.json",
+          "sha256": "a5aae1e850719802ed23620c529283c96d915cbaf8e215371b701f2233bf17ab"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog102, JPEG/HEIC explanations only. Slider1–100 describes quality setting. Larger output is typical, not guaranteed; retained detail is image information, not dimensions or metadata guarantee.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 102
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Whole software descriptions are new symbolic/heading compositions. Arrow makes the comparative relation explicit without inventing a conditional inflection. Retained details means retained visual information, not a guarantee about arbitrary metadata. byte is exactly source-borrowed; number of bytes makes file size concrete without normalizing the unreliable mixed-script larger entry. Lossless is the current fallback option name, not asserted as a Cherokee loan. Visual wording must still receive independent semantic/compositional review; no native/layout certificate."
+      },
+      "confidence": "moderate-lower source-compositional nomination; comparative heading/arrow readability must be independently reviewed",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "english": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "raw": "ᎢᏲᏍᏓ — ᎤᏟ ᎢᏲᏍᏛ → ᎤᏠᏱᎭ — ᎠᏍᏆᏂᎪᏙᏗ — byte — ᏎᏍᏗ: ᎤᎪᏗ. Lossless — ᎠᏑᏫᏓ — ᏧᎬᏩᎶᏗᏯ: ᏂᎦᏓ — ᏗᎦᏂᏴᎯ ᏂᎬᏁᎸ.",
+      "display": "ᎢᏲᏍᏓ — ᎤᏟ ᎢᏲᏍᏛ → ᎤᏠᏱᎭ — ᎠᏍᏆᏂᎪᏙᏗ — byte — ᏎᏍᏗ: ᎤᎪᏗ. Lossless — ᎠᏑᏫᏓ — ᏧᎬᏩᎶᏗᏯ: ᏂᎦᏓ — ᏗᎦᏂᏴᎯ ᏂᎬᏁᎸ.",
+      "backtranslation": "Better quality → usually a greater number of file bytes. Lossless: all colour numerical values are retained.",
+      "independent_reviews": [
+        {
+          "file": "review-chr-quality-descriptions2-v2-reconciliation-0753.json",
+          "sha256": "a5aae1e850719802ed23620c529283c96d915cbaf8e215371b701f2233bf17ab"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog103 default explanation, visible for WebP, JPEG XL and AVIF; PNG explanation hidden105. Lossless checkbox controls quality visibility and selection of lossless output. All numeric colour values retained, not equalizing different values or merely preserving a palette.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 103
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Whole software descriptions are new symbolic/heading compositions. Arrow makes the comparative relation explicit without inventing a conditional inflection. Retained details means retained visual information, not a guarantee about arbitrary metadata. byte is exactly source-borrowed; number of bytes makes file size concrete without normalizing the unreliable mixed-script larger entry. Lossless is the current fallback option name, not asserted as a Cherokee loan. Visual wording must still receive independent semantic/compositional review; no native/layout certificate."
+      },
+      "confidence": "moderate-lower source-compositional nomination; comparative heading/arrow readability must be independently reviewed",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "save20_encoding_budget",
+      "english": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "raw": "AN Paint tlanahuatia ica quezqui RAM hueli motequihuia para ni tequitl. Nopa RAM axahci para ni ixcopincayotl huan RAM tlen motequihuia ce tlatoctzin para quichihuaz tlen quiahcocuiz.",
+      "display": "AN Paint tlanahuatia ica quezqui RAM hueli motequihuia para ni tequitl. Nopa RAM axahci para ni ixcopincayotl huan RAM tlen motequihuia ce tlatoctzin para quichihuaz tlen quiahcocuiz.",
+      "backtranslation": "AN Paint sets rules about how much RAM may be used for this operation. That RAM is insufficient for this image and the RAM used temporarily to make what it will store.",
+      "independent_reviews": [
+        {
+          "file": "review-nhe-encoding-budget1-independent-0802.json",
+          "sha256": "25f06aa0dc8566bec08ec008df2a2e41b1beef0862cc398526849586fc1c3e05"
+        }
+      ],
+      "caller_summary": "The first sentence explicitly establishes AN Paint as governing a permitted RAM amount. The second sentence points back to that allowance and states insufficiency for both the source image and temporary working RAM used to create the stored output. This preserves policy-budget refusal rather than changing it into actual device OOM. Short-period wording modifies the RAM-use relative clause, not the time required to complete encoding; it is accepted as a bounded explanation of temporary working storage, not a duration guarantee.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 79
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 56
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 43
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 24
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": [
+          "Authored extension of the source inanimate rule-giving construction to software policy. Explicit policy first sentence makes Nopa RAM the permitted amount, not the device total. Temporary RAM for making what it will store is the encoding-buffer explanation; no invented indigenous buffer/file noun. Short-period expression marks temporariness, not a runtime promise. RAM is an openly retained international acronym. No native/layout/runtime certification.",
+          "Retain the first policy-setting sentence and its following anaphoric reference together. Removing the first sentence would lose the allowance/device-memory distinction.",
+          "The duration phrase has a literal short-period sense. Acceptance is confined to transient working-memory use here; it is not a general translation of temporary and must not be reused as a claim that any save finishes quickly."
+        ]
+      },
+      "confidence": "Moderate own-variety functional composition; no native-speaker, universal-locality, layout or runtime certification.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "save20_encoding_budget",
+      "english": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "raw": "Para ni ixkopinali huan para AN Paint quichihuas cati quiajocuis, monequi más RAM que cati AN Paint quicahuilía.",
+      "display": "Para ni ixkopinali huan para AN Paint quichihuas cati quiajocuis, monequi más RAM que cati AN Paint quicahuilía.",
+      "backtranslation": "For this image and for AN Paint to make what it will save, more RAM is needed than what AN Paint allows.",
+      "independent_reviews": [
+        {
+          "file": "review-nahua-encoding-budget2-independent-0802.json",
+          "sha256": "606a1d56af1eaf1eb14390152b5113086c4de318dd45ed8cec5056cf716f83bd"
+        }
+      ],
+      "caller_summary": "The sentence explicitly states that RAM needed for the image and for AN Paint to produce the stored output exceeds the amount AN Paint permits. Its comparison is quantitative and normative, not a statement that physical device memory or disk space ran out. Own-variety comparison and rule-permitted quantity constructions were independently read and visually checked; the named software agent avoids making the user responsible for finishing the artwork.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 79
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 56
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 43
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 24
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": [
+          "Authored functional rendering, not a published complete technical sentence. Native buffer, encoder and budget nouns are deliberately not coined. The source image and output-production work are named separately; required RAM is explicitly compared with the amount AN Paint allows. Purpose/future clause does not promise successful saving. No claim the device ran out of physical RAM; no remedy to add RAM or export-only narrowing. No native-human gate, native naturalness certification, app layout claim, runtime validation or app modification.",
+          "Verbal and clause grammar: independently coded Central Huasteca NT, first edition 2005/electronic 2009, no specific village identified. Image noun: Hernández Beatriz 2016 Cruzhica/Xochiatipan Hidalgo, printed64; explicit Valiñas nch locality mapping, older indirect nhe bibliography-label conflict retained. Mixed within-Central lexical and grammatical sources, not asserted as a single locality or universal spelling. NT quichihuas spelling retained; not normalized to the different chihua/chiua conventions in the Cruzhica vocabulary or neighboring NHE.",
+          "The singular storing future remains a productive number inference from own plural evidence, not newly claimed exact attestation. Technical RAM and application name remain explicit."
+        ]
+      },
+      "confidence": "Moderate own-variety functional composition; no native-speaker, universal-locality, layout or runtime certification.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "save20_encoding_budget",
+      "english": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "raw": "Para ni tlaixkopintli huan para AN Paint quichihuas catli quiajocuis, monequi más RAM que catli AN Paint quicahuilía.",
+      "display": "Para ni tlaixkopintli huan para AN Paint quichihuas catli quiajocuis, monequi más RAM que catli AN Paint quicahuilía.",
+      "backtranslation": "For this image and for AN Paint to make what it will save, more RAM is needed than what AN Paint allows.",
+      "independent_reviews": [
+        {
+          "file": "review-nahua-encoding-budget2-independent-0802.json",
+          "sha256": "606a1d56af1eaf1eb14390152b5113086c4de318dd45ed8cec5056cf716f83bd"
+        }
+      ],
+      "caller_summary": "The sentence explicitly states that RAM needed for the image and for AN Paint to produce the stored output exceeds the amount AN Paint permits. Its comparison is quantitative and normative, not a statement that physical device memory or disk space ran out. Own-variety comparison and rule-permitted quantity constructions were independently read and visually checked; the named software agent avoids making the user responsible for finishing the artwork.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 79
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 56
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 43
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 24
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": [
+          "Authored functional rendering, not a published complete technical sentence. Native buffer, encoder and budget nouns are deliberately not coined. The source image and output-production work are named separately; required RAM is explicitly compared with the amount AN Paint allows. Purpose/future clause does not promise successful saving. No claim the device ran out of physical RAM; no remedy to add RAM or export-only narrowing. No native-human gate, native naturalness certification, app layout claim, runtime validation or app modification.",
+          "Verbal and clause grammar: independently coded Western Huasteca NT, 2000/electronic2009, explicitly Tamazunchale San Luis Potosí with local variation disclosed on PDF4. Image noun: official INALI/UISLP Huasteca Potosina glossary printed97/99, contributor village unspecified. Within-Western source differences are retained, not claimed universally uniform; no Central or Eastern morphology borrowed.",
+          "The singular storing future remains a productive number inference from own plural evidence, not newly claimed exact attestation. Technical RAM and application name remain explicit."
+        ]
+      },
+      "confidence": "Moderate own-variety functional composition; no native-speaker, universal-locality, layout or runtime certification.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "save20_encoding_budget",
+      "english": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "raw": "AN Paint — RAM — ᎠᏎᎸᎯ: ᏗᏟᎶᏍᏔᏅ ᎠᎴ (ᎪᏗᏍᎩ — ᎠᎪᏙᏗ) — ᎥᏝ ᎡᎵᏱᏂᎦᎢ ᎠᏅᏓᏗᏍᏙ.",
+      "display": "AN Paint — RAM — ᎠᏎᎸᎯ: ᏗᏟᎶᏍᏔᏅ ᎠᎴ (ᎪᏗᏍᎩ — ᎠᎪᏙᏗ) — ᎥᏝ ᎡᎵᏱᏂᎦᎢ ᎠᏅᏓᏗᏍᏙ.",
+      "backtranslation": "AN Paint RAM limit: not enough memory for the image and encoding buffers.",
+      "independent_reviews": [
+        {
+          "file": "review-chr-recovery-budget3-independent-0807.json",
+          "sha256": "14e5c91d7476e8d93271f749ef192bf11bdecd17a64e68dfbd402b552ff40a0b"
+        }
+      ],
+      "caller_summary": "Accepted unchanged as a functional policy-limited diagnostic. AN Paint / RAM / limit explicitly scopes the insufficiency predicate to the app allowance, not total device RAM. The image is coordinated with a parenthesized encoding / buffer topic, so it is not described as an encoding buffer. Exact source-extracted memory-deficiency predicate remains complete before its source purpose tail. Generic buffer category does not assert that exactly one buffer failed. Actual required-versus-budget checks occur before output and separately from true OutOfMemoryError handling. Export is the shared encoder stage, not an instruction restricting the failure to the Export menu.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 79
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 56
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 43
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 24
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "semantic_limits": "Authored category hierarchy, not a claimed published sentence. Limit is exact OU generic entry with no explicit POS. No device-wide OOM, storage-space diagnosis or save-success promise."
+      },
+      "confidence": "source/compositional only; see pinned independent review",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_a_separate_recovery_copy_has_been_kept_use",
+      "english": "%1$s A separate recovery copy has been kept. Use File > Export recovery copy to save its ZIP. Extract canvas.png from it and load that image to use the normal resize options if needed.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "raw": "%1$s ᎤᏠᏱ ᎪᏢᏅᏗ: ᏗᎦᏂᏴᎯ ᏂᎬᏁᎸ. 1. “ᎠᏍᏆᏂᎪᏙᏗ > ᎤᏠᏱ ᎪᏢᏅᏗ — ᏫᎦᏌᏙᎣᏍᏗ (ZIP)…” 2. ZIP — canvas.png — ᏱᎬᏅᏕᏍᏗ. 3. canvas.png — “ᎠᏍᏆᏂᎪᏙᏗ > ᎯᏢᎦ…” → “ᏂᎬ ᎯᏁᏟᏴᎾ…” — ᎠᏑᏰᏍᏗᎢ.",
+      "display": "%1$s ᎤᏠᏱ ᎪᏢᏅᏗ: ᏗᎦᏂᏴᎯ ᏂᎬᏁᎸ. 1. “ᎠᏍᏆᏂᎪᏙᏗ > ᎤᏠᏱ ᎪᏢᏅᏗ — ᏫᎦᏌᏙᎣᏍᏗ (ZIP)…” 2. ZIP — canvas.png — ᏱᎬᏅᏕᏍᏗ. 3. canvas.png — “ᎠᏍᏆᏂᎪᏙᏗ > ᎯᏢᎦ…” → “ᏂᎬ ᎯᏁᏟᏴᎾ…” — ᎠᏑᏰᏍᏗᎢ.",
+      "backtranslation": "%1$s An archival duplicate is retained. 1. File > Export recovery copy (ZIP). 2. Extract canvas.png from ZIP. 3. Load canvas.png via File > Load image; then resize options.",
+      "independent_reviews": [
+        {
+          "file": "review-chr-recovery-budget3-independent-0807.json",
+          "sha256": "14e5c91d7476e8d93271f749ef192bf11bdecd17a64e68dfbd402b552ff40a0b"
+        }
+      ],
+      "caller_summary": "Accepted unchanged. Exact archival-duplicate term plus retained status gives the successful separate-copy result. AutosaveStore uses a fresh named ZIP target with retainOriginal=true, and caller assigns this notice only after that copy succeeds. Numbered sequence first identifies the real File > Export recovery copy command, then ZIP / canvas.png / extract, then canvas.png / real File > Load image, followed by the resize-options topic. Extraction precedes loading; canvas.png, not the ZIP archive, is the image to load. The final noun options scopes resize as available choices and does not instruct applying a resize.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/EditorDraftRecovery.kt",
+          "line": 39
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "semantic_limits": "Functional instruction list rather than a fluent attested whole sentence. No claim that saved archive is readable, repaired, fully restored, or retains usable undo history. Backup copy itself supplies the archival duplicate meaning without an invented separate-adjective construction. Resize remains optional through the options topic, not a guessed if-needed clause."
+      },
+      "confidence": "source/compositional only; see pinned independent review",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_sampled_resize_memory_explanation",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "attributes": {
+        "name": "ui_sampled_resize_memory_explanation"
+      },
+      "raw": "AN Paint quiixnehuia quezqui RAM monequi. Quicempohua RAM para ixcopincayotl tlen namantzin eltoc (canvas), para tlen quiahcoucqui para quipepechoz (clipboard), huan RAM tlen motequihuia ce tlatoctzin quemman quitlapoa ixcopincayotl ica ihuexca tlen maz cuecuetztzin (sampled decoding) huan quemman quipatla ixcopincayotl. Itlapohual RAM tlen motequihuia axnochipa cencah. Pan ixcopincayotl tlen AN Paint quichihua ica ihuexca tlen maz cuecuetztzin (px), polihui cequi tlen neci. AN Paint axquipatla ixcopincayotl tlen achtohui (original file).",
+      "display": "AN Paint quiixnehuia quezqui RAM monequi. Quicempohua RAM para ixcopincayotl tlen namantzin eltoc (canvas), para tlen quiahcoucqui para quipepechoz (clipboard), huan RAM tlen motequihuia ce tlatoctzin quemman quitlapoa ixcopincayotl ica ihuexca tlen maz cuecuetztzin (sampled decoding) huan quemman quipatla ixcopincayotl. Itlapohual RAM tlen motequihuia axnochipa cencah. Pan ixcopincayotl tlen AN Paint quichihua ica ihuexca tlen maz cuecuetztzin (px), polihui cequi tlen neci. AN Paint axquipatla ixcopincayotl tlen achtohui (original file).",
+      "backtranslation": "AN Paint estimates how much RAM is needed. It counts together RAM for the image currently present (canvas), for what it stored for pasting (clipboard), and RAM used temporarily when opening the image at smaller dimensions (sampled decoding) and when changing the image. The amount of RAM used is not always the same. In the image AN Paint makes at smaller dimensions (px), some of what is visible is lost. AN Paint does not change the first/original image (original file).",
+      "independent_reviews": [
+        {
+          "file": "review-nhe-sampled-memory1-independent-0810.json",
+          "sha256": "4c6d03945e4433bac64c65313f5e77fb8865ef7537da36fd4000b124ac0ad71d"
+        }
+      ],
+      "caller_summary": "ImageResizeDialog34 only selects this when !memoryRequirements.hasNativeWork. ImageImport27–39 computes sample dimensions and ImportMemoryRequirements75–84 includes sample decode plus target editing data and resident pixels. PaintDocument150–152 includes bitmap, selection and clipboard. Resize only occurs after the user accepts58; this wording is a generic consequence description, not a report that resizing already happened.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt",
+          "line": 34
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": [
+          "Technical anchors RAM, canvas, clipboard, sampled decoding, px and original file retain exact software referents beside functional wording. They are not claimed Chicontepec dictionary terms.",
+          "The original file remains distinct from the smaller image produced. Estimate is not reported as measured actual use; actual amount can vary.",
+          "quicempohua applies counting-together to requirements, not simultaneous actual peak allocation of every independent intermediate. The caller uses maxima/reserves; the wording describes inclusion, not a literal arithmetic assertion that all buffers sum simultaneously.",
+          "maz cuecuetztzin combines own source degree and own small; not an attested whole collocation. Existing HUEXCA size convention and px establish dimension reduction, not quality/byte compression or zoom.",
+          "IXNEHUIA is own estimating without measurement; the source example is human planning, so applying it to software is an openly authored semantic extension. No literal machine cognition claim.",
+          "No source-file change, restoration guarantee, successful retry claim, native/layout/runtime certificate."
+        ]
+      },
+      "confidence": "Moderate source-backed authored functional nomination. Estimate-by-judgment and dimensional degree collocation are explicitly new digital compositions requiring independent review.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    }
+  ]
+}

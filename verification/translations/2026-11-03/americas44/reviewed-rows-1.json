@@ -1,0 +1,401 @@
+{
+  "note": "Source reviewed and locally integrated on a dependent branch; native fluency, runtime and layout unverified.",
+  "rows": [
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "english": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "raw": "Yanggin mås måolik i kualidåt, sessu mås dångkulu i dokumentu. An ma\\'usa lossless, mapo\\'lu sin tinilaika kada numiru ni ma\\'usa para i kulot gi pinenta.",
+      "display": "Yanggin mås måolik i kualidåt, sessu mås dångkulu i dokumentu. An ma'usa lossless, mapo'lu sin tinilaika kada numiru ni ma'usa para i kulot gi pinenta.",
+      "backtranslation": "If quality is better, the file is often larger. When lossless is used, every number used for colour in the image is retained without alteration.",
+      "independent_reviews": [
+        {
+          "file": "review-americas6-formats-guidance-independent-0706.json",
+          "sha256": "74d31bd32f52b5aada256f5bac1c57302187d06a8624e91630105284598eb428"
+        },
+        {
+          "file": "reviewed-americas6-formats-guidance-0706.json",
+          "sha256": "0edc789fc6837973586fcc22cfdcd755ce5abab9cc88b5dab87b24c952843944"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog95–105 chooses this explanation for JPEG XL/WebP/AVIF and PNG, but hides the PNG explanation. ImageExporter passes quality/lossless to those encoders. HeifCodec91–95 specifically documents opaque RGB lossless AVIF. This description concerns the opaque editable image and does not make metadata, alpha-channel or file-byte equality claims.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 103
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Often is a slightly wider frequency than usually; retained as a qualified practical tendency. Not a claim of an attested whole Chamorro software sentence."
+      },
+      "confidence": "Moderate independent own-primary-source and authored functional-composition support. No native-human, whole-published-sentence, layout, runtime or build certificate.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "save20_gif_description",
+      "english": "Still image, up to 256 colours. Dithering smooths colour gradients. Animated GIFs open as their first frame.",
+      "attributes": {
+        "name": "save20_gif_description"
+      },
+      "raw": "Ketu na pinenta, put di mås 256 na kulot. Dithering ha na\\'finu i tinilaika ginin un kulot para ottru gi pinenta. An kumalamtin i GIF, i fine\\'na na pinenta ha\\' para u mababa.",
+      "display": "Ketu na pinenta, put di mås 256 na kulot. Dithering ha na'finu i tinilaika ginin un kulot para ottru gi pinenta. An kumalamtin i GIF, i fine'na na pinenta ha' para u mababa.",
+      "backtranslation": "Still image, at most256 colours. Dithering smooths the change from one colour to another in the image. If the GIF moves, only the first image will be opened.",
+      "independent_reviews": [
+        {
+          "file": "review-americas6-formats-guidance-independent-0706.json",
+          "sha256": "74d31bd32f52b5aada256f5bac1c57302187d06a8624e91630105284598eb428"
+        },
+        {
+          "file": "reviewed-americas6-formats-guidance-0706.json",
+          "sha256": "0edc789fc6837973586fcc22cfdcd755ce5abab9cc88b5dab87b24c952843944"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog95 chooses the GIF explanation and line91 exposes dithering only for GIF. LegacyImageEncoder138–190 writes one GIF image and no more than 256 palette entries, with optional error diffusion after reduction. ImportSelection89–96 opens frame index 0 after the animation notice. The source English is an overview, not a promise that no notice appears.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 95
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Smooth physical surfaces to smoother visual transitions is an explicit metaphorical extension. Ketu plus image is an authored digital modifier; not native-human certification."
+      },
+      "confidence": "Moderate independent own-primary-source and authored functional-composition support. No native-human, whole-published-sentence, layout, runtime or build certificate.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "formats22_ascii_description",
+      "english": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "attributes": {
+        "name": "formats22_ascii_description"
+      },
+      "raw": "Mafa\\'tinas lisu na tinige\\' ginin simbulu siha para i chångnga yan i diduk na påtti gi pinenta. Para un atan, debi na u parehu i finedda\\' kada simbulu gi klåsin lettra ni un usa. Pinenta ginin tinige\\' ha\\' esti; ti siña mababa ta\\'lu kumu i urihinåt na pinenta.",
+      "display": "Mafa'tinas lisu na tinige' ginin simbulu siha para i chångnga yan i diduk na påtti gi pinenta. Para un atan, debi na u parehu i finedda' kada simbulu gi klåsin lettra ni un usa. Pinenta ginin tinige' ha' esti; ti siña mababa ta'lu kumu i urihinåt na pinenta.",
+      "backtranslation": "Plain text is made from symbols for the light and dark parts of the image. To view it, each symbol must have equal width in the font you use. This is only a picture made from text; it cannot be reopened as the original image.",
+      "independent_reviews": [
+        {
+          "file": "review-americas6-formats-guidance-independent-0706.json",
+          "sha256": "74d31bd32f52b5aada256f5bac1c57302187d06a8624e91630105284598eb428"
+        },
+        {
+          "file": "reviewed-americas6-formats-guidance-0706.json",
+          "sha256": "0edc789fc6837973586fcc22cfdcd755ce5abab9cc88b5dab87b24c952843944"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog101 binds ASCII_ART to this description. TextImageCodec40–55 scales to a character grid; TextImageData160–186 writes ASCII bytes selected from image brightness, with newline rows and optional inversion. TextImageCodec13–24 instead decodes Base64 raster text on input. Equal width means a font character-cell advance, not equal ink area or shape.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 101
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "No claim that lisu na tinige' or the complete equal-width sentence is a published GUI term. The requirements are functionally explicit."
+      },
+      "confidence": "Moderate independent own-primary-source and authored functional-composition support. No native-human, whole-published-sentence, layout, runtime or build certificate.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_share_explanation34",
+      "english": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "attributes": {
+        "name": "ui_share_explanation34",
+        "formatted": "false"
+      },
+      "raw": "1. ᏮᎦᏛᎢ — ᎭᏑᏯᎩ. 2. ᏗᏟᎶᏍᏔᏅ — ᎯᏍᏆᏂᎪᏓ. 3. ᎬᏙᏗ — ᎭᏑᏯᎩ. 4. ᎠᏯᏙᏍᏗᎢ. ᎯᏍᏆᏂᎪᏓ — ᏮᎦᏛᎢ: ᎤᏠᏱ.",
+      "display": "1. ᏮᎦᏛᎢ — ᎭᏑᏯᎩ. 2. ᏗᏟᎶᏍᏔᏅ — ᎯᏍᏆᏂᎪᏓ. 3. ᎬᏙᏗ — ᎭᏑᏯᎩ. 4. ᎠᏯᏙᏍᏗᎢ. ᎯᏍᏆᏂᎪᏓ — ᏮᎦᏛᎢ: ᎤᏠᏱ.",
+      "backtranslation": "1. Destination: choose it. 2. Copy/picture: Save. 3. App: choose it. 4. Share. Save destination: same.",
+      "independent_reviews": [
+        {
+          "file": "review-americas6-formats-guidance-independent-0706.json",
+          "sha256": "74d31bd32f52b5aada256f5bac1c57302187d06a8624e91630105284598eb428"
+        },
+        {
+          "file": "reviewed-americas6-formats-guidance-0706.json",
+          "sha256": "0edc789fc6837973586fcc22cfdcd755ce5abab9cc88b5dab87b24c952843944"
+        }
+      ],
+      "caller_summary": "Both SaveOptionsDialog52 and183 select this explanation before export/default branches. ClassicPaintActivity842 calls showSaveOptions(exportOptions.format,true,export=true); 1113–1120 sets sharing and exporting and opens ACTION_CREATE_DOCUMENT. writeImage1354–1374 writes the output before invoking shareSavedImage; 1380–1389 opens the Android ACTION_SEND chooser. Because exporting is true, savedTarget is not reassigned. No automatic recipient delivery or success guarantee is implied.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 52
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 183
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Current is supplied by the existing Save-command referent rather than a separate adjective. The numbered workflow and final distinct Save-destination state preserve the practical contrast. No whole-sentence attestation or plural imperative is claimed."
+      },
+      "confidence": "Moderate independent own-primary-source and authored functional-composition support. No native-human, whole-published-sentence, layout, runtime or build certificate.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_export_explanation23",
+      "english": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "attributes": {
+        "name": "ui_export_explanation23"
+      },
+      "raw": "ᏫᎦᏌᏙᎣᏍᏗ: ᎠᎢᎧᏂ, Base64 — ᎠᎪᎵᏰᏗ, ASCII — ᏗᏟᎶᏍᏔᏅ. ᏗᏟᎶᏍᏔᏅ: ᎤᏠᏱ. ᎯᏍᏆᏂᎪᏓ — ᏮᎦᏛᎢ: ᎤᏠᏱ.",
+      "display": "ᏫᎦᏌᏙᎣᏍᏗ: ᎠᎢᎧᏂ, Base64 — ᎠᎪᎵᏰᏗ, ASCII — ᏗᏟᎶᏍᏔᏅ. ᏗᏟᎶᏍᏔᏅ: ᎤᏠᏱ. ᎯᏍᏆᏂᎪᏓ — ᏮᎦᏛᎢ: ᎤᏠᏱ.",
+      "backtranslation": "Export: icon, Base64 text, ASCII picture. Image: same. Save destination: same.",
+      "independent_reviews": [
+        {
+          "file": "review-americas6-formats-guidance-independent-0706.json",
+          "sha256": "74d31bd32f52b5aada256f5bac1c57302187d06a8624e91630105284598eb428"
+        },
+        {
+          "file": "reviewed-americas6-formats-guidance-0706.json",
+          "sha256": "0edc789fc6837973586fcc22cfdcd755ce5abab9cc88b5dab87b24c952843944"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog52/183 selects the export branch only after the share branch; formats are restricted through ImageFormat.isDerivedExport to ICO, BASE64 and ASCII_ART (declared in SaveOptionsDialog.kt, not a separate ImageFormat.kt). ImageExporter encodes the current bitmap without replacing it. writeImage1370 updates savedTarget, filename and saved status only when exporting is false.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 52
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 183
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Current is contextual to the single working image in this dialog. Same is an uninflected state label, not a claimed inflected remains-unchanged construction. This wording does not promise an unmodified output raster."
+      },
+      "confidence": "Moderate independent own-primary-source and authored functional-composition support. No native-human, whole-published-sentence, layout, runtime or build certificate.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_save_explanation23",
+      "english": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "attributes": {
+        "name": "ui_save_explanation23"
+      },
+      "raw": "ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ ᏱᎬᏁᏗᏱ: ᎭᏑᏯᎩ. ᎤᏍᏗ ᏱᎬᏁᏗ — ᏕᎦᎧᎲᎢ: ᎭᏑᏯᎩ. ᎠᏏᏉ “ᎯᏍᏆᏂᎪᏓ”: ᎠᏍᏆᏂᎪᏙᏗ ᏚᏙᎥᎢ — ᎤᏠᏱ; ᏮᎦᏛᎢ — ᎤᏠᏱ; ᎠᏍᏆᏂᎪᏙᏗ ᏱᎬᏁᏗᏱ — ᎤᏠᏱ; ᏕᎦᎧᎲᎢ — ᎤᏠᏱ.",
+      "display": "ᏗᏟᎶᏍᏔᏅ — ᎠᏍᏆᏂᎪᏙᏗ ᏱᎬᏁᏗᏱ: ᎭᏑᏯᎩ. ᎤᏍᏗ ᏱᎬᏁᏗ — ᏕᎦᎧᎲᎢ: ᎭᏑᏯᎩ. ᎠᏏᏉ “ᎯᏍᏆᏂᎪᏓ”: ᎠᏍᏆᏂᎪᏙᏗ ᏚᏙᎥᎢ — ᎤᏠᏱ; ᏮᎦᏛᎢ — ᎤᏠᏱ; ᎠᏍᏆᏂᎪᏙᏗ ᏱᎬᏁᏗᏱ — ᎤᏠᏱ; ᏕᎦᎧᎲᎢ — ᎤᏠᏱ.",
+      "backtranslation": "Image file format: choose it. Compression settings: choose it. Save again: same filename, same destination, same file format, same settings.",
+      "independent_reviews": [
+        {
+          "file": "review-americas6-formats-guidance-independent-0706.json",
+          "sha256": "74d31bd32f52b5aada256f5bac1c57302187d06a8624e91630105284598eb428"
+        },
+        {
+          "file": "reviewed-americas6-formats-guidance-0706.json",
+          "sha256": "0edc789fc6837973586fcc22cfdcd755ce5abab9cc88b5dab87b24c952843944"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog52/183 selects default Save guidance. ClassicPaintActivity1104–1108 requestSave (not normalSave) uses savedTarget.options and savedTarget.uri on subsequent Save. Initial Save/Save as writes through the picker; writeImage1370 stores URI, actual display filename and the complete options when not exporting. The filename may be read from the saved URI rather than separately resubmitted, but the same saved file is reused.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 52
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 183
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Compact technical heading convention, not native-human-approved continuous prose. Again and the four same labels carry reuse sufficiently in this UI; they do not require the user to choose each field again."
+      },
+      "confidence": "Moderate independent own-primary-source and authored functional-composition support. No native-human, whole-published-sentence, layout, runtime or build certificate.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_clear_all",
+      "english": "Clear all",
+      "attributes": {
+        "name": "ui_clear_all"
+      },
+      "raw": "Tʼáá ałtso kʼééʼiłchxǫǫh",
+      "display": "Tʼáá ałtso kʼééʼiłchxǫǫh",
+      "backtranslation": "Erase all of it/them. In this caller: clear all contents of the current assembly.",
+      "independent_reviews": [
+        {
+          "file": "review-nv-clear-all-discard3-independent.json",
+          "sha256": "8a79fb7e9c43f03e205769c3b1e6bbe77edbd5625ac5357cd501450475fee8ac"
+        }
+      ],
+      "caller_summary": "AssemblyActivity.kt:101 assembly_clear invokes ImageAssembly.clear():153, which passes emptyList() to change(). ImageAssembly.kt:233-240 writes the empty list and retains prior state in undo; clear removes placed AND unplaced entries from the current assembly and tray. It does not overwrite the pixels of source images, delete external originals, or promise permanent erasure. This is distinct from ClassicPaintActivity current-canvas Clear image.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 101
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "The whole phrase is newly authored. The source describes erasing physical marks; applying it to clearing digital assembly contents is an explicit bounded metaphor. The quantifier must be reviewed with this complete predicate for collective contents/plural scope. This is not proof that the single-image erasure label automatically generalizes to plural image entries. Do not reuse as permanent deletion or deletion of saved files. No native-speaker or runtime/layout claim."
+      },
+      "confidence": "Moderate-to-low; bounded authored collective-content command.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_discard",
+      "english": "Discard",
+      "attributes": {
+        "name": "ui_discard"
+      },
+      "raw": "Yóóʼ ahishhan",
+      "display": "Yóóʼ ahishhan",
+      "backtranslation": "I will discard it / I will throw it away. Here it means declining to preserve the current unsaved image/version before replacement.",
+      "independent_reviews": [
+        {
+          "file": "review-nv-clear-all-discard3-independent.json",
+          "sha256": "8a79fb7e9c43f03e205769c3b1e6bbe77edbd5625ac5357cd501450475fee8ac"
+        }
+      ],
+      "caller_summary": "Legacy ui_discard has no production Kotlin/Java caller in the inspected tree. It is nominated solely as the bounded legacy counterpart of current ui_discard_changes23, matching that decision and not authorizing reuse for arbitrary file deletion. ClassicPaintActivity.kt:1074-1079 confirmReplacement applies pending work, and for a dirty document asks to save changes; Save requests saving, Discard invokes the pending replacement action, Keep editing leaves the dialog. The surrounding current-image/unsaved-changes warning supplies the object. Existing external saved files are not deleted by this choice.",
+      "actual_production_references": [],
+      "caller_status": "No current production resource reference; semantic-only/dormant scope, no invented runtime route.",
+      "semantic_limits": {
+        "source_limits": "Literal source concerns throwing away a book. Candidate extends this to abandoning the current unsaved version; it does not independently name changes. Accept only if the warning/current-image context adequately supplies that object. This is not a translation of deleting saved originals, and the singular source is not proposed for Clear all. The source’s yóó’ word-boundary convention is preserved with U+02BC; no additional morphology is invented. No native-speaker or runtime/layout claim."
+      },
+      "confidence": "Moderate; exact attested first-person decision predicate with bounded digital extension.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_discard_changes23",
+      "english": "Discard changes",
+      "attributes": {
+        "name": "ui_discard_changes23"
+      },
+      "raw": "Yóóʼ ahishhan",
+      "display": "Yóóʼ ahishhan",
+      "backtranslation": "I will discard it / I will throw it away. Here it means declining to preserve the current unsaved image/version before replacement.",
+      "independent_reviews": [
+        {
+          "file": "review-nv-clear-all-discard3-independent.json",
+          "sha256": "8a79fb7e9c43f03e205769c3b1e6bbe77edbd5625ac5357cd501450475fee8ac"
+        }
+      ],
+      "caller_summary": "ClassicPaintActivity.kt:1074-1079 confirmReplacement applies pending work, and for a dirty document asks to save changes; Save requests saving, Discard invokes the pending replacement action, Keep editing leaves the dialog. The surrounding current-image/unsaved-changes warning supplies the object. Existing external saved files are not deleted by this choice.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1079
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Literal source concerns throwing away a book. Candidate extends this to abandoning the current unsaved version; it does not independently name changes. Accept only if the warning/current-image context adequately supplies that object. This is not a translation of deleting saved originals, and the singular source is not proposed for Clear all. The source’s yóó’ word-boundary convention is preserved with U+02BC; no additional morphology is invented. No native-speaker or runtime/layout claim."
+      },
+      "confidence": "Moderate; exact attested first-person decision predicate with bounded digital extension.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "formats22_pdf_raster_hint",
+      "english": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "attributes": {
+        "name": "formats22_pdf_raster_hint"
+      },
+      "raw": "PDF — ᏚᎦᏓᏛᎢ — ᏗᏟᎶᏍᏙᏗ: 144 dpi. ᎠᎪᎵᏰᏗ ᎠᎴ ᎤᏙᏢᏒᎢ — ᏂᏗᎵᏍᏔᏅ: pixel — ᎦᏟᏌᏅᎯ.",
+      "display": "PDF — ᏚᎦᏓᏛᎢ — ᏗᏟᎶᏍᏙᏗ: 144 dpi. ᎠᎪᎵᏰᏗ ᎠᎴ ᎤᏙᏢᏒᎢ — ᏂᏗᎵᏍᏔᏅ: pixel — ᎦᏟᏌᏅᎯ.",
+      "backtranslation": "PDF pages rendering:144dpi. Text and drawn shapes: results are pixel data.",
+      "independent_reviews": [
+        {
+          "file": "review-chr-pdf-empty-trim2-independent-0715.json",
+          "sha256": "cb05185f47de735977d2b91c037277f0bb20bd33eede4f40962fbd047a3d42c4"
+        }
+      ],
+      "caller_summary": "ImportSelection102 shows PDF-only page guidance before selection. PdfCodec15/21 uses two source pixels per PDF point; decode60–88 rasterizes selected PDF page/crop to ARGB8888 through page.render. Numeric144dpi matches native source-coordinate convention; final sampled resize may produce smaller dimensions. Text and vector objects are not retained as editable text/vector elements.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ImportSelection.kt",
+          "line": 102
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Vector objects are functionally described as shapes made by drawing tools (exact MS shape definition), not arbitrary photo objects. This is an explicit broader concrete paraphrase, and must be reviewed as preserving the rasterization warning. Result heading communicates change into pixels; exact borrowed pixel plus data noun avoids claiming one pixel. Rendering source is geometric rendering; extension to PDF page display is authored. No higher resolution or retained text-editability claim."
+      },
+      "confidence": "moderate source-compositional nomination with explicit review-sensitive functional paraphrase",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "ch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+ch/strings.xml",
+      "key": "save20_encoding_budget",
+      "english": "The image and encoding buffers exceed the export memory budget.",
+      "attributes": {
+        "name": "save20_encoding_budget"
+      },
+      "raw": "Mås meggai i RAM ni ha nisisita AN Paint para i pinenta yan i tempuråriu na kåmpu para u mafa\\'tinas i dokumentu ki i RAM ni ha sedi para esti na che\\'chu\\'.",
+      "display": "Mås meggai i RAM ni ha nisisita AN Paint para i pinenta yan i tempuråriu na kåmpu para u mafa'tinas i dokumentu ki i RAM ni ha sedi para esti na che'chu'.",
+      "backtranslation": "The RAM AN Paint needs for the image and the temporary space for making the file is greater than the RAM it permits for this operation.",
+      "independent_reviews": [
+        {
+          "file": "review-ch-memory-guidance3-independent-0721.json",
+          "sha256": "b20b7b80cdf8a146125c255b3e65b5de58d57ea8fd6e5c2df04657f96d80b14a"
+        }
+      ],
+      "caller_summary": "BitmapFileCodec20–25/DibCodec41–43 route reason0 from LegacyImageEncoder26–30; TextImageCodec27/42/55–56 and IcoCodec78–79 explicitly compare required buffers/image to budget. ClassicPaintActivity1364 passes ImageMemoryPolicy.workingBytes for all save/export formats. This is not an OutOfMemoryError, and not limited to derived Export as or separate-copy-only operations.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/IcoCodec.kt",
+          "line": 79
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/TextImageCodec.kt",
+          "line": 56
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/DibCodec.kt",
+          "line": 43
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/BitmapFileCodec.kt",
+          "line": 24
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "source_limits": "Encoding buffers are temporary working space for producing the output file. No assertion of an actual completed allocation or true device-wide RAM exhaustion. Does not incorrectly promise a separate non-overwriting export because this resource also serves normal Save."
+      },
+      "confidence": "Moderate source-backed authored functional wording, awaiting exact independent review",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    }
+  ]
+}

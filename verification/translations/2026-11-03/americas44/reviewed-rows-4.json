@@ -1,0 +1,434 @@
+{
+  "note": "Source reviewed and locally integrated on a dependent branch; native fluency, runtime and layout unverified.",
+  "rows": [
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "english": "Recovery copy exported. Extract canvas.png from the ZIP and open it with File > Load image. The ZIP also contains draft settings and any floating selection.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "raw": "ᎤᏠᏱ ᎪᏢᏅᏗ — ᏫᎦᏌᏙᎣᏍᏗ: ᎠᏍᏆᏛᎯ. 1. ZIP — canvas.png — ᏱᎬᏅᏕᏍᏗ. 2. canvas.png — “ᎠᏍᏆᏂᎪᏙᏗ > ᎯᏢᎦ…”. ZIP — draft.json (ᎢᎬᏱ ᎪᏪᎶᏗ — ᏕᎦᎧᎲᎢ); ᎠᏎᎲ floating.png (ᏗᏑᏰᏓ).",
+      "display": "ᎤᏠᏱ ᎪᏢᏅᏗ — ᏫᎦᏌᏙᎣᏍᏗ: ᎠᏍᏆᏛᎯ. 1. ZIP — canvas.png — ᏱᎬᏅᏕᏍᏗ. 2. canvas.png — “ᎠᏍᏆᏂᎪᏙᏗ > ᎯᏢᎦ…”. ZIP — draft.json (ᎢᎬᏱ ᎪᏪᎶᏗ — ᏕᎦᎧᎲᎢ); ᎠᏎᎲ floating.png (ᏗᏑᏰᏓ).",
+      "backtranslation": "Recovery-copy export is done. 1. Extract canvas.png from ZIP. 2. Open canvas.png via File > Load image. The ZIP has draft.json (draft settings), and perhaps floating.png (selection).",
+      "independent_reviews": [
+        {
+          "file": "review-chr-recovery-guide1-nhe-floor1-independent-v2-0815.json",
+          "sha256": "0dbfb63bb32fcb4c8725d5888c1cc1d1f7bcd1480c837d3499114f3a2695ee8d"
+        }
+      ],
+      "caller_summary": "Exact direct caller anchors below; detailed caller interpretation is in pinned independent review.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1408
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": [
+          "Keep the completed export statement separate from ᎠᏎᎲ, which qualifies only the optional floating.png member.",
+          "draft.json and canvas.png are expected format members, not a guarantee that a damaged preserved archive contains valid readable members. floating.png remains optional.",
+          "Keep canvas.png explicit in both extraction and loading steps, and retain the actual localized File > Load image route.",
+          "No whole-ZIP image import, automatic draft-settings/selection restoration, all-entry integrity, repair, intact history, or full-state reconstruction is promised. The displayed guide does not claim every damaged archive can be recovered.",
+          "Raw is XML-parsed Android text: keep literal > in the data and XML-escape once during emission; do not store &gt; or double-escape it."
+        ]
+      },
+      "confidence": "Moderate functional source-backed composition; no native-speaker, universal-locality, layout or runtime certificate.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_assembly_source_memory_floor",
+      "english": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "attributes": {
+        "name": "ui_assembly_source_memory_floor"
+      },
+      "raw": "AN Paint quiixnehuia quezqui RAM monequi para ni tlatecpanilli tlen ixcopincayotl. AN Paint tlanahuatia ica quezqui RAM hueli motequihuia namantzin. Tlan ihuexca ixcopincayotl tlen quichihuaz eli zan 1 × 1 px, nocca axahci nopa RAM. Tlan ticpatla zan ihuexca ni tlatecpanilli para ma eli maz cuecuetztzin, nocca axahci nopa RAM. Achtohui xictzacua cequinoc tlahcuiloliztli (documents) zo xicchihua ce ixcopincayotl ica ihuexca tlen maz cuecuetztzin para ni tlatecpanilli (source image). Teipan zampa xicchihua. AN Paint axquipatlac ni tlatecpanilli.",
+      "display": "AN Paint quiixnehuia quezqui RAM monequi para ni tlatecpanilli tlen ixcopincayotl. AN Paint tlanahuatia ica quezqui RAM hueli motequihuia namantzin. Tlan ihuexca ixcopincayotl tlen quichihuaz eli zan 1 × 1 px, nocca axahci nopa RAM. Tlan ticpatla zan ihuexca ni tlatecpanilli para ma eli maz cuecuetztzin, nocca axahci nopa RAM. Achtohui xictzacua cequinoc tlahcuiloliztli (documents) zo xicchihua ce ixcopincayotl ica ihuexca tlen maz cuecuetztzin para ni tlatecpanilli (source image). Teipan zampa xicchihua. AN Paint axquipatlac ni tlatecpanilli.",
+      "backtranslation": "AN Paint estimates how much RAM is needed for this image arrangement. AN Paint sets rules about how much RAM may be used now. If the dimensions of the image it will make are only 1 × 1 px, that RAM is still insufficient. If you change only this arrangement’s dimensions to be smaller, that RAM is still insufficient. First close other computer-written works (documents), or make an image at smaller dimensions for this arrangement (source image). Then do the operation again. AN Paint has not changed this arrangement.",
+      "independent_reviews": [
+        {
+          "file": "review-chr-recovery-guide1-nhe-floor1-independent-v2-0815.json",
+          "sha256": "0dbfb63bb32fcb4c8725d5888c1cc1d1f7bcd1480c837d3499114f3a2695ee8d"
+        }
+      ],
+      "caller_summary": "Exact direct caller anchors below; detailed caller interpretation is in pinned independent review.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/AssemblyActivity.kt",
+          "line": 300
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": [
+          "The literal 1 × 1 px is a caller-backed functional replacement for smallest output, not a format slot or universally permanent numerical limit. Re-review/change this wording if that minimum changes.",
+          "Retain both the estimate sentence and the current software-policy sentence; neither nopa RAM reference may be changed to physical installed RAM or certain observed exhaustion.",
+          "Reducing only arrangement output dimensions is explicitly insufficient under the just-stated limits. Keep the source image qualifier on the smaller-input remedy to distinguish it from output resizing.",
+          "Retain documents because the underlying source noun is written/readable work and drawing documents are an extension. Keep the ordinary digital-close extension and derived xictzacua command disclosed; no exact full published software sentence is claimed.",
+          "Close other documents and prepare a smaller source image are alternatives before trying again. Neither implies deleting the arrangement or guarantees that retry will succeed.",
+          "No source damage, disk-space shortage, hardware-purchase need, completed resize, future preservation guarantee, native-speaker certification, universal-locality approval, layout check or runtime test is claimed."
+        ]
+      },
+      "confidence": "Moderate functional source-backed composition; no native-speaker, universal-locality, layout or runtime certificate.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "gallery_credit_could_not_save",
+      "english": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "attributes": {
+        "name": "gallery_credit_could_not_save"
+      },
+      "raw": "ᏗᏟᎶᏍᏔᏅ — (ᏧᏬᏪᎳᏅᎯ / ᏅᏓᏳᏓᎴᏅᎯ) — ᎠᎪᎵᏰᏗ — ᎠᏍᏆᏂᎪᏗᏍᎬ / ᎪᏢᎯᏐᏗ: ᎤᏄᎸᎲᎦ. ᏧᏩᎫᏔᏅ ᎠᎪᎵᏰᏗ (ᎠᏍᏆᏂᎪᏗᏍᎬ: ᎠᏍᏆᏛᎯ): ᏗᎦᏂᏴᎯ ᏂᎬᏁᎸ. ᎠᏏᏉ ᎭᏁᏔ.",
+      "display": "ᏗᏟᎶᏍᏔᏅ — (ᏧᏬᏪᎳᏅᎯ / ᏅᏓᏳᏓᎴᏅᎯ) — ᎠᎪᎵᏰᏗ — ᎠᏍᏆᏂᎪᏗᏍᎬ / ᎪᏢᎯᏐᏗ: ᎤᏄᎸᎲᎦ. ᏧᏩᎫᏔᏅ ᎠᎪᎵᏰᏗ (ᎠᏍᏆᏂᎪᏗᏍᎬ: ᎠᏍᏆᏛᎯ): ᏗᎦᏂᏴᎯ ᏂᎬᏁᎸ. ᎠᏏᏉ ᎭᏁᏔ.",
+      "backtranslation": "Image-author/source text saving/restoring failed. Previously saved text is retained. Try again.",
+      "independent_reviews": [
+        {
+          "file": "review-chr-credit-warnings2-v2-independent-0826.json",
+          "sha256": "87539779435c6c6fdbb29f95ed0c1dfc3d711ecbaf4b8ed9bc1370772eecee57"
+        }
+      ],
+      "caller_summary": "All credit save/session-restore callers; alternative slash marks failure in applicable one of saving/restoring, not necessarily both. Existing saved text retained, not a successful current edit. Explicit image-author/source attribution heading required because startup and gallery-launch paths have no enclosing credit title.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "line": 62
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "line": 243
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/MediaGalleryActivity.kt",
+          "line": 415
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+          "line": 79
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/GalleryCredits.kt",
+          "line": 113
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 238
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 908
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1194
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1197
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1203
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1207
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1478
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1488
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 1495
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "Text is the user-editable image attribution/credit text, not bitmap pixels; every current caller is a credit editor/session/import-association path, matching the prior independently reviewed legacy-credit text convention. Saving/restoring failure has existing saved text retained, no assertion newly edited text was saved. Too-large warning is pre-mutation restoration-metadata admission, not geometric image dimensions, physical RAM or disk failure. Generic metadata limit covers both serialized byte caps and history manifest structural bounds; it does not name draft.json exclusively or hardcode one byte cap. Quantity form means too much under that stated limit. Previous drawing and prior text retained are distinct from admitting the proposed new text. No successful-retry, complete-art, backup-copy creation or intact-history promise. All complete strings are newly authored compact diagnostics; no native/layout/runtime certificate. V2 explicit author/source text heading resolves that context absence; old bare-text first row is held, not integrable.",
+        "semantic_limits": "Newly authored category hierarchy, not an attested whole sentence or native/layout/runtime certificate. The author/source heading supplies reference, not a legal claim about copyright ownership or licensing. Generic source may be a file/document/information collection. No newly created backup, intact-history, current-edit success or future retry-success promise."
+      },
+      "confidence": "moderate source-compositional nomination; credit-text contextual scope and excess-under-restoration-limit require independent review",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "save20_invalid_name",
+      "english": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "raw": "Tocaitl: Axcanah xictequihui /, \\\\, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "display": "Tocaitl: Axcanah xictequihui /, \\, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "backtranslation": "Name: Do not use /, backslash, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "independent_reviews": [
+        {
+          "file": "review-nahua-filename-warnings3-independent-0821.json",
+          "sha256": "2f43e5c3a7419a2a4fd2acb7f6bb80447da971dea73828a3abb42a199c2088e5"
+        }
+      ],
+      "caller_summary": "Own Chicontepec PDF398/printed383 PIPITZOĀ visually contains axcanah xictequihui in a prohibition on using a pot. PDF460/printed445 TEQUIHUIĀ independently supports transitive use of an inanimate thing for a task, and PDF49/printed34 AXCANAH confirms negation. Thus the negative-use command is exact own-variety attestation; extending its object to the explicitly listed filename characters is the new functional composition. PDF560/printed545 TŌCĀITL and the pinned prior label review support the retained macronless Tocaitl. No neighbouring Nahua morphology is substituted.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 194
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {},
+      "confidence": "Moderate source-grounded functional composition; no native-human, layout, accessibility, or runtime certification.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nch",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "key": "save20_invalid_name",
+      "english": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "raw": "Tokajyotl: Amo xijtequihui /, \\\\, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "display": "Tokajyotl: Amo xijtequihui /, \\, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "backtranslation": "Name: Do not use /, backslash, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "independent_reviews": [
+        {
+          "file": "review-nahua-filename-warnings3-independent-0821.json",
+          "sha256": "2f43e5c3a7419a2a4fd2acb7f6bb80447da971dea73828a3abb42a199c2088e5"
+        }
+      ],
+      "caller_summary": "Own Central [nch] PDF510/printed506 1 Timothy4:7 visually gives Amo xijtacaquili and xijtequihui, with Xijtequihui again in4:14. Its use objects include life/strength and a gift, so the verb is not restricted to physical implements. Amo xijtequihui is a transparent new composition of independently attested own Central negative-singular syntax and use imperative, not an asserted exact whole phrase. Tokajyotl is the prior accepted Cruzhica/Xochiatipan label, freshly rechecked in Hernández Beatriz2016 printed111. The label and corpus differ in local/orthographic provenance; that limit is retained.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 194
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {},
+      "confidence": "Moderate source-grounded functional composition; no native-human, layout, accessibility, or runtime certification.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "key": "save20_invalid_name",
+      "english": "Enter a file name without slashes or control characters.",
+      "attributes": {
+        "name": "save20_invalid_name"
+      },
+      "raw": "Itoca: Amo xijtequihui /, \\\\, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "display": "Itoca: Amo xijtequihui /, \\, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "backtranslation": "Its name: Do not use /, backslash, Unicode U+0000–U+001F, U+007F–U+009F.",
+      "independent_reviews": [
+        {
+          "file": "review-nahua-filename-warnings3-independent-0821.json",
+          "sha256": "2f43e5c3a7419a2a4fd2acb7f6bb80447da971dea73828a3abb42a199c2088e5"
+        }
+      ],
+      "caller_summary": "Own Western [nhw] PDF522/printed516 1 Timothy4:7 visually gives Amo xijtlacaquili and xijtequihui, with Xijtequihui again in4:14. The composition Amo xijtequihui is supported in this Western source independently of the similar Central spelling. PDF4 places the corpus in Tamazunchale, San Luis Potosí, and acknowledges regional variation. PDF316/printed310 Acts13:14 independently shows itoca for a town, supporting the prior accepted inanimate its-name label Itoca. The existing filename field supplies the possessor.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 194
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {},
+      "confidence": "Moderate source-grounded functional composition; no native-human, layout, accessibility, or runtime certification.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "save20_lossy_quality_description",
+      "english": "Higher quality preserves more detail and usually makes a larger file.",
+      "attributes": {
+        "name": "save20_lossy_quality_description"
+      },
+      "raw": "Tlan ticpihuilia nomeroh pan Quality, AN Paint quiahcocui achi miac tlen neci pan ixcopincayotl. Ahachica, zan axnochipa, monequi achi miac bytes para quiahcocuiz.",
+      "display": "Tlan ticpihuilia nomeroh pan Quality, AN Paint quiahcocui achi miac tlen neci pan ixcopincayotl. Ahachica, zan axnochipa, monequi achi miac bytes para quiahcocuiz.",
+      "backtranslation": "If you increase the number in Quality, AN Paint stores more of what is visible in the image. Frequently, but not always, more bytes are needed to store it.",
+      "independent_reviews": [
+        {
+          "file": "review-nhe-quality-explanations2-independent-0831.json",
+          "sha256": "a67bfa9b8e37d74672c389217feaa0641b2fc16b1d21c2c268af49a0427be640"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog102 chooses this description for JPEG and HEIC; the quality slider is a 1–100 number. More preserved image information is distinct from dimensions. Typical byte growth is qualified, not guaranteed.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 102
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": [
+          "The complete clauses are authored source-backed functional translations, not published software sentences and not native-speaker certified.",
+          "Quality and Lossless are the currently visible fallback control labels; bytes is a transparent technical unit. They are not claimed to be attested Chicontepec nouns. If these labels are later localized, reconcile the anchors with the actual label wording.",
+          "AHACHICA supports frequent occurrence, not an explicit more-than-half quantifier. The deliberate frequently-but-not-always paraphrase of usually must be independently assessed for adequacy. No always claim is present.",
+          "The count qualifier achi miac is directly attested; its adaptation to visible information and byte quantities is authored."
+        ],
+        "review_metadata_addendum": "Frequently but not always is accepted qualitative functional guidance, not an attested majority quantifier; byte growth and individual colour-number retention checked."
+      },
+      "confidence": "Moderate source-compositional nomination. The frequent-but-not-always paraphrase and new numeric-control wording require independent assessment.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nhe",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nhe/strings.xml",
+      "key": "ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "english": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "attributes": {
+        "name": "ui_higher_quality_usually_makes_a_larger_file_lossless"
+      },
+      "raw": "Tlan ticpihuilia nomeroh pan Quality, ahachica, zan axnochipa, monequi achi miac bytes para AN Paint quiahcocuiz ixcopincayotl. Ica Lossless, AN Paint quiahcocui cehce nomeroh tlen quimanextia ixnezcayotl pan ixcopincayotl huan axquipatla.",
+      "display": "Tlan ticpihuilia nomeroh pan Quality, ahachica, zan axnochipa, monequi achi miac bytes para AN Paint quiahcocuiz ixcopincayotl. Ica Lossless, AN Paint quiahcocui cehce nomeroh tlen quimanextia ixnezcayotl pan ixcopincayotl huan axquipatla.",
+      "backtranslation": "If you increase the number in Quality, frequently, but not always, more bytes are needed for AN Paint to store the image. With Lossless, AN Paint stores each number representing colour in the image and does not change it.",
+      "independent_reviews": [
+        {
+          "file": "review-nhe-quality-explanations2-independent-0831.json",
+          "sha256": "a67bfa9b8e37d74672c389217feaa0641b2fc16b1d21c2c268af49a0427be640"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog103 default selects this for WebP, JPEG XL and AVIF. PNG also takes the default text but the explanation is hidden105. The quality slider is hidden when Lossless is selected; explanation remains visible. Each colour number remains unchanged, not merely the set of colours.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 103
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": [
+          "The complete clauses are authored source-backed functional translations, not published software sentences and not native-speaker certified.",
+          "Quality and Lossless are the currently visible fallback control labels; bytes is a transparent technical unit. They are not claimed to be attested Chicontepec nouns. If these labels are later localized, reconcile the anchors with the actual label wording.",
+          "AHACHICA supports frequent occurrence, not an explicit more-than-half quantifier. The deliberate frequently-but-not-always paraphrase of usually must be independently assessed for adequacy. No always claim is present.",
+          "The count qualifier achi miac is directly attested; its adaptation to visible information and byte quantities is authored."
+        ],
+        "review_metadata_addendum": "Frequently but not always is accepted qualitative functional guidance, not an attested majority quantifier; byte growth and individual colour-number retention checked."
+      },
+      "confidence": "Moderate source-compositional nomination. The frequent-but-not-always paraphrase and new numeric-control wording require independent assessment.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_save_and_share",
+      "english": "Save and share…",
+      "attributes": {
+        "name": "ui_save_and_share"
+      },
+      "raw": "Hashtʼeʼ niníłtsóós dóó aniʼáád…",
+      "display": "Hashtʼeʼ niníłtsóós dóó aniʼáád…",
+      "backtranslation": "Put away/store it and send it off…. In context: save one image-derived output document, then proceed to choosing an app to share/send it.",
+      "independent_reviews": [
+        {
+          "file": "review-nv-share-chr-storage3-independent-0833.json",
+          "sha256": "afbff1580a9ba51dff7f1ba20faa77f63a0c314c1dc82254c6f7baa327daaaa6"
+        }
+      ],
+      "caller_summary": "ClassicPaintActivity.kt:842 menu → showSaveOptions(..., share=true, export=true); shared flow ClassicPaintActivity.kt:1110–1128,1353–1391 writes an image-derived copy, then opens Android ACTION_SEND chooser.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 842
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "review_metadata_addendum": "Save image-derived copy then invoke ACTION_SEND chooser; no automatic delivery claim. Generic ui_save explicitly excluded."
+      },
+      "confidence": "Moderate authored lexical/grammatical support. Exact predicates and conjunction have primary evidence; digital metaphor and workflow-label pragmatics remain the specific independent-review questions. No native-speaker, layout or runtime certification claimed.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "nv",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "key": "ui_save_and_share_41edb4",
+      "english": "Save and share",
+      "attributes": {
+        "name": "ui_save_and_share_41edb4"
+      },
+      "raw": "Hashtʼeʼ niníłtsóós dóó aniʼáád",
+      "display": "Hashtʼeʼ niníłtsóós dóó aniʼáád",
+      "backtranslation": "Put away/store it and send it off. In context: save one image-derived output document, then proceed to choosing an app to share/send it.",
+      "independent_reviews": [
+        {
+          "file": "review-nv-share-chr-storage3-independent-0833.json",
+          "sha256": "afbff1580a9ba51dff7f1ba20faa77f63a0c314c1dc82254c6f7baa327daaaa6"
+        }
+      ],
+      "caller_summary": "SaveOptionsDialog.kt:187 share-only options-dialog title; shared flow ClassicPaintActivity.kt:1110–1128,1353–1391 writes an image-derived copy, then opens Android ACTION_SEND chooser.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 187
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "review_metadata_addendum": "Save image-derived copy then invoke ACTION_SEND chooser; no automatic delivery claim. Generic ui_save explicitly excluded."
+      },
+      "confidence": "Moderate authored lexical/grammatical support. Exact predicates and conjunction have primary evidence; digital metaphor and workflow-label pragmatics remain the specific independent-review questions. No native-speaker, layout or runtime certification claimed.",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    },
+    {
+      "locale": "chr",
+      "tier": "P0",
+      "path": "Paintroid/src/main/res/values-b+chr/strings.xml",
+      "key": "ui_cannot_create_the_undo_cache_free_some_device",
+      "english": "Cannot create the undo cache. Free some device storage and try again.",
+      "attributes": {
+        "name": "ui_cannot_create_the_undo_cache_free_some_device"
+      },
+      "raw": "ᏱᎬᎾᏕᏐᎲᏍᏗ — ᎠᏍᏆᏂᎪᏙᏗ — ᎪᏢᏗ: ᎤᏄᎸᎲᎦ. ᏥᏂᎬᏅᏗᏓᎾ — ᎠᏠᏗ ᎤᏜᏅᏛᎯ — ᎠᏛᏅᎢᏍᏔᏅ: ᎯᏁᏉᏣ. ᎠᏏᏉ ᎭᏁᏔ.",
+      "display": "ᏱᎬᎾᏕᏐᎲᏍᏗ — ᎠᏍᏆᏂᎪᏙᏗ — ᎪᏢᏗ: ᎤᏄᎸᎲᎦ. ᏥᏂᎬᏅᏗᏓᎾ — ᎠᏠᏗ ᎤᏜᏅᏛᎯ — ᎠᏛᏅᎢᏍᏔᏅ: ᎯᏁᏉᏣ. ᎠᏏᏉ ᎭᏁᏔ.",
+      "backtranslation": "Undo-cache creation failed. Increase the available disk space on the device. Try again.",
+      "independent_reviews": [
+        {
+          "file": "review-nv-share-chr-storage3-independent-0833.json",
+          "sha256": "afbff1580a9ba51dff7f1ba20faa77f63a0c314c1dc82254c6f7baa327daaaa6"
+        }
+      ],
+      "caller_summary": "Only two directory-creation failure paths, RasterHistory.capture22 and importSnapshot51, before snapshot file creation. Disk freeing is a proposed remedy, not a confirmed diagnosis or guaranteed fix.",
+      "actual_production_references": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 22
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 51
+        }
+      ],
+      "caller_status": "live production resource reference found",
+      "semantic_limits": {
+        "limits": "New source-grounded diagnostic/action headings. Exact cache term is technical memory-subsystem terminology extended to persisted .rgba undo cache. Disk-space term explicitly denotes storage amount; generic available adjective is an independent topic qualifier, not a fabricated compound. Increase available disk space is a functional free-storage remedy and does not ask to buy/upgrade hardware, delete particular user data, or increase RAM. No claim disk fullness was proven by the mkdir failure and no guaranteed retry success. Generic create form is not converted into a guessed finite verb. No native/layout/runtime certificate.",
+        "review_metadata_addendum": "The second RasterHistory caller is importSnapshot, not importEntry. Exact candidate spelling remains unchanged. Available disk-space amount means free storage, not hardware/RAM expansion; mkdir failure does not prove full storage."
+      },
+      "confidence": "moderate source-compositional nomination, available-space amount scope requires independent review",
+      "status": "INDEPENDENTLY_REVIEWED_ACCEPTED; ROOT_ADOPTION_PENDING"
+    }
+  ]
+}
