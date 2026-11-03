@@ -1,0 +1,558 @@
+{
+  "title": "Accepted Americas six strings",
+  "integration_commit": "e582d2e361570bae04ed3056349facd6b5a2c564",
+  "integration_tree": "f15f698a29b8f01b6c24a9f676390d6a5855ee1c",
+  "source_baseline": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+  "original_intake": {
+    "artifact": "reviewed-americas6-current29663fd-intake-1730.json",
+    "sha256": "d2b3f649632d7cf641436fec3b82c095c2ce5ea75cf676ef98cd8ab32044b8b1"
+  },
+  "derivative_note": "Sanitized later integrated-status derivative. Original hashes identify immutable historical artifacts; derivative bytes differ.",
+  "counts": {
+    "total": 6,
+    "P0": 1,
+    "P1": 5,
+    "previously_root_held_P0_successor": 1
+  },
+  "raw_convention": "XML-parsed Android text; XML-escape once. All six raw values equal display; apostrophes in Navajo are U+02BC.",
+  "rows": [
+    {
+      "locale": "nv",
+      "key": "ui_the_undo_cache_is_damaged",
+      "tier": "P0",
+      "originalP0": true,
+      "path": "Paintroid/src/main/res/values-b+nv/strings.xml",
+      "english": "The undo cache is damaged.",
+      "attributes": {
+        "name": "ui_the_undo_cache_is_damaged"
+      },
+      "raw": "“Undo” — eʼelyaaígíí beʼelyaaígíí hashtʼeʼ siłtsoozígíí (.rgba): yíchxǫʼ.",
+      "value": "“Undo” — eʼelyaaígíí beʼelyaaígíí hashtʼeʼ siłtsoozígíí (.rgba): yíchxǫʼ.",
+      "display": "“Undo” — eʼelyaaígíí beʼelyaaígíí hashtʼeʼ siłtsoozígíí (.rgba): yíchxǫʼ.",
+      "raw_sha256": "bebb8cc4cc69aba98b5a24f0a586d68beb89b8a811387350714d1a0ac8d0c0f6",
+      "placeholders": [],
+      "backtranslation": "Undo — the image-copy that is kept in storage (.rgba): it is spoiled/damaged.",
+      "caller_scope": "A single affected internal stored bitmap snapshot whose compressed bytes or fixed header/dimensions fail validation. It can come from Undo, Redo, gesture rollback or imported history. The wording identifies its Undo-history role without claiming a click occurred, all entries are damaged, or the current canvas is gone.",
+      "caller_anchors": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 60,
+          "exact_line": "            if(actual!=sha256) throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L60"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 62,
+          "exact_line": "                if(it.readInt()!=0x50504c34 || it.readInt()!=width || it.readInt()!=height) throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L62"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 81,
+          "exact_line": "                throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L81"
+        }
+      ],
+      "sources": {
+        "topic_and_old_sources": {
+          "artifact": "nv-undo-snapshot1-v2-1332.json",
+          "sha256": "c3212ee7e57f42e3a9af857f0aa53ba6b2624c029e61ce5d9195daa3b2d30d50"
+        },
+        "new_damage_predicate": {
+          "artifact": "nv-undo-damage-primary-v3-1720.json",
+          "sha256": "c24b83b9400d3cfda7220c562c75b769b9df3452fc027b8b763b464a19ae738a"
+        }
+      },
+      "semantic_composition": "Unchanged reviewed stored-snapshot topic plus an overt spoiled/ruined state predicate, replacing the held merely incorrect negated predicate. No agent is alleged to have damaged it, no permanent irreparability, universal cache loss or successful canvas restoration is asserted.",
+      "status": "UNREVIEWED_V3; ROOT_HOLD_REMAINS; NOT_ADOPTED",
+      "confidence": "Moderate own-source authored functional/compositional wording; no native, runtime or layout certification.",
+      "limits": [
+        "The positive predicate names a spoiled or damaged state, not general wrongness. The source word is broader than a specialized digital corruption term.",
+        "The digital-extension and long nominal snapshot topic remain authored functional composition; no native, layout or runtime certification.",
+        "The resource fires at checksum mismatch or fixed magic/dimension-header mismatch, not only at successful byte decoding. It identifies the affected snapshot, not every cache member or external image.",
+        "No assertion of the degree of damage, irreversibility, repair possibility, old source deletion or a known damaged byte location."
+      ],
+      "quoted_controls": [
+        {
+          "key": "ui_undo",
+          "exact_display": "Undo",
+          "basis": "No direct NV value; exact English fallback current source",
+          "current_NV": {
+            "artifact": "current-nv-784e816-1710.json",
+            "sha256": "a23459be03baab936b0c7079afeaa18d20b8e25d254aed084fe00a777e726cf9"
+          },
+          "current_English": {
+            "artifact": "current-en-9b655b-1023.json",
+            "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+          },
+          "future_dependency": "Recheck quote if Undo label changes."
+        }
+      ],
+      "guards": {
+        "current_head": "784e816c756e31f15ec6fb03bc2300b4350ed438",
+        "current_NV": {
+          "artifact": "current-nv-784e816-1710.json",
+          "sha256": "a23459be03baab936b0c7079afeaa18d20b8e25d254aed084fe00a777e726cf9"
+        },
+        "English": {
+          "artifact": "current-en-9b655b-1023.json",
+          "sha256": "47859b43471cc4e90ceb7b04c67d30e538534302f322bd301088f4d7e943d695"
+        },
+        "original_P0": true,
+        "current_absent": true,
+        "NFC": true,
+        "raw_display_value_equal": true,
+        "zero_slots": true,
+        "three_production_emitters": true
+      },
+      "superseded_raw": "“Undo” — eʼelyaaígíí beʼelyaaígíí hashtʼeʼ siłtsoozígíí (.rgba): doo ákótʼée da.",
+      "superseded_raw_sha256": "36714f5c11cb0e0f91894132c9eaa146dba4c1574c811934c13044077ee02d36",
+      "new_primary_evidence": {
+        "artifact": "nv-undo-damage-primary-v3-1720.json",
+        "sha256": "c24b83b9400d3cfda7220c562c75b769b9df3452fc027b8b763b464a19ae738a"
+      },
+      "candidate": {
+        "artifact": "nv-undo-damage1-v3-1720.json",
+        "sha256": "23f4633af23f5d26948f284d1d305da32ae85f09ae93a5743771ea9fcfa61130"
+      },
+      "independent_review": {
+        "artifact": "review-nv-undo-damage1-v3-independent-1724.json",
+        "sha256": "8f9ccc30dac3ee51f0998a353a7fafebe6b84075898211310ea4766dd916f44e"
+      },
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "current_head_guard": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+      "independent_semantic_assessment": {
+        "prior_root_objection_repaired": true,
+        "reason": "The old predicate established only incorrectness. The replacement directly predicates a spoiled or damaged state, with primary support spanning object damage and out-of-order condition. Coupled to the unchanged singular stored-image-copy topic, it diagnoses the invalid auxiliary snapshot rather than the artistic quality of the current picture.",
+        "all_three_emitters_fit": "At RasterHistory60 compressed bytes fail the expected SHA256 comparison; at62 imported snapshot magic or dimensions fail; at81 the stored entry header fails before pixel writes in that read invocation. These are bounded failures of the stored image representation. The new state predicate fits all three without requiring known physical tears, a guilty actor or a known damaged-byte position.",
+        "singular_scope": "One affected stored image-copy is named. No universal statement about all history/cache members is added.",
+        "undo_scope": "Quoted Undo names the existing fallback control/subsystem. It is not a claim that the user clicked Undo; the shared history supports Undo, Redo, gesture rollback and imported history.",
+        "loss_recoverability_limit": "Neither irreparable total loss nor recovery success is asserted. Source usage with later imaging rebuts the claim that the word by itself necessarily entails complete information annihilation; it does not prove that this software snapshot can be repaired.",
+        "existence_limit": "Import failure deletes its temporary snapshot during cleanup. The topic identifies the representation being diagnosed and is not a promise that it remains available after the exception.",
+        "no_added_guarantees": "No canvas preservation guarantee, successful restoration, continued file availability, absence of every possible concurrent mutation, native naturalness, layout, runtime or screenreader certification is made."
+      },
+      "source_evidence": {
+        "artifact": "nv-undo-damage-primary-v3-1720.json",
+        "sha256": "c24b83b9400d3cfda7220c562c75b769b9df3452fc027b8b763b464a19ae738a"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 60,
+          "exact_line": "            if(actual!=sha256) throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L60"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 62,
+          "exact_line": "                if(it.readInt()!=0x50504c34 || it.readInt()!=width || it.readInt()!=height) throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L62"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt",
+          "line": 81,
+          "exact_line": "                throw IOException(ui(R.string.ui_the_undo_cache_is_damaged))",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/RasterHistory.kt#L81"
+        }
+      ],
+      "previous_root_hold": "Prior incorrectness-only predicate superseded; this explicit damage successor was adopted and integrated at the stated commit.",
+      "typed_slots": [],
+      "current_catalogue": {
+        "artifact": "current-nv-29663fd-intake-1730.json",
+        "sha256": "49d2ecc1a8d5177964a32a04e36d4ea4161bc92f274e6071e01c0eedd08e951b",
+        "git_blob_sha": "bd5ead2ebdbab3de938dcf9f8ee692c1b2af4081"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "e582d2e361570bae04ed3056349facd6b5a2c564"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_choose_location",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Choose location…",
+      "attributes": {
+        "name": "ui_choose_location"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Xijtapejpeni campa AN Paint quiajocuis…",
+      "value": "Xijtapejpeni campa AN Paint quiajocuis…",
+      "display": "Xijtapejpeni campa AN Paint quiajocuis…",
+      "raw_xml": "<string name=\"ui_choose_location\">Xijtapejpeni campa AN Paint quiajocuis…</string>",
+      "source_xml_element": "<string name=\"ui_choose_location\">Xijtapejpeni campa AN Paint quiajocuis…</string>",
+      "raw_sha256": "3580ccc5e1862aacab46d4585548acb1a1ea765130c236fc9c295f069caf4709",
+      "backtranslation": "Choose where AN Paint will save…",
+      "source_ids": [
+        "choose-plural",
+        "command-singular",
+        "command-plural",
+        "where",
+        "store-future-first",
+        "store-future-third"
+      ],
+      "source_packet": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "sources": [
+        "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf"
+      ],
+      "source_local": "nch-central-nt-primary.pdf",
+      "source_sha256": "704e649417073f69f32a5a790738d729e041e9eaa11a642b6e76aee18e76261e",
+      "caller_packet": {
+        "artifact": "nahua-location-status6-callers-1720.json",
+        "sha256": "48262f1842edf395557a1c30e1ea6f921beaef69a1dce2c401d95977186f0379"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 189,
+          "exact_line": "            .setPositiveButton(ui(R.string.ui_choose_location),null)",
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L189"
+        }
+      ],
+      "caller_count": 1,
+      "caller_scope": "SaveOptionsDialog189 is the common positive button for save, export and save-and-share.193–197 validates the proposed filename, confirms SaveRequest and dismisses. ClassicPaintActivity1112–1128 records the options and invokes ACTION_CREATE_DOCUMENT with output MIME and proposed name. Choose where AN Paint will save is an output-destination selection step; it does not promise a successful write, choose GPS position, move an image, or select an open/import source. Ellipsis preserved.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "current_catalogue": {
+        "artifact": "current-nch-29663fd-review-location-1724.json",
+        "sha256": "7b6b9976f1da6288854bf68e5c605070e8137c054502a50ac6121b846413380b",
+        "git_blob_sha": "356b9cbf5d000f3904b1804a06bb594d3d4416c8"
+      },
+      "confidence": "Moderate own-source authored functional/compositional wording; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "Not a published whole-GUI phrase or native-speaker certification. Source-region spelling variation is disclosed. No runtime/layout verification.",
+      "candidate": {
+        "artifact": "nahua-location-status6-author-1720.json",
+        "sha256": "1a955d34e0cf4359b992f7d9903f1ff33436198a9196329fef66c1eb0428fe81"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-location-status5-independent-1727.json",
+        "sha256": "5f0f506f1f4b35862d0b0051865a5774d4c11482e20837ca0425b28d37a3b52b"
+      },
+      "current_head_guard": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+      "independent_semantic_finding": "Own Central choose stem is preserved. The same-corpus imperative-number contrast supports singular command derivation; the locative construction and storage-future evidence support the authored third-person clause with AN Paint as subject. This is prospective destination selection, not write success.",
+      "source_evidence": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "e582d2e361570bae04ed3056349facd6b5a2c564"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_other_images34",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Other images",
+      "attributes": {
+        "name": "ui_other_images34",
+        "formatted": "false"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Sequinoc ixkopinali",
+      "value": "Sequinoc ixkopinali",
+      "display": "Sequinoc ixkopinali",
+      "raw_xml": "<string name=\"ui_other_images34\" formatted=\"false\">Sequinoc ixkopinali</string>",
+      "source_xml_element": "<string name=\"ui_other_images34\" formatted=\"false\">Sequinoc ixkopinali</string>",
+      "raw_sha256": "776027c8d901dd0500c094c613f56101bdd431f89d7710e267e3de84afe48e99",
+      "backtranslation": "Other images",
+      "source_ids": [
+        "other-inanimate",
+        "image-noun"
+      ],
+      "source_packet": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "sources": [
+        "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf",
+        "https://es.scribd.com/document/388497276/Libro-Vocabulario-2016-NAHUATL"
+      ],
+      "source_local": "nch-central-nt-primary.pdf",
+      "source_sha256": "704e649417073f69f32a5a790738d729e041e9eaa11a642b6e76aee18e76261e",
+      "caller_packet": {
+        "artifact": "nahua-location-status6-callers-1720.json",
+        "sha256": "48262f1842edf395557a1c30e1ea6f921beaef69a1dce2c401d95977186f0379"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 305,
+          "exact_line": "            if(category==ToolCategory.INSERT) group.addView(panelButton(ui(R.string.ui_other_images34),\"insert_other_images\",android.R.drawable.ic_menu_gallery) {",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L305"
+        },
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 897,
+          "exact_line": "        EditorDialogBuilder(this).setTitle(ui(R.string.ui_other_images34)).setItems(sources.toTypedArray()) {_,index ->",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L897"
+        }
+      ],
+      "caller_count": 2,
+      "caller_scope": "ClassicPaintActivity305 labels the Insert-category button invoking showOtherImages;897 is its chooser title.896–910 offers the device or illustration providers. Index0 calls launchOpen(true) for import/paste; other choices start MediaGalleryActivity. Other images describes additional image sources. It is not an assembly-tray heading, generic file fallback, assertion of downloaded content, or promise to replace the current image. Preserve formatted=false.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "current_catalogue": {
+        "artifact": "current-nch-29663fd-review-location-1724.json",
+        "sha256": "7b6b9976f1da6288854bf68e5c605070e8137c054502a50ac6121b846413380b",
+        "git_blob_sha": "356b9cbf5d000f3904b1804a06bb594d3d4416c8"
+      },
+      "confidence": "Moderate own-source authored functional/compositional wording; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "Not a published whole-GUI phrase or native-speaker certification. Source-region spelling variation is disclosed. No runtime/layout verification.",
+      "candidate": {
+        "artifact": "nahua-location-status6-author-1720.json",
+        "sha256": "1a955d34e0cf4359b992f7d9903f1ff33436198a9196329fef66c1eb0428fe81"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-location-status5-independent-1727.json",
+        "sha256": "5f0f506f1f4b35862d0b0051865a5774d4c11482e20837ca0425b28d37a3b52b"
+      },
+      "current_head_guard": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+      "independent_semantic_finding": "The Central source attests other with inanimate things. The intact Cruzhica image noun covers paintings and pictures as well as photographs. Combining them is a bounded authored image-source label. No invented noun-plural suffix or borrowed NHE form is introduced.",
+      "source_evidence": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "e582d2e361570bae04ed3056349facd6b5a2c564"
+    },
+    {
+      "locale": "nch",
+      "tier": "P1",
+      "key": "ui_ready",
+      "path": "Paintroid/src/main/res/values-b+nch/strings.xml",
+      "english": "Ready",
+      "attributes": {
+        "name": "ui_ready"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Hueli titequiti",
+      "value": "Hueli titequiti",
+      "display": "Hueli titequiti",
+      "raw_xml": "<string name=\"ui_ready\">Hueli titequiti</string>",
+      "source_xml_element": "<string name=\"ui_ready\">Hueli titequiti</string>",
+      "raw_sha256": "b310add3a4cd08e50335906f6bcd57336cbd1542ed36989d59e6c26205641be1",
+      "backtranslation": "You can work",
+      "source_ids": [
+        "work-second-singular",
+        "ability-present"
+      ],
+      "source_packet": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "sources": [
+        "https://www.scriptureearth.org/data/nch/PDF/00-WNTnch-web.pdf"
+      ],
+      "source_local": "nch-central-nt-primary.pdf",
+      "source_sha256": "704e649417073f69f32a5a790738d729e041e9eaa11a642b6e76aee18e76261e",
+      "caller_packet": {
+        "artifact": "nahua-location-status6-callers-1720.json",
+        "sha256": "48262f1842edf395557a1c30e1ea6f921beaef69a1dce2c401d95977186f0379"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 651,
+          "exact_line": "            statusText = label(ui(R.string.ui_ready), 11f).apply {tag=\"status_text\";maxLines=2}",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L651"
+        }
+      ],
+      "caller_count": 1,
+      "caller_scope": "ClassicPaintActivity651 initializes the ordinary nonvertical status label in makeStatus. buildWorkspace calls makeStatus456 and synchronously updateStatus458 before returning. It runs at startup208, configuration rebuild511 and language callback870. updateStatus680–707 chooses Working/Autosaving during activity and ordinary tool/zoom/dimensions/draft status otherwise. Hueli titequiti is functional readiness (you can work), not completed-work/saved-file success or a guarantee of immediate user interaction at initialization. The label may be replaced before any rendered frame; actual display/layout was not tested.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "current_catalogue": {
+        "artifact": "current-nch-29663fd-review-location-1724.json",
+        "sha256": "7b6b9976f1da6288854bf68e5c605070e8137c054502a50ac6121b846413380b",
+        "git_blob_sha": "356b9cbf5d000f3904b1804a06bb594d3d4416c8"
+      },
+      "confidence": "Moderate own-source authored functional/compositional wording; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "Not a published whole-GUI phrase or native-speaker certification. Source-region spelling variation is disclosed. No runtime/layout verification.",
+      "candidate": {
+        "artifact": "nahua-location-status6-author-1720.json",
+        "sha256": "1a955d34e0cf4359b992f7d9903f1ff33436198a9196329fef66c1eb0428fe81"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-location-status5-independent-1727.json",
+        "sha256": "5f0f506f1f4b35862d0b0051865a5774d4c11482e20837ca0425b28d37a3b52b"
+      },
+      "current_head_guard": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+      "independent_semantic_finding": "Own Central singular-address work form and finite-present ability construction support the authored functional reading you can work. It is not an attested whole readiness label or completion/saved-state statement.",
+      "source_evidence": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "e582d2e361570bae04ed3056349facd6b5a2c564"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_choose_location",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Choose location…",
+      "attributes": {
+        "name": "ui_choose_location"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Xijtlapejpeni campa AN Paint quiajocuis…",
+      "value": "Xijtlapejpeni campa AN Paint quiajocuis…",
+      "display": "Xijtlapejpeni campa AN Paint quiajocuis…",
+      "raw_xml": "<string name=\"ui_choose_location\">Xijtlapejpeni campa AN Paint quiajocuis…</string>",
+      "source_xml_element": "<string name=\"ui_choose_location\">Xijtlapejpeni campa AN Paint quiajocuis…</string>",
+      "raw_sha256": "1cb92f0184ff34e92beeef3ee636b9ea6622e287e8a97833963461bf500ac08b",
+      "backtranslation": "Choose where AN Paint will save…",
+      "source_ids": [
+        "choose-plural",
+        "command-singular",
+        "command-plural",
+        "where",
+        "store-future-first",
+        "store-future-third"
+      ],
+      "source_packet": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "sources": [
+        "https://www.scriptureearth.org/data/nhw/PDF/00-WNTnhw-web.pdf"
+      ],
+      "source_local": "nhw-western-nt.pdf",
+      "source_sha256": "14522c9ba2796c1d89ee8bd086250550652b057d5a9a15def7cc7342d58f7f78",
+      "caller_packet": {
+        "artifact": "nahua-location-status6-callers-1720.json",
+        "sha256": "48262f1842edf395557a1c30e1ea6f921beaef69a1dce2c401d95977186f0379"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+          "line": 189,
+          "exact_line": "            .setPositiveButton(ui(R.string.ui_choose_location),null)",
+          "git_blob_sha": "8a8a4f714f965da03670d3241d9bc3c5cd6878ea",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt#L189"
+        }
+      ],
+      "caller_count": 1,
+      "caller_scope": "SaveOptionsDialog189 is the common positive button for save, export and save-and-share.193–197 validates the proposed filename, confirms SaveRequest and dismisses. ClassicPaintActivity1112–1128 records the options and invokes ACTION_CREATE_DOCUMENT with output MIME and proposed name. Choose where AN Paint will save is an output-destination selection step; it does not promise a successful write, choose GPS position, move an image, or select an open/import source. Ellipsis preserved.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "current_catalogue": {
+        "artifact": "current-nhw-29663fd-review-location-1724.json",
+        "sha256": "7639931b0bcee7e209a2dc064074fe4c6f39acc88cdc92c1bcd7a8b4dd007f77",
+        "git_blob_sha": "3098e27402a97c23bd53af950bcb606be86f3ee5"
+      },
+      "confidence": "Moderate own-source authored functional/compositional wording; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "Not a published whole-GUI phrase or native-speaker certification. Source-region spelling variation is disclosed. No runtime/layout verification.",
+      "candidate": {
+        "artifact": "nahua-location-status6-author-1720.json",
+        "sha256": "1a955d34e0cf4359b992f7d9903f1ff33436198a9196329fef66c1eb0428fe81"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-location-status5-independent-1727.json",
+        "sha256": "5f0f506f1f4b35862d0b0051865a5774d4c11482e20837ca0425b28d37a3b52b"
+      },
+      "current_head_guard": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+      "independent_semantic_finding": "Own Western choose stem is preserved, independently of NCH/NHE. The same-corpus imperative-number contrast, locative construction and storage-future evidence support the authored third-person clause. AN Paint is the storage actor; no unproved second-person storage form is used.",
+      "source_evidence": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "e582d2e361570bae04ed3056349facd6b5a2c564"
+    },
+    {
+      "locale": "nhw",
+      "tier": "P1",
+      "key": "ui_ready",
+      "path": "Paintroid/src/main/res/values-b+nhw/strings.xml",
+      "english": "Ready",
+      "attributes": {
+        "name": "ui_ready"
+      },
+      "placeholders": [],
+      "typed_slots": [],
+      "raw": "Hueli titequiti",
+      "value": "Hueli titequiti",
+      "display": "Hueli titequiti",
+      "raw_xml": "<string name=\"ui_ready\">Hueli titequiti</string>",
+      "source_xml_element": "<string name=\"ui_ready\">Hueli titequiti</string>",
+      "raw_sha256": "b310add3a4cd08e50335906f6bcd57336cbd1542ed36989d59e6c26205641be1",
+      "backtranslation": "You can work",
+      "source_ids": [
+        "work-second-singular",
+        "ability-present"
+      ],
+      "source_packet": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "sources": [
+        "https://www.scriptureearth.org/data/nhw/PDF/00-WNTnhw-web.pdf"
+      ],
+      "source_local": "nhw-western-nt.pdf",
+      "source_sha256": "14522c9ba2796c1d89ee8bd086250550652b057d5a9a15def7cc7342d58f7f78",
+      "caller_packet": {
+        "artifact": "nahua-location-status6-callers-1720.json",
+        "sha256": "48262f1842edf395557a1c30e1ea6f921beaef69a1dce2c401d95977186f0379"
+      },
+      "actual_callers": [
+        {
+          "path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt",
+          "line": 651,
+          "exact_line": "            statusText = label(ui(R.string.ui_ready), 11f).apply {tag=\"status_text\";maxLines=2}",
+          "git_blob_sha": "dfa5543ee37d885eae66f2c0731e761141d8538a",
+          "url": "https://github.com/c933103/AN-Paint/blob/29663fdeaeb5dee52851301b9b12bb970d7a0ea2/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L651"
+        }
+      ],
+      "caller_count": 1,
+      "caller_scope": "ClassicPaintActivity651 initializes the ordinary nonvertical status label in makeStatus. buildWorkspace calls makeStatus456 and synchronously updateStatus458 before returning. It runs at startup208, configuration rebuild511 and language callback870. updateStatus680–707 chooses Working/Autosaving during activity and ordinary tool/zoom/dimensions/draft status otherwise. Hueli titequiti is functional readiness (you can work), not completed-work/saved-file success or a guarantee of immediate user interaction at initialization. The label may be replaced before any rendered frame; actual display/layout was not tested.",
+      "original_missing_guard": true,
+      "current_absence_guard": true,
+      "current_catalogue": {
+        "artifact": "current-nhw-29663fd-review-location-1724.json",
+        "sha256": "7639931b0bcee7e209a2dc064074fe4c6f39acc88cdc92c1bcd7a8b4dd007f77",
+        "git_blob_sha": "3098e27402a97c23bd53af950bcb606be86f3ee5"
+      },
+      "confidence": "Moderate own-source authored functional/compositional wording; no native, runtime or layout certification.",
+      "review_status": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "limits": "Not a published whole-GUI phrase or native-speaker certification. Source-region spelling variation is disclosed. No runtime/layout verification.",
+      "candidate": {
+        "artifact": "nahua-location-status6-author-1720.json",
+        "sha256": "1a955d34e0cf4359b992f7d9903f1ff33436198a9196329fef66c1eb0428fe81"
+      },
+      "independent_review": {
+        "artifact": "review-nahua-location-status5-independent-1727.json",
+        "sha256": "5f0f506f1f4b35862d0b0051865a5774d4c11482e20837ca0425b28d37a3b52b"
+      },
+      "current_head_guard": "29663fdeaeb5dee52851301b9b12bb970d7a0ea2",
+      "independent_semantic_finding": "Own Western singular-address work form and finite-present ability construction independently support the same authored functional reading you can work. The coincident spelling is not evidence imported from NCH/NHE.",
+      "source_evidence": {
+        "artifact": "nahua-location-status6-primary-1720.json",
+        "sha256": "438fe315d464f02933c73f21ff6c6fb799c515087854b482512e22da8baeeab7"
+      },
+      "decision": "ADOPTED_AND_INTEGRATED_UNCHANGED",
+      "integration_commit": "e582d2e361570bae04ed3056349facd6b5a2c564"
+    }
+  ],
+  "limits": [
+    "One original-P0 Navajo revised damaged-Undo diagnostic and five original-P1 Nahua location/status labels.",
+    "Navajo states damage to one auxiliary stored image representation without asserting total loss, irreparability, an actor, current-canvas loss or successful recovery.",
+    "Ready is a functional initial status and not a completed-operation guarantee. Other images is the Insert source chooser.",
+    "All are moderate source-based authored compositions, without native, runtime or layout certification.",
+    "Existing NHW other-images remains unchanged and excluded. Unrelated holds and the unknown PNG operation remain outside this record."
+  ]
+}
