@@ -1,0 +1,59 @@
+{
+  "base": "e018dfab8deb5dd2a0e28619486f0dc3a3e52ac1",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base exporter review, including TextImageData luminance mapping. Made reopening explicit; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "formats22_ascii_description",
+      "tier": "P0",
+      "english": "Writes plain text using light and dark characters. View it in a monospaced font. This is a visual rendition; it cannot be reopened as the original image.",
+      "value": "ⴷⴰ ⵉⵜⵜⵡⴰⵔⴰ ⵓⴹⵕⵉⵙ ⴰⵎⴰⴳⵏⵓ ⵙ ⵉⵙⴽⴽⵉⵍⵏ ⵉⴼⴰⵡⵏ ⴷ ⵡⵉⴷ ⵉⴱⵔⴽⴰⵏⵏ. ⵙⴽⵏ ⵜ ⵙ ⵜⵙⵉⵙⴽⵍⵜ ⵏⵏⴰ ⴷⴰ ⵎⵙⴰⵙⴰⵏ ⵉⵙⴽⴽⵉⵍⵏ ⵏⵏⵙ ⴳ ⵜⵉⵔⵉⵡⵜ. ⴰⵢⴰ ⵉⴳⴰ ⴰⵙⵙⵓⵏⵖ ⵙ ⵉⵙⴽⴽⵉⵍⵏ; ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵉⵜⵜⵡⴰⵕⵥⵎ ⴷⵉⵖ ⴰⵎ ⵜⵡⵍⴰⴼⵜ ⵜⴰⵏⴰⵚⵍⵉⵜ.",
+      "backtranslation": "Plain text is written with light and dark characters. View it in a font whose characters have equal widths. This is a drawing with characters; it cannot be reopened as the original image.",
+      "context_and_review_note": "Added diɣ (again) after the passive open verb to preserve REopened explicitly. Retained plain/ordinary text, light/dark character appearance, and monospace paraphrase characters equal in width. Plural msasan refers to iskkiln; final masculine passive refers to text/drawing, not the feminine original image. SaveOptionsDialog.kt:101 shows this for ASCII; TextImageCodec.kt:40–51 makes a scaled temporary bitmap and emits plain ASCII text, not recoverable encoded source pixels. TextImageData.java:167–181 maps luma to glyph density (with alpha composited against white); it does not emit coloured rich text. Drawing with characters plus cannot reopen as the original image preserves the safety warning without falsely saying text cannot be opened at all. No claim that the original is deleted or modified.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_ascii_label",
+      "tier": "P2",
+      "english": "ASCII art",
+      "value": "ⴰⵙⵙⵓⵏⵖ ASCII",
+      "backtranslation": "ASCII drawing",
+      "context_and_review_note": "Retained compact ASCII drawing format label. ASCII remains the technical identifier; assunɣ describes the visual representation, not a lossless encoded image. This P2 companion remains separate from the P0 help explanation.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_ascii_columns",
+      "tier": "P2",
+      "english": "Width (characters)",
+      "value": "ⵜⵉⵔⵉⵡⵜ (ⵉⵙⴽⴽⵉⵍⵏ)",
+      "backtranslation": "Width (characters)",
+      "context_and_review_note": "Retained width with character unit, not pixels. SaveOptionsDialog.kt:79–81 provides 40–240 columns; TextImageData.java:160–164 enforces the same range and derives row count from image aspect ratio with a factor of two for character-cell proportions. TextImageData.java:170–183 writes exactly columns characters plus one newline per row. No numeric limit or pixel unit is inserted into the label.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_ascii_invert",
+      "tier": "P2",
+      "english": "Invert light and dark characters",
+      "value": "ⵎⵙⵏⴼⵍ ⵉⵙⴽⴽⵉⵍⵏ ⵉⴼⴰⵡⵏ ⴷ ⵡⵉⴷ ⵉⴱⵔⴽⴰⵏⵏ",
+      "backtranslation": "Swap light and dark characters",
+      "context_and_review_note": "Retained swap light/dark characters. SaveOptionsDialog.kt:82 stores the checkbox; TextImageData.java:181 reverses the character-ramp index when invert is true. It reverses the luminance-to-character-density mapping, not source image colours, foreground/background settings, or text direction. The descriptors are a contextual visual shorthand matching the help; no coloured-text or opacity control is promised.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 3,
+    "tiers": {
+      "P0": 1,
+      "P2": 3
+    },
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or removed, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native-certified. Glyph light/dark wording is contextual visual shorthand; no rendered layout or runtime tests.",
+    "repository_edits": false
+  }
+}
