@@ -1,0 +1,36 @@
+{
+  "base": "6ae6eecfdc5e10499417aeb11804965b3397b8fe",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base image-action review. Retained contextual crop label and clarified image-colour scope; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_crop_to_selection",
+      "tier": "P1",
+      "english": "Crop to selection",
+      "value": "ⴰⴽⴽⴰⵙ ⵏ ⵉⵔⴰⵏ ⴰⵔ ⵓⵙⵜⵉ",
+      "backtranslation": "Trim edges to the selection",
+      "context_and_review_note": "Retained Trim edges to the selection as a concise contextual crop label. ar gives the endpoint/extent, and usti is the attached-state selection noun. It does not mean Cut to clipboard. ClassicPaintActivity.kt:852 calls cropSelection then refits the viewport; PaintDocument.kt:461–464 replaces the document with transformedSelectionImage output. That helper (:349–365) renders the selected content using its current geometry into a ceil-sized bounding bitmap, including rotation/scaling and the selection mask. The label must therefore not be read as guaranteeing a simple rectangular slice of unchanged original pixels, but neither its wording nor the English source makes that guarantee. It is not export, save, selection-to-clipboard or viewport-only Fit.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_invert_colours",
+      "tier": "P1",
+      "english": "Invert colours",
+      "value": "ⵙⵏⵇⵍⴱ ⵉⴽⵍⴰⵏ ⵏ ⵜⵡⵍⴰⴼⵜ",
+      "backtranslation": "Invert the image colours",
+      "context_and_review_note": "Added of the image to make the affected colour scope explicit. snqlb with colours means contextual inversion/negative, while the existing foreground/background swap uses a different swap verb. ClassicPaintActivity.kt:858 applies pending operations before document.invert. PaintDocument.kt:467–476 finishes selection, checkpoints, then complements the RGB bits in EVERY bitmap row while preserving the alpha byte, and marks the document edited. It is not swapping the two drawing colours, changing only a selection, or reversing transparency. No numeric operation or image-save claim is added.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "2 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "remaining_uncertainty": "Crop and colour inversion are contextual descriptive terms, not native-certified specialist terminology. No rendered layout or runtime tests.",
+    "repository_edits": false
+  }
+}
