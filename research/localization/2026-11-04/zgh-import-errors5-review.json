@@ -1,0 +1,109 @@
+{
+  "base": "235d977a5f219df97cb97cca280c61a1beb12099",
+  "status": "independent_review_complete: 5 accepted with revisions; 1 held for semantic uncertainty",
+  "method": "Direct Tifinagh translation with exact code failure boundaries and explicit uncertainty. No native-certification or source-matching claim.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_android_blocked_the_file_picker",
+      "tier": "P1",
+      "english": "Android blocked the file picker: %1$s",
+      "value": "ⵉⴳⴷⵍ Android ⴰⵙⵜⵉ ⵏ ⵓⴼⴰⵢⵍⵓ: %1$s",
+      "backtranslation": "Android blocked file selection: %1$s",
+      "context_and_review_note": "ClassicPaintActivity.kt:1101 and AssemblyActivity.kt:195 catch SecurityException when launching the picker. Translate blocked selection without asserting missing permissions or a missing app. Preserve provider error placeholder.",
+      "status": "accepted_independent_review",
+      "original_value": "ⵉⴳⴷⵍ Android ⴰⵙⵜⵉ ⵏ ⵓⴼⴰⵢⵍⵓ: %1$s",
+      "independent_review_note": "Accepted. File selection is a natural functional paraphrase of picker. Android remains blocker; no unsupported missing-app or permission-remedy claim. %1$s is the caught SecurityException message, not necessarily a provider error.",
+      "integration_allowed": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_picker_returned_no_file_please_choose_the",
+      "tier": "P1",
+      "english": "The picker returned no file. Please choose the file again.",
+      "value": "AN Paint ⵓⵔ ⵢⵓⵎⵉⵥ ⵓⵍⴰ ⵢⴰⵏ ⵓⴼⴰⵢⵍⵓ. ⴰⵎⵓⵔ ⵏⵏⴽ, ⵙⵜⵉ ⴰⴼⴰⵢⵍⵓ ⴷⵉⵖ.",
+      "backtranslation": "AN Paint received no file. Please select the file again.",
+      "context_and_review_note": "ClassicPaintActivity.kt:1251 result URI null after successful activity result; afterSave is cleared. Contextual recipient paraphrase preserves absence and retry, without asserting deletion, permission loss or cancellation. Reviewer should check negative received predicate.",
+      "status": "accepted_independent_review",
+      "original_value": "AN Paint ⵓⵔ ⵢⵓⵎⵥ ⵓⵍⴰ ⵢⴰⵏ ⵓⴼⴰⵢⵍⵓ. ⴰⵎⵓⵔ ⵏⵏⴽ, ⵙⵜⵉ ⴰⴼⴰⵢⵍⵓ ⴷⵉⵖ.",
+      "independent_review_note": "Revised negative perfective yumz to yumiz (ⵢⵓⵎⵉⵥ). Zero-file recipient paraphrase is acceptable for a null result URI and keeps retry. This caller also covers save/export URI selection, so do not narrow it to image import.",
+      "integration_allowed": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_picker_returned_no_files",
+      "tier": "P1",
+      "english": "The picker returned no files.",
+      "value": "AN Paint ⵓⵔ ⵢⵓⵎⵉⵥ ⵓⵍⴰ ⵢⴰⵏ ⵓⴼⴰⵢⵍⵓ.",
+      "backtranslation": "AN Paint received no file.",
+      "context_and_review_note": "AssemblyActivity.kt:201 empty URI collection; no retry instruction in this source. Zero files is preserved by not even one. Same receive predicate as singular result.",
+      "status": "accepted_independent_review",
+      "original_value": "AN Paint ⵓⵔ ⵢⵓⵎⵥ ⵓⵍⴰ ⵢⴰⵏ ⵓⴼⴰⵢⵍⵓ.",
+      "independent_review_note": "Revised negative perfective yumz to yumiz (ⵢⵓⵎⵉⵥ). Not even one file expresses an empty plural collection. Does not add retry, cancellation or deletion claims.",
+      "integration_allowed": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_selected_provider_did_not_return_any_image",
+      "tier": "P1",
+      "english": "The selected provider did not return any image data.",
+      "value": "ⴰⵎⴼⴽⴰ ⵉⵜⵜⵓⵙⵜⵢⵏ ⵓⵔ ⴷ ⵢⵓⵛⵉ ⵉⵙⴼⴽⴰ ⵏ ⵜⵡⵍⴰⴼⵜ.",
+      "backtranslation": "The selected provider did not provide image data.",
+      "context_and_review_note": "ClassicPaintActivity.kt:1273–1274 openInputStream returns null. Provider stays distinct from picker or file. amfka provider and negative give predicate require independent review. Do not interpret as a decode failure or corrupted image.",
+      "status": "accepted_independent_review",
+      "original_value": "ⴰⵎⴼⴽⴰ ⵉⵜⵜⵓⵙⵜⵢⵏ ⵓⵔ ⴷ ⵢⵓⵛ ⵉⵙⴼⴽⴰ ⵏ ⵜⵡⵍⴰⴼⵜ.",
+      "independent_review_note": "Revised negative give predicate yuc to yuci (ⵢⵓⵛⵉ). Keeps selected provider distinct from picker and Android decoder, and states no image data were supplied, not that bytes were malformed.",
+      "integration_allowed": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_no_readable_image_data",
+      "tier": "P1",
+      "english": "No readable image data.",
+      "value": "ⵓⵔ ⵍⵍⵉⵏ ⵉⵙⴼⴽⴰ ⵏ ⵜⵡⵍⴰⴼⵜ ⵉⵣⵎⵔⵏ ⴰⴷ ⵜⵜⵡⴰⵖⵔⵏ.",
+      "backtranslation": "There are no image data that can be read.",
+      "context_and_review_note": "AssemblyActivity.kt:243 null openInputStream; avoid narrowing to zero-byte or malformed image. Review plural relative/passive agreement.",
+      "status": "accepted_independent_review",
+      "original_value": "ⵓⵔ ⵍⵍⵉⵏ ⵉⵙⴼⴽⴰ ⵏ ⵜⵡⵍⴰⴼⵜ ⵉⵣⵎⵔⵏ ⴰⴷ ⵜⵜⵡⴰⵖⵔⴰⵏ.",
+      "independent_review_note": "Revised passive after ad from perfective-shaped ⵜⵜⵡⴰⵖⵔⴰⵏ to aorist plural ⵜⵜⵡⴰⵖⵔⵏ. Relative ability and passive refer to plural data; the message does not diagnose empty bytes or file corruption.",
+      "integration_allowed": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_android_could_not_decode_this_image",
+      "tier": "P1",
+      "english": "Android could not decode this image.",
+      "value": "ⵓⵔ ⵉⵣⵎⵉⵔ Android ⴰⴷ ⵉⵙⴼⵙⵉ ⵜⴰⵡⵍⴰⴼⵜ ⴰ.",
+      "backtranslation": "Android could not decode this image.",
+      "context_and_review_note": "ImageImport.kt:161–162 BitmapFactory.decodeFile returns null. Proposed s fsi decode term needs independent lexical validation; must not use literal dissolve/untie meaning or collapse this into absent provider data. No claim of unsupported format, damage or memory exhaustion.",
+      "status": "held_semantic_uncertainty",
+      "original_value": "ⵓⵔ ⵉⵣⵎⵉⵔ Android ⴰⴷ ⵉⵙⴼⵙⵉ ⵜⴰⵡⵍⴰⴼⵜ ⴰ.",
+      "independent_review_note": "Held for real semantic uncertainty: ⵉⵙⴼⵙⵉ suggests dissolve/unravel, and I cannot establish a defensible technical decoding sense. A replacement must describe Android failing to interpret image encoding, not absent provider data, unsupported format, corruption, or memory exhaustion. Merely changing to generic no readable data would lose the failure-stage distinction.",
+      "integration_allowed": false
+    }
+  ],
+  "review_scope": "Translation and observed caller-boundary review. No native certification. Caller copies inspected; exact base commit content not independently established.",
+  "review_sources": [
+    {
+      "url": "https://www.temehu.com/imazighen/dictionaries/Tamawalt/A-Reference-Grammar-of-Tamazight-Abdel-Massih.pdf",
+      "note": "Indexed grammar excerpt explicitly contrasts yumz with ur yumiz. Direct URL now redirects; used as corroboration, not a per-word source gate."
+    },
+    {
+      "url": "https://amadalamazigh.press.ma/archivesPDF/208.pdf",
+      "note": "Published Tifinagh text includes ur d yuci, corroborating negative give stem."
+    },
+    {
+      "url": "https://www.learnamazigh.com/verbs",
+      "note": "Verb list places fsi/sfsiy in dismantle/dissolve meanings; does not establish a technical decode sense."
+    }
+  ],
+  "checks": {
+    "row_count": 6,
+    "accepted_count": 5,
+    "held_count": 1,
+    "placeholders_match": true,
+    "NFC": true,
+    "script": "Tifinagh text; Android and AN Paint proper names left in Latin; %1$s unchanged",
+    "repo_edits": false
+  }
+}
