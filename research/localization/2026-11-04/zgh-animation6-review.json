@@ -1,0 +1,85 @@
+{
+  "base": "671ecac69a61a36dace79043990c7c2852ca701f",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh model review against exact-base ImportSelection callers; one explicit frame-context revision. Exact versus lower-bound counts and uncertain multiplicity kept separate. Not native-certified.",
+  "lexical_context": "IRCAM/HACA audiovisual lexicon https://biblio.ircam.ma/pmb/uploads/publications/197.pdf entry 315: moving images; freshly rechecked indexed extract. Singular/nonmoving/frames compositional adaptations are not direct source translations.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "formats22_animation_title",
+      "tier": "P0",
+      "english": "Animated image",
+      "value": "ⵜⴰⵡⵍⴰⴼⵜ ⵉⵜⵜⵎⵓⵜⵜⵓⵢⵏ",
+      "backtranslation": "Moving/animated image",
+      "context_and_review_note": "Exact-base ImportSelection.kt:94 uses this title when frameCount>=2, not when a limited scan leaves multiplicity uncertain. Retained singular animated/moving image and invariant verbal participle. IRCAM/HACA moving-images expression supports the lexical base; singular adaptation is a translation choice, not a direct quotation.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_open_still",
+      "tier": "P0",
+      "english": "Open still image",
+      "value": "ⵕⵥⵎ ⵜⴰⵡⵍⴰⴼⵜ ⵓⵔ ⵉⵜⵜⵎⵓⵜⵜⵓⵢⵏ",
+      "backtranslation": "Open a nonmoving image",
+      "context_and_review_note": "Exact-base ImportSelection.kt:94 uses this as the uncertain-scan title; :95 uses it as positive action for finishSelection(0). Retained imperative open nonmoving image; does not offer animation playback or promise preservation. rẓm/ṛẓm is used for opening, not the earlier ambiguous alday noun.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_animation_message",
+      "tier": "P0",
+      "english": "This %1$s contains %2$s frames. AN Paint edits still images and does not preserve animation.",
+      "value": "%1$s ⴰ · ⵜⵉⵡⵍⴰⴼⵉⵏ ⵏ ⵓⵎⵓⵙⵙⵓ: %2$s. AN Paint ⴷⴰ ⵉⵙⵏⴼⵍ ⵜⵉⵡⵍⴰⴼⵉⵏ ⵓⵔ ⵉⵜⵜⵎⵓⵜⵜⵓⵢⵏ; ⵓⵔ ⵉⵃⵟⵟⵓ ⴰⵎⵓⵙⵙⵓ.",
+      "backtranslation": "This %1$s · animation images/frames: %2$s. AN Paint edits nonmoving images; it does not preserve motion.",
+      "context_and_review_note": "Exact-base ImportSelection.kt:90-92: %1$s is format and %2$s is either an exact numeric string or formats22_at_least_frames formatted with the lower bound. Retained animation-images/frame count label and warning that AN Paint edits nonmoving images and does not preserve animation. Nested count phrase remains grammatical after the colon; neither lower-bound count nor %2$s is coerced to an integer placeholder.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_animation_still",
+      "tier": "P0",
+      "english": "Only the first frame will be imported. Saving creates a still image.",
+      "value": "AN Paint ⵔⴰⴷ ⵉⵕⵥⵎ ⵖⴰⵙ ⵜⴰⵡⵍⴰⴼⵜ ⵜⴰⵎⵣⵡⴰⵔⵓⵜ ⵏ ⵓⵎⵓⵙⵙⵓ. «ⵃⴹⵓ»: ⴰⵙⵏⵓⵍⴼⵓ ⵏ ⵜⵡⵍⴰⴼⵜ ⵓⵔ ⵉⵜⵜⵎⵓⵜⵜⵓⵢⵏ.",
+      "backtranslation": "AN Paint will open only the first image of the animation. Save: creation of a nonmoving image.",
+      "context_and_review_note": "Exact-base ImportSelection.kt:93 appends this only for non-separate-poster animation; :95 selects index 0. Revised first image to first image of the animation to disambiguate frame from separate imported document. Saving creates a nonmoving image. The separate APNG poster branch remains separate. Neither opening nor this warning claims to overwrite or remove frames from the source file.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_animation_unknown",
+      "tier": "P0",
+      "english": "This %1$s is too complex to confirm whether it contains multiple frames. AN Paint will open only a still image and will not preserve any animation.",
+      "value": "%1$s ⴰ ⵉⴳⴰ ⴰⵔⴰⴼⵔⴰⵔ; AN Paint ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵉⵙⵙⵏ ⵉⵙ ⵍⵍⴰⵏⵜ ⴷⵉⴳⵙ ⵓⴳⴳⴰⵔ ⵏ ⵢⴰⵜ ⵜⵡⵍⴰⴼⵜ. AN Paint ⵔⴰⴷ ⵉⵕⵥⵎ ⵖⴰⵙ ⵜⴰⵡⵍⴰⴼⵜ ⵓⵔ ⵉⵜⵜⵎⵓⵜⵜⵓⵢⵏ. ⵓⵔ ⵔⴰⴷ ⵉⵃⴹⵓ ⴰⵎⵓⵙⵙⵓ.",
+      "backtranslation": "This %1$s is complex; AN Paint cannot know whether it contains more than one image/frame. AN Paint will open only a nonmoving image. It will not preserve motion.",
+      "context_and_review_note": "Exact-base ImportSelection.kt:91 chooses this when frameCount<2; uncertainty concerns whether more than one frame exists, not just the exact count of an established animation. Retained whether-question scope, inability to establish multiplicity and negative future preservation warning. Complex adjective arafrar is supported by IRCAM General Dictionary entry 3573. Motion is not asserted to exist. The warning describes the opened/saved result, not destruction of the input.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_at_least_frames",
+      "tier": "P2",
+      "english": "at least %1$d",
+      "value": "%1$d ⵏⵖ ⵓⴳⴳⴰⵔ",
+      "backtranslation": "%1$d or more",
+      "context_and_review_note": "Exact-base ImportSelection.kt:90 inserts this only when frameCountExact is false. Retained %1$d or more as a true lower bound. It is nested as the %2$s string in the main warning, preserving both placeholder types and positional indices.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "formats22_animation_still"
+    ],
+    "retained_keys": [
+      "formats22_animation_title",
+      "formats22_open_still",
+      "formats22_animation_message",
+      "formats22_animation_unknown",
+      "formats22_at_least_frames"
+    ],
+    "callers": "Verified via GitHub fetch_file at 671ecac69a61a36dace79043990c7c2852ca701f: ImportSelection.kt:77-95.",
+    "placeholders": "Preserved %1$s/%2$s in main warning, %1$s in uncertain warning, %1$d in nested lower-bound phrase.",
+    "source_handling": "The inspected ImportSelection owns a staged file; translated warnings do not claim that opening rewrites the external original. No independent full persistence-path audit performed.",
+    "linguistic_limit": "Model-reviewed, not native-certified. Frame is described as an image of animation rather than a claimed standardized specialist noun.",
+    "runtime": "Not run; translation review only."
+  }
+}
