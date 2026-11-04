@@ -1,0 +1,39 @@
+{
+  "base": "d688e0f8f3815026c0cf857982ab92cd9c4b7397",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base non-stretch/Undo/coordinate-range review. Simplified the pixel-location clause and corrected the edge noun; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "tier": "P0",
+      "english": "Keeps pixels at the top left. Smaller canvas dimensions discard pixels beyond the right/bottom edge; Undo restores them.",
+      "value": "ⵇⵇⵉⵎⵏ ⵉⴷ ⴱⵉⴽⵙⵍ ⴳ ⵓⴼⵍⵍⴰ ⵖⵔ ⵓⵥⵍⵎⴰⴹ. ⵎⴽ ⵜⵙⵙⵉⵎⵥⵉⴷ ⵜⵉⴷⴷⵉ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ, ⵜⵜⵡⴰⴽⴽⵙⵏ ⵉⴷ ⴱⵉⴽⵙⵍ ⴱⵕⵕⴰ ⵏ ⵢⵉⵔⵉ ⴰⴼⴰⵙⵉ ⵏⵖ ⵡⵉⵏ ⵡⴰⴷⴷⴰ. «ⵙⵙⵔ» ⵉⵙⵙⵓⴽⵏ ⵜⵏ.",
+      "backtranslation": "Pixels remain at the top left. If you reduce the canvas size, pixels beyond the right edge or the bottom edge are removed. Undo restores them.",
+      "context_and_review_note": "Revised yir to yiri, preserving the final vowel of the reviewed iri edge noun in its attached state. Removed the unnecessary llanin relative-existence form, leaving pixels outside the right/bottom edge as a direct location phrase. Retained aflla toward the left as top-left anchoring and the exact existing quoted Undo label. ClassicPaintActivity.kt:1016 selects this help only for nonfresh stretch=false sizing. PaintDocument.kt:423–431 copies the bitmap at 0,0 without resampling, clips beyond reduced right/bottom dimensions and calls replace(next,true). replace captures a checkpoint before switching the bitmap (:202); undo/moveHistory :230–244 restores the prior raster. The text describes this ordinary Undo operation, not indefinite recoverability: history or allocation failures remain possible. It does not promise recovery of overwritten external source files or persistence after every failure.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_enter_positive_canvas_dimensions_within_android_s_coordinate",
+      "tier": "P1",
+      "english": "Enter positive canvas dimensions within Android\\'s coordinate range.",
+      "value": "ⵙⵙⴽⵛⵎ ⵜⵉⵔⵉⵡⵜ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ ⵓⴳⴳⴰⵔ ⵏ 0 ⴷ ⵜⵉⵖⵣⵉ ⵓⴳⴳⴰⵔ ⵏ 0. ⴰⴷ ⵓⵔ ⵜⵉⵍⵉ ⴽⵓ ⵢⴰⵜ ⵓⴳⴳⴰⵔ ⵏ 2147483647 (ⵜⵉⵍⵉⵙⵜ ⵏ Android).",
+      "backtranslation": "Enter canvas width greater than 0 and height greater than 0. Neither may exceed 2147483647 (the Android limit).",
+      "context_and_review_note": "Retained the explicit numeric paraphrase: width and height both >0, and neither above 2147483647. PaintDocument.kt:439–441 subtracts coordinates as Long and checks EACH dimension in 1..Int.MAX_VALUE. Equality at the upper bound is allowed; zero and negative dimensions are not. The feminine tili/yat construction refers to either width or height. The numeric detail is an intentional exact-current-code expansion of Android coordinate range, not a RAM capacity or a guarantee that such an image can be allocated: allocationGuard follows at :443 and is stricter. This hard-coded number must be rechecked if the underlying coordinate range changes. No source dimensions, byte limit or formatting placeholder is invented.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tiers": {
+      "P0": 1,
+      "P1": 1
+    },
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; Undo label matches catalogue",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Explicit upper bound tracks current code and requires maintenance if range changes. No rendered, allocation or Undo fault-injection tests.",
+    "repository_edits": false
+  }
+}
