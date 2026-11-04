@@ -1,0 +1,36 @@
+{
+  "base": "c3b4c5172fa6e452635d95cdcf987e911dd032f7",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct translation and exact-base RasterHistory validation review. One precision revision; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_the_undo_cache_is_damaged",
+      "tier": "P0",
+      "english": "The undo cache is damaged.",
+      "value": "ⵉⵙⴼⴽⴰ ⵏ ⵓⴼⴰⵢⵍⵓ ⵏ «ⵙⵙⵔ» ⵓⵔ ⵚⵃⵉⵏ.",
+      "backtranslation": "The Undo file data is invalid.",
+      "context_and_review_note": "Retained the functional Undo file data is invalid. Exact-base RasterHistory.kt:60 reports SHA-256 mismatch; :62 and :81 report wrong magic/header dimensions. Invalid is an appropriate umbrella for these consistency failures, without asserting physical disk damage or corruption of the active image. isfka is plural; ur ṣḥin supplies the negative plural predicate. The genitive file construction is regular and quoted ⵙⵙⵔ matches the existing ui_undo exactly. No data-loss claim or destructive remedy added.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_unexpected_data_in_the_undo_cache",
+      "tier": "P0",
+      "english": "Unexpected data in the undo cache.",
+      "value": "ⵍⵍⴰⵏ ⵉⵙⴼⴽⴰ ⵢⴰⴹⵏ ⴷⴼⴼⵉⵔ ⵉⵙⴼⴽⴰ ⵏ ⵜⵡⵍⴰⴼⵜ ⴳ ⵓⴼⴰⵢⵍⵓ ⵏ «ⵙⵙⵔ».",
+      "backtranslation": "There is additional data after the image data in the Undo file.",
+      "context_and_review_note": "Revised at the end of the file to after the image data: RasterHistory.kt:97 tests input.read()!=-1 after exactly the expected width*height pixels in the INFLATED stream. This is unexpected trailing decompressed content; it does not diagnose arbitrary bytes appended outside the compressed stream. llan agrees with plural isfka; yaḍn means other/additional, and dffir identifies the trailing position. The quoted Undo label is unchanged. restore first calls read(entry,null) at :70 before any bitmap mutation, although this is not a universal guarantee against later I/O failure. The translated message itself makes no image-loss or no-loss guarantee and recommends no deletion, restart or discard.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "2 P0",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "remaining_uncertainty": "Direct model linguistic review, not native-speaker certification. No rendered layout or runtime tests.",
+    "repository_edits": false
+  }
+}
