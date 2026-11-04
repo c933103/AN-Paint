@@ -1,0 +1,26 @@
+{
+  "base": "6c07a208691e82bb56646504bebfb3cb10209ed6",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base autosave-state review. Concise nominal pending status retained; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_draft_pending",
+      "tier": "P1",
+      "english": "Draft pending",
+      "value": "ⴰⵃⴹⴰⵡ ⵙ ⵓⵡⵔⵎⴰⵏ: ⴰⵔⴰⵊⵓ…",
+      "backtranslation": "Automatic saving: waiting…",
+      "context_and_review_note": "Retained Automatic saving: waiting… as a concise nominal status. araju is the waiting noun, not an imperative telling the user to wait; the colon makes waiting the current state of the automatic-save operation rather than asserting active writing. The ellipsis indicates pending work without promising success or a fixed completion time. Exact-base ClassicPaintActivity.kt:1591 assigns pending before posting the 1500ms debounce callback (0 when stopped); :1608 defers 400ms while busy or a gesture is active. :1615 sets autosaving only when work starts, and :1626–1627 selects saved or failed after completion. The visible status expression prioritizes saving while autosaving is true, rather than using this pending text as the active-write label. No completed-save, current disk-write, error or guaranteed future-save claim is introduced. It remains distinct from the existing Draft not saved yet message.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 1,
+    "tier": "1 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native certification. No rendered status-bar or runtime debounce/concurrency test performed.",
+    "repository_edits": false
+  }
+}

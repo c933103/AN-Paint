@@ -1,0 +1,47 @@
+{
+  "base": "6c07a208691e82bb56646504bebfb3cb10209ed6",
+  "accepted_additions": 1,
+  "unchanged_nodes": 307,
+  "coverage": {
+    "P0": {
+      "before_missing": 12,
+      "after_missing": 12,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 32,
+      "after_missing": 31,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 296,
+      "after_missing": 296,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 70,
+      "after_missing": 70,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "One missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Pending assigned before debounce and busy/gesture deferral",
+    "Active autosaving status distinct from pending; saved/failed assigned on completion",
+    "Nominal waiting state retained without completion promise"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "No runtime debounce/concurrency tests",
+    "Status-bar rendering untested"
+  ]
+}
