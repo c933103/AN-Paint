@@ -1,0 +1,47 @@
+{
+  "base": "355a198d0a3e786d0d58490a1686374be141cff9",
+  "accepted_additions": 6,
+  "unchanged_nodes": 182,
+  "coverage": {
+    "P0": {
+      "before_missing": 36,
+      "after_missing": 36,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 123,
+      "after_missing": 117,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 305,
+      "after_missing": 305,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 71,
+      "after_missing": 71,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "Six missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed XML/value/source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Revised fold/unfold wording integrated",
+    "Foreground/background edit ellipses retained",
+    "Existing toolbox strings unchanged"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "Six legacy keys absent from two inspected consumer files: no live UI coverage claim",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "Existing toolbox verbs require separate review"
+  ]
+}
