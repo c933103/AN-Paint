@@ -1,0 +1,36 @@
+{
+  "base": "213c4ab4b260c895673cd995f6af45f45ca96405",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent exact-base caller, lexical and annexation review. Both direct labels retained; no native-certification claim.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_rectangle",
+      "tier": "P1",
+      "english": "Rectangle",
+      "value": "ⵓⵏⵣⵉⵖ",
+      "backtranslation": "Rectangle",
+      "context_and_review_note": "Retained ⵓⵏⵣⵉⵖ. Independently verified IRCAM dictionary search excerpt explicitly pairing this spelling with rectangle, printed p.134 (https://www.ircam.ma/sites/default/files/2021-02/amz_fr_ar.pdf; same text https://biblio.ircam.ma/pmb/uploads/publications/177.pdf). The direct PDF fetch returned HTTP 502, but the indexed primary-source excerpt is unambiguous. Exact-base PaintTool.RECTANGLE resolves this label; PaintCanvas.shapePath builds addRect(bounds(),CW), then PaintDocument.drawShape strokes/fills the path according to the current shape style. It is an ordinary rectangle, not rounded rectangle, square-only geometry or a selection operation. Five Tifinagh letters; no placeholders.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_rectangle_select",
+      "tier": "P1",
+      "english": "Rectangle select",
+      "value": "ⴰⵙⵜⵉ ⵙ ⵡⵓⵏⵣⵉⵖ",
+      "backtranslation": "Selection with a rectangle / rectangular selection",
+      "context_and_review_note": "Retained ⴰⵙⵜⵉ ⵙ ⵡⵓⵏⵣⵉⵖ: selection with a rectangle. The annexed form after ⵙ follows the u-initial noun pattern. IRCAM grammatical vocabulary independently attests the same spelling pair ⵓⵏⵣⵉⵖ / ⵡⵓⵏⵣⵉⵖ for a homonym (https://biblio.ircam.ma/pmb/uploads/publications/134.pdf); this supports morphology only, not geometric meaning, which is separately attested in the dictionary. Exact-base SELECT uses this label and document.select(bounds()) with default null mask, unlike LASSO passing a traced mask. select intersects the rectangular bounds with the image and extracts its pixels. ToolButton uses both labels for visible text, contentDescription and tooltip. This three-word label distinguishes selecting a region from drawing a rectangle. Its 13 characters including spaces are compact, but no actual rendering or large-font fit test was run.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 2,
+    "tier": "2 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders, Android escaping and formatting",
+    "remaining_uncertainty": "Model review, not native UI certification. Standard noun attested; annexation supported by pattern and independently attested homonym. No rendered label-fit or accessibility test.",
+    "repository_edits": false
+  }
+}
