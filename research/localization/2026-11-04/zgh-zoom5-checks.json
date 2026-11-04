@@ -1,0 +1,46 @@
+{
+  "base": "0151b0326fe5e5720f1fd6ca503ccff33eadb32f",
+  "accepted_additions": 5,
+  "unchanged_nodes": 240,
+  "coverage": {
+    "P0": {
+      "before_missing": 20,
+      "after_missing": 20,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 85,
+      "after_missing": 80,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 301,
+      "after_missing": 301,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 71,
+      "after_missing": 71,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "Five missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Magnification literal percent and formatted=false retained",
+    "Zoom label has exactly one string placeholder and no extra percent",
+    "Drawing-area wording and Fit/Show all consistency preserved",
+    "Exact-head fit includes trim/floating bounds; zoom/pan only; preview factor inspected"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation"
+  ]
+}

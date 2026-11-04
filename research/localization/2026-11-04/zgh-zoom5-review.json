@@ -1,0 +1,70 @@
+{
+  "base": "0151b0326fe5e5720f1fd6ca503ccff33eadb32f",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base caller review. Descriptive drawing-area terminology; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_canvas_zoom",
+      "tier": "P1",
+      "english": "Canvas zoom",
+      "value": "ⴰⵙⵙⵉⵎⵖⵓⵔ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ",
+      "backtranslation": "Drawing-area magnification",
+      "context_and_review_note": "Revised drawing to drawing area (adɣar n ussunɣ), a transparent descriptive canvas paraphrase including its blank space, not a claim of standardized technical nomenclature. Nominal enlargement retained, consistent with the existing zoom-in verb. Exact-base ClassicPaintActivity.kt:657,660 names ZoomSeekBar and invokes zoomAt; PaintCanvas.kt:194–201 only updates zoom/pan. The label does not claim a change to document pixel size.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_canvas_zoom_771f84",
+      "tier": "P1",
+      "english": "Canvas zoom %1$s",
+      "value": "ⴰⵙⵙⵉⵎⵖⵓⵔ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ %1$s",
+      "backtranslation": "Drawing-area magnification %1$s",
+      "context_and_review_note": "Same drawing-area clarification as ui_canvas_zoom. ClassicPaintActivity.kt:711 passes PaintCanvas.zoomLabel(); PaintCanvas.kt:217–218 returns integer percentage at zoom >=0.1 and fractional percentage below. Exactly one %1$s retained, no extra percent sign. Nominal UI label, not an imperative or image-resize command.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_fit",
+      "tier": "P1",
+      "english": "Fit",
+      "value": "ⵙⵙⵓⵎⴰⵏ ⴰⴽⴽⵯ",
+      "backtranslation": "Show all",
+      "context_and_review_note": "Retained functional Show all, consistent with existing catalogue ui_show_all. ClassicPaintActivity.kt:669,772,1055 all call fit(). PaintCanvas.kt:176–192 fits bitmap bounds plus trim/floating-selection extents, adds handle padding, and changes only zoom/pan. Does not invoke selection Fit or alter image geometry.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_fit_entire_canvas_in_view",
+      "tier": "P1",
+      "english": "Fit entire canvas in view",
+      "value": "ⵙⵙⵓⵎⴰⵏ ⴰⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ ⴰⴽⴽⵯ ⴳ ⵓⴳⴷⵉⵍ",
+      "backtranslation": "Show the entire drawing area on the screen",
+      "context_and_review_note": "Revised entire drawing to entire drawing area so unpainted canvas is included. adɣar is an ordinary place/area paraphrase, not a new specialist canvas noun. ClassicPaintActivity.kt:673 uses this accessibility description for the Fit button. PaintCanvas.kt:176–192 fits the bitmap plus any outlying trim/floating selection, with padding; on the screen describes visibility, not entering fullscreen mode.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_magnification",
+      "tier": "P1",
+      "english": "Magnification (%)",
+      "value": "ⴰⵙⵙⵉⵎⵖⵓⵔ (%)",
+      "backtranslation": "Magnification (%)",
+      "context_and_review_note": "Retained nominal magnification with literal (%). ClassicPaintActivity.kt:1544–1546 and :1563–1565 set previewMagnification from a 100–400 slider. PaintCanvas.kt:362 actually renders with max(main zoom,1)*previewMagnification.coerceIn(1,4); this is a preview factor, not a promise of absolute 100–400% screen zoom and not document resizing. Exact-base values/strings.xml:264 has formatted=false, which must be copied to the generated target XML.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 3,
+    "retained": 2,
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, placeholders, Android escaping, formatting with source formatted=false",
+    "required_xml_attributes": {
+      "ui_magnification": {
+        "formatted": "false"
+      }
+    },
+    "remaining_uncertainty": "Drawing area is a descriptive paraphrase, not native-certified specialist canvas terminology. No rendered layout/accessibility or runtime test performed.",
+    "repository_edits": false
+  }
+}
