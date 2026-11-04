@@ -1,0 +1,33 @@
+{
+  "base": "5f893e7deaab993835d3cb8bb1d869e4d61f9d1e",
+  "status": "INDEPENDENT REVIEW COMPLETE FOR ONE INCLUDED ROW; NO BRANCH EDITS",
+  "method": "Scoped independent linguistic and exact-base saved/restore failure review. Legacy unreadable-copies warning excluded from this batch.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "gallery_credit_could_not_save",
+      "tier": "P0",
+      "english": "The image credits could not be saved or restored. Existing saved credits have been kept. Try again.",
+      "value": "AN Paint ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵉⵃⴹⵓ ⵏⵖ ⴰⴷ ⵉⵙⵙⵓⴽⵏ ⵉⵙⴼⴽⴰ ⵅⴼ ⵓⴳⴰⵎ ⴷ ⵓⵎⴳⴰⵢ ⴷ ⵉⵣⵔⴼⴰⵏ ⵏ ⵜⵡⵍⴰⴼⵜ. ⵇⵇⵉⵎⵏ ⵉⵙⴼⴽⴰ ⴰ ⵉⵜⵜⵡⴰⵃⴹⴰⵏ ⴷⴰⵜ. ⴰⵔⵎ ⴷⵉⵖ.",
+      "backtranslation": "AN Paint could not save or restore the image source, creator and rights information. The information previously saved has been kept. Try again.",
+      "context_and_review_note": "Repeated ad before the coordinated restore verb for explicit parallel could not save OR restore syntax. Retained the catalogue recovery verb ssukn rather than substituting an uncertain synonym. Credits are described as information about source, creator and rights, not money and not a promise that all structured fields exist. qqimn is plural agreeing with isfka; the previously-saved relative modifier keeps the preservation statement limited to existing stored information, not the newest unsaved field. GalleryCredits.kt catches IOException both during editor construction/restoration (:77–79) and save callback; entries are updated only after callback success. ClassicPaintActivity.kt:1468 onward validates prospective edits, persists the session, then edits document credits; failed editor construction leaves the prior session association intact. CreditEditSession.kt:31–40 records prior accepted snapshot identities and writes the next revision before publishing in-memory acceptance; CreditSessionJson.kt:151–166 uses AtomicFile with failWrite rollback. These inspected paths support retention of prior saved credits, without promising the latest edit saved or restoration succeeded. This was a static scoped review, not a proof of every caller/concurrency interleaving. The separate legacy_credits_unreadable message is excluded from this batch.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 0,
+    "included_keys": [
+      "gallery_credit_could_not_save"
+    ],
+    "excluded_keys": [
+      "legacy_credits_unreadable"
+    ],
+    "tier": "1 P0 included",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "preservation_scope": "Inspected editor/session atomic-write and validation paths support existing-saved-credit retention. No claim that unsaved changes survive or latest save succeeded. No full concurrent failure audit performed.",
+    "remaining_uncertainty": "Model linguistic review, not native certification. No rendered layout or fault-injection/runtime tests.",
+    "repository_edits": false
+  }
+}
