@@ -1,0 +1,74 @@
+{
+  "base": "83405b9465249783943d37618b9392b60748127a",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh model review against exact-base export/share callers and existing labels. Three targeted semantic revisions; no repository writes. Not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_export_as23",
+      "tier": "P1",
+      "english": "Export as…",
+      "value": "ⵙⵙⵓⴼⵖ ⴰⵎ…",
+      "backtranslation": "Export as…",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:841 opens export options and SaveOptionsDialog.kt:187 uses this title. Retained export imperative and ellipsis. Distinct from the exact existing Save as label ⵃⴹⵓ ⴰⵎ….",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_export_did_not_save23",
+      "tier": "P0",
+      "english": "The export was created. Use Save or Save as to save the current image before continuing.",
+      "value": "ⵉⵜⵜⵡⴰⵙⵏⵓⵍⴼⵓ ⵓⴼⴰⵢⵍⵓ ⵏ ⵓⵙⵙⵓⴼⵖ. ⵙⵎⵔⵙ «ⵃⴹⵓ» ⵏⵖ «ⵃⴹⵓ ⴰⵎ…» ⵃⵎⴰ ⴰⴷ ⵜⵃⴹⵓⴷ ⵜⴰⵡⵍⴰⴼⵜ ⴰ ⴷⴰⵜ ⴰⴷ ⵜⴷⴷⵓⴷ ⵖⵔ ⵣⴷⴰⵜ.",
+      "backtranslation": "The export file was created. Use Save or Save as to save this image before proceeding.",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:1370-1373 confirms successful output creation, no markSaved or savedTarget change for export, and no execution of a pending continuation. Replaced tzdi (join/connect) with go forward/proceed. Exact Save and Save as labels retained. This warns that saving the document is still needed, not that export failed.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_export_explanation23",
+      "tier": "P0",
+      "english": "Export an icon, Base64 text or ASCII art. Exporting keeps the current image and its Save destination unchanged.",
+      "value": "ⵙⵙⵓⴼⵖ ⵢⴰⵜ ⵜⴰⵢⴽⵓⵏⵜ, ⴰⴹⵕⵉⵙ Base64 ⵏⵖ ⴰⵙⵙⵓⵏⵖ ASCII. ⵓⵔ ⵉⵙⵏⴼⵍ ⵓⵙⵙⵓⴼⵖ ⵜⴰⵡⵍⴰⴼⵜ ⴰ ⵓⵍⴰ ⴰⴷⵖⴰⵔ ⵏ «ⵃⴹⵓ» ⵏⵏⵙ.",
+      "backtranslation": "Export an icon, Base64 text or ASCII drawing. Exporting changes neither this image nor its Save location.",
+      "context_and_review_note": "Exact-base SaveOptionsDialog.kt:52/:183 uses this export explanation. Retained output types and negative coordination. Changed possessive from your to its, so the unchanged Save destination belongs to the current image, not a global app/user preference. Current image refers to this image; no dirty-state reset is claimed.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_share_explanation34",
+      "tier": "P0",
+      "english": "Save a copy to your chosen location, then choose an app to share it. Your current Save destination stays unchanged.",
+      "value": "ⵃⴹⵓ ⵢⴰⵜ ⵜⵓⵏⵖⵉⵍⵜ ⴳ ⵓⴷⵖⴰⵔ ⵏⵏⴰ ⵜⵙⵜⵉⴷ. ⴷⴼⴼⵉⵔ ⵓⵢⴰ, ⵙⵜⵉ ⵢⴰⵏ ⵓⵙⵏⴰⵙ ⵃⵎⴰ ⴰⴷ ⵜⵜ ⵜⴱⴹⵓⴷ. ⵓⵔ ⵉⵜⵜⵡⴰⵙⵏⴼⵍ ⵡⴰⴷⵖⴰⵔ ⴰ ⵏ «ⵃⴹⵓ» ⵏⵏⴽ.",
+      "backtranslation": "Save a copy in the location you selected. After that, choose an app to share it. This/current Save location of yours is not changed.",
+      "context_and_review_note": "Exact-base SaveOptionsDialog.kt:52/:183 and ClassicPaintActivity.kt:1364-1371: save output copy first, then show share chooser. Added deictic this/current to the unchanged Save destination. Copy is feminine and object pronoun tt is retained. Masculine location agrees with unchanged passive. Preserve source formatted=false attribute during integration.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_share_saved_image",
+      "tier": "P1",
+      "english": "Share saved image",
+      "value": "ⴱⴹⵓ ⵜⴰⵡⵍⴰⴼⵜ ⵉⵜⵜⵡⴰⵃⴹⴰⵏ",
+      "backtranslation": "Share the saved image",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:1388: ACTION_SEND chooser appears after successful copy save. Retained saved-image participle. Standard Moroccan Tamazight relative verbal participles need not mirror feminine noun morphology like ordinary adjectives; no unsupported feminine conversion was introduced. This title refers to the saved copy, not document dirty-state clearance.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "ui_export_did_not_save23",
+      "ui_export_explanation23",
+      "ui_share_explanation34"
+    ],
+    "retained_keys": [
+      "ui_export_as23",
+      "ui_share_saved_image"
+    ],
+    "callers": "Verified via GitHub fetch_file at 83405b9465249783943d37618b9392b60748127a.",
+    "labels": "Save and Save as exactly match current zgh ui_save and save20_title.",
+    "placeholders": "No placeholders in the five English strings or translations.",
+    "attributes": "ui_share_explanation34 must retain formatted=false.",
+    "linguistic_limit": "Model review, not native certification. Export noun and descriptive proceed phrase are direct localization choices, not evidence of a native terminology endorsement.",
+    "runtime": "Not run; review-only deliverable."
+  }
+}
