@@ -1,0 +1,34 @@
+{
+  "base_head": "4ad693e7b3372936078b204207a25518b6979af4",
+  "accepted_P1_additions": 4,
+  "atomic_ratio_keys": [
+    "ui_lock_aspect_ratio",
+    "ui_lock_proportions",
+    "ui_scales_the_image_unlock_the_ratio_to_stretch"
+  ],
+  "held": [
+    "ui_main23",
+    "ui_left_arrow_collapse"
+  ],
+  "passed": [
+    "XML parse",
+    "missing-only unique additions",
+    "all prior entries/attributes unchanged",
+    "source attributes preserved",
+    "placeholder/literal percent/newline parity",
+    "Android escaping",
+    "identical ratio labels",
+    "quoted checkbox label exact",
+    "two context holds remain absent"
+  ],
+  "layout_risks": [
+    "ClassicPaintActivity.kt:761\u2013764 selection checkbox has fixed 48dp height and 11sp text.",
+    "TextStyleDialog.kt:51\u201352 italic checkbox has half-row width and fixed 48dp height.",
+    "DimensionControls checkbox uses wrap-content height; help lives in a scrolling dialog, but no actual rendering was tested."
+  ],
+  "limits": [
+    "Native Chimborazo certification not performed",
+    "Android build/device/layout/CI not run"
+  ],
+  "sha256": "1f30f4edb94bb26eaa902f3bfb3e34259941ef9fdfcbc4c593f925651ab54971"
+}

@@ -1,0 +1,152 @@
+{
+  "base_head": "4ad693e7b3372936078b204207a25518b6979af4",
+  "path": "Paintroid/src/main/res/values-b+qug/strings.xml",
+  "status": "Four independently retained contextual translations selected for integration; two missing-caller holds remain",
+  "entries": [
+    {
+      "key": "ui_italic",
+      "tier": "P1",
+      "english": "Italic",
+      "kichwa": "Wiksuyachishka killka",
+      "android_value": "Wiksuyachishka killka",
+      "attributes": {
+        "name": "ui_italic"
+      },
+      "caller_evidence": [
+        {
+          "file": "TextStyleDialog.kt",
+          "line": 49,
+          "code": "val bold=check(ui(R.string.ui_bold),\"text_bold\",initial.bold);val italic=check(ui(R.string.ui_italic),\"text_italic\",initial.italic)",
+          "url": "https://github.com/c933103/AN-Paint/blob/4ad693e7b3372936078b204207a25518b6979af4/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L49"
+        }
+      ],
+      "review_focus": "Inclined/slanted text, explicitly attached to killka; must mean italic, not malformed writing.",
+      "review_decision": "retain_authored_contextual_translation"
+    },
+    {
+      "key": "ui_lock_aspect_ratio",
+      "tier": "P1",
+      "english": "Lock aspect ratio",
+      "kichwa": "Pataktapash aksitapash kikin patsak pitiwan tikrachina",
+      "android_value": "Pataktapash aksitapash kikin patsak pitiwan tikrachina",
+      "attributes": {
+        "name": "ui_lock_aspect_ratio"
+      },
+      "caller_evidence": [
+        {
+          "file": "DimensionControls.kt",
+          "line": 19,
+          "code": "val aspectLock = CheckBox(context).apply { text = ui(R.string.ui_lock_aspect_ratio); tag = \"${prefix}_lock\"; isChecked = locked }",
+          "url": "https://github.com/c933103/AN-Paint/blob/4ad693e7b3372936078b204207a25518b6979af4/Paintroid/src/main/java/org/catrobat/paintroid/classic/DimensionControls.kt#L19"
+        }
+      ],
+      "review_focus": "Operational same-percentage scaling wording replaces uncertain tupunakuy. Does not require user to choose percentage units. Review clarity and exact proportionality, plus uncheck instruction.",
+      "review_decision": "retain_authored_contextual_translation"
+    },
+    {
+      "key": "ui_lock_proportions",
+      "tier": "P1",
+      "english": "Lock proportions",
+      "kichwa": "Pataktapash aksitapash kikin patsak pitiwan tikrachina",
+      "android_value": "Pataktapash aksitapash kikin patsak pitiwan tikrachina",
+      "attributes": {
+        "name": "ui_lock_proportions"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 762,
+          "code": "tag=\"selection_lock_aspect\";text=ui(R.string.ui_lock_proportions);textSize=11f;isChecked=paintCanvas.lockSelectionAspect",
+          "url": "https://github.com/c933103/AN-Paint/blob/4ad693e7b3372936078b204207a25518b6979af4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L762"
+        }
+      ],
+      "review_focus": "Operational same-percentage scaling wording replaces uncertain tupunakuy. Does not require user to choose percentage units. Review clarity and exact proportionality, plus uncheck instruction.",
+      "review_decision": "retain_authored_contextual_translation"
+    },
+    {
+      "key": "ui_scales_the_image_unlock_the_ratio_to_stretch",
+      "tier": "P1",
+      "english": "Scales the image. Unlock the ratio to stretch width and height independently.",
+      "kichwa": "Shuyupa tuputa tikrachin. Pataktapash aksitapash chikan tikrachinkapak, “Pataktapash aksitapash kikin patsak pitiwan tikrachina” nishkapa akllayta anchuchiy.",
+      "android_value": "Shuyupa tuputa tikrachin. Pataktapash aksitapash chikan tikrachinkapak, “Pataktapash aksitapash kikin patsak pitiwan tikrachina” nishkapa akllayta anchuchiy.",
+      "attributes": {
+        "name": "ui_scales_the_image_unlock_the_ratio_to_stretch"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1016,
+          "code": "if (!fresh) column.addView(label(if (stretch) ui(R.string.ui_scales_the_image_unlock_the_ratio_to_stretch) else ui(R.string.ui_keeps_pixels_at_the_top_left_smaller_canvas), 12f))",
+          "url": "https://github.com/c933103/AN-Paint/blob/4ad693e7b3372936078b204207a25518b6979af4/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1016"
+        }
+      ],
+      "review_focus": "Operational same-percentage scaling wording replaces uncertain tupunakuy. Does not require user to choose percentage units. Review clarity and exact proportionality, plus uncheck instruction.",
+      "review_decision": "retain_authored_contextual_translation"
+    }
+  ],
+  "checks": {
+    "base_head": "4ad693e7b3372936078b204207a25518b6979af4",
+    "accepted_P1_additions": 4,
+    "atomic_ratio_keys": [
+      "ui_lock_aspect_ratio",
+      "ui_lock_proportions",
+      "ui_scales_the_image_unlock_the_ratio_to_stretch"
+    ],
+    "held": [
+      "ui_main23",
+      "ui_left_arrow_collapse"
+    ],
+    "passed": [
+      "XML parse",
+      "missing-only unique additions",
+      "all prior entries/attributes unchanged",
+      "source attributes preserved",
+      "placeholder/literal percent/newline parity",
+      "Android escaping",
+      "identical ratio labels",
+      "quoted checkbox label exact",
+      "two context holds remain absent"
+    ],
+    "layout_risks": [
+      "ClassicPaintActivity.kt:761–764 selection checkbox has fixed 48dp height and 11sp text.",
+      "TextStyleDialog.kt:51–52 italic checkbox has half-row width and fixed 48dp height.",
+      "DimensionControls checkbox uses wrap-content height; help lives in a scrolling dialog, but no actual rendering was tested."
+    ],
+    "limits": [
+      "Native Chimborazo certification not performed",
+      "Android build/device/layout/CI not run"
+    ],
+    "sha256": "1f30f4edb94bb26eaa902f3bfb3e34259941ef9fdfcbc4c593f925651ab54971"
+  },
+  "caller_search": {
+    "head": "4ad693e7b3372936078b204207a25518b6979af4",
+    "complete_tree": true,
+    "verified_production_source_files": 131,
+    "references": [],
+    "dynamic_lookup_occurrences": [
+      {
+        "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt",
+        "line": 54,
+        "text": "val sourceId = resources.getIdentifier(\"anpaint_source_\" + name, kind, owner)"
+      },
+      {
+        "file": "Paintroid/src/main/java/org/catrobat/paintroid/classic/UiText.kt",
+        "line": 55,
+        "text": "val contractId = resources.getIdentifier(\"anpaint_source_contract_\" + kind + \"_\" + name, kind, owner)"
+      }
+    ],
+    "conclusion": "No direct production source reference to Main or Left arrow found; not a live UI/context claim."
+  },
+  "independent_review": {
+    "value_changes": 0,
+    "retained": 4,
+    "ratio_meaning": "Same percentage of each starting dimension gives the same scale factor and therefore preserves aspect ratio before implementation rounding. DimensionControls uses original dimensions; SelectionGeometry uses current gesture-start geometry.",
+    "grammar_scope": "Contextual Kichwa formation reviewed; no native Chimborazo grammar certification claimed.",
+    "layout_risks": [
+      "ClassicPaintActivity.kt:761–764 selection checkbox has fixed 48dp height and 11sp text.",
+      "TextStyleDialog.kt:51–52 italic checkbox has half-row width and fixed 48dp height.",
+      "DimensionControls checkbox uses wrap-content height; help lives in a scrolling dialog, but no actual rendering was tested."
+    ],
+    "checks": "Independent source/XML review passed attributes, placeholders, newlines, unchanged prior entries, matching ratio labels and quoted control; Main and left arrow remain absent."
+  }
+}
