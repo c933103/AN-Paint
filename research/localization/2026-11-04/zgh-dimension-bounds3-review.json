@@ -1,0 +1,51 @@
+{
+  "base": "ef9e7ffc2240345ac78b77b154918e23aaa079ac",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh review against exact-base dimension conversion, resize upper bounds and crop-margin callers. Clarified dimension versus byte size in crop help; retained two valid dimension warnings. Not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_enter_positive_dimensions_that_resolve_to_at_least",
+      "tier": "P1",
+      "english": "Enter positive dimensions that resolve to at least 1 pixel.",
+      "value": "ⵙⵙⴽⵛⵎ ⵜⵉⵔⵉⵡⵜ ⵓⴳⴳⴰⵔ ⵏ 0 ⴷ ⵜⵉⵖⵣⵉ ⵓⴳⴳⴰⵔ ⵏ 0. ⵉⵇⵇⴰⵏ ⴰⴷ ⵜⴳ ⴽⵓ ⵢⴰⵜ ⵢⴰⵏ ⴱⵉⴽⵙⵍ ⵏⵖ ⵓⴳⴳⴰⵔ.",
+      "backtranslation": "Enter width greater than 0 and height greater than 0. Each must amount to one pixel or more.",
+      "context_and_review_note": "Exact-base DimensionControls.kt:54-57 requires finite positive inputs; pixel mode requires integral inputs, while percent mode converts against the original dimension. Converted values are rounded and must land in 1..Int.MAX_VALUE; :70-75 requires valid width and height independently. Retained greater-than-zero for each input and one-pixel-or-more for each resulting dimension. This is not a one-percent minimum, exactly-one-pixel condition, or combined image-area test.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_enter_positive_dimensions_no_larger_than_the_original",
+      "tier": "P1",
+      "english": "Enter positive dimensions no larger than the original.",
+      "value": "ⵙⵙⴽⵛⵎ ⵜⵉⵔⵉⵡⵜ ⵓⴳⴳⴰⵔ ⵏ 0 ⴷ ⵜⵉⵖⵣⵉ ⵓⴳⴳⴰⵔ ⵏ 0. ⴰⴷ ⵓⵔ ⵜⵉⵍⵉ ⴽⵓ ⵢⴰⵜ ⵓⴳⴳⴰⵔ ⵏ ⵜⵉⵏ ⵜⵡⵍⴰⴼⵜ ⵜⴰⵏⴰⵚⵍⵉⵜ.",
+      "backtranslation": "Enter width greater than 0 and height greater than 0. Neither may be greater than its counterpart in the original image.",
+      "context_and_review_note": "Exact-base ImageResizeDialog.kt:39 requires width<=source.width AND height<=source.height; :47 displays this message when target is null. Retained strict positive input and each dimension must not exceed its original counterpart. Equality remains allowed. Does not promise that every size within source bounds also fits the current RAM budget, which is checked separately.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_trim_amounts_must_fit_inside_each_image_use",
+      "tier": "P1",
+      "english": "Trim amounts must fit inside each image; use whole pixels or percentages.",
+      "value": "ⴳ ⴽⵓ ⵜⴰⵡⵍⴰⴼⵜ, ⴰⴷ ⵓⵔ ⵜⵉⵍⵉ ⵜⵉⴷⴷⵉ ⵏ ⵡⴰⵢⵏⵏⴰ ⵔⴰⴷ ⵜⴽⴽⵙⴷ ⵙⴳ ⴽⵓ ⵉⵔⵉ ⵓⴳⴳⴰⵔ ⵏ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ (ⵜⵉⵔⵉⵡⵜ ⵏⵖ ⵜⵉⵖⵣⵉ). ⵙⵎⵔⵙ ⵓⵟⵟⵓⵏⵏ ⵓⵎⵎⵉⴷⵏ ⵏ ⵉⴷ ⴱⵉⴽⵙⵍ ⵏⵖ ⴰⴼⵎⵉⴹⵉ.",
+      "backtranslation": "In each image, the amount to remove from each edge must not exceed the image dimension (width or height). Use whole pixel counts or percent.",
+      "context_and_review_note": "Exact-base ImageAssembly.kt:43-48 converts percent against corresponding width/height, requires p<=base, and requires integral counts only in pixel mode. Revised image dimension with explicit width/height parenthesis to exclude byte size. Whole modifies pixel counts, not percentages; fractional percent remains allowed. Each image is independently constrained. The separate :49 check still rejects combined opposing margins that leave zero or negative size; this translation does not claim equality of a single margin guarantees a valid final crop.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "ui_trim_amounts_must_fit_inside_each_image_use"
+    ],
+    "retained_keys": [
+      "ui_enter_positive_dimensions_that_resolve_to_at_least",
+      "ui_enter_positive_dimensions_no_larger_than_the_original"
+    ],
+    "callers": "GitHub fetch_file at ef9e7ffc2240345ac78b77b154918e23aaa079ac: DimensionControls.kt, ImageResizeDialog.kt, ImageAssembly.kt.",
+    "labels": "Width, height, pixels and percent agree with existing zgh terminology.",
+    "placeholders": "None in the three source strings or reviewed values.",
+    "linguistic_limit": "Model-reviewed, not native-certified.",
+    "runtime": "Not run; review only."
+  }
+}
