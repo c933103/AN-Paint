@@ -27,7 +27,7 @@ class GreekPriorityWordingTests(unittest.TestCase):
         self.assertEqual('@string/ui_save', strings['ui_save_a5d0d9'])
         self.assertEqual(3, len({strings[key] for key in ('ui_save', 'ui_discard_changes23', 'ui_keep_editing23')}))
 
-    def test_recovery_instruction_names_current_file_open_command(self):
+    def test_legacy_recovery_instruction_names_current_file_open_command(self):
         strings = self.strings['el']
         command = strings['ui_load_image'].rstrip('…')
         self.assertIn(strings['ui_menu_file'] + ' > ' + command, strings[RECOVERY])
@@ -35,8 +35,10 @@ class GreekPriorityWordingTests(unittest.TestCase):
         self.assertIn('ZIP', strings[RECOVERY])
         self.assertIn('ρυθμίσεις', strings[RECOVERY])
         self.assertIn('τυχόν αιωρούμενη επιλογή', strings[RECOVERY])
-        # Recovery-export notification has no independently mapped runtime binding yet.
-        self.assertIn('message(ui(R.string.' + RECOVERY + '))', self.activity)
+        # Retained translation data is not the current unverified-copy guidance.
+        # WorkspaceRefinementTest covers the successful unreadable-byte export path.
+        self.assertNotIn('message(ui(R.string.' + RECOVERY + '))', self.activity)
+        self.assertIn('message(ui(R.string.ui_recovery_copy_exported_unverified))', self.activity)
 
     def test_language_note_keeps_new_and_untranslated_fallback_without_temporary_promise(self):
         value = self.strings['el'][NOTE]

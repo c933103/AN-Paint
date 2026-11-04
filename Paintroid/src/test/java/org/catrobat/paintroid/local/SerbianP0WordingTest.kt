@@ -165,7 +165,7 @@ class SerbianP0WordingTest {
             assertFalse(recovered.autosaveBlocked)
             assertEquals(expected(tag, "ui_previous_draft_kept_for_recovery"), recovered.draftStatus)
             assertEquals(String.format(Locale.forLanguageTag(tag),
-                expected(tag, "ui_a_separate_recovery_copy_has_been_kept_use"),
+                activity.getString(org.catrobat.paintroid.R.string.ui_recovery_copy_preserved_unverified),
                 expected(tag, "ui_the_previous_draft_could_not_be_restored")), recovered.recoveryNotice)
             assertArrayEquals(original, store.file.readBytes())
             val copies = store.recoveryCopies()
