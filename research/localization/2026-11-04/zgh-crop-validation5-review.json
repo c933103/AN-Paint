@@ -1,0 +1,72 @@
+{
+  "base": "9d49b6782166c34d74ee42f92d0dbbfe5dea054f",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh model review against exact-base crop callers. Strengthened the explicit nonnegative requirement; retained four other descriptive translations after semantic and grammar review. Not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_enter_a_trim_amount_for_every_edge",
+      "tier": "P1",
+      "english": "Enter a trim amount for every edge.",
+      "value": "ⵙⵙⴽⵛⵎ ⵜⵉⴷⴷⵉ ⵏ ⵡⴰⵢⵏⵏⴰ ⵔⴰⴷ ⵜⴽⴽⵙⴷ ⵙⴳ ⴽⵓ ⵉⵔⵉ.",
+      "backtranslation": "Enter the size of what you will remove from each edge.",
+      "context_and_review_note": "Exact-base ImageCropDialog.kt:88: all left/top/right/bottom values are parsed before preview. Retained descriptive trim phrasing and distributive each edge; this does not require equal margins or imply that zero is invalid.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_enter_all_four_trim_amounts",
+      "tier": "P1",
+      "english": "Enter all four trim amounts.",
+      "value": "ⵙⵙⴽⵛⵎ ⵜⵉⴷⴷⵉ ⵏ ⵡⴰⵢⵏⵏⴰ ⵔⴰⴷ ⵜⴽⴽⵙⴷ ⵙⴳ ⴽⵓ ⵉⵔⵉ ⵙⴳ 4 ⵏ ⵉⵔⴰⵏ.",
+      "backtranslation": "Enter the size of what you will remove from each of the 4 edges.",
+      "context_and_review_note": "Exact-base ImageCropDialog.kt:146: Apply also rejects any missing/unparseable margin. Retained explicit 4 and each-edge phrasing. The four refers to edge inputs, not four images or identical values.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_trim_amounts_must_be_zero_or_greater",
+      "tier": "P1",
+      "english": "Trim amounts must be zero or greater.",
+      "value": "ⵉⵇⵇⴰⵏ ⴰⴷ ⵜⴳ ⵜⵉⴷⴷⵉ ⵏ ⵡⴰⵢⵏⵏⴰ ⵔⴰⴷ ⵜⴽⴽⵙⴷ ⵙⴳ ⴽⵓ ⵉⵔⵉ 0 ⵏⵖ ⵓⴳⴳⴰⵔ.",
+      "backtranslation": "The amount you will remove from each edge must be 0 or greater.",
+      "context_and_review_note": "Exact-base ImageAssembly.kt:42: every margin must be finite and >=0. Revised the label-like colon phrase into an explicit must-be requirement, with feminine agreement to size/amount. Zero remains valid. No integer-only restriction is added; percentage mode accepts fractions, whereas pixel-mode integrality is checked separately.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_crop_must_contain_at_least_one_pixel",
+      "tier": "P1",
+      "english": "The crop must contain at least one pixel.",
+      "value": "ⵉⵇⵇⴰⵏ ⴰⴷ ⵉⵇⵇⵉⵎ ⵢⴰⵏ ⴱⵉⴽⵙⵍ ⵏⵖ ⵓⴳⴳⴰⵔ ⴳ ⵜⵡⵍⴰⴼⵜ.",
+      "backtranslation": "One pixel or more must remain in the image.",
+      "context_and_review_note": "Exact-base ImageAssembly.kt:29: both crop dimensions must be positive before normalization. Retained one pixel or more must remain. This means a nonempty cropped image, not exactly one pixel or retention of all source pixels.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_trim_would_remove_the_entire_image",
+      "tier": "P0",
+      "english": "The trim would remove the entire image.",
+      "value": "ⵜⴰⵎⵀⵍⵜ ⴰ ⵔⴰⴷ ⵜⴽⴽⵙ ⵜⴰⵡⵍⴰⴼⵜ ⴰⴽⴽⵯ.",
+      "backtranslation": "This operation would remove the whole image.",
+      "context_and_review_note": "Exact-base ImageAssembly.kt:49: nonpositive resulting width or height is rejected before returning the crop and before apply(crops). Retained future/prospective rad and entire-image emphasis. Literal backtranslation uses would/will in this validation context, not has removed. The message does not claim deletion of a source file.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "ui_trim_amounts_must_be_zero_or_greater"
+    ],
+    "retained_keys": [
+      "ui_enter_a_trim_amount_for_every_edge",
+      "ui_enter_all_four_trim_amounts",
+      "ui_the_crop_must_contain_at_least_one_pixel",
+      "ui_the_trim_would_remove_the_entire_image"
+    ],
+    "callers": "GitHub fetch_file at 9d49b6782166c34d74ee42f92d0dbbfe5dea054f: ImageCropDialog.kt and ImageAssembly.kt.",
+    "placeholders": "No placeholders in these five English source strings or translations.",
+    "runtime": "Not run; translation review only.",
+    "linguistic_limit": "Model review, not native certification."
+  }
+}
