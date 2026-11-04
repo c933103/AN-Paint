@@ -1,0 +1,66 @@
+{
+  "base": "f3e32d37461985832cedfeae79104346977dc751",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base canvas controls/rendering review. All five contextual translations retained; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_edit_canvas33",
+      "tier": "P1",
+      "english": "Canvas",
+      "value": "ⴰⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ",
+      "backtranslation": "Drawing area / canvas",
+      "context_and_review_note": "Retained Drawing area, the reviewed descriptive canvas term. ClassicPaintActivity.kt:76 identifies the CANVAS edit group. Free-state adɣar is appropriate as the standalone tab label; n ussunɣ is the drawing genitive. Refers to the document surface including blank pixels, not only painted marks or the screen viewport.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_canvas_size",
+      "tier": "P1",
+      "english": "Canvas size…",
+      "value": "ⵜⵉⴷⴷⵉ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ…",
+      "backtranslation": "Canvas size…",
+      "context_and_review_note": "Retained Canvas size… with the attached-state udɣar after n and matching command ellipsis. ClassicPaintActivity.kt:851 calls dimensionsDialog(false,false), whose resize uses stretch=false. PaintDocument.kt:423–431 creates the new canvas and copies existing pixels at top-left without resampling; smaller dimensions clip, larger ones add background. The term size here does not mean file bytes, viewport zoom or proportional scaling of the artwork.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_canvas_size_30460e",
+      "tier": "P1",
+      "english": "Canvas size",
+      "value": "ⵜⵉⴷⴷⵉ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ",
+      "backtranslation": "Canvas size",
+      "context_and_review_note": "Retained the exact same noun phrase as the command without its ellipsis. ClassicPaintActivity.kt:1018 chooses this dialog title when fresh=false and stretch=false. The title names the document dimensions, not Fit in view. No invented constraints, resize guarantee or export action is introduced.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_canvas_bounds",
+      "tier": "P1",
+      "english": "Canvas bounds",
+      "value": "ⵉⵔⴰⵏ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ",
+      "backtranslation": "Canvas edges / bounds",
+      "context_and_review_note": "Retained Canvas edges/bounds. iran, the plural of iri, refers to boundary positions in this context; unlike trimming/removal wording it permits outward expansion as well as inward cropping. ClassicPaintActivity.kt:849 calls trimCanvas; PaintCanvas.kt:429–430 creates CropOverlay with allowOutside=true. PaintDocument.kt:439–450 changes actual document bounds, translating existing pixels relative to the new origin, clipping outside and filling newly exposed areas with background rather than scaling pixels.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_apply_bounds",
+      "tier": "P1",
+      "english": "Apply bounds",
+      "value": "ⵙⵏⵙ ⵉⵔⴰⵏ",
+      "backtranslation": "Apply bounds",
+      "context_and_review_note": "Retained Apply bounds, consistent with the same edge noun and accepted Apply verb. ClassicPaintActivity.kt:1053 invokes applyTrim then exits the bounds controls. PaintCanvas.kt:432–434 calls document.changeCanvasBounds(crop.rect), clears the overlay and refits the view. Thus this applies document geometry; viewport refitting is subsequent, not the whole action. No file save, selection-only commit or stroke/outline drawing is implied.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 5,
+    "tier": "5 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; command/title differ only by ellipsis",
+    "remaining_uncertainty": "Drawing area and edges are descriptive contextual terms rather than native-certified specialist canvas terminology. No rendered layout or runtime tests.",
+    "repository_edits": false
+  }
+}
