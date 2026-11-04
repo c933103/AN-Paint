@@ -1,0 +1,46 @@
+{
+  "base": "111c66f8c0728e889082009da6948ba10f91622d",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base gesture/preview review. Aligned pinch/spread order with zoom-out/zoom-in; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_navigate",
+      "tier": "P1",
+      "english": "Navigate",
+      "value": "ⵙⵎⵓⵜⵜⵢ ⵜⴰⵎⵓⵖⵍⵉ",
+      "backtranslation": "Move the view",
+      "context_and_review_note": "Retained Move the view, a functional navigation-tool label. tamuɣli refers to the view in this verb-object context rather than the document pixels. PaintCanvas.kt:739 sets panning for PaintTool.ZOOM and :743 returns before selection/drawing actions. This identifies viewport navigation, not another app screen, source-image movement or image scaling. The exact phrase is reused in the accessibility instruction.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "tier": "P1",
+      "english": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+      "value": "ⴰⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ. ⵙⵎⵓⵏ ⵏⵖ ⵙⴱⴹⵓ ⵙⵉⵏ ⵉⴹⵓⴹⴰⵏ ⵃⵎⴰ ⴰⴷ ⵜⵙⵙⵉⵎⵥⵉⴷ ⵏⵖ ⵜⵙⵙⵉⵎⵖⵓⵔⴷ ⵜⴰⵎⵓⵖⵍⵉ. ⵙⵎⵓⵜⵜⵢ ⵜⵏ ⵃⵎⴰ ⴰⴷ ⵜⵙⵎⵓⵜⵜⵢⴷ ⵜⴰⵎⵓⵖⵍⵉ. ⴳ «ⵙⵎⵓⵜⵜⵢ ⵜⴰⵎⵓⵖⵍⵉ», ⵜⵣⵎⵔⴷ ⴰⴷ ⵜⵜ ⵜⵙⵎⵓⵜⵜⵢⴷ ⴰⵡⴷ ⵙ ⵢⴰⵏ ⵓⴹⴰⴹ.",
+      "backtranslation": "Drawing area. Bring together or separate two fingers to shrink or enlarge the view. Move them to move the view. In Move the view, you can also move it with one finger.",
+      "context_and_review_note": "Reversed shrink/enlarge order to match bring-together/separate order, avoiding any suggestion that pinching inward enlarges. PaintCanvas.kt:653–664 uses the first two pointers: span ratio controls zoom and focus displacement controls pan. The next sentence explicitly moves those two fingers to move the view. sin iḍuḍan is two fingers and masculine tn refers to them; final feminine tt refers to tamuɣli. The last sentence retains ALSO with one finger only in the quoted Navigate tool, matching :739–743. Quoted label matches ui_navigate exactly. The wording does not claim source pixels change or that simultaneous zoom/pan is impossible.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_show_magnified_drawing_preview",
+      "tier": "P1",
+      "english": "Show magnified drawing preview",
+      "value": "ⵙⵙⵓⵎⴰⵏ ⵜⴰⵎⵓⵖⵍⵉ ⵜⴰⵎⵣⵡⴰⵔⵓⵜ ⵉⵜⵜⵡⴰⵙⵙⵉⵎⵖⵓⵔⵏ ⵏ ⵓⵙⵙⵓⵏⵖ",
+      "backtranslation": "Show the enlarged drawing preview",
+      "context_and_review_note": "Retained Show the enlarged drawing preview. The nominal preview phrase and relative passive enlarged form identify magnification of the view, not a new image-sized bitmap or saved-resolution change. Do not mechanically feminize the invariant relative participle. ClassicPaintActivity.kt:1541–1542 toggles cursorMagnifier, while :1559–1561 toggles activeMagnifier; both invalidate the view and persist preferences. The label is long and accessibility/checkbox wrapping have not been rendered or tested. No file-save or artwork-resampling promise is made.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 2,
+    "tier": "3 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; quoted navigation label exactly matches ui_navigate",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Long accessibility instruction/preview checkbox has no rendered or screen-reader test; no runtime gesture testing.",
+    "repository_edits": false
+  }
+}
