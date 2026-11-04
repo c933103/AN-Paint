@@ -1,0 +1,48 @@
+{
+  "base": "cfcade013e4f08afd37a4eac832997d9c8bbaa7b",
+  "accepted_additions": 2,
+  "unchanged_nodes": 319,
+  "coverage": {
+    "P0": {
+      "before_missing": 8,
+      "after_missing": 7,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 25,
+      "after_missing": 24,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 296,
+      "after_missing": 296,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 69,
+      "after_missing": 69,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "Two missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Sampled branch includes resident canvas clipboard and decode/edit reserves",
+    "Estimated versus actual usage and smaller-copy detail loss retained",
+    "Separate copy leaves source unchanged; no success guarantee",
+    "Per-axis less-than-or-equal bounds permit equality, not total-area comparison"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "No runtime allocation or source-preservation tests",
+    "Clipboard/sample wording functional; sample may remain one; rendered fit/accessibility untested"
+  ]
+}

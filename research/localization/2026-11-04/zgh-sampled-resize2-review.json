@@ -1,0 +1,36 @@
+{
+  "base": "cfcade013e4f08afd37a4eac832997d9c8bbaa7b",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base source review; clarified copied-data RAM scope and retained per-axis equality. No native-certification claim.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_sampled_resize_memory_explanation",
+      "tier": "P0",
+      "english": "Estimates include the current canvas and clipboard, sampled decoding and editing buffers. Actual memory use varies. A smaller copy loses detail. The original file stays unchanged.",
+      "value": "ⵉⵙⵜⴰⵍⵏ ⵙⵎⵓⵏⵏ RAM ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ ⵏ ⴷⵖⵉ ⴷ RAM ⵏ ⵉⵙⴼⴽⴰ ⵉⵜⵜⵓⵙⵙⵏⵖⵍⵏ, ⴷ RAM ⵏ ⵓⵔⵥⴰⵎ ⵏ ⵜⵡⵍⴰⴼⵜ ⵙ ⵓⵟⵟⵓⵏ ⵉⵎⵥⵉⵏ ⵏ ⵉⴷ ⴱⵉⴽⵙⵍ, ⴷ RAM ⵏ ⵓⵙⵏⴼⵍ. ⵜⵉⴷⴷⵉ ⵏ RAM ⵉⵜⵜⵓⵙⵎⵔⴰⵙⵏ ⵙ ⵜⵉⴷⵜ ⴷⴰ ⵜⵙⵏⴼⴰⵍ. ⵜⵓⵏⵖⵉⵍⵜ ⵉⵎⵥⵉⵏ ⵅⴼ ⵜⴰ ⴷⴰ ⵜⵙⵙⵔⵓⵃ ⴽⵔⴰ ⵏ ⵉⴼⵔⵓⵔⵏ. ⴰⴼⴰⵢⵍⵓ ⴰⵏⴰⵚⵍⵉ ⵉⵇⵇⵉⵎ ⵎⴽⵏⵏⴰ ⵉⴳⴰ.",
+      "backtranslation": "Estimates include RAM for the current canvas and copied data, RAM for opening the image with fewer pixels, and RAM for editing. Actual RAM use varies. A smaller copy loses some details. The original file remains as it is.",
+      "context_and_review_note": "Made RAM for copied data explicit by repeating ⴷ RAM ⵏ, so the estimate does not syntactically combine a RAM quantity with data themselves. Copied data is a functional internal-clipboard paraphrase, not disk files. Retained estimates, variable actual use, fewer-pixel opening as sampled decoding rather than cropping, editing RAM, definite detail loss for a smaller copy and unchanged original file. Exact ImageResizeDialog.kt:34 selects this text only without native-work requirements. ImportPlan.create computes a power-of-two sample and decoded pixel estimate, then ImportedImage.decode uses that sample and scales/EXIF-transforms a bitmap to the target as needed. Sample can remain 1 for modest reductions, so wording is a description of sampled-resize working memory rather than a guarantee that every decode has fewer pixels. ImportPlan.estimatedBytes includes resident pixels and decoded/output editing reserves; ImportMemoryRequirements may add color metadata/wider decode storage. PaintDocument.residentPixels counts canvas, floating selection and internal bitmap clipboard. The explanation is not an exhaustive accounting claim or an allocation-success promise. Decode reads the original/private input and creates in-memory output; it does not overwrite the source file.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_choose_dimensions_no_larger_than_the_original",
+      "tier": "P1",
+      "english": "Choose dimensions no larger than the original.",
+      "value": "ⵙⵜⵉ ⵜⵉⵔⵉⵡⵜ ⴷ ⵜⵉⵖⵣⵉ. ⴰⴷ ⵓⵔ ⵜⵉⵍⵉ ⴽⵓ ⵢⴰⵜ ⵓⴳⴳⴰⵔ ⵏ ⵜⵉⵏ ⵜⵡⵍⴰⴼⵜ ⵜⴰⵏⴰⵚⵍⵉⵜ.",
+      "backtranslation": "Choose width and height. Neither may be greater than the corresponding original-image dimension.",
+      "context_and_review_note": "Retained direct width-and-height instruction and each corresponding original-dimension upper bound. Negative greater-than formulation permits equality and does not compare total pixel area. Exact ImportPlan.create requires target.width <= source.width AND target.height <= source.height and emits this string on failure. ImageResizeDialog.target applies the same per-axis bounds; positivity is separately enforced by ImageDimensions and need not be added here. No strict smaller-than or aspect-ratio requirement introduced.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "1 P0; 1 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Clipboard and sampled decoding are functional paraphrases; no rendered fit, accessibility, or runtime allocation tests.",
+    "repository_edits": false
+  }
+}
