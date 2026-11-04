@@ -1,0 +1,26 @@
+{
+  "base": "d49c2f54aed2cf5d8c221e74388823ef418c6174",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base caller review. One retry-adverb normalization; no branch changes and no native-certification claim.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_assembly_source_memory_floor",
+      "tier": "P0",
+      "english": "This assembly is estimated to exceed the current working-memory budget, even at the smallest output size. Reducing the assembly dimensions alone is not enough under the current limits. Close other documents or prepare a smaller source image before trying again. Your assembly is unchanged.",
+      "value": "ⵙ ⵓⵙⵜⴰⵍ, RAM ⵉⵇⵇⴰⵏⵏ ⵉ ⵜⴳⵔⵓⵎⵎⴰ ⴰ ⵏ ⵜⵡⵍⴰⴼⵉⵏ ⵉⴳⴰ ⵓⴳⴳⴰⵔ ⵏ ⵜⵉⵍⵉⵙⵜ ⵏ RAM ⵏ ⵜⵡⵓⵔⵉ ⴷⵖⵉ, ⵓⵍⴰ ⵙ ⵜⵉⴷⴷⵉ ⵉⵎⵥⵉⵏ ⴰⴽⴽⵯ ⵏ ⵜⵓⵏⵖⵉⵍⵜ ⵏ ⵓⵙⵙⵓⴼⵖ. ⴰⵙⵙⵉⵎⵥⵉ ⵏ ⵜⵉⴷⴷⵉ ⵏ ⵜⴳⵔⵓⵎⵎⴰ ⵏ ⵜⵡⵍⴰⴼⵉⵏ ⴱⵓⵃⴷⵓⵙ ⵓⵔ ⵉⵡⴷⵉ ⵙ ⵜⵍⵉⵙⴰ ⵏ ⴷⵖⵉ. ⵇⵇⵏ ⵉⴼⵓⵢⵍⴰ ⵢⴰⴹⵏ ⵉⵕⵥⵎⵏ, ⵏⵖ ⵙⵎⵓⵜⵜⴳ ⵜⴰⵡⵍⴰⴼⵜ ⵜⴰⵏⴰⵚⵍⵉⵜ ⵉⵎⵥⵉⵏ ⵅⴼ ⵜⴰ, ⴷⴰⵜ ⴰⴷ ⵜⴰⵔⵎⴷ ⴷⵉⵖ. ⵜⴰⴳⵔⵓⵎⵎⴰ ⵏ ⵜⵡⵍⴰⴼⵉⵏ ⵏⵏⴽ ⵜⵇⵇⵉⵎ ⵎⴽⵏⵏⴰ ⵜⴳⴰ.",
+      "backtranslation": "According to the estimate, RAM needed for this image assembly exceeds the current working-RAM limit, even with the smallest output copy. Reducing the assembly size alone is insufficient under current limits. Close other open files, or prepare a smaller original/source image, before trying again. Your image assembly remains as it was.",
+      "context_and_review_note": "Normalized retry adverb to ⴷⵉⵖ, consistent with reviewed strings. Retained initial ⵙ ⵓⵙⵜⴰⵍ as according to the estimate: the excess is estimated, not a measured allocation failure or a guaranteed future failure. The current working-RAM limit is distinguished from disk space; smallest output, dimensions alone insufficient, close other open files OR prepare a smaller source before retry, and unchanged assembly are preserved. Relative ⵉⵎⵥⵉⵏ and explicit ⵅⴼ ⵜⴰ preserve smaller-source comparison; feminine finite ⵜⵇⵇⵉⵎ agrees with assembly. At the exact base, AssemblyActivity.kt outputSizeDialog obtains renderer.suggested(previous), displays this warning on null and returns before controls or makeOutput. AssemblyRenderer.kt suggested returns null only when fits(ImageDimensions(1,1)) fails. That one-pixel case cannot exceed MAX_BITMAP_PIXELS: the failure is the estimatedBytes comparison against the current workingBytes allowance. The estimate includes output/resident pixels plus source decoding/compositing reserve even at this minimum. This is conservative admission, not proof that all actual renders necessarily fail. Neither branch mutates assembly images, layout or crop. The same dialog can follow an output allocation/size failure; render recycles only its independent output and temporary decoded bitmaps. No unconditional promise that closing documents or using a smaller source will succeed is added.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 0,
+    "tier": "1 P0",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Contextual estimate/working-memory and standalone-alone wording retained; no rendered accessibility or runtime fault-injection tests.",
+    "repository_edits": false
+  }
+}

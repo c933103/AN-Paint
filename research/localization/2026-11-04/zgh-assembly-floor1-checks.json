@@ -1,0 +1,47 @@
+{
+  "base": "d49c2f54aed2cf5d8c221e74388823ef418c6174",
+  "accepted_additions": 1,
+  "unchanged_nodes": 318,
+  "coverage": {
+    "P0": {
+      "before_missing": 9,
+      "after_missing": 8,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 25,
+      "after_missing": 25,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 296,
+      "after_missing": 296,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 69,
+      "after_missing": 69,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "One missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Estimated 1x1 output admission failure rather than measured universal render failure",
+    "Alternative remedies before retry retained without success guarantee",
+    "Warning returns before output controls; source/layout/crop unchanged"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "No runtime allocation or source-preservation fault-injection tests",
+    "Working-memory/estimate terminology contextual; rendering/accessibility untested"
+  ]
+}
