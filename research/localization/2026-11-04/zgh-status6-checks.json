@@ -1,0 +1,51 @@
+{
+  "base": "43d1207f74180b866d7c871c7f3345d097b716dd",
+  "accepted_additions": 6,
+  "unchanged_nodes": 176,
+  "excluded_keys": [
+    "ui_choose_a_smaller_size",
+    "ui_tap_an_image_first",
+    "ui_tap_to_type_a_number",
+    "language20_device_default"
+  ],
+  "coverage": {
+    "P0": {
+      "before_missing": 36,
+      "after_missing": 36,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 129,
+      "after_missing": 123,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 305,
+      "after_missing": 305,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 71,
+      "after_missing": 71,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "Six missing-only accepted/revised additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Exact reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letter checks",
+    "Corrected one image or more minimum preserved; rejected ghars not integrated",
+    "Four linguistically uncertain keys remain absent"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "Contextual paraphrases retain stated review limitations"
+  ]
+}
