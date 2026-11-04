@@ -1,0 +1,56 @@
+{
+  "base": "c372e79e88e8c8d72a7cf224ab39f8b24a716dbc",
+  "status": "INDEPENDENT REVIEW COMPLETE; LAYOUT UNVERIFIED; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base palette/input rendering review. Corrected hold to imperative; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_colour_tap_foreground_hold_background",
+      "tier": "P1",
+      "english": "Colour #%1$s. Tap foreground, hold background.",
+      "value": "ⴰⴽⵍⵓ #%1$s. ⵙⵉⵜ ⵃⵎⴰ ⴰⴷ ⵜⵙⵜⵉⴷ ⴰⴽⵍⵓ ⵏ ⵡⴰⵢⴰⵡⴰⵙ ⴰⵎⵣⵡⴰⵔⵓ. ⵙⵉⵜ, ⵟⵟⴼ ⵃⵎⴰ ⴰⴷ ⵜⵙⵜⵉⴷ ⴰⴽⵍⵓ ⵏ ⵡⴰⵢⴰⵡⴰⵙ ⴰⵎⴷⴼⵉⵔ.",
+      "backtranslation": "Colour #%1$s. Tap to choose foreground colour. Press and hold to choose background colour.",
+      "context_and_review_note": "Revised the hold clause from finite second-person tṭṭfḍ to the imperative ṭṭf after sit: Press, hold to choose background. This matches the imperative tap instruction and avoids an unintroduced finite coordination. Full contextual foreground/background names retained. ClassicPaintActivity.kt:615 receives raw six-digit hex, WITHOUT #; the translation therefore keeps exactly one literal # before %1$s. :618 uses setColour(colour,false) on tap and :619 true on long press. This raw-hex swatch must not be confused with ColourStatusButton.hex, which already returns #. No automatic colour inversion or document background repaint is implied.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_colour_palette_tap_for_foreground_hold_for_background",
+      "tier": "P1",
+      "english": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+      "value": "ⵜⴰⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ. ⵙⵉⵜ ⵃⵎⴰ ⴰⴷ ⵜⵙⵜⵉⴷ ⴰⴽⵍⵓ ⵏ ⵡⴰⵢⴰⵡⴰⵙ ⴰⵎⵣⵡⴰⵔⵓ. ⵙⵉⵜ, ⵟⵟⴼ ⵃⵎⴰ ⴰⴷ ⵜⵙⵜⵉⴷ ⴰⴽⵍⵓ ⵏ ⵡⴰⵢⴰⵡⴰⵙ ⴰⵎⴷⴼⵉⵔ. ⵙⵎⵓⵜⵜⵢ ⵜⴰⵏⴽⵓⵍⵜ ⵃⵎⴰ ⴰⴷ ⵜⵥⵕⴷ ⵓⴳⴳⴰⵔ ⵏ ⵉⴽⵍⴰⵏ.",
+      "backtranslation": "Colour palette. Tap for foreground, press and hold for background. Move the palette to see more colours.",
+      "context_and_review_note": "Applied the same imperative hold correction as the swatch description. ClassicPaintActivity.kt:604 labels the HorizontalScrollView whose children are the colour swatches. Move the palette to see more colours is a functional scroll instruction in this container, not colour reordering or canvas movement. No unsupported direction gesture is specified. The full explanation is long but is an accessibility description rather than a compact visible caption; screen-reader verbosity and gesture comprehension have not been tested.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_fg",
+      "tier": "P1",
+      "english": "FG",
+      "value": "ⴰⵎⵣⵡⴰⵔⵓ",
+      "backtranslation": "Foreground (short caption)",
+      "context_and_review_note": "Retained amzwaru, the foreground qualifier from the existing complete label, as a contextual short caption. It is not presented as a conventional two-letter acronym. ColourStatusButton.kt:61 uses it beside the hex value; :68 shrinks the whole horizontal caption to available width without a lower text-size limit. The vertical branch :46–55 instead centres measured bounds at fixed 11sp, with NO fitting/shrinking. Therefore linguistic retention does not certify readability or fit, particularly in vertical mode and at large font scales. Separate full accessibility target descriptions remain at :35–36.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_bg",
+      "tier": "P1",
+      "english": "BG",
+      "value": "ⴰⵎⴷⴼⵉⵔ",
+      "backtranslation": "Background (short caption)",
+      "context_and_review_note": "Retained amdfir, the matching background qualifier, rather than inventing a Latin or Tifinagh acronym. Same ColourStatusButton horizontal/vertical rendering limitations as ui_fg: horizontal shrinking can make text too small; vertical centring does not guarantee containment. The independent full background accessibility description remains available. No claim of native-established abbreviations or rendered-fit success is made.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 2,
+    "retained": 2,
+    "tier": "4 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, positional placeholder parity, exactly one # before raw hex, Android escaping and formatting",
+    "remaining_uncertainty": "Caption layout is genuinely unverified: horizontal mode shrinks without a minimum and vertical mode has no fitting step. No rendered, large-font or screen-reader tests performed. Qualifier captions are contextual rather than certified abbreviations; model review is not native certification.",
+    "repository_edits": false
+  }
+}
