@@ -1,0 +1,999 @@
+{
+  "base_head": "5777383eec4a8bf8d7bc1e6b48b2211dbd240df8",
+  "path": "Paintroid/src/main/res/values-b+qug/strings.xml",
+  "status": "41 accepted/revised entries selected after independent controls review; 5 uncertain entries excluded",
+  "scope": "Crop, canvas bounds, transform, fit, colour gestures and tool controls",
+  "navigation_policy": "File, Canvas, Load image, Resize image and Undo labels deliberately left unchanged so existing localized help paths remain accurate. No existing catalogue entries changed.",
+  "entries": [
+    {
+      "key": "ui_apply",
+      "tier": "P1",
+      "english": "Apply",
+      "kichwa": "Churana",
+      "android_value": "Churana",
+      "attributes": {
+        "name": "ui_apply"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1018,
+          "code": "val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_apply_bounds",
+      "tier": "P1",
+      "english": "Apply bounds",
+      "kichwa": "Akllashka manyakunata churana",
+      "android_value": "Akllashka manyakunata churana",
+      "attributes": {
+        "name": "ui_apply_bounds"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1053,
+          "code": "editDetails.addView(button(ui(R.string.ui_apply_bounds),\"trim_apply\") {paintCanvas.applyTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1053"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_apply_crop",
+      "tier": "P1",
+      "english": "Apply crop",
+      "kichwa": "Akllashka kuchuyta rurana",
+      "android_value": "Akllashka kuchuyta rurana",
+      "attributes": {
+        "name": "ui_apply_crop"
+      },
+      "caller_evidence": [
+        {
+          "file": "ImageCropDialog.kt",
+          "line": 142,
+          "code": ".setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_crop),null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L142"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_bg",
+      "tier": "P1",
+      "english": "BG",
+      "kichwa": "Washa",
+      "android_value": "Washa",
+      "attributes": {
+        "name": "ui_bg"
+      },
+      "caller_evidence": [
+        {
+          "file": "ColourStatusButton.kt",
+          "line": 45,
+          "code": "listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed {i,(colour,name) ->",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L45"
+        },
+        {
+          "file": "ColourStatusButton.kt",
+          "line": 59,
+          "code": "listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed { i,(colour,name) ->",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L59"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_bucket_fill",
+      "tier": "P1",
+      "english": "Bucket fill",
+      "kichwa": "Kitita tullpuwan huntachina",
+      "android_value": "Kitita tullpuwan huntachina",
+      "attributes": {
+        "name": "ui_bucket_fill"
+      },
+      "caller_evidence": [
+        {
+          "file": "PaintDocument.kt",
+          "line": 18,
+          "code": "FILL(R.string.ui_bucket_fill, R.string.ui_tap_an_enclosed_area_adjust_tolerance_for_similar),",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L18"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_cancel",
+      "tier": "P1",
+      "english": "Cancel",
+      "kichwa": "Sakina",
+      "android_value": "Sakina",
+      "attributes": {
+        "name": "ui_cancel"
+      },
+      "caller_evidence": [
+        {
+          "file": "ImageCropDialog.kt",
+          "line": 142,
+          "code": ".setView(ScrollView(activity).apply { addView(body) }).setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_apply_crop),null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L142"
+        },
+        {
+          "file": "ImageResizeDialog.kt",
+          "line": 38,
+          "code": ".setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_resize_and_load), null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L38"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 824,
+          "code": "}.setNegativeButton(ui(R.string.ui_cancel), null).show()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L824"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 909,
+          "code": "}.setNegativeButton(ui(R.string.ui_cancel),null).show()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L909"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 992,
+          "code": ".setNegativeButton(ui(R.string.ui_cancel),null).show()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L992"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1009,
+          "code": "}.setNegativeButton(ui(R.string.ui_cancel),null).show()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1009"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1018,
+          "code": "val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1054,
+          "code": "editDetails.addView(button(ui(R.string.ui_cancel),\"trim_cancel\") {paintCanvas.cancelTrim();finish()},LinearLayout.LayoutParams(-1,dp(48)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1054"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1162,
+          "code": ".setNegativeButton(ui(R.string.ui_cancel),null).show()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1162"
+        },
+        {
+          "file": "TextStyleDialog.kt",
+          "line": 99,
+          "code": ".setNegativeButton(ui(R.string.ui_cancel),null).setPositiveButton(ui(R.string.ui_add_text),null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L99"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_canvas_bounds",
+      "tier": "P1",
+      "english": "Canvas bounds",
+      "kichwa": "Shuyuna kitipa manyakuna",
+      "android_value": "Shuyuna kitipa manyakuna",
+      "attributes": {
+        "name": "ui_canvas_bounds"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 849,
+          "code": "command(ui(R.string.ui_canvas_bounds),R.drawable.classic_bounds) {trimCanvas()},",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L849"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_canvas_size",
+      "tier": "P1",
+      "english": "Canvas size…",
+      "kichwa": "Shuyuna kitipa tupu…",
+      "android_value": "Shuyuna kitipa tupu…",
+      "attributes": {
+        "name": "ui_canvas_size"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 851,
+          "code": "command(ui(R.string.ui_canvas_size),R.drawable.classic_canvas_size) {dimensionsDialog(false,false)},",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L851"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_canvas_size_30460e",
+      "tier": "P1",
+      "english": "Canvas size",
+      "kichwa": "Shuyuna kitipa tupu",
+      "android_value": "Shuyuna kitipa tupu",
+      "attributes": {
+        "name": "ui_canvas_size_30460e"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1018,
+          "code": "val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_colour_palette_tap_for_foreground_hold_for_background",
+      "tier": "P1",
+      "english": "Colour palette. Tap for foreground; hold for background. Scroll for more colours.",
+      "kichwa": "Tullpu tantachiy. Ñawpak tullputa akllankapak llankay; washa tullputa akllankapak llankashpalla chaririy. Ashtawan tullpukunata rikunkapak aysay.",
+      "android_value": "Tullpu tantachiy. Ñawpak tullputa akllankapak llankay; washa tullputa akllankapak llankashpalla chaririy. Ashtawan tullpukunata rikunkapak aysay.",
+      "attributes": {
+        "name": "ui_colour_palette_tap_for_foreground_hold_for_background"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 604,
+          "code": "val scroll = HorizontalScrollView(this).apply { contentDescription = ui(R.string.ui_colour_palette_tap_for_foreground_hold_for_background) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L604"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_colour_tap_foreground_hold_background",
+      "tier": "P1",
+      "english": "Colour #%1$s. Tap foreground, hold background.",
+      "kichwa": "Tullpu #%1$s. Ñawpak tullputa akllankapak llankay; washa tullputa akllankapak llankashpalla chaririy.",
+      "android_value": "Tullpu #%1$s. Ñawpak tullputa akllankapak llankay; washa tullputa akllankapak llankashpalla chaririy.",
+      "attributes": {
+        "name": "ui_colour_tap_foreground_hold_background"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 615,
+          "code": "tag = \"colour_$hex\"; contentDescription = ui(R.string.ui_colour_tap_foreground_hold_background, hex)",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L615"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_crop",
+      "tier": "P1",
+      "english": "Crop %1$s",
+      "kichwa": "Kuchuna: %1$s",
+      "android_value": "Kuchuna: %1$s",
+      "attributes": {
+        "name": "ui_crop"
+      },
+      "caller_evidence": [
+        {
+          "file": "ImageCropDialog.kt",
+          "line": 141,
+          "code": "val dialog = EditorDialogBuilder(activity).setTitle(if (images.size == 1) ui(R.string.ui_crop, reference.name) else ui(R.string.ui_batch_crop_images))",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L141"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_crop_image",
+      "tier": "P1",
+      "english": "Crop image",
+      "kichwa": "Shuyuta kuchuna",
+      "android_value": "Shuyuta kuchuna",
+      "attributes": {
+        "name": "ui_crop_image"
+      },
+      "caller_evidence": [],
+      "uncertainty": null,
+      "caller_status": "no caller in retrieved source subset; not claimed live",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_crop_must_stay_inside_the_canvas",
+      "tier": "P1",
+      "english": "Crop must stay inside the canvas.",
+      "kichwa": "Kuchushka kiti shuyuna kitipa ukullapi kachun.",
+      "android_value": "Kuchushka kiti shuyuna kitipa ukullapi kachun.",
+      "attributes": {
+        "name": "ui_crop_must_stay_inside_the_canvas"
+      },
+      "caller_evidence": [
+        {
+          "file": "PaintDocument.kt",
+          "line": 435,
+          "code": "require(rect.left >= 0 && rect.top >= 0 && rect.right <= bitmap.width && rect.bottom <= bitmap.height && rect.width() > 0 && rect.height() > 0) { ui(R.string.ui_crop_must_stay_inside_the_canvas) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L435"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_crop_preview_drag_an_edge_or_corner_drag",
+      "tier": "P1",
+      "english": "Crop preview. Drag an edge or corner; drag inside to move the crop.",
+      "kichwa": "Kuchuyta ñawpash rikuna. Shuk manyata mana kashpaka kuchuta aysay; kuchuna kitita kuyuchinkapak ukupi aysay.",
+      "android_value": "Kuchuyta ñawpash rikuna. Shuk manyata mana kashpaka kuchuta aysay; kuchuna kitita kuyuchinkapak ukupi aysay.",
+      "attributes": {
+        "name": "ui_crop_preview_drag_an_edge_or_corner_drag"
+      },
+      "caller_evidence": [
+        {
+          "file": "ImageCropDialog.kt",
+          "line": 23,
+          "code": "init { isFocusable = true; isClickable = true; contentDescription = ui(R.string.ui_crop_preview_drag_an_edge_or_corner_drag) }",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L23"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_crop_to_selection",
+      "tier": "P1",
+      "english": "Crop to selection",
+      "kichwa": "Akllashka kitikama kuchuna",
+      "android_value": "Akllashka kitikama kuchuna",
+      "attributes": {
+        "name": "ui_crop_to_selection"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 852,
+          "code": "command(ui(R.string.ui_crop_to_selection),R.drawable.classic_crop) {if(document.cropSelection()) paintCanvas.fit() else message(ui(R.string.ui_select_an_area_first))},",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L852"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_edit_transform33",
+      "tier": "P1",
+      "english": "Flip / Rotate",
+      "kichwa": "Tikrachina / Muyuchina",
+      "android_value": "Tikrachina / Muyuchina",
+      "attributes": {
+        "name": "ui_edit_transform33"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 77,
+          "code": "TRANSFORM(R.string.ui_edit_transform33,R.drawable.classic_rotate90,listOf(6,7,8,9))",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L77"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_export_as23",
+      "tier": "P1",
+      "english": "Export as…",
+      "kichwa": "Chikan wakaychina…",
+      "android_value": "Chikan wakaychina…",
+      "attributes": {
+        "name": "ui_export_as23"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 841,
+          "code": "ui(R.string.ui_export_as23) to {showSaveOptions(exportOptions.format,export=true)},",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L841"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_fg",
+      "tier": "P1",
+      "english": "FG",
+      "kichwa": "Ñawpak",
+      "android_value": "Ñawpak",
+      "attributes": {
+        "name": "ui_fg"
+      },
+      "caller_evidence": [
+        {
+          "file": "ColourStatusButton.kt",
+          "line": 45,
+          "code": "listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed {i,(colour,name) ->",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L45"
+        },
+        {
+          "file": "ColourStatusButton.kt",
+          "line": 59,
+          "code": "listOf(foreground to ui(R.string.ui_fg),backgroundColour to ui(R.string.ui_bg)).forEachIndexed { i,(colour,name) ->",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ColourStatusButton.kt#L59"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_fit",
+      "tier": "P1",
+      "english": "Fit",
+      "kichwa": "Tukuyta rikuchina",
+      "android_value": "Tukuyta rikuchina",
+      "attributes": {
+        "name": "ui_fit"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 669,
+          "code": "else button(ui(R.string.ui_fit),\"zoom_fit_view\") {paintCanvas.fit()}.apply {",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L669"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 772,
+          "code": "options.addView(button(ui(R.string.ui_fit), \"zoom_fit\") { paintCanvas.fit() }, LinearLayout.LayoutParams(-1, dp(44)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L772"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1055,
+          "code": "editDetails.addView(button(ui(R.string.ui_fit),\"trim_fit\") {paintCanvas.fit()},LinearLayout.LayoutParams(-1,dp(48)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1055"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_fit_entire_canvas_in_view",
+      "tier": "P1",
+      "english": "Fit entire canvas in view",
+      "kichwa": "Tukuy shuyuna kitita rikuchina",
+      "android_value": "Tukuy shuyuna kitita rikuchina",
+      "attributes": {
+        "name": "ui_fit_entire_canvas_in_view"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 673,
+          "code": "fit.contentDescription=ui(R.string.ui_fit_entire_canvas_in_view)",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L673"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_fit_selection34",
+      "tier": "P1",
+      "english": "Fit image to canvas",
+      "kichwa": "Shuyuta shuyuna kitipi paktachina",
+      "android_value": "Shuyuta shuyuna kitipi paktachina",
+      "attributes": {
+        "name": "ui_fit_selection34",
+        "formatted": "false"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 755,
+          "code": "options.addView(button(ui(R.string.ui_fit_selection34),\"selection_fit_canvas\") {",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L755"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_flip_horizontal",
+      "tier": "P1",
+      "english": "Flip horizontal",
+      "kichwa": "Lluki-allita tikrachina",
+      "android_value": "Lluki-allita tikrachina",
+      "attributes": {
+        "name": "ui_flip_horizontal"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 854,
+          "code": "command(ui(R.string.ui_flip_horizontal),R.drawable.classic_flip_h) {paintCanvas.applyPending();document.transform(Matrix().apply {setScale(-1f,1f)})},",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L854"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "revise",
+      "review_note": "Remove directional -man; the left/right pair is what is reversed, not a destination for panning. The caller reflects X, not the horizontal mirror axis.",
+      "original_kichwa": "Lluki-alliman tikrachina"
+    },
+    {
+      "key": "ui_flip_vertical",
+      "tier": "P1",
+      "english": "Flip vertical",
+      "kichwa": "Hawa-urayta tikrachina",
+      "android_value": "Hawa-urayta tikrachina",
+      "attributes": {
+        "name": "ui_flip_vertical"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 855,
+          "code": "command(ui(R.string.ui_flip_vertical),R.drawable.classic_flip_v) {paintCanvas.applyPending();document.transform(Matrix().apply {setScale(1f,-1f)})},",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L855"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "revise",
+      "review_note": "Remove directional -man; the top/bottom pair is what is reversed. The caller reflects Y, not the vertical mirror axis.",
+      "original_kichwa": "Hawa-urayman tikrachina"
+    },
+    {
+      "key": "ui_from_device34",
+      "tier": "P1",
+      "english": "From device…",
+      "kichwa": "Android-manta…",
+      "android_value": "Android-manta…",
+      "attributes": {
+        "name": "ui_from_device34",
+        "formatted": "false"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 896,
+          "code": "val sources=listOf(ui(R.string.ui_from_device34))+IllustrationSource.values().map {it.label}",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L896"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_insert_image_into_canvas",
+      "tier": "P1",
+      "english": "Insert image into canvas…",
+      "kichwa": "Shuyuna kitipi shuyuta churana…",
+      "android_value": "Shuyuna kitipi shuyuta churana…",
+      "attributes": {
+        "name": "ui_insert_image_into_canvas"
+      },
+      "caller_evidence": [],
+      "uncertainty": null,
+      "caller_status": "no caller in retrieved source subset; not claimed live",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_outline",
+      "tier": "P1",
+      "english": "Outline",
+      "kichwa": "Muyuntin suniyak",
+      "android_value": "Muyuntin suniyak",
+      "attributes": {
+        "name": "ui_outline"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 790,
+          "code": "addChoice(listOf(ui(R.string.ui_outline), ui(R.string.ui_solid_fill), ui(R.string.ui_fill_line)), document.shapeStyle) { document.shapeStyle = it; paintCanvas.invalidate() }",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L790"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_preview",
+      "tier": "P1",
+      "english": "Preview",
+      "kichwa": "Ñawpash rikuna",
+      "android_value": "Ñawpash rikuna",
+      "attributes": {
+        "name": "ui_preview"
+      },
+      "caller_evidence": [
+        {
+          "file": "TextStyleDialog.kt",
+          "line": 64,
+          "code": "body.addView(label(ui(R.string.ui_preview)))",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/TextStyleDialog.kt#L64"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_redo",
+      "tier": "P1",
+      "english": "Redo",
+      "kichwa": "Kutin rurana",
+      "android_value": "Kutin rurana",
+      "attributes": {
+        "name": "ui_redo"
+      },
+      "caller_evidence": [],
+      "uncertainty": null,
+      "caller_status": "no caller in retrieved source subset; not claimed live",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_reset_crop",
+      "tier": "P1",
+      "english": "Reset crop",
+      "kichwa": "Kuchunata tukuy shuyuman kutichina",
+      "android_value": "Kuchunata tukuy shuyuman kutichina",
+      "attributes": {
+        "name": "ui_reset_crop"
+      },
+      "caller_evidence": [
+        {
+          "file": "ImageCropDialog.kt",
+          "line": 125,
+          "code": "body.addView(Button(activity).apply { text = ui(R.string.ui_reset_crop); isAllCaps = false; tag = \"crop_reset\"; setOnClickListener { displayValues(Rect(0,0,reference.dimensions.width,reference.dimensions.height)); refresh() } })",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageCropDialog.kt#L125"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_resize_and_load",
+      "tier": "P1",
+      "english": "Resize and load",
+      "kichwa": "Tuputa tikrachina, paskana",
+      "android_value": "Tuputa tikrachina, paskana",
+      "attributes": {
+        "name": "ui_resize_and_load"
+      },
+      "caller_evidence": [
+        {
+          "file": "ImageResizeDialog.kt",
+          "line": 38,
+          "code": ".setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_resize_and_load), null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L38"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_resize_the_copy",
+      "tier": "P1",
+      "english": "Resize the copy",
+      "kichwa": "Kikin shuyupa tuputa tikrachina",
+      "android_value": "Kikin shuyupa tuputa tikrachina",
+      "attributes": {
+        "name": "ui_resize_the_copy"
+      },
+      "caller_evidence": [
+        {
+          "file": "ImageResizeDialog.kt",
+          "line": 32,
+          "code": "body.addView(label(ui(R.string.ui_resize_the_copy), \"resize_heading\")); body.addView(sizing)",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ImageResizeDialog.kt#L32"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_rotate_90_clockwise",
+      "tier": "P1",
+      "english": "Rotate 90° clockwise",
+      "kichwa": "Alliman 90° muyuchina",
+      "android_value": "Alliman 90° muyuchina",
+      "attributes": {
+        "name": "ui_rotate_90_clockwise"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 856,
+          "code": "command(ui(R.string.ui_rotate_90_clockwise),R.drawable.classic_rotate90) {paintCanvas.applyPending();document.transform(Matrix().apply {setRotate(90f)});paintCanvas.fit()},",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L856"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "revise",
+      "review_note": "Use the concise UI instruction rotate 90 degrees right, instead of the cumbersome clock-indicator paraphrase. This is authored contextual wording, not an attested regional technical term.",
+      "original_kichwa": "Pachata rikuchikpa muyuna mayman 90° muyuchina"
+    },
+    {
+      "key": "ui_show_magnified_drawing_preview",
+      "tier": "P1",
+      "english": "Show magnified drawing preview",
+      "kichwa": "Shuyuta hatunyachishpa ñawpash rikuchina",
+      "android_value": "Shuyuta hatunyachishpa ñawpash rikuchina",
+      "attributes": {
+        "name": "ui_show_magnified_drawing_preview"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1541,
+          "code": "tag=\"cursor_magnifier_enabled\";text=ui(R.string.ui_show_magnified_drawing_preview);isChecked=paintCanvas.cursorMagnifier",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1541"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1559,
+          "code": "toggle(ui(R.string.ui_show_magnified_drawing_preview),paintCanvas.activeMagnifier,\"magnifier_enabled\") {",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1559"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_solid_fill",
+      "tier": "P1",
+      "english": "Solid fill",
+      "kichwa": "Ukuta tullpuwan huntachina",
+      "android_value": "Ukuta tullpuwan huntachina",
+      "attributes": {
+        "name": "ui_solid_fill"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 790,
+          "code": "addChoice(listOf(ui(R.string.ui_outline), ui(R.string.ui_solid_fill), ui(R.string.ui_fill_line)), document.shapeStyle) { document.shapeStyle = it; paintCanvas.invalidate() }",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L790"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_tap_an_image_first",
+      "tier": "P1",
+      "english": "Tap an image first.",
+      "kichwa": "Ñawpash shuk shuyuta llankay.",
+      "android_value": "Ñawpash shuk shuyuta llankay.",
+      "attributes": {
+        "name": "ui_tap_an_image_first"
+      },
+      "caller_evidence": [],
+      "uncertainty": null,
+      "caller_status": "no caller in retrieved source subset; not claimed live",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_tap_canvas_to_type",
+      "tier": "P1",
+      "english": "Tap canvas\\nto type",
+      "kichwa": "Shuyuna kitita llankay\\nkillkankapak",
+      "android_value": "Shuyuna kitita llankay\\nkillkankapak",
+      "attributes": {
+        "name": "ui_tap_canvas_to_type"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 775,
+          "code": "PaintTool.TEXT -> options.addView(label(ui(R.string.ui_tap_canvas_to_type), 12f))",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L775"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_tap_to_type_a_number",
+      "tier": "P1",
+      "english": "%1$s: %2$s. Tap to type a number.",
+      "kichwa": "%1$s: %2$s. Yupayta killkankapak llankay.",
+      "android_value": "%1$s: %2$s. Yupayta killkankapak llankay.",
+      "attributes": {
+        "name": "ui_tap_to_type_a_number"
+      },
+      "caller_evidence": [],
+      "uncertainty": null,
+      "caller_status": "no caller in retrieved source subset; not claimed live",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_tolerance",
+      "tier": "P1",
+      "english": "Tolerance",
+      "kichwa": "Tullpukunapura sakishka chikan kay",
+      "android_value": "Tullpukunapura sakishka chikan kay",
+      "attributes": {
+        "name": "ui_tolerance"
+      },
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 767,
+          "code": "PaintTool.FILL -> addSlider(ui(R.string.ui_tolerance), document.tolerance.toInt(), 100) { document.tolerance = it.toFloat() }",
+          "url": "https://github.com/c933103/AN-Paint/blob/5777383eec4a8bf8d7bc1e6b48b2211dbd240df8/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L767"
+        }
+      ],
+      "uncertainty": null,
+      "caller_status": "exact-head source retrieved",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_tool_categories",
+      "tier": "P1",
+      "english": "Tool categories. Scroll to see more tools",
+      "kichwa": "Hillay samikuna. Ashtawan hillaykunata rikunkapak aysay",
+      "android_value": "Hillay samikuna. Ashtawan hillaykunata rikunkapak aysay",
+      "attributes": {
+        "name": "ui_tool_categories"
+      },
+      "caller_evidence": [],
+      "uncertainty": null,
+      "caller_status": "no caller in retrieved source subset; not claimed live",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    },
+    {
+      "key": "ui_trim_expand_canvas_by_touch",
+      "tier": "P1",
+      "english": "Trim / expand canvas by touch…",
+      "kichwa": "Llankashpa shuyuna kitita kuchuna / hatunyachina…",
+      "android_value": "Llankashpa shuyuna kitita kuchuna / hatunyachina…",
+      "attributes": {
+        "name": "ui_trim_expand_canvas_by_touch"
+      },
+      "caller_evidence": [],
+      "uncertainty": null,
+      "caller_status": "no caller in retrieved source subset; not claimed live",
+      "review_decision": "retain",
+      "review_note": "Meaning acceptable for authored UI wording in supplied context; not native-speaker certification."
+    }
+  ],
+  "review": {
+    "reviewed_entries": 46,
+    "revised_entries": 3,
+    "uncertainty_entries": 5,
+    "source_head": "5777383eec4a8bf8d7bc1e6b48b2211dbd240df8",
+    "scope": "Review artifact only. Original batch and repository unchanged.",
+    "sources": [
+      "https://prolipa.com.ec/blog/wp-content/uploads/2024/10/RK_diccionario_kichwa_castellano-1.pdf",
+      "https://kichwa.net/wp-content/uploads/2011/03/diccionario_kichwa_castellano.pdf",
+      "https://www.educacionbilingue.gob.ec/wp-content/uploads/2025/05/Diccionario-ilustrado-Kichwa_compressed.pdf"
+    ]
+  },
+  "held_keys": [
+    "ui_italic",
+    "ui_left_arrow_collapse",
+    "ui_lock_aspect_ratio",
+    "ui_lock_proportions",
+    "ui_scales_the_image_unlock_the_ratio_to_stretch"
+  ],
+  "integration_checks": {
+    "base_head": "5777383eec4a8bf8d7bc1e6b48b2211dbd240df8",
+    "accepted": 41,
+    "retained": 38,
+    "revised": 3,
+    "held": [
+      "ui_italic",
+      "ui_left_arrow_collapse",
+      "ui_lock_aspect_ratio",
+      "ui_lock_proportions",
+      "ui_scales_the_image_unlock_the_ratio_to_stretch"
+    ],
+    "passed": [
+      "XML parse",
+      "missing-only entries",
+      "no duplicates",
+      "all existing entries/attributes unchanged",
+      "source attributes preserved",
+      "indexed placeholders and literal percents preserved",
+      "newlines preserved",
+      "Android escaping",
+      "five uncertain entries omitted"
+    ],
+    "limits": [
+      "Native Chimborazo certification not performed",
+      "Android build/device/layout/CI not run"
+    ],
+    "sha256": "ca930159fba00a4fb1ccb2fcba5df8d508c69ee2c9678a4527f12cd626f7ea1c"
+  }
+}
