@@ -1,0 +1,46 @@
+{
+  "base": "d46664a7a73b0dfdb990538206e45778d78bca77",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base controls review. Retained explicit width/height quotient labels; clarified active sizing and independent-dimension wording. Model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_lock_aspect_ratio",
+      "tier": "P1",
+      "english": "Lock aspect ratio",
+      "value": "ⵃⴹⵓ ⴰⵙⵙⴰⵖ (ⵜⵉⵔⵉⵡⵜ / ⵜⵉⵖⵣⵉ)",
+      "backtranslation": "Keep the ratio (width / height)",
+      "context_and_review_note": "Retained Keep the relationship (width / height) as a transparent ratio label. The explicit quotient prevents assaɣ being read merely as an unspecified relationship. hḍu means preserve here: its object is the ratio and the UI is a checkbox, not Save or a document-lock action. DimensionControls.kt:19 supplies this label; :66–69 copies the same percentage or derives the other pixel dimension from original.width/original.height. Integer rounding still applies, so the label does not promise impossible exact rational equality at all pixel sizes. Unchecking allows independent dimensions.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_lock_proportions",
+      "tier": "P1",
+      "english": "Lock proportions",
+      "value": "ⵃⴹⵓ ⴰⵙⵙⴰⵖ (ⵜⵉⵔⵉⵡⵜ / ⵜⵉⵖⵣⵉ)",
+      "backtranslation": "Keep the ratio (width / height)",
+      "context_and_review_note": "Retained identical ratio wording for the separate selection checkbox. ClassicPaintActivity.kt:762–763 sets paintCanvas.lockSelectionAspect; PaintCanvas.kt:635 passes it to geometry.resized for dragged selection handles. It preserves proportional placement geometry, not file persistence and not a prohibition on all edits. This is a different setting from DimensionControls despite the shared wording. The fixed 48dp selection row is a possible layout risk for the explicit parenthetical; no rendered test was performed.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_scales_the_image_unlock_the_ratio_to_stretch",
+      "tier": "P1",
+      "english": "Scales the image. Unlock the ratio to stretch width and height independently.",
+      "value": "AN Paint ⴷⴰ ⵉⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ. ⴽⴽⵙ ⵜⴰⵎⴰⵜⴰⵔⵜ ⵏ «ⵃⴹⵓ ⴰⵙⵙⴰⵖ (ⵜⵉⵔⵉⵡⵜ / ⵜⵉⵖⵣⵉ)» ⵃⵎⴰ ⴰⴷ ⵜⵙⵏⴼⵍⴷ ⵜⵉⵔⵉⵡⵜ ⴷ ⵜⵉⵖⵣⵉ, ⴽⵓ ⵢⴰⵜ ⵙ ⵉⵅⴼ ⵏⵏⵙ.",
+      "backtranslation": "AN Paint changes the image size. Remove the checkmark from Keep the ratio (width / height) to change width and height, each independently.",
+      "context_and_review_note": "Revised the first sentence to active AN Paint changes the image size, avoiding the uncertain feminine passive construction. Replaced buḥdut nn-s with s ixf nn-s (each by itself) for a clear independent-dimension instruction. The remove-checkmark instruction remains and quotes ui_lock_aspect_ratio EXACTLY. ClassicPaintActivity.kt:1014 initializes DimensionControls locked=stretch; :1016 shows this help for image scaling, while the alternative canvas-size help is separate. :1024 calls document.resize with stretch. No file save, crop, automatic unlocking or guarantee against distortion is implied.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 2,
+    "tier": "3 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; quoted checkbox label exactly matches ui_lock_aspect_ratio",
+    "remaining_uncertainty": "Ratio uses a descriptive quotient rather than certified specialist terminology. No native certification, rendered fit or runtime tests; selection checkbox has a fixed-height row.",
+    "repository_edits": false
+  }
+}
