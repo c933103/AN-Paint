@@ -1,0 +1,92 @@
+{
+  "base": "bd576f44a3c2145f93a264ed45e50785fa899cc0",
+  "status": "independently reviewed; one concrete contextual revision; not native-speaker certification",
+  "method": "Direct Tifinagh translation, retaining latest reviewed toolbox fold/unfold terminology. No source-matching gate or native-certification claim.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_expand_tool_category",
+      "tier": "P1",
+      "english": "%1$s: %2$s selected. Expand tools and options",
+      "value": "%1$s. ⴰⵙⵜⵉ: %2$s. ⴼⵙⵔ ⵉⵎⴰⵙⵙⵏ ⴷ ⵜⵉⵙⵖⴰⵍ",
+      "backtranslation": "%1$s. Selection: %2$s. Expand tools and settings",
+      "context_and_review_note": "ToolCategoryButton.kt:27–28 selects this resource when expanded=false, arguments category label and selected tool label; content description and LocaleTooltip. Nominal selection avoids grammatical gender agreement with arbitrary tool names. Options rendered settings because the opened panel contains actual selected-tool settings. Review whether selection label sufficiently conveys selected state.",
+      "status": "reviewed_keep",
+      "independent_review": "KEEP. Both category and remembered-selected-tool arguments retain their positions. Nominal Selection: label conveys the remembered selection without imposing gender agreement on the injected name. Expanded=false picks the unfold imperative. This is next-action text, not an assertion that the panel is already expanded."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_collapse_tool_category",
+      "tier": "P1",
+      "english": "%1$s: %2$s selected. Collapse tools and options",
+      "value": "%1$s. ⴰⵙⵜⵉ: %2$s. ⵙⵏⵓⴹⵓ ⵉⵎⴰⵙⵙⵏ ⴷ ⵜⵉⵙⵖⴰⵍ",
+      "backtranslation": "%1$s. Selection: %2$s. Collapse tools and settings",
+      "context_and_review_note": "ToolCategoryButton.kt:27–28 selects this when expanded=true. Preserve both state arguments and reverse action. snuḍu is current reviewed fold/collapse term, not former merge verb.",
+      "status": "reviewed_keep",
+      "independent_review": "KEEP. The same nominal selection structure preserves accessibility information. Expanded=true picks the fold imperative. Category selection and panel expansion remain separate concepts."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_toggle_toolbox",
+      "tier": "P2",
+      "english": "Toggle toolbox",
+      "value": "ⵉⵎⴰⵙⵙⵏ: ⵙⵏⵓⴹⵓ / ⴼⵙⵔ",
+      "backtranslation": "Tools: collapse / expand",
+      "context_and_review_note": "ActionButton.kt:12 SIDEBAR.labelId; :33–34 initial description and tooltip. ClassicPaintActivity.kt:558–562 long-click help shows icon.label; :597 creates sidebar button, :537 updates only stateful description. Thus generic tooltip/help remains active even though state descriptions already translated. P2, explicitly requested.",
+      "status": "reviewed_keep",
+      "independent_review": "KEEP. Generic label deliberately lists both inverse operations. Exact ActionButton initializer and ClassicPaintActivity help callback still use this generic label, while syncPanels changes only contentDescription. Both directions therefore belong in this tooltip."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_show_controls",
+      "tier": "P1",
+      "english": "Show controls",
+      "value": "ⴼⴼⵖ ⵙⴳ ⵓⴳⴷⵉⵍ ⴰⴽⴽⵯ",
+      "backtranslation": "Exit full screen",
+      "context_and_review_note": "ClassicPaintActivity.kt:1583 leave_fullscreen button sets fullscreen=false then syncFullscreen; button helper :545–550 gives displayed text and matching description. Contextual rendering of controls as editing tools; review whether this sufficiently includes all restored editor chrome.",
+      "status": "reviewed_revise",
+      "independent_review": "REVISE to Exit full screen, an exact contextual equivalent at this single caller. syncFullscreen restores all root chrome, status/ribbon rails and sidebar; editing tools alone is narrower than the controls restored. ffgh is a singular imperative, and sg governs the bound noun ugdil. This is authored contextual wording, not an attested complete UI string.",
+      "draft_value": "ⵙⴽⵏ ⵉⵎⴰⵙⵙⵏ ⵏ ⵓⵙⵏⴼⵍ"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_fullscreen33",
+      "tier": "P2",
+      "english": "Full screen",
+      "value": "ⴰⴳⴷⵉⵍ ⴰⴽⴽⵯ",
+      "backtranslation": "Full screen / the whole screen",
+      "context_and_review_note": "ClassicPaintActivity.kt:871 View menu command toggles fullscreen and invokes syncFullscreen. P2 companion to show-controls for complete entry/exit pair. Review agdil screen lexical choice.",
+      "status": "reviewed_keep",
+      "independent_review": "KEEP. agdil is screen, and akkw conveys entirety; does not introduce command/control vocabulary. The View menu toggles fullscreen. Phrase-level naturalness remains a language-review limitation, not a discovered semantic inversion."
+    }
+  ],
+  "review_scope": "Exact bd576f44 callers inspected through GitHub fetch_file. No repository or branch writes.",
+  "sources": [
+    "https://github.com/c933103/AN-Paint/blob/bd576f44a3c2145f93a264ed45e50785fa899cc0/Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt",
+    "https://github.com/c933103/AN-Paint/blob/bd576f44a3c2145f93a264ed45e50785fa899cc0/Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt",
+    "https://github.com/c933103/AN-Paint/blob/bd576f44a3c2145f93a264ed45e50785fa899cc0/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt"
+  ],
+  "lexical_sources": [
+    {
+      "url": "https://www.temehu.com/imazighen/dictionaries/Amawals/manuel-de-conjugaison-Tamazight-Tifinagh-IRCAM.pdf",
+      "use": "Indexed IRCAM conjugation manual identifies ffgh imperative; snudhu supported as fold. Existing prior reviewed fold/unfold terminology retained."
+    },
+    {
+      "url": "https://translate.sugarlabs.org/projects/sugar-activities/read-sd-comics/tzm/",
+      "use": "Published Central Atlas Tamazight fullscreen translation uses agdil; only lexical corroboration, not zgh certification or adoption of complete phrase."
+    },
+    {
+      "url": "https://iremam.mmsh.fr/fr/presentation-de-la-revue-poesies-toutes?language=ar",
+      "use": "akkw explicitly used for entirety/all in scholarly Tamazight text."
+    }
+  ],
+  "checks": {
+    "unique_keys": true,
+    "placeholder_parity": true,
+    "caller_state_checked": true,
+    "runtime_screen_reader_test": false,
+    "native_certification": false,
+    "repository_writes": false
+  },
+  "remaining_uncertainty": "Exact native idiomatic preference for agdil akkw and the authored Exit full screen phrase is unverified. No evidence of reversed meaning, lost placeholders or collapsed category/selection states. Do not label these source-attested full UI sentences."
+}
