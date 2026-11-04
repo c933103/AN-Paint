@@ -1,0 +1,161 @@
+{
+  "base": "f07d6ac2e19a9ba643cffa377c90ed007684e906",
+  "locale_blob": "396c82b737a5472f19fed4d9ce4f46ef918b1fc7",
+  "english_blob": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973",
+  "status": "Independent review complete: 9 retained; no held rows",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_foreground_colour",
+      "tier": "P1",
+      "english": "Foreground colour",
+      "value": "ⴰⴽⵍⵓ ⵏ ⵡⴰⵢⴰⵡⴰⵙ ⴰⵎⵣⵡⴰⵔⵓ",
+      "backtranslation": "Foreground colour (colour of the first/front plane)",
+      "review_note": "AdvancedColourDialog :314 title and ColourStatusButton :36 accessibility. First/front plane is authored counterpart to IRCAM background ayawas amdfir. Review conventional foreground term and annexed wayawas; not a claim of native-certified UI terminology.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept compositional front/first-plane colour label. ayawas -> wayawas after n is coherent; amzwaru modifies plane, not colour. Consistent foreground role across label and accessibility text. This is understandable authored terminology, not independently certified conventional UI wording."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_background_colour",
+      "tier": "P1",
+      "english": "Background colour",
+      "value": "ⴰⴽⵍⵓ ⵏ ⵡⴰⵢⴰⵡⴰⵙ ⴰⵎⴷⴼⵉⵔ",
+      "backtranslation": "Background colour (colour of the rear plane)",
+      "review_note": "AdvancedColourDialog :314, ColourStatusButton :36 and ClassicPaintActivity :1007. ayawas amdfir is lexically corroborated as arrière-plan in IRCAM geology lexicon p116; target colour construction is authored.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept rear-plane colour label, clearly contrasting with front/first plane. No implication this is transparency, canvas-layer selection or whole-image inversion. IRCAM PDF direct fetch failed with 502; the handoff lexical source was not independently inspected in full."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_foreground_edit_colour",
+      "tier": "P1",
+      "english": "Foreground %1$s. Edit colour.",
+      "value": "ⴰⴽⵍⵓ ⵏ ⵡⴰⵢⴰⵡⴰⵙ ⴰⵎⵣⵡⴰⵔⵓ %1$s. ⵙⵏⴼⵍ ⴰⴽⵍⵓ.",
+      "backtranslation": "Foreground colour %1$s. Edit colour.",
+      "review_note": "ColourStatusButton :34 passes hex(foreground) already including #. Retain a single placeholder without adding #, and a separate actionable edit clause.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept. Supplied exact-base ColourStatusButton passes hex(foreground), formatted #RRGGBB. One unchanged %1$s, no extra #. Retain explicit edit command for accessibility and same role phrase as heading."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_background_edit_colour",
+      "tier": "P1",
+      "english": "Background %1$s. Edit colour.",
+      "value": "ⴰⴽⵍⵓ ⵏ ⵡⴰⵢⴰⵡⴰⵙ ⴰⵎⴷⴼⵉⵔ %1$s. ⵙⵏⴼⵍ ⴰⴽⵍⵓ.",
+      "backtranslation": "Background colour %1$s. Edit colour.",
+      "review_note": "ColourStatusButton :35 passes hex(backgroundColour) including #. Uses same background term as dialog/accessibility heading.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept. Supplied exact-base ColourStatusButton passes hex(backgroundColour), already including #. Same background role as heading and independent actionable edit sentence."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_swap23",
+      "tier": "P1",
+      "english": "Swap colors",
+      "value": "ⵎⵙⵏⴼⵍ ⵉⴽⵍⴰⵏ",
+      "backtranslation": "Exchange colours",
+      "review_note": "ClassicPaintActivity :422 exchanges document.foreground and document.background. Reciprocal change/exchange imperative; must not be read as invert all canvas pixels. Review ms nfl morphology/standard imperative.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept reciprocal change/exchange imperative msnfl with plural colours. In this paired control, it conveys exchange rather than pixel inversion. Activity:422 swaps foreground/background assignments only; no instruction to invert the canvas is present."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_reset_bw23",
+      "tier": "P1",
+      "english": "Black / white",
+      "value": "ⴰⴱⵔⴽⴰⵏ / ⴰⵎⵍⵍⴰⵍ",
+      "backtranslation": "Black / white",
+      "review_note": "ClassicPaintActivity :423 restores foreground BLACK and background WHITE. Order and slash preserved. Colour names independently known and also present in cached zgh Telegram lexicon.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept black then white in source order. Activity:423 sets foreground BLACK and background WHITE. Slash does not add a claim of monochrome conversion."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_basic_colours",
+      "tier": "P1",
+      "english": "Basic colours",
+      "value": "ⵉⴽⵍⴰⵏ ⵉⴷⵙⵍⴰⵏⵏ",
+      "backtranslation": "Basic colours",
+      "review_note": "AdvancedColourDialog :123 fixed palette heading. Basic/fundamental adjective, not primary colours limited to RGB. Review plural morphology.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept masculine plural basic/fundamental adjective idslann agreeing with iklan. AdvancedColourDialog palette includes many colours and shades; wording does not mislabel them as only primary colours."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_palette",
+      "tier": "P1",
+      "english": "Palette",
+      "value": "ⵜⴰⵏⴽⵓⵍⵜ ⵏ ⵉⴽⵍⴰⵏ",
+      "backtranslation": "Colour palette",
+      "review_note": "AdvancedColourDialog :113 palette mode tab; concrete painter-palette noun applied to colour set. Lexical lead school-tools palette tankult n ighman; retains project colour noun iklan rather than switching terminology. Review UI naturalness.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept concrete colour-palette noun in palette-tab context. Directly inspected school-tools page gives tankult n ighman for Palette; project iklan substitution maintains consistent colour vocabulary. Source also uses paint-box wording elsewhere, so this supports broad usage, not exclusive terminology."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_invalid_colour",
+      "tier": "P1",
+      "english": "Invalid colour",
+      "value": "ⴰⴽⵍⵓ ⵓⵔ ⵉⵚⵃⵉⵏ",
+      "backtranslation": "Invalid colour",
+      "review_note": "AdvancedColourDialog :372 field error after IllegalArgumentException. Negative relative valid/correct descriptor. Review morphology; not unsupported colour-profile error.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept negative relative descriptor ur ishin as not valid/correct modifying masculine colour. Matches generic IllegalArgumentException input feedback, without diagnosing unsupported profile or promising repair."
+    }
+  ],
+  "checks": [
+    "nine unique missing keys",
+    "English source equality",
+    "source attributes preserved",
+    "placeholder parity",
+    "no extra # before hex placeholders",
+    "Android escaping and format syntax",
+    "NFC",
+    "Tifinagh letters except placeholders",
+    "XML parse",
+    "foreground/background role consistency"
+  ],
+  "caller_evidence": {
+    "base": "f07d6ac2e19a9ba643cffa377c90ed007684e906",
+    "source": "Supplied exact-base caller files",
+    "verified": [
+      "ColourStatusButton:34–38 role descriptions and hex function",
+      "ClassicPaintActivity:422–423 exchange/reset assignments",
+      "AdvancedColourDialog:113 palette mode",
+      "AdvancedColourDialog:123 basic palette",
+      "AdvancedColourDialog:372 generic invalid-colour fallback"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://www.asslmd.com/2023/02/blog-post_26.html",
+      "scope": "Directly inspected Palette entry, lines 141–143; limited lexical corroboration only."
+    }
+  ],
+  "limits": [
+    "Foreground phrase is authored/compositional, not attested as a conventional UI label.",
+    "Long role labels require later device layout and accessibility review.",
+    "No native-speaker certification, Android build or rendering.",
+    "IRCAM source fetch returned HTTP 502; not independently read in full.",
+    "No branch/repository writes."
+  ]
+}
