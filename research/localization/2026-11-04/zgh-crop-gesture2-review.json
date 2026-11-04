@@ -1,0 +1,36 @@
+{
+  "base": "a6b4aa3c6f3ac170ba49f079e0d42e6b9576ec48",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base selected-input crop/gesture review. Corrected edge noun form; retained contextual drag verb without claiming specialist certification.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_crop_image",
+      "tier": "P1",
+      "english": "Crop image",
+      "value": "ⴰⴽⴽⴰⵙ ⵏ ⵉⵔⴰⵏ ⵏ ⵜⵡⵍⴰⴼⵜ",
+      "backtranslation": "Trimming the edges of the image / Crop image",
+      "context_and_review_note": "Retained trimming the edges of the image, consistent with reviewed crop terminology. AssemblyActivity.kt:96 binds this button to crop(false); :277–281 filters by selected ID and opens ImageCropDialog, with a selection-first message if none. It does not crop the whole output assembly, remove the input, or perform clipboard Cut. The actual assembly.crop callback runs after Apply, not on opening this dialog. The compound is substantially longer than English; no compact button layout or rendered fit is certified.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_crop_preview_drag_an_edge_or_corner_drag",
+      "tier": "P1",
+      "english": "Crop preview. Drag an edge or corner; drag inside to move the crop.",
+      "value": "ⵜⴰⵎⵓⵖⵍⵉ ⵜⴰⵎⵣⵡⴰⵔⵓⵜ ⵏ ⵓⴽⴽⴰⵙ ⵏ ⵉⵔⴰⵏ. ⵊⴱⴷ ⵢⴰⵏ ⵢⵉⵔⵉ ⵏⵖ ⵢⴰⵜ ⵜⵉⵖⵎⵔⵜ. ⵊⴱⴷ ⴳ ⵓⴳⵏⵙ ⵏ ⵜⵎⵏⴰⴹⵜ ⵉⵜⵜⵓⵙⵜⵢⵏ ⵃⵎⴰ ⴰⴷ ⵜⵜ ⵜⵙⵎⵓⵜⵜⵢⴷ.",
+      "backtranslation": "Crop preview. Drag an edge or a corner. Drag inside the selected area to move it.",
+      "context_and_review_note": "Corrected yan yir to yan yiri, restoring the final vowel of the reviewed iri edge noun in its attached-state form. Retained feminine yat tiɣmrt corner and the interior-selected-area distinction. jbd is used here as an ordinary Moroccan pull/drag imperative with an onscreen handle object; this is a contextual language judgment, not a claim of attested standard software terminology. ImageCropDialog.kt:23 labels CropPreview, :39–42 handles continuous touch down/move/up/cancel. CropOverlay.kt:25–28 prioritizes a nearby edge/corner handle, otherwise selects interior handle 8; :39–42 translates the whole crop for handle 8 and the following branch changes bounds for edge/corner handles. The feminine tt refers to the selected area, not the image or canvas. No claim of panning the preview, resizing by dragging inside, or cropping before Apply is introduced.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "2 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "remaining_uncertainty": "jbd is contextual ordinary Moroccan drag/pull usage, not independently attested standard UI terminology or native certification. Long compact-button wording and accessibility description remain unrendered/untested.",
+    "repository_edits": false
+  }
+}
