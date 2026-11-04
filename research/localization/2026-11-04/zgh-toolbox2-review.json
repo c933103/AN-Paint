@@ -1,0 +1,56 @@
+{
+  "head": "c1b3fec95922e4aa719a6d7b94ee5cd90f6588ce",
+  "locale_blob": "20b39e7c18f967ba15ec4d159d4b64d788084a9f",
+  "locale": "zgh",
+  "status": "Two-key semantic correction integrated after parent review; lexical and caller evidence recorded; not native certification",
+  "rows": [
+    {
+      "key": "ui_expand_toolbox",
+      "old_value": "ⵉⵎⴰⵙⵙⵏ: ⴼⵙⵉ",
+      "value": "ⵉⵎⴰⵙⵙⵏ: ⴼⵙⵔ",
+      "backtranslation": "Tools: unfold",
+      "note": "Replace melt/undo with unfold/spread out; toolbox-panel action rather than editing tools."
+    },
+    {
+      "key": "ui_collapse_toolbox",
+      "old_value": "ⵉⵎⴰⵙⵙⵏ: ⵙⵎⵓⵏ",
+      "value": "ⵉⵎⴰⵙⵙⵏ: ⵙⵏⵓⴹⵓ",
+      "backtranslation": "Tools: fold",
+      "note": "Replace gather/assemble with fold; inverse of unfold, not a tool merge."
+    }
+  ],
+  "grammar": "Preserve existing topic-label structure (plural tools followed by colon) and use singular imperatives addressing the user. The imperative is not pluralized to agree with tools. No new noun/annexation claim is introduced. Authored UI extension of physical fold/unfold, not attested complete UI strings.",
+  "callers": {
+    "ClassicPaintActivity.kt": "At exact head, syncPanels lines 514-539 toggles panel visibility and assigns these strings to sidebarToggle.contentDescription according to sidebarExpanded. This is next-action accessibility text, not expanded/collapsed state text.",
+    "ActionButton.kt": "At exact head lines 12 and 32-35, SIDEBAR label is ui_toggle_toolbox; LocaleTooltip.set uses that generic label at initialization. The two corrected strings are not the tooltip text. ui_toggle_toolbox has no zgh override at inspected head and falls back to English.",
+    "source_links": [
+      "https://github.com/c933103/AN-Paint/blob/c1b3fec95922e4aa719a6d7b94ee5cd90f6588ce/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L514-L539",
+      "https://github.com/c933103/AN-Paint/blob/c1b3fec95922e4aa719a6d7b94ee5cd90f6588ce/Paintroid/src/main/java/org/catrobat/paintroid/classic/ActionButton.kt#L12-L35"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://amyaz.fr/uploads/6728940f69bc6.pdf",
+      "title": "IRCAM Manuel de conjugaison de l’amazighe (2012), mirror",
+      "pages": "110 / 253 / 276 / 283: fsi vs fsr; 179: smun; 181 / 320: snudhu",
+      "verified": "PDF extracted text inspected directly; lexical definitions support fold/unfold pair."
+    },
+    {
+      "url": "https://www.ircam.ma/sites/default/files/2021-02/amz_fr_ar.pdf",
+      "verified": "Search indexed primary-source excerpt, page 142: snudhu = plier."
+    }
+  ],
+  "checks": {
+    "xml_parse": true,
+    "two_unique_keys": true,
+    "no_placeholders_changed": true,
+    "repository_writes": false,
+    "issue_comment_attempts": false
+  },
+  "not_run": [
+    "Android build",
+    "Runtime screen-reader/tooltip test",
+    "Native-speaker certification"
+  ],
+  "out_of_scope_followup": "Generic Toggle toolbox tooltip remains English; not changed or included in this two-key proposal."
+}
