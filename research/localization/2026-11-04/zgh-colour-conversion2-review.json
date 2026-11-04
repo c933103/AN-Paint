@@ -1,0 +1,39 @@
+{
+  "base": "80aac0f473b5b1de6c8d5ed0fc10cd02a4b5fc23",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base colour-import review. Both contextual translations retained; model-reviewed, not native-certified specialist terminology.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "colour_unsupported_icc_model",
+      "tier": "P1",
+      "english": "This image uses an ICC colour model that the image decoder cannot convert. Export an RGB copy in a colour-managed application first.",
+      "value": "ⵜⴰⵡⵍⴰⴼⵜ ⴰ ⵜⵙⵎⵔⴰⵙ ⵢⴰⵏ ⵓⵏⴰⵡ ⵏ ⵉⴽⵍⴰⵏ ICC ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵜ ⵉⵙⵏⴼⵍ ⴳ ⵓⵔⵥⴰⵎ ⵏ ⵜⵡⵍⴰⴼⵜ. ⵙⵙⵓⴼⵖ ⵢⴰⵜ ⵜⵓⵏⵖⵉⵍⵜ RGB ⴳ ⵢⴰⵏ ⵓⵙⵏⴰⵙ ⵉⵙⵎⵔⴰⵙⵏ ⴰⵙⵡⵓⴷⴷⵓ ⵏ ⵉⴽⵍⴰⵏ ⴷⴰⵜ ⴽⵓⵍⵍⵓ.",
+      "backtranslation": "This image uses an ICC colour type that AN Paint cannot convert when opening the image. First export an RGB copy in an application using colour management.",
+      "context_and_review_note": "Retained ICC colour type as a contextual rendering of colour model: ICC makes this more specific than a generic file-format type. PlatformImageColour.kt:213–214 rejects ICC data-space signatures other than RGB or GRAY after preceding profile checks. AN Paint cannot convert it while opening describes the decoder role without implying all other programs fail. The masculine t refers to unaw (type/model); feminine tunɣilt is explicitly a COPY. RGB remains distinct from the narrower sRGB PNG remedy in the other message. First export from an application using colour management means actual conversion/export, not merely assigning a profile or renaming the source. aswuddu n iklan is a transparent management/organisation-of-colours paraphrase, not a claim of independently established zgh technical glossary usage. No concrete confident correction found.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "save20_unsupported_image_colour",
+      "tier": "P0",
+      "english": "This image uses a colour profile that AN Paint cannot convert yet. Convert it to sRGB PNG in a colour-managed editor before importing.",
+      "value": "ⵜⴰⵡⵍⴰⴼⵜ ⴰ ⵜⵙⵎⵔⴰⵙ ⵉⵙⴼⴽⴰ ⵉⵙⴱⴰⴷⵓⵏ ⵉⴽⵍⴰⵏ ⵏⵏⵙ. AN Paint ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵉⵙⵏⴼⵍ ⵉⴽⵍⴰⵏ ⴰ ⴷⵖⵉ. ⵙⵏⴼⵍ ⵜⵜ ⵖⵔ PNG sRGB ⴳ ⵢⴰⵏ ⵓⵙⵏⴰⵙ ⵏ ⵓⵙⵏⴼⵍ ⵏ ⵜⵡⵍⴰⴼⵉⵏ ⵉⵙⵎⵔⴰⵙⵏ ⴰⵙⵡⵓⴷⴷⵓ ⵏ ⵉⴽⵍⴰⵏ, ⴷⴰⵜ ⴰⴷ ⵜⵜ ⵜⵙⵙⴽⵛⵎⴷ.",
+      "backtranslation": "This image uses information defining its colours. AN Paint cannot convert these colours at present. Convert it to sRGB PNG in an image-editing application using colour management before importing it.",
+      "context_and_review_note": "Retained information defining its colours as a functional profile explanation. The following inability to convert these colours connects the limitation to that description; it does not diagnose corrupt pixel values or a generic invalid image. dɣi makes the inability current, not permanent. PlatformImageColour.kt:114–115 maps LegacyColourMetadata.UnsupportedColour to this import error; LegacyColourMetadata.java:38/41 checks BMP headers/colour-space metadata and :64 rejects ICCRGBG1 in GIF. Despite the save20 key prefix this is not an export failure. The feminine tt in Convert it and before importing it refers to the image. Both PNG and sRGB remain explicit, as does the image-editing application with colour management and the required conversion BEFORE import. No suggestion to rename the extension, merely relabel the colour profile, or discard the original. Technical terms are contextual paraphrases rather than certified standard glossary forms.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 2,
+    "tiers": {
+      "P0": 1,
+      "P1": 1
+    },
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; ICC/RGB and sRGB/PNG identifiers preserved",
+    "remaining_uncertainty": "Colour model/profile/management use functional descriptive paraphrases, not independently established native specialist terminology. No native certification, rendered layout or runtime conversion tests.",
+    "repository_edits": false
+  }
+}

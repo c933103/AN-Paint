@@ -1,0 +1,47 @@
+{
+  "base": "80aac0f473b5b1de6c8d5ed0fc10cd02a4b5fc23",
+  "accepted_additions": 2,
+  "unchanged_nodes": 295,
+  "coverage": {
+    "P0": {
+      "before_missing": 15,
+      "after_missing": 14,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 40,
+      "after_missing": 39,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 296,
+      "after_missing": 296,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 71,
+      "after_missing": 71,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "Two missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Exact-head ICC data-space rejection distinct from legacy unsupported profile metadata",
+    "RGB copy remedy distinct from sRGB PNG conversion before import",
+    "ICC RGB sRGB PNG identifiers retained"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "No runtime colour conversion tests",
+    "Colour model/profile/management are functional paraphrases, not certified native specialist terms"
+  ]
+}
