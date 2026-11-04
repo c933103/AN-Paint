@@ -1,0 +1,51 @@
+{
+  "base": "08692501c865658b86c0bdeb4ade41ec6a4c5e0f",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh model review against exact-base PNG poster selection, PDF rasterization and import-byte limit callers. Made smaller-file comparison explicit; retained two contextual technical explanations. Not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "formats22_animation_poster",
+      "tier": "P0",
+      "english": "This PNG has a separate default image. That image will be imported instead of the animated frames. Saving creates a still image.",
+      "value": "PNG ⴰ ⴷⵉⴳⵙ ⵢⴰⵜ ⵜⵡⵍⴰⴼⵜ ⵢⴰⴹⵏ, ⵓⵔ ⵜⴳⵉ ⵢⴰⵜ ⵙⴳ ⵜⵡⵍⴰⴼⵉⵏ ⵏ ⵓⵎⵓⵙⵙⵓ. AN Paint ⵔⴰⴷ ⵉⵕⵥⵎ ⵜⴰⵡⵍⴰⴼⵜ ⴰ, ⵎⴰⵛⵉ ⵜⵉⵡⵍⴰⴼⵉⵏ ⵏ ⵓⵎⵓⵙⵙⵓ. «ⵃⴹⵓ»: ⴰⵙⵏⵓⵍⴼⵓ ⵏ ⵜⵡⵍⴰⴼⵜ ⵓⵔ ⵉⵜⵜⵎⵓⵜⵜⵓⵢⵏ.",
+      "backtranslation": "This PNG has another image, not one of the animation images. AN Paint will open this image, not the animation images. Save creates a nonmoving image.",
+      "context_and_review_note": "Exact-base ImportSelection.kt:90-95: a known multi-frame PNG with pngDefaultImageSeparate receives this message rather than the first-animation-frame message. Retained functional explanation: a separate image not belonging to the animation, and that image is opened instead of animated frames. Default is explained operationally rather than given a potentially misleading first-frame label. Saving yields a nonmoving image. The translation does not claim source frames are deleted or that animation survives.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_pdf_raster_hint",
+      "tier": "P0",
+      "english": "PDF pages are rendered at 144 dpi. Text and vector objects become pixels.",
+      "value": "ⵜⵉⵙⵏⴰ ⵏ PDF ⴷⴰ ⵜⵜⵡⴰⵙⵏⴼⴰⵍⵏⵜ ⵖⵔ ⵜⵡⵍⴰⴼⵉⵏ ⵙ 144 dpi. ⴰⴹⵕⵉⵙ ⴷ ⵜⵍⵖⵉⵡⵉⵏ ⵏ vector ⴷⴰ ⵜⵜⵡⴰⵙⵏⴼⴰⵍⵏ ⵖⵔ ⵉⴷ ⴱⵉⴽⵙⵍ.",
+      "backtranslation": "PDF pages are converted into images at 144 dpi. Text and vector shapes are converted into pixels.",
+      "context_and_review_note": "Exact-base ImportSelection.kt:102 displays this only in the PDF page chooser. PdfCodec.kt:14-15 specifies raster import at 144 dpi (two source pixels per PDF point); :84 calls PdfRenderer.Page.render. Retained pages rendered as images and text/vector shapes converted to pixels. Feminine plural page agreement and mixed-subject plural conversion reviewed. vector remains an intentional technical borrowing; the wording does not promise selectable text, editable vectors, or original-PDF modification.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "formats22_import_limit",
+      "tier": "P1",
+      "english": "This file exceeds the 512 MiB import limit. Choose a smaller file.",
+      "value": "ⵜⵉⴷⴷⵉ ⵏ ⵓⴼⴰⵢⵍⵓ ⴰ ⵓⴳⴳⴰⵔ ⵏ 512 MiB. ⵙⵜⵉ ⵢⴰⵏ ⵓⴼⴰⵢⵍⵓ ⵉⵎⵥⵉⵏ ⵅⴼ ⵡⴰ.",
+      "backtranslation": "This file size is greater than 512 MiB. Choose a file smaller than this one.",
+      "context_and_review_note": "Exact-base ImportSelection.kt:19 defines MAX_BYTES=512*1024*1024; :24-26 rejects only total>MAX_BYTES during provider copy. Retained strict greater-than and exact MiB unit; this is bytes, not pixels or available RAM. Revised small-file request to explicitly smaller than this file. The numeric threshold describes the import limit in this failure context; it does not promise every smaller file is supported or fits memory.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "formats22_import_limit"
+    ],
+    "retained_keys": [
+      "formats22_animation_poster",
+      "formats22_pdf_raster_hint"
+    ],
+    "callers": "Verified via GitHub fetch_file at 08692501c865658b86c0bdeb4ade41ec6a4c5e0f: ImportSelection.kt and PdfCodec.kt.",
+    "technical_tokens": "PNG, PDF, 144 dpi, vector and 512 MiB retained.",
+    "placeholders": "None in these source strings or reviewed values.",
+    "linguistic_limit": "Model-reviewed, not native-certified. Default image is explained by role, not literally named; vector is an explicit borrowing rather than a claimed standardized Tamazight term.",
+    "runtime": "Not run; review only."
+  }
+}
