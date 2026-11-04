@@ -1,0 +1,51 @@
+{
+  "base": "03c1a1ec208e20914719378a2f9e122ece35898f",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh model review against exact-base picker and import-bounds callers. Revised both enable-app remedies consistently and made retry sequencing explicit. Unsupported-image list retained. Not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_android_could_not_find_a_file_picker_enable",
+      "tier": "P1",
+      "english": "Android could not find a file picker. Enable the Files or Documents app in Android settings, then try again.",
+      "value": "Android ⵓⵔ ⵢⵓⴼⵉ ⴰⵙⵏⴰⵙ ⵏ ⵓⵙⵜⵉ ⵏ ⵓⴼⴰⵢⵍⵓ. ⵙⵔⵎⴷ ⴰⵙⵏⴰⵙ Files ⵏⵖ Documents ⴳ ⵜⵙⵖⴰⵍ ⵏ Android. ⴷⴼⴼⵉⵔ ⵓⵢⴰ, ⴰⵔⵎ ⴷⵉⵖ.",
+      "backtranslation": "Android could not find an app for choosing a file. Enable Files or Documents in Android settings, then try again.",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:1093-1100: ActivityNotFoundException, with ACTION_OPEN_DOCUMENT falling back to ACTION_GET_CONTENT. The separate :1101 SecurityException path handles blocking/permissions. Revised enable verb to s r m d (activate/enable), avoiding the ambiguous allow/release remedy, and made then retry explicit. Retained Files, Documents and Android identifiers and settings destination. No install requirement, guarantee of success, or missing-permission diagnosis added. Negative find form retained.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_enable_android_s_files_or_documents_app_then",
+      "tier": "P2",
+      "english": "Enable Android\\'s Files or Documents app, then try again.",
+      "value": "ⵙⵔⵎⴷ ⴰⵙⵏⴰⵙ Files ⵏⵖ Documents ⵏ Android. ⴷⴼⴼⵉⵔ ⵓⵢⴰ, ⴰⵔⵎ ⴷⵉⵖ.",
+      "backtranslation": "Enable Android’s Files or Documents app, then try again.",
+      "context_and_review_note": "Exact-base AssemblyActivity.kt:191-194 has the same exhausted file-picker fallback; :195 handles SecurityException separately. Applied exactly the same activate/enable and then-retry revision as the longer warning. Kept the shorter source scope without adding an explicit settings route. Files and Documents remain alternative app identifiers, not two apps the user must enable.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_this_file_is_not_a_supported_image_use",
+      "tier": "P1",
+      "english": "This file is not a supported image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or Base64 image text.",
+      "value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵕⵥⵎ ⴰⴼⴰⵢⵍⵓ ⴰ ⴰⵎ ⵜⴰⵡⵍⴰⴼⵜ. ⵙⵎⵔⵙ PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF ⵏⵖ ⴰⴹⵕⵉⵙ ⵏ ⵜⵡⵍⴰⴼⵜ ⵙ Base64.",
+      "backtranslation": "AN Paint cannot open this file as an image. Use PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF or image text in Base64.",
+      "context_and_review_note": "Exact-base ImageImport.kt:127-133 performs format-specific or platform bounds decoding; nonpositive decoded width or height raises this message. Retained functional cannot-open-as-image paraphrase, which avoids diagnosing corruption or promising all files bearing a listed extension will work. All 13 identifiers remain in source order: PNG, JPEG, JPEG XL, WebP, HEIC, AVIF, BMP, GIF, DIB, TIFF, ICO, PDF, Base64. Base64 remains qualified as image text, not arbitrary text.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "ui_android_could_not_find_a_file_picker_enable",
+      "ui_enable_android_s_files_or_documents_app_then"
+    ],
+    "retained_keys": [
+      "ui_this_file_is_not_a_supported_image_use"
+    ],
+    "callers": "Verified via GitHub fetch_file at 03c1a1ec208e20914719378a2f9e122ece35898f: ClassicPaintActivity.kt, AssemblyActivity.kt, ImageImport.kt.",
+    "identifiers": "Files, Documents, Android and all 13 format identifiers preserved.",
+    "placeholders": "None in the three source strings or reviewed values.",
+    "linguistic_limit": "Model-reviewed, not native-certified. Activate/enable is the intended imperative; actual Android button text can vary by system language.",
+    "runtime": "Not run; review only."
+  }
+}
