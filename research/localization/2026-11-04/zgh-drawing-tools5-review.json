@@ -1,0 +1,73 @@
+{
+  "base": "b05c003330a40740e5e447df1541c0eb25988403",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh tool-label review against exact-base PaintTool, ToolButton and PanelToolButton callers. Corrected pencil orthography and fill noun; retained three labels. Not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_pencil",
+      "tier": "P1",
+      "english": "Pencil",
+      "value": "ⴰⴽⵕⵕⴰⵊ",
+      "backtranslation": "Pencil",
+      "context_and_review_note": "Exact-base PaintDocument.kt:21 binds PENCIL to ui_pencil; ToolButton.kt:11 uses its label for visible text, contentDescription and tooltip. Corrected both r letters to emphatic ṛ: akṛṛaj, the Moroccan pencil noun, distinct from pen. IRCAM General Dictionary entry 1327 supports this spelling.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_eraser",
+      "tier": "P1",
+      "english": "Eraser",
+      "value": "ⵜⴰⵚⴼⴼⴰⴹⵜ",
+      "backtranslation": "Eraser",
+      "context_and_review_note": "Exact-base PaintDocument.kt:17 binds ERASER and the separate hint specifies background-colour erasing. Retained taṣffaḍt, the eraser noun. The label itself makes no transparency, object deletion or source-file-deletion claim. ToolButton.kt:11 uses it for caption, accessibility and tooltip.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_line",
+      "tier": "P1",
+      "english": "Line",
+      "value": "ⴰⵣⵔⵉⵔ",
+      "backtranslation": "Line",
+      "context_and_review_note": "Exact-base PaintDocument.kt:26 binds LINE, separate from CURVE and shape tools. Retained azrir for a line in this geometric-tool context, consistent with existing line-related catalogue wording. It does not mean paragraph. No specialist mathematical terminology certification is claimed.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_bucket_fill",
+      "tier": "P1",
+      "english": "Bucket fill",
+      "value": "ⴰⴽⵜⵓⵔ ⵙ ⵓⴽⵍⵓ",
+      "backtranslation": "Fill with colour",
+      "context_and_review_note": "Exact-base PaintDocument.kt:18 binds FILL with enclosed-area/tolerance hint. Replaced ambiguous accar noun with aktur (filling), yielding filling with colour. IRCAM vocabulary supports aktur as filling. This functional label omits the bucket metaphor but does not imply whole-image or background-only filling.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_eyedropper",
+      "tier": "P1",
+      "english": "Eyedropper",
+      "value": "ⴰⵙⵜⵉ ⵏ ⵓⴽⵍⵓ ⵙⴳ ⵜⵡⵍⴰⴼⵜ",
+      "backtranslation": "Select a colour from the image",
+      "context_and_review_note": "Exact-base PaintDocument.kt:19 binds PICKER with foreground-colour sampling from the image. Retained nominal selection of colour from image, not an imperative or a general colour-editor label. ToolButton.kt:11 passes full text to caption/accessibility/tooltip. RibbonWidgets.kt:60-150 fixes tiles to 64dp, uses up to two caption lines with ellipsis, and preserves full source for accessibility/tooltips. This long label is a genuine ellipsis risk; no rendered layout validation was performed.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "ui_pencil",
+      "ui_bucket_fill"
+    ],
+    "retained_keys": [
+      "ui_eraser",
+      "ui_line",
+      "ui_eyedropper"
+    ],
+    "callers": "Verified via GitHub fetch_file at b05c003330a40740e5e447df1541c0eb25988403: PaintDocument.kt, ToolButton.kt and RibbonWidgets.kt.",
+    "placeholders": "No placeholders in the five source strings or translations.",
+    "layout": "Code inspection only. Eyedropper is long for 64dp/two-line tiles and may ellipsize; complete accessibility and tooltip labels are retained by the implementation. No screenshot/font rendering pass.",
+    "linguistic_limit": "Model review, not native certification. Functional colour-fill and colour-sampling phrases are localization choices, not quoted full UI translations.",
+    "runtime": "Not run."
+  }
+}
