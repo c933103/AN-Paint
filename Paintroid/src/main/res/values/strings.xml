@@ -748,4 +748,9 @@
     <string name="commons_download_original_mismatch">The Commons download redirected to a different original file.</string>
     <!-- Commons SVG image insertion only: PNG compression returned failure. PNG is a format identifier. -->
     <string name="commons_svg_png_encode_failed">Could not encode blank map as PNG</string>
+    <!-- Raw preservation/export does not validate archive contents. New IDs deliberately
+         use English fallback until translations adopt this conditional guidance.
+         Legacy recovery keys remain available for translation provenance. -->
+    <string name="ui_recovery_copy_preserved_unverified">%1$s A separate recovery copy has been kept. Use File &gt; Export recovery copy to save it. Its contents may be damaged or unreadable. If the exported file opens as a ZIP and contains a readable canvas.png, extract that image and open it with File &gt; Load image; you can then resize it if needed. Keep the exported copy even if it cannot be opened.</string>
+    <string name="ui_recovery_copy_exported_unverified">Recovery copy exported without changing its contents. Its contents may be damaged or unreadable. If the exported file opens as a ZIP and contains a readable canvas.png, extract that image and open it with File &gt; Load image. Draft settings or a floating selection may also be present, but have not been verified. Keep the exported copy even if it cannot be opened.</string>
 </resources>

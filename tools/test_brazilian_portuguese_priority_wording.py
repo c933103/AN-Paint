@@ -30,7 +30,7 @@ class BrazilianPortuguesePriorityWordingTests(unittest.TestCase):
                             if n.tag == 'string'} for tag, xml in cls.xml.items()}
         cls.activity = (CLASSIC / 'ClassicPaintActivity.kt').read_text(encoding='utf-8')
 
-    def test_recovery_names_actual_file_command_and_retains_complete_archive_guidance(self):
+    def test_legacy_recovery_names_actual_file_command_and_retains_complete_archive_guidance(self):
         strings = self.strings['pt-BR']
         command = strings['ui_load_image'].rstrip('…')
         self.assertIn(strings['ui_menu_file'] + ' > ' + command, strings[RECOVERY])
@@ -38,8 +38,10 @@ class BrazilianPortuguesePriorityWordingTests(unittest.TestCase):
         self.assertIn('ZIP', strings[RECOVERY])
         self.assertIn('configurações do rascunho', strings[RECOVERY])
         self.assertIn('qualquer seleção flutuante', strings[RECOVERY])
-        # Recovery-export notification has no independently mapped runtime binding yet.
-        self.assertIn('message(ui(R.string.' + RECOVERY + '))', self.activity)
+        # Retained translation data is not the current unverified-copy guidance.
+        # WorkspaceRefinementTest covers the successful unreadable-byte export path.
+        self.assertNotIn('message(ui(R.string.' + RECOVERY + '))', self.activity)
+        self.assertIn('message(ui(R.string.ui_recovery_copy_exported_unverified))', self.activity)
 
     def test_language_note_retains_both_fallback_cases_and_paragraph_boundary(self):
         value = self.strings['pt-BR'][NOTE]

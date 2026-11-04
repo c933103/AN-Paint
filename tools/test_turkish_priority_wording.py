@@ -45,7 +45,7 @@ class TurkishPriorityWordingTests(unittest.TestCase):
         self.assertIn('sağ/alt', value)
         self.assertIn(self.strings['tr']['ui_undo'], value)
 
-    def test_recovery_names_actual_file_menu_command_and_keeps_archive_contents(self):
+    def test_legacy_recovery_names_actual_file_menu_command_and_keeps_archive_contents(self):
         strings = self.strings['tr']
         command = strings['ui_load_image'].rstrip('…')
         self.assertIn(strings['ui_menu_file'] + ' > ' + command, strings[RECOVERY])
@@ -53,8 +53,10 @@ class TurkishPriorityWordingTests(unittest.TestCase):
         self.assertIn('ZIP', strings[RECOVERY])
         self.assertIn('taslak ayarlarını', strings[RECOVERY])
         self.assertIn('varsa yüzen seçimi', strings[RECOVERY])
-        # Recovery-export notification has no independently mapped runtime binding yet.
-        self.assertIn('message(ui(R.string.' + RECOVERY + '))', self.activity)
+        # Retained translation data is not the current unverified-copy guidance.
+        # WorkspaceRefinementTest covers the successful unreadable-byte export path.
+        self.assertNotIn('message(ui(R.string.' + RECOVERY + '))', self.activity)
+        self.assertIn('message(ui(R.string.ui_recovery_copy_exported_unverified))', self.activity)
 
     def test_language_note_keeps_both_fallback_cases_and_two_newlines(self):
         value = self.strings['tr'][NOTE]
