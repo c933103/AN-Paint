@@ -1,0 +1,57 @@
+{
+  "base": "c2778a14e761d28264d392fd57952320a3b16257",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base crop-dialog review. Revised reset paraphrase to avoid selection-checkbox ambiguity; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_crop",
+      "tier": "P1",
+      "english": "Crop %1$s",
+      "value": "ⴰⴽⴽⴰⵙ ⵏ ⵉⵔⴰⵏ: %1$s",
+      "backtranslation": "Edge trimming: %1$s",
+      "context_and_review_note": "Retained nominal Edge trimming: %1$s. akkas expresses removal/trimming, iran the edges; this is descriptive contextual crop wording, not clipboard Cut or delete-image wording. ImageCropDialog.kt:141 supplies reference.name as the sole string argument for a single-image title. %1$s remains exactly once and refers to the name, not dimensions or an error reason.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_apply_crop",
+      "tier": "P1",
+      "english": "Apply crop",
+      "value": "ⵙⵏⵙ ⴰⴽⴽⴰⵙ ⵏ ⵉⵔⴰⵏ",
+      "backtranslation": "Apply edge trimming",
+      "context_and_review_note": "Retained Apply edge trimming, using accepted Apply verb sns and the same operation noun as the title. ImageCropDialog.kt:142 labels the positive button; :145–148 validates a nonempty image choice and all four trim values, constructs per-image rectangles and calls apply(crops). No file save, export, clipboard or entire-image deletion claim is introduced.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_could_not_apply_the_crop",
+      "tier": "P1",
+      "english": "Could not apply the crop.",
+      "value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵏⵙ ⴰⴽⴽⴰⵙ ⵏ ⵉⵔⴰⵏ.",
+      "backtranslation": "AN Paint could not apply edge trimming.",
+      "context_and_review_note": "Retained AN Paint could not apply edge trimming. Negative capability plus ad/isns is consistent with the action label and does not invent the failure cause. ImageCropDialog.kt:149 uses this fallback ONLY when the caught exception message is null. IMPORTANT: this source string has NO placeholder; the only %1$s in this batch belongs to ui_crop. No preservation guarantee or recovery advice is added.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_reset_crop",
+      "tier": "P1",
+      "english": "Reset crop",
+      "value": "ⵙⵎⵔⵙ ⵜⴰⵡⵍⴰⴼⵜ ⴰⴽⴽⵯ",
+      "backtranslation": "Use the whole image",
+      "context_and_review_note": "Revised Select the whole image again to Use the whole image. This remains a functional reset label but avoids asti suggesting selecting an image checkbox, especially in the multi-image dialog. ImageCropDialog.kt:125 resets displayed crop bounds to Rect(0,0,reference.width,reference.height), which sets all four shared trim fields to zero, then refreshes the preview. It does not change selected image IDs, invoke apply(crops), undo document edits, recover files, or merely change zoom. When later applied in batch, zero margins retain each included image in full.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 3,
+    "tier": "4 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, placeholder parity, Android escaping and formatting",
+    "placeholder_clarification": "ui_crop has %1$s (image name); failed-apply fallback has no placeholder.",
+    "remaining_uncertainty": "Descriptive crop terminology is model-reviewed, not native-certified. No rendered layout or runtime tests.",
+    "repository_edits": false
+  }
+}
