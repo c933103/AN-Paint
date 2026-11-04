@@ -1,0 +1,48 @@
+{
+  "base": "4afa0d22885b1274b74d56514230a56c3c0c0a65",
+  "accepted_additions": 2,
+  "unchanged_nodes": 299,
+  "coverage": {
+    "P0": {
+      "before_missing": 14,
+      "after_missing": 12,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 38,
+      "after_missing": 38,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 296,
+      "after_missing": 296,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 70,
+      "after_missing": 70,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "Two missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Undo cache is disk directory, not RAM",
+    "Recovery notice follows completed retained copy under recovery I/O lock",
+    "Copy fd.sync and finishWrite precede return; failure paths select other notices",
+    "Only two P0 keys added; legacy credit warning excluded"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "No runtime or filesystem fault-injection tests",
+    "Device-local storage implicit in translation; no indefinite retention guarantee"
+  ]
+}

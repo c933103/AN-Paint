@@ -1,0 +1,37 @@
+{
+  "base": "4afa0d22885b1274b74d56514230a56c3c0c0a65",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base Undo-directory/recovery-transaction review. Normalized try-again spelling; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_cannot_create_the_undo_cache_free_some_device",
+      "tier": "P0",
+      "english": "Cannot create the undo cache. Free some device storage and try again.",
+      "value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵏⵓⵍⴼⵓ ⴰⴷⵖⴰⵔ ⵏ ⵉⴼⵓⵢⵍⴰ ⵏ «ⵙⵙⵔ». ⵙⵙⴰⴳⴰ ⴽⵔⴰ ⵏ ⵓⴷⵖⴰⵔ ⵉ ⵓⵃⴹⴰⵡ ⵏ ⵉⴼⵓⵢⵍⴰ, ⴰⵔⵎ ⴷⵉⵖ.",
+      "backtranslation": "AN Paint cannot create the location for Undo files. Make some space available for saving files, then try again.",
+      "context_and_review_note": "Normalized again to diɣ, consistent with the reviewed Try again messages. Retained Undo-file location as the functional disk-cache directory and space for saving files as storage, not RAM. RasterHistory.kt:22 and :51 issue this error when the session directory cannot be created; the message does not assert disk-full is the only possible cause, that files were erased, or that freeing space guarantees success. The storage remedy is comprehensible in this local app operation without inventing a new device noun, though device-local is implicit rather than explicitly named. The quoted Undo label matches ui_undo. No advice to close apps instead of freeing storage is substituted.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_history_unavailable34",
+      "tier": "P0",
+      "english": "The canvas was restored, but its undo history could not be read. The original draft has been kept as a recovery copy.",
+      "value": "ⵉⵙⵙⵓⴽⵏ AN Paint ⴰⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ, ⵎⴰⵛⴰ ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵉⵖⵔ ⵉⵙⴼⴽⴰ ⵏ «ⵙⵙⵔ». ⵉⵜⵜⵓⵙⵙⵏⵖⵍ ⵓⴼⴰⵢⵍⵓ ⴰⵏⴰⵚⵍⵉ ⵉⵜⵜⵡⴰⵃⴹⴰⵏ ⵙ ⵓⵡⵔⵎⴰⵏ ⵖⵔ ⵢⴰⵏ ⵓⴼⴰⵢⵍⵓ ⵢⴰⴹⵏ ⵃⵎⴰ ⴰⴷ ⵜⵙⵙⵓⴽⵏⴷ ⵜⴰⵡⵍⴰⴼⵜ.",
+      "backtranslation": "AN Paint restored the canvas, but cannot read the Undo data. The original automatically saved file has been copied to another file for recovering the image.",
+      "context_and_review_note": "Retained restored drawing area, unreadable Undo data, and a separate copy of the original autosaved file for image recovery. The passive copy wording describes an actual file copy, not restored history or recovery of unsaved-newer edits. EditorDraftRecovery.kt calls document.replace(draft.image), then in historyFailed calls preserveForRecovery(retainOriginal=true) BEFORE assigning this notice. AutosaveStore.kt:67–89 keeps read/recovery/preserve in the same I/O-lock transaction; :100–113 copies the source into an AtomicFile, explicitly fd.syncs, and calls finishWrite before returning. Exceptions call failWrite and propagate; recovery catches exceptions/OOM and replaces this notice with the preservation/retry or paused-autosave failure path. Thus the application-level claim is gated on copy completion. This is a static call-order/failure-path assessment, not filesystem fault-injection proof or an indefinite-retention guarantee. Recovery-purpose wording does not promise readable Undo history.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "2 P0",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; both Undo references match ui_undo",
+    "preservation_scope": "History warning follows preserveForRecovery(retainOriginal=true) under the recovery I/O lock; copy, fd.sync and finishWrite occur before return. Thrown failures select different notices. No legacy-credit-warning approval.",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Device-local is implicit in file-storage advice. No rendered or runtime/fault-injection test performed.",
+    "repository_edits": false
+  }
+}
