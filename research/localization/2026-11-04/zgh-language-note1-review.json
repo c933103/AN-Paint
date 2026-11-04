@@ -1,0 +1,26 @@
+{
+  "base": "6705dbf5e278ddc62453da1201b304670def8867",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base language-picker review. Translation retained; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "language20_translation_note",
+      "tier": "P1",
+      "english": "App language\\n\\nTranslations are maintained in AN Paint’s language resources. New or untranslated text appears in English.",
+      "value": "ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵓⵙⵏⴰⵙ\\n\\nⴷⴰ ⵜⵜⵡⴰⵙⵏⴼⴰⵍⵏ ⵉⵙⵓⵖⴰⵍ ⴳ ⵉⴼⵓⵢⵍⴰ ⵏ ⵜⵓⵜⵍⴰⵢⵜ ⵏ AN Paint. ⴰⴹⵕⵉⵙ ⴰⵎⴰⵢⵏⵓ ⵏⵖ ⵡⴰⵏⵏⴰ ⵓⵔ ⵉⵜⵜⵓⵙⵓⵖⵍⵏ ⴷⴰ ⵉⵜⵜⴱⴰⵢⴰⵏ ⵙ ⵜⵏⴳⵍⵉⵣⵜ.",
+      "backtranslation": "App language. Translations are edited in AN Paint language files. New text or text that has not been translated appears in English.",
+      "context_and_review_note": "Retained the complete explanation. The heading exactly matches existing language20_app_language. The two literal Android newline escapes preserve the blank line between heading and body, with no raw XML-formatting newline substituted. The plural passive maintenance predicate ttwasnfaln agrees with isuɣal, and editing language files is a reasonable functional paraphrase for maintaining language resources. The negative relative ittu-suɣl-n modifies wanna (the text which has not been translated); it should not be treated as a finite plural verb merely because it ends in n. New OR untranslated text remains disjunctive, and English is expressed by the attached-state language noun tnglizt after s. AppLanguage.kt:175 assigns this string to the custom title TextView; :179 applies caption typography and :182 chooses its normal or vertical container. No automatic translation, externally maintained service, completeness/native-review claim, or device-default behavior is added. Source English fallback statement is preserved, not widened to all text.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 1,
+    "tier": "1 P1",
+    "exact_caller_verified": true,
+    "structural_checks": "PASS: NFC, placeholder parity, Android escaping, exactly two literal newline escapes, heading exactly equals language20_app_language",
+    "remaining_uncertainty": "Model linguistic review, not native certification. No rendered typography or runtime fallback test performed.",
+    "repository_edits": false
+  }
+}
