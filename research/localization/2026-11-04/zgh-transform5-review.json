@@ -1,0 +1,72 @@
+{
+  "base": "067d0ff1156cb38e3e224ce67ed57ee0df4c2369",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct contextual Tifinagh review against exact-base transform matrices. Corrected flip and rotate verb forms consistently in all five labels; preserved explicit directional endpoints and degree values. Not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_flip_horizontal",
+      "tier": "P1",
+      "english": "Flip horizontal",
+      "value": "ⵙⵏⵇⵍⴱ ⴰⵥⵍⵎⴰⴹ / ⴰⵢⴼⴼⴰⵙ",
+      "backtranslation": "Flip left/right",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:854 uses setScale(-1f,1f), reversing x coordinates. Corrected truncated snql to snqlb (turn/flip something over), retaining left/right endpoints so the reflection is not mistaken for a rotation or reflection about the horizontal axis. Generic verb plus endpoints is a contextual UI translation, not a claim of a standardized mathematical reflection term.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_flip_vertical",
+      "tier": "P1",
+      "english": "Flip vertical",
+      "value": "ⵙⵏⵇⵍⴱ ⴰⴼⵍⵍⴰ / ⴰⴷⴷⴰ",
+      "backtranslation": "Flip top/bottom",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:855 uses setScale(1f,-1f), reversing y coordinates. Corrected snql to snqlb consistently; top/bottom remains explicit. aflla/adda identifies the endpoints exchanged and does not imply reversing left/right or applying a half-turn.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_rotate_90_clockwise",
+      "tier": "P1",
+      "english": "Rotate 90° clockwise",
+      "value": "ⵙⵙⵓⵜⵍ 90° ⵖⵔ ⵓⴼⴰⵙⵉ",
+      "backtranslation": "Rotate 90 degrees to the right",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:856 uses setRotate(90f), then fits the viewport. Corrected sutl to ssutl, with doubled initial s, consistent with the attested Moroccan rotate/turn verb. Rightward quarter-turn conveys clockwise in the image plane; no translation or counterclockwise movement is claimed. Preserved literal 90°.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_rotate_180",
+      "tier": "P1",
+      "english": "Rotate 180°",
+      "value": "ⵙⵙⵓⵜⵍ 180°",
+      "backtranslation": "Rotate 180 degrees",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:857 uses setRotate(180f). Corrected sutl to ssutl. Preserved literal 180° and did not add a direction, since clockwise and counterclockwise half-turns produce the same result.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_edit_transform33",
+      "tier": "P1",
+      "english": "Flip / Rotate",
+      "value": "ⵙⵏⵇⵍⴱ / ⵙⵙⵓⵜⵍ",
+      "backtranslation": "Flip / Rotate",
+      "context_and_review_note": "Exact-base EditGroup.TRANSFORM maps command indices 6,7,8,9 to the two reflections and two rotations. Corrected both verbs to match the command labels exactly. Imperative wording is used as the paired-action group label, not as a claim that both actions execute together.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "ui_flip_horizontal",
+      "ui_flip_vertical",
+      "ui_rotate_90_clockwise",
+      "ui_rotate_180",
+      "ui_edit_transform33"
+    ],
+    "retained_keys": [],
+    "callers": "Verified via GitHub fetch_file at 067d0ff1156cb38e3e224ce67ed57ee0df4c2369: ClassicPaintActivity.kt:74-77 and :854-857.",
+    "placeholders": "No placeholders in the five source strings or reviewed values.",
+    "angles": "90° clockwise and 180° preserved.",
+    "linguistic_limit": "Model-reviewed, not native-certified. snqlb is the ordinary transitive flip/turn-over verb used with explicit endpoints, not a claimed specialist mathematical term; ssutl is the corrected rotation verb.",
+    "runtime": "No rendered layout or device test run."
+  }
+}
