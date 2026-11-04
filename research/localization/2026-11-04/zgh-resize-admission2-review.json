@@ -1,0 +1,36 @@
+{
+  "base": "e08a87a3999bb9e390292b46bd48b130ab014084",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base admission-control review. Clarified editing-purpose clause, small-state morphology and explicit source-image comparison; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_too_large_for_the_current_budget_reduce_the",
+      "tier": "P1",
+      "english": "Too large for the current budget. Reduce the dimensions or cancel and free memory.",
+      "value": "ⵜⵉⵍⵉⵙⵜ ⵏ RAM ⵉ ⵓⵙⵏⴼⵍ ⴷⵖⵉ ⵓⵔ ⵜⵉⵡⴷⵉ. ⵙⵙⵉⵎⵥⵉ ⵜⵉⵔⵉⵡⵜ ⴷ ⵜⵉⵖⵣⵉ, ⵏⵖ ⵙⵙⵔ ⵜⴰⵎⵀⵍⵜ ⴰ, ⵙⵙⴰⴳⴰ ⵓⴳⴳⴰⵔ ⵏ RAM.",
+      "backtranslation": "The present RAM limit for editing is insufficient. Reduce width and height, or cancel this operation and make more RAM available.",
+      "context_and_review_note": "Retained the current editing RAM limit is insufficient, followed by reduce dimensions OR cancel this operation, make more RAM available. The comma between the latter two imperatives coordinates the cancel-and-free-memory branch; it is not a third alternative or an instruction to cancel after reducing dimensions. ssaga is used compositionally as make available, consistent with available-memory vocabulary, not certified here as specialist memory-management terminology. ImageResizeDialog.kt:49 uses this only for a valid target that does not fit and is not in the native smallest-output failure case. No storage-space advice, file deletion, fixed required RAM amount or guarantee that reducing size will succeed is added.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_no_resize_fits_decoder_memory",
+      "tier": "P1",
+      "english": "Even at the smallest output size, this image cannot be loaded for editing within the current memory limits. Cancel and use a smaller source image.",
+      "value": "ⵓⵍⴰ ⵙ ⵜⵉⴷⴷⵉ ⵉⵎⵥⵉⵏ ⴰⴽⴽⵯ ⵏ ⵜⵓⵏⵖⵉⵍⵜ, ⵜⵉⵍⵉⵙⵜ ⵏ RAM ⴷⵖⵉ ⵓⵔ ⵜⵉⵡⴷⵉ ⵃⵎⴰ ⴰⴷ ⵜⵕⵥⵎⴷ ⵜⴰⵡⵍⴰⴼⵜ ⴰ ⵉ ⵓⵙⵏⴼⵍ. ⵙⵙⵔ ⵜⴰⵎⵀⵍⵜ ⴰ, ⵙⵎⵔⵙ ⵜⴰⵡⵍⴰⴼⵜ ⵜⴰⵏⴰⵚⵍⵉⵜ ⵉⵎⵥⵉⵏ ⵅⴼ ⵜⴰ.",
+      "backtranslation": "Even with the smallest copy size, the current RAM limit is insufficient to open this image for editing. Cancel this operation and use an original/source image smaller than this one.",
+      "context_and_review_note": "Revised the serial open/change clause to open this image for editing (i usnfl), making its purpose unambiguous. Normalized small to imẓin, the stative participial form already used in reviewed smaller-copy wording, and made the final source image explicitly smaller THAN THIS ONE rather than merely small. The feminine nouns do not require mechanical feminization of these relative participles. Smallest output COPY remains distinct from the original/source image in the remedy. Exact-base ImageResizeDialog.kt:46 checks hasNativeWork and rejects the 1×1 output plan under current memoryRequirements.accepts; :49 shows the warning and :50 disables Resize and load unless fits. ImageImport.kt:63–85 explains source/tile native work may not shrink with output. The condition also includes other admission limits through accepts, so this warning is not proof of a specific decoder defect or a universally impossible import. Current RAM limit is retained; no advice to keep reducing this output, no corruption claim and no preservation guarantee added.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "2 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Make-available RAM wording is a compositional paraphrase; no rendered or runtime admission tests performed.",
+    "repository_edits": false
+  }
+}
