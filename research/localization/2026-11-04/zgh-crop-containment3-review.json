@@ -1,0 +1,47 @@
+{
+  "base": "f6704dd5772ef0141d4f4a14eccc39d8ff155496",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base containment-check review. All three translations retained after boundary-inclusion and grammatical checks. Model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_crop_must_stay_inside_the_canvas",
+      "tier": "P1",
+      "english": "Crop must stay inside the canvas.",
+      "value": "ⵉⵇⵇⴰⵏ ⴰⴷ ⵜⵉⵍⵉ ⵜⵎⵏⴰⴹⵜ ⵉⵜⵜⵓⵙⵜⵢⵏ ⴰⴽⴽⵯ ⴳ ⵓⴳⵏⵙ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ.",
+      "backtranslation": "The selected area must be entirely inside the canvas.",
+      "context_and_review_note": "Retained obligatory selected-area containment: iqqan ad expresses must; tili agrees with feminine tamnaḍt, whose postverbal attached state is tmnaḍt. The relative passive participle ittu-styn is not an ordinary finite masculine verb and should not be mechanically feminized. akkʷ emphasizes the entire area; g ugns denotes containment without asserting a required inset or strict inequality. PaintDocument.kt:435 permits left/top=0 and right/bottom=bitmap dimensions, provided width and height are positive. Canvas drawing-area wording remains distinct from a source image. This specialized crop check does not forbid the separate canvas-bounds feature from expanding outward.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_crop_must_stay_inside_the_image",
+      "tier": "P1",
+      "english": "The crop must stay inside the image.",
+      "value": "ⵉⵇⵇⴰⵏ ⴰⴷ ⵜⵉⵍⵉ ⵜⵎⵏⴰⴹⵜ ⵉⵜⵜⵓⵙⵜⵢⵏ ⴰⴽⴽⵯ ⴳ ⵓⴳⵏⵙ ⵏ ⵜⵡⵍⴰⴼⵜ.",
+      "backtranslation": "The selected area must be entirely inside the image.",
+      "context_and_review_note": "Retained the same grammatical constraint with image replacing drawing area. ImageAssembly.kt:223 checks EACH crop against its own item.dimensions, including left/top>=0 and right/bottom<=source dimensions, plus positive size. Exact boundary contact and the complete source rectangle are allowed. It does not constrain an assembled image placement to an output canvas or describe post-scaling dimensions. No new positive-size wording is inserted because the source message itself only states containment.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_bottom",
+      "tier": "P1",
+      "english": "Bottom",
+      "value": "ⴰⴷⴷⴰ",
+      "backtranslation": "Bottom",
+      "context_and_review_note": "Retained adda, a plain spatial bottom label. ImageCropDialog.kt:72 maps bottom to ui_bottom as the fourth edge field; its numerical value is the amount trimmed from the lower edge. This is not layer order, text alignment or vertical inversion. No placeholders, units or numerical restrictions are introduced.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 3,
+    "tier": "3 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "boundary_semantics": "Inclusive bounds: equality at every source/canvas edge is permitted; no mandatory margin implied. Positive size is independently checked by the same guard.",
+    "remaining_uncertainty": "Model linguistic review, not native certification. No rendered layout or runtime tests.",
+    "repository_edits": false
+  }
+}
