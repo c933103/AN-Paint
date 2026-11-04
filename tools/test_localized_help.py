@@ -140,19 +140,56 @@ class LocalizedHelpTests(unittest.TestCase):
             if resource not in local:
                 continue
             rendered = {**self.locales["values"], **local}
-            text = displayed(local[resource])
             with self.subTest(locale=locale):
-                self.assertEqual(["%1$s"], re.findall(r"%\d+\$[a-zA-Z]", local[resource]))
-                recovery = re.search(route_pattern(rendered, ("ui_menu_file", "ui_export_recovery_copy")), text)
-                save = re.search(route_pattern(rendered, ("ui_menu_file", "save20_title")), text)
-                self.assertIsNotNone(recovery, "Missing protected-draft export route")
-                self.assertIsNotNone(save, "Missing current-work Save as route")
-                self.assertLess(recovery.end(), save.start())
-                # The recommended formats must follow Save as, rather than
-                # being mistaken for part of the recovery ZIP export command.
-                formats = text[save.end():]
-                self.assertIn("png", formats)
-                self.assertIn("jpeg", formats)
+                self.assert_protected_draft_warning_routes(rendered, local[resource])
+
+    def assert_protected_draft_warning_routes(self, rendered, value):
+        text = displayed(value)
+        self.assertEqual(["%1$s"], re.findall(r"%\d+\$[a-zA-Z]", value))
+        recoveries = list(re.finditer(route_pattern(rendered, ("ui_menu_file", "ui_export_recovery_copy")), text))
+        saves = list(re.finditer(route_pattern(rendered, ("ui_menu_file", "save20_title")), text))
+        # A short Save-as caption can prefix the longer export caption. Such a
+        # match is part of the recovery route, not a separate Save-as command.
+        saves = [save for save in saves if not any(
+            save.start() < recovery.end() and recovery.start() < save.end()
+            for recovery in recoveries)]
+        self.assertTrue(recoveries, "Missing protected-draft export route")
+        self.assertTrue(saves, "Missing current-work Save as route")
+        self.assertLess(recoveries[0].end(), saves[0].start())
+        # The recommended formats must follow Save as, rather than
+        # being mistaken for part of the recovery ZIP export command.
+        formats = text[saves[0].end():]
+        self.assertIn("png", formats)
+        self.assertIn("jpeg", formats)
+
+    def test_protected_draft_routes_allow_shared_caption_prefixes(self):
+        rendered = {"ui_menu_file": "File", "ui_export_recovery_copy": "Save recovery ZIP…",
+                    "save20_title": "Save…"}
+        for arrow in (">", "→", "←"):
+            with self.subTest(arrow=arrow):
+                self.assert_protected_draft_warning_routes(rendered,
+                    f"%1$s File {arrow} Save recovery ZIP…; File {arrow} Save… (PNG / JPEG)")
+
+    def test_protected_draft_routes_reject_missing_separate_save_as(self):
+        rendered = {"ui_menu_file": "File", "ui_export_recovery_copy": "Save recovery ZIP…",
+                    "save20_title": "Save…"}
+        with self.assertRaisesRegex(AssertionError, "Missing current-work Save as route"):
+            self.assert_protected_draft_warning_routes(rendered,
+                "%1$s File > Save recovery ZIP…; File > Save recovery ZIP… (PNG / JPEG)")
+
+    def test_protected_draft_routes_reject_reversed_order(self):
+        rendered = {"ui_menu_file": "File", "ui_export_recovery_copy": "Save recovery ZIP…",
+                    "save20_title": "Save…"}
+        with self.assertRaises(AssertionError):
+            self.assert_protected_draft_warning_routes(rendered,
+                "%1$s File > Save… (PNG / JPEG); File > Save recovery ZIP…")
+
+    def test_protected_draft_routes_reject_formats_only_after_recovery(self):
+        rendered = {"ui_menu_file": "File", "ui_export_recovery_copy": "Save recovery ZIP…",
+                    "save20_title": "Save…"}
+        with self.assertRaises(AssertionError):
+            self.assert_protected_draft_warning_routes(rendered,
+                "%1$s File > Save recovery ZIP… (PNG / JPEG); File > Save…")
 
     def test_selection_hint_does_not_quote_the_resize_dialog_checkbox(self):
         # Selection uses ui_lock_proportions; ui_lock_aspect_ratio belongs to
