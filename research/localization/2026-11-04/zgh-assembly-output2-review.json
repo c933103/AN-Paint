@@ -1,0 +1,36 @@
+{
+  "base": "d66f69a17659e68c5cfee1c0f3d2c5de064f87e9",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base separate-output rendering review. Corrected feminine-plural agreement and made smaller explicitly comparative; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_choose_a_smaller_output_copy_the_source_images",
+      "tier": "P1",
+      "english": "Choose a smaller output copy. The source images and crop settings stay at their original resolution.",
+      "value": "ⵙⵜⵉ ⵜⵉⴷⴷⵉ ⵉⵎⵥⵉⵏ ⵅⴼ ⵜⴰ ⵉ ⵜⵓⵏⵖⵉⵍⵜ ⵏ ⵓⵙⵙⵓⴼⵖ. ⵜⵉⵡⵍⴰⴼⵉⵏ ⵜⵉⵏⴰⵚⵍⵉⵢⵉⵏ ⴷ ⵜⵉⵙⵖⴰⵍ ⵏ ⵓⴽⴽⴰⵙ ⵏ ⵉⵔⴰⵏ ⵇⵇⵉⵎⵏⵜ ⵙ ⵜⵉⴷⴷⵉ ⵜⴰⵏⴰⵚⵍⵉⵜ (ⵉⴷ ⴱⵉⴽⵙⵍ).",
+      "backtranslation": "Choose a size smaller than this for the output copy. The original/source images and crop settings remain at the original size in pixels.",
+      "context_and_review_note": "Added xef ta (smaller than this) so the instruction is comparative, not simply choose a small size. Corrected qqimn to qqimnt: both coordinated subjects, tiwlafin and tisɣal, are feminine plural. Original size in pixels is a functional resolution paraphrase, not screen magnification, JPEG quality or a promise that the reduced output retains original detail. AssemblyActivity.kt:305 shows this before choosing a separate output size; :319–330 creates an independent PNG and either returns it to Paint or launches Save PNG. AssemblyRenderer.kt renders into a new bitmap; destination maps original layout to output coordinates and decodeCrop reads source/crop settings without modifying their stored geometry or source files. Export/output here names the produced copy in BOTH workflows, not only external file export. No source deletion, crop rewrite, or all-source-originals-included claim is introduced.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_enter_valid_dimensions",
+      "tier": "P1",
+      "english": "Enter valid dimensions.",
+      "value": "ⵙⵙⴽⵛⵎ ⵉⵙⴼⴽⴰ ⵉⵚⵃⴰⵏ ⵉ ⵜⵉⵔⵉⵡⵜ ⴷ ⵜⵉⵖⵣⵉ.",
+      "backtranslation": "Enter valid values for width and height.",
+      "context_and_review_note": "Retained valid data/values for width and height. isfka is broad but clear with explicitly named dimension fields; iṣḥan is the relative valid predicate, not a claim that any positive value is accepted. AssemblyActivity.kt:311 selects this message only when DimensionControls.dimensions is null, before a separate renderer.fits admission check; :312 disables Create output for null or over-budget sizes. Thus invalid values are not conflated with RAM insufficiency. Pixel integrality, finite positivity and bounds are enforced by DimensionControls; the label need not enumerate them or add a numeric upper bound.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "2 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Output/resolution use contextual descriptive terms; no rendered or runtime source-preservation tests.",
+    "repository_edits": false
+  }
+}
