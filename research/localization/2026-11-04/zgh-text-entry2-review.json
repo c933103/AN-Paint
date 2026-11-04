@@ -1,0 +1,39 @@
+{
+  "base": "cd303a4317b36a7e2ed11394fd90013530344abf",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base text-entry review. Split the help into clear clauses and made both text possessives explicit; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_tap_canvas_to_type",
+      "tier": "P1",
+      "english": "Tap canvas\\nto type",
+      "value": "ⵙⵉⵜ ⵅⴼ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ\\nⵃⵎⴰ ⴰⴷ ⵜⴰⵔⵓⴷ",
+      "backtranslation": "Tap the canvas to write/type.",
+      "context_and_review_note": "Retained Tap the drawing area to write/type. sit and the reviewed drawing-area phrase identify the touch target; ad taruḍ is the second-person purpose clause from aru. Exactly one literal Android newline escape remains between the action and its purpose. PaintCanvas.kt:814 invokes onText with image coordinates; ClassicPaintActivity.kt:1064–1072 opens TextStyleDialog and only its confirmation callback renders text at that coordinate. The wording does not promise inline keyboard entry directly on the canvas. Longer than English; actual sidebar wrapping is untested.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_tap_the_canvas_to_place_text_and_choose",
+      "tier": "P3",
+      "english": "Tap the canvas to place text and choose its font and size.",
+      "value": "ⵙⵉⵜ ⵅⴼ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ ⵃⵎⴰ ⴰⴷ ⵜⵙⵔⵙⴷ ⴰⴹⵕⵉⵙ. ⵙⵜⵉ ⵜⵉⵙⵉⵙⴽⵍⵜ ⵏⵏⵙ ⴷ ⵜⵉⴷⴷⵉ ⵏⵏⵙ.",
+      "backtranslation": "Tap the canvas to place text. Choose its font and its size.",
+      "context_and_review_note": "Replaced the unlinked finite choose clause with a separate clear imperative, Choose its font and its size. Added nn-s after font as well as size so both refer explicitly to the text, not the canvas. Same tap→dialog→confirmed placement path as the P1 label. TextStyleDialog.kt:35 provides text entry, :38–39 the font-family chooser and :44 pixel size; ClassicPaintActivity.kt:1064–1072 commits the chosen settings at the tapped coordinate. No new gesture, immediate unconfirmed placement or later drag capability is promised. This is a P3 companion and must not be counted as P1 progress.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tiers": {
+      "P1": 1,
+      "P3": 1
+    },
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; exactly one literal Android newline in tap-to-type label",
+    "remaining_uncertainty": "Model linguistic review, not native certification. No rendered wrapping, font-coverage or runtime text-placement test performed.",
+    "repository_edits": false
+  }
+}

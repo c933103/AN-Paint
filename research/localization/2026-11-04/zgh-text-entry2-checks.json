@@ -1,0 +1,47 @@
+{
+  "base": "cd303a4317b36a7e2ed11394fd90013530344abf",
+  "accepted_additions": 2,
+  "unchanged_nodes": 297,
+  "coverage": {
+    "P0": {
+      "before_missing": 14,
+      "after_missing": 14,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 39,
+      "after_missing": 38,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 296,
+      "after_missing": 296,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 71,
+      "after_missing": 70,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "Two missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Exactly one literal Android newline in tap-to-type label",
+    "One P1 label and one P3 help string counted separately",
+    "Tap opens text/font/size dialog; placement requires confirmation"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "No runtime text-placement tests",
+    "Longer sidebar label wrapping and font coverage untested"
+  ]
+}
