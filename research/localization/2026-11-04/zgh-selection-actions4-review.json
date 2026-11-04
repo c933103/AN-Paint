@@ -1,0 +1,57 @@
+{
+  "base": "90cf508a6ada43d4dfadf9a3ae49e14db3f2e59c",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base caller review. Clarified dimension size versus bytes; other contextual labels retained. Model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_commit_selection",
+      "tier": "P1",
+      "english": "Commit selection",
+      "value": "ⵙⵏⵙ ⴰⵙⵜⵉ",
+      "backtranslation": "Apply selection",
+      "context_and_review_note": "Retained Apply selection, combining existing ui_apply with the selection noun. Exact-base ClassicPaintActivity.kt:794–795 calls applyPending for SELECT/LASSO; PaintCanvas.kt:443–449 finishes pending operations and invokes finishSelection. PaintDocument.kt:327–337 composites floating content and credits, marks dirty, then clears the selection. A nonfloating selection is merely cleared. The label does not say save to disk, copy, delete selected pixels or create a new selection.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_fit_selection34",
+      "tier": "P1",
+      "english": "Fit image to canvas",
+      "value": "ⵙⵎⵙⴰⵙⴰ ⵜⴰⵡⵍⴰⴼⵜ ⴷ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ",
+      "backtranslation": "Fit the image to the drawing area",
+      "context_and_review_note": "Retained the contextual adapt/fit image to drawing area construction. smsasa expresses adapting/matching, rather than the Show all label used for viewport Fit. ClassicPaintActivity.kt:755–756 first invokes fitSelectionToCanvas, THEN paintCanvas.fit. PaintDocument.kt:403–410 starts moving the selection, fits its geometry proportionally using the smaller axis ratio, centres it and resets rotation; underlying source pixels are retained. Thus the action changes selection placement AND subsequently refits the viewport, not viewport alone. It neither stretches axes independently nor resizes the document canvas. Descriptive drawing-area wording remains consistent with the reviewed zoom labels.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_invalid_selection_outline",
+      "tier": "P1",
+      "english": "Invalid selection outline.",
+      "value": "ⵉⵔⵉ ⵏ ⵓⵙⵜⵉ ⵓⵔ ⵉⵚⵃⵉ.",
+      "backtranslation": "The selection outline is invalid.",
+      "context_and_review_note": "Retained iri n usti (selection border/outline) and negative singular ur iṣḥi agreeing with iri. SelectionOutline.kt:34 uses this message for recovered display contour count >128; its class comment explicitly distinguishes the display path from the lossless floating PNG mask. The label identifies invalid outline, not damaged image pixels or an invalid selection mask. Other validation require calls do not use this specific message.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_selection_dimensions_are_too_large",
+      "tier": "P1",
+      "english": "Selection dimensions are too large.",
+      "value": "ⵜⵉⴷⴷⵉ ⵏ ⵓⵙⵜⵉ (ⵜⵉⵔⵉⵡⵜ ⵏⵖ ⵜⵉⵖⵣⵉ) ⵜⴳⴰ ⵓⴳⴳⴰⵔ ⵏ ⵡⴰⵢⵏⵏⴰ ⵉⵣⵎⵔ AN Paint ⴰⴷ ⵉⵙⵎⵔⵙ.",
+      "backtranslation": "The selection size (width or height) is greater than AN Paint can use.",
+      "context_and_review_note": "Revised to make the size specifically width or height, not storage bytes or memory, and added the explicit feminine copula tga for tiddi. PaintDocument.kt:349–354 calculates ceil of transformed bounding width/height, then requires EACH in positive Int range. allocationGuard is a separate later check. No numeric limit or recommendation to free disk space is invented. The source English says too large even though the guard also rejects nonpositive values; the translation follows the source message rather than silently rewriting that application behavior.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 3,
+    "tier": "4 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or removed, Android escaping and formatting",
+    "important_caller_nuance": "Fit image to canvas changes floating geometry and then refits the viewport; source pixels remain full resolution. Oversize guard also rejects nonpositive bounds, but source English diagnoses too large.",
+    "remaining_uncertainty": "Contextual fit/drawing-area terminology is not native-certified. No rendered layout or runtime tests.",
+    "repository_edits": false
+  }
+}
