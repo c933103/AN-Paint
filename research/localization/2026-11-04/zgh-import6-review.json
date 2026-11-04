@@ -1,0 +1,125 @@
+{
+  "base": "56cc3cbaad6f2ad849564122ac9bc3129057c1ae",
+  "status": "Independent review: six accepted; one targeted linguistic hold",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_load_image",
+      "tier": "P1",
+      "english": "Load image…",
+      "value": "ⵍⴷⵉ ⵜⴰⵡⵍⴰⴼⵜ…",
+      "backtranslation": "Open image…",
+      "review_note": "File command invokes confirmReplacement then launchOpen(false). Open is a natural UI equivalent for Load. Does not say insert or promise original document preservation.",
+      "status": "accepted by independent AI review",
+      "independent_review_note": "Accept unchanged. Open is an appropriate command for the verified confirmReplacement -> launchOpen(false) flow. It is not insertion. Ellipsis retained.",
+      "eligible_for_integration": true,
+      "value_changed": false
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_other_images34",
+      "tier": "P1",
+      "english": "Other images",
+      "value": "ⵜⵉⵡⵍⴰⴼⵉⵏ ⵢⴰⴹⵏ",
+      "backtranslation": "Other images",
+      "review_note": "Plural image with other. Reuses image noun already present in assembly translations. Activity :305 and :897: source chooser offers device and illustration providers, not only local pictures.",
+      "status": "accepted by independent AI review",
+      "independent_review_note": "Accept unchanged. Free-state plural image noun and other are appropriate for this label; the verified chooser covers device and illustration providers, not local images only.",
+      "eligible_for_integration": true,
+      "value_changed": false
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_choose_location",
+      "tier": "P1",
+      "english": "Choose location…",
+      "value": "ⵙⵜⵉ ⴰⴷⵖⴰⵔ…",
+      "backtranslation": "Choose location…",
+      "review_note": "Existing sti, choose, and adghar, location. Ellipsis retained. Do not narrow location to a folder or device storage.",
+      "status": "accepted by independent AI review",
+      "independent_review_note": "Accept unchanged. Choose + free-state location is appropriate direct-object command grammar and retains generic location semantics. No caller found in supplied Activity file.",
+      "eligible_for_integration": true,
+      "value_changed": false
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_choose_at_least_one_image",
+      "tier": "P1",
+      "english": "Choose at least one image.",
+      "value": "ⵙⵜⵉ ⵢⴰⵜ ⵜⵡⵍⴰⴼⵜ ⵙ ⵓⴷⵔⵓⵙ.",
+      "backtranslation": "Choose at least one image.",
+      "review_note": "Feminine numeral yat and annexed twlaft. Medium confidence: independently review s udrus as at least, including scope; must not mean exactly one or a small image.",
+      "status": "held: standard-variety minimum expression",
+      "independent_review_note": "Hold only this row for standard-variety confirmation of s udrus. Feminine yat and annexed twlaft are appropriate. s udrus is explicitly glossed au moins in Amyaz, but that source identifies as Rifain, not Standard Moroccan Tamazight. The intended reading is inclusive minimum (one or more), not exactly one or a small image; no contrary meaning demonstrated. Do not remove the minimum qualifier. No caller found in supplied Activity file.",
+      "eligible_for_integration": false,
+      "value_changed": false
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_try_a_different_file_or_location",
+      "tier": "P1",
+      "english": "Please try a different file or location.",
+      "value": "ⴰⵎⵓⵔ ⵏⵏⴽ, ⴰⵔⵎ ⵢⴰⵏ ⵓⴼⴰⵢⵍⵓ ⵢⴰⴹⵏ ⵏⵉⵖ ⵢⴰⵏ ⵓⴷⵖⴰⵔ ⵢⴰⴹⵏ.",
+      "backtranslation": "Please try another file or another location.",
+      "review_note": "Reuses catalogue please/try, file and location. Repeats other for each alternative so both scopes are explicit. Activity :1423 uses this as fallback IO guidance. Review polite formula, annexed forms and naturalness.",
+      "status": "accepted by independent AI review",
+      "independent_review_note": "Accept unchanged. Courteous imperative arm matches existing try-again vocabulary; yan + annexed ufaylu/udghar is coherent, and repeating yadn makes both alternatives different. Does not promise success or automatic retry. Generic fallback caller verified at Activity:1423. Amur nnk is corroborated by IRCAM story and a zgh Tatoeba sentence; no full-sentence attestation claimed.",
+      "eligible_for_integration": true,
+      "value_changed": false
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_insert",
+      "tier": "P1",
+      "english": "Insert",
+      "value": "ⵙⵙⴽⵛⵎ",
+      "backtranslation": "Insert",
+      "review_note": "Causative enter: insert. Different from ldi, open, for loading replacement image. Review imperative as command label.",
+      "status": "accepted by independent AI review",
+      "independent_review_note": "Accept unchanged as imperative causative enter/insert. Distinguishes insertion from opening/replacing. No direct caller found in supplied Activity file.",
+      "eligible_for_integration": true,
+      "value_changed": false
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_category_insert",
+      "tier": "P1",
+      "english": "Insert",
+      "value": "ⴰⵙⵙⴽⵛⵎ",
+      "backtranslation": "Insertion",
+      "review_note": "Nominal category heading, consistent with noun headings such as Drawing. Different from imperative ui_insert. Category includes text and other-image placement, not only import.",
+      "status": "accepted by independent AI review",
+      "independent_review_note": "Accept unchanged as action noun insertion, distinct from imperative ui_insert and consistent with noun category headings. INSERT category verified to contain Other images, but exact resource-to-category mapping was not supplied.",
+      "eligible_for_integration": true,
+      "value_changed": false
+    }
+  ],
+  "reviewer_scope": "Independent AI linguistic and supplied-caller review; not native-speaker certification",
+  "sources": [
+    {
+      "url": "https://amyaz.fr/?letter=a&page=41",
+      "scope": "s udrus = au moins; explicitly Rifain, limited corroboration only"
+    },
+    {
+      "url": "https://ircam.biblio.ma/catalogue/doc_num.php?explnum_id=220",
+      "scope": "IRCAM story excerpt corroborates courteous amur nnk"
+    },
+    {
+      "url": "https://tatoeba.org/en/sentences/show/12332282",
+      "scope": "zgh sentence amur nnk ssfru t linked to Please explain it; user-contributed, not authoritative certification"
+    }
+  ],
+  "checks": {
+    "seven_unique_keys": true,
+    "placeholder_parity": true,
+    "Android_string_and_format_syntax": true,
+    "Tifinagh_letters_only": true,
+    "NFC": true,
+    "not_run": [
+      "Android build",
+      "device rendering",
+      "native-speaker certification",
+      "other repository callers"
+    ]
+  }
+}
