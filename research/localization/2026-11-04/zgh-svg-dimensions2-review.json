@@ -1,0 +1,36 @@
+{
+  "base": "2a8ef9e5121a4a955351d938b0c23e8cc15a3fbb",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base SVG size/error-mapping review. Clarified dimension rather than file-size meaning; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "commons_svg_original_size_too_large",
+      "tier": "P1",
+      "english": "The original SVG size exceeds Android bitmap dimensions. No resizing was applied.",
+      "value": "ⵜⵉⴷⴷⵉ ⵜⴰⵏⴰⵚⵍⵉⵜ ⵏ SVG (ⵜⵉⵔⵉⵡⵜ ⵏⵖ ⵜⵉⵖⵣⵉ) ⵜⴳⴰ ⵓⴳⴳⴰⵔ ⵏ ⵜⵉⵍⵉⵙⵜ ⵏ Android ⵉ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ ⵏ ⵉⴷ ⴱⵉⴽⵙⵍ. AN Paint ⵓⵔ ⵉⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ.",
+      "backtranslation": "The original SVG size (width or height) exceeds the Android size limit for a pixel image. AN Paint did not change the size.",
+      "context_and_review_note": "Added width or height after original SVG size so the limit is explicitly dimensional, not compressed bytes, pixel count or RAM. Retained the pixel-image paraphrase for bitmap and the clear active no-size-change statement. SvgOriginalSize.kt:15–22 rejects a finite positive dimension when its ceil exceeds Int.MAX_VALUE; each axis is checked, equality is allowed, and fractional positive sizes are rounded up rather than treated as invalid. BlankMapSvg.kt validates this before memory-policy checks or bitmap allocation and has no target-size shrink fallback. MediaGalleryActivity.kt:384–388 maps the exact EXCEEDS_BITMAP_DIMENSIONS reason. No claim that the SVG was resampled, corrupted, successfully imported or changed on disk.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "commons_svg_original_size_unavailable",
+      "tier": "P1",
+      "english": "The SVG does not declare a usable original size. No canvas-based size was substituted.",
+      "value": "SVG ⵓⵔ ⵉⵎⵎⴰⵍ ⵜⵉⴷⴷⵉ ⵜⴰⵏⴰⵚⵍⵉⵜ ⵉⵣⵎⵔ AN Paint ⴰⴷ ⵜⵜ ⵉⵙⵎⵔⵙ. ⵓⵔ ⵉⵙⴱⴰⴷⵓ AN Paint ⵜⵉⴷⴷⵉ ⵙ ⵓⵙⵎⵔⵙ ⵏ ⵓⴷⵖⴰⵔ ⵏ ⵓⵙⵙⵓⵏⵖ.",
+      "backtranslation": "The SVG does not indicate an original size that AN Paint can use. AN Paint did not determine the size using the canvas.",
+      "context_and_review_note": "Retained no usable declared original size and no canvas-derived sizing. immal expresses indicate/declare; the usable-size relative clause names AN Paint explicitly, and feminine tt refers to size. SvgOriginalSize.kt:17 rejects nonfinite or nonpositive document dimensions, distinct from finite positive overflow. BlankMapSvg.kt:23–27 uses documentWidth/documentHeight only; no canvas, viewBox, thumbnail or fixed-size substitution is made. The second sentence means AN Paint did not determine a replacement size from the drawing area; it does not claim there is no editor canvas. MediaGalleryActivity.kt maps this separately to UNUSABLE_ORIGINAL_SIZE. No automatic resize or fallback remedy is invented.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "2 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Pixel-image and drawing-area are descriptive terminology; no rendered or runtime SVG tests.",
+    "repository_edits": false
+  }
+}
