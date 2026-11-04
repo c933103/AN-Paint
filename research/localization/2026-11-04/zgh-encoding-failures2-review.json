@@ -1,0 +1,37 @@
+{
+  "base": "9272c36abeb85d5383b0c1e06b348d54a87f6b79",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base encoder/destination-failure review. Clarified target-file modifier; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "save20_destination_error",
+      "tier": "P0",
+      "english": "The completed image could not replace its destination.",
+      "value": "ⵉⵎⵎⴷ ⵓⵙⵏⵓⵍⴼⵓ ⵏ ⵜⵡⵍⴰⴼⵜ. AN Paint ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵜⵜ ⵉⵙⵔⵙ ⴳ ⵓⴷⵖⴰⵔ ⵏ ⵓⴼⴰⵢⵍⵓ ⵉⴳⴰⵏ ⴰⵡⵜⵜⴰⵙ.",
+      "backtranslation": "The image has finished being produced. AN Paint cannot put it in place of the target file.",
+      "context_and_review_note": "Revised the bare target noun after file to the explicit relative file that is the target (ufaylu igan awttas). This avoids treating the noun awttas as an unexplained adjective and preserves replacing/putting in place of the destination. immḍ agrees with masculine asnulfu, completion of image production. BitmapFileCodec.kt:14–19 completes encoding and closes the output stream before renameTo; only a false rename result triggers this message. The finalizer deletes the temporary file, so completed refers to encoding, NOT a promise that a usable completed copy remains available. The target can be an internal staging path; the text does not call it a user-chosen document, assert the original destination survived, or report successful saving.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "save20_encoding_budget",
+      "tier": "P0",
+      "english": "The image and encoding buffers exceed the export memory budget.",
+      "value": "RAM ⵉⵇⵇⴰⵏⵏ ⵉ ⵜⵡⵍⴰⴼⵜ ⴷ ⵓⵙⵏⵓⵍⴼⵓ ⵏ ⵓⴼⴰⵢⵍⵓ ⵏⵏⵙ ⵉⴳⴰ ⵓⴳⴳⴰⵔ ⵏ ⵜⵉⵍⵉⵙⵜ ⵏ RAM ⵉ ⵓⵙⵙⵓⴼⵖ.",
+      "backtranslation": "The RAM required for the image and producing its file exceeds the RAM limit for export.",
+      "context_and_review_note": "Retained RAM needed for the image and producing its file exceeding the export RAM limit. The functional producing-file description includes encoding work without claiming disk-space shortage, compressed-file length or a palette-colour limit. The required relative predicate refers to RAM; both image and encoding workspace remain included. BitmapFileCodec.kt:20–25 maps LegacyImageEncoder.Failure reason 0 here, while 1/2 use separate format-size errors. LegacyImageEncoder.java:26–30 checks pixels*4 plus scratch against budget, and ALSO rejects nonpositive/oversized dimensions through this same reason. Thus this message follows the source umbrella diagnostic; it is not evidence that every triggering failure is literally a measured RAM shortfall. No preservation or eventual-success guarantee added.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 1,
+    "tier": "2 P0",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "important_scope": "Completed encoding does not mean saved or retained temporary output. Failure reason 0 also includes dimension guards, as in the source English. No destination/original-preservation promise.",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Encoding buffers use a functional RAM-for-file-production paraphrase; no rendered or failure-injection runtime tests.",
+    "repository_edits": false
+  }
+}
