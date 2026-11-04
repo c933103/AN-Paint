@@ -1,0 +1,36 @@
+{
+  "base": "ef5dec3208ada582389cfb58907fe3466f3cad5b",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base lasso/rotation-grip review. Both functional controls retained; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_free_form_select",
+      "tier": "P1",
+      "english": "Free-form select",
+      "value": "ⴰⵙⵜⵉ ⵙ ⵓⵙⵙⵓⵏⵖ ⵏ ⵢⵉⵔⵉ",
+      "backtranslation": "Selection by drawing the outline",
+      "context_and_review_note": "Retained Selection by drawing the outline as functional free-form/lasso wording. asti is the nominal selection, s ussunɣ the method, and n yiri the attached-state outline noun. It avoids free/no-cost ambiguity and does not describe a series of polygon vertices. PaintCanvas.kt:788 extends trace continuously with pointer movement; :816 closes the trace and calls document.select(r,trace). The bounding rectangle is an allocation/geometry envelope, while the trace supplies the selection mask; :815 rectangular SELECT instead passes bounds without that mask. The label names outline drawing rather than limiting the contents to a rectangle or invoking the polygon tool. It is longer than the English label and has not been rendered in tool buttons.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_rotate",
+      "tier": "P1",
+      "english": "Rotate",
+      "value": "ⵙⵙⵓⵜⵍ",
+      "backtranslation": "Rotate",
+      "context_and_review_note": "Retained ssutl, exactly the verb already used in reviewed ui_rotate_90_clockwise and ui_rotate_180, without those commands’ angles or direction. PaintCanvas.kt:580 draws it beside the circular rotation grip; :587 uses VerticalCanvasCaption. :626–630 derives angle change around the selection centre, normalizes the angle and only snaps extremely near cardinal angles, so this is arbitrary rotation rather than a fixed 90/180 action. It does not rotate the whole document, choose only clockwise motion, or change reflection axes. The compact one-word label is appropriate, but no on-canvas clipping/vertical-layout test was performed.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 2,
+    "tier": "2 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; Rotate verb matches existing fixed-angle labels",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Lasso uses descriptive outline-drawing wording; no tool-button, grip-caption or runtime gesture tests.",
+    "repository_edits": false
+  }
+}
