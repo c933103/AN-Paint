@@ -1,0 +1,49 @@
+{
+  "base": "4df9bf9aa7338a33897555baf87a929255038879",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base formatting/admission-control review. Clarified verbal approximation, RAM limit and smaller-copy comparison. Model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_d_d_px_d_pixels_2f_mp",
+      "tier": "P1",
+      "english": "%1$d × %2$d px · Pixel count: %3$,d (%4$.2f MP)",
+      "value": "%1$d × %2$d px · ⵓⵟⵟⵓⵏ ⵏ ⵉⴷ ⴱⵉⴽⵙⵍ: %3$,d (%4$.2f MP)",
+      "backtranslation": "Width × height px · Pixel count: grouped count (megapixels)",
+      "context_and_review_note": "Retained pixel-count wording and every formatting component. CORRECT CALLER: ImageImport.kt:12–17, not ImageMemoryPolicy.kt, defines ImageDimensions.describe. Positional width/height integers %1$d and %2$d, grouped long pixel count %3$,d and megapixel value %4$.2f are unchanged. px and MP stay visible; MP is pixels divided by 1,000,000, not memory bytes. No claim about physical display dimensions.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_the_decoder_and_editing_buffers_need_about_the",
+      "tier": "P1",
+      "english": "The decoder and editing buffers need about %1$s; the current safe editing budget is %2$s. Choose a smaller copy.",
+      "value": "RAM ⵉ ⵓⵔⵥⴰⵎ ⴷ ⵓⵙⵏⴼⵍ ⵏ ⵜⵡⵍⴰⴼⵜ: ⴰⵣⴰⵍ ⵏ %1$s. ⵜⵉⵍⵉⵙⵜ ⵏ RAM ⵉ ⵓⵙⵏⴼⵍ ⵙ ⵜⵏⴼⵔⵓⵜ ⴷⵖⵉ: %2$s. ⵙⵜⵉ ⵢⴰⵜ ⵜⵓⵏⵖⵉⵍⵜ ⵉⵎⵥⵉⵏ ⵅⴼ ⵜⴰ.",
+      "backtranslation": "RAM for opening and editing the image: about %1$s. The current RAM limit for safe editing: %2$s. Choose a copy smaller than this one.",
+      "context_and_review_note": "Replaced the lone approximation symbol with azal n (about/an amount of), retaining estimated rather than exact need in ordinary words. Revised available RAM to the current RAM LIMIT for safe editing, which is the policy workingBytes budget, not total available system RAM. Added explicit smaller than this to the copy instruction, rather than merely small. Correct common caller is ImageImport.kt:48; native-work checks at :88–89 and :149–150 use the same two placeholders, with estimated working bytes first and policy limit second. Opening/editing remains a functional decoder/buffer paraphrase. No disk-space, saved-file-size, or guaranteed allocation claim.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_fits_the_current_budget",
+      "tier": "P2",
+      "english": "Fits the current budget.",
+      "value": "ⵜⵉⵍⵉⵙⵜ ⵏ RAM ⵉ ⵓⵙⵏⴼⵍ ⴷⵖⵉ ⵜⵉⵡⴷⵉ.",
+      "backtranslation": "The current RAM limit for editing is sufficient.",
+      "context_and_review_note": "Revised from available RAM sufficiency to sufficiency of the current RAM limit for editing. The estimate text immediately before this status reports estimated requirements, so the status describes the admission comparison, not a promise of eventual allocation/import success. ImageResizeDialog.kt:45 computes fits using memoryRequirements.accepts; :49 appends the status and :50 enables the button. ImageMemoryPolicy.kt explicitly describes admission control as not an allocation guarantee. This companion remains P2.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 2,
+    "retained": 1,
+    "tiers": {
+      "P1": 2,
+      "P2": 1
+    },
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, positional placeholders, grouping flag and precision, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Approximation is verbal rather than symbol-only; actual Tifinagh text-to-speech pronunciation/accessibility and rendered layout are untested.",
+    "repository_edits": false
+  }
+}
