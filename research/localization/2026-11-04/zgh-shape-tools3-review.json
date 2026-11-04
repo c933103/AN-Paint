@@ -1,0 +1,46 @@
+{
+  "base": "267d2a4012bbf376aabd960eb9e84965e3723164",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic, primary lexical-spelling and exact-base closure-versus-commit review. All three translations retained; no native-certification claim.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_polygon",
+      "tier": "P1",
+      "english": "Polygon",
+      "value": "ⴰⵎⵏⵏⴰⵡⵉⴷⵉⵙ",
+      "backtranslation": "Polygon",
+      "context_and_review_note": "Retained ⴰⵎⵏⵏⴰⵡⵉⴷⵉⵙ, deterministic transcription of amnnawidis, including doubled n. Independently retrieved primary IRCAM indexed text explicitly identifying amnnawidis as polygone, both introductory poly=mnnaw explanation and lexical entry (https://biblio.ircam.ma/pmb/uploads/publications/129.pdf; https://biblio.ircam.ma/pmb/catalogue/doc_num.php?explnum_id=125). Indexed legacy-font Tifinagh is garbled, so this is Latin-spelling verification plus Tifinagh transliteration, not visual verification of the original glyphs. Exact PaintCanvas.polygonPath joins the vertex sequence; optional closure supports the same open-polyline mode encompassed by the English tool label. Ten letters; retain compact noun rather than explanatory label.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_finish_polygon",
+      "tier": "P2",
+      "english": "Finish polygon",
+      "value": "ⵙⵎⴷ ⴰⵎⵏⵏⴰⵡⵉⴷⵉⵙ",
+      "backtranslation": "Finish polygon",
+      "context_and_review_note": "Retained imperative ⵙⵎⴷ plus free-state direct-object noun. Exact ClassicPaintActivity button calls applyPending. With at least two vertices, PaintCanvas commits polygonPath(closePolygon) as POLYGON when closed, or LINE when open, then clears vertices and resets tap state. Thus Finish finalizes the pending drawing without forcing last-to-first closure; open mode also preserves line-style rendering instead of filled polygon semantics. Under two vertices there is no shape commit. Do not translate this as Close polygon or saving a file.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_close_polygon",
+      "tier": "P2",
+      "english": "Close polygon",
+      "value": "ⵇⵇⵏ ⴰⵎⵏⵏⴰⵡⵉⴷⵉⵙ",
+      "backtranslation": "Close polygon",
+      "context_and_review_note": "Retained imperative ⵇⵇⵏ plus the polygon noun. The connect/close sense is appropriate to a geometric closure checkbox and distinct from ⵙⵎⴷ Finish. Exact ClassicPaintActivity checkbox updates closePolygon, invalidates preview and schedules autosave; it does not dismiss any dialog or commit the drawing. polygonPath adds Path.close only when the flag is true, connecting the last vertex to the first. applyPending honors that flag. Object noun makes geometric closure explicit; no extra dialog-close implication introduced. The 11sp checkbox and fixed-height Finish button still need rendered large-font/layout inspection.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 3,
+    "tier": "1 P1; 2 P2",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders, Android escaping and formatting",
+    "remaining_uncertainty": "Model review, not native UI certification. Polygon Latin orthography independently attested and consistently transliterated; original PDF Tifinagh glyphs not visually verified. No rendered fit/accessibility or runtime gesture tests.",
+    "repository_edits": false
+  }
+}
