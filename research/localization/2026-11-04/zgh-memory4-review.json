@@ -1,0 +1,61 @@
+{
+  "base": "9d57b81064f7e0830d20c51743fe5bfc168d0695",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh review with exact-base caller inspection; three concrete terminology/grammar revisions and one retained translation. Model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_not_enough_memory_to_inspect_this_image",
+      "tier": "P1",
+      "english": "Not enough memory to inspect this image",
+      "value": "ⵓⵔ ⵜⵉⵡⴷⵉ ⵜⵉⴷⴷⵉ ⵏ RAM ⵉⵙⴰⴳⴰⵏ ⵉ AN Paint ⵉ ⵓⵙⵏⵇⴷ ⵏ ⵜⵡⵍⴰⴼⵜ ⴰ.",
+      "backtranslation": "The RAM available to AN Paint is insufficient to inspect this image.",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:1294 catches OutOfMemoryError during inspection, before adoption. Revised the inspection noun to checking/examination, distinct from opening and from experimentation. RAM remains explicit; no disk-space or corruption claim.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_not_enough_memory_to_finish_opening_this_image",
+      "tier": "P1",
+      "english": "Not enough memory to finish opening this image",
+      "value": "ⵓⵔ ⵜⵉⵡⴷⵉ ⵜⵉⴷⴷⵉ ⵏ RAM ⵉⵙⴰⴳⴰⵏ ⵉ AN Paint ⵃⵎⴰ ⴰⴷ ⵉⵙⵎⴷ ⴰⵔⵥⴰⵎ ⵏ ⵜⵡⵍⴰⴼⵜ ⴰ.",
+      "backtranslation": "The RAM available to AN Paint is insufficient to finish opening this image.",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:1340 catches OutOfMemoryError during UI-stage adoption after decoding. Revised the opening noun to arzam (rẓm), retaining finish. The draft alday is ambiguous across varieties; IRCAM English dictionary lists drawing/pulling.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_not_enough_memory_for_this_operation_the_assembly",
+      "tier": "P0",
+      "english": "Not enough memory for this operation. The assembly source files are retained.",
+      "value": "ⵓⵔ ⵜⵉⵡⴷⵉ ⵜⵉⴷⴷⵉ ⵏ RAM ⵉⵙⴰⴳⴰⵏ ⵉ AN Paint ⵉ ⵜⵎⵀⵍⵜ ⴰ. ⵇⵇⵉⵎⵏ ⵉⴼⵓⵢⵍⴰ ⵉⵏⴰⵚⵍⵉⵢⵏ ⵏ ⵜⴳⵔⵓⵎⵎⴰ ⵏ ⵜⵡⵍⴰⴼⵉⵏ.",
+      "backtranslation": "The RAM available to AN Paint is insufficient for this operation. The image-assembly source files remain.",
+      "context_and_review_note": "Exact-base AssemblyActivity.kt:117 and :294 catch OutOfMemoryError. Retained wording: plural source/original files remain, not exported output saved and not all assembly state unchanged.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_there_is_not_enough_memory_for_this_operation",
+      "tier": "P0",
+      "english": "There is not enough memory for this operation at the original resolution. No automatic resizing was applied.",
+      "value": "ⵓⵔ ⵜⵉⵡⴷⵉ ⵜⵉⴷⴷⵉ ⵏ RAM ⵉⵙⴰⴳⴰⵏ ⵉ AN Paint ⵉ ⵜⵎⵀⵍⵜ ⴰ ⵙ ⵜⵉⴷⴷⵉ ⵜⴰⵏⴰⵚⵍⵉⵜ (ⵉⴷ ⴱⵉⴽⵙⵍ). ⵓⵔ ⵉⵙⵏⴼⵍ AN Paint ⵜⵉⴷⴷⵉ ⵙ ⵓⵡⵔⵎⴰⵏ.",
+      "backtranslation": "The RAM available to AN Paint is insufficient for this operation at original size (pixels). AN Paint did not change the size automatically.",
+      "context_and_review_note": "Exact-base ClassicPaintActivity.kt:938 selects this message for OutOfMemoryError, separate from ImageSizeException. Added pixels to distinguish source raster resolution from byte size or print size, using the existing catalogue pixel term. Recast the second sentence actively to avoid the draft passive lacking clear feminine agreement. Does not promise future resizing behavior.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "ui_not_enough_memory_to_inspect_this_image",
+      "ui_not_enough_memory_to_finish_opening_this_image",
+      "ui_there_is_not_enough_memory_for_this_operation"
+    ],
+    "retained_keys": [
+      "ui_not_enough_memory_for_this_operation_the_assembly"
+    ],
+    "callers": "Verified by GitHub fetch_file at the exact base SHA.",
+    "placeholders": "All four English strings and translations have no placeholders.",
+    "runtime": "Not run; review-only deliverable.",
+    "linguistic_limit": "Model review, not native certification."
+  }
+}
