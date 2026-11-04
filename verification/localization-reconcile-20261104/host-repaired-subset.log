@@ -1,0 +1,15 @@
+.....................................E...............................................
+======================================================================
+ERROR: test_observed_input_mode_does_not_install_or_prepare_a_build (test_download_selected_artifacts.DownloadSelectedArtifactsTest.test_observed_input_mode_does_not_install_or_prepare_a_build)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/reconcile-locale-20261104/tools/test_download_selected_artifacts.py", line 314, in test_observed_input_mode_does_not_install_or_prepare_a_build
+    subprocess.run(['bash', 'tools/ci_prepare_build.sh', '--record-inputs', str(output)],
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['bash', 'tools/ci_prepare_build.sh', '--record-inputs', '/tmp/tmpveoq_4jo/observed.json']' returned non-zero exit status 1.
+
+----------------------------------------------------------------------
+Ran 85 tests in 91.079s
+
+FAILED (errors=1)
