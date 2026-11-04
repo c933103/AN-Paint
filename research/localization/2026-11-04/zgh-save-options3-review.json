@@ -1,0 +1,51 @@
+{
+  "base": "5fb06cc95e6b09182eb011a42eb8ab69a1c54b3f",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Direct Tifinagh review against exact-base SaveOptionsDialog and saved-target reuse callers. Replaced one uncertain technical coinage with a concrete file-size-reduction paraphrase. Two quality explanations retained. Not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_save_explanation23",
+      "tier": "P0",
+      "english": "Choose an image format and its compression settings. Save will reuse this file name, location, format and settings.",
+      "value": "ⵙⵜⵉ ⴰⵏⴰⵡ ⵏ ⵜⵡⵍⴰⴼⵜ ⴷ ⵜⵉⵙⵖⴰⵍ ⵏⵏⵙ ⵏ ⵓⵙⵙⴷⵔⵓⵙ ⵏ ⵜⵉⴷⴷⵉ ⵏ ⵓⴼⴰⵢⵍⵓ. «ⵃⴹⵓ» ⵔⴰⴷ ⵢⴰⵍⵙ ⴰⵙⵙⵎⵔⵙ ⵏ ⵢⵉⵙⵎ ⴰ ⵏ ⵓⴼⴰⵢⵍⵓ ⴷ ⵡⴰⴷⵖⴰⵔ ⴰ ⴷ ⵡⴰⵏⴰⵡ ⴰ ⴷ ⵜⵙⵖⴰⵍ ⴰ.",
+      "backtranslation": "Choose an image format and its settings for reducing file size. Save will reuse this file name, this location, this format and these settings.",
+      "context_and_review_note": "Exact-base SaveOptionsDialog.kt:52/:183 shows this non-export/non-share help. ClassicPaintActivity.kt:1104-1108 reuses savedTarget.uri and savedTarget.options; :1370 establishes SavedTarget(uri,name,options) after ordinary save. Revised uncertain compression coinage into settings for reducing file size. This is a descriptive compression paraphrase, not image dimensions or a promise of lossless encoding. All four reuse dimensions and exact Save label are retained. Bound-state coordinated nouns reviewed.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "save20_lossy_quality_description",
+      "tier": "P0",
+      "english": "Higher quality preserves more detail and usually makes a larger file.",
+      "value": "ⵓⴳⴳⴰⵔ ⵏ ⵜⵖⴰⵔⴰ ⴷⴰ ⵉⵃⵟⵟⵓ ⵓⴳⴳⴰⵔ ⵏ ⵉⴼⵔⵓⵔⵉⵜⵏ. ⴳ ⵜⵓⴳⵜⵜ ⵏ ⵜⵉⴽⴽⴰⵍ, ⴷⴰ ⵉⵎⵖⵓⵔ ⵓⴼⴰⵢⵍⵓ.",
+      "backtranslation": "More quality preserves more details. Most often, the file grows.",
+      "context_and_review_note": "Exact-base SaveOptionsDialog.kt:102 uses this for JPEG/HEIC quality help. Retained higher quality, more details and most-often file growth. The preceding quality statement supplies the comparison; it does not say quality is lossless, that output is always larger, or that existing files grow by themselves. No guaranteed recovery of details already lost is claimed.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_higher_quality_usually_makes_a_larger_file_lossless",
+      "tier": "P0",
+      "english": "Higher quality usually makes a larger file. Lossless keeps every colour value.",
+      "value": "ⵓⴳⴳⴰⵔ ⵏ ⵜⵖⴰⵔⴰ ⴷⴰ ⵉⵙⵙⵉⵎⵖⵓⵔ ⴰⴼⴰⵢⵍⵓ ⴳ ⵜⵓⴳⵜⵜ ⵏ ⵜⵉⴽⴽⴰⵍ. ⴰⵏⴰⵡ ⵏⵏⴰ ⵉⵃⵟⵟⵓⵏ ⵉⵙⴼⴽⴰ ⵏ ⵉⴷ ⴱⵉⴽⵙⵍ ⴰⴽⴽⵯ ⴷⴰ ⵉⵃⵟⵟⵓ ⴽⵓ ⴰⵣⴰⵍ ⵏ ⵓⴽⵍⵓ.",
+      "backtranslation": "More quality usually makes the file larger. The mode that preserves all pixel data preserves every colour value.",
+      "context_and_review_note": "Exact-base SaveOptionsDialog.kt:87-89 controls the lossless checkbox and quality slider; :103 selects this description for the remaining formats, with PNG explanation hidden at :105. Retained descriptive lossless mode: all pixel data, every colour value. Pixel qualifier prevents an all-file-data/metadata preservation promise. Higher-quality/larger-file relation remains qualified as usual, not universal. Anaw is used descriptively for encoding type/mode, not a claim all encodings of the format are lossless.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised_keys": [
+      "ui_save_explanation23"
+    ],
+    "retained_keys": [
+      "save20_lossy_quality_description",
+      "ui_higher_quality_usually_makes_a_larger_file_lossless"
+    ],
+    "callers": "Verified via GitHub fetch_file at 5fb06cc95e6b09182eb011a42eb8ab69a1c54b3f.",
+    "labels": "Save matches existing ui_save: ⵃⴹⵓ.",
+    "placeholders": "No placeholders in these source strings or reviewed values.",
+    "linguistic_limit": "Model-reviewed, not native-certified. Compression is intentionally descriptive, not presented as a verified specialized term. Lossless is likewise described through preservation of pixel data rather than an unsupported neologism.",
+    "runtime": "Not run; translation review only."
+  }
+}
