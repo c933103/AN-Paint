@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "finding": "F01-C007",
+  "tag": "ceb",
+  "key": "string/formats22_tiff_description",
+  "baseline_development_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+  "implementation_revision": "a4cc8e5c91d1cd9e4069ca3df75584b2a83c56aa",
+  "implementation_tree": "6b2a28fe8561dea74fa51eef328efb67db89e655",
+  "implementation_pull_request": "https://github.com/c933103/AN-Paint/pull/64",
+  "resource_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+  "english_path": "Paintroid/src/main/res/values/strings.xml",
+  "english_value": "Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.",
+  "previous_localized_value": "Motipig og usa ka panid sa RGB. Ang pagpaminos sa gidak-on sa file dili mousab sa mga pixel; palonga kini aron matipigan ang TIFF nga wala gipagamay.",
+  "accepted_proposal_value": "Motipig og usa ka panid sa RGB. Ang pag-compress mahimong makapakunhod sa gidak-on sa file. Dili kini mousab sa mga pixel. Palonga ang pag-compress aron matipigan ang TIFF nga wala gi-compress.",
+  "english_value_sha256": "53a27a59510f28633bb8483bee95bb5f40e6aeabd3c477ed8fbd3e17fa7ba701",
+  "accepted_proposal_value_sha256": "dad04a2533b713a67258b00b9aae02dc457c28d2e8180ed21079deeb6770c150",
+  "implementation_resource_git_blob": "6b395f031c89fdbf75d3ac3d13a42846930ed303",
+  "proposal_review": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6157641756",
+  "current_head_review_request": "https://github.com/c933103/AN-Paint/pull/64#issuecomment-6158275567",
+  "proposal_review_status": "independently accepted proposed replacement; confidence and limitations retained",
+  "confidence": {
+    "technical_semantic": "high",
+    "idiomatic": "moderate"
+  },
+  "preserved_technical_points": [
+    "one RGB page",
+    "compression may reduce file size",
+    "compression does not change pixels",
+    "compression can be turned off",
+    "uncompressed TIFF output"
+  ],
+  "actual_context": {
+    "dialog_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+    "description_tag": "export_description",
+    "checkbox_tag": "export_tiff_compressed",
+    "encoder_path": "Paintroid/src/main/cpp/tiff_bridge.cpp",
+    "compression": "Deflate or none"
+  },
+  "scope": "Description only. The separately reviewed 14 October checkbox-label amendment remains proposed and is unchanged by PR64.",
+  "technical_validation": {
+    "local_resource_checks": "passed: unique definition, attributes, placeholders, Android string syntax; only description resource changed",
+    "local_python_tests": {
+      "passed": 674
+    },
+    "hosted_run": "https://github.com/c933103/AN-Paint/actions/runs/38491601846",
+    "hosted_checks": "passed: PR run attempt 2 and exact merged-develop run attempt 1; regression/JVM/lint, exact-script resource generation, APK/corresponding source and API35.",
+    "native_robolectric_captures": {
+      "status": "standard-decoded and visually inspected all four",
+      "artifact_id": 11862445835,
+      "artifact_sha256": "8b957d136b265b393434d5571fabd2966874378c60dfe4af08895987f92254d9",
+      "source_commit": "c7e8025c589b9477e01cbd02ba78c54fcb9f7d3c",
+      "source_tree": "6b2a28fe8561dea74fa51eef328efb67db89e655",
+      "captures": [
+        {
+          "path": "verification/translation-entry-review-2026-10-13/cebuano-tiff-captures/tiff-cebuano-landscape-false.png",
+          "original_ci_path": "Paintroid/build/reports/classic-preview/tiff-cebuano-landscape-false.png",
+          "sha256": "4385e05bd7ad3fb0817ce041c99f7fb59dc4f9fac6422cdf9ac9a673431b993e",
+          "git_blob_sha": "ee85b937eea0995e87e92bd0e86a890831120eb5",
+          "size": [
+            1100,
+            680
+          ],
+          "mode": "RGBA",
+          "standard_decoder": "Pillow; complete pixel load succeeded",
+          "visual_inspection": "Inspected all four actual PNGs: complete description, ordinary line wrapping without clipping or ellipsis, visible destination button, corresponding checkbox state. Landscape capture shows the description after scrolling into view. Surrounding title/help is not certified."
+        },
+        {
+          "path": "verification/translation-entry-review-2026-10-13/cebuano-tiff-captures/tiff-cebuano-landscape-true.png",
+          "original_ci_path": "Paintroid/build/reports/classic-preview/tiff-cebuano-landscape-true.png",
+          "sha256": "280f3abbbef2a8888b417296c313779c453d025e2eb72461106d431cf8fc2f36",
+          "git_blob_sha": "29773074fe7723fa3af5867426ead66541b3c728",
+          "size": [
+            1100,
+            680
+          ],
+          "mode": "RGBA",
+          "standard_decoder": "Pillow; complete pixel load succeeded",
+          "visual_inspection": "Inspected all four actual PNGs: complete description, ordinary line wrapping without clipping or ellipsis, visible destination button, corresponding checkbox state. Landscape capture shows the description after scrolling into view. Surrounding title/help is not certified."
+        },
+        {
+          "path": "verification/translation-entry-review-2026-10-13/cebuano-tiff-captures/tiff-cebuano-portrait-false.png",
+          "original_ci_path": "Paintroid/build/reports/classic-preview/tiff-cebuano-portrait-false.png",
+          "sha256": "df351aa42016144285fc61dcbed9b65d9e4dd2833fb4998c58738f04645db55b",
+          "git_blob_sha": "7fd6228cbc6401b771596ebe57bc6207c69b4285",
+          "size": [
+            760,
+            943
+          ],
+          "mode": "RGBA",
+          "standard_decoder": "Pillow; complete pixel load succeeded",
+          "visual_inspection": "Inspected all four actual PNGs: complete description, ordinary line wrapping without clipping or ellipsis, visible destination button, corresponding checkbox state. Landscape capture shows the description after scrolling into view. Surrounding title/help is not certified."
+        },
+        {
+          "path": "verification/translation-entry-review-2026-10-13/cebuano-tiff-captures/tiff-cebuano-portrait-true.png",
+          "original_ci_path": "Paintroid/build/reports/classic-preview/tiff-cebuano-portrait-true.png",
+          "sha256": "08edae577bb90649eb8850f151ef65ab5bb497dec8e5ce80985ddb87268d9303",
+          "git_blob_sha": "de8b3b437283bf00439b03e79c5fbcc03aa12608",
+          "size": [
+            760,
+            943
+          ],
+          "mode": "RGBA",
+          "standard_decoder": "Pillow; complete pixel load succeeded",
+          "visual_inspection": "Inspected all four actual PNGs: complete description, ordinary line wrapping without clipping or ellipsis, visible destination button, corresponding checkbox state. Landscape capture shows the description after scrolling into view. Surrounding title/help is not certified."
+        }
+      ]
+    },
+    "installed_cebuano_specific_rendering": "not established; no new Cebuano-specific installed test",
+    "physical_device": "not established",
+    "merged_source_run": "https://github.com/c933103/AN-Paint/actions/runs/38495011152",
+    "apk_corresponding_source": {
+      "build_info": {
+        "commit": "c7e8025c589b9477e01cbd02ba78c54fcb9f7d3c",
+        "run_id": "38491601846",
+        "build_variant": "debug",
+        "apk_sha256": "2e93502bb73ea5d73cb80c8968239caa88add72875a5f463de749f95b57b196b",
+        "source_sha256": "f5fabafced2f240a2428843ff0844e40bb4e28fbfadcd814ab93cc825a30216f",
+        "test_status": "Reported separately; artifact availability does not imply tests passed.",
+        "signing": "CI debug key. Upgrade signing remains a separate private packaging step."
+      },
+      "embedded_source_equals_separate_source": true,
+      "verification": "Exact APK/source hashes and ZIP byte equality rechecked locally; source resource blobs equal reviewed/merged tree."
+    },
+    "initial_attempt_failure": {
+      "run": "https://github.com/c933103/AN-Paint/actions/runs/38491601846/attempts/1",
+      "job_id": 115620677584,
+      "status": "failed",
+      "observed": "Missing/unsuccessful final instrumentation result; installed dialog evidence collection failed and later vertical/restart summary files were absent. This failed attempt is not counted as passing. Attempt 2 completed all selected phases with strict composed inventory validation. Root cause and prior retry decision are not re-inferred here."
+    },
+    "tiff_dialog_jvm_report": {
+      "ci_path": "Paintroid/build/test-results/testDebugUnitTest/TEST-org.catrobat.paintroid.local.TiffDescriptionDialogTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "3f8d74e6d33bb48c0cbac0f94a30b8763c5be2117be4c2f9913a68f97683a839"
+    }
+  },
+  "integration_status": "Merged into develop in PR64 on 2026-10-14 at 01:18:33 UTC; exact source pair re-read and bound.",
+  "current_development_review_credit_added": 1,
+  "current_count_checkpoint": {
+    "source_revision": "647a4b5647cabf3e51cb6dcf20d41ae08143ccdb",
+    "reviewed_current": 1286,
+    "needs_rereview": 0,
+    "unreviewed_or_unknown": 45796,
+    "missing": 69484,
+    "cebuano_reviewed_current": 2,
+    "cebuano_unreviewed_or_unknown": 696
+  },
+  "completion_limits": [
+    "Whole-language review remains incomplete.",
+    "No broad reset mandate or register row is closed.",
+    "Independent model/source-assisted review does not certify native-speaker fluency.",
+    "Native Robolectric captures are not Cebuano-specific installed-device or physical-device rendering proof.",
+    "No release or private upgrade-signing acceptance is added."
+  ],
+  "prior_unmerged_checkpoint": {
+    "schema_version": 1,
+    "finding": "F01-C007",
+    "tag": "ceb",
+    "key": "string/formats22_tiff_description",
+    "baseline_development_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+    "implementation_revision": "a4cc8e5c91d1cd9e4069ca3df75584b2a83c56aa",
+    "implementation_tree": "6b2a28fe8561dea74fa51eef328efb67db89e655",
+    "implementation_pull_request": "https://github.com/c933103/AN-Paint/pull/64",
+    "resource_path": "Paintroid/src/main/res/values-b+ceb/strings.xml",
+    "english_path": "Paintroid/src/main/res/values/strings.xml",
+    "english_value": "Saves one RGB page. Compression may reduce file size without changing pixels; turn it off for uncompressed TIFF.",
+    "previous_localized_value": "Motipig og usa ka panid sa RGB. Ang pagpaminos sa gidak-on sa file dili mousab sa mga pixel; palonga kini aron matipigan ang TIFF nga wala gipagamay.",
+    "accepted_proposal_value": "Motipig og usa ka panid sa RGB. Ang pag-compress mahimong makapakunhod sa gidak-on sa file. Dili kini mousab sa mga pixel. Palonga ang pag-compress aron matipigan ang TIFF nga wala gi-compress.",
+    "english_value_sha256": "53a27a59510f28633bb8483bee95bb5f40e6aeabd3c477ed8fbd3e17fa7ba701",
+    "accepted_proposal_value_sha256": "dad04a2533b713a67258b00b9aae02dc457c28d2e8180ed21079deeb6770c150",
+    "implementation_resource_git_blob": "6b395f031c89fdbf75d3ac3d13a42846930ed303",
+    "proposal_review": "https://github.com/c933103/AN-Paint/pull/56#issuecomment-6157641756",
+    "current_head_review_request": "https://github.com/c933103/AN-Paint/pull/64#issuecomment-6158275567",
+    "proposal_review_status": "independently accepted proposed replacement; confidence and limitations retained",
+    "confidence": {
+      "technical_semantic": "high",
+      "idiomatic": "moderate"
+    },
+    "preserved_technical_points": [
+      "one RGB page",
+      "compression may reduce file size",
+      "compression does not change pixels",
+      "compression can be turned off",
+      "uncompressed TIFF output"
+    ],
+    "actual_context": {
+      "dialog_path": "Paintroid/src/main/java/org/catrobat/paintroid/classic/SaveOptionsDialog.kt",
+      "description_tag": "export_description",
+      "checkbox_tag": "export_tiff_compressed",
+      "encoder_path": "Paintroid/src/main/cpp/tiff_bridge.cpp",
+      "compression": "Deflate or none"
+    },
+    "scope": "Description only. The separately reviewed 14 October checkbox-label amendment remains proposed and is unchanged by PR64.",
+    "technical_validation": {
+      "local_resource_checks": "passed: unique definition, attributes, placeholders, Android string syntax; only description resource changed",
+      "local_python_tests": {
+        "passed": 674
+      },
+      "hosted_run": "https://github.com/c933103/AN-Paint/actions/runs/38491601846",
+      "hosted_checks": "pending",
+      "native_robolectric_captures": "pending generation and visual inspection: portrait/landscape, both compression choices",
+      "installed_cebuano_specific_rendering": "not established; no new Cebuano-specific installed test",
+      "physical_device": "not established"
+    },
+    "integration_status": "applied only on PR64 source branch; not yet merged into develop",
+    "current_development_review_credit_added": 0,
+    "current_count_checkpoint": {
+      "source_revision": "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+      "reviewed_current": 1285,
+      "needs_rereview": 0,
+      "unreviewed_or_unknown": 45797,
+      "missing": 69484,
+      "cebuano_reviewed_current": 1,
+      "cebuano_unreviewed_or_unknown": 697
+    },
+    "completion_limits": [
+      "Whole-language review remains incomplete.",
+      "No broad reset mandate or register row is closed.",
+      "Independent model/source-assisted review does not certify native-speaker fluency.",
+      "Current-development credit awaits exact merged-value binding."
+    ]
+  },
+  "merged_development_revision": "647a4b5647cabf3e51cb6dcf20d41ae08143ccdb",
+  "merged_tree": "6b2a28fe8561dea74fa51eef328efb67db89e655",
+  "merged_parents": [
+    "5cb65ac454fed1a5b730240d0a06bc8c3c69285a",
+    "a4cc8e5c91d1cd9e4069ca3df75584b2a83c56aa"
+  ],
+  "merged_english_resource_git_blob": "005ec95b25cc816f067b78a073a2b1b8c37b71d6",
+  "merged_localized_resource_git_blob": "6b395f031c89fdbf75d3ac3d13a42846930ed303",
+  "current_head_independent_review": {
+    "revision": "a4cc8e5c91d1cd9e4069ca3df75584b2a83c56aa",
+    "code_review": "completed; no major issues",
+    "code_review_url": "https://github.com/c933103/AN-Paint/pull/64#issuecomment-6158312676",
+    "security_review": "completed at exact implementation head",
+    "security_review_url": "https://github.com/c933103/AN-Paint/pull/64#issuecomment-6158276111",
+    "unresolved_material_review_threads": 0
+  }
+}
