@@ -1,0 +1,26 @@
+{
+  "base": "371b90c10312486d4d2aaa77fda5d5cf0637abb2",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base hex-label/validation review. Accepted the functional alphabet expansion; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_hex_rrggbb",
+      "tier": "P1",
+      "english": "Hex #RRGGBB",
+      "value": "ⴰⴽⵍⵓ #RRGGBB (0–9, A–F, a–f)",
+      "backtranslation": "Colour #RRGGBB (0–9, A–F, a–f)",
+      "context_and_review_note": "Retained Colour #RRGGBB (0–9, A–F, a–f) as an understandable functional explanation of hexadecimal input without inventing an uncertain specialist term. #RRGGBB preserves the SIX RGB positions; the parentheses list accepted character ranges, not extra positions or an alpha channel. R/G/B are pattern labels, not literal permitted input letters. AdvancedColourDialog.kt:246 passes this as the visible field label and :228 as its contentDescription; it is NOT inserted into the editable value and is not the validation-error resource. :363 trims outer whitespace, then :364 accepts exactly #[0-9a-fA-F]{6}, including mixed case; :380 emits # plus six uppercase digits. Thus no shorthand, eight-digit alpha, localized numerals, missing # or embedded spaces are suggested. The single Tifinagh colour noun is grammatical as a nominal label. Longer than source, but placed above the single-line input in its column; actual wrapping, narrow-screen fit and screen-reader pronunciation of ranges remain untested.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 1,
+    "tier": "1 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no format placeholders introduced, Android escaping and formatting; one # and exact six-position RGB pattern",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Functional alphabet expansion rather than a technical hexadecimal noun. No rendered narrow-screen/large-font or screen-reader tests.",
+    "repository_edits": false
+  }
+}
