@@ -1,0 +1,39 @@
+{
+  "base": "18489e52601af0fea5f583909c4429eeaddd9932",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base numerical/flood-fill review. Both contextual translations retained; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_tolerance",
+      "tier": "P1",
+      "english": "Tolerance",
+      "value": "ⵜⵉⵍⵉⵙⵜ ⵏ ⵓⵎⵣⴰⵔⴰⵢ ⵏ ⵉⴽⵍⴰⵏ",
+      "backtranslation": "Colour-difference limit",
+      "context_and_review_note": "Retained Colour-difference limit: tilist n umzaray n iklan. The attached-state umzaray fits the genitive compound and explicitly disambiguates tolerance from social tolerance or a geometric radius. ClassicPaintActivity.kt:767 provides the Fill slider with maximum 100; ScanlineFill.kt:15 squares the integer value, :27 exact-compares at zero, and :28–32 sums squared RGBA differences against the clicked seed colour. The label correctly names a colour-difference threshold, not a percentage, spatial tolerance, opacity or difference from the replacement foreground colour. Longer than English; no compact-panel fit is certified.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_tap_an_enclosed_area_adjust_tolerance_for_similar",
+      "tier": "P3",
+      "english": "Tap an enclosed area. Adjust tolerance for similar colours.",
+      "value": "ⵙⵉⵜ ⵅⴼ ⵜⵎⵏⴰⴹⵜ ⵉⵇⵇⵏⵏ. ⵙⵏⴼⵍ ⵜⵉⵍⵉⵙⵜ ⵏ ⵓⵎⵣⴰⵔⴰⵢ ⵏ ⵉⴽⵍⴰⵏ ⵃⵎⴰ ⴰⴷ ⵉⵙⵎⵓⵏ ⵓⴽⵜⵓⵔ ⴰⵡⴷ ⵉⴽⵍⴰⵏ ⵉⵇⵔⴱⵏ.",
+      "backtranslation": "Tap an enclosed area. Adjust the colour-difference limit so the fill also includes close/similar colours.",
+      "context_and_review_note": "Retained Tap an enclosed area and adjust the same colour-difference limit to include close colours. iqqnn is a relative closed/enclosed predicate on the area; it is not a finite masculine verb requiring mechanical feminine agreement. aktur is the filling action, and ismun with the explicit colour object is a functional include/gather construction. iqrben describes similarity of COLOURS after the named colour-difference threshold, not pixel spatial proximity. ScanlineFill grows connected horizontal runs and adjacent rows from the tapped seed, matching candidates against that seed; this is not global replacement of all similar colours. The instruction does not promise that every slider adjustment broadens the set or that a drawn boundary can never be crossed at higher tolerance. Retained as contextual direct language rather than expanding the short help into an algorithm explanation. P3 companion remains P3.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 2,
+    "tiers": {
+      "P1": 1,
+      "P3": 1
+    },
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting; exact tolerance phrase reused in help",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Close colours is a contextual similarity paraphrase; long slider/help text has no rendered or screen-reader test. No runtime fill tests performed.",
+    "repository_edits": false
+  }
+}
