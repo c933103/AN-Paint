@@ -1,0 +1,146 @@
+{
+  "base": "90f8d3509012c0e7dde985233a3595ce23bce1af",
+  "locale_blob": "4a22fa4b58e4e8c6c7912c04a2e465f0591411af",
+  "english_blob": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973",
+  "status": "Independent review complete: seven retained; no held rows",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_font",
+      "tier": "P1",
+      "english": "Font",
+      "value": "ⵜⵉⵙⵉⵙⴽⵍⵜ",
+      "backtranslation": "Font",
+      "review_note": "TextStyleDialog :38 font-catalog selector label. Lexical form from zgh Telegram cache; related Font Size and Font Type have annexed tsisiklt. Font is a typeface, not document formatting in general.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept free-state font noun for the family/typeface selector, distinct from font size and general text formatting."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_font_family",
+      "tier": "P1",
+      "english": "Font family",
+      "value": "ⵜⴰⵡⴰⵛⵓⵏⵜ ⵏ ⵜⵙⵉⵙⴽⵍⵉⵏ",
+      "backtranslation": "Font family",
+      "review_note": "TextStyleDialog :37 spinner accessibility. Family of fonts rather than a person family. Direct compound; review plural/annexed font form and conventional typography usage.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept family-of-fonts compound. Singular tisisiklt -> plural tisisiklin -> annexed tsisiklin after n is coherent; do not restore deleted initial i after n. Family is a technical grouping here, not a literal personal relationship. Font project primary README independently uses the free plural tisisiklin."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_bold",
+      "tier": "P1",
+      "english": "Bold",
+      "value": "ⴰⴹⴱⴱⵓⵥ",
+      "backtranslation": "Bold / thick",
+      "review_note": "TextStyleDialog :48 checkbox maps to Typeface.BOLD at :68. Cached zgh Telegram entry Bold uses this term. Weight styling, not brave/bold personality or large font size.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept thick/bold label in weight-checkbox context. Actual style() uses Typeface.BOLD, independent of size; this is not a claim about courage or large text."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_underline",
+      "tier": "P1",
+      "english": "Underline",
+      "value": "ⴰⵣⵔⵉⵔ ⴷⴷⴰⵡ ⵓⴹⵕⵉⵙ",
+      "backtranslation": "Line below the text",
+      "review_note": "TextStyleDialog :49 checkbox sets underline independently of strikethrough. Plain descriptive label instead of an uncertain imperative; must not mean strikethrough. Review line noun and below-text annexed form.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept descriptive line-below-text checkbox label; bound udris after below is coherent. It does not describe strikethrough, which has a separate checkbox. In vertical typesetting this is the conventional underline style name, not a promise about screen-coordinate placement."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_centred",
+      "tier": "P1",
+      "english": "Centred",
+      "value": "ⴰⵙⵎⵉⵙⵉ ⴳ ⵡⴰⵎⵎⴰⵙ",
+      "backtranslation": "Alignment in the centre",
+      "review_note": "TextStyleDialog :53/:80/:81 alignment spinner, applicable to horizontal and vertical writing. Reuses accepted as misi alignment noun from left/right labels. Centre is not left/right writing direction.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept alignment-in-centre label, matching established alignment noun. Exact caller retains this centre option when surrounding labels change from left/right to top/bottom for vertical text. No horizontal-direction restriction added."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_line_spacing",
+      "tier": "P1",
+      "english": "Line spacing (%)",
+      "value": "ⵜⵓⴳⴳⵓⴳⵜ ⴳⵔ ⵉⵣⵔⵉⵔⵏ (%)",
+      "backtranslation": "Distance between lines (%)",
+      "review_note": "TextStyleDialog :43 spacing field, divided by 100 at :106; percentage, not pixel size or character spacing. Literal (%) and source formatting attribute retained. Review line plural and between-lines idiom. Distance noun tuggugt derives from aggug (be far); replaces an uncertain initial noun, and needs standard-register review.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept distance-between-lines (%) as a transparent descriptive UI label. tuggugt is not just an inferred noun: official Moroccan text uses it for distance. izrirn is the line plural and gr supplies between, distinguishing line spacing from character spacing. Exact caller divides percentage by 100. Conventional typography terminology remains a nonblocking confidence limit; no exact sentence attestation or native certification claimed."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_text_direction23",
+      "tier": "P1",
+      "english": "Text direction",
+      "value": "ⵜⴰⵏⵉⵍⴰ ⵏ ⵓⴹⵕⵉⵙ",
+      "backtranslation": "Text direction",
+      "review_note": "TextStyleDialog :55/:57 spinner chooses horizontal/vertical-rl/vertical-lr. Distinct from separate glyphOrientation control :58–60. Direct direction-of-text compound, not paragraph alignment.",
+      "status": "accepted_by_independent_AI_review",
+      "eligible_for_integration": true,
+      "value_changed": false,
+      "independent_review_note": "Accept direction-of-text compound. Caller selects horizontal or vertical-rl/vertical-lr, separately from glyph orientation and alignment. Do not narrow this to only left-to-right versus right-to-left script direction."
+    }
+  ],
+  "checks": [
+    "seven unique missing keys",
+    "English source equality",
+    "source attributes including formatted preserved",
+    "placeholder parity",
+    "literal (%) preserved",
+    "Android escaping and format syntax",
+    "NFC",
+    "Tifinagh letters only",
+    "XML parse"
+  ],
+  "caller_evidence": {
+    "base": "90f8d3509012c0e7dde985233a3595ce23bce1af",
+    "file": "Supplied exact-base TextStyleDialog.kt",
+    "verified": [
+      "37–38 font selector and accessibility",
+      "43 percentage spacing label",
+      "48–49 independent bold/underline/strike toggles",
+      "53 centre alignment",
+      "55–60 text direction separate from glyph orientation",
+      "68 Typeface.BOLD",
+      "78 percentage conversion",
+      "80–83 centre remains valid for vertical text",
+      "106 spacing divided by 100"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://github.com/AnamekOrganisation/Amazigh-Fonts",
+      "supports": "Font project own README uses free plural tisisiklin; compound family phrase remains authored."
+    },
+    {
+      "url": "https://www.maroc.ma/sites/default/files/2024-12/sante-amz.pdf",
+      "supports": "Official Moroccan report uses tuggugt in distance/remote context, corroborating noun rather than deriving solely from a verbal root."
+    },
+    {
+      "url": "https://biblio.ircam.ma/pmb/catalogue/doc_num.php?explnum_id=381",
+      "supports": "IRCAM education publication lexical table gives tawacunt for family."
+    }
+  ],
+  "limits": [
+    "Independent AI review, not native-speaker certification",
+    "Conventional typography register of descriptive line-spacing wording is not certified",
+    "No Android build or device rendering",
+    "IRCAM grammatical-vocabulary PDF fetch timed out; no full inspection claimed",
+    "No repository or branch writes"
+  ]
+}
