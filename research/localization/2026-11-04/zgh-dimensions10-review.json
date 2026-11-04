@@ -1,0 +1,167 @@
+{
+  "base": "15b514deeda5c66a97f29e204b7d22e4e255e60b",
+  "locale_blob": "6d75172f856d10dc3ad854e3075e6ef888b2c941",
+  "english_blob": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973",
+  "status": "Independent review complete: 7 retained, 3 clarified; no held rows",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_resize_image",
+      "tier": "P1",
+      "english": "Resize image…",
+      "value": "ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ…",
+      "backtranslation": "Change image size…",
+      "review_note": "ClassicPaintActivity :853 opens dimensionsDialog(true,false); imperative and menu ellipsis retained. Uses established change, size, image terms.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ…",
+      "eligible_for_integration": true,
+      "independent_review_note": "Accept change the size of the image, with imperative and menu ellipsis. This is resize, not zoom."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_resize_image_ab28be",
+      "tier": "P1",
+      "english": "Resize image",
+      "value": "ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ",
+      "backtranslation": "Change image size",
+      "review_note": "ClassicPaintActivity :1018 dialog title; exact parallel to menu version without ellipsis.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ",
+      "eligible_for_integration": true,
+      "independent_review_note": "Accept matching resize dialog title without menu ellipsis."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_resize_the_copy",
+      "tier": "P1",
+      "english": "Resize the copy",
+      "value": "ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ ⵏ ⵜⵓⵏⵖⵉⵍⵜ",
+      "backtranslation": "Change the copy’s size",
+      "review_note": "ImageResizeDialog :32 output-size heading. Explicit copy noun prevents implication that original source file is being resized. tunghilt lexically corroborated in IRCAM audiovisual lexicon, not sentence-matched.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ ⵏ ⵜⵓⵏⵖⵉⵍⵜ",
+      "eligible_for_integration": true,
+      "independent_review_note": "Accept explicit copy noun; supplied ImageResizeDialog labels the output target dimensions rather than editing the source file. Does not add an assurance about file preservation or decoder behavior. IRCAM PDF direct fetch returned 502, so no independent full-PDF inspection claimed."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_resize_and_load",
+      "tier": "P1",
+      "english": "Resize and load",
+      "value": "ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ, ⵍⴷⵉ ⵜⴰⵡⵍⴰⴼⵜ",
+      "backtranslation": "Change size, open the image",
+      "review_note": "ImageResizeDialog :38 confirmation; executes resize callback only after dimension/memory validation. Open matches current Load image label ldi. Coordinate imperative/aorist construction follows existing Save and share, but independent grammar review required.",
+      "status": "accepted_revised",
+      "original_value": "ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ, ⵜⵍⴷⵉⴷ ⵜⴰⵡⵍⴰⴼⵜ",
+      "eligible_for_integration": true,
+      "independent_review_note": "Revise second action to plain imperative ldi, avoiding an unnecessary mixed imperative/second-person dependent construction. Both change-size and open-image actions remain explicit; open matches accepted load terminology."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_resize_large_image",
+      "tier": "P0",
+      "english": "Resize large image?",
+      "value": "ⵉⵙ ⵜⵅⵙⴷ ⴰⴷ ⵜⵙⵏⴼⵍⴷ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ ⵜⴰⵎⵇⵔⴰⵏⵜ?",
+      "backtranslation": "Do you want to change the size of the large image?",
+      "review_note": "P0 ImageResizeDialog :36 question, not completed-operation claim. Same question construction as accepted Save your changes prompt. Does not add a destructive guarantee or automatic resize claim.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵉⵙ ⵜⵅⵙⴷ ⴰⴷ ⵜⵙⵏⴼⵍⴷ ⵜⵉⴷⴷⵉ ⵏ ⵜⵡⵍⴰⴼⵜ ⵜⴰⵎⵇⵔⴰⵏⵜ?",
+      "eligible_for_integration": true,
+      "independent_review_note": "Accept P0 interrogative is txsd ad... asking whether to resize the large image. Feminine large modifier attaches to image. Neither claims completed work nor silently authorizes automatic resizing. Caller supplies memory-risk explanation separately."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_enter_a_positive_size",
+      "tier": "P1",
+      "english": "Enter a positive size.",
+      "value": "ⵙⵙⴽⵛⵎ ⵢⴰⵜ ⵜⵉⴷⴷⵉ ⵓⴳⴳⴰⵔ ⵏ 0.",
+      "backtranslation": "Enter a size greater than 0.",
+      "review_note": "NormalizeImagesDialog :28/:42 rejects number <=0 and unresolved target. Mathematical positive expressed plainly as greater than zero. No whole-number restriction added: percentages can be decimal.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵙⴽⵛⵎ ⵢⴰⵜ ⵜⵉⴷⴷⵉ ⵓⴳⴳⴰⵔ ⵏ 0.",
+      "eligible_for_integration": true,
+      "independent_review_note": "Accept greater than zero instead of an ambiguous mathematical positive adjective. Strict >0 preserved; no integer-only claim. NormalizeImagesDialog accepts decimal percentages but also validates resolved pixel bounds, which this short source string does not attempt to enumerate."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_enter_positive_dimensions",
+      "tier": "P1",
+      "english": "Enter positive dimensions.",
+      "value": "ⵙⵙⴽⵛⵎ ⵜⵉⵔⵉⵡⵜ ⵓⴳⴳⴰⵔ ⵏ 0 ⴷ ⵜⵉⵖⵣⵉ ⵓⴳⴳⴰⵔ ⵏ 0.",
+      "backtranslation": "Enter width greater than 0 and height greater than 0.",
+      "review_note": "ClassicPaintActivity :1021 width/height input. Both dimensions must exceed zero. Uses accepted width/height terms rather than introducing uncertain abstract dimensions terminology. Review comparison scope: must apply to both.",
+      "status": "accepted_revised",
+      "original_value": "ⵙⵙⴽⵛⵎ ⵜⵉⵔⵉⵡⵜ ⴷ ⵜⵉⵖⵣⵉ ⵓⴳⴳⴰⵔ ⵏ 0.",
+      "eligible_for_integration": true,
+      "independent_review_note": "Revise to repeat greater than zero after each axis, removing any possible reading that only height is constrained. Width and height retain previously accepted project terminology."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_enter_positive_image_dimensions",
+      "tier": "P1",
+      "english": "Enter positive image dimensions.",
+      "value": "ⵙⵙⴽⵛⵎ ⵜⵉⵔⵉⵡⵜ ⵏ ⵜⵡⵍⴰⴼⵜ ⵓⴳⴳⴰⵔ ⵏ 0 ⴷ ⵜⵉⵖⵣⵉ ⵏ ⵜⵡⵍⴰⴼⵜ ⵓⴳⴳⴰⵔ ⵏ 0.",
+      "backtranslation": "Enter image width greater than 0 and image height greater than 0.",
+      "review_note": "ImageMemoryPolicy :43 explicitly requires width >0 and height >0. Image modifier and greater-than-zero constraint both apply to the pair; reviewer should verify scope.",
+      "status": "accepted_revised",
+      "original_value": "ⵙⵙⴽⵛⵎ ⵜⵉⵔⵉⵡⵜ ⴷ ⵜⵉⵖⵣⵉ ⵏ ⵜⵡⵍⴰⴼⵜ ⵓⴳⴳⴰⵔ ⵏ 0.",
+      "eligible_for_integration": true,
+      "independent_review_note": "Revise to repeat image modifier and >0 comparison for each axis. Exact ImageMemoryPolicy check is width >0 AND height >0, not combined area >0 or only one axis."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_use_1_1024_pixels",
+      "tier": "P1",
+      "english": "Use 1–1024 pixels.",
+      "value": "ⵙⵎⵔⵙ 1–1024 ⵏ ⵉⴷ ⴱⵉⴽⵙⵍ.",
+      "backtranslation": "Use 1–1024 pixels.",
+      "review_note": "TextStyleDialog :103 inclusive size range. Retains endpoints and dash; no whole-number requirement added. Uses accepted pixel borrowing.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵎⵔⵙ 1–1024 ⵏ ⵉⴷ ⴱⵉⴽⵙⵍ.",
+      "eligible_for_integration": true,
+      "independent_review_note": "Accept 1–1024 pixels; both numeric endpoints and inclusive dash-range meaning preserved. Existing pluralized pixel borrowing retained. TextStyleDialog tests floating-point inclusive range, so do not add whole-number-only wording."
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_use_50_300",
+      "tier": "P1",
+      "english": "Use 50–300%.",
+      "value": "ⵙⵎⵔⵙ 50–300%.",
+      "backtranslation": "Use 50–300%.",
+      "review_note": "TextStyleDialog :104 inclusive line-spacing range. Numerals, range dash and literal percent preserved; source formatted=false retained.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵎⵔⵙ 50–300%.",
+      "eligible_for_integration": true,
+      "independent_review_note": "Accept 50–300%; exact inclusive endpoints and literal percent retained. TextStyleDialog uses floating-point inclusive range and source formatted=false remains unchanged."
+    }
+  ],
+  "checks": [
+    "10 unique keys",
+    "English-source equality",
+    "source attributes preserved",
+    "placeholder parity",
+    "Android escaping and format syntax",
+    "NFC",
+    "Tifinagh letters only",
+    "XML parse",
+    "strict positive bounds preserved separately for each dimension",
+    "inclusive 1–1024 px and 50–300% ranges unchanged"
+  ],
+  "caller_review": {
+    "source": "Supplied exact-base files at 15b514deeda5c66a97f29e204b7d22e4e255e60b",
+    "files": [
+      "ClassicPaintActivity.kt",
+      "ImageResizeDialog.kt",
+      "ImageMemoryPolicy.kt",
+      "NormalizeImagesDialog.kt",
+      "TextStyleDialog.kt"
+    ],
+    "verified": "resize copy target; large-image question and conditional callback; width >0 && height >0; decimal percentages; inclusive float ranges"
+  },
+  "limits": [
+    "Independent AI review, not native-speaker certification",
+    "No Android build or device rendering",
+    "No branch/repository writes",
+    "Direct IRCAM PDF fetch failed with HTTP 502; not an access denial"
+  ]
+}
