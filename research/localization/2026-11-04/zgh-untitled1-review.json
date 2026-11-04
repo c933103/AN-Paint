@@ -1,0 +1,44 @@
+{
+  "base": "b0ddb5313b9c534daabc9433c1d52efc5595e254",
+  "status": "INDEPENDENT REVIEW COMPLETE; ONE P0 TERMINOLOGY HOLD; NO BRANCH EDITS",
+  "method": "Independent exact-base validator, filename fallback, grammar and Android-escaping review. Untitled approved; provisional control-character terminology not confidently resolved.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "save20_invalid_name",
+      "tier": "P0",
+      "english": "Enter a file name without slashes or control characters.",
+      "value": "ⵙⵙⴽⵛⵎ ⵉⵙⵎ ⵏ ⵓⴼⴰⵢⵍⵓ ⴱⵍⴰ / ⵏⵖ \\\\ ⵓⵍⴰ ⵉⵙⴽⴽⵉⵍⵏ ⵏ ⵓⵙⵏⵎⵀⵍ.",
+      "backtranslation": "Enter a file name without / or backslash or control characters.",
+      "context_and_review_note": "Exact-base SaveOptionsDialog.kt:36–38 rejects /, backslash and Kotlin isISOControl(), in addition to blank, . and .. stems. The error appears at :194 before confirmation. Both separators are explicitly represented; the resource value contains two literal backslashes, correctly escaped for one displayed backslash in Android. No placeholders or length limit were added. However, iskkiln n usnmhl is a plausible literal management/control construction, not confidently established or independently understood here as the specific technical control-character class. Hold this P0 phrase rather than certify it or substitute only newline/tab (too narrow), all invisible characters (too broad), all special symbols or all punctuation (both wrong). The remaining sentence is understandable; no concrete confident lexical repair found. Keep draft value solely for further targeted terminology review, not integration.",
+      "status": "hold_technical_terminology",
+      "integration_ready": false
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_untitled",
+      "tier": "P1",
+      "english": "Untitled",
+      "value": "ⵡⴰⵔ ⴰⵣⵡⵍ",
+      "backtranslation": "Untitled",
+      "context_and_review_note": "Retained war azwl, a concise titleless/without-title construction. SaveOptionsDialog.kt:57 uses this when initialFilename is blank and passes it to ExportNames.withExtension. It is a nonempty filename stem with no slash, backslash or ISO controls; it is neither an empty filename nor a warning or a command. The selected-format extension is appended independently and unchanged. No grammatical rewrite needed.",
+      "status": "independently_reviewed_retained",
+      "integration_ready": true
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained_and_ready": 1,
+    "held": 1,
+    "ready_keys": [
+      "ui_untitled"
+    ],
+    "held_keys": [
+      "save20_invalid_name"
+    ],
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, placeholder parity, Android escaping; doubled resource backslash; Untitled passes separator/control/blank-stem rules",
+    "remaining_uncertainty": "Specific Standard Moroccan technical term for ISO control characters requires targeted resolution before integrating save20_invalid_name. No native certification or rendered test.",
+    "repository_edits": false
+  }
+}
