@@ -1,0 +1,50 @@
+{
+  "base": "10998b451fe6579717175d2319e12796813068bc",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base renderer review. All three translations retained after checking the complete selector, not inferred from English alone. Model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_outline",
+      "tier": "P1",
+      "english": "Outline",
+      "value": "ⵉⵔⵉ ⵖⴰⵙ",
+      "backtranslation": "Border only",
+      "context_and_review_note": "Retained iri (edge/border) plus ghas (only): a short nominal label appropriate to the contour of a shape, not an instruction to crop canvas edges. Exact-base ClassicPaintActivity.kt:789–790 offers this at shapeStyle index 0 for rectangle, polygon, ellipse, rounded rectangle, heart, star and arrow. PaintDocument.kt:272–282 draws foreground STROKE only and does not clear or fill the interior. No transparency promise is introduced; the previous interior pixels remain.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_solid_fill",
+      "tier": "P1",
+      "english": "Solid fill",
+      "value": "ⴰⴽⵜⵓⵔ ⵙ ⵢⴰⵏ ⵓⴽⵍⵓ",
+      "backtranslation": "Fill with one colour",
+      "context_and_review_note": "Retained aktur s yan uklu (fill with one colour): nominal filling plus preposition s and attached-state colour uklu after yan. This describes a uniform selected-colour fill, not hardness or opacity. At selector index 1, PaintDocument.kt:274–277 draws the shape path with foreground FILL; :279 skips STROKE. In this three-way selector its contrast with Border only and Fill + border is adequate. It does not claim that background/foreground must differ, and does not refer to bucket fill or whole-document flood fill. Antialiasing and any selected colour alpha remain renderer properties, not contradicted by this label.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_fill_line",
+      "tier": "P2",
+      "english": "Fill + line",
+      "value": "ⴰⴽⵜⵓⵔ + ⵉⵔⵉ",
+      "backtranslation": "Fill + border",
+      "context_and_review_note": "Retained Fill + border: iri intentionally means the outline around the shape rather than a separate straight line. Selector index 2 uses background FILL at PaintDocument.kt:276 and foreground STROKE at :280. This preserves both operations without falsely promising two distinct colours, a transparent interior, or flood fill. Its P2 tier remains unchanged: companion of the two P1 choices, not promoted to P1.",
+      "status": "independently_reviewed_retained"
+    }
+  ],
+  "review_summary": {
+    "revised": 0,
+    "retained": 3,
+    "tiers": {
+      "P1": 2,
+      "P2": 1
+    },
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or removed, Android escaping and formatting",
+    "renderer_semantics": "0: foreground stroke only; 1: foreground fill only; 2: background fill plus foreground stroke. Choice is for shape tools, not bucket fill.",
+    "remaining_uncertainty": "No native-speaker certification or rendered layout test. No concrete grammatical or semantic error found requiring a rewrite.",
+    "repository_edits": false
+  }
+}
