@@ -1,0 +1,26 @@
+{
+  "base": "f6a8291b61e9cdaea22965d3175b2430b3ef838d",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base admission/formatting review. Clarified the MP-denominated limit; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_d_d_pixels_2f_mp_exceeds_the_current",
+      "tier": "P0",
+      "english": "%1$d × %2$d pixels (%3$.2f MP) exceeds the current safe editing budget of %4$.2f MP. AN Paint keeps the complete image in memory and reserves space for transforms and selections. Available memory determines this budget. The operation was stopped before allocating the oversized bitmap. No automatic resizing was applied.",
+      "value": "%1$d × %2$d ⵏ ⵉⴷ ⴱⵉⴽⵙⵍ (%3$.2f MP): ⵓⴳⴳⴰⵔ ⵏ ⵜⵉⵍⵉⵙⵜ ⵉ ⵓⵙⵏⴼⵍ ⵙ ⵜⵏⴼⵔⵓⵜ ⴷⵖⵉ (%4$.2f MP). AN Paint ⴷⴰ ⵉⵃⵟⵟⵓ ⵜⴰⵡⵍⴰⴼⵜ ⴰⴽⴽⵯ ⴳ RAM, ⴷⴰ ⵉⵃⵟⵟⵓ ⴽⵔⴰ ⵏ RAM ⵉ ⵉⵙⵏⴼⵍⵏ ⴷ ⵉⵙⵜⵉⵢⵏ. ⵜⵉⵍⵉⵙⵜ ⴰ ⵜⵇⵇⵏ ⵙ ⵜⵉⴷⴷⵉ ⵏ RAM ⵉⵙⴰⴳⴰⵏ. ⵜⴱⵉⴷⴷ ⵜⵎⵀⵍⵜ ⴷⴰⵜ ⴰⴷ ⵉⵙⵙⴰⴳⴰ AN Paint RAM ⵉ ⵜⵡⵍⴰⴼⵜ ⵜⴰⵎⵇⵔⴰⵏⵜ. ⵓⵔ ⵉⵙⵏⴼⵍ AN Paint ⵜⵉⴷⴷⵉ ⵙ ⵓⵡⵔⵎⴰⵏ.",
+      "backtranslation": "%1$d × %2$d pixels (%3$.2f MP): more than the current limit for safe editing (%4$.2f MP). AN Paint keeps the whole image in RAM and reserves some RAM for transformations and selections. This limit depends on the amount of available RAM. The operation stopped before AN Paint allocated RAM for the large image. AN Paint did not automatically change the size.",
+      "context_and_review_note": "Removed of RAM from the first limit phrase so the displayed %4$.2f MP is clearly an editing pixel-budget limit, not a quantity of RAM expressed in megapixels. The following sentences still explicitly explain full-image RAM, reserved working RAM, and dependence on available RAM. Retained hḍḍu as keep/set aside in the explicit RAM object context, not saving a file; transforms and selections remain plural. The stopped operation and no-automatic-size-change sentences do not promise eventual allocation success or that all smaller sizes fit. ImageMemoryPolicy.kt:42–47 multiplies width*height as Long, rejects strictly pixels>permitted, and supplies width, height, actual MP and permitted MP in exactly that order. maxPixels subtracts resident bytes, budgets 12 bytes per pixel and caps the integer-bitmap limit; calculate also respects heap/system allowances and reserves. Available RAM influences the budget but is not its sole numeric cap. PaintDocument.kt:154–157 calls allocationGuard before createBitmap. No claim of source-file deletion, automatic resizing, indefinite recoverability or successful bitmap creation is introduced. Four positional placeholders and both two-decimal MP precisions are unchanged.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 0,
+    "tier": "1 P0",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, four exact positional placeholders and precision, Android escaping and formatting",
+    "remaining_uncertainty": "Model linguistic review, not native certification. Allocation/reservation use contextual RAM paraphrases; no rendered, allocation-failure or runtime guard tests.",
+    "repository_edits": false
+  }
+}

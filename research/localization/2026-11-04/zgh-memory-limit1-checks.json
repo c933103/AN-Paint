@@ -1,0 +1,47 @@
+{
+  "base": "f6a8291b61e9cdaea22965d3175b2430b3ef838d",
+  "accepted_additions": 1,
+  "unchanged_nodes": 317,
+  "coverage": {
+    "P0": {
+      "before_missing": 10,
+      "after_missing": 9,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 25,
+      "after_missing": 25,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 296,
+      "after_missing": 296,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 69,
+      "after_missing": 69,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "One missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Four positional placeholders including two decimal MP precision retained",
+    "MP describes editing pixel budget; RAM reserve and available-RAM dependence retained",
+    "Strict pixel admission check precedes bitmap allocation; no auto-resize claim"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation",
+    "No runtime allocation/guard or failure-injection tests",
+    "RAM allocation/reservation terminology is contextual; rendering untested"
+  ]
+}
