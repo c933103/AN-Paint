@@ -1,0 +1,46 @@
+{
+  "base": "2d16a992a629ecccbc6f490d1bcf757080728d25",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct translation and exact-base PlatformImageColour caller review. Revised non-import outcome to active wording for clear agreement; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "colour_invalid_metadata",
+      "tier": "P1",
+      "english": "The image has invalid or unsupported colour metadata.",
+      "value": "ⵉⵙⴼⴽⴰ ⵅⴼ ⵉⴽⵍⴰⵏ ⵏ ⵜⵡⵍⴰⴼⵜ ⵓⵔ ⵚⵃⵉⵏ, ⵏⵖ ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵜⵏ ⵉⵙⵎⵔⵙ.",
+      "backtranslation": "The data about the image colours is invalid, or AN Paint cannot use it.",
+      "context_and_review_note": "Retained the explicit invalid OR cannot-use alternatives. PlatformImageColour.kt:98 is the common invalid/unsupported metadata failure; :117 wraps an IOException from the legacy metadata check. isfka is plural, ur ṣḥin is the negative plural predicate, and tn refers back to plural data. AN Paint cannot use it is a functional unsupported rendering, not a claim that colours themselves are invalid. Metadata is descriptively data about the image colours; no new failure cause or repair advice is added.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "colour_truncated_metadata",
+      "tier": "P1",
+      "english": "The image ends inside its colour metadata.",
+      "value": "ⵉⵙⴼⴽⴰ ⵅⴼ ⵉⴽⵍⴰⵏ ⵏ ⵜⵡⵍⴰⴼⵜ ⵓⵔ ⵎⵎⵉⴷⵏ ⴳ ⵓⴼⴰⵢⵍⵓ.",
+      "backtranslation": "The data about the image colours is incomplete in the file.",
+      "context_and_review_note": "Retained incomplete colour data in the file as a plain-language paraphrase distinct from invalid/unsupported metadata. PlatformImageColour.kt:72 throws when copyUntil receives EOF before its requested endpoint. The message does not describe visibly truncated image pixels or a conversion failure. mmidn is a plural complete predicate under negation. The English file-ending mechanism is simplified to the directly relevant incomplete-in-file condition rather than inventing a specialized truncation term.",
+      "status": "independently_reviewed_retained"
+    },
+    {
+      "locale": "zgh",
+      "key": "colour_converter_unavailable",
+      "tier": "P1",
+      "english": "The image colour converter could not start. The image was not imported.",
+      "value": "AN Paint ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵉⵙⵙⵏⵜⵉ ⴰⵙⵏⴼⵍ ⵏ ⵉⴽⵍⴰⵏ ⵏ ⵜⵡⵍⴰⴼⵜ. ⵓⵔ ⵉⵙⵙⴽⵛⵎ ⵜⴰⵡⵍⴰⴼⵜ.",
+      "backtranslation": "AN Paint could not start converting the image colours. It did not import the image.",
+      "context_and_review_note": "Revised the second sentence to active AN Paint did not import the image, avoiding the draft passive verb form and making the actor agree unambiguously. The first sentence retains inability to start image-colour conversion, rather than implying conversion completed with wrong colours. PlatformImageColour.kt:45–58 catches LinkageError around native CICP, ICC or PNG colour conversion and throws this error; it does not fall back to unconverted pixels. asnfl is a contextual conversion/change paraphrase, not a user command to edit colours. No source-file mutation, save success, missing metadata, or unsupported profile diagnosis is asserted.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 1,
+    "retained": 2,
+    "tier": "3 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or removed, Android escaping and formatting",
+    "remaining_uncertainty": "Metadata and conversion are descriptive contextual paraphrases, not native-certified specialist terminology. No rendered layout or runtime tests.",
+    "repository_edits": false
+  }
+}

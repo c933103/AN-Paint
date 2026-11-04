@@ -1,0 +1,45 @@
+{
+  "base": "2d16a992a629ecccbc6f490d1bcf757080728d25",
+  "accepted_additions": 3,
+  "unchanged_nodes": 250,
+  "coverage": {
+    "P0": {
+      "before_missing": 18,
+      "after_missing": 18,
+      "total": 92
+    },
+    "P1": {
+      "before_missing": 78,
+      "after_missing": 75,
+      "total": 249
+    },
+    "P2": {
+      "before_missing": 300,
+      "after_missing": 300,
+      "total": 305
+    },
+    "P3": {
+      "before_missing": 71,
+      "after_missing": 71,
+      "total": 71
+    }
+  },
+  "passed": [
+    "XML parse and unique keys",
+    "Three missing-only accepted additions",
+    "All pre-existing bytes and nodes unchanged",
+    "Reviewed values and source English matched",
+    "Source attributes retained",
+    "Android escaping and format syntax",
+    "Placeholder parity",
+    "NFC and Tifinagh letters",
+    "Invalid or unsupported metadata distinct from incomplete file metadata",
+    "Converter startup failure retains explicit image-not-imported outcome",
+    "Exact-head PlatformImageColour checked: LinkageError conversion guard, early EOF and invalid metadata paths"
+  ],
+  "limitations": [
+    "Independent model review, not native-speaker certification",
+    "No Android build or hosted CI run",
+    "No device rendering or accessibility validation"
+  ]
+}
