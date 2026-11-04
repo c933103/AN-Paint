@@ -1,0 +1,36 @@
+{
+  "base": "c055c050ef9ac93d90fba9096373ecc6d7082117",
+  "status": "INDEPENDENT REVIEW COMPLETE; NO BRANCH EDITS",
+  "method": "Independent direct linguistic and exact-base resize/native-work review. Restored explicit safe-budget qualifier and clarified active decoding/agreement; model-reviewed, not native-certified.",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_the_full_image_and_working_buffers_exceed_the",
+      "tier": "P1",
+      "english": "The full image and working buffers exceed the current safe budget, or Android could not allocate them. Resize a copy to edit it. Your original file will stay unchanged.",
+      "value": "RAM ⵉⵇⵇⴰⵏⵏ ⵉ ⵜⵡⵍⴰⴼⵜ ⴰⴽⴽⵯ ⴷ ⵜⵡⵓⵔⵉ ⵅⴼⵙ ⵉⴳⴰ ⵓⴳⴳⴰⵔ ⵏ ⵜⵉⵍⵉⵙⵜ ⵏ RAM ⵉ ⵓⵙⵏⴼⵍ ⵙ ⵜⵏⴼⵔⵓⵜ ⴷⵖⵉ, ⵏⵖ Android ⵓⵔ ⵉⵣⵎⵉⵔ ⴰⴷ ⵜ ⵉⵙⵙⴰⴳⴰ. ⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ ⵏ ⵜⵓⵏⵖⵉⵍⵜ ⵃⵎⴰ ⴰⴷ ⵜⵜ ⵜⵙⵏⴼⵍⴷ. ⴰⴼⴰⵢⵍⵓ ⴰⵏⴰⵚⵍⵉ ⵏⵏⴽ ⵔⴰⴷ ⵉⵇⵇⵉⵎ ⵎⴽⵏⵏⴰ ⵉⴳⴰ.",
+      "backtranslation": "The RAM needed for the whole image and working on it exceeds the current safe-editing RAM limit, or Android could not make it available. Resize the copy so you can edit it. Your original file will remain as it is.",
+      "context_and_review_note": "Added safely to current editing RAM limit, preserving the source safe-budget qualifier explicitly. Retained the OR between exceeding the policy allowance and Android being unable to make the needed RAM available: no assumption that every actual allocation failure was predicted by the estimate. ImageResizeDialog.kt:27 is the reason label; ImageImport.kt:148 onward uses separate decoded/output bitmaps and does not write the original source file. The copy is resized for editing; original unchanged is scoped to this import/resize operation, not later explicit Save actions or perpetual file retention. RAM for the full image and work on it is a functional buffers paraphrase, not storage bytes. No eventual resize-success guarantee is introduced.",
+      "status": "independently_reviewed_revised"
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_codec_resize_memory_floor",
+      "tier": "P1",
+      "english": "This format must decode its source image or source tiles before resizing. A smaller output may still exceed available memory.",
+      "value": "ⴳ ⵓⵏⴰⵡ ⴰ ⵏ ⵓⴼⴰⵢⵍⵓ, ⵉⵇⵇⴰⵏ ⴰⴷ ⵉⵙⵏⴼⵍ AN Paint ⵜⴰⵡⵍⴰⴼⵜ ⵜⴰⵏⴰⵚⵍⵉⵜ ⵏⵖ ⵉⵎⵓⵔⵙⵏ ⵏⵏⵙ ⵖⵔ ⵉⴷ ⴱⵉⴽⵙⵍ ⴷⴰⵜ ⴰⴷ ⵉⵙⵏⴼⵍ ⵜⵉⴷⴷⵉ. ⵉⵣⵎⵔ ⴰⴷ ⵓⵔ ⵜⵉⵡⴷⵉ ⵜⵉⴷⴷⵉ ⵏ RAM ⵉⵙⴰⴳⴰⵏ, ⵓⵍⴰ ⵙ ⵜⵓⵏⵖⵉⵍⵜ ⵏ ⵓⵙⵙⵓⴼⵖ ⵉⵎⵥⵉⵏ ⵅⴼ ⵜⴰ.",
+      "backtranslation": "For this file format, AN Paint must convert the source image or its parts to pixels before resizing. The amount of available RAM may still be insufficient, even with a smaller output copy.",
+      "context_and_review_note": "Replaced ambiguous feminine/plural passive coordination with active AN Paint must convert the source image OR its parts to pixels before changing size. This keeps decoding before resizing and avoids claiming the entire source is always decoded. parts is a functional source-tile paraphrase, not a statement about separately stored files. Made the insufficiency subject explicitly the amount of available RAM so feminine tiwdi has a clear feminine tiddi referent; may remains intact, as does even a smaller output copy. ImageResizeDialog.kt:34 selects this only when hasNativeWork. ImageImport.kt:66–78 includes nativeBytesAtOnePixel plus target-dependent work and :92–99 checks the 1×1 plan. This differs from the sampled-platform explanation: reducing output can help but may not remove the source/tile memory floor. No universal failure, compressed-file-size claim or automatic source rewriting is asserted.",
+      "status": "independently_reviewed_revised"
+    }
+  ],
+  "review_summary": {
+    "revised": 2,
+    "retained": 0,
+    "tier": "2 P1",
+    "exact_callers_verified": true,
+    "structural_checks": "PASS: NFC, no placeholders introduced or lost, Android escaping and formatting",
+    "remaining_uncertainty": "Buffers, decoding and tiles use functional descriptive paraphrases, not native-certified technical terminology. No rendered, allocation-failure or source-preservation runtime tests.",
+    "repository_edits": false
+  }
+}
