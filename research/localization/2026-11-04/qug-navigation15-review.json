@@ -1,0 +1,385 @@
+{
+  "base_head": "aea5f8bf1f6177d84cb6037986fde9bda5ea1c81",
+  "path": "Paintroid/src/main/res/values-b+qug/strings.xml",
+  "status": "15 independently retained P1 additions and four atomic navigation updates selected for integration; six held entries excluded",
+  "entries": [
+    {
+      "key": "ui_airbrush",
+      "tier": "P1",
+      "english": "Airbrush",
+      "kichwa": "Wayrawan tullpuna",
+      "android_value": "Wayrawan tullpuna",
+      "attributes": {
+        "name": "ui_airbrush"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "PaintDocument.kt",
+          "line": 24,
+          "code": "SPRAY(R.string.ui_airbrush, R.string.ui_hold_or_drag_to_spray_colour),",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L24"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain authored air-painting paraphrase for spray tool. Acceptable contextual name, not an attested regional technical term."
+    },
+    {
+      "key": "ui_drawing_canvas_pinch_and_move_two_fingers_to",
+      "tier": "P1",
+      "english": "Drawing canvas. Pinch and move two fingers to zoom and pan. Navigate mode also pans with one finger.",
+      "kichwa": "Shuyuna kiti. Ishkay rukakunata tantachishpa mana kashpaka karuyachishpa rikuna tuputa tikrachiy; ishkay rukakunawan aysashpa rikuna kitita kuyuchiy. “Rikuna kitita kuyuchina” akllashkapika shuk rukawanpash aysayta ushanki.",
+      "android_value": "Shuyuna kiti. Ishkay rukakunata tantachishpa mana kashpaka karuyachishpa rikuna tuputa tikrachiy; ishkay rukakunawan aysashpa rikuna kitita kuyuchiy. “Rikuna kitita kuyuchina” akllashkapika shuk rukawanpash aysayta ushanki.",
+      "attributes": {
+        "name": "ui_drawing_canvas_pinch_and_move_two_fingers_to"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "PaintCanvas.kt",
+          "line": 148,
+          "code": "contentDescription = ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintCanvas.kt#L148"
+        },
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 271,
+          "code": "paintCanvas.contentDescription=ui(R.string.ui_drawing_canvas_pinch_and_move_two_fingers_to)",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L271"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain. Explicitly distinguishes fingers together/apart for zoom from dragging for view panning. Navigate quotation exactly matches proposed ui_navigate."
+    },
+    {
+      "key": "ui_edit_canvas33",
+      "tier": "P1",
+      "english": "Canvas",
+      "kichwa": "Shuyuna kiti",
+      "android_value": "Shuyuna kiti",
+      "attributes": {
+        "name": "ui_edit_canvas33"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 76,
+          "code": "CANVAS(R.string.ui_edit_canvas33,R.drawable.classic_canvas_size,listOf(1,3,5,10,11)),",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L76"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain authored UI wording; source meaning and related labels are consistent."
+    },
+    {
+      "key": "ui_ellipse",
+      "tier": "P1",
+      "english": "Ellipse",
+      "kichwa": "Elipse",
+      "android_value": "Elipse",
+      "attributes": {
+        "name": "ui_ellipse"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "PaintDocument.kt",
+          "line": 30,
+          "code": "ELLIPSE(R.string.ui_ellipse, R.string.ui_drag_across_the_ellipse_s_bounding_box),",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L30"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain the explicitly identified Spanish mathematical loan Elipse. More geometrically exact than an unsourced oval/long-circle paraphrase; no claim of regional Kichwa attestation."
+    },
+    {
+      "key": "ui_fit_image",
+      "tier": "P1",
+      "english": "Fit image",
+      "kichwa": "Shuyuta paktachina",
+      "android_value": "Shuyuta paktachina",
+      "attributes": {
+        "name": "ui_fit_image"
+      },
+      "uncertainty": null,
+      "caller_evidence": [],
+      "review_decision": "retain",
+      "review_note": "Retain generic image fitting without inventing destination or pixel-resampling behavior. Caller context remains unverified, not a linguistic blocker.",
+      "caller_limit": "No direct resource reference located in supplied source subset; no live-placement claim."
+    },
+    {
+      "key": "ui_load_image",
+      "tier": "P1",
+      "english": "Load image…",
+      "kichwa": "Shuyuta paskana…",
+      "android_value": "Shuyuta paskana…",
+      "attributes": {
+        "name": "ui_load_image"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 838,
+          "code": "ui(R.string.ui_load_image) to {confirmReplacement {launchOpen(false)}},",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L838"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain authored UI wording; source meaning and related labels are consistent."
+    },
+    {
+      "key": "ui_menu",
+      "tier": "P1",
+      "english": "Menu",
+      "kichwa": "Akllanakuna",
+      "android_value": "Akllanakuna",
+      "attributes": {
+        "name": "ui_menu"
+      },
+      "uncertainty": null,
+      "caller_evidence": [],
+      "review_decision": "retain",
+      "review_note": "Retain authored UI wording; source meaning and related labels are consistent.",
+      "caller_limit": "No direct resource reference located in supplied source subset; no live-placement claim."
+    },
+    {
+      "key": "ui_menu_file",
+      "tier": "P1",
+      "english": "File",
+      "kichwa": "Wakaychishkakuna",
+      "android_value": "Wakaychishkakuna",
+      "attributes": {
+        "name": "ui_menu_file"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 830,
+          "code": "\"Draw\"->R.string.ui_draw26;\"File\"->R.string.ui_menu_file;\"Edit\"->R.string.ui_menu_edit",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L830"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain Wakaychishkakuna as authored File-menu name. All four dependent navigation edits must ship atomically."
+    },
+    {
+      "key": "ui_navigate",
+      "tier": "P1",
+      "english": "Navigate",
+      "kichwa": "Rikuna kitita kuyuchina",
+      "android_value": "Rikuna kitita kuyuchina",
+      "attributes": {
+        "name": "ui_navigate"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "PaintDocument.kt",
+          "line": 20,
+          "code": "ZOOM(R.string.ui_navigate, R.string.ui_drag_to_pan_without_drawing_pinch_with_two),",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L20"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain movement-of-view label together with companion text. Source confirms two-finger zoom and pan and single-finger pan in this mode."
+    },
+    {
+      "key": "ui_pinch_and_pan_mode",
+      "tier": "P1",
+      "english": "Pinch and pan mode",
+      "kichwa": "Ishkay rukakunawan rikuna tuputa tikrachina, rikuna kitita kuyuchina",
+      "android_value": "Ishkay rukakunawan rikuna tuputa tikrachina, rikuna kitita kuyuchina",
+      "attributes": {
+        "name": "ui_pinch_and_pan_mode"
+      },
+      "uncertainty": null,
+      "caller_evidence": [],
+      "review_decision": "retain",
+      "review_note": "Retain authored UI wording; source meaning and related labels are consistent.",
+      "caller_limit": "No direct resource reference located in supplied source subset; no live-placement claim."
+    },
+    {
+      "key": "ui_polygon",
+      "tier": "P1",
+      "english": "Polygon",
+      "kichwa": "Achka manyayuk rikchay",
+      "android_value": "Achka manyayuk rikchay",
+      "attributes": {
+        "name": "ui_polygon"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "PaintDocument.kt",
+          "line": 29,
+          "code": "POLYGON(R.string.ui_polygon, R.string.ui_tap_vertices_then_double_tap_the_last_vertex),",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L29"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain many-sided shape paraphrase. Actual tool joins successive vertices; wording identifies the shape rather than promising a regular polygon."
+    },
+    {
+      "key": "ui_resize_image",
+      "tier": "P1",
+      "english": "Resize image…",
+      "kichwa": "Shuyupa tuputa tikrachina…",
+      "android_value": "Shuyupa tuputa tikrachina…",
+      "attributes": {
+        "name": "ui_resize_image"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 853,
+          "code": "command(ui(R.string.ui_resize_image),R.drawable.classic_resize) {dimensionsDialog(true,false)},",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L853"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain authored UI wording; source meaning and related labels are consistent."
+    },
+    {
+      "key": "ui_resize_image_ab28be",
+      "tier": "P1",
+      "english": "Resize image",
+      "kichwa": "Shuyupa tuputa tikrachina",
+      "android_value": "Shuyupa tuputa tikrachina",
+      "attributes": {
+        "name": "ui_resize_image_ab28be"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "ClassicPaintActivity.kt",
+          "line": 1018,
+          "code": "val dialog = EditorDialogBuilder(this).setTitle(if (fresh) ui(R.string.ui_new_image) else if (stretch) ui(R.string.ui_resize_image_ab28be) else ui(R.string.ui_canvas_size_30460e)).setView(ScrollView(this).apply { addView(column) }).setNegativeButton(ui(R.string.ui_cancel), null).setPositiveButton(ui(R.string.ui_apply), null).create()",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/ClassicPaintActivity.kt#L1018"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain authored UI wording; source meaning and related labels are consistent."
+    },
+    {
+      "key": "ui_undo",
+      "tier": "P1",
+      "english": "Undo",
+      "kichwa": "Ñawpak rurayman kutichina",
+      "android_value": "Ñawpak rurayman kutichina",
+      "attributes": {
+        "name": "ui_undo"
+      },
+      "uncertainty": null,
+      "caller_evidence": [],
+      "review_decision": "retain",
+      "review_note": "Retain previous-operation wording versus Kutin rurana for Redo. ClassicPaintActivity undoEdit cancels pending geometry before document.undo. Display-label wiring is not present in supplied sources: toolbar uses EditIcon.UNDO.",
+      "caller_limit": "No direct resource reference located in supplied source subset; no live-placement claim."
+    },
+    {
+      "key": "ui_watercolor",
+      "tier": "P1",
+      "english": "Watercolor",
+      "kichwa": "Yaku tullpu",
+      "android_value": "Yaku tullpu",
+      "attributes": {
+        "name": "ui_watercolor"
+      },
+      "uncertainty": null,
+      "caller_evidence": [
+        {
+          "file": "PaintDocument.kt",
+          "line": 23,
+          "code": "WATERCOLOR(R.string.ui_watercolor, R.string.ui_draw_soft_watercolor_strokes_strength_controls_how_strongly),",
+          "url": "https://github.com/c933103/AN-Paint/blob/aea5f8bf1f6177d84cb6037986fde9bda5ea1c81/Paintroid/src/main/java/org/catrobat/paintroid/classic/PaintDocument.kt#L23"
+        }
+      ],
+      "review_decision": "retain",
+      "review_note": "Retain descriptive water-colour compound as simulated brush name; no physical-water implication in this context."
+    }
+  ],
+  "dependent_edits": [
+    {
+      "key": "ui_autosave_is_paused_to_protect_that_draft_use",
+      "old_value": "%1$s Kanpa ñawpak rurayta wakaychinkapak, AN Paint kunan mana payllatak shuyuta wakaychinchu. Kanpa ñawpak rurayta wakaychinkapak, “File → ZIP: Ñawpak rurayta kutichinkapak wakaychina…” nishkata akllay. Kanpa kunan rurayta wakaychinkapak, “File → Imashina wakaychinata akllana…” nishkata akllay (PNG / JPEG).",
+      "android_value": "%1$s Kanpa ñawpak rurayta wakaychinkapak, AN Paint kunan mana payllatak shuyuta wakaychinchu. Kanpa ñawpak rurayta wakaychinkapak, “Wakaychishkakuna → ZIP: Ñawpak rurayta kutichinkapak wakaychina…” nishkata akllay. Kanpa kunan rurayta wakaychinkapak, “Wakaychishkakuna → Imashina wakaychinata akllana…” nishkata akllay (PNG / JPEG).",
+      "attributes": {
+        "name": "ui_autosave_is_paused_to_protect_that_draft_use"
+      },
+      "reason": "Only quoted existing navigation/action references updated to the new localized labels; remaining meaning unchanged.",
+      "review_decision": "retain_atomic_with_navigation_labels"
+    },
+    {
+      "key": "ui_a_separate_recovery_copy_has_been_kept_use",
+      "old_value": "%1$s AN Paint kanpa ñawpak rurayta kutichinkapak chikan wakaychirka. “File → ZIP: Ñawpak rurayta kutichinkapak wakaychina…” nishkata akllay. ZIP ukumanta canvas.png nishka shuyuta surkuy. Chay shuyuta paskankapak “File → Load image…” nishkata akllay. Mutsurikpi, “Allichina → Canvas → Resize image…” nishkata akllay.",
+      "android_value": "%1$s AN Paint kanpa ñawpak rurayta kutichinkapak chikan wakaychirka. “Wakaychishkakuna → ZIP: Ñawpak rurayta kutichinkapak wakaychina…” nishkata akllay. ZIP ukumanta canvas.png nishka shuyuta surkuy. Chay shuyuta paskankapak “Wakaychishkakuna → Shuyuta paskana…” nishkata akllay. Mutsurikpi, “Allichina → Shuyuna kiti → Shuyupa tuputa tikrachina…” nishkata akllay.",
+      "attributes": {
+        "name": "ui_a_separate_recovery_copy_has_been_kept_use"
+      },
+      "reason": "Only quoted existing navigation/action references updated to the new localized labels; remaining meaning unchanged.",
+      "review_decision": "retain_atomic_with_navigation_labels"
+    },
+    {
+      "key": "ui_recovery_copy_exported_extract_canvas_png_from_the",
+      "old_value": "Ñawpak rurayta kutichinkapak ZIP-ta wakaychirka. ZIP ukumanta canvas.png-ta surkuy; “File → Load image…” nishkawan paskay. ZIP ukupi ruraypa akllashkakunapash tiyan. Shuyuman manarak tantachishka akllashka kiti tiyakpika, chaypash ZIP ukupi tiyan.",
+      "android_value": "Ñawpak rurayta kutichinkapak ZIP-ta wakaychirka. ZIP ukumanta canvas.png-ta surkuy; “Wakaychishkakuna → Shuyuta paskana…” nishkawan paskay. ZIP ukupi ruraypa akllashkakunapash tiyan. Shuyuman manarak tantachishka akllashka kiti tiyakpika, chaypash ZIP ukupi tiyan.",
+      "attributes": {
+        "name": "ui_recovery_copy_exported_extract_canvas_png_from_the"
+      },
+      "reason": "Only quoted existing navigation/action references updated to the new localized labels; remaining meaning unchanged.",
+      "review_decision": "retain_atomic_with_navigation_labels"
+    },
+    {
+      "key": "ui_keeps_pixels_at_the_top_left_smaller_canvas",
+      "old_value": "Hawa lluki kuchumanta pixelkunata kikin kitipillapi charin. Shuyuna kitita uchillachishpaka alli mana kashpaka uray manyamanta kanchapi kak pixelkunata anchuchin; “Undo” nishkaka chaykunata kutichin.",
+      "android_value": "Hawa lluki kuchumanta pixelkunata kikin kitipillapi charin. Shuyuna kitita uchillachishpaka alli mana kashpaka uray manyamanta kanchapi kak pixelkunata anchuchin; “Ñawpak rurayman kutichina” nishkaka chaykunata kutichin.",
+      "attributes": {
+        "name": "ui_keeps_pixels_at_the_top_left_smaller_canvas"
+      },
+      "reason": "Only quoted existing navigation/action references updated to the new localized labels; remaining meaning unchanged.",
+      "review_decision": "retain_atomic_with_navigation_labels"
+    }
+  ],
+  "checks": {
+    "base_head": "aea5f8bf1f6177d84cb6037986fde9bda5ea1c81",
+    "accepted_P1_additions": 15,
+    "atomic_navigation_edits": 4,
+    "held": [
+      "ui_main23",
+      "ui_italic",
+      "ui_left_arrow_collapse",
+      "ui_lock_aspect_ratio",
+      "ui_lock_proportions",
+      "ui_scales_the_image_unlock_the_ratio_to_stretch"
+    ],
+    "passed": [
+      "XML parse",
+      "no duplicate keys",
+      "source attributes preserved",
+      "placeholder/literal percent/newline parity",
+      "Android escaping",
+      "all other existing entries unchanged",
+      "six held keys absent",
+      "quoted File/Load/Edit/Canvas/Resize/Undo/Navigate labels match exactly",
+      "canvas.png filenames preserved",
+      "external Android Files/Documents names unchanged"
+    ],
+    "limits": [
+      "Native Chimborazo certification not performed",
+      "Android build/device/layout/CI not run"
+    ],
+    "sha256": "518e0d59188b3059e3875b73ca3cf30784a3dd4cc33150af92b4b07428ee1609"
+  },
+  "independent_review": {
+    "retained_additions": 15,
+    "held_additions": [
+      "ui_main23"
+    ],
+    "retained_dependent_edits": 4,
+    "validation": "Independent XML, attributes, placeholder/newline, filename and only-four-existing-entry-change assertions passed. No Android/device/native-speaker certification.",
+    "original_files_unchanged": true
+  }
+}
