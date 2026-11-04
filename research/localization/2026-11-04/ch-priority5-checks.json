@@ -1,0 +1,55 @@
+{
+  "base": "c2d1e61025f50327e329b8cbe62adc5fd60386b3",
+  "accepted_additions": 5,
+  "preserved_nodes": 333,
+  "deferred": [
+    "ui_bg",
+    "ui_from_device34",
+    "ui_watercolor"
+  ],
+  "coverage": {
+    "P0": {
+      "present": 92,
+      "total": 92,
+      "missing": []
+    },
+    "P1": {
+      "present": 246,
+      "total": 249,
+      "missing": [
+        "ui_bg",
+        "ui_from_device34",
+        "ui_watercolor"
+      ]
+    },
+    "P2": {
+      "present": 0,
+      "total": 305,
+      "missing_count": 305
+    },
+    "P3": {
+      "present": 0,
+      "total": 71,
+      "missing_count": 71
+    }
+  },
+  "passed": [
+    "XML parse",
+    "five unique missing-only keys",
+    "all old bytes and nodes unchanged",
+    "exact reviewed values",
+    "source attributes",
+    "placeholder parity",
+    "Android escaping via exact-base translation_catalogues helper",
+    "format syntax via exact-base helper",
+    "exact quoted navigation label",
+    "three deferred keys remain absent"
+  ],
+  "sha256": "0edc7059e57f03198dd4d8000c9a07499210047ddf920d46e6c141e9b83f15d3",
+  "not_run": [
+    "Android build",
+    "hosted CI",
+    "native-speaker review",
+    "device/font rendering"
+  ]
+}
