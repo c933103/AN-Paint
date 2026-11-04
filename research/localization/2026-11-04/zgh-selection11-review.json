@@ -1,0 +1,183 @@
+{
+  "base": "4d47d730aed3bf6764c87be68fcf6c267a907e88",
+  "locale_blob": "f1f8ea7c5666bb0e6a60b3072882cabd6f53ae29",
+  "english_blob": "aec8c2bd1c545e13c4b6f0b4e7b9a7d34c3b9973",
+  "status": "Independent review complete: 10 retained, 1 navigation correction; no held rows",
+  "rows": [
+    {
+      "locale": "zgh",
+      "key": "ui_cut",
+      "tier": "P1",
+      "english": "Cut",
+      "value": "ⴱⴱⵉ",
+      "backtranslation": "Cut",
+      "review_note": "Clipboard command, not crop or delete; lexical choice corroborated by cached Standard Moroccan Telegram localization.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⴱⴱⵉ",
+      "independent_review_note": "Accept clipboard imperative. Distinct from crop and delete; this label is not claiming the source survives a cut.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_paste",
+      "tier": "P1",
+      "english": "Paste",
+      "value": "ⵙⵍⵖ",
+      "backtranslation": "Paste",
+      "review_note": "Clipboard command. Narrow check corrected initial tentative sntd to slgh, matching cached zgh Telegram/Common Voice usage. Not copy.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵍⵖ",
+      "independent_review_note": "Accept clipboard imperative slgh. Distinct from copy and insertion category; no need for a longer sentence on a command.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_redo",
+      "tier": "P1",
+      "english": "Redo",
+      "value": "ⴰⵍⵙ",
+      "backtranslation": "Redo",
+      "review_note": "Repeat the undone edit. Standard repeat/redo verb; distinct from existing Undo label ssr. Reviewer should check conventional interface usage, not require exact source matching.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⴰⵍⵙ",
+      "independent_review_note": "Accept repeat/redo imperative als in undo-history UI context; does not imply reopening the document or automatic retry.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_paste_hint34",
+      "tier": "P1",
+      "english": "Copy an area or use Draw → Insert → Other images.",
+      "value": "ⵙⵙⵏⵖⵍ ⵢⴰⵜ ⵜⵎⵏⴰⴹⵜ ⵏⵉⵖ ⵙⵎⵔⵙ ⴰⵙⵙⵓⵏⵖ → ⴰⵙⵙⴽⵛⵎ → ⵜⵉⵡⵍⴰⴼⵉⵏ ⵢⴰⴹⵏ.",
+      "backtranslation": "Copy an area or use Drawing → Insertion → Other images.",
+      "review_note": "Preserves alternative actions and exact ordered navigation labels ui_draw26, ui_insert, ui_other_images34. Area noun/annexed form matches accepted ui_select_an_area. Activity :921 displays this when paste cannot proceed.",
+      "status": "accepted_revised",
+      "original_value": "ⵙⵙⵏⵖⵍ ⵢⴰⵜ ⵜⵎⵏⴰⴹⵜ ⵏⵉⵖ ⵙⵎⵔⵙ ⴰⵙⵙⵓⵏⵖ → ⵙⵙⴽⵛⵎ → ⵜⵉⵡⵍⴰⴼⵉⵏ ⵢⴰⴹⵏ.",
+      "independent_review_note": "Correct navigation: exact-base ToolCategoryButton.kt defines INSERT using ui_category_insert, whose accepted noun is asskcm. Draft incorrectly selected imperative ui_insert. Preserve Copy an area OR use navigation and exact displayed Draw/category/Other images labels.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_full_text_copied",
+      "tier": "P1",
+      "english": "Full text copied",
+      "value": "ⵉⵜⵜⵓⵙⵙⵏⵖⵍ ⵓⴹⵕⵉⵙ ⴰⴽⴽⵯ",
+      "backtranslation": "All the text has been copied",
+      "review_note": "Completed passive status, not instruction. Review passive morphology and all-text scope.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵉⵜⵜⵓⵙⵙⵏⵖⵍ ⵓⴹⵕⵉⵙ ⴰⴽⴽⵯ",
+      "independent_review_note": "Accept finite third-person passive ittussnghl, followed by masculine postverbal subject in bound state udris. Final akkw scopes over the full text. This is a completed-status sentence, not an imperative; no need to turn it into a participial adjective.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_done",
+      "tier": "P1",
+      "english": "Done",
+      "value": "ⵙⵎⴷ",
+      "backtranslation": "Finish",
+      "review_note": "Action-button equivalent of Done. Activity :239/:892/:1572 dismisses dialogs; no claim saving occurred. Finish root also used below.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵎⴷ",
+      "independent_review_note": "Accept finish imperative smd for dismissal/completion control. Actual dialogs close at Activity:239/:892/:1572; wording makes no claim that a file was saved.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_apply",
+      "tier": "P1",
+      "english": "Apply",
+      "value": "ⵙⵏⵙ",
+      "backtranslation": "Apply",
+      "review_note": "Imperative application of selected settings; distinct from Finish. Review standard technical imperative. Not a save or confirmation-success claim.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵙⵏⵙ",
+      "independent_review_note": "Accept apply imperative sns; materially distinct from finish smd. Activity:1018 applies canvas/image dimensions through its positive-button listener, not merely dismissing the dialog.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_could_not_complete_the_edit",
+      "tier": "P1",
+      "english": "Could not complete the edit. %1$s",
+      "value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵎⴷ ⴰⵙⵏⴼⵍ. %1$s",
+      "backtranslation": "AN Paint could not complete the edit. %1$s",
+      "review_note": "Uses established negative ability construction. Edit noun from accepted keep-editing label. Preserves trailing diagnostic placeholder, punctuation and failure scope. Activity :181/:939.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵎⴷ ⴰⵙⵏⴼⵍ. %1$s",
+      "independent_review_note": "Accept negative ability construction with explicit application subject, ad + third-person smd, direct object edit. Exact trailing diagnostic placeholder preserved; no data-preservation or rollback guarantee.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_could_not_complete_the_operation",
+      "tier": "P1",
+      "english": "Could not complete the operation.",
+      "value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵎⴷ ⵜⴰⵎⵀⵍⵜ.",
+      "backtranslation": "AN Paint could not complete the operation.",
+      "review_note": "Operation deliberately broader than editing or saving. Review tamhlt as operation in this interface. Activity :1445 credit action also uses it.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵎⴷ ⵜⴰⵎⵀⵍⵜ.",
+      "independent_review_note": "Accept broader operation noun tamhlt rather than edit/save. Exact-base Activity:1445 includes a credit action, so keeping generality matters.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_could_not_place_the_image",
+      "tier": "P1",
+      "english": "Could not place the image.",
+      "value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵔⵙ ⵜⴰⵡⵍⴰⴼⵜ.",
+      "backtranslation": "AN Paint could not place the image.",
+      "review_note": "Place uses srs, consistent with accepted Place text; does not imply failure to decode or save.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵔⵙ ⵜⴰⵡⵍⴰⴼⵜ.",
+      "independent_review_note": "Accept srs place, consistent with established place-text label. Failure is placement, not necessarily decoding, saving or insertion-source availability.",
+      "eligible_for_integration": true
+    },
+    {
+      "locale": "zgh",
+      "key": "ui_could_not_prepare_the_image",
+      "tier": "P1",
+      "english": "Could not prepare the image.",
+      "value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵎⵓⵜⵜⴳ ⵜⴰⵡⵍⴰⴼⵜ.",
+      "backtranslation": "AN Paint could not prepare the image.",
+      "review_note": "Transitive make-ready smuttg, distinct from place. Review causative morphology/idiom; no invented preservation guarantee.",
+      "status": "accepted_by_independent_AI_review",
+      "original_value": "ⵓⵔ ⵉⵣⵎⵉⵔ AN Paint ⴰⴷ ⵉⵙⵎⵓⵜⵜⴳ ⵜⴰⵡⵍⴰⴼⵜ.",
+      "independent_review_note": "Accept transitive smuttg prepare/make ready; ad + ismuttg is coherent third-person form and does not confuse preparation with placement. IRCAM direct PDF fetch returned 502, so do not claim the source was independently inspected in full.",
+      "eligible_for_integration": true
+    }
+  ],
+  "review_evidence": [
+    {
+      "source": "Supplied exact-base ClassicPaintActivity.kt",
+      "scope": "paste failure hint, Done dismissals, Apply dimensions and broad operation failure"
+    },
+    {
+      "source": "https://github.com/c933103/AN-Paint/blob/4d47d730aed3bf6764c87be68fcf6c267a907e88/Paintroid/src/main/java/org/catrobat/paintroid/classic/ToolCategoryButton.kt",
+      "blob": "22167000707d610301bbf1a78dcdec68c6aaaad0",
+      "scope": "INSERT category label is ui_category_insert, not ui_insert"
+    },
+    {
+      "source": "https://www.mmsp.gov.ma/amz/nos-metiers/notation-%C3%A9valuation",
+      "scope": "Directly inspected government text supports administrative operation/preparation terminology, not authored full sentences."
+    }
+  ],
+  "checks": [
+    "11 unique missing P1 keys as draft",
+    "English-source match",
+    "source attributes preserved",
+    "placeholder parity",
+    "Android string escaping and format syntax",
+    "Tifinagh letters apart from application name and placeholder",
+    "NFC",
+    "XML parse",
+    "navigation equals existing localized display labels"
+  ],
+  "limits": [
+    "Independent AI review, not native-speaker certification",
+    "No Android build or device rendering",
+    "No direct full-text-copy or image-place/prepare caller independently found in supplied Activity; reviewed source semantics",
+    "No branch/repository writes"
+  ]
+}
