@@ -219,6 +219,53 @@ class WorkspaceRefinementTest {
         activity.onActivityResult(ClassicPaintActivity.EXPORT_RECOVERY,android.app.Activity.RESULT_OK,Intent().setData(android.net.Uri.fromFile(out)))
         waitIo();assertArrayEquals(original,out.readBytes());assertTrue(store.recoveryCopies().single().isFile)
     }
+    @Test fun unreadableBytesExportSuccessfullyWithoutPromisingUsableArchiveContents() {
+        controller.pause().stop();waitIo();controller.destroy()
+        // Join the final lifecycle write before installing the deliberately invalid draft.
+        val worker=org.robolectric.util.ReflectionHelpers.getField<java.util.concurrent.ExecutorService>(activity,"worker")
+        assertTrue(worker.awaitTermination(10,TimeUnit.SECONDS))
+        val store=AutosaveStore(activity.filesDir)
+        val original="Not a ZIP: preserved previous artwork 作品".toByteArray(Charsets.UTF_8)
+        store.file.writeBytes(original)
+        controller=Robolectric.buildActivity(ClassicPaintActivity::class.java)
+        activity=controller.setup().get();awaitEditorStartup(activity);settle()
+        val copy=store.recoveryCopies().single()
+        assertArrayEquals(original,copy.readBytes())
+        val notice=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+        assertEquals(activity.getString(org.catrobat.paintroid.R.string.ui_recovery_copy_preserved_unverified,
+            activity.getString(org.catrobat.paintroid.R.string.ui_the_previous_draft_could_not_be_restored)),
+            shadowOf(notice).message.toString())
+        assertConditionalRecoveryGuidance(shadowOf(notice).message.toString())
+        notice.dismiss()
+        doc.newImage(20,10);doc.bitmap.eraseColor(Color.MAGENTA);doc.edited();saveIdle()
+        // A repeat export must still copy the preserved bytes, not the newer drawing.
+        repeat(2) { attempt ->
+            EditorTestNavigation.named(activity,"File",activity.getString(org.catrobat.paintroid.R.string.ui_export_recovery_copy))
+            val picker=shadowOf(activity).nextStartedActivityForResult
+            assertEquals(ClassicPaintActivity.EXPORT_RECOVERY,picker.requestCode)
+            val out=File(activity.cacheDir,"unreadable-recovery-$attempt.zip")
+            activity.onActivityResult(picker.requestCode,android.app.Activity.RESULT_OK,
+                Intent().setData(android.net.Uri.fromFile(out)))
+            waitIo()
+            assertNull(activity.lastIoError)
+            assertArrayEquals(original,out.readBytes());assertArrayEquals(original,copy.readBytes())
+            assertEquals(Color.MAGENTA,doc.bitmap.getPixel(2,3))
+            val success=ShadowAlertDialog.getLatestAlertDialog() as AlertDialog
+            assertEquals(activity.getString(org.catrobat.paintroid.R.string.ui_recovery_copy_exported_unverified),
+                shadowOf(success).message.toString())
+            assertConditionalRecoveryGuidance(shadowOf(success).message.toString())
+            success.getButton(AlertDialog.BUTTON_POSITIVE).performClick();settle()
+            assertFalse(success.isShowing)
+        }
+    }
+    private fun assertConditionalRecoveryGuidance(message: String) {
+        // Independent safety boundaries, not a complete approved-wording mirror.
+        assertTrue(message.contains("may be damaged or unreadable"))
+        assertTrue(message.contains("If the exported file opens as a ZIP"))
+        assertTrue(message.contains("contains a readable canvas.png"))
+        assertTrue(message.contains("Keep the exported copy even if it cannot be opened"))
+        assertFalse(message.contains("The ZIP also contains"))
+    }
     @Test fun pinchAndTwoFingerPanLeaveNoMarkAndKeepExistingRedo() {
         click("tool_PENCIL");tapImage(20f,20f);val painted=doc.bitmap.copy(Bitmap.Config.ARGB_8888,false)
         doc.undo();assertTrue(doc.canRedo);assertFalse(doc.canUndo);assertFalse(painted.sameAs(doc.bitmap))

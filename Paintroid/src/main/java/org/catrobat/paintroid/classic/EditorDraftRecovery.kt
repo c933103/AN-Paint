@@ -36,7 +36,7 @@ internal fun recoverEditor(context: Context,autosave: AutosaveStore): AutosaveSt
     fun preserveFailedDraft(reason: String) {
         try {
             autosave.preserveForRecovery(retainOriginal=true)
-            recoveryNotice=ui(R.string.ui_a_separate_recovery_copy_has_been_kept_use,reason)
+            recoveryNotice=ui(R.string.ui_recovery_copy_preserved_unverified,reason)
             draftStatus=ui(R.string.ui_previous_draft_kept_for_recovery)
         } catch(_: Exception) {
             autosaveBlocked=true

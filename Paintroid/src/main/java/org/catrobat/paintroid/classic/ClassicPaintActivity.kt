@@ -1405,7 +1405,7 @@ class ClassicPaintActivity : Activity() {
         worker.execute {
             try {
                 file.inputStream().use { source -> contentResolver.openOutputStream(uri,"wt")?.use { source.copyTo(it) } ?: throw IOException(ui(R.string.ui_this_location_is_not_writable)) }
-                runOnUiThread { if (!isDestroyed) { endIo();message(ui(R.string.ui_recovery_copy_exported_extract_canvas_png_from_the)) } }
+                runOnUiThread { if (!isDestroyed) { endIo();message(ui(R.string.ui_recovery_copy_exported_unverified)) } }
             } catch (e: Exception) { ioFailed(ui(R.string.ui_could_not_export_the_recovery_copy),e) }
         }
     }

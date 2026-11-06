@@ -37,7 +37,7 @@ class TaiwanPriorityWordingTests(unittest.TestCase):
         self.assertEqual(('儲存', '儲存…', '要儲存變更嗎？', '捨棄', '捨棄變更'),
                          tuple(s[k] for k in ('ui_save', 'ui_save_a5d0d9', 'ui_save_your_changes', 'ui_discard', 'ui_discard_changes23')))
 
-    def test_recovery_keeps_exact_route_archive_image_and_retained_data(self):
+    def test_legacy_recovery_data_is_retained_but_current_guidance_uses_new_keys(self):
         s = self.strings
         route = '「' + s['ui_menu_file'] + '」>「' + s['ui_export_recovery_copy'].rstrip('…') + '」'
         self.assertIn(route, s[RECOVERY])
@@ -46,8 +46,12 @@ class TaiwanPriorityWordingTests(unittest.TestCase):
         self.assertIn('「' + s['ui_menu_file'] + '」>「' + s['ui_load_image'].rstrip('…') + '」', s[EXPORTED])
         self.assertTrue(s[EXPORTED].endswith('ZIP 也包含草稿設定及任何浮動選取範圍。'))
         recovery = (CLASSIC / 'EditorDraftRecovery.kt').read_text()
-        self.assertTrue(code_locations(recovery, 'recoveryNotice=ui(R.string.' + RECOVERY + ',reason)'))
-        self.assertTrue(code_locations(self.activity, 'message(ui(R.string.' + EXPORTED + '))'))
+        # Legacy translations stay intact; new conditional guidance uses English
+        # fallback until translated. Real export behavior is in WorkspaceRefinementTest.
+        self.assertFalse(code_locations(recovery, 'recoveryNotice=ui(R.string.' + RECOVERY + ',reason)'))
+        self.assertFalse(code_locations(self.activity, 'message(ui(R.string.' + EXPORTED + '))'))
+        self.assertTrue(code_locations(recovery, 'recoveryNotice=ui(R.string.ui_recovery_copy_preserved_unverified,reason)'))
+        self.assertTrue(code_locations(self.activity, 'message(ui(R.string.ui_recovery_copy_exported_unverified))'))
 
     def test_visible_swatch_and_hex_terms_keep_foreground_background_roles(self):
         self.assertEqual(('前景', '背景', '十六進位 #RRGGBB'),
