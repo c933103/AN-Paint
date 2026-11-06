@@ -237,12 +237,33 @@ class ImportSelectionTitleTest {
         }
     }
 
-    @Test fun incompleteOldEnglishCatalogueRetainsDefaultEnglishFallback() {
-        // nch is offered and has no animation-warning keys; Old English is now partially translated.
+    @Test fun missingAnimationWarningRetainsCanonicalEnglishFallbackAndSelectedControls() {
         language("nch")
-        val file = begin(cappedPng(), AnimationInfo("PNG", 0, false, false))
-        val message = PriorityWordingExpectations.resources("en-GB").getString(R.string.formats22_animation_unknown, "PNG")
-        cancel(warning(PaintApplication.currentResources.getString(R.string.formats22_open_still), message), file)
+        val current = PaintApplication.currentResources
+        val sourceId = current.getIdentifier("anpaint_source_formats22_animation_unknown", "string",
+            current.getResourcePackageName(R.string.formats22_animation_unknown))
+        assertNotEquals("Canonical source must be packaged", 0, sourceId)
+        val message = current.getString(sourceId, "PNG")
+        var missingLookups = 0
+        // Current catalogues supply this key. Inject only its absence, not copied English
+        // or a mock dialog, to keep exercising the real scanner -> ui() fallback -> decision.
+        @Suppress("DEPRECATION")
+        val missing = object: android.content.res.Resources(current.assets, current.displayMetrics, current.configuration) {
+            override fun getString(id: Int): String {
+                if (id == R.string.formats22_animation_unknown) {
+                    missingLookups++
+                    throw NotFoundException("Injected missing animation-warning translation")
+                }
+                return super.getString(id)
+            }
+        }
+        PaintApplication.currentResources = missing
+        try {
+            val file = begin(cappedPng(), AnimationInfo("PNG", 0, false, false))
+            val open = current.getString(R.string.formats22_open_still)
+            cancel(warning(open, message, open), file)
+            assertTrue("The production warning must attempt the missing translation", missingLookups > 0)
+        } finally { PaintApplication.currentResources = current }
     }
 
     @Test fun ordinarySingleFrameInputsStillBypassTheWarning() {

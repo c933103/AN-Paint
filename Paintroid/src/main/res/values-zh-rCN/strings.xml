@@ -188,7 +188,7 @@
     <string name="ui_vertical_rl23">由上而下，栏由右至左</string>
     <string name="ui_vertical_lr23">由上而下，栏由左至右</string>
     <string name="ui_vertical_letters23">直排文字中的字母</string>
-    <string name="ui_vertical_mixed23">自动：汉字直立、单词侧置</string>
+    <string name="ui_vertical_mixed23">自动：CJK直立、单词侧置</string>
     <string name="ui_vertical_sideways23">侧置，保留单词连写</string>
     <string name="ui_vertical_upright23">直立，逐字由上而下</string>
     <string name="ui_top23">靠上对齐</string>
@@ -429,7 +429,7 @@
     <string name="ui_recent_colour_empty">最近使用的颜色 %1$s：空白</string>
     <string name="ui_recovered_image">已复原图片</string>
     <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">已导出恢复副本。请从 ZIP 解压 canvas.png，并使用「文件」&gt;「打开图片」开启。ZIP 也包含草稿设置及任何浮动选择范围。</string>
-    <string name="ui_rendering_images">正在绘制 %1$s / %2$s 张图片…</string>
+    <string name="ui_rendering_images">已处理图片：%1$s / %2$s…</string>
     <string name="ui_reset_crop">重设裁剪</string>
     <string name="ui_reset_to_black_white">重设为黑／白</string>
     <string name="ui_resize_and_load">调整大小并加载</string>
@@ -642,7 +642,7 @@
     <string name="gallery_credit_saved">已保存致谢文字</string>
     <string name="ui_assembly_source_memory_floor">即使采用最小输出尺寸，此拼合的内存用量预计仍会超出当前工作内存预算。在当前限制下，仅缩小拼合尺寸还不够。请关闭其他文件，或先准备较小的来源图片再试。目前拼合内容没有改变。</string>
     <string name="formats22_ico_size">图标大小</string>
-    <string name="formats22_ico_description">以所选大小（16–256 像素）保存一张 PNG 压缩略图标图片。图片会保持宽高比，并置中于透明正方形上。</string>
+    <string name="formats22_ico_description">以所选大小（16–256 像素）保存一张 PNG 压缩图标图片。图片会保持宽高比，并置中于透明正方形上。</string>
     <string name="formats22_ico_decode_budget">解码此图标所需内存超出可用图片内存上限。</string>
     <string name="formats22_ico_dimensions_error">图标图片尺寸与其目录记录不一致。</string>
     <string name="formats22_ico_invalid_size">请选择 16、24、32、48、64、128 或 256 像素的图标大小。</string>
@@ -723,4 +723,7 @@
     <string name="commons_metadata_cache_failed">无法保留 Commons 署名信息</string>
     <string name="commons_download_original_mismatch">Commons 下载已重定向到另一个原始文件。</string>
     <string name="commons_svg_png_encode_failed">无法将空白地图编码为 PNG</string>
+    <!-- Recovery contents are unverified; preserve conditional guidance. -->
+    <string name="ui_recovery_copy_preserved_unverified">%1$s 已保留一份单独的恢复副本。请使用「文件」→「导出恢复副本…」保存它。其内容可能已损坏或无法读取。如果导出的文件可以作为 ZIP 打开，且包含可读取的 canvas.png，请解压出该图片，并通过「文件」→「打开图片…」打开。之后可根据需要调整图片大小。即使无法打开，也请保留导出的副本。</string>
+    <string name="ui_recovery_copy_exported_unverified">已导出恢复副本，未更改其内容。其内容可能已损坏或无法读取。如果导出的文件可以作为 ZIP 打开，且包含可读取的 canvas.png，请解压出该图片，并通过「文件」→「打开图片…」打开。其中也可能包含草稿设置或浮动选择范围，但尚未验证。即使无法打开，也请保留导出的副本。</string>
 </resources>

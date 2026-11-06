@@ -50,9 +50,16 @@ class NumericSlider(context: Context, val name: String, value: Int, val minimum:
     val number=FlowButton(context).apply {columnHeightDp=112}
     private fun dp(n: Int)=(n*resources.displayMetrics.density+.5f).toInt()
     init {
-        orientation=if(VerticalText.uiVertical(context)) HORIZONTAL else VERTICAL;isBaselineAligned=false
+        val vertical=VerticalText.uiVertical(context)
+        orientation=if(vertical) HORIZONTAL else VERTICAL;isBaselineAligned=false
         number.isAllCaps=false;number.textSize=11f;number.setPadding(0,0,0,0);number.minWidth=0;number.minimumWidth=0
-        addView(number,LayoutParams(if(VerticalText.uiVertical(context)) -2 else -1,if(VerticalText.uiVertical(context)) -2 else dp(44)))
+        if(!vertical) {
+            // Keep the full caption and value visible at narrow widths and large fonts.
+            // Short labels retain the minimum touch target; vertical captions keep their own measurement.
+            number.setSingleLine(false);number.maxLines=Int.MAX_VALUE;number.ellipsize=null
+            number.minHeight=dp(44);number.minimumHeight=dp(44)
+        }
+        addView(number,LayoutParams(if(vertical) -2 else -1,LayoutParams.WRAP_CONTENT))
         slider.max=maximum-minimum;slider.progress=value.coerceIn(minimum,maximum)-minimum
         slider.contentDescription=name;addView(slider,LayoutParams(if(VerticalText.uiVertical(context)) dp(100) else -1,dp(44)))
         fun display(n: Int) { number.text=ui(R.string.ui_numeric_slider_value,name,n);number.contentDescription=ui(R.string.ui_tap_to_type_a_number, name, n) }

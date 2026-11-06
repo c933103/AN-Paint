@@ -43,7 +43,7 @@
     <string name="language20_settings">設定</string>
     <string name="language20_app_language">程式語言</string>
     <string name="language20_device_default" formatted="false">從系統之語言</string>
-    <string name="language20_translation_note">此譯用繁體文言。技術名物仍從今名；介面諸文皆載於此語檔。</string>
+    <string name="language20_translation_note">程式之語\n\n譯文載於 AN Paint 之語言資源；新文或未譯之文，以英文示之。此譯用繁體文言。技術名物仍從今名；介面諸文皆載於此語檔。</string>
     <string name="ui_untitled">未題</string>
     <string name="ui_ready">就緒</string>
     <string name="ui_brush">畫筆</string>
@@ -120,7 +120,7 @@
     <string name="ui_vertical_rl23">直書，自右而左</string>
     <string name="ui_vertical_lr23">直書，自左而右</string>
     <string name="ui_vertical_letters23">直書之字向</string>
-    <string name="ui_vertical_mixed23">自定：漢字正立，餘文側置</string>
+    <string name="ui_vertical_mixed23">自動：CJK 字元正立，餘文側置</string>
     <string name="ui_vertical_sideways23">側置，字詞相連</string>
     <string name="ui_vertical_upright23">正立，逐字而下</string>
     <string name="ui_vertical_hint23">換行則另起一欄。側置可全連書之字形，蒙古文亦然。逐字正立時，組合附標及表情符號之序列皆不拆散。</string>
@@ -138,11 +138,11 @@
     <string name="ui_strikethrough">加刪線</string>
     <string name="ui_preview">預覽</string>
     <string name="ui_size_pixels">字大（像素）</string>
-    <string name="ui_line_spacing">行距</string>
+    <string name="ui_line_spacing" formatted="false">行距（%）</string>
     <string name="save20_file_name">檔名</string>
     <string name="save20_file_format">格式</string>
     <string name="ui_choose_location">擇存處</string>
-    <string name="ui_help23">擇頁籤以示其控件。「檢視」以「移圖縮放」為首；「繪圖」含「筆刷」、「選取」及「置入」。「移圖縮放」可移視而不留筆跡，雙指可縮放。頁籤旁之箭可收面板。諸工具皆有名。「編修」可改選區、畫布邊界、尺寸及圖像。「色彩」可擇前後景色；「互易前後色」易兩色，「黑／白」復其初。擇色即示其效；「用此色」則定，「罷此舉」則復舊。「添色」或點空色位，可擇色而存。久按已存之色，可編修或刪去。「進階」於「黑／白」旁啟詳細編輯器。像素格亦示圖中像素尺規；游標繪圖時，縮放值旁即示 x/y。「另存」可擇圖格式、壓縮設定及存處；其後「存」皆循此設定而寫。「匯出為」可作 ICO、ASCII 文字藝術及 Base64 文字，而不以今圖為已存。「存而分享」先存副本，後啟 Android 分享；今存處不變。「繪圖」→「置入」→「他圖」含裝置檔案、Catrobat、いらすとや、Openclipart 及「Wikimedia Commons · 空白輿圖…」。置入之圖仍為所選；控柄雖在畫布外，亦可見。「縮放圖以合畫布」改其置法；「原寸」復來源之尺寸。重啟程式，自存可復草稿及撤前／復行之紀錄。「文檔」另有合圖、用法、本程、授權與致謝。置文字時，可擇橫書或直書。</string>
+    <string name="ui_help23">擇頁籤以示其控件。「檢視」以「移圖縮放」為首；「繪圖」含「繪具」、「選取」及「置入」。「移圖縮放」可移視而不留筆跡，雙指可縮放。頁籤旁之箭可收面板。諸工具皆有名。「編修」可改選區、畫布邊界、尺寸及圖像。「色彩」可擇前後景色；「互易前後色」易兩色，「黑／白」復其初。擇色即示其效；「用此色」則定，「罷此舉」則復舊。「添色」或點空色位，可擇色而存。久按已存之色，可編修或刪去。「進階」於「黑／白」旁啟詳細編輯器。像素格亦示圖中像素尺規；游標繪圖時，縮放值旁即示 x/y。「另存」可擇圖格式、壓縮設定及存處；其後「存」皆循此設定而寫。「匯出為」可作 ICO、ASCII 文字藝術及 Base64 文字，而不以今圖為已存。「存而分享」先存副本，後啟 Android 分享；今存處不變。「繪圖」→「置入」→「他圖」含裝置檔案、Catrobat、いらすとや、Openclipart 及「Wikimedia Commons · 空白輿圖…」。置入之圖仍為所選；控柄雖在畫布外，亦可見。「縮放圖以合畫布」改其置法；「原寸」復來源之尺寸。重啟程式，自存可復草稿及撤前／復行之紀錄。「文檔」另有合圖、用法、本程、授權與致謝。置文字時，可擇橫書或直書。</string>
     <string name="ui_navigate" formatted="false">移圖縮放</string>
     <string name="ui_pencil">鉛筆</string>
     <string name="ui_curve">曲線</string>
@@ -437,7 +437,7 @@
     <string name="ui_recent_colour_empty">最近用之色 %1$s：空白</string>
     <string name="ui_recovered_image">所復之圖</string>
     <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">復原副本已匯出。自 ZIP 解出 canvas.png，由「文檔」→「載圖」啟之。ZIP 亦含草稿設定及尚浮動之選區。</string>
-    <string name="ui_rendering_images">方繪製 %1$s / %2$s 張圖…</string>
+    <string name="ui_rendering_images">已處理 %1$s / %2$s 張圖…</string>
     <string name="ui_reset_crop">復裁域</string>
     <string name="ui_reset_to_black_white">重設為黑／白</string>
     <string name="ui_resize_and_load">伸縮而載</string>
@@ -723,4 +723,7 @@
     <string name="commons_metadata_cache_failed">未能留存 Commons 署名資料。</string>
     <string name="commons_download_original_mismatch">Commons 下載轉址至別一原檔。</string>
     <string name="commons_svg_png_encode_failed">未能將空白輿圖編碼為 PNG。</string>
+    <!-- Recovery contents are unverified; preserve conditional guidance. -->
+    <string name="ui_recovery_copy_preserved_unverified">%1$s 已另存復原副本。欲存之，請用「文檔 → 匯出復原副本…」。 其所存或已損壞，亦或不可讀。 若所匯出之檔可作 ZIP 開啟，且內有可讀之 canvas.png，則解出此圖，以「文檔 → 載圖…」啟之。 其後如有需，可更其大小。 所匯出之副本，縱不可啟，亦請留存。</string>
+    <string name="ui_recovery_copy_exported_unverified">復原副本已匯出，所含之物未改。 其所存或已損壞，亦或不可讀。 若所匯出之檔可作 ZIP 開啟，且內有可讀之 canvas.png，則解出此圖，以「文檔 → 載圖…」啟之。 草稿設定或浮動選區亦或存焉，然皆未經核驗。 所匯出之副本，縱不可啟，亦請留存。</string>
 </resources>

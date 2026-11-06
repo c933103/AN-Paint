@@ -347,8 +347,13 @@ class AppLanguageTest {
                     assertEquals("Pó-chûn",wrapped.getString(R.string.ui_save))
                     assertEquals("Pó-chûn…",wrapped.getString(R.string.ui_save_a5d0d9))
                 }
-                else -> assertEquals("Save in the unsaved prompt must use the selected catalogue: $tag",
-                    wrapped.getString(R.string.ui_save),wrapped.getString(R.string.ui_save_a5d0d9))
+                else -> {
+                    // Both labels bind to their own current resources; Save… need not equal Save.
+                    val expected=PriorityWordingExpectations.resources(tag)
+                    for(id in listOf(R.string.ui_save,R.string.ui_save_a5d0d9))
+                        assertEquals("$tag/${expected.getResourceEntryName(id)}",
+                            expected.getString(id),wrapped.getString(id))
+                }
             }
             }
         }

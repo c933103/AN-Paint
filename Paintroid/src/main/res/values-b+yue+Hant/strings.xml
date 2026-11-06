@@ -174,7 +174,7 @@
     <string name="ui_vertical_rl23">由上而下，欄由右至左</string>
     <string name="ui_vertical_lr23">由上而下，欄由左至右</string>
     <string name="ui_vertical_letters23">直排文字中嘅字母</string>
-    <string name="ui_vertical_mixed23">自動：漢字直立、單詞側置</string>
+    <string name="ui_vertical_mixed23">自動：CJK 字元直立、單詞側置</string>
     <string name="ui_vertical_sideways23">側置，保留單詞連寫</string>
     <string name="ui_vertical_upright23">直立，逐字由上而下</string>
     <string name="ui_top23">靠上對齊</string>
@@ -423,7 +423,7 @@
     <string name="ui_recent_colour_empty">最近用嘅顏色 %1$s：空白</string>
     <string name="ui_recovered_image">已復原圖片</string>
     <string name="ui_recovery_copy_exported_extract_canvas_png_from_the">已匯出復原副本。請從 ZIP 解壓 canvas.png，並用「檔案」&gt;「開圖片」打開。ZIP 亦包含草稿設定及任何浮動揀選範圍。</string>
-    <string name="ui_rendering_images">正在繪製 %1$s / %2$s 張圖片…</string>
+    <string name="ui_rendering_images">已處理 %1$s / %2$s 張圖片…</string>
     <string name="ui_reset_crop">重設裁剪</string>
     <string name="ui_reset_to_black_white">重設為黑／白</string>
     <string name="ui_resize_and_load">調整大小並載入</string>
@@ -723,4 +723,7 @@
     <string name="commons_metadata_cache_failed">保留唔到 Commons 嘅署名資料。</string>
     <string name="commons_download_original_mismatch">Commons 下載再導向咗另一個原本檔案。</string>
     <string name="commons_svg_png_encode_failed">將空白地圖編碼成 PNG 失敗。</string>
+    <!-- Recovery contents are unverified; preserve conditional guidance. -->
+    <string name="ui_recovery_copy_preserved_unverified">%1$s 已經保留咗一份獨立嘅復原副本。請用「檔案 → 匯出復原副本…」儲存佢。 入面嘅內容可能已經損壞，或者讀唔到。 如果匯出嘅檔案可以當 ZIP 開啟，而且入面有讀得到嘅 canvas.png，請解壓出嗰張圖片，再用「檔案 → 開圖片…」開啟。 之後有需要就可以調整圖片大小。 就算開唔到，都請保留匯出嘅副本。</string>
+    <string name="ui_recovery_copy_exported_unverified">已經匯出復原副本，內容冇改過。 入面嘅內容可能已經損壞，或者讀唔到。 如果匯出嘅檔案可以當 ZIP 開啟，而且入面有讀得到嘅 canvas.png，請解壓出嗰張圖片，再用「檔案 → 開圖片…」開啟。 入面亦可能有草稿設定或者浮動揀選範圍，但未經驗證。 就算開唔到，都請保留匯出嘅副本。</string>
 </resources>

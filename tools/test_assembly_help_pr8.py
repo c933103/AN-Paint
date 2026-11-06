@@ -21,8 +21,20 @@ def strings(directory):
             ET.parse(RES / directory / "strings.xml").getroot()
             if e.tag == "string"}
 
-def paragraph(directory, index):
-    return re.split(r"\\n\\n|\n\s*\n", strings(directory)[KEY])[index]
+def paragraph_with_controls(value, captions):
+    """Locate a control's paragraph without depending on earlier Help sections."""
+    matches = [part for part in re.split(r"\\n\\n|\n\s*\n", value)
+               if all(caption in part for caption in captions)]
+    if len(matches) != 1:
+        raise AssertionError("Expected one Help paragraph naming all controls")
+    return matches[0]
+
+def paragraph(directory, section):
+    values = strings(directory)
+    if section == "output":
+        return paragraph_with_controls(values[KEY],
+                                       (values["ui_save_png"], values["ui_edit_in_paint"]))
+    return re.split(r"\\n\\n|\n\s*\n", values[KEY])[section]
 
 def kotlin_tokens(source):
     """Small source-contract lexer, not a Kotlin parser or runtime proof.
@@ -54,6 +66,15 @@ def kotlin_block(source, opening):
     raise AssertionError("Unclosed Kotlin block")
 
 class AssemblyHelpPr8Tests(unittest.TestCase):
+    def test_control_paragraph_selection_survives_insertions_and_rejects_bad_bindings(self):
+        captions = ("Save PNG", "Edit in Paint")
+        output = "Save PNG saves. Edit in Paint transfers."
+        for prefix in ("Introduction", "Introduction\n\nExact position instructions"):
+            self.assertEqual(output, paragraph_with_controls(prefix + "\n\n" + output, captions))
+        for value in ("No matching controls", "Save PNG only", output + "\n\n" + output):
+            with self.subTest(value=value), self.assertRaises(AssertionError):
+                paragraph_with_controls(value, captions)
+
     def assertCode(self, source, fragment):
         self.assertTrue(code_locations(source, fragment), fragment)
 
@@ -143,19 +164,20 @@ class AssemblyHelpPr8Tests(unittest.TestCase):
         self.assertNotIn(caption + ' ཡིས', values[KEY])
 
 # Only eleven independently identified suffix gaps in the two new spans are
-# covered. U+202F follows the legacy convention; actual font shaping is untested.
+# covered. The output span is located by its actual controls, not paragraph order.
+# U+202F follows the legacy convention; actual font shaping is untested.
 MONGOLIAN_SUFFIX_BOUNDARIES = (
     (0, "ᠥᠨᠳᠦᠷ»", "ᠦᠨ", 0),
     (0, "ᠲᠣᠬᠢᠷᠠᠭᠤᠯᠭ᠎ᠠ", "ᠶᠢᠨ", 0),
     (0, "ᠵᠢᠷᠤᠭ", "ᠤᠨ", 0),
-    (5, "ᠣᠢ", "ᠶᠢᠨ", 0),
-    (5, "ᠣᠢ", "ᠶᠢᠨ", 1),
-    (5, "ᠬᠢᠵᠠᠭᠠᠷ", "ᠠᠴᠠ", 0),
-    (5, "ᠬᠢᠵᠠᠭᠠᠷ", "ᠠᠴᠠ", 1),
-    (5, "ᠭᠠᠷᠭᠠᠯᠲᠠ", "ᠶᠢᠨ", 0),
-    (5, "ᠦᠶ᠎ᠡ", "ᠳᠦ", 0),
-    (5, "ᠰᠣᠩᠭᠣᠭᠤᠷ", "ᠤᠨ", 0),
-    (5, "ᠣᠷᠣᠨ", "ᠳᠤ", 0),
+    ("output", "ᠣᠢ", "ᠶᠢᠨ", 0),
+    ("output", "ᠣᠢ", "ᠶᠢᠨ", 1),
+    ("output", "ᠬᠢᠵᠠᠭᠠᠷ", "ᠠᠴᠠ", 0),
+    ("output", "ᠬᠢᠵᠠᠭᠠᠷ", "ᠠᠴᠠ", 1),
+    ("output", "ᠭᠠᠷᠭᠠᠯᠲᠠ", "ᠶᠢᠨ", 0),
+    ("output", "ᠦᠶ᠎ᠡ", "ᠳᠦ", 0),
+    ("output", "ᠰᠣᠩᠭᠣᠭᠤᠷ", "ᠤᠨ", 0),
+    ("output", "ᠣᠷᠣᠨ", "ᠳᠤ", 0),
 )
 
 def make_suffix_separator_test(index, stem, suffix, occurrence):

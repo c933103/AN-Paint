@@ -290,7 +290,7 @@
     <string name="ui_drag_between_opposite_corners_to_draw_a_heart">Ziehen Sie zwischen gegenüberliegenden Ecken, um ein Herz zu zeichnen. Wählen Sie Kontur oder Füllung.</string>
     <string name="ui_drag_from_the_start_to_the_end_of">Ziehen Sie vom Anfang bis zum Ende der Linie.</string>
     <string name="ui_drag_from_the_tail_towards_the_arrowhead_choose">Ziehen Sie vom Ende in Richtung Pfeilspitze. Wählen Sie Kontur oder Füllung.</string>
-    <string name="ui_drag_out_to_expand_in_to_trim_drag">Nach außen ziehen zum Erweitern, nach innen zum Beschneiden. Innen ziehen, um die Begrenzung zu verschieben. Mit zwei Fingern zoomen oder Anpassen verwenden, um mehr Platz zu erhalten. BG füllt neuen Platz.</string>
+    <string name="ui_drag_out_to_expand_in_to_trim_drag">Nach außen ziehen zum Erweitern, nach innen zum Beschneiden. Innen ziehen, um die Begrenzung zu verschieben. Mit zwei Fingern zoomen oder Anpassen verwenden, um mehr Platz zu erhalten. HG füllt neuen Platz.</string>
     <string name="ui_drag_placed_images_to_move_them_hold_and">Ziehen Sie platzierte Bilder, um sie zu verschieben. Halten Sie eine Miniatur gedrückt und ziehen Sie sie, um sie hinzuzufügen.</string>
     <string name="ui_drag_to_erase_with_the_background_colour">Ziehen Sie, um mit der Hintergrundfarbe zu radieren.</string>
     <string name="ui_drag_to_pan_without_drawing_pinch_with_two">Ziehen Sie, um die Ansicht ohne Zeichnen zu verschieben. Mit zwei Fingern zoomen und verschieben. Zwei-Finger-Navigation funktioniert auch mit Zeichenwerkzeugen.</string>
@@ -327,7 +327,7 @@
     <string name="ui_filename_a_z">Dateiname A–Z</string>
     <string name="ui_filename_z_a">Dateiname Z–A</string>
     <string name="ui_fill_line">Füllung + Linie</string>
-    <string name="ui_fill_text_box_with_bg_colour">Textfeld mit BG-Farbe füllen</string>
+    <string name="ui_fill_text_box_with_bg_colour">Textfeld mit HG-Farbe füllen</string>
     <string name="ui_finish_curve">Kurve beenden</string>
     <string name="ui_finish_polygon">Polygon beenden</string>
     <string name="ui_fits_the_current_budget">Passt in das aktuelle Limit.</string>
@@ -526,7 +526,7 @@
     <string name="ui_width_in">Breite in %1$s</string>
     <string name="ui_widths">Breiten</string>
     <string name="ui_working">Wird verarbeitet…</string>
-    <string name="ui_you_can_add_more_images_select_fewer_files">Sie können %1$s weitere Bilder hinzufügen. Wählen Sie weniger Dateien.</string>
+    <string name="ui_you_can_add_more_images_select_fewer_files">Anzahl der Bilder, die Sie noch hinzufügen können: %1$s. Wählen Sie weniger Dateien.</string>
     <string name="ui_your_current_image_has_unsaved_changes">Ihr aktuelles Bild enthält ungespeicherte Änderungen.</string>
     <string name="ui_close_polygon">Polygon schließen</string>
     <string name="ui_agpl_licence">AGPL-Lizenz</string>
@@ -597,7 +597,7 @@
     <string name="formats22_dib_size_limit">Das Bild überschreitet die DIB-Dateigrößenbegrenzung.</string>
     <string name="formats22_import_limit">Diese Datei überschreitet die Importgrenze von 512 MiB. Wählen Sie eine kleinere Datei.</string>
     <string name="formats22_select_page">Seite auswählen</string>
-    <string name="formats22_page_description">%1$s · %2$s\n%3$d Seiten. Wählen Sie eine Seite, um sie als Bild zu bearbeiten.</string>
+    <string name="formats22_page_description">%1$s · %2$s\nAnzahl der Seiten: %3$d. Wählen Sie eine Seite, um sie als Bild zu bearbeiten.</string>
     <string name="formats22_pdf_raster_hint">PDF-Seiten werden mit 144 dpi gerendert. Text und Vektorobjekte werden zu Pixeln.</string>
     <string name="formats22_page_number">Seitennummer</string>
     <string name="formats22_previous_page">Vorherige Seite</string>
@@ -724,4 +724,7 @@
     <string name="commons_metadata_cache_failed">Der Commons-Bildnachweis konnte nicht gespeichert werden</string>
     <string name="commons_download_original_mismatch">Der Commons-Download wurde auf eine andere Originaldatei umgeleitet.</string>
     <string name="commons_svg_png_encode_failed">Die Umrisskarte konnte nicht als PNG kodiert werden</string>
+    <!-- Recovery contents are unverified; preserve conditional guidance. -->
+    <string name="ui_recovery_copy_preserved_unverified">%1$s Eine separate Wiederherstellungskopie wurde aufbewahrt. Speichern Sie sie über „Datei → Wiederherstellungskopie exportieren…“. Ihr Inhalt ist möglicherweise beschädigt oder nicht lesbar. Wenn sich die exportierte Datei als ZIP öffnen lässt und eine lesbare canvas.png enthält, extrahieren Sie dieses Bild und öffnen Sie es über „Datei → Bild laden…“. Anschließend können Sie bei Bedarf seine Größe ändern. Bewahren Sie die exportierte Kopie auf, auch wenn sie sich nicht öffnen lässt.</string>
+    <string name="ui_recovery_copy_exported_unverified">Die Wiederherstellungskopie wurde exportiert, ohne ihren Inhalt zu verändern. Ihr Inhalt ist möglicherweise beschädigt oder nicht lesbar. Wenn sich die exportierte Datei als ZIP öffnen lässt und eine lesbare canvas.png enthält, extrahieren Sie dieses Bild und öffnen Sie es über „Datei → Bild laden…“. Entwurfseinstellungen oder eine schwebende Auswahl können ebenfalls vorhanden sein, wurden aber nicht überprüft. Bewahren Sie die exportierte Kopie auf, auch wenn sie sich nicht öffnen lässt.</string>
 </resources>

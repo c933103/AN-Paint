@@ -308,7 +308,7 @@ actual framework transformation method/output, Layout text and accessibility tex
 the transformed strings must match exactly, not by case-insensitive comparison.
 IME-open raw field/footer bounds, ancestor clipping
 and actual IME overlap are observations, not a simultaneous-fit acceptance gate.
-The complete success inventory is 14 dialog methods/51 PNGs and 47 API35 app methods;
+The complete success inventory is 14 dialog methods/51 PNGs and 49 API35 app methods;
 API30 eligibility is unchanged. New source is not installed evidence until exact-source
 CI and all six PNGs per lifecycle case are inspected. Failed/partial captures never
 count as successful inventory. Simultaneous IME/field/footer fit, physical-device,
@@ -448,8 +448,8 @@ main/test APK and corresponding-source hashes, and the exact disjoint source-bou
 app report union. Exact-identity groups from earlier attempts of the same run may
 be reused; both positive attempt numbers are recorded and cannot be in the future.
 Missing/failed/duplicate methods, wrong selectors/deadlines,
-stale artifacts and SDK mismatches fail closed. All 47 declared methods remain
-required according to their existing SDK rules (30 selected on API30; 47 on API35).
+stale artifacts and SDK mismatches fail closed. All 49 declared methods remain
+required according to their existing SDK rules (the eligible subset on API30; all 49 on API35).
 Count/selector contracts and synthetic receipts do not prove Android execution
 or runtime. These
 checks cover native layout boxes and input, not pixel-level glyph clipping,
