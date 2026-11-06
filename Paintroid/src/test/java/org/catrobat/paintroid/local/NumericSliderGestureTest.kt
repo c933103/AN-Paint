@@ -3,7 +3,9 @@ package org.catrobat.paintroid.local
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
 import android.os.SystemClock
+import android.view.ContextThemeWrapper
 import android.view.InputDevice
 import android.view.MotionEvent
 import android.view.View
@@ -12,6 +14,8 @@ import android.widget.LinearLayout
 import org.catrobat.paintroid.R
 import org.catrobat.paintroid.classic.ColumnScrollView
 import org.catrobat.paintroid.classic.NumericSlider
+import org.catrobat.paintroid.classic.PaintApplication
+import org.catrobat.paintroid.classic.ui
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before
@@ -106,6 +110,72 @@ class NumericSliderGestureTest {
         send(MotionEvent.ACTION_MOVE,160f,220f)
         send(MotionEvent.ACTION_UP,160f,220f)
         assertTrue("Ordinary form scrolling remains available",scroll.scrollX>before)
+    }
+
+    private fun measureCaption(control: NumericSlider,width: Int) {
+        control.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED))
+        control.layout(0,0,control.measuredWidth,control.measuredHeight)
+        val caption=control.number
+        val layout=checkNotNull(caption.layout)
+        assertEquals(caption.text.length,layout.getLineEnd(layout.lineCount-1))
+        assertTrue("Complete caption height",layout.height<=caption.height-caption.compoundPaddingTop-caption.compoundPaddingBottom)
+        for(line in 0 until layout.lineCount) {
+            assertEquals(0,layout.getEllipsisCount(line))
+            assertTrue("Complete caption width",layout.getLineMax(line)<=layout.width)
+        }
+        assertTrue("SeekBar remains below the expanded caption",control.slider.top>=caption.bottom)
+        assertEquals(ui(R.string.ui_numeric_slider_value,control.name,control.slider.progress+control.minimum),caption.text.toString())
+        val description=ui(R.string.ui_tap_to_type_a_number,control.name,control.slider.progress+control.minimum)
+        assertEquals(description,caption.contentDescription.toString())
+        assertEquals(description,caption.createAccessibilityNodeInfo().contentDescription.toString())
+        assertEquals(control.name,control.slider.contentDescription.toString())
+    }
+
+    @Test fun currentLongResourceCaptionsFitNarrowWidthAtLargeFont() {
+        val previous=PaintApplication.currentResources
+        val activity=controller.get()
+        val context=ContextThemeWrapper(activity.createConfigurationContext(Configuration(activity.resources.configuration).apply {
+            setLocale(Locale.forLanguageTag("nv"));fontScale=2f
+        }),R.style.ClassicPaintTheme)
+        try {
+            PaintApplication.currentResources=context.resources
+            // Bind the two actual consumers to current resources, never copied translations.
+            for(resource in listOf(R.string.ui_tolerance,R.string.ui_quality)) {
+                val changes=mutableListOf<Int>()
+                val control=NumericSlider(context,ui(resource),7,0,100) {changes.add(it)}
+                assertEquals(LinearLayout.VERTICAL,control.orientation)
+                measureCaption(control,176)
+                assertTrue(control.number.height>=44)
+                assertTrue("Configured larger font is active",control.number.textSize>11f)
+                control.slider.progress=100
+                measureCaption(control,176)
+                assertEquals(listOf(100),changes)
+                measureCaption(control,320)
+            }
+        } finally {PaintApplication.currentResources=previous}
+    }
+
+    @Test fun wrappingGrowsBeyondFormerHeightAndKeepsRtlAndShortTouchTargets() {
+        val previous=PaintApplication.currentResources
+        val activity=controller.get()
+        val context=ContextThemeWrapper(activity.createConfigurationContext(Configuration(activity.resources.configuration).apply {
+            setLocale(Locale.forLanguageTag("ar"));fontScale=2f
+        }),R.style.ClassicPaintTheme)
+        try {
+            PaintApplication.currentResources=context.resources
+            // Synthetic stress text specifies a wrapping obligation, not approved wording.
+            val control=NumericSlider(context,("قيمة ").repeat(24).trim(),95,1,100) {}
+            control.layoutDirection=View.LAYOUT_DIRECTION_RTL
+            measureCaption(control,176)
+            assertEquals(View.LAYOUT_DIRECTION_RTL,control.number.layoutDirection)
+            assertTrue("Regression: the old exact 44dp box clips this label",control.number.height>44)
+            assertTrue(control.number.lineCount>2)
+            measureCaption(control,320)
+        } finally {PaintApplication.currentResources=previous}
+        measureCaption(numeric,240)
+        assertTrue("Short labels retain at least the existing touch target",numeric.number.height>=44)
+        assertEquals(44,numeric.slider.height)
     }
 
     @Test fun bothEndpointsRetainNativeGestureAndValueCallback() {dragTo(1);dragTo(100);dragTo(1)}
