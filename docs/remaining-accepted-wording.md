@@ -33,7 +33,7 @@ Historical wording is experimental normalized late West Saxon / Old West Norse,
 with disclosed modern technical formations and the limited metadata, Copy and
 Draft conventions in the receipts. All 184 other historical priority values
 remain held. No glossary decision automatically accepts another clause.
-Breton Fit image and Swedish Main remain unchanged and unaccepted. Unresolved
+At the date of this historical batch, Breton Fit image and Swedish Main remained unchanged and unaccepted. Their later bounded dispositions are recorded in the [6 November integration](../verification/translations/navajo-credits-controls-and-review-dispositions-20261106.md): Breton receives an exact historical-consumer applicability transfer with no wording change; Swedish receives the independently accepted main-panel caption repair. Neither decision approves an unrelated future consumer. Unresolved
 Shan/Yucatec wording and ancillary Shan P2 candidates are not implemented.
 
 ## Verification boundaries
