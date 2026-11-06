@@ -415,3 +415,34 @@ The separate `ain-Kana/string/ui_sampled_resize_memory_explanation` row receives
 The current Latin sibling supplies corroborating project context, not transferred Kana acceptance. Direct Ainu computing entries support [file](https://itak.aynu.org/cinuyep), [data](https://itak.aynu.org/tatum), [number](https://itak.aynu.org/cipiskip), [small](https://itak.aynu.org/pon), [more](https://itak.aynu.org/na), and [make](https://itak.aynu.org/kar); these are component evidence, not attestation of the complete composed software sentence. The full functional relation is accepted at bounded model review depth. Exact one-span, unchanged attributes/opening, XML/escape/placeholder and affected-catalogue checks pass. No native or installed-render certification is claimed. This row was excluded from the earlier finite Ainu remainder and is not repeated review credit.
 
 The eleven remaining Ainu partial-scope rows receive complete bounded decisions without redoing their accepted estimate/modality clauses. Nine remain unchanged. Both source-only `ain-Latn` and `ain-Kana/string/ui_estimates_include_the_current_canvas_and_clipboard_sampled` values receive the same one-span clarification, preserving their selected opaque-import-background clause. Neither has a literal main Kotlin/Java consumer or base alias. The other exact scope is `formats22_tiff_description`, `ui_assembly_decoded_output_estimated_editing_render_memory_at`, `ui_copy_decoded_image_at_this_size_estimated_loading`, and `ui_original_decoded_image_rgba_4_bytes_pixel_estimated` in both Ainu scripts, plus `ain-Kana/ui_no_resize_fits_decoder_memory`. These whole-value dispositions preserve the original smaller clause receipts instead of retroactively inflating them.
+
+## Final eighteen partial/context/successor scopes
+
+Bound to parent `8cceb44f906d914c2930d03a5cb9f0dc035eb6a1`, this finite checkpoint finishes eleven partial-scope compositions, six short context labels and one changed French successor. All prior accepted clauses remain valid and unchanged. Seventeen current values are retained; Azerbaijani `ui_quality` keeps its accepted noun and restores the source percent unit, with `formatted="false"`. `SaveOptionsDialog` uses 1–100, while `NumericSlider` adds only the integer. No other Azerbaijani resource changes.
+
+Complete judgments preserve resident canvas/clipboard, sampled decode and buffers, variable use, smaller-copy detail loss and original retention in the five memory explanations; the five unsupported-colour warnings preserve present conversion inability and the colour-managed sRGB PNG remedy before import. Crop Top captions describe the appropriate margin, not motion. The French successor correctly distinguishes right/top-aligned from below/left-aligned attachment geometry. Full Nôm Help preserves navigation, palette operations, save/export/share distinctions, destinations, inserted selections, autosave stacks and writing directions. Its contextual phonetic empty-slot spelling is retained: a drum-sense dictionary gloss does not disprove that reading or require another orthographic change. The separately accepted Blank maps span stays exact.
+
+Model functional confidence is moderate for Hakka, Manchu, Okinawan and Nôm, and high for the other finite rows; this is not native or independent-person certification. Productive grammar and legitimate technical borrowings are not rejected merely for lacking an attested complete software sentence. Focused support includes the [Georgian upper-part/top sense](https://www.nplg.gov.ge/gwdict/index.php?a=term&d=46&t=93913) and [Manchu negative ability/before construction](https://en.wikisource.org/wiki/Page:A_Manchu_grammar,_with_analysed_texts.djvu/44); the latter hosted transcription needs proofreading. Supplementary indexed Okinawan/Nôm examples retain their limited authority. Actual source and callers govern the operational relationships. There are no new holds in this finite set.
+
+Exact current scope, without a wording mirror:
+
+- `az/string/ui_quality`: accepted after percent-unit repair.
+- `bs/string/ui_top`: retained whole-value bounded decision.
+- `fr/string/ui_drop_at_a_highlighted_edge_right_top_aligned`: retained whole-value bounded decision.
+- `hak-Hant-TW/string/ui_sampled_resize_memory_explanation`: retained whole-value bounded decision.
+- `ka/string/ui_quality`: retained whole-value bounded decision.
+- `ka/string/ui_top`: retained whole-value bounded decision.
+- `lzh-Hant/string/ui_sampled_resize_memory_explanation`: retained whole-value bounded decision.
+- `mnc-Mong/string/save20_unsupported_image_colour`: retained whole-value bounded decision.
+- `ms/string/ui_sampled_resize_memory_explanation`: retained whole-value bounded decision.
+- `nan-Hant-TW/string/save20_unsupported_image_colour`: retained whole-value bounded decision.
+- `nan-Hant-TW/string/ui_sampled_resize_memory_explanation`: retained whole-value bounded decision.
+- `ro/string/ui_top`: retained whole-value bounded decision.
+- `ryu/string/save20_unsupported_image_colour`: retained whole-value bounded decision.
+- `uk/string/ui_top`: retained whole-value bounded decision.
+- `vi-Hani/string/save20_unsupported_image_colour`: retained whole-value bounded decision.
+- `vi-Hani/string/ui_help23`: retained whole-value bounded decision.
+- `wuu-Hans/string/save20_unsupported_image_colour`: retained whole-value bounded decision.
+- `wuu-Hans/string/ui_sampled_resize_memory_explanation`: retained whole-value bounded decision.
+
+All eighteen source/value/attribute bindings match the parent, except the exact accepted Azerbaijani successor in this commit. The affected catalogue validates, all 40 existing translation/boundary tests pass (34 + 6), and three actual JDK cases preserve the percent-bearing caption inside its unchanged selected slider wrapper at 1, 87 and 100. XML identity and all unrelated Azerbaijani elements remain exact. These targeted checks are not a rerun of the earlier 856 tests or installed Android rendering. Exact-head CI/review remains separately required.
