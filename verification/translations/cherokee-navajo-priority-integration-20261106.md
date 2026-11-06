@@ -1,0 +1,38 @@
+# Cherokee completion and Navajo reviewed-work consolidation
+
+6 November 2026. Base [`95240cfb04bd3d0fd43ee340731dd8957018b3cb`](https://github.com/c933103/AN-Paint/commit/95240cfb04bd3d0fd43ee340731dd8957018b3cb). Source publication, not release acceptance. The [conditional release gates](p0-p1-release-plan-20261106.md) remain open.
+
+## Exact shared-branch delta
+
+- **197 priority entries added: 3 P0 + 194 P1**, across Cherokee and Navajo. This includes previously published work from the isolated Navajo branch, not 197 newly authored translations.
+- Cherokee: **98 additions (2 P0 + 96 P1) and 17 repairs**. 97 additions are authored Cherokee labels/descriptions; one is the neutral required #RRGGBB identifier. Final direct priority presence is 343/343. 228 prior values and attributes are unchanged.
+- Navajo: consolidate the accepted 198-entry catalogue from [`bf5067d4`](https://github.com/c933103/AN-Paint/commit/bf5067d480bc8aa8686b5a8add5e4ba36bdc16c0), then add 32 newly cross-reviewed P1 entries. Compared with the shared branch this adds 99 priorities, carries four already-authorized P2 entries, and incorporates 11 previously accepted repairs. No new missing-P2 translation was undertaken. All 198 accepted input values/attributes survive unchanged in the final 230-entry catalogue.
+- Fresh all-171 totals: **85,288 present identities; 48 missing P0 + 91 missing P1 = 139 direct gaps in 12 options; 159 priority-complete options**. 55 have all 719 identities. P2/P3 missing totals are 30,044/7,478. Navajo has 68/94 P0 and 158/249 P1, leaving 117 priority gaps. The other 22 gaps are the two new recovery warnings in 11 variants, under separate review.
+
+Direct presence does not mean the release condition is satisfied. In particular, the existing Cherokee GIF description still contains ordinary English “Dither colours”. That exact unresolved constituent remains a language-completion issue despite zero absent Cherokee priority keys. Existing scope/fallback/orthography restrictions remain unchanged.
+
+## Review reuse and scope
+
+Cherokee's amended 98/17 packet received changed-only independent review. Sixteen discretionary substitutions were withdrawn because missing fresh lexical corroboration did not establish an error. The unchanged 245-entry starting inventory is not new review credit. The precise accepted-packet archive SHA-256 is `34f5569d985c4b090fa4608b5842ab1e1173325c1ee96588a0e4b1fbcd00ca85`.
+
+Navajo's [188-entry review receipt](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6682089017) and [ten-addition receipt](https://github.com/c933103/AN-Paint/pull/56#issuecomment-6682499065) are carried forward with their individual confidence and limitations. The integration compared **all 104 production Kotlin/Java blobs and default English** between the isolated accepted head and this shared base: no differences. The canonical 198-entry blob `ee286bbd808a03a59a84d5e8a83915f6a78c3580` was fetched directly and verified. This is evidence reuse and branch reconciliation, not another linguistic review of those 198 entries.
+
+Only 32 new Navajo P1 compositions were independently reviewed for this increment. Their stable map SHA-256 is `58a30bc3afc4e6946169b6fc96f45b5592140cb87d970525726f5bb9285616ac`; review/integration receipt SHA-256 is `b92f00b3b58957210c49778ef8baaa9e48e39eb166323c95cb4c2e503c8cd897`. Five original candidate holds and later rejected candidates are not added merely to raise coverage. The prior four P2 entries are Square, Curve, Width in and Round; they are existing independently scoped work, not a new expansion of the immediate task.
+
+## Consequential decisions
+
+- Cherokee Fit uses containment, matching minimum-axis scale rather than stretching or resampling. The document picker may include cloud-backed providers; no local-only claim is made. Raw-recovery warnings retain possible damage/unreadability, readable ZIP AND readable canvas.png conditions, unchanged bytes, unverified ancillary contents and keeping even an unopenable copy. The seventeen repairs address concrete source/context issues, not generalized rewording.
+- Cherokee retry uses a supported again/try invitation and retains the established soon term. The official dictionary's Latin glosses were visually inspected, but its displayed syllabary font was legacy/garbled; Unicode text-layer extraction is not misreported as a modern-syllabary visual check. The unresolved dithering clause is not replaced with generic grouping or pattern wording, which would omit Floyd–Steinberg diffusion.
+- Navajo 32 distinguishes viewing magnification from making the image larger/smaller. Canvas-size wording scopes size to image boundaries, not resampling. Crop controls preserve edges, all-four amounts and nonnegative limits; rotation uses the reviewed transitive action. Image-read diagnostics are bounded functional unreadability statements, not standardized decoder terminology or proof all decoders fail.
+- Navajo import-limit wording retains strict **>512 MiB**, not >= or a pixel-dimension limit. Alternative-file/location instructions preserve OR and do not promise success or automatic retry. Paste guidance binds the actual rectangular-selection action followed by Paste, separately from the Draw/Insert/Other-images route. Magnification retains `formatted=false` for its literal percent.
+- All new language is source-informed functional composition with bounded, often moderate or moderate-low confidence, not native certification. Symbols, topic-label constructions, technical loans and long captions retain speech/layout uncertainty. Held original-size, selection/alignment-state and sampling-related candidates are not silently accepted.
+
+## Sources and checks
+
+Cherokee evidence: [official Nation-hosted OU Dictionary](https://language.cherokee.org/media/ykahxw4v/oudictionaryeuglutan.pdf), [Nation word list](https://webapps.cherokee.org/wordlist), [Microsoft Cherokee terminology](https://download.microsoft.com/download/b/2/d/b2db7a7c-8d33-47f3-b2c1-ee5e6445cf45/MicrosoftTermCollection.zip) and [Language Consortium word list](https://language.cherokee.gov/media/4emjgbyy/2019consortium_wordlist.pdf). Lexical facts are used with actual consumer definitions; no wholesale glossary or dictionary is republished and no open licence is assumed.
+
+Navajo sources and exact prior bounds are linked in the two durable receipts. New compositions use independently inspected [Wilson dictionary](https://www.rexresearch1.com/NavajoLanguageLibrary/ConversationalNavajoDictionaryWilson.pdf), [Wall/Morgan dictionary](https://upload.wikimedia.org/wikipedia/commons/6/6c/Navajo-English_Dictionary.pdf), published Navajo prose/UI examples and the unchanged production consumers. Whole UI sentences are authored, not alleged published quotations.
+
+All changed values pass source keys/attributes, positional arguments, formatter flags, Android escapes, protected literals, newline escapes and XML round trips. All unaffected Cherokee values and all 198 prior Navajo values are preserved. **105 host/source tests pass** after integration. **1,128 JDK formatting cases across 573 items in the two final catalogues pass**. `git diff --check` passes. Publication uses a fresh expected-parent non-force lease, full retained-tree/mode verification and exact remote readback.
+
+No AAPT/Gradle/Robolectric, installed glyph/layout/large-font/TalkBack, native-speaker comprehension, hosted exact-head CI, merge or release acceptance is claimed. Local Android SDK/Kotlin tooling is unavailable. Missing CI is not a pass. The shared accumulation must be integrated onto current develop through the required exact-head review/CI path rather than blindly merging the whole accumulated branch.

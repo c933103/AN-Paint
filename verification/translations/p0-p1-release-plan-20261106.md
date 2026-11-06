@@ -51,7 +51,9 @@ The [residual Chamorro/Kichwa/Yucatec cohort](ch-qug-yua-residual-review-2026110
 
 The same publication also includes the [Tamazight priority completion](whole-priority-zgh-review-20261106.md): **30 additions (9 P0 + 21 P1), eight repairs and reuse of 224 exact prior accepted receipts**. Current combined totals: **85,087 present, 51 missing P0 + 285 missing P1 across 13 options; 158 priority-complete options**. The remaining direct gaps are Navajo 216, Cherokee 98 and 22 new recovery warnings across 11 other options. Existing valid evidence is reused, not rescored as new review.
 
-Remaining direct-gap queue (P0/P1): `ain-Kana 2/0`, `ain-Latn 2/0`, `bo 2/0`, `chr 2/96`, `dz 2/0`, `hak-Latn-TW 2/0`, `jje 2/0`, `mn-Mong 2/0`, `mnc-Mong 2/0`, `nv 27/189`, `ryu 2/0`, `shn 2/0`, `vi-Hani 2/0`.
+The [Cherokee/Navajo consolidation](cherokee-navajo-priority-integration-20261106.md) adds **197 priority entries (3 P0 + 194 P1)** to this branch. Cherokee contributes 98 additions/17 repairs. Navajo reuses its accepted 198-entry separate-branch catalogue and adds 32 newly reviewed entries; this carries four already-approved P2 values and 11 earlier repairs, not new lower-tier translation. Current totals are **85,288 present, 48 missing P0 + 91 missing P1 across 12 options; 159 priority-complete options**. The existing Cherokee English dithering clause remains an explicit completion issue. Do not equate zero absent keys with fully localized acceptance.
+
+Remaining direct-gap queue (P0/P1): `ain-Kana 2/0`, `ain-Latn 2/0`, `bo 2/0`, `dz 2/0`, `hak-Latn-TW 2/0`, `jje 2/0`, `mn-Mong 2/0`, `mnc-Mong 2/0`, `nv 26/91`, `ryu 2/0`, `shn 2/0`, `vi-Hani 2/0`.
 
 Full direct priority presence does not prove every rendered parameter is translated: the Quechua, Tai Nüa and Nahuatl P0 animation messages can inherit the English at-least count from missing P2 `formats22_at_least_frames`. Record and resolve these dependency/scope questions before declaring release completion, rather than concealing fallback or silently expanding missing-P2 work.
 
