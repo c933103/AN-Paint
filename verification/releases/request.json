@@ -1,236 +1,124 @@
 {
-  "version": "0.0.40",
-  "version_code": 97,
-  "commit": "d664b3e72ea3261dba662119a429b0bb3914c04a",
-  "run_id": 39452992495,
-  "apk_sha256": "b2e6243583ad7a4b6a4b5c3dfb6211cc747fbb2f6b4ad926a18370da72ebcf14",
+  "version": "0.0.41",
+  "version_code": 98,
+  "commit": "9e9a6bd0805dbca1a77a48504730d059e789ca11",
+  "run_id": 42268615689,
+  "apk_sha256": "8c1fb652b8fa6414f485daf782689186a96575cad55f45744cc059e13da2bc94",
   "verification_summary": {
+    "required_workflow": "push/develop .github/workflows/android.yml",
+    "all_10_jobs_passed": true,
+    "ci_apk_sha256": "766578cc1f738c55efce56dfea4b4dbd6cdd2b0bf920b62ad1b8d99c679d2d90",
+    "source_sha256": "5b7d9223796ef027660859a239b66bd22a3a89c17702361bb4b4582c5dfd3b69",
+    "source_tree": "8043979241e54eedd3fd13434f281bb9020228d9",
+    "tracked_source_files_verified": 1275,
+    "declared_source_exclusions": [
+      ".gitignore",
+      ".idea/codeStyles/Project.xml",
+      "colorpicker/.gitignore"
+    ],
+    "universal_abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "native_libraries": 16,
+    "zip_and_elf_16kb_alignment": "passed",
+    "native_revision_markers": 11,
+    "native_upstream_rebuild": "not independently performed",
+    "signing_certificate_sha256": "f6220f4f21dd5af98d01983f2dbbf37893adfe93aa0de19868ac93b48b0b7791",
+    "signing_patch_sha256": "d8eab50b53697f1b914f342504e4d0e6d76de403d21851cc145ec82fbaaf9aaf",
+    "payload_matches_tested_apk": true,
+    "embedded_source_matches_delivery": true,
+    "public_patch_roundtrip": true,
+    "scope": "Exact source-discovered SDK-aware emulator inventories and release host/build checks. Explicit SDK/test exclusions remain. No native-speaker, whole-language, universal layout, physical-device or TalkBack certification. Dormant-content dispositions are not current/future consumer approval.",
+    "review_receipt": "https://github.com/c933103/AN-Paint/pull/297#issuecomment-6691270024",
+    "merge_receipt": "https://github.com/c933103/AN-Paint/pull/297#issuecomment-6692027003",
+    "python": {
+      "selected": 856,
+      "passed": 854,
+      "skipped": 2,
+      "skip_scope": "optional Pillow ICO/Adam7 decoder comparisons"
+    },
     "jvm": {
-      "cases": 1250,
-      "suites": 131,
-      "all_passed": true
+      "tests": 1387,
+      "suites": 154,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
     },
-    "lint": {
-      "path": "app/build/reports/lint-results-release.xml",
-      "issues": 0
-    },
+    "lint_issues": 0,
+    "exact_script_probes": 13,
+    "exact_script_scope": "12 successful operations and one intentional reserved-namespace rejection",
     "api30": {
-      "selected_unique_cases": 103,
-      "all_passed": true,
-      "reports": [
-        {
-          "path": "Paintroid/androidTest-results/summary.json",
-          "tests": 73,
-          "sha256": "f42d63b286579f54f4062fb22b1107233f577d9f556ab419ea0cbcc7f1107a74"
-        },
-        {
-          "path": "app-gallery-draft/androidTest-results/summary.json",
-          "tests": 3,
-          "sha256": "b5b6a500a942046d9d11accc6e340f714010c783190f6739639ddc3d4bb4e76f"
-        },
-        {
-          "path": "app-position/ainu-manchu/androidTest-results/summary.json",
-          "tests": 3,
-          "sha256": "9f44a9d4c177940f7e05794a48b903903609062ab20ae51abb59ea4b29e47a85"
-        },
-        {
-          "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
-          "tests": 4,
-          "sha256": "24da63d295608c945af8b380f0756a2230869a11640622a4dab74d9628a6c348"
-        },
-        {
-          "path": "app-vertical/english-manchu/androidTest-results/summary.json",
-          "tests": 2,
-          "sha256": "9a0ab57bc0687e61dbc16c632c76d596bf0aa609fa1f8ca3a05167d7b723924d"
-        },
-        {
-          "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
-          "tests": 2,
-          "sha256": "5a308a2988857a81774c27734280038ee51ab2c3a26cef447b79d8e69dee8dbb"
-        },
-        {
-          "path": "app/androidTest-results/summary.json",
-          "tests": 16,
-          "sha256": "60bdff52e7c44dba405383a0402e41f170cb0a1e252f5fcf054f39f4e21ff56f"
-        }
-      ],
-      "app_declared_tests": 45,
-      "app_sdk_eligible_tests": 32,
-      "app_sdk_suppressed_tests": [
-        [
-          "paint.anpaint.android.ColourViewportDeviceTest",
-          "hungarianColourCaptionsFitPortraitAndLandscape"
-        ],
-        [
-          "paint.anpaint.android.ColourViewportDeviceTest",
-          "largeEnglishColourCaptionsAndPreviewRemainReachable"
-        ],
-        [
-          "paint.anpaint.android.ColourViewportDeviceTest",
-          "largeHungarianColourCaptionsAndPreviewRemainReachable"
-        ],
-        [
-          "paint.anpaint.android.ColourViewportDeviceTest",
-          "normalAdvancedColourKeepsFiniteViewportAndFixedControls"
-        ],
-        [
-          "paint.anpaint.android.ColourViewportDeviceTest",
-          "retainedColourStateSurvivesRotationImeCancelAndReopen"
-        ],
-        [
-          "paint.anpaint.android.EditorDeviceTest",
-          "deviceLanguageRowKeepsTheSystemLabelAcrossRealAppLanguageSwitches"
-        ],
-        [
-          "paint.anpaint.android.LocalizedDialogDeviceTest",
-          "aboutArtworkNoticeCompletesNativeFooterFlow"
-        ],
-        [
-          "paint.anpaint.android.LocalizedDialogDeviceTest",
-          "aboutGimpTranslationNoticeCompletesNativeFooterFlow"
-        ],
-        [
-          "paint.anpaint.android.LocalizedDialogDeviceTest",
-          "aboutThirdPartyNoticeRetainsRotationAndNativeFooterFlow"
-        ],
-        [
-          "paint.anpaint.android.LocalizedDialogDeviceTest",
-          "mixedKoreanAttributionAndConditionalCropUseRealConsumers"
-        ],
-        [
-          "paint.anpaint.android.LocalizedDialogDeviceTest",
-          "northKoreanAttributionAndConditionalCropUseRealConsumers"
-        ],
-        [
-          "paint.anpaint.android.LocalizedDialogDeviceTest",
-          "retainedCreditDialogKeepsDraftSelectionAndNativeListenersAcrossRotation"
-        ],
-        [
-          "paint.anpaint.android.LocalizedDialogDeviceTest",
-          "southKoreanAttributionAndConditionalCropUseRealConsumers"
-        ]
-      ],
-      "app_explicitly_excluded_tests": [
-        [
-          "paint.anpaint.android.AcceptedCreditRestartSeedTest",
-          "acceptedGalleryEditRemainsUndeliveredUntilExternalForceStop"
-        ],
-        [
-          "paint.anpaint.android.AcceptedCreditRestartVerifyTest",
-          "acceptedTextIsRecoverableWithoutAutomaticDocumentAssociation"
-        ]
-      ],
-      "vertical_baseline_screenshots": 32,
-      "vertical_reachability_screenshots": 64,
-      "vertical_reachability_cases": 8,
-      "dialog_cases": 0
+      "selected_app_methods": 30,
+      "selected_native_import_methods": 73,
+      "app_sdk_suppressed": 17,
+      "app_explicit_restart_exclusions": 2,
+      "native_sdk_suppressed": 1
     },
     "api35": {
-      "selected_unique_cases": 119,
-      "all_passed": true,
-      "reports": [
-        {
-          "path": "Paintroid/androidTest-results/summary.json",
-          "tests": 74,
-          "sha256": "8479cff60e73247b247c73a6a6db29623cec47ac90fe7bdb06deff3da5faae08"
-        },
-        {
-          "path": "app-dialog/androidTest-results/summary.json",
-          "tests": 12,
-          "sha256": "de479b1fd1eb7a56f3ce37d6e7e99e01a4ffad7c5677b3c5b99fa5d8741f0d81"
-        },
-        {
-          "path": "app-gallery-draft/androidTest-results/summary.json",
-          "tests": 3,
-          "sha256": "859c57ae6d60480abc1b27defa2a9bdc1043fb9e86359576aa5660903f1b4208"
-        },
-        {
-          "path": "app-position/ainu-manchu/androidTest-results/summary.json",
-          "tests": 3,
-          "sha256": "6dfb4a070bd55888960bae278aad54a9001e32572e0fb6e2778188012cc78749"
-        },
-        {
-          "path": "app-position/tibetan-jeju-nom/androidTest-results/summary.json",
-          "tests": 4,
-          "sha256": "4b0a638feb405c6174a6be70403d83995d434718e65bcd3ad60f712a4766423a"
-        },
-        {
-          "path": "app-vertical/english-manchu/androidTest-results/summary.json",
-          "tests": 2,
-          "sha256": "250f770ffea61f22e825097df3aa63672fdb9c2d4d54417fc3fbb0c5f3ea7630"
-        },
-        {
-          "path": "app-vertical/literary-chinese-emoji/androidTest-results/summary.json",
-          "tests": 2,
-          "sha256": "32b1f86ac2ce91a56c5b4b6c13d353303c61376c1bde23a6841be13db93d9aa3"
-        },
-        {
-          "path": "app/accepted-credit-restart/seed/summary.json",
-          "tests": 1,
-          "sha256": "e2ea76161d02d701dcffb133c5b5dd5909b8e62ec28042149a6f8a9efcc9461e"
-        },
-        {
-          "path": "app/accepted-credit-restart/verify/summary.json",
-          "tests": 1,
-          "sha256": "61cbce7a7397dbf763fa547df7a354194f6bf23e13b13146ab3ed1044bc4725c"
-        },
-        {
-          "path": "app/androidTest-results/summary.json",
-          "tests": 17,
-          "sha256": "0745d185485e284091666fc6560bb8b434c7ff101f0ad716950d3591ec5a44f3"
-        }
-      ],
-      "app_declared_tests": 45,
-      "app_sdk_eligible_tests": 45,
-      "app_sdk_suppressed_tests": [],
-      "app_explicitly_excluded_tests": [],
-      "vertical_baseline_screenshots": 32,
-      "vertical_reachability_screenshots": 64,
-      "vertical_reachability_cases": 8,
-      "dialog_cases": 12
+      "selected_app_methods": 49,
+      "selected_native_import_methods": 74,
+      "app_sdk_suppressed": 0,
+      "app_explicit_exclusions": 0
     },
-    "exact_script_probes": 9,
-    "exact_script_probes_passed": true,
-    "source_archive": {
-      "source_commit": "d664b3e72ea3261dba662119a429b0bb3914c04a",
-      "tree": "409a41191173f98d10155b8058b232efa1a527fc",
-      "matched_tracked_files": 1263,
-      "missing_tracked_files": [
-        ".gitignore",
-        ".idea/codeStyles/Project.xml",
-        "colorpicker/.gitignore"
-      ],
-      "different_tracked_files": [],
-      "source_prefix": "AN-Paint/"
-    },
-    "scope": "Exact selected SDK-aware source inventories only. Existing language, glyph, layout and accessibility holds remain; no whole-locale, native-speaker, physical-device, TalkBack or universal Android compatibility claim. Newer unpublished Czech work is excluded.",
-    "terminal_gate_receipt": "https://github.com/c933103/AN-Paint/blob/b9a3e428b245449336eaa01f52ab23fe12953e81/release-build-0.0.40-20261020/final-report-verification.json",
-    "signing_receipt": "https://github.com/c933103/AN-Paint/blob/b9a3e428b245449336eaa01f52ab23fe12953e81/release-build-0.0.40-20261020/signing-verification.json",
-    "signing_certificate_sha256": "f6220f4f21dd5af98d01983f2dbbf37893adfe93aa0de19868ac93b48b0b7791",
-    "signing_patch_sha256": "1618828da21591ae8a9448e23552e70839de10ad2def5df4d27ea0c9df391fd5",
-    "payload_matches_tested_apk": true,
-    "embedded_source_matches_delivery": true
+    "raw_instrumentation_junit_and_composition": "matched current source discovery and official composed bytes for both APIs"
   },
   "artifacts": [
     {
-      "id": 12281750198,
-      "name": "emulator-api-30-d664b3e72ea3261dba662119a429b0bb3914c04a",
-      "digest": "sha256:9a1f406c12c74469f400eb31e71f05e8bc6119998aa179fb27be7f109af62952"
+      "id": 13529886427,
+      "name": "regression-and-lint-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:23ec2bbbdf352b7ccaceb378a8da726f0e9ea44df41d652a17fc1b6af8ae81a5",
+      "size": 83679868
     },
     {
-      "id": 12281131219,
-      "name": "regression-and-lint-d664b3e72ea3261dba662119a429b0bb3914c04a",
-      "digest": "sha256:8f3e59bac4866f6357f62bdd6ab8a78c6da5d97d7855351ee31d181b09f6eda1"
+      "id": 13529575828,
+      "name": "emulator-position-api-30-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:dd36b87851edaa31881800bfb09e6e66c52f44d44216ed221a9749b129a5505c",
+      "size": 601291
     },
     {
-      "id": 12279818712,
-      "name": "emulator-api-35-d664b3e72ea3261dba662119a429b0bb3914c04a",
-      "digest": "sha256:dd899075a8103ae7abd6e0e8251152f5be89d7a2357ee1ac7cb10e2ab170cccd"
+      "id": 13529426447,
+      "name": "emulator-position-api-35-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:1aa7178e9f36461715db4dd0903f14adfa54e46a3660909f3f6bc7795159c204",
+      "size": 1906153
     },
     {
-      "id": 12278769121,
-      "name": "exact-script-generation-d664b3e72ea3261dba662119a429b0bb3914c04a",
-      "digest": "sha256:1849f471b48f3edbc6080d1098068074a6b76971699a9d93d6848581f981bbb7"
+      "id": 13529235559,
+      "name": "exact-script-generation-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:91678e88932186806ae53d0b8fe478c126bcfa55b4d1b8678873a285b7b930cf",
+      "size": 19728
+    },
+    {
+      "id": 13529061516,
+      "name": "apk-and-source-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:ff11b75be91fd1e4f3f56d1629d63a551e902468be7c3422fa7580056816b465",
+      "size": 133445384
+    },
+    {
+      "id": 13528914566,
+      "name": "emulator-api-35-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:030a0f52474cdf54aab162a8bbde1bb972e948680c28b48d1f7f8679f8823465",
+      "size": 12192250
+    },
+    {
+      "id": 13528829830,
+      "name": "emulator-api-30-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:30675c83bc07eb7dc4ebde0479e7fa70332b893ac3b095792accaaffc4f37431",
+      "size": 6815070
+    },
+    {
+      "id": 13528764946,
+      "name": "emulator-core-api-35-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:2cc7e0d90491437d72a39c4dd7366e89a13ed1b8861d831e9c2b7af3ea54d51e",
+      "size": 12179697
+    },
+    {
+      "id": 13528754165,
+      "name": "emulator-core-api-30-9e9a6bd0805dbca1a77a48504730d059e789ca11",
+      "digest": "sha256:e6b41fae6afbaf7290a3baa04d024a6503b39fd60cabc7d7348dcf1946f326f0",
+      "size": 6804308
     }
   ]
 }
