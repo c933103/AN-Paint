@@ -494,3 +494,11 @@ Each entry below applies one typed key to each listed locale. This is a compact 
 **retain with terminology uncertainty**
 
 - `string/ui_about_credits23`: `hy`.
+
+## Full finite existing-value follow-through, 6 November 2026
+
+[Complete scope, sources, successors and limits](existing-string-review-20261106.md) records 16,692 disjoint current-value decisions/classifications across the formerly U-only and publication-only cohorts, plus 15 retained-context applicability decisions. Valid earlier author/accepted scopes were carried rather than re-reviewed. This checkpoint integrates 106 existing-value repairs across 38 catalogues, including five previously scoped attribution-object captions and three bounded Ainu decoding clarifications; no new resource identity or missing P2/P3 translation is added. Optional Nôm spelling substitutions were deliberately left unapplied.
+
+All 856 host contract tests pass (180.621s) on the 104-change candidate; the final two dormant follow-throughs also pass all 40 affected translation/boundary tests, all 38 affected catalogues validate, and 318 actual JDK formatting cases pass. Indexed arguments, complete plural branches and unrelated resources remain intact. Only two literal-percent attributes are added. Default English, production code, tests, workflows, version and signing/access state remain unchanged. Exact-head remote-tree verification and CI/review are tracked separately.
+
+The targeted Ainu Kana sampled-decoding question is resolved by one functional clarification with a complete bounded value disposition. Historical dormant/manual, layout, terminology and review-authority caveats are not automatically new semantic defects or a native-certification gate. Release remains conditional on exact-head checks, final develop release execution, upgrade signing and corresponding-source/ABI verification.
