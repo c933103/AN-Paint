@@ -113,23 +113,30 @@ class NumericSliderGestureTest {
     }
 
     private fun measureCaption(control: NumericSlider,width: Int) {
-        control.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),
-            View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED))
-        control.layout(0,0,control.measuredWidth,control.measuredHeight)
-        val caption=control.number
-        val layout=checkNotNull(caption.layout)
-        assertEquals(caption.text.length,layout.getLineEnd(layout.lineCount-1))
-        assertTrue("Complete caption height",layout.height<=caption.height-caption.compoundPaddingTop-caption.compoundPaddingBottom)
-        for(line in 0 until layout.lineCount) {
-            assertEquals(0,layout.getEllipsisCount(line))
-            assertTrue("Complete caption width",layout.getLineMax(line)<=layout.width)
-        }
-        assertTrue("SeekBar remains below the expanded caption",control.slider.top>=caption.bottom)
-        assertEquals(ui(R.string.ui_numeric_slider_value,control.name,control.slider.progress+control.minimum),caption.text.toString())
-        val description=ui(R.string.ui_tap_to_type_a_number,control.name,control.slider.progress+control.minimum)
-        assertEquals(description,caption.contentDescription.toString())
-        assertEquals(description,caption.createAccessibilityNodeInfo().contentDescription.toString())
-        assertEquals(control.name,control.slider.contentDescription.toString())
+        // Accessibility nodes require a real window attachment, not measurement alone.
+        val attachHere=control.parent==null
+        if(attachHere) root.addView(control,FrameLayout.LayoutParams(width,FrameLayout.LayoutParams.WRAP_CONTENT))
+        try {
+            assertTrue("Caption control is attached to the activity window",control.isAttachedToWindow)
+            control.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED))
+            control.layout(0,0,control.measuredWidth,control.measuredHeight)
+            val caption=control.number
+            val layout=checkNotNull(caption.layout)
+            assertEquals(caption.text.length,layout.getLineEnd(layout.lineCount-1))
+            assertTrue("Complete caption height",layout.height<=caption.height-caption.compoundPaddingTop-caption.compoundPaddingBottom)
+            for(line in 0 until layout.lineCount) {
+                assertEquals(0,layout.getEllipsisCount(line))
+                assertTrue("Complete caption width",layout.getLineMax(line)<=layout.width)
+            }
+            assertTrue("SeekBar remains below the expanded caption",control.slider.top>=caption.bottom)
+            assertEquals(ui(R.string.ui_numeric_slider_value,control.name,control.slider.progress+control.minimum),caption.text.toString())
+            val description=ui(R.string.ui_tap_to_type_a_number,control.name,control.slider.progress+control.minimum)
+            assertEquals(description,caption.contentDescription.toString())
+            val node=checkNotNull(caption.createAccessibilityNodeInfo()) {"Attached caption must expose an accessibility node"}
+            try {assertEquals(description,node.contentDescription.toString())} finally {node.recycle()}
+            assertEquals(control.name,control.slider.contentDescription.toString())
+        } finally {if(attachHere) root.removeView(control)}
     }
 
     @Test fun currentLongResourceCaptionsFitNarrowWidthAtLargeFont() {
